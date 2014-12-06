@@ -398,9 +398,24 @@ namespace HoI2Editor.Models
         public const string ProvinceTextFileName = "province_names.csv";
 
         /// <summary>
-        ///     マップデータのファイル名
+        ///     マップデータのファイル名 (936x360)
         /// </summary>
-        public const string LightMapFileName = "lightmap1.tbl";
+        public const string LightMap1FileName = "lightmap1.tbl";
+
+        /// <summary>
+        ///     マップデータのファイル名 (468x180)
+        /// </summary>
+        public const string LightMap2FileName = "lightmap2.tbl";
+
+        /// <summary>
+        ///     マップデータのファイル名 (234x90)
+        /// </summary>
+        public const string LightMap3FileName = "lightmap3.tbl";
+
+        /// <summary>
+        ///     マップデータのファイル名 (117x45)
+        /// </summary>
+        public const string LightMap4FileName = "lightmap4.tbl";
 
         /// <summary>
         ///     プロヴィンス境界定義ファイル名

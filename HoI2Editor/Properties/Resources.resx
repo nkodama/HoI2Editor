@@ -3741,4 +3741,7 @@
   <data name="EditorScenario" xml:space="preserve">
     <value>Scenario Editor</value>
   </data>
+  <data name="Alliance" xml:space="preserve">
+    <value>Alliance</value>
+  </data>
 </root>

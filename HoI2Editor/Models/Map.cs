@@ -1,60 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Runtime.InteropServices;
-using HoI2Editor.Parsers;
 
 namespace HoI2Editor.Models
 {
     /// <summary>
     ///     マップデータの管理
     /// </summary>
-    public static class Map
+    public class Map
     {
         #region 公開プロパティ
 
         /// <summary>
-        ///     マップ画像
+        ///     マップレベル
         /// </summary>
-        public static Bitmap Image { get; private set; }
+        public MapLevel Level { get; set; }
 
         /// <summary>
         ///     マップブロック単位の幅
         /// </summary>
-        public static int Width { get; private set; }
+        public int Width { get; private set; }
 
         /// <summary>
         ///     マップブロック単位の高さ
         /// </summary>
-        public static int Height { get; private set; }
+        public int Height { get; private set; }
 
         /// <summary>
         ///     マップ画素の配列
         /// </summary>
-        public static MapPixels Pixels { get; private set; }
+        public MapPixels Pixels { get; private set; }
 
         /// <summary>
         ///     プロヴィンスIDの配列
         /// </summary>
-        public static MapProvinceIds Ids { get; private set; }
+        public MapProvinceIds Ids { get; private set; }
 
         /// <summary>
         ///     マップブロックの配列
         /// </summary>
-        public static MapBlocks Blocks { get; private set; }
-
-        /// <summary>
-        ///     プロヴィンス境界の配列
-        /// </summary>
-        public static Rectangle[] BoundBoxes { get; private set; }
-
-        /// <summary>
-        ///     カラースケールテーブル
-        /// </summary>
-        public static Dictionary<string, ColorPalette> ColorScales { get; private set; }
+        public MapBlocks Blocks { get; private set; }
 
         #endregion
 
@@ -105,24 +93,14 @@ namespace HoI2Editor.Models
         #region 内部定数
 
         /// <summary>
-        ///     マップブロック単位の幅
+        ///     マップブロック単位の最大幅
         /// </summary>
-        private const int BlockWidth = 936;
+        private const int MaxWidth = 936;
 
         /// <summary>
-        ///     マップブロック単位の高さ
+        ///     マップブロック単位の最大高さ
         /// </summary>
-        private const int BlockHeight = 360;
-
-        /// <summary>
-        ///     マップ断片の幅
-        /// </summary>
-        private const int PieceWidth = 117;
-
-        /// <summary>
-        ///     マップ断片の高さ
-        /// </summary>
-        private const int PieceHeight = 45;
+        private const int MaxHeight = 360;
 
         /// <summary>
         ///     最大プロヴィンス数
@@ -135,9 +113,29 @@ namespace HoI2Editor.Models
         private const int MaxBlockProvinces = 256;
 
         /// <summary>
-        ///     カラースケールテーブルの要素数
+        ///     マップ画像の色数
         /// </summary>
-        private const int MaxColorScales = 64;
+        private const int MaxColor = 64;
+
+        /// <summary>
+        ///     平滑化処理の閾値
+        /// </summary>
+        private const int SmoothingThrethold = 0 << 8; // 平滑化なし
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        /// <param name="level">マップレベル</param>
+        public Map(MapLevel level)
+        {
+            Level = level;
+            Width = MaxWidth >> (int) level;
+            Height = MaxHeight >> (int) level;
+        }
 
         #endregion
 
@@ -146,31 +144,22 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップファイルを読み込む
         /// </summary>
-        public static void Load()
+        public void Load()
         {
-            Width = BlockWidth;
-            Height = BlockHeight;
-
-            var sw = new Stopwatch();
-            sw.Start();
-
             // マップデータを読み込む
             LoadLightMap();
 
-            // プロヴィンス境界定義ファイルを読み込む
-            LoadBoundBox();
+            // マップ画像を展開する
+            DecodePixels();
 
-            // カラースケールテーブルを読み込む
-            LoadColorScales();
-
-            sw.Stop();
-            Log.Info("[Map] Load: {0}ms", sw.ElapsedMilliseconds);
+            // プロヴィンスIDの配列を展開する
+            ExtractIds();
         }
 
         /// <summary>
         ///     マップデータを読み込む
         /// </summary>
-        private static void LoadLightMap()
+        private void LoadLightMap()
         {
             // マップデータをメモリへ展開する
             LoadFile();
@@ -199,20 +188,46 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップデータをメモリへ展開する
         /// </summary>
-        private static void LoadFile()
+        private void LoadFile()
         {
-            string fileName = Game.GetReadFileName(Game.GetMapFolderName(), Game.LightMapFileName);
-            var reader = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-            _data = new byte[reader.Length];
-            reader.Read(_data, 0, (int) reader.Length);
-            reader.Close();
+            string name;
+            switch (Level)
+            {
+                case MapLevel.Level1:
+                    name = Game.LightMap1FileName;
+                    break;
+
+                case MapLevel.Level2:
+                    name = Game.LightMap2FileName;
+                    break;
+
+                case MapLevel.Level3:
+                    name = Game.LightMap3FileName;
+                    break;
+
+                case MapLevel.Level4:
+                    name = Game.LightMap4FileName;
+                    break;
+
+                default:
+                    name = Game.LightMap1FileName;
+                    break;
+            }
+            string fileName = Game.GetReadFileName(Game.GetMapFolderName(), name);
+
+            using (var reader = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            {
+                _data = new byte[reader.Length];
+                reader.Read(_data, 0, (int) reader.Length);
+                reader.Close();
+            }
         }
 
         /// <summary>
         ///     マップブロックのオフセット位置を読み込む
         /// </summary>
         /// <param name="count">マップブロック数</param>
-        private static void LoadOffsets(int count)
+        private void LoadOffsets(int count)
         {
             _offsets = new uint[count + 1];
 
@@ -229,7 +244,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップブロックを読み込む
         /// </summary>
-        private static MapBlock LoadBlock()
+        private MapBlock LoadBlock()
         {
             var block = new MapBlock();
 
@@ -245,7 +260,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンスIDリストを読み込む
         /// </summary>
         /// <param name="block">対象マップブロック</param>
-        private static void LoadProvinceIds(MapBlock block)
+        private void LoadProvinceIds(MapBlock block)
         {
             var ids = new ushort[MaxBlockProvinces];
             int no = 0;
@@ -255,7 +270,7 @@ namespace HoI2Editor.Models
             {
                 work = _data[_index++];
                 work |= (ushort) (_data[_index++] << 8);
-                ids[no++] = ((work & 0x4000) == 0) ? (ushort) (work & 0x7FFF) : ids[((work & 0x1E00) >> 9) - 4];
+                ids[no++] = ((work & 0x4000) == 0) ? (ushort) (work & 0x7FFF) : ids[((work & 0x3F00) >> 8) - 4];
             } while ((work & 0x8000) == 0);
 
             block.ProvinceIds = ids;
@@ -266,7 +281,7 @@ namespace HoI2Editor.Models
         ///     マップツリーを読み込む
         /// </summary>
         /// <param name="block">対象マップブロック</param>
-        private static void LoadMapTree(MapBlock block)
+        private void LoadMapTree(MapBlock block)
         {
             MapTreeNode[] stack = _stack;
             int sp = 0;
@@ -352,7 +367,7 @@ namespace HoI2Editor.Models
         ///     ツリーノードごとのプロヴィンスIDを読み込む
         /// </summary>
         /// <param name="block">対象マップブロック</param>
-        private static void LoadNodeIds(MapBlock block)
+        private void LoadNodeIds(MapBlock block)
         {
             int count = block.NodeCount;
             var ids = new byte[count + 7];
@@ -439,7 +454,7 @@ namespace HoI2Editor.Models
         ///     ノードごとのカラーインデックスを読み込む
         /// </summary>
         /// <param name="block">対象マップブロック</param>
-        private static void LoadNodeColors(MapBlock block)
+        private void LoadNodeColors(MapBlock block)
         {
             int count = block.NodeCount;
             var colors = new byte[count + 3];
@@ -457,265 +472,15 @@ namespace HoI2Editor.Models
             block.NodeColors = colors;
         }
 
-        /// <summary>
-        ///     プロヴィンス境界定義ファイルを読み込む
-        /// </summary>
-        private static void LoadBoundBox()
-        {
-            // プロヴィンス境界データをメモリへ展開する
-            string fileName = Game.GetReadFileName(Game.GetMapFolderName(), Game.LightMapFileName);
-            int count;
-            using (var reader = new FileStream(fileName, FileMode.Open, FileAccess.Read))
-            {
-                var len = (int) reader.Length;
-                _data = new byte[len];
-                count = len / 16;
-                reader.Read(_data, 0, len);
-                reader.Close();
-            }
-            _index = 0;
-
-            if (count > MaxProvinces)
-            {
-                count = MaxProvinces;
-            }
-            BoundBoxes = new Rectangle[count];
-
-            // プロヴィンス境界を順に読み込む
-            for (int i = 0; i < count; i++)
-            {
-                int left = _data[_index] | (_data[_index + 1] << 8);
-                BoundBoxes[i].X = left;
-                BoundBoxes[i].Width = (_data[_index + 8] | (_data[_index + 9] << 8)) - left + 1;
-                int top = _data[_index + 4] | (_data[_index + 5] << 8);
-                BoundBoxes[i].Y = top;
-                BoundBoxes[i].Height = (_data[_index + 12] | (_data[_index + 13] << 8)) - top + 1;
-                _index += 16;
-            }
-        }
-
-        /// <summary>
-        ///     カラースケールテーブルを読み込む
-        /// </summary>
-        private static void LoadColorScales()
-        {
-            string fileName = Game.GetReadFileName(Game.GetMapFolderName(), Game.ColorScalesFileName);
-            using (var lexer = new CsvLexer(fileName))
-            {
-                ColorScales = new Dictionary<string, ColorPalette>();
-
-                // パレット作成用のダミービットマップ
-                var bitmap = new Bitmap(1, 1, PixelFormat.Format8bppIndexed);
-
-                while (!lexer.EndOfStream)
-                {
-                    string[] tokens = lexer.GetTokens();
-
-                    // カラースケール名が空ならば読み飛ばす
-                    if (tokens == null || string.IsNullOrEmpty(tokens[0]))
-                    {
-                        lexer.SkipLine();
-                        lexer.SkipLine();
-                        lexer.SkipLine();
-                        lexer.SkipLine();
-                        lexer.SkipLine();
-                        continue;
-                    }
-                    string name = tokens[0].ToLower();
-
-                    // ヘッダ行を読み飛ばす
-                    lexer.SkipLine();
-
-                    // 色定義を読み込む
-                    int index1;
-                    Color color1 = ParseColorScale(lexer, out index1);
-                    int index2;
-                    Color color2 = ParseColorScale(lexer, out index2);
-                    int index3;
-                    Color color3 = ParseColorScale(lexer, out index3);
-                    int index4;
-                    Color color4 = ParseColorScale(lexer, out index4);
-                    if (color1 == Color.Empty || color2 == Color.Empty || color3 == Color.Empty || color4 == Color.Empty)
-                    {
-                        continue;
-                    }
-
-                    // カラーパレットに値を設定する
-                    ColorPalette palette = bitmap.Palette;
-                    SetColorScales(palette, color1, color2, index1, index2);
-                    SetColorScales(palette, color2, color3, index2, index3);
-                    SetColorScales(palette, color3, color4, index3, index4);
-                    palette.Entries[255] = Color.Lime;
-
-                    // カラースケールテーブルに値を追加する
-                    ColorScales.Add(name, palette);
-                }
-            }
-        }
-
-        /// <summary>
-        ///     カラースケールを解釈する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <param name="index">カラーインデックス</param>
-        /// <returns>カラースケール</returns>
-        private static Color ParseColorScale(CsvLexer lexer, out int index)
-        {
-            string[] tokens = lexer.GetTokens();
-            if (tokens == null || tokens.Length != 4)
-            {
-                index = 0;
-                return Color.Empty;
-            }
-
-            int r;
-            if (!int.TryParse(tokens[0], out r))
-            {
-                index = 0;
-                return Color.Empty;
-            }
-
-            int g;
-            if (!int.TryParse(tokens[1], out g))
-            {
-                index = 0;
-                return Color.Empty;
-            }
-
-            int b;
-            if (!int.TryParse(tokens[2], out b))
-            {
-                index = 0;
-                return Color.Empty;
-            }
-
-            if (!int.TryParse(tokens[3], out index))
-            {
-                return Color.Empty;
-            }
-
-            return Color.FromArgb(r, g, b);
-        }
-
-        /// <summary>
-        ///     カラーパレットに値を設定する
-        /// </summary>
-        /// <param name="palette">カラーパレットに</param>
-        /// <param name="color1">開始位置の色</param>
-        /// <param name="color2">終了位置の色</param>
-        /// <param name="index1">開始位置のインデックス</param>
-        /// <param name="index2">終了位置のインデックス</param>
-        private static void SetColorScales(ColorPalette palette, Color color1, Color color2, int index1, int index2)
-        {
-            int r = color1.R << 16;
-            int g = color1.G << 16;
-            int b = color1.B << 16;
-            int width = index2 - index1;
-            int stepR = ((color2.R - color1.R) << 16) / width;
-            int stepG = ((color2.G - color1.G) << 16) / width;
-            int stepB = ((color2.B - color1.B) << 16) / width;
-            for (int i = index1; i < index2; i++)
-            {
-                palette.Entries[i * 4] = Color.FromArgb(r >> 16, g >> 16, b >> 16);
-                r += stepR;
-                g += stepG;
-                b += stepB;
-            }
-        }
-
-        #endregion
-
-        #region ファイル書き込み
-
-        /// <summary>
-        ///     マップ画像を保存する
-        /// </summary>
-        /// <param name="folderName">保存先フォルダ名</param>
-        public static void Save(string folderName)
-        {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            if (!Directory.Exists(folderName))
-            {
-                Directory.CreateDirectory(folderName);
-            }
-
-            int hCount = Width / PieceWidth;
-            int vCount = Height / PieceHeight;
-
-            for (int i = 0; i < vCount; i++)
-            {
-                for (int j = 0; j < hCount; j++)
-                {
-                    SavePiece(Pixels, j * PieceWidth, i * PieceHeight, folderName);
-                }
-            }
-
-            sw.Stop();
-            Log.Info("[Map] Save: {0}ms", sw.ElapsedMilliseconds);
-        }
-
-        /// <summary>
-        ///     マップ断片を保存する
-        /// </summary>
-        /// <param name="pixels">マップ画素の配列</param>
-        /// <param name="x">ブロック単位のX座標</param>
-        /// <param name="y">ブロック単位のY座標</param>
-        /// <param name="folderName">保存先フォルダ名</param>
-        public static void SavePiece(MapPixels pixels, int x, int y, string folderName)
-        {
-            var bitmap = new Bitmap(Width * MapBlock.Width, Height * MapBlock.Width,
-                PixelFormat.Format8bppIndexed);
-
-            ColorPalette palette = bitmap.Palette;
-            for (int i = 0; i < 256; i++)
-            {
-                palette.Entries[i] = Color.FromArgb(255 - i, 255 - i, 255 - i);
-            }
-            bitmap.Palette = palette;
-
-            BitmapData image = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.WriteOnly,
-                PixelFormat.Format8bppIndexed);
-            int src = (y * pixels.Width + x) * MapBlock.Width;
-            int dest = 0;
-            for (int i = 0; i < Height * MapBlock.Width; i++)
-            {
-                Marshal.Copy(pixels.Data, src, (IntPtr) ((Int64) image.Scan0 + dest), image.Width);
-                src += pixels.Width;
-                dest += image.Width;
-            }
-            bitmap.UnlockBits(image);
-
-            bitmap.Save(Path.Combine(folderName, string.Format("map_{0}_{1}.colorscales.png", x, y)), ImageFormat.Png);
-        }
-
         #endregion
 
         #region マップデータ展開
 
         /// <summary>
-        ///     マップデータを展開する
+        ///     マップ画像を取得する
         /// </summary>
-        public static void Decode()
-        {
-            var sw = new Stopwatch();
-            sw.Start();
-
-            // マップ画像を展開する
-            DecodePixels();
-
-            // プロヴィンスIDの配列を展開する
-            ExtractIds();
-
-            sw.Stop();
-            Log.Info("[Map] Decode: {0}ms", sw.ElapsedMilliseconds);
-        }
-
-        /// <summary>
-        ///     マップ画像を展開する
-        /// </summary>
-        public static void DecodePixels()
+        /// <returns>マップ画像</returns>
+        public Bitmap GetImage()
         {
             var bitmap = new Bitmap(Width * MapBlock.Width, Height * MapBlock.Height, PixelFormat.Format8bppIndexed);
 
@@ -730,6 +495,17 @@ namespace HoI2Editor.Models
             BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.WriteOnly,
                 PixelFormat.Format8bppIndexed);
 
+            Marshal.Copy(Pixels.Data, 0, data.Scan0, Pixels.Data.Length);
+            bitmap.UnlockBits(data);
+
+            return bitmap;
+        }
+
+        /// <summary>
+        ///     マップ画像を展開する
+        /// </summary>
+        private void DecodePixels()
+        {
             Pixels = new MapPixels(Width * MapBlock.Width, Height * MapBlock.Height);
             _pics = new byte[(MapBlock.Width + 1) * (MapBlock.Height + 1)];
 
@@ -760,16 +536,6 @@ namespace HoI2Editor.Models
                 }
             }
 
-            Marshal.Copy(Pixels.Data, 0, data.Scan0, Pixels.Data.Length);
-            bitmap.UnlockBits(data);
-
-            Image old = Image;
-            Image = bitmap;
-            if (old != null)
-            {
-                old.Dispose();
-            }
-
             // 使用済みのバッファを解放する
             _pics = null;
         }
@@ -777,7 +543,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     右下端のマップブロックをデコードする
         /// </summary>
-        private static void DecodeBlockBottomRight()
+        private void DecodeBlockBottomRight()
         {
             // 右下端の領域外ピクセルを準備する
             _block = Blocks[0, Blocks.Height - 1];
@@ -801,7 +567,7 @@ namespace HoI2Editor.Models
         ///     右端のマップブロックをデコードする
         /// </summary>
         /// <param name="y">Y座標</param>
-        private static void DecodeBlockRight(int y)
+        private void DecodeBlockRight(int y)
         {
             // 右下端の領域外ピクセルを準備する
             _block = Blocks[0, y];
@@ -826,7 +592,7 @@ namespace HoI2Editor.Models
         ///     下端のマップブロックをデコードする
         /// </summary>
         /// <param name="x">X座標</param>
-        private static void DecodeBlockBottom(int x)
+        private void DecodeBlockBottom(int x)
         {
             // 右下端の領域外ピクセルを準備する
             _block = Blocks[x + 1, Blocks.Height - 1];
@@ -858,7 +624,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="x">X座標</param>
         /// <param name="y">Y座標</param>
-        private static void DecodeBlock(int x, int y)
+        private void DecodeBlock(int x, int y)
         {
             // ツリーをデコードする
             _block = Blocks[x, y];
@@ -870,7 +636,7 @@ namespace HoI2Editor.Models
         ///     右下端の領域外ピクセルを準備する
         /// </summary>
         /// <param name="node">対象ノード</param>
-        private static void PrepareBottomRight(MapTreeNode node)
+        private void PrepareBottomRight(MapTreeNode node)
         {
             _pics[MapBlock.Height * (MapBlock.Width + 1) + MapBlock.Width] = (byte) (_block.NodeColors[node.No] << 2);
         }
@@ -879,18 +645,18 @@ namespace HoI2Editor.Models
         ///     右端の領域外ピクセルを準備する
         /// </summary>
         /// <param name="node">対象ノード</param>
-        private static void PrepareRight(MapTreeNode node)
+        private void PrepareRight(MapTreeNode node)
         {
             int pos = node.Y * (MapBlock.Width + 1) + MapBlock.Width;
             if (node.Level == 0)
             {
-                _pics[pos] = (byte) (_block.NodeColors[node.No] << 2);
+                _pics[pos] = _block.NodeColors[node.No];
                 return;
             }
             int height = 1 << node.Level;
-            int top = _block.NodeColors[node.No] << 10;
+            int top = _block.NodeColors[node.No] << 8;
             int bottom = _pics[pos + height * (MapBlock.Width + 1)] << 8;
-            int delta = (bottom - top) >> node.Level;
+            int delta = ((bottom - top) < SmoothingThrethold) ? (bottom - top) >> node.Level : 0;
             int color = top;
             for (int i = 0; i < height; i++)
             {
@@ -904,18 +670,18 @@ namespace HoI2Editor.Models
         ///     下端の領域外ピクセルを準備する
         /// </summary>
         /// <param name="node">対象ノード</param>
-        private static void PrepareBottom(MapTreeNode node)
+        private void PrepareBottom(MapTreeNode node)
         {
             int pos = MapBlock.Height * (MapBlock.Width + 1) + node.X;
             if (node.Level == 0)
             {
-                _pics[pos] = (byte) (_block.NodeColors[node.No] << 2);
+                _pics[pos] = _block.NodeColors[node.No];
                 return;
             }
             int width = 1 << node.Level;
-            int left = _block.NodeColors[node.No] << 10;
+            int left = _block.NodeColors[node.No] << 8;
             int right = _pics[pos + width] << 8;
-            int delta = (right - left) >> node.Level;
+            int delta = ((right - left) < SmoothingThrethold) ? (right - left) >> node.Level : 0;
             int color = left;
             for (int i = 0; i < width; i++)
             {
@@ -928,24 +694,24 @@ namespace HoI2Editor.Models
         ///     ノードを展開用バッファに描画する
         /// </summary>
         /// <param name="node">対象ノード</param>
-        private static void DrawNodeBuffer(MapTreeNode node)
+        private void DrawNodeBuffer(MapTreeNode node)
         {
             int pos = node.Y * (MapBlock.Width + 1) + node.X;
             if (node.Level == 0)
             {
-                _pics[pos] = (byte) (_block.NodeColors[node.No] << 2);
+                _pics[pos] = _block.NodeColors[node.No];
                 return;
             }
             int width = 1 << node.Level;
             int step = MapBlock.Width + 1 - width;
-            int top = _block.NodeColors[node.No] << 10;
+            int top = _block.NodeColors[node.No] << 8;
             int bottom = _pics[pos + width * (MapBlock.Width + 1)] << 8;
-            int deltaY = (bottom - top) >> node.Level;
+            int deltaY = ((bottom - top) < SmoothingThrethold) ? (bottom - top) >> node.Level : 0;
             int left = top;
             for (int i = 0; i < width; i++)
             {
                 int right = _pics[pos + width] << 8;
-                int deltaX = (right - left) >> node.Level;
+                int deltaX = ((right - left) < SmoothingThrethold) ? (right - left) >> node.Level : 0;
                 int color = left;
                 for (int j = 0; j < width; j++)
                 {
@@ -961,20 +727,20 @@ namespace HoI2Editor.Models
         ///     ノードをマップピクセルの配列に展開する
         /// </summary>
         /// <param name="node">対象ノード</param>
-        private static void DrawNode(MapTreeNode node)
+        private void DrawNode(MapTreeNode node)
         {
             int pos = _base + node.Y * Pixels.Width + node.X;
             byte[] pixels = Pixels.Data;
             if (node.Level == 0)
             {
-                pixels[pos] = (byte) (_block.NodeColors[node.No] << 2);
+                pixels[pos] = _block.NodeColors[node.No];
                 return;
             }
             int width = 1 << node.Level;
             int step = Pixels.Width - width + 1;
-            int top = _block.NodeColors[node.No] << 10;
+            int top = _block.NodeColors[node.No] << 8;
             int bottom = pixels[pos + width * Pixels.Width] << 8;
-            int deltaY = (bottom - top) >> node.Level;
+            int deltaY = ((bottom - top) < SmoothingThrethold) ? (bottom - top) >> node.Level : 0;
             int left = top;
             switch (node.Level)
             {
@@ -982,7 +748,7 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < width; i++)
                     {
                         int right = pixels[pos + width] << 8;
-                        if (left == right)
+                        if (left == right || (right - left) >= SmoothingThrethold)
                         {
                             var color = (byte) (left >> 8);
                             pixels[pos++] = color;
@@ -1005,7 +771,7 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < width; i++)
                     {
                         int right = pixels[pos + width] << 8;
-                        if (left == right)
+                        if (left == right || (right - left) >= SmoothingThrethold)
                         {
                             var color = (byte) (left >> 8);
                             pixels[pos++] = color;
@@ -1034,7 +800,7 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < width; i++)
                     {
                         int right = pixels[pos + width] << 8;
-                        if (left == right)
+                        if (left == right || (right - left) >= SmoothingThrethold)
                         {
                             var color = (byte) (left >> 8);
                             pixels[pos++] = color;
@@ -1075,7 +841,7 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < width; i++)
                     {
                         int right = pixels[pos + width] << 8;
-                        if (left == right)
+                        if (left == right || (right - left) >= SmoothingThrethold)
                         {
                             var color = (byte) (left >> 8);
                             pixels[pos++] = color;
@@ -1140,7 +906,7 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < width; i++)
                     {
                         int right = pixels[pos + width] << 8;
-                        if (left == right)
+                        if (left == right || (right - left) >= SmoothingThrethold)
                         {
                             var color = (byte) (left >> 8);
                             pixels[pos++] = color;
@@ -1256,7 +1022,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="x">X座標</param>
         /// <param name="y">Y座標</param>
-        private static void CopyBufferPixels(int x, int y)
+        private void CopyBufferPixels(int x, int y)
         {
             int pos = 0;
             int index = (y * Pixels.Width + x) * MapBlock.Width;
@@ -1272,7 +1038,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンスIDの配列を展開する
         /// </summary>
-        private static void ExtractIds()
+        private void ExtractIds()
         {
             Ids = new MapProvinceIds(Width * MapBlock.Width, Height * MapBlock.Height);
             _provs = new ushort[MaxProvinces];
@@ -1294,7 +1060,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="x">マップブロック単位のX座標</param>
         /// <param name="y">マップブロック単位のY座標</param>
-        private static void ExtractBlock(int x, int y)
+        private void ExtractBlock(int x, int y)
         {
             _block = Blocks[x, y];
 
@@ -1313,7 +1079,7 @@ namespace HoI2Editor.Models
         ///     ノードをプロヴィンスIDの配列に展開する
         /// </summary>
         /// <param name="node">対象ノード</param>
-        private static void FillNode(MapTreeNode node)
+        private void FillNode(MapTreeNode node)
         {
             int pos = _base + node.Y * Ids.Width + node.X;
             ushort[] ids = Ids.Data;
@@ -1444,7 +1210,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="node">開始ノード</param>
         /// <param name="callback">葉ノードで呼び出す処理</param>
-        private static void VisitTree(MapTreeNode node, VisitorCallback callback)
+        private void VisitTree(MapTreeNode node, VisitorCallback callback)
         {
             var stack = new Stack<MapTreeNode>();
             while (true)
@@ -1473,7 +1239,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="node">開始ノード</param>
         /// <param name="callback">葉ノードで呼び出す処理</param>
-        private static void VisitTreeBottom(MapTreeNode node, VisitorCallback callback)
+        private void VisitTreeBottom(MapTreeNode node, VisitorCallback callback)
         {
             var stack = new Stack<MapTreeNode>();
             while (true)
@@ -1500,7 +1266,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="node">開始ノード</param>
         /// <param name="callback">葉ノードで呼び出す処理</param>
-        private static void VisitTreeLeft(MapTreeNode node, VisitorCallback callback)
+        private void VisitTreeLeft(MapTreeNode node, VisitorCallback callback)
         {
             var stack = new Stack<MapTreeNode>();
             while (true)
@@ -1527,7 +1293,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="node">開始ノード</param>
         /// <param name="callback">葉ノードで呼び出す処理</param>
-        private static void VisitTreeBottomLeft(MapTreeNode node, VisitorCallback callback)
+        private void VisitTreeBottomLeft(MapTreeNode node, VisitorCallback callback)
         {
             while (node.BottomLeftChild != null)
             {
@@ -1541,6 +1307,105 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="node">対象ノード</param>
         private delegate void VisitorCallback(MapTreeNode node);
+
+        #endregion
+
+        #region マスク画像作成
+
+        /// <summary>
+        ///     マスク色を設定する
+        /// </summary>
+        /// <param name="bitmap">マップ画像</param>
+        /// <param name="color">マスク色</param>
+        public void SetMaskColor(Bitmap bitmap, Color color)
+        {
+            ColorPalette palette = bitmap.Palette;
+            int r = color.R << 8;
+            int g = color.G << 8;
+            int b = color.B << 8;
+            int stepR = r >> 6;
+            int stepG = g >> 6;
+            int stepB = b >> 6;
+            for (int i = 0; i < MaxColor; i++)
+            {
+                palette.Entries[MaxColor + i] = Color.FromArgb(r >> 8, g >> 8, b >> 8);
+                r -= stepR;
+                g -= stepG;
+                b -= stepB;
+            }
+            bitmap.Palette = palette;
+        }
+
+        /// <summary>
+        ///     プロヴィンスのマスクを設定する
+        /// </summary>
+        /// <param name="bitmap">マップ画像</param>
+        /// <param name="id">プロヴィンスID</param>
+        public void SetProvinceMask(Bitmap bitmap, ushort id)
+        {
+            BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.WriteOnly,
+                PixelFormat.Format8bppIndexed);
+            IntPtr ptr = data.Scan0;
+
+            Rectangle bound = Maps.BoundBoxes[id];
+            int x = bound.X >> (int) Level;
+            int y = bound.Y >> (int) Level;
+            int width = bound.Width >> (int) Level;
+            int height = bound.Height >> (int) Level;
+
+            int pos = y * bitmap.Width + x;
+            int step = bitmap.Width - width;
+            const byte mask = 0x40;
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    if (Ids[pos] == id)
+                    {
+                        Marshal.WriteByte(ptr, pos, (byte) (Pixels[pos] | mask));
+                    }
+                    pos++;
+                }
+                pos += step;
+            }
+
+            bitmap.UnlockBits(data);
+        }
+
+        /// <summary>
+        ///     プロヴィンスのマスクを解除する
+        /// </summary>
+        /// <param name="bitmap">マップ画像</param>
+        /// <param name="id">プロヴィンスID</param>
+        public void ResetProvinceMask(Bitmap bitmap, ushort id)
+        {
+            BitmapData data = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.WriteOnly,
+                PixelFormat.Format8bppIndexed);
+            IntPtr ptr = data.Scan0;
+
+            Rectangle bound = Maps.BoundBoxes[id];
+            int x = bound.X >> (int) Level;
+            int y = bound.Y >> (int) Level;
+            int width = bound.Width >> (int) Level;
+            int height = bound.Height >> (int) Level;
+
+            int pos = y * bitmap.Width + x;
+            int step = bitmap.Width - width;
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    if (Ids[pos] == id)
+                    {
+                        Marshal.WriteByte(ptr, pos, Pixels[pos]);
+                    }
+                    pos++;
+                }
+                pos += step;
+            }
+
+            bitmap.UnlockBits(data);
+        }
 
         #endregion
     }

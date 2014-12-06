@@ -165,6 +165,7 @@
     <Compile Include="Models\Leaders.cs" />
     <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Map.cs" />
+    <Compile Include="Models\Maps.cs" />
     <Compile Include="Models\Minister.cs" />
     <Compile Include="Models\Ministers.cs" />
     <Compile Include="Models\Misc.cs" />

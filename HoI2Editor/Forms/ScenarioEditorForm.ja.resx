@@ -280,6 +280,39 @@
   <data name="mainTabPage.Text" xml:space="preserve">
     <value>メイン</value>
   </data>
+  <data name="warSwapSideButton.Text" xml:space="preserve">
+    <value>陣営交代</value>
+  </data>
+  <data name="warUpButton.Text" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="warRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="warDownButton.Text" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="warNewButton.Text" xml:space="preserve">
+    <value>新規</value>
+  </data>
+  <data name="warStartDateColumnHeader.Text" xml:space="preserve">
+    <value>開始日時</value>
+  </data>
+  <data name="warEndDateColumnHeader.Text" xml:space="preserve">
+    <value>終了日時</value>
+  </data>
+  <data name="warAttackerColumnHeader.Text" xml:space="preserve">
+    <value>攻撃側</value>
+  </data>
+  <data name="warDefenderColumnHeader.Text" xml:space="preserve">
+    <value>防御側</value>
+  </data>
+  <data name="allianceTypeColumnHeader.Text" xml:space="preserve">
+    <value>種類</value>
+  </data>
+  <data name="allianceParticipantColumnHeader.Text" xml:space="preserve">
+    <value>参加国</value>
+  </data>
   <data name="allianceLeaderButton.Text" xml:space="preserve">
     <value>リーダーに設定</value>
   </data>
@@ -300,6 +333,12 @@
   </data>
   <data name="allianceTabPage.Text" xml:space="preserve">
     <value>同盟</value>
+  </data>
+  <data name="treatyGroupBox.Text" xml:space="preserve">
+    <value>貿易</value>
+  </data>
+  <data name="tradeTabPage.Text" xml:space="preserve">
+    <value>貿易</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>閉じる</value>

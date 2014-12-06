@@ -87,13 +87,11 @@
             this.scenarioListBox = new System.Windows.Forms.ListBox();
             this.allianceTabPage = new System.Windows.Forms.TabPage();
             this.warGroupBox = new System.Windows.Forms.GroupBox();
-            this.warDefenderListBox = new System.Windows.Forms.ListBox();
+            this.warSwapSideButton = new System.Windows.Forms.Button();
             this.warDefenderRemoveButton = new System.Windows.Forms.Button();
             this.warDefenderAddButton = new System.Windows.Forms.Button();
-            this.warAttackerListBox = new System.Windows.Forms.ListBox();
             this.warAttackerRemoveButton = new System.Windows.Forms.Button();
             this.warAttackerAddButton = new System.Windows.Forms.Button();
-            this.warCountryListBox = new System.Windows.Forms.ListBox();
             this.warUpButton = new System.Windows.Forms.Button();
             this.warRemoveButton = new System.Windows.Forms.Button();
             this.warDownButton = new System.Windows.Forms.Button();
@@ -109,17 +107,15 @@
             this.allianceParticipantColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.participantRemoveButton = new System.Windows.Forms.Button();
             this.participantAddButton = new System.Windows.Forms.Button();
-            this.participantListBox = new System.Windows.Forms.ListBox();
             this.allianceLeaderButton = new System.Windows.Forms.Button();
             this.allianceUpButton = new System.Windows.Forms.Button();
             this.allianceRemoveButton = new System.Windows.Forms.Button();
-            this.allianceCountryListBox = new System.Windows.Forms.ListBox();
             this.allianceDownButton = new System.Windows.Forms.Button();
             this.allianceNewButton = new System.Windows.Forms.Button();
             this.tradeTabPage = new System.Windows.Forms.TabPage();
-            this.treatyGroupBox = new System.Windows.Forms.GroupBox();
+            this.tradeGroupBox = new System.Windows.Forms.GroupBox();
             this.tradeCancelCheckBox = new System.Windows.Forms.CheckBox();
-            this.treatySwapButton = new System.Windows.Forms.Button();
+            this.tradeSwapButton = new System.Windows.Forms.Button();
             this.tradeMoneyTextBox2 = new System.Windows.Forms.TextBox();
             this.tradeMoneyTextBox1 = new System.Windows.Forms.TextBox();
             this.tradeMoneyLabel = new System.Windows.Forms.Label();
@@ -135,39 +131,45 @@
             this.tradeMetalTextBox2 = new System.Windows.Forms.TextBox();
             this.tradeMetalTextBox1 = new System.Windows.Forms.TextBox();
             this.tredeMetalLabel = new System.Windows.Forms.Label();
-            this.tredeEnergyTextBox2 = new System.Windows.Forms.TextBox();
+            this.tradeEnergyTextBox2 = new System.Windows.Forms.TextBox();
             this.tradeEnergyTextBox1 = new System.Windows.Forms.TextBox();
             this.tradeEnergyLabel = new System.Windows.Forms.Label();
-            this.treatyCountryComboBox2 = new System.Windows.Forms.ComboBox();
-            this.treatyCountryComboBox1 = new System.Windows.Forms.ComboBox();
-            this.treatyEndDayNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.treatyEndMonthNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.treatyEndYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.treatyEndDateLabel = new System.Windows.Forms.Label();
-            this.treatyStartDayNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.treatyStartMonthNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.treatyStartYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.treatyStartDateLabel = new System.Windows.Forms.Label();
-            this.treatyListView = new System.Windows.Forms.ListView();
-            this.treatyTypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.treatyStartDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.treatyEndDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.treatyCountryColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.treatyCountryColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.treatyTradeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.treatyUpButton = new System.Windows.Forms.Button();
-            this.treatyRemoveButton = new System.Windows.Forms.Button();
-            this.treatyDownButton = new System.Windows.Forms.Button();
-            this.treatyNewButton = new System.Windows.Forms.Button();
+            this.tradeCountryComboBox2 = new System.Windows.Forms.ComboBox();
+            this.tradeCountryComboBox1 = new System.Windows.Forms.ComboBox();
+            this.tradeEndDayNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.tradeEndMonthNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.tradeEndYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.tradeEndDateLabel = new System.Windows.Forms.Label();
+            this.tradeStartDayNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.tradeStartMonthNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.tradeStartYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.tradeStartDateLabel = new System.Windows.Forms.Label();
+            this.tradeListView = new System.Windows.Forms.ListView();
+            this.tradeStartDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tradeEndDateColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tradeCountryColumnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tradeCountryColumnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tradeTradeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tradeUpButton = new System.Windows.Forms.Button();
+            this.tradeRemoveButton = new System.Windows.Forms.Button();
+            this.tradeDownButton = new System.Windows.Forms.Button();
+            this.tradeNewButton = new System.Windows.Forms.Button();
             this.relationTabPage = new System.Windows.Forms.TabPage();
             this.countryTabPage = new System.Windows.Forms.TabPage();
             this.personTabPage = new System.Windows.Forms.TabPage();
             this.techTabPage = new System.Windows.Forms.TabPage();
             this.provinceTabPage = new System.Windows.Forms.TabPage();
-            this.provincePictureBox = new System.Windows.Forms.PictureBox();
+            this.provinceMapPanel = new System.Windows.Forms.Panel();
+            this.provinceMapPictureBox = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.closeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
+            this.allianceCountryListView = new System.Windows.Forms.ListView();
+            this.allianceParticipantListView = new System.Windows.Forms.ListView();
+            this.warCountryListView = new System.Windows.Forms.ListView();
+            this.warAttackerListView = new System.Windows.Forms.ListView();
+            this.warDefenderListView = new System.Windows.Forms.ListView();
             this.scenarioTabControl.SuspendLayout();
             this.mainTabPage.SuspendLayout();
             this.optionGroupBox.SuspendLayout();
@@ -181,15 +183,16 @@
             this.warGroupBox.SuspendLayout();
             this.allianceGroupBox.SuspendLayout();
             this.tradeTabPage.SuspendLayout();
-            this.treatyGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyEndDayNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyEndMonthNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyEndYearNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyStartDayNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyStartMonthNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyStartYearNumericUpDown)).BeginInit();
+            this.tradeGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeEndDayNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeEndMonthNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeEndYearNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeStartDayNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeStartMonthNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeStartYearNumericUpDown)).BeginInit();
             this.provinceTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.provincePictureBox)).BeginInit();
+            this.provinceMapPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.provinceMapPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // scenarioTabControl
@@ -588,13 +591,14 @@
             // 
             // warGroupBox
             // 
-            this.warGroupBox.Controls.Add(this.warDefenderListBox);
+            this.warGroupBox.Controls.Add(this.warDefenderListView);
+            this.warGroupBox.Controls.Add(this.warAttackerListView);
+            this.warGroupBox.Controls.Add(this.warCountryListView);
+            this.warGroupBox.Controls.Add(this.warSwapSideButton);
             this.warGroupBox.Controls.Add(this.warDefenderRemoveButton);
             this.warGroupBox.Controls.Add(this.warDefenderAddButton);
-            this.warGroupBox.Controls.Add(this.warAttackerListBox);
             this.warGroupBox.Controls.Add(this.warAttackerRemoveButton);
             this.warGroupBox.Controls.Add(this.warAttackerAddButton);
-            this.warGroupBox.Controls.Add(this.warCountryListBox);
             this.warGroupBox.Controls.Add(this.warUpButton);
             this.warGroupBox.Controls.Add(this.warRemoveButton);
             this.warGroupBox.Controls.Add(this.warDownButton);
@@ -604,11 +608,11 @@
             this.warGroupBox.Name = "warGroupBox";
             this.warGroupBox.TabStop = false;
             // 
-            // warDefenderListBox
+            // warSwapSideButton
             // 
-            this.warDefenderListBox.FormattingEnabled = true;
-            resources.ApplyResources(this.warDefenderListBox, "warDefenderListBox");
-            this.warDefenderListBox.Name = "warDefenderListBox";
+            resources.ApplyResources(this.warSwapSideButton, "warSwapSideButton");
+            this.warSwapSideButton.Name = "warSwapSideButton";
+            this.warSwapSideButton.UseVisualStyleBackColor = true;
             // 
             // warDefenderRemoveButton
             // 
@@ -622,12 +626,6 @@
             this.warDefenderAddButton.Name = "warDefenderAddButton";
             this.warDefenderAddButton.UseVisualStyleBackColor = true;
             // 
-            // warAttackerListBox
-            // 
-            this.warAttackerListBox.FormattingEnabled = true;
-            resources.ApplyResources(this.warAttackerListBox, "warAttackerListBox");
-            this.warAttackerListBox.Name = "warAttackerListBox";
-            // 
             // warAttackerRemoveButton
             // 
             resources.ApplyResources(this.warAttackerRemoveButton, "warAttackerRemoveButton");
@@ -639,12 +637,6 @@
             resources.ApplyResources(this.warAttackerAddButton, "warAttackerAddButton");
             this.warAttackerAddButton.Name = "warAttackerAddButton";
             this.warAttackerAddButton.UseVisualStyleBackColor = true;
-            // 
-            // warCountryListBox
-            // 
-            this.warCountryListBox.FormattingEnabled = true;
-            resources.ApplyResources(this.warCountryListBox, "warCountryListBox");
-            this.warCountryListBox.Name = "warCountryListBox";
             // 
             // warUpButton
             // 
@@ -702,14 +694,14 @@
             // 
             // allianceGroupBox
             // 
+            this.allianceGroupBox.Controls.Add(this.allianceParticipantListView);
+            this.allianceGroupBox.Controls.Add(this.allianceCountryListView);
             this.allianceGroupBox.Controls.Add(this.allianceListView);
             this.allianceGroupBox.Controls.Add(this.participantRemoveButton);
             this.allianceGroupBox.Controls.Add(this.participantAddButton);
-            this.allianceGroupBox.Controls.Add(this.participantListBox);
             this.allianceGroupBox.Controls.Add(this.allianceLeaderButton);
             this.allianceGroupBox.Controls.Add(this.allianceUpButton);
             this.allianceGroupBox.Controls.Add(this.allianceRemoveButton);
-            this.allianceGroupBox.Controls.Add(this.allianceCountryListBox);
             this.allianceGroupBox.Controls.Add(this.allianceDownButton);
             this.allianceGroupBox.Controls.Add(this.allianceNewButton);
             resources.ApplyResources(this.allianceGroupBox, "allianceGroupBox");
@@ -727,6 +719,7 @@
             this.allianceListView.Name = "allianceListView";
             this.allianceListView.UseCompatibleStateImageBehavior = false;
             this.allianceListView.View = System.Windows.Forms.View.Details;
+            this.allianceListView.SelectedIndexChanged += new System.EventHandler(this.OnAllianceListViewSelectedIndexChanged);
             // 
             // allianceTypeColumnHeader
             // 
@@ -748,12 +741,6 @@
             this.participantAddButton.Name = "participantAddButton";
             this.participantAddButton.UseVisualStyleBackColor = true;
             // 
-            // participantListBox
-            // 
-            this.participantListBox.FormattingEnabled = true;
-            resources.ApplyResources(this.participantListBox, "participantListBox");
-            this.participantListBox.Name = "participantListBox";
-            // 
             // allianceLeaderButton
             // 
             resources.ApplyResources(this.allianceLeaderButton, "allianceLeaderButton");
@@ -772,12 +759,6 @@
             this.allianceRemoveButton.Name = "allianceRemoveButton";
             this.allianceRemoveButton.UseVisualStyleBackColor = true;
             // 
-            // allianceCountryListBox
-            // 
-            this.allianceCountryListBox.FormattingEnabled = true;
-            resources.ApplyResources(this.allianceCountryListBox, "allianceCountryListBox");
-            this.allianceCountryListBox.Name = "allianceCountryListBox";
-            // 
             // allianceDownButton
             // 
             resources.ApplyResources(this.allianceDownButton, "allianceDownButton");
@@ -793,50 +774,50 @@
             // tradeTabPage
             // 
             this.tradeTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.tradeTabPage.Controls.Add(this.treatyGroupBox);
+            this.tradeTabPage.Controls.Add(this.tradeGroupBox);
             resources.ApplyResources(this.tradeTabPage, "tradeTabPage");
             this.tradeTabPage.Name = "tradeTabPage";
             // 
-            // treatyGroupBox
+            // tradeGroupBox
             // 
-            this.treatyGroupBox.Controls.Add(this.tradeCancelCheckBox);
-            this.treatyGroupBox.Controls.Add(this.treatySwapButton);
-            this.treatyGroupBox.Controls.Add(this.tradeMoneyTextBox2);
-            this.treatyGroupBox.Controls.Add(this.tradeMoneyTextBox1);
-            this.treatyGroupBox.Controls.Add(this.tradeMoneyLabel);
-            this.treatyGroupBox.Controls.Add(this.tradeSuppliesTextBox2);
-            this.treatyGroupBox.Controls.Add(this.tradeSuppliesTextBox1);
-            this.treatyGroupBox.Controls.Add(this.tradeSuppliesLabel);
-            this.treatyGroupBox.Controls.Add(this.tradeOilTextBox2);
-            this.treatyGroupBox.Controls.Add(this.tradeOilTextBox1);
-            this.treatyGroupBox.Controls.Add(this.tradeOilLabel);
-            this.treatyGroupBox.Controls.Add(this.tradeRareMaterialsTextBox2);
-            this.treatyGroupBox.Controls.Add(this.tradeRareMaterialsTextBox1);
-            this.treatyGroupBox.Controls.Add(this.tradeRareMaterialsLabel);
-            this.treatyGroupBox.Controls.Add(this.tradeMetalTextBox2);
-            this.treatyGroupBox.Controls.Add(this.tradeMetalTextBox1);
-            this.treatyGroupBox.Controls.Add(this.tredeMetalLabel);
-            this.treatyGroupBox.Controls.Add(this.tredeEnergyTextBox2);
-            this.treatyGroupBox.Controls.Add(this.tradeEnergyTextBox1);
-            this.treatyGroupBox.Controls.Add(this.tradeEnergyLabel);
-            this.treatyGroupBox.Controls.Add(this.treatyCountryComboBox2);
-            this.treatyGroupBox.Controls.Add(this.treatyCountryComboBox1);
-            this.treatyGroupBox.Controls.Add(this.treatyEndDayNumericUpDown);
-            this.treatyGroupBox.Controls.Add(this.treatyEndMonthNumericUpDown);
-            this.treatyGroupBox.Controls.Add(this.treatyEndYearNumericUpDown);
-            this.treatyGroupBox.Controls.Add(this.treatyEndDateLabel);
-            this.treatyGroupBox.Controls.Add(this.treatyStartDayNumericUpDown);
-            this.treatyGroupBox.Controls.Add(this.treatyStartMonthNumericUpDown);
-            this.treatyGroupBox.Controls.Add(this.treatyStartYearNumericUpDown);
-            this.treatyGroupBox.Controls.Add(this.treatyStartDateLabel);
-            this.treatyGroupBox.Controls.Add(this.treatyListView);
-            this.treatyGroupBox.Controls.Add(this.treatyUpButton);
-            this.treatyGroupBox.Controls.Add(this.treatyRemoveButton);
-            this.treatyGroupBox.Controls.Add(this.treatyDownButton);
-            this.treatyGroupBox.Controls.Add(this.treatyNewButton);
-            resources.ApplyResources(this.treatyGroupBox, "treatyGroupBox");
-            this.treatyGroupBox.Name = "treatyGroupBox";
-            this.treatyGroupBox.TabStop = false;
+            this.tradeGroupBox.Controls.Add(this.tradeCancelCheckBox);
+            this.tradeGroupBox.Controls.Add(this.tradeSwapButton);
+            this.tradeGroupBox.Controls.Add(this.tradeMoneyTextBox2);
+            this.tradeGroupBox.Controls.Add(this.tradeMoneyTextBox1);
+            this.tradeGroupBox.Controls.Add(this.tradeMoneyLabel);
+            this.tradeGroupBox.Controls.Add(this.tradeSuppliesTextBox2);
+            this.tradeGroupBox.Controls.Add(this.tradeSuppliesTextBox1);
+            this.tradeGroupBox.Controls.Add(this.tradeSuppliesLabel);
+            this.tradeGroupBox.Controls.Add(this.tradeOilTextBox2);
+            this.tradeGroupBox.Controls.Add(this.tradeOilTextBox1);
+            this.tradeGroupBox.Controls.Add(this.tradeOilLabel);
+            this.tradeGroupBox.Controls.Add(this.tradeRareMaterialsTextBox2);
+            this.tradeGroupBox.Controls.Add(this.tradeRareMaterialsTextBox1);
+            this.tradeGroupBox.Controls.Add(this.tradeRareMaterialsLabel);
+            this.tradeGroupBox.Controls.Add(this.tradeMetalTextBox2);
+            this.tradeGroupBox.Controls.Add(this.tradeMetalTextBox1);
+            this.tradeGroupBox.Controls.Add(this.tredeMetalLabel);
+            this.tradeGroupBox.Controls.Add(this.tradeEnergyTextBox2);
+            this.tradeGroupBox.Controls.Add(this.tradeEnergyTextBox1);
+            this.tradeGroupBox.Controls.Add(this.tradeEnergyLabel);
+            this.tradeGroupBox.Controls.Add(this.tradeCountryComboBox2);
+            this.tradeGroupBox.Controls.Add(this.tradeCountryComboBox1);
+            this.tradeGroupBox.Controls.Add(this.tradeEndDayNumericUpDown);
+            this.tradeGroupBox.Controls.Add(this.tradeEndMonthNumericUpDown);
+            this.tradeGroupBox.Controls.Add(this.tradeEndYearNumericUpDown);
+            this.tradeGroupBox.Controls.Add(this.tradeEndDateLabel);
+            this.tradeGroupBox.Controls.Add(this.tradeStartDayNumericUpDown);
+            this.tradeGroupBox.Controls.Add(this.tradeStartMonthNumericUpDown);
+            this.tradeGroupBox.Controls.Add(this.tradeStartYearNumericUpDown);
+            this.tradeGroupBox.Controls.Add(this.tradeStartDateLabel);
+            this.tradeGroupBox.Controls.Add(this.tradeListView);
+            this.tradeGroupBox.Controls.Add(this.tradeUpButton);
+            this.tradeGroupBox.Controls.Add(this.tradeRemoveButton);
+            this.tradeGroupBox.Controls.Add(this.tradeDownButton);
+            this.tradeGroupBox.Controls.Add(this.tradeNewButton);
+            resources.ApplyResources(this.tradeGroupBox, "tradeGroupBox");
+            this.tradeGroupBox.Name = "tradeGroupBox";
+            this.tradeGroupBox.TabStop = false;
             // 
             // tradeCancelCheckBox
             // 
@@ -844,11 +825,11 @@
             this.tradeCancelCheckBox.Name = "tradeCancelCheckBox";
             this.tradeCancelCheckBox.UseVisualStyleBackColor = true;
             // 
-            // treatySwapButton
+            // tradeSwapButton
             // 
-            resources.ApplyResources(this.treatySwapButton, "treatySwapButton");
-            this.treatySwapButton.Name = "treatySwapButton";
-            this.treatySwapButton.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.tradeSwapButton, "tradeSwapButton");
+            this.tradeSwapButton.Name = "tradeSwapButton";
+            this.tradeSwapButton.UseVisualStyleBackColor = true;
             // 
             // tradeMoneyTextBox2
             // 
@@ -925,10 +906,10 @@
             resources.ApplyResources(this.tredeMetalLabel, "tredeMetalLabel");
             this.tredeMetalLabel.Name = "tredeMetalLabel";
             // 
-            // tredeEnergyTextBox2
+            // tradeEnergyTextBox2
             // 
-            resources.ApplyResources(this.tredeEnergyTextBox2, "tredeEnergyTextBox2");
-            this.tredeEnergyTextBox2.Name = "tredeEnergyTextBox2";
+            resources.ApplyResources(this.tradeEnergyTextBox2, "tradeEnergyTextBox2");
+            this.tradeEnergyTextBox2.Name = "tradeEnergyTextBox2";
             // 
             // tradeEnergyTextBox1
             // 
@@ -940,123 +921,118 @@
             resources.ApplyResources(this.tradeEnergyLabel, "tradeEnergyLabel");
             this.tradeEnergyLabel.Name = "tradeEnergyLabel";
             // 
-            // treatyCountryComboBox2
+            // tradeCountryComboBox2
             // 
-            this.treatyCountryComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.treatyCountryComboBox2.FormattingEnabled = true;
-            resources.ApplyResources(this.treatyCountryComboBox2, "treatyCountryComboBox2");
-            this.treatyCountryComboBox2.Name = "treatyCountryComboBox2";
+            this.tradeCountryComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tradeCountryComboBox2.FormattingEnabled = true;
+            resources.ApplyResources(this.tradeCountryComboBox2, "tradeCountryComboBox2");
+            this.tradeCountryComboBox2.Name = "tradeCountryComboBox2";
             // 
-            // treatyCountryComboBox1
+            // tradeCountryComboBox1
             // 
-            this.treatyCountryComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.treatyCountryComboBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.treatyCountryComboBox1, "treatyCountryComboBox1");
-            this.treatyCountryComboBox1.Name = "treatyCountryComboBox1";
+            this.tradeCountryComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tradeCountryComboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.tradeCountryComboBox1, "tradeCountryComboBox1");
+            this.tradeCountryComboBox1.Name = "tradeCountryComboBox1";
             // 
-            // treatyEndDayNumericUpDown
+            // tradeEndDayNumericUpDown
             // 
-            resources.ApplyResources(this.treatyEndDayNumericUpDown, "treatyEndDayNumericUpDown");
-            this.treatyEndDayNumericUpDown.Name = "treatyEndDayNumericUpDown";
+            resources.ApplyResources(this.tradeEndDayNumericUpDown, "tradeEndDayNumericUpDown");
+            this.tradeEndDayNumericUpDown.Name = "tradeEndDayNumericUpDown";
             // 
-            // treatyEndMonthNumericUpDown
+            // tradeEndMonthNumericUpDown
             // 
-            resources.ApplyResources(this.treatyEndMonthNumericUpDown, "treatyEndMonthNumericUpDown");
-            this.treatyEndMonthNumericUpDown.Name = "treatyEndMonthNumericUpDown";
+            resources.ApplyResources(this.tradeEndMonthNumericUpDown, "tradeEndMonthNumericUpDown");
+            this.tradeEndMonthNumericUpDown.Name = "tradeEndMonthNumericUpDown";
             // 
-            // treatyEndYearNumericUpDown
+            // tradeEndYearNumericUpDown
             // 
-            resources.ApplyResources(this.treatyEndYearNumericUpDown, "treatyEndYearNumericUpDown");
-            this.treatyEndYearNumericUpDown.Name = "treatyEndYearNumericUpDown";
+            resources.ApplyResources(this.tradeEndYearNumericUpDown, "tradeEndYearNumericUpDown");
+            this.tradeEndYearNumericUpDown.Name = "tradeEndYearNumericUpDown";
             // 
-            // treatyEndDateLabel
+            // tradeEndDateLabel
             // 
-            resources.ApplyResources(this.treatyEndDateLabel, "treatyEndDateLabel");
-            this.treatyEndDateLabel.Name = "treatyEndDateLabel";
+            resources.ApplyResources(this.tradeEndDateLabel, "tradeEndDateLabel");
+            this.tradeEndDateLabel.Name = "tradeEndDateLabel";
             // 
-            // treatyStartDayNumericUpDown
+            // tradeStartDayNumericUpDown
             // 
-            resources.ApplyResources(this.treatyStartDayNumericUpDown, "treatyStartDayNumericUpDown");
-            this.treatyStartDayNumericUpDown.Name = "treatyStartDayNumericUpDown";
+            resources.ApplyResources(this.tradeStartDayNumericUpDown, "tradeStartDayNumericUpDown");
+            this.tradeStartDayNumericUpDown.Name = "tradeStartDayNumericUpDown";
             // 
-            // treatyStartMonthNumericUpDown
+            // tradeStartMonthNumericUpDown
             // 
-            resources.ApplyResources(this.treatyStartMonthNumericUpDown, "treatyStartMonthNumericUpDown");
-            this.treatyStartMonthNumericUpDown.Name = "treatyStartMonthNumericUpDown";
+            resources.ApplyResources(this.tradeStartMonthNumericUpDown, "tradeStartMonthNumericUpDown");
+            this.tradeStartMonthNumericUpDown.Name = "tradeStartMonthNumericUpDown";
             // 
-            // treatyStartYearNumericUpDown
+            // tradeStartYearNumericUpDown
             // 
-            resources.ApplyResources(this.treatyStartYearNumericUpDown, "treatyStartYearNumericUpDown");
-            this.treatyStartYearNumericUpDown.Name = "treatyStartYearNumericUpDown";
+            resources.ApplyResources(this.tradeStartYearNumericUpDown, "tradeStartYearNumericUpDown");
+            this.tradeStartYearNumericUpDown.Name = "tradeStartYearNumericUpDown";
             // 
-            // treatyStartDateLabel
+            // tradeStartDateLabel
             // 
-            resources.ApplyResources(this.treatyStartDateLabel, "treatyStartDateLabel");
-            this.treatyStartDateLabel.Name = "treatyStartDateLabel";
+            resources.ApplyResources(this.tradeStartDateLabel, "tradeStartDateLabel");
+            this.tradeStartDateLabel.Name = "tradeStartDateLabel";
             // 
-            // treatyListView
+            // tradeListView
             // 
-            this.treatyListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.treatyTypeColumnHeader,
-            this.treatyStartDateColumnHeader,
-            this.treatyEndDateColumnHeader,
-            this.treatyCountryColumnHeader1,
-            this.treatyCountryColumnHeader2,
-            this.treatyTradeColumnHeader});
-            this.treatyListView.FullRowSelect = true;
-            this.treatyListView.GridLines = true;
-            resources.ApplyResources(this.treatyListView, "treatyListView");
-            this.treatyListView.Name = "treatyListView";
-            this.treatyListView.UseCompatibleStateImageBehavior = false;
-            this.treatyListView.View = System.Windows.Forms.View.Details;
+            this.tradeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.tradeStartDateColumnHeader,
+            this.tradeEndDateColumnHeader,
+            this.tradeCountryColumnHeader1,
+            this.tradeCountryColumnHeader2,
+            this.tradeTradeColumnHeader});
+            this.tradeListView.FullRowSelect = true;
+            this.tradeListView.GridLines = true;
+            resources.ApplyResources(this.tradeListView, "tradeListView");
+            this.tradeListView.Name = "tradeListView";
+            this.tradeListView.UseCompatibleStateImageBehavior = false;
+            this.tradeListView.View = System.Windows.Forms.View.Details;
             // 
-            // treatyTypeColumnHeader
+            // tradeStartDateColumnHeader
             // 
-            resources.ApplyResources(this.treatyTypeColumnHeader, "treatyTypeColumnHeader");
+            resources.ApplyResources(this.tradeStartDateColumnHeader, "tradeStartDateColumnHeader");
             // 
-            // treatyStartDateColumnHeader
+            // tradeEndDateColumnHeader
             // 
-            resources.ApplyResources(this.treatyStartDateColumnHeader, "treatyStartDateColumnHeader");
+            resources.ApplyResources(this.tradeEndDateColumnHeader, "tradeEndDateColumnHeader");
             // 
-            // treatyEndDateColumnHeader
+            // tradeCountryColumnHeader1
             // 
-            resources.ApplyResources(this.treatyEndDateColumnHeader, "treatyEndDateColumnHeader");
+            resources.ApplyResources(this.tradeCountryColumnHeader1, "tradeCountryColumnHeader1");
             // 
-            // treatyCountryColumnHeader1
+            // tradeCountryColumnHeader2
             // 
-            resources.ApplyResources(this.treatyCountryColumnHeader1, "treatyCountryColumnHeader1");
+            resources.ApplyResources(this.tradeCountryColumnHeader2, "tradeCountryColumnHeader2");
             // 
-            // treatyCountryColumnHeader2
+            // tradeTradeColumnHeader
             // 
-            resources.ApplyResources(this.treatyCountryColumnHeader2, "treatyCountryColumnHeader2");
+            resources.ApplyResources(this.tradeTradeColumnHeader, "tradeTradeColumnHeader");
             // 
-            // treatyTradeColumnHeader
+            // tradeUpButton
             // 
-            resources.ApplyResources(this.treatyTradeColumnHeader, "treatyTradeColumnHeader");
+            resources.ApplyResources(this.tradeUpButton, "tradeUpButton");
+            this.tradeUpButton.Name = "tradeUpButton";
+            this.tradeUpButton.UseVisualStyleBackColor = true;
             // 
-            // treatyUpButton
+            // tradeRemoveButton
             // 
-            resources.ApplyResources(this.treatyUpButton, "treatyUpButton");
-            this.treatyUpButton.Name = "treatyUpButton";
-            this.treatyUpButton.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.tradeRemoveButton, "tradeRemoveButton");
+            this.tradeRemoveButton.Name = "tradeRemoveButton";
+            this.tradeRemoveButton.UseVisualStyleBackColor = true;
             // 
-            // treatyRemoveButton
+            // tradeDownButton
             // 
-            resources.ApplyResources(this.treatyRemoveButton, "treatyRemoveButton");
-            this.treatyRemoveButton.Name = "treatyRemoveButton";
-            this.treatyRemoveButton.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.tradeDownButton, "tradeDownButton");
+            this.tradeDownButton.Name = "tradeDownButton";
+            this.tradeDownButton.UseVisualStyleBackColor = true;
             // 
-            // treatyDownButton
+            // tradeNewButton
             // 
-            resources.ApplyResources(this.treatyDownButton, "treatyDownButton");
-            this.treatyDownButton.Name = "treatyDownButton";
-            this.treatyDownButton.UseVisualStyleBackColor = true;
-            // 
-            // treatyNewButton
-            // 
-            resources.ApplyResources(this.treatyNewButton, "treatyNewButton");
-            this.treatyNewButton.Name = "treatyNewButton";
-            this.treatyNewButton.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.tradeNewButton, "tradeNewButton");
+            this.tradeNewButton.Name = "tradeNewButton";
+            this.tradeNewButton.UseVisualStyleBackColor = true;
             // 
             // relationTabPage
             // 
@@ -1085,15 +1061,28 @@
             // provinceTabPage
             // 
             this.provinceTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.provinceTabPage.Controls.Add(this.provincePictureBox);
+            this.provinceTabPage.Controls.Add(this.provinceMapPanel);
+            this.provinceTabPage.Controls.Add(this.textBox1);
             resources.ApplyResources(this.provinceTabPage, "provinceTabPage");
             this.provinceTabPage.Name = "provinceTabPage";
             // 
-            // provincePictureBox
+            // provinceMapPanel
             // 
-            resources.ApplyResources(this.provincePictureBox, "provincePictureBox");
-            this.provincePictureBox.Name = "provincePictureBox";
-            this.provincePictureBox.TabStop = false;
+            resources.ApplyResources(this.provinceMapPanel, "provinceMapPanel");
+            this.provinceMapPanel.Controls.Add(this.provinceMapPictureBox);
+            this.provinceMapPanel.Name = "provinceMapPanel";
+            // 
+            // provinceMapPictureBox
+            // 
+            resources.ApplyResources(this.provinceMapPictureBox, "provinceMapPictureBox");
+            this.provinceMapPictureBox.Name = "provinceMapPictureBox";
+            this.provinceMapPictureBox.TabStop = false;
+            // 
+            // textBox1
+            // 
+            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Validated += new System.EventHandler(this.OnTextBox1Validated);
             // 
             // closeButton
             // 
@@ -1116,6 +1105,46 @@
             this.reloadButton.UseVisualStyleBackColor = true;
             this.reloadButton.Click += new System.EventHandler(this.OnReloadButtonClick);
             // 
+            // allianceCountryListView
+            // 
+            this.allianceCountryListView.FullRowSelect = true;
+            resources.ApplyResources(this.allianceCountryListView, "allianceCountryListView");
+            this.allianceCountryListView.Name = "allianceCountryListView";
+            this.allianceCountryListView.UseCompatibleStateImageBehavior = false;
+            this.allianceCountryListView.View = System.Windows.Forms.View.Details;
+            // 
+            // allianceParticipantListView
+            // 
+            this.allianceParticipantListView.FullRowSelect = true;
+            resources.ApplyResources(this.allianceParticipantListView, "allianceParticipantListView");
+            this.allianceParticipantListView.Name = "allianceParticipantListView";
+            this.allianceParticipantListView.UseCompatibleStateImageBehavior = false;
+            this.allianceParticipantListView.View = System.Windows.Forms.View.Details;
+            // 
+            // warCountryListView
+            // 
+            this.warCountryListView.FullRowSelect = true;
+            resources.ApplyResources(this.warCountryListView, "warCountryListView");
+            this.warCountryListView.Name = "warCountryListView";
+            this.warCountryListView.UseCompatibleStateImageBehavior = false;
+            this.warCountryListView.View = System.Windows.Forms.View.List;
+            // 
+            // warAttackerListView
+            // 
+            this.warAttackerListView.FullRowSelect = true;
+            resources.ApplyResources(this.warAttackerListView, "warAttackerListView");
+            this.warAttackerListView.Name = "warAttackerListView";
+            this.warAttackerListView.UseCompatibleStateImageBehavior = false;
+            this.warAttackerListView.View = System.Windows.Forms.View.List;
+            // 
+            // warDefenderListView
+            // 
+            this.warDefenderListView.FullRowSelect = true;
+            resources.ApplyResources(this.warDefenderListView, "warDefenderListView");
+            this.warDefenderListView.Name = "warDefenderListView";
+            this.warDefenderListView.UseCompatibleStateImageBehavior = false;
+            this.warDefenderListView.View = System.Windows.Forms.View.List;
+            // 
             // ScenarioEditorForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1125,6 +1154,8 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
             this.Name = "ScenarioEditorForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.OnFormClosed);
             this.Load += new System.EventHandler(this.OnFormLoad);
             this.Move += new System.EventHandler(this.OnFormMove);
             this.Resize += new System.EventHandler(this.OnFormResize);
@@ -1146,16 +1177,19 @@
             this.warGroupBox.ResumeLayout(false);
             this.allianceGroupBox.ResumeLayout(false);
             this.tradeTabPage.ResumeLayout(false);
-            this.treatyGroupBox.ResumeLayout(false);
-            this.treatyGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyEndDayNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyEndMonthNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyEndYearNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyStartDayNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyStartMonthNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.treatyStartYearNumericUpDown)).EndInit();
+            this.tradeGroupBox.ResumeLayout(false);
+            this.tradeGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeEndDayNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeEndMonthNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeEndYearNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeStartDayNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeStartMonthNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tradeStartYearNumericUpDown)).EndInit();
             this.provinceTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.provincePictureBox)).EndInit();
+            this.provinceTabPage.PerformLayout();
+            this.provinceMapPanel.ResumeLayout(false);
+            this.provinceMapPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.provinceMapPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1203,13 +1237,10 @@
         private System.Windows.Forms.ColumnHeader allianceTypeColumnHeader;
         private System.Windows.Forms.ColumnHeader allianceParticipantColumnHeader;
         private System.Windows.Forms.GroupBox warGroupBox;
-        private System.Windows.Forms.ListBox warDefenderListBox;
         private System.Windows.Forms.Button warDefenderRemoveButton;
         private System.Windows.Forms.Button warDefenderAddButton;
-        private System.Windows.Forms.ListBox warAttackerListBox;
         private System.Windows.Forms.Button warAttackerRemoveButton;
         private System.Windows.Forms.Button warAttackerAddButton;
-        private System.Windows.Forms.ListBox warCountryListBox;
         private System.Windows.Forms.Button warUpButton;
         private System.Windows.Forms.Button warRemoveButton;
         private System.Windows.Forms.Button warDownButton;
@@ -1221,36 +1252,33 @@
         private System.Windows.Forms.GroupBox allianceGroupBox;
         private System.Windows.Forms.Button participantRemoveButton;
         private System.Windows.Forms.Button participantAddButton;
-        private System.Windows.Forms.ListBox participantListBox;
         private System.Windows.Forms.Button allianceLeaderButton;
         private System.Windows.Forms.Button allianceUpButton;
         private System.Windows.Forms.Button allianceRemoveButton;
-        private System.Windows.Forms.ListBox allianceCountryListBox;
         private System.Windows.Forms.Button allianceDownButton;
         private System.Windows.Forms.Button allianceNewButton;
         private System.Windows.Forms.TabPage tradeTabPage;
-        private System.Windows.Forms.GroupBox treatyGroupBox;
-        private System.Windows.Forms.ListView treatyListView;
-        private System.Windows.Forms.ColumnHeader treatyTypeColumnHeader;
-        private System.Windows.Forms.ColumnHeader treatyStartDateColumnHeader;
-        private System.Windows.Forms.Button treatyUpButton;
-        private System.Windows.Forms.Button treatyRemoveButton;
-        private System.Windows.Forms.Button treatyDownButton;
-        private System.Windows.Forms.Button treatyNewButton;
+        private System.Windows.Forms.GroupBox tradeGroupBox;
+        private System.Windows.Forms.ListView tradeListView;
+        private System.Windows.Forms.ColumnHeader tradeStartDateColumnHeader;
+        private System.Windows.Forms.Button tradeUpButton;
+        private System.Windows.Forms.Button tradeRemoveButton;
+        private System.Windows.Forms.Button tradeDownButton;
+        private System.Windows.Forms.Button tradeNewButton;
         private System.Windows.Forms.ColumnHeader warDefenderColumnHeader;
-        private System.Windows.Forms.ColumnHeader treatyEndDateColumnHeader;
-        private System.Windows.Forms.ColumnHeader treatyCountryColumnHeader1;
-        private System.Windows.Forms.ColumnHeader treatyCountryColumnHeader2;
-        private System.Windows.Forms.ColumnHeader treatyTradeColumnHeader;
-        private System.Windows.Forms.NumericUpDown treatyEndDayNumericUpDown;
-        private System.Windows.Forms.NumericUpDown treatyEndMonthNumericUpDown;
-        private System.Windows.Forms.NumericUpDown treatyEndYearNumericUpDown;
-        private System.Windows.Forms.Label treatyEndDateLabel;
-        private System.Windows.Forms.NumericUpDown treatyStartDayNumericUpDown;
-        private System.Windows.Forms.NumericUpDown treatyStartMonthNumericUpDown;
-        private System.Windows.Forms.NumericUpDown treatyStartYearNumericUpDown;
-        private System.Windows.Forms.Label treatyStartDateLabel;
-        private System.Windows.Forms.Button treatySwapButton;
+        private System.Windows.Forms.ColumnHeader tradeEndDateColumnHeader;
+        private System.Windows.Forms.ColumnHeader tradeCountryColumnHeader1;
+        private System.Windows.Forms.ColumnHeader tradeCountryColumnHeader2;
+        private System.Windows.Forms.ColumnHeader tradeTradeColumnHeader;
+        private System.Windows.Forms.NumericUpDown tradeEndDayNumericUpDown;
+        private System.Windows.Forms.NumericUpDown tradeEndMonthNumericUpDown;
+        private System.Windows.Forms.NumericUpDown tradeEndYearNumericUpDown;
+        private System.Windows.Forms.Label tradeEndDateLabel;
+        private System.Windows.Forms.NumericUpDown tradeStartDayNumericUpDown;
+        private System.Windows.Forms.NumericUpDown tradeStartMonthNumericUpDown;
+        private System.Windows.Forms.NumericUpDown tradeStartYearNumericUpDown;
+        private System.Windows.Forms.Label tradeStartDateLabel;
+        private System.Windows.Forms.Button tradeSwapButton;
         private System.Windows.Forms.TextBox tradeMoneyTextBox2;
         private System.Windows.Forms.TextBox tradeMoneyTextBox1;
         private System.Windows.Forms.Label tradeMoneyLabel;
@@ -1266,17 +1294,16 @@
         private System.Windows.Forms.TextBox tradeMetalTextBox2;
         private System.Windows.Forms.TextBox tradeMetalTextBox1;
         private System.Windows.Forms.Label tredeMetalLabel;
-        private System.Windows.Forms.TextBox tredeEnergyTextBox2;
+        private System.Windows.Forms.TextBox tradeEnergyTextBox2;
         private System.Windows.Forms.TextBox tradeEnergyTextBox1;
         private System.Windows.Forms.Label tradeEnergyLabel;
-        private System.Windows.Forms.ComboBox treatyCountryComboBox2;
-        private System.Windows.Forms.ComboBox treatyCountryComboBox1;
+        private System.Windows.Forms.ComboBox tradeCountryComboBox2;
+        private System.Windows.Forms.ComboBox tradeCountryComboBox1;
         private System.Windows.Forms.TabPage relationTabPage;
         private System.Windows.Forms.TabPage countryTabPage;
         private System.Windows.Forms.TabPage personTabPage;
         private System.Windows.Forms.TabPage techTabPage;
         private System.Windows.Forms.TabPage provinceTabPage;
-        private System.Windows.Forms.PictureBox provincePictureBox;
         private System.Windows.Forms.GroupBox countryGroupBox;
         private System.Windows.Forms.GroupBox basicGroupBox;
         private System.Windows.Forms.GroupBox optionGroupBox;
@@ -1301,6 +1328,15 @@
         private System.Windows.Forms.Label countryDescLabel;
         private System.Windows.Forms.CheckBox tradeCancelCheckBox;
         private System.Windows.Forms.PictureBox propagandaPictureBox;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox provinceMapPictureBox;
+        private System.Windows.Forms.Panel provinceMapPanel;
+        private System.Windows.Forms.Button warSwapSideButton;
+        private System.Windows.Forms.ListView allianceCountryListView;
+        private System.Windows.Forms.ListView allianceParticipantListView;
+        private System.Windows.Forms.ListView warDefenderListView;
+        private System.Windows.Forms.ListView warAttackerListView;
+        private System.Windows.Forms.ListView warCountryListView;
 
     }
 }

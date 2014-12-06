@@ -61,6 +61,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Alliance に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Alliance {
+            get {
+                return ResourceManager.GetString("Alliance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Airforce に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string BranchAirforce {

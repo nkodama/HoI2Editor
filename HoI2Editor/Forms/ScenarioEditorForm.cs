@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -14,6 +16,12 @@ namespace HoI2Editor.Forms
     /// </summary>
     public partial class ScenarioEditorForm : Form
     {
+        #region 内部フィールド
+
+        private ushort _prevId;
+
+        #endregion
+
         #region 内部定数
 
         /// <summary>
@@ -75,6 +83,45 @@ namespace HoI2Editor.Forms
         #region データ処理
 
         /// <summary>
+        ///     マップを遅延読み込みする
+        /// </summary>
+        private void LoadMaps()
+        {
+            var worker = new BackgroundWorker();
+            worker.DoWork += OnMapWorkerDoWork;
+            worker.RunWorkerCompleted += OnMapWorkerRunWorkerCompleted;
+            worker.RunWorkerAsync();
+        }
+
+        /// <summary>
+        ///     マップを読み込む
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMapWorkerDoWork(object sender, DoWorkEventArgs e)
+        {
+            Maps.Load(MapLevel.Level1);
+        }
+
+        private void OnMapWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                return;
+            }
+
+            if (e.Cancelled)
+            {
+                return;
+            }
+
+            Map map = Maps.Data[(int) MapLevel.Level1];
+            Bitmap bitmap = map.GetImage();
+            map.SetMaskColor(bitmap, Color.LightSteelBlue);
+            provinceMapPictureBox.Image = bitmap;
+        }
+
+        /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
         public void OnFileLoaded()
@@ -88,8 +135,10 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEditableItems()
         {
-            // メインタブの項目を初期化する
+            // メインタブ
             InitMainItems();
+            // 同盟タブ
+            InitAllianceItems();
         }
 
         /// <summary>
@@ -97,8 +146,10 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateEditableItems()
         {
-            // メインタブの項目を更新する
+            // メインタブ
             UpdateMainItems();
+            // 同盟タブ
+            UpdateAllianceItems();
         }
 
         /// <summary>
@@ -139,6 +190,9 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormLoad(object sender, EventArgs e)
         {
+            // マップを遅延読み込みする
+            LoadMaps();
+
             // 国家データを初期化する
             Countries.Init();
 
@@ -373,10 +427,8 @@ namespace HoI2Editor.Forms
 
             scenarioNameTextBox.Text = Config.GetText(scenario.Name);
             panelImageTextBox.Text = scenario.PanelName;
-            string panelFileName = Game.GetReadFileName(scenario.PanelName);
-            Image panel = (File.Exists(panelFileName)) ? new Bitmap(panelFileName) : null;
             Image old = panelPictureBox.Image;
-            panelPictureBox.Image = panel;
+            panelPictureBox.Image = GetPanelImage(scenario.PanelName);
             if (old != null)
             {
                 old.Dispose();
@@ -402,33 +454,33 @@ namespace HoI2Editor.Forms
             difficultyComboBox.SelectedIndex = scenario.Header.Difficulty;
             gameSpeedComboBox.SelectedIndex = scenario.Header.GameSpeed;
 
-            var majorCountries = new List<Country>();
+            var major = new List<Country>();
             majorListBox.Items.Clear();
             foreach (MajorCountrySettings majorCountry in scenario.Header.MajorCountries)
             {
-                string tagName = Countries.Strings[(int) majorCountry.Country];
-                string countryName = Config.ExistsKey(tagName)
-                    ? string.Format("{0} {1}", tagName, Config.GetText(tagName))
-                    : tagName;
-                majorListBox.Items.Add(countryName);
-                majorCountries.Add(majorCountry.Country);
+                string tag = Countries.Strings[(int) majorCountry.Country];
+                string name = Config.ExistsKey(tag)
+                    ? string.Format("{0} {1}", tag, Config.GetText(tag))
+                    : tag;
+                majorListBox.Items.Add(name);
+                major.Add(majorCountry.Country);
             }
 
             selectableCheckedListBox.Items.Clear();
             foreach (Country country in Countries.Tags)
             {
                 // 主要国リストに表示されている国は追加しない
-                if (majorCountries.Contains(country))
+                if (major.Contains(country))
                 {
                     continue;
                 }
 
-                string tagName = Countries.Strings[(int) country];
-                string countryName = Config.ExistsKey(tagName)
-                    ? string.Format("{0} {1}", tagName, Config.GetText(tagName))
-                    : tagName;
+                string tag = Countries.Strings[(int) country];
+                string name = Config.ExistsKey(tag)
+                    ? string.Format("{0} {1}", tag, Config.GetText(tag))
+                    : tag;
                 bool check = scenario.Header.SelectableCountries.Contains(country);
-                selectableCheckedListBox.Items.Add(countryName, check);
+                selectableCheckedListBox.Items.Add(name, check);
             }
         }
 
@@ -521,13 +573,31 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     パネル画像を取得する
+        /// </summary>
+        /// <param name="fileName">ファイル名</param>
+        /// <returns>パネル画像</returns>
+        private static Bitmap GetPanelImage(string fileName)
+        {
+            string pathName = Game.GetReadFileName(fileName);
+            if (!File.Exists(pathName))
+            {
+                return null;
+            }
+
+            var bitmap = new Bitmap(pathName);
+            bitmap.MakeTransparent(Color.Lime);
+            return bitmap;
+        }
+
+        /// <summary>
         ///     国家の説明文字列を取得する
         /// </summary>
         /// <param name="tag">国タグ</param>
         /// <param name="year">開始年</param>
         /// <param name="desc">説明文字列</param>
         /// <returns>説明文字列</returns>
-        private string GetCountryDesc(Country tag, int year, string desc)
+        private static string GetCountryDesc(Country tag, int year, string desc)
         {
             if (!string.IsNullOrEmpty(desc) && Config.ExistsKey(desc))
             {
@@ -557,31 +627,235 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     国家のプロパガンダ画像を取得する
         /// </summary>
-        /// <param name="tag">国タグ</param>
-        /// <param name="pictureName">プロパガンダ画像名</param>
+        /// <param name="country">国タグ</param>
+        /// <param name="fileName">プロパガンダ画像名</param>
         /// <returns>プロパガンダ画像</returns>
-        private Image GetCountryPropagandaImage(Country tag, string pictureName)
+        private static Image GetCountryPropagandaImage(Country country, string fileName)
         {
-            string fileName;
-            if (!string.IsNullOrEmpty(pictureName))
+            Bitmap bitmap;
+            string pathName;
+            if (!string.IsNullOrEmpty(fileName))
             {
-                fileName = Game.GetReadFileName(pictureName);
-                if (File.Exists(fileName))
+                pathName = Game.GetReadFileName(fileName);
+                if (File.Exists(pathName))
                 {
-                    return new Bitmap(fileName);
+                    bitmap = new Bitmap(pathName);
+                    bitmap.MakeTransparent(Color.Lime);
+                    return bitmap;
                 }
             }
 
-            if (tag == Country.None)
+            if (country == Country.None)
             {
                 return null;
             }
 
-            fileName = Game.GetReadFileName(Game.ScenarioDataPathName,
-                string.Format("propaganda_{0}.bmp", Countries.Strings[(int) tag]));
-            return File.Exists(fileName) ? new Bitmap(fileName) : null;
+            pathName = Game.GetReadFileName(Game.ScenarioDataPathName,
+                string.Format("propaganda_{0}.bmp", Countries.Strings[(int) country]));
+            if (!File.Exists(pathName))
+            {
+                return null;
+            }
+
+            bitmap = new Bitmap(pathName);
+            bitmap.MakeTransparent(Color.Lime);
+            return bitmap;
         }
 
         #endregion
+
+        #region 同盟タブ
+
+        /// <summary>
+        ///     同盟タブの項目を初期化する
+        /// </summary>
+        private void InitAllianceItems()
+        {
+            // 何もしない
+        }
+
+        /// <summary>
+        ///     同盟タブの項目を更新する
+        /// </summary>
+        private void UpdateAllianceItems()
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            // 同盟リストビュー
+            allianceListView.BeginUpdate();
+            allianceListView.Items.Clear();
+            if (data.Axis != null)
+            {
+                // 枢軸国
+                var item = new ListViewItem {Text = Config.GetText("EYR_AXIS"), Tag = data.Axis};
+                item.SubItems.Add(GetCountryListString(data.Axis.Participant));
+                allianceListView.Items.Add(item);
+            }
+            if (data.Allies != null)
+            {
+                // 連合国
+                var item = new ListViewItem {Text = Config.GetText("EYR_ALLIES"), Tag = data.Allies};
+                item.SubItems.Add(GetCountryListString(data.Allies.Participant));
+                allianceListView.Items.Add(item);
+            }
+            if (data.Allies != null)
+            {
+                // 共産国
+                var item = new ListViewItem {Text = Config.GetText("EYR_COM"), Tag = data.Comintern};
+                item.SubItems.Add(GetCountryListString(data.Comintern.Participant));
+                allianceListView.Items.Add(item);
+            }
+            foreach (Alliance alliance in data.Alliances)
+            {
+                // その他の同盟
+                var item = new ListViewItem {Text = Resources.Alliance, Tag = alliance};
+                item.SubItems.Add(GetCountryListString(alliance.Participant));
+                allianceListView.Items.Add(item);
+            }
+            allianceListView.EndUpdate();
+
+            // 戦争リストビュー
+            warListView.BeginUpdate();
+            warListView.Items.Clear();
+            foreach (War war in data.Wars)
+            {
+                var item = new ListViewItem(war.StartDate.ToString());
+                item.SubItems.Add(war.EndDate.ToString());
+                item.SubItems.Add(GetCountryListString(war.Attackers.Participant));
+                item.SubItems.Add(GetCountryListString(war.Defenders.Participant));
+                warListView.Items.Add(item);
+            }
+            warListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     国タグリストの文字列を取得する
+        /// </summary>
+        /// <param name="countries"></param>
+        /// <returns></returns>
+        private static string GetCountryListString(IEnumerable<Country> countries)
+        {
+            var sb = new StringBuilder();
+            bool first = true;
+            foreach (Country country in countries)
+            {
+                if (first)
+                {
+                    first = false;
+                }
+                else
+                {
+                    sb.Append(", ");
+                }
+                sb.Append(GetCountryName(country));
+            }
+
+            return sb.ToString();
+        }
+
+        /// <summary>
+        ///     同盟リストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (allianceListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
+            if (alliance == null)
+            {
+                return;
+            }
+
+            // 同盟国家リストビュー
+            allianceCountryListView.BeginUpdate();
+            allianceCountryListView.Items.Clear();
+            foreach (Country country in Countries.Tags)
+            {
+                if (alliance.Participant.Contains(country))
+                {
+                    continue;
+                }
+                var item = new ListViewItem {Text = GetCountryName(country), Tag = country};
+                allianceCountryListView.Items.Add(item);
+            }
+            allianceCountryListView.EndUpdate();
+
+            // 同盟参加国リストビュー
+            allianceParticipantListView.BeginUpdate();
+            allianceParticipantListView.Items.Clear();
+            foreach (Country country in alliance.Participant)
+            {
+                var item = new ListViewItem {Text = GetCountryName(country), Tag = country};
+                allianceParticipantListView.Items.Add(item);
+            }
+            allianceParticipantListView.EndUpdate();
+        }
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        ///     国名を取得する
+        /// </summary>
+        /// <param name="country">国タグ</param>
+        /// <returns>国名</returns>
+        private static string GetCountryName(Country country)
+        {
+            if (country == Country.None)
+            {
+                return "";
+            }
+            string tag = Countries.Strings[(int) country];
+            return Config.ExistsKey(tag) ? Config.GetText(tag) : tag;
+        }
+
+        /// <summary>
+        ///     国タグ名と国名を取得する
+        /// </summary>
+        /// <param name="country">国タグ</param>
+        /// <returns>国タグ名と国名</returns>
+        private static string GetCountryTagName(Country country)
+        {
+            if (country == Country.None)
+            {
+                return "";
+            }
+            string tag = Countries.Strings[(int) country];
+            return Config.ExistsKey(tag)
+                ? string.Format("{0} {1}", tag, Config.GetText(tag))
+                : tag;
+        }
+
+        #endregion
+
+        private void OnTextBox1Validated(object sender, EventArgs e)
+        {
+            ushort id;
+            if (!ushort.TryParse(textBox1.Text, out id))
+            {
+                return;
+            }
+            if (id > 0 && id < 10000)
+            {
+                Map map = Maps.Data[(int) MapLevel.Level1];
+                var bitmap = provinceMapPictureBox.Image as Bitmap;
+                if (_prevId != 0)
+                {
+                    map.ResetProvinceMask(bitmap, _prevId);
+                }
+                map.SetProvinceMask(bitmap, id);
+                provinceMapPictureBox.Refresh();
+
+                _prevId = id;
+            }
+        }
     }
 }
