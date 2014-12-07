@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
@@ -100,9 +102,14 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMapWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            Maps.Load(MapLevel.Level1);
+            Maps.Load(MapLevel.Level2);
         }
 
+        /// <summary>
+        ///     マップ読み込み完了時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnMapWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Error != null)
@@ -115,7 +122,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Map map = Maps.Data[(int) MapLevel.Level1];
+            Map map = Maps.Data[(int) MapLevel.Level2];
             Bitmap bitmap = map.GetImage();
             map.SetMaskColor(bitmap, Color.LightSteelBlue);
             provinceMapPictureBox.Image = bitmap;
@@ -135,10 +142,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEditableItems()
         {
-            // メインタブ
             InitMainItems();
-            // 同盟タブ
             InitAllianceItems();
+            InitTradeItems();
         }
 
         /// <summary>
@@ -146,10 +152,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateEditableItems()
         {
-            // メインタブ
             UpdateMainItems();
-            // 同盟タブ
             UpdateAllianceItems();
+            UpdateTradeItems();
         }
 
         /// <summary>
@@ -640,7 +645,7 @@ namespace HoI2Editor.Forms
                 if (File.Exists(pathName))
                 {
                     bitmap = new Bitmap(pathName);
-                    bitmap.MakeTransparent(Color.Lime);
+                    bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
                     return bitmap;
                 }
             }
@@ -658,7 +663,7 @@ namespace HoI2Editor.Forms
             }
 
             bitmap = new Bitmap(pathName);
-            bitmap.MakeTransparent(Color.Lime);
+            bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
             return bitmap;
         }
 
@@ -679,8 +684,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateAllianceItems()
         {
-            Scenario scenario = Scenarios.Data;
-            ScenarioGlobalData data = scenario.GlobalData;
+            ScenarioGlobalData data = Scenarios.Data.GlobalData;
 
             // 同盟リストビュー
             allianceListView.BeginUpdate();
@@ -720,38 +724,13 @@ namespace HoI2Editor.Forms
             warListView.Items.Clear();
             foreach (War war in data.Wars)
             {
-                var item = new ListViewItem(war.StartDate.ToString());
+                var item = new ListViewItem {Text = war.StartDate.ToString(), Tag = war};
                 item.SubItems.Add(war.EndDate.ToString());
                 item.SubItems.Add(GetCountryListString(war.Attackers.Participant));
                 item.SubItems.Add(GetCountryListString(war.Defenders.Participant));
                 warListView.Items.Add(item);
             }
             warListView.EndUpdate();
-        }
-
-        /// <summary>
-        ///     国タグリストの文字列を取得する
-        /// </summary>
-        /// <param name="countries"></param>
-        /// <returns></returns>
-        private static string GetCountryListString(IEnumerable<Country> countries)
-        {
-            var sb = new StringBuilder();
-            bool first = true;
-            foreach (Country country in countries)
-            {
-                if (first)
-                {
-                    first = false;
-                }
-                else
-                {
-                    sb.Append(", ");
-                }
-                sb.Append(GetCountryName(country));
-            }
-
-            return sb.ToString();
         }
 
         /// <summary>
@@ -773,29 +752,285 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 同盟国家リストビュー
-            allianceCountryListView.BeginUpdate();
-            allianceCountryListView.Items.Clear();
+            // 同盟国家リストボックス
+            allianceCountryListBox.BeginUpdate();
+            allianceCountryListBox.Items.Clear();
             foreach (Country country in Countries.Tags)
             {
                 if (alliance.Participant.Contains(country))
                 {
                     continue;
                 }
-                var item = new ListViewItem {Text = GetCountryName(country), Tag = country};
-                allianceCountryListView.Items.Add(item);
+                allianceCountryListBox.Items.Add(GetCountryTagName(country));
             }
-            allianceCountryListView.EndUpdate();
+            allianceCountryListBox.EndUpdate();
 
-            // 同盟参加国リストビュー
-            allianceParticipantListView.BeginUpdate();
-            allianceParticipantListView.Items.Clear();
+            // 同盟参加国リストボックス
+            allianceParticipantListBox.BeginUpdate();
+            allianceParticipantListBox.Items.Clear();
             foreach (Country country in alliance.Participant)
             {
-                var item = new ListViewItem {Text = GetCountryName(country), Tag = country};
-                allianceParticipantListView.Items.Add(item);
+                allianceParticipantListBox.Items.Add(GetCountryTagName(country));
             }
-            allianceParticipantListView.EndUpdate();
+            allianceParticipantListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     戦争リストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (warListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 戦争国家リストボックス
+            warCountryListBox.BeginUpdate();
+            warCountryListBox.Items.Clear();
+            foreach (Country country in Countries.Tags)
+            {
+                if (war.Attackers.Participant.Contains(country) || war.Defenders.Participant.Contains(country))
+                {
+                    continue;
+                }
+                warCountryListBox.Items.Add(GetCountryTagName(country));
+            }
+            warCountryListBox.EndUpdate();
+
+            // 攻撃側リストボックス
+            warAttackerListBox.BeginUpdate();
+            warAttackerListBox.Items.Clear();
+            foreach (Country country in war.Attackers.Participant)
+            {
+                warAttackerListBox.Items.Add(GetCountryTagName(country));
+            }
+            warAttackerListBox.EndUpdate();
+
+            // 防御側リストボックス
+            warDefenderListBox.BeginUpdate();
+            warDefenderListBox.Items.Clear();
+            foreach (Country country in war.Defenders.Participant)
+            {
+                warDefenderListBox.Items.Add(GetCountryTagName(country));
+            }
+            warDefenderListBox.EndUpdate();
+        }
+
+        #endregion
+
+        #region 貿易タブ
+
+        /// <summary>
+        ///     貿易タブの項目を初期化する
+        /// </summary>
+        private void InitTradeItems()
+        {
+            // 貿易国家コンボボックス
+            tradeCountryComboBox1.BeginUpdate();
+            tradeCountryComboBox2.BeginUpdate();
+            tradeCountryComboBox1.Items.Clear();
+            tradeCountryComboBox2.Items.Clear();
+            foreach (Country country in Countries.Tags)
+            {
+                string s = GetCountryTagName(country);
+                tradeCountryComboBox1.Items.Add(s);
+                tradeCountryComboBox2.Items.Add(s);
+            }
+            tradeCountryComboBox1.EndUpdate();
+            tradeCountryComboBox2.EndUpdate();
+
+            // 貿易資源ラベル
+            tradeEnergyLabel.Text = Config.GetText("RESOURCE_ENERGY");
+            tradeMetalLabel.Text = Config.GetText("RESOURCE_METAL");
+            tradeRareMaterialsLabel.Text = Config.GetText("RESOURCE_RARE_MATERIALS");
+            tradeOilLabel.Text = Config.GetText("RESOURCE_OIL");
+            tradeSuppliesLabel.Text = Config.GetText("RESOURCE_SUPPLY");
+            tradeMoneyLabel.Text = Config.GetText("RESOURCE_MONEY");
+        }
+
+        /// <summary>
+        ///     貿易タブの項目を更新する
+        /// </summary>
+        private void UpdateTradeItems()
+        {
+            ScenarioGlobalData data = Scenarios.Data.GlobalData;
+
+            // 貿易リストビュー
+            tradeListView.BeginUpdate();
+            tradeListView.Items.Clear();
+            foreach (Treaty treaty in data.Treaties.Where(treaty => treaty.Type == TreatyType.Trade))
+            {
+                var item = new ListViewItem {Text = treaty.StartDate.ToString(), Tag = treaty};
+                item.SubItems.Add(treaty.EndDate.ToString());
+                item.SubItems.Add(GetCountryName(treaty.Country1));
+                item.SubItems.Add(GetCountryName(treaty.Country2));
+                item.SubItems.Add(GetTradeString(treaty));
+                tradeListView.Items.Add(item);
+            }
+            tradeListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     貿易リストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (tradeListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var treaty = tradeListView.SelectedItems[0].Tag as Treaty;
+            if (treaty == null)
+            {
+                return;
+            }
+
+            // 開始日時
+            tradeStartYearTextBox.Text = treaty.StartDate.Year.ToString(CultureInfo.InvariantCulture);
+            tradeStartMonthTextBox.Text = treaty.StartDate.Month.ToString(CultureInfo.InvariantCulture);
+            tradeStartDayTextBox.Text = treaty.StartDate.Day.ToString(CultureInfo.InvariantCulture);
+
+            // 終了日時
+            tradeEndYearTextBox.Text = treaty.EndDate.Year.ToString(CultureInfo.InvariantCulture);
+            tradeEndMonthTextBox.Text = treaty.EndDate.Month.ToString(CultureInfo.InvariantCulture);
+            tradeEndDayTextBox.Text = treaty.EndDate.Day.ToString(CultureInfo.InvariantCulture);
+
+            // 貿易国家コンボボックス
+            if (Countries.Tags.Contains(treaty.Country1))
+            {
+                tradeCountryComboBox1.SelectedIndex = Array.IndexOf(Countries.Tags, treaty.Country1);
+            }
+            if (Countries.Tags.Contains(treaty.Country2))
+            {
+                tradeCountryComboBox2.SelectedIndex = Array.IndexOf(Countries.Tags, treaty.Country2);
+            }
+
+            // 貿易量
+            if (!DoubleHelper.IsZero(treaty.Energy))
+            {
+                if (treaty.Energy < 0)
+                {
+                    tradeEnergyTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.Energy));
+                    tradeEnergyTextBox2.Text = "";
+                }
+                else
+                {
+                    tradeEnergyTextBox1.Text = "";
+                    tradeEnergyTextBox2.Text = DoubleHelper.ToString1(treaty.Energy);
+                }
+            }
+            else
+            {
+                tradeEnergyTextBox1.Text = "";
+                tradeEnergyTextBox2.Text = "";
+            }
+            if (!DoubleHelper.IsZero(treaty.Metal))
+            {
+                if (treaty.Metal < 0)
+                {
+                    tradeMetalTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.Metal));
+                    tradeMetalTextBox2.Text = "";
+                }
+                else
+                {
+                    tradeMetalTextBox1.Text = "";
+                    tradeMetalTextBox2.Text = DoubleHelper.ToString1(treaty.Metal);
+                }
+            }
+            else
+            {
+                tradeMetalTextBox1.Text = "";
+                tradeMetalTextBox2.Text = "";
+            }
+            if (!DoubleHelper.IsZero(treaty.RareMaterials))
+            {
+                if (treaty.RareMaterials < 0)
+                {
+                    tradeRareMaterialsTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.RareMaterials));
+                    tradeRareMaterialsTextBox2.Text = "";
+                }
+                else
+                {
+                    tradeRareMaterialsTextBox1.Text = "";
+                    tradeRareMaterialsTextBox2.Text = DoubleHelper.ToString1(treaty.RareMaterials);
+                }
+            }
+            else
+            {
+                tradeRareMaterialsTextBox1.Text = "";
+                tradeRareMaterialsTextBox2.Text = "";
+            }
+            if (!DoubleHelper.IsZero(treaty.Oil))
+            {
+                if (treaty.Oil < 0)
+                {
+                    tradeOilTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.Oil));
+                    tradeOilTextBox2.Text = "";
+                }
+                else
+                {
+                    tradeOilTextBox1.Text = "";
+                    tradeOilTextBox2.Text = DoubleHelper.ToString1(treaty.Oil);
+                }
+            }
+            else
+            {
+                tradeOilTextBox1.Text = "";
+                tradeOilTextBox2.Text = "";
+            }
+            if (!DoubleHelper.IsZero(treaty.Supplies))
+            {
+                if (treaty.Supplies < 0)
+                {
+                    tradeSuppliesTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.Supplies));
+                    tradeSuppliesTextBox2.Text = "";
+                }
+                else
+                {
+                    tradeSuppliesTextBox1.Text = "";
+                    tradeSuppliesTextBox2.Text = DoubleHelper.ToString1(treaty.Supplies);
+                }
+            }
+            else
+            {
+                tradeSuppliesTextBox1.Text = "";
+                tradeSuppliesTextBox2.Text = "";
+            }
+            if (!DoubleHelper.IsZero(treaty.Money))
+            {
+                if (treaty.Money < 0)
+                {
+                    tradeMoneyTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.Money));
+                    tradeMoneyTextBox2.Text = "";
+                }
+                else
+                {
+                    tradeMoneyTextBox1.Text = "";
+                    tradeMoneyTextBox2.Text = DoubleHelper.ToString1(treaty.Money);
+                }
+            }
+            else
+            {
+                tradeMoneyTextBox1.Text = "";
+                tradeMoneyTextBox2.Text = "";
+            }
+
+            // キャンセルを許可
+            tradeCancelCheckBox.Checked = treaty.Cancel;
         }
 
         #endregion
@@ -832,6 +1067,59 @@ namespace HoI2Editor.Forms
             return Config.ExistsKey(tag)
                 ? string.Format("{0} {1}", tag, Config.GetText(tag))
                 : tag;
+        }
+
+        /// <summary>
+        ///     国タグリストの文字列を取得する
+        /// </summary>
+        /// <param name="countries">国タグリスト</param>
+        /// <returns>国タグリストの文字列</returns>
+        private static string GetCountryListString(IEnumerable<Country> countries)
+        {
+            var sb = new StringBuilder();
+            foreach (Country country in countries)
+            {
+                sb.AppendFormat("{0}, ", GetCountryName(country));
+            }
+            int len = sb.Length;
+            return (len > 0) ? sb.ToString(0, len - 2) : "";
+        }
+
+        /// <summary>
+        ///     貿易内容の文字列を取得する
+        /// </summary>
+        /// <param name="treaty">外交協定情報</param>
+        /// <returns>貿易内容の文字列</returns>
+        private static string GetTradeString(Treaty treaty)
+        {
+            var sb = new StringBuilder();
+            if (!DoubleHelper.IsZero(treaty.Energy))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_ENERGY"), DoubleHelper.ToString1(treaty.Energy));
+            }
+            if (!DoubleHelper.IsZero(treaty.Metal))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_METAL"), DoubleHelper.ToString1(treaty.Metal));
+            }
+            if (!DoubleHelper.IsZero(treaty.RareMaterials))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_RARE_MATERIALS"),
+                    DoubleHelper.ToString1(treaty.RareMaterials));
+            }
+            if (!DoubleHelper.IsZero(treaty.Oil))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_OIL"), DoubleHelper.ToString1(treaty.Oil));
+            }
+            if (!DoubleHelper.IsZero(treaty.Supplies))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_SUPPLY"), DoubleHelper.ToString1(treaty.Supplies));
+            }
+            if (!DoubleHelper.IsZero(treaty.Money))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_MONEY"), DoubleHelper.ToString1(treaty.Money));
+            }
+            int len = sb.Length;
+            return (len > 0) ? sb.ToString(0, len - 2) : "";
         }
 
         #endregion

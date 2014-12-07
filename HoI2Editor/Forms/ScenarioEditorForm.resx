@@ -1503,92 +1503,134 @@
   <data name="allianceTabPage.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="warDefenderListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>360, 195</value>
+  <data name="warDefenderLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="warDefenderListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 214</value>
+  <data name="warDefenderLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="warDefenderListView.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
+  <data name="warDefenderLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 204</value>
   </data>
-  <data name="&gt;&gt;warDefenderListView.Name" xml:space="preserve">
-    <value>warDefenderListView</value>
+  <data name="warDefenderLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 12</value>
   </data>
-  <data name="&gt;&gt;warDefenderListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="warDefenderLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
   </data>
-  <data name="&gt;&gt;warDefenderListView.Parent" xml:space="preserve">
+  <data name="warDefenderLabel.Text" xml:space="preserve">
+    <value>Defender</value>
+  </data>
+  <data name="&gt;&gt;warDefenderLabel.Name" xml:space="preserve">
+    <value>warDefenderLabel</value>
+  </data>
+  <data name="&gt;&gt;warDefenderLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warDefenderLabel.Parent" xml:space="preserve">
     <value>warGroupBox</value>
   </data>
-  <data name="&gt;&gt;warDefenderListView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;warDefenderLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="warAttackerListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 195</value>
+  <data name="warAttackerLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="warAttackerListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 214</value>
+  <data name="warAttackerLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 204</value>
   </data>
-  <data name="warAttackerListView.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+  <data name="warAttackerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 12</value>
   </data>
-  <data name="&gt;&gt;warAttackerListView.Name" xml:space="preserve">
-    <value>warAttackerListView</value>
+  <data name="warAttackerLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
   </data>
-  <data name="&gt;&gt;warAttackerListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="warAttackerLabel.Text" xml:space="preserve">
+    <value>Attacker</value>
   </data>
-  <data name="&gt;&gt;warAttackerListView.Parent" xml:space="preserve">
+  <data name="&gt;&gt;warAttackerLabel.Name" xml:space="preserve">
+    <value>warAttackerLabel</value>
+  </data>
+  <data name="&gt;&gt;warAttackerLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warAttackerLabel.Parent" xml:space="preserve">
     <value>warGroupBox</value>
   </data>
-  <data name="&gt;&gt;warAttackerListView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;warAttackerLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="warCountryListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>183, 195</value>
+  <data name="warDefenderListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
-  <data name="warCountryListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 324</value>
+  <data name="warDefenderListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 219</value>
   </data>
-  <data name="warCountryListView.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+  <data name="warDefenderListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 184</value>
   </data>
-  <data name="&gt;&gt;warCountryListView.Name" xml:space="preserve">
-    <value>warCountryListView</value>
+  <data name="warDefenderListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>44</value>
   </data>
-  <data name="&gt;&gt;warCountryListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;warDefenderListBox.Name" xml:space="preserve">
+    <value>warDefenderListBox</value>
   </data>
-  <data name="&gt;&gt;warCountryListView.Parent" xml:space="preserve">
+  <data name="&gt;&gt;warDefenderListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warDefenderListBox.Parent" xml:space="preserve">
     <value>warGroupBox</value>
   </data>
-  <data name="&gt;&gt;warCountryListView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;warDefenderListBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="warSwapSideButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>330, 166</value>
+  <data name="warCountryListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
-  <data name="warSwapSideButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="warCountryListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>183, 219</value>
   </data>
-  <data name="warSwapSideButton.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+  <data name="warCountryListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 304</value>
   </data>
-  <data name="warSwapSideButton.Text" xml:space="preserve">
-    <value>Swap Side</value>
+  <data name="warCountryListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
   </data>
-  <data name="&gt;&gt;warSwapSideButton.Name" xml:space="preserve">
-    <value>warSwapSideButton</value>
+  <data name="&gt;&gt;warCountryListBox.Name" xml:space="preserve">
+    <value>warCountryListBox</value>
   </data>
-  <data name="&gt;&gt;warSwapSideButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;warCountryListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;warSwapSideButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;warCountryListBox.Parent" xml:space="preserve">
     <value>warGroupBox</value>
   </data>
-  <data name="&gt;&gt;warSwapSideButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;warCountryListBox.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="warAttackerListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="warAttackerListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 219</value>
+  </data>
+  <data name="warAttackerListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 184</value>
+  </data>
+  <data name="warAttackerListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;warAttackerListBox.Name" xml:space="preserve">
+    <value>warAttackerListBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warAttackerListBox.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerListBox.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="warDefenderRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1615,7 +1657,7 @@
     <value>warGroupBox</value>
   </data>
   <data name="&gt;&gt;warDefenderRemoveButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="warDefenderAddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1642,7 +1684,7 @@
     <value>warGroupBox</value>
   </data>
   <data name="&gt;&gt;warDefenderAddButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="warAttackerRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1669,7 +1711,7 @@
     <value>warGroupBox</value>
   </data>
   <data name="&gt;&gt;warAttackerRemoveButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="warAttackerAddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1696,7 +1738,7 @@
     <value>warGroupBox</value>
   </data>
   <data name="&gt;&gt;warAttackerAddButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="warUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1723,7 +1765,7 @@
     <value>warGroupBox</value>
   </data>
   <data name="&gt;&gt;warUpButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="warRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1750,7 +1792,7 @@
     <value>warGroupBox</value>
   </data>
   <data name="&gt;&gt;warRemoveButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="warDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1777,7 +1819,7 @@
     <value>warGroupBox</value>
   </data>
   <data name="&gt;&gt;warDownButton.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="warNewButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1804,7 +1846,7 @@
     <value>warGroupBox</value>
   </data>
   <data name="&gt;&gt;warNewButton.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="warStartDateColumnHeader.Text" xml:space="preserve">
     <value>Start Date</value>
@@ -1849,7 +1891,7 @@
     <value>warGroupBox</value>
   </data>
   <data name="&gt;&gt;warListView.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="warGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>349, 6</value>
@@ -1875,47 +1917,80 @@
   <data name="&gt;&gt;warGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="allianceParticipantListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>183, 195</value>
+  <data name="allianceParticipantLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="allianceParticipantListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 214</value>
+  <data name="allianceParticipantLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>181, 204</value>
   </data>
-  <data name="allianceParticipantListView.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+  <data name="allianceParticipantLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 12</value>
   </data>
-  <data name="&gt;&gt;allianceParticipantListView.Name" xml:space="preserve">
-    <value>allianceParticipantListView</value>
+  <data name="allianceParticipantLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
   </data>
-  <data name="&gt;&gt;allianceParticipantListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="allianceParticipantLabel.Text" xml:space="preserve">
+    <value>Participant</value>
   </data>
-  <data name="&gt;&gt;allianceParticipantListView.Parent" xml:space="preserve">
+  <data name="&gt;&gt;allianceParticipantLabel.Name" xml:space="preserve">
+    <value>allianceParticipantLabel</value>
+  </data>
+  <data name="&gt;&gt;allianceParticipantLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceParticipantLabel.Parent" xml:space="preserve">
     <value>allianceGroupBox</value>
   </data>
-  <data name="&gt;&gt;allianceParticipantListView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;allianceParticipantLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="allianceCountryListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 195</value>
+  <data name="allianceParticipantListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
-  <data name="allianceCountryListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 324</value>
+  <data name="allianceParticipantListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>183, 219</value>
   </data>
-  <data name="allianceCountryListView.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+  <data name="allianceParticipantListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 184</value>
   </data>
-  <data name="&gt;&gt;allianceCountryListView.Name" xml:space="preserve">
-    <value>allianceCountryListView</value>
+  <data name="allianceParticipantListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
   </data>
-  <data name="&gt;&gt;allianceCountryListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;allianceParticipantListBox.Name" xml:space="preserve">
+    <value>allianceParticipantListBox</value>
   </data>
-  <data name="&gt;&gt;allianceCountryListView.Parent" xml:space="preserve">
+  <data name="&gt;&gt;allianceParticipantListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceParticipantListBox.Parent" xml:space="preserve">
     <value>allianceGroupBox</value>
   </data>
-  <data name="&gt;&gt;allianceCountryListView.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;allianceParticipantListBox.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="allianceCountryListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="allianceCountryListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 219</value>
+  </data>
+  <data name="allianceCountryListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 304</value>
+  </data>
+  <data name="allianceCountryListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;allianceCountryListBox.Name" xml:space="preserve">
+    <value>allianceCountryListBox</value>
+  </data>
+  <data name="&gt;&gt;allianceCountryListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allianceCountryListBox.Parent" xml:space="preserve">
+    <value>allianceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;allianceCountryListBox.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="allianceTypeColumnHeader.Text" xml:space="preserve">
     <value>Type</value>
@@ -1945,7 +2020,7 @@
     <value>allianceGroupBox</value>
   </data>
   <data name="&gt;&gt;allianceListView.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="participantRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1972,7 +2047,7 @@
     <value>allianceGroupBox</value>
   </data>
   <data name="&gt;&gt;participantRemoveButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="participantAddButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1999,10 +2074,10 @@
     <value>allianceGroupBox</value>
   </data>
   <data name="&gt;&gt;participantAddButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="allianceLeaderButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>183, 415</value>
+    <value>183, 409</value>
   </data>
   <data name="allianceLeaderButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 23</value>
@@ -2023,7 +2098,7 @@
     <value>allianceGroupBox</value>
   </data>
   <data name="&gt;&gt;allianceLeaderButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="allianceUpButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 166</value>
@@ -2047,7 +2122,7 @@
     <value>allianceGroupBox</value>
   </data>
   <data name="&gt;&gt;allianceUpButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="allianceRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>249, 166</value>
@@ -2071,7 +2146,7 @@
     <value>allianceGroupBox</value>
   </data>
   <data name="&gt;&gt;allianceRemoveButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="allianceDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2098,7 +2173,7 @@
     <value>allianceGroupBox</value>
   </data>
   <data name="&gt;&gt;allianceDownButton.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="allianceNewButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>168, 166</value>
@@ -2122,7 +2197,7 @@
     <value>allianceGroupBox</value>
   </data>
   <data name="&gt;&gt;allianceNewButton.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="allianceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 6</value>
@@ -2175,11 +2250,137 @@
   <data name="&gt;&gt;allianceTabPage.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="tradeEndDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>282, 225</value>
+  </data>
+  <data name="tradeEndDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeEndDayTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDayTextBox.Name" xml:space="preserve">
+    <value>tradeEndDayTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDayTextBox.Parent" xml:space="preserve">
+    <value>tradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDayTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tradeEndMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 225</value>
+  </data>
+  <data name="tradeEndMonthTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeEndMonthTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>63</value>
+  </data>
+  <data name="&gt;&gt;tradeEndMonthTextBox.Name" xml:space="preserve">
+    <value>tradeEndMonthTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEndMonthTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeEndMonthTextBox.Parent" xml:space="preserve">
+    <value>tradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEndMonthTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tradeEndYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>70, 225</value>
+  </data>
+  <data name="tradeEndYearTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeEndYearTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="&gt;&gt;tradeEndYearTextBox.Name" xml:space="preserve">
+    <value>tradeEndYearTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEndYearTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeEndYearTextBox.Parent" xml:space="preserve">
+    <value>tradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEndYearTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tradeStartDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>282, 200</value>
+  </data>
+  <data name="tradeStartDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeStartDayTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>61</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDayTextBox.Name" xml:space="preserve">
+    <value>tradeStartDayTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDayTextBox.Parent" xml:space="preserve">
+    <value>tradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDayTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tradeStartMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 200</value>
+  </data>
+  <data name="tradeStartMonthTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeStartMonthTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="&gt;&gt;tradeStartMonthTextBox.Name" xml:space="preserve">
+    <value>tradeStartMonthTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeStartMonthTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeStartMonthTextBox.Parent" xml:space="preserve">
+    <value>tradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeStartMonthTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tradeStartYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>70, 200</value>
+  </data>
+  <data name="tradeStartYearTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
+  </data>
+  <data name="tradeStartYearTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
+  </data>
+  <data name="&gt;&gt;tradeStartYearTextBox.Name" xml:space="preserve">
+    <value>tradeStartYearTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeStartYearTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeStartYearTextBox.Parent" xml:space="preserve">
+    <value>tradeGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeStartYearTextBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="tradeCancelCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="tradeCancelCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 451</value>
+    <value>127, 453</value>
   </data>
   <data name="tradeCancelCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 16</value>
@@ -2200,7 +2401,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeCancelCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>6</value>
   </data>
   <data name="tradeSwapButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2227,7 +2428,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeSwapButton.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>7</value>
   </data>
   <data name="tradeMoneyTextBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>239, 426</value>
@@ -2248,7 +2449,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMoneyTextBox2.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>8</value>
   </data>
   <data name="tradeMoneyTextBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 426</value>
@@ -2269,7 +2470,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMoneyTextBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>9</value>
   </data>
   <data name="tradeMoneyLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2299,7 +2500,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMoneyLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>10</value>
   </data>
   <data name="tradeSuppliesTextBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>239, 401</value>
@@ -2320,7 +2521,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeSuppliesTextBox2.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>11</value>
   </data>
   <data name="tradeSuppliesTextBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 401</value>
@@ -2341,7 +2542,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeSuppliesTextBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>12</value>
   </data>
   <data name="tradeSuppliesLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2371,7 +2572,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeSuppliesLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>13</value>
   </data>
   <data name="tradeOilTextBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>239, 376</value>
@@ -2392,7 +2593,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeOilTextBox2.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>14</value>
   </data>
   <data name="tradeOilTextBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 376</value>
@@ -2413,7 +2614,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeOilTextBox1.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>15</value>
   </data>
   <data name="tradeOilLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2443,7 +2644,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeOilLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>16</value>
   </data>
   <data name="tradeRareMaterialsTextBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>239, 351</value>
@@ -2464,7 +2665,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeRareMaterialsTextBox2.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>17</value>
   </data>
   <data name="tradeRareMaterialsTextBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 351</value>
@@ -2485,7 +2686,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeRareMaterialsTextBox1.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>18</value>
   </data>
   <data name="tradeRareMaterialsLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2515,7 +2716,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeRareMaterialsLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>19</value>
   </data>
   <data name="tradeMetalTextBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>239, 326</value>
@@ -2536,7 +2737,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMetalTextBox2.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>20</value>
   </data>
   <data name="tradeMetalTextBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 326</value>
@@ -2557,37 +2758,37 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMetalTextBox1.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>21</value>
   </data>
-  <data name="tredeMetalLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="tradeMetalLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="tredeMetalLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tradeMetalLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="tredeMetalLabel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tradeMetalLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>150, 329</value>
   </data>
-  <data name="tredeMetalLabel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tradeMetalLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 12</value>
   </data>
-  <data name="tredeMetalLabel.TabIndex" type="System.Int32, mscorlib">
+  <data name="tradeMetalLabel.TabIndex" type="System.Int32, mscorlib">
     <value>42</value>
   </data>
-  <data name="tredeMetalLabel.Text" xml:space="preserve">
+  <data name="tradeMetalLabel.Text" xml:space="preserve">
     <value>Metal</value>
   </data>
-  <data name="&gt;&gt;tredeMetalLabel.Name" xml:space="preserve">
-    <value>tredeMetalLabel</value>
+  <data name="&gt;&gt;tradeMetalLabel.Name" xml:space="preserve">
+    <value>tradeMetalLabel</value>
   </data>
-  <data name="&gt;&gt;tredeMetalLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;tradeMetalLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tredeMetalLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tradeMetalLabel.Parent" xml:space="preserve">
     <value>tradeGroupBox</value>
   </data>
-  <data name="&gt;&gt;tredeMetalLabel.ZOrder" xml:space="preserve">
-    <value>16</value>
+  <data name="&gt;&gt;tradeMetalLabel.ZOrder" xml:space="preserve">
+    <value>22</value>
   </data>
   <data name="tradeEnergyTextBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>239, 301</value>
@@ -2608,7 +2809,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeEnergyTextBox2.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>23</value>
   </data>
   <data name="tradeEnergyTextBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 301</value>
@@ -2629,7 +2830,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeEnergyTextBox1.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>24</value>
   </data>
   <data name="tradeEnergyLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2656,7 +2857,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeEnergyLabel.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>25</value>
   </data>
   <data name="tradeCountryComboBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>219, 264</value>
@@ -2677,7 +2878,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeCountryComboBox2.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>26</value>
   </data>
   <data name="tradeCountryComboBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 264</value>
@@ -2698,70 +2899,7 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeCountryComboBox1.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="tradeEndDayNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>331, 226</value>
-  </data>
-  <data name="tradeEndDayNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="tradeEndDayNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayNumericUpDown.Name" xml:space="preserve">
-    <value>tradeEndDayNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayNumericUpDown.Parent" xml:space="preserve">
-    <value>tradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayNumericUpDown.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="tradeEndMonthNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 226</value>
-  </data>
-  <data name="tradeEndMonthNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="tradeEndMonthNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthNumericUpDown.Name" xml:space="preserve">
-    <value>tradeEndMonthNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthNumericUpDown.Parent" xml:space="preserve">
-    <value>tradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthNumericUpDown.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="tradeEndYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 226</value>
-  </data>
-  <data name="tradeEndYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="tradeEndYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
-  </data>
-  <data name="&gt;&gt;tradeEndYearNumericUpDown.Name" xml:space="preserve">
-    <value>tradeEndYearNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;tradeEndYearNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEndYearNumericUpDown.Parent" xml:space="preserve">
-    <value>tradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndYearNumericUpDown.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>27</value>
   </data>
   <data name="tradeEndDateLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2791,69 +2929,6 @@
     <value>tradeGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeEndDateLabel.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="tradeStartDayNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>331, 201</value>
-  </data>
-  <data name="tradeStartDayNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="tradeStartDayNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayNumericUpDown.Name" xml:space="preserve">
-    <value>tradeStartDayNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayNumericUpDown.Parent" xml:space="preserve">
-    <value>tradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayNumericUpDown.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
-  <data name="tradeStartMonthNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 201</value>
-  </data>
-  <data name="tradeStartMonthNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="tradeStartMonthNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthNumericUpDown.Name" xml:space="preserve">
-    <value>tradeStartMonthNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthNumericUpDown.Parent" xml:space="preserve">
-    <value>tradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthNumericUpDown.ZOrder" xml:space="preserve">
-    <value>27</value>
-  </data>
-  <data name="tradeStartYearNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>70, 201</value>
-  </data>
-  <data name="tradeStartYearNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
-  </data>
-  <data name="tradeStartYearNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearNumericUpDown.Name" xml:space="preserve">
-    <value>tradeStartYearNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearNumericUpDown.Parent" xml:space="preserve">
-    <value>tradeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearNumericUpDown.ZOrder" xml:space="preserve">
     <value>28</value>
   </data>
   <data name="tradeStartDateLabel.AutoSize" type="System.Boolean, mscorlib">
@@ -2901,17 +2976,17 @@
   <data name="tradeCountryColumnHeader2.Text" xml:space="preserve">
     <value>Country2</value>
   </data>
-  <data name="tradeTradeColumnHeader.Text" xml:space="preserve">
-    <value>Trade</value>
+  <data name="tradeContentsColumnHeader.Text" xml:space="preserve">
+    <value>Contents</value>
   </data>
-  <data name="tradeTradeColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>150</value>
+  <data name="tradeContentsColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>200</value>
   </data>
   <data name="tradeListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 18</value>
   </data>
   <data name="tradeListView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>562, 142</value>
+    <value>549, 142</value>
   </data>
   <data name="tradeListView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3226,7 +3301,7 @@
     <value>8, 6</value>
   </data>
   <data name="provinceMapPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>512, 512</value>
+    <value>400, 400</value>
   </data>
   <data name="provinceMapPanel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -3474,10 +3549,10 @@
   <data name="&gt;&gt;tradeCountryColumnHeader2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tradeTradeColumnHeader.Name" xml:space="preserve">
-    <value>tradeTradeColumnHeader</value>
+  <data name="&gt;&gt;tradeContentsColumnHeader.Name" xml:space="preserve">
+    <value>tradeContentsColumnHeader</value>
   </data>
-  <data name="&gt;&gt;tradeTradeColumnHeader.Type" xml:space="preserve">
+  <data name="&gt;&gt;tradeContentsColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

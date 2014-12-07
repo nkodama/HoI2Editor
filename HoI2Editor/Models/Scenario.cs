@@ -1003,9 +1003,9 @@ namespace HoI2Editor.Models
         public GameDate StartDate { get; set; }
 
         /// <summary>
-        ///     失効日時
+        ///     終了日時
         /// </summary>
-        public GameDate ExpiryDate { get; set; }
+        public GameDate EndDate { get; set; }
 
         /// <summary>
         ///     資金
@@ -1041,6 +1041,18 @@ namespace HoI2Editor.Models
         ///     取り消し可能かどうか
         /// </summary>
         public bool Cancel { get; set; }
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public Treaty()
+        {
+            Cancel = true;
+        }
 
         #endregion
     }

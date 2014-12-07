@@ -3051,7 +3051,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 失効日時
-                    treaty.ExpiryDate = date;
+                    treaty.EndDate = date;
                     continue;
                 }
 

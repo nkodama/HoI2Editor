@@ -280,8 +280,17 @@
   <data name="mainTabPage.Text" xml:space="preserve">
     <value>メイン</value>
   </data>
-  <data name="warSwapSideButton.Text" xml:space="preserve">
-    <value>陣営交代</value>
+  <data name="warDefenderLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="warDefenderLabel.Text" xml:space="preserve">
+    <value>防御側</value>
+  </data>
+  <data name="warAttackerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="warAttackerLabel.Text" xml:space="preserve">
+    <value>攻撃側</value>
   </data>
   <data name="warUpButton.Text" xml:space="preserve">
     <value>上へ</value>
@@ -306,6 +315,12 @@
   </data>
   <data name="warDefenderColumnHeader.Text" xml:space="preserve">
     <value>防御側</value>
+  </data>
+  <data name="allianceParticipantLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="allianceParticipantLabel.Text" xml:space="preserve">
+    <value>参加国</value>
   </data>
   <data name="allianceTypeColumnHeader.Text" xml:space="preserve">
     <value>種類</value>
@@ -334,11 +349,107 @@
   <data name="allianceTabPage.Text" xml:space="preserve">
     <value>同盟</value>
   </data>
-  <data name="treatyGroupBox.Text" xml:space="preserve">
+  <data name="tradeCancelCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 16</value>
+  </data>
+  <data name="tradeCancelCheckBox.Text" xml:space="preserve">
+    <value>キャンセルを許可</value>
+  </data>
+  <data name="tradeMoneyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="tradeMoneyLabel.Text" xml:space="preserve">
+    <value>資金</value>
+  </data>
+  <data name="tradeSuppliesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="tradeSuppliesLabel.Text" xml:space="preserve">
+    <value>物資</value>
+  </data>
+  <data name="tradeOilLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="tradeOilLabel.Text" xml:space="preserve">
+    <value>石油</value>
+  </data>
+  <data name="tradeRareMaterialsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="tradeRareMaterialsLabel.Text" xml:space="preserve">
+    <value>希少資源</value>
+  </data>
+  <data name="tredeMetalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="tredeMetalLabel.Text" xml:space="preserve">
+    <value>金属</value>
+  </data>
+  <data name="tradeEnergyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 12</value>
+  </data>
+  <data name="tradeEnergyLabel.Text" xml:space="preserve">
+    <value>エネルギー</value>
+  </data>
+  <data name="tradeEndDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="tradeEndDateLabel.Text" xml:space="preserve">
+    <value>終了日時</value>
+  </data>
+  <data name="tradeStartDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="tradeStartDateLabel.Text" xml:space="preserve">
+    <value>開始日時</value>
+  </data>
+  <data name="tradeStartDateColumnHeader.Text" xml:space="preserve">
+    <value>開始日時</value>
+  </data>
+  <data name="tradeEndDateColumnHeader.Text" xml:space="preserve">
+    <value>終了日時</value>
+  </data>
+  <data name="tradeCountryColumnHeader1.Text" xml:space="preserve">
+    <value>国家1</value>
+  </data>
+  <data name="tradeCountryColumnHeader2.Text" xml:space="preserve">
+    <value>国家2</value>
+  </data>
+  <data name="tradeTradeColumnHeader.Text" xml:space="preserve">
+    <value>貿易内容</value>
+  </data>
+  <data name="tradeUpButton.Text" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="tradeRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="tradeDownButton.Text" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="tradeNewButton.Text" xml:space="preserve">
+    <value>新規</value>
+  </data>
+  <data name="tradeGroupBox.Text" xml:space="preserve">
     <value>貿易</value>
   </data>
   <data name="tradeTabPage.Text" xml:space="preserve">
     <value>貿易</value>
+  </data>
+  <data name="relationTabPage.Text" xml:space="preserve">
+    <value>関係</value>
+  </data>
+  <data name="countryTabPage.Text" xml:space="preserve">
+    <value>国家</value>
+  </data>
+  <data name="personTabPage.Text" xml:space="preserve">
+    <value>人物</value>
+  </data>
+  <data name="techTabPage.Text" xml:space="preserve">
+    <value>技術</value>
+  </data>
+  <data name="provinceTabPage.Text" xml:space="preserve">
+    <value>プロヴィンス</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>閉じる</value>

@@ -8,6 +8,99 @@ namespace HoI2Editor.Utilities
     /// </summary>
     public static class DoubleHelper
     {
+        #region 数値比較
+
+        /// <summary>
+        ///     数値が等しいかを判定する (小数点以下なし)
+        /// </summary>
+        /// <param name="val1">数値1</param>
+        /// <param name="val2">数値2</param>
+        /// <returns>数値が等しければtrueを返す</returns>
+        public static bool Equals0(double val1, double val2)
+        {
+            return Math.Abs(val1 - val2) <= 0.5;
+        }
+
+        /// <summary>
+        ///     数値が等しいかを判定する (小数点以下1桁)
+        /// </summary>
+        /// <param name="val1">数値1</param>
+        /// <param name="val2">数値2</param>
+        /// <returns>数値が等しければtrueを返す</returns>
+        public static bool Equals1(double val1, double val2)
+        {
+            return Math.Abs(val1 - val2) <= 0.05;
+        }
+
+        /// <summary>
+        ///     数値が等しいかを判定する (小数点以下2桁)
+        /// </summary>
+        /// <param name="val1">数値1</param>
+        /// <param name="val2">数値2</param>
+        /// <returns>数値が等しければtrueを返す</returns>
+        public static bool Equals2(double val1, double val2)
+        {
+            return Math.Abs(val1 - val2) <= 0.005;
+        }
+
+        /// <summary>
+        ///     数値が等しいかを判定する (小数点以下3桁)
+        /// </summary>
+        /// <param name="val1">数値1</param>
+        /// <param name="val2">数値2</param>
+        /// <returns>数値が等しければtrueを返す</returns>
+        public static bool Equals3(double val1, double val2)
+        {
+            return Math.Abs(val1 - val2) <= 0.0005;
+        }
+
+        /// <summary>
+        ///     数値が等しいかを判定する (小数点以下4桁)
+        /// </summary>
+        /// <param name="val1">数値1</param>
+        /// <param name="val2">数値2</param>
+        /// <returns>数値が等しければtrueを返す</returns>
+        public static bool Equals4(double val1, double val2)
+        {
+            return Math.Abs(val1 - val2) <= 0.00005;
+        }
+
+        /// <summary>
+        ///     数値が等しいかを判定する (小数点以下5桁)
+        /// </summary>
+        /// <param name="val1">数値1</param>
+        /// <param name="val2">数値2</param>
+        /// <returns>数値が等しければtrueを返す</returns>
+        public static bool Equals5(double val1, double val2)
+        {
+            return Math.Abs(val1 - val2) <= 0.000005;
+        }
+
+        /// <summary>
+        ///     数値が等しいかを判定する (小数点以下6桁)
+        /// </summary>
+        /// <param name="val1">数値1</param>
+        /// <param name="val2">数値2</param>
+        /// <returns>数値が等しければtrueを返す</returns>
+        public static bool Equals6(double val1, double val2)
+        {
+            return Math.Abs(val1 - val2) <= 0.0000005;
+        }
+
+        /// <summary>
+        ///     数値が0に等しいかを判定する
+        /// </summary>
+        /// <param name="val">数値</param>
+        /// <returns>数値が0に等しければtrueを返す</returns>
+        public static bool IsZero(double val)
+        {
+            return Math.Abs(val) <= 0.00005;
+        }
+
+        #endregion
+
+        #region 文字列変換
+
         /// <summary>
         ///     文字列に変換する (小数点以下なし)
         /// </summary>
@@ -178,5 +271,7 @@ namespace HoI2Editor.Utilities
             // 小数点以下5桁を保証する
             return val.ToString("F5", CultureInfo.InvariantCulture);
         }
+
+        #endregion
     }
 }
