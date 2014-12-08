@@ -828,6 +828,10 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region 関係タブ
+
+        #endregion
+
         #region 貿易タブ
 
         /// <summary>
