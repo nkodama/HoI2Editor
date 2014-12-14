@@ -240,7 +240,8 @@ namespace HoI2Editor.Parsers
                             scenario.IncludeFiles.Add(s);
 
                             // インクルードフォルダを設定する
-                            scenario.IncludeFolder = Path.GetDirectoryName(s);
+                            string folderName = Path.GetDirectoryName(s);
+                            scenario.IncludeFolder = Path.GetFileName(folderName);
                         }
 
                         string pathName = Game.GetReadFileName(s);
@@ -3173,7 +3174,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>外交設定</returns>
-        private static IEnumerable<RelationSettings> ParseDiplomacy(TextLexer lexer)
+        private static IEnumerable<Relation> ParseDiplomacy(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -3191,7 +3192,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var list = new List<RelationSettings>();
+            var list = new List<Relation>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3226,7 +3227,7 @@ namespace HoI2Editor.Parsers
                 // relation
                 if (keyword.Equals("relation"))
                 {
-                    RelationSettings relation = ParseRelation(lexer);
+                    Relation relation = ParseRelation(lexer);
                     if (relation == null)
                     {
                         Log.InvalidSection(LogCategory, "relation");
@@ -3251,7 +3252,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>外交関係情報</returns>
-        private static RelationSettings ParseRelation(TextLexer lexer)
+        private static Relation ParseRelation(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -3269,7 +3270,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var relation = new RelationSettings();
+            var relation = new Relation();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3887,7 +3888,7 @@ namespace HoI2Editor.Parsers
                 // diplomacy
                 if (keyword.Equals("diplomacy"))
                 {
-                    IEnumerable<RelationSettings> list = ParseDiplomacy(lexer);
+                    IEnumerable<Relation> list = ParseDiplomacy(lexer);
                     if (list == null)
                     {
                         Log.InvalidSection(LogCategory, "diplomacy");
@@ -3895,7 +3896,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 外交設定
-                    country.Diplomacy.AddRange(list);
+                    country.Relations.AddRange(list);
                     continue;
                 }
 

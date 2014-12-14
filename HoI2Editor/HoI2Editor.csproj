@@ -203,6 +203,7 @@
     <Compile Include="Utilities\History.cs" />
     <Compile Include="Utilities\IntHelper.cs" />
     <Compile Include="Utilities\ObjectHelper.cs" />
+    <Compile Include="Utilities\PathHelper.cs" />
     <Compile Include="Writers\MiscWriter.cs" />
     <Compile Include="Writers\TechWriter.cs" />
     <Compile Include="Writers\UnitWriter.cs" />

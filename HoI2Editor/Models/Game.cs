@@ -398,6 +398,11 @@ namespace HoI2Editor.Models
         public const string ProvinceTextFileName = "province_names.csv";
 
         /// <summary>
+        ///     シナリオ文字列定義のファイル名
+        /// </summary>
+        public const string ScenarioTextFileName = "scenario_text.csv";
+
+        /// <summary>
         ///     マップデータのファイル名 (936x360)
         /// </summary>
         public const string LightMap1FileName = "lightmap1.tbl";
@@ -547,7 +552,7 @@ namespace HoI2Editor.Models
             if (IsExportFolderActive)
             {
                 string fileName = GetExportFileName(pathName);
-                if (File.Exists(fileName))
+                if (File.Exists(fileName) || Directory.Exists(fileName))
                 {
                     return fileName;
                 }
@@ -555,7 +560,7 @@ namespace HoI2Editor.Models
             if (IsModActive)
             {
                 string fileName = GetModFileName(pathName);
-                if (File.Exists(fileName))
+                if (File.Exists(fileName) || Directory.Exists(fileName))
                 {
                     return fileName;
                 }

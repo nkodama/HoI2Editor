@@ -20,7 +20,27 @@ namespace HoI2Editor.Forms
     {
         #region 内部フィールド
 
+        /// <summary>
+        ///     同盟国以外の国家リスト
+        /// </summary>
+        private List<Country> _allianceFreeCountries;
+
+        /// <summary>
+        ///     主要国以外の選択可能国リスト
+        /// </summary>
+        private List<Country> _majorFreeCountries;
+
         private ushort _prevId;
+
+        /// <summary>
+        ///     選択可能国以外の国家リスト
+        /// </summary>
+        private List<Country> _selectableFreeCountries;
+
+        /// <summary>
+        ///     戦争国以外の国家リスト
+        /// </summary>
+        private List<Country> _warFreeContries;
 
         #endregion
 
@@ -133,6 +153,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         public void OnFileLoaded()
         {
+            // 国家関係を初期化する
+            Scenarios.Init();
+
             // 編集項目を更新する
             UpdateEditableItems();
         }
@@ -144,6 +167,7 @@ namespace HoI2Editor.Forms
         {
             InitMainItems();
             InitAllianceItems();
+            InitRelationItems();
             InitTradeItems();
         }
 
@@ -154,6 +178,7 @@ namespace HoI2Editor.Forms
         {
             UpdateMainItems();
             UpdateAllianceItems();
+            UpdateRelationItems();
             UpdateTradeItems();
         }
 
@@ -329,6 +354,8 @@ namespace HoI2Editor.Forms
 
         #region メインタブ
 
+        #region メインタブ - 共通
+
         /// <summary>
         ///     メインタブの項目を初期化する
         /// </summary>
@@ -338,26 +365,157 @@ namespace HoI2Editor.Forms
             InitScenarioListBox();
 
             // AIの攻撃性コンボボックス
+            aiAggressiveComboBox.BeginUpdate();
             aiAggressiveComboBox.Items.Clear();
             for (int i = 0; i < ScenarioHeader.AiAggressiveCount; i++)
             {
                 aiAggressiveComboBox.Items.Add(Config.GetText(_aiAggressiveStrings[i]));
             }
+            aiAggressiveComboBox.EndUpdate();
 
             // 難易度コンボボックス
+            difficultyComboBox.BeginUpdate();
             difficultyComboBox.Items.Clear();
             for (int i = 0; i < ScenarioHeader.DifficultyCount; i++)
             {
                 difficultyComboBox.Items.Add(Config.GetText(_difficultyStrings[i]));
             }
+            difficultyComboBox.EndUpdate();
 
             // ゲームスピードコンボボックス
+            gameSpeedComboBox.BeginUpdate();
             gameSpeedComboBox.Items.Clear();
             for (int i = 0; i < ScenarioHeader.GameSpeedCount; i++)
             {
                 gameSpeedComboBox.Items.Add(Config.GetText(_gameSpeedStrings[i]));
             }
+            gameSpeedComboBox.EndUpdate();
+
+            // 編集項目を無効化する
+            infoGroupBox.Enabled = false;
+            optionGroupBox.Enabled = false;
+            countrySelectionGroupBox.Enabled = false;
         }
+
+        /// <summary>
+        ///     メインタブの項目を更新する
+        /// </summary>
+        private void UpdateMainItems()
+        {
+            // 編集項目を有効化する
+            infoGroupBox.Enabled = true;
+            optionGroupBox.Enabled = true;
+            countrySelectionGroupBox.Enabled = true;
+
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            scenarioNameTextBox.Text = Config.GetText(scenario.Name);
+            scenarioNameTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.Name) ? Color.Red : SystemColors.WindowText;
+            panelImageTextBox.Text = scenario.PanelName;
+            panelImageTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.PanelName)
+                ? Color.Red
+                : SystemColors.WindowText;
+            Image old = panelPictureBox.Image;
+            panelPictureBox.Image = GetPanelImage(scenario.PanelName);
+            if (old != null)
+            {
+                old.Dispose();
+            }
+
+            startYearTextBox.Text = data.StartDate.Year.ToString(CultureInfo.InvariantCulture);
+            startMonthTextBox.Text = data.StartDate.Month.ToString(CultureInfo.InvariantCulture);
+            startDayTextBox.Text = data.StartDate.Day.ToString(CultureInfo.InvariantCulture);
+            startYearTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartYear)
+                ? Color.Red
+                : SystemColors.WindowText;
+            startMonthTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartMonth)
+                ? Color.Red
+                : SystemColors.WindowText;
+            startDayTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartDay)
+                ? Color.Red
+                : SystemColors.WindowText;
+            endYearTextBox.Text = data.EndDate.Year.ToString(CultureInfo.InvariantCulture);
+            endMonthTextBox.Text = data.EndDate.Month.ToString(CultureInfo.InvariantCulture);
+            endDayTextBox.Text = data.EndDate.Day.ToString(CultureInfo.InvariantCulture);
+            endYearTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndYear) ? Color.Red : SystemColors.WindowText;
+            endMonthTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
+            endDayTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndDay) ? Color.Red : SystemColors.WindowText;
+
+            includeFolderTextBox.Text = scenario.IncludeFolder;
+            includeFolderTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.IncludeFolder)
+                ? Color.Red
+                : SystemColors.WindowText;
+
+            battleScenarioCheckBox.Checked = header.IsCombatScenario;
+            battleScenarioCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.BattleScenario)
+                ? Color.Red
+                : SystemColors.WindowText;
+            freeCountryCheckBox.Checked = header.IsFreeSelection;
+            freeCountryCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.FreeSelection)
+                ? Color.Red
+                : SystemColors.WindowText;
+
+            allowDiplomacyCheckBox.Checked = data.Rules.AllowDiplomacy;
+            allowDiplomacyCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.AllowDiplomacy)
+                ? Color.Red
+                : SystemColors.WindowText;
+            allowProductionCheckBox.Checked = data.Rules.AllowProduction;
+            allowProductionCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.AllowProduction)
+                ? Color.Red
+                : SystemColors.WindowText;
+            allowTechnologyCheckBox.Checked = data.Rules.AllowTechnology;
+            allowTechnologyCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.AllowTechnology)
+                ? Color.Red
+                : SystemColors.WindowText;
+
+            aiAggressiveComboBox.SelectedIndex = header.AiAggressive;
+            difficultyComboBox.SelectedIndex = header.Difficulty;
+            gameSpeedComboBox.SelectedIndex = header.GameSpeed;
+
+            List<Country> majors = header.MajorCountries.Select(major => major.Country).ToList();
+            majorListBox.BeginUpdate();
+            majorListBox.Items.Clear();
+            foreach (Country country in majors)
+            {
+                majorListBox.Items.Add(Countries.GetTagName(country));
+            }
+
+            _majorFreeCountries = header.SelectableCountries.Where(country => !majors.Contains(country)).ToList();
+            selectableListBox.BeginUpdate();
+            selectableListBox.Items.Clear();
+            foreach (Country country in _majorFreeCountries)
+            {
+                selectableListBox.Items.Add(Countries.GetTagName(country));
+            }
+            selectableListBox.EndUpdate();
+
+            _selectableFreeCountries =
+                Countries.Tags.Where(country => !header.SelectableCountries.Contains(country)).ToList();
+            unselectableListBox.BeginUpdate();
+            unselectableListBox.Items.Clear();
+            foreach (Country country in _selectableFreeCountries)
+            {
+                unselectableListBox.Items.Add(Countries.GetTagName(country));
+            }
+            unselectableListBox.EndUpdate();
+
+            majorAddButton.Enabled = false;
+            selectableAddButton.Enabled = false;
+            selectableRemoveButton.Enabled = false;
+
+            // 主要国リストボックスの先頭項目を選択する
+            majorListBox.EndUpdate();
+            if (majorListBox.Items.Count > 0)
+            {
+                majorListBox.SelectedIndex = 0;
+            }
+        }
+
+        #endregion
+
+        #region メインタブ - シナリオ読み込み
 
         /// <summary>
         ///     シナリオリストボックスを初期化する
@@ -424,72 +582,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     メインタブの項目を更新する
-        /// </summary>
-        private void UpdateMainItems()
-        {
-            Scenario scenario = Scenarios.Data;
-
-            scenarioNameTextBox.Text = Config.GetText(scenario.Name);
-            panelImageTextBox.Text = scenario.PanelName;
-            Image old = panelPictureBox.Image;
-            panelPictureBox.Image = GetPanelImage(scenario.PanelName);
-            if (old != null)
-            {
-                old.Dispose();
-            }
-
-            startYearTextBox.Text = scenario.GlobalData.StartDate.Year.ToString(CultureInfo.InvariantCulture);
-            startMonthTextBox.Text = scenario.GlobalData.StartDate.Month.ToString(CultureInfo.InvariantCulture);
-            startDayTextBox.Text = scenario.GlobalData.StartDate.Day.ToString(CultureInfo.InvariantCulture);
-            endYearTextBox.Text = scenario.GlobalData.EndDate.Year.ToString(CultureInfo.InvariantCulture);
-            endMonthTextBox.Text = scenario.GlobalData.EndDate.Month.ToString(CultureInfo.InvariantCulture);
-            endDayTextBox.Text = scenario.GlobalData.EndDate.Day.ToString(CultureInfo.InvariantCulture);
-
-            includeFolderTextBox.Text = scenario.IncludeFolder;
-
-            battleScenarioCheckBox.Checked = scenario.Header.IsCombatScenario;
-            freeCountryCheckBox.Checked = scenario.Header.IsFreeSelection;
-
-            allowDiplomacyCheckBox.Checked = scenario.GlobalData.Rules.AllowDiplomacy;
-            allowProductionCheckBox.Checked = scenario.GlobalData.Rules.AllowProduction;
-            allowTechnologyCheckBox.Checked = scenario.GlobalData.Rules.AllowTechnology;
-
-            aiAggressiveComboBox.SelectedIndex = scenario.Header.AiAggressive;
-            difficultyComboBox.SelectedIndex = scenario.Header.Difficulty;
-            gameSpeedComboBox.SelectedIndex = scenario.Header.GameSpeed;
-
-            var major = new List<Country>();
-            majorListBox.Items.Clear();
-            foreach (MajorCountrySettings majorCountry in scenario.Header.MajorCountries)
-            {
-                string tag = Countries.Strings[(int) majorCountry.Country];
-                string name = Config.ExistsKey(tag)
-                    ? string.Format("{0} {1}", tag, Config.GetText(tag))
-                    : tag;
-                majorListBox.Items.Add(name);
-                major.Add(majorCountry.Country);
-            }
-
-            selectableCheckedListBox.Items.Clear();
-            foreach (Country country in Countries.Tags)
-            {
-                // 主要国リストに表示されている国は追加しない
-                if (major.Contains(country))
-                {
-                    continue;
-                }
-
-                string tag = Countries.Strings[(int) country];
-                string name = Config.ExistsKey(tag)
-                    ? string.Format("{0} {1}", tag, Config.GetText(tag))
-                    : tag;
-                bool check = scenario.Header.SelectableCountries.Contains(country);
-                selectableCheckedListBox.Items.Add(name, check);
-            }
-        }
-
-        /// <summary>
         ///     読み込みボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -541,39 +633,440 @@ namespace HoI2Editor.Forms
             }
         }
 
+        #endregion
+
+        #region メインタブ - シナリオ情報
+
         /// <summary>
-        ///     主要国リストボックスの選択項目変更時の処理
+        ///     シナリオ名テキストボックスの文字列変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMajorListBoxSelectedIndexChanged(object sender, EventArgs e)
+        private void OnScenarioNameTextBoxTextChanged(object sender, EventArgs e)
         {
-            int index = majorListBox.SelectedIndex;
-            Image image;
-
-            if (index < 0)
+            // 値に変化がなければ何もしない
+            Scenario scenario = Scenarios.Data;
+            string name = Config.ExistsKey(scenario.Name) ? Config.GetText(scenario.Name) : "";
+            if (scenarioNameTextBox.Text.Equals(name))
             {
-                // 選択項目がなければ表示をクリアする
-                countryDescTextBox.Text = "";
-                propagandaTextBox.Text = "";
-                image = null;
-            }
-            else
-            {
-                ScenarioHeader header = Scenarios.Data.Header;
-                MajorCountrySettings major = header.MajorCountries[index];
-                int year = header.StartDate != null ? header.StartDate.Year : header.StartYear;
-                countryDescTextBox.Text = GetCountryDesc(major.Country, year, major.Desc);
-
-                propagandaTextBox.Text = major.PictureName;
-                image = GetCountryPropagandaImage(major.Country, major.PictureName);
+                return;
             }
 
-            Image old = propagandaPictureBox.Image;
-            propagandaPictureBox.Image = image;
+            Log.Info("[Scenario] scenario name: {0} -> {1}", name, scenarioNameTextBox.Text);
+
+            // 値を更新する
+            Config.SetText(scenario.Name, scenarioNameTextBox.Text, Game.ScenarioTextFileName);
+
+            // 文字色を変更する
+            scenarioNameTextBox.ForeColor = Color.Red;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.Name);
+        }
+
+        /// <summary>
+        ///     パネル画像名テキストボックスの文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPanelImageTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 値に変化がなければ何もしない
+            Scenario scenario = Scenarios.Data;
+            if (panelImageTextBox.Text.Equals(scenario.PanelName))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] panel image: {0} -> {1}", scenario.PanelName, panelImageTextBox.Text);
+
+            // 値を更新する
+            scenario.PanelName = panelImageTextBox.Text;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.PanelName);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            panelImageTextBox.ForeColor = Color.Red;
+
+            // パネル画像を更新する
+            Image old = panelPictureBox.Image;
+            panelPictureBox.Image = GetPanelImage(scenario.PanelName);
             if (old != null)
             {
                 old.Dispose();
+            }
+        }
+
+        /// <summary>
+        ///     パネル画像名参照ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPanelImageBrowseButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+
+            var dialog = new OpenFileDialog
+            {
+                InitialDirectory = Game.GetReadFileName(Game.ScenarioDataPathName),
+                FileName = scenario.PanelName,
+                Filter = Resources.OpenBitmapFileDialogFilter
+            };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName;
+                if (Game.IsExportFolderActive)
+                {
+                    fileName = PathHelper.GetRelativePathName(dialog.FileName, Game.ExportFolderName);
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        panelImageTextBox.Text = fileName;
+                        return;
+                    }
+                }
+                if (Game.IsModActive)
+                {
+                    fileName = PathHelper.GetRelativePathName(dialog.FileName, Game.ModFolderName);
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        panelImageTextBox.Text = fileName;
+                        return;
+                    }
+                }
+                fileName = PathHelper.GetRelativePathName(dialog.FileName, Game.FolderName);
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    panelImageTextBox.Text = fileName;
+                    return;
+                }
+                panelImageTextBox.Text = dialog.FileName;
+            }
+        }
+
+        /// <summary>
+        ///     開始年テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnStartYearTextBoxValidated(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(startYearTextBox.Text, out val))
+            {
+                startYearTextBox.Text = (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Year) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == data.StartDate.Year)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] start year: {0} -> {1}",
+                (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Year) : "", IntHelper.ToString(val));
+
+            // 値を更新する
+            if (data.StartDate == null)
+            {
+                data.StartDate = new GameDate();
+            }
+            data.StartDate.Year = val;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.StartYear);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            startYearTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     開始月テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnStartMonthTextBoxValidated(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(startMonthTextBox.Text, out val))
+            {
+                startMonthTextBox.Text = (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Month) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == data.StartDate.Month)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] start month: {0} -> {1}",
+                (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Month) : "", IntHelper.ToString(val));
+
+            // 値を更新する
+            if (data.StartDate == null)
+            {
+                data.StartDate = new GameDate();
+            }
+            data.StartDate.Month = val;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.StartMonth);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            startMonthTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     開始日テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnStartDayTextBoxValidated(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(startDayTextBox.Text, out val))
+            {
+                startDayTextBox.Text = (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Day) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == data.StartDate.Day)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] start day: {0} -> {1}",
+                (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Day) : "", IntHelper.ToString(val));
+
+            // 値を更新する
+            if (data.StartDate == null)
+            {
+                data.StartDate = new GameDate();
+            }
+            data.StartDate.Day = val;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.StartDay);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            startDayTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     終了年テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEndYearTextBoxValidated(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(endYearTextBox.Text, out val))
+            {
+                endYearTextBox.Text = (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Year) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == data.EndDate.Year)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] end year: {0} -> {1}",
+                (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Year) : "", IntHelper.ToString(val));
+
+            // 値を更新する
+            if (data.EndDate == null)
+            {
+                data.EndDate = new GameDate();
+            }
+            data.EndDate.Year = val;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.EndYear);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            endYearTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     終了月テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEndMonthTextBoxValidated(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(endMonthTextBox.Text, out val))
+            {
+                endMonthTextBox.Text = (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Month) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == data.EndDate.Month)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] end month: {0} -> {1}",
+                (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Month) : "", IntHelper.ToString(val));
+
+            // 値を更新する
+            if (data.EndDate == null)
+            {
+                data.EndDate = new GameDate();
+            }
+            data.EndDate.Month = val;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.EndMonth);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            endMonthTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     終了日テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEndDayTextBoxValidated(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(endDayTextBox.Text, out val))
+            {
+                endDayTextBox.Text = (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Day) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == data.EndDate.Day)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] end day: {0} -> {1}",
+                (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Day) : "", IntHelper.ToString(val));
+
+            // 値を更新する
+            if (data.EndDate == null)
+            {
+                data.EndDate = new GameDate();
+            }
+            data.EndDate.Day = val;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.EndDay);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            endDayTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     インクルードフォルダテキストボックスの文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnIncludeFolderTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 値に変化がなければ何もしない
+            Scenario scenario = Scenarios.Data;
+            if (includeFolderTextBox.Text.Equals(scenario.IncludeFolder))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] include folder: {0} -> {1}", scenario.IncludeFolder, includeFolderTextBox.Text);
+
+            // 値を更新する
+            scenario.IncludeFolder = includeFolderTextBox.Text;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.IncludeFolder);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            includeFolderTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     インクルードフォルダ参照ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnIncludeFolderBrowseButtonClick(object sender, EventArgs e)
+        {
+            var dialog = new FolderBrowserDialog
+            {
+                SelectedPath = Game.GetReadFileName(Game.ScenarioDataPathName),
+                ShowNewFolderButton = true,
+            };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string folderName;
+                if (Game.IsExportFolderActive)
+                {
+                    folderName = PathHelper.GetRelativePathName(dialog.SelectedPath,
+                        Path.Combine(Game.ExportFolderName, Game.ScenarioPathName));
+                    if (!string.IsNullOrEmpty(folderName))
+                    {
+                        includeFolderTextBox.Text = folderName;
+                        return;
+                    }
+                }
+                if (Game.IsModActive)
+                {
+                    folderName = PathHelper.GetRelativePathName(dialog.SelectedPath,
+                        Path.Combine(Game.ModFolderName, Game.ScenarioPathName));
+                    if (!string.IsNullOrEmpty(folderName))
+                    {
+                        includeFolderTextBox.Text = folderName;
+                        return;
+                    }
+                }
+                folderName = PathHelper.GetRelativePathName(dialog.SelectedPath,
+                    Path.Combine(Game.FolderName, Game.ScenarioPathName));
+                if (!string.IsNullOrEmpty(folderName))
+                {
+                    includeFolderTextBox.Text = folderName;
+                    return;
+                }
+                includeFolderTextBox.Text = dialog.SelectedPath;
             }
         }
 
@@ -593,6 +1086,952 @@ namespace HoI2Editor.Forms
             var bitmap = new Bitmap(pathName);
             bitmap.MakeTransparent(Color.Lime);
             return bitmap;
+        }
+
+        #endregion
+
+        #region メインタブ - オプション
+
+        /// <summary>
+        ///     AIの攻撃性コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAiAggressiveComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            ScenarioHeader header = Scenarios.Data.Header;
+            Brush brush = ((e.Index == header.AiAggressive) && Scenarios.Data.IsDirty(ScenarioItemId.AiAggressive))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = aiAggressiveComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     難易度コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDifficultyComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            ScenarioHeader header = Scenarios.Data.Header;
+            Brush brush = ((e.Index == header.Difficulty) && Scenarios.Data.IsDirty(ScenarioItemId.Difficulty))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = difficultyComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     ゲームスピードコンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGameSpeedComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            ScenarioHeader header = Scenarios.Data.Header;
+            Brush brush = ((e.Index == header.GameSpeed) && Scenarios.Data.IsDirty(ScenarioItemId.GameSpeed))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = gameSpeedComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     ショートシナリオチェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBattleScenarioCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+
+            // 値に変化がなければ何もしない
+            if (battleScenarioCheckBox.Checked == header.IsCombatScenario)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] battle scenario: {0} -> {1}", BoolHelper.ToYesNo(header.IsCombatScenario),
+                BoolHelper.ToYesNo(battleScenarioCheckBox.Checked));
+
+            // 値を更新する
+            header.IsCombatScenario = battleScenarioCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.BattleScenario);
+
+            // 文字色を変更する
+            battleScenarioCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     国家の自由選択チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFreeCountryCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+
+            // 値に変化がなければ何もしない
+            if (freeCountryCheckBox.Checked == header.IsFreeSelection)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] free country selection: {0} -> {1}", BoolHelper.ToYesNo(header.IsFreeSelection),
+                BoolHelper.ToYesNo(freeCountryCheckBox.Checked));
+
+            // 値を更新する
+            header.IsFreeSelection = freeCountryCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.FreeSelection);
+
+            // 文字色を変更する
+            freeCountryCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     外交を許可チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllowDiplomacyCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            // 値に変化がなければ何もしない
+            if (data.Rules != null)
+            {
+                if (allowDiplomacyCheckBox.Checked == data.Rules.AllowDiplomacy)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (allowDiplomacyCheckBox.Checked)
+                {
+                    return;
+                }
+                // ルール設定を新規作成
+                data.Rules = new ScenarioRules();
+            }
+
+            Log.Info("[Scenario] allow diplomacy: {0} -> {1}", BoolHelper.ToYesNo(data.Rules.AllowDiplomacy),
+                BoolHelper.ToYesNo(allowDiplomacyCheckBox.Checked));
+
+            // 値を更新する
+            data.Rules.AllowDiplomacy = allowDiplomacyCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.AllowDiplomacy);
+
+            // 文字色を変更する
+            allowDiplomacyCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     生産を許可チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllowProductionCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            // 値に変化がなければ何もしない
+            if (data.Rules != null)
+            {
+                if (allowProductionCheckBox.Checked == data.Rules.AllowProduction)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (allowProductionCheckBox.Checked)
+                {
+                    return;
+                }
+                // ルール設定を新規作成
+                data.Rules = new ScenarioRules();
+            }
+
+            Log.Info("[Scenario] allow production: {0} -> {1}", BoolHelper.ToYesNo(data.Rules.AllowProduction),
+                BoolHelper.ToYesNo(allowProductionCheckBox.Checked));
+
+            // 値を更新する
+            data.Rules.AllowProduction = allowProductionCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.AllowProduction);
+
+            // 文字色を変更する
+            allowProductionCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     技術開発を許可チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllowTechnologyCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            // 値に変化がなければ何もしない
+            if (data.Rules != null)
+            {
+                if (allowTechnologyCheckBox.Checked == data.Rules.AllowTechnology)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (allowTechnologyCheckBox.Checked)
+                {
+                    return;
+                }
+                // ルール設定を新規作成
+                data.Rules = new ScenarioRules();
+            }
+
+            Log.Info("[Scenario] allow technology: {0} -> {1}", BoolHelper.ToYesNo(data.Rules.AllowTechnology),
+                BoolHelper.ToYesNo(allowTechnologyCheckBox.Checked));
+
+            // 値を更新する
+            data.Rules.AllowTechnology = allowTechnologyCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.AllowTechnology);
+
+            // 文字色を変更する
+            allowTechnologyCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     AIの攻撃性コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAiAggressiveComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 非選択になった時には何もしない
+            if (aiAggressiveComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+
+            // 値に変化がなければ何もしない
+            int val = aiAggressiveComboBox.SelectedIndex;
+            if (val == header.AiAggressive)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] ai aggressive: {0} -> {1}", header.AiAggressive, val);
+
+            // 値を更新する
+            header.AiAggressive = val;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.AiAggressive);
+
+            // AIの攻撃性コンボボックスの項目色を変更するために描画更新する
+            aiAggressiveComboBox.Refresh();
+        }
+
+        /// <summary>
+        ///     難易度コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDifficultyComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 非選択になった時には何もしない
+            if (difficultyComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+
+            // 値に変化がなければ何もしない
+            int val = difficultyComboBox.SelectedIndex;
+            if (val == header.Difficulty)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] difficulty: {0} -> {1}", header.Difficulty, val);
+
+            // 値を更新する
+            header.Difficulty = val;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.Difficulty);
+
+            // 難易度コンボボックスの項目色を変更するために描画更新する
+            difficultyComboBox.Refresh();
+        }
+
+        /// <summary>
+        ///     ゲームスピードコンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGameSpeedComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 非選択になった時には何もしない
+            if (gameSpeedComboBox.SelectedIndex == -1)
+            {
+                return;
+            }
+
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+
+            // 値に変化がなければ何もしない
+            int val = gameSpeedComboBox.SelectedIndex;
+            if (val == header.GameSpeed)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] game speed: {0} -> {1}", header.GameSpeed, val);
+
+            // 値を更新する
+            header.GameSpeed = val;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirty(ScenarioItemId.GameSpeed);
+
+            // ゲームスピードコンボボックスの項目色を変更するために描画更新する
+            gameSpeedComboBox.Refresh();
+        }
+
+        #endregion
+
+        #region メインタブ - 国家選択
+
+        /// <summary>
+        ///     主要国リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMajorListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+
+            Scenario scenario = Scenarios.Data;
+            List<MajorCountrySettings> majors = scenario.Header.MajorCountries;
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                brush = scenario.IsDirtySelectableCountry(majors[e.Index].Country)
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(majorListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = majorListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     選択可能国リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSelectableListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+
+            Scenario scenario = Scenarios.Data;
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                brush = scenario.IsDirtySelectableCountry(_majorFreeCountries[e.Index])
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(selectableListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = selectableListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     非選択国リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnselectableListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+
+            Scenario scenario = Scenarios.Data;
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                brush = scenario.IsDirtySelectableCountry(_selectableFreeCountries[e.Index])
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(unselectableListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = unselectableListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     主要国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMajorListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Image image;
+            int index = majorListBox.SelectedIndex;
+            if (index < 0)
+            {
+                // 選択項目がなければ表示をクリアする
+                countryDescTextBox.Text = "";
+                propagandaTextBox.Text = "";
+                image = null;
+
+                // 設定項目を無効化する
+                countryDescLabel.Enabled = false;
+                countryDescTextBox.Enabled = false;
+                propagandaLabel.Enabled = false;
+                propagandaTextBox.Enabled = false;
+                propagandaBrowseButton.Enabled = false;
+                majorRemoveButton.Enabled = false;
+                majorUpButton.Enabled = false;
+                majorDownButton.Enabled = false;
+            }
+            else
+            {
+                ScenarioHeader header = Scenarios.Data.Header;
+                MajorCountrySettings major = header.MajorCountries[index];
+                int year = (header.StartDate != null) ? header.StartDate.Year : header.StartYear;
+                countryDescTextBox.Text = GetCountryDesc(major.Country, year, major.Desc);
+                countryDescTextBox.ForeColor = major.IsDirty(MajorCountrySettingsItemId.Desc)
+                    ? Color.Red
+                    : SystemColors.WindowText;
+
+                propagandaTextBox.Text = major.PictureName;
+                propagandaTextBox.ForeColor = major.IsDirty(MajorCountrySettingsItemId.PictureName)
+                    ? Color.Red
+                    : SystemColors.WindowText;
+                image = GetCountryPropagandaImage(major.Country, major.PictureName);
+
+                // 設定項目を有効化する
+                countryDescLabel.Enabled = true;
+                countryDescTextBox.Enabled = true;
+                propagandaLabel.Enabled = true;
+                propagandaTextBox.Enabled = true;
+                propagandaBrowseButton.Enabled = true;
+                majorRemoveButton.Enabled = true;
+                majorUpButton.Enabled = (index > 0);
+                majorDownButton.Enabled = (index < header.MajorCountries.Count - 1);
+            }
+
+            Image old = propagandaPictureBox.Image;
+            propagandaPictureBox.Image = image;
+            if (old != null)
+            {
+                old.Dispose();
+            }
+        }
+
+        /// <summary>
+        ///     選択可能国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSelectableListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (selectableListBox.SelectedItems.Count > 0)
+            {
+                majorAddButton.Enabled = true;
+                selectableRemoveButton.Enabled = true;
+            }
+            else
+            {
+                majorAddButton.Enabled = false;
+                selectableRemoveButton.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        ///     非選択国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnselectableListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            selectableAddButton.Enabled = (unselectableListBox.SelectedItems.Count > 0);
+        }
+
+        /// <summary>
+        ///     主要国上へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMajorUpButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<MajorCountrySettings> majors = scenario.Header.MajorCountries;
+
+            // 主要国リストの項目を移動する
+            int index = majorListBox.SelectedIndex;
+            MajorCountrySettings major = majors[index];
+            majors.RemoveAt(index);
+            majors.Insert(index - 1, major);
+
+            // 主要国リストボックスの項目を移動する
+            majorListBox.SelectedIndexChanged -= OnMajorListBoxSelectedIndexChanged;
+            majorListBox.SelectedIndex = -1;
+            majorListBox.Items.RemoveAt(index);
+            majorListBox.Items.Insert(index - 1, Countries.GetTagName(major.Country));
+            majorListBox.SelectedIndexChanged += OnMajorListBoxSelectedIndexChanged;
+            majorListBox.SelectedIndex = index - 1;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirtySelectableCountry(major.Country);
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     主要国下へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMajorDownButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<MajorCountrySettings> majors = scenario.Header.MajorCountries;
+
+            // 主要国リストの項目を移動する
+            int index = majorListBox.SelectedIndex;
+            MajorCountrySettings major = majors[index];
+            majors.RemoveAt(index);
+            majors.Insert(index + 1, major);
+
+            // 主要国リストボックスの項目を移動する
+            majorListBox.SelectedIndexChanged -= OnMajorListBoxSelectedIndexChanged;
+            majorListBox.SelectedIndex = -1;
+            majorListBox.Items.RemoveAt(index);
+            majorListBox.Items.Insert(index + 1, Countries.GetTagName(major.Country));
+            majorListBox.SelectedIndexChanged += OnMajorListBoxSelectedIndexChanged;
+            majorListBox.SelectedIndex = index + 1;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirtySelectableCountry(major.Country);
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     主要国追加ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMajorAddButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+
+            List<Country> countries =
+                (from int index in selectableListBox.SelectedIndices select _majorFreeCountries[index]).ToList();
+            majorListBox.BeginUpdate();
+            selectableListBox.BeginUpdate();
+            foreach (Country country in countries)
+            {
+                // 主要国リストボックスに追加する
+                majorListBox.Items.Add(Countries.GetTagName(country));
+
+                // 主要国リストに追加する
+                var major = new MajorCountrySettings {Country = country};
+                header.MajorCountries.Add(major);
+
+                // 選択可能国リストボックスから削除する
+                int index = _majorFreeCountries.IndexOf(country);
+                selectableListBox.Items.RemoveAt(index);
+                _majorFreeCountries.RemoveAt(index);
+
+                // 編集済みフラグを設定する
+                scenario.SetDirtySelectableCountry(country);
+
+                Log.Info("[Scenario] major country: +{0}", Countries.Strings[(int) country]);
+            }
+            majorListBox.EndUpdate();
+            selectableListBox.EndUpdate();
+
+            // 主要国リストボックスに追加した項目を選択する
+            majorListBox.SelectedIndex = majorListBox.Items.Count - 1;
+        }
+
+        /// <summary>
+        ///     主要国削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMajorRemoveButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+            int index = majorListBox.SelectedIndex;
+            Country country = header.MajorCountries[index].Country;
+
+            // 編集済みフラグを設定する
+            scenario.SetDirtySelectableCountry(country);
+
+            // 主要国リストボックスから削除する
+            majorListBox.SelectedIndexChanged -= OnMajorListBoxSelectedIndexChanged;
+            majorListBox.Items.RemoveAt(index);
+
+            // 主要国リストボックスの次の項目を選択する
+            if (majorListBox.Items.Count > 0)
+            {
+                majorListBox.SelectedIndex = (index < majorListBox.Items.Count) ? index : index - 1;
+            }
+
+            majorListBox.SelectedIndexChanged += OnMajorListBoxSelectedIndexChanged;
+
+            // 主要国リストから削除する
+            header.MajorCountries.RemoveAt(index);
+
+            // 選択項目を更新するためにイベントハンドラを呼び出す
+            OnMajorListBoxSelectedIndexChanged(sender, e);
+
+            // 選択可能国リストボックスに追加する
+            index = _majorFreeCountries.FindIndex(c => c > country);
+            if (index < 0)
+            {
+                index = _majorFreeCountries.Count;
+            }
+            selectableListBox.Items.Insert(index, Countries.GetTagName(country));
+            _majorFreeCountries.Insert(index, country);
+
+            Log.Info("[Scenario] major country: -{0}", Countries.Strings[(int) country]);
+
+            // ボタン状態を更新する
+            if (majorListBox.Items.Count == 0)
+            {
+                majorRemoveButton.Enabled = false;
+            }
+        }
+
+        /// <summary>
+        ///     選択可能国追加ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSelectableAddButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+
+            List<Country> countries =
+                (from int index in unselectableListBox.SelectedIndices select _selectableFreeCountries[index]).ToList();
+            selectableListBox.BeginUpdate();
+            unselectableListBox.BeginUpdate();
+            foreach (Country country in countries)
+            {
+                // 選択可能国リストボックスに追加する
+                int index = _majorFreeCountries.FindIndex(c => c > country);
+                if (index < 0)
+                {
+                    index = _majorFreeCountries.Count;
+                }
+                selectableListBox.Items.Insert(index, Countries.GetTagName(country));
+                _majorFreeCountries.Insert(index, country);
+
+                // 選択可能国リストに追加する
+                index = header.SelectableCountries.FindIndex(c => c > country);
+                if (index < 0)
+                {
+                    index = header.SelectableCountries.Count;
+                }
+                header.SelectableCountries.Insert(index, country);
+
+                // 非選択国リストボックスから削除する
+                index = _selectableFreeCountries.IndexOf(country);
+                unselectableListBox.Items.RemoveAt(index);
+                _selectableFreeCountries.RemoveAt(index);
+
+                // 編集済みフラグを設定する
+                scenario.SetDirtySelectableCountry(country);
+
+                Log.Info("[Scenario] selectable country: +{0}", Countries.Strings[(int) country]);
+            }
+            selectableListBox.EndUpdate();
+            unselectableListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     選択可能国削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSelectableRemoveButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+
+            List<Country> countries =
+                (from int index in selectableListBox.SelectedIndices select _majorFreeCountries[index]).ToList();
+            selectableListBox.BeginUpdate();
+            unselectableListBox.BeginUpdate();
+            foreach (Country country in countries)
+            {
+                // 非選択国リストボックスに追加する
+                int index = _selectableFreeCountries.FindIndex(c => c > country);
+                if (index < 0)
+                {
+                    index = _selectableFreeCountries.Count;
+                }
+                unselectableListBox.Items.Insert(index, Countries.GetTagName(country));
+                _selectableFreeCountries.Insert(index, country);
+
+                // 選択可能国リストボックスから削除する
+                index = _majorFreeCountries.IndexOf(country);
+                selectableListBox.Items.RemoveAt(index);
+                _majorFreeCountries.RemoveAt(index);
+
+                // 選択可能国リストから削除する
+                header.SelectableCountries.Remove(country);
+
+                // 編集済みフラグを設定する
+                scenario.SetDirtySelectableCountry(country);
+
+                Log.Info("[Scenario] selectable country: -{0}", Countries.Strings[(int) country]);
+            }
+            selectableListBox.EndUpdate();
+            unselectableListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     プロパガンダ画像名テキストボックスの文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPropagandaTextBoxTextChanged(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<MajorCountrySettings> majors = scenario.Header.MajorCountries;
+            MajorCountrySettings major = majors[majorListBox.SelectedIndex];
+
+            // 値に変化がなければ何もしない
+            if (propagandaTextBox.Text.Equals(major.PictureName))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] propaganda image: {0} -> {1} ({2})", major.PictureName, propagandaTextBox.Text,
+                major.Country);
+
+            // 値を更新する
+            major.PictureName = propagandaTextBox.Text;
+
+            // 編集済みフラグを設定する
+            major.SetDirty(MajorCountrySettingsItemId.PictureName);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            propagandaTextBox.ForeColor = Color.Red;
+
+            // プロパガンダ画像を更新する
+            Image old = propagandaPictureBox.Image;
+            propagandaPictureBox.Image = GetCountryPropagandaImage(major.Country, major.PictureName);
+            if (old != null)
+            {
+                old.Dispose();
+            }
+        }
+
+        /// <summary>
+        ///     プロパガンダ画像名参照ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPropagandaBrowseButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<MajorCountrySettings> majors = scenario.Header.MajorCountries;
+            MajorCountrySettings major = majors[majorListBox.SelectedIndex];
+
+            var dialog = new OpenFileDialog
+            {
+                InitialDirectory = Game.GetReadFileName(Game.ScenarioDataPathName),
+                FileName = major.PictureName,
+                Filter = Resources.OpenBitmapFileDialogFilter
+            };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName;
+                if (Game.IsExportFolderActive)
+                {
+                    fileName = PathHelper.GetRelativePathName(dialog.FileName, Game.ExportFolderName);
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        propagandaTextBox.Text = fileName;
+                        return;
+                    }
+                }
+                if (Game.IsModActive)
+                {
+                    fileName = PathHelper.GetRelativePathName(dialog.FileName, Game.ModFolderName);
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        propagandaTextBox.Text = fileName;
+                        return;
+                    }
+                }
+                fileName = PathHelper.GetRelativePathName(dialog.FileName, Game.FolderName);
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    propagandaTextBox.Text = fileName;
+                    return;
+                }
+                propagandaTextBox.Text = dialog.FileName;
+            }
+        }
+
+        /// <summary>
+        ///     国家説明テキストボックスの文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryDescTextBoxTextChanged(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            ScenarioHeader header = scenario.Header;
+            List<MajorCountrySettings> majors = header.MajorCountries;
+            MajorCountrySettings major = majors[majorListBox.SelectedIndex];
+
+            // 値に変化がなければ何もしない
+            int year = (header.StartDate != null) ? header.StartDate.Year : header.StartYear;
+            string name = GetCountryDesc(major.Country, year, major.Desc);
+            if (countryDescTextBox.Text.Equals(name))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] country desc: {0} -> {1} ({2})", name, countryDescTextBox.Text, major.Country);
+
+            // 値を更新する
+            Config.SetText(major.Desc, countryDescTextBox.Text, Game.ScenarioTextFileName);
+
+            // 文字色を変更する
+            countryDescTextBox.ForeColor = Color.Red;
+
+            // 編集済みフラグを設定する
+            major.SetDirty(MajorCountrySettingsItemId.Desc);
         }
 
         /// <summary>
@@ -669,6 +2108,8 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #endregion
+
         #region 同盟タブ
 
         /// <summary>
@@ -693,28 +2134,28 @@ namespace HoI2Editor.Forms
             {
                 // 枢軸国
                 var item = new ListViewItem {Text = Config.GetText("EYR_AXIS"), Tag = data.Axis};
-                item.SubItems.Add(GetCountryListString(data.Axis.Participant));
+                item.SubItems.Add(Countries.GetListString(data.Axis.Participant));
                 allianceListView.Items.Add(item);
             }
             if (data.Allies != null)
             {
                 // 連合国
                 var item = new ListViewItem {Text = Config.GetText("EYR_ALLIES"), Tag = data.Allies};
-                item.SubItems.Add(GetCountryListString(data.Allies.Participant));
+                item.SubItems.Add(Countries.GetListString(data.Allies.Participant));
                 allianceListView.Items.Add(item);
             }
             if (data.Allies != null)
             {
                 // 共産国
                 var item = new ListViewItem {Text = Config.GetText("EYR_COM"), Tag = data.Comintern};
-                item.SubItems.Add(GetCountryListString(data.Comintern.Participant));
+                item.SubItems.Add(Countries.GetListString(data.Comintern.Participant));
                 allianceListView.Items.Add(item);
             }
             foreach (Alliance alliance in data.Alliances)
             {
                 // その他の同盟
                 var item = new ListViewItem {Text = Resources.Alliance, Tag = alliance};
-                item.SubItems.Add(GetCountryListString(alliance.Participant));
+                item.SubItems.Add(Countries.GetListString(alliance.Participant));
                 allianceListView.Items.Add(item);
             }
             allianceListView.EndUpdate();
@@ -726,8 +2167,8 @@ namespace HoI2Editor.Forms
             {
                 var item = new ListViewItem {Text = war.StartDate.ToString(), Tag = war};
                 item.SubItems.Add(war.EndDate.ToString());
-                item.SubItems.Add(GetCountryListString(war.Attackers.Participant));
-                item.SubItems.Add(GetCountryListString(war.Defenders.Participant));
+                item.SubItems.Add(Countries.GetListString(war.Attackers.Participant));
+                item.SubItems.Add(Countries.GetListString(war.Defenders.Participant));
                 warListView.Items.Add(item);
             }
             warListView.EndUpdate();
@@ -761,7 +2202,7 @@ namespace HoI2Editor.Forms
                 {
                     continue;
                 }
-                allianceCountryListBox.Items.Add(GetCountryTagName(country));
+                allianceCountryListBox.Items.Add(Countries.GetTagName(country));
             }
             allianceCountryListBox.EndUpdate();
 
@@ -770,7 +2211,7 @@ namespace HoI2Editor.Forms
             allianceParticipantListBox.Items.Clear();
             foreach (Country country in alliance.Participant)
             {
-                allianceParticipantListBox.Items.Add(GetCountryTagName(country));
+                allianceParticipantListBox.Items.Add(Countries.GetTagName(country));
             }
             allianceParticipantListBox.EndUpdate();
         }
@@ -803,7 +2244,7 @@ namespace HoI2Editor.Forms
                 {
                     continue;
                 }
-                warCountryListBox.Items.Add(GetCountryTagName(country));
+                warCountryListBox.Items.Add(Countries.GetTagName(country));
             }
             warCountryListBox.EndUpdate();
 
@@ -812,7 +2253,7 @@ namespace HoI2Editor.Forms
             warAttackerListBox.Items.Clear();
             foreach (Country country in war.Attackers.Participant)
             {
-                warAttackerListBox.Items.Add(GetCountryTagName(country));
+                warAttackerListBox.Items.Add(Countries.GetTagName(country));
             }
             warAttackerListBox.EndUpdate();
 
@@ -821,7 +2262,7 @@ namespace HoI2Editor.Forms
             warDefenderListBox.Items.Clear();
             foreach (Country country in war.Defenders.Participant)
             {
-                warDefenderListBox.Items.Add(GetCountryTagName(country));
+                warDefenderListBox.Items.Add(Countries.GetTagName(country));
             }
             warDefenderListBox.EndUpdate();
         }
@@ -829,6 +2270,299 @@ namespace HoI2Editor.Forms
         #endregion
 
         #region 関係タブ
+
+        /// <summary>
+        ///     関係タブの項目を初期化する
+        /// </summary>
+        private void InitRelationItems()
+        {
+            // 選択国リストボックス
+            relationCountryListBox.BeginUpdate();
+            relationCountryListBox.Items.Clear();
+            foreach (string s in Countries.Tags.Select(Countries.GetTagName))
+            {
+                relationCountryListBox.Items.Add(s);
+            }
+            relationCountryListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     関係タブの項目を更新する
+        /// </summary>
+        private void UpdateRelationItems()
+        {
+            // 何もしない
+        }
+
+        /// <summary>
+        ///     選択国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRelationCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
+
+            relationListView.BeginUpdate();
+            relationListView.Items.Clear();
+            foreach (Country target in Countries.Tags)
+            {
+                var item = new ListViewItem(Countries.GetTagName(target));
+                Relation relation = Scenarios.GetCountryRelation(self, target);
+                Treaty nonAggression = Scenarios.GetNonAggression(self, target);
+                Treaty peace = Scenarios.GetPeace(self, target);
+                SpySettings spy = Scenarios.GetCountryIntelligence(self, target);
+                item.SubItems.Add((relation != null) ? relation.Value.ToString(CultureInfo.InvariantCulture) : "0");
+                item.SubItems.Add(((settings != null) && (settings.Master == target)) ? Resources.Yes : "");
+                item.SubItems.Add(((settings != null) && (settings.Control == target)) ? Resources.Yes : "");
+                item.SubItems.Add(((relation != null) && relation.Access) ? Resources.Yes : "");
+                item.SubItems.Add(((relation != null) && (relation.Guaranteed != null)) ? Resources.Yes : "");
+                item.SubItems.Add((nonAggression != null) ? Resources.Yes : "");
+                item.SubItems.Add((peace != null) ? Resources.Yes : "");
+                item.SubItems.Add((spy != null) ? spy.Spies.ToString(CultureInfo.InvariantCulture) : "");
+                relationListView.Items.Add(item);
+            }
+            relationListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     国家関係リストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRelationListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
+            Relation relation = Scenarios.GetCountryRelation(self, target);
+            Treaty nonAggression = Scenarios.GetNonAggression(self, target);
+            Treaty peace = Scenarios.GetPeace(self, target);
+            SpySettings spy = Scenarios.GetCountryIntelligence(self, target);
+
+            relationValueNumericUpDown.Value = (relation != null) ? (decimal) relation.Value : 0;
+            relationValueNumericUpDown.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.Value))
+                ? Color.Red
+                : SystemColors.WindowText;
+            masterCheckBox.Checked = (settings != null) && (settings.Master == target);
+            masterCheckBox.ForeColor = ((settings != null) && settings.IsDirty(CountrySettingsItemId.Master))
+                ? Color.Red
+                : SystemColors.WindowText;
+            controlCheckBox.Checked = (settings != null) && (settings.Control == target);
+            controlCheckBox.ForeColor = ((settings != null) && settings.IsDirty(CountrySettingsItemId.Control))
+                ? Color.Red
+                : SystemColors.WindowText;
+            accessCheckBox.Checked = (relation != null) && relation.Access;
+            accessCheckBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.Access))
+                ? Color.Red
+                : SystemColors.WindowText;
+
+            UpdateGuaranteeItems(relation);
+            UpdateNonAggressionItems(nonAggression);
+            UpdatePeaceItems(peace);
+
+            spyNumNumericUpDown.Value = (spy != null) ? spy.Spies : 0;
+            spyNumNumericUpDown.ForeColor = ((spy != null) && spy.IsDirty(SpySettingsItemId.Spies))
+                ? Color.Red
+                : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     独立保障グループボックスの編集項目を更新する
+        /// </summary>
+        /// <param name="relation"></param>
+        private void UpdateGuaranteeItems(Relation relation)
+        {
+            bool flag = (relation != null) && (relation.Guaranteed != null);
+            guaranteeCheckBox.Checked = flag;
+            guaranteeYearTextBox.Text = flag ? relation.Guaranteed.Year.ToString(CultureInfo.InvariantCulture) : "";
+            guaranteeMonthTextBox.Text = flag ? relation.Guaranteed.Month.ToString(CultureInfo.InvariantCulture) : "";
+            guaranteeDayTextBox.Text = ((relation != null) && (relation.Guaranteed != null))
+                ? relation.Guaranteed.Day.ToString(CultureInfo.InvariantCulture)
+                : "";
+            guaraneeEndLabel.Enabled = flag;
+            guaranteeYearTextBox.Enabled = flag;
+            guaranteeMonthTextBox.Enabled = flag;
+            guaranteeDayTextBox.Enabled = flag;
+        }
+
+        /// <summary>
+        ///     不可侵条約グループボックスの編集項目を更新する
+        /// </summary>
+        /// <param name="nonAggression">不可侵条約</param>
+        private void UpdateNonAggressionItems(Treaty nonAggression)
+        {
+            nonAggressionCheckBox.Checked = (nonAggression != null);
+
+            bool flag = (nonAggression != null) && (nonAggression.StartDate != null);
+            nonAggressionStartYearTextBox.Text = flag
+                ? nonAggression.StartDate.Year.ToString(CultureInfo.InvariantCulture)
+                : "";
+            nonAggressionStartMonthTextBox.Text = flag
+                ? nonAggression.StartDate.Month.ToString(CultureInfo.InvariantCulture)
+                : "";
+            nonAggressionStartDayTextBox.Text = flag
+                ? nonAggression.StartDate.Day.ToString(CultureInfo.InvariantCulture)
+                : "";
+
+            nonAggressionStartLabel.Enabled = flag;
+            nonAggressionStartYearTextBox.Enabled = flag;
+            nonAggressionStartMonthTextBox.Enabled = flag;
+            nonAggressionStartDayTextBox.Enabled = flag;
+
+            flag = (nonAggression != null) && (nonAggression.EndDate != null);
+            nonAggressionEndYearTextBox.Text = flag
+                ? nonAggression.EndDate.Year.ToString(CultureInfo.InvariantCulture)
+                : "";
+            nonAggressionEndMonthTextBox.Text = flag
+                ? nonAggression.EndDate.Month.ToString(CultureInfo.InvariantCulture)
+                : "";
+            nonAggressionEndDayTextBox.Text = flag
+                ? nonAggression.EndDate.Day.ToString(CultureInfo.InvariantCulture)
+                : "";
+
+            nonAggressionEndLabel.Enabled = flag;
+            nonAggressionEndYearTextBox.Enabled = flag;
+            nonAggressionEndMonthTextBox.Enabled = flag;
+            nonAggressionEndDayTextBox.Enabled = flag;
+
+            flag = (nonAggression != null) && (nonAggression.Id != null);
+            nonAggressionTypeTextBox.Text = flag ? nonAggression.Id.Type.ToString(CultureInfo.InvariantCulture) : "";
+            nonAggressionIdTextBox.Text = flag ? nonAggression.Id.Id.ToString(CultureInfo.InvariantCulture) : "";
+
+            nonAggressionIdLabel.Enabled = flag;
+            nonAggressionTypeTextBox.Enabled = flag;
+            nonAggressionIdTextBox.Enabled = flag;
+        }
+
+        /// <summary>
+        ///     講和条約グループボックスの編集項目を更新する
+        /// </summary>
+        /// <param name="peace">講和条約</param>
+        private void UpdatePeaceItems(Treaty peace)
+        {
+            peaceCheckBox.Checked = (peace != null);
+
+            bool flag = (peace != null) && (peace.StartDate != null);
+            peaceStartYearTextBox.Text = flag
+                ? peace.StartDate.Year.ToString(CultureInfo.InvariantCulture)
+                : "";
+            peaceStartMonthTextBox.Text = flag
+                ? peace.StartDate.Month.ToString(CultureInfo.InvariantCulture)
+                : "";
+            peaceStartDayTextBox.Text = flag
+                ? peace.StartDate.Day.ToString(CultureInfo.InvariantCulture)
+                : "";
+
+            peaceStartLabel.Enabled = flag;
+            peaceStartYearTextBox.Enabled = flag;
+            peaceStartMonthTextBox.Enabled = flag;
+            peaceStartDayTextBox.Enabled = flag;
+
+            flag = (peace != null) && (peace.EndDate != null);
+            peaceEndYearTextBox.Text = flag
+                ? peace.EndDate.Year.ToString(CultureInfo.InvariantCulture)
+                : "";
+            peaceEndMonthTextBox.Text = flag
+                ? peace.EndDate.Month.ToString(CultureInfo.InvariantCulture)
+                : "";
+            peaceEndDayTextBox.Text = flag
+                ? peace.EndDate.Day.ToString(CultureInfo.InvariantCulture)
+                : "";
+
+            peaceEndLabel.Enabled = flag;
+            peaceEndYearTextBox.Enabled = flag;
+            peaceEndMonthTextBox.Enabled = flag;
+            peaceEndDayTextBox.Enabled = flag;
+
+            flag = (peace != null) && (peace.Id != null);
+            peaceTypeTextBox.Text = flag ? peace.Id.Type.ToString(CultureInfo.InvariantCulture) : "";
+            peaceIdTextBox.Text = flag ? peace.Id.Id.ToString(CultureInfo.InvariantCulture) : "";
+
+            peaceIdLabel.Enabled = flag;
+            peaceTypeTextBox.Enabled = flag;
+            peaceIdTextBox.Enabled = flag;
+        }
+
+        /// <summary>
+        ///     関係値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRelationValueNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            Relation relation = Scenarios.GetCountryRelation(self, target);
+
+            var val = (double) relationValueNumericUpDown.Value;
+            if (relation != null)
+            {
+                // 値に変化がなければ何もしない
+                if (Math.Abs(val - relation.Value) <= 0.00005)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                if (Math.Abs(val) <= 0.00005)
+                {
+                    return;
+                }
+
+                // 国家関係を設定する
+                relation = new Relation {Country = target};
+                Scenarios.SetCountryRelation(self, relation);
+            }
+
+            Log.Info("[Scenario] relation value: {0} -> {1} ({2} > {3})",
+                relation.Value.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
+                Countries.Strings[(int) self], Countries.Strings[(int) target]);
+
+            // 値を更新する
+            relation.Value = val;
+
+            // 編集済みフラグを設定する
+            relation.SetDirty(RelationItemId.Value);
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
+            if (settings != null)
+            {
+                settings.SetDirty();
+            }
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            relationValueNumericUpDown.ForeColor = Color.Red;
+        }
 
         #endregion
 
@@ -846,7 +2580,7 @@ namespace HoI2Editor.Forms
             tradeCountryComboBox2.Items.Clear();
             foreach (Country country in Countries.Tags)
             {
-                string s = GetCountryTagName(country);
+                string s = Countries.GetTagName(country);
                 tradeCountryComboBox1.Items.Add(s);
                 tradeCountryComboBox2.Items.Add(s);
             }
@@ -876,8 +2610,8 @@ namespace HoI2Editor.Forms
             {
                 var item = new ListViewItem {Text = treaty.StartDate.ToString(), Tag = treaty};
                 item.SubItems.Add(treaty.EndDate.ToString());
-                item.SubItems.Add(GetCountryName(treaty.Country1));
-                item.SubItems.Add(GetCountryName(treaty.Country2));
+                item.SubItems.Add(Countries.GetName(treaty.Country1));
+                item.SubItems.Add(Countries.GetName(treaty.Country2));
                 item.SubItems.Add(GetTradeString(treaty));
                 tradeListView.Items.Add(item);
             }
@@ -1040,54 +2774,6 @@ namespace HoI2Editor.Forms
         #endregion
 
         #region 文字列操作
-
-        /// <summary>
-        ///     国名を取得する
-        /// </summary>
-        /// <param name="country">国タグ</param>
-        /// <returns>国名</returns>
-        private static string GetCountryName(Country country)
-        {
-            if (country == Country.None)
-            {
-                return "";
-            }
-            string tag = Countries.Strings[(int) country];
-            return Config.ExistsKey(tag) ? Config.GetText(tag) : tag;
-        }
-
-        /// <summary>
-        ///     国タグ名と国名を取得する
-        /// </summary>
-        /// <param name="country">国タグ</param>
-        /// <returns>国タグ名と国名</returns>
-        private static string GetCountryTagName(Country country)
-        {
-            if (country == Country.None)
-            {
-                return "";
-            }
-            string tag = Countries.Strings[(int) country];
-            return Config.ExistsKey(tag)
-                ? string.Format("{0} {1}", tag, Config.GetText(tag))
-                : tag;
-        }
-
-        /// <summary>
-        ///     国タグリストの文字列を取得する
-        /// </summary>
-        /// <param name="countries">国タグリスト</param>
-        /// <returns>国タグリストの文字列</returns>
-        private static string GetCountryListString(IEnumerable<Country> countries)
-        {
-            var sb = new StringBuilder();
-            foreach (Country country in countries)
-            {
-                sb.AppendFormat("{0}, ", GetCountryName(country));
-            }
-            int len = sb.Length;
-            return (len > 0) ? sb.ToString(0, len - 2) : "";
-        }
 
         /// <summary>
         ///     貿易内容の文字列を取得する

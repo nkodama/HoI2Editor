@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace HoI2Editor.Models
 {
@@ -1048,6 +1049,58 @@ namespace HoI2Editor.Models
                     Tags = TagsAoD;
                     break;
             }
+        }
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        ///     国名を取得する
+        /// </summary>
+        /// <param name="country">国タグ</param>
+        /// <returns>国名</returns>
+        public static string GetName(Country country)
+        {
+            if (country == Country.None)
+            {
+                return "";
+            }
+            string tag = Strings[(int) country];
+            return Config.ExistsKey(tag) ? Config.GetText(tag) : tag;
+        }
+
+        /// <summary>
+        ///     国タグ名と国名を取得する
+        /// </summary>
+        /// <param name="country">国タグ</param>
+        /// <returns>国タグ名と国名</returns>
+        public static string GetTagName(Country country)
+        {
+            if (country == Country.None)
+            {
+                return "";
+            }
+            string tag = Strings[(int) country];
+            return Config.ExistsKey(tag)
+                ? string.Format("{0} {1}", tag, Config.GetText(tag))
+                : tag;
+        }
+
+        /// <summary>
+        ///     国タグリストの文字列を取得する
+        /// </summary>
+        /// <param name="countries">国タグリスト</param>
+        /// <returns>国タグリストの文字列</returns>
+        public static string GetListString(IEnumerable<Country> countries)
+        {
+            var sb = new StringBuilder();
+            foreach (Country country in countries)
+            {
+                sb.AppendFormat("{0}, ", GetName(country));
+            }
+            int len = sb.Length;
+            return (len > 0) ? sb.ToString(0, len - 2) : "";
         }
 
         #endregion

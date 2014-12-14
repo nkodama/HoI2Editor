@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UnitNameEditorForm));
+            this.listSplitContainer = new System.Windows.Forms.SplitContainer();
             this.countryListBox = new System.Windows.Forms.ListBox();
+            this.typeListBox = new System.Windows.Forms.ListBox();
             this.closeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
-            this.typeListBox = new System.Windows.Forms.ListBox();
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.optionGroupBox = new System.Windows.Forms.GroupBox();
             this.allUnitTypeCheckBox = new System.Windows.Forms.CheckBox();
@@ -58,16 +59,30 @@
             this.pasteButton = new System.Windows.Forms.Button();
             this.undoButton = new System.Windows.Forms.Button();
             this.copyButton = new System.Windows.Forms.Button();
-            this.listSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.listSplitContainer.Panel1.SuspendLayout();
+            this.listSplitContainer.Panel2.SuspendLayout();
+            this.listSplitContainer.SuspendLayout();
             this.optionGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endNumericUpDown)).BeginInit();
             this.replaceGroupBox.SuspendLayout();
             this.sequentialGroupBox.SuspendLayout();
-            this.listSplitContainer.Panel1.SuspendLayout();
-            this.listSplitContainer.Panel2.SuspendLayout();
-            this.listSplitContainer.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // listSplitContainer
+            // 
+            resources.ApplyResources(this.listSplitContainer, "listSplitContainer");
+            this.listSplitContainer.Name = "listSplitContainer";
+            // 
+            // listSplitContainer.Panel1
+            // 
+            resources.ApplyResources(this.listSplitContainer.Panel1, "listSplitContainer.Panel1");
+            this.listSplitContainer.Panel1.Controls.Add(this.countryListBox);
+            // 
+            // listSplitContainer.Panel2
+            // 
+            resources.ApplyResources(this.listSplitContainer.Panel2, "listSplitContainer.Panel2");
+            this.listSplitContainer.Panel2.Controls.Add(this.typeListBox);
             // 
             // countryListBox
             // 
@@ -77,6 +92,15 @@
             this.countryListBox.Name = "countryListBox";
             this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
+            // 
+            // typeListBox
+            // 
+            resources.ApplyResources(this.typeListBox, "typeListBox");
+            this.typeListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.typeListBox.FormattingEnabled = true;
+            this.typeListBox.Name = "typeListBox";
+            this.typeListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTypeListBoxDrawItem);
+            this.typeListBox.SelectedIndexChanged += new System.EventHandler(this.OnTypeListBoxSelectedIndexChanged);
             // 
             // closeButton
             // 
@@ -98,15 +122,6 @@
             this.reloadButton.Name = "reloadButton";
             this.reloadButton.UseVisualStyleBackColor = true;
             this.reloadButton.Click += new System.EventHandler(this.OnReloadButtonClick);
-            // 
-            // typeListBox
-            // 
-            resources.ApplyResources(this.typeListBox, "typeListBox");
-            this.typeListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.typeListBox.FormattingEnabled = true;
-            this.typeListBox.Name = "typeListBox";
-            this.typeListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTypeListBoxDrawItem);
-            this.typeListBox.SelectedIndexChanged += new System.EventHandler(this.OnTypeListBoxSelectedIndexChanged);
             // 
             // nameTextBox
             // 
@@ -303,21 +318,6 @@
             this.copyButton.UseVisualStyleBackColor = true;
             this.copyButton.Click += new System.EventHandler(this.OnCopyButtonClick);
             // 
-            // listSplitContainer
-            // 
-            resources.ApplyResources(this.listSplitContainer, "listSplitContainer");
-            this.listSplitContainer.Name = "listSplitContainer";
-            // 
-            // listSplitContainer.Panel1
-            // 
-            resources.ApplyResources(this.listSplitContainer.Panel1, "listSplitContainer.Panel1");
-            this.listSplitContainer.Panel1.Controls.Add(this.countryListBox);
-            // 
-            // listSplitContainer.Panel2
-            // 
-            resources.ApplyResources(this.listSplitContainer.Panel2, "listSplitContainer.Panel2");
-            this.listSplitContainer.Panel2.Controls.Add(this.typeListBox);
-            // 
             // UnitNameEditorForm
             // 
             resources.ApplyResources(this, "$this");
@@ -340,6 +340,9 @@
             this.Load += new System.EventHandler(this.OnFormLoad);
             this.Move += new System.EventHandler(this.OnFormMove);
             this.Resize += new System.EventHandler(this.OnFormResize);
+            this.listSplitContainer.Panel1.ResumeLayout(false);
+            this.listSplitContainer.Panel2.ResumeLayout(false);
+            this.listSplitContainer.ResumeLayout(false);
             this.optionGroupBox.ResumeLayout(false);
             this.optionGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.startNumericUpDown)).EndInit();
@@ -348,9 +351,6 @@
             this.replaceGroupBox.PerformLayout();
             this.sequentialGroupBox.ResumeLayout(false);
             this.sequentialGroupBox.PerformLayout();
-            this.listSplitContainer.Panel1.ResumeLayout(false);
-            this.listSplitContainer.Panel2.ResumeLayout(false);
-            this.listSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace HoI2Editor.Models
 {
@@ -104,6 +105,20 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ScenarioItemId)).Length];
+
+        /// <summary>
+        ///     選択可能国の編集済みフラグ
+        /// </summary>
+        private readonly HashSet<Country> _dirtySelectableCountries = new HashSet<Country>();
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -124,6 +139,138 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(ScenarioItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(ScenarioItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     対象の選択可能国が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtySelectableCountry(Country country)
+        {
+            return _dirtySelectableCountries.Contains(country);
+        }
+
+        /// <summary>
+        ///     選択可能国の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        public void SetDirtySelectableCountry(Country country)
+        {
+            _dirtySelectableCountries.Add(country);
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (ScenarioItemId id in Enum.GetValues(typeof (ScenarioItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+
+            _dirtySelectableCountries.Clear();
+
+            if ((Header != null) && (Header.MajorCountries != null))
+            {
+                foreach (MajorCountrySettings major in Header.MajorCountries)
+                {
+                    major.ResetDirtyAll();
+                }
+            }
+
+            if (GlobalData != null)
+            {
+                if (GlobalData.Axis != null)
+                {
+                    GlobalData.Axis.ResetDirtyAll();
+                }
+                if (GlobalData.Allies != null)
+                {
+                    GlobalData.Allies.ResetDirtyAll();
+                }
+                if (GlobalData.Comintern != null)
+                {
+                    GlobalData.Comintern.ResetDirtyAll();
+                }
+                if (GlobalData.Alliances != null)
+                {
+                    foreach (Alliance alliance in GlobalData.Alliances)
+                    {
+                        alliance.ResetDirtyAll();
+                    }
+                }
+                if (GlobalData.Wars != null)
+                {
+                    foreach (War war in GlobalData.Wars)
+                    {
+                        war.ResetDirtyAll();
+                    }
+                }
+                if (GlobalData.Treaties != null)
+                {
+                    foreach (Treaty treaty in GlobalData.Treaties)
+                    {
+                        treaty.ResetDirtyAll();
+                    }
+                }
+            }
+
+            if (Countries != null)
+            {
+                foreach (CountrySettings settings in Countries)
+                {
+                    settings.ResetDirtyAll();
+                }
+            }
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     シナリオデータ項目ID
+    /// </summary>
+    public enum ScenarioItemId
+    {
+        Name, // シナリオ名
+        PanelName, // パネル画像名
+        IncludeFolder, // インクルードフォルダ
+        FreeSelection, // 国家の自由選択
+        BattleScenario, // ショートシナリオ
+        AiAggressive, // AIの攻撃性
+        Difficulty, // 難易度
+        GameSpeed, // ゲームスピード
+        AllowDiplomacy, // 外交を許可
+        AllowProduction, // 生産を許可
+        AllowTechnology, // 技術開発を許可
+        StartYear, // 開始年
+        StartMonth, // 開始月
+        StartDay, // 開始日
+        EndYear, // 終了年
+        EndMonth, // 終了月
+        EndDay, // 終了日
     }
 
     #endregion
@@ -276,6 +423,59 @@ namespace HoI2Editor.Models
         public bool Bottom { get; set; }
 
         #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (MajorCountrySettingsItemId)).Length];
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(MajorCountrySettingsItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(MajorCountrySettingsItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (MajorCountrySettingsItemId id in Enum.GetValues(typeof (MajorCountrySettingsItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+        }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     主要国設定項目ID
+    /// </summary>
+    public enum MajorCountrySettingsItemId
+    {
+        Desc, // 説明文
+        PictureName, // プロパガンダ画像名
+        Bottom // 右端に配置
     }
 
     #endregion
@@ -922,6 +1122,15 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (AllianceItemId)).Length];
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -930,6 +1139,40 @@ namespace HoI2Editor.Models
         public Alliance()
         {
             Participant = new List<Country>();
+        }
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(AllianceItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(AllianceItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (AllianceItemId id in Enum.GetValues(typeof (AllianceItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
         }
 
         #endregion
@@ -966,6 +1209,49 @@ namespace HoI2Editor.Models
         ///     防御側参加国
         /// </summary>
         public Alliance Defenders { get; set; }
+
+        #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (WarItemId)).Length];
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(WarItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(WarItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (WarItemId id in Enum.GetValues(typeof (WarItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+        }
 
         #endregion
     }
@@ -1044,6 +1330,15 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TreatyItemId)).Length];
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -1055,12 +1350,46 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(TreatyItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(TreatyItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (TreatyItemId id in Enum.GetValues(typeof (TreatyItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+        }
+
+        #endregion
     }
 
     /// <summary>
     ///     国家関係設定
     /// </summary>
-    public class RelationSettings
+    public class Relation
     {
         #region 公開プロパティ
 
@@ -1085,6 +1414,49 @@ namespace HoI2Editor.Models
         public GameDate Guaranteed { get; set; }
 
         #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (RelationItemId)).Length];
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(RelationItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(RelationItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (RelationItemId id in Enum.GetValues(typeof (RelationItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+        }
+
+        #endregion
     }
 
     /// <summary>
@@ -1096,6 +1468,57 @@ namespace HoI2Editor.Models
         NonAggression, // 不可侵条約
         Peace, // 休戦協定
         Trade, // 貿易
+    }
+
+    /// <summary>
+    ///     同盟項目ID
+    /// </summary>
+    public enum AllianceItemId
+    {
+        Type, // type
+        Id, // id
+        Name, // 同盟名
+    }
+
+    /// <summary>
+    ///     戦争項目ID
+    /// </summary>
+    public enum WarItemId
+    {
+        Type, // type
+        Id, // id
+        StartDate, // 開始日時
+        EndDate, // 終了日時
+    }
+
+    /// <summary>
+    ///     外交協定項目ID
+    /// </summary>
+    public enum TreatyItemId
+    {
+        Type, // type
+        Id, // id
+        Country1, // 対象国1
+        Country2, // 対象国2
+        StartDate, // 開始日時
+        EndDate, // 終了日時
+        Money, // 資金
+        Supplies, // 物資
+        Energy, // エネルギー
+        Metal, // 金属
+        RareMaterials, // 希少資源
+        Oil, // 石油
+        Cancel, // 取り消し可能かどうか
+    }
+
+    /// <summary>
+    ///     国家関係設定項目ID
+    /// </summary>
+    public enum RelationItemId
+    {
+        Value, // 関係値
+        Access, // 通行許可
+        Guaranteed, // 独立保証期限
     }
 
     #endregion
@@ -1160,7 +1583,7 @@ namespace HoI2Editor.Models
         public double Dissent { get; set; }
 
         /// <summary>
-        ///     首都のプロヴィンスID
+        ///     首都
         /// </summary>
         public int Capital { get; set; }
 
@@ -1275,9 +1698,9 @@ namespace HoI2Editor.Models
         public double Reinforcement { get; set; }
 
         /// <summary>
-        ///     外交設定
+        ///     外交関係
         /// </summary>
-        public List<RelationSettings> Diplomacy { get; private set; }
+        public List<Relation> Relations { get; private set; }
 
         /// <summary>
         ///     諜報情報
@@ -1451,6 +1874,20 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (CountrySettingsItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -1458,7 +1895,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public CountrySettings()
         {
-            Diplomacy = new List<RelationSettings>();
+            Relations = new List<Relation>();
             Intelligence = new List<SpySettings>();
             NationalProvinces = new List<int>();
             OwnedProvinces = new List<int>();
@@ -1481,6 +1918,75 @@ namespace HoI2Editor.Models
             LandDivisions = new List<LandDivision>();
             NavalDivisions = new List<NavalDivision>();
             AirDivisions = new List<AirDivision>();
+        }
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     国家関係設定が編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(CountrySettingsItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(CountrySettingsItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (CountrySettingsItemId id in Enum.GetValues(typeof (CountrySettingsItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            _dirtyFlag = false;
+
+            if (Relations != null)
+            {
+                foreach (Relation relation in Relations)
+                {
+                    relation.ResetDirtyAll();
+                }
+            }
+
+            if (Intelligence != null)
+            {
+                foreach (SpySettings spy in Intelligence)
+                {
+                    spy.ResetDirtyAll();
+                }
+            }
         }
 
         #endregion
@@ -1579,6 +2085,49 @@ namespace HoI2Editor.Models
         public int Spies { get; set; }
 
         #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (SpySettingsItemId)).Length];
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(SpySettingsItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(SpySettingsItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (SpySettingsItemId id in Enum.GetValues(typeof (SpySettingsItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+        }
+
+        #endregion
     }
 
     /// <summary>
@@ -1647,6 +2196,82 @@ namespace HoI2Editor.Models
         LeftWingRadical, // 急進的左翼
         Leninist, // レーニン主義
         Stalinist // スターリン主義
+    }
+
+    /// <summary>
+    ///     国家設定項目ID
+    /// </summary>
+    public enum CountrySettingsItemId
+    {
+        Name, // 国名
+        FlagExt, // 国旗の接尾辞
+        RegularId, // 兄弟国
+        IntrinsicGovType, // 独立可能政体
+        Master, // 宗主国
+        Control, // 統帥権取得国
+        Belligerence, // 好戦性
+        ExtraTc, // 追加輸送能力
+        Dissent, // 国民不満度
+        Capital, // 首都
+        PeacetimeIcMod, // 平時IC補正
+        WartimeIcMod, // 戦時IC補正
+        IndustrialModifier, // 工業力補正
+        GroundDefEff, // 対地防御補正
+        Ai, // AIファイル名
+        AiSettings, // AI設定
+        Manpower, // 人的資源
+        RelativeManpower, // 人的資源補正値
+        Energy, // エネルギー
+        Metal, // 金属
+        RareMaterials, // 希少資源
+        Oil, // 石油
+        Supplies, // 物資
+        Money, // 資金
+        Transports, // 輸送船団
+        Escorts, // 護衛艦
+        Nuke, // 核兵器
+        FreeIc, // マップ外工業力
+        FreeManpower, // マップ外人的資源
+        FreeEnergy, // マップ外エネルギー
+        FreeMetal, // マップ外金属
+        FreeRareMaterials, // マップ外希少資源
+        FreeOil, // マップ外石油
+        FreeSupplies, // マップ外物資
+        FreeMoney, // マップ外資金
+        FreeTransports, // マップ外輸送船団
+        FreeEscorts, // マップ外護衛艦
+        Consumer, // 消費財IC比率
+        Supply, // 物資IC比率
+        Production, // 生産IC比率
+        Reinforcement, // 補充IC比率
+        NationalProvinces, // 中核プロヴィンス
+        OwnedProvinces, // 保有プロヴィンス
+        ControlledProvinces, // 支配プロヴィンス
+        ClaimedProvinces, // 領有権主張プロヴィンス
+        TechApps, // 保有技術
+        BluePrints, // 青写真
+        Inventions, // 発明イベント
+        SliderDate, // スライダー移動可能日時
+        Democratic, // 民主的 - 独裁的
+        PoliticalLeft, // 政治的左派 - 政治的右派
+        Freedom, // 開放社会 - 閉鎖社会
+        FreeMarket, // 自由経済 - 中央計画経済
+        ProfessionalArmy, // 常備軍 - 徴兵軍
+        DefenseLobby, // タカ派 - ハト派
+        Interventionism, // 介入主義 - 孤立主義
+        NukeDate, // 核兵器完成日時
+        DormantLeaders, // 休止指揮官
+        DormantMinisters, // 休止閣僚
+        DormantTeams, // 休止研究機関
+        StealLeaders // 抽出指揮官
+    }
+
+    /// <summary>
+    ///     諜報設定
+    /// </summary>
+    public enum SpySettingsItemId
+    {
+        Spies, // スパイの数
     }
 
     #endregion
