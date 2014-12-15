@@ -35,15 +35,15 @@
             this.provinceTabPage = new System.Windows.Forms.TabPage();
             this.provinceMapPanel = new System.Windows.Forms.Panel();
             this.provinceMapPictureBox = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.testProvinceIdTextBox = new System.Windows.Forms.TextBox();
             this.techTabPage = new System.Windows.Forms.TabPage();
             this.personTabPage = new System.Windows.Forms.TabPage();
             this.countryTabPage = new System.Windows.Forms.TabPage();
             this.countryInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.flagExtTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.aiLabel = new System.Windows.Forms.Label();
+            this.flagExtLabel = new System.Windows.Forms.Label();
+            this.aiFileTextBox = new System.Windows.Forms.TextBox();
+            this.aiFileLabel = new System.Windows.Forms.Label();
             this.countryNameTextBox = new System.Windows.Forms.TextBox();
             this.countryNameLabel = new System.Windows.Forms.Label();
             this.tradeTabPage = new System.Windows.Forms.TabPage();
@@ -189,11 +189,11 @@
             this.allianceLeaderButton = new System.Windows.Forms.Button();
             this.allianceParticipantListBox = new System.Windows.Forms.ListBox();
             this.allianceUpButton = new System.Windows.Forms.Button();
-            this.participantAddButton = new System.Windows.Forms.Button();
+            this.allianceParticipantAddButton = new System.Windows.Forms.Button();
             this.allianceCountryListBox = new System.Windows.Forms.ListBox();
             this.allianceRemoveButton = new System.Windows.Forms.Button();
             this.allianceNewButton = new System.Windows.Forms.Button();
-            this.participantRemoveButton = new System.Windows.Forms.Button();
+            this.allianceParticipantRemoveButton = new System.Windows.Forms.Button();
             this.allianceDownButton = new System.Windows.Forms.Button();
             this.mainTabPage = new System.Windows.Forms.TabPage();
             this.optionGroupBox = new System.Windows.Forms.GroupBox();
@@ -254,6 +254,12 @@
             this.scenarioRadioButton = new System.Windows.Forms.RadioButton();
             this.scenarioListBox = new System.Windows.Forms.ListBox();
             this.scenarioTabControl = new System.Windows.Forms.TabControl();
+            this.warAttackerIdTextBox = new System.Windows.Forms.TextBox();
+            this.warAttackerTypeTextBox = new System.Windows.Forms.TextBox();
+            this.warDefenderIdTextBox = new System.Windows.Forms.TextBox();
+            this.warDefenderTypeTextBox = new System.Windows.Forms.TextBox();
+            this.warAttackerIdLabel = new System.Windows.Forms.Label();
+            this.warDefenderIdLabel = new System.Windows.Forms.Label();
             this.provinceTabPage.SuspendLayout();
             this.provinceMapPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.provinceMapPictureBox)).BeginInit();
@@ -309,7 +315,7 @@
             // 
             this.provinceTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.provinceTabPage.Controls.Add(this.provinceMapPanel);
-            this.provinceTabPage.Controls.Add(this.textBox1);
+            this.provinceTabPage.Controls.Add(this.testProvinceIdTextBox);
             resources.ApplyResources(this.provinceTabPage, "provinceTabPage");
             this.provinceTabPage.Name = "provinceTabPage";
             // 
@@ -325,11 +331,11 @@
             this.provinceMapPictureBox.Name = "provinceMapPictureBox";
             this.provinceMapPictureBox.TabStop = false;
             // 
-            // textBox1
+            // testProvinceIdTextBox
             // 
-            resources.ApplyResources(this.textBox1, "textBox1");
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Validated += new System.EventHandler(this.OnTextBox1Validated);
+            resources.ApplyResources(this.testProvinceIdTextBox, "testProvinceIdTextBox");
+            this.testProvinceIdTextBox.Name = "testProvinceIdTextBox";
+            this.testProvinceIdTextBox.Validated += new System.EventHandler(this.OnTextBox1Validated);
             // 
             // techTabPage
             // 
@@ -353,9 +359,9 @@
             // countryInfoGroupBox
             // 
             this.countryInfoGroupBox.Controls.Add(this.flagExtTextBox);
-            this.countryInfoGroupBox.Controls.Add(this.label1);
-            this.countryInfoGroupBox.Controls.Add(this.textBox2);
-            this.countryInfoGroupBox.Controls.Add(this.aiLabel);
+            this.countryInfoGroupBox.Controls.Add(this.flagExtLabel);
+            this.countryInfoGroupBox.Controls.Add(this.aiFileTextBox);
+            this.countryInfoGroupBox.Controls.Add(this.aiFileLabel);
             this.countryInfoGroupBox.Controls.Add(this.countryNameTextBox);
             this.countryInfoGroupBox.Controls.Add(this.countryNameLabel);
             resources.ApplyResources(this.countryInfoGroupBox, "countryInfoGroupBox");
@@ -367,20 +373,20 @@
             resources.ApplyResources(this.flagExtTextBox, "flagExtTextBox");
             this.flagExtTextBox.Name = "flagExtTextBox";
             // 
-            // label1
+            // flagExtLabel
             // 
-            resources.ApplyResources(this.label1, "label1");
-            this.label1.Name = "label1";
+            resources.ApplyResources(this.flagExtLabel, "flagExtLabel");
+            this.flagExtLabel.Name = "flagExtLabel";
             // 
-            // textBox2
+            // aiFileTextBox
             // 
-            resources.ApplyResources(this.textBox2, "textBox2");
-            this.textBox2.Name = "textBox2";
+            resources.ApplyResources(this.aiFileTextBox, "aiFileTextBox");
+            this.aiFileTextBox.Name = "aiFileTextBox";
             // 
-            // aiLabel
+            // aiFileLabel
             // 
-            resources.ApplyResources(this.aiLabel, "aiLabel");
-            this.aiLabel.Name = "aiLabel";
+            resources.ApplyResources(this.aiFileLabel, "aiFileLabel");
+            this.aiFileLabel.Name = "aiFileLabel";
             // 
             // countryNameTextBox
             // 
@@ -1031,6 +1037,12 @@
             // 
             // warGroupBox
             // 
+            this.warGroupBox.Controls.Add(this.warDefenderIdLabel);
+            this.warGroupBox.Controls.Add(this.warAttackerIdLabel);
+            this.warGroupBox.Controls.Add(this.warDefenderIdTextBox);
+            this.warGroupBox.Controls.Add(this.warDefenderTypeTextBox);
+            this.warGroupBox.Controls.Add(this.warAttackerIdTextBox);
+            this.warGroupBox.Controls.Add(this.warAttackerTypeTextBox);
             this.warGroupBox.Controls.Add(this.warIdTextBox);
             this.warGroupBox.Controls.Add(this.warTypeTextBox);
             this.warGroupBox.Controls.Add(this.warEndMonthTextBox);
@@ -1234,11 +1246,11 @@
             this.allianceGroupBox.Controls.Add(this.allianceLeaderButton);
             this.allianceGroupBox.Controls.Add(this.allianceParticipantListBox);
             this.allianceGroupBox.Controls.Add(this.allianceUpButton);
-            this.allianceGroupBox.Controls.Add(this.participantAddButton);
+            this.allianceGroupBox.Controls.Add(this.allianceParticipantAddButton);
             this.allianceGroupBox.Controls.Add(this.allianceCountryListBox);
             this.allianceGroupBox.Controls.Add(this.allianceRemoveButton);
             this.allianceGroupBox.Controls.Add(this.allianceNewButton);
-            this.allianceGroupBox.Controls.Add(this.participantRemoveButton);
+            this.allianceGroupBox.Controls.Add(this.allianceParticipantRemoveButton);
             this.allianceGroupBox.Controls.Add(this.allianceDownButton);
             resources.ApplyResources(this.allianceGroupBox, "allianceGroupBox");
             this.allianceGroupBox.Name = "allianceGroupBox";
@@ -1313,11 +1325,11 @@
             this.allianceUpButton.Name = "allianceUpButton";
             this.allianceUpButton.UseVisualStyleBackColor = true;
             // 
-            // participantAddButton
+            // allianceParticipantAddButton
             // 
-            resources.ApplyResources(this.participantAddButton, "participantAddButton");
-            this.participantAddButton.Name = "participantAddButton";
-            this.participantAddButton.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.allianceParticipantAddButton, "allianceParticipantAddButton");
+            this.allianceParticipantAddButton.Name = "allianceParticipantAddButton";
+            this.allianceParticipantAddButton.UseVisualStyleBackColor = true;
             // 
             // allianceCountryListBox
             // 
@@ -1337,11 +1349,11 @@
             this.allianceNewButton.Name = "allianceNewButton";
             this.allianceNewButton.UseVisualStyleBackColor = true;
             // 
-            // participantRemoveButton
+            // allianceParticipantRemoveButton
             // 
-            resources.ApplyResources(this.participantRemoveButton, "participantRemoveButton");
-            this.participantRemoveButton.Name = "participantRemoveButton";
-            this.participantRemoveButton.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.allianceParticipantRemoveButton, "allianceParticipantRemoveButton");
+            this.allianceParticipantRemoveButton.Name = "allianceParticipantRemoveButton";
+            this.allianceParticipantRemoveButton.UseVisualStyleBackColor = true;
             // 
             // allianceDownButton
             // 
@@ -1803,6 +1815,36 @@
             this.scenarioTabControl.Name = "scenarioTabControl";
             this.scenarioTabControl.SelectedIndex = 0;
             // 
+            // warAttackerIdTextBox
+            // 
+            resources.ApplyResources(this.warAttackerIdTextBox, "warAttackerIdTextBox");
+            this.warAttackerIdTextBox.Name = "warAttackerIdTextBox";
+            // 
+            // warAttackerTypeTextBox
+            // 
+            resources.ApplyResources(this.warAttackerTypeTextBox, "warAttackerTypeTextBox");
+            this.warAttackerTypeTextBox.Name = "warAttackerTypeTextBox";
+            // 
+            // warDefenderIdTextBox
+            // 
+            resources.ApplyResources(this.warDefenderIdTextBox, "warDefenderIdTextBox");
+            this.warDefenderIdTextBox.Name = "warDefenderIdTextBox";
+            // 
+            // warDefenderTypeTextBox
+            // 
+            resources.ApplyResources(this.warDefenderTypeTextBox, "warDefenderTypeTextBox");
+            this.warDefenderTypeTextBox.Name = "warDefenderTypeTextBox";
+            // 
+            // warAttackerIdLabel
+            // 
+            resources.ApplyResources(this.warAttackerIdLabel, "warAttackerIdLabel");
+            this.warAttackerIdLabel.Name = "warAttackerIdLabel";
+            // 
+            // warDefenderIdLabel
+            // 
+            resources.ApplyResources(this.warDefenderIdLabel, "warDefenderIdLabel");
+            this.warDefenderIdLabel.Name = "warDefenderIdLabel";
+            // 
             // ScenarioEditorForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1874,15 +1916,15 @@
         private System.Windows.Forms.TabPage provinceTabPage;
         private System.Windows.Forms.Panel provinceMapPanel;
         private System.Windows.Forms.PictureBox provinceMapPictureBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox testProvinceIdTextBox;
         private System.Windows.Forms.TabPage techTabPage;
         private System.Windows.Forms.TabPage personTabPage;
         private System.Windows.Forms.TabPage countryTabPage;
         private System.Windows.Forms.GroupBox countryInfoGroupBox;
         private System.Windows.Forms.TextBox flagExtTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label aiLabel;
+        private System.Windows.Forms.Label flagExtLabel;
+        private System.Windows.Forms.TextBox aiFileTextBox;
+        private System.Windows.Forms.Label aiFileLabel;
         private System.Windows.Forms.TextBox countryNameTextBox;
         private System.Windows.Forms.Label countryNameLabel;
         private System.Windows.Forms.TabPage tradeTabPage;
@@ -2012,11 +2054,11 @@
         private System.Windows.Forms.Button allianceLeaderButton;
         private System.Windows.Forms.ListBox allianceParticipantListBox;
         private System.Windows.Forms.Button allianceUpButton;
-        private System.Windows.Forms.Button participantAddButton;
+        private System.Windows.Forms.Button allianceParticipantAddButton;
         private System.Windows.Forms.ListBox allianceCountryListBox;
         private System.Windows.Forms.Button allianceRemoveButton;
         private System.Windows.Forms.Button allianceNewButton;
-        private System.Windows.Forms.Button participantRemoveButton;
+        private System.Windows.Forms.Button allianceParticipantRemoveButton;
         private System.Windows.Forms.Button allianceDownButton;
         private System.Windows.Forms.TabPage mainTabPage;
         private System.Windows.Forms.GroupBox optionGroupBox;
@@ -2093,6 +2135,12 @@
         private System.Windows.Forms.Button selectableAddButton;
         private System.Windows.Forms.ListBox unselectableListBox;
         private System.Windows.Forms.ListBox selectableListBox;
+        private System.Windows.Forms.Label warDefenderIdLabel;
+        private System.Windows.Forms.Label warAttackerIdLabel;
+        private System.Windows.Forms.TextBox warDefenderIdTextBox;
+        private System.Windows.Forms.TextBox warDefenderTypeTextBox;
+        private System.Windows.Forms.TextBox warAttackerIdTextBox;
+        private System.Windows.Forms.TextBox warAttackerTypeTextBox;
 
     }
 }

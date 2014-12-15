@@ -166,7 +166,7 @@ namespace HoI2Editor.Forms
         private void InitEditableItems()
         {
             InitMainItems();
-            InitAllianceItems();
+            InitAllianceTab();
             InitRelationItems();
             InitTradeItems();
         }
@@ -177,7 +177,7 @@ namespace HoI2Editor.Forms
         private void UpdateEditableItems()
         {
             UpdateMainItems();
-            UpdateAllianceItems();
+            UpdateAllianceTab();
             UpdateRelationItems();
             UpdateTradeItems();
         }
@@ -2112,10 +2112,12 @@ namespace HoI2Editor.Forms
 
         #region 同盟タブ
 
+        #region 同盟タブ - 共通
+
         /// <summary>
         ///     同盟タブの項目を初期化する
         /// </summary>
-        private void InitAllianceItems()
+        private void InitAllianceTab()
         {
             // 何もしない
         }
@@ -2123,44 +2125,199 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     同盟タブの項目を更新する
         /// </summary>
-        private void UpdateAllianceItems()
+        private void UpdateAllianceTab()
+        {
+            // 同盟情報の編集項目を無効化する
+            DisableAllianceItems();
+
+            // 戦争情報の編集項目を無効化する
+            DisableWarItems();
+
+            // 同盟リストビューを更新する
+            UpdateAllianceListView();
+
+            // 戦争リストビューを更新する
+            UpdateWarListView();
+        }
+
+        #endregion
+
+        #region 同盟タブ - 同盟
+
+        /// <summary>
+        ///     同盟リストビューを更新する
+        /// </summary>
+        private void UpdateAllianceListView()
         {
             ScenarioGlobalData data = Scenarios.Data.GlobalData;
 
-            // 同盟リストビュー
             allianceListView.BeginUpdate();
             allianceListView.Items.Clear();
+
+            // 枢軸国
+            var item = new ListViewItem();
             if (data.Axis != null)
             {
-                // 枢軸国
-                var item = new ListViewItem {Text = Config.GetText("EYR_AXIS"), Tag = data.Axis};
+                item.Text = Config.GetText(!string.IsNullOrEmpty(data.Axis.Name) ? data.Axis.Name : "EYR_AXIS");
+                item.Tag = data.Axis;
                 item.SubItems.Add(Countries.GetListString(data.Axis.Participant));
-                allianceListView.Items.Add(item);
             }
+            else
+            {
+                item.Text = Config.GetText("EYR_AXIS");
+            }
+            allianceListView.Items.Add(item);
+
+            // 連合国
+            item = new ListViewItem();
             if (data.Allies != null)
             {
-                // 連合国
-                var item = new ListViewItem {Text = Config.GetText("EYR_ALLIES"), Tag = data.Allies};
+                item.Text = Config.GetText(!string.IsNullOrEmpty(data.Allies.Name) ? data.Allies.Name : "EYR_ALLIES");
+                item.Tag = data.Allies;
                 item.SubItems.Add(Countries.GetListString(data.Allies.Participant));
-                allianceListView.Items.Add(item);
             }
-            if (data.Allies != null)
+            else
             {
-                // 共産国
-                var item = new ListViewItem {Text = Config.GetText("EYR_COM"), Tag = data.Comintern};
-                item.SubItems.Add(Countries.GetListString(data.Comintern.Participant));
-                allianceListView.Items.Add(item);
+                item.Text = Config.GetText("EYR_ALLIES");
             }
+            allianceListView.Items.Add(item);
+
+            // 共産国
+            item = new ListViewItem();
+            if (data.Comintern != null)
+            {
+                item.Text = Config.GetText(!string.IsNullOrEmpty(data.Comintern.Name) ? data.Comintern.Name : "EYR_COM");
+                item.Tag = data.Comintern;
+                item.SubItems.Add(Countries.GetListString(data.Comintern.Participant));
+            }
+            else
+            {
+                item.Text = Config.GetText("EYR_COM");
+            }
+            allianceListView.Items.Add(item);
+
+            // その他の同盟
             foreach (Alliance alliance in data.Alliances)
             {
-                // その他の同盟
-                var item = new ListViewItem {Text = Resources.Alliance, Tag = alliance};
+                item = new ListViewItem {Text = Resources.Alliance, Tag = alliance};
                 item.SubItems.Add(Countries.GetListString(alliance.Participant));
                 allianceListView.Items.Add(item);
             }
-            allianceListView.EndUpdate();
 
-            // 戦争リストビュー
+            allianceListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     同盟情報の編集項目を有効化する
+        /// </summary>
+        private void EnableAllianceItems()
+        {
+            int count = allianceListView.SelectedIndices.Count;
+            int index = allianceListView.SelectedIndices[0];
+
+            // 枢軸国/連合国/共産国の順番は変更できない
+            allianceUpButton.Enabled = (index > 3);
+            allianceDownButton.Enabled = ((index < count - 1) && (index > 2));
+            allianceRemoveButton.Enabled = true;
+
+            allianceNameLabel.Enabled = true;
+            allianceNameTextBox.Enabled = true;
+            allianceIdLabel.Enabled = true;
+            allianceTypeTextBox.Enabled = true;
+            allianceIdTextBox.Enabled = true;
+            allianceParticipantLabel.Enabled = true;
+            allianceParticipantListBox.Enabled = true;
+            allianceCountryListBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     同盟情報の編集項目を無効化する
+        /// </summary>
+        private void DisableAllianceItems()
+        {
+            allianceUpButton.Enabled = false;
+            allianceDownButton.Enabled = false;
+            allianceRemoveButton.Enabled = false;
+
+            allianceNameLabel.Enabled = false;
+            allianceNameTextBox.Enabled = false;
+            allianceIdLabel.Enabled = false;
+            allianceTypeTextBox.Enabled = false;
+            allianceIdTextBox.Enabled = false;
+            allianceParticipantLabel.Enabled = false;
+            allianceParticipantListBox.Enabled = false;
+            allianceCountryListBox.Enabled = false;
+        }
+
+        /// <summary>
+        ///     同盟情報の編集項目を更新する
+        /// </summary>
+        private void UpdateAllianceItems()
+        {
+            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
+            if (alliance == null)
+            {
+                return;
+            }
+
+            IEnumerable<Country> countries = Countries.Tags;
+
+            // 参加国リストボックス
+            allianceParticipantListBox.BeginUpdate();
+            allianceParticipantListBox.Items.Clear();
+            if (alliance.Participant != null)
+            {
+                foreach (Country country in alliance.Participant)
+                {
+                    allianceParticipantListBox.Items.Add(Countries.GetTagName(country));
+                }
+                countries = countries.Where(country => !alliance.Participant.Contains(country));
+            }
+            allianceParticipantListBox.EndUpdate();
+
+            // 国家リストボックス
+            _allianceFreeCountries = countries.ToList();
+            allianceCountryListBox.BeginUpdate();
+            allianceCountryListBox.Items.Clear();
+            foreach (Country country in _allianceFreeCountries)
+            {
+                allianceCountryListBox.Items.Add(Countries.GetTagName(country));
+            }
+            allianceCountryListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     同盟リストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ編集項目を無効化する
+            if (allianceListView.SelectedItems.Count == 0)
+            {
+                DisableAllianceItems();
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateAllianceItems();
+
+            // 編集項目を有効化する
+            EnableAllianceItems();
+        }
+
+        #endregion
+
+        #region 同盟タブ - 戦争
+
+        /// <summary>
+        ///     戦争リストビューを更新する
+        /// </summary>
+        private void UpdateWarListView()
+        {
+            ScenarioGlobalData data = Scenarios.Data.GlobalData;
+
             warListView.BeginUpdate();
             warListView.Items.Clear();
             foreach (War war in data.Wars)
@@ -2175,45 +2332,175 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     同盟リストビューの選択項目変更時の処理
+        ///     戦争情報の編集項目を有効化する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnAllianceListViewSelectedIndexChanged(object sender, EventArgs e)
+        private void EnableWarItems()
         {
-            // 選択項目がなければ何もしない
-            if (allianceListView.SelectedItems.Count == 0)
+            int count = warListView.SelectedIndices.Count;
+            int index = warListView.SelectedIndices[0];
+            warUpButton.Enabled = (index > 0);
+            warDownButton.Enabled = (index < count - 1);
+            warRemoveButton.Enabled = true;
+
+            warStartDateLabel.Enabled = true;
+            warStartYearTextBox.Enabled = true;
+            warStartMonthTextBox.Enabled = true;
+            warStartDayTextBox.Enabled = true;
+            warEndDateLabel.Enabled = true;
+            warEndYearTextBox.Enabled = true;
+            warEndMonthTextBox.Enabled = true;
+            warEndDayTextBox.Enabled = true;
+            warIdLabel.Enabled = true;
+            warTypeTextBox.Enabled = true;
+            warIdTextBox.Enabled = true;
+            warAttackerLabel.Enabled = true;
+            warAttackerListBox.Enabled = true;
+            warAttackerIdLabel.Enabled = true;
+            warAttackerTypeTextBox.Enabled = true;
+            warAttackerIdTextBox.Enabled = true;
+            warDefenderLabel.Enabled = true;
+            warDefenderListBox.Enabled = true;
+            warDefenderIdLabel.Enabled = true;
+            warDefenderTypeTextBox.Enabled = true;
+            warDefenderIdTextBox.Enabled = true;
+            warCountryListBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     戦争情報の編集項目を無効化する
+        /// </summary>
+        private void DisableWarItems()
+        {
+            warStartYearTextBox.Text = "";
+            warStartMonthTextBox.Text = "";
+            warStartDayTextBox.Text = "";
+            warEndYearTextBox.Text = "";
+            warEndMonthTextBox.Text = "";
+            warEndYearTextBox.Text = "";
+            warTypeTextBox.Text = "";
+            warIdTextBox.Text = "";
+            warAttackerTypeTextBox.Text = "";
+            warAttackerIdTextBox.Text = "";
+            warDefenderTypeTextBox.Text = "";
+            warDefenderIdTextBox.Text = "";
+
+            warAttackerListBox.Items.Clear();
+            warDefenderListBox.Items.Clear();
+            warCountryListBox.Items.Clear();
+
+            warUpButton.Enabled = false;
+            warDownButton.Enabled = false;
+            warRemoveButton.Enabled = false;
+
+            warStartDateLabel.Enabled = false;
+            warStartYearTextBox.Enabled = false;
+            warStartMonthTextBox.Enabled = false;
+            warStartDayTextBox.Enabled = false;
+            warEndDateLabel.Enabled = false;
+            warEndYearTextBox.Enabled = false;
+            warEndMonthTextBox.Enabled = false;
+            warEndDayTextBox.Enabled = false;
+            warIdLabel.Enabled = false;
+            warTypeTextBox.Enabled = false;
+            warIdTextBox.Enabled = false;
+            warAttackerLabel.Enabled = false;
+            warAttackerListBox.Enabled = false;
+            warAttackerIdLabel.Enabled = false;
+            warAttackerTypeTextBox.Enabled = false;
+            warAttackerIdTextBox.Enabled = false;
+            warDefenderLabel.Enabled = false;
+            warDefenderListBox.Enabled = false;
+            warDefenderIdLabel.Enabled = false;
+            warDefenderTypeTextBox.Enabled = false;
+            warDefenderIdTextBox.Enabled = false;
+            warCountryListBox.Enabled = false;
+        }
+
+        /// <summary>
+        ///     戦争情報の編集項目を更新する
+        /// </summary>
+        private void UpdateWarItems()
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
             {
                 return;
             }
 
-            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
-            if (alliance == null)
+            // 開始日時
+            if (war.StartDate != null)
             {
-                return;
+                warStartYearTextBox.Text = IntHelper.ToString(war.StartDate.Year);
+                warStartMonthTextBox.Text = IntHelper.ToString(war.StartDate.Month);
+                warStartDayTextBox.Text = IntHelper.ToString(war.StartDate.Day);
             }
 
-            // 同盟国家リストボックス
-            allianceCountryListBox.BeginUpdate();
-            allianceCountryListBox.Items.Clear();
-            foreach (Country country in Countries.Tags)
+            // 終了日時
+            if (war.EndDate != null)
             {
-                if (alliance.Participant.Contains(country))
+                warEndYearTextBox.Text = IntHelper.ToString(war.EndDate.Year);
+                warEndMonthTextBox.Text = IntHelper.ToString(war.EndDate.Month);
+                warEndDayTextBox.Text = IntHelper.ToString(war.EndDate.Day);
+            }
+
+            // 戦争ID
+            if (war.Id != null)
+            {
+                warTypeTextBox.Text = IntHelper.ToString(war.Id.Type);
+                warIdTextBox.Text = IntHelper.ToString(war.Id.Id);
+            }
+
+            // 攻撃側ID
+            if ((war.Attackers != null) && (war.Attackers.Id != null))
+            {
+                warAttackerTypeTextBox.Text = IntHelper.ToString(war.Attackers.Id.Type);
+                warAttackerIdTextBox.Text = IntHelper.ToString(war.Attackers.Id.Id);
+            }
+
+            // 防御側ID
+            if ((war.Defenders != null) && (war.Defenders.Id != null))
+            {
+                warDefenderTypeTextBox.Text = IntHelper.ToString(war.Defenders.Id.Type);
+                warDefenderIdTextBox.Text = IntHelper.ToString(war.Defenders.Id.Id);
+            }
+
+            IEnumerable<Country> countries = Countries.Tags;
+
+            // 攻撃側リストボックス
+            warAttackerListBox.BeginUpdate();
+            warAttackerListBox.Items.Clear();
+            if ((war.Attackers != null) && (war.Attackers.Participant != null))
+            {
+                foreach (Country country in war.Attackers.Participant)
                 {
-                    continue;
+                    warAttackerListBox.Items.Add(Countries.GetTagName(country));
                 }
-                allianceCountryListBox.Items.Add(Countries.GetTagName(country));
+                countries = countries.Where(country => !war.Attackers.Participant.Contains(country));
             }
-            allianceCountryListBox.EndUpdate();
+            warAttackerListBox.EndUpdate();
 
-            // 同盟参加国リストボックス
-            allianceParticipantListBox.BeginUpdate();
-            allianceParticipantListBox.Items.Clear();
-            foreach (Country country in alliance.Participant)
+            // 防御側リストボックス
+            warDefenderListBox.BeginUpdate();
+            warDefenderListBox.Items.Clear();
+            if ((war.Defenders != null) && (war.Defenders.Participant != null))
             {
-                allianceParticipantListBox.Items.Add(Countries.GetTagName(country));
+                foreach (Country country in war.Defenders.Participant)
+                {
+                    warDefenderListBox.Items.Add(Countries.GetTagName(country));
+                }
+                countries = countries.Where(country => !war.Defenders.Participant.Contains(country));
             }
-            allianceParticipantListBox.EndUpdate();
+            warDefenderListBox.EndUpdate();
+
+            // 国家リストボックス
+            _warFreeContries = countries.ToList();
+            warCountryListBox.BeginUpdate();
+            warCountryListBox.Items.Clear();
+            foreach (Country country in _warFreeContries)
+            {
+                warCountryListBox.Items.Add(Countries.GetTagName(country));
+            }
+            warCountryListBox.EndUpdate();
         }
 
         /// <summary>
@@ -2223,49 +2510,21 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnWarListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            // 選択項目がなければ何もしない
+            // 選択項目がなければ編集項目を無効化する
             if (warListView.SelectedItems.Count == 0)
             {
+                DisableWarItems();
                 return;
             }
 
-            var war = warListView.SelectedItems[0].Tag as War;
-            if (war == null)
-            {
-                return;
-            }
+            // 編集項目を更新する
+            UpdateWarItems();
 
-            // 戦争国家リストボックス
-            warCountryListBox.BeginUpdate();
-            warCountryListBox.Items.Clear();
-            foreach (Country country in Countries.Tags)
-            {
-                if (war.Attackers.Participant.Contains(country) || war.Defenders.Participant.Contains(country))
-                {
-                    continue;
-                }
-                warCountryListBox.Items.Add(Countries.GetTagName(country));
-            }
-            warCountryListBox.EndUpdate();
-
-            // 攻撃側リストボックス
-            warAttackerListBox.BeginUpdate();
-            warAttackerListBox.Items.Clear();
-            foreach (Country country in war.Attackers.Participant)
-            {
-                warAttackerListBox.Items.Add(Countries.GetTagName(country));
-            }
-            warAttackerListBox.EndUpdate();
-
-            // 防御側リストボックス
-            warDefenderListBox.BeginUpdate();
-            warDefenderListBox.Items.Clear();
-            foreach (Country country in war.Defenders.Participant)
-            {
-                warDefenderListBox.Items.Add(Countries.GetTagName(country));
-            }
-            warDefenderListBox.EndUpdate();
+            // 編集項目を有効化する
+            EnableWarItems();
         }
+
+        #endregion
 
         #endregion
 
@@ -2817,7 +3076,7 @@ namespace HoI2Editor.Forms
         private void OnTextBox1Validated(object sender, EventArgs e)
         {
             ushort id;
-            if (!ushort.TryParse(textBox1.Text, out id))
+            if (!ushort.TryParse(testProvinceIdTextBox.Text, out id))
             {
                 return;
             }
