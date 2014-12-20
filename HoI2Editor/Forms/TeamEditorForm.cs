@@ -220,7 +220,7 @@ namespace HoI2Editor.Forms
             Config.Load();
 
             // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
-            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18))};
+            teamListView.SmallImageList = new ImageList { ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18)) };
 
             // 編集項目を初期化する
             InitEditableItems();

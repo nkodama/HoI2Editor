@@ -463,17 +463,17 @@ namespace HoI2Editor.Models
         /// </summary>
         public static bool[,] SectionTable =
         {
-            {true, true, true, true, true, true, true}, // 経済
-            {false, false, false, false, false, true, true}, // 諜報
-            {false, false, false, false, false, true, true}, // 外交
-            {true, true, true, true, true, true, true}, // 戦闘
-            {false, false, false, false, false, true, true}, // 任務
-            {false, false, false, false, false, true, true}, // 国家
-            {true, true, true, true, true, true, true}, // 研究
-            {false, false, false, false, false, true, true}, // 貿易
-            {false, false, false, false, false, true, true}, // AI
-            {false, false, false, false, false, true, true}, // MOD
-            {false, false, false, false, false, true, true} // マップ
+            { true, true, true, true, true, true, true }, // 経済
+            { false, false, false, false, false, true, true }, // 諜報
+            { false, false, false, false, false, true, true }, // 外交
+            { true, true, true, true, true, true, true }, // 戦闘
+            { false, false, false, false, false, true, true }, // 任務
+            { false, false, false, false, false, true, true }, // 国家
+            { true, true, true, true, true, true, true }, // 研究
+            { false, false, false, false, false, true, true }, // 貿易
+            { false, false, false, false, false, true, true }, // AI
+            { false, false, false, false, false, true, true }, // MOD
+            { false, false, false, false, false, true, true } // マップ
         };
 
         /// <summary>
@@ -1309,793 +1309,793 @@ namespace HoI2Editor.Models
         /// </summary>
         public static bool[,] ItemTable =
         {
-            {true, true, true, true, true, true, true}, // ICからTCへの変換効率
-            {true, true, true, true, true, true, true}, // ICから物資への変換効率
-            {true, true, true, true, true, true, true}, // ICから消費財への変換効率
-            {true, true, true, true, true, true, true}, // ICから資金への変換効率
-            {false, false, true, true, true, false, false}, // 不満度減少速度
-            {false, false, false, false, false, true, true}, // 最小実効ICの比率
-            {false, false, false, false, false, true, true}, // 最小実効IC
-            {false, false, false, false, false, true, true}, // 不満度低下補正
-            {true, true, true, true, true, true, true}, // 最大ギアリングボーナス
-            {true, true, true, true, true, true, true}, // ギアリングボーナスの増加値
-            {false, false, true, true, true, false, false}, // 連続生産時の資源消費増加
-            {false, false, true, true, true, false, false}, // IC不足時のギアリングボーナス減少値
-            {true, true, true, true, true, true, true}, // 非中核州のIC補正
-            {true, true, true, true, true, true, true}, // 占領地のIC補正
-            {false, false, false, false, false, true, true}, // 属国のIC補正
-            {false, false, false, false, false, true, true}, // 非中核州の資源補正
-            {false, false, false, false, false, true, true}, // 占領地の資源補正
-            {false, false, false, false, false, true, true}, // 非中核州の資源補正(AI)
-            {false, false, false, false, false, true, true}, // 属国の資源補正
-            {true, true, true, true, true, true, true}, // 未配備師団のTC負荷
-            {true, true, true, true, true, true, true}, // 占領地のTC負荷
-            {true, true, true, true, true, true, true}, // 陸軍師団のTC負荷補正
-            {true, true, true, true, true, true, true}, // 空軍師団のTC負荷補正
-            {true, true, true, true, true, true, true}, // 海軍師団のTC負荷補正
-            {true, true, true, true, true, true, true}, // パルチザンのTC負荷
-            {true, true, true, true, true, true, true}, // 攻勢時のTC負荷係数
-            {true, true, true, true, true, true, true}, // プロヴィンス開発のTC負荷
-            {true, true, true, true, true, true, true}, // 未配備の基地のTC負荷
-            {true, true, true, true, true, true, true}, // 中核州の人的資源補正
-            {true, true, true, true, true, true, true}, // 非中核州の人的資源補正
-            {true, true, true, true, true, true, true}, // 海外州の人的資源補正
-            {false, false, false, false, false, true, true}, // 属国の人的資源補正
-            {false, false, false, false, false, true, true}, // 戦時の海外州の人的資源補正
-            {false, false, false, false, false, true, true}, // 平時の人的資源補正
-            {false, false, false, false, false, true, true}, // 戦時の人的資源補正
-            {false, false, false, false, false, true, true}, // 人的資源の老化率
-            {true, true, true, true, true, false, false}, // 政策スライダーに影響を与えるためのIC比率
-            {true, true, true, true, true, true, true}, // 戦闘による損失からの復帰係数
-            {true, true, true, true, true, true, true}, // 補充に必要な人的資源の比率
-            {true, true, true, true, true, true, true}, // 補充に必要なICの比率
-            {true, true, true, true, true, true, true}, // 補充に必要な時間の比率
-            {true, true, true, true, true, true, true}, // 改良に必要なICの比率
-            {true, true, true, true, true, true, true}, // 改良に必要な時間の比率
-            {false, false, false, false, false, true, true}, // 改良のための補充係数
-            {true, true, true, true, true, true, true}, // ナショナリズムの初期値
-            {false, false, false, true, true, false, false}, // 人的資源によるナショナリズムの補正値
-            {false, false, false, false, false, true, true}, // 人的資源によるナショナリズムの補正値
-            {false, false, false, false, false, true, true}, // ナショナリズム最大値
-            {false, false, false, false, false, true, true}, // 最大反乱率
-            {true, true, true, true, true, true, true}, // 月ごとのナショナリズムの減少値
-            {true, true, true, true, true, true, true}, // 師団譲渡後配備可能になるまでの時間
-            {true, true, true, true, true, true, true}, // 未配備旅団のTC負荷
-            {true, true, true, true, true, false, false}, // 非同盟国に師団を売却/譲渡
-            {false, true, false, false, false, false, false}, // 諜報任務の間隔
-            {false, true, false, false, false, false, false}, // 諜報レベルの増加間隔
-            {false, true, false, false, false, false, false}, // 国内の諜報活動を発見する確率
-            {false, true, false, false, false, false, false}, // 諜報任務発覚時の友好度低下量
-            {false, true, false, false, false, false, false}, // 第三国の諜報活動を報告
-            {false, true, false, false, false, false, false}, // 諜報任務の隣国補正
-            {false, true, false, false, false, false, false}, // 情報の正確さ補正
-            {false, true, false, false, false, false, false}, // 平時のAIの攻撃的諜報活動
-            {false, true, false, false, false, false, false}, // 諜報コスト補正の最大IC
-            {false, true, false, false, false, false, false}, // AIの諜報コスト補正
-            {false, true, false, false, false, false, false}, // AIの外交コスト補正
-            {false, true, false, false, false, false, false}, // AIの外交干渉頻度補正
-            {false, false, true, true, true, false, false}, // 建物修復コスト補正
-            {false, false, true, true, true, false, false}, // 建物修復時間補正
-            {false, false, true, true, true, false, false}, // プロヴィンス効率上昇時間
-            {false, false, false, true, true, false, false}, // 中核プロヴィンス効率上昇時間
-            {false, false, true, true, true, false, false}, // ライン維持コスト補正
-            {false, false, true, true, true, false, false}, // ライン開始時間
-            {false, false, true, true, true, false, false}, // ライン改良時間
-            {false, false, true, true, true, false, false}, // ライン調整コスト補正
-            {false, false, true, true, true, false, false}, // ライン調整資源補正
-            {false, false, true, true, true, false, false}, // 人的資源老化補正
-            {false, false, true, true, true, false, false}, // 船団襲撃時物資使用量補正
-            {false, false, true, true, true, false, false}, // 海軍の待機時物資使用量補正
-            {false, false, true, true, true, false, false}, // 海軍の移動時物資使用量補正
-            {false, false, true, true, true, false, false}, // 海軍の戦闘時物資使用量補正
-            {false, false, true, true, true, false, false}, // 空軍の待機時物資使用量補正
-            {false, false, true, true, true, false, false}, // 空軍の移動時物資使用量補正
-            {false, false, true, true, true, false, false}, // 空軍の戦闘時物資使用量補正
-            {false, false, true, true, true, false, false}, // 空軍の爆撃時物資使用量補正
-            {false, false, true, true, true, false, false}, // 陸軍の待機時物資使用量補正
-            {false, false, true, true, true, false, false}, // 陸軍の移動時物資使用量補正
-            {false, false, true, true, true, false, false}, // 陸軍の戦闘時物資使用量補正
-            {false, false, true, true, true, false, false}, // 陸軍の砲撃時物資使用量補正
-            {false, false, true, true, true, false, false}, // 陸軍の物資備蓄量
-            {false, false, true, true, true, false, false}, // 空軍の物資備蓄量
-            {false, false, true, true, true, false, false}, // 海軍の物資備蓄量
-            {false, false, false, true, true, false, false}, // 陸軍の物資再備蓄速度
-            {false, false, false, true, true, false, false}, // 空軍の物資再備蓄速度
-            {false, false, false, true, true, false, false}, // 海軍の物資再備蓄速度
-            {false, false, true, true, true, false, false}, // 合成石油変換係数
-            {false, false, true, true, true, false, false}, // 合成希少資源変換係数
-            {false, false, true, true, true, false, false}, // 軍隊の給料
-            {false, false, true, true, true, false, false}, // 最大諜報費比率
-            {false, false, true, true, true, false, false}, // 最大研究費比率
-            {false, false, true, true, true, false, false}, // 軍隊の給料不足時の消耗補正
-            {false, false, true, true, true, false, false}, // 軍隊の給料不足時の不満度補正
-            {false, false, true, true, true, false, false}, // 原子炉維持コスト
-            {false, false, true, true, true, false, false}, // 原子力発電所維持コスト
-            {false, false, true, true, true, false, false}, // 合成石油工場維持コスト
-            {false, false, true, true, true, false, false}, // 合成希少資源工場維持コスト
-            {false, false, true, true, true, false, false}, // 海軍情報の存続期間
-            {false, false, true, true, true, false, false}, // 船団攻撃回避時間
-            {false, false, true, true, true, false, false}, // 船団攻撃妨害時間
-            {false, false, true, true, true, false, false}, // 自動貿易に必要な輸送船団割合
-            {false, false, true, true, true, false, false}, // 諜報維持コスト
-            {false, false, true, true, true, false, false}, // スパイ発見確率
-            {false, false, false, true, true, false, false}, // 不満度によるクーデター成功率修正
-            {false, false, true, true, true, false, false}, // インフラによるプロヴィンス効率補正
-            {false, false, true, true, true, false, false}, // 人的資源の消費財生産補正
-            {false, false, true, true, true, false, false}, // スライダー移動の間隔
-            {false, false, true, true, true, false, false}, // 海外プロヴィンスへの配置の必要IC
-            {false, false, true, true, true, false, false}, // 原子力発電量
-            {false, false, true, true, true, false, false}, // インフラの自然回復率
-            {false, false, true, true, true, false, false}, // スライダー移動時の最大不満度
-            {false, false, true, true, true, false, false}, // スライダー移動時の最小不満度
-            {false, false, true, true, true, false, false}, // スライダー移動可能な最大不満度
-            {false, false, true, true, true, false, false}, // 工場集中ボーナス
-            {false, false, true, false, false, false, false}, // 輸送艦変換係数
-            {false, false, false, true, true, false, false}, // 輸送船団変換係数
-            {false, false, false, true, true, false, false}, // 護衛船団変換係数
-            {false, false, true, true, true, false, false}, // 閣僚変更遅延日数
-            {false, false, true, true, true, false, false}, // 閣僚変更遅延日数(イベント)
-            {false, false, true, true, true, false, false}, // 国策変更遅延日数
-            {false, false, true, true, true, false, false}, // 国策変更遅延日数(イベント)
-            {false, false, true, true, true, false, false}, // 指揮官変更遅延日数
-            {false, false, true, true, true, false, false}, // 国策変更時の不満度上昇量
-            {false, false, true, true, true, false, false}, // 閣僚変更時の不満度上昇量
-            {false, false, true, true, true, false, false}, // 反乱が発生する最低不満度
-            {false, false, true, true, true, false, false}, // 不満度による反乱軍発生率係数
-            {false, false, false, true, true, false, false}, // 輸送艦最大付属装備数
-            {false, false, false, true, true, false, false}, // 潜水艦最大付属装備数
-            {false, false, false, true, true, false, false}, // 原子力潜水艦最大付属装備数
-            {false, false, false, true, true, false, false}, // 駆逐艦最大付属装備数
-            {false, false, false, true, true, false, false}, // 軽巡洋艦最大付属装備数
-            {false, false, false, true, true, false, false}, // 重巡洋艦最大付属装備数
-            {false, false, false, true, true, false, false}, // 巡洋戦艦最大付属装備数
-            {false, false, false, true, true, false, false}, // 戦艦最大付属装備数
-            {false, false, false, true, true, false, false}, // 軽空母最大付属装備数
-            {false, false, false, true, true, false, false}, // 空母最大付属装備数
-            {false, false, false, true, true, false, false}, // プレイヤーの国策変更を許可
-            {false, false, false, false, false, true, true}, // 非同盟国に師団を売却
-            {false, false, false, false, false, true, true}, // 非同盟国に青写真を売却
-            {false, false, false, false, false, true, true}, // 非同盟国にプロヴィンスを売却
-            {false, false, false, false, false, true, true}, // 占領中の同盟国の中核州返還
-            {false, false, false, false, false, true, true}, // 建物修復速度補正
-            {false, false, false, false, false, true, true}, // 資源回復速度補正
-            {false, false, false, false, false, true, true}, // 資源備蓄上限補正
-            {false, false, false, false, false, true, true}, // 物資/燃料備蓄上限補正
-            {false, false, false, false, false, true, true}, // 超過備蓄損失割合
-            {false, false, false, false, false, true, true}, // 資源備蓄上限値
-            {false, false, false, false, false, true, true}, // 物資/燃料備蓄上限値
-            {false, false, false, false, false, true, true}, // 理想物資/燃料備蓄比率
-            {false, false, false, false, false, true, true}, // 最大人的資源
-            {false, false, false, false, false, true, true}, // 船団輸送能力
-            {false, false, false, false, false, true, true}, // 陸軍の待機時物資使用量補正
-            {false, false, false, false, false, true, true}, // 陸軍の戦闘時物資使用量補正
-            {false, false, false, false, false, true, true}, // 陸軍の待機時燃料使用量補正
-            {false, false, false, false, false, true, true}, // 陸軍の戦闘時燃料使用量補正
-            {false, false, false, false, false, true, true}, // 空軍の待機時物資使用量補正
-            {false, false, false, false, false, true, true}, // 空軍の戦闘時物資使用量補正
-            {false, false, false, false, false, true, true}, // 空軍/海軍の待機時燃料使用量補正
-            {false, false, false, false, false, true, true}, // 空軍の戦闘時燃料使用量補正
-            {false, false, false, false, false, true, true}, // 海軍の待機時物資使用量補正
-            {false, false, false, false, false, true, true}, // 海軍の戦闘時物資使用量補正
-            {false, false, false, false, false, true, true}, // 海軍の非移動時燃料使用量補正
-            {false, false, false, false, false, true, true}, // 海軍の戦闘時燃料使用量補正
-            {false, false, false, false, false, true, true}, // 輸送艦の輸送船団への変換比率
-            {false, false, false, false, false, true, true}, // 駆逐艦の護衛船団への変換比率
-            {false, false, false, false, false, true, true}, // 軽巡洋艦の護衛船団への変換比率
-            {false, false, false, false, false, true, true}, // 軽空母の護衛船団への変換比率
-            {false, false, false, false, false, true, true}, // 生産ラインの編集
-            {false, false, false, false, false, true, true}, // ユニット改良時のギアリングボーナス減少比率
-            {false, false, false, false, false, true, true}, // 旅団改良時のギアリングボーナス減少比率
-            {false, false, false, false, false, true, true}, // 中核州核攻撃時の不満度上昇係数
-            {false, false, false, false, false, true, true}, // 物資/消費財不足時の最大不満度上昇値
-            {false, false, false, false, false, false, true}, // 核兵器生産補正
-            {false, false, false, false, false, false, true}, // 同盟国に対する船団システム
-            {false, false, false, false, false, false, true}, // 不要な資源/燃料の回収比率
-            {false, false, false, false, false, true, true}, // 諜報任務の間隔
-            {false, false, false, false, false, true, true}, // 諜報レベルの増加間隔
-            {false, false, false, false, false, true, true}, // 国内の諜報活動を発見する確率
-            {false, false, false, false, false, true, true}, // 諜報任務発覚時の友好度低下量
-            {false, false, false, false, false, true, true}, // 諜報任務の距離補正
-            {false, false, false, false, false, true, true}, // 諜報任務の隣国補正
-            {false, false, false, false, false, true, true}, // 諜報レベルの距離補正
-            {false, false, false, false, false, true, true}, // 諜報レベル10超過時の距離補正
-            {false, false, false, false, false, true, true}, // 情報の正確さ補正
-            {false, false, false, false, false, true, true}, // 諜報コストのIC補正
-            {false, false, false, false, false, true, true}, // 諜報コスト補正の最小IC
-            {false, false, false, false, false, true, true}, // 諜報コスト補正の最大IC
-            {false, false, false, false, false, true, true}, // 諜報レベル10超過時追加維持コスト
-            {false, false, false, false, false, true, true}, // 諜報レベル10超過時増加コスト
-            {false, false, false, false, false, true, true}, // 第三国の諜報活動を報告
-            {false, false, false, false, false, true, true}, // 諜報資金割り当て補正
-            {false, false, false, false, false, true, true}, // 外交官派遣間隔
-            {false, false, false, false, false, true, true}, // スライダー移動の間隔
-            {false, false, false, false, false, true, true}, // 政策スライダーに影響を与えるためのIC比率
-            {false, false, false, false, false, true, true}, // 閣僚交代時に閣僚特性を適用する
-            {false, false, false, false, false, true, true}, // 貿易キャンセル時の友好度低下
-            {false, false, false, false, false, true, true}, // 永久貿易キャンセル時の友好度低下
-            {false, false, false, false, false, true, true}, // 属国が宗主国の同盟に強制参加する
-            {false, false, false, false, false, true, true}, // 属国の属国が設立できるか
-            {false, false, false, false, false, true, true}, // 領有権主張の変更
-            {false, false, false, false, false, true, true}, // 領有権主張時の好戦性上昇値
-            {false, false, false, false, false, true, true}, // 領有権撤回時の好戦性減少値
-            {false, false, false, false, false, true, true}, // 宣戦布告された時に対抗陣営へ自動加盟
-            {false, false, false, false, false, true, true}, // 国家元首/政府首班の交代
-            {false, false, false, false, false, true, true}, // クーデター発生時に兄弟国へ変更
-            {false, false, false, false, false, true, true}, // 独立可能国設定
-            {true, true, true, true, true, true, true}, // 陸軍経験値入手係数
-            {true, true, true, true, true, true, true}, // 海軍経験値入手係数
-            {true, true, true, true, true, true, true}, // 空軍経験値入手係数
-            {false, false, false, false, false, true, true}, // 空軍空戦時経験値入手係数
-            {true, true, true, true, true, true, true}, // 師団経験値入手係数
-            {true, true, true, true, true, true, true}, // 指揮官経験値入手係数
-            {true, true, true, true, true, true, true}, // 消耗係数
-            {false, false, true, true, true, false, false}, // 無補給時の自然条件消耗係数
-            {false, false, true, true, true, false, false}, // 無補給時の消耗係数
-            {true, true, true, true, true, true, true}, // 基地戦闘補正
-            {true, true, true, true, true, false, false}, // 艦砲射撃戦闘補正
-            {false, false, false, false, true, false, false}, // 艦砲射撃戦闘効率上限
-            {true, true, true, true, true, true, true}, // 強襲上陸ペナルティ
-            {true, true, true, true, true, true, true}, // 側面攻撃ペナルティ
-            {true, true, true, true, true, true, true}, // 攻撃側諸兵科連合ボーナス
-            {true, true, true, true, true, true, true}, // 防御側諸兵科連合ボーナス
-            {true, true, true, true, true, true, true}, // 奇襲攻撃ペナルティ
-            {true, true, true, true, true, true, true}, // 陸軍指揮上限ペナルティ
-            {true, true, true, true, true, true, true}, // 空軍指揮上限ペナルティ
-            {true, true, true, true, true, true, true}, // 海軍指揮上限ペナルティ
-            {true, true, true, true, true, true, true}, // 多方面攻撃補正
-            {true, true, true, true, true, true, true}, // 包囲攻撃ペナルティ
-            {true, true, true, true, true, true, true}, // 要塞攻撃ペナルティ
-            {true, true, true, true, true, true, true}, // 沿岸要塞攻撃ペナルティ
-            {false, false, false, false, false, true, true}, // 装甲ユニットの都市攻撃ペナルティ
-            {true, true, true, true, true, true, true}, // 国民不満度ペナルティ
-            {true, true, true, true, true, false, false}, // 補給不足ペナルティ
-            {false, false, false, false, false, true, true}, // 陸軍物資不足ペナルティ
-            {false, false, false, false, false, true, true}, // 空軍物資不足ペナルティ
-            {false, false, false, false, false, true, true}, // 海軍物資不足ペナルティ
-            {false, false, false, false, false, true, true}, // 陸軍燃料不足ペナルティ
-            {false, false, false, false, false, true, true}, // 空軍燃料不足ペナルティ
-            {false, false, false, false, false, true, true}, // 海軍燃料不足ペナルティ
-            {true, true, true, true, true, true, true}, // レーダー補正
-            {false, false, true, true, true, false, false}, // レーダー/対空砲複合補正
-            {true, true, true, true, true, true, true}, // 爆撃機迎撃ボーナス
-            {true, true, false, false, false, true, true}, // 空軍スタックペナルティ
-            {false, false, true, true, true, false, false}, // 空軍スタックペナルティ
-            {true, true, true, true, true, true, true}, // 海軍スタックペナルティ
-            {true, true, true, true, true, true, true}, // 陸軍元帥指揮上限
-            {true, true, true, true, true, true, true}, // 陸軍大将指揮上限
-            {true, true, true, true, true, true, true}, // 陸軍中将指揮上限
-            {true, true, true, true, true, true, true}, // 陸軍少将指揮上限
-            {true, true, true, true, true, true, true}, // 空軍元帥指揮上限
-            {true, true, true, true, true, true, true}, // 空軍大将指揮上限
-            {true, true, true, true, true, true, true}, // 空軍中将指揮上限
-            {true, true, true, true, true, true, true}, // 空軍少将指揮上限
-            {true, true, true, true, true, true, true}, // 海軍元帥指揮上限
-            {true, true, true, true, true, true, true}, // 海軍大将指揮上限
-            {true, true, true, true, true, true, true}, // 海軍中将指揮上限
-            {true, true, true, true, true, true, true}, // 海軍少将指揮上限
-            {true, true, true, true, true, true, true}, // 司令部指揮上限係数
-            {true, true, true, true, true, true, true}, // 輸送船団護衛係数
-            {false, false, false, false, false, true, true}, // 輸送船団護衛モデル
-            {true, true, true, true, true, true, true}, // 戦闘後命令遅延時間
-            {false, false, true, true, true, false, false}, // 陸軍命令遅延時間
-            {false, false, true, true, true, false, false}, // 海軍命令遅延時間
-            {false, false, true, true, true, false, false}, // 空軍命令遅延時間
-            {true, true, true, true, true, true, true}, // 空軍最大スタックサイズ
-            {false, false, false, false, false, true, true}, // 空戦最小戦闘時間
-            {false, false, false, false, false, true, true}, // 港湾攻撃最小戦闘時間
-            {false, false, false, false, false, true, true}, // 戦略爆撃最小戦闘時間
-            {false, false, false, false, false, true, true}, // 地上爆撃最小戦闘時間
-            {true, true, true, true, true, true, true}, // 経験値補正
-            {true, true, true, true, true, true, true}, // 海軍基地戦略爆撃係数
-            {true, true, true, true, true, true, true}, // 空軍基地戦略爆撃係数
-            {true, true, true, true, true, true, true}, // 対空砲戦略爆撃係数
-            {true, true, true, true, true, true, true}, // ロケット試験場戦略爆撃係数
-            {true, true, true, true, true, true, true}, // 原子炉戦略爆撃係数
-            {true, true, true, true, true, true, true}, // レーダー戦略爆撃係数
-            {true, true, true, true, true, true, true}, // インフラ戦略爆撃係数
-            {true, true, true, true, true, true, true}, // IC戦略爆撃係数
-            {true, true, true, true, true, true, true}, // 資源戦略爆撃係数
-            {false, false, true, true, true, false, false}, // 合成石油工場戦略爆撃係数
-            {true, true, true, true, true, true, false}, // 対地防御効率補正
-            {true, true, true, true, true, true, false}, // 基本回避率(防御回数あり)
-            {true, true, true, true, true, true, false}, // 基本回避率(防御回数なし)
-            {false, false, false, false, false, false, true}, // 陸軍基本回避率(防御回数あり)
-            {false, false, false, false, false, false, true}, // 空軍基本回避率(防御回数あり)
-            {false, false, false, false, false, false, true}, // 海軍基本回避率(防御回数あり)
-            {false, false, false, false, false, false, true}, // 陸軍基本回避率(防御回数なし)
-            {false, false, false, false, false, false, true}, // 空軍基本回避率(防御回数なし)
-            {false, false, false, false, false, false, true}, // 海軍基本回避率(防御回数なし)
-            {true, true, true, true, true, true, true}, // 地形特性獲得可能性
-            {true, true, true, true, true, true, true}, // 戦闘特性獲得可能性
-            {true, true, true, true, true, true, true}, // 地形特性補正
-            {false, false, false, false, false, true, true}, // 類似地形特性補正
-            {true, true, true, true, true, true, true}, // 戦闘特性補正
-            {false, false, false, false, false, false, true}, // 陸軍指揮官スキル補正
-            {false, false, false, false, false, false, true}, // 空軍指揮官スキル補正
-            {false, false, false, false, false, false, true}, // 海軍指揮官スキル補正
-            {true, true, true, true, true, true, true}, // 指揮官死亡確率
-            {true, true, true, true, true, false, false}, // 空軍組織率被ダメージ
-            {true, true, false, false, false, false, false}, // 空軍戦力被ダメージ(組織力)
-            {true, true, false, false, false, false, false}, // 空軍戦力被ダメージ
-            {false, false, false, false, false, false, true}, // 陸軍最小組織率被ダメージ
-            {false, false, false, false, false, false, true}, // 陸軍組織率被ダメージ(装甲/非装甲同士)
-            {false, false, false, false, false, false, true}, // 陸軍組織率被ダメージ(装甲対非装甲)
-            {false, false, false, false, false, false, true}, // 陸軍最小戦力被ダメージ
-            {false, false, false, false, false, false, true}, // 陸軍戦力被ダメージ(装甲/非装甲同士)
-            {false, false, false, false, false, false, true}, // 陸軍戦力被ダメージ(装甲対非装甲)
-            {false, false, false, false, false, false, true}, // 空軍最小組織率被ダメージ
-            {false, false, false, false, false, false, true}, // 空軍追加組織率被ダメージ
-            {false, false, false, false, false, false, true}, // 空軍最小戦力被ダメージ
-            {false, false, false, false, false, false, true}, // 空軍追加戦力被ダメージ
-            {false, false, false, false, false, false, true}, // 空軍戦力被ダメージ(対塹壕)
-            {false, false, false, false, false, false, true}, // 海軍最小組織率被ダメージ
-            {false, false, false, false, false, false, true}, // 海軍追加組織率被ダメージ
-            {false, false, false, false, false, false, true}, // 海軍最小戦力被ダメージ
-            {false, false, false, false, false, false, true}, // 海軍追加戦力被ダメージ
-            {false, false, false, false, false, true, true}, // 空軍対陸軍戦力被ダメージ(組織率)
-            {false, false, false, false, false, true, true}, // 空軍対陸軍組織率被ダメージ
-            {false, false, false, false, false, true, true}, // 空軍対陸軍戦力被ダメージ
-            {false, false, false, false, false, true, true}, // 陸軍対陸軍組織率被ダメージ(組織率)
-            {false, false, false, false, false, false, true}, // 陸軍対陸軍組織率被ダメージ(都市)
-            {false, false, false, false, false, false, true}, // 陸軍対陸軍組織率被ダメージ(要塞)
-            {false, false, false, false, false, false, true}, // 必要要塞規模
-            {false, false, false, false, false, true, true}, // 陸軍対陸軍戦力被ダメージ
-            {false, false, false, false, false, true, true}, // 空軍対空軍組織率被ダメージ
-            {false, false, false, false, false, true, true}, // 空軍対空軍戦力被ダメージ
-            {false, false, false, false, false, true, true}, // 陸軍対空軍組織率被ダメージ
-            {false, false, false, false, false, true, true}, // 陸軍対空軍戦力被ダメージ
-            {false, false, false, false, false, true, true}, // 海軍対空軍組織率被ダメージ
-            {false, false, false, false, false, true, true}, // 海軍対空軍戦力被ダメージ
-            {false, false, false, false, false, true, true}, // 潜水艦対空軍組織率被ダメージ
-            {false, false, false, false, false, true, true}, // 潜水艦対空軍戦力被ダメージ
-            {false, false, false, false, false, true, true}, // 空軍対海軍組織率被ダメージ
-            {false, false, false, false, false, true, true}, // 空軍対海軍戦力被ダメージ
-            {false, false, false, false, false, true, true}, // 海軍対海軍組織率被ダメージ
-            {false, false, false, false, false, true, true}, // 海軍対海軍戦力被ダメージ
-            {false, false, false, false, false, true, true}, // 潜水艦対海軍組織率被ダメージ
-            {false, false, false, false, false, true, true}, // 潜水艦対海軍戦力被ダメージ
-            {false, true, false, false, false, false, false}, // 潜水艦組織率被ダメージ
-            {false, true, false, false, false, false, false}, // 潜水艦戦力被ダメージ
-            {false, true, false, false, false, true, true}, // 潜水艦発見補正
-            {false, false, true, true, true, false, false}, // 空軍対陸軍組織率被ダメージ
-            {false, false, true, true, true, false, false}, // 空軍対陸軍戦力被ダメージ
-            {false, false, true, true, true, false, false}, // 砲撃ダメージ補正(陸上部隊)
-            {false, false, true, true, true, false, false}, // 砲撃ダメージ補正(インフラ)
-            {false, false, true, true, true, false, false}, // 砲撃ダメージ補正(IC)
-            {false, false, true, true, true, false, false}, // 砲撃ダメージ補正(資源)
-            {false, false, true, true, true, false, false}, // 砲撃中の被攻撃ペナルティ
-            {false, false, true, true, true, false, false}, // 砲撃戦力ダメージ
-            {false, false, true, true, true, false, false}, // 砲撃組織率ダメージ
-            {false, false, true, true, true, false, false}, // 陸軍対陸軍戦力被ダメージ
-            {false, false, true, true, true, false, false}, // 陸軍対陸軍組織率被ダメージ
-            {false, false, true, true, true, false, false}, // 陸軍対空軍戦力被ダメージ
-            {false, false, true, true, true, false, false}, // 陸軍対空軍組織率被ダメージ
-            {false, false, true, true, true, false, false}, // 海軍対空軍戦力被ダメージ
-            {false, false, true, true, true, false, false}, // 海軍対空軍組織率被ダメージ
-            {false, false, true, true, true, false, false}, // 空軍対空軍戦力被ダメージ
-            {false, false, true, true, true, false, false}, // 空軍対空軍組織率被ダメージ
-            {false, false, true, true, true, false, false}, // 海軍対海軍戦力被ダメージ
-            {false, false, true, true, true, false, false}, // 海軍対海軍組織率被ダメージ
-            {false, false, true, true, true, false, false}, // 空軍対海軍戦力被ダメージ
-            {false, false, true, true, true, false, false}, // 空軍対海軍組織率被ダメージ
-            {false, false, true, true, true, false, false}, // 給料不足時の戦闘補正
-            {false, false, true, true, true, false, false}, // 海軍最小戦闘時間
-            {false, false, true, true, true, false, false}, // 陸軍最小戦闘時間
-            {false, false, true, true, true, false, false}, // 空軍最小戦闘時間
-            {false, false, true, true, true, false, false}, // 陸軍スタックペナルティ
-            {false, false, true, true, true, false, false}, // 陸軍移動時組織率減少係数
-            {false, false, true, true, true, false, false}, // 空軍移動時組織率減少係数
-            {false, false, true, true, true, false, false}, // 海軍移動時組織率減少係数
-            {false, false, true, true, true, false, false}, // 遠隔地補給係数
-            {false, false, true, true, true, false, false}, // 基礎補給効率
-            {false, false, true, true, true, false, false}, // 陸軍組織率補正
-            {false, false, true, true, true, false, false}, // 空軍組織率補正
-            {false, false, true, true, true, false, false}, // 海軍組織率補正
-            {false, false, true, true, true, false, false}, // 核攻撃不満度係数(人的資源)
-            {false, false, true, true, true, false, false}, // 核攻撃不満度係数(IC)
-            {false, false, true, true, true, false, false}, // 核攻撃不満度係数(トータル)
-            {false, false, true, true, true, false, false}, // 陸軍友好地組織率補正
-            {false, false, true, true, true, false, false}, // 阻止攻撃備蓄補正
-            {false, false, true, true, true, false, false}, // 焦土命令ダメージ
-            {false, false, true, true, true, false, false}, // 死守命令不満度上昇
-            {false, false, true, true, true, false, false}, // 焦土命令好戦性上昇
-            {false, false, true, true, true, false, false}, // 陸軍デフォルトスタック数
-            {false, false, true, true, true, false, false}, // 海軍デフォルトスタック数
-            {false, false, true, true, true, false, false}, // 空軍デフォルトスタック数
-            {false, false, true, true, true, false, false}, // ロケットデフォルトスタック数
-            {false, false, true, true, true, false, false}, // 要塞砲撃ダメージ補正
-            {false, false, true, true, true, false, false}, // 砲撃組織率減少
-            {false, false, true, true, true, false, false}, // 陸軍対要塞ダメージ係数
-            {false, false, true, true, true, false, false}, // 空軍基地移動組織率減少係数
-            {false, false, true, true, true, false, false}, // 空港占領時ペナルティ
-            {false, false, true, true, true, false, false}, // 対空砲戦力ダメージ補正
-            {false, false, true, true, true, false, false}, // 対空砲組織率ダメージ補正
-            {false, false, true, true, true, false, false}, // 対空砲上空通過ダメージ補正
-            {false, false, true, true, true, false, false}, // 対空砲爆撃中ダメージ補正
-            {false, false, true, true, true, false, false}, // 装甲ユニット戦力ダメージ補正
-            {false, false, true, true, true, false, false}, // 装甲ユニット組織率ダメージ補正
-            {false, false, true, true, true, false, false}, // 戦車対人最小突破係数
-            {false, false, true, true, true, false, false}, // 戦車対人最大突破係数
-            {false, false, true, true, true, false, false}, // 海軍クリティカルヒット確率
-            {false, false, true, true, true, false, false}, // 海軍クリティカルヒット効果
-            {false, false, true, true, true, false, false}, // 要塞ダメージ補正
-            {false, false, true, true, true, false, false}, // 日中港湾攻撃奇襲確率
-            {false, false, true, true, true, false, false}, // 夜間港湾攻撃奇襲確率
-            {false, false, true, true, true, false, false}, // 港湾攻撃奇襲補正
-            {false, false, true, true, true, false, false}, // レーダー奇襲確率減少値
-            {false, false, true, true, true, false, false}, // レーダー奇襲効果減少値
-            {false, false, false, false, true, false, false}, // 反撃イベント防御側戦力補正
-            {false, false, false, false, true, false, false}, // 反撃イベント防御側組織率補正
-            {false, false, false, false, true, false, false}, // 反撃イベント攻撃側戦力補正
-            {false, false, false, false, true, false, false}, // 反撃イベント攻撃側組織率補正
-            {false, false, false, false, true, false, false}, // 強襲イベント防御側戦力補正
-            {false, false, false, false, true, false, false}, // 強襲イベント防御側組織率補正
-            {false, false, false, false, true, false, false}, // 強襲イベント攻撃側戦力補正
-            {false, false, false, false, true, false, false}, // 強襲イベント攻撃側組織率補正
-            {false, false, false, false, true, false, false}, // 包囲イベント防御側戦力補正
-            {false, false, false, false, true, false, false}, // 包囲イベント防御側組織率補正
-            {false, false, false, false, true, false, false}, // 包囲イベント攻撃側戦力補正
-            {false, false, false, false, true, false, false}, // 包囲イベント攻撃側組織率補正
-            {false, false, false, false, true, false, false}, // 待伏イベント防御側戦力補正
-            {false, false, false, false, true, false, false}, // 待伏イベント防御側組織率補正
-            {false, false, false, false, true, false, false}, // 待伏イベント攻撃側戦力補正
-            {false, false, false, false, true, false, false}, // 待伏イベント攻撃側組織率補正
-            {false, false, false, false, true, false, false}, // 遅延イベント防御側戦力補正
-            {false, false, false, false, true, false, false}, // 遅延イベント防御側組織率補正
-            {false, false, false, false, true, false, false}, // 遅延イベント攻撃側戦力補正
-            {false, false, false, false, true, false, false}, // 遅延イベント攻撃側組織率補正
-            {false, false, false, false, true, false, false}, // 後退イベント防御側戦力補正
-            {false, false, false, false, true, false, false}, // 後退イベント防御側組織率補正
-            {false, false, false, false, true, false, false}, // 後退イベント攻撃側戦力補正
-            {false, false, false, false, true, false, false}, // 後退イベント攻撃側組織率補正
-            {false, false, false, false, true, false, false}, // 突破イベント防御側戦力補正
-            {false, false, false, false, true, false, false}, // 突破イベント防御側組織率補正
-            {false, false, false, false, true, false, false}, // 突破イベント攻撃側戦力補正
-            {false, false, false, false, true, false, false}, // 突破イベント攻撃側組織率補正
-            {false, false, false, false, false, true, true}, // 海軍対空砲組織率被ダメージ
-            {false, false, false, false, false, true, true}, // 空軍対空砲組織率被ダメージ
-            {false, false, false, false, false, true, true}, // 空軍対空砲戦力被ダメージ
-            {false, false, false, false, false, true, true}, // 対空砲攻撃ルール
-            {false, false, false, false, false, true, true}, // 対空砲夜間攻撃補正
-            {false, false, false, false, false, true, true}, // 対空砲攻撃レーダーボーナス
-            {false, false, false, false, false, true, true}, // 地形適正移動ボーナス
-            {false, false, false, false, false, true, true}, // 類似地形適正移動ボーナス
-            {false, false, false, false, false, true, true}, // 兵站管理の補給効率ボーナス
-            {false, false, false, false, false, true, true}, // 攻勢継続日数
-            {false, false, false, false, false, true, true}, // 閣僚ボーナス適用方法
-            {false, false, false, false, false, true, true}, // 友好地組織率回復ボーナス
-            {false, false, false, false, false, true, true}, // 友好地組織率回復ボーナス上限
-            {false, false, false, false, false, true, true}, // 海上任務中の船団妨害
-            {false, false, false, false, false, true, true}, // 輸送艦隊の自動帰還
-            {false, false, false, false, false, true, true}, // 単一プロヴィンス/地域指定任務
-            {false, false, false, false, false, true, true}, // 冬季夜間時間
-            {false, false, false, false, false, true, true}, // 春季/秋季夜間時間
-            {false, false, false, false, false, true, true}, // 夏季夜間時間
-            {false, false, false, false, false, true, true}, // 陸上部隊到着時刻再計算間隔
-            {false, false, false, false, false, true, true}, // 同時到着補正(プレイヤー)
-            {false, false, false, false, false, true, true}, // 同時到着補正(AI)
-            {false, false, false, false, false, true, true}, // 戦闘後到着時刻再計算
-            {false, false, false, false, false, true, true}, // 戦闘時陸軍移動速度補正
-            {false, false, false, false, false, true, true}, // 沿岸砲撃時陸軍移動速度補正
-            {false, false, false, false, false, true, true}, // 物資切れ時陸軍移動速度補正
-            {false, false, false, false, false, true, true}, // 組織率低下時陸軍移動速度補正
-            {false, false, false, false, false, true, true}, // 燃料切れ時陸軍/空軍移動速度補正
-            {false, false, false, false, false, true, true}, // 燃料切れ時デフォルト移動速度
-            {false, false, false, false, false, true, true}, // 艦隊規模航続距離ペナルティ割合
-            {false, false, false, false, false, true, true}, // 艦隊規模航続距離ペナルティ閾値
-            {false, false, false, false, false, true, true}, // 艦隊規模航続距離ペナルティ上限
-            {false, false, false, false, false, true, true}, // 地方/地域内での距離制限適用
-            {false, false, false, false, false, true, true}, // レーダー航空機発見ボーナス
-            {false, false, false, false, false, true, true}, // 友好地航空機発見ボーナス
-            {false, false, false, false, false, true, true}, // 主力艦/補助艦割合修正
-            {false, false, false, false, false, true, true}, // 陸軍組織率不足ユニット標的確率
-            {false, false, false, false, false, true, true}, // 主力艦/補助艦標的ポジション値
-            {false, false, false, false, false, false, true}, // 海戦ポジション値日中ボーナス
-            {false, false, false, false, false, false, true}, // 海戦ポジション値スキル補正
-            {false, false, false, false, false, false, true}, // 海戦ポジション値艦隊規模補正
-            {false, false, false, false, false, false, true}, // 海戦ポジション値艦隊構成補正
-            {false, false, false, false, false, false, true}, // 要塞被ダメージ補正
-            {false, false, false, false, false, false, true}, // 要塞最大被ダメージ
-            {false, false, false, false, false, false, true}, // 付属旅団による最小脆弱性
-            {false, false, false, false, false, false, true}, // 自動撤退組織率
-            {false, false, false, false, false, false, true}, // 陸軍海上輸送後組織率補正
-            {false, false, false, false, false, false, true}, // 最大塹壕値
-            {false, false, false, false, false, false, true}, // 1日の塹壕増加量
-            {false, false, false, false, false, false, true}, // 突破/包囲最小速度
-            {false, false, false, false, false, false, true}, // 突破/包囲最大確率
-            {false, false, false, false, false, false, true}, // 突破/包囲確率補正
-            {false, false, false, false, false, false, true}, // コンバットイベント継続時間
-            {false, false, false, false, false, false, true}, // 反撃イベント攻撃側組織率補正
-            {false, false, false, false, false, false, true}, // 反撃イベント攻撃側戦力補正
-            {false, false, false, false, false, false, true}, // 反撃イベント防御側組織率補正
-            {false, false, false, false, false, false, true}, // 反撃イベント防御側戦力補正
-            {false, false, false, false, false, false, true}, // 強襲イベント攻撃側組織率補正
-            {false, false, false, false, false, false, true}, // 強襲イベント攻撃側戦力補正
-            {false, false, false, false, false, false, true}, // 強襲イベント防御側組織率補正
-            {false, false, false, false, false, false, true}, // 強襲イベント防御側戦力補正
-            {false, false, false, false, false, false, true}, // 包囲イベント攻撃側組織率補正
-            {false, false, false, false, false, false, true}, // 包囲イベント攻撃側戦力補正
-            {false, false, false, false, false, false, true}, // 包囲イベント防御側組織率補正
-            {false, false, false, false, false, false, true}, // 包囲イベント防御側戦力補正
-            {false, false, false, false, false, false, true}, // 待伏イベント攻撃側組織率補正
-            {false, false, false, false, false, false, true}, // 待伏イベント攻撃側戦力補正
-            {false, false, false, false, false, false, true}, // 待伏イベント防御側組織率補正
-            {false, false, false, false, false, false, true}, // 待伏イベント防御側戦力補正
-            {false, false, false, false, false, false, true}, // 遅延イベント攻撃側組織率補正
-            {false, false, false, false, false, false, true}, // 遅延イベント攻撃側戦力補正
-            {false, false, false, false, false, false, true}, // 遅延イベント防御側組織率補正
-            {false, false, false, false, false, false, true}, // 遅延イベント防御側戦力補正
-            {false, false, false, false, false, false, true}, // 後退イベント攻撃側組織率補正
-            {false, false, false, false, false, false, true}, // 後退イベント攻撃側戦力補正
-            {false, false, false, false, false, false, true}, // 後退イベント防御側組織率補正
-            {false, false, false, false, false, false, true}, // 後退イベント防御側戦力補正
-            {false, false, false, false, false, false, true}, // 突破イベント攻撃側組織率補正
-            {false, false, false, false, false, false, true}, // 突破イベント攻撃側戦力補正
-            {false, false, false, false, false, false, true}, // 突破イベント防御側組織率補正
-            {false, false, false, false, false, false, true}, // 突破イベント防御側戦力補正
-            {false, false, false, false, false, false, true}, // 司令部は突破イベント時のみ戦力ダメージ
-            {false, false, false, false, false, false, true}, // 戦闘モード
-            {false, false, false, false, false, true, true}, // 攻撃任務
-            {false, false, false, false, false, true, true}, // 攻撃初期効率
-            {false, false, false, false, false, true, true}, // 攻撃速度ボーナス
-            {false, false, false, false, false, true, true}, // 基地移動任務
-            {false, false, false, false, false, true, true}, // 基地移動初期効率
-            {false, false, false, false, false, true, true}, // 基地移動被発見確率
-            {false, false, false, false, false, true, true}, // 戦略的再配置任務
-            {false, false, false, false, false, true, true}, // 戦略的再配置初期効率
-            {false, false, false, false, false, true, true}, // 戦略的再配置加算値
-            {false, false, false, false, false, true, true}, // 戦略的再配置距離補正
-            {false, false, false, false, false, true, true}, // 支援攻撃任務
-            {false, false, false, false, false, true, true}, // 支援攻撃初期効率
-            {false, false, false, false, false, true, true}, // 支援攻撃速度ボーナス
-            {false, false, false, false, false, true, true}, // 防衛支援任務
-            {false, false, false, false, false, true, true}, // 防衛支援初期効率
-            {false, false, false, false, false, true, true}, // 防衛支援速度ボーナス
-            {false, false, false, false, false, true, true}, // 待機任務
-            {false, false, false, false, false, true, true}, // 待機初期効率
-            {false, false, false, false, false, true, true}, // 待機速度ボーナス
-            {false, false, false, false, false, true, true}, // パルチザン掃討任務
-            {false, false, false, false, false, true, true}, // パルチザン掃討初期効率
-            {false, false, false, false, false, true, true}, // パルチザン掃討制圧力補正
-            {false, false, false, false, false, true, true}, // 防衛計画任務
-            {false, false, false, false, false, true, true}, // 防衛計画初期効率
-            {false, false, false, false, false, true, true}, // 制空権任務
-            {false, false, false, false, false, true, true}, // 制空権初期効率
-            {false, false, false, false, false, true, true}, // 制空権敵機発見補正
-            {false, false, false, false, false, true, true}, // 制空権最小ユニット数
-            {false, false, false, false, false, true, true}, // 地上攻撃任務
-            {false, false, false, false, false, true, true}, // 地上攻撃初期効率
-            {false, false, false, false, false, true, true}, // 地上攻撃組織率ダメージ補正
-            {false, false, false, false, false, true, true}, // 地上攻撃戦力ダメージ補正
-            {false, false, false, false, false, true, true}, // 阻止攻撃任務
-            {false, false, false, false, false, true, true}, // 阻止攻撃初期効率
-            {false, false, false, false, false, true, true}, // 阻止攻撃組織率ダメージ補正
-            {false, false, false, false, false, true, true}, // 阻止攻撃戦力ダメージ補正
-            {false, false, false, false, false, true, true}, // 戦略爆撃任務
-            {false, false, false, false, false, true, true}, // 戦略爆撃初期効率
-            {false, false, false, false, false, true, true}, // 兵站攻撃任務
-            {false, false, false, false, false, true, true}, // 兵站攻撃初期効率
-            {false, false, false, false, false, true, true}, // 空港空爆任務
-            {false, false, false, false, false, true, true}, // 空港空爆初期効率
-            {false, false, false, false, false, true, true}, // 軍事施設攻撃任務
-            {false, false, false, false, false, true, true}, // 軍事施設攻撃初期効率
-            {false, false, false, false, false, true, true}, // 艦船攻撃任務
-            {false, false, false, false, false, true, true}, // 艦船攻撃初期効率
-            {false, false, false, false, false, true, true}, // 港湾攻撃任務
-            {false, false, false, false, false, true, true}, // 港湾攻撃初期効率
-            {false, false, false, false, false, true, true}, // 航空船団爆撃任務
-            {false, false, false, false, false, true, true}, // 航空船団爆撃初期効率
-            {false, false, false, false, false, true, true}, // 空輸補給任務
-            {false, false, false, false, false, true, true}, // 空輸補給初期効率
-            {false, false, false, false, false, true, true}, // 空挺強襲任務
-            {false, false, false, false, false, true, true}, // 空挺強襲初期効率
-            {false, false, false, false, false, true, true}, // 核攻撃任務
-            {false, false, false, false, false, true, true}, // 核攻撃初期効率
-            {false, false, false, false, false, true, true}, // 航空緊急出撃任務
-            {false, false, false, false, false, true, true}, // 航空緊急出撃初期効率
-            {false, false, false, false, false, true, true}, // 航空緊急出撃敵機発見補正
-            {false, false, false, false, false, true, true}, // 航空緊急出撃最小ユニット数
-            {false, false, false, false, false, true, true}, // 船団襲撃任務
-            {false, false, false, false, false, true, true}, // 船団襲撃初期効率
-            {false, false, false, false, false, true, true}, // 船団襲撃航続距離補正
-            {false, false, false, false, false, true, true}, // 船団襲撃被発見確率
-            {false, false, false, false, false, true, true}, // 対潜作戦任務
-            {false, false, false, false, false, true, true}, // 対潜作戦初期効率
-            {false, false, false, false, false, true, true}, // 海上阻止任務
-            {false, false, false, false, false, true, true}, // 海上阻止初期効率
-            {false, false, false, false, false, true, true}, // 沿岸砲撃任務
-            {false, false, false, false, false, true, true}, // 沿岸砲撃初期効率
-            {false, false, false, false, false, true, true}, // 沿岸砲撃補正
-            {false, false, false, false, false, true, true}, // 強襲上陸任務
-            {false, false, false, false, false, true, true}, // 強襲上陸初期効率
-            {false, false, false, false, false, true, true}, // 海上輸送任務
-            {false, false, false, false, false, true, true}, // 海上輸送初期効率
-            {false, false, false, false, false, true, true}, // 海上輸送航続距離補正
-            {false, false, false, false, false, true, true}, // 海上輸送被発見確率
-            {false, false, false, false, false, true, true}, // 海上戦闘哨戒任務
-            {false, false, false, false, false, true, true}, // 海上戦闘哨戒初期効率
-            {false, false, false, false, false, true, true}, // 空母による港湾攻撃任務
-            {false, false, false, false, false, true, true}, // 空母による港湾攻撃初期効率
-            {false, false, false, false, false, true, true}, // 空母による航空基地攻撃任務
-            {false, false, false, false, false, true, true}, // 空母による航空基地攻撃初期効率
-            {false, false, false, false, false, true, true}, // 隠密移動任務
-            {false, false, false, false, false, true, true}, // 隠密移動初期効率
-            {false, false, false, false, false, true, true}, // 隠密移動航続距離補正
-            {false, false, false, false, false, true, true}, // 隠密移動被発見確率
-            {false, false, false, false, false, true, true}, // 海上緊急出撃任務
-            {false, false, false, false, false, true, true}, // 海上緊急出撃初期効率
-            {false, false, false, false, false, true, true}, // 海上緊急出撃速度ボーナス
-            {false, false, false, false, false, false, true}, // 攻撃/支援攻撃効率を戦闘補正として使用
-            {false, false, false, false, false, true, true}, // 陸上要塞効率
-            {false, false, false, false, false, true, true}, // 沿岸要塞効率
-            {false, false, false, false, false, true, true}, // 対地防御効率
-            {false, false, false, false, false, true, true}, // 船団防衛効率
-            {false, false, false, false, false, true, true}, // 人的資源増加
-            {false, false, false, false, false, true, true}, // TC補正
-            {false, false, false, false, false, true, true}, // 占領地TC補正
-            {false, false, false, false, false, true, true}, // 消耗補正
-            {false, false, false, false, false, true, true}, // 人的資源復帰補正
-            {false, false, false, false, false, true, true}, // 遠隔地補給補正
-            {false, false, false, false, false, true, true}, // 修理補正
-            {false, false, false, false, false, true, true}, // 研究補正
-            {false, false, false, false, false, true, true}, // レーダー効率
-            {false, false, false, false, false, true, true}, // 司令部補給効率ボーナス
-            {false, false, false, false, false, true, true}, // 司令部コンバットイベントボーナス
-            {false, false, false, false, false, true, true}, // コンバットイベント発生確率
-            {false, false, false, false, false, true, true}, // 友軍発見確率
-            {false, false, false, false, false, true, true}, // 敵軍発見確率
-            {false, false, false, false, false, true, true}, // 友好国諜報確率
-            {false, false, false, false, false, true, true}, // 敵国諜報確率
-            {false, false, false, false, false, true, true}, // 最大強襲上陸規模
-            {false, false, false, false, false, true, true}, // エネルギー/石油変換効率
-            {false, false, false, false, false, true, true}, // 総合生産効率
-            {false, false, false, false, false, true, true}, // 物資生産効率
-            {false, false, false, false, false, true, true}, // 対空砲攻撃力
-            {false, false, false, false, false, true, true}, // 空軍奇襲確率
-            {false, false, false, false, false, true, true}, // 陸軍奇襲確率
-            {false, false, false, false, false, true, true}, // 海軍奇襲確率
-            {false, false, false, false, false, true, true}, // 平時IC補正
-            {false, false, false, false, false, true, true}, // 戦時IC補正
-            {false, false, false, false, false, true, true}, // 建造物生産補正
-            {false, false, false, false, false, true, true}, // 輸送船団生産補正
-            {false, false, false, false, false, true, true}, // 最小艦船ポジション値
-            {false, false, false, false, false, true, true}, // 最大艦船ポジション値
-            {false, false, false, false, false, true, true}, // 平時資源備蓄補正
-            {false, false, false, false, false, true, true}, // 戦時資源備蓄補正
-            {false, false, false, false, false, true, true}, // 平時物資/燃料備蓄補正
-            {false, false, false, false, false, true, true}, // 戦時物資/燃料備蓄補正
-            {true, true, true, true, true, true, true}, // 青写真ボーナス
-            {true, true, true, true, true, true, true}, // 史実年度以前研究ペナルティ
-            {false, false, false, false, false, true, true}, // 史実年度以降研究ボーナス
-            {true, true, true, true, true, true, true}, // 研究機関レベル毎のコスト
-            {true, true, true, true, true, true, true}, // 1年毎の発明イベント平均回数
-            {false, false, true, true, true, false, false}, // 史実年度以降研究ボーナス
-            {false, false, true, true, true, false, false}, // 研究速度補正
-            {false, false, true, true, true, false, false}, // 史実年度以前研究ペナルティ上限
-            {false, false, true, true, true, false, false}, // 史実年度以降研究ボーナス上限
-            {false, false, false, true, true, false, false}, // 研究スロット上限
-            {false, false, false, true, true, false, false}, // 研究スロット毎の必要IC
-            {false, false, false, false, true, false, false}, // 最大ランダム補正
-            {false, false, false, false, false, true, true}, // 研究ページのレイアウト
-            {false, false, false, false, false, false, true}, // 研究概要パネルのスタイル
-            {false, false, false, false, false, true, true}, // 研究スロット上限
-            {false, false, false, false, false, true, true}, // 研究スロット下限
-            {false, false, false, false, false, true, true}, // 研究スロット毎の必要IC
-            {false, false, false, false, false, false, true}, // 新規国家でロケット技術を継承
-            {false, false, false, false, false, false, true}, // 新規国家で核物理学技術を継承
-            {false, false, false, false, false, false, true}, // 新規国家で核工学技術を継承
-            {false, false, false, false, false, false, true}, // 新規国家で秘密兵器技術を継承
-            {false, false, false, false, false, false, true}, // 最大研究機関スキル
-            {false, false, false, false, false, true, true}, // 貿易交渉間隔
-            {false, false, false, false, false, true, true}, // ゲーム開始直後の貿易交渉遅延日数
-            {false, false, false, false, false, true, true}, // ゲーム開始直後のAI友好国貿易交渉遅延日数
-            {false, false, false, false, false, true, true}, // 理想石油備蓄
-            {false, false, false, false, false, true, true}, // 危険水準石油備蓄
-            {false, false, false, false, false, true, true}, // 理想物資備蓄
-            {false, false, false, false, false, true, true}, // 危険水準物資備蓄
-            {false, false, false, false, false, true, true}, // 理想資源備蓄
-            {false, false, false, false, false, true, true}, // 危険水準資源備蓄
-            {false, false, false, false, false, true, true}, // 戦時理想備蓄係数
-            {false, false, false, false, false, true, true}, // 平時石油臨時輸入割合
-            {false, false, false, false, false, true, true}, // 戦時石油臨時輸入割合
-            {false, false, false, false, false, true, true}, // 理想備蓄未到達時の臨時輸入割合
-            {false, false, false, false, false, true, true}, // 物資生産割合
-            {false, false, false, false, false, true, true}, // 資金生産割合
-            {false, false, false, false, false, true, true}, // 備蓄選択時の臨時輸入割合
-            {false, false, false, false, false, true, true}, // 貿易協定資源輸送日数
-            {false, false, false, false, false, true, true}, // 貿易協定の統合
-            {false, false, false, false, false, true, true}, // 手動貿易協定
-            {false, false, false, false, false, true, true}, // 傀儡国上納物資/資金
-            {false, false, false, false, false, true, true}, // 傀儡国物資危険水準
-            {false, false, false, false, false, true, true}, // 傀儡国最大資源備蓄
-            {false, false, false, false, false, true, true}, // 新規貿易協定最小効率
-            {false, false, false, false, false, true, true}, // 貿易協定破棄効率
-            {false, false, false, false, false, true, true}, // 自動/AIの貿易協定最小効率
-            {false, false, false, false, false, true, true}, // 理想備蓄未達時の余剰物資生産比率
-            {false, false, false, false, false, true, true}, // 戦時余剰物資生産係数
-            {false, false, false, false, false, true, true}, // 備蓄余裕時の物資生産禁止係数
-            {false, false, false, false, false, true, true}, // 守備隊/民兵の最大連続生産数
-            {false, false, false, false, false, true, true}, // 海軍/空軍連続生産最小IC
-            {false, false, false, false, false, true, true}, // 新規生産禁止人的資源比率
-            {false, false, false, false, false, true, true}, // 新規生産禁止人的資源値
-            {false, false, false, false, false, true, true}, // 新規生産禁止物資比率
-            {false, false, false, false, false, true, true}, // 総ICに対する軍事力比率(平時)
-            {false, false, false, false, false, true, true}, // 総ICに対する軍事力比率(戦時)
-            {false, false, false, false, false, true, true}, // 総ICに対する軍事力比率(主要国)
-            {false, false, false, false, false, true, true}, // 攻勢中止物資備蓄
-            {false, false, false, false, false, true, true}, // 攻勢中止燃料備蓄
-            {false, false, false, false, false, true, true}, // 攻勢中止補給効率
-            {false, false, false, false, false, true, true}, // 攻勢中止組織率/戦力ダメージ
-            {false, false, false, false, false, true, true}, // AIの平時の攻撃的諜報活動
-            {false, false, false, false, false, true, true}, // AIの諜報コスト補正
-            {false, false, false, false, false, true, true}, // AIの外交コスト補正
-            {false, false, false, false, false, true, true}, // AIの外交干渉頻度補正
-            {false, false, false, false, false, true, false}, // AIの新宣戦布告ルール
-            {false, false, false, false, false, false, true}, // AIの新宣戦布告ルール
-            {false, false, false, false, false, true, true}, // 傀儡国が宗主国の同盟に強制加入する中立性
-            {false, false, false, false, false, true, true}, // 新AI占領地解放ルール
-            {false, false, false, false, false, true, true}, // AIイベント選択ルール
-            {false, false, false, false, false, true, true}, // 強制戦略的再配置時間
-            {false, false, false, false, false, true, true}, // AI最大再配置日数
-            {false, false, false, false, false, true, true}, // 守備隊AIの簡易チェック
-            {false, false, false, false, false, true, true}, // AI宗主国が傀儡国の占領地を支配
-            {false, false, false, false, false, true, true}, // AI占領地解放最小日数
-            {false, false, false, false, false, true, true}, // AI占領地返還最小日数
-            {false, false, false, false, false, true, true}, // AI占領地返還最小日数(物資補給基地)
-            {false, false, false, false, false, true, true}, // 被領有権主張時連合加盟最小友好度
-            {false, false, false, false, false, true, true}, // AIの諜報/外交をログに記録
-            {false, false, false, false, false, true, true}, // 国家情報をログに記録
-            {false, false, false, false, false, true, true}, // AI切り替えをログに記録
-            {false, false, false, false, false, true, true}, // 新自動セーブファイル名
-            {false, false, false, false, false, true, true}, // マルチプレイでAI切替時に新しい設定を読み込む
-            {false, false, false, false, false, true, true}, // 貿易効率算出間隔
-            {false, false, false, false, false, true, true}, // 備蓄庫の再計算間隔
-            {false, false, false, false, false, true, false}, // 損失を記録
-            {false, false, false, false, false, false, true}, // 損失を記録
-            {false, false, false, false, false, true, true}, // 占領地で旅団付属を許可
-            {false, false, false, false, false, true, true}, // 陸軍の一括配置数
-            {false, false, false, false, false, true, true}, // 海軍の一括配置数
-            {false, false, false, false, false, true, true}, // 空軍の一括配置数
-            {false, false, false, false, false, true, true}, // すべての陸地プロヴィンスに固有画像を許可
-            {false, false, false, false, false, true, true}, // イベント選択肢を委任
-            {false, false, false, false, false, true, true}, // イベント選択肢強制表示
-            {false, false, false, false, false, true, true}, // ディシジョンを使用する
-            {false, false, false, false, false, true, true}, // パルチザンの歩兵構成割合
-            {false, false, false, false, false, true, true}, // パルチザンの技術レベル
-            {false, false, false, false, false, true, true}, // パルチザン最小戦力
-            {false, false, false, false, false, true, true}, // パルチザン最大戦力
-            {false, false, false, false, false, true, true}, // パルチザン組織率回復速度
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(隣接地占領)
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(占領地)
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(山岳)
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(丘陵)
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(森林)
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(密林)
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(湿地)
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(砂漠)
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(平地)
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(都市)
-            {false, false, false, false, false, true, true}, // パルチザンボーナス(航空/海軍基地)
-            {false, false, false, false, false, true, true}, // パルチザン占領プロヴィンス返却時間
-            {false, false, false, false, false, true, true}, // 新形式閣僚ファイルフォーマット
-            {false, false, false, false, false, false, true}, // 閣僚引退年を使用
-            {false, false, false, false, false, false, true}, // 指揮官引退年を使用
-            {false, false, false, false, false, true, true}, // スプライトをMODDIRのみから読み込む
-            {false, false, false, false, false, true, true}, // ユニットアイコンをMODDIRのみから読み込む
-            {false, false, false, false, false, true, true}, // ユニット画像をMODDIRのみから読み込む
-            {false, false, false, false, false, true, true}, // AIファイルをMODDIRのみから読み込む
-            {false, false, false, false, false, true, true}, // 守備隊判定ルール
-            {false, false, false, false, false, true, true}, // 旧セーブフォーマットを使用
-            {false, false, false, false, false, false, true}, // 生産パネルのUIスタイル
-            {false, false, false, false, false, false, true}, // ユニット画像のサイズ
-            {false, false, false, false, false, false, true}, // 艦艇付属装備に画像を使用
-            {false, false, false, false, false, false, true}, // 建物をプロヴィンスでのみ建造
-            {false, false, false, false, false, false, true}, // ユニット補正ページの新スタイル移行閾値
-            {false, false, false, false, false, true, true}, // マップ番号
-            {false, false, false, false, false, true, true}, // 総プロヴィンス数
-            {false, false, false, false, false, true, true}, // 距離算出方法
-            {false, false, false, false, false, true, true}, // マップの幅
-            {false, false, false, false, false, true, true} // マップの高さ
+            { true, true, true, true, true, true, true }, // ICからTCへの変換効率
+            { true, true, true, true, true, true, true }, // ICから物資への変換効率
+            { true, true, true, true, true, true, true }, // ICから消費財への変換効率
+            { true, true, true, true, true, true, true }, // ICから資金への変換効率
+            { false, false, true, true, true, false, false }, // 不満度減少速度
+            { false, false, false, false, false, true, true }, // 最小実効ICの比率
+            { false, false, false, false, false, true, true }, // 最小実効IC
+            { false, false, false, false, false, true, true }, // 不満度低下補正
+            { true, true, true, true, true, true, true }, // 最大ギアリングボーナス
+            { true, true, true, true, true, true, true }, // ギアリングボーナスの増加値
+            { false, false, true, true, true, false, false }, // 連続生産時の資源消費増加
+            { false, false, true, true, true, false, false }, // IC不足時のギアリングボーナス減少値
+            { true, true, true, true, true, true, true }, // 非中核州のIC補正
+            { true, true, true, true, true, true, true }, // 占領地のIC補正
+            { false, false, false, false, false, true, true }, // 属国のIC補正
+            { false, false, false, false, false, true, true }, // 非中核州の資源補正
+            { false, false, false, false, false, true, true }, // 占領地の資源補正
+            { false, false, false, false, false, true, true }, // 非中核州の資源補正(AI)
+            { false, false, false, false, false, true, true }, // 属国の資源補正
+            { true, true, true, true, true, true, true }, // 未配備師団のTC負荷
+            { true, true, true, true, true, true, true }, // 占領地のTC負荷
+            { true, true, true, true, true, true, true }, // 陸軍師団のTC負荷補正
+            { true, true, true, true, true, true, true }, // 空軍師団のTC負荷補正
+            { true, true, true, true, true, true, true }, // 海軍師団のTC負荷補正
+            { true, true, true, true, true, true, true }, // パルチザンのTC負荷
+            { true, true, true, true, true, true, true }, // 攻勢時のTC負荷係数
+            { true, true, true, true, true, true, true }, // プロヴィンス開発のTC負荷
+            { true, true, true, true, true, true, true }, // 未配備の基地のTC負荷
+            { true, true, true, true, true, true, true }, // 中核州の人的資源補正
+            { true, true, true, true, true, true, true }, // 非中核州の人的資源補正
+            { true, true, true, true, true, true, true }, // 海外州の人的資源補正
+            { false, false, false, false, false, true, true }, // 属国の人的資源補正
+            { false, false, false, false, false, true, true }, // 戦時の海外州の人的資源補正
+            { false, false, false, false, false, true, true }, // 平時の人的資源補正
+            { false, false, false, false, false, true, true }, // 戦時の人的資源補正
+            { false, false, false, false, false, true, true }, // 人的資源の老化率
+            { true, true, true, true, true, false, false }, // 政策スライダーに影響を与えるためのIC比率
+            { true, true, true, true, true, true, true }, // 戦闘による損失からの復帰係数
+            { true, true, true, true, true, true, true }, // 補充に必要な人的資源の比率
+            { true, true, true, true, true, true, true }, // 補充に必要なICの比率
+            { true, true, true, true, true, true, true }, // 補充に必要な時間の比率
+            { true, true, true, true, true, true, true }, // 改良に必要なICの比率
+            { true, true, true, true, true, true, true }, // 改良に必要な時間の比率
+            { false, false, false, false, false, true, true }, // 改良のための補充係数
+            { true, true, true, true, true, true, true }, // ナショナリズムの初期値
+            { false, false, false, true, true, false, false }, // 人的資源によるナショナリズムの補正値
+            { false, false, false, false, false, true, true }, // 人的資源によるナショナリズムの補正値
+            { false, false, false, false, false, true, true }, // ナショナリズム最大値
+            { false, false, false, false, false, true, true }, // 最大反乱率
+            { true, true, true, true, true, true, true }, // 月ごとのナショナリズムの減少値
+            { true, true, true, true, true, true, true }, // 師団譲渡後配備可能になるまでの時間
+            { true, true, true, true, true, true, true }, // 未配備旅団のTC負荷
+            { true, true, true, true, true, false, false }, // 非同盟国に師団を売却/譲渡
+            { false, true, false, false, false, false, false }, // 諜報任務の間隔
+            { false, true, false, false, false, false, false }, // 諜報レベルの増加間隔
+            { false, true, false, false, false, false, false }, // 国内の諜報活動を発見する確率
+            { false, true, false, false, false, false, false }, // 諜報任務発覚時の友好度低下量
+            { false, true, false, false, false, false, false }, // 第三国の諜報活動を報告
+            { false, true, false, false, false, false, false }, // 諜報任務の隣国補正
+            { false, true, false, false, false, false, false }, // 情報の正確さ補正
+            { false, true, false, false, false, false, false }, // 平時のAIの攻撃的諜報活動
+            { false, true, false, false, false, false, false }, // 諜報コスト補正の最大IC
+            { false, true, false, false, false, false, false }, // AIの諜報コスト補正
+            { false, true, false, false, false, false, false }, // AIの外交コスト補正
+            { false, true, false, false, false, false, false }, // AIの外交干渉頻度補正
+            { false, false, true, true, true, false, false }, // 建物修復コスト補正
+            { false, false, true, true, true, false, false }, // 建物修復時間補正
+            { false, false, true, true, true, false, false }, // プロヴィンス効率上昇時間
+            { false, false, false, true, true, false, false }, // 中核プロヴィンス効率上昇時間
+            { false, false, true, true, true, false, false }, // ライン維持コスト補正
+            { false, false, true, true, true, false, false }, // ライン開始時間
+            { false, false, true, true, true, false, false }, // ライン改良時間
+            { false, false, true, true, true, false, false }, // ライン調整コスト補正
+            { false, false, true, true, true, false, false }, // ライン調整資源補正
+            { false, false, true, true, true, false, false }, // 人的資源老化補正
+            { false, false, true, true, true, false, false }, // 船団襲撃時物資使用量補正
+            { false, false, true, true, true, false, false }, // 海軍の待機時物資使用量補正
+            { false, false, true, true, true, false, false }, // 海軍の移動時物資使用量補正
+            { false, false, true, true, true, false, false }, // 海軍の戦闘時物資使用量補正
+            { false, false, true, true, true, false, false }, // 空軍の待機時物資使用量補正
+            { false, false, true, true, true, false, false }, // 空軍の移動時物資使用量補正
+            { false, false, true, true, true, false, false }, // 空軍の戦闘時物資使用量補正
+            { false, false, true, true, true, false, false }, // 空軍の爆撃時物資使用量補正
+            { false, false, true, true, true, false, false }, // 陸軍の待機時物資使用量補正
+            { false, false, true, true, true, false, false }, // 陸軍の移動時物資使用量補正
+            { false, false, true, true, true, false, false }, // 陸軍の戦闘時物資使用量補正
+            { false, false, true, true, true, false, false }, // 陸軍の砲撃時物資使用量補正
+            { false, false, true, true, true, false, false }, // 陸軍の物資備蓄量
+            { false, false, true, true, true, false, false }, // 空軍の物資備蓄量
+            { false, false, true, true, true, false, false }, // 海軍の物資備蓄量
+            { false, false, false, true, true, false, false }, // 陸軍の物資再備蓄速度
+            { false, false, false, true, true, false, false }, // 空軍の物資再備蓄速度
+            { false, false, false, true, true, false, false }, // 海軍の物資再備蓄速度
+            { false, false, true, true, true, false, false }, // 合成石油変換係数
+            { false, false, true, true, true, false, false }, // 合成希少資源変換係数
+            { false, false, true, true, true, false, false }, // 軍隊の給料
+            { false, false, true, true, true, false, false }, // 最大諜報費比率
+            { false, false, true, true, true, false, false }, // 最大研究費比率
+            { false, false, true, true, true, false, false }, // 軍隊の給料不足時の消耗補正
+            { false, false, true, true, true, false, false }, // 軍隊の給料不足時の不満度補正
+            { false, false, true, true, true, false, false }, // 原子炉維持コスト
+            { false, false, true, true, true, false, false }, // 原子力発電所維持コスト
+            { false, false, true, true, true, false, false }, // 合成石油工場維持コスト
+            { false, false, true, true, true, false, false }, // 合成希少資源工場維持コスト
+            { false, false, true, true, true, false, false }, // 海軍情報の存続期間
+            { false, false, true, true, true, false, false }, // 船団攻撃回避時間
+            { false, false, true, true, true, false, false }, // 船団攻撃妨害時間
+            { false, false, true, true, true, false, false }, // 自動貿易に必要な輸送船団割合
+            { false, false, true, true, true, false, false }, // 諜報維持コスト
+            { false, false, true, true, true, false, false }, // スパイ発見確率
+            { false, false, false, true, true, false, false }, // 不満度によるクーデター成功率修正
+            { false, false, true, true, true, false, false }, // インフラによるプロヴィンス効率補正
+            { false, false, true, true, true, false, false }, // 人的資源の消費財生産補正
+            { false, false, true, true, true, false, false }, // スライダー移動の間隔
+            { false, false, true, true, true, false, false }, // 海外プロヴィンスへの配置の必要IC
+            { false, false, true, true, true, false, false }, // 原子力発電量
+            { false, false, true, true, true, false, false }, // インフラの自然回復率
+            { false, false, true, true, true, false, false }, // スライダー移動時の最大不満度
+            { false, false, true, true, true, false, false }, // スライダー移動時の最小不満度
+            { false, false, true, true, true, false, false }, // スライダー移動可能な最大不満度
+            { false, false, true, true, true, false, false }, // 工場集中ボーナス
+            { false, false, true, false, false, false, false }, // 輸送艦変換係数
+            { false, false, false, true, true, false, false }, // 輸送船団変換係数
+            { false, false, false, true, true, false, false }, // 護衛船団変換係数
+            { false, false, true, true, true, false, false }, // 閣僚変更遅延日数
+            { false, false, true, true, true, false, false }, // 閣僚変更遅延日数(イベント)
+            { false, false, true, true, true, false, false }, // 国策変更遅延日数
+            { false, false, true, true, true, false, false }, // 国策変更遅延日数(イベント)
+            { false, false, true, true, true, false, false }, // 指揮官変更遅延日数
+            { false, false, true, true, true, false, false }, // 国策変更時の不満度上昇量
+            { false, false, true, true, true, false, false }, // 閣僚変更時の不満度上昇量
+            { false, false, true, true, true, false, false }, // 反乱が発生する最低不満度
+            { false, false, true, true, true, false, false }, // 不満度による反乱軍発生率係数
+            { false, false, false, true, true, false, false }, // 輸送艦最大付属装備数
+            { false, false, false, true, true, false, false }, // 潜水艦最大付属装備数
+            { false, false, false, true, true, false, false }, // 原子力潜水艦最大付属装備数
+            { false, false, false, true, true, false, false }, // 駆逐艦最大付属装備数
+            { false, false, false, true, true, false, false }, // 軽巡洋艦最大付属装備数
+            { false, false, false, true, true, false, false }, // 重巡洋艦最大付属装備数
+            { false, false, false, true, true, false, false }, // 巡洋戦艦最大付属装備数
+            { false, false, false, true, true, false, false }, // 戦艦最大付属装備数
+            { false, false, false, true, true, false, false }, // 軽空母最大付属装備数
+            { false, false, false, true, true, false, false }, // 空母最大付属装備数
+            { false, false, false, true, true, false, false }, // プレイヤーの国策変更を許可
+            { false, false, false, false, false, true, true }, // 非同盟国に師団を売却
+            { false, false, false, false, false, true, true }, // 非同盟国に青写真を売却
+            { false, false, false, false, false, true, true }, // 非同盟国にプロヴィンスを売却
+            { false, false, false, false, false, true, true }, // 占領中の同盟国の中核州返還
+            { false, false, false, false, false, true, true }, // 建物修復速度補正
+            { false, false, false, false, false, true, true }, // 資源回復速度補正
+            { false, false, false, false, false, true, true }, // 資源備蓄上限補正
+            { false, false, false, false, false, true, true }, // 物資/燃料備蓄上限補正
+            { false, false, false, false, false, true, true }, // 超過備蓄損失割合
+            { false, false, false, false, false, true, true }, // 資源備蓄上限値
+            { false, false, false, false, false, true, true }, // 物資/燃料備蓄上限値
+            { false, false, false, false, false, true, true }, // 理想物資/燃料備蓄比率
+            { false, false, false, false, false, true, true }, // 最大人的資源
+            { false, false, false, false, false, true, true }, // 船団輸送能力
+            { false, false, false, false, false, true, true }, // 陸軍の待機時物資使用量補正
+            { false, false, false, false, false, true, true }, // 陸軍の戦闘時物資使用量補正
+            { false, false, false, false, false, true, true }, // 陸軍の待機時燃料使用量補正
+            { false, false, false, false, false, true, true }, // 陸軍の戦闘時燃料使用量補正
+            { false, false, false, false, false, true, true }, // 空軍の待機時物資使用量補正
+            { false, false, false, false, false, true, true }, // 空軍の戦闘時物資使用量補正
+            { false, false, false, false, false, true, true }, // 空軍/海軍の待機時燃料使用量補正
+            { false, false, false, false, false, true, true }, // 空軍の戦闘時燃料使用量補正
+            { false, false, false, false, false, true, true }, // 海軍の待機時物資使用量補正
+            { false, false, false, false, false, true, true }, // 海軍の戦闘時物資使用量補正
+            { false, false, false, false, false, true, true }, // 海軍の非移動時燃料使用量補正
+            { false, false, false, false, false, true, true }, // 海軍の戦闘時燃料使用量補正
+            { false, false, false, false, false, true, true }, // 輸送艦の輸送船団への変換比率
+            { false, false, false, false, false, true, true }, // 駆逐艦の護衛船団への変換比率
+            { false, false, false, false, false, true, true }, // 軽巡洋艦の護衛船団への変換比率
+            { false, false, false, false, false, true, true }, // 軽空母の護衛船団への変換比率
+            { false, false, false, false, false, true, true }, // 生産ラインの編集
+            { false, false, false, false, false, true, true }, // ユニット改良時のギアリングボーナス減少比率
+            { false, false, false, false, false, true, true }, // 旅団改良時のギアリングボーナス減少比率
+            { false, false, false, false, false, true, true }, // 中核州核攻撃時の不満度上昇係数
+            { false, false, false, false, false, true, true }, // 物資/消費財不足時の最大不満度上昇値
+            { false, false, false, false, false, false, true }, // 核兵器生産補正
+            { false, false, false, false, false, false, true }, // 同盟国に対する船団システム
+            { false, false, false, false, false, false, true }, // 不要な資源/燃料の回収比率
+            { false, false, false, false, false, true, true }, // 諜報任務の間隔
+            { false, false, false, false, false, true, true }, // 諜報レベルの増加間隔
+            { false, false, false, false, false, true, true }, // 国内の諜報活動を発見する確率
+            { false, false, false, false, false, true, true }, // 諜報任務発覚時の友好度低下量
+            { false, false, false, false, false, true, true }, // 諜報任務の距離補正
+            { false, false, false, false, false, true, true }, // 諜報任務の隣国補正
+            { false, false, false, false, false, true, true }, // 諜報レベルの距離補正
+            { false, false, false, false, false, true, true }, // 諜報レベル10超過時の距離補正
+            { false, false, false, false, false, true, true }, // 情報の正確さ補正
+            { false, false, false, false, false, true, true }, // 諜報コストのIC補正
+            { false, false, false, false, false, true, true }, // 諜報コスト補正の最小IC
+            { false, false, false, false, false, true, true }, // 諜報コスト補正の最大IC
+            { false, false, false, false, false, true, true }, // 諜報レベル10超過時追加維持コスト
+            { false, false, false, false, false, true, true }, // 諜報レベル10超過時増加コスト
+            { false, false, false, false, false, true, true }, // 第三国の諜報活動を報告
+            { false, false, false, false, false, true, true }, // 諜報資金割り当て補正
+            { false, false, false, false, false, true, true }, // 外交官派遣間隔
+            { false, false, false, false, false, true, true }, // スライダー移動の間隔
+            { false, false, false, false, false, true, true }, // 政策スライダーに影響を与えるためのIC比率
+            { false, false, false, false, false, true, true }, // 閣僚交代時に閣僚特性を適用する
+            { false, false, false, false, false, true, true }, // 貿易キャンセル時の友好度低下
+            { false, false, false, false, false, true, true }, // 永久貿易キャンセル時の友好度低下
+            { false, false, false, false, false, true, true }, // 属国が宗主国の同盟に強制参加する
+            { false, false, false, false, false, true, true }, // 属国の属国が設立できるか
+            { false, false, false, false, false, true, true }, // 領有権主張の変更
+            { false, false, false, false, false, true, true }, // 領有権主張時の好戦性上昇値
+            { false, false, false, false, false, true, true }, // 領有権撤回時の好戦性減少値
+            { false, false, false, false, false, true, true }, // 宣戦布告された時に対抗陣営へ自動加盟
+            { false, false, false, false, false, true, true }, // 国家元首/政府首班の交代
+            { false, false, false, false, false, true, true }, // クーデター発生時に兄弟国へ変更
+            { false, false, false, false, false, true, true }, // 独立可能国設定
+            { true, true, true, true, true, true, true }, // 陸軍経験値入手係数
+            { true, true, true, true, true, true, true }, // 海軍経験値入手係数
+            { true, true, true, true, true, true, true }, // 空軍経験値入手係数
+            { false, false, false, false, false, true, true }, // 空軍空戦時経験値入手係数
+            { true, true, true, true, true, true, true }, // 師団経験値入手係数
+            { true, true, true, true, true, true, true }, // 指揮官経験値入手係数
+            { true, true, true, true, true, true, true }, // 消耗係数
+            { false, false, true, true, true, false, false }, // 無補給時の自然条件消耗係数
+            { false, false, true, true, true, false, false }, // 無補給時の消耗係数
+            { true, true, true, true, true, true, true }, // 基地戦闘補正
+            { true, true, true, true, true, false, false }, // 艦砲射撃戦闘補正
+            { false, false, false, false, true, false, false }, // 艦砲射撃戦闘効率上限
+            { true, true, true, true, true, true, true }, // 強襲上陸ペナルティ
+            { true, true, true, true, true, true, true }, // 側面攻撃ペナルティ
+            { true, true, true, true, true, true, true }, // 攻撃側諸兵科連合ボーナス
+            { true, true, true, true, true, true, true }, // 防御側諸兵科連合ボーナス
+            { true, true, true, true, true, true, true }, // 奇襲攻撃ペナルティ
+            { true, true, true, true, true, true, true }, // 陸軍指揮上限ペナルティ
+            { true, true, true, true, true, true, true }, // 空軍指揮上限ペナルティ
+            { true, true, true, true, true, true, true }, // 海軍指揮上限ペナルティ
+            { true, true, true, true, true, true, true }, // 多方面攻撃補正
+            { true, true, true, true, true, true, true }, // 包囲攻撃ペナルティ
+            { true, true, true, true, true, true, true }, // 要塞攻撃ペナルティ
+            { true, true, true, true, true, true, true }, // 沿岸要塞攻撃ペナルティ
+            { false, false, false, false, false, true, true }, // 装甲ユニットの都市攻撃ペナルティ
+            { true, true, true, true, true, true, true }, // 国民不満度ペナルティ
+            { true, true, true, true, true, false, false }, // 補給不足ペナルティ
+            { false, false, false, false, false, true, true }, // 陸軍物資不足ペナルティ
+            { false, false, false, false, false, true, true }, // 空軍物資不足ペナルティ
+            { false, false, false, false, false, true, true }, // 海軍物資不足ペナルティ
+            { false, false, false, false, false, true, true }, // 陸軍燃料不足ペナルティ
+            { false, false, false, false, false, true, true }, // 空軍燃料不足ペナルティ
+            { false, false, false, false, false, true, true }, // 海軍燃料不足ペナルティ
+            { true, true, true, true, true, true, true }, // レーダー補正
+            { false, false, true, true, true, false, false }, // レーダー/対空砲複合補正
+            { true, true, true, true, true, true, true }, // 爆撃機迎撃ボーナス
+            { true, true, false, false, false, true, true }, // 空軍スタックペナルティ
+            { false, false, true, true, true, false, false }, // 空軍スタックペナルティ
+            { true, true, true, true, true, true, true }, // 海軍スタックペナルティ
+            { true, true, true, true, true, true, true }, // 陸軍元帥指揮上限
+            { true, true, true, true, true, true, true }, // 陸軍大将指揮上限
+            { true, true, true, true, true, true, true }, // 陸軍中将指揮上限
+            { true, true, true, true, true, true, true }, // 陸軍少将指揮上限
+            { true, true, true, true, true, true, true }, // 空軍元帥指揮上限
+            { true, true, true, true, true, true, true }, // 空軍大将指揮上限
+            { true, true, true, true, true, true, true }, // 空軍中将指揮上限
+            { true, true, true, true, true, true, true }, // 空軍少将指揮上限
+            { true, true, true, true, true, true, true }, // 海軍元帥指揮上限
+            { true, true, true, true, true, true, true }, // 海軍大将指揮上限
+            { true, true, true, true, true, true, true }, // 海軍中将指揮上限
+            { true, true, true, true, true, true, true }, // 海軍少将指揮上限
+            { true, true, true, true, true, true, true }, // 司令部指揮上限係数
+            { true, true, true, true, true, true, true }, // 輸送船団護衛係数
+            { false, false, false, false, false, true, true }, // 輸送船団護衛モデル
+            { true, true, true, true, true, true, true }, // 戦闘後命令遅延時間
+            { false, false, true, true, true, false, false }, // 陸軍命令遅延時間
+            { false, false, true, true, true, false, false }, // 海軍命令遅延時間
+            { false, false, true, true, true, false, false }, // 空軍命令遅延時間
+            { true, true, true, true, true, true, true }, // 空軍最大スタックサイズ
+            { false, false, false, false, false, true, true }, // 空戦最小戦闘時間
+            { false, false, false, false, false, true, true }, // 港湾攻撃最小戦闘時間
+            { false, false, false, false, false, true, true }, // 戦略爆撃最小戦闘時間
+            { false, false, false, false, false, true, true }, // 地上爆撃最小戦闘時間
+            { true, true, true, true, true, true, true }, // 経験値補正
+            { true, true, true, true, true, true, true }, // 海軍基地戦略爆撃係数
+            { true, true, true, true, true, true, true }, // 空軍基地戦略爆撃係数
+            { true, true, true, true, true, true, true }, // 対空砲戦略爆撃係数
+            { true, true, true, true, true, true, true }, // ロケット試験場戦略爆撃係数
+            { true, true, true, true, true, true, true }, // 原子炉戦略爆撃係数
+            { true, true, true, true, true, true, true }, // レーダー戦略爆撃係数
+            { true, true, true, true, true, true, true }, // インフラ戦略爆撃係数
+            { true, true, true, true, true, true, true }, // IC戦略爆撃係数
+            { true, true, true, true, true, true, true }, // 資源戦略爆撃係数
+            { false, false, true, true, true, false, false }, // 合成石油工場戦略爆撃係数
+            { true, true, true, true, true, true, false }, // 対地防御効率補正
+            { true, true, true, true, true, true, false }, // 基本回避率(防御回数あり)
+            { true, true, true, true, true, true, false }, // 基本回避率(防御回数なし)
+            { false, false, false, false, false, false, true }, // 陸軍基本回避率(防御回数あり)
+            { false, false, false, false, false, false, true }, // 空軍基本回避率(防御回数あり)
+            { false, false, false, false, false, false, true }, // 海軍基本回避率(防御回数あり)
+            { false, false, false, false, false, false, true }, // 陸軍基本回避率(防御回数なし)
+            { false, false, false, false, false, false, true }, // 空軍基本回避率(防御回数なし)
+            { false, false, false, false, false, false, true }, // 海軍基本回避率(防御回数なし)
+            { true, true, true, true, true, true, true }, // 地形特性獲得可能性
+            { true, true, true, true, true, true, true }, // 戦闘特性獲得可能性
+            { true, true, true, true, true, true, true }, // 地形特性補正
+            { false, false, false, false, false, true, true }, // 類似地形特性補正
+            { true, true, true, true, true, true, true }, // 戦闘特性補正
+            { false, false, false, false, false, false, true }, // 陸軍指揮官スキル補正
+            { false, false, false, false, false, false, true }, // 空軍指揮官スキル補正
+            { false, false, false, false, false, false, true }, // 海軍指揮官スキル補正
+            { true, true, true, true, true, true, true }, // 指揮官死亡確率
+            { true, true, true, true, true, false, false }, // 空軍組織率被ダメージ
+            { true, true, false, false, false, false, false }, // 空軍戦力被ダメージ(組織力)
+            { true, true, false, false, false, false, false }, // 空軍戦力被ダメージ
+            { false, false, false, false, false, false, true }, // 陸軍最小組織率被ダメージ
+            { false, false, false, false, false, false, true }, // 陸軍組織率被ダメージ(装甲/非装甲同士)
+            { false, false, false, false, false, false, true }, // 陸軍組織率被ダメージ(装甲対非装甲)
+            { false, false, false, false, false, false, true }, // 陸軍最小戦力被ダメージ
+            { false, false, false, false, false, false, true }, // 陸軍戦力被ダメージ(装甲/非装甲同士)
+            { false, false, false, false, false, false, true }, // 陸軍戦力被ダメージ(装甲対非装甲)
+            { false, false, false, false, false, false, true }, // 空軍最小組織率被ダメージ
+            { false, false, false, false, false, false, true }, // 空軍追加組織率被ダメージ
+            { false, false, false, false, false, false, true }, // 空軍最小戦力被ダメージ
+            { false, false, false, false, false, false, true }, // 空軍追加戦力被ダメージ
+            { false, false, false, false, false, false, true }, // 空軍戦力被ダメージ(対塹壕)
+            { false, false, false, false, false, false, true }, // 海軍最小組織率被ダメージ
+            { false, false, false, false, false, false, true }, // 海軍追加組織率被ダメージ
+            { false, false, false, false, false, false, true }, // 海軍最小戦力被ダメージ
+            { false, false, false, false, false, false, true }, // 海軍追加戦力被ダメージ
+            { false, false, false, false, false, true, true }, // 空軍対陸軍戦力被ダメージ(組織率)
+            { false, false, false, false, false, true, true }, // 空軍対陸軍組織率被ダメージ
+            { false, false, false, false, false, true, true }, // 空軍対陸軍戦力被ダメージ
+            { false, false, false, false, false, true, true }, // 陸軍対陸軍組織率被ダメージ(組織率)
+            { false, false, false, false, false, false, true }, // 陸軍対陸軍組織率被ダメージ(都市)
+            { false, false, false, false, false, false, true }, // 陸軍対陸軍組織率被ダメージ(要塞)
+            { false, false, false, false, false, false, true }, // 必要要塞規模
+            { false, false, false, false, false, true, true }, // 陸軍対陸軍戦力被ダメージ
+            { false, false, false, false, false, true, true }, // 空軍対空軍組織率被ダメージ
+            { false, false, false, false, false, true, true }, // 空軍対空軍戦力被ダメージ
+            { false, false, false, false, false, true, true }, // 陸軍対空軍組織率被ダメージ
+            { false, false, false, false, false, true, true }, // 陸軍対空軍戦力被ダメージ
+            { false, false, false, false, false, true, true }, // 海軍対空軍組織率被ダメージ
+            { false, false, false, false, false, true, true }, // 海軍対空軍戦力被ダメージ
+            { false, false, false, false, false, true, true }, // 潜水艦対空軍組織率被ダメージ
+            { false, false, false, false, false, true, true }, // 潜水艦対空軍戦力被ダメージ
+            { false, false, false, false, false, true, true }, // 空軍対海軍組織率被ダメージ
+            { false, false, false, false, false, true, true }, // 空軍対海軍戦力被ダメージ
+            { false, false, false, false, false, true, true }, // 海軍対海軍組織率被ダメージ
+            { false, false, false, false, false, true, true }, // 海軍対海軍戦力被ダメージ
+            { false, false, false, false, false, true, true }, // 潜水艦対海軍組織率被ダメージ
+            { false, false, false, false, false, true, true }, // 潜水艦対海軍戦力被ダメージ
+            { false, true, false, false, false, false, false }, // 潜水艦組織率被ダメージ
+            { false, true, false, false, false, false, false }, // 潜水艦戦力被ダメージ
+            { false, true, false, false, false, true, true }, // 潜水艦発見補正
+            { false, false, true, true, true, false, false }, // 空軍対陸軍組織率被ダメージ
+            { false, false, true, true, true, false, false }, // 空軍対陸軍戦力被ダメージ
+            { false, false, true, true, true, false, false }, // 砲撃ダメージ補正(陸上部隊)
+            { false, false, true, true, true, false, false }, // 砲撃ダメージ補正(インフラ)
+            { false, false, true, true, true, false, false }, // 砲撃ダメージ補正(IC)
+            { false, false, true, true, true, false, false }, // 砲撃ダメージ補正(資源)
+            { false, false, true, true, true, false, false }, // 砲撃中の被攻撃ペナルティ
+            { false, false, true, true, true, false, false }, // 砲撃戦力ダメージ
+            { false, false, true, true, true, false, false }, // 砲撃組織率ダメージ
+            { false, false, true, true, true, false, false }, // 陸軍対陸軍戦力被ダメージ
+            { false, false, true, true, true, false, false }, // 陸軍対陸軍組織率被ダメージ
+            { false, false, true, true, true, false, false }, // 陸軍対空軍戦力被ダメージ
+            { false, false, true, true, true, false, false }, // 陸軍対空軍組織率被ダメージ
+            { false, false, true, true, true, false, false }, // 海軍対空軍戦力被ダメージ
+            { false, false, true, true, true, false, false }, // 海軍対空軍組織率被ダメージ
+            { false, false, true, true, true, false, false }, // 空軍対空軍戦力被ダメージ
+            { false, false, true, true, true, false, false }, // 空軍対空軍組織率被ダメージ
+            { false, false, true, true, true, false, false }, // 海軍対海軍戦力被ダメージ
+            { false, false, true, true, true, false, false }, // 海軍対海軍組織率被ダメージ
+            { false, false, true, true, true, false, false }, // 空軍対海軍戦力被ダメージ
+            { false, false, true, true, true, false, false }, // 空軍対海軍組織率被ダメージ
+            { false, false, true, true, true, false, false }, // 給料不足時の戦闘補正
+            { false, false, true, true, true, false, false }, // 海軍最小戦闘時間
+            { false, false, true, true, true, false, false }, // 陸軍最小戦闘時間
+            { false, false, true, true, true, false, false }, // 空軍最小戦闘時間
+            { false, false, true, true, true, false, false }, // 陸軍スタックペナルティ
+            { false, false, true, true, true, false, false }, // 陸軍移動時組織率減少係数
+            { false, false, true, true, true, false, false }, // 空軍移動時組織率減少係数
+            { false, false, true, true, true, false, false }, // 海軍移動時組織率減少係数
+            { false, false, true, true, true, false, false }, // 遠隔地補給係数
+            { false, false, true, true, true, false, false }, // 基礎補給効率
+            { false, false, true, true, true, false, false }, // 陸軍組織率補正
+            { false, false, true, true, true, false, false }, // 空軍組織率補正
+            { false, false, true, true, true, false, false }, // 海軍組織率補正
+            { false, false, true, true, true, false, false }, // 核攻撃不満度係数(人的資源)
+            { false, false, true, true, true, false, false }, // 核攻撃不満度係数(IC)
+            { false, false, true, true, true, false, false }, // 核攻撃不満度係数(トータル)
+            { false, false, true, true, true, false, false }, // 陸軍友好地組織率補正
+            { false, false, true, true, true, false, false }, // 阻止攻撃備蓄補正
+            { false, false, true, true, true, false, false }, // 焦土命令ダメージ
+            { false, false, true, true, true, false, false }, // 死守命令不満度上昇
+            { false, false, true, true, true, false, false }, // 焦土命令好戦性上昇
+            { false, false, true, true, true, false, false }, // 陸軍デフォルトスタック数
+            { false, false, true, true, true, false, false }, // 海軍デフォルトスタック数
+            { false, false, true, true, true, false, false }, // 空軍デフォルトスタック数
+            { false, false, true, true, true, false, false }, // ロケットデフォルトスタック数
+            { false, false, true, true, true, false, false }, // 要塞砲撃ダメージ補正
+            { false, false, true, true, true, false, false }, // 砲撃組織率減少
+            { false, false, true, true, true, false, false }, // 陸軍対要塞ダメージ係数
+            { false, false, true, true, true, false, false }, // 空軍基地移動組織率減少係数
+            { false, false, true, true, true, false, false }, // 空港占領時ペナルティ
+            { false, false, true, true, true, false, false }, // 対空砲戦力ダメージ補正
+            { false, false, true, true, true, false, false }, // 対空砲組織率ダメージ補正
+            { false, false, true, true, true, false, false }, // 対空砲上空通過ダメージ補正
+            { false, false, true, true, true, false, false }, // 対空砲爆撃中ダメージ補正
+            { false, false, true, true, true, false, false }, // 装甲ユニット戦力ダメージ補正
+            { false, false, true, true, true, false, false }, // 装甲ユニット組織率ダメージ補正
+            { false, false, true, true, true, false, false }, // 戦車対人最小突破係数
+            { false, false, true, true, true, false, false }, // 戦車対人最大突破係数
+            { false, false, true, true, true, false, false }, // 海軍クリティカルヒット確率
+            { false, false, true, true, true, false, false }, // 海軍クリティカルヒット効果
+            { false, false, true, true, true, false, false }, // 要塞ダメージ補正
+            { false, false, true, true, true, false, false }, // 日中港湾攻撃奇襲確率
+            { false, false, true, true, true, false, false }, // 夜間港湾攻撃奇襲確率
+            { false, false, true, true, true, false, false }, // 港湾攻撃奇襲補正
+            { false, false, true, true, true, false, false }, // レーダー奇襲確率減少値
+            { false, false, true, true, true, false, false }, // レーダー奇襲効果減少値
+            { false, false, false, false, true, false, false }, // 反撃イベント防御側戦力補正
+            { false, false, false, false, true, false, false }, // 反撃イベント防御側組織率補正
+            { false, false, false, false, true, false, false }, // 反撃イベント攻撃側戦力補正
+            { false, false, false, false, true, false, false }, // 反撃イベント攻撃側組織率補正
+            { false, false, false, false, true, false, false }, // 強襲イベント防御側戦力補正
+            { false, false, false, false, true, false, false }, // 強襲イベント防御側組織率補正
+            { false, false, false, false, true, false, false }, // 強襲イベント攻撃側戦力補正
+            { false, false, false, false, true, false, false }, // 強襲イベント攻撃側組織率補正
+            { false, false, false, false, true, false, false }, // 包囲イベント防御側戦力補正
+            { false, false, false, false, true, false, false }, // 包囲イベント防御側組織率補正
+            { false, false, false, false, true, false, false }, // 包囲イベント攻撃側戦力補正
+            { false, false, false, false, true, false, false }, // 包囲イベント攻撃側組織率補正
+            { false, false, false, false, true, false, false }, // 待伏イベント防御側戦力補正
+            { false, false, false, false, true, false, false }, // 待伏イベント防御側組織率補正
+            { false, false, false, false, true, false, false }, // 待伏イベント攻撃側戦力補正
+            { false, false, false, false, true, false, false }, // 待伏イベント攻撃側組織率補正
+            { false, false, false, false, true, false, false }, // 遅延イベント防御側戦力補正
+            { false, false, false, false, true, false, false }, // 遅延イベント防御側組織率補正
+            { false, false, false, false, true, false, false }, // 遅延イベント攻撃側戦力補正
+            { false, false, false, false, true, false, false }, // 遅延イベント攻撃側組織率補正
+            { false, false, false, false, true, false, false }, // 後退イベント防御側戦力補正
+            { false, false, false, false, true, false, false }, // 後退イベント防御側組織率補正
+            { false, false, false, false, true, false, false }, // 後退イベント攻撃側戦力補正
+            { false, false, false, false, true, false, false }, // 後退イベント攻撃側組織率補正
+            { false, false, false, false, true, false, false }, // 突破イベント防御側戦力補正
+            { false, false, false, false, true, false, false }, // 突破イベント防御側組織率補正
+            { false, false, false, false, true, false, false }, // 突破イベント攻撃側戦力補正
+            { false, false, false, false, true, false, false }, // 突破イベント攻撃側組織率補正
+            { false, false, false, false, false, true, true }, // 海軍対空砲組織率被ダメージ
+            { false, false, false, false, false, true, true }, // 空軍対空砲組織率被ダメージ
+            { false, false, false, false, false, true, true }, // 空軍対空砲戦力被ダメージ
+            { false, false, false, false, false, true, true }, // 対空砲攻撃ルール
+            { false, false, false, false, false, true, true }, // 対空砲夜間攻撃補正
+            { false, false, false, false, false, true, true }, // 対空砲攻撃レーダーボーナス
+            { false, false, false, false, false, true, true }, // 地形適正移動ボーナス
+            { false, false, false, false, false, true, true }, // 類似地形適正移動ボーナス
+            { false, false, false, false, false, true, true }, // 兵站管理の補給効率ボーナス
+            { false, false, false, false, false, true, true }, // 攻勢継続日数
+            { false, false, false, false, false, true, true }, // 閣僚ボーナス適用方法
+            { false, false, false, false, false, true, true }, // 友好地組織率回復ボーナス
+            { false, false, false, false, false, true, true }, // 友好地組織率回復ボーナス上限
+            { false, false, false, false, false, true, true }, // 海上任務中の船団妨害
+            { false, false, false, false, false, true, true }, // 輸送艦隊の自動帰還
+            { false, false, false, false, false, true, true }, // 単一プロヴィンス/地域指定任務
+            { false, false, false, false, false, true, true }, // 冬季夜間時間
+            { false, false, false, false, false, true, true }, // 春季/秋季夜間時間
+            { false, false, false, false, false, true, true }, // 夏季夜間時間
+            { false, false, false, false, false, true, true }, // 陸上部隊到着時刻再計算間隔
+            { false, false, false, false, false, true, true }, // 同時到着補正(プレイヤー)
+            { false, false, false, false, false, true, true }, // 同時到着補正(AI)
+            { false, false, false, false, false, true, true }, // 戦闘後到着時刻再計算
+            { false, false, false, false, false, true, true }, // 戦闘時陸軍移動速度補正
+            { false, false, false, false, false, true, true }, // 沿岸砲撃時陸軍移動速度補正
+            { false, false, false, false, false, true, true }, // 物資切れ時陸軍移動速度補正
+            { false, false, false, false, false, true, true }, // 組織率低下時陸軍移動速度補正
+            { false, false, false, false, false, true, true }, // 燃料切れ時陸軍/空軍移動速度補正
+            { false, false, false, false, false, true, true }, // 燃料切れ時デフォルト移動速度
+            { false, false, false, false, false, true, true }, // 艦隊規模航続距離ペナルティ割合
+            { false, false, false, false, false, true, true }, // 艦隊規模航続距離ペナルティ閾値
+            { false, false, false, false, false, true, true }, // 艦隊規模航続距離ペナルティ上限
+            { false, false, false, false, false, true, true }, // 地方/地域内での距離制限適用
+            { false, false, false, false, false, true, true }, // レーダー航空機発見ボーナス
+            { false, false, false, false, false, true, true }, // 友好地航空機発見ボーナス
+            { false, false, false, false, false, true, true }, // 主力艦/補助艦割合修正
+            { false, false, false, false, false, true, true }, // 陸軍組織率不足ユニット標的確率
+            { false, false, false, false, false, true, true }, // 主力艦/補助艦標的ポジション値
+            { false, false, false, false, false, false, true }, // 海戦ポジション値日中ボーナス
+            { false, false, false, false, false, false, true }, // 海戦ポジション値スキル補正
+            { false, false, false, false, false, false, true }, // 海戦ポジション値艦隊規模補正
+            { false, false, false, false, false, false, true }, // 海戦ポジション値艦隊構成補正
+            { false, false, false, false, false, false, true }, // 要塞被ダメージ補正
+            { false, false, false, false, false, false, true }, // 要塞最大被ダメージ
+            { false, false, false, false, false, false, true }, // 付属旅団による最小脆弱性
+            { false, false, false, false, false, false, true }, // 自動撤退組織率
+            { false, false, false, false, false, false, true }, // 陸軍海上輸送後組織率補正
+            { false, false, false, false, false, false, true }, // 最大塹壕値
+            { false, false, false, false, false, false, true }, // 1日の塹壕増加量
+            { false, false, false, false, false, false, true }, // 突破/包囲最小速度
+            { false, false, false, false, false, false, true }, // 突破/包囲最大確率
+            { false, false, false, false, false, false, true }, // 突破/包囲確率補正
+            { false, false, false, false, false, false, true }, // コンバットイベント継続時間
+            { false, false, false, false, false, false, true }, // 反撃イベント攻撃側組織率補正
+            { false, false, false, false, false, false, true }, // 反撃イベント攻撃側戦力補正
+            { false, false, false, false, false, false, true }, // 反撃イベント防御側組織率補正
+            { false, false, false, false, false, false, true }, // 反撃イベント防御側戦力補正
+            { false, false, false, false, false, false, true }, // 強襲イベント攻撃側組織率補正
+            { false, false, false, false, false, false, true }, // 強襲イベント攻撃側戦力補正
+            { false, false, false, false, false, false, true }, // 強襲イベント防御側組織率補正
+            { false, false, false, false, false, false, true }, // 強襲イベント防御側戦力補正
+            { false, false, false, false, false, false, true }, // 包囲イベント攻撃側組織率補正
+            { false, false, false, false, false, false, true }, // 包囲イベント攻撃側戦力補正
+            { false, false, false, false, false, false, true }, // 包囲イベント防御側組織率補正
+            { false, false, false, false, false, false, true }, // 包囲イベント防御側戦力補正
+            { false, false, false, false, false, false, true }, // 待伏イベント攻撃側組織率補正
+            { false, false, false, false, false, false, true }, // 待伏イベント攻撃側戦力補正
+            { false, false, false, false, false, false, true }, // 待伏イベント防御側組織率補正
+            { false, false, false, false, false, false, true }, // 待伏イベント防御側戦力補正
+            { false, false, false, false, false, false, true }, // 遅延イベント攻撃側組織率補正
+            { false, false, false, false, false, false, true }, // 遅延イベント攻撃側戦力補正
+            { false, false, false, false, false, false, true }, // 遅延イベント防御側組織率補正
+            { false, false, false, false, false, false, true }, // 遅延イベント防御側戦力補正
+            { false, false, false, false, false, false, true }, // 後退イベント攻撃側組織率補正
+            { false, false, false, false, false, false, true }, // 後退イベント攻撃側戦力補正
+            { false, false, false, false, false, false, true }, // 後退イベント防御側組織率補正
+            { false, false, false, false, false, false, true }, // 後退イベント防御側戦力補正
+            { false, false, false, false, false, false, true }, // 突破イベント攻撃側組織率補正
+            { false, false, false, false, false, false, true }, // 突破イベント攻撃側戦力補正
+            { false, false, false, false, false, false, true }, // 突破イベント防御側組織率補正
+            { false, false, false, false, false, false, true }, // 突破イベント防御側戦力補正
+            { false, false, false, false, false, false, true }, // 司令部は突破イベント時のみ戦力ダメージ
+            { false, false, false, false, false, false, true }, // 戦闘モード
+            { false, false, false, false, false, true, true }, // 攻撃任務
+            { false, false, false, false, false, true, true }, // 攻撃初期効率
+            { false, false, false, false, false, true, true }, // 攻撃速度ボーナス
+            { false, false, false, false, false, true, true }, // 基地移動任務
+            { false, false, false, false, false, true, true }, // 基地移動初期効率
+            { false, false, false, false, false, true, true }, // 基地移動被発見確率
+            { false, false, false, false, false, true, true }, // 戦略的再配置任務
+            { false, false, false, false, false, true, true }, // 戦略的再配置初期効率
+            { false, false, false, false, false, true, true }, // 戦略的再配置加算値
+            { false, false, false, false, false, true, true }, // 戦略的再配置距離補正
+            { false, false, false, false, false, true, true }, // 支援攻撃任務
+            { false, false, false, false, false, true, true }, // 支援攻撃初期効率
+            { false, false, false, false, false, true, true }, // 支援攻撃速度ボーナス
+            { false, false, false, false, false, true, true }, // 防衛支援任務
+            { false, false, false, false, false, true, true }, // 防衛支援初期効率
+            { false, false, false, false, false, true, true }, // 防衛支援速度ボーナス
+            { false, false, false, false, false, true, true }, // 待機任務
+            { false, false, false, false, false, true, true }, // 待機初期効率
+            { false, false, false, false, false, true, true }, // 待機速度ボーナス
+            { false, false, false, false, false, true, true }, // パルチザン掃討任務
+            { false, false, false, false, false, true, true }, // パルチザン掃討初期効率
+            { false, false, false, false, false, true, true }, // パルチザン掃討制圧力補正
+            { false, false, false, false, false, true, true }, // 防衛計画任務
+            { false, false, false, false, false, true, true }, // 防衛計画初期効率
+            { false, false, false, false, false, true, true }, // 制空権任務
+            { false, false, false, false, false, true, true }, // 制空権初期効率
+            { false, false, false, false, false, true, true }, // 制空権敵機発見補正
+            { false, false, false, false, false, true, true }, // 制空権最小ユニット数
+            { false, false, false, false, false, true, true }, // 地上攻撃任務
+            { false, false, false, false, false, true, true }, // 地上攻撃初期効率
+            { false, false, false, false, false, true, true }, // 地上攻撃組織率ダメージ補正
+            { false, false, false, false, false, true, true }, // 地上攻撃戦力ダメージ補正
+            { false, false, false, false, false, true, true }, // 阻止攻撃任務
+            { false, false, false, false, false, true, true }, // 阻止攻撃初期効率
+            { false, false, false, false, false, true, true }, // 阻止攻撃組織率ダメージ補正
+            { false, false, false, false, false, true, true }, // 阻止攻撃戦力ダメージ補正
+            { false, false, false, false, false, true, true }, // 戦略爆撃任務
+            { false, false, false, false, false, true, true }, // 戦略爆撃初期効率
+            { false, false, false, false, false, true, true }, // 兵站攻撃任務
+            { false, false, false, false, false, true, true }, // 兵站攻撃初期効率
+            { false, false, false, false, false, true, true }, // 空港空爆任務
+            { false, false, false, false, false, true, true }, // 空港空爆初期効率
+            { false, false, false, false, false, true, true }, // 軍事施設攻撃任務
+            { false, false, false, false, false, true, true }, // 軍事施設攻撃初期効率
+            { false, false, false, false, false, true, true }, // 艦船攻撃任務
+            { false, false, false, false, false, true, true }, // 艦船攻撃初期効率
+            { false, false, false, false, false, true, true }, // 港湾攻撃任務
+            { false, false, false, false, false, true, true }, // 港湾攻撃初期効率
+            { false, false, false, false, false, true, true }, // 航空船団爆撃任務
+            { false, false, false, false, false, true, true }, // 航空船団爆撃初期効率
+            { false, false, false, false, false, true, true }, // 空輸補給任務
+            { false, false, false, false, false, true, true }, // 空輸補給初期効率
+            { false, false, false, false, false, true, true }, // 空挺強襲任務
+            { false, false, false, false, false, true, true }, // 空挺強襲初期効率
+            { false, false, false, false, false, true, true }, // 核攻撃任務
+            { false, false, false, false, false, true, true }, // 核攻撃初期効率
+            { false, false, false, false, false, true, true }, // 航空緊急出撃任務
+            { false, false, false, false, false, true, true }, // 航空緊急出撃初期効率
+            { false, false, false, false, false, true, true }, // 航空緊急出撃敵機発見補正
+            { false, false, false, false, false, true, true }, // 航空緊急出撃最小ユニット数
+            { false, false, false, false, false, true, true }, // 船団襲撃任務
+            { false, false, false, false, false, true, true }, // 船団襲撃初期効率
+            { false, false, false, false, false, true, true }, // 船団襲撃航続距離補正
+            { false, false, false, false, false, true, true }, // 船団襲撃被発見確率
+            { false, false, false, false, false, true, true }, // 対潜作戦任務
+            { false, false, false, false, false, true, true }, // 対潜作戦初期効率
+            { false, false, false, false, false, true, true }, // 海上阻止任務
+            { false, false, false, false, false, true, true }, // 海上阻止初期効率
+            { false, false, false, false, false, true, true }, // 沿岸砲撃任務
+            { false, false, false, false, false, true, true }, // 沿岸砲撃初期効率
+            { false, false, false, false, false, true, true }, // 沿岸砲撃補正
+            { false, false, false, false, false, true, true }, // 強襲上陸任務
+            { false, false, false, false, false, true, true }, // 強襲上陸初期効率
+            { false, false, false, false, false, true, true }, // 海上輸送任務
+            { false, false, false, false, false, true, true }, // 海上輸送初期効率
+            { false, false, false, false, false, true, true }, // 海上輸送航続距離補正
+            { false, false, false, false, false, true, true }, // 海上輸送被発見確率
+            { false, false, false, false, false, true, true }, // 海上戦闘哨戒任務
+            { false, false, false, false, false, true, true }, // 海上戦闘哨戒初期効率
+            { false, false, false, false, false, true, true }, // 空母による港湾攻撃任務
+            { false, false, false, false, false, true, true }, // 空母による港湾攻撃初期効率
+            { false, false, false, false, false, true, true }, // 空母による航空基地攻撃任務
+            { false, false, false, false, false, true, true }, // 空母による航空基地攻撃初期効率
+            { false, false, false, false, false, true, true }, // 隠密移動任務
+            { false, false, false, false, false, true, true }, // 隠密移動初期効率
+            { false, false, false, false, false, true, true }, // 隠密移動航続距離補正
+            { false, false, false, false, false, true, true }, // 隠密移動被発見確率
+            { false, false, false, false, false, true, true }, // 海上緊急出撃任務
+            { false, false, false, false, false, true, true }, // 海上緊急出撃初期効率
+            { false, false, false, false, false, true, true }, // 海上緊急出撃速度ボーナス
+            { false, false, false, false, false, false, true }, // 攻撃/支援攻撃効率を戦闘補正として使用
+            { false, false, false, false, false, true, true }, // 陸上要塞効率
+            { false, false, false, false, false, true, true }, // 沿岸要塞効率
+            { false, false, false, false, false, true, true }, // 対地防御効率
+            { false, false, false, false, false, true, true }, // 船団防衛効率
+            { false, false, false, false, false, true, true }, // 人的資源増加
+            { false, false, false, false, false, true, true }, // TC補正
+            { false, false, false, false, false, true, true }, // 占領地TC補正
+            { false, false, false, false, false, true, true }, // 消耗補正
+            { false, false, false, false, false, true, true }, // 人的資源復帰補正
+            { false, false, false, false, false, true, true }, // 遠隔地補給補正
+            { false, false, false, false, false, true, true }, // 修理補正
+            { false, false, false, false, false, true, true }, // 研究補正
+            { false, false, false, false, false, true, true }, // レーダー効率
+            { false, false, false, false, false, true, true }, // 司令部補給効率ボーナス
+            { false, false, false, false, false, true, true }, // 司令部コンバットイベントボーナス
+            { false, false, false, false, false, true, true }, // コンバットイベント発生確率
+            { false, false, false, false, false, true, true }, // 友軍発見確率
+            { false, false, false, false, false, true, true }, // 敵軍発見確率
+            { false, false, false, false, false, true, true }, // 友好国諜報確率
+            { false, false, false, false, false, true, true }, // 敵国諜報確率
+            { false, false, false, false, false, true, true }, // 最大強襲上陸規模
+            { false, false, false, false, false, true, true }, // エネルギー/石油変換効率
+            { false, false, false, false, false, true, true }, // 総合生産効率
+            { false, false, false, false, false, true, true }, // 物資生産効率
+            { false, false, false, false, false, true, true }, // 対空砲攻撃力
+            { false, false, false, false, false, true, true }, // 空軍奇襲確率
+            { false, false, false, false, false, true, true }, // 陸軍奇襲確率
+            { false, false, false, false, false, true, true }, // 海軍奇襲確率
+            { false, false, false, false, false, true, true }, // 平時IC補正
+            { false, false, false, false, false, true, true }, // 戦時IC補正
+            { false, false, false, false, false, true, true }, // 建造物生産補正
+            { false, false, false, false, false, true, true }, // 輸送船団生産補正
+            { false, false, false, false, false, true, true }, // 最小艦船ポジション値
+            { false, false, false, false, false, true, true }, // 最大艦船ポジション値
+            { false, false, false, false, false, true, true }, // 平時資源備蓄補正
+            { false, false, false, false, false, true, true }, // 戦時資源備蓄補正
+            { false, false, false, false, false, true, true }, // 平時物資/燃料備蓄補正
+            { false, false, false, false, false, true, true }, // 戦時物資/燃料備蓄補正
+            { true, true, true, true, true, true, true }, // 青写真ボーナス
+            { true, true, true, true, true, true, true }, // 史実年度以前研究ペナルティ
+            { false, false, false, false, false, true, true }, // 史実年度以降研究ボーナス
+            { true, true, true, true, true, true, true }, // 研究機関レベル毎のコスト
+            { true, true, true, true, true, true, true }, // 1年毎の発明イベント平均回数
+            { false, false, true, true, true, false, false }, // 史実年度以降研究ボーナス
+            { false, false, true, true, true, false, false }, // 研究速度補正
+            { false, false, true, true, true, false, false }, // 史実年度以前研究ペナルティ上限
+            { false, false, true, true, true, false, false }, // 史実年度以降研究ボーナス上限
+            { false, false, false, true, true, false, false }, // 研究スロット上限
+            { false, false, false, true, true, false, false }, // 研究スロット毎の必要IC
+            { false, false, false, false, true, false, false }, // 最大ランダム補正
+            { false, false, false, false, false, true, true }, // 研究ページのレイアウト
+            { false, false, false, false, false, false, true }, // 研究概要パネルのスタイル
+            { false, false, false, false, false, true, true }, // 研究スロット上限
+            { false, false, false, false, false, true, true }, // 研究スロット下限
+            { false, false, false, false, false, true, true }, // 研究スロット毎の必要IC
+            { false, false, false, false, false, false, true }, // 新規国家でロケット技術を継承
+            { false, false, false, false, false, false, true }, // 新規国家で核物理学技術を継承
+            { false, false, false, false, false, false, true }, // 新規国家で核工学技術を継承
+            { false, false, false, false, false, false, true }, // 新規国家で秘密兵器技術を継承
+            { false, false, false, false, false, false, true }, // 最大研究機関スキル
+            { false, false, false, false, false, true, true }, // 貿易交渉間隔
+            { false, false, false, false, false, true, true }, // ゲーム開始直後の貿易交渉遅延日数
+            { false, false, false, false, false, true, true }, // ゲーム開始直後のAI友好国貿易交渉遅延日数
+            { false, false, false, false, false, true, true }, // 理想石油備蓄
+            { false, false, false, false, false, true, true }, // 危険水準石油備蓄
+            { false, false, false, false, false, true, true }, // 理想物資備蓄
+            { false, false, false, false, false, true, true }, // 危険水準物資備蓄
+            { false, false, false, false, false, true, true }, // 理想資源備蓄
+            { false, false, false, false, false, true, true }, // 危険水準資源備蓄
+            { false, false, false, false, false, true, true }, // 戦時理想備蓄係数
+            { false, false, false, false, false, true, true }, // 平時石油臨時輸入割合
+            { false, false, false, false, false, true, true }, // 戦時石油臨時輸入割合
+            { false, false, false, false, false, true, true }, // 理想備蓄未到達時の臨時輸入割合
+            { false, false, false, false, false, true, true }, // 物資生産割合
+            { false, false, false, false, false, true, true }, // 資金生産割合
+            { false, false, false, false, false, true, true }, // 備蓄選択時の臨時輸入割合
+            { false, false, false, false, false, true, true }, // 貿易協定資源輸送日数
+            { false, false, false, false, false, true, true }, // 貿易協定の統合
+            { false, false, false, false, false, true, true }, // 手動貿易協定
+            { false, false, false, false, false, true, true }, // 傀儡国上納物資/資金
+            { false, false, false, false, false, true, true }, // 傀儡国物資危険水準
+            { false, false, false, false, false, true, true }, // 傀儡国最大資源備蓄
+            { false, false, false, false, false, true, true }, // 新規貿易協定最小効率
+            { false, false, false, false, false, true, true }, // 貿易協定破棄効率
+            { false, false, false, false, false, true, true }, // 自動/AIの貿易協定最小効率
+            { false, false, false, false, false, true, true }, // 理想備蓄未達時の余剰物資生産比率
+            { false, false, false, false, false, true, true }, // 戦時余剰物資生産係数
+            { false, false, false, false, false, true, true }, // 備蓄余裕時の物資生産禁止係数
+            { false, false, false, false, false, true, true }, // 守備隊/民兵の最大連続生産数
+            { false, false, false, false, false, true, true }, // 海軍/空軍連続生産最小IC
+            { false, false, false, false, false, true, true }, // 新規生産禁止人的資源比率
+            { false, false, false, false, false, true, true }, // 新規生産禁止人的資源値
+            { false, false, false, false, false, true, true }, // 新規生産禁止物資比率
+            { false, false, false, false, false, true, true }, // 総ICに対する軍事力比率(平時)
+            { false, false, false, false, false, true, true }, // 総ICに対する軍事力比率(戦時)
+            { false, false, false, false, false, true, true }, // 総ICに対する軍事力比率(主要国)
+            { false, false, false, false, false, true, true }, // 攻勢中止物資備蓄
+            { false, false, false, false, false, true, true }, // 攻勢中止燃料備蓄
+            { false, false, false, false, false, true, true }, // 攻勢中止補給効率
+            { false, false, false, false, false, true, true }, // 攻勢中止組織率/戦力ダメージ
+            { false, false, false, false, false, true, true }, // AIの平時の攻撃的諜報活動
+            { false, false, false, false, false, true, true }, // AIの諜報コスト補正
+            { false, false, false, false, false, true, true }, // AIの外交コスト補正
+            { false, false, false, false, false, true, true }, // AIの外交干渉頻度補正
+            { false, false, false, false, false, true, false }, // AIの新宣戦布告ルール
+            { false, false, false, false, false, false, true }, // AIの新宣戦布告ルール
+            { false, false, false, false, false, true, true }, // 傀儡国が宗主国の同盟に強制加入する中立性
+            { false, false, false, false, false, true, true }, // 新AI占領地解放ルール
+            { false, false, false, false, false, true, true }, // AIイベント選択ルール
+            { false, false, false, false, false, true, true }, // 強制戦略的再配置時間
+            { false, false, false, false, false, true, true }, // AI最大再配置日数
+            { false, false, false, false, false, true, true }, // 守備隊AIの簡易チェック
+            { false, false, false, false, false, true, true }, // AI宗主国が傀儡国の占領地を支配
+            { false, false, false, false, false, true, true }, // AI占領地解放最小日数
+            { false, false, false, false, false, true, true }, // AI占領地返還最小日数
+            { false, false, false, false, false, true, true }, // AI占領地返還最小日数(物資補給基地)
+            { false, false, false, false, false, true, true }, // 被領有権主張時連合加盟最小友好度
+            { false, false, false, false, false, true, true }, // AIの諜報/外交をログに記録
+            { false, false, false, false, false, true, true }, // 国家情報をログに記録
+            { false, false, false, false, false, true, true }, // AI切り替えをログに記録
+            { false, false, false, false, false, true, true }, // 新自動セーブファイル名
+            { false, false, false, false, false, true, true }, // マルチプレイでAI切替時に新しい設定を読み込む
+            { false, false, false, false, false, true, true }, // 貿易効率算出間隔
+            { false, false, false, false, false, true, true }, // 備蓄庫の再計算間隔
+            { false, false, false, false, false, true, false }, // 損失を記録
+            { false, false, false, false, false, false, true }, // 損失を記録
+            { false, false, false, false, false, true, true }, // 占領地で旅団付属を許可
+            { false, false, false, false, false, true, true }, // 陸軍の一括配置数
+            { false, false, false, false, false, true, true }, // 海軍の一括配置数
+            { false, false, false, false, false, true, true }, // 空軍の一括配置数
+            { false, false, false, false, false, true, true }, // すべての陸地プロヴィンスに固有画像を許可
+            { false, false, false, false, false, true, true }, // イベント選択肢を委任
+            { false, false, false, false, false, true, true }, // イベント選択肢強制表示
+            { false, false, false, false, false, true, true }, // ディシジョンを使用する
+            { false, false, false, false, false, true, true }, // パルチザンの歩兵構成割合
+            { false, false, false, false, false, true, true }, // パルチザンの技術レベル
+            { false, false, false, false, false, true, true }, // パルチザン最小戦力
+            { false, false, false, false, false, true, true }, // パルチザン最大戦力
+            { false, false, false, false, false, true, true }, // パルチザン組織率回復速度
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(隣接地占領)
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(占領地)
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(山岳)
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(丘陵)
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(森林)
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(密林)
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(湿地)
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(砂漠)
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(平地)
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(都市)
+            { false, false, false, false, false, true, true }, // パルチザンボーナス(航空/海軍基地)
+            { false, false, false, false, false, true, true }, // パルチザン占領プロヴィンス返却時間
+            { false, false, false, false, false, true, true }, // 新形式閣僚ファイルフォーマット
+            { false, false, false, false, false, false, true }, // 閣僚引退年を使用
+            { false, false, false, false, false, false, true }, // 指揮官引退年を使用
+            { false, false, false, false, false, true, true }, // スプライトをMODDIRのみから読み込む
+            { false, false, false, false, false, true, true }, // ユニットアイコンをMODDIRのみから読み込む
+            { false, false, false, false, false, true, true }, // ユニット画像をMODDIRのみから読み込む
+            { false, false, false, false, false, true, true }, // AIファイルをMODDIRのみから読み込む
+            { false, false, false, false, false, true, true }, // 守備隊判定ルール
+            { false, false, false, false, false, true, true }, // 旧セーブフォーマットを使用
+            { false, false, false, false, false, false, true }, // 生産パネルのUIスタイル
+            { false, false, false, false, false, false, true }, // ユニット画像のサイズ
+            { false, false, false, false, false, false, true }, // 艦艇付属装備に画像を使用
+            { false, false, false, false, false, false, true }, // 建物をプロヴィンスでのみ建造
+            { false, false, false, false, false, false, true }, // ユニット補正ページの新スタイル移行閾値
+            { false, false, false, false, false, true, true }, // マップ番号
+            { false, false, false, false, false, true, true }, // 総プロヴィンス数
+            { false, false, false, false, false, true, true }, // 距離算出方法
+            { false, false, false, false, false, true, true }, // マップの幅
+            { false, false, false, false, false, true, true } // マップの高さ
         };
 
         /// <summary>
@@ -2897,128 +2897,128 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly Dictionary<MiscItemId, int> IntMinValues = new Dictionary<MiscItemId, int>
         {
-            {MiscItemId.MaxRevoltRisk, 0},
-            {MiscItemId.CanUnitSendNonAllied, 0},
-            {MiscItemId.ChanceDetectSpyMission, 0},
-            {MiscItemId.RelationshipsHitDetectedMissions, 0},
-            {MiscItemId.ShowThirdCountrySpyReports, 0},
-            {MiscItemId.SpyInformationAccuracyModifier, -10},
-            {MiscItemId.AiPeacetimeSpyMissions, 0},
-            {MiscItemId.CanChangeIdeas, 0},
-            {MiscItemId.CanUnitSendNonAlliedDh, 0},
-            {MiscItemId.BluePrintsCanSoldNonAllied, 0},
-            {MiscItemId.ProvinceCanSoldNonAllied, 0},
-            {MiscItemId.TransferAlliedCoreProvinces, 0},
-            {MiscItemId.ProductionLineEdit, 0},
-            {MiscItemId.ConvoySystemOptionsAllied, 0},
-            {MiscItemId.ChanceDetectSpyMissionDh, 0},
-            {MiscItemId.RelationshipsHitDetectedMissionsDh, 0},
-            {MiscItemId.SpyInformationAccuracyModifierDh, -10},
-            {MiscItemId.ShowThirdCountrySpyReportsDh, 0},
-            {MiscItemId.UseMinisterPersonalityReplacing, 0},
-            {MiscItemId.RelationshipHitCancelTrade, 0},
-            {MiscItemId.RelationshipHitCancelPermanentTrade, 0},
-            {MiscItemId.PuppetsJoinMastersAlliance, 0},
-            {MiscItemId.MastersBecomePuppetsPuppets, 0},
-            {MiscItemId.AllowManualClaimsChange, 0},
-            {MiscItemId.JoinAutomaticallyAllesAxis, 0},
-            {MiscItemId.AllowChangeHosHog, 0},
-            {MiscItemId.ChangeTagCoup, 0},
-            {MiscItemId.FilterReleaseCountries, 0},
-            {MiscItemId.AaAirFiringRules, 0},
-            {MiscItemId.MinisterBonuses, 1},
-            {MiscItemId.ConvoyInterceptionMissions, 0},
-            {MiscItemId.AutoReturnTransportFleets, 0},
-            {MiscItemId.AllowProvinceRegionTargeting, 0},
-            {MiscItemId.RecalculateArrivalTimesCombat, 0},
-            {MiscItemId.ApplyRangeLimitsAreasRegions, 0},
-            {MiscItemId.ChanceTargetNoOrgLand, 0},
-            {MiscItemId.HqStrDamageBreakthrough, 0},
-            {MiscItemId.CombatMode, 0},
-            {MiscItemId.AttackMission, 0},
-            {MiscItemId.RebaseMission, 0},
-            {MiscItemId.StratRedeployMission, 0},
-            {MiscItemId.SupportAttackMission, 0},
-            {MiscItemId.SupportDefenseMission, 0},
-            {MiscItemId.ReservesMission, 0},
-            {MiscItemId.AntiPartisanDutyMission, 0},
-            {MiscItemId.PlannedDefenseMission, 0},
-            {MiscItemId.AirSuperiorityMission, 0},
-            {MiscItemId.GroundAttackMission, 0},
-            {MiscItemId.InterdictionMission, 0},
-            {MiscItemId.StrategicBombardmentMission, 0},
-            {MiscItemId.LogisticalStrikeMission, 0},
-            {MiscItemId.RunwayCrateringMission, 0},
-            {MiscItemId.InstallationStrikeMission, 0},
-            {MiscItemId.NavalStrikeMission, 0},
-            {MiscItemId.PortStrikeMission, 0},
-            {MiscItemId.ConvoyAirRaidingMission, 0},
-            {MiscItemId.AirSupplyMission, 0},
-            {MiscItemId.AirborneAssaultMission, 0},
-            {MiscItemId.NukeMission, 0},
-            {MiscItemId.AirScrambleMission, 0},
-            {MiscItemId.ConvoyRadingMission, 0},
-            {MiscItemId.AswMission, 0},
-            {MiscItemId.NavalInterdictionMission, 0},
-            {MiscItemId.ShoreBombardmentMission, 0},
-            {MiscItemId.AmphibousAssaultMission, 0},
-            {MiscItemId.SeaTransportMission, 0},
-            {MiscItemId.NavalCombatPatrolMission, 0},
-            {MiscItemId.NavalPortStrikeMission, 0},
-            {MiscItemId.NavalAirbaseStrikeMission, 0},
-            {MiscItemId.SneakMoveMission, 0},
-            {MiscItemId.NavalScrambleMission, 0},
-            {MiscItemId.UseAttackEfficiencyCombatModifier, 0},
-            {MiscItemId.MaxActiveTechTeamsAoD, 1},
-            {MiscItemId.UseNewTechnologyPageLayout, 0},
-            {MiscItemId.TechOverviewPanelStyle, 0},
-            {MiscItemId.NewCountryRocketryComponent, 0},
-            {MiscItemId.NewCountryNuclearPhysicsComponent, 0},
-            {MiscItemId.NewCountryNuclearEngineeringComponent, 0},
-            {MiscItemId.NewCountrySecretTechs, 0},
-            {MiscItemId.DelayGameStartNewTrades, 2},
-            {MiscItemId.MergeTradeDeals, 0},
-            {MiscItemId.ManualTradeDeals, 0},
-            {MiscItemId.NewTradeDealsMinEffectiveness, 0},
-            {MiscItemId.CancelTradeDealsEffectiveness, 0},
-            {MiscItemId.AutoTradeAiTradeDeals, 0},
-            {MiscItemId.MaxSerialLineProductionGarrisonMilitia, 1},
-            {MiscItemId.AiPeacetimeSpyMissionsDh, 0},
-            {MiscItemId.NewDowRules, 0},
-            {MiscItemId.NewDowRules2, 0},
-            {MiscItemId.NewAiReleaseRules, 0},
-            {MiscItemId.AiEventsActionSelectionRules, 0},
-            {MiscItemId.UseQuickAreaCheckGarrisonAi, 0},
-            {MiscItemId.AiMastersGetProvincesConquredPuppets, 0},
-            {MiscItemId.AiSpyDiplomaticMissionLogger, 0},
-            {MiscItemId.SwitchedAiFilesLogger, 0},
-            {MiscItemId.UseNewAutoSaveFileFormat, 0},
-            {MiscItemId.LoadNewAiSwitchingAllClients, 0},
-            {MiscItemId.InGameLossesLogging, 0},
-            {MiscItemId.InGameLossLogging2, 0},
-            {MiscItemId.AllowBrigadeAttachingInSupply, 0},
-            {MiscItemId.AllowUniquePicturesAllLandProvinces, 0},
-            {MiscItemId.AutoReplyEvents, 0},
-            {MiscItemId.ForceActionsShow, 0},
-            {MiscItemId.EnableDicisionsPlayers, 0},
-            {MiscItemId.RebelsArmyComposition, 0},
-            {MiscItemId.RebelsArmyMinStr, 1},
-            {MiscItemId.RebelsArmyMaxStr, 1},
-            {MiscItemId.UseNewMinisterFilesFormat, 0},
-            {MiscItemId.EnableRetirementYearMinisters, 0},
-            {MiscItemId.EnableRetirementYearLeaders, 0},
-            {MiscItemId.LoadSpritesModdirOnly, 0},
-            {MiscItemId.LoadUnitIconsModdirOnly, 0},
-            {MiscItemId.LoadUnitPicturesModdirOnly, 0},
-            {MiscItemId.LoadAiFilesModdirOnly, 0},
-            {MiscItemId.UseSpeedSetGarrisonStatus, 0},
-            {MiscItemId.UseOldSaveGameFormat, 0},
-            {MiscItemId.ProductionPanelUiStyle, 0},
-            {MiscItemId.UnitPicturesSize, 0},
-            {MiscItemId.EnablePicturesNavalBrigades, 0},
-            {MiscItemId.BuildingsBuildableOnlyProvinces, 0},
-            {MiscItemId.TotalProvinces, 1},
-            {MiscItemId.DistanceCalculationModel, 0},
+            { MiscItemId.MaxRevoltRisk, 0 },
+            { MiscItemId.CanUnitSendNonAllied, 0 },
+            { MiscItemId.ChanceDetectSpyMission, 0 },
+            { MiscItemId.RelationshipsHitDetectedMissions, 0 },
+            { MiscItemId.ShowThirdCountrySpyReports, 0 },
+            { MiscItemId.SpyInformationAccuracyModifier, -10 },
+            { MiscItemId.AiPeacetimeSpyMissions, 0 },
+            { MiscItemId.CanChangeIdeas, 0 },
+            { MiscItemId.CanUnitSendNonAlliedDh, 0 },
+            { MiscItemId.BluePrintsCanSoldNonAllied, 0 },
+            { MiscItemId.ProvinceCanSoldNonAllied, 0 },
+            { MiscItemId.TransferAlliedCoreProvinces, 0 },
+            { MiscItemId.ProductionLineEdit, 0 },
+            { MiscItemId.ConvoySystemOptionsAllied, 0 },
+            { MiscItemId.ChanceDetectSpyMissionDh, 0 },
+            { MiscItemId.RelationshipsHitDetectedMissionsDh, 0 },
+            { MiscItemId.SpyInformationAccuracyModifierDh, -10 },
+            { MiscItemId.ShowThirdCountrySpyReportsDh, 0 },
+            { MiscItemId.UseMinisterPersonalityReplacing, 0 },
+            { MiscItemId.RelationshipHitCancelTrade, 0 },
+            { MiscItemId.RelationshipHitCancelPermanentTrade, 0 },
+            { MiscItemId.PuppetsJoinMastersAlliance, 0 },
+            { MiscItemId.MastersBecomePuppetsPuppets, 0 },
+            { MiscItemId.AllowManualClaimsChange, 0 },
+            { MiscItemId.JoinAutomaticallyAllesAxis, 0 },
+            { MiscItemId.AllowChangeHosHog, 0 },
+            { MiscItemId.ChangeTagCoup, 0 },
+            { MiscItemId.FilterReleaseCountries, 0 },
+            { MiscItemId.AaAirFiringRules, 0 },
+            { MiscItemId.MinisterBonuses, 1 },
+            { MiscItemId.ConvoyInterceptionMissions, 0 },
+            { MiscItemId.AutoReturnTransportFleets, 0 },
+            { MiscItemId.AllowProvinceRegionTargeting, 0 },
+            { MiscItemId.RecalculateArrivalTimesCombat, 0 },
+            { MiscItemId.ApplyRangeLimitsAreasRegions, 0 },
+            { MiscItemId.ChanceTargetNoOrgLand, 0 },
+            { MiscItemId.HqStrDamageBreakthrough, 0 },
+            { MiscItemId.CombatMode, 0 },
+            { MiscItemId.AttackMission, 0 },
+            { MiscItemId.RebaseMission, 0 },
+            { MiscItemId.StratRedeployMission, 0 },
+            { MiscItemId.SupportAttackMission, 0 },
+            { MiscItemId.SupportDefenseMission, 0 },
+            { MiscItemId.ReservesMission, 0 },
+            { MiscItemId.AntiPartisanDutyMission, 0 },
+            { MiscItemId.PlannedDefenseMission, 0 },
+            { MiscItemId.AirSuperiorityMission, 0 },
+            { MiscItemId.GroundAttackMission, 0 },
+            { MiscItemId.InterdictionMission, 0 },
+            { MiscItemId.StrategicBombardmentMission, 0 },
+            { MiscItemId.LogisticalStrikeMission, 0 },
+            { MiscItemId.RunwayCrateringMission, 0 },
+            { MiscItemId.InstallationStrikeMission, 0 },
+            { MiscItemId.NavalStrikeMission, 0 },
+            { MiscItemId.PortStrikeMission, 0 },
+            { MiscItemId.ConvoyAirRaidingMission, 0 },
+            { MiscItemId.AirSupplyMission, 0 },
+            { MiscItemId.AirborneAssaultMission, 0 },
+            { MiscItemId.NukeMission, 0 },
+            { MiscItemId.AirScrambleMission, 0 },
+            { MiscItemId.ConvoyRadingMission, 0 },
+            { MiscItemId.AswMission, 0 },
+            { MiscItemId.NavalInterdictionMission, 0 },
+            { MiscItemId.ShoreBombardmentMission, 0 },
+            { MiscItemId.AmphibousAssaultMission, 0 },
+            { MiscItemId.SeaTransportMission, 0 },
+            { MiscItemId.NavalCombatPatrolMission, 0 },
+            { MiscItemId.NavalPortStrikeMission, 0 },
+            { MiscItemId.NavalAirbaseStrikeMission, 0 },
+            { MiscItemId.SneakMoveMission, 0 },
+            { MiscItemId.NavalScrambleMission, 0 },
+            { MiscItemId.UseAttackEfficiencyCombatModifier, 0 },
+            { MiscItemId.MaxActiveTechTeamsAoD, 1 },
+            { MiscItemId.UseNewTechnologyPageLayout, 0 },
+            { MiscItemId.TechOverviewPanelStyle, 0 },
+            { MiscItemId.NewCountryRocketryComponent, 0 },
+            { MiscItemId.NewCountryNuclearPhysicsComponent, 0 },
+            { MiscItemId.NewCountryNuclearEngineeringComponent, 0 },
+            { MiscItemId.NewCountrySecretTechs, 0 },
+            { MiscItemId.DelayGameStartNewTrades, 2 },
+            { MiscItemId.MergeTradeDeals, 0 },
+            { MiscItemId.ManualTradeDeals, 0 },
+            { MiscItemId.NewTradeDealsMinEffectiveness, 0 },
+            { MiscItemId.CancelTradeDealsEffectiveness, 0 },
+            { MiscItemId.AutoTradeAiTradeDeals, 0 },
+            { MiscItemId.MaxSerialLineProductionGarrisonMilitia, 1 },
+            { MiscItemId.AiPeacetimeSpyMissionsDh, 0 },
+            { MiscItemId.NewDowRules, 0 },
+            { MiscItemId.NewDowRules2, 0 },
+            { MiscItemId.NewAiReleaseRules, 0 },
+            { MiscItemId.AiEventsActionSelectionRules, 0 },
+            { MiscItemId.UseQuickAreaCheckGarrisonAi, 0 },
+            { MiscItemId.AiMastersGetProvincesConquredPuppets, 0 },
+            { MiscItemId.AiSpyDiplomaticMissionLogger, 0 },
+            { MiscItemId.SwitchedAiFilesLogger, 0 },
+            { MiscItemId.UseNewAutoSaveFileFormat, 0 },
+            { MiscItemId.LoadNewAiSwitchingAllClients, 0 },
+            { MiscItemId.InGameLossesLogging, 0 },
+            { MiscItemId.InGameLossLogging2, 0 },
+            { MiscItemId.AllowBrigadeAttachingInSupply, 0 },
+            { MiscItemId.AllowUniquePicturesAllLandProvinces, 0 },
+            { MiscItemId.AutoReplyEvents, 0 },
+            { MiscItemId.ForceActionsShow, 0 },
+            { MiscItemId.EnableDicisionsPlayers, 0 },
+            { MiscItemId.RebelsArmyComposition, 0 },
+            { MiscItemId.RebelsArmyMinStr, 1 },
+            { MiscItemId.RebelsArmyMaxStr, 1 },
+            { MiscItemId.UseNewMinisterFilesFormat, 0 },
+            { MiscItemId.EnableRetirementYearMinisters, 0 },
+            { MiscItemId.EnableRetirementYearLeaders, 0 },
+            { MiscItemId.LoadSpritesModdirOnly, 0 },
+            { MiscItemId.LoadUnitIconsModdirOnly, 0 },
+            { MiscItemId.LoadUnitPicturesModdirOnly, 0 },
+            { MiscItemId.LoadAiFilesModdirOnly, 0 },
+            { MiscItemId.UseSpeedSetGarrisonStatus, 0 },
+            { MiscItemId.UseOldSaveGameFormat, 0 },
+            { MiscItemId.ProductionPanelUiStyle, 0 },
+            { MiscItemId.UnitPicturesSize, 0 },
+            { MiscItemId.EnablePicturesNavalBrigades, 0 },
+            { MiscItemId.BuildingsBuildableOnlyProvinces, 0 },
+            { MiscItemId.TotalProvinces, 1 },
+            { MiscItemId.DistanceCalculationModel, 0 },
         };
 
         /// <summary>
@@ -3026,128 +3026,128 @@ namespace HoI2Editor.Models
         /// </summary>
         public static Dictionary<MiscItemId, int> IntMaxValues = new Dictionary<MiscItemId, int>
         {
-            {MiscItemId.MaxRevoltRisk, 100},
-            {MiscItemId.CanUnitSendNonAllied, 1},
-            {MiscItemId.ChanceDetectSpyMission, 100},
-            {MiscItemId.RelationshipsHitDetectedMissions, 400},
-            {MiscItemId.ShowThirdCountrySpyReports, 3},
-            {MiscItemId.SpyInformationAccuracyModifier, 10},
-            {MiscItemId.AiPeacetimeSpyMissions, 2},
-            {MiscItemId.CanChangeIdeas, 1},
-            {MiscItemId.CanUnitSendNonAlliedDh, 2},
-            {MiscItemId.BluePrintsCanSoldNonAllied, 2},
-            {MiscItemId.ProvinceCanSoldNonAllied, 2},
-            {MiscItemId.TransferAlliedCoreProvinces, 1},
-            {MiscItemId.ProductionLineEdit, 1},
-            {MiscItemId.ConvoySystemOptionsAllied, 2},
-            {MiscItemId.ChanceDetectSpyMissionDh, 100},
-            {MiscItemId.RelationshipsHitDetectedMissionsDh, 400},
-            {MiscItemId.SpyInformationAccuracyModifierDh, 10},
-            {MiscItemId.ShowThirdCountrySpyReportsDh, 3},
-            {MiscItemId.UseMinisterPersonalityReplacing, 1},
-            {MiscItemId.RelationshipHitCancelTrade, 400},
-            {MiscItemId.RelationshipHitCancelPermanentTrade, 100},
-            {MiscItemId.PuppetsJoinMastersAlliance, 1},
-            {MiscItemId.MastersBecomePuppetsPuppets, 1},
-            {MiscItemId.AllowManualClaimsChange, 1},
-            {MiscItemId.JoinAutomaticallyAllesAxis, 1},
-            {MiscItemId.AllowChangeHosHog, 3},
-            {MiscItemId.ChangeTagCoup, 1},
-            {MiscItemId.FilterReleaseCountries, 3},
-            {MiscItemId.AaAirFiringRules, 1},
-            {MiscItemId.MinisterBonuses, 5},
-            {MiscItemId.ConvoyInterceptionMissions, 2},
-            {MiscItemId.AutoReturnTransportFleets, 2},
-            {MiscItemId.AllowProvinceRegionTargeting, 1},
-            {MiscItemId.RecalculateArrivalTimesCombat, 2},
-            {MiscItemId.ApplyRangeLimitsAreasRegions, 2},
-            {MiscItemId.ChanceTargetNoOrgLand, 100},
-            {MiscItemId.HqStrDamageBreakthrough, 1},
-            {MiscItemId.CombatMode, 1},
-            {MiscItemId.AttackMission, 1},
-            {MiscItemId.RebaseMission, 1},
-            {MiscItemId.StratRedeployMission, 1},
-            {MiscItemId.SupportAttackMission, 1},
-            {MiscItemId.SupportDefenseMission, 1},
-            {MiscItemId.ReservesMission, 1},
-            {MiscItemId.AntiPartisanDutyMission, 1},
-            {MiscItemId.PlannedDefenseMission, 1},
-            {MiscItemId.AirSuperiorityMission, 1},
-            {MiscItemId.GroundAttackMission, 1},
-            {MiscItemId.InterdictionMission, 1},
-            {MiscItemId.StrategicBombardmentMission, 1},
-            {MiscItemId.LogisticalStrikeMission, 1},
-            {MiscItemId.RunwayCrateringMission, 1},
-            {MiscItemId.InstallationStrikeMission, 1},
-            {MiscItemId.NavalStrikeMission, 1},
-            {MiscItemId.PortStrikeMission, 1},
-            {MiscItemId.ConvoyAirRaidingMission, 1},
-            {MiscItemId.AirSupplyMission, 1},
-            {MiscItemId.AirborneAssaultMission, 1},
-            {MiscItemId.NukeMission, 1},
-            {MiscItemId.AirScrambleMission, 1},
-            {MiscItemId.ConvoyRadingMission, 1},
-            {MiscItemId.AswMission, 1},
-            {MiscItemId.NavalInterdictionMission, 1},
-            {MiscItemId.ShoreBombardmentMission, 1},
-            {MiscItemId.AmphibousAssaultMission, 1},
-            {MiscItemId.SeaTransportMission, 1},
-            {MiscItemId.NavalCombatPatrolMission, 1},
-            {MiscItemId.NavalPortStrikeMission, 1},
-            {MiscItemId.NavalAirbaseStrikeMission, 1},
-            {MiscItemId.SneakMoveMission, 1},
-            {MiscItemId.NavalScrambleMission, 1},
-            {MiscItemId.UseAttackEfficiencyCombatModifier, 1},
-            {MiscItemId.MaxActiveTechTeamsAoD, 20},
-            {MiscItemId.UseNewTechnologyPageLayout, 1},
-            {MiscItemId.TechOverviewPanelStyle, 1},
-            {MiscItemId.NewCountryRocketryComponent, 1},
-            {MiscItemId.NewCountryNuclearPhysicsComponent, 1},
-            {MiscItemId.NewCountryNuclearEngineeringComponent, 1},
-            {MiscItemId.NewCountrySecretTechs, 1},
-            {MiscItemId.DelayGameStartNewTrades, 0},
-            {MiscItemId.MergeTradeDeals, 1},
-            {MiscItemId.ManualTradeDeals, 100},
-            {MiscItemId.NewTradeDealsMinEffectiveness, 100},
-            {MiscItemId.CancelTradeDealsEffectiveness, 100},
-            {MiscItemId.AutoTradeAiTradeDeals, 100},
-            {MiscItemId.MaxSerialLineProductionGarrisonMilitia, 99},
-            {MiscItemId.AiPeacetimeSpyMissionsDh, 2},
-            {MiscItemId.NewDowRules, 1},
-            {MiscItemId.NewDowRules2, 2},
-            {MiscItemId.NewAiReleaseRules, 1},
-            {MiscItemId.AiEventsActionSelectionRules, 100},
-            {MiscItemId.UseQuickAreaCheckGarrisonAi, 1},
-            {MiscItemId.AiMastersGetProvincesConquredPuppets, 1},
-            {MiscItemId.AiSpyDiplomaticMissionLogger, 1},
-            {MiscItemId.SwitchedAiFilesLogger, 1},
-            {MiscItemId.UseNewAutoSaveFileFormat, 1},
-            {MiscItemId.LoadNewAiSwitchingAllClients, 1},
-            {MiscItemId.InGameLossesLogging, 1},
-            {MiscItemId.InGameLossLogging2, 4},
-            {MiscItemId.AllowBrigadeAttachingInSupply, 1},
-            {MiscItemId.AllowUniquePicturesAllLandProvinces, 1},
-            {MiscItemId.AutoReplyEvents, 1},
-            {MiscItemId.ForceActionsShow, 2},
-            {MiscItemId.EnableDicisionsPlayers, 1},
-            {MiscItemId.RebelsArmyComposition, 100},
-            {MiscItemId.RebelsArmyMinStr, 100},
-            {MiscItemId.RebelsArmyMaxStr, 100},
-            {MiscItemId.UseNewMinisterFilesFormat, 1},
-            {MiscItemId.EnableRetirementYearMinisters, 1},
-            {MiscItemId.EnableRetirementYearLeaders, 1},
-            {MiscItemId.LoadSpritesModdirOnly, 1},
-            {MiscItemId.LoadUnitIconsModdirOnly, 1},
-            {MiscItemId.LoadUnitPicturesModdirOnly, 1},
-            {MiscItemId.LoadAiFilesModdirOnly, 1},
-            {MiscItemId.UseSpeedSetGarrisonStatus, 1},
-            {MiscItemId.UseOldSaveGameFormat, 1},
-            {MiscItemId.ProductionPanelUiStyle, 1},
-            {MiscItemId.UnitPicturesSize, 1},
-            {MiscItemId.EnablePicturesNavalBrigades, 1},
-            {MiscItemId.BuildingsBuildableOnlyProvinces, 2},
-            {MiscItemId.TotalProvinces, 10000},
-            {MiscItemId.DistanceCalculationModel, 1},
+            { MiscItemId.MaxRevoltRisk, 100 },
+            { MiscItemId.CanUnitSendNonAllied, 1 },
+            { MiscItemId.ChanceDetectSpyMission, 100 },
+            { MiscItemId.RelationshipsHitDetectedMissions, 400 },
+            { MiscItemId.ShowThirdCountrySpyReports, 3 },
+            { MiscItemId.SpyInformationAccuracyModifier, 10 },
+            { MiscItemId.AiPeacetimeSpyMissions, 2 },
+            { MiscItemId.CanChangeIdeas, 1 },
+            { MiscItemId.CanUnitSendNonAlliedDh, 2 },
+            { MiscItemId.BluePrintsCanSoldNonAllied, 2 },
+            { MiscItemId.ProvinceCanSoldNonAllied, 2 },
+            { MiscItemId.TransferAlliedCoreProvinces, 1 },
+            { MiscItemId.ProductionLineEdit, 1 },
+            { MiscItemId.ConvoySystemOptionsAllied, 2 },
+            { MiscItemId.ChanceDetectSpyMissionDh, 100 },
+            { MiscItemId.RelationshipsHitDetectedMissionsDh, 400 },
+            { MiscItemId.SpyInformationAccuracyModifierDh, 10 },
+            { MiscItemId.ShowThirdCountrySpyReportsDh, 3 },
+            { MiscItemId.UseMinisterPersonalityReplacing, 1 },
+            { MiscItemId.RelationshipHitCancelTrade, 400 },
+            { MiscItemId.RelationshipHitCancelPermanentTrade, 100 },
+            { MiscItemId.PuppetsJoinMastersAlliance, 1 },
+            { MiscItemId.MastersBecomePuppetsPuppets, 1 },
+            { MiscItemId.AllowManualClaimsChange, 1 },
+            { MiscItemId.JoinAutomaticallyAllesAxis, 1 },
+            { MiscItemId.AllowChangeHosHog, 3 },
+            { MiscItemId.ChangeTagCoup, 1 },
+            { MiscItemId.FilterReleaseCountries, 3 },
+            { MiscItemId.AaAirFiringRules, 1 },
+            { MiscItemId.MinisterBonuses, 5 },
+            { MiscItemId.ConvoyInterceptionMissions, 2 },
+            { MiscItemId.AutoReturnTransportFleets, 2 },
+            { MiscItemId.AllowProvinceRegionTargeting, 1 },
+            { MiscItemId.RecalculateArrivalTimesCombat, 2 },
+            { MiscItemId.ApplyRangeLimitsAreasRegions, 2 },
+            { MiscItemId.ChanceTargetNoOrgLand, 100 },
+            { MiscItemId.HqStrDamageBreakthrough, 1 },
+            { MiscItemId.CombatMode, 1 },
+            { MiscItemId.AttackMission, 1 },
+            { MiscItemId.RebaseMission, 1 },
+            { MiscItemId.StratRedeployMission, 1 },
+            { MiscItemId.SupportAttackMission, 1 },
+            { MiscItemId.SupportDefenseMission, 1 },
+            { MiscItemId.ReservesMission, 1 },
+            { MiscItemId.AntiPartisanDutyMission, 1 },
+            { MiscItemId.PlannedDefenseMission, 1 },
+            { MiscItemId.AirSuperiorityMission, 1 },
+            { MiscItemId.GroundAttackMission, 1 },
+            { MiscItemId.InterdictionMission, 1 },
+            { MiscItemId.StrategicBombardmentMission, 1 },
+            { MiscItemId.LogisticalStrikeMission, 1 },
+            { MiscItemId.RunwayCrateringMission, 1 },
+            { MiscItemId.InstallationStrikeMission, 1 },
+            { MiscItemId.NavalStrikeMission, 1 },
+            { MiscItemId.PortStrikeMission, 1 },
+            { MiscItemId.ConvoyAirRaidingMission, 1 },
+            { MiscItemId.AirSupplyMission, 1 },
+            { MiscItemId.AirborneAssaultMission, 1 },
+            { MiscItemId.NukeMission, 1 },
+            { MiscItemId.AirScrambleMission, 1 },
+            { MiscItemId.ConvoyRadingMission, 1 },
+            { MiscItemId.AswMission, 1 },
+            { MiscItemId.NavalInterdictionMission, 1 },
+            { MiscItemId.ShoreBombardmentMission, 1 },
+            { MiscItemId.AmphibousAssaultMission, 1 },
+            { MiscItemId.SeaTransportMission, 1 },
+            { MiscItemId.NavalCombatPatrolMission, 1 },
+            { MiscItemId.NavalPortStrikeMission, 1 },
+            { MiscItemId.NavalAirbaseStrikeMission, 1 },
+            { MiscItemId.SneakMoveMission, 1 },
+            { MiscItemId.NavalScrambleMission, 1 },
+            { MiscItemId.UseAttackEfficiencyCombatModifier, 1 },
+            { MiscItemId.MaxActiveTechTeamsAoD, 20 },
+            { MiscItemId.UseNewTechnologyPageLayout, 1 },
+            { MiscItemId.TechOverviewPanelStyle, 1 },
+            { MiscItemId.NewCountryRocketryComponent, 1 },
+            { MiscItemId.NewCountryNuclearPhysicsComponent, 1 },
+            { MiscItemId.NewCountryNuclearEngineeringComponent, 1 },
+            { MiscItemId.NewCountrySecretTechs, 1 },
+            { MiscItemId.DelayGameStartNewTrades, 0 },
+            { MiscItemId.MergeTradeDeals, 1 },
+            { MiscItemId.ManualTradeDeals, 100 },
+            { MiscItemId.NewTradeDealsMinEffectiveness, 100 },
+            { MiscItemId.CancelTradeDealsEffectiveness, 100 },
+            { MiscItemId.AutoTradeAiTradeDeals, 100 },
+            { MiscItemId.MaxSerialLineProductionGarrisonMilitia, 99 },
+            { MiscItemId.AiPeacetimeSpyMissionsDh, 2 },
+            { MiscItemId.NewDowRules, 1 },
+            { MiscItemId.NewDowRules2, 2 },
+            { MiscItemId.NewAiReleaseRules, 1 },
+            { MiscItemId.AiEventsActionSelectionRules, 100 },
+            { MiscItemId.UseQuickAreaCheckGarrisonAi, 1 },
+            { MiscItemId.AiMastersGetProvincesConquredPuppets, 1 },
+            { MiscItemId.AiSpyDiplomaticMissionLogger, 1 },
+            { MiscItemId.SwitchedAiFilesLogger, 1 },
+            { MiscItemId.UseNewAutoSaveFileFormat, 1 },
+            { MiscItemId.LoadNewAiSwitchingAllClients, 1 },
+            { MiscItemId.InGameLossesLogging, 1 },
+            { MiscItemId.InGameLossLogging2, 4 },
+            { MiscItemId.AllowBrigadeAttachingInSupply, 1 },
+            { MiscItemId.AllowUniquePicturesAllLandProvinces, 1 },
+            { MiscItemId.AutoReplyEvents, 1 },
+            { MiscItemId.ForceActionsShow, 2 },
+            { MiscItemId.EnableDicisionsPlayers, 1 },
+            { MiscItemId.RebelsArmyComposition, 100 },
+            { MiscItemId.RebelsArmyMinStr, 100 },
+            { MiscItemId.RebelsArmyMaxStr, 100 },
+            { MiscItemId.UseNewMinisterFilesFormat, 1 },
+            { MiscItemId.EnableRetirementYearMinisters, 1 },
+            { MiscItemId.EnableRetirementYearLeaders, 1 },
+            { MiscItemId.LoadSpritesModdirOnly, 1 },
+            { MiscItemId.LoadUnitIconsModdirOnly, 1 },
+            { MiscItemId.LoadUnitPicturesModdirOnly, 1 },
+            { MiscItemId.LoadAiFilesModdirOnly, 1 },
+            { MiscItemId.UseSpeedSetGarrisonStatus, 1 },
+            { MiscItemId.UseOldSaveGameFormat, 1 },
+            { MiscItemId.ProductionPanelUiStyle, 1 },
+            { MiscItemId.UnitPicturesSize, 1 },
+            { MiscItemId.EnablePicturesNavalBrigades, 1 },
+            { MiscItemId.BuildingsBuildableOnlyProvinces, 2 },
+            { MiscItemId.TotalProvinces, 10000 },
+            { MiscItemId.DistanceCalculationModel, 1 },
         };
 
         /// <summary>
@@ -3155,61 +3155,61 @@ namespace HoI2Editor.Models
         /// </summary>
         public static Dictionary<MiscItemId, double> DblMinValues = new Dictionary<MiscItemId, double>
         {
-            {MiscItemId.DistanceModifierNeighbours, 0},
-            {MiscItemId.OverStockpileLimitDailyLoss, 0},
-            {MiscItemId.GearingBonusLossUpgradeUnit, 0},
-            {MiscItemId.GearingBonusLossUpgradeBrigade, 0},
-            {MiscItemId.MaxDailyDissent, 0},
-            {MiscItemId.DistanceModifierNeighboursDh, 0},
-            {MiscItemId.LandOrgDamageLandUrban, 0},
-            {MiscItemId.LandOrgDamageLandFort, 0},
-            {MiscItemId.SubStacksDetectionModifier, 0},
-            {MiscItemId.AaAirNightModifier, 0},
-            {MiscItemId.NightHoursWinter, 0},
-            {MiscItemId.NightHoursSpringFall, 0},
-            {MiscItemId.NightHoursSummer, 0},
-            {MiscItemId.FleetSizeRangePenaltyRatio, 0},
-            {MiscItemId.FleetSizeRangePenaltyMax, 0},
-            {MiscItemId.FleetPositioningFleetComposition, 0},
-            {MiscItemId.AttackStartingEfficiency, 0.05},
-            {MiscItemId.RebaseStartingEfficiency, 0.05},
-            {MiscItemId.StratRedeployStartingEfficiency, 0.05},
-            {MiscItemId.SupportAttackStartingEfficiency, 0.05},
-            {MiscItemId.SupportDefenseStartingEfficiency, 0.05},
-            {MiscItemId.ReservesStartingEfficiency, 0.05},
-            {MiscItemId.AntiPartisanDutyStartingEfficiency, 0.05},
-            {MiscItemId.PlannedDefenseStartingEfficiency, 0.05},
-            {MiscItemId.AirSuperiorityStartingEfficiency, 0.05},
-            {MiscItemId.GroundAttackStartingEfficiency, 0.05},
-            {MiscItemId.InterdictionStartingEfficiency, 0.05},
-            {MiscItemId.StrategicBombardmentStartingEfficiency, 0.05},
-            {MiscItemId.LogisticalStrikeStartingEfficiency, 0.05},
-            {MiscItemId.RunwayCrateringStartingEfficiency, 0.05},
-            {MiscItemId.InstallationStrikeStartingEfficiency, 0.05},
-            {MiscItemId.NavalStrikeStartingEfficiency, 0.05},
-            {MiscItemId.PortStrikeStartingEfficiency, 0.05},
-            {MiscItemId.ConvoyAirRaidingStartingEfficiency, 0.05},
-            {MiscItemId.AirSupplyStartingEfficiency, 0.05},
-            {MiscItemId.AirborneAssaultStartingEfficiency, 0.05},
-            {MiscItemId.NukeStartingEfficiency, 0.05},
-            {MiscItemId.AirScrambleStartingEfficiency, 0.05},
-            {MiscItemId.ConvoyRadingStartingEfficiency, 0.05},
-            {MiscItemId.AswStartingEfficiency, 0.05},
-            {MiscItemId.NavalInterdictionStartingEfficiency, 0.05},
-            {MiscItemId.ShoreBombardmentStartingEfficiency, 0.05},
-            {MiscItemId.AmphibousAssaultStartingEfficiency, 0.05},
-            {MiscItemId.SeaTransportStartingEfficiency, 0.05},
-            {MiscItemId.NavalCombatPatrolStartingEfficiency, 0.05},
-            {MiscItemId.NavalPortStrikeStartingEfficiency, 0.05},
-            {MiscItemId.NavalAirbaseStrikeStartingEfficiency, 0.05},
-            {MiscItemId.SneakMoveStartingEfficiency, 0.05},
-            {MiscItemId.NavalScrambleStartingEfficiency, 0.05},
-            {MiscItemId.CombatEventChances, 0},
-            {MiscItemId.NotProduceNewUnitsSupply, 0},
-            {MiscItemId.MilitaryStrengthTotalIcRatioPeacetime, 0},
-            {MiscItemId.MilitaryStrengthTotalIcRatioWartime, 0},
-            {MiscItemId.NotUseOffensiveOrgStrDamage, 0},
-            {MiscItemId.MinRequiredRelationsAlliedClaimed, -200},
+            { MiscItemId.DistanceModifierNeighbours, 0 },
+            { MiscItemId.OverStockpileLimitDailyLoss, 0 },
+            { MiscItemId.GearingBonusLossUpgradeUnit, 0 },
+            { MiscItemId.GearingBonusLossUpgradeBrigade, 0 },
+            { MiscItemId.MaxDailyDissent, 0 },
+            { MiscItemId.DistanceModifierNeighboursDh, 0 },
+            { MiscItemId.LandOrgDamageLandUrban, 0 },
+            { MiscItemId.LandOrgDamageLandFort, 0 },
+            { MiscItemId.SubStacksDetectionModifier, 0 },
+            { MiscItemId.AaAirNightModifier, 0 },
+            { MiscItemId.NightHoursWinter, 0 },
+            { MiscItemId.NightHoursSpringFall, 0 },
+            { MiscItemId.NightHoursSummer, 0 },
+            { MiscItemId.FleetSizeRangePenaltyRatio, 0 },
+            { MiscItemId.FleetSizeRangePenaltyMax, 0 },
+            { MiscItemId.FleetPositioningFleetComposition, 0 },
+            { MiscItemId.AttackStartingEfficiency, 0.05 },
+            { MiscItemId.RebaseStartingEfficiency, 0.05 },
+            { MiscItemId.StratRedeployStartingEfficiency, 0.05 },
+            { MiscItemId.SupportAttackStartingEfficiency, 0.05 },
+            { MiscItemId.SupportDefenseStartingEfficiency, 0.05 },
+            { MiscItemId.ReservesStartingEfficiency, 0.05 },
+            { MiscItemId.AntiPartisanDutyStartingEfficiency, 0.05 },
+            { MiscItemId.PlannedDefenseStartingEfficiency, 0.05 },
+            { MiscItemId.AirSuperiorityStartingEfficiency, 0.05 },
+            { MiscItemId.GroundAttackStartingEfficiency, 0.05 },
+            { MiscItemId.InterdictionStartingEfficiency, 0.05 },
+            { MiscItemId.StrategicBombardmentStartingEfficiency, 0.05 },
+            { MiscItemId.LogisticalStrikeStartingEfficiency, 0.05 },
+            { MiscItemId.RunwayCrateringStartingEfficiency, 0.05 },
+            { MiscItemId.InstallationStrikeStartingEfficiency, 0.05 },
+            { MiscItemId.NavalStrikeStartingEfficiency, 0.05 },
+            { MiscItemId.PortStrikeStartingEfficiency, 0.05 },
+            { MiscItemId.ConvoyAirRaidingStartingEfficiency, 0.05 },
+            { MiscItemId.AirSupplyStartingEfficiency, 0.05 },
+            { MiscItemId.AirborneAssaultStartingEfficiency, 0.05 },
+            { MiscItemId.NukeStartingEfficiency, 0.05 },
+            { MiscItemId.AirScrambleStartingEfficiency, 0.05 },
+            { MiscItemId.ConvoyRadingStartingEfficiency, 0.05 },
+            { MiscItemId.AswStartingEfficiency, 0.05 },
+            { MiscItemId.NavalInterdictionStartingEfficiency, 0.05 },
+            { MiscItemId.ShoreBombardmentStartingEfficiency, 0.05 },
+            { MiscItemId.AmphibousAssaultStartingEfficiency, 0.05 },
+            { MiscItemId.SeaTransportStartingEfficiency, 0.05 },
+            { MiscItemId.NavalCombatPatrolStartingEfficiency, 0.05 },
+            { MiscItemId.NavalPortStrikeStartingEfficiency, 0.05 },
+            { MiscItemId.NavalAirbaseStrikeStartingEfficiency, 0.05 },
+            { MiscItemId.SneakMoveStartingEfficiency, 0.05 },
+            { MiscItemId.NavalScrambleStartingEfficiency, 0.05 },
+            { MiscItemId.CombatEventChances, 0 },
+            { MiscItemId.NotProduceNewUnitsSupply, 0 },
+            { MiscItemId.MilitaryStrengthTotalIcRatioPeacetime, 0 },
+            { MiscItemId.MilitaryStrengthTotalIcRatioWartime, 0 },
+            { MiscItemId.NotUseOffensiveOrgStrDamage, 0 },
+            { MiscItemId.MinRequiredRelationsAlliedClaimed, -200 },
         };
 
         /// <summary>
@@ -3217,61 +3217,61 @@ namespace HoI2Editor.Models
         /// </summary>
         public static Dictionary<MiscItemId, double> DblMaxValues = new Dictionary<MiscItemId, double>
         {
-            {MiscItemId.DistanceModifierNeighbours, 1},
-            {MiscItemId.OverStockpileLimitDailyLoss, 1},
-            {MiscItemId.GearingBonusLossUpgradeUnit, 1},
-            {MiscItemId.GearingBonusLossUpgradeBrigade, 1},
-            {MiscItemId.MaxDailyDissent, 1},
-            {MiscItemId.DistanceModifierNeighboursDh, 1},
-            {MiscItemId.LandOrgDamageLandUrban, 1},
-            {MiscItemId.LandOrgDamageLandFort, 1},
-            {MiscItemId.SubStacksDetectionModifier, 1},
-            {MiscItemId.AaAirNightModifier, 1},
-            {MiscItemId.NightHoursWinter, 24},
-            {MiscItemId.NightHoursSpringFall, 24},
-            {MiscItemId.NightHoursSummer, 24},
-            {MiscItemId.FleetSizeRangePenaltyRatio, 1},
-            {MiscItemId.FleetSizeRangePenaltyMax, 1},
-            {MiscItemId.FleetPositioningFleetComposition, 1},
-            {MiscItemId.AttackStartingEfficiency, 10},
-            {MiscItemId.RebaseStartingEfficiency, 10},
-            {MiscItemId.StratRedeployStartingEfficiency, 10},
-            {MiscItemId.SupportAttackStartingEfficiency, 10},
-            {MiscItemId.SupportDefenseStartingEfficiency, 10},
-            {MiscItemId.ReservesStartingEfficiency, 10},
-            {MiscItemId.AntiPartisanDutyStartingEfficiency, 10},
-            {MiscItemId.PlannedDefenseStartingEfficiency, 10},
-            {MiscItemId.AirSuperiorityStartingEfficiency, 10},
-            {MiscItemId.GroundAttackStartingEfficiency, 10},
-            {MiscItemId.InterdictionStartingEfficiency, 10},
-            {MiscItemId.StrategicBombardmentStartingEfficiency, 10},
-            {MiscItemId.LogisticalStrikeStartingEfficiency, 10},
-            {MiscItemId.RunwayCrateringStartingEfficiency, 10},
-            {MiscItemId.InstallationStrikeStartingEfficiency, 10},
-            {MiscItemId.NavalStrikeStartingEfficiency, 10},
-            {MiscItemId.PortStrikeStartingEfficiency, 10},
-            {MiscItemId.ConvoyAirRaidingStartingEfficiency, 10},
-            {MiscItemId.AirSupplyStartingEfficiency, 10},
-            {MiscItemId.AirborneAssaultStartingEfficiency, 10},
-            {MiscItemId.NukeStartingEfficiency, 10},
-            {MiscItemId.AirScrambleStartingEfficiency, 10},
-            {MiscItemId.ConvoyRadingStartingEfficiency, 10},
-            {MiscItemId.AswStartingEfficiency, 10},
-            {MiscItemId.NavalInterdictionStartingEfficiency, 10},
-            {MiscItemId.ShoreBombardmentStartingEfficiency, 10},
-            {MiscItemId.AmphibousAssaultStartingEfficiency, 10},
-            {MiscItemId.SeaTransportStartingEfficiency, 10},
-            {MiscItemId.NavalCombatPatrolStartingEfficiency, 10},
-            {MiscItemId.NavalPortStrikeStartingEfficiency, 10},
-            {MiscItemId.NavalAirbaseStrikeStartingEfficiency, 10},
-            {MiscItemId.SneakMoveStartingEfficiency, 10},
-            {MiscItemId.NavalScrambleStartingEfficiency, 10},
-            {MiscItemId.CombatEventChances, 1},
-            {MiscItemId.NotProduceNewUnitsSupply, 1},
-            {MiscItemId.MilitaryStrengthTotalIcRatioPeacetime, 1},
-            {MiscItemId.MilitaryStrengthTotalIcRatioWartime, 1},
-            {MiscItemId.NotUseOffensiveOrgStrDamage, 1},
-            {MiscItemId.MinRequiredRelationsAlliedClaimed, 200},
+            { MiscItemId.DistanceModifierNeighbours, 1 },
+            { MiscItemId.OverStockpileLimitDailyLoss, 1 },
+            { MiscItemId.GearingBonusLossUpgradeUnit, 1 },
+            { MiscItemId.GearingBonusLossUpgradeBrigade, 1 },
+            { MiscItemId.MaxDailyDissent, 1 },
+            { MiscItemId.DistanceModifierNeighboursDh, 1 },
+            { MiscItemId.LandOrgDamageLandUrban, 1 },
+            { MiscItemId.LandOrgDamageLandFort, 1 },
+            { MiscItemId.SubStacksDetectionModifier, 1 },
+            { MiscItemId.AaAirNightModifier, 1 },
+            { MiscItemId.NightHoursWinter, 24 },
+            { MiscItemId.NightHoursSpringFall, 24 },
+            { MiscItemId.NightHoursSummer, 24 },
+            { MiscItemId.FleetSizeRangePenaltyRatio, 1 },
+            { MiscItemId.FleetSizeRangePenaltyMax, 1 },
+            { MiscItemId.FleetPositioningFleetComposition, 1 },
+            { MiscItemId.AttackStartingEfficiency, 10 },
+            { MiscItemId.RebaseStartingEfficiency, 10 },
+            { MiscItemId.StratRedeployStartingEfficiency, 10 },
+            { MiscItemId.SupportAttackStartingEfficiency, 10 },
+            { MiscItemId.SupportDefenseStartingEfficiency, 10 },
+            { MiscItemId.ReservesStartingEfficiency, 10 },
+            { MiscItemId.AntiPartisanDutyStartingEfficiency, 10 },
+            { MiscItemId.PlannedDefenseStartingEfficiency, 10 },
+            { MiscItemId.AirSuperiorityStartingEfficiency, 10 },
+            { MiscItemId.GroundAttackStartingEfficiency, 10 },
+            { MiscItemId.InterdictionStartingEfficiency, 10 },
+            { MiscItemId.StrategicBombardmentStartingEfficiency, 10 },
+            { MiscItemId.LogisticalStrikeStartingEfficiency, 10 },
+            { MiscItemId.RunwayCrateringStartingEfficiency, 10 },
+            { MiscItemId.InstallationStrikeStartingEfficiency, 10 },
+            { MiscItemId.NavalStrikeStartingEfficiency, 10 },
+            { MiscItemId.PortStrikeStartingEfficiency, 10 },
+            { MiscItemId.ConvoyAirRaidingStartingEfficiency, 10 },
+            { MiscItemId.AirSupplyStartingEfficiency, 10 },
+            { MiscItemId.AirborneAssaultStartingEfficiency, 10 },
+            { MiscItemId.NukeStartingEfficiency, 10 },
+            { MiscItemId.AirScrambleStartingEfficiency, 10 },
+            { MiscItemId.ConvoyRadingStartingEfficiency, 10 },
+            { MiscItemId.AswStartingEfficiency, 10 },
+            { MiscItemId.NavalInterdictionStartingEfficiency, 10 },
+            { MiscItemId.ShoreBombardmentStartingEfficiency, 10 },
+            { MiscItemId.AmphibousAssaultStartingEfficiency, 10 },
+            { MiscItemId.SeaTransportStartingEfficiency, 10 },
+            { MiscItemId.NavalCombatPatrolStartingEfficiency, 10 },
+            { MiscItemId.NavalPortStrikeStartingEfficiency, 10 },
+            { MiscItemId.NavalAirbaseStrikeStartingEfficiency, 10 },
+            { MiscItemId.SneakMoveStartingEfficiency, 10 },
+            { MiscItemId.NavalScrambleStartingEfficiency, 10 },
+            { MiscItemId.CombatEventChances, 1 },
+            { MiscItemId.NotProduceNewUnitsSupply, 1 },
+            { MiscItemId.MilitaryStrengthTotalIcRatioPeacetime, 1 },
+            { MiscItemId.MilitaryStrengthTotalIcRatioWartime, 1 },
+            { MiscItemId.NotUseOffensiveOrgStrDamage, 1 },
+            { MiscItemId.MinRequiredRelationsAlliedClaimed, 200 },
         };
 
         /// <summary>

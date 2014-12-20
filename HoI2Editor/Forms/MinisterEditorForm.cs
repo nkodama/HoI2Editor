@@ -1210,7 +1210,7 @@ namespace HoI2Editor.Forms
                 Ministers.Personalities.Select(info => Config.GetText(info.Name))
                     .Select(s => (int) g.MeasureString(s, personalityComboBox.Font).Width +
                                  SystemInformation.VerticalScrollBarWidth + margin)
-                    .Concat(new[] {personalityComboBox.Width})
+                    .Concat(new[] { personalityComboBox.Width })
                     .Max();
 
             // イデオロギー

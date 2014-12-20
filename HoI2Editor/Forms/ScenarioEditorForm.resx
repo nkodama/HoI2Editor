@@ -4710,6 +4710,150 @@
   <data name="&gt;&gt;allianceTabPage.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="warDefenderIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="warDefenderIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="warDefenderIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>308, 502</value>
+  </data>
+  <data name="warDefenderIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 12</value>
+  </data>
+  <data name="warDefenderIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>134</value>
+  </data>
+  <data name="warDefenderIdLabel.Text" xml:space="preserve">
+    <value>Defender ID</value>
+  </data>
+  <data name="&gt;&gt;warDefenderIdLabel.Name" xml:space="preserve">
+    <value>warDefenderIdLabel</value>
+  </data>
+  <data name="&gt;&gt;warDefenderIdLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warDefenderIdLabel.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warDefenderIdLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="warAttackerIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="warAttackerIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="warAttackerIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 500</value>
+  </data>
+  <data name="warAttackerIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 12</value>
+  </data>
+  <data name="warAttackerIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>133</value>
+  </data>
+  <data name="warAttackerIdLabel.Text" xml:space="preserve">
+    <value>Attacker ID</value>
+  </data>
+  <data name="&gt;&gt;warAttackerIdLabel.Name" xml:space="preserve">
+    <value>warAttackerIdLabel</value>
+  </data>
+  <data name="&gt;&gt;warAttackerIdLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warAttackerIdLabel.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerIdLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="warDefenderIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>436, 497</value>
+  </data>
+  <data name="warDefenderIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="warDefenderIdTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>132</value>
+  </data>
+  <data name="&gt;&gt;warDefenderIdTextBox.Name" xml:space="preserve">
+    <value>warDefenderIdTextBox</value>
+  </data>
+  <data name="&gt;&gt;warDefenderIdTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warDefenderIdTextBox.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warDefenderIdTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="warDefenderTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>380, 497</value>
+  </data>
+  <data name="warDefenderTypeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="warDefenderTypeTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>131</value>
+  </data>
+  <data name="&gt;&gt;warDefenderTypeTextBox.Name" xml:space="preserve">
+    <value>warDefenderTypeTextBox</value>
+  </data>
+  <data name="&gt;&gt;warDefenderTypeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warDefenderTypeTextBox.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warDefenderTypeTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="warAttackerIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>138, 497</value>
+  </data>
+  <data name="warAttackerIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="warAttackerIdTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>129</value>
+  </data>
+  <data name="&gt;&gt;warAttackerIdTextBox.Name" xml:space="preserve">
+    <value>warAttackerIdTextBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerIdTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warAttackerIdTextBox.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerIdTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="warAttackerTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 497</value>
+  </data>
+  <data name="warAttackerTypeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="warAttackerTypeTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>128</value>
+  </data>
+  <data name="&gt;&gt;warAttackerTypeTextBox.Name" xml:space="preserve">
+    <value>warAttackerTypeTextBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerTypeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;warAttackerTypeTextBox.Parent" xml:space="preserve">
+    <value>warGroupBox</value>
+  </data>
+  <data name="&gt;&gt;warAttackerTypeTextBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="warIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>366, 201</value>
   </data>
@@ -7609,150 +7753,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;scenarioTabControl.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="warAttackerIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>138, 497</value>
-  </data>
-  <data name="warAttackerIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="warAttackerIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>129</value>
-  </data>
-  <data name="&gt;&gt;warAttackerIdTextBox.Name" xml:space="preserve">
-    <value>warAttackerIdTextBox</value>
-  </data>
-  <data name="&gt;&gt;warAttackerIdTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;warAttackerIdTextBox.Parent" xml:space="preserve">
-    <value>warGroupBox</value>
-  </data>
-  <data name="&gt;&gt;warAttackerIdTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="warAttackerTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 497</value>
-  </data>
-  <data name="warAttackerTypeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="warAttackerTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>128</value>
-  </data>
-  <data name="&gt;&gt;warAttackerTypeTextBox.Name" xml:space="preserve">
-    <value>warAttackerTypeTextBox</value>
-  </data>
-  <data name="&gt;&gt;warAttackerTypeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;warAttackerTypeTextBox.Parent" xml:space="preserve">
-    <value>warGroupBox</value>
-  </data>
-  <data name="&gt;&gt;warAttackerTypeTextBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="warDefenderIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>436, 497</value>
-  </data>
-  <data name="warDefenderIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="warDefenderIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>132</value>
-  </data>
-  <data name="&gt;&gt;warDefenderIdTextBox.Name" xml:space="preserve">
-    <value>warDefenderIdTextBox</value>
-  </data>
-  <data name="&gt;&gt;warDefenderIdTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;warDefenderIdTextBox.Parent" xml:space="preserve">
-    <value>warGroupBox</value>
-  </data>
-  <data name="&gt;&gt;warDefenderIdTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="warDefenderTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>380, 497</value>
-  </data>
-  <data name="warDefenderTypeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="warDefenderTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>131</value>
-  </data>
-  <data name="&gt;&gt;warDefenderTypeTextBox.Name" xml:space="preserve">
-    <value>warDefenderTypeTextBox</value>
-  </data>
-  <data name="&gt;&gt;warDefenderTypeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;warDefenderTypeTextBox.Parent" xml:space="preserve">
-    <value>warGroupBox</value>
-  </data>
-  <data name="&gt;&gt;warDefenderTypeTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="warAttackerIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="warAttackerIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="warAttackerIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 500</value>
-  </data>
-  <data name="warAttackerIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 12</value>
-  </data>
-  <data name="warAttackerIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>133</value>
-  </data>
-  <data name="warAttackerIdLabel.Text" xml:space="preserve">
-    <value>Attacker ID</value>
-  </data>
-  <data name="&gt;&gt;warAttackerIdLabel.Name" xml:space="preserve">
-    <value>warAttackerIdLabel</value>
-  </data>
-  <data name="&gt;&gt;warAttackerIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;warAttackerIdLabel.Parent" xml:space="preserve">
-    <value>warGroupBox</value>
-  </data>
-  <data name="&gt;&gt;warAttackerIdLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="warDefenderIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="warDefenderIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="warDefenderIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>308, 502</value>
-  </data>
-  <data name="warDefenderIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 12</value>
-  </data>
-  <data name="warDefenderIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>134</value>
-  </data>
-  <data name="warDefenderIdLabel.Text" xml:space="preserve">
-    <value>Defender ID</value>
-  </data>
-  <data name="&gt;&gt;warDefenderIdLabel.Name" xml:space="preserve">
-    <value>warDefenderIdLabel</value>
-  </data>
-  <data name="&gt;&gt;warDefenderIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;warDefenderIdLabel.Parent" xml:space="preserve">
-    <value>warGroupBox</value>
-  </data>
-  <data name="&gt;&gt;warDefenderIdLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

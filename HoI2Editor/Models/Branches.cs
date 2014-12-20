@@ -10,7 +10,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     兵科名
         /// </summary>
-        private static readonly string[] Names = {"", "EYR_ARMY", "EYR_NAVY", "EYR_AIRFORCE"};
+        private static readonly string[] Names = { "", "EYR_ARMY", "EYR_NAVY", "EYR_AIRFORCE" };
 
         /// <summary>
         ///     兵科名を取得する

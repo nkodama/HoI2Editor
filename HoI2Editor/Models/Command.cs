@@ -369,7 +369,7 @@ namespace HoI2Editor.Models
         /// <returns>複製するコマンド</returns>
         public Command Clone()
         {
-            var command = new Command {Type = Type, Which = Which, Value = Value, When = When, Where = Where};
+            var command = new Command { Type = Type, Which = Which, Value = Value, When = When, Where = Where };
 
             return command;
         }

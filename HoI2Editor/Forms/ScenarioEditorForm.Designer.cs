@@ -147,6 +147,12 @@
             this.relationCountryListBox = new System.Windows.Forms.ListBox();
             this.allianceTabPage = new System.Windows.Forms.TabPage();
             this.warGroupBox = new System.Windows.Forms.GroupBox();
+            this.warDefenderIdLabel = new System.Windows.Forms.Label();
+            this.warAttackerIdLabel = new System.Windows.Forms.Label();
+            this.warDefenderIdTextBox = new System.Windows.Forms.TextBox();
+            this.warDefenderTypeTextBox = new System.Windows.Forms.TextBox();
+            this.warAttackerIdTextBox = new System.Windows.Forms.TextBox();
+            this.warAttackerTypeTextBox = new System.Windows.Forms.TextBox();
             this.warIdTextBox = new System.Windows.Forms.TextBox();
             this.warTypeTextBox = new System.Windows.Forms.TextBox();
             this.warEndMonthTextBox = new System.Windows.Forms.TextBox();
@@ -254,12 +260,6 @@
             this.scenarioRadioButton = new System.Windows.Forms.RadioButton();
             this.scenarioListBox = new System.Windows.Forms.ListBox();
             this.scenarioTabControl = new System.Windows.Forms.TabControl();
-            this.warAttackerIdTextBox = new System.Windows.Forms.TextBox();
-            this.warAttackerTypeTextBox = new System.Windows.Forms.TextBox();
-            this.warDefenderIdTextBox = new System.Windows.Forms.TextBox();
-            this.warDefenderTypeTextBox = new System.Windows.Forms.TextBox();
-            this.warAttackerIdLabel = new System.Windows.Forms.Label();
-            this.warDefenderIdLabel = new System.Windows.Forms.Label();
             this.provinceTabPage.SuspendLayout();
             this.provinceMapPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.provinceMapPictureBox)).BeginInit();
@@ -1072,6 +1072,36 @@
             this.warGroupBox.Name = "warGroupBox";
             this.warGroupBox.TabStop = false;
             // 
+            // warDefenderIdLabel
+            // 
+            resources.ApplyResources(this.warDefenderIdLabel, "warDefenderIdLabel");
+            this.warDefenderIdLabel.Name = "warDefenderIdLabel";
+            // 
+            // warAttackerIdLabel
+            // 
+            resources.ApplyResources(this.warAttackerIdLabel, "warAttackerIdLabel");
+            this.warAttackerIdLabel.Name = "warAttackerIdLabel";
+            // 
+            // warDefenderIdTextBox
+            // 
+            resources.ApplyResources(this.warDefenderIdTextBox, "warDefenderIdTextBox");
+            this.warDefenderIdTextBox.Name = "warDefenderIdTextBox";
+            // 
+            // warDefenderTypeTextBox
+            // 
+            resources.ApplyResources(this.warDefenderTypeTextBox, "warDefenderTypeTextBox");
+            this.warDefenderTypeTextBox.Name = "warDefenderTypeTextBox";
+            // 
+            // warAttackerIdTextBox
+            // 
+            resources.ApplyResources(this.warAttackerIdTextBox, "warAttackerIdTextBox");
+            this.warAttackerIdTextBox.Name = "warAttackerIdTextBox";
+            // 
+            // warAttackerTypeTextBox
+            // 
+            resources.ApplyResources(this.warAttackerTypeTextBox, "warAttackerTypeTextBox");
+            this.warAttackerTypeTextBox.Name = "warAttackerTypeTextBox";
+            // 
             // warIdTextBox
             // 
             resources.ApplyResources(this.warIdTextBox, "warIdTextBox");
@@ -1141,6 +1171,7 @@
             this.warDefenderColumnHeader});
             this.warListView.FullRowSelect = true;
             this.warListView.GridLines = true;
+            this.warListView.HideSelection = false;
             resources.ApplyResources(this.warListView, "warListView");
             this.warListView.Name = "warListView";
             this.warListView.UseCompatibleStateImageBehavior = false;
@@ -1260,11 +1291,13 @@
             // 
             resources.ApplyResources(this.allianceIdTextBox, "allianceIdTextBox");
             this.allianceIdTextBox.Name = "allianceIdTextBox";
+            this.allianceIdTextBox.Validated += new System.EventHandler(this.OnAllianceIdTextBoxValidated);
             // 
             // allianceTypeTextBox
             // 
             resources.ApplyResources(this.allianceTypeTextBox, "allianceTypeTextBox");
             this.allianceTypeTextBox.Name = "allianceTypeTextBox";
+            this.allianceTypeTextBox.Validated += new System.EventHandler(this.OnAllianceTypeTextBoxValidated);
             // 
             // allianceIdLabel
             // 
@@ -1275,6 +1308,7 @@
             // 
             resources.ApplyResources(this.allianceNameTextBox, "allianceNameTextBox");
             this.allianceNameTextBox.Name = "allianceNameTextBox";
+            this.allianceNameTextBox.TextChanged += new System.EventHandler(this.OnAllianceNameTextBoxTextChanged);
             // 
             // allianceNameLabel
             // 
@@ -1288,6 +1322,7 @@
             this.allianceParticipantColumnHeader});
             this.allianceListView.FullRowSelect = true;
             this.allianceListView.GridLines = true;
+            this.allianceListView.HideSelection = false;
             resources.ApplyResources(this.allianceListView, "allianceListView");
             this.allianceListView.Name = "allianceListView";
             this.allianceListView.UseCompatibleStateImageBehavior = false;
@@ -1324,6 +1359,7 @@
             resources.ApplyResources(this.allianceUpButton, "allianceUpButton");
             this.allianceUpButton.Name = "allianceUpButton";
             this.allianceUpButton.UseVisualStyleBackColor = true;
+            this.allianceUpButton.Click += new System.EventHandler(this.OnAllianceUpButtonClick);
             // 
             // allianceParticipantAddButton
             // 
@@ -1342,12 +1378,14 @@
             resources.ApplyResources(this.allianceRemoveButton, "allianceRemoveButton");
             this.allianceRemoveButton.Name = "allianceRemoveButton";
             this.allianceRemoveButton.UseVisualStyleBackColor = true;
+            this.allianceRemoveButton.Click += new System.EventHandler(this.OnAllianceRemoveButtonClick);
             // 
             // allianceNewButton
             // 
             resources.ApplyResources(this.allianceNewButton, "allianceNewButton");
             this.allianceNewButton.Name = "allianceNewButton";
             this.allianceNewButton.UseVisualStyleBackColor = true;
+            this.allianceNewButton.Click += new System.EventHandler(this.OnAllianceNewButtonClick);
             // 
             // allianceParticipantRemoveButton
             // 
@@ -1360,6 +1398,7 @@
             resources.ApplyResources(this.allianceDownButton, "allianceDownButton");
             this.allianceDownButton.Name = "allianceDownButton";
             this.allianceDownButton.UseVisualStyleBackColor = true;
+            this.allianceDownButton.Click += new System.EventHandler(this.OnAllianceDownButtonClick);
             // 
             // mainTabPage
             // 
@@ -1814,36 +1853,6 @@
             this.scenarioTabControl.Controls.Add(this.provinceTabPage);
             this.scenarioTabControl.Name = "scenarioTabControl";
             this.scenarioTabControl.SelectedIndex = 0;
-            // 
-            // warAttackerIdTextBox
-            // 
-            resources.ApplyResources(this.warAttackerIdTextBox, "warAttackerIdTextBox");
-            this.warAttackerIdTextBox.Name = "warAttackerIdTextBox";
-            // 
-            // warAttackerTypeTextBox
-            // 
-            resources.ApplyResources(this.warAttackerTypeTextBox, "warAttackerTypeTextBox");
-            this.warAttackerTypeTextBox.Name = "warAttackerTypeTextBox";
-            // 
-            // warDefenderIdTextBox
-            // 
-            resources.ApplyResources(this.warDefenderIdTextBox, "warDefenderIdTextBox");
-            this.warDefenderIdTextBox.Name = "warDefenderIdTextBox";
-            // 
-            // warDefenderTypeTextBox
-            // 
-            resources.ApplyResources(this.warDefenderTypeTextBox, "warDefenderTypeTextBox");
-            this.warDefenderTypeTextBox.Name = "warDefenderTypeTextBox";
-            // 
-            // warAttackerIdLabel
-            // 
-            resources.ApplyResources(this.warAttackerIdLabel, "warAttackerIdLabel");
-            this.warAttackerIdLabel.Name = "warAttackerIdLabel";
-            // 
-            // warDefenderIdLabel
-            // 
-            resources.ApplyResources(this.warDefenderIdLabel, "warDefenderIdLabel");
-            this.warDefenderIdLabel.Name = "warDefenderIdLabel";
             // 
             // ScenarioEditorForm
             // 

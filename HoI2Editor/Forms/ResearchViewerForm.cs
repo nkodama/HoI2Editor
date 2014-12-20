@@ -233,10 +233,10 @@ namespace HoI2Editor.Forms
             Config.Load();
 
             // 技術リストビューの高さを設定するためにダミーのイメージリストを作成する
-            techListView.SmallImageList = new ImageList {ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18))};
+            techListView.SmallImageList = new ImageList { ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18)) };
 
             // 研究機関リストビューの高さを設定するためにダミーのイメージリストを作成する
-            teamListView.SmallImageList = new ImageList {ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18))};
+            teamListView.SmallImageList = new ImageList { ImageSize = new Size(1, DeviceCaps.GetScaledHeight(18)) };
 
             // 研究特性オーバーレイアイコンを初期化する
             _techOverlayIcon = new Bitmap(Game.GetReadFileName(Game.TechIconOverlayPathName));

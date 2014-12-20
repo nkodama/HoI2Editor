@@ -160,7 +160,7 @@ namespace HoI2Editor.Models
             IdSet = new HashSet<int>();
 
             // 階級
-            RankNames = new[] {"", Resources.Rank3, Resources.Rank2, Resources.Rank1, Resources.Rank0};
+            RankNames = new[] { "", Resources.Rank3, Resources.Rank2, Resources.Rank1, Resources.Rank0 };
         }
 
         #endregion

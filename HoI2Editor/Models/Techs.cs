@@ -225,15 +225,15 @@ namespace HoI2Editor.Models
         public static readonly Dictionary<string, TechCategory> CategoryMap
             = new Dictionary<string, TechCategory>
             {
-                {"infantry", TechCategory.Infantry},
-                {"armor", TechCategory.Armor},
-                {"naval", TechCategory.Naval},
-                {"aircraft", TechCategory.Aircraft},
-                {"industry", TechCategory.Industry},
-                {"land_doctrines", TechCategory.LandDoctrines},
-                {"secret_weapons", TechCategory.SecretWeapons},
-                {"naval_doctrines", TechCategory.NavalDoctrines},
-                {"air_doctrines", TechCategory.AirDoctrines},
+                { "infantry", TechCategory.Infantry },
+                { "armor", TechCategory.Armor },
+                { "naval", TechCategory.Naval },
+                { "aircraft", TechCategory.Aircraft },
+                { "industry", TechCategory.Industry },
+                { "land_doctrines", TechCategory.LandDoctrines },
+                { "secret_weapons", TechCategory.SecretWeapons },
+                { "naval_doctrines", TechCategory.NavalDoctrines },
+                { "air_doctrines", TechCategory.AirDoctrines },
             };
 
         #endregion

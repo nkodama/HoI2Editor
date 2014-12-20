@@ -165,7 +165,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitEditableItems()
         {
-            InitMainItems();
+            InitMainTab();
             InitAllianceTab();
             InitRelationItems();
             InitTradeItems();
@@ -176,7 +176,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateEditableItems()
         {
-            UpdateMainItems();
+            UpdateMainTab();
             UpdateAllianceTab();
             UpdateRelationItems();
             UpdateTradeItems();
@@ -359,7 +359,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     メインタブの項目を初期化する
         /// </summary>
-        private void InitMainItems()
+        private void InitMainTab()
         {
             // シナリオリストボックス
             InitScenarioListBox();
@@ -392,21 +392,46 @@ namespace HoI2Editor.Forms
             gameSpeedComboBox.EndUpdate();
 
             // 編集項目を無効化する
+            DisableMainItems();
+        }
+
+        /// <summary>
+        ///     メインタブの項目を更新する
+        /// </summary>
+        private void UpdateMainTab()
+        {
+            // 編集項目を更新する
+            UpdateMainItems();
+
+            // 編集項目を有効化する
+            EnableMainItems();
+        }
+
+        /// <summary>
+        ///     メインタブの編集項目を有効化する
+        /// </summary>
+        private void EnableMainItems()
+        {
+            infoGroupBox.Enabled = true;
+            optionGroupBox.Enabled = true;
+            countrySelectionGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     メインタブの編集項目を無効化する
+        /// </summary>
+        private void DisableMainItems()
+        {
             infoGroupBox.Enabled = false;
             optionGroupBox.Enabled = false;
             countrySelectionGroupBox.Enabled = false;
         }
 
         /// <summary>
-        ///     メインタブの項目を更新する
+        ///     メインタブの編集項目を更新する
         /// </summary>
         private void UpdateMainItems()
         {
-            // 編集項目を有効化する
-            infoGroupBox.Enabled = true;
-            optionGroupBox.Enabled = true;
-            countrySelectionGroupBox.Enabled = true;
-
             Scenario scenario = Scenarios.Data;
             ScenarioHeader header = scenario.Header;
             ScenarioGlobalData data = scenario.GlobalData;
@@ -1678,7 +1703,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     主要国上へボタン押下時の処理
+        ///     主要国の上へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1707,7 +1732,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     主要国下へボタン押下時の処理
+        ///     主要国の下へボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1755,7 +1780,7 @@ namespace HoI2Editor.Forms
                 majorListBox.Items.Add(Countries.GetTagName(country));
 
                 // 主要国リストに追加する
-                var major = new MajorCountrySettings {Country = country};
+                var major = new MajorCountrySettings { Country = country };
                 header.MajorCountries.Add(major);
 
                 // 選択可能国リストボックスから削除する
@@ -2119,7 +2144,17 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitAllianceTab()
         {
-            // 何もしない
+            // 同盟情報の編集項目を無効化する
+            DisableAllianceItems();
+
+            // 戦争情報の編集項目を無効化する
+            DisableWarItems();
+
+            // 同盟情報の新規ボタンを有効化する
+            allianceNewButton.Enabled = false;
+
+            // 戦争情報の新規ボタンを有効化する
+            warNewButton.Enabled = false;
         }
 
         /// <summary>
@@ -2132,6 +2167,12 @@ namespace HoI2Editor.Forms
 
             // 戦争情報の編集項目を無効化する
             DisableWarItems();
+
+            // 同盟情報の新規ボタンを有効化する
+            allianceNewButton.Enabled = true;
+
+            // 戦争情報の新規ボタンを有効化する
+            warNewButton.Enabled = true;
 
             // 同盟リストビューを更新する
             UpdateAllianceListView();
@@ -2158,7 +2199,7 @@ namespace HoI2Editor.Forms
             var item = new ListViewItem();
             if (data.Axis != null)
             {
-                item.Text = Config.GetText(!string.IsNullOrEmpty(data.Axis.Name) ? data.Axis.Name : "EYR_AXIS");
+                item.Text = GetAllianceName(data.Axis);
                 item.Tag = data.Axis;
                 item.SubItems.Add(Countries.GetListString(data.Axis.Participant));
             }
@@ -2172,7 +2213,7 @@ namespace HoI2Editor.Forms
             item = new ListViewItem();
             if (data.Allies != null)
             {
-                item.Text = Config.GetText(!string.IsNullOrEmpty(data.Allies.Name) ? data.Allies.Name : "EYR_ALLIES");
+                item.Text = GetAllianceName(data.Allies);
                 item.Tag = data.Allies;
                 item.SubItems.Add(Countries.GetListString(data.Allies.Participant));
             }
@@ -2186,7 +2227,7 @@ namespace HoI2Editor.Forms
             item = new ListViewItem();
             if (data.Comintern != null)
             {
-                item.Text = Config.GetText(!string.IsNullOrEmpty(data.Comintern.Name) ? data.Comintern.Name : "EYR_COM");
+                item.Text = GetAllianceName(data.Comintern);
                 item.Tag = data.Comintern;
                 item.SubItems.Add(Countries.GetListString(data.Comintern.Participant));
             }
@@ -2199,7 +2240,7 @@ namespace HoI2Editor.Forms
             // その他の同盟
             foreach (Alliance alliance in data.Alliances)
             {
-                item = new ListViewItem {Text = Resources.Alliance, Tag = alliance};
+                item = new ListViewItem { Text = GetAllianceName(alliance), Tag = alliance };
                 item.SubItems.Add(Countries.GetListString(alliance.Participant));
                 allianceListView.Items.Add(item);
             }
@@ -2212,13 +2253,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void EnableAllianceItems()
         {
-            int count = allianceListView.SelectedIndices.Count;
+            int count = allianceListView.Items.Count;
             int index = allianceListView.SelectedIndices[0];
 
-            // 枢軸国/連合国/共産国の順番は変更できない
+            // 枢軸国/連合国/共産国は順番変更/削除できない
             allianceUpButton.Enabled = (index > 3);
-            allianceDownButton.Enabled = ((index < count - 1) && (index > 2));
-            allianceRemoveButton.Enabled = true;
+            allianceDownButton.Enabled = ((index < count - 1) && (index >= 3));
+            allianceRemoveButton.Enabled = (index >= 3);
 
             allianceNameLabel.Enabled = true;
             allianceNameTextBox.Enabled = true;
@@ -2235,6 +2276,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void DisableAllianceItems()
         {
+            allianceNameTextBox.Text = "";
+            allianceTypeTextBox.Text = "";
+            allianceIdTextBox.Text = "";
+
+            allianceParticipantListBox.Items.Clear();
+            allianceCountryListBox.Items.Clear();
+
             allianceUpButton.Enabled = false;
             allianceDownButton.Enabled = false;
             allianceRemoveButton.Enabled = false;
@@ -2258,6 +2306,16 @@ namespace HoI2Editor.Forms
             if (alliance == null)
             {
                 return;
+            }
+
+            // 同盟名
+            allianceNameTextBox.Text = GetAllianceName(alliance);
+
+            // 同盟ID
+            if (alliance.Id != null)
+            {
+                allianceTypeTextBox.Text = IntHelper.ToString(alliance.Id.Type);
+                allianceIdTextBox.Text = IntHelper.ToString(alliance.Id.Id);
             }
 
             IEnumerable<Country> countries = Countries.Tags;
@@ -2307,6 +2365,382 @@ namespace HoI2Editor.Forms
             EnableAllianceItems();
         }
 
+        /// <summary>
+        ///     同盟の上へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceUpButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<Alliance> alliances = scenario.GlobalData.Alliances;
+
+            // 同盟リストビューの項目を移動する
+            int index = allianceListView.SelectedIndices[0];
+            ListViewItem item = allianceListView.Items[index];
+            allianceListView.Items.RemoveAt(index);
+            allianceListView.Items.Insert(index - 1, item);
+            allianceListView.Items[index - 1].Focused = true;
+            allianceListView.Items[index - 1].Selected = true;
+            allianceListView.EnsureVisible(index - 1);
+
+            // 同盟リストの項目を移動する
+            index -= 3; // -3は枢軸国/連合国/共産国の分
+            Alliance alliance = alliances[index];
+            alliances.RemoveAt(index);
+            alliances.Insert(index - 1, alliance);
+
+            // 編集済みフラグを設定する
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     同盟の下へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceDownButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<Alliance> alliances = scenario.GlobalData.Alliances;
+
+            // 同盟リストビューの項目を移動する
+            int index = allianceListView.SelectedIndices[0];
+            ListViewItem item = allianceListView.Items[index];
+            allianceListView.Items.RemoveAt(index);
+            allianceListView.Items.Insert(index + 1, item);
+            allianceListView.Items[index + 1].Focused = true;
+            allianceListView.Items[index + 1].Selected = true;
+            allianceListView.EnsureVisible(index + 1);
+
+            // 同盟リストの項目を移動する
+            index -= 3; // -3は枢軸国/連合国/共産国の分
+            Alliance alliance = alliances[index];
+            alliances.RemoveAt(index);
+            alliances.Insert(index + 1, alliance);
+
+            // 編集済みフラグを設定する
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     同盟の新規ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceNewButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<Alliance> alliances = scenario.GlobalData.Alliances;
+
+            // 同盟リストに項目を追加する
+            int id = Scenarios.GetNewTypeId(Scenarios.DefaultAllianceType, 1);
+            var alliance = new Alliance { Id = new TypeId { Type = Scenarios.DefaultAllianceType, Id = id } };
+            alliances.Add(alliance);
+
+            // 同盟リストビューに項目を追加する
+            var item = new ListViewItem { Text = Resources.Alliance, Tag = alliance };
+            item.SubItems.Add("");
+            allianceListView.Items.Add(item);
+
+            // typeとidの組を登録する
+            Scenarios.AddTypeId(alliance.Id);
+
+            // 追加した項目を選択する
+            if (allianceListView.SelectedIndices.Count > 0)
+            {
+                ListViewItem prev = allianceListView.SelectedItems[0];
+                prev.Focused = false;
+                prev.Selected = false;
+            }
+            item.Focused = true;
+            item.Selected = true;
+        }
+
+        /// <summary>
+        ///     同盟の削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceRemoveButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<Alliance> alliances = scenario.GlobalData.Alliances;
+
+            // 枢軸国/連合国/共産国は削除できない
+            int index = allianceListView.SelectedIndices[0] - 3;
+            if (index < 0)
+            {
+                return;
+            }
+
+            Alliance alliance = alliances[index];
+
+            // typeとidの組を削除する
+            Scenarios.RemoveTypeId(alliance.Id);
+
+            // 同盟リストから項目を削除する
+            alliances.RemoveAt(index);
+
+            // 同盟リストビューから項目を削除する
+            allianceListView.Items.RemoveAt(index + 3);
+
+            // 追加した項目の次を選択する
+            index += (index < alliances.Count) ? 3 : (3 - 1);
+            allianceListView.Items[index].Focused = true;
+            allianceListView.Items[index].Selected = true;
+        }
+
+        /// <summary>
+        ///     同盟名テキストボックスの文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceNameTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (allianceListView.SelectedItems.Count == 0)
+            {
+                return;
+            }
+
+            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
+            if (alliance == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            string name = GetAllianceName(alliance);
+            if (allianceNameTextBox.Text.Equals(name))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] alliance name: {0} -> {1}", name, allianceNameTextBox.Text);
+
+            // 値を更新する
+            string s = allianceNameTextBox.Text;
+            ScenarioGlobalData data = Scenarios.Data.GlobalData;
+            if (string.IsNullOrEmpty(alliance.Name))
+            {
+                Config.SetText("ALLIANCE_" + alliance.Name, s, Game.ScenarioTextFileName);
+            }
+            else
+            {
+                if (alliance == data.Axis)
+                {
+                    Config.SetText("EYR_AXIS", s, Game.ScenarioTextFileName);
+                }
+                else if (alliance == data.Allies)
+                {
+                    Config.SetText("EYR_ALLIES", s, Game.ScenarioTextFileName);
+                }
+                else if (alliance == data.Comintern)
+                {
+                    Config.SetText("EYR_COM", s, Game.ScenarioTextFileName);
+                }
+            }
+
+            // 文字色を変更する
+            allianceNameTextBox.ForeColor = Color.Red;
+
+            // 編集済みフラグを設定する
+            alliance.SetDirty(AllianceItemId.Name);
+        }
+
+        /// <summary>
+        ///     同盟のtypeテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceTypeTextBoxValidated(object sender, EventArgs e)
+        {
+            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
+            if (alliance == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(allianceTypeTextBox.Text, out val))
+            {
+                allianceTypeTextBox.Text = (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Type) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((alliance.Id != null) && (val == alliance.Id.Type))
+            {
+                return;
+            }
+
+            string name = GetAllianceName(alliance);
+            if (!string.IsNullOrEmpty(name))
+            {
+                Log.Info("[Scenario] alliance type: {0} -> {1} ({2})",
+                    (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Type) : "", IntHelper.ToString(val), name);
+            }
+            else
+            {
+                Log.Info("[Scenario] alliance type: {0} -> {1}",
+                    (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Type) : "", IntHelper.ToString(val));
+            }
+
+            if (alliance.Id == null)
+            {
+                alliance.Id = new TypeId { Id = Scenarios.GetNewTypeId(val, 1) };
+            }
+            else
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(alliance.Id);
+            }
+
+            // 値を更新する
+            alliance.Id.Type = val;
+
+            // 変更後のtypeとidの組が存在すればidを変更する
+            if (Scenarios.ExistsTypeId(val, alliance.Id.Id))
+            {
+                int id = Scenarios.GetNewTypeId(val, alliance.Id.Id);
+
+                if (!string.IsNullOrEmpty(name))
+                {
+                    Log.Info("[Scenario] alliance id: {0} -> {1} ({2})",
+                        (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "", IntHelper.ToString(id), name);
+                }
+                else
+                {
+                    Log.Info("[Scenario] alliance id: {0} -> {1}",
+                        (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "", IntHelper.ToString(id));
+                }
+
+                // idの値を更新する
+                alliance.Id.Id = id;
+
+                // 編集済みフラグを設定する
+                alliance.SetDirty(AllianceItemId.Id);
+
+                // idの表示を更新する
+                allianceIdTextBox.Text = IntHelper.ToString(alliance.Id.Id);
+
+                // 文字色を変更する
+                allianceIdTextBox.ForeColor = Color.Red;
+            }
+
+            // 変更後のtypeとidの組を登録する
+            Scenarios.AddTypeId(alliance.Id);
+
+            // 編集済みフラグを設定する
+            alliance.SetDirty(AllianceItemId.Type);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            allianceTypeTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     同盟のidテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceIdTextBoxValidated(object sender, EventArgs e)
+        {
+            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
+            if (alliance == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(allianceIdTextBox.Text, out val))
+            {
+                allianceIdTextBox.Text = (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "";
+                return;
+            }
+
+            if (alliance.Id != null)
+            {
+                // 値に変化がなければ何もしない
+                if (val == alliance.Id.Id)
+                {
+                    return;
+                }
+
+                // 変更後のtypeとidの組が存在すれば元に戻す
+                if (Scenarios.ExistsTypeId(alliance.Id.Type, val))
+                {
+                    allianceIdTextBox.Text = (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "";
+                }
+            }
+
+            string name = GetAllianceName(alliance);
+            if (!string.IsNullOrEmpty(name))
+            {
+                Log.Info("[Scenario] alliance id: {0} -> {1} ({2})",
+                    (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "", IntHelper.ToString(val), name);
+            }
+            else
+            {
+                Log.Info("[Scenario] alliance id: {0} -> {1}",
+                    (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "", IntHelper.ToString(val));
+            }
+
+            if (alliance.Id == null)
+            {
+                alliance.Id = new TypeId { Type = Scenarios.DefaultAllianceType };
+            }
+            else
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(alliance.Id);
+            }
+
+            // 値を更新する
+            alliance.Id.Id = val;
+
+            // 変更後のtypeとidの組を登録する
+            Scenarios.AddTypeId(alliance.Id);
+
+            // 編集済みフラグを設定する
+            alliance.SetDirty(AllianceItemId.Id);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            allianceIdTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     同盟名を取得する
+        /// </summary>
+        /// <param name="alliance">同盟</param>
+        /// <returns>同盟名</returns>
+        private static string GetAllianceName(Alliance alliance)
+        {
+            if (!string.IsNullOrEmpty(alliance.Name))
+            {
+                string key = "ALLIANCE_" + alliance.Name;
+                return Config.ExistsKey(key) ? Config.GetText(key) : "";
+            }
+            ScenarioGlobalData data = Scenarios.Data.GlobalData;
+            if (alliance == data.Axis)
+            {
+                return Config.GetText("EYR_AXIS");
+            }
+            if (alliance == data.Allies)
+            {
+                return Config.GetText("EYR_ALLIES");
+            }
+            if (alliance == data.Comintern)
+            {
+                return Config.GetText("EYR_COM");
+            }
+            return "";
+        }
+
         #endregion
 
         #region 同盟タブ - 戦争
@@ -2322,7 +2756,7 @@ namespace HoI2Editor.Forms
             warListView.Items.Clear();
             foreach (War war in data.Wars)
             {
-                var item = new ListViewItem {Text = war.StartDate.ToString(), Tag = war};
+                var item = new ListViewItem { Text = war.StartDate.ToString(), Tag = war };
                 item.SubItems.Add(war.EndDate.ToString());
                 item.SubItems.Add(Countries.GetListString(war.Attackers.Participant));
                 item.SubItems.Add(Countries.GetListString(war.Defenders.Participant));
@@ -2799,7 +3233,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 国家関係を設定する
-                relation = new Relation {Country = target};
+                relation = new Relation { Country = target };
                 Scenarios.SetCountryRelation(self, relation);
             }
 
@@ -2867,7 +3301,7 @@ namespace HoI2Editor.Forms
             tradeListView.Items.Clear();
             foreach (Treaty treaty in data.Treaties.Where(treaty => treaty.Type == TreatyType.Trade))
             {
-                var item = new ListViewItem {Text = treaty.StartDate.ToString(), Tag = treaty};
+                var item = new ListViewItem { Text = treaty.StartDate.ToString(), Tag = treaty };
                 item.SubItems.Add(treaty.EndDate.ToString());
                 item.SubItems.Add(Countries.GetName(treaty.Country1));
                 item.SubItems.Add(Countries.GetName(treaty.Country2));

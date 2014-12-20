@@ -26,7 +26,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     世界全体ノード
         /// </summary>
-        private readonly TreeNode _worldNode = new TreeNode {Text = Resources.World};
+        private readonly TreeNode _worldNode = new TreeNode { Text = Resources.World };
 
         /// <summary>
         ///     ソート対象
@@ -343,7 +343,7 @@ namespace HoI2Editor.Forms
         private void AddContinentTreeItem(ContinentId continent, TreeNode parent)
         {
             // 大陸ノードを追加する
-            var node = new TreeNode {Text = Provinces.GetContinentName(continent), Tag = continent};
+            var node = new TreeNode { Text = Provinces.GetContinentName(continent), Tag = continent };
             parent.Nodes.Add(node);
 
             // 地方ノードを順に追加する
@@ -364,7 +364,7 @@ namespace HoI2Editor.Forms
         private void AddRegionTreeItem(RegionId region, TreeNode parent)
         {
             // 地方ノードを追加する
-            var node = new TreeNode {Text = Provinces.GetRegionName(region), Tag = region};
+            var node = new TreeNode { Text = Provinces.GetRegionName(region), Tag = region };
             parent.Nodes.Add(node);
 
             // 地域ノードを順に追加する
@@ -385,7 +385,7 @@ namespace HoI2Editor.Forms
         private void AddAreaTreeItem(AreaId area, TreeNode parent)
         {
             // 地域ノードを追加する
-            var node = new TreeNode {Text = Provinces.GetAreaName(area), Tag = area};
+            var node = new TreeNode { Text = Provinces.GetAreaName(area), Tag = area };
             parent.Nodes.Add(node);
         }
 

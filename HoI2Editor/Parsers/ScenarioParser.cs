@@ -2226,7 +2226,7 @@ namespace HoI2Editor.Parsers
                     // name
                     if (keyword.Equals("name"))
                     {
-                        string s = ParseString(lexer);
+                        string s = ParseStringOrIdentifier(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
                             Log.InvalidClause(LogCategory, "name");
@@ -2270,7 +2270,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type == TokenType.Number)
             {
-                return new BuildingSize {Size = (double) token.Value};
+                return new BuildingSize { Size = (double) token.Value };
             }
 
             // {

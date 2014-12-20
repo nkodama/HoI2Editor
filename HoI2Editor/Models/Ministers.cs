@@ -546,46 +546,46 @@ namespace HoI2Editor.Models
         private static readonly Dictionary<string, string> PersonalityStringCaseMap
             = new Dictionary<string, string>
             {
-                {"die-hard reformer", "Die-hard Reformer"},
-                {"pig-headed isolationist", "Pig-headed Isolationist"},
-                {"air to ground proponent", "Air to Ground Proponent"},
-                {"air to sea proponent", "Air to Sea Proponent"},
-                {"man of the people", "Man of the People"},
-                {"prince of terror", "Prince of Terror"},
-                {"school of defence", "School of Defence"},
-                {"school of fire support", "School of Fire Support"},
-                {"school of mass combat", "School of Mass Combat"},
-                {"school of manoeuvre", "School of Manoeuvre"},
-                {"school of psychology", "School of Psychology"},
-                {"guns and butter doctrine", "Guns and Butter Doctrine"},
-                {"health and safety", "Health and Safety"},
-                {"doctrine of autonomy", "Doctrine of Autonomy"},
-                {"ger_mil_m1", "ger_mil_m1"},
-                {"ger_mil_m2", "ger_mil_m2"},
-                {"ger_mil_m3", "ger_mil_m3"},
-                {"ger_mil_m4", "ger_mil_m4"},
-                {"ger_mil_m5", "ger_mil_m5"},
-                {"ger_mil_m6", "ger_mil_m6"},
-                {"ger_mil_m7", "ger_mil_m7"},
-                {"ger_mil_m8", "ger_mil_m8"},
-                {"ger_mil_m9", "ger_mil_m9"},
-                {"ger_mil_m10", "ger_mil_m10"},
-                {"ger_mil_m11", "ger_mil_m11"},
-                {"brit_nav_mis", "brit_nav_mis"},
-                {"ss reichsfuhrer", "SS Reichsfuhrer"},
-                {"salesman of deception", "Salesman of Deception"},
-                {"master of propaganda", "Master of Propaganda"},
-                {"undersecretary of war", "Undersecretary of War"},
-                {"persuader of democracies", "Persuader of Democracies"},
-                {"father of united nations", "Father of United Nations"},
-                {"director of fbi", "Director of FBI"},
-                {"secretary of war", "Secretary of War"},
-                {"ambassador to un", "Ambassador to UN"},
-                {"secretary of the interior", "Secretary of the Interior"},
-                {"supporter of devaluation", "Supporter of Devaluation"},
-                {"opposer of the far right", "Opposer of the Far Right"},
-                {"supporter of friendly relations", "Supporter of Friendly Relations"},
-                {"opposer to military spending", "Opposer to Military Spending"}
+                { "die-hard reformer", "Die-hard Reformer" },
+                { "pig-headed isolationist", "Pig-headed Isolationist" },
+                { "air to ground proponent", "Air to Ground Proponent" },
+                { "air to sea proponent", "Air to Sea Proponent" },
+                { "man of the people", "Man of the People" },
+                { "prince of terror", "Prince of Terror" },
+                { "school of defence", "School of Defence" },
+                { "school of fire support", "School of Fire Support" },
+                { "school of mass combat", "School of Mass Combat" },
+                { "school of manoeuvre", "School of Manoeuvre" },
+                { "school of psychology", "School of Psychology" },
+                { "guns and butter doctrine", "Guns and Butter Doctrine" },
+                { "health and safety", "Health and Safety" },
+                { "doctrine of autonomy", "Doctrine of Autonomy" },
+                { "ger_mil_m1", "ger_mil_m1" },
+                { "ger_mil_m2", "ger_mil_m2" },
+                { "ger_mil_m3", "ger_mil_m3" },
+                { "ger_mil_m4", "ger_mil_m4" },
+                { "ger_mil_m5", "ger_mil_m5" },
+                { "ger_mil_m6", "ger_mil_m6" },
+                { "ger_mil_m7", "ger_mil_m7" },
+                { "ger_mil_m8", "ger_mil_m8" },
+                { "ger_mil_m9", "ger_mil_m9" },
+                { "ger_mil_m10", "ger_mil_m10" },
+                { "ger_mil_m11", "ger_mil_m11" },
+                { "brit_nav_mis", "brit_nav_mis" },
+                { "ss reichsfuhrer", "SS Reichsfuhrer" },
+                { "salesman of deception", "Salesman of Deception" },
+                { "master of propaganda", "Master of Propaganda" },
+                { "undersecretary of war", "Undersecretary of War" },
+                { "persuader of democracies", "Persuader of Democracies" },
+                { "father of united nations", "Father of United Nations" },
+                { "director of fbi", "Director of FBI" },
+                { "secretary of war", "Secretary of War" },
+                { "ambassador to un", "Ambassador to UN" },
+                { "secretary of the interior", "Secretary of the Interior" },
+                { "supporter of devaluation", "Supporter of Devaluation" },
+                { "opposer of the far right", "Opposer of the Far Right" },
+                { "supporter of friendly relations", "Supporter of Friendly Relations" },
+                { "opposer to military spending", "Opposer to Military Spending" }
             };
 
         /// <summary>
@@ -594,27 +594,27 @@ namespace HoI2Editor.Models
         private static readonly Dictionary<string, string> PersonalityStringTypoMap
             = new Dictionary<string, string>
             {
-                {"barking buffon", "barking buffoon"},
-                {"iron-fisted brute", "iron fisted brute"},
-                {"the cloak-n-dagger schemer", "the cloak n dagger schemer"},
-                {"cloak-n-dagger schemer", "the cloak n dagger schemer"},
-                {"cloak n dagger schemer", "the cloak n dagger schemer"},
-                {"laissez-faires capitalist", "laissez-faire capitalist"},
-                {"laissez faires capitalist", "laissez-faire capitalist"},
-                {"laissez faire capitalist", "laissez-faire capitalist"},
-                {"military entrepeneur", "military entrepreneur"},
-                {"crooked plutocrat", "crooked kleptocrat"},
-                {"school of defense", "school of defence"},
-                {"school of maneouvre", "school of manoeuvre"},
-                {"elastic defense doctrine", "elastic defence doctrine"},
-                {"static defense doctrine", "static defence doctrine"},
-                {"vertical envelopement doctrine", "vertical envelopment doctrine"},
+                { "barking buffon", "barking buffoon" },
+                { "iron-fisted brute", "iron fisted brute" },
+                { "the cloak-n-dagger schemer", "the cloak n dagger schemer" },
+                { "cloak-n-dagger schemer", "the cloak n dagger schemer" },
+                { "cloak n dagger schemer", "the cloak n dagger schemer" },
+                { "laissez-faires capitalist", "laissez-faire capitalist" },
+                { "laissez faires capitalist", "laissez-faire capitalist" },
+                { "laissez faire capitalist", "laissez-faire capitalist" },
+                { "military entrepeneur", "military entrepreneur" },
+                { "crooked plutocrat", "crooked kleptocrat" },
+                { "school of defense", "school of defence" },
+                { "school of maneouvre", "school of manoeuvre" },
+                { "elastic defense doctrine", "elastic defence doctrine" },
+                { "static defense doctrine", "static defence doctrine" },
+                { "vertical envelopement doctrine", "vertical envelopment doctrine" },
             };
 
         /// <summary>
         ///     CSVファイルの区切り文字
         /// </summary>
-        private static readonly char[] CsvSeparator = {';'};
+        private static readonly char[] CsvSeparator = { ';' };
 
         /// <summary>
         ///     閣僚特性(HoI2)
@@ -1283,7 +1283,7 @@ namespace HoI2Editor.Models
                 }
             }
 
-            var minister = new Minister {Country = country};
+            var minister = new Minister { Country = country };
             int index = 0;
 
             // ID

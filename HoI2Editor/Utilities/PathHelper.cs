@@ -18,7 +18,7 @@ namespace HoI2Editor.Utilities
         /// <summary>
         ///     パスの区切り文字
         /// </summary>
-        private static readonly char[] PathSeparator = {Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar};
+        private static readonly char[] PathSeparator = { Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar };
 
         /// <summary>
         ///     相対パス名を取得する

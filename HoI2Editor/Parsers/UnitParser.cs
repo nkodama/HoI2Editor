@@ -1790,7 +1790,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var equipment = new UnitEquipment {Resource = resource, Quantity = (double) token.Value};
+                var equipment = new UnitEquipment { Resource = resource, Quantity = (double) token.Value };
                 equipments.Add(equipment);
             }
 

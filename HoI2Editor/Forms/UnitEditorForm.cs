@@ -800,7 +800,7 @@ namespace HoI2Editor.Forms
         {
             UnitModel model = unit.Models[index];
 
-            var item = new ListViewItem {Text = index.ToString(CultureInfo.InvariantCulture)};
+            var item = new ListViewItem { Text = index.ToString(CultureInfo.InvariantCulture) };
             item.SubItems.Add(unit.GetModelName(index, GetSelectedCountry()));
             item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
@@ -2972,7 +2972,7 @@ namespace HoI2Editor.Forms
             }
 
             var selected = upgradeTypeComboBox.SelectedItem as Unit;
-            var upgrade = new UnitUpgrade {Type = (selected != null) ? selected.Type : unit.Type};
+            var upgrade = new UnitUpgrade { Type = (selected != null) ? selected.Type : unit.Type };
             double val;
             if (double.TryParse(upgradeCostTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
             {
@@ -3038,7 +3038,7 @@ namespace HoI2Editor.Forms
         /// <returns>改良リストの項目</returns>
         private static ListViewItem CreateUpgradeListItem(UnitUpgrade upgrade)
         {
-            var item = new ListViewItem {Text = Units.Items[(int) upgrade.Type].ToString()};
+            var item = new ListViewItem { Text = Units.Items[(int) upgrade.Type].ToString() };
             item.SubItems.Add(upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
             item.SubItems.Add(upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture));
 
@@ -7345,7 +7345,7 @@ namespace HoI2Editor.Forms
         /// <returns>装備リストの項目</returns>
         private static ListViewItem CreateEquipmentListItem(UnitEquipment equipment)
         {
-            var item = new ListViewItem {Text = Config.GetText(Units.EquipmentNames[(int) equipment.Resource])};
+            var item = new ListViewItem { Text = Config.GetText(Units.EquipmentNames[(int) equipment.Resource]) };
             item.SubItems.Add(equipment.Quantity.ToString(CultureInfo.InvariantCulture));
 
             return item;

@@ -150,7 +150,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[][] LanguageStrings =
         {
-            new[] {Resources.LanguageJapanese},
+            new[] { Resources.LanguageJapanese },
             new[]
             {
                 Resources.LanguageEnglish, Resources.LanguageFrench, Resources.LanguageItalian,
@@ -158,10 +158,10 @@ namespace HoI2Editor.Models
                 Resources.LanguagePortuguese, Resources.LanguageRussian, Resources.LanguageExtra1,
                 Resources.LanguageExtra2
             },
-            new[] {Resources.LanguageJapanese, Resources.LanguageEnglish},
-            new[] {Resources.LanguageKorean},
-            new[] {Resources.LanguageChinese},
-            new[] {Resources.LanguageChinese}
+            new[] { Resources.LanguageJapanese, Resources.LanguageEnglish },
+            new[] { Resources.LanguageKorean },
+            new[] { Resources.LanguageChinese },
+            new[] { Resources.LanguageChinese }
         };
 
         #endregion

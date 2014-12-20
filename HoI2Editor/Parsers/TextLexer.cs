@@ -295,21 +295,21 @@ namespace HoI2Editor.Parsers
             if (c == '=')
             {
                 _reader.Read();
-                return new Token {Type = TokenType.Equal};
+                return new Token { Type = TokenType.Equal };
             }
 
             // 開き波括弧
             if (c == '{')
             {
                 _reader.Read();
-                return new Token {Type = TokenType.OpenBrace};
+                return new Token { Type = TokenType.OpenBrace };
             }
 
             // 閉じ波括弧
             if (c == '}')
             {
                 _reader.Read();
-                return new Token {Type = TokenType.CloseBrace};
+                return new Token { Type = TokenType.CloseBrace };
             }
 
             if (!_skipWhiteSpace)
@@ -382,10 +382,10 @@ namespace HoI2Editor.Parsers
             double d;
             if (double.TryParse(sb.ToString(), NumberStyles.Float, CultureInfo.InvariantCulture, out d))
             {
-                return new Token {Type = TokenType.Number, Value = d};
+                return new Token { Type = TokenType.Number, Value = d };
             }
 
-            return new Token {Type = TokenType.Invalid, Value = sb.ToString()};
+            return new Token { Type = TokenType.Invalid, Value = sb.ToString() };
         }
 
         /// <summary>
@@ -418,7 +418,7 @@ namespace HoI2Editor.Parsers
                 break;
             }
 
-            return new Token {Type = TokenType.Identifier, Value = sb.ToString()};
+            return new Token { Type = TokenType.Identifier, Value = sb.ToString() };
         }
 
         /// <summary>
@@ -457,7 +457,7 @@ namespace HoI2Editor.Parsers
                 sb.Append((char) c);
             }
 
-            return new Token {Type = TokenType.String, Value = sb.ToString()};
+            return new Token { Type = TokenType.String, Value = sb.ToString() };
         }
 
         /// <summary>
@@ -508,7 +508,7 @@ namespace HoI2Editor.Parsers
                 break;
             }
 
-            return new Token {Type = TokenType.WhiteSpace, Value = sb.ToString()};
+            return new Token { Type = TokenType.WhiteSpace, Value = sb.ToString() };
         }
 
         /// <summary>
@@ -539,7 +539,7 @@ namespace HoI2Editor.Parsers
                 _reader.Read();
             }
 
-            return new Token {Type = TokenType.Comment, Value = sb.ToString()};
+            return new Token { Type = TokenType.Comment, Value = sb.ToString() };
         }
 
         /// <summary>
@@ -578,7 +578,7 @@ namespace HoI2Editor.Parsers
                 sb.Append((char) c);
             }
 
-            return new Token {Type = TokenType.Invalid, Value = sb.ToString()};
+            return new Token { Type = TokenType.Invalid, Value = sb.ToString() };
         }
 
         /// <summary>

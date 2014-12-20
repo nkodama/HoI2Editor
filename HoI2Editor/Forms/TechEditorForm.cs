@@ -748,7 +748,7 @@ namespace HoI2Editor.Forms
                 var selected = techListBox.SelectedItem as ITechItem;
 
                 // 選択項目の先頭座標を引き継ぐ
-                item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                item.Positions.Add(new TechPosition { X = selected.Positions[0].X, Y = selected.Positions[0].Y });
 
                 if (selected is TechItem)
                 {
@@ -815,7 +815,7 @@ namespace HoI2Editor.Forms
             TechGroup grp = GetSelectedGroup();
 
             // 項目を作成する
-            var item = new TechLabel {Name = Config.GetTempKey()};
+            var item = new TechLabel { Name = Config.GetTempKey() };
             Config.SetText(item.Name, "", Game.TechTextFileName);
 
             // 重複文字列リストに登録する
@@ -830,7 +830,7 @@ namespace HoI2Editor.Forms
                 var selected = techListBox.SelectedItem as ITechItem;
 
                 // 選択項目の先頭座標を引き継ぐ
-                item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                item.Positions.Add(new TechPosition { X = selected.Positions[0].X, Y = selected.Positions[0].Y });
 
                 // 技術項目リストに項目を挿入する
                 grp.InsertItem(item, selected);
@@ -877,7 +877,7 @@ namespace HoI2Editor.Forms
                 var selected = techListBox.SelectedItem as ITechItem;
 
                 // 選択項目の先頭座標を引き継ぐ
-                item.Positions.Add(new TechPosition {X = selected.Positions[0].X, Y = selected.Positions[0].Y});
+                item.Positions.Add(new TechPosition { X = selected.Positions[0].X, Y = selected.Positions[0].Y });
 
                 // 選択項目が技術イベントならばIDを10増やす
                 if (selected is TechEvent)
@@ -1357,7 +1357,7 @@ namespace HoI2Editor.Forms
             {
                 Location = new Point(DeviceCaps.GetScaledWidth(position.X), DeviceCaps.GetScaledHeight(position.Y)),
                 BackColor = Color.Transparent,
-                Tag = new TechLabelInfo {Item = item, Position = position}
+                Tag = new TechLabelInfo { Item = item, Position = position }
             };
 
             if (item is TechItem)
@@ -2428,7 +2428,7 @@ namespace HoI2Editor.Forms
             }
 
             // 座標をリストに追加する
-            var position = new TechPosition {X = 0, Y = 0};
+            var position = new TechPosition { X = 0, Y = 0 };
             item.Positions.Add(position);
 
             Log.Info("[Tech] Added tech position: ({0}, {1}) [{2}]", position.X, position.Y, item);
@@ -2440,7 +2440,7 @@ namespace HoI2Editor.Forms
             position.SetDirtyAll();
 
             // 座標リストビューの項目を追加する
-            var li = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
+            var li = new ListViewItem { Text = position.X.ToString(CultureInfo.InvariantCulture) };
             li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
             techPositionListView.Items.Add(li);
 
@@ -2694,7 +2694,7 @@ namespace HoI2Editor.Forms
 
             foreach (int id in item.AndRequiredTechs.Select(tech => tech.Id))
             {
-                var li = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
+                var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
                 if (Techs.TechIdMap.ContainsKey(id))
                 {
                     li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -2732,7 +2732,7 @@ namespace HoI2Editor.Forms
 
             foreach (int id in item.OrRequiredTechs.Select(tech => tech.Id))
             {
-                var li = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
+                var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
                 if (Techs.TechIdMap.ContainsKey(id))
                 {
                     li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -3358,7 +3358,7 @@ namespace HoI2Editor.Forms
         private void AddAndRequiredListItem(int id)
         {
             // リストに項目を追加する
-            var li = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
+            var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
             if (Techs.TechIdMap.ContainsKey(id))
             {
                 li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -3382,7 +3382,7 @@ namespace HoI2Editor.Forms
         private void AddOrRequiredListItem(int id)
         {
             // リストに項目を追加する
-            var li = new ListViewItem {Text = id.ToString(CultureInfo.InvariantCulture)};
+            var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
             if (Techs.TechIdMap.ContainsKey(id))
             {
                 li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -4239,7 +4239,7 @@ namespace HoI2Editor.Forms
         /// <returns>小研究リストの項目</returns>
         private static ListViewItem CreateComponentListItem(TechComponent component)
         {
-            var li = new ListViewItem {Text = component.Id.ToString(CultureInfo.InvariantCulture)};
+            var li = new ListViewItem { Text = component.Id.ToString(CultureInfo.InvariantCulture) };
             li.SubItems.Add(component.ToString());
             li.SubItems.Add(Techs.GetSpecialityName(component.Speciality));
             li.SubItems.Add(component.Difficulty.ToString(CultureInfo.InvariantCulture));
@@ -5274,7 +5274,7 @@ namespace HoI2Editor.Forms
         /// <returns>技術効果リストの項目</returns>
         private static ListViewItem CreateEffectListItem(Command command)
         {
-            var li = new ListViewItem {Text = Command.TypeStringTable[(int) command.Type]};
+            var li = new ListViewItem { Text = Command.TypeStringTable[(int) command.Type] };
             li.SubItems.Add(ObjectHelper.ToString(command.Which));
             li.SubItems.Add(ObjectHelper.ToString(command.Value));
             li.SubItems.Add(ObjectHelper.ToString(command.When));
@@ -5729,7 +5729,7 @@ namespace HoI2Editor.Forms
             }
 
             // ラベル座標リストに項目を追加する
-            var position = new TechPosition {X = 0, Y = 0};
+            var position = new TechPosition { X = 0, Y = 0 };
             item.Positions.Add(position);
 
             Log.Info("[Tech] Added label position: ({0},{1}) [{2}]", position.X, position.Y, item);
@@ -5741,7 +5741,7 @@ namespace HoI2Editor.Forms
             position.SetDirtyAll();
 
             // ラベル座標リストビューの項目を追加する
-            var li = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
+            var li = new ListViewItem { Text = position.X.ToString(CultureInfo.InvariantCulture) };
             li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
             labelPositionListView.Items.Add(li);
 
@@ -6298,7 +6298,7 @@ namespace HoI2Editor.Forms
             }
 
             // 発明イベント座標リストに項目を追加する
-            var position = new TechPosition {X = 0, Y = 0};
+            var position = new TechPosition { X = 0, Y = 0 };
             item.Positions.Add(position);
 
             Log.Info("[Tech] Added event position: ({0},{1}) [{2}]", position.X, position.Y, item);
@@ -6310,7 +6310,7 @@ namespace HoI2Editor.Forms
             position.SetDirtyAll();
 
             // 発明イベント座標リストビューに項目を追加する
-            var li = new ListViewItem {Text = position.X.ToString(CultureInfo.InvariantCulture)};
+            var li = new ListViewItem { Text = position.X.ToString(CultureInfo.InvariantCulture) };
             li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
             eventPositionListView.Items.Add(li);
 

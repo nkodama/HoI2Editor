@@ -1125,6 +1125,11 @@ namespace HoI2Editor.Models
         #region 内部フィールド
 
         /// <summary>
+        ///     参加国の編集済みフラグ
+        /// </summary>
+        private readonly HashSet<Country> _dirtyCountries = new HashSet<Country>();
+
+        /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (AllianceItemId)).Length];
@@ -1165,6 +1170,25 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     対象国が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyCountry(Country country)
+        {
+            return _dirtyCountries.Contains(country);
+        }
+
+        /// <summary>
+        ///     参加国の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        public void SetDirtyCountry(Country country)
+        {
+            _dirtyCountries.Add(country);
+        }
+
+        /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
         public void ResetDirtyAll()
@@ -1173,6 +1197,8 @@ namespace HoI2Editor.Models
             {
                 _dirtyFlags[(int) id] = false;
             }
+
+            _dirtyCountries.Clear();
         }
 
         #endregion
@@ -1215,6 +1241,11 @@ namespace HoI2Editor.Models
         #region 内部フィールド
 
         /// <summary>
+        ///     参加国の編集済みフラグ
+        /// </summary>
+        private readonly HashSet<Country> _dirtyCountries = new HashSet<Country>();
+
+        /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (WarItemId)).Length];
@@ -1243,6 +1274,25 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     対象国が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyCountry(Country country)
+        {
+            return _dirtyCountries.Contains(country);
+        }
+
+        /// <summary>
+        ///     参加国の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        public void SetDirtyCountry(Country country)
+        {
+            _dirtyCountries.Add(country);
+        }
+
+        /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
         public void ResetDirtyAll()
@@ -1251,6 +1301,8 @@ namespace HoI2Editor.Models
             {
                 _dirtyFlags[(int) id] = false;
             }
+
+            _dirtyCountries.Clear();
         }
 
         #endregion

@@ -16,17 +16,17 @@ namespace HoI2Editor.Parsers
         private static readonly Dictionary<string, int> PositionMap
             = new Dictionary<string, int>
             {
-                {"", (int) MinisterPosition.None},
-                {"headofstate", (int) MinisterPosition.HeadOfState},
-                {"headofgovernment", (int) MinisterPosition.HeadOfGovernment},
-                {"foreignminister", (int) MinisterPosition.ForeignMinister},
-                {"armamentminister", (int) MinisterPosition.MinisterOfArmament},
-                {"ministerofsecurity", (int) MinisterPosition.MinisterOfSecurity},
-                {"ministerofintelligence", (int) MinisterPosition.HeadOfMilitaryIntelligence},
-                {"chiefofstaff", (int) MinisterPosition.ChiefOfStaff},
-                {"chiefofarmy", (int) MinisterPosition.ChiefOfArmy},
-                {"chiefofnavy", (int) MinisterPosition.ChiefOfNavy},
-                {"chiefofair", (int) MinisterPosition.ChiefOfAirForce},
+                { "", (int) MinisterPosition.None },
+                { "headofstate", (int) MinisterPosition.HeadOfState },
+                { "headofgovernment", (int) MinisterPosition.HeadOfGovernment },
+                { "foreignminister", (int) MinisterPosition.ForeignMinister },
+                { "armamentminister", (int) MinisterPosition.MinisterOfArmament },
+                { "ministerofsecurity", (int) MinisterPosition.MinisterOfSecurity },
+                { "ministerofintelligence", (int) MinisterPosition.HeadOfMilitaryIntelligence },
+                { "chiefofstaff", (int) MinisterPosition.ChiefOfStaff },
+                { "chiefofarmy", (int) MinisterPosition.ChiefOfArmy },
+                { "chiefofnavy", (int) MinisterPosition.ChiefOfNavy },
+                { "chiefofair", (int) MinisterPosition.ChiefOfAirForce },
             };
 
         #endregion

@@ -1068,7 +1068,7 @@ namespace HoI2Editor.Models
         /// <returns>複製した技術ラベル</returns>
         public ITechItem Clone()
         {
-            var item = new TechLabel {Name = Config.GetTempKey()};
+            var item = new TechLabel { Name = Config.GetTempKey() };
 
             // 文字列設定
             Config.SetText(item.Name, Config.GetText(Name), Game.TechTextFileName);
@@ -1088,7 +1088,7 @@ namespace HoI2Editor.Models
         /// <returns>作成した技術ラベル</returns>
         public static TechLabel Create()
         {
-            var item = new TechLabel {Name = Config.GetTempKey()};
+            var item = new TechLabel { Name = Config.GetTempKey() };
 
             // 文字列設定
             Config.SetText(item.Name, "", Game.TechTextFileName);
@@ -1369,7 +1369,7 @@ namespace HoI2Editor.Models
         /// <returns>複製した技術イベント</returns>
         public ITechItem Clone()
         {
-            var item = new TechEvent {Id = Id, TechId = TechId};
+            var item = new TechEvent { Id = Id, TechId = TechId };
 
             // 座標リスト
             foreach (TechPosition position in Positions)
@@ -1519,7 +1519,7 @@ namespace HoI2Editor.Models
         /// <returns>複製した座標</returns>
         public TechPosition Clone()
         {
-            var position = new TechPosition {X = X, Y = Y};
+            var position = new TechPosition { X = X, Y = Y };
 
             return position;
         }
@@ -1615,7 +1615,7 @@ namespace HoI2Editor.Models
         /// <returns>複製した座標</returns>
         public RequiredTech Clone()
         {
-            var required = new RequiredTech {Id = Id};
+            var required = new RequiredTech { Id = Id };
 
             return required;
         }

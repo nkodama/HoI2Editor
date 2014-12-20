@@ -547,7 +547,7 @@ namespace HoI2Editor
             /// <summary>
             ///     指揮官リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultListColumnWidth = {40, 60, 250, 55, 70, 70, 50, 50, 290};
+            private static readonly int[] DefaultListColumnWidth = { 40, 60, 250, 55, 70, 70, 50, 50, 290 };
 
             #endregion
 
@@ -694,7 +694,7 @@ namespace HoI2Editor
             /// <summary>
             ///     閣僚リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultListColumnWidth = {40, 60, 180, 50, 50, 95, 160, 100};
+            private static readonly int[] DefaultListColumnWidth = { 40, 60, 180, 50, 50, 95, 160, 100 };
 
             #endregion
 
@@ -839,7 +839,7 @@ namespace HoI2Editor
             /// <summary>
             ///     研究機関リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultListColumnWidth = {40, 60, 300, 50, 50, 50, 185};
+            private static readonly int[] DefaultListColumnWidth = { 40, 60, 300, 50, 50, 50, 185 };
 
             #endregion
 
@@ -975,7 +975,7 @@ namespace HoI2Editor
             /// <summary>
             ///     プロヴィンスリストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultListColumnWidth = {185, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50};
+            private static readonly int[] DefaultListColumnWidth = { 185, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50 };
 
             #endregion
 
@@ -1201,22 +1201,22 @@ namespace HoI2Editor
             /// <summary>
             ///     必要技術リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultRequiredListColumnWidth = {60, 235};
+            private static readonly int[] DefaultRequiredListColumnWidth = { 60, 235 };
 
             /// <summary>
             ///     小研究リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultComponentListColumnWidth = {60, 250, 180, 60, 60};
+            private static readonly int[] DefaultComponentListColumnWidth = { 60, 250, 180, 60, 60 };
 
             /// <summary>
             ///     技術効果リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultEffectListColumnWidth = {120, 120, 120, 120, 120};
+            private static readonly int[] DefaultEffectListColumnWidth = { 120, 120, 120, 120, 120 };
 
             /// <summary>
             ///     座標リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultPositionListColumnWidth = {50, 50};
+            private static readonly int[] DefaultPositionListColumnWidth = { 50, 50 };
 
             #endregion
 
@@ -1400,17 +1400,17 @@ namespace HoI2Editor
             /// <summary>
             ///     ユニットモデルリストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultModelListColumnWidth = {40, 310, 50, 50, 50, 50, 50, 50, 50, 50};
+            private static readonly int[] DefaultModelListColumnWidth = { 40, 310, 50, 50, 50, 50, 50, 50, 50, 50 };
 
             /// <summary>
             ///     改良リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultUpgradeListColumnWidth = {225, 40, 40};
+            private static readonly int[] DefaultUpgradeListColumnWidth = { 225, 40, 40 };
 
             /// <summary>
             ///     装備リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultEquipmentListColumnWidth = {100, 60};
+            private static readonly int[] DefaultEquipmentListColumnWidth = { 100, 60 };
 
             #endregion
 
@@ -2374,12 +2374,12 @@ namespace HoI2Editor
             /// <summary>
             ///     技術リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultTechListColumnWidth = {310, 50, 50, 200};
+            private static readonly int[] DefaultTechListColumnWidth = { 310, 50, 50, 200 };
 
             /// <summary>
             ///     研究機関リストビューの列のデフォルト幅
             /// </summary>
-            private static readonly int[] DefaultTeamListColumnWidth = {0, 40, 50, 85, 200, 50, 45, 120};
+            private static readonly int[] DefaultTeamListColumnWidth = { 0, 40, 50, 85, 200, 50, 45, 120 };
 
             #endregion
 

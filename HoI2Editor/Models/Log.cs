@@ -90,7 +90,7 @@ namespace HoI2Editor.Models
         {
             try
             {
-                _writer = new StreamWriter(LogFileName, true, Encoding.UTF8) {AutoFlush = true};
+                _writer = new StreamWriter(LogFileName, true, Encoding.UTF8) { AutoFlush = true };
                 _listener = new TextWriterTraceListener(_writer, LogFileIdentifier);
                 Trace.Listeners.Add(_listener);
             }

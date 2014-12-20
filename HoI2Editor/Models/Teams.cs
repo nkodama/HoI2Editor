@@ -62,7 +62,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     CSVファイルの区切り文字
         /// </summary>
-        private static readonly char[] CsvSeparator = {';'};
+        private static readonly char[] CsvSeparator = { ';' };
 
         #endregion
 
@@ -436,7 +436,7 @@ namespace HoI2Editor.Models
                 }
             }
 
-            var team = new Team {Country = country};
+            var team = new Team { Country = country };
             int index = 0;
 
             // ID

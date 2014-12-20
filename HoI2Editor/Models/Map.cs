@@ -286,7 +286,7 @@ namespace HoI2Editor.Models
             MapTreeNode[] stack = _stack;
             int sp = 0;
 
-            var node = new MapTreeNode {Level = MapTreeNode.MaxLevel};
+            var node = new MapTreeNode { Level = MapTreeNode.MaxLevel };
             block.Nodes = node;
             int no = 0;
 
@@ -323,19 +323,19 @@ namespace HoI2Editor.Models
                         int top = node.Y;
                         int bottom = top + width;
 
-                        var topLeft = new MapTreeNode {Level = level, X = left, Y = top};
+                        var topLeft = new MapTreeNode { Level = level, X = left, Y = top };
                         node.TopLeftChild = topLeft;
                         stack[sp++] = topLeft;
 
-                        var topRight = new MapTreeNode {Level = level, X = right, Y = top};
+                        var topRight = new MapTreeNode { Level = level, X = right, Y = top };
                         node.TopRightChild = topRight;
                         stack[sp++] = topRight;
 
-                        var bottomLeft = new MapTreeNode {Level = level, X = left, Y = bottom};
+                        var bottomLeft = new MapTreeNode { Level = level, X = left, Y = bottom };
                         node.BottomLeftChild = bottomLeft;
                         stack[sp++] = bottomLeft;
 
-                        var bottomRight = new MapTreeNode {Level = level, X = right, Y = bottom};
+                        var bottomRight = new MapTreeNode { Level = level, X = right, Y = bottom };
                         node.BottomRightChild = bottomRight;
                         node = bottomRight;
                     }
@@ -346,10 +346,10 @@ namespace HoI2Editor.Models
                         int top = node.Y;
                         int bottom = top + 1;
 
-                        node.BottomRightChild = new MapTreeNode {No = no++, X = right, Y = bottom};
-                        node.BottomLeftChild = new MapTreeNode {No = no++, X = left, Y = bottom};
-                        node.TopRightChild = new MapTreeNode {No = no++, X = right, Y = top};
-                        node.TopLeftChild = new MapTreeNode {No = no++, X = left, Y = top};
+                        node.BottomRightChild = new MapTreeNode { No = no++, X = right, Y = bottom };
+                        node.BottomLeftChild = new MapTreeNode { No = no++, X = left, Y = bottom };
+                        node.TopRightChild = new MapTreeNode { No = no++, X = right, Y = top };
+                        node.TopLeftChild = new MapTreeNode { No = no++, X = left, Y = top };
 
                         if (sp == 0)
                         {

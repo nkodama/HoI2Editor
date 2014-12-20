@@ -54,7 +54,7 @@ namespace HoI2Editor.Parsers
         /// <summary>
         ///     CSVファイルの区切り文字
         /// </summary>
-        private static readonly char[] Separator = {';'};
+        private static readonly char[] Separator = { ';' };
 
         #endregion
 

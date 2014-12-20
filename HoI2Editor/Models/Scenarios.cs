@@ -63,9 +63,44 @@ namespace HoI2Editor.Models
         /// </summary>
         private static Dictionary<Country, Dictionary<Country, SpySettings>> _spies;
 
+        /// <summary>
+        ///     使用済みのtypeとidの組
+        /// </summary>
+        private static Dictionary<int, HashSet<int>> _usedTypeIds;
+
         #endregion
 
         #region 公開定数
+
+        /// <summary>
+        ///     同盟の標準type
+        /// </summary>
+        public const int DefaultAllianceType = 15000;
+
+        /// <summary>
+        ///     戦争の標準type
+        /// </summary>
+        public const int DefaultWarType = 9430;
+
+        /// <summary>
+        ///     外交協定の標準type
+        /// </summary>
+        public const int DefaultTreatyType = 16384;
+
+        /// <summary>
+        ///     指揮官の標準type
+        /// </summary>
+        public const int DefaultLeaderType = 6;
+
+        /// <summary>
+        ///     閣僚の標準type
+        /// </summary>
+        public const int DefaultMinisterType = 9;
+
+        /// <summary>
+        ///     研究機関の標準type
+        /// </summary>
+        public const int DefaultTeamType = 10;
 
         /// <summary>
         ///     月名文字列
@@ -202,66 +237,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Init()
         {
-            _countries = new Dictionary<Country, CountrySettings>();
-            _relations = new Dictionary<Country, Dictionary<Country, Relation>>();
-            _spies = new Dictionary<Country, Dictionary<Country, SpySettings>>();
-            foreach (CountrySettings settings in Data.Countries)
-            {
-                Country country = settings.Country;
+            // 国家関係を初期化する
+            InitDiplomacy();
 
-                // 国タグと国家設定の対応付け
-                _countries.Add(country, settings);
-
-                // 国タグと国家関係の対応付け
-                _relations.Add(country, new Dictionary<Country, Relation>());
-                foreach (Relation relation in settings.Relations)
-                {
-                    _relations[country].Add(relation.Country, relation);
-                }
-
-                // 国タグと諜報設定の対応付け
-                _spies.Add(country, new Dictionary<Country, SpySettings>());
-                foreach (SpySettings spy in settings.Intelligence)
-                {
-                    _spies[country].Add(spy.Country, spy);
-                }
-            }
-
-            _nonAggressions = new Dictionary<Country, Dictionary<Country, Treaty>>();
-            _peaces = new Dictionary<Country, Dictionary<Country, Treaty>>();
-            foreach (Treaty treaty in Data.GlobalData.Treaties)
-            {
-                switch (treaty.Type)
-                {
-                    case TreatyType.NonAggression:
-                        // 国タグと不可侵条約の対応付け
-                        if (!_nonAggressions.ContainsKey(treaty.Country1))
-                        {
-                            _nonAggressions.Add(treaty.Country1, new Dictionary<Country, Treaty>());
-                        }
-                        _nonAggressions[treaty.Country1].Add(treaty.Country2, treaty);
-                        if (!_nonAggressions.ContainsKey(treaty.Country2))
-                        {
-                            _nonAggressions.Add(treaty.Country2, new Dictionary<Country, Treaty>());
-                        }
-                        _nonAggressions[treaty.Country2].Add(treaty.Country1, treaty);
-                        break;
-
-                    case TreatyType.Peace:
-                        // 国タグと講和条約の対応付け
-                        if (!_peaces.ContainsKey(treaty.Country1))
-                        {
-                            _peaces.Add(treaty.Country1, new Dictionary<Country, Treaty>());
-                        }
-                        _peaces[treaty.Country1].Add(treaty.Country2, treaty);
-                        if (!_peaces.ContainsKey(treaty.Country2))
-                        {
-                            _peaces.Add(treaty.Country2, new Dictionary<Country, Treaty>());
-                        }
-                        _peaces[treaty.Country2].Add(treaty.Country1, treaty);
-                        break;
-                }
-            }
+            // 使用済みのtypeとidの組を初期化する
+            InitTypeIds();
         }
 
         #endregion
@@ -368,6 +348,76 @@ namespace HoI2Editor.Models
         #region 国家関係
 
         /// <summary>
+        ///     国家関係を初期化する
+        /// </summary>
+        private static void InitDiplomacy()
+        {
+            Scenario scenario = Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            _countries = new Dictionary<Country, CountrySettings>();
+            _relations = new Dictionary<Country, Dictionary<Country, Relation>>();
+            _spies = new Dictionary<Country, Dictionary<Country, SpySettings>>();
+            foreach (CountrySettings settings in scenario.Countries)
+            {
+                Country country = settings.Country;
+
+                // 国タグと国家設定の対応付け
+                _countries.Add(country, settings);
+
+                // 国タグと国家関係の対応付け
+                _relations.Add(country, new Dictionary<Country, Relation>());
+                foreach (Relation relation in settings.Relations)
+                {
+                    _relations[country][relation.Country] = relation;
+                }
+
+                // 国タグと諜報設定の対応付け
+                _spies.Add(country, new Dictionary<Country, SpySettings>());
+                foreach (SpySettings spy in settings.Intelligence)
+                {
+                    _spies[country][spy.Country] = spy;
+                }
+            }
+
+            _nonAggressions = new Dictionary<Country, Dictionary<Country, Treaty>>();
+            _peaces = new Dictionary<Country, Dictionary<Country, Treaty>>();
+            foreach (Treaty treaty in data.Treaties)
+            {
+                switch (treaty.Type)
+                {
+                    case TreatyType.NonAggression:
+                        // 国タグと不可侵条約の対応付け
+                        if (!_nonAggressions.ContainsKey(treaty.Country1))
+                        {
+                            _nonAggressions.Add(treaty.Country1, new Dictionary<Country, Treaty>());
+                        }
+                        _nonAggressions[treaty.Country1][treaty.Country2] = treaty;
+                        if (!_nonAggressions.ContainsKey(treaty.Country2))
+                        {
+                            _nonAggressions.Add(treaty.Country2, new Dictionary<Country, Treaty>());
+                        }
+                        _nonAggressions[treaty.Country2][treaty.Country1] = treaty;
+                        break;
+
+                    case TreatyType.Peace:
+                        // 国タグと講和条約の対応付け
+                        if (!_peaces.ContainsKey(treaty.Country1))
+                        {
+                            _peaces.Add(treaty.Country1, new Dictionary<Country, Treaty>());
+                        }
+                        _peaces[treaty.Country1][treaty.Country2] = treaty;
+                        if (!_peaces.ContainsKey(treaty.Country2))
+                        {
+                            _peaces.Add(treaty.Country2, new Dictionary<Country, Treaty>());
+                        }
+                        _peaces[treaty.Country2][treaty.Country1] = treaty;
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
         ///     国家設定を取得する
         /// </summary>
         /// <param name="country">対象国</param>
@@ -388,14 +438,7 @@ namespace HoI2Editor.Models
         public static void SetCountrySettings(CountrySettings settings)
         {
             Country country = settings.Country;
-            if (!_countries.ContainsKey(country))
-            {
-                _countries.Add(country, settings);
-            }
-            else
-            {
-                _countries[country] = settings;
-            }
+            _countries[country] = settings;
         }
 
         /// <summary>
@@ -429,14 +472,7 @@ namespace HoI2Editor.Models
             {
                 _relations.Add(country, new Dictionary<Country, Relation>());
             }
-            if (!_relations[country].ContainsKey(target))
-            {
-                _relations[country].Add(target, relation);
-            }
-            else
-            {
-                _relations[country][target] = relation;
-            }
+            _relations[country][target] = relation;
         }
 
         /// <summary>
@@ -468,26 +504,12 @@ namespace HoI2Editor.Models
             {
                 _nonAggressions.Add(nonAggression.Country1, new Dictionary<Country, Treaty>());
             }
-            if (!_nonAggressions[nonAggression.Country1].ContainsKey(nonAggression.Country2))
-            {
-                _nonAggressions[nonAggression.Country1].Add(nonAggression.Country2, nonAggression);
-            }
-            else
-            {
-                _nonAggressions[nonAggression.Country1][nonAggression.Country2] = nonAggression;
-            }
+            _nonAggressions[nonAggression.Country1][nonAggression.Country2] = nonAggression;
             if (!_nonAggressions.ContainsKey(nonAggression.Country2))
             {
                 _nonAggressions.Add(nonAggression.Country2, new Dictionary<Country, Treaty>());
             }
-            if (!_nonAggressions[nonAggression.Country2].ContainsKey(nonAggression.Country1))
-            {
-                _nonAggressions[nonAggression.Country2].Add(nonAggression.Country1, nonAggression);
-            }
-            else
-            {
-                _nonAggressions[nonAggression.Country2][nonAggression.Country1] = nonAggression;
-            }
+            _nonAggressions[nonAggression.Country2][nonAggression.Country1] = nonAggression;
         }
 
         /// <summary>
@@ -519,26 +541,12 @@ namespace HoI2Editor.Models
             {
                 _peaces.Add(peace.Country1, new Dictionary<Country, Treaty>());
             }
-            if (!_peaces[peace.Country1].ContainsKey(peace.Country2))
-            {
-                _peaces[peace.Country1].Add(peace.Country2, peace);
-            }
-            else
-            {
-                _peaces[peace.Country1][peace.Country2] = peace;
-            }
+            _peaces[peace.Country1][peace.Country2] = peace;
             if (!_peaces.ContainsKey(peace.Country2))
             {
                 _peaces.Add(peace.Country2, new Dictionary<Country, Treaty>());
             }
-            if (!_peaces[peace.Country2].ContainsKey(peace.Country1))
-            {
-                _peaces[peace.Country2].Add(peace.Country1, peace);
-            }
-            else
-            {
-                _peaces[peace.Country2][peace.Country1] = peace;
-            }
+            _peaces[peace.Country2][peace.Country1] = peace;
         }
 
         /// <summary>
@@ -558,6 +566,228 @@ namespace HoI2Editor.Models
                 return null;
             }
             return _spies[country1][country2];
+        }
+
+        #endregion
+
+        #region typeとidの組
+
+        /// <summary>
+        ///     typeとidの組を初期化する
+        /// </summary>
+        private static void InitTypeIds()
+        {
+            _usedTypeIds = new Dictionary<int, HashSet<int>>
+            {
+                { DefaultAllianceType, new HashSet<int>() },
+                { DefaultWarType, new HashSet<int>() },
+                { DefaultTreatyType, new HashSet<int>() },
+                { DefaultLeaderType, new HashSet<int>() },
+                { DefaultMinisterType, new HashSet<int>() },
+                { DefaultTeamType, new HashSet<int>() }
+            };
+
+            Scenario scenario = Data;
+            ScenarioGlobalData data = scenario.GlobalData;
+
+            if (data.Axis != null)
+            {
+                AddTypeId(data.Axis.Id);
+            }
+            if (data.Allies != null)
+            {
+                AddTypeId(data.Allies.Id);
+            }
+            if (data.Comintern != null)
+            {
+                AddTypeId(data.Comintern.Id);
+            }
+            foreach (Alliance alliance in data.Alliances)
+            {
+                AddTypeId(alliance.Id);
+            }
+            foreach (War war in data.Wars)
+            {
+                if (war.Attackers != null)
+                {
+                    AddTypeId(war.Attackers.Id);
+                }
+                if (war.Defenders != null)
+                {
+                    AddTypeId(war.Defenders.Id);
+                }
+            }
+
+            foreach (Treaty treaty in data.Treaties)
+            {
+                AddTypeId(treaty.Id);
+            }
+
+            if (data.Weather != null)
+            {
+                foreach (WeatherPattern pattern in data.Weather.Patterns)
+                {
+                    AddTypeId(pattern.Id);
+                }
+            }
+
+            foreach (CountrySettings settings in scenario.Countries)
+            {
+                AddTypeId(settings.HeadOfState);
+                AddTypeId(settings.HeadOfGovernment);
+                AddTypeId(settings.ForeignMinister);
+                AddTypeId(settings.ArmamentMinister);
+                AddTypeId(settings.MinisterOfSecurity);
+                AddTypeId(settings.MinisterOfIntelligence);
+                AddTypeId(settings.ChiefOfStaff);
+                AddTypeId(settings.ChiefOfArmy);
+                AddTypeId(settings.ChiefOfNavy);
+                AddTypeId(settings.ChiefOfAir);
+
+                foreach (LandUnit unit in settings.LandUnits)
+                {
+                    AddTypeId(unit.Id);
+                    foreach (LandDivision division in unit.Divisions)
+                    {
+                        AddTypeId(division.Id);
+                    }
+                }
+                foreach (NavalUnit unit in settings.NavalUnits)
+                {
+                    AddTypeId(unit.Id);
+                    foreach (NavalDivision division in unit.Divisions)
+                    {
+                        AddTypeId(division.Id);
+                    }
+                    foreach (LandUnit landUnit in unit.LandUnits)
+                    {
+                        AddTypeId(landUnit.Id);
+                        foreach (LandDivision landDivision in landUnit.Divisions)
+                        {
+                            AddTypeId(landDivision.Id);
+                        }
+                    }
+                }
+                foreach (AirUnit unit in settings.AirUnits)
+                {
+                    AddTypeId(unit.Id);
+                    foreach (AirDivision division in unit.Divisions)
+                    {
+                        AddTypeId(division.Id);
+                    }
+                    foreach (LandUnit landUnit in unit.LandUnits)
+                    {
+                        AddTypeId(landUnit.Id);
+                        foreach (LandDivision landDivision in landUnit.Divisions)
+                        {
+                            AddTypeId(landDivision.Id);
+                        }
+                    }
+                }
+                foreach (DivisionDevelopment division in settings.DivisionDevelopments)
+                {
+                    AddTypeId(division.Id);
+                }
+
+                foreach (BuildingDevelopment building in settings.BuildingDevelopments)
+                {
+                    AddTypeId(building.Id);
+                }
+
+                foreach (Convoy convoy in settings.Convoys)
+                {
+                    AddTypeId(convoy.Id);
+                    AddTypeId(convoy.TradeId);
+                }
+                foreach (ConvoyDevelopment convoy in settings.ConvoyDevelopments)
+                {
+                    AddTypeId(convoy.Id);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     typeとidの組が存在するかを返す
+        /// </summary>
+        /// <param name="type">type</param>
+        /// <param name="id">id</param>
+        /// <returns>typeとidの組が存在すればtrueを返す</returns>
+        public static bool ExistsTypeId(int type, int id)
+        {
+            return _usedTypeIds.ContainsKey(type) && _usedTypeIds[type].Contains(id);
+        }
+
+        /// <summary>
+        ///     typeとidの組を登録する
+        /// </summary>
+        /// <param name="id">typeとidの組</param>
+        /// <returns>登録に成功すればtrueを返す</returns>
+        public static bool AddTypeId(TypeId id)
+        {
+            if (id == null)
+            {
+                return false;
+            }
+
+            if (!_usedTypeIds.ContainsKey(id.Type))
+            {
+                _usedTypeIds.Add(id.Type, new HashSet<int>());
+            }
+
+            if (_usedTypeIds[id.Type].Contains(id.Id))
+            {
+                return false;
+            }
+            _usedTypeIds[id.Type].Add(id.Id);
+
+            return true;
+        }
+
+        /// <summary>
+        ///     typeとidの組を削除する
+        /// </summary>
+        /// <param name="id">typeとidの組</param>
+        /// <returns>削除に成功すればtrueを返す</returns>
+        public static bool RemoveTypeId(TypeId id)
+        {
+            if (id == null)
+            {
+                return false;
+            }
+
+            if (!_usedTypeIds.ContainsKey(id.Type))
+            {
+                return false;
+            }
+
+            if (!_usedTypeIds[id.Type].Contains(id.Id))
+            {
+                return false;
+            }
+            _usedTypeIds[id.Type].Remove(id.Id);
+
+            return true;
+        }
+
+        /// <summary>
+        ///     新規idを取得する
+        /// </summary>
+        /// <param name="type">type</param>
+        /// <param name="startId">探索開始id</param>
+        /// <returns>新規id</returns>
+        public static int GetNewTypeId(int type, int startId)
+        {
+            if (!_usedTypeIds.ContainsKey(type))
+            {
+                _usedTypeIds.Add(type, new HashSet<int>());
+            }
+            HashSet<int> ids = _usedTypeIds[type];
+            int id = startId;
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
         }
 
         #endregion

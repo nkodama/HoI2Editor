@@ -527,7 +527,7 @@ namespace HoI2Editor.Forms
             }
 
             // スクロールバーの位置を調整するため最終列の次にダミーラベルを作成する
-            itemPanel.Controls.Add(new Label {Location = new Point(labelX, labelStartY), AutoSize = true});
+            itemPanel.Controls.Add(new Label { Location = new Point(labelX, labelStartY), AutoSize = true });
         }
 
         /// <summary>
