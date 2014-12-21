@@ -373,7 +373,7 @@ namespace HoI2Editor.Parsers
                 int? n = ParseInt(lexer);
                 if (!n.HasValue)
                 {
-                    Log.InvalidClause(LogCategory, ObjectHelper.ToString(id));
+                    Log.InvalidClause(LogCategory, IntHelper.ToString(id));
                     continue;
                 }
 
@@ -9389,8 +9389,7 @@ namespace HoI2Editor.Parsers
                     // 30日の記載が数多くあるので[情報]レベルでエラー出力する
                     if ((int) n == 30)
                     {
-                        Log.Info("[Scenario] Out of range: {0} at day ({1} L{2})",
-                            ObjectHelper.ToString(n), lexer.FileName, lexer.LineNo);
+                        Log.Info("[Scenario] Out of range: {0} at day ({1} L{2})", n, lexer.FileName, lexer.LineNo);
                     }
                     else if ((int) n < 0 || (int) n > 30)
                     {

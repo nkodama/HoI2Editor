@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.Windows.Forms;
 using HoI2Editor.Forms;
 using HoI2Editor.Models;
@@ -2313,11 +2312,11 @@ namespace HoI2Editor
             /// </summary>
             public string Modifier
             {
-                get { return Researches.Modifier.ToString(CultureInfo.InvariantCulture); }
+                get { return DoubleHelper.ToString(Researches.Modifier); }
                 set
                 {
                     double d;
-                    double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out d);
+                    DoubleHelper.TryParse(value, out d);
                     Researches.Modifier = d;
 
                     // 0以下の値だとまともに計算できなくなるので保険

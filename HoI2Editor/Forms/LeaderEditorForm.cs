@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -1094,13 +1093,13 @@ namespace HoI2Editor.Forms
                 Text = Countries.Strings[(int) leader.Country],
                 Tag = leader
             };
-            item.SubItems.Add(leader.Id.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(IntHelper.ToString(leader.Id));
             item.SubItems.Add(leader.Name);
             item.SubItems.Add(Branches.GetName(leader.Branch));
-            item.SubItems.Add(leader.Skill.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(leader.MaxSkill.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(leader.StartYear.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(leader.EndYear.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(IntHelper.ToString(leader.Skill));
+            item.SubItems.Add(IntHelper.ToString(leader.MaxSkill));
+            item.SubItems.Add(IntHelper.ToString(leader.StartYear));
+            item.SubItems.Add(IntHelper.ToString(leader.EndYear));
             item.SubItems.Add(GetLeaderTraitsText(leader.Traits));
 
             return item;
@@ -1784,8 +1783,7 @@ namespace HoI2Editor.Forms
                 retirementYearLabel.Enabled = true;
                 retirementYearNumericUpDown.Enabled = true;
                 retirementYearNumericUpDown.Value = leader.RetirementYear;
-                retirementYearNumericUpDown.Text =
-                    retirementYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                retirementYearNumericUpDown.Text = IntHelper.ToString((int) retirementYearNumericUpDown.Value);
             }
             else
             {
@@ -1970,23 +1968,22 @@ namespace HoI2Editor.Forms
             traitsGroupBox.Enabled = true;
 
             // 無効化時にクリアした文字列を再設定する
-            idNumericUpDown.Text = idNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            skillNumericUpDown.Text = skillNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            maxSkillNumericUpDown.Text = maxSkillNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            experienceNumericUpDown.Text = experienceNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            loyaltyNumericUpDown.Text = loyaltyNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            startYearNumericUpDown.Text = startYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            endYearNumericUpDown.Text = endYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            rankYearNumericUpDown1.Text = rankYearNumericUpDown1.Value.ToString(CultureInfo.InvariantCulture);
-            rankYearNumericUpDown2.Text = rankYearNumericUpDown2.Value.ToString(CultureInfo.InvariantCulture);
-            rankYearNumericUpDown3.Text = rankYearNumericUpDown3.Value.ToString(CultureInfo.InvariantCulture);
-            rankYearNumericUpDown4.Text = rankYearNumericUpDown4.Value.ToString(CultureInfo.InvariantCulture);
+            idNumericUpDown.Text = IntHelper.ToString((int) idNumericUpDown.Value);
+            skillNumericUpDown.Text = IntHelper.ToString((int) skillNumericUpDown.Value);
+            maxSkillNumericUpDown.Text = IntHelper.ToString((int) maxSkillNumericUpDown.Value);
+            experienceNumericUpDown.Text = IntHelper.ToString((int) experienceNumericUpDown.Value);
+            loyaltyNumericUpDown.Text = IntHelper.ToString((int) loyaltyNumericUpDown.Value);
+            startYearNumericUpDown.Text = IntHelper.ToString((int) startYearNumericUpDown.Value);
+            endYearNumericUpDown.Text = IntHelper.ToString((int) endYearNumericUpDown.Value);
+            rankYearNumericUpDown1.Text = IntHelper.ToString((int) rankYearNumericUpDown1.Value);
+            rankYearNumericUpDown2.Text = IntHelper.ToString((int) rankYearNumericUpDown2.Value);
+            rankYearNumericUpDown3.Text = IntHelper.ToString((int) rankYearNumericUpDown3.Value);
+            rankYearNumericUpDown4.Text = IntHelper.ToString((int) rankYearNumericUpDown4.Value);
 
             if (Misc.EnableRetirementYearLeaders)
             {
                 retirementYearNumericUpDown.Enabled = true;
-                retirementYearNumericUpDown.Text =
-                    retirementYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                retirementYearNumericUpDown.Text = IntHelper.ToString((int) retirementYearNumericUpDown.Value);
             }
 
             cloneButton.Enabled = true;
@@ -2262,7 +2259,7 @@ namespace HoI2Editor.Forms
             leader.Id = id;
 
             // 指揮官リストビューの項目を更新する
-            leaderListView.SelectedItems[0].SubItems[1].Text = leader.Id.ToString(CultureInfo.InvariantCulture);
+            leaderListView.SelectedItems[0].SubItems[1].Text = IntHelper.ToString(leader.Id);
 
             // 編集済みフラグを設定する
             leader.SetDirty(LeaderItemId.Id);
@@ -2419,7 +2416,7 @@ namespace HoI2Editor.Forms
             leader.Skill = skill;
 
             // 指揮官リストビューの項目を更新する
-            leaderListView.SelectedItems[0].SubItems[4].Text = leader.Skill.ToString(CultureInfo.InvariantCulture);
+            leaderListView.SelectedItems[0].SubItems[4].Text = IntHelper.ToString(leader.Skill);
 
             // 編集済みフラグを設定する
             leader.SetDirty(LeaderItemId.Skill);
@@ -2456,7 +2453,7 @@ namespace HoI2Editor.Forms
             leader.MaxSkill = maxSkill;
 
             // 指揮官リストビューの項目を更新する
-            leaderListView.SelectedItems[0].SubItems[5].Text = leader.MaxSkill.ToString(CultureInfo.InvariantCulture);
+            leaderListView.SelectedItems[0].SubItems[5].Text = IntHelper.ToString(leader.MaxSkill);
 
             // 編集済みフラグを設定する
             leader.SetDirty(LeaderItemId.MaxSkill);
@@ -2560,7 +2557,7 @@ namespace HoI2Editor.Forms
             leader.StartYear = startYear;
 
             // 指揮官リストビューの項目を更新する
-            leaderListView.SelectedItems[0].SubItems[6].Text = leader.StartYear.ToString(CultureInfo.InvariantCulture);
+            leaderListView.SelectedItems[0].SubItems[6].Text = IntHelper.ToString(leader.StartYear);
 
             // 編集済みフラグを設定する
             leader.SetDirty(LeaderItemId.StartYear);
@@ -2597,7 +2594,7 @@ namespace HoI2Editor.Forms
             leader.EndYear = endYear;
 
             // 指揮官リストビューの項目を更新する
-            leaderListView.SelectedItems[0].SubItems[7].Text = leader.EndYear.ToString(CultureInfo.InvariantCulture);
+            leaderListView.SelectedItems[0].SubItems[7].Text = IntHelper.ToString(leader.EndYear);
 
             // 編集済みフラグを設定する
             leader.SetDirty(LeaderItemId.EndYear);
@@ -4481,47 +4478,47 @@ namespace HoI2Editor.Forms
             }
             if (items[(int) LeaderBatchItemId.Skill])
             {
-                sb.AppendFormat(" skill: {0}", skill.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" skill: {0}", skill);
             }
             if (items[(int) LeaderBatchItemId.MaxSkill])
             {
-                sb.AppendFormat(" max skill: {0}", maxSkill.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" max skill: {0}", maxSkill);
             }
             if (items[(int) LeaderBatchItemId.Experience])
             {
-                sb.AppendFormat(" experience: {0}", experience.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" experience: {0}", experience);
             }
             if (items[(int) LeaderBatchItemId.Loyalty])
             {
-                sb.AppendFormat(" loyalty: {0}", loyalty.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" loyalty: {0}", loyalty);
             }
             if (items[(int) LeaderBatchItemId.StartYear])
             {
-                sb.AppendFormat(" start year: {0}", startYear.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" start year: {0}", startYear);
             }
             if (items[(int) LeaderBatchItemId.EndYear])
             {
-                sb.AppendFormat(" end year: {0}", endYear.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" end year: {0}", endYear);
             }
             if (items[(int) LeaderBatchItemId.RetirementYear])
             {
-                sb.AppendFormat(" retirement year: {0}", retirementYear.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" retirement year: {0}", retirementYear);
             }
             if (items[(int) LeaderBatchItemId.Rank3Year])
             {
-                sb.AppendFormat(" rank3 year: {0}", rankYear[0].ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" rank3 year: {0}", rankYear[0]);
             }
             if (items[(int) LeaderBatchItemId.Rank2Year])
             {
-                sb.AppendFormat(" rank2 year: {0}", rankYear[1].ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" rank2 year: {0}", rankYear[1]);
             }
             if (items[(int) LeaderBatchItemId.Rank1Year])
             {
-                sb.AppendFormat(" rank1 year: {0}", rankYear[2].ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" rank1 year: {0}", rankYear[2]);
             }
             if (items[(int) LeaderBatchItemId.Rank0Year])
             {
-                sb.AppendFormat(" rank0 year: {0}", rankYear[3].ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" rank0 year: {0}", rankYear[3]);
             }
 
             Log.Verbose("[Leader] Batch{0} ({1})", sb, countries);

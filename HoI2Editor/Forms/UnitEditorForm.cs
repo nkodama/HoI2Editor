@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -800,16 +799,16 @@ namespace HoI2Editor.Forms
         {
             UnitModel model = unit.Models[index];
 
-            var item = new ListViewItem { Text = index.ToString(CultureInfo.InvariantCulture) };
+            var item = new ListViewItem { Text = IntHelper.ToString(index) };
             item.SubItems.Add(unit.GetModelName(index, GetSelectedCountry()));
-            item.SubItems.Add(model.Cost.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.BuildTime.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.ManPower.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.SupplyConsumption.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.FuelConsumption.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.DefaultOrganization.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.Morale.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(model.MaxSpeed.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(DoubleHelper.ToString(model.Cost));
+            item.SubItems.Add(DoubleHelper.ToString(model.BuildTime));
+            item.SubItems.Add(DoubleHelper.ToString(model.ManPower));
+            item.SubItems.Add(DoubleHelper.ToString(model.SupplyConsumption));
+            item.SubItems.Add(DoubleHelper.ToString(model.FuelConsumption));
+            item.SubItems.Add(DoubleHelper.ToString(model.DefaultOrganization));
+            item.SubItems.Add(DoubleHelper.ToString(model.Morale));
+            item.SubItems.Add(DoubleHelper.ToString(model.MaxSpeed));
 
             return item;
         }
@@ -1194,8 +1193,7 @@ namespace HoI2Editor.Forms
                     maxAllowedBrigadesNumericUpDown.Enabled = false;
                 }
                 maxAllowedBrigadesNumericUpDown.Value = unit.GetMaxAllowedBrigades();
-                maxAllowedBrigadesNumericUpDown.Text =
-                    maxAllowedBrigadesNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                maxAllowedBrigadesNumericUpDown.Text = IntHelper.ToString((int) maxAllowedBrigadesNumericUpDown.Value);
 
                 Graphics g = Graphics.FromHwnd(allowedBrigadesListView.Handle);
                 int width = DeviceCaps.GetScaledWidth(60);
@@ -1242,7 +1240,7 @@ namespace HoI2Editor.Forms
                 listPrioLabel.Enabled = true;
                 listPrioNumericUpDown.Enabled = true;
                 listPrioNumericUpDown.Value = unit.ListPrio;
-                listPrioNumericUpDown.Text = unit.ListPrio.ToString(CultureInfo.InvariantCulture);
+                listPrioNumericUpDown.Text = IntHelper.ToString(unit.ListPrio);
 
                 // 師団
                 if (unit.Organization == UnitOrganization.Division)
@@ -1265,15 +1263,15 @@ namespace HoI2Editor.Forms
                     productableCheckBox.Enabled = true;
 
                     eyrNumericUpDown.Value = unit.Eyr;
-                    eyrNumericUpDown.Text = eyrNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                    eyrNumericUpDown.Text = IntHelper.ToString((int) eyrNumericUpDown.Value);
                     gfxPrioNumericUpDown.Value = unit.GfxPrio;
-                    gfxPrioNumericUpDown.Text = gfxPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                    gfxPrioNumericUpDown.Text = IntHelper.ToString((int) gfxPrioNumericUpDown.Value);
                     uiPrioNumericUpDown.Value = unit.UiPrio;
-                    uiPrioNumericUpDown.Text = uiPrioNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                    uiPrioNumericUpDown.Text = IntHelper.ToString((int) uiPrioNumericUpDown.Value);
                     realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
                     spriteTypeComboBox.SelectedIndex = (int) unit.Sprite;
                     transmuteComboBox.SelectedIndex = Units.UnitTypes.IndexOf(unit.Transmute);
-                    militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
+                    militaryValueTextBox.Text = DoubleHelper.ToString(unit.Value);
                 }
                 else
                 {
@@ -1492,8 +1490,7 @@ namespace HoI2Editor.Forms
             }
 
             maxAllowedBrigadesNumericUpDown.Value = unit.GetMaxAllowedBrigades();
-            maxAllowedBrigadesNumericUpDown.Text =
-                maxAllowedBrigadesNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            maxAllowedBrigadesNumericUpDown.Text = IntHelper.ToString((int) maxAllowedBrigadesNumericUpDown.Value);
 
             maxAllowedBrigadesNumericUpDown.ForeColor =
                 unit.IsDirty(UnitClassItemId.MaxAllowedBrigades) ? Color.Red : SystemColors.WindowText;
@@ -2260,20 +2257,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(militaryValueTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(militaryValueTextBox.Text, out val))
             {
-                militaryValueTextBox.Text = unit.Value.ToString(CultureInfo.InvariantCulture);
+                militaryValueTextBox.Text = DoubleHelper.ToString(unit.Value);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - unit.Value) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, unit.Value))
             {
                 return;
             }
 
-            Log.Info("[Unit] military value: {0} -> {1} ({2})", unit.Value.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit);
+            Log.Info("[Unit] military value: {0} -> {1} ({2})", DoubleHelper.ToString(unit.Value),
+                DoubleHelper.ToString(val), unit);
 
             // 値を更新する
             unit.Value = val;
@@ -2761,8 +2758,8 @@ namespace HoI2Editor.Forms
 
             // 編集項目の値を更新する
             UpdateUpgradeTypeComboBox();
-            upgradeCostTextBox.Text = upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
-            upgradeTimeTextBox.Text = upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
+            upgradeCostTextBox.Text = DoubleHelper.ToString(upgrade.UpgradeCostFactor);
+            upgradeTimeTextBox.Text = DoubleHelper.ToString(upgrade.UpgradeTimeFactor);
 
             // 編集項目の色を更新する
             upgradeCostTextBox.ForeColor = upgrade.IsDirty(UnitUpgradeItemId.UpgradeCostFactor)
@@ -2873,27 +2870,26 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(upgradeCostTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(upgradeCostTextBox.Text, out val))
             {
-                upgradeCostTextBox.Text = upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
+                upgradeCostTextBox.Text = DoubleHelper.ToString(upgrade.UpgradeCostFactor);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - upgrade.UpgradeCostFactor) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, upgrade.UpgradeCostFactor))
             {
                 return;
             }
 
-            Log.Info("[Unit] upgrade cost: {0} -> {1} ({2})",
-                upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit);
+            Log.Info("[Unit] upgrade cost: {0} -> {1} ({2})", DoubleHelper.ToString(upgrade.UpgradeCostFactor),
+                DoubleHelper.ToString(val), unit);
 
             // 値を更新する
             upgrade.UpgradeCostFactor = val;
 
             // 改良リストビューの項目を更新する
-            upgradeListView.Items[index].SubItems[1].Text = val.ToString(CultureInfo.InvariantCulture);
+            upgradeListView.Items[index].SubItems[1].Text = DoubleHelper.ToString(val);
 
             // 編集済みフラグを設定する
             upgrade.SetDirty(UnitUpgradeItemId.UpgradeCostFactor);
@@ -2927,27 +2923,26 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(upgradeTimeTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(upgradeTimeTextBox.Text, out val))
             {
-                upgradeTimeTextBox.Text = upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
+                upgradeTimeTextBox.Text = DoubleHelper.ToString(upgrade.UpgradeTimeFactor);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - upgrade.UpgradeTimeFactor) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, upgrade.UpgradeTimeFactor))
             {
                 return;
             }
 
-            Log.Info("[Unit] upgrade time: {0} -> {1} ({2})",
-                upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit);
+            Log.Info("[Unit] upgrade time: {0} -> {1} ({2})", DoubleHelper.ToString(upgrade.UpgradeTimeFactor),
+                DoubleHelper.ToString(val), unit);
 
             // 値を更新する
             upgrade.UpgradeTimeFactor = val;
 
             // 改良リストビューの項目を更新する
-            upgradeListView.Items[index].SubItems[2].Text = val.ToString(CultureInfo.InvariantCulture);
+            upgradeListView.Items[index].SubItems[2].Text = DoubleHelper.ToString(val);
 
             // 編集済みフラグを設定する
             upgrade.SetDirty(UnitUpgradeItemId.UpgradeTimeFactor);
@@ -2974,18 +2969,17 @@ namespace HoI2Editor.Forms
             var selected = upgradeTypeComboBox.SelectedItem as Unit;
             var upgrade = new UnitUpgrade { Type = (selected != null) ? selected.Type : unit.Type };
             double val;
-            if (double.TryParse(upgradeCostTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (DoubleHelper.TryParse(upgradeCostTextBox.Text, out val))
             {
                 upgrade.UpgradeCostFactor = val;
             }
-            if (double.TryParse(upgradeTimeTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (DoubleHelper.TryParse(upgradeTimeTextBox.Text, out val))
             {
                 upgrade.UpgradeTimeFactor = val;
             }
 
-            Log.Info("[Unit] Added upgrade info: {0} {1} {2} ({3})",
-                Units.Items[(int) upgrade.Type], upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
-                upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture), unit);
+            Log.Info("[Unit] Added upgrade info: {0} {1} {2} ({3})", Units.Items[(int) upgrade.Type],
+                DoubleHelper.ToString(upgrade.UpgradeCostFactor), DoubleHelper.ToString(upgrade.UpgradeTimeFactor), unit);
 
             // 改良情報を追加する
             unit.Upgrades.Add(upgrade);
@@ -3039,8 +3033,8 @@ namespace HoI2Editor.Forms
         private static ListViewItem CreateUpgradeListItem(UnitUpgrade upgrade)
         {
             var item = new ListViewItem { Text = Units.Items[(int) upgrade.Type].ToString() };
-            item.SubItems.Add(upgrade.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(upgrade.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(DoubleHelper.ToString(upgrade.UpgradeCostFactor));
+            item.SubItems.Add(DoubleHelper.ToString(upgrade.UpgradeTimeFactor));
 
             return item;
         }
@@ -3154,42 +3148,42 @@ namespace HoI2Editor.Forms
             UpdateModelNameTextBox();
 
             // 組織率
-            defaultOrganisationTextBox.Text = model.DefaultOrganization.ToString(CultureInfo.InvariantCulture);
+            defaultOrganisationTextBox.Text = DoubleHelper.ToString(model.DefaultOrganization);
             defaultOrganisationTextBox.ForeColor = model.IsDirty(UnitModelItemId.DefaultOrganization)
                 ? Color.Red
                 : SystemColors.WindowText;
             // 士気
-            moraleTextBox.Text = model.Morale.ToString(CultureInfo.InvariantCulture);
+            moraleTextBox.Text = DoubleHelper.ToString(model.Morale);
             moraleTextBox.ForeColor = model.IsDirty(UnitModelItemId.Morale) ? Color.Red : SystemColors.WindowText;
             // 消費物資
-            supplyConsumptionTextBox.Text = model.SupplyConsumption.ToString(CultureInfo.InvariantCulture);
+            supplyConsumptionTextBox.Text = DoubleHelper.ToString(model.SupplyConsumption);
             supplyConsumptionTextBox.ForeColor = model.IsDirty(UnitModelItemId.SupplyConsumption)
                 ? Color.Red
                 : SystemColors.WindowText;
             // 消費燃料
-            fuelConsumptionTextBox.Text = model.FuelConsumption.ToString(CultureInfo.InvariantCulture);
+            fuelConsumptionTextBox.Text = DoubleHelper.ToString(model.FuelConsumption);
             fuelConsumptionTextBox.ForeColor = model.IsDirty(UnitModelItemId.FuelConsumption)
                 ? Color.Red
                 : SystemColors.WindowText;
             // 必要IC
-            costTextBox.Text = model.Cost.ToString(CultureInfo.InvariantCulture);
+            costTextBox.Text = DoubleHelper.ToString(model.Cost);
             costTextBox.ForeColor = model.IsDirty(UnitModelItemId.Cost) ? Color.Red : SystemColors.WindowText;
             // 必要時間
-            buildTimeTextBox.Text = model.BuildTime.ToString(CultureInfo.InvariantCulture);
+            buildTimeTextBox.Text = DoubleHelper.ToString(model.BuildTime);
             buildTimeTextBox.ForeColor = model.IsDirty(UnitModelItemId.BuildTime) ? Color.Red : SystemColors.WindowText;
             // 労働力
-            manPowerTextBox.Text = model.ManPower.ToString(CultureInfo.InvariantCulture);
+            manPowerTextBox.Text = DoubleHelper.ToString(model.ManPower);
             manPowerTextBox.ForeColor = model.IsDirty(UnitModelItemId.ManPower) ? Color.Red : SystemColors.WindowText;
             // 最大速度
-            maxSpeedTextBox.Text = model.MaxSpeed.ToString(CultureInfo.InvariantCulture);
+            maxSpeedTextBox.Text = DoubleHelper.ToString(model.MaxSpeed);
             maxSpeedTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSpeed) ? Color.Red : SystemColors.WindowText;
             // 対空防御力
-            airDefenceTextBox.Text = model.AirDefence.ToString(CultureInfo.InvariantCulture);
+            airDefenceTextBox.Text = DoubleHelper.ToString(model.AirDefence);
             airDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirDefense)
                 ? Color.Red
                 : SystemColors.WindowText;
             // 対空攻撃力
-            airAttackTextBox.Text = model.AirAttack.ToString(CultureInfo.InvariantCulture);
+            airAttackTextBox.Text = DoubleHelper.ToString(model.AirAttack);
             airAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirAttack) ? Color.Red : SystemColors.WindowText;
 
             // 陸軍
@@ -3202,7 +3196,7 @@ namespace HoI2Editor.Forms
                 // 輸送負荷
                 transportWeightLabel.Enabled = true;
                 transportWeightTextBox.Enabled = true;
-                transportWeightTextBox.Text = model.TransportWeight.ToString(CultureInfo.InvariantCulture);
+                transportWeightTextBox.Text = DoubleHelper.ToString(model.TransportWeight);
                 transportWeightTextBox.ForeColor = model.IsDirty(UnitModelItemId.TransportWeight)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3213,28 +3207,28 @@ namespace HoI2Editor.Forms
                 // 制圧力
                 suppressionLabel.Enabled = true;
                 suppressionTextBox.Enabled = true;
-                suppressionTextBox.Text = model.Suppression.ToString(CultureInfo.InvariantCulture);
+                suppressionTextBox.Text = DoubleHelper.ToString(model.Suppression);
                 suppressionTextBox.ForeColor = model.IsDirty(UnitModelItemId.Suppression)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 防御力
                 defensivenessLabel.Enabled = true;
                 defensivenessTextBox.Enabled = true;
-                defensivenessTextBox.Text = model.Defensiveness.ToString(CultureInfo.InvariantCulture);
+                defensivenessTextBox.Text = DoubleHelper.ToString(model.Defensiveness);
                 defensivenessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Defensiveness)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 耐久力
                 toughnessLabel.Enabled = true;
                 toughnessTextBox.Enabled = true;
-                toughnessTextBox.Text = model.Toughness.ToString(CultureInfo.InvariantCulture);
+                toughnessTextBox.Text = DoubleHelper.ToString(model.Toughness);
                 toughnessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Toughness)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 脆弱性
                 softnessLabel.Enabled = true;
                 softnessTextBox.Enabled = true;
-                softnessTextBox.Text = model.Softness.ToString(CultureInfo.InvariantCulture);
+                softnessTextBox.Text = DoubleHelper.ToString(model.Softness);
                 softnessTextBox.ForeColor = model.IsDirty(UnitModelItemId.Softness)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3252,7 +3246,7 @@ namespace HoI2Editor.Forms
                 // 航続距離
                 rangeLabel.Enabled = true;
                 rangeTextBox.Enabled = true;
-                rangeTextBox.Text = model.Range.ToString(CultureInfo.InvariantCulture);
+                rangeTextBox.Text = DoubleHelper.ToString(model.Range);
                 rangeTextBox.ForeColor = model.IsDirty(UnitModelItemId.Range) ? Color.Red : SystemColors.WindowText;
                 // 輸送負荷
                 transportWeightLabel.Enabled = false;
@@ -3261,7 +3255,7 @@ namespace HoI2Editor.Forms
                 // 輸送能力
                 transportCapabilityLabel.Enabled = true;
                 transportCapabilityTextBox.Enabled = true;
-                transportCapabilityTextBox.Text = model.TransportCapability.ToString(CultureInfo.InvariantCulture);
+                transportCapabilityTextBox.Text = DoubleHelper.ToString(model.TransportCapability);
                 transportCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.TransportCapability)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3284,15 +3278,14 @@ namespace HoI2Editor.Forms
                 // 対地索敵力
                 surfaceDetectionCapabilityLabel.Enabled = true;
                 surfaceDetectionCapabilityTextBox.Enabled = true;
-                surfaceDetectionCapabilityTextBox.Text =
-                    model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture);
+                surfaceDetectionCapabilityTextBox.Text = DoubleHelper.ToString(model.SurfaceDetectionCapability);
                 surfaceDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.SurfaceDetectionCapability)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 対空索敵力
                 airDetectionCapabilityLabel.Enabled = true;
                 airDetectionCapabilityTextBox.Enabled = true;
-                airDetectionCapabilityTextBox.Text = model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture);
+                airDetectionCapabilityTextBox.Text = DoubleHelper.ToString(model.AirDetectionCapability);
                 airDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.AirDetectionCapability)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3304,28 +3297,28 @@ namespace HoI2Editor.Forms
                 // 速度キャップ(砲兵)
                 speedCapArtLabel.Enabled = true;
                 speedCapArtTextBox.Enabled = true;
-                speedCapArtTextBox.Text = model.SpeedCapArt.ToString(CultureInfo.InvariantCulture);
+                speedCapArtTextBox.Text = DoubleHelper.ToString(model.SpeedCapArt);
                 speedCapArtTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapArt)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 速度キャップ(工兵)
                 speedCapEngLabel.Enabled = true;
                 speedCapEngTextBox.Enabled = true;
-                speedCapEngTextBox.Text = model.SpeedCapEng.ToString(CultureInfo.InvariantCulture);
+                speedCapEngTextBox.Text = DoubleHelper.ToString(model.SpeedCapEng);
                 speedCapEngTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapEng)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 速度キャップ(対戦車)
                 speedCapAtLabel.Enabled = true;
                 speedCapAtTextBox.Enabled = true;
-                speedCapAtTextBox.Text = model.SpeedCapAt.ToString(CultureInfo.InvariantCulture);
+                speedCapAtTextBox.Text = DoubleHelper.ToString(model.SpeedCapAt);
                 speedCapAtTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapAt)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 速度キャップ(対空)
                 speedCapAaLabel.Enabled = true;
                 speedCapAaTextBox.Enabled = true;
-                speedCapAaTextBox.Text = model.SpeedCapAa.ToString(CultureInfo.InvariantCulture);
+                speedCapAaTextBox.Text = DoubleHelper.ToString(model.SpeedCapAa);
                 speedCapAaTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCapAa)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3364,7 +3357,7 @@ namespace HoI2Editor.Forms
                 // 対艦防御力
                 seaDefenceLabel.Enabled = true;
                 seaDefenceTextBox.Enabled = true;
-                seaDefenceTextBox.Text = model.SeaDefense.ToString(CultureInfo.InvariantCulture);
+                seaDefenceTextBox.Text = DoubleHelper.ToString(model.SeaDefense);
                 seaDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.SeaDefense)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3379,49 +3372,49 @@ namespace HoI2Editor.Forms
                 // 艦対艦攻撃力
                 seaAttackLabel.Enabled = true;
                 seaAttackTextBox.Enabled = true;
-                seaAttackTextBox.Text = model.SeaAttack.ToString(CultureInfo.InvariantCulture);
+                seaAttackTextBox.Text = DoubleHelper.ToString(model.SeaAttack);
                 seaAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SeaAttack)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 対潜攻撃力
                 subAttackLabel.Enabled = true;
                 subAttackTextBox.Enabled = true;
-                subAttackTextBox.Text = model.SubAttack.ToString(CultureInfo.InvariantCulture);
+                subAttackTextBox.Text = DoubleHelper.ToString(model.SubAttack);
                 subAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SubAttack)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 船団攻撃力
                 convoyAttackLabel.Enabled = true;
                 convoyAttackTextBox.Enabled = true;
-                convoyAttackTextBox.Text = model.ConvoyAttack.ToString(CultureInfo.InvariantCulture);
+                convoyAttackTextBox.Text = DoubleHelper.ToString(model.ConvoyAttack);
                 convoyAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.ConvoyAttack)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 沿岸砲撃能力
                 shoreBombardmentLabel.Enabled = true;
                 shoreBombardmentTextBox.Enabled = true;
-                shoreBombardmentTextBox.Text = model.ShoreBombardment.ToString(CultureInfo.InvariantCulture);
+                shoreBombardmentTextBox.Text = DoubleHelper.ToString(model.ShoreBombardment);
                 shoreBombardmentTextBox.ForeColor = model.IsDirty(UnitModelItemId.ShoreBombardment)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 射程
                 distanceLabel.Enabled = true;
                 distanceTextBox.Enabled = true;
-                distanceTextBox.Text = model.Distance.ToString(CultureInfo.InvariantCulture);
+                distanceTextBox.Text = DoubleHelper.ToString(model.Distance);
                 distanceTextBox.ForeColor = model.IsDirty(UnitModelItemId.Distance)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 視認性
                 visibilityLabel.Enabled = true;
                 visibilityTextBox.Enabled = true;
-                visibilityTextBox.Text = model.Visibility.ToString(CultureInfo.InvariantCulture);
+                visibilityTextBox.Text = DoubleHelper.ToString(model.Visibility);
                 visibilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.Visibility)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 対艦索敵力
                 subDetectionCapabilityLabel.Enabled = true;
                 subDetectionCapabilityTextBox.Enabled = true;
-                subDetectionCapabilityTextBox.Text = model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture);
+                subDetectionCapabilityTextBox.Text = DoubleHelper.ToString(model.SubDetectionCapability);
                 subDetectionCapabilityTextBox.ForeColor = model.IsDirty(UnitModelItemId.SubDetectionCapability)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3431,14 +3424,14 @@ namespace HoI2Editor.Forms
                 // 改良コスト
                 upgradeCostFactorLabel.Enabled = true;
                 upgradeCostFactorTextBox.Enabled = true;
-                upgradeCostFactorTextBox.Text = model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
+                upgradeCostFactorTextBox.Text = DoubleHelper.ToString(model.UpgradeCostFactor);
                 upgradeCostFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeCostFactor)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 改良時間
                 upgradeTimeFactorLabel.Enabled = true;
                 upgradeTimeFactorTextBox.Enabled = true;
-                upgradeTimeFactorTextBox.Text = model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
+                upgradeTimeFactorTextBox.Text = DoubleHelper.ToString(model.UpgradeTimeFactor);
                 upgradeTimeFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeFactor)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3449,14 +3442,14 @@ namespace HoI2Editor.Forms
                 // 対人攻撃力
                 softAttackLabel.Enabled = true;
                 softAttackTextBox.Enabled = true;
-                softAttackTextBox.Text = model.SoftAttack.ToString(CultureInfo.InvariantCulture);
+                softAttackTextBox.Text = DoubleHelper.ToString(model.SoftAttack);
                 softAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.SoftAttack)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 対甲攻撃力
                 hardAttackLabel.Enabled = true;
                 hardAttackTextBox.Enabled = true;
-                hardAttackTextBox.Text = model.HardAttack.ToString(CultureInfo.InvariantCulture);
+                hardAttackTextBox.Text = DoubleHelper.ToString(model.HardAttack);
                 hardAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.HardAttack)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3496,21 +3489,21 @@ namespace HoI2Editor.Forms
                 // 対地防御力
                 surfaceDefenceLabel.Enabled = true;
                 surfaceDefenceTextBox.Enabled = true;
-                surfaceDefenceTextBox.Text = model.SurfaceDefence.ToString(CultureInfo.InvariantCulture);
+                surfaceDefenceTextBox.Text = DoubleHelper.ToString(model.SurfaceDefence);
                 surfaceDefenceTextBox.ForeColor = model.IsDirty(UnitModelItemId.SurfaceDefense)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 空対艦攻撃力
                 navalAttackLabel.Enabled = true;
                 navalAttackTextBox.Enabled = true;
-                navalAttackTextBox.Text = model.NavalAttack.ToString(CultureInfo.InvariantCulture);
+                navalAttackTextBox.Text = DoubleHelper.ToString(model.NavalAttack);
                 navalAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.NavalAttack)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 戦略爆撃攻撃力
                 strategicAttackLabel.Enabled = true;
                 strategicAttackTextBox.Enabled = true;
-                strategicAttackTextBox.Text = model.StrategicAttack.ToString(CultureInfo.InvariantCulture);
+                strategicAttackTextBox.Text = DoubleHelper.ToString(model.StrategicAttack);
                 strategicAttackTextBox.ForeColor = model.IsDirty(UnitModelItemId.StrategicAttack)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3571,14 +3564,14 @@ namespace HoI2Editor.Forms
                 // 最大物資
                 maxSupplyStockLabel.Enabled = true;
                 maxSupplyStockTextBox.Enabled = true;
-                maxSupplyStockTextBox.Text = model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture);
+                maxSupplyStockTextBox.Text = DoubleHelper.ToString(model.MaxSupplyStock);
                 maxSupplyStockTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxSupplyStock)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 最大燃料
                 maxOilStockLabel.Enabled = true;
                 maxOilStockTextBox.Enabled = true;
-                maxOilStockTextBox.Text = model.MaxOilStock.ToString(CultureInfo.InvariantCulture);
+                maxOilStockTextBox.Text = DoubleHelper.ToString(model.MaxOilStock);
                 maxOilStockTextBox.ForeColor = model.IsDirty(UnitModelItemId.MaxOilStock)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3603,7 +3596,7 @@ namespace HoI2Editor.Forms
                 // 砲撃能力
                 artilleryBombardmentLabel.Enabled = true;
                 artilleryBombardmentTextBox.Enabled = true;
-                artilleryBombardmentTextBox.Text = model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture);
+                artilleryBombardmentTextBox.Text = DoubleHelper.ToString(model.ArtilleryBombardment);
                 artilleryBombardmentTextBox.ForeColor = model.IsDirty(UnitModelItemId.ArtilleryBombardment)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3622,14 +3615,14 @@ namespace HoI2Editor.Forms
                 // 補充コスト
                 reinforceCostLabel.Enabled = true;
                 reinforceCostTextBox.Enabled = true;
-                reinforceCostTextBox.Text = model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture);
+                reinforceCostTextBox.Text = DoubleHelper.ToString(model.ReinforceCostFactor);
                 reinforceCostTextBox.ForeColor = model.IsDirty(UnitModelItemId.ReinforceCostFactor)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 補充時間
                 reinforceTimeLabel.Enabled = true;
                 reinforceTimeTextBox.Enabled = true;
-                reinforceTimeTextBox.Text = model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture);
+                reinforceTimeTextBox.Text = DoubleHelper.ToString(model.ReinforceTimeFactor);
                 reinforceTimeTextBox.ForeColor = model.IsDirty(UnitModelItemId.ReinforceTimeFactor)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3654,7 +3647,7 @@ namespace HoI2Editor.Forms
                 // 燃料切れ補正
                 noFuelCombatModLabel.Enabled = true;
                 noFuelCombatModTextBox.Enabled = true;
-                noFuelCombatModTextBox.Text = model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture);
+                noFuelCombatModTextBox.Text = DoubleHelper.ToString(model.NoFuelCombatMod);
                 noFuelCombatModTextBox.ForeColor = model.IsDirty(UnitModelItemId.NoFuelCombatMod)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -3683,7 +3676,7 @@ namespace HoI2Editor.Forms
                 // 速度キャップ
                 speedCapAllLabel.Enabled = true;
                 speedCapAllTextBox.Enabled = true;
-                speedCapAllTextBox.Text = model.SpeedCap.ToString(CultureInfo.InvariantCulture);
+                speedCapAllTextBox.Text = DoubleHelper.ToString(model.SpeedCap);
                 speedCapAllTextBox.ForeColor = model.IsDirty(UnitModelItemId.SpeedCap)
                     ? Color.Red
                     : SystemColors.WindowText;
@@ -4051,29 +4044,26 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (
-                !double.TryParse(defaultOrganisationTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
-                    out val))
+            if (!DoubleHelper.TryParse(defaultOrganisationTextBox.Text, out val))
             {
-                defaultOrganisationTextBox.Text = model.DefaultOrganization.ToString(CultureInfo.InvariantCulture);
+                defaultOrganisationTextBox.Text = DoubleHelper.ToString(model.DefaultOrganization);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.DefaultOrganization) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.DefaultOrganization))
             {
                 return;
             }
 
-            Log.Info("[Unit] default organization: {0} -> {1} ({2})",
-                model.DefaultOrganization.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] default organization: {0} -> {1} ({2})", DoubleHelper.ToString(model.DefaultOrganization),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.DefaultOrganization = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[index].SubItems[7].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[7].Text = DoubleHelper.ToString(val);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.DefaultOrganization);
@@ -4107,26 +4097,26 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(moraleTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(moraleTextBox.Text, out val))
             {
-                moraleTextBox.Text = model.Morale.ToString(CultureInfo.InvariantCulture);
+                moraleTextBox.Text = DoubleHelper.ToString(model.Morale);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.Morale) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.Morale))
             {
                 return;
             }
 
-            Log.Info("[Unit] morale: {0} -> {1} ({2})", model.Morale.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] morale: {0} -> {1} ({2})", DoubleHelper.ToString(model.Morale), DoubleHelper.ToString(val),
+                unit.GetModelName(index));
 
             // 値を更新する
             model.Morale = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[index].SubItems[8].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[8].Text = DoubleHelper.ToString(val);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.Morale);
@@ -4160,20 +4150,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(rangeTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(rangeTextBox.Text, out val))
             {
-                rangeTextBox.Text = model.Range.ToString(CultureInfo.InvariantCulture);
+                rangeTextBox.Text = DoubleHelper.ToString(model.Range);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.Range) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.Range))
             {
                 return;
             }
 
-            Log.Info("[Unit] range: {0} -> {1} ({2})", model.Range.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] range: {0} -> {1} ({2})", DoubleHelper.ToString(model.Range), DoubleHelper.ToString(val),
+                unit.GetModelName(index));
 
             // 値を更新する
             model.Range = val;
@@ -4210,21 +4200,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(transportWeightTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(transportWeightTextBox.Text, out val))
             {
-                transportWeightTextBox.Text = model.TransportWeight.ToString(CultureInfo.InvariantCulture);
+                transportWeightTextBox.Text = DoubleHelper.ToString(model.TransportWeight);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.TransportWeight) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.TransportWeight))
             {
                 return;
             }
 
-            Log.Info("[Unit] transport weight: {0} -> {1} ({2})",
-                model.TransportWeight.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index));
+            Log.Info("[Unit] transport weight: {0} -> {1} ({2})", DoubleHelper.ToString(model.TransportWeight),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.TransportWeight = val;
@@ -4261,22 +4250,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(transportCapabilityTextBox.Text, NumberStyles.Float,
-                CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(transportCapabilityTextBox.Text, out val))
             {
-                transportCapabilityTextBox.Text = model.TransportCapability.ToString(CultureInfo.InvariantCulture);
+                transportCapabilityTextBox.Text = DoubleHelper.ToString(model.TransportCapability);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.TransportCapability) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.TransportCapability))
             {
                 return;
             }
 
-            Log.Info("[Unit] transport capacity: {0} -> {1} ({2})",
-                model.TransportCapability.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] transport capacity: {0} -> {1} ({2})", DoubleHelper.ToString(model.TransportCapability),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.TransportCapability = val;
@@ -4313,20 +4300,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(suppressionTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(suppressionTextBox.Text, out val))
             {
-                suppressionTextBox.Text = model.Suppression.ToString(CultureInfo.InvariantCulture);
+                suppressionTextBox.Text = DoubleHelper.ToString(model.Suppression);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.Suppression) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.Suppression))
             {
                 return;
             }
 
-            Log.Info("[Unit] suppression: {0} -> {1} ({2})", model.Suppression.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] suppression: {0} -> {1} ({2})", DoubleHelper.ToString(model.Suppression),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.Suppression = val;
@@ -4363,28 +4350,26 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(supplyConsumptionTextBox.Text, NumberStyles.Float,
-                CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(supplyConsumptionTextBox.Text, out val))
             {
-                supplyConsumptionTextBox.Text = model.SupplyConsumption.ToString(CultureInfo.InvariantCulture);
+                supplyConsumptionTextBox.Text = DoubleHelper.ToString(model.SupplyConsumption);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SupplyConsumption) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SupplyConsumption))
             {
                 return;
             }
 
-            Log.Info("[Unit] supply consumption: {0} -> {1} ({2})",
-                model.SupplyConsumption.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] supply consumption: {0} -> {1} ({2})", DoubleHelper.ToString(model.SupplyConsumption),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SupplyConsumption = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[index].SubItems[5].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[5].Text = DoubleHelper.ToString(val);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.SupplyConsumption);
@@ -4418,27 +4403,26 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(fuelConsumptionTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(fuelConsumptionTextBox.Text, out val))
             {
-                fuelConsumptionTextBox.Text = model.FuelConsumption.ToString(CultureInfo.InvariantCulture);
+                fuelConsumptionTextBox.Text = DoubleHelper.ToString(model.FuelConsumption);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.FuelConsumption) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.FuelConsumption))
             {
                 return;
             }
 
-            Log.Info("[Unit] fuel consumption: {0} -> {1} ({2})",
-                model.FuelConsumption.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index));
+            Log.Info("[Unit] fuel consumption: {0} -> {1} ({2})", DoubleHelper.ToString(model.FuelConsumption),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.FuelConsumption = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[index].SubItems[6].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[6].Text = DoubleHelper.ToString(val);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.FuelConsumption);
@@ -4472,21 +4456,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(maxSupplyStockTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(maxSupplyStockTextBox.Text, out val))
             {
-                maxSupplyStockTextBox.Text = model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture);
+                maxSupplyStockTextBox.Text = DoubleHelper.ToString(model.MaxSupplyStock);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.MaxSupplyStock) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.MaxSupplyStock))
             {
                 return;
             }
 
-            Log.Info("[Unit] max supply stock: {0} -> {1} ({2})",
-                model.MaxSupplyStock.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index));
+            Log.Info("[Unit] max supply stock: {0} -> {1} ({2})", DoubleHelper.ToString(model.MaxSupplyStock),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.MaxSupplyStock = val;
@@ -4523,20 +4506,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(maxOilStockTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(maxOilStockTextBox.Text, out val))
             {
-                maxOilStockTextBox.Text = model.MaxOilStock.ToString(CultureInfo.InvariantCulture);
+                maxOilStockTextBox.Text = DoubleHelper.ToString(model.MaxOilStock);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.MaxOilStock) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.MaxOilStock))
             {
                 return;
             }
 
-            Log.Info("[Unit] max oil stock: {0} -> {1} ({2})", model.MaxOilStock.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] max oil stock: {0} -> {1} ({2})", DoubleHelper.ToString(model.MaxOilStock),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.MaxOilStock = val;
@@ -4657,7 +4640,7 @@ namespace HoI2Editor.Forms
                 else
                 {
                     autoUpgradeModelComboBox.SelectedIndex = -1;
-                    autoUpgradeModelComboBox.Text = model.UpgradeModel.ToString(CultureInfo.InvariantCulture);
+                    autoUpgradeModelComboBox.Text = DoubleHelper.ToString(model.UpgradeModel);
                 }
                 autoUpgradeModelComboBox.Enabled = true;
             }
@@ -4697,26 +4680,26 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(costTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(costTextBox.Text, out val))
             {
-                costTextBox.Text = model.Cost.ToString(CultureInfo.InvariantCulture);
+                costTextBox.Text = DoubleHelper.ToString(model.Cost);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.Cost) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.Cost))
             {
                 return;
             }
 
-            Log.Info("[Unit] cost: {0} -> {1} ({2})", model.Cost.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] cost: {0} -> {1} ({2})", DoubleHelper.ToString(model.Cost), DoubleHelper.ToString(val),
+                unit.GetModelName(index));
 
             // 値を更新する
             model.Cost = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[index].SubItems[2].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[2].Text = DoubleHelper.ToString(val);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.Cost);
@@ -4750,26 +4733,26 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(buildTimeTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(buildTimeTextBox.Text, out val))
             {
-                buildTimeTextBox.Text = model.BuildTime.ToString(CultureInfo.InvariantCulture);
+                buildTimeTextBox.Text = DoubleHelper.ToString(model.BuildTime);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.BuildTime) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.BuildTime))
             {
                 return;
             }
 
-            Log.Info("[Unit] build time: {0} -> {1} ({2})", model.BuildTime.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] build time: {0} -> {1} ({2})", DoubleHelper.ToString(model.BuildTime),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.BuildTime = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[index].SubItems[3].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[3].Text = DoubleHelper.ToString(val);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.BuildTime);
@@ -4803,26 +4786,26 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(manPowerTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(manPowerTextBox.Text, out val))
             {
-                manPowerTextBox.Text = model.ManPower.ToString(CultureInfo.InvariantCulture);
+                manPowerTextBox.Text = DoubleHelper.ToString(model.ManPower);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.ManPower) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.ManPower))
             {
                 return;
             }
 
-            Log.Info("[Unit] manpower: {0} -> {1} ({2})", model.ManPower.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] manpower: {0} -> {1} ({2})", DoubleHelper.ToString(model.ManPower),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.ManPower = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[index].SubItems[4].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[4].Text = DoubleHelper.ToString(val);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.ManPower);
@@ -4856,23 +4839,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (
-                !double.TryParse(upgradeCostFactorTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
-                    out val))
+            if (!DoubleHelper.TryParse(upgradeCostFactorTextBox.Text, out val))
             {
-                upgradeCostFactorTextBox.Text = model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture);
+                upgradeCostFactorTextBox.Text = DoubleHelper.ToString(model.UpgradeCostFactor);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.UpgradeCostFactor) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.UpgradeCostFactor))
             {
                 return;
             }
 
-            Log.Info("[Unit] upgrade cost factor: {0} -> {1} ({2})",
-                model.UpgradeCostFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] upgrade cost factor: {0} -> {1} ({2})", DoubleHelper.ToString(model.UpgradeCostFactor),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.UpgradeCostFactor = val;
@@ -4909,23 +4889,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (
-                !double.TryParse(upgradeTimeFactorTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture,
-                    out val))
+            if (!DoubleHelper.TryParse(upgradeTimeFactorTextBox.Text, out val))
             {
-                upgradeTimeFactorTextBox.Text = model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture);
+                upgradeTimeFactorTextBox.Text = DoubleHelper.ToString(model.UpgradeTimeFactor);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.UpgradeTimeFactor) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.UpgradeTimeFactor))
             {
                 return;
             }
 
-            Log.Info("[Unit] upgrade time factor: {0} -> {1} ({2})",
-                model.UpgradeTimeFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] upgrade time factor: {0} -> {1} ({2})", DoubleHelper.ToString(model.UpgradeTimeFactor),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.UpgradeTimeFactor = val;
@@ -4962,21 +4939,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(reinforceCostTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(reinforceCostTextBox.Text, out val))
             {
-                reinforceCostTextBox.Text = model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture);
+                reinforceCostTextBox.Text = DoubleHelper.ToString(model.ReinforceCostFactor);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.ReinforceCostFactor) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.ReinforceCostFactor))
             {
                 return;
             }
 
-            Log.Info("[Unit] reinforce cost: {0} -> {1} ({2})",
-                model.ReinforceCostFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] reinforce cost: {0} -> {1} ({2})", DoubleHelper.ToString(model.ReinforceCostFactor),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.ReinforceCostFactor = val;
@@ -5013,21 +4989,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(reinforceTimeTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(reinforceTimeTextBox.Text, out val))
             {
-                reinforceTimeTextBox.Text = model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture);
+                reinforceTimeTextBox.Text = DoubleHelper.ToString(model.ReinforceTimeFactor);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.ReinforceTimeFactor) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.ReinforceTimeFactor))
             {
                 return;
             }
 
-            Log.Info("[Unit] reinforce time: {0} -> {1} ({2})",
-                model.ReinforceTimeFactor.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] reinforce time: {0} -> {1} ({2})", DoubleHelper.ToString(model.ReinforceTimeFactor),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.ReinforceTimeFactor = val;
@@ -5392,7 +5367,7 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             int val;
-            if (!int.TryParse(autoUpgradeModelComboBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!IntHelper.TryParse(autoUpgradeModelComboBox.Text, out val))
             {
                 if ((model.UpgradeModel >= 0) && (model.UpgradeModel < upgrade.Models.Count))
                 {
@@ -5401,7 +5376,7 @@ namespace HoI2Editor.Forms
                 else
                 {
                     autoUpgradeModelComboBox.SelectedIndex = -1;
-                    autoUpgradeModelComboBox.Text = model.UpgradeModel.ToString(CultureInfo.InvariantCulture);
+                    autoUpgradeModelComboBox.Text = DoubleHelper.ToString(model.UpgradeModel);
                 }
                 return;
             }
@@ -5471,26 +5446,26 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(maxSpeedTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(maxSpeedTextBox.Text, out val))
             {
-                maxSpeedTextBox.Text = model.MaxSpeed.ToString(CultureInfo.InvariantCulture);
+                maxSpeedTextBox.Text = DoubleHelper.ToString(model.MaxSpeed);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.MaxSpeed) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.MaxSpeed))
             {
                 return;
             }
 
-            Log.Info("[Unit] max speed: {0} -> {1} ({2})", model.MaxSpeed.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] max speed: {0} -> {1} ({2})", DoubleHelper.ToString(model.MaxSpeed),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.MaxSpeed = val;
 
             // ユニットモデルリストの項目を更新する
-            modelListView.Items[index].SubItems[9].Text = val.ToString(CultureInfo.InvariantCulture);
+            modelListView.Items[index].SubItems[9].Text = DoubleHelper.ToString(val);
 
             // 編集済みフラグを設定する
             model.SetDirty(UnitModelItemId.MaxSpeed);
@@ -5524,20 +5499,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(speedCapAllTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(speedCapAllTextBox.Text, out val))
             {
-                speedCapAllTextBox.Text = model.SpeedCap.ToString(CultureInfo.InvariantCulture);
+                speedCapAllTextBox.Text = DoubleHelper.ToString(model.SpeedCap);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SpeedCap) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SpeedCap))
             {
                 return;
             }
 
-            Log.Info("[Unit] speed cap: {0} -> {1} ({2})", model.SpeedCap.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] speed cap: {0} -> {1} ({2})", DoubleHelper.ToString(model.SpeedCap),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SpeedCap = val;
@@ -5574,20 +5549,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(speedCapArtTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(speedCapArtTextBox.Text, out val))
             {
-                speedCapArtTextBox.Text = model.SpeedCapArt.ToString(CultureInfo.InvariantCulture);
+                speedCapArtTextBox.Text = DoubleHelper.ToString(model.SpeedCapArt);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SpeedCapArt) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SpeedCapArt))
             {
                 return;
             }
 
-            Log.Info("[Unit] speed cap art: {0} -> {1} ({2})", model.SpeedCapArt.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] speed cap art: {0} -> {1} ({2})", DoubleHelper.ToString(model.SpeedCapArt),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SpeedCapArt = val;
@@ -5624,20 +5599,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(speedCapEngTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(speedCapEngTextBox.Text, out val))
             {
-                speedCapEngTextBox.Text = model.SpeedCapEng.ToString(CultureInfo.InvariantCulture);
+                speedCapEngTextBox.Text = DoubleHelper.ToString(model.SpeedCapEng);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SpeedCapEng) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SpeedCapEng))
             {
                 return;
             }
 
-            Log.Info("[Unit] speed cap eng: {0} -> {1} ({2})", model.SpeedCapEng.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] speed cap eng: {0} -> {1} ({2})", DoubleHelper.ToString(model.SpeedCapEng),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SpeedCapEng = val;
@@ -5674,20 +5649,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(speedCapAtTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(speedCapAtTextBox.Text, out val))
             {
-                speedCapAtTextBox.Text = model.SpeedCapAt.ToString(CultureInfo.InvariantCulture);
+                speedCapAtTextBox.Text = DoubleHelper.ToString(model.SpeedCapAt);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SpeedCapAt) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SpeedCapAt))
             {
                 return;
             }
 
-            Log.Info("[Unit] speed cap at: {0} -> {1} ({2})", model.SpeedCapAt.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] speed cap at: {0} -> {1} ({2})", DoubleHelper.ToString(model.SpeedCapAt),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SpeedCapAt = val;
@@ -5724,20 +5699,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(speedCapAaTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(speedCapAaTextBox.Text, out val))
             {
-                speedCapAaTextBox.Text = model.SpeedCapAa.ToString(CultureInfo.InvariantCulture);
+                speedCapAaTextBox.Text = DoubleHelper.ToString(model.SpeedCapAa);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SpeedCapAa) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SpeedCapAa))
             {
                 return;
             }
 
-            Log.Info("[Unit] speed cap aa: {0} -> {1} ({2})", model.SpeedCapAa.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] speed cap aa: {0} -> {1} ({2})", DoubleHelper.ToString(model.SpeedCapAa),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SpeedCapAa = val;
@@ -5778,21 +5753,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(defensivenessTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(defensivenessTextBox.Text, out val))
             {
-                defensivenessTextBox.Text = model.Defensiveness.ToString(CultureInfo.InvariantCulture);
+                defensivenessTextBox.Text = DoubleHelper.ToString(model.Defensiveness);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.Defensiveness) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.Defensiveness))
             {
                 return;
             }
 
-            Log.Info("[Unit] defensiveness: {0} -> {1} ({2})",
-                model.Defensiveness.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index));
+            Log.Info("[Unit] defensiveness: {0} -> {1} ({2})", DoubleHelper.ToString(model.Defensiveness),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.Defensiveness = val;
@@ -5829,20 +5803,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(seaDefenceTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(seaDefenceTextBox.Text, out val))
             {
-                seaDefenceTextBox.Text = model.SeaDefense.ToString(CultureInfo.InvariantCulture);
+                seaDefenceTextBox.Text = DoubleHelper.ToString(model.SeaDefense);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SeaDefense) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SeaDefense))
             {
                 return;
             }
 
-            Log.Info("[Unit] sea defence: {0} -> {1} ({2})", model.SeaDefense.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] sea defence: {0} -> {1} ({2})", DoubleHelper.ToString(model.SeaDefense),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SeaDefense = val;
@@ -5879,20 +5853,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(airDefenceTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(airDefenceTextBox.Text, out val))
             {
-                airDefenceTextBox.Text = model.AirDefence.ToString(CultureInfo.InvariantCulture);
+                airDefenceTextBox.Text = DoubleHelper.ToString(model.AirDefence);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.AirDefence) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.AirDefence))
             {
                 return;
             }
 
-            Log.Info("[Unit] air defence: {0} -> {1} ({2})", model.AirDefence.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] air defence: {0} -> {1} ({2})", DoubleHelper.ToString(model.AirDefence),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.AirDefence = val;
@@ -5929,21 +5903,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(surfaceDefenceTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(surfaceDefenceTextBox.Text, out val))
             {
-                surfaceDefenceTextBox.Text = model.SurfaceDefence.ToString(CultureInfo.InvariantCulture);
+                surfaceDefenceTextBox.Text = DoubleHelper.ToString(model.SurfaceDefence);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SurfaceDefence) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SurfaceDefence))
             {
                 return;
             }
 
-            Log.Info("[Unit] surface defence: {0} -> {1} ({2})",
-                model.SurfaceDefence.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index));
+            Log.Info("[Unit] surface defence: {0} -> {1} ({2})", DoubleHelper.ToString(model.SurfaceDefence),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SurfaceDefence = val;
@@ -5980,20 +5953,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(toughnessTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(toughnessTextBox.Text, out val))
             {
-                toughnessTextBox.Text = model.Toughness.ToString(CultureInfo.InvariantCulture);
+                toughnessTextBox.Text = DoubleHelper.ToString(model.Toughness);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.Toughness) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.Toughness))
             {
                 return;
             }
 
-            Log.Info("[Unit] toughness: {0} -> {1} ({2})", model.Toughness.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] toughness: {0} -> {1} ({2})", DoubleHelper.ToString(model.Toughness),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.Toughness = val;
@@ -6030,20 +6003,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(softnessTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(softnessTextBox.Text, out val))
             {
-                softnessTextBox.Text = model.Softness.ToString(CultureInfo.InvariantCulture);
+                softnessTextBox.Text = DoubleHelper.ToString(model.Softness);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.Softness) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.Softness))
             {
                 return;
             }
 
-            Log.Info("[Unit] softness: {0} -> {1} ({2})", model.Softness.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] softness: {0} -> {1} ({2})", DoubleHelper.ToString(model.Softness),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.Softness = val;
@@ -6080,20 +6053,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(softAttackTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(softAttackTextBox.Text, out val))
             {
-                softAttackTextBox.Text = model.SoftAttack.ToString(CultureInfo.InvariantCulture);
+                softAttackTextBox.Text = DoubleHelper.ToString(model.SoftAttack);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SoftAttack) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SoftAttack))
             {
                 return;
             }
 
-            Log.Info("[Unit] soft attack: {0} -> {1} ({2})", model.SoftAttack.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] soft attack: {0} -> {1} ({2})", DoubleHelper.ToString(model.SoftAttack),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SoftAttack = val;
@@ -6130,20 +6103,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(hardAttackTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(hardAttackTextBox.Text, out val))
             {
-                hardAttackTextBox.Text = model.HardAttack.ToString(CultureInfo.InvariantCulture);
+                hardAttackTextBox.Text = DoubleHelper.ToString(model.HardAttack);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.HardAttack) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.HardAttack))
             {
                 return;
             }
 
-            Log.Info("[Unit] hard attack: {0} -> {1} ({2})", model.HardAttack.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] hard attack: {0} -> {1} ({2})", DoubleHelper.ToString(model.HardAttack),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.HardAttack = val;
@@ -6180,20 +6153,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(seaAttackTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(seaAttackTextBox.Text, out val))
             {
-                seaAttackTextBox.Text = model.SeaAttack.ToString(CultureInfo.InvariantCulture);
+                seaAttackTextBox.Text = DoubleHelper.ToString(model.SeaAttack);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SeaAttack) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SeaAttack))
             {
                 return;
             }
 
-            Log.Info("[Unit] sea attack: {0} -> {1} ({2})", model.SeaAttack.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] sea attack: {0} -> {1} ({2})", DoubleHelper.ToString(model.SeaAttack),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SeaAttack = val;
@@ -6230,20 +6203,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(subAttackTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(subAttackTextBox.Text, out val))
             {
-                subAttackTextBox.Text = model.SubAttack.ToString(CultureInfo.InvariantCulture);
+                subAttackTextBox.Text = DoubleHelper.ToString(model.SubAttack);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SubAttack) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SubAttack))
             {
                 return;
             }
 
-            Log.Info("[Unit] sub attack: {0} -> {1} ({2})", model.SubAttack.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] sub attack: {0} -> {1} ({2})", DoubleHelper.ToString(model.SubAttack),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.SubAttack = val;
@@ -6280,20 +6253,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(convoyAttackTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(convoyAttackTextBox.Text, out val))
             {
-                convoyAttackTextBox.Text = model.ConvoyAttack.ToString(CultureInfo.InvariantCulture);
+                convoyAttackTextBox.Text = DoubleHelper.ToString(model.ConvoyAttack);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.ConvoyAttack) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.ConvoyAttack))
             {
                 return;
             }
 
-            Log.Info("[Unit] convoy attack: {0} -> {1} ({2})", model.ConvoyAttack.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] convoy attack: {0} -> {1} ({2})", DoubleHelper.ToString(model.ConvoyAttack),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.ConvoyAttack = val;
@@ -6331,21 +6304,20 @@ namespace HoI2Editor.Forms
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
             if (
-                !double.TryParse(shoreBombardmentTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+                !DoubleHelper.TryParse(shoreBombardmentTextBox.Text, out val))
             {
-                shoreBombardmentTextBox.Text = model.ShoreBombardment.ToString(CultureInfo.InvariantCulture);
+                shoreBombardmentTextBox.Text = DoubleHelper.ToString(model.ShoreBombardment);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.ShoreBombardment) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.ShoreBombardment))
             {
                 return;
             }
 
-            Log.Info("[Unit] shore bombardment: {0} -> {1} ({2})",
-                model.ShoreBombardment.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] shore bombardment: {0} -> {1} ({2})", DoubleHelper.ToString(model.ShoreBombardment),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.ShoreBombardment = val;
@@ -6382,20 +6354,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(airAttackTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(airAttackTextBox.Text, out val))
             {
-                airAttackTextBox.Text = model.AirAttack.ToString(CultureInfo.InvariantCulture);
+                airAttackTextBox.Text = DoubleHelper.ToString(model.AirAttack);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.AirAttack) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.AirAttack))
             {
                 return;
             }
 
-            Log.Info("[Unit] air attack: {0} -> {1} ({2})", model.AirAttack.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] air attack: {0} -> {1} ({2})", DoubleHelper.ToString(model.AirAttack),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.AirAttack = val;
@@ -6432,20 +6404,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(navalAttackTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(navalAttackTextBox.Text, out val))
             {
-                navalAttackTextBox.Text = model.NavalAttack.ToString(CultureInfo.InvariantCulture);
+                navalAttackTextBox.Text = DoubleHelper.ToString(model.NavalAttack);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.NavalAttack) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.NavalAttack))
             {
                 return;
             }
 
-            Log.Info("[Unit] naval attack: {0} -> {1} ({2})", model.NavalAttack.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] naval attack: {0} -> {1} ({2})", DoubleHelper.ToString(model.NavalAttack),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.NavalAttack = val;
@@ -6482,21 +6454,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(strategicAttackTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(strategicAttackTextBox.Text, out val))
             {
-                strategicAttackTextBox.Text = model.StrategicAttack.ToString(CultureInfo.InvariantCulture);
+                strategicAttackTextBox.Text = DoubleHelper.ToString(model.StrategicAttack);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.StrategicAttack) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.StrategicAttack))
             {
                 return;
             }
 
-            Log.Info("[Unit] strategic attack: {0} -> {1} ({2})",
-                model.StrategicAttack.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index));
+            Log.Info("[Unit] strategic attack: {0} -> {1} ({2})", DoubleHelper.ToString(model.StrategicAttack),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.StrategicAttack = val;
@@ -6533,22 +6504,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(artilleryBombardmentTextBox.Text, NumberStyles.Float,
-                CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(artilleryBombardmentTextBox.Text, out val))
             {
-                artilleryBombardmentTextBox.Text = model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture);
+                artilleryBombardmentTextBox.Text = DoubleHelper.ToString(model.ArtilleryBombardment);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.ArtilleryBombardment) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.ArtilleryBombardment))
             {
                 return;
             }
 
-            Log.Info("[Unit] artillery bombardment: {0} -> {1} ({2})",
-                model.ArtilleryBombardment.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] artillery bombardment: {0} -> {1} ({2})", DoubleHelper.ToString(model.ArtilleryBombardment),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.ArtilleryBombardment = val;
@@ -6585,20 +6554,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(distanceTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(distanceTextBox.Text, out val))
             {
-                distanceTextBox.Text = model.Distance.ToString(CultureInfo.InvariantCulture);
+                distanceTextBox.Text = DoubleHelper.ToString(model.Distance);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.Distance) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.Distance))
             {
                 return;
             }
 
-            Log.Info("[Unit] distance: {0} -> {1} ({2})", model.Distance.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] distance: {0} -> {1} ({2})", DoubleHelper.ToString(model.Distance),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.Distance = val;
@@ -6635,20 +6604,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(visibilityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(visibilityTextBox.Text, out val))
             {
-                visibilityTextBox.Text = model.Visibility.ToString(CultureInfo.InvariantCulture);
+                visibilityTextBox.Text = DoubleHelper.ToString(model.Visibility);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.Visibility) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.Visibility))
             {
                 return;
             }
 
-            Log.Info("[Unit] visibility: {0} -> {1} ({2})", model.Visibility.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+            Log.Info("[Unit] visibility: {0} -> {1} ({2})", DoubleHelper.ToString(model.Visibility),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.Visibility = val;
@@ -6685,23 +6654,21 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(surfaceDetectionCapabilityTextBox.Text, NumberStyles.Float,
-                CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(surfaceDetectionCapabilityTextBox.Text, out val))
             {
-                surfaceDetectionCapabilityTextBox.Text =
-                    model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture);
+                surfaceDetectionCapabilityTextBox.Text = DoubleHelper.ToString(model.SurfaceDetectionCapability);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SurfaceDetectionCapability) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SurfaceDetectionCapability))
             {
                 return;
             }
 
             Log.Info("[Unit] surface detection capability: {0} -> {1} ({2})",
-                model.SurfaceDetectionCapability.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+                DoubleHelper.ToString(model.SurfaceDetectionCapability), DoubleHelper.ToString(val),
+                unit.GetModelName(index));
 
             // 値を更新する
             model.SurfaceDetectionCapability = val;
@@ -6738,22 +6705,21 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(subDetectionCapabilityTextBox.Text, NumberStyles.Float,
-                CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(subDetectionCapabilityTextBox.Text, out val))
             {
-                subDetectionCapabilityTextBox.Text = model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture);
+                subDetectionCapabilityTextBox.Text = DoubleHelper.ToString(model.SubDetectionCapability);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.SubDetectionCapability) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.SubDetectionCapability))
             {
                 return;
             }
 
             Log.Info("[Unit] sub detection capability: {0} -> {1} ({2})",
-                model.SubDetectionCapability.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+                DoubleHelper.ToString(model.SubDetectionCapability), DoubleHelper.ToString(val),
+                unit.GetModelName(index));
 
             // 値を更新する
             model.SubDetectionCapability = val;
@@ -6790,22 +6756,21 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(airDetectionCapabilityTextBox.Text, NumberStyles.Float,
-                CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(airDetectionCapabilityTextBox.Text, out val))
             {
-                airDetectionCapabilityTextBox.Text = model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture);
+                airDetectionCapabilityTextBox.Text = DoubleHelper.ToString(model.AirDetectionCapability);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.AirDetectionCapability) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.AirDetectionCapability))
             {
                 return;
             }
 
             Log.Info("[Unit] air detection capablity: {0} -> {1} ({2})",
-                model.AirDetectionCapability.ToString(CultureInfo.InvariantCulture),
-                val.ToString(CultureInfo.InvariantCulture), unit.GetModelName(index));
+                DoubleHelper.ToString(model.AirDetectionCapability), DoubleHelper.ToString(val),
+                unit.GetModelName(index));
 
             // 値を更新する
             model.AirDetectionCapability = val;
@@ -6842,21 +6807,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(noFuelCombatModTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(noFuelCombatModTextBox.Text, out val))
             {
-                noFuelCombatModTextBox.Text = model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture);
+                noFuelCombatModTextBox.Text = DoubleHelper.ToString(model.NoFuelCombatMod);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - model.NoFuelCombatMod) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, model.NoFuelCombatMod))
             {
                 return;
             }
 
-            Log.Info("[Unit] no fuel combat mod: {0} -> {1} ({2})",
-                model.NoFuelCombatMod.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index));
+            Log.Info("[Unit] no fuel combat mod: {0} -> {1} ({2})", DoubleHelper.ToString(model.NoFuelCombatMod),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             model.NoFuelCombatMod = val;
@@ -7022,7 +6986,7 @@ namespace HoI2Editor.Forms
 
             // 編集項目の値を更新する
             resourceComboBox.SelectedIndex = (int) equipment.Resource;
-            quantityTextBox.Text = equipment.Quantity.ToString(CultureInfo.InvariantCulture);
+            quantityTextBox.Text = DoubleHelper.ToString(equipment.Quantity);
 
             // 編集項目の色を更新する
             quantityTextBox.ForeColor = equipment.IsDirty(UnitEquipmentItemId.Quantity)
@@ -7135,21 +7099,20 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(quantityTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(quantityTextBox.Text, out val))
             {
-                quantityTextBox.Text = equipment.Quantity.ToString(CultureInfo.InvariantCulture);
+                quantityTextBox.Text = DoubleHelper.ToString(equipment.Quantity);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - equipment.Quantity) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, equipment.Quantity))
             {
                 return;
             }
 
-            Log.Info("[Unit] equipment quantity: {0} -> {1} ({2})",
-                equipment.Quantity.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                unit.GetModelName(index));
+            Log.Info("[Unit] equipment quantity: {0} -> {1} ({2})", DoubleHelper.ToString(equipment.Quantity),
+                DoubleHelper.ToString(val), unit.GetModelName(index));
 
             // 値を更新する
             equipment.Quantity = val;
@@ -7346,7 +7309,7 @@ namespace HoI2Editor.Forms
         private static ListViewItem CreateEquipmentListItem(UnitEquipment equipment)
         {
             var item = new ListViewItem { Text = Config.GetText(Units.EquipmentNames[(int) equipment.Resource]) };
-            item.SubItems.Add(equipment.Quantity.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(DoubleHelper.ToString(equipment.Quantity));
 
             return item;
         }

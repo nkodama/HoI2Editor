@@ -1539,8 +1539,16 @@ namespace HoI2Editor.Models
     {
         Type, // type
         Id, // id
-        StartDate, // 開始日時
-        EndDate, // 終了日時
+        StartYear, // 開始年
+        StartMonth, // 開始月
+        StartDay, // 開始日
+        EndYear, // 終了年
+        EndMonth, // 終了月
+        EndDay, // 終了日
+        AttackerType, // 攻撃側type
+        AttackerId, // 攻撃側id
+        DefenderType, // 防御側type
+        DefenderId, // 防御側id
     }
 
     /// <summary>
@@ -1552,8 +1560,12 @@ namespace HoI2Editor.Models
         Id, // id
         Country1, // 対象国1
         Country2, // 対象国2
-        StartDate, // 開始日時
-        EndDate, // 終了日時
+        StartYear, // 開始年
+        StartMonth, // 開始月
+        StartDay, // 開始日
+        EndYear, // 終了年
+        EndMonth, // 終了月
+        EndDay, // 終了日
         Money, // 資金
         Supplies, // 物資
         Energy, // エネルギー
@@ -1570,7 +1582,10 @@ namespace HoI2Editor.Models
     {
         Value, // 関係値
         Access, // 通行許可
-        Guaranteed, // 独立保証期限
+        Guaranteed, // 独立保証
+        GuaranteedYear, // 独立保障期限年
+        GuaranteedMonth, // 独立保障期限月
+        GuaranteedDay, // 独立保障期限日
     }
 
     #endregion

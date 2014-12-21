@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
@@ -4367,9 +4366,8 @@ namespace HoI2Editor.Models
         /// <returns>選択肢の文字列</returns>
         public static string GetItemChoice(MiscItemId id, int index)
         {
-            return index.ToString(CultureInfo.InvariantCulture) + ": "
-                   + HoI2Editor.GetResourceString("MiscEnum" + ItemNames[(int) id]
-                                                  + index.ToString(CultureInfo.InvariantCulture));
+            string s = IntHelper.ToString(index);
+            return s + ": " + HoI2Editor.GetResourceString("MiscEnum" + ItemNames[(int) id] + s);
         }
 
         /// <summary>
@@ -4460,7 +4458,7 @@ namespace HoI2Editor.Models
         /// <returns>文字列</returns>
         private static string GetDbl1MinusOneString(double val)
         {
-            return Math.Abs(val - (-1)) < 0.0000005 ? "-1" : DoubleHelper.ToString1(val);
+            return DoubleHelper.IsEqual(val, -1) ? "-1" : DoubleHelper.ToString1(val);
         }
 
         /// <summary>
@@ -4470,7 +4468,8 @@ namespace HoI2Editor.Models
         /// <returns>文字列</returns>
         private static string GetDbl1Dda134String(double val)
         {
-            return ((Game.Type == GameType.HeartsOfIron2 && Game.Version >= 130) || Game.Type == GameType.DarkestHour)
+            return (((Game.Type == GameType.HeartsOfIron2) && (Game.Version >= 130)) ||
+                    (Game.Type == GameType.DarkestHour))
                 ? DoubleHelper.ToString4(val)
                 : DoubleHelper.ToString1(val);
         }

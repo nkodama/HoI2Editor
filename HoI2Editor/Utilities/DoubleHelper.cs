@@ -11,12 +11,24 @@ namespace HoI2Editor.Utilities
         #region 数値比較
 
         /// <summary>
+        ///     数値が等しいかを判定する
+        /// </summary>
+        /// <param name="val1">数値1</param>
+        /// <param name="val2">数値2</param>
+        /// <returns>数値が等しければtrueを返す</returns>
+        public static bool IsEqual(double val1, double val2)
+        {
+            // 小数点以下6桁まで考慮する
+            return Math.Abs(val1 - val2) <= 0.0000005;
+        }
+
+        /// <summary>
         ///     数値が等しいかを判定する (小数点以下なし)
         /// </summary>
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool Equals0(double val1, double val2)
+        public static bool IsEqual0(double val1, double val2)
         {
             return Math.Abs(val1 - val2) <= 0.5;
         }
@@ -27,7 +39,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool Equals1(double val1, double val2)
+        public static bool IsEqual1(double val1, double val2)
         {
             return Math.Abs(val1 - val2) <= 0.05;
         }
@@ -38,7 +50,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool Equals2(double val1, double val2)
+        public static bool IsEqual2(double val1, double val2)
         {
             return Math.Abs(val1 - val2) <= 0.005;
         }
@@ -49,7 +61,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool Equals3(double val1, double val2)
+        public static bool IsEqual3(double val1, double val2)
         {
             return Math.Abs(val1 - val2) <= 0.0005;
         }
@@ -60,7 +72,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool Equals4(double val1, double val2)
+        public static bool IsEqual4(double val1, double val2)
         {
             return Math.Abs(val1 - val2) <= 0.00005;
         }
@@ -71,7 +83,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool Equals5(double val1, double val2)
+        public static bool IsEqual5(double val1, double val2)
         {
             return Math.Abs(val1 - val2) <= 0.000005;
         }
@@ -82,7 +94,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool Equals6(double val1, double val2)
+        public static bool IsEqual6(double val1, double val2)
         {
             return Math.Abs(val1 - val2) <= 0.0000005;
         }
@@ -94,12 +106,22 @@ namespace HoI2Editor.Utilities
         /// <returns>数値が0に等しければtrueを返す</returns>
         public static bool IsZero(double val)
         {
-            return Math.Abs(val) <= 0.00005;
+            return Math.Abs(val) <= 0.0000005;
         }
 
         #endregion
 
         #region 文字列変換
+
+        /// <summary>
+        ///     文字列に変換する
+        /// </summary>
+        /// <param name="val">変換対象の値</param>
+        /// <returns>変換後の文字列</returns>
+        public static string ToString(double val)
+        {
+            return val.ToString(CultureInfo.InvariantCulture);
+        }
 
         /// <summary>
         ///     文字列に変換する (小数点以下なし)
@@ -270,6 +292,21 @@ namespace HoI2Editor.Utilities
             }
             // 小数点以下5桁を保証する
             return val.ToString("F5", CultureInfo.InvariantCulture);
+        }
+
+        #endregion
+
+        #region 数値変換
+
+        /// <summary>
+        ///     文字列を数値に変換する
+        /// </summary>
+        /// <param name="s">変換対象の文字列</param>
+        /// <param name="val">変換後の値</param>
+        /// <returns>変換が成功すればtrueを返す</returns>
+        public static bool TryParse(string s, out double val)
+        {
+            return double.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out val);
         }
 
         #endregion

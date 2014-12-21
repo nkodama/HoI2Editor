@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Globalization;
 using System.IO;
 using System.Text;
 using HoI2Editor.Models;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Parsers
 {
@@ -380,7 +380,7 @@ namespace HoI2Editor.Parsers
 
             // 数字トークンを返す
             double d;
-            if (double.TryParse(sb.ToString(), NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            if (DoubleHelper.TryParse(sb.ToString(), out d))
             {
                 return new Token { Type = TokenType.Number, Value = d };
             }

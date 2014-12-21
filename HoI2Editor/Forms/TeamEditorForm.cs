@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -1209,11 +1208,11 @@ namespace HoI2Editor.Forms
                 Text = Countries.Strings[(int) team.Country],
                 Tag = team
             };
-            item.SubItems.Add(team.Id.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(IntHelper.ToString(team.Id));
             item.SubItems.Add(team.Name);
-            item.SubItems.Add(team.Skill.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(team.StartYear.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(team.EndYear.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(IntHelper.ToString(team.Skill));
+            item.SubItems.Add(IntHelper.ToString(team.StartYear));
+            item.SubItems.Add(IntHelper.ToString(team.EndYear));
             item.SubItems.Add("");
 
             return item;
@@ -1512,10 +1511,10 @@ namespace HoI2Editor.Forms
             }
 
             // 無効化時にクリアした文字列を再設定する
-            idNumericUpDown.Text = idNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            skillNumericUpDown.Text = skillNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            startYearNumericUpDown.Text = startYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            endYearNumericUpDown.Text = endYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            idNumericUpDown.Text = IntHelper.ToString((int) idNumericUpDown.Value);
+            skillNumericUpDown.Text = IntHelper.ToString((int) skillNumericUpDown.Value);
+            startYearNumericUpDown.Text = IntHelper.ToString((int) startYearNumericUpDown.Value);
+            endYearNumericUpDown.Text = IntHelper.ToString((int) endYearNumericUpDown.Value);
 
             cloneButton.Enabled = true;
             removeButton.Enabled = true;
@@ -1751,7 +1750,7 @@ namespace HoI2Editor.Forms
             team.Id = id;
 
             // 研究機関リストビューの項目を更新する
-            teamListView.SelectedItems[0].SubItems[1].Text = team.Id.ToString(CultureInfo.InvariantCulture);
+            teamListView.SelectedItems[0].SubItems[1].Text = IntHelper.ToString(team.Id);
 
             // 編集済みフラグを設定する
             team.SetDirty(TeamItemId.Id);
@@ -1841,8 +1840,7 @@ namespace HoI2Editor.Forms
             team.Skill = skill;
 
             // 研究機関リストビューの項目を更新する
-            teamListView.SelectedItems[0].SubItems[3].Text =
-                team.Skill.ToString(CultureInfo.InvariantCulture);
+            teamListView.SelectedItems[0].SubItems[3].Text = IntHelper.ToString(team.Skill);
 
             // 編集済みフラグを設定する
             team.SetDirty(TeamItemId.Skill);
@@ -1882,8 +1880,7 @@ namespace HoI2Editor.Forms
             team.StartYear = startYear;
 
             // 研究機関リストビューの項目を更新する
-            teamListView.SelectedItems[0].SubItems[4].Text =
-                team.StartYear.ToString(CultureInfo.InvariantCulture);
+            teamListView.SelectedItems[0].SubItems[4].Text = IntHelper.ToString(team.StartYear);
 
             // 編集済みフラグを設定する
             team.SetDirty(TeamItemId.StartYear);
@@ -1920,8 +1917,7 @@ namespace HoI2Editor.Forms
             team.EndYear = endYear;
 
             // 研究機関リストビューの項目を更新する
-            teamListView.SelectedItems[0].SubItems[5].Text =
-                team.EndYear.ToString(CultureInfo.InvariantCulture);
+            teamListView.SelectedItems[0].SubItems[5].Text = IntHelper.ToString(team.EndYear);
 
             // 編集済みフラグを設定する
             team.SetDirty(TeamItemId.EndYear);
@@ -2575,15 +2571,15 @@ namespace HoI2Editor.Forms
 
             if (items[(int) TeamBatchItemId.Skill])
             {
-                sb.AppendFormat(" skill: {0}", startYear.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" skill: {0}", startYear);
             }
             if (items[(int) TeamBatchItemId.StartYear])
             {
-                sb.AppendFormat(" start year: {0}", startYear.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" start year: {0}", startYear);
             }
             if (items[(int) TeamBatchItemId.EndYear])
             {
-                sb.AppendFormat(" end year: {0}", endYear.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" end year: {0}", endYear);
             }
 
             Log.Verbose("[Team] Batch{0} ({1})", sb, countries);

@@ -136,18 +136,6 @@
     <value>人物</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>国旗拡張子</value>
-  </data>
-  <data name="aiLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 12</value>
-  </data>
-  <data name="aiLabel.Text" xml:space="preserve">
-    <value>AIファイル名</value>
-  </data>
   <data name="countryNameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
   </data>
@@ -171,6 +159,12 @@
   </data>
   <data name="tradeOilLabel.Text" xml:space="preserve">
     <value>石油</value>
+  </data>
+  <data name="tradeMetalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="tradeMetalLabel.Text" xml:space="preserve">
+    <value>金属</value>
   </data>
   <data name="tradeSuppliesLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -352,6 +346,24 @@
   <data name="relationTabPage.Text" xml:space="preserve">
     <value>関係</value>
   </data>
+  <data name="warDefenderLeaderButton.Text" xml:space="preserve">
+    <value>リーダーに設定</value>
+  </data>
+  <data name="warAttackerLeaderButton.Text" xml:space="preserve">
+    <value>リーダーに設定</value>
+  </data>
+  <data name="warEndDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="warEndDateLabel.Text" xml:space="preserve">
+    <value>終了日時</value>
+  </data>
+  <data name="warStartDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="warStartDateLabel.Text" xml:space="preserve">
+    <value>開始日時</value>
+  </data>
   <data name="warDefenderLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 12</value>
   </data>
@@ -390,6 +402,12 @@
   </data>
   <data name="warGroupBox.Text" xml:space="preserve">
     <value>戦争</value>
+  </data>
+  <data name="allianceNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="allianceNameLabel.Text" xml:space="preserve">
+    <value>名前</value>
   </data>
   <data name="allianceParticipantColumnHeader.Text" xml:space="preserve">
     <value>参加国</value>

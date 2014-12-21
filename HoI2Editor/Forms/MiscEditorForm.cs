@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
@@ -446,7 +445,7 @@ namespace HoI2Editor.Forms
                         {
                             if (page == 1)
                             {
-                                tabPage.Text += page.ToString(CultureInfo.InvariantCulture);
+                                tabPage.Text += IntHelper.ToString(page);
                             }
                             tabPage.Tag = table;
                             miscTabControl.TabPages.Add(tabPage);
@@ -454,7 +453,7 @@ namespace HoI2Editor.Forms
                             page++;
                             tabPage = new TabPage
                             {
-                                Text = Misc.GetSectionName(section) + page.ToString(CultureInfo.InvariantCulture),
+                                Text = Misc.GetSectionName(section) + IntHelper.ToString(page),
                                 BackColor = SystemColors.Control
                             };
                             table = new List<List<MiscItemId>>();
@@ -792,7 +791,7 @@ namespace HoI2Editor.Forms
                 case MiscItemType.RangedDblMinusOne1:
                 case MiscItemType.RangedDbl0:
                 case MiscItemType.NonNegIntNegDbl:
-                    if (!double.TryParse(textBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+                    if (!DoubleHelper.TryParse(textBox.Text, out d))
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -834,7 +833,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.NonNegIntMinusOne:
-                    if (i < 0 && i != -1)
+                    if ((i < 0) && (i != -1))
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -842,7 +841,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.RangedInt:
-                    if (i < Misc.IntMinValues[id] || i > Misc.IntMaxValues[id])
+                    if ((i < Misc.IntMinValues[id]) || (i > Misc.IntMaxValues[id]))
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -858,7 +857,7 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.RangedIntMinusOne:
-                    if ((i < Misc.IntMinValues[id] || i > Misc.IntMaxValues[id]) && i != -1)
+                    if (((i < Misc.IntMinValues[id]) || (i > Misc.IntMaxValues[id])) && (i != -1))
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -866,8 +865,8 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MiscItemType.RangedIntMinusThree:
-                    if ((i < Misc.IntMinValues[id] || i > Misc.IntMaxValues[id]) && i != -1 && i != -2 &&
-                        i != -3)
+                    if (((i < Misc.IntMinValues[id]) || (i > Misc.IntMaxValues[id])) && (i != -1) && (i != -2) &&
+                        (i != -3))
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -912,7 +911,7 @@ namespace HoI2Editor.Forms
 
                 case MiscItemType.NonNegDblMinusOne:
                 case MiscItemType.NonNegDblMinusOne1:
-                    if (d < 0 && Math.Abs(d - (-1)) > 0.00005)
+                    if ((d < 0) && !DoubleHelper.IsEqual(d, -1))
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -921,7 +920,7 @@ namespace HoI2Editor.Forms
 
                 case MiscItemType.RangedDbl:
                 case MiscItemType.RangedDbl0:
-                    if (d < Misc.DblMinValues[id] || d > Misc.DblMaxValues[id])
+                    if ((d < Misc.DblMinValues[id]) || (d > Misc.DblMaxValues[id]))
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -930,8 +929,7 @@ namespace HoI2Editor.Forms
 
                 case MiscItemType.RangedDblMinusOne:
                 case MiscItemType.RangedDblMinusOne1:
-                    if ((d < Misc.DblMinValues[id] || d > Misc.DblMaxValues[id]) &&
-                        Math.Abs(d - (-1)) > 0.00005)
+                    if (((d < Misc.DblMinValues[id]) || (d > Misc.DblMaxValues[id])) && !DoubleHelper.IsEqual(d, -1))
                     {
                         textBox.Text = Misc.GetString(id);
                         return;
@@ -981,7 +979,7 @@ namespace HoI2Editor.Forms
                 case MiscItemType.RangedDblMinusOne1:
                 case MiscItemType.RangedDbl0:
                 case MiscItemType.NonNegIntNegDbl:
-                    if (Math.Abs(d - (double) Misc.GetItem(id)) <= 0.00005)
+                    if (DoubleHelper.IsEqual(d, (double) Misc.GetItem(id)))
                     {
                         return;
                     }

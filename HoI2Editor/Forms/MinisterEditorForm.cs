@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -998,12 +997,10 @@ namespace HoI2Editor.Forms
                 Text = Countries.Strings[(int) minister.Country],
                 Tag = minister
             };
-            item.SubItems.Add(minister.Id.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(IntHelper.ToString(minister.Id));
             item.SubItems.Add(minister.Name);
-            item.SubItems.Add(minister.StartYear.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(Misc.UseNewMinisterFilesFormat
-                ? minister.EndYear.ToString(CultureInfo.InvariantCulture)
-                : "");
+            item.SubItems.Add(IntHelper.ToString(minister.StartYear));
+            item.SubItems.Add(Misc.UseNewMinisterFilesFormat ? IntHelper.ToString(minister.EndYear) : "");
             item.SubItems.Add(Config.GetText(Ministers.PositionNames[(int) minister.Position]));
             item.SubItems.Add(Config.GetText(Ministers.Personalities[minister.Personality].Name));
             item.SubItems.Add(Config.GetText(Ministers.IdeologyNames[(int) minister.Ideology]));
@@ -1279,7 +1276,7 @@ namespace HoI2Editor.Forms
                 endYearLabel.Enabled = true;
                 endYearNumericUpDown.Enabled = true;
                 endYearNumericUpDown.Value = minister.EndYear;
-                endYearNumericUpDown.Text = endYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                endYearNumericUpDown.Text = IntHelper.ToString((int) endYearNumericUpDown.Value);
             }
             else
             {
@@ -1292,8 +1289,7 @@ namespace HoI2Editor.Forms
                 retirementYearLabel.Enabled = true;
                 retirementYearNumericUpDown.Enabled = true;
                 retirementYearNumericUpDown.Value = minister.RetirementYear;
-                retirementYearNumericUpDown.Text =
-                    retirementYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                retirementYearNumericUpDown.Text = IntHelper.ToString((int) retirementYearNumericUpDown.Value);
             }
             else
             {
@@ -1360,19 +1356,18 @@ namespace HoI2Editor.Forms
             pictureNameReferButton.Enabled = true;
 
             // 無効化時にクリアした文字列を再設定する
-            idNumericUpDown.Text = idNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            startYearNumericUpDown.Text = startYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            idNumericUpDown.Text = IntHelper.ToString((int) idNumericUpDown.Value);
+            startYearNumericUpDown.Text = IntHelper.ToString((int) startYearNumericUpDown.Value);
 
             if (Misc.UseNewMinisterFilesFormat)
             {
                 endYearNumericUpDown.Enabled = true;
-                endYearNumericUpDown.Text = endYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                endYearNumericUpDown.Text = IntHelper.ToString((int) endYearNumericUpDown.Value);
             }
             if (Misc.EnableRetirementYearMinisters)
             {
                 retirementYearNumericUpDown.Enabled = true;
-                retirementYearNumericUpDown.Text =
-                    retirementYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+                retirementYearNumericUpDown.Text = IntHelper.ToString((int) retirementYearNumericUpDown.Value);
             }
 
             cloneButton.Enabled = true;
@@ -1763,7 +1758,7 @@ namespace HoI2Editor.Forms
             minister.Id = id;
 
             // 閣僚リストビューの項目を更新する
-            ministerListView.SelectedItems[0].SubItems[1].Text = minister.Id.ToString(CultureInfo.InvariantCulture);
+            ministerListView.SelectedItems[0].SubItems[1].Text = IntHelper.ToString(minister.Id);
 
             // 編集済みフラグを設定する
             minister.SetDirty(MinisterItemId.Id);
@@ -1848,8 +1843,7 @@ namespace HoI2Editor.Forms
             minister.StartYear = startYear;
 
             // 閣僚リストビューの項目を更新する
-            ministerListView.SelectedItems[0].SubItems[3].Text =
-                minister.StartYear.ToString(CultureInfo.InvariantCulture);
+            ministerListView.SelectedItems[0].SubItems[3].Text = IntHelper.ToString(minister.StartYear);
 
             // 編集済みフラグを設定する
             minister.SetDirty(MinisterItemId.StartYear);
@@ -1886,8 +1880,7 @@ namespace HoI2Editor.Forms
             minister.EndYear = endYear;
 
             // 閣僚リストビューの項目を更新する
-            ministerListView.SelectedItems[0].SubItems[4].Text =
-                minister.EndYear.ToString(CultureInfo.InvariantCulture);
+            ministerListView.SelectedItems[0].SubItems[4].Text = IntHelper.ToString(minister.EndYear);
 
             // 編集済みフラグを設定する
             minister.SetDirty(MinisterItemId.EndYear);
@@ -2426,15 +2419,15 @@ namespace HoI2Editor.Forms
 
             if (items[(int) MinisterBatchItemId.StartYear])
             {
-                sb.AppendFormat(" start year: {0}", startYear.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" start year: {0}", startYear);
             }
             if (items[(int) MinisterBatchItemId.EndYear])
             {
-                sb.AppendFormat(" end year: {0}", endYear.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" end year: {0}", endYear);
             }
             if (items[(int) MinisterBatchItemId.RetirementYear])
             {
-                sb.AppendFormat(" retirement year: {0}", retirementYear.ToString(CultureInfo.InvariantCulture));
+                sb.AppendFormat(" retirement year: {0}", retirementYear);
             }
             if (items[(int) MinisterBatchItemId.Ideology])
             {

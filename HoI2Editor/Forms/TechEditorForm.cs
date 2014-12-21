@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -1778,9 +1777,8 @@ namespace HoI2Editor.Forms
                 {
                     if (info.Item is TechItem)
                     {
-                        techPositionListView.Items[i].Text = info.Position.X.ToString(CultureInfo.InvariantCulture);
-                        techPositionListView.Items[i].SubItems[1].Text =
-                            info.Position.Y.ToString(CultureInfo.InvariantCulture);
+                        techPositionListView.Items[i].Text = IntHelper.ToString(info.Position.X);
+                        techPositionListView.Items[i].SubItems[1].Text = IntHelper.ToString(info.Position.Y);
                         techXNumericUpDown.Value = info.Position.X;
                         techYNumericUpDown.Value = info.Position.Y;
                         techXNumericUpDown.ForeColor = Color.Red;
@@ -1788,9 +1786,8 @@ namespace HoI2Editor.Forms
                     }
                     else if (info.Item is TechLabel)
                     {
-                        labelPositionListView.Items[i].Text = info.Position.X.ToString(CultureInfo.InvariantCulture);
-                        labelPositionListView.Items[i].SubItems[1].Text =
-                            info.Position.Y.ToString(CultureInfo.InvariantCulture);
+                        labelPositionListView.Items[i].Text = IntHelper.ToString(info.Position.X);
+                        labelPositionListView.Items[i].SubItems[1].Text = IntHelper.ToString(info.Position.Y);
                         labelXNumericUpDown.Value = info.Position.X;
                         labelYNumericUpDown.Value = info.Position.Y;
                         labelXNumericUpDown.ForeColor = Color.Red;
@@ -1798,9 +1795,8 @@ namespace HoI2Editor.Forms
                     }
                     else
                     {
-                        eventPositionListView.Items[i].Text = info.Position.X.ToString(CultureInfo.InvariantCulture);
-                        eventPositionListView.Items[i].SubItems[1].Text =
-                            info.Position.Y.ToString(CultureInfo.InvariantCulture);
+                        eventPositionListView.Items[i].Text = IntHelper.ToString(info.Position.X);
+                        eventPositionListView.Items[i].SubItems[1].Text = IntHelper.ToString(info.Position.Y);
                         eventXNumericUpDown.Value = info.Position.X;
                         eventYNumericUpDown.Value = info.Position.Y;
                         eventXNumericUpDown.ForeColor = Color.Red;
@@ -1966,8 +1962,8 @@ namespace HoI2Editor.Forms
             editTabControl.TabPages[(int) TechEditorTab.Tech].Enabled = true;
 
             // 無効化時にクリアした値を再設定する
-            techIdNumericUpDown.Text = techIdNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            techYearNumericUpDown.Text = techYearNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            techIdNumericUpDown.Text = IntHelper.ToString((int) techIdNumericUpDown.Value);
+            techYearNumericUpDown.Text = IntHelper.ToString((int) techYearNumericUpDown.Value);
         }
 
         /// <summary>
@@ -2000,8 +1996,8 @@ namespace HoI2Editor.Forms
 
             foreach (TechPosition position in item.Positions)
             {
-                var li = new ListViewItem(position.X.ToString(CultureInfo.InvariantCulture));
-                li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+                var li = new ListViewItem(IntHelper.ToString(position.X));
+                li.SubItems.Add(IntHelper.ToString(position.Y));
                 techPositionListView.Items.Add(li);
             }
 
@@ -2029,8 +2025,8 @@ namespace HoI2Editor.Forms
         private void EnableTechPositionItems()
         {
             // 無効化時にクリアした値を再設定する
-            techXNumericUpDown.Text = techXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            techYNumericUpDown.Text = techYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            techXNumericUpDown.Text = IntHelper.ToString((int) techXNumericUpDown.Value);
+            techYNumericUpDown.Text = IntHelper.ToString((int) techYNumericUpDown.Value);
 
             // 編集項目を有効化する
             techXNumericUpDown.Enabled = true;
@@ -2333,7 +2329,7 @@ namespace HoI2Editor.Forms
             position.X = x;
 
             // 座標リストビューの表示を更新する
-            techPositionListView.Items[index].Text = x.ToString(CultureInfo.InvariantCulture);
+            techPositionListView.Items[index].Text = IntHelper.ToString(x);
 
             // ラベルの位置を更新する
             foreach (Label label in treePictureBox.Controls)
@@ -2390,7 +2386,7 @@ namespace HoI2Editor.Forms
             position.Y = y;
 
             // 座標リストビューの表示を更新する
-            techPositionListView.Items[index].SubItems[1].Text = y.ToString(CultureInfo.InvariantCulture);
+            techPositionListView.Items[index].SubItems[1].Text = IntHelper.ToString(y);
 
             // ラベルの位置を更新する
             foreach (Label label in treePictureBox.Controls)
@@ -2440,8 +2436,8 @@ namespace HoI2Editor.Forms
             position.SetDirtyAll();
 
             // 座標リストビューの項目を追加する
-            var li = new ListViewItem { Text = position.X.ToString(CultureInfo.InvariantCulture) };
-            li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+            var li = new ListViewItem { Text = IntHelper.ToString(position.X) };
+            li.SubItems.Add(IntHelper.ToString(position.Y));
             techPositionListView.Items.Add(li);
 
             // 追加した項目を選択する
@@ -2529,12 +2525,9 @@ namespace HoI2Editor.Forms
                 ? Color.Red
                 : SystemColors.WindowText;
 
-            string fileName =
-                Game.GetReadFileName(Game.TechPicturePathName,
-                    string.Format("{0}.bmp",
-                        string.IsNullOrEmpty(item.PictureName)
-                            ? item.Id.ToString(CultureInfo.InvariantCulture)
-                            : item.PictureName));
+            string fileName = Game.GetReadFileName(Game.TechPicturePathName,
+                string.Format("{0}.bmp",
+                    string.IsNullOrEmpty(item.PictureName) ? IntHelper.ToString(item.Id) : item.PictureName));
             if (File.Exists(fileName))
             {
                 // 技術画像を更新する
@@ -2694,7 +2687,7 @@ namespace HoI2Editor.Forms
 
             foreach (int id in item.AndRequiredTechs.Select(tech => tech.Id))
             {
-                var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
+                var li = new ListViewItem { Text = IntHelper.ToString(id) };
                 if (Techs.TechIdMap.ContainsKey(id))
                 {
                     li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -2732,7 +2725,7 @@ namespace HoI2Editor.Forms
 
             foreach (int id in item.OrRequiredTechs.Select(tech => tech.Id))
             {
-                var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
+                var li = new ListViewItem { Text = IntHelper.ToString(id) };
                 if (Techs.TechIdMap.ContainsKey(id))
                 {
                     li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -2764,7 +2757,7 @@ namespace HoI2Editor.Forms
         private void EnableAndRequiredItems()
         {
             // 無効化時にクリアした値を再設定する
-            andIdNumericUpDown.Text = andIdNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            andIdNumericUpDown.Text = IntHelper.ToString((int) andIdNumericUpDown.Value);
 
             // 編集項目を有効化する
             andIdNumericUpDown.Enabled = true;
@@ -2796,7 +2789,7 @@ namespace HoI2Editor.Forms
         private void EnableOrRequiredItems()
         {
             // 無効化時にクリアした値を再設定する
-            orIdNumericUpDown.Text = orIdNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            orIdNumericUpDown.Text = IntHelper.ToString((int) orIdNumericUpDown.Value);
 
             // 編集項目を有効化する
             orIdNumericUpDown.Enabled = true;
@@ -3358,7 +3351,7 @@ namespace HoI2Editor.Forms
         private void AddAndRequiredListItem(int id)
         {
             // リストに項目を追加する
-            var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
+            var li = new ListViewItem { Text = IntHelper.ToString(id) };
             if (Techs.TechIdMap.ContainsKey(id))
             {
                 li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -3382,7 +3375,7 @@ namespace HoI2Editor.Forms
         private void AddOrRequiredListItem(int id)
         {
             // リストに項目を追加する
-            var li = new ListViewItem { Text = id.ToString(CultureInfo.InvariantCulture) };
+            var li = new ListViewItem { Text = IntHelper.ToString(id) };
             if (Techs.TechIdMap.ContainsKey(id))
             {
                 li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -3407,7 +3400,7 @@ namespace HoI2Editor.Forms
         private void ModifyAndRequiredListItem(int id, int index)
         {
             andRequiredListView.Items[index].SubItems.Clear();
-            andRequiredListView.Items[index].Text = id.ToString(CultureInfo.InvariantCulture);
+            andRequiredListView.Items[index].Text = IntHelper.ToString(id);
             if (Techs.TechIdMap.ContainsKey(id))
             {
                 andRequiredListView.Items[index].SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -3422,7 +3415,7 @@ namespace HoI2Editor.Forms
         private void ModifyOrRequiredListItem(int id, int index)
         {
             orRequiredListView.Items[index].SubItems.Clear();
-            orRequiredListView.Items[index].Text = id.ToString(CultureInfo.InvariantCulture);
+            orRequiredListView.Items[index].Text = IntHelper.ToString(id);
             if (Techs.TechIdMap.ContainsKey(id))
             {
                 orRequiredListView.Items[index].SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -3576,9 +3569,8 @@ namespace HoI2Editor.Forms
         private void EnableComponentItems()
         {
             // 無効化時にクリアした値を再設定する
-            componentIdNumericUpDown.Text = componentIdNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            componentDifficultyNumericUpDown.Text =
-                componentDifficultyNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            componentIdNumericUpDown.Text = IntHelper.ToString((int) componentIdNumericUpDown.Value);
+            componentDifficultyNumericUpDown.Text = IntHelper.ToString((int) componentDifficultyNumericUpDown.Value);
 
             // 編集項目を有効化する
             componentIdNumericUpDown.Enabled = true;
@@ -3994,7 +3986,7 @@ namespace HoI2Editor.Forms
             component.Id = id;
 
             // 小研究リストビューの項目を更新する
-            componentListView.Items[index].Text = id.ToString(CultureInfo.InvariantCulture);
+            componentListView.Items[index].Text = IntHelper.ToString(id);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4161,7 +4153,7 @@ namespace HoI2Editor.Forms
             component.Difficulty = difficulty;
 
             // 小研究リストビューの項目を更新する
-            componentListView.Items[index].SubItems[3].Text = difficulty.ToString(CultureInfo.InvariantCulture);
+            componentListView.Items[index].SubItems[3].Text = IntHelper.ToString(difficulty);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4239,10 +4231,10 @@ namespace HoI2Editor.Forms
         /// <returns>小研究リストの項目</returns>
         private static ListViewItem CreateComponentListItem(TechComponent component)
         {
-            var li = new ListViewItem { Text = component.Id.ToString(CultureInfo.InvariantCulture) };
+            var li = new ListViewItem { Text = IntHelper.ToString(component.Id) };
             li.SubItems.Add(component.ToString());
             li.SubItems.Add(Techs.GetSpecialityName(component.Speciality));
-            li.SubItems.Add(component.Difficulty.ToString(CultureInfo.InvariantCulture));
+            li.SubItems.Add(IntHelper.ToString(component.Difficulty));
             li.SubItems.Add(component.DoubleTime ? Resources.Yes : Resources.No);
 
             return li;
@@ -4999,7 +4991,7 @@ namespace HoI2Editor.Forms
             }
 
             double val;
-            if (double.TryParse(commandWhichComboBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (DoubleHelper.TryParse(commandWhichComboBox.Text, out val))
             {
                 // 値に変化がなければ何もしない
                 if (ObjectHelper.IsEqual(val, command.Which))
@@ -5008,7 +5000,7 @@ namespace HoI2Editor.Forms
                 }
 
                 Log.Info("[Tech] Changed tech effect which: {0} -> {1} [{2}]", ObjectHelper.ToString(command.Which),
-                    ObjectHelper.ToString(val), item);
+                    DoubleHelper.ToString(val), item);
 
                 // 値を更新する
                 command.Which = val;
@@ -5073,7 +5065,7 @@ namespace HoI2Editor.Forms
             }
 
             double val;
-            if (double.TryParse(commandValueComboBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (DoubleHelper.TryParse(commandValueComboBox.Text, out val))
             {
                 // 値に変化がなければ何もしない
                 if (ObjectHelper.IsEqual(val, command.Value))
@@ -5082,7 +5074,7 @@ namespace HoI2Editor.Forms
                 }
 
                 Log.Info("[Tech] Changed tech effect value: {0} -> {1} [{2}]", ObjectHelper.ToString(command.Value),
-                    ObjectHelper.ToString(val), item);
+                    DoubleHelper.ToString(val), item);
 
                 // 値を更新する
                 command.Value = val;
@@ -5147,7 +5139,7 @@ namespace HoI2Editor.Forms
             }
 
             double val;
-            if (double.TryParse(commandWhenComboBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (DoubleHelper.TryParse(commandWhenComboBox.Text, out val))
             {
                 // 値に変化がなければ何もしない
                 if (ObjectHelper.IsEqual(val, command.When))
@@ -5156,7 +5148,7 @@ namespace HoI2Editor.Forms
                 }
 
                 Log.Info("[Tech] Changed tech effect when: {0} -> {1} [{2}]", ObjectHelper.ToString(command.When),
-                    ObjectHelper.ToString(val), item);
+                    DoubleHelper.ToString(val), item);
 
                 // 値を更新する
                 command.When = val;
@@ -5221,7 +5213,7 @@ namespace HoI2Editor.Forms
             }
 
             double val;
-            if (double.TryParse(commandWhereComboBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (DoubleHelper.TryParse(commandWhereComboBox.Text, out val))
             {
                 // 値に変化がなければ何もしない
                 if (ObjectHelper.IsEqual(val, command.Where))
@@ -5230,7 +5222,7 @@ namespace HoI2Editor.Forms
                 }
 
                 Log.Info("[Tech] Changed tech effect where: {0} -> {1} [{2}]", ObjectHelper.ToString(command.Where),
-                    ObjectHelper.ToString(val), item);
+                    DoubleHelper.ToString(val), item);
 
                 // 値を更新する
                 command.Where = val;
@@ -5407,8 +5399,8 @@ namespace HoI2Editor.Forms
             editTabControl.TabPages[5].Enabled = true;
 
             // 無効化時にクリアした値を再設定する
-            labelXNumericUpDown.Text = labelXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            labelYNumericUpDown.Text = labelYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            labelXNumericUpDown.Text = IntHelper.ToString((int) labelXNumericUpDown.Value);
+            labelYNumericUpDown.Text = IntHelper.ToString((int) labelYNumericUpDown.Value);
         }
 
         /// <summary>
@@ -5432,8 +5424,8 @@ namespace HoI2Editor.Forms
         private void EnableLabelPositionItems()
         {
             // 無効化時にクリアした値を再設定する
-            labelXNumericUpDown.Text = labelXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            labelYNumericUpDown.Text = labelYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            labelXNumericUpDown.Text = IntHelper.ToString((int) labelXNumericUpDown.Value);
+            labelYNumericUpDown.Text = IntHelper.ToString((int) labelYNumericUpDown.Value);
 
             // 編集項目を有効化する
             labelXNumericUpDown.Enabled = true;
@@ -5469,8 +5461,8 @@ namespace HoI2Editor.Forms
 
             foreach (TechPosition position in item.Positions)
             {
-                var listItem = new ListViewItem(position.X.ToString(CultureInfo.InvariantCulture));
-                listItem.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+                var listItem = new ListViewItem(IntHelper.ToString(position.X));
+                listItem.SubItems.Add(IntHelper.ToString(position.Y));
                 labelPositionListView.Items.Add(listItem);
             }
 
@@ -5633,7 +5625,7 @@ namespace HoI2Editor.Forms
             position.X = x;
 
             // ラベル座標リストビューの項目を更新する
-            labelPositionListView.Items[index].Text = x.ToString(CultureInfo.InvariantCulture);
+            labelPositionListView.Items[index].Text = IntHelper.ToString(x);
 
             // 技術ツリー上のラベルを移動する
             foreach (Label label in treePictureBox.Controls)
@@ -5691,7 +5683,7 @@ namespace HoI2Editor.Forms
             position.Y = y;
 
             // ラベル座標リストビューの項目を更新する
-            labelPositionListView.Items[index].SubItems[1].Text = y.ToString(CultureInfo.InvariantCulture);
+            labelPositionListView.Items[index].SubItems[1].Text = IntHelper.ToString(y);
 
             // 技術ツリー上のラベルを移動する
             foreach (Label label in treePictureBox.Controls)
@@ -5741,8 +5733,8 @@ namespace HoI2Editor.Forms
             position.SetDirtyAll();
 
             // ラベル座標リストビューの項目を追加する
-            var li = new ListViewItem { Text = position.X.ToString(CultureInfo.InvariantCulture) };
-            li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+            var li = new ListViewItem { Text = IntHelper.ToString(position.X) };
+            li.SubItems.Add(IntHelper.ToString(position.Y));
             labelPositionListView.Items.Add(li);
 
             // 追加した項目を選択する
@@ -5877,10 +5869,10 @@ namespace HoI2Editor.Forms
             editTabControl.TabPages[6].Enabled = true;
 
             // 無効化時にクリアした値を再設定する
-            eventIdNumericUpDown.Text = eventIdNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            eventTechNumericUpDown.Text = eventTechNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            eventXNumericUpDown.Text = eventXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            eventYNumericUpDown.Text = eventYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            eventIdNumericUpDown.Text = IntHelper.ToString((int) eventIdNumericUpDown.Value);
+            eventTechNumericUpDown.Text = IntHelper.ToString((int) eventTechNumericUpDown.Value);
+            eventXNumericUpDown.Text = IntHelper.ToString((int) eventXNumericUpDown.Value);
+            eventYNumericUpDown.Text = IntHelper.ToString((int) eventYNumericUpDown.Value);
         }
 
         /// <summary>
@@ -5907,8 +5899,8 @@ namespace HoI2Editor.Forms
         private void EnableEventPositionItems()
         {
             // 無効化時にクリアした文字列を再設定する
-            eventXNumericUpDown.Text = eventXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            eventYNumericUpDown.Text = eventYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
+            eventXNumericUpDown.Text = IntHelper.ToString((int) eventXNumericUpDown.Value);
+            eventYNumericUpDown.Text = IntHelper.ToString((int) eventYNumericUpDown.Value);
 
             // 編集項目を有効化する
             eventXNumericUpDown.Enabled = true;
@@ -5944,8 +5936,8 @@ namespace HoI2Editor.Forms
 
             foreach (TechPosition position in item.Positions)
             {
-                var listItem = new ListViewItem(position.X.ToString(CultureInfo.InvariantCulture));
-                listItem.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+                var listItem = new ListViewItem(IntHelper.ToString(position.X));
+                listItem.SubItems.Add(IntHelper.ToString(position.Y));
                 eventPositionListView.Items.Add(listItem);
             }
 
@@ -6202,7 +6194,7 @@ namespace HoI2Editor.Forms
             position.X = x;
 
             // 発明イベント座標リストビューの項目を更新する
-            eventPositionListView.Items[index].Text = x.ToString(CultureInfo.InvariantCulture);
+            eventPositionListView.Items[index].Text = IntHelper.ToString(x);
 
             // 技術ツリー上のラベルを移動する
             foreach (Label label in treePictureBox.Controls)
@@ -6260,7 +6252,7 @@ namespace HoI2Editor.Forms
             position.Y = y;
 
             // 発明イベント座標リストビューの項目を更新する
-            eventPositionListView.Items[index].SubItems[1].Text = y.ToString(CultureInfo.InvariantCulture);
+            eventPositionListView.Items[index].SubItems[1].Text = IntHelper.ToString(y);
 
             // 技術ツリー上のラベルを移動する
             foreach (Label label in treePictureBox.Controls)
@@ -6310,8 +6302,8 @@ namespace HoI2Editor.Forms
             position.SetDirtyAll();
 
             // 発明イベント座標リストビューに項目を追加する
-            var li = new ListViewItem { Text = position.X.ToString(CultureInfo.InvariantCulture) };
-            li.SubItems.Add(position.Y.ToString(CultureInfo.InvariantCulture));
+            var li = new ListViewItem { Text = IntHelper.ToString(position.X) };
+            li.SubItems.Add(IntHelper.ToString(position.Y));
             eventPositionListView.Items.Add(li);
 
             // 追加した項目を選択する

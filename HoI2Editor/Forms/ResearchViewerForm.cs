@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
@@ -392,8 +391,8 @@ namespace HoI2Editor.Forms
                 Text = Config.GetText(tech.Name),
                 Tag = tech
             };
-            item.SubItems.Add(tech.Id.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(tech.Year.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(IntHelper.ToString(tech.Id));
+            item.SubItems.Add(IntHelper.ToString(tech.Year));
             item.SubItems.Add("");
 
             return item;
@@ -460,8 +459,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 研究難易度を描画する
-                e.Graphics.DrawString(component.Difficulty.ToString(CultureInfo.InvariantCulture), techListView.Font,
-                    brush, tr);
+                e.Graphics.DrawString(IntHelper.ToString(component.Difficulty), techListView.Font, brush, tr);
 
                 // 次の項目の開始位置を計算する
                 int offset = DeviceCaps.GetScaledWidth(32);
@@ -635,12 +633,12 @@ namespace HoI2Editor.Forms
             {
                 Tag = research
             };
-            item.SubItems.Add(rank.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(research.Days.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(IntHelper.ToString(rank));
+            item.SubItems.Add(IntHelper.ToString(research.Days));
             item.SubItems.Add(research.EndDate.ToString());
             item.SubItems.Add(research.Team.Name);
-            item.SubItems.Add(research.Team.Id.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(research.Team.Skill.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(IntHelper.ToString(research.Team.Id));
+            item.SubItems.Add(IntHelper.ToString(research.Team.Skill));
             item.SubItems.Add("");
 
             return item;
@@ -767,7 +765,7 @@ namespace HoI2Editor.Forms
             rocketNumericUpDown.Value = Researches.RocketTestingSites;
             nuclearNumericUpDown.Value = Researches.NuclearReactors;
             blueprintCheckBox.Checked = Researches.Blueprint;
-            modifierTextBox.Text = Researches.Modifier.ToString(CultureInfo.InvariantCulture);
+            modifierTextBox.Text = DoubleHelper.ToString(Researches.Modifier);
         }
 
         /// <summary>
@@ -879,21 +877,21 @@ namespace HoI2Editor.Forms
         {
             // 変更後の文字列を数値に変換できなければ値を戻す
             double modifier;
-            if (!double.TryParse(modifierTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out modifier))
+            if (!DoubleHelper.TryParse(modifierTextBox.Text, out modifier))
             {
-                modifierTextBox.Text = Researches.Modifier.ToString(CultureInfo.InvariantCulture);
+                modifierTextBox.Text = DoubleHelper.ToString(Researches.Modifier);
                 return;
             }
 
             // 0以下の値だとまともに計算できなくなるので保険
             if (modifier <= 0.00005)
             {
-                modifierTextBox.Text = Researches.Modifier.ToString(CultureInfo.InvariantCulture);
+                modifierTextBox.Text = DoubleHelper.ToString(Researches.Modifier);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(modifier - Researches.Modifier) <= 0.00005)
+            if (DoubleHelper.IsEqual(modifier, Researches.Modifier))
             {
                 return;
             }

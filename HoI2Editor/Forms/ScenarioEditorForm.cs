@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -40,7 +39,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     戦争国以外の国家リスト
         /// </summary>
-        private List<Country> _warFreeContries;
+        private List<Country> _warFreeCountries;
 
         #endregion
 
@@ -167,8 +166,8 @@ namespace HoI2Editor.Forms
         {
             InitMainTab();
             InitAllianceTab();
-            InitRelationItems();
-            InitTradeItems();
+            InitRelationTab();
+            InitTradeTab();
         }
 
         /// <summary>
@@ -178,8 +177,8 @@ namespace HoI2Editor.Forms
         {
             UpdateMainTab();
             UpdateAllianceTab();
-            UpdateRelationItems();
-            UpdateTradeItems();
+            UpdateRelationTab();
+            UpdateTradeTab();
         }
 
         /// <summary>
@@ -449,9 +448,9 @@ namespace HoI2Editor.Forms
                 old.Dispose();
             }
 
-            startYearTextBox.Text = data.StartDate.Year.ToString(CultureInfo.InvariantCulture);
-            startMonthTextBox.Text = data.StartDate.Month.ToString(CultureInfo.InvariantCulture);
-            startDayTextBox.Text = data.StartDate.Day.ToString(CultureInfo.InvariantCulture);
+            startYearTextBox.Text = IntHelper.ToString(data.StartDate.Year);
+            startMonthTextBox.Text = IntHelper.ToString(data.StartDate.Month);
+            startDayTextBox.Text = IntHelper.ToString(data.StartDate.Day);
             startYearTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartYear)
                 ? Color.Red
                 : SystemColors.WindowText;
@@ -461,9 +460,9 @@ namespace HoI2Editor.Forms
             startDayTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartDay)
                 ? Color.Red
                 : SystemColors.WindowText;
-            endYearTextBox.Text = data.EndDate.Year.ToString(CultureInfo.InvariantCulture);
-            endMonthTextBox.Text = data.EndDate.Month.ToString(CultureInfo.InvariantCulture);
-            endDayTextBox.Text = data.EndDate.Day.ToString(CultureInfo.InvariantCulture);
+            endYearTextBox.Text = IntHelper.ToString(data.EndDate.Year);
+            endMonthTextBox.Text = IntHelper.ToString(data.EndDate.Month);
+            endDayTextBox.Text = IntHelper.ToString(data.EndDate.Day);
             endYearTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndYear) ? Color.Red : SystemColors.WindowText;
             endMonthTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
             endDayTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndDay) ? Color.Red : SystemColors.WindowText;
@@ -795,7 +794,7 @@ namespace HoI2Editor.Forms
             }
 
             Log.Info("[Scenario] start year: {0} -> {1}",
-                (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Year) : "", IntHelper.ToString(val));
+                (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Year) : "", val);
 
             // 値を更新する
             if (data.StartDate == null)
@@ -837,7 +836,7 @@ namespace HoI2Editor.Forms
             }
 
             Log.Info("[Scenario] start month: {0} -> {1}",
-                (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Month) : "", IntHelper.ToString(val));
+                (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Month) : "", val);
 
             // 値を更新する
             if (data.StartDate == null)
@@ -879,7 +878,7 @@ namespace HoI2Editor.Forms
             }
 
             Log.Info("[Scenario] start day: {0} -> {1}",
-                (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Day) : "", IntHelper.ToString(val));
+                (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Day) : "", val);
 
             // 値を更新する
             if (data.StartDate == null)
@@ -921,7 +920,7 @@ namespace HoI2Editor.Forms
             }
 
             Log.Info("[Scenario] end year: {0} -> {1}",
-                (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Year) : "", IntHelper.ToString(val));
+                (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Year) : "", val);
 
             // 値を更新する
             if (data.EndDate == null)
@@ -963,7 +962,7 @@ namespace HoI2Editor.Forms
             }
 
             Log.Info("[Scenario] end month: {0} -> {1}",
-                (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Month) : "", IntHelper.ToString(val));
+                (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Month) : "", val);
 
             // 値を更新する
             if (data.EndDate == null)
@@ -1005,7 +1004,7 @@ namespace HoI2Editor.Forms
             }
 
             Log.Info("[Scenario] end day: {0} -> {1}",
-                (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Day) : "", IntHelper.ToString(val));
+                (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Day) : "", val);
 
             // 値を更新する
             if (data.EndDate == null)
@@ -1790,6 +1789,7 @@ namespace HoI2Editor.Forms
 
                 // 編集済みフラグを設定する
                 scenario.SetDirtySelectableCountry(country);
+                Scenarios.SetDirty();
 
                 Log.Info("[Scenario] major country: +{0}", Countries.Strings[(int) country]);
             }
@@ -1814,6 +1814,7 @@ namespace HoI2Editor.Forms
 
             // 編集済みフラグを設定する
             scenario.SetDirtySelectableCountry(country);
+            Scenarios.SetDirty();
 
             // 主要国リストボックスから削除する
             majorListBox.SelectedIndexChanged -= OnMajorListBoxSelectedIndexChanged;
@@ -1891,6 +1892,7 @@ namespace HoI2Editor.Forms
 
                 // 編集済みフラグを設定する
                 scenario.SetDirtySelectableCountry(country);
+                Scenarios.SetDirty();
 
                 Log.Info("[Scenario] selectable country: +{0}", Countries.Strings[(int) country]);
             }
@@ -1933,6 +1935,7 @@ namespace HoI2Editor.Forms
 
                 // 編集済みフラグを設定する
                 scenario.SetDirtySelectableCountry(country);
+                Scenarios.SetDirty();
 
                 Log.Info("[Scenario] selectable country: -{0}", Countries.Strings[(int) country]);
             }
@@ -2150,11 +2153,20 @@ namespace HoI2Editor.Forms
             // 戦争情報の編集項目を無効化する
             DisableWarItems();
 
-            // 同盟情報の新規ボタンを有効化する
+            // 同盟情報の新規ボタンを無効化する
             allianceNewButton.Enabled = false;
 
-            // 戦争情報の新規ボタンを有効化する
+            // 戦争情報の新規ボタンを無効化する
             warNewButton.Enabled = false;
+
+            // 同盟のリーダーに設定ボタンを無効化する
+            allianceLeaderButton.Enabled = false;
+
+            // 戦争攻撃側のリーダーに設定ボタンを無効化する
+            warAttackerLeaderButton.Enabled = false;
+
+            // 戦争防御側のリーダーに設定ボタンを無効化する
+            warDefenderLeaderButton.Enabled = false;
         }
 
         /// <summary>
@@ -2261,8 +2273,8 @@ namespace HoI2Editor.Forms
             allianceDownButton.Enabled = ((index < count - 1) && (index >= 3));
             allianceRemoveButton.Enabled = (index >= 3);
 
-            allianceNameLabel.Enabled = true;
-            allianceNameTextBox.Enabled = true;
+            allianceNameLabel.Enabled = (index < 3);
+            allianceNameTextBox.Enabled = (index < 3);
             allianceIdLabel.Enabled = true;
             allianceTypeTextBox.Enabled = true;
             allianceIdTextBox.Enabled = true;
@@ -2310,12 +2322,19 @@ namespace HoI2Editor.Forms
 
             // 同盟名
             allianceNameTextBox.Text = GetAllianceName(alliance);
+            allianceNameTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Name)
+                ? Color.Red
+                : SystemColors.WindowText;
 
             // 同盟ID
             if (alliance.Id != null)
             {
                 allianceTypeTextBox.Text = IntHelper.ToString(alliance.Id.Type);
+                allianceTypeTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Type)
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 allianceIdTextBox.Text = IntHelper.ToString(alliance.Id.Id);
+                allianceIdTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Id) ? Color.Red : SystemColors.WindowText;
             }
 
             IEnumerable<Country> countries = Countries.Tags;
@@ -2363,6 +2382,15 @@ namespace HoI2Editor.Forms
 
             // 編集項目を有効化する
             EnableAllianceItems();
+
+            // 同盟参加国の追加ボタンを無効化する
+            allianceParticipantAddButton.Enabled = false;
+
+            // 同盟参加国の削除ボタンを無効化する
+            allianceParticipantRemoveButton.Enabled = false;
+
+            // リーダーに設定ボタンを無効化する
+            allianceLeaderButton.Enabled = false;
         }
 
         /// <summary>
@@ -2522,7 +2550,7 @@ namespace HoI2Editor.Forms
             // 値を更新する
             string s = allianceNameTextBox.Text;
             ScenarioGlobalData data = Scenarios.Data.GlobalData;
-            if (string.IsNullOrEmpty(alliance.Name))
+            if (!string.IsNullOrEmpty(alliance.Name))
             {
                 Config.SetText("ALLIANCE_" + alliance.Name, s, Game.ScenarioTextFileName);
             }
@@ -2541,6 +2569,9 @@ namespace HoI2Editor.Forms
                     Config.SetText("EYR_COM", s, Game.ScenarioTextFileName);
                 }
             }
+
+            // 同盟リストビューの項目を更新する
+            allianceListView.SelectedItems[0].Text = GetAllianceName(alliance);
 
             // 文字色を変更する
             allianceNameTextBox.ForeColor = Color.Red;
@@ -2577,16 +2608,12 @@ namespace HoI2Editor.Forms
             }
 
             string name = GetAllianceName(alliance);
-            if (!string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name))
             {
-                Log.Info("[Scenario] alliance type: {0} -> {1} ({2})",
-                    (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Type) : "", IntHelper.ToString(val), name);
+                name = IntHelper.ToString(allianceListView.SelectedIndices[0]);
             }
-            else
-            {
-                Log.Info("[Scenario] alliance type: {0} -> {1}",
-                    (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Type) : "", IntHelper.ToString(val));
-            }
+            Log.Info("[Scenario] alliance type: {0} -> {1} ({2})",
+                (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Type) : "", val, name);
 
             if (alliance.Id == null)
             {
@@ -2606,16 +2633,7 @@ namespace HoI2Editor.Forms
             {
                 int id = Scenarios.GetNewTypeId(val, alliance.Id.Id);
 
-                if (!string.IsNullOrEmpty(name))
-                {
-                    Log.Info("[Scenario] alliance id: {0} -> {1} ({2})",
-                        (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "", IntHelper.ToString(id), name);
-                }
-                else
-                {
-                    Log.Info("[Scenario] alliance id: {0} -> {1}",
-                        (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "", IntHelper.ToString(id));
-                }
+                Log.Info("[Scenario] alliance id: {0} -> {1} ({2})", alliance.Id.Id, id, name);
 
                 // idの値を更新する
                 alliance.Id.Id = id;
@@ -2673,21 +2691,17 @@ namespace HoI2Editor.Forms
                 // 変更後のtypeとidの組が存在すれば元に戻す
                 if (Scenarios.ExistsTypeId(alliance.Id.Type, val))
                 {
-                    allianceIdTextBox.Text = (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "";
+                    allianceIdTextBox.Text = IntHelper.ToString(alliance.Id.Id);
                 }
             }
 
             string name = GetAllianceName(alliance);
-            if (!string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name))
             {
-                Log.Info("[Scenario] alliance id: {0} -> {1} ({2})",
-                    (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "", IntHelper.ToString(val), name);
+                name = IntHelper.ToString(allianceListView.SelectedIndices[0]);
             }
-            else
-            {
-                Log.Info("[Scenario] alliance id: {0} -> {1}",
-                    (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "", IntHelper.ToString(val));
-            }
+            Log.Info("[Scenario] alliance id: {0} -> {1} ({2})",
+                (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "", val, name);
 
             if (alliance.Id == null)
             {
@@ -2711,6 +2725,256 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             allianceIdTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     同盟参加国リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceParticipantListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+
+            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
+            if (alliance == null)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                brush = alliance.IsDirtyCountry(alliance.Participant[e.Index])
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(allianceParticipantListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = allianceParticipantListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     同盟非参加国リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+
+            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
+            if (alliance == null)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                brush = alliance.IsDirtyCountry(_allianceFreeCountries[e.Index])
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(allianceCountryListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = allianceCountryListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     同盟参加国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceParticipantListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int count = allianceParticipantListBox.SelectedIndices.Count;
+            int index = allianceParticipantListBox.SelectedIndex;
+            allianceParticipantRemoveButton.Enabled = (count > 0);
+            allianceLeaderButton.Enabled = ((count == 1) && (index > 0));
+        }
+
+        /// <summary>
+        ///     同盟非参加国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int count = allianceCountryListBox.SelectedIndices.Count;
+            allianceParticipantAddButton.Enabled = (count > 0);
+        }
+
+        /// <summary>
+        ///     同盟参加国の追加ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceParticipantAddButtonClick(object sender, EventArgs e)
+        {
+            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
+            if (alliance == null)
+            {
+                return;
+            }
+
+            List<Country> countries =
+                (from int index in allianceCountryListBox.SelectedIndices select _allianceFreeCountries[index]).ToList();
+            allianceParticipantListBox.BeginUpdate();
+            allianceCountryListBox.BeginUpdate();
+            foreach (Country country in countries)
+            {
+                // 同盟参加国リストボックスに追加する
+                allianceParticipantListBox.Items.Add(Countries.GetTagName(country));
+
+                // 同盟参加国リストに追加する
+                alliance.Participant.Add(country);
+
+                // 同盟非参加国リストボックスから削除する
+                int index = _allianceFreeCountries.IndexOf(country);
+                allianceCountryListBox.Items.RemoveAt(index);
+                _allianceFreeCountries.RemoveAt(index);
+
+                // 同盟リストビューの項目を更新する
+                allianceListView.SelectedItems[0].SubItems[1].Text = Countries.GetListString(alliance.Participant);
+
+                // 編集済みフラグを設定する
+                alliance.SetDirtyCountry(country);
+                Scenarios.SetDirty();
+
+                string name = GetAllianceName(alliance);
+                if (string.IsNullOrEmpty(name))
+                {
+                    name = IntHelper.ToString(allianceListView.SelectedIndices[0]);
+                }
+                Log.Info("[Scenario] alliance participant: +{0} ({1})", Countries.Strings[(int) country], name);
+            }
+            allianceParticipantListBox.EndUpdate();
+            allianceCountryListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     同盟参加国の削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceParticipantRemoveButtonClick(object sender, EventArgs e)
+        {
+            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
+            if (alliance == null)
+            {
+                return;
+            }
+
+            List<Country> countries =
+                (from int index in allianceParticipantListBox.SelectedIndices select alliance.Participant[index])
+                    .ToList();
+            allianceParticipantListBox.BeginUpdate();
+            allianceCountryListBox.BeginUpdate();
+            foreach (Country country in countries)
+            {
+                // 同盟非参加国リストボックスに追加する
+                int index = _allianceFreeCountries.FindIndex(c => c > country);
+                if (index < 0)
+                {
+                    index = _allianceFreeCountries.Count;
+                }
+                allianceCountryListBox.Items.Insert(index, Countries.GetTagName(country));
+                _allianceFreeCountries.Insert(index, country);
+
+                // 同盟参加国リストボックスから削除する
+                index = alliance.Participant.IndexOf(country);
+                allianceParticipantListBox.Items.RemoveAt(index);
+
+                // 同盟参加国リストから削除する
+                alliance.Participant.Remove(country);
+
+                // 同盟リストビューの項目を更新する
+                allianceListView.SelectedItems[0].SubItems[1].Text = Countries.GetListString(alliance.Participant);
+
+                // 編集済みフラグを設定する
+                alliance.SetDirtyCountry(country);
+                Scenarios.SetDirty();
+
+                string name = GetAllianceName(alliance);
+                if (string.IsNullOrEmpty(name))
+                {
+                    name = IntHelper.ToString(allianceListView.SelectedIndices[0]);
+                }
+                Log.Info("[Scenario] alliance participant: -{0} ({1})", Countries.Strings[(int) country], name);
+            }
+            allianceParticipantListBox.EndUpdate();
+            allianceCountryListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     同盟のリーダーに設定ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAllianceLeaderButtonClick(object sender, EventArgs e)
+        {
+            var alliance = allianceListView.SelectedItems[0].Tag as Alliance;
+            if (alliance == null)
+            {
+                return;
+            }
+
+            int index = allianceParticipantListBox.SelectedIndex;
+            Country country = alliance.Participant[index];
+
+            // 同盟参加国リストボックスの先頭に移動する
+            allianceParticipantListBox.BeginUpdate();
+            allianceParticipantListBox.Items.RemoveAt(index);
+            allianceParticipantListBox.Items.Insert(0, Countries.GetTagName(country));
+            allianceParticipantListBox.EndUpdate();
+
+            // 同盟参加国リストの先頭に移動する
+            alliance.Participant.RemoveAt(index);
+            alliance.Participant.Insert(0, country);
+
+            // 編集済みフラグを設定する
+            alliance.SetDirtyCountry(country);
+            Scenarios.SetDirty();
+
+            string name = GetAllianceName(alliance);
+            if (string.IsNullOrEmpty(name))
+            {
+                name = IntHelper.ToString(allianceListView.SelectedIndices[0]);
+            }
+            Log.Info("[Scenario] alliance leader: {0} ({1})", Countries.Strings[(int) country], name);
         }
 
         /// <summary>
@@ -2770,7 +3034,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void EnableWarItems()
         {
-            int count = warListView.SelectedIndices.Count;
+            int count = warListView.Items.Count;
             int index = warListView.SelectedIndices[0];
             warUpButton.Enabled = (index > 0);
             warDownButton.Enabled = (index < count - 1);
@@ -2865,37 +3129,53 @@ namespace HoI2Editor.Forms
             if (war.StartDate != null)
             {
                 warStartYearTextBox.Text = IntHelper.ToString(war.StartDate.Year);
+                warStartYearTextBox.ForeColor = war.IsDirty(WarItemId.StartYear) ? Color.Red : SystemColors.WindowText;
                 warStartMonthTextBox.Text = IntHelper.ToString(war.StartDate.Month);
+                warStartMonthTextBox.ForeColor = war.IsDirty(WarItemId.StartMonth) ? Color.Red : SystemColors.WindowText;
                 warStartDayTextBox.Text = IntHelper.ToString(war.StartDate.Day);
+                warStartDayTextBox.ForeColor = war.IsDirty(WarItemId.StartDay) ? Color.Red : SystemColors.WindowText;
             }
 
             // 終了日時
             if (war.EndDate != null)
             {
                 warEndYearTextBox.Text = IntHelper.ToString(war.EndDate.Year);
+                warEndYearTextBox.ForeColor = war.IsDirty(WarItemId.EndYear) ? Color.Red : SystemColors.WindowText;
                 warEndMonthTextBox.Text = IntHelper.ToString(war.EndDate.Month);
+                warEndMonthTextBox.ForeColor = war.IsDirty(WarItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
                 warEndDayTextBox.Text = IntHelper.ToString(war.EndDate.Day);
+                warEndDayTextBox.ForeColor = war.IsDirty(WarItemId.EndDay) ? Color.Red : SystemColors.WindowText;
             }
 
             // 戦争ID
             if (war.Id != null)
             {
                 warTypeTextBox.Text = IntHelper.ToString(war.Id.Type);
+                warTypeTextBox.ForeColor = war.IsDirty(WarItemId.Type) ? Color.Red : SystemColors.WindowText;
                 warIdTextBox.Text = IntHelper.ToString(war.Id.Id);
+                warIdTextBox.ForeColor = war.IsDirty(WarItemId.Id) ? Color.Red : SystemColors.WindowText;
             }
 
             // 攻撃側ID
             if ((war.Attackers != null) && (war.Attackers.Id != null))
             {
                 warAttackerTypeTextBox.Text = IntHelper.ToString(war.Attackers.Id.Type);
+                warAttackerTypeTextBox.ForeColor = war.IsDirty(WarItemId.AttackerType)
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 warAttackerIdTextBox.Text = IntHelper.ToString(war.Attackers.Id.Id);
+                warAttackerIdTextBox.ForeColor = war.IsDirty(WarItemId.AttackerId) ? Color.Red : SystemColors.WindowText;
             }
 
             // 防御側ID
             if ((war.Defenders != null) && (war.Defenders.Id != null))
             {
                 warDefenderTypeTextBox.Text = IntHelper.ToString(war.Defenders.Id.Type);
+                warDefenderTypeTextBox.ForeColor = war.IsDirty(WarItemId.DefenderType)
+                    ? Color.Red
+                    : SystemColors.WindowText;
                 warDefenderIdTextBox.Text = IntHelper.ToString(war.Defenders.Id.Id);
+                warDefenderIdTextBox.ForeColor = war.IsDirty(WarItemId.DefenderId) ? Color.Red : SystemColors.WindowText;
             }
 
             IEnumerable<Country> countries = Countries.Tags;
@@ -2927,10 +3207,10 @@ namespace HoI2Editor.Forms
             warDefenderListBox.EndUpdate();
 
             // 国家リストボックス
-            _warFreeContries = countries.ToList();
+            _warFreeCountries = countries.ToList();
             warCountryListBox.BeginUpdate();
             warCountryListBox.Items.Clear();
-            foreach (Country country in _warFreeContries)
+            foreach (Country country in _warFreeCountries)
             {
                 warCountryListBox.Items.Add(Countries.GetTagName(country));
             }
@@ -2956,6 +3236,1303 @@ namespace HoI2Editor.Forms
 
             // 編集項目を有効化する
             EnableWarItems();
+
+            // 攻撃側参加国の追加ボタンを無効化する
+            warAttackerAddButton.Enabled = false;
+
+            // 攻撃側参加国の削除ボタンを無効化する
+            warAttackerRemoveButton.Enabled = false;
+
+            // 戦争攻撃側リーダーに設定ボタンを無効化する
+            warAttackerLeaderButton.Enabled = false;
+
+            // 防御側参加国の追加ボタンを無効化する
+            warDefenderAddButton.Enabled = false;
+
+            // 防御側参加国の削除ボタンを無効化する
+            warDefenderRemoveButton.Enabled = false;
+
+            // 戦争防御側リーダーに設定ボタンを無効化する
+            warAttackerLeaderButton.Enabled = false;
+        }
+
+        /// <summary>
+        ///     戦争の上へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarUpButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<War> wars = scenario.GlobalData.Wars;
+
+            // 戦争リストビューの項目を移動する
+            int index = warListView.SelectedIndices[0];
+            ListViewItem item = warListView.Items[index];
+            warListView.Items.RemoveAt(index);
+            warListView.Items.Insert(index - 1, item);
+            warListView.Items[index - 1].Focused = true;
+            warListView.Items[index - 1].Selected = true;
+            warListView.EnsureVisible(index - 1);
+
+            // 戦争リストの項目を移動する
+            War war = wars[index];
+            wars.RemoveAt(index);
+            wars.Insert(index - 1, war);
+
+            // 編集済みフラグを設定する
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     戦争の下へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarDownButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<War> wars = scenario.GlobalData.Wars;
+
+            // 戦争リストビューの項目を移動する
+            int index = warListView.SelectedIndices[0];
+            ListViewItem item = warListView.Items[index];
+            warListView.Items.RemoveAt(index);
+            warListView.Items.Insert(index + 1, item);
+            warListView.Items[index + 1].Focused = true;
+            warListView.Items[index + 1].Selected = true;
+            warListView.EnsureVisible(index + 1);
+
+            // 戦争リストの項目を移動する
+            War war = wars[index];
+            wars.RemoveAt(index);
+            wars.Insert(index + 1, war);
+
+            // 編集済みフラグを設定する
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     戦争の新規ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarNewButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<War> wars = scenario.GlobalData.Wars;
+
+            // 戦争リストに項目を追加する
+            int id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, 1);
+            var war = new War { Id = new TypeId { Type = Scenarios.DefaultWarType, Id = id } };
+            wars.Add(war);
+
+            // 戦争リストビューに項目を追加する
+            var item = new ListViewItem { Tag = war };
+            item.SubItems.Add("");
+            item.SubItems.Add("");
+            item.SubItems.Add("");
+            warListView.Items.Add(item);
+
+            // typeとidの組を登録する
+            Scenarios.AddTypeId(war.Id);
+
+            // 追加した項目を選択する
+            if (warListView.SelectedIndices.Count > 0)
+            {
+                ListViewItem prev = warListView.SelectedItems[0];
+                prev.Focused = false;
+                prev.Selected = false;
+            }
+            item.Focused = true;
+            item.Selected = true;
+        }
+
+        /// <summary>
+        ///     戦争の削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarRemoveButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<War> wars = scenario.GlobalData.Wars;
+
+            // 枢軸国/連合国/共産国は削除できない
+            int index = warListView.SelectedIndices[0];
+            if (index < 0)
+            {
+                return;
+            }
+
+            War war = wars[index];
+
+            // typeとidの組を削除する
+            Scenarios.RemoveTypeId(war.Id);
+
+            // 戦争リストから項目を削除する
+            wars.RemoveAt(index);
+
+            // 戦争リストビューから項目を削除する
+            warListView.Items.RemoveAt(index);
+
+            // 追加した項目の次を選択する
+            if (index >= wars.Count)
+            {
+                index --;
+            }
+            warListView.Items[index].Focused = true;
+            warListView.Items[index].Selected = true;
+        }
+
+        /// <summary>
+        ///     戦争開始年テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarStartYearTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warStartYearTextBox.Text, out val))
+            {
+                warStartYearTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((war.StartDate != null) && (val == war.StartDate.Year))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] war start year: {0} -> {1} ({2})",
+                (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "", val, warListView.SelectedIndices[0]);
+
+            // 値を更新する
+            if (war.StartDate == null)
+            {
+                war.StartDate = new GameDate();
+            }
+            war.StartDate.Year = val;
+
+            // 戦争リストビューの項目を更新する
+            warListView.SelectedItems[0].Text = war.StartDate.ToString();
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.StartYear);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warStartYearTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争開始月テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarStartMonthTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warStartMonthTextBox.Text, out val))
+            {
+                warStartMonthTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((war.StartDate != null) && (val == war.StartDate.Month))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] war start month: {0} -> {1} ({2})",
+                (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "", val, warListView.SelectedIndices[0]);
+
+            // 値を更新する
+            if (war.StartDate == null)
+            {
+                war.StartDate = new GameDate();
+            }
+            war.StartDate.Month = val;
+
+            // 戦争リストビューの項目を更新する
+            warListView.SelectedItems[0].Text = war.StartDate.ToString();
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.StartMonth);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warStartMonthTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争開始日テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarStartDayTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warStartDayTextBox.Text, out val))
+            {
+                warStartDayTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((war.StartDate != null) && (val == war.StartDate.Day))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] war start day: {0} -> {1} ({2})", (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "",
+                val, warListView.SelectedIndices[0]);
+
+            // 値を更新する
+            if (war.StartDate == null)
+            {
+                war.StartDate = new GameDate();
+            }
+            war.StartDate.Day = val;
+
+            // 戦争リストビューの項目を更新する
+            warListView.SelectedItems[0].Text = war.StartDate.ToString();
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.StartDay);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warStartDayTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争終了年テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarEndYearTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warEndYearTextBox.Text, out val))
+            {
+                warEndYearTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((war.EndDate != null) && (val == war.EndDate.Year))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] war end year: {0} -> {1} ({2})", (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "",
+                val, warListView.SelectedIndices[0]);
+
+            // 値を更新する
+            if (war.EndDate == null)
+            {
+                war.EndDate = new GameDate();
+            }
+            war.EndDate.Year = val;
+
+            // 戦争リストビューの項目を更新する
+            warListView.SelectedItems[0].SubItems[1].Text = war.EndDate.ToString();
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.EndYear);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warEndYearTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争終了月テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarEndMonthTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warEndMonthTextBox.Text, out val))
+            {
+                warEndMonthTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((war.EndDate != null) && (val == war.EndDate.Month))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] war end month: {0} -> {1} ({2})", (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "",
+                val, warListView.SelectedIndices[0]);
+
+            // 値を更新する
+            if (war.EndDate == null)
+            {
+                war.EndDate = new GameDate();
+            }
+            war.EndDate.Month = val;
+
+            // 戦争リストビューの項目を更新する
+            warListView.SelectedItems[0].SubItems[1].Text = war.EndDate.ToString();
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.EndMonth);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warEndMonthTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争終了日テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarEndDayTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warEndDayTextBox.Text, out val))
+            {
+                warEndDayTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((war.EndDate != null) && (val == war.EndDate.Day))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] war end day: {0} -> {1} ({2})", (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "",
+                val, warListView.SelectedIndices[0]);
+
+            // 値を更新する
+            if (war.EndDate == null)
+            {
+                war.EndDate = new GameDate();
+            }
+            war.EndDate.Day = val;
+
+            // 戦争リストビューの項目を更新する
+            warListView.SelectedItems[0].SubItems[1].Text = war.EndDate.ToString();
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.EndDay);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warEndDayTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争のtypeテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarTypeTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warTypeTextBox.Text, out val))
+            {
+                warTypeTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Type) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((war.Id != null) && (val == war.Id.Type))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] war type: {0} -> {1} ({2})", (war.Id != null) ? IntHelper.ToString(war.Id.Type) : "",
+                val, warListView.SelectedIndices[0]);
+
+            if (war.Id == null)
+            {
+                war.Id = new TypeId { Id = Scenarios.GetNewTypeId(val, 1) };
+            }
+            else
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(war.Id);
+            }
+
+            // 値を更新する
+            war.Id.Type = val;
+
+            // 変更後のtypeとidの組が存在すればidを変更する
+            if (Scenarios.ExistsTypeId(val, war.Id.Id))
+            {
+                int id = Scenarios.GetNewTypeId(val, war.Id.Id);
+
+                Log.Info("[Scenario] war id: {0} -> {1} ({2})", war.Id.Id, id, warListView.SelectedIndices[0]);
+
+                // idの値を更新する
+                war.Id.Id = id;
+
+                // 編集済みフラグを設定する
+                war.SetDirty(WarItemId.Id);
+
+                // idの表示を更新する
+                warIdTextBox.Text = IntHelper.ToString(war.Id.Id);
+
+                // 文字色を変更する
+                warIdTextBox.ForeColor = Color.Red;
+            }
+
+            // 変更後のtypeとidの組を登録する
+            Scenarios.AddTypeId(war.Id);
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.Type);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warTypeTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争のidテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarIdTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warIdTextBox.Text, out val))
+            {
+                warIdTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "";
+                return;
+            }
+
+            if (war.Id != null)
+            {
+                // 値に変化がなければ何もしない
+                if (val == war.Id.Id)
+                {
+                    return;
+                }
+
+                // 変更後のtypeとidの組が存在すれば元に戻す
+                if (Scenarios.ExistsTypeId(war.Id.Type, val))
+                {
+                    warIdTextBox.Text = IntHelper.ToString(war.Id.Id);
+                }
+            }
+
+            Log.Info("[Scenario] war id: {0} -> {1} ({2})", (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "", val,
+                warListView.SelectedIndices[0]);
+
+            if (war.Id == null)
+            {
+                war.Id = new TypeId { Type = Scenarios.DefaultWarType };
+            }
+            else
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(war.Id);
+            }
+
+            // 値を更新する
+            war.Id.Id = val;
+
+            // 変更後のtypeとidの組を登録する
+            Scenarios.AddTypeId(war.Id);
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.Id);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warIdTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争の攻撃側typeテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarAttackerTypeTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warAttackerTypeTextBox.Text, out val))
+            {
+                warAttackerTypeTextBox.Text = ((war.Attackers != null) && (war.Attackers.Id != null))
+                    ? IntHelper.ToString(war.Attackers.Id.Type)
+                    : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((war.Attackers != null) && (war.Attackers.Id != null) && (val == war.Attackers.Id.Type))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] war attacker type: {0} -> {1} ({2})",
+                ((war.Attackers != null) && (war.Attackers.Id != null)) ? IntHelper.ToString(war.Attackers.Id.Type) : "",
+                val, warListView.SelectedIndices[0]);
+
+            if (war.Attackers == null)
+            {
+                war.Attackers = new Alliance();
+            }
+            if (war.Attackers.Id == null)
+            {
+                war.Attackers.Id = new TypeId { Id = Scenarios.GetNewTypeId(val, 1) };
+            }
+            else
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(war.Attackers.Id);
+            }
+
+            // 値を更新する
+            war.Attackers.Id.Type = val;
+
+            // 変更後のtypeとidの組が存在すればidを変更する
+            if (Scenarios.ExistsTypeId(val, war.Attackers.Id.Id))
+            {
+                int id = Scenarios.GetNewTypeId(val, war.Attackers.Id.Id);
+
+                Log.Info("[Scenario] war attacker id: {0} -> {1} ({2})", war.Attackers.Id.Id, id,
+                    warListView.SelectedIndices[0]);
+
+                // idの値を更新する
+                war.Attackers.Id.Id = id;
+
+                // 編集済みフラグを設定する
+                war.SetDirty(WarItemId.AttackerId);
+
+                // idの表示を更新する
+                warAttackerIdTextBox.Text = IntHelper.ToString(war.Attackers.Id.Id);
+
+                // 文字色を変更する
+                warAttackerIdTextBox.ForeColor = Color.Red;
+            }
+
+            // 変更後のtypeとidの組を登録する
+            Scenarios.AddTypeId(war.Attackers.Id);
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.AttackerType);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warAttackerTypeTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争の攻撃側idテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarAttackerIdTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warAttackerIdTextBox.Text, out val))
+            {
+                warAttackerIdTextBox.Text = ((war.Attackers != null) && (war.Attackers.Id != null))
+                    ? IntHelper.ToString(war.Attackers.Id.Id)
+                    : "";
+                return;
+            }
+
+            if ((war.Attackers != null) && (war.Attackers.Id != null))
+            {
+                // 値に変化がなければ何もしない
+                if (val == war.Attackers.Id.Id)
+                {
+                    return;
+                }
+
+                // 変更後のtypeとidの組が存在すれば元に戻す
+                if (Scenarios.ExistsTypeId(war.Attackers.Id.Type, val))
+                {
+                    warAttackerIdTextBox.Text = IntHelper.ToString(war.Attackers.Id.Id);
+                }
+            }
+
+            Log.Info("[Scenario] war attacker id: {0} -> {1} ({2})",
+                ((war.Attackers != null) && (war.Attackers.Id != null)) ? IntHelper.ToString(war.Attackers.Id.Id) : "",
+                val, warListView.SelectedIndices[0]);
+
+            if (war.Attackers == null)
+            {
+                war.Attackers = new Alliance();
+            }
+            if (war.Attackers.Id == null)
+            {
+                war.Attackers.Id = new TypeId { Type = Scenarios.DefaultWarType };
+            }
+            else
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(war.Id);
+            }
+
+            // 値を更新する
+            war.Attackers.Id.Id = val;
+
+            // 変更後のtypeとidの組を登録する
+            Scenarios.AddTypeId(war.Attackers.Id);
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.AttackerId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warAttackerIdTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争の防御側typeテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarDefenderTypeTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warDefenderTypeTextBox.Text, out val))
+            {
+                warDefenderTypeTextBox.Text = ((war.Defenders != null) && (war.Defenders.Id != null))
+                    ? IntHelper.ToString(war.Defenders.Id.Type)
+                    : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((war.Defenders != null) && (war.Defenders.Id != null) && (val == war.Defenders.Id.Type))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] war defender type: {0} -> {1} ({2})",
+                ((war.Defenders != null) && (war.Defenders.Id != null)) ? IntHelper.ToString(war.Defenders.Id.Type) : "",
+                val, warListView.SelectedIndices[0]);
+
+            if (war.Defenders == null)
+            {
+                war.Defenders = new Alliance();
+            }
+            if (war.Defenders.Id == null)
+            {
+                war.Defenders.Id = new TypeId { Id = Scenarios.GetNewTypeId(val, 1) };
+            }
+            else
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(war.Defenders.Id);
+            }
+
+            // 値を更新する
+            war.Defenders.Id.Type = val;
+
+            // 変更後のtypeとidの組が存在すればidを変更する
+            if (Scenarios.ExistsTypeId(val, war.Defenders.Id.Id))
+            {
+                int id = Scenarios.GetNewTypeId(val, war.Defenders.Id.Id);
+
+                Log.Info("[Scenario] war defender id: {0} -> {1} ({2})", war.Defenders.Id.Id, id,
+                    warListView.SelectedIndices[0]);
+
+                // idの値を更新する
+                war.Defenders.Id.Id = id;
+
+                // 編集済みフラグを設定する
+                war.SetDirty(WarItemId.DefenderId);
+
+                // idの表示を更新する
+                warDefenderIdTextBox.Text = IntHelper.ToString(war.Defenders.Id.Id);
+
+                // 文字色を変更する
+                warDefenderIdTextBox.ForeColor = Color.Red;
+            }
+
+            // 変更後のtypeとidの組を登録する
+            Scenarios.AddTypeId(war.Defenders.Id);
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.DefenderType);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warDefenderTypeTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争の防御側idテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarDefenderIdTextBoxValidated(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(warDefenderIdTextBox.Text, out val))
+            {
+                warDefenderIdTextBox.Text = ((war.Defenders != null) && (war.Defenders.Id != null))
+                    ? IntHelper.ToString(war.Defenders.Id.Id)
+                    : "";
+                return;
+            }
+
+            if ((war.Defenders != null) && (war.Defenders.Id != null))
+            {
+                // 値に変化がなければ何もしない
+                if (val == war.Defenders.Id.Id)
+                {
+                    return;
+                }
+
+                // 変更後のtypeとidの組が存在すれば元に戻す
+                if (Scenarios.ExistsTypeId(war.Defenders.Id.Type, val))
+                {
+                    warDefenderIdTextBox.Text = IntHelper.ToString(war.Defenders.Id.Id);
+                }
+            }
+
+            Log.Info("[Scenario] war defender id: {0} -> {1} ({2})",
+                ((war.Defenders != null) && (war.Defenders.Id != null)) ? IntHelper.ToString(war.Defenders.Id.Id) : "",
+                val, warListView.SelectedIndices[0]);
+
+            if (war.Defenders == null)
+            {
+                war.Defenders = new Alliance();
+            }
+            if (war.Defenders.Id == null)
+            {
+                war.Defenders.Id = new TypeId { Type = Scenarios.DefaultWarType };
+            }
+            else
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(war.Id);
+            }
+
+            // 値を更新する
+            war.Defenders.Id.Id = val;
+
+            // 変更後のtypeとidの組を登録する
+            Scenarios.AddTypeId(war.Defenders.Id);
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.DefenderId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            warDefenderIdTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦争攻撃側参加国リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarAttackerListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                brush = war.IsDirtyCountry(war.Attackers.Participant[e.Index])
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(warAttackerListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = warAttackerListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     戦争防御側参加国リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarDefenderListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                brush = war.IsDirtyCountry(war.Defenders.Participant[e.Index])
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(warDefenderListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = warDefenderListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     戦争非参加国リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                brush = war.IsDirtyCountry(_warFreeCountries[e.Index])
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(warCountryListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = warCountryListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     戦争攻撃側参加国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarAttackerListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int count = warAttackerListBox.SelectedIndices.Count;
+            int index = warAttackerListBox.SelectedIndex;
+            warAttackerRemoveButton.Enabled = (count > 0);
+            warAttackerLeaderButton.Enabled = ((count == 1) && (index > 0));
+        }
+
+        /// <summary>
+        ///     戦争防御側参加国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarDefenderListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int count = warDefenderListBox.SelectedIndices.Count;
+            int index = warDefenderListBox.SelectedIndex;
+            warDefenderRemoveButton.Enabled = (count > 0);
+            warDefenderLeaderButton.Enabled = ((count == 1) && (index > 0));
+        }
+
+        /// <summary>
+        ///     戦争非参加国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int count = warCountryListBox.SelectedIndices.Count;
+            warAttackerAddButton.Enabled = (count > 0);
+            warDefenderAddButton.Enabled = (count > 0);
+        }
+
+        /// <summary>
+        ///     戦争攻撃側参加国の追加ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarAttackerAddButtonClick(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            List<Country> countries =
+                (from int index in warCountryListBox.SelectedIndices select _warFreeCountries[index]).ToList();
+            warAttackerListBox.BeginUpdate();
+            warCountryListBox.BeginUpdate();
+            foreach (Country country in countries)
+            {
+                // 戦争攻撃側参加国リストボックスに追加する
+                warAttackerListBox.Items.Add(Countries.GetTagName(country));
+
+                // 戦争攻撃側参加国リストに追加する
+                war.Attackers.Participant.Add(country);
+
+                // 戦争非参加国リストボックスから削除する
+                int index = _warFreeCountries.IndexOf(country);
+                warCountryListBox.Items.RemoveAt(index);
+                _warFreeCountries.RemoveAt(index);
+
+                // 戦争リストビューの項目を更新する
+                warListView.SelectedItems[0].SubItems[2].Text = Countries.GetListString(war.Attackers.Participant);
+
+                // 編集済みフラグを設定する
+                war.SetDirtyCountry(country);
+                Scenarios.SetDirty();
+
+                Log.Info("[Scenario] war attacker: +{0} ({1})", Countries.Strings[(int) country],
+                    warListView.SelectedIndices[0]);
+            }
+            warAttackerListBox.EndUpdate();
+            warCountryListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     戦争攻撃側参加国の削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarAttackerRemoveButtonClick(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            List<Country> countries =
+                (from int index in warAttackerListBox.SelectedIndices select war.Attackers.Participant[index]).ToList();
+            warAttackerListBox.BeginUpdate();
+            warCountryListBox.BeginUpdate();
+            foreach (Country country in countries)
+            {
+                // 戦争非参加国リストボックスに追加する
+                int index = _warFreeCountries.FindIndex(c => c > country);
+                if (index < 0)
+                {
+                    index = _warFreeCountries.Count;
+                }
+                warCountryListBox.Items.Insert(index, Countries.GetTagName(country));
+                _warFreeCountries.Insert(index, country);
+
+                // 戦争攻撃側参加国リストボックスから削除する
+                index = war.Attackers.Participant.IndexOf(country);
+                warAttackerListBox.Items.RemoveAt(index);
+
+                // 戦争攻撃側参加国リストから削除する
+                war.Attackers.Participant.Remove(country);
+
+                // 戦争リストビューの項目を更新する
+                warListView.SelectedItems[0].SubItems[2].Text = Countries.GetListString(war.Attackers.Participant);
+
+                // 編集済みフラグを設定する
+                war.SetDirtyCountry(country);
+                Scenarios.SetDirty();
+
+                Log.Info("[Scenario] war attacker: -{0} ({1})", Countries.Strings[(int) country],
+                    warListView.SelectedIndices[0]);
+            }
+            warAttackerListBox.EndUpdate();
+            warCountryListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     戦争防御側参加国の追加ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarDefenderAddButtonClick(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            List<Country> countries =
+                (from int index in warCountryListBox.SelectedIndices select _warFreeCountries[index]).ToList();
+            warDefenderListBox.BeginUpdate();
+            warCountryListBox.BeginUpdate();
+            foreach (Country country in countries)
+            {
+                // 戦争防御側参加国リストボックスに追加する
+                warDefenderListBox.Items.Add(Countries.GetTagName(country));
+
+                // 戦争防御側参加国リストに追加する
+                war.Defenders.Participant.Add(country);
+
+                // 戦争非参加国リストボックスから削除する
+                int index = _warFreeCountries.IndexOf(country);
+                warCountryListBox.Items.RemoveAt(index);
+                _warFreeCountries.RemoveAt(index);
+
+                // 戦争リストビューの項目を更新する
+                warListView.SelectedItems[0].SubItems[2].Text = Countries.GetListString(war.Defenders.Participant);
+
+                // 編集済みフラグを設定する
+                war.SetDirtyCountry(country);
+                Scenarios.SetDirty();
+
+                Log.Info("[Scenario] war defender: +{0} ({1})", Countries.Strings[(int) country],
+                    warListView.SelectedIndices[0]);
+            }
+            warDefenderListBox.EndUpdate();
+            warCountryListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     戦争防御側参加国の削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarDefenderRemoveButtonClick(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            List<Country> countries =
+                (from int index in warDefenderListBox.SelectedIndices select war.Defenders.Participant[index]).ToList();
+            warDefenderListBox.BeginUpdate();
+            warCountryListBox.BeginUpdate();
+            foreach (Country country in countries)
+            {
+                // 戦争非参加国リストボックスに追加する
+                int index = _warFreeCountries.FindIndex(c => c > country);
+                if (index < 0)
+                {
+                    index = _warFreeCountries.Count;
+                }
+                warCountryListBox.Items.Insert(index, Countries.GetTagName(country));
+                _warFreeCountries.Insert(index, country);
+
+                // 戦争防御側参加国リストボックスから削除する
+                index = war.Defenders.Participant.IndexOf(country);
+                warDefenderListBox.Items.RemoveAt(index);
+
+                // 戦争防御側参加国リストから削除する
+                war.Defenders.Participant.Remove(country);
+
+                // 戦争リストビューの項目を更新する
+                warListView.SelectedItems[0].SubItems[2].Text = Countries.GetListString(war.Defenders.Participant);
+
+                // 編集済みフラグを設定する
+                war.SetDirtyCountry(country);
+                Scenarios.SetDirty();
+
+                Log.Info("[Scenario] war defender: -{0} ({1})", Countries.Strings[(int) country],
+                    warListView.SelectedIndices[0]);
+            }
+            warDefenderListBox.EndUpdate();
+            warCountryListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     戦争攻撃側のリーダーに設定ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarAttackerLeaderButtonClick(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            int index = warAttackerListBox.SelectedIndex;
+            Country country = war.Attackers.Participant[index];
+
+            // 戦争攻撃側参加国リストボックスの先頭に移動する
+            warAttackerListBox.BeginUpdate();
+            warAttackerListBox.Items.RemoveAt(index);
+            warAttackerListBox.Items.Insert(0, Countries.GetTagName(country));
+            warAttackerListBox.EndUpdate();
+
+            // 戦争攻撃側参加国リストの先頭に移動する
+            war.Attackers.Participant.RemoveAt(index);
+            war.Attackers.Participant.Insert(0, country);
+
+            // 編集済みフラグを設定する
+            war.SetDirtyCountry(country);
+            Scenarios.SetDirty();
+
+            Log.Info("[Scenario] war attacker leader: {0} ({1})", Countries.Strings[(int) country],
+                warListView.SelectedIndices[0]);
+        }
+
+        /// <summary>
+        ///     戦争防御側のリーダーに設定ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWarDefenderLeaderButtonClick(object sender, EventArgs e)
+        {
+            var war = warListView.SelectedItems[0].Tag as War;
+            if (war == null)
+            {
+                return;
+            }
+
+            int index = warDefenderListBox.SelectedIndex;
+            Country country = war.Defenders.Participant[index];
+
+            // 戦争防御側参加国リストボックスの先頭に移動する
+            warDefenderListBox.BeginUpdate();
+            warDefenderListBox.Items.RemoveAt(index);
+            warDefenderListBox.Items.Insert(0, Countries.GetTagName(country));
+            warDefenderListBox.EndUpdate();
+
+            // 戦争防御側参加国リストの先頭に移動する
+            war.Defenders.Participant.RemoveAt(index);
+            war.Defenders.Participant.Insert(0, country);
+
+            // 編集済みフラグを設定する
+            war.SetDirtyCountry(country);
+            Scenarios.SetDirty();
+
+            Log.Info("[Scenario] war defender leader: {0} ({1})", Countries.Strings[(int) country],
+                warListView.SelectedIndices[0]);
         }
 
         #endregion
@@ -2967,7 +4544,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     関係タブの項目を初期化する
         /// </summary>
-        private void InitRelationItems()
+        private void InitRelationTab()
         {
             // 選択国リストボックス
             relationCountryListBox.BeginUpdate();
@@ -2982,24 +4559,16 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     関係タブの項目を更新する
         /// </summary>
-        private void UpdateRelationItems()
+        private void UpdateRelationTab()
         {
             // 何もしない
         }
 
         /// <summary>
-        ///     選択国リストボックスの選択項目変更時の処理
+        ///     関係リストビューを更新する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRelationCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        private void UpdateRelationListView()
         {
-            // 選択項目がなければ何もしない
-            if (relationCountryListBox.SelectedIndex < 0)
-            {
-                return;
-            }
-
             Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
             CountrySettings settings = Scenarios.GetCountrySettings(self);
 
@@ -3012,36 +4581,24 @@ namespace HoI2Editor.Forms
                 Treaty nonAggression = Scenarios.GetNonAggression(self, target);
                 Treaty peace = Scenarios.GetPeace(self, target);
                 SpySettings spy = Scenarios.GetCountryIntelligence(self, target);
-                item.SubItems.Add((relation != null) ? relation.Value.ToString(CultureInfo.InvariantCulture) : "0");
+                item.SubItems.Add((relation != null) ? DoubleHelper.ToString(relation.Value) : "0");
                 item.SubItems.Add(((settings != null) && (settings.Master == target)) ? Resources.Yes : "");
                 item.SubItems.Add(((settings != null) && (settings.Control == target)) ? Resources.Yes : "");
                 item.SubItems.Add(((relation != null) && relation.Access) ? Resources.Yes : "");
                 item.SubItems.Add(((relation != null) && (relation.Guaranteed != null)) ? Resources.Yes : "");
                 item.SubItems.Add((nonAggression != null) ? Resources.Yes : "");
                 item.SubItems.Add((peace != null) ? Resources.Yes : "");
-                item.SubItems.Add((spy != null) ? spy.Spies.ToString(CultureInfo.InvariantCulture) : "");
+                item.SubItems.Add((spy != null) ? IntHelper.ToString(spy.Spies) : "");
                 relationListView.Items.Add(item);
             }
             relationListView.EndUpdate();
         }
 
         /// <summary>
-        ///     国家関係リストビューの選択項目変更時の処理
+        ///     関係タブの編集項目を更新する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRelationListViewSelectedIndexChanged(object sender, EventArgs e)
+        private void UpdateRelationItems()
         {
-            // 選択項目がなければ何もしない
-            if (relationListView.SelectedIndices.Count == 0)
-            {
-                return;
-            }
-            if (relationCountryListBox.SelectedIndex < 0)
-            {
-                return;
-            }
-
             Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
             Country target = Countries.Tags[relationListView.SelectedIndices[0]];
             CountrySettings settings = Scenarios.GetCountrySettings(self);
@@ -3078,18 +4635,85 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     関係タブの編集項目を有効化する
+        /// </summary>
+        private void EnableRelationItems()
+        {
+            diplomacyGroupBox.Enabled = true;
+            intelligenceGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     関係タブの編集項目を無効化する
+        /// </summary>
+        private void DisableRelationItems()
+        {
+            diplomacyGroupBox.Enabled = false;
+            intelligenceGroupBox.Enabled = false;
+        }
+
+        /// <summary>
+        ///     選択国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRelationCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            // 関係リストビューを更新する
+            UpdateRelationListView();
+        }
+
+        /// <summary>
+        ///     関係リストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRelationListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ編集項目を無効化する
+            if ((relationListView.SelectedIndices.Count == 0) || (relationCountryListBox.SelectedIndex < 0))
+            {
+                DisableRelationItems();
+                return;
+            }
+
+            // 編集項目を有効化する
+            EnableRelationItems();
+
+            // 編集項目を更新する
+            UpdateRelationItems();
+        }
+
+        /// <summary>
         ///     独立保障グループボックスの編集項目を更新する
         /// </summary>
-        /// <param name="relation"></param>
+        /// <param name="relation">国家関係</param>
         private void UpdateGuaranteeItems(Relation relation)
         {
             bool flag = (relation != null) && (relation.Guaranteed != null);
             guaranteeCheckBox.Checked = flag;
-            guaranteeYearTextBox.Text = flag ? relation.Guaranteed.Year.ToString(CultureInfo.InvariantCulture) : "";
-            guaranteeMonthTextBox.Text = flag ? relation.Guaranteed.Month.ToString(CultureInfo.InvariantCulture) : "";
-            guaranteeDayTextBox.Text = ((relation != null) && (relation.Guaranteed != null))
-                ? relation.Guaranteed.Day.ToString(CultureInfo.InvariantCulture)
-                : "";
+            guaranteeCheckBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.Guaranteed))
+                ? Color.Red
+                : SystemColors.WindowText;
+            guaranteeYearTextBox.Text = flag ? IntHelper.ToString(relation.Guaranteed.Year) : "";
+            guaranteeYearTextBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.GuaranteedYear))
+                ? Color.Red
+                : SystemColors.WindowText;
+            guaranteeMonthTextBox.Text = flag ? IntHelper.ToString(relation.Guaranteed.Month) : "";
+            guaranteeMonthTextBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.GuaranteedMonth))
+                ? Color.Red
+                : SystemColors.WindowText;
+            guaranteeDayTextBox.Text = flag ? IntHelper.ToString(relation.Guaranteed.Day) : "";
+            guaranteeDayTextBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.GuaranteedDay))
+                ? Color.Red
+                : SystemColors.WindowText;
+
             guaraneeEndLabel.Enabled = flag;
             guaranteeYearTextBox.Enabled = flag;
             guaranteeMonthTextBox.Enabled = flag;
@@ -3105,15 +4729,20 @@ namespace HoI2Editor.Forms
             nonAggressionCheckBox.Checked = (nonAggression != null);
 
             bool flag = (nonAggression != null) && (nonAggression.StartDate != null);
-            nonAggressionStartYearTextBox.Text = flag
-                ? nonAggression.StartDate.Year.ToString(CultureInfo.InvariantCulture)
-                : "";
-            nonAggressionStartMonthTextBox.Text = flag
-                ? nonAggression.StartDate.Month.ToString(CultureInfo.InvariantCulture)
-                : "";
-            nonAggressionStartDayTextBox.Text = flag
-                ? nonAggression.StartDate.Day.ToString(CultureInfo.InvariantCulture)
-                : "";
+            nonAggressionStartYearTextBox.Text = flag ? IntHelper.ToString(nonAggression.StartDate.Year) : "";
+            nonAggressionStartYearTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.StartYear))
+                ? Color.Red
+                : SystemColors.WindowText;
+            nonAggressionStartMonthTextBox.Text = flag ? IntHelper.ToString(nonAggression.StartDate.Month) : "";
+            nonAggressionStartMonthTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.StartMonth))
+                ? Color.Red
+                : SystemColors.WindowText;
+            nonAggressionStartDayTextBox.Text = flag ? IntHelper.ToString(nonAggression.StartDate.Day) : "";
+            nonAggressionStartDayTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.StartDay))
+                ? Color.Red
+                : SystemColors.WindowText;
+
+            // TODO: 見直しここから
 
             nonAggressionStartLabel.Enabled = flag;
             nonAggressionStartYearTextBox.Enabled = flag;
@@ -3121,15 +4750,9 @@ namespace HoI2Editor.Forms
             nonAggressionStartDayTextBox.Enabled = flag;
 
             flag = (nonAggression != null) && (nonAggression.EndDate != null);
-            nonAggressionEndYearTextBox.Text = flag
-                ? nonAggression.EndDate.Year.ToString(CultureInfo.InvariantCulture)
-                : "";
-            nonAggressionEndMonthTextBox.Text = flag
-                ? nonAggression.EndDate.Month.ToString(CultureInfo.InvariantCulture)
-                : "";
-            nonAggressionEndDayTextBox.Text = flag
-                ? nonAggression.EndDate.Day.ToString(CultureInfo.InvariantCulture)
-                : "";
+            nonAggressionEndYearTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Year) : "";
+            nonAggressionEndMonthTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Month) : "";
+            nonAggressionEndDayTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Day) : "";
 
             nonAggressionEndLabel.Enabled = flag;
             nonAggressionEndYearTextBox.Enabled = flag;
@@ -3137,8 +4760,8 @@ namespace HoI2Editor.Forms
             nonAggressionEndDayTextBox.Enabled = flag;
 
             flag = (nonAggression != null) && (nonAggression.Id != null);
-            nonAggressionTypeTextBox.Text = flag ? nonAggression.Id.Type.ToString(CultureInfo.InvariantCulture) : "";
-            nonAggressionIdTextBox.Text = flag ? nonAggression.Id.Id.ToString(CultureInfo.InvariantCulture) : "";
+            nonAggressionTypeTextBox.Text = flag ? IntHelper.ToString(nonAggression.Id.Type) : "";
+            nonAggressionIdTextBox.Text = flag ? IntHelper.ToString(nonAggression.Id.Id) : "";
 
             nonAggressionIdLabel.Enabled = flag;
             nonAggressionTypeTextBox.Enabled = flag;
@@ -3154,15 +4777,9 @@ namespace HoI2Editor.Forms
             peaceCheckBox.Checked = (peace != null);
 
             bool flag = (peace != null) && (peace.StartDate != null);
-            peaceStartYearTextBox.Text = flag
-                ? peace.StartDate.Year.ToString(CultureInfo.InvariantCulture)
-                : "";
-            peaceStartMonthTextBox.Text = flag
-                ? peace.StartDate.Month.ToString(CultureInfo.InvariantCulture)
-                : "";
-            peaceStartDayTextBox.Text = flag
-                ? peace.StartDate.Day.ToString(CultureInfo.InvariantCulture)
-                : "";
+            peaceStartYearTextBox.Text = flag ? IntHelper.ToString(peace.StartDate.Year) : "";
+            peaceStartMonthTextBox.Text = flag ? IntHelper.ToString(peace.StartDate.Month) : "";
+            peaceStartDayTextBox.Text = flag ? IntHelper.ToString(peace.StartDate.Day) : "";
 
             peaceStartLabel.Enabled = flag;
             peaceStartYearTextBox.Enabled = flag;
@@ -3170,15 +4787,9 @@ namespace HoI2Editor.Forms
             peaceStartDayTextBox.Enabled = flag;
 
             flag = (peace != null) && (peace.EndDate != null);
-            peaceEndYearTextBox.Text = flag
-                ? peace.EndDate.Year.ToString(CultureInfo.InvariantCulture)
-                : "";
-            peaceEndMonthTextBox.Text = flag
-                ? peace.EndDate.Month.ToString(CultureInfo.InvariantCulture)
-                : "";
-            peaceEndDayTextBox.Text = flag
-                ? peace.EndDate.Day.ToString(CultureInfo.InvariantCulture)
-                : "";
+            peaceEndYearTextBox.Text = flag ? IntHelper.ToString(peace.EndDate.Year) : "";
+            peaceEndMonthTextBox.Text = flag ? IntHelper.ToString(peace.EndDate.Month) : "";
+            peaceEndDayTextBox.Text = flag ? IntHelper.ToString(peace.EndDate.Day) : "";
 
             peaceEndLabel.Enabled = flag;
             peaceEndYearTextBox.Enabled = flag;
@@ -3186,8 +4797,8 @@ namespace HoI2Editor.Forms
             peaceEndDayTextBox.Enabled = flag;
 
             flag = (peace != null) && (peace.Id != null);
-            peaceTypeTextBox.Text = flag ? peace.Id.Type.ToString(CultureInfo.InvariantCulture) : "";
-            peaceIdTextBox.Text = flag ? peace.Id.Id.ToString(CultureInfo.InvariantCulture) : "";
+            peaceTypeTextBox.Text = flag ? IntHelper.ToString(peace.Id.Type) : "";
+            peaceIdTextBox.Text = flag ? IntHelper.ToString(peace.Id.Id) : "";
 
             peaceIdLabel.Enabled = flag;
             peaceTypeTextBox.Enabled = flag;
@@ -3219,7 +4830,7 @@ namespace HoI2Editor.Forms
             if (relation != null)
             {
                 // 値に変化がなければ何もしない
-                if (Math.Abs(val - relation.Value) <= 0.00005)
+                if (DoubleHelper.IsEqual(val, relation.Value))
                 {
                     return;
                 }
@@ -3227,7 +4838,7 @@ namespace HoI2Editor.Forms
             else
             {
                 // 値に変化がなければ何もしない
-                if (Math.Abs(val) <= 0.00005)
+                if (DoubleHelper.IsZero(val))
                 {
                     return;
                 }
@@ -3237,9 +4848,8 @@ namespace HoI2Editor.Forms
                 Scenarios.SetCountryRelation(self, relation);
             }
 
-            Log.Info("[Scenario] relation value: {0} -> {1} ({2} > {3})",
-                relation.Value.ToString(CultureInfo.InvariantCulture), val.ToString(CultureInfo.InvariantCulture),
-                Countries.Strings[(int) self], Countries.Strings[(int) target]);
+            Log.Info("[Scenario] relation value: {0} -> {1} ({2} > {3})", DoubleHelper.ToString(relation.Value),
+                DoubleHelper.ToString(val), Countries.Strings[(int) self], Countries.Strings[(int) target]);
 
             // 値を更新する
             relation.Value = val;
@@ -3264,7 +4874,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     貿易タブの項目を初期化する
         /// </summary>
-        private void InitTradeItems()
+        private void InitTradeTab()
         {
             // 貿易国家コンボボックス
             tradeCountryComboBox1.BeginUpdate();
@@ -3292,7 +4902,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     貿易タブの項目を更新する
         /// </summary>
-        private void UpdateTradeItems()
+        private void UpdateTradeTab()
         {
             ScenarioGlobalData data = Scenarios.Data.GlobalData;
 
@@ -3331,14 +4941,14 @@ namespace HoI2Editor.Forms
             }
 
             // 開始日時
-            tradeStartYearTextBox.Text = treaty.StartDate.Year.ToString(CultureInfo.InvariantCulture);
-            tradeStartMonthTextBox.Text = treaty.StartDate.Month.ToString(CultureInfo.InvariantCulture);
-            tradeStartDayTextBox.Text = treaty.StartDate.Day.ToString(CultureInfo.InvariantCulture);
+            tradeStartYearTextBox.Text = IntHelper.ToString(treaty.StartDate.Year);
+            tradeStartMonthTextBox.Text = IntHelper.ToString(treaty.StartDate.Month);
+            tradeStartDayTextBox.Text = IntHelper.ToString(treaty.StartDate.Day);
 
             // 終了日時
-            tradeEndYearTextBox.Text = treaty.EndDate.Year.ToString(CultureInfo.InvariantCulture);
-            tradeEndMonthTextBox.Text = treaty.EndDate.Month.ToString(CultureInfo.InvariantCulture);
-            tradeEndDayTextBox.Text = treaty.EndDate.Day.ToString(CultureInfo.InvariantCulture);
+            tradeEndYearTextBox.Text = IntHelper.ToString(treaty.EndDate.Year);
+            tradeEndMonthTextBox.Text = IntHelper.ToString(treaty.EndDate.Month);
+            tradeEndDayTextBox.Text = IntHelper.ToString(treaty.EndDate.Day);
 
             // 貿易国家コンボボックス
             if (Countries.Tags.Contains(treaty.Country1))
@@ -3355,7 +4965,7 @@ namespace HoI2Editor.Forms
             {
                 if (treaty.Energy < 0)
                 {
-                    tradeEnergyTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.Energy));
+                    tradeEnergyTextBox1.Text = DoubleHelper.ToString1(-treaty.Energy);
                     tradeEnergyTextBox2.Text = "";
                 }
                 else
@@ -3373,7 +4983,7 @@ namespace HoI2Editor.Forms
             {
                 if (treaty.Metal < 0)
                 {
-                    tradeMetalTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.Metal));
+                    tradeMetalTextBox1.Text = DoubleHelper.ToString1(-treaty.Metal);
                     tradeMetalTextBox2.Text = "";
                 }
                 else
@@ -3391,7 +5001,7 @@ namespace HoI2Editor.Forms
             {
                 if (treaty.RareMaterials < 0)
                 {
-                    tradeRareMaterialsTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.RareMaterials));
+                    tradeRareMaterialsTextBox1.Text = DoubleHelper.ToString1(-treaty.RareMaterials);
                     tradeRareMaterialsTextBox2.Text = "";
                 }
                 else
@@ -3409,7 +5019,7 @@ namespace HoI2Editor.Forms
             {
                 if (treaty.Oil < 0)
                 {
-                    tradeOilTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.Oil));
+                    tradeOilTextBox1.Text = DoubleHelper.ToString1(-treaty.Oil);
                     tradeOilTextBox2.Text = "";
                 }
                 else
@@ -3427,7 +5037,7 @@ namespace HoI2Editor.Forms
             {
                 if (treaty.Supplies < 0)
                 {
-                    tradeSuppliesTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.Supplies));
+                    tradeSuppliesTextBox1.Text = DoubleHelper.ToString1(-treaty.Supplies);
                     tradeSuppliesTextBox2.Text = "";
                 }
                 else
@@ -3445,7 +5055,7 @@ namespace HoI2Editor.Forms
             {
                 if (treaty.Money < 0)
                 {
-                    tradeMoneyTextBox1.Text = DoubleHelper.ToString1(Math.Abs(treaty.Money));
+                    tradeMoneyTextBox1.Text = DoubleHelper.ToString1(-treaty.Money);
                     tradeMoneyTextBox2.Text = "";
                 }
                 else

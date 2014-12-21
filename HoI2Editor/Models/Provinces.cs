@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Models
 {
@@ -3673,7 +3673,7 @@ namespace HoI2Editor.Models
             {
                 province.Infrastructure = 0;
             }
-            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (DoubleHelper.TryParse(tokens[index], out d))
             {
                 province.Infrastructure = d;
             }
@@ -3737,7 +3737,7 @@ namespace HoI2Editor.Models
             {
                 province.Ic = 0;
             }
-            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (DoubleHelper.TryParse(tokens[index], out d))
             {
                 province.Ic = d;
             }
@@ -3753,7 +3753,7 @@ namespace HoI2Editor.Models
             {
                 province.Manpower = 0;
             }
-            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (DoubleHelper.TryParse(tokens[index], out d))
             {
                 province.Manpower = d;
             }
@@ -3769,7 +3769,7 @@ namespace HoI2Editor.Models
             {
                 province.Oil = 0;
             }
-            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (DoubleHelper.TryParse(tokens[index], out d))
             {
                 province.Oil = d;
             }
@@ -3785,7 +3785,7 @@ namespace HoI2Editor.Models
             {
                 province.Metal = 0;
             }
-            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (DoubleHelper.TryParse(tokens[index], out d))
             {
                 province.Metal = d;
             }
@@ -3801,7 +3801,7 @@ namespace HoI2Editor.Models
             {
                 province.Energy = 0;
             }
-            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (DoubleHelper.TryParse(tokens[index], out d))
             {
                 province.Energy = d;
             }
@@ -3817,7 +3817,7 @@ namespace HoI2Editor.Models
             {
                 province.RareMaterials = 0;
             }
-            else if (double.TryParse(tokens[index], NumberStyles.Float, CultureInfo.InvariantCulture, out d))
+            else if (DoubleHelper.TryParse(tokens[index], out d))
             {
                 province.RareMaterials = d;
             }
@@ -4310,16 +4310,16 @@ namespace HoI2Editor.Models
                             province.Continent != ContinentId.None ? ContinentStrings[(int) province.Continent] : "",
                             ClimateStrings[(int) province.Climate],
                             TerrainStrings[(int) province.Terrain],
-                            province.Infrastructure.ToString(CultureInfo.InvariantCulture),
+                            DoubleHelper.ToString(province.Infrastructure),
                             province.Beaches ? 1 : 0,
                             province.PortAllowed ? 1 : 0,
                             province.PortSeaZone,
-                            province.Ic.ToString(CultureInfo.InvariantCulture),
-                            province.Manpower.ToString(CultureInfo.InvariantCulture),
-                            province.Oil.ToString(CultureInfo.InvariantCulture),
-                            province.Metal.ToString(CultureInfo.InvariantCulture),
-                            province.Energy.ToString(CultureInfo.InvariantCulture),
-                            province.RareMaterials.ToString(CultureInfo.InvariantCulture),
+                            DoubleHelper.ToString(province.Ic),
+                            DoubleHelper.ToString(province.Manpower),
+                            DoubleHelper.ToString(province.Oil),
+                            DoubleHelper.ToString(province.Metal),
+                            DoubleHelper.ToString(province.Energy),
+                            DoubleHelper.ToString(province.RareMaterials),
                             province.CityXPos,
                             province.CityYPos,
                             province.ArmyXPos,
@@ -4339,27 +4339,13 @@ namespace HoI2Editor.Models
                             province.FillCoordY1,
                             province.FillCoordX2,
                             province.FillCoordY2,
-                            (province.FillCoordX3 != 0)
-                                ? province.FillCoordX3.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.FillCoordY3 != 0)
-                                ? province.FillCoordY3.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.FillCoordX4 != 0)
-                                ? province.FillCoordX4.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.FillCoordY4 != 0)
-                                ? province.FillCoordY4.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.FillCoordX5 != 0)
-                                ? province.FillCoordX5.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.FillCoordY5 != 0)
-                                ? province.FillCoordY5.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.FillCoordX6 != 0)
-                                ? province.FillCoordX6.ToString(CultureInfo.InvariantCulture)
-                                : "");
+                            (province.FillCoordX3 != 0) ? IntHelper.ToString(province.FillCoordX3) : "",
+                            (province.FillCoordY3 != 0) ? IntHelper.ToString(province.FillCoordY3) : "",
+                            (province.FillCoordX4 != 0) ? IntHelper.ToString(province.FillCoordX4) : "",
+                            (province.FillCoordY4 != 0) ? IntHelper.ToString(province.FillCoordY4) : "",
+                            (province.FillCoordX5 != 0) ? IntHelper.ToString(province.FillCoordX5) : "",
+                            (province.FillCoordY5 != 0) ? IntHelper.ToString(province.FillCoordY5) : "",
+                            (province.FillCoordX6 != 0) ? IntHelper.ToString(province.FillCoordX6) : "");
                     }
                     else
                     {
@@ -4372,53 +4358,31 @@ namespace HoI2Editor.Models
                             ContinentStrings[(int) province.Continent],
                             ClimateStrings[(int) province.Climate],
                             TerrainStrings[(int) province.Terrain],
-                            province.Infrastructure.ToString(CultureInfo.InvariantCulture),
+                            DoubleHelper.ToString(province.Infrastructure),
                             province.Beaches ? 1 : 0,
                             province.PortAllowed ? 1 : 0,
                             province.PortSeaZone,
-                            (province.Terrain != TerrainId.Ocean)
-                                ? province.Ic.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.Terrain != TerrainId.Ocean)
-                                ? province.Manpower.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.Terrain != TerrainId.Ocean)
-                                ? province.Oil.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.Terrain != TerrainId.Ocean)
-                                ? province.Metal.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.Terrain != TerrainId.Ocean)
-                                ? province.Energy.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.Terrain != TerrainId.Ocean)
-                                ? province.RareMaterials.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.CityXPos != 0) ? province.CityXPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.CityYPos != 0) ? province.CityYPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.ArmyXPos != 0) ? province.ArmyXPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.ArmyYPos != 0) ? province.ArmyYPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.PortXPos != 0) ? province.PortXPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.PortYPos != 0) ? province.PortYPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.BeachXPos != 0)
-                                ? province.BeachXPos.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.BeachYPos != 0)
-                                ? province.BeachYPos.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.BeachXPos != 0)
-                                ? province.BeachIcon.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.FortXPos != 0) ? province.FortXPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.FortYPos != 0) ? province.FortYPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.AaXPos != 0) ? province.AaXPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.AaYPos != 0) ? province.AaYPos.ToString(CultureInfo.InvariantCulture) : "",
-                            (province.CounterXPos != 0)
-                                ? province.CounterXPos.ToString(CultureInfo.InvariantCulture)
-                                : "",
-                            (province.CounterYPos != 0)
-                                ? province.CounterYPos.ToString(CultureInfo.InvariantCulture)
-                                : "",
+                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.Ic) : "",
+                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.Manpower) : "",
+                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.Oil) : "",
+                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.Metal) : "",
+                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.Energy) : "",
+                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.RareMaterials) : "",
+                            (province.CityXPos != 0) ? IntHelper.ToString(province.CityXPos) : "",
+                            (province.CityYPos != 0) ? IntHelper.ToString(province.CityYPos) : "",
+                            (province.ArmyXPos != 0) ? IntHelper.ToString(province.ArmyXPos) : "",
+                            (province.ArmyYPos != 0) ? IntHelper.ToString(province.ArmyYPos) : "",
+                            (province.PortXPos != 0) ? IntHelper.ToString(province.PortXPos) : "",
+                            (province.PortYPos != 0) ? IntHelper.ToString(province.PortYPos) : "",
+                            (province.BeachXPos != 0) ? IntHelper.ToString(province.BeachXPos) : "",
+                            (province.BeachYPos != 0) ? IntHelper.ToString(province.BeachYPos) : "",
+                            (province.BeachXPos != 0) ? IntHelper.ToString(province.BeachIcon) : "",
+                            (province.FortXPos != 0) ? IntHelper.ToString(province.FortXPos) : "",
+                            (province.FortYPos != 0) ? IntHelper.ToString(province.FortYPos) : "",
+                            (province.AaXPos != 0) ? IntHelper.ToString(province.AaXPos) : "",
+                            (province.AaYPos != 0) ? IntHelper.ToString(province.AaYPos) : "",
+                            (province.CounterXPos != 0) ? IntHelper.ToString(province.CounterXPos) : "",
+                            (province.CounterYPos != 0) ? IntHelper.ToString(province.CounterYPos) : "",
                             province.FillCoordX1,
                             province.FillCoordY1,
                             province.FillCoordX2,
@@ -4430,10 +4394,7 @@ namespace HoI2Editor.Models
                             if (province.FillCoordX4 != 0 || province.FillCoordY4 != 0 ||
                                 province.FillCoordX3 != -1 || province.FillCoordY3 != -1)
                             {
-                                writer.Write(
-                                    ";{0};{1}",
-                                    province.FillCoordX4.ToString(CultureInfo.InvariantCulture),
-                                    province.FillCoordY4.ToString(CultureInfo.InvariantCulture));
+                                writer.Write(";{0};{1}", province.FillCoordX4, province.FillCoordY4);
                             }
                         }
                         writer.WriteLine();

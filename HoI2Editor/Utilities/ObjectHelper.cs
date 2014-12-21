@@ -1,5 +1,4 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace HoI2Editor.Utilities
 {
@@ -40,7 +39,7 @@ namespace HoI2Editor.Utilities
         {
             if ((x is double) && (y is double))
             {
-                return (Math.Abs((double) y - (double) x) <= 0.00005);
+                return DoubleHelper.IsEqual((double) x, (double) y);
             }
             return x.Equals(y);
         }

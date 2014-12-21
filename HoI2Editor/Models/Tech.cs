@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Models
 {
@@ -1399,7 +1399,7 @@ namespace HoI2Editor.Models
         public override string ToString()
         {
             // 名前が存在しないので代わりにIDを返す
-            return Id.ToString(CultureInfo.InvariantCulture);
+            return IntHelper.ToString(Id);
         }
 
         #endregion

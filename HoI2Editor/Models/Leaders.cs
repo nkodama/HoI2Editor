@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Models
 {
@@ -861,17 +861,13 @@ namespace HoI2Editor.Models
                             leader.RankYear[1],
                             leader.RankYear[2],
                             leader.RankYear[3],
-                            leader.IdealRank != LeaderRank.None
-                                ? (4 - (int) leader.IdealRank).ToString(CultureInfo.InvariantCulture)
-                                : "",
+                            leader.IdealRank != LeaderRank.None ? IntHelper.ToString(4 - (int) leader.IdealRank) : "",
                             leader.MaxSkill,
                             leader.Traits,
                             leader.Skill,
                             leader.Experience,
                             leader.Loyalty,
-                            leader.Branch != Branch.None
-                                ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
-                                : "",
+                            leader.Branch != Branch.None ? IntHelper.ToString((int) (leader.Branch - 1)) : "",
                             leader.PictureName,
                             leader.StartYear,
                             leader.EndYear,
@@ -888,17 +884,13 @@ namespace HoI2Editor.Models
                             leader.RankYear[1],
                             leader.RankYear[2],
                             leader.RankYear[3],
-                            leader.IdealRank != LeaderRank.None
-                                ? (4 - (int) leader.IdealRank).ToString(CultureInfo.InvariantCulture)
-                                : "",
+                            leader.IdealRank != LeaderRank.None ? IntHelper.ToString(4 - (int) leader.IdealRank) : "",
                             leader.MaxSkill,
                             leader.Traits,
                             leader.Skill,
                             leader.Experience,
                             leader.Loyalty,
-                            leader.Branch != Branch.None
-                                ? ((int) (leader.Branch - 1)).ToString(CultureInfo.InvariantCulture)
-                                : "",
+                            leader.Branch != Branch.None ? IntHelper.ToString((int) (leader.Branch - 1)) : "",
                             leader.PictureName,
                             leader.StartYear,
                             leader.EndYear);

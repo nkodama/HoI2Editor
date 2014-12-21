@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -877,17 +876,17 @@ namespace HoI2Editor.Forms
                 Text = province.GetName(),
                 Tag = province
             };
-            item.SubItems.Add(province.Id.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(IntHelper.ToString(province.Id));
             item.SubItems.Add(province.Terrain == TerrainId.Ocean ? Resources.Yes : Resources.No);
             item.SubItems.Add(province.PortAllowed ? Resources.Yes : Resources.No);
             item.SubItems.Add(province.Beaches ? Resources.Yes : Resources.No);
-            item.SubItems.Add(province.Infrastructure.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(province.Ic.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(province.Manpower.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(province.Energy.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(province.Metal.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(province.RareMaterials.ToString(CultureInfo.InvariantCulture));
-            item.SubItems.Add(province.Oil.ToString(CultureInfo.InvariantCulture));
+            item.SubItems.Add(DoubleHelper.ToString(province.Infrastructure));
+            item.SubItems.Add(DoubleHelper.ToString(province.Ic));
+            item.SubItems.Add(DoubleHelper.ToString(province.Manpower));
+            item.SubItems.Add(DoubleHelper.ToString(province.Energy));
+            item.SubItems.Add(DoubleHelper.ToString(province.Metal));
+            item.SubItems.Add(DoubleHelper.ToString(province.RareMaterials));
+            item.SubItems.Add(DoubleHelper.ToString(province.Oil));
 
             return item;
         }
@@ -1067,13 +1066,13 @@ namespace HoI2Editor.Forms
             }
 
             // 資源設定
-            infraTextBox.Text = province.Infrastructure.ToString(CultureInfo.InvariantCulture);
-            icTextBox.Text = province.Ic.ToString(CultureInfo.InvariantCulture);
-            manpowerTextBox.Text = province.Manpower.ToString(CultureInfo.InvariantCulture);
-            energyTextBox.Text = province.Energy.ToString(CultureInfo.InvariantCulture);
-            metalTextBox.Text = province.Metal.ToString(CultureInfo.InvariantCulture);
-            rareMaterialsTextBox.Text = province.RareMaterials.ToString(CultureInfo.InvariantCulture);
-            oilTextBox.Text = province.Oil.ToString(CultureInfo.InvariantCulture);
+            infraTextBox.Text = DoubleHelper.ToString(province.Infrastructure);
+            icTextBox.Text = DoubleHelper.ToString(province.Ic);
+            manpowerTextBox.Text = DoubleHelper.ToString(province.Manpower);
+            energyTextBox.Text = DoubleHelper.ToString(province.Energy);
+            metalTextBox.Text = DoubleHelper.ToString(province.Metal);
+            rareMaterialsTextBox.Text = DoubleHelper.ToString(province.RareMaterials);
+            oilTextBox.Text = DoubleHelper.ToString(province.Oil);
 
             // 座標設定
             beachCheckBox.Checked = province.Beaches;
@@ -1231,31 +1230,31 @@ namespace HoI2Editor.Forms
             positionGroupBox.Enabled = true;
 
             // 無効化時にクリアした文字列を再設定する
-            idNumericUpDown.Text = idNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            beachXNumericUpDown.Text = beachXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            beachYNumericUpDown.Text = beachYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            beachIconNumericUpDown.Text = beachIconNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            portXNumericUpDown.Text = portXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            portYNumericUpDown.Text = portYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            portSeaZoneNumericUpDown.Text = portSeaZoneNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            cityXNumericUpDown.Text = cityXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            cityYNumericUpDown.Text = cityYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            fortXNumericUpDown.Text = fortXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            fortYNumericUpDown.Text = fortYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            aaXNumericUpDown.Text = aaXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            aaYNumericUpDown.Text = aaYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            armyXNumericUpDown.Text = armyXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            armyYNumericUpDown.Text = armyYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            counterXNumericUpDown.Text = counterXNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            counterYNumericUpDown.Text = counterYNumericUpDown.Value.ToString(CultureInfo.InvariantCulture);
-            fillXNumericUpDown1.Text = fillXNumericUpDown1.Value.ToString(CultureInfo.InvariantCulture);
-            fillYNumericUpDown1.Text = fillYNumericUpDown1.Value.ToString(CultureInfo.InvariantCulture);
-            fillXNumericUpDown2.Text = fillXNumericUpDown2.Value.ToString(CultureInfo.InvariantCulture);
-            fillYNumericUpDown2.Text = fillYNumericUpDown2.Value.ToString(CultureInfo.InvariantCulture);
-            fillXNumericUpDown3.Text = fillXNumericUpDown3.Value.ToString(CultureInfo.InvariantCulture);
-            fillYNumericUpDown3.Text = fillYNumericUpDown3.Value.ToString(CultureInfo.InvariantCulture);
-            fillXNumericUpDown4.Text = fillXNumericUpDown4.Value.ToString(CultureInfo.InvariantCulture);
-            fillYNumericUpDown4.Text = fillYNumericUpDown4.Value.ToString(CultureInfo.InvariantCulture);
+            idNumericUpDown.Text = IntHelper.ToString((int) idNumericUpDown.Value);
+            beachXNumericUpDown.Text = IntHelper.ToString((int) beachXNumericUpDown.Value);
+            beachYNumericUpDown.Text = IntHelper.ToString((int) beachYNumericUpDown.Value);
+            beachIconNumericUpDown.Text = IntHelper.ToString((int) beachIconNumericUpDown.Value);
+            portXNumericUpDown.Text = IntHelper.ToString((int) portXNumericUpDown.Value);
+            portYNumericUpDown.Text = IntHelper.ToString((int) portYNumericUpDown.Value);
+            portSeaZoneNumericUpDown.Text = IntHelper.ToString((int) portSeaZoneNumericUpDown.Value);
+            cityXNumericUpDown.Text = IntHelper.ToString((int) cityXNumericUpDown.Value);
+            cityYNumericUpDown.Text = IntHelper.ToString((int) cityYNumericUpDown.Value);
+            fortXNumericUpDown.Text = IntHelper.ToString((int) fortXNumericUpDown.Value);
+            fortYNumericUpDown.Text = IntHelper.ToString((int) fortYNumericUpDown.Value);
+            aaXNumericUpDown.Text = IntHelper.ToString((int) aaXNumericUpDown.Value);
+            aaYNumericUpDown.Text = IntHelper.ToString((int) aaYNumericUpDown.Value);
+            armyXNumericUpDown.Text = IntHelper.ToString((int) armyXNumericUpDown.Value);
+            armyYNumericUpDown.Text = IntHelper.ToString((int) armyYNumericUpDown.Value);
+            counterXNumericUpDown.Text = IntHelper.ToString((int) counterXNumericUpDown.Value);
+            counterYNumericUpDown.Text = IntHelper.ToString((int) counterYNumericUpDown.Value);
+            fillXNumericUpDown1.Text = IntHelper.ToString((int) fillXNumericUpDown1.Value);
+            fillYNumericUpDown1.Text = IntHelper.ToString((int) fillYNumericUpDown1.Value);
+            fillXNumericUpDown2.Text = IntHelper.ToString((int) fillXNumericUpDown2.Value);
+            fillYNumericUpDown2.Text = IntHelper.ToString((int) fillYNumericUpDown2.Value);
+            fillXNumericUpDown3.Text = IntHelper.ToString((int) fillXNumericUpDown3.Value);
+            fillYNumericUpDown3.Text = IntHelper.ToString((int) fillYNumericUpDown3.Value);
+            fillXNumericUpDown4.Text = IntHelper.ToString((int) fillXNumericUpDown4.Value);
+            fillYNumericUpDown4.Text = IntHelper.ToString((int) fillYNumericUpDown4.Value);
         }
 
         /// <summary>
@@ -1838,14 +1837,14 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(infraTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(infraTextBox.Text, out val))
             {
-                infraTextBox.Text = province.Infrastructure.ToString(CultureInfo.InvariantCulture);
+                infraTextBox.Text = DoubleHelper.ToString(province.Infrastructure);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - province.Infrastructure) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, province.Infrastructure))
             {
                 return;
             }
@@ -1857,8 +1856,7 @@ namespace HoI2Editor.Forms
             province.Infrastructure = val;
 
             // プロヴィンスリストビューの項目を更新する
-            provinceListView.SelectedItems[0].SubItems[5].Text =
-                province.Infrastructure.ToString(CultureInfo.InvariantCulture);
+            provinceListView.SelectedItems[0].SubItems[5].Text = DoubleHelper.ToString(province.Infrastructure);
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();
@@ -1884,14 +1882,14 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(icTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(icTextBox.Text, out val))
             {
-                icTextBox.Text = province.Ic.ToString(CultureInfo.InvariantCulture);
+                icTextBox.Text = DoubleHelper.ToString(province.Ic);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - province.Ic) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, province.Ic))
             {
                 return;
             }
@@ -1902,7 +1900,7 @@ namespace HoI2Editor.Forms
             province.Ic = val;
 
             // プロヴィンスリストビューの項目を更新する
-            provinceListView.SelectedItems[0].SubItems[6].Text = province.Ic.ToString(CultureInfo.InvariantCulture);
+            provinceListView.SelectedItems[0].SubItems[6].Text = DoubleHelper.ToString(province.Ic);
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();
@@ -1928,14 +1926,14 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(manpowerTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(manpowerTextBox.Text, out val))
             {
-                manpowerTextBox.Text = province.Manpower.ToString(CultureInfo.InvariantCulture);
+                manpowerTextBox.Text = DoubleHelper.ToString(province.Manpower);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - province.Manpower) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, province.Manpower))
             {
                 return;
             }
@@ -1947,7 +1945,7 @@ namespace HoI2Editor.Forms
             province.Manpower = val;
 
             // プロヴィンスリストビューの項目を更新する
-            provinceListView.SelectedItems[0].SubItems[7].Text = province.Manpower.ToString(CultureInfo.InvariantCulture);
+            provinceListView.SelectedItems[0].SubItems[7].Text = DoubleHelper.ToString(province.Manpower);
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();
@@ -1973,14 +1971,14 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(energyTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(energyTextBox.Text, out val))
             {
-                energyTextBox.Text = province.Energy.ToString(CultureInfo.InvariantCulture);
+                energyTextBox.Text = DoubleHelper.ToString(province.Energy);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - province.Energy) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, province.Energy))
             {
                 return;
             }
@@ -1991,7 +1989,7 @@ namespace HoI2Editor.Forms
             province.Energy = val;
 
             // プロヴィンスリストビューの項目を更新する
-            provinceListView.SelectedItems[0].SubItems[8].Text = province.Energy.ToString(CultureInfo.InvariantCulture);
+            provinceListView.SelectedItems[0].SubItems[8].Text = DoubleHelper.ToString(province.Energy);
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();
@@ -2017,14 +2015,14 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(metalTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(metalTextBox.Text, out val))
             {
-                metalTextBox.Text = province.Metal.ToString(CultureInfo.InvariantCulture);
+                metalTextBox.Text = DoubleHelper.ToString(province.Metal);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - province.Metal) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, province.Metal))
             {
                 return;
             }
@@ -2035,7 +2033,7 @@ namespace HoI2Editor.Forms
             province.Metal = val;
 
             // プロヴィンスリストビューの項目を更新する
-            provinceListView.SelectedItems[0].SubItems[9].Text = province.Metal.ToString(CultureInfo.InvariantCulture);
+            provinceListView.SelectedItems[0].SubItems[9].Text = DoubleHelper.ToString(province.Metal);
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();
@@ -2061,14 +2059,14 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(rareMaterialsTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(rareMaterialsTextBox.Text, out val))
             {
-                rareMaterialsTextBox.Text = province.RareMaterials.ToString(CultureInfo.InvariantCulture);
+                rareMaterialsTextBox.Text = DoubleHelper.ToString(province.RareMaterials);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - province.RareMaterials) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, province.RareMaterials))
             {
                 return;
             }
@@ -2080,8 +2078,7 @@ namespace HoI2Editor.Forms
             province.RareMaterials = val;
 
             // プロヴィンスリストビューの項目を更新する
-            provinceListView.SelectedItems[0].SubItems[10].Text =
-                province.RareMaterials.ToString(CultureInfo.InvariantCulture);
+            provinceListView.SelectedItems[0].SubItems[10].Text = DoubleHelper.ToString(province.RareMaterials);
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();
@@ -2107,14 +2104,14 @@ namespace HoI2Editor.Forms
 
             // 変更後の文字列を数値に変換できなければ値を戻す
             double val;
-            if (!double.TryParse(oilTextBox.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out val))
+            if (!DoubleHelper.TryParse(oilTextBox.Text, out val))
             {
-                oilTextBox.Text = province.Oil.ToString(CultureInfo.InvariantCulture);
+                oilTextBox.Text = DoubleHelper.ToString(province.Oil);
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (Math.Abs(val - province.Oil) <= 0.00005)
+            if (DoubleHelper.IsEqual(val, province.Oil))
             {
                 return;
             }
@@ -2125,7 +2122,7 @@ namespace HoI2Editor.Forms
             province.Oil = val;
 
             // プロヴィンスリストビューの項目を更新する
-            provinceListView.SelectedItems[0].SubItems[11].Text = province.Oil.ToString(CultureInfo.InvariantCulture);
+            provinceListView.SelectedItems[0].SubItems[11].Text = DoubleHelper.ToString(province.Oil);
 
             // 編集済みフラグを設定する
             Provinces.SetDirty();

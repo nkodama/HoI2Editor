@@ -147,6 +147,8 @@
             this.relationCountryListBox = new System.Windows.Forms.ListBox();
             this.allianceTabPage = new System.Windows.Forms.TabPage();
             this.warGroupBox = new System.Windows.Forms.GroupBox();
+            this.warDefenderLeaderButton = new System.Windows.Forms.Button();
+            this.warAttackerLeaderButton = new System.Windows.Forms.Button();
             this.warDefenderIdLabel = new System.Windows.Forms.Label();
             this.warAttackerIdLabel = new System.Windows.Forms.Label();
             this.warDefenderIdTextBox = new System.Windows.Forms.TextBox();
@@ -313,10 +315,10 @@
             // 
             // provinceTabPage
             // 
+            resources.ApplyResources(this.provinceTabPage, "provinceTabPage");
             this.provinceTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.provinceTabPage.Controls.Add(this.provinceMapPanel);
             this.provinceTabPage.Controls.Add(this.testProvinceIdTextBox);
-            resources.ApplyResources(this.provinceTabPage, "provinceTabPage");
             this.provinceTabPage.Name = "provinceTabPage";
             // 
             // provinceMapPanel
@@ -339,32 +341,32 @@
             // 
             // techTabPage
             // 
-            this.techTabPage.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.techTabPage, "techTabPage");
+            this.techTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.techTabPage.Name = "techTabPage";
             // 
             // personTabPage
             // 
-            this.personTabPage.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this.personTabPage, "personTabPage");
+            this.personTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.personTabPage.Name = "personTabPage";
             // 
             // countryTabPage
             // 
+            resources.ApplyResources(this.countryTabPage, "countryTabPage");
             this.countryTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.countryTabPage.Controls.Add(this.countryInfoGroupBox);
-            resources.ApplyResources(this.countryTabPage, "countryTabPage");
             this.countryTabPage.Name = "countryTabPage";
             // 
             // countryInfoGroupBox
             // 
+            resources.ApplyResources(this.countryInfoGroupBox, "countryInfoGroupBox");
             this.countryInfoGroupBox.Controls.Add(this.flagExtTextBox);
             this.countryInfoGroupBox.Controls.Add(this.flagExtLabel);
             this.countryInfoGroupBox.Controls.Add(this.aiFileTextBox);
             this.countryInfoGroupBox.Controls.Add(this.aiFileLabel);
             this.countryInfoGroupBox.Controls.Add(this.countryNameTextBox);
             this.countryInfoGroupBox.Controls.Add(this.countryNameLabel);
-            resources.ApplyResources(this.countryInfoGroupBox, "countryInfoGroupBox");
             this.countryInfoGroupBox.Name = "countryInfoGroupBox";
             this.countryInfoGroupBox.TabStop = false;
             // 
@@ -400,6 +402,7 @@
             // 
             // tradeTabPage
             // 
+            resources.ApplyResources(this.tradeTabPage, "tradeTabPage");
             this.tradeTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.tradeTabPage.Controls.Add(this.tradeDealGroupBox);
             this.tradeTabPage.Controls.Add(this.tradeInfoGroupBox);
@@ -408,11 +411,11 @@
             this.tradeTabPage.Controls.Add(this.tradeNewButton);
             this.tradeTabPage.Controls.Add(this.tradeRemoveButton);
             this.tradeTabPage.Controls.Add(this.tradeUpButton);
-            resources.ApplyResources(this.tradeTabPage, "tradeTabPage");
             this.tradeTabPage.Name = "tradeTabPage";
             // 
             // tradeDealGroupBox
             // 
+            resources.ApplyResources(this.tradeDealGroupBox, "tradeDealGroupBox");
             this.tradeDealGroupBox.Controls.Add(this.tradeCountryComboBox1);
             this.tradeDealGroupBox.Controls.Add(this.tradeRareMaterialsTextBox1);
             this.tradeDealGroupBox.Controls.Add(this.tradeRareMaterialsTextBox2);
@@ -434,15 +437,14 @@
             this.tradeDealGroupBox.Controls.Add(this.tradeEnergyTextBox1);
             this.tradeDealGroupBox.Controls.Add(this.tradeEnergyLabel);
             this.tradeDealGroupBox.Controls.Add(this.tradeSuppliesTextBox2);
-            resources.ApplyResources(this.tradeDealGroupBox, "tradeDealGroupBox");
             this.tradeDealGroupBox.Name = "tradeDealGroupBox";
             this.tradeDealGroupBox.TabStop = false;
             // 
             // tradeCountryComboBox1
             // 
+            resources.ApplyResources(this.tradeCountryComboBox1, "tradeCountryComboBox1");
             this.tradeCountryComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tradeCountryComboBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.tradeCountryComboBox1, "tradeCountryComboBox1");
             this.tradeCountryComboBox1.Name = "tradeCountryComboBox1";
             // 
             // tradeRareMaterialsTextBox1
@@ -518,9 +520,9 @@
             // 
             // tradeCountryComboBox2
             // 
+            resources.ApplyResources(this.tradeCountryComboBox2, "tradeCountryComboBox2");
             this.tradeCountryComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tradeCountryComboBox2.FormattingEnabled = true;
-            resources.ApplyResources(this.tradeCountryComboBox2, "tradeCountryComboBox2");
             this.tradeCountryComboBox2.Name = "tradeCountryComboBox2";
             // 
             // tradeSuppliesTextBox1
@@ -550,6 +552,7 @@
             // 
             // tradeInfoGroupBox
             // 
+            resources.ApplyResources(this.tradeInfoGroupBox, "tradeInfoGroupBox");
             this.tradeInfoGroupBox.Controls.Add(this.tradeStartDateLabel);
             this.tradeInfoGroupBox.Controls.Add(this.tradeIdTextBox);
             this.tradeInfoGroupBox.Controls.Add(this.tradeEndDateLabel);
@@ -562,7 +565,6 @@
             this.tradeInfoGroupBox.Controls.Add(this.tradeStartDayTextBox);
             this.tradeInfoGroupBox.Controls.Add(this.tradeEndMonthTextBox);
             this.tradeInfoGroupBox.Controls.Add(this.tradeEndYearTextBox);
-            resources.ApplyResources(this.tradeInfoGroupBox, "tradeInfoGroupBox");
             this.tradeInfoGroupBox.Name = "tradeInfoGroupBox";
             this.tradeInfoGroupBox.TabStop = false;
             // 
@@ -629,6 +631,7 @@
             // 
             // tradeListView
             // 
+            resources.ApplyResources(this.tradeListView, "tradeListView");
             this.tradeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.tradeStartDateColumnHeader,
             this.tradeEndDateColumnHeader,
@@ -637,7 +640,6 @@
             this.tradeDealsColumnHeader});
             this.tradeListView.FullRowSelect = true;
             this.tradeListView.GridLines = true;
-            resources.ApplyResources(this.tradeListView, "tradeListView");
             this.tradeListView.Name = "tradeListView";
             this.tradeListView.UseCompatibleStateImageBehavior = false;
             this.tradeListView.View = System.Windows.Forms.View.Details;
@@ -689,19 +691,19 @@
             // 
             // relationTabPage
             // 
+            resources.ApplyResources(this.relationTabPage, "relationTabPage");
             this.relationTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.relationTabPage.Controls.Add(this.intelligenceGroupBox);
             this.relationTabPage.Controls.Add(this.diplomacyGroupBox);
             this.relationTabPage.Controls.Add(this.relationListView);
             this.relationTabPage.Controls.Add(this.relationCountryListBox);
-            resources.ApplyResources(this.relationTabPage, "relationTabPage");
             this.relationTabPage.Name = "relationTabPage";
             // 
             // intelligenceGroupBox
             // 
+            resources.ApplyResources(this.intelligenceGroupBox, "intelligenceGroupBox");
             this.intelligenceGroupBox.Controls.Add(this.spyNumNumericUpDown);
             this.intelligenceGroupBox.Controls.Add(this.spyNumLabel);
-            resources.ApplyResources(this.intelligenceGroupBox, "intelligenceGroupBox");
             this.intelligenceGroupBox.Name = "intelligenceGroupBox";
             this.intelligenceGroupBox.TabStop = false;
             // 
@@ -717,6 +719,7 @@
             // 
             // diplomacyGroupBox
             // 
+            resources.ApplyResources(this.diplomacyGroupBox, "diplomacyGroupBox");
             this.diplomacyGroupBox.Controls.Add(this.guaranteeGroupBox);
             this.diplomacyGroupBox.Controls.Add(this.peaceGroupBox);
             this.diplomacyGroupBox.Controls.Add(this.relationValueNumericUpDown);
@@ -725,18 +728,17 @@
             this.diplomacyGroupBox.Controls.Add(this.accessCheckBox);
             this.diplomacyGroupBox.Controls.Add(this.masterCheckBox);
             this.diplomacyGroupBox.Controls.Add(this.controlCheckBox);
-            resources.ApplyResources(this.diplomacyGroupBox, "diplomacyGroupBox");
             this.diplomacyGroupBox.Name = "diplomacyGroupBox";
             this.diplomacyGroupBox.TabStop = false;
             // 
             // guaranteeGroupBox
             // 
+            resources.ApplyResources(this.guaranteeGroupBox, "guaranteeGroupBox");
             this.guaranteeGroupBox.Controls.Add(this.guaranteeCheckBox);
             this.guaranteeGroupBox.Controls.Add(this.guaranteeYearTextBox);
             this.guaranteeGroupBox.Controls.Add(this.guaranteeMonthTextBox);
             this.guaranteeGroupBox.Controls.Add(this.guaraneeEndLabel);
             this.guaranteeGroupBox.Controls.Add(this.guaranteeDayTextBox);
-            resources.ApplyResources(this.guaranteeGroupBox, "guaranteeGroupBox");
             this.guaranteeGroupBox.Name = "guaranteeGroupBox";
             this.guaranteeGroupBox.TabStop = false;
             // 
@@ -768,6 +770,7 @@
             // 
             // peaceGroupBox
             // 
+            resources.ApplyResources(this.peaceGroupBox, "peaceGroupBox");
             this.peaceGroupBox.Controls.Add(this.peaceIdTextBox);
             this.peaceGroupBox.Controls.Add(this.peaceTypeTextBox);
             this.peaceGroupBox.Controls.Add(this.peaceEndDayTextBox);
@@ -780,7 +783,6 @@
             this.peaceGroupBox.Controls.Add(this.peaceStartDayTextBox);
             this.peaceGroupBox.Controls.Add(this.peaceCheckBox);
             this.peaceGroupBox.Controls.Add(this.peaceStartMonthTextBox);
-            resources.ApplyResources(this.peaceGroupBox, "peaceGroupBox");
             this.peaceGroupBox.Name = "peaceGroupBox";
             this.peaceGroupBox.TabStop = false;
             // 
@@ -863,6 +865,7 @@
             // 
             // nonAggressionGroupBox
             // 
+            resources.ApplyResources(this.nonAggressionGroupBox, "nonAggressionGroupBox");
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionIdTextBox);
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionTypeTextBox);
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionIdLabel);
@@ -875,7 +878,6 @@
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionEndMonthTextBox);
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionEndDayTextBox);
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionEndLabel);
-            resources.ApplyResources(this.nonAggressionGroupBox, "nonAggressionGroupBox");
             this.nonAggressionGroupBox.Name = "nonAggressionGroupBox";
             this.nonAggressionGroupBox.TabStop = false;
             // 
@@ -965,6 +967,7 @@
             // 
             // relationListView
             // 
+            resources.ApplyResources(this.relationListView, "relationListView");
             this.relationListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.relationCountryColumnHeader,
             this.relationValueColumnHeader,
@@ -977,7 +980,6 @@
             this.relationSpyColumnHeader});
             this.relationListView.FullRowSelect = true;
             this.relationListView.GridLines = true;
-            resources.ApplyResources(this.relationListView, "relationListView");
             this.relationListView.MultiSelect = false;
             this.relationListView.Name = "relationListView";
             this.relationListView.UseCompatibleStateImageBehavior = false;
@@ -1022,8 +1024,8 @@
             // 
             // relationCountryListBox
             // 
-            this.relationCountryListBox.FormattingEnabled = true;
             resources.ApplyResources(this.relationCountryListBox, "relationCountryListBox");
+            this.relationCountryListBox.FormattingEnabled = true;
             this.relationCountryListBox.Name = "relationCountryListBox";
             this.relationCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnRelationCountryListBoxSelectedIndexChanged);
             // 
@@ -1037,6 +1039,9 @@
             // 
             // warGroupBox
             // 
+            resources.ApplyResources(this.warGroupBox, "warGroupBox");
+            this.warGroupBox.Controls.Add(this.warDefenderLeaderButton);
+            this.warGroupBox.Controls.Add(this.warAttackerLeaderButton);
             this.warGroupBox.Controls.Add(this.warDefenderIdLabel);
             this.warGroupBox.Controls.Add(this.warAttackerIdLabel);
             this.warGroupBox.Controls.Add(this.warDefenderIdTextBox);
@@ -1068,9 +1073,22 @@
             this.warGroupBox.Controls.Add(this.warAttackerAddButton);
             this.warGroupBox.Controls.Add(this.warDefenderAddButton);
             this.warGroupBox.Controls.Add(this.warRemoveButton);
-            resources.ApplyResources(this.warGroupBox, "warGroupBox");
             this.warGroupBox.Name = "warGroupBox";
             this.warGroupBox.TabStop = false;
+            // 
+            // warDefenderLeaderButton
+            // 
+            resources.ApplyResources(this.warDefenderLeaderButton, "warDefenderLeaderButton");
+            this.warDefenderLeaderButton.Name = "warDefenderLeaderButton";
+            this.warDefenderLeaderButton.UseVisualStyleBackColor = true;
+            this.warDefenderLeaderButton.Click += new System.EventHandler(this.OnWarDefenderLeaderButtonClick);
+            // 
+            // warAttackerLeaderButton
+            // 
+            resources.ApplyResources(this.warAttackerLeaderButton, "warAttackerLeaderButton");
+            this.warAttackerLeaderButton.Name = "warAttackerLeaderButton";
+            this.warAttackerLeaderButton.UseVisualStyleBackColor = true;
+            this.warAttackerLeaderButton.Click += new System.EventHandler(this.OnWarAttackerLeaderButtonClick);
             // 
             // warDefenderIdLabel
             // 
@@ -1086,36 +1104,43 @@
             // 
             resources.ApplyResources(this.warDefenderIdTextBox, "warDefenderIdTextBox");
             this.warDefenderIdTextBox.Name = "warDefenderIdTextBox";
+            this.warDefenderIdTextBox.Validated += new System.EventHandler(this.OnWarDefenderIdTextBoxValidated);
             // 
             // warDefenderTypeTextBox
             // 
             resources.ApplyResources(this.warDefenderTypeTextBox, "warDefenderTypeTextBox");
             this.warDefenderTypeTextBox.Name = "warDefenderTypeTextBox";
+            this.warDefenderTypeTextBox.Validated += new System.EventHandler(this.OnWarDefenderTypeTextBoxValidated);
             // 
             // warAttackerIdTextBox
             // 
             resources.ApplyResources(this.warAttackerIdTextBox, "warAttackerIdTextBox");
             this.warAttackerIdTextBox.Name = "warAttackerIdTextBox";
+            this.warAttackerIdTextBox.Validated += new System.EventHandler(this.OnWarAttackerIdTextBoxValidated);
             // 
             // warAttackerTypeTextBox
             // 
             resources.ApplyResources(this.warAttackerTypeTextBox, "warAttackerTypeTextBox");
             this.warAttackerTypeTextBox.Name = "warAttackerTypeTextBox";
+            this.warAttackerTypeTextBox.Validated += new System.EventHandler(this.OnWarAttackerTypeTextBoxValidated);
             // 
             // warIdTextBox
             // 
             resources.ApplyResources(this.warIdTextBox, "warIdTextBox");
             this.warIdTextBox.Name = "warIdTextBox";
+            this.warIdTextBox.Validated += new System.EventHandler(this.OnWarIdTextBoxValidated);
             // 
             // warTypeTextBox
             // 
             resources.ApplyResources(this.warTypeTextBox, "warTypeTextBox");
             this.warTypeTextBox.Name = "warTypeTextBox";
+            this.warTypeTextBox.Validated += new System.EventHandler(this.OnWarTypeTextBoxValidated);
             // 
             // warEndMonthTextBox
             // 
             resources.ApplyResources(this.warEndMonthTextBox, "warEndMonthTextBox");
             this.warEndMonthTextBox.Name = "warEndMonthTextBox";
+            this.warEndMonthTextBox.Validated += new System.EventHandler(this.OnWarEndMonthTextBoxValidated);
             // 
             // warIdLabel
             // 
@@ -1126,11 +1151,13 @@
             // 
             resources.ApplyResources(this.warEndYearTextBox, "warEndYearTextBox");
             this.warEndYearTextBox.Name = "warEndYearTextBox";
+            this.warEndYearTextBox.Validated += new System.EventHandler(this.OnWarEndYearTextBoxValidated);
             // 
             // warEndDayTextBox
             // 
             resources.ApplyResources(this.warEndDayTextBox, "warEndDayTextBox");
             this.warEndDayTextBox.Name = "warEndDayTextBox";
+            this.warEndDayTextBox.Validated += new System.EventHandler(this.OnWarEndDayTextBoxValidated);
             // 
             // warEndDateLabel
             // 
@@ -1141,16 +1168,19 @@
             // 
             resources.ApplyResources(this.warStartMonthTextBox, "warStartMonthTextBox");
             this.warStartMonthTextBox.Name = "warStartMonthTextBox";
+            this.warStartMonthTextBox.Validated += new System.EventHandler(this.OnWarStartMonthTextBoxValidated);
             // 
             // warStartYearTextBox
             // 
             resources.ApplyResources(this.warStartYearTextBox, "warStartYearTextBox");
             this.warStartYearTextBox.Name = "warStartYearTextBox";
+            this.warStartYearTextBox.Validated += new System.EventHandler(this.OnWarStartYearTextBoxValidated);
             // 
             // warStartDayTextBox
             // 
             resources.ApplyResources(this.warStartDayTextBox, "warStartDayTextBox");
             this.warStartDayTextBox.Name = "warStartDayTextBox";
+            this.warStartDayTextBox.Validated += new System.EventHandler(this.OnWarStartDayTextBoxValidated);
             // 
             // warStartDateLabel
             // 
@@ -1164,6 +1194,7 @@
             // 
             // warListView
             // 
+            resources.ApplyResources(this.warListView, "warListView");
             this.warListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.warStartDateColumnHeader,
             this.warEndDateColumnHeader,
@@ -1172,7 +1203,6 @@
             this.warListView.FullRowSelect = true;
             this.warListView.GridLines = true;
             this.warListView.HideSelection = false;
-            resources.ApplyResources(this.warListView, "warListView");
             this.warListView.Name = "warListView";
             this.warListView.UseCompatibleStateImageBehavior = false;
             this.warListView.View = System.Windows.Forms.View.Details;
@@ -1199,30 +1229,38 @@
             resources.ApplyResources(this.warNewButton, "warNewButton");
             this.warNewButton.Name = "warNewButton";
             this.warNewButton.UseVisualStyleBackColor = true;
+            this.warNewButton.Click += new System.EventHandler(this.OnWarNewButtonClick);
             // 
             // warAttackerRemoveButton
             // 
             resources.ApplyResources(this.warAttackerRemoveButton, "warAttackerRemoveButton");
             this.warAttackerRemoveButton.Name = "warAttackerRemoveButton";
             this.warAttackerRemoveButton.UseVisualStyleBackColor = true;
+            this.warAttackerRemoveButton.Click += new System.EventHandler(this.OnWarAttackerRemoveButtonClick);
             // 
             // warUpButton
             // 
             resources.ApplyResources(this.warUpButton, "warUpButton");
             this.warUpButton.Name = "warUpButton";
             this.warUpButton.UseVisualStyleBackColor = true;
+            this.warUpButton.Click += new System.EventHandler(this.OnWarUpButtonClick);
             // 
             // warAttackerListBox
             // 
-            this.warAttackerListBox.FormattingEnabled = true;
             resources.ApplyResources(this.warAttackerListBox, "warAttackerListBox");
+            this.warAttackerListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.warAttackerListBox.FormattingEnabled = true;
             this.warAttackerListBox.Name = "warAttackerListBox";
+            this.warAttackerListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.warAttackerListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnWarAttackerListBoxDrawItem);
+            this.warAttackerListBox.SelectedIndexChanged += new System.EventHandler(this.OnWarAttackerListBoxSelectedIndexChanged);
             // 
             // warDefenderRemoveButton
             // 
             resources.ApplyResources(this.warDefenderRemoveButton, "warDefenderRemoveButton");
             this.warDefenderRemoveButton.Name = "warDefenderRemoveButton";
             this.warDefenderRemoveButton.UseVisualStyleBackColor = true;
+            this.warDefenderRemoveButton.Click += new System.EventHandler(this.OnWarDefenderRemoveButtonClick);
             // 
             // warAttackerLabel
             // 
@@ -1231,42 +1269,55 @@
             // 
             // warDefenderListBox
             // 
-            this.warDefenderListBox.FormattingEnabled = true;
             resources.ApplyResources(this.warDefenderListBox, "warDefenderListBox");
+            this.warDefenderListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.warDefenderListBox.FormattingEnabled = true;
             this.warDefenderListBox.Name = "warDefenderListBox";
+            this.warDefenderListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.warDefenderListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnWarDefenderListBoxDrawItem);
+            this.warDefenderListBox.SelectedIndexChanged += new System.EventHandler(this.OnWarDefenderListBoxSelectedIndexChanged);
             // 
             // warDownButton
             // 
             resources.ApplyResources(this.warDownButton, "warDownButton");
             this.warDownButton.Name = "warDownButton";
             this.warDownButton.UseVisualStyleBackColor = true;
+            this.warDownButton.Click += new System.EventHandler(this.OnWarDownButtonClick);
             // 
             // warCountryListBox
             // 
-            this.warCountryListBox.FormattingEnabled = true;
             resources.ApplyResources(this.warCountryListBox, "warCountryListBox");
+            this.warCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.warCountryListBox.FormattingEnabled = true;
             this.warCountryListBox.Name = "warCountryListBox";
+            this.warCountryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.warCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnWarCountryListBoxDrawItem);
+            this.warCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnWarCountryListBoxSelectedIndexChanged);
             // 
             // warAttackerAddButton
             // 
             resources.ApplyResources(this.warAttackerAddButton, "warAttackerAddButton");
             this.warAttackerAddButton.Name = "warAttackerAddButton";
             this.warAttackerAddButton.UseVisualStyleBackColor = true;
+            this.warAttackerAddButton.Click += new System.EventHandler(this.OnWarAttackerAddButtonClick);
             // 
             // warDefenderAddButton
             // 
             resources.ApplyResources(this.warDefenderAddButton, "warDefenderAddButton");
             this.warDefenderAddButton.Name = "warDefenderAddButton";
             this.warDefenderAddButton.UseVisualStyleBackColor = true;
+            this.warDefenderAddButton.Click += new System.EventHandler(this.OnWarDefenderAddButtonClick);
             // 
             // warRemoveButton
             // 
             resources.ApplyResources(this.warRemoveButton, "warRemoveButton");
             this.warRemoveButton.Name = "warRemoveButton";
             this.warRemoveButton.UseVisualStyleBackColor = true;
+            this.warRemoveButton.Click += new System.EventHandler(this.OnWarRemoveButtonClick);
             // 
             // allianceGroupBox
             // 
+            resources.ApplyResources(this.allianceGroupBox, "allianceGroupBox");
             this.allianceGroupBox.Controls.Add(this.allianceIdTextBox);
             this.allianceGroupBox.Controls.Add(this.allianceTypeTextBox);
             this.allianceGroupBox.Controls.Add(this.allianceIdLabel);
@@ -1283,7 +1334,6 @@
             this.allianceGroupBox.Controls.Add(this.allianceNewButton);
             this.allianceGroupBox.Controls.Add(this.allianceParticipantRemoveButton);
             this.allianceGroupBox.Controls.Add(this.allianceDownButton);
-            resources.ApplyResources(this.allianceGroupBox, "allianceGroupBox");
             this.allianceGroupBox.Name = "allianceGroupBox";
             this.allianceGroupBox.TabStop = false;
             // 
@@ -1317,13 +1367,13 @@
             // 
             // allianceListView
             // 
+            resources.ApplyResources(this.allianceListView, "allianceListView");
             this.allianceListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.allianceNameColumnHeader,
             this.allianceParticipantColumnHeader});
             this.allianceListView.FullRowSelect = true;
             this.allianceListView.GridLines = true;
             this.allianceListView.HideSelection = false;
-            resources.ApplyResources(this.allianceListView, "allianceListView");
             this.allianceListView.Name = "allianceListView";
             this.allianceListView.UseCompatibleStateImageBehavior = false;
             this.allianceListView.View = System.Windows.Forms.View.Details;
@@ -1347,12 +1397,17 @@
             resources.ApplyResources(this.allianceLeaderButton, "allianceLeaderButton");
             this.allianceLeaderButton.Name = "allianceLeaderButton";
             this.allianceLeaderButton.UseVisualStyleBackColor = true;
+            this.allianceLeaderButton.Click += new System.EventHandler(this.OnAllianceLeaderButtonClick);
             // 
             // allianceParticipantListBox
             // 
-            this.allianceParticipantListBox.FormattingEnabled = true;
             resources.ApplyResources(this.allianceParticipantListBox, "allianceParticipantListBox");
+            this.allianceParticipantListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.allianceParticipantListBox.FormattingEnabled = true;
             this.allianceParticipantListBox.Name = "allianceParticipantListBox";
+            this.allianceParticipantListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.allianceParticipantListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAllianceParticipantListBoxDrawItem);
+            this.allianceParticipantListBox.SelectedIndexChanged += new System.EventHandler(this.OnAllianceParticipantListBoxSelectedIndexChanged);
             // 
             // allianceUpButton
             // 
@@ -1366,12 +1421,17 @@
             resources.ApplyResources(this.allianceParticipantAddButton, "allianceParticipantAddButton");
             this.allianceParticipantAddButton.Name = "allianceParticipantAddButton";
             this.allianceParticipantAddButton.UseVisualStyleBackColor = true;
+            this.allianceParticipantAddButton.Click += new System.EventHandler(this.OnAllianceParticipantAddButtonClick);
             // 
             // allianceCountryListBox
             // 
-            this.allianceCountryListBox.FormattingEnabled = true;
             resources.ApplyResources(this.allianceCountryListBox, "allianceCountryListBox");
+            this.allianceCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.allianceCountryListBox.FormattingEnabled = true;
             this.allianceCountryListBox.Name = "allianceCountryListBox";
+            this.allianceCountryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.allianceCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAllianceCountryListBoxDrawItem);
+            this.allianceCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnAllianceCountryListBoxSelectedIndexChanged);
             // 
             // allianceRemoveButton
             // 
@@ -1392,6 +1452,7 @@
             resources.ApplyResources(this.allianceParticipantRemoveButton, "allianceParticipantRemoveButton");
             this.allianceParticipantRemoveButton.Name = "allianceParticipantRemoveButton";
             this.allianceParticipantRemoveButton.UseVisualStyleBackColor = true;
+            this.allianceParticipantRemoveButton.Click += new System.EventHandler(this.OnAllianceParticipantRemoveButtonClick);
             // 
             // allianceDownButton
             // 
@@ -1402,6 +1463,7 @@
             // 
             // mainTabPage
             // 
+            resources.ApplyResources(this.mainTabPage, "mainTabPage");
             this.mainTabPage.BackColor = System.Drawing.SystemColors.Control;
             this.mainTabPage.Controls.Add(this.optionGroupBox);
             this.mainTabPage.Controls.Add(this.countrySelectionGroupBox);
@@ -1410,11 +1472,11 @@
             this.mainTabPage.Controls.Add(this.folderGroupBox);
             this.mainTabPage.Controls.Add(this.typeGroupBox);
             this.mainTabPage.Controls.Add(this.scenarioListBox);
-            resources.ApplyResources(this.mainTabPage, "mainTabPage");
             this.mainTabPage.Name = "mainTabPage";
             // 
             // optionGroupBox
             // 
+            resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Controls.Add(this.gameSpeedLabel);
             this.optionGroupBox.Controls.Add(this.difficultyLabel);
             this.optionGroupBox.Controls.Add(this.aiAggressiveLabel);
@@ -1426,7 +1488,6 @@
             this.optionGroupBox.Controls.Add(this.allowDiplomacyCheckBox);
             this.optionGroupBox.Controls.Add(this.freeCountryCheckBox);
             this.optionGroupBox.Controls.Add(this.battleScenarioCheckBox);
-            resources.ApplyResources(this.optionGroupBox, "optionGroupBox");
             this.optionGroupBox.Name = "optionGroupBox";
             this.optionGroupBox.TabStop = false;
             // 
@@ -1447,30 +1508,30 @@
             // 
             // gameSpeedComboBox
             // 
+            resources.ApplyResources(this.gameSpeedComboBox, "gameSpeedComboBox");
             this.gameSpeedComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.gameSpeedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gameSpeedComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.gameSpeedComboBox, "gameSpeedComboBox");
             this.gameSpeedComboBox.Name = "gameSpeedComboBox";
             this.gameSpeedComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnGameSpeedComboBoxDrawItem);
             this.gameSpeedComboBox.SelectedIndexChanged += new System.EventHandler(this.OnGameSpeedComboBoxSelectedIndexChanged);
             // 
             // difficultyComboBox
             // 
+            resources.ApplyResources(this.difficultyComboBox, "difficultyComboBox");
             this.difficultyComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.difficultyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.difficultyComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.difficultyComboBox, "difficultyComboBox");
             this.difficultyComboBox.Name = "difficultyComboBox";
             this.difficultyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnDifficultyComboBoxDrawItem);
             this.difficultyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnDifficultyComboBoxSelectedIndexChanged);
             // 
             // aiAggressiveComboBox
             // 
+            resources.ApplyResources(this.aiAggressiveComboBox, "aiAggressiveComboBox");
             this.aiAggressiveComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.aiAggressiveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.aiAggressiveComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.aiAggressiveComboBox, "aiAggressiveComboBox");
             this.aiAggressiveComboBox.Name = "aiAggressiveComboBox";
             this.aiAggressiveComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAiAggressiveComboBoxDrawItem);
             this.aiAggressiveComboBox.SelectedIndexChanged += new System.EventHandler(this.OnAiAggressiveComboBoxSelectedIndexChanged);
@@ -1512,6 +1573,7 @@
             // 
             // countrySelectionGroupBox
             // 
+            resources.ApplyResources(this.countrySelectionGroupBox, "countrySelectionGroupBox");
             this.countrySelectionGroupBox.Controls.Add(this.selectableRemoveButton);
             this.countrySelectionGroupBox.Controls.Add(this.selectableAddButton);
             this.countrySelectionGroupBox.Controls.Add(this.unselectableListBox);
@@ -1529,7 +1591,6 @@
             this.countrySelectionGroupBox.Controls.Add(this.selectableLabel);
             this.countrySelectionGroupBox.Controls.Add(this.majorUpButton);
             this.countrySelectionGroupBox.Controls.Add(this.majorDownButton);
-            resources.ApplyResources(this.countrySelectionGroupBox, "countrySelectionGroupBox");
             this.countrySelectionGroupBox.Name = "countrySelectionGroupBox";
             this.countrySelectionGroupBox.TabStop = false;
             // 
@@ -1549,8 +1610,8 @@
             // 
             // unselectableListBox
             // 
-            this.unselectableListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             resources.ApplyResources(this.unselectableListBox, "unselectableListBox");
+            this.unselectableListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.unselectableListBox.FormattingEnabled = true;
             this.unselectableListBox.Name = "unselectableListBox";
             this.unselectableListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
@@ -1559,8 +1620,8 @@
             // 
             // selectableListBox
             // 
-            this.selectableListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             resources.ApplyResources(this.selectableListBox, "selectableListBox");
+            this.selectableListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.selectableListBox.FormattingEnabled = true;
             this.selectableListBox.Name = "selectableListBox";
             this.selectableListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
@@ -1618,8 +1679,8 @@
             // 
             // majorListBox
             // 
-            this.majorListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             resources.ApplyResources(this.majorListBox, "majorListBox");
+            this.majorListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.majorListBox.FormattingEnabled = true;
             this.majorListBox.Name = "majorListBox";
             this.majorListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnMajorListBoxDrawItem);
@@ -1651,6 +1712,7 @@
             // 
             // infoGroupBox
             // 
+            resources.ApplyResources(this.infoGroupBox, "infoGroupBox");
             this.infoGroupBox.Controls.Add(this.includeFolderBrowseButton);
             this.infoGroupBox.Controls.Add(this.includeFolderTextBox);
             this.infoGroupBox.Controls.Add(this.includeFolderLabel);
@@ -1668,7 +1730,6 @@
             this.infoGroupBox.Controls.Add(this.endYearTextBox);
             this.infoGroupBox.Controls.Add(this.endMonthTextBox);
             this.infoGroupBox.Controls.Add(this.endDayTextBox);
-            resources.ApplyResources(this.infoGroupBox, "infoGroupBox");
             this.infoGroupBox.Name = "infoGroupBox";
             this.infoGroupBox.TabStop = false;
             // 
@@ -1780,10 +1841,10 @@
             // 
             // folderGroupBox
             // 
+            resources.ApplyResources(this.folderGroupBox, "folderGroupBox");
             this.folderGroupBox.Controls.Add(this.exportRadioButton);
             this.folderGroupBox.Controls.Add(this.modRadioButton);
             this.folderGroupBox.Controls.Add(this.vanillaRadioButton);
-            resources.ApplyResources(this.folderGroupBox, "folderGroupBox");
             this.folderGroupBox.Name = "folderGroupBox";
             this.folderGroupBox.TabStop = false;
             // 
@@ -1813,9 +1874,9 @@
             // 
             // typeGroupBox
             // 
+            resources.ApplyResources(this.typeGroupBox, "typeGroupBox");
             this.typeGroupBox.Controls.Add(this.saveGamesRadioButton);
             this.typeGroupBox.Controls.Add(this.scenarioRadioButton);
-            resources.ApplyResources(this.typeGroupBox, "typeGroupBox");
             this.typeGroupBox.Name = "typeGroupBox";
             this.typeGroupBox.TabStop = false;
             // 
@@ -1836,8 +1897,8 @@
             // 
             // scenarioListBox
             // 
-            this.scenarioListBox.FormattingEnabled = true;
             resources.ApplyResources(this.scenarioListBox, "scenarioListBox");
+            this.scenarioListBox.FormattingEnabled = true;
             this.scenarioListBox.Name = "scenarioListBox";
             // 
             // scenarioTabControl
@@ -2150,6 +2211,8 @@
         private System.Windows.Forms.TextBox warDefenderTypeTextBox;
         private System.Windows.Forms.TextBox warAttackerIdTextBox;
         private System.Windows.Forms.TextBox warAttackerTypeTextBox;
+        private System.Windows.Forms.Button warDefenderLeaderButton;
+        private System.Windows.Forms.Button warAttackerLeaderButton;
 
     }
 }
