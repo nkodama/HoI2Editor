@@ -513,6 +513,24 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     不可侵条約を削除する
+        /// </summary>
+        /// <param name="nonAggression">不可侵条約</param>
+        public static void RemoveNonAggression(Treaty nonAggression)
+        {
+            if (_nonAggressions.ContainsKey(nonAggression.Country1) &&
+                _nonAggressions[nonAggression.Country1].ContainsKey(nonAggression.Country2))
+            {
+                _nonAggressions[nonAggression.Country1].Remove(nonAggression.Country2);
+            }
+            if (_nonAggressions.ContainsKey(nonAggression.Country2) &&
+                _nonAggressions[nonAggression.Country2].ContainsKey(nonAggression.Country1))
+            {
+                _nonAggressions[nonAggression.Country2].Remove(nonAggression.Country1);
+            }
+        }
+
+        /// <summary>
         ///     講和条約を取得する
         /// </summary>
         /// <param name="country1">対象国1</param>
@@ -547,6 +565,24 @@ namespace HoI2Editor.Models
                 _peaces.Add(peace.Country2, new Dictionary<Country, Treaty>());
             }
             _peaces[peace.Country2][peace.Country1] = peace;
+        }
+
+        /// <summary>
+        ///     講和条約を削除する
+        /// </summary>
+        /// <param name="peace">講和条約</param>
+        public static void RemovePeace(Treaty peace)
+        {
+            if (_peaces.ContainsKey(peace.Country1) &&
+                _peaces[peace.Country1].ContainsKey(peace.Country2))
+            {
+                _peaces[peace.Country1].Remove(peace.Country2);
+            }
+            if (_peaces.ContainsKey(peace.Country2) &&
+                _peaces[peace.Country2].ContainsKey(peace.Country1))
+            {
+                _peaces[peace.Country2].Remove(peace.Country1);
+            }
         }
 
         /// <summary>

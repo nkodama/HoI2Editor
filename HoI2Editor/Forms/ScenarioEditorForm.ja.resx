@@ -247,10 +247,10 @@
   <data name="guaranteeCheckBox.Text" xml:space="preserve">
     <value>独立保障</value>
   </data>
-  <data name="guaraneeEndLabel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="guaranteeEndLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
   </data>
-  <data name="guaraneeEndLabel.Text" xml:space="preserve">
+  <data name="guaranteeEndLabel.Text" xml:space="preserve">
     <value>終了日時</value>
   </data>
   <data name="peaceEndLabel.Size" type="System.Drawing.Size, System.Drawing">

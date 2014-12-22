@@ -2327,15 +2327,12 @@ namespace HoI2Editor.Forms
                 : SystemColors.WindowText;
 
             // 同盟ID
-            if (alliance.Id != null)
-            {
-                allianceTypeTextBox.Text = IntHelper.ToString(alliance.Id.Type);
-                allianceTypeTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Type)
-                    ? Color.Red
-                    : SystemColors.WindowText;
-                allianceIdTextBox.Text = IntHelper.ToString(alliance.Id.Id);
-                allianceIdTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Id) ? Color.Red : SystemColors.WindowText;
-            }
+            allianceTypeTextBox.Text = (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Type) : "";
+            allianceTypeTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Type)
+                ? Color.Red
+                : SystemColors.WindowText;
+            allianceIdTextBox.Text = (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "";
+            allianceIdTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Id) ? Color.Red : SystemColors.WindowText;
 
             IEnumerable<Country> countries = Countries.Tags;
 
@@ -3126,57 +3123,50 @@ namespace HoI2Editor.Forms
             }
 
             // 開始日時
-            if (war.StartDate != null)
-            {
-                warStartYearTextBox.Text = IntHelper.ToString(war.StartDate.Year);
-                warStartYearTextBox.ForeColor = war.IsDirty(WarItemId.StartYear) ? Color.Red : SystemColors.WindowText;
-                warStartMonthTextBox.Text = IntHelper.ToString(war.StartDate.Month);
-                warStartMonthTextBox.ForeColor = war.IsDirty(WarItemId.StartMonth) ? Color.Red : SystemColors.WindowText;
-                warStartDayTextBox.Text = IntHelper.ToString(war.StartDate.Day);
-                warStartDayTextBox.ForeColor = war.IsDirty(WarItemId.StartDay) ? Color.Red : SystemColors.WindowText;
-            }
+            warStartYearTextBox.Text = (war.StartDate != null) ? IntHelper.ToString(war.StartDate.Year) : "";
+            warStartYearTextBox.ForeColor = war.IsDirty(WarItemId.StartYear) ? Color.Red : SystemColors.WindowText;
+            warStartMonthTextBox.Text = (war.StartDate != null) ? IntHelper.ToString(war.StartDate.Month) : "";
+            warStartMonthTextBox.ForeColor = war.IsDirty(WarItemId.StartMonth) ? Color.Red : SystemColors.WindowText;
+            warStartDayTextBox.Text = (war.StartDate != null) ? IntHelper.ToString(war.StartDate.Day) : "";
+            warStartDayTextBox.ForeColor = war.IsDirty(WarItemId.StartDay) ? Color.Red : SystemColors.WindowText;
 
             // 終了日時
-            if (war.EndDate != null)
-            {
-                warEndYearTextBox.Text = IntHelper.ToString(war.EndDate.Year);
-                warEndYearTextBox.ForeColor = war.IsDirty(WarItemId.EndYear) ? Color.Red : SystemColors.WindowText;
-                warEndMonthTextBox.Text = IntHelper.ToString(war.EndDate.Month);
-                warEndMonthTextBox.ForeColor = war.IsDirty(WarItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
-                warEndDayTextBox.Text = IntHelper.ToString(war.EndDate.Day);
-                warEndDayTextBox.ForeColor = war.IsDirty(WarItemId.EndDay) ? Color.Red : SystemColors.WindowText;
-            }
+            warEndYearTextBox.Text = (war.EndDate != null) ? IntHelper.ToString(war.EndDate.Year) : "";
+            warEndYearTextBox.ForeColor = war.IsDirty(WarItemId.EndYear) ? Color.Red : SystemColors.WindowText;
+            warEndMonthTextBox.Text = (war.EndDate != null) ? IntHelper.ToString(war.EndDate.Month) : "";
+            warEndMonthTextBox.ForeColor = war.IsDirty(WarItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
+            warEndDayTextBox.Text = (war.EndDate != null) ? IntHelper.ToString(war.EndDate.Day) : "";
+            warEndDayTextBox.ForeColor = war.IsDirty(WarItemId.EndDay) ? Color.Red : SystemColors.WindowText;
 
             // 戦争ID
-            if (war.Id != null)
-            {
-                warTypeTextBox.Text = IntHelper.ToString(war.Id.Type);
-                warTypeTextBox.ForeColor = war.IsDirty(WarItemId.Type) ? Color.Red : SystemColors.WindowText;
-                warIdTextBox.Text = IntHelper.ToString(war.Id.Id);
-                warIdTextBox.ForeColor = war.IsDirty(WarItemId.Id) ? Color.Red : SystemColors.WindowText;
-            }
+            warTypeTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Type) : "";
+            warTypeTextBox.ForeColor = war.IsDirty(WarItemId.Type) ? Color.Red : SystemColors.WindowText;
+            warIdTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "";
+            warIdTextBox.ForeColor = war.IsDirty(WarItemId.Id) ? Color.Red : SystemColors.WindowText;
 
             // 攻撃側ID
-            if ((war.Attackers != null) && (war.Attackers.Id != null))
-            {
-                warAttackerTypeTextBox.Text = IntHelper.ToString(war.Attackers.Id.Type);
-                warAttackerTypeTextBox.ForeColor = war.IsDirty(WarItemId.AttackerType)
-                    ? Color.Red
-                    : SystemColors.WindowText;
-                warAttackerIdTextBox.Text = IntHelper.ToString(war.Attackers.Id.Id);
-                warAttackerIdTextBox.ForeColor = war.IsDirty(WarItemId.AttackerId) ? Color.Red : SystemColors.WindowText;
-            }
+            warAttackerTypeTextBox.Text = ((war.Attackers != null) && (war.Attackers.Id != null))
+                ? IntHelper.ToString(war.Attackers.Id.Type)
+                : "";
+            warAttackerTypeTextBox.ForeColor = war.IsDirty(WarItemId.AttackerType)
+                ? Color.Red
+                : SystemColors.WindowText;
+            warAttackerIdTextBox.Text = ((war.Attackers != null) && (war.Attackers.Id != null))
+                ? IntHelper.ToString(war.Attackers.Id.Id)
+                : "";
+            warAttackerIdTextBox.ForeColor = war.IsDirty(WarItemId.AttackerId) ? Color.Red : SystemColors.WindowText;
 
             // 防御側ID
-            if ((war.Defenders != null) && (war.Defenders.Id != null))
-            {
-                warDefenderTypeTextBox.Text = IntHelper.ToString(war.Defenders.Id.Type);
-                warDefenderTypeTextBox.ForeColor = war.IsDirty(WarItemId.DefenderType)
-                    ? Color.Red
-                    : SystemColors.WindowText;
-                warDefenderIdTextBox.Text = IntHelper.ToString(war.Defenders.Id.Id);
-                warDefenderIdTextBox.ForeColor = war.IsDirty(WarItemId.DefenderId) ? Color.Red : SystemColors.WindowText;
-            }
+            warDefenderTypeTextBox.Text = ((war.Defenders != null) && (war.Defenders.Id != null))
+                ? IntHelper.ToString(war.Defenders.Id.Type)
+                : "";
+            warDefenderTypeTextBox.ForeColor = war.IsDirty(WarItemId.DefenderType)
+                ? Color.Red
+                : SystemColors.WindowText;
+            warDefenderIdTextBox.Text = ((war.Defenders != null) && (war.Defenders.Id != null))
+                ? IntHelper.ToString(war.Defenders.Id.Id)
+                : "";
+            warDefenderIdTextBox.ForeColor = war.IsDirty(WarItemId.DefenderId) ? Color.Red : SystemColors.WindowText;
 
             IEnumerable<Country> countries = Countries.Tags;
 
@@ -4541,6 +4531,8 @@ namespace HoI2Editor.Forms
 
         #region 関係タブ
 
+        #region 関係タブ - 共通
+
         /// <summary>
         ///     関係タブの項目を初期化する
         /// </summary>
@@ -4562,6 +4554,23 @@ namespace HoI2Editor.Forms
         private void UpdateRelationTab()
         {
             // 何もしない
+        }
+
+        /// <summary>
+        ///     選択国リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRelationCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            // 関係リストビューを更新する
+            UpdateRelationListView();
         }
 
         /// <summary>
@@ -4592,6 +4601,45 @@ namespace HoI2Editor.Forms
                 relationListView.Items.Add(item);
             }
             relationListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     関係リストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRelationListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ編集項目を無効化する
+            if ((relationListView.SelectedIndices.Count == 0) || (relationCountryListBox.SelectedIndex < 0))
+            {
+                DisableRelationItems();
+                return;
+            }
+
+            // 編集項目を有効化する
+            EnableRelationItems();
+
+            // 編集項目を更新する
+            UpdateRelationItems();
+        }
+
+        /// <summary>
+        ///     関係タブの編集項目を有効化する
+        /// </summary>
+        private void EnableRelationItems()
+        {
+            diplomacyGroupBox.Enabled = true;
+            intelligenceGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     関係タブの編集項目を無効化する
+        /// </summary>
+        private void DisableRelationItems()
+        {
+            diplomacyGroupBox.Enabled = false;
+            intelligenceGroupBox.Enabled = false;
         }
 
         /// <summary>
@@ -4635,62 +4683,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     関係タブの編集項目を有効化する
-        /// </summary>
-        private void EnableRelationItems()
-        {
-            diplomacyGroupBox.Enabled = true;
-            intelligenceGroupBox.Enabled = true;
-        }
-
-        /// <summary>
-        ///     関係タブの編集項目を無効化する
-        /// </summary>
-        private void DisableRelationItems()
-        {
-            diplomacyGroupBox.Enabled = false;
-            intelligenceGroupBox.Enabled = false;
-        }
-
-        /// <summary>
-        ///     選択国リストボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRelationCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (relationCountryListBox.SelectedIndex < 0)
-            {
-                return;
-            }
-
-            // 関係リストビューを更新する
-            UpdateRelationListView();
-        }
-
-        /// <summary>
-        ///     関係リストビューの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnRelationListViewSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ編集項目を無効化する
-            if ((relationListView.SelectedIndices.Count == 0) || (relationCountryListBox.SelectedIndex < 0))
-            {
-                DisableRelationItems();
-                return;
-            }
-
-            // 編集項目を有効化する
-            EnableRelationItems();
-
-            // 編集項目を更新する
-            UpdateRelationItems();
-        }
-
-        /// <summary>
         ///     独立保障グループボックスの編集項目を更新する
         /// </summary>
         /// <param name="relation">国家関係</param>
@@ -4714,7 +4706,7 @@ namespace HoI2Editor.Forms
                 ? Color.Red
                 : SystemColors.WindowText;
 
-            guaraneeEndLabel.Enabled = flag;
+            guaranteeEndLabel.Enabled = flag;
             guaranteeYearTextBox.Enabled = flag;
             guaranteeMonthTextBox.Enabled = flag;
             guaranteeDayTextBox.Enabled = flag;
@@ -4742,8 +4734,6 @@ namespace HoI2Editor.Forms
                 ? Color.Red
                 : SystemColors.WindowText;
 
-            // TODO: 見直しここから
-
             nonAggressionStartLabel.Enabled = flag;
             nonAggressionStartYearTextBox.Enabled = flag;
             nonAggressionStartMonthTextBox.Enabled = flag;
@@ -4751,8 +4741,17 @@ namespace HoI2Editor.Forms
 
             flag = (nonAggression != null) && (nonAggression.EndDate != null);
             nonAggressionEndYearTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Year) : "";
+            nonAggressionEndYearTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.EndYear))
+                ? Color.Red
+                : SystemColors.WindowText;
             nonAggressionEndMonthTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Month) : "";
+            nonAggressionEndMonthTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.EndMonth))
+                ? Color.Red
+                : SystemColors.WindowText;
             nonAggressionEndDayTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Day) : "";
+            nonAggressionEndDayTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.EndDay))
+                ? Color.Red
+                : SystemColors.WindowText;
 
             nonAggressionEndLabel.Enabled = flag;
             nonAggressionEndYearTextBox.Enabled = flag;
@@ -4761,7 +4760,13 @@ namespace HoI2Editor.Forms
 
             flag = (nonAggression != null) && (nonAggression.Id != null);
             nonAggressionTypeTextBox.Text = flag ? IntHelper.ToString(nonAggression.Id.Type) : "";
+            nonAggressionTypeTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.Type))
+                ? Color.Red
+                : SystemColors.WindowText;
             nonAggressionIdTextBox.Text = flag ? IntHelper.ToString(nonAggression.Id.Id) : "";
+            nonAggressionIdTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.Id))
+                ? Color.Red
+                : SystemColors.WindowText;
 
             nonAggressionIdLabel.Enabled = flag;
             nonAggressionTypeTextBox.Enabled = flag;
@@ -4778,8 +4783,17 @@ namespace HoI2Editor.Forms
 
             bool flag = (peace != null) && (peace.StartDate != null);
             peaceStartYearTextBox.Text = flag ? IntHelper.ToString(peace.StartDate.Year) : "";
+            peaceStartYearTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.StartYear))
+                ? Color.Red
+                : SystemColors.WindowText;
             peaceStartMonthTextBox.Text = flag ? IntHelper.ToString(peace.StartDate.Month) : "";
+            peaceStartMonthTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.StartMonth))
+                ? Color.Red
+                : SystemColors.WindowText;
             peaceStartDayTextBox.Text = flag ? IntHelper.ToString(peace.StartDate.Day) : "";
+            peaceStartDayTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.StartDay))
+                ? Color.Red
+                : SystemColors.WindowText;
 
             peaceStartLabel.Enabled = flag;
             peaceStartYearTextBox.Enabled = flag;
@@ -4788,8 +4802,17 @@ namespace HoI2Editor.Forms
 
             flag = (peace != null) && (peace.EndDate != null);
             peaceEndYearTextBox.Text = flag ? IntHelper.ToString(peace.EndDate.Year) : "";
+            peaceEndYearTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.EndYear))
+                ? Color.Red
+                : SystemColors.WindowText;
             peaceEndMonthTextBox.Text = flag ? IntHelper.ToString(peace.EndDate.Month) : "";
+            peaceEndMonthTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.EndMonth))
+                ? Color.Red
+                : SystemColors.WindowText;
             peaceEndDayTextBox.Text = flag ? IntHelper.ToString(peace.EndDate.Day) : "";
+            peaceEndDayTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.EndDay))
+                ? Color.Red
+                : SystemColors.WindowText;
 
             peaceEndLabel.Enabled = flag;
             peaceEndYearTextBox.Enabled = flag;
@@ -4798,12 +4821,22 @@ namespace HoI2Editor.Forms
 
             flag = (peace != null) && (peace.Id != null);
             peaceTypeTextBox.Text = flag ? IntHelper.ToString(peace.Id.Type) : "";
+            peaceTypeTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.Type))
+                ? Color.Red
+                : SystemColors.WindowText;
             peaceIdTextBox.Text = flag ? IntHelper.ToString(peace.Id.Id) : "";
+            peaceIdTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.Id))
+                ? Color.Red
+                : SystemColors.WindowText;
 
             peaceIdLabel.Enabled = flag;
             peaceTypeTextBox.Enabled = flag;
             peaceIdTextBox.Enabled = flag;
         }
+
+        #endregion
+
+        #region 関係タブ - 外交
 
         /// <summary>
         ///     関係値変更時の処理
@@ -4824,6 +4857,7 @@ namespace HoI2Editor.Forms
 
             Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
             Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
             Relation relation = Scenarios.GetCountryRelation(self, target);
 
             var val = (double) relationValueNumericUpDown.Value;
@@ -4845,6 +4879,12 @@ namespace HoI2Editor.Forms
 
                 // 国家関係を設定する
                 relation = new Relation { Country = target };
+                if (settings == null)
+                {
+                    settings = new CountrySettings { Country = self };
+                    Scenarios.SetCountrySettings(settings);
+                }
+                settings.Relations.Add(relation);
                 Scenarios.SetCountryRelation(self, relation);
             }
 
@@ -4854,18 +4894,669 @@ namespace HoI2Editor.Forms
             // 値を更新する
             relation.Value = val;
 
+            // 関係リストビューの表示を更新する
+            relationListView.SelectedItems[0].SubItems[1].Text = DoubleHelper.ToString(val);
+
             // 編集済みフラグを設定する
             relation.SetDirty(RelationItemId.Value);
-            CountrySettings settings = Scenarios.GetCountrySettings(self);
-            if (settings != null)
-            {
-                settings.SetDirty();
-            }
+            settings.SetDirty();
             Scenarios.SetDirty();
 
             // 文字色を変更する
             relationValueNumericUpDown.ForeColor = Color.Red;
         }
+
+        /// <summary>
+        ///     宗主国チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMasterCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
+
+            if (settings != null)
+            {
+                // 値に変化がなければ何もしない
+                if (masterCheckBox.Checked)
+                {
+                    if (settings.Master == target)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    if (settings.Master != target)
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                if (!masterCheckBox.Checked)
+                {
+                    return;
+                }
+
+                // 国家設定を設定する
+                settings = new CountrySettings { Country = self };
+                Scenarios.SetCountrySettings(settings);
+            }
+
+            Log.Info("[Scenario] master: {0} -> {1} ({2} > {3})", BoolHelper.ToYesNo(settings.Master == target),
+                BoolHelper.ToYesNo(masterCheckBox.Checked), Countries.Strings[(int) self],
+                Countries.Strings[(int) target]);
+
+            // 関係リストビューの表示を更新する
+            if (settings.Master != target)
+            {
+                int index = Array.IndexOf(Countries.Tags, settings.Control);
+                if (index >= 0)
+                {
+                    relationListView.Items[index].SubItems[2].Text = "";
+                }
+            }
+            relationListView.Items[Array.IndexOf(Countries.Tags, self)].SubItems[2].Text = masterCheckBox.Checked
+                ? Resources.Yes
+                : Resources.No;
+
+            // 値を更新する
+            settings.Master = masterCheckBox.Checked ? target : Country.None;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Master);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            masterCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     統帥権取得国チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnControlCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
+
+            if (settings != null)
+            {
+                // 値に変化がなければ何もしない
+                if (controlCheckBox.Checked)
+                {
+                    if (settings.Control == target)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    if (settings.Control != target)
+                    {
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                if (!controlCheckBox.Checked)
+                {
+                    return;
+                }
+
+                // 国家設定を設定する
+                settings = new CountrySettings { Country = self };
+                Scenarios.SetCountrySettings(settings);
+            }
+
+            Log.Info("[Scenario] military control: {0} -> {1} ({2} > {3})",
+                BoolHelper.ToYesNo(settings.Control == target),
+                BoolHelper.ToYesNo(controlCheckBox.Checked), Countries.Strings[(int) self],
+                Countries.Strings[(int) target]);
+
+            // 関係リストビューの表示を更新する
+            if (settings.Control != target)
+            {
+                int index = Array.IndexOf(Countries.Tags, settings.Control);
+                if (index >= 0)
+                {
+                    relationListView.Items[index].SubItems[3].Text = "";
+                }
+            }
+            relationListView.SelectedItems[0].SubItems[2].Text = controlCheckBox.Checked
+                ? Resources.Yes
+                : Resources.No;
+
+            // 値を更新する
+            settings.Control = controlCheckBox.Checked ? target : Country.None;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Control);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            controlCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     軍事通行許可国チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAccessCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
+            Relation relation = Scenarios.GetCountryRelation(self, target);
+
+            if (relation != null)
+            {
+                // 値に変化がなければ何もしない
+                if (accessCheckBox.Checked == relation.Access)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                if (!accessCheckBox.Checked)
+                {
+                    return;
+                }
+
+                // 国家関係を設定する
+                relation = new Relation { Country = target };
+                if (settings == null)
+                {
+                    settings = new CountrySettings { Country = self };
+                    Scenarios.SetCountrySettings(settings);
+                }
+                settings.Relations.Add(relation);
+                Scenarios.SetCountryRelation(self, relation);
+            }
+
+            Log.Info("[Scenario] military access: {0} -> {1} ({2} > {3})", BoolHelper.ToYesNo(relation.Access),
+                BoolHelper.ToYesNo(accessCheckBox.Checked), Countries.Strings[(int) self],
+                Countries.Strings[(int) target]);
+
+            // 値を更新する
+            relation.Access = accessCheckBox.Checked;
+
+            // 関係リストビューの表示を更新する
+            relationListView.SelectedItems[0].SubItems[4].Text = BoolHelper.ToYesNo(relation.Access);
+
+            // 編集済みフラグを設定する
+            relation.SetDirty(RelationItemId.Access);
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            accessCheckBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     独立保障チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGuaranteeCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
+            Relation relation = Scenarios.GetCountryRelation(self, target);
+
+            if (relation != null)
+            {
+                if (guaranteeCheckBox.Checked)
+                {
+                    // 値に変化がなければ何もしない
+                    if (relation.Guaranteed != null)
+                    {
+                        return;
+                    }
+
+                    // 独立保障期限を設定する
+                    relation.Guaranteed = new GameDate();
+                }
+                else
+                {
+                    // 値に変化がなければ何もしない
+                    if (relation.Guaranteed == null)
+                    {
+                        return;
+                    }
+
+                    // 独立保障期限を削除する
+                    relation.Guaranteed = null;
+                }
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                if (!guaranteeCheckBox.Checked)
+                {
+                    return;
+                }
+
+                // 国家関係を設定する
+                relation = new Relation { Country = target };
+                if (settings == null)
+                {
+                    settings = new CountrySettings { Country = self };
+                    Scenarios.SetCountrySettings(settings);
+                }
+                settings.Relations.Add(relation);
+                Scenarios.SetCountryRelation(self, relation);
+
+                // 独立保障期限を設定する
+                relation.Guaranteed = new GameDate();
+            }
+
+            Log.Info("[Scenario] guarantee: {0} -> {1} ({2} > {3})", BoolHelper.ToYesNo(relation.Guaranteed == null),
+                BoolHelper.ToYesNo(relation.Guaranteed != null), Countries.Strings[(int) self],
+                Countries.Strings[(int) target]);
+
+            // 編集項目を更新する
+            bool flag = (relation.Guaranteed != null);
+            guaranteeYearTextBox.Text = flag ? IntHelper.ToString(relation.Guaranteed.Year) : "";
+            guaranteeMonthTextBox.Text = flag ? IntHelper.ToString(relation.Guaranteed.Month) : "";
+            guaranteeDayTextBox.Text = flag ? IntHelper.ToString(relation.Guaranteed.Day) : "";
+            guaranteeEndLabel.Enabled = flag;
+            guaranteeYearTextBox.Enabled = flag;
+            guaranteeMonthTextBox.Enabled = flag;
+            guaranteeDayTextBox.Enabled = flag;
+
+            // 関係リストビューの表示を更新する
+            relationListView.SelectedItems[0].SubItems[5].Text = BoolHelper.ToYesNo(relation.Guaranteed != null);
+
+            // 編集済みフラグを設定する
+            relation.SetDirty(RelationItemId.Guaranteed);
+            relation.SetDirty(RelationItemId.GuaranteedYear);
+            relation.SetDirty(RelationItemId.GuaranteedMonth);
+            relation.SetDirty(RelationItemId.GuaranteedDay);
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            guaranteeCheckBox.ForeColor = Color.Red;
+            guaranteeYearTextBox.ForeColor = Color.Red;
+            guaranteeMonthTextBox.ForeColor = Color.Red;
+            guaranteeDayTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     独立保証期限年テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGuaranteeYearTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
+            Relation relation = Scenarios.GetCountryRelation(self, target);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(guaranteeYearTextBox.Text, out val))
+            {
+                guaranteeYearTextBox.Text = ((relation != null) && (relation.Guaranteed != null))
+                    ? IntHelper.ToString(relation.Guaranteed.Year)
+                    : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == relation.Guaranteed.Year)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] guarantee year: {0} -> {1} ({2} > {3})", relation.Guaranteed.Year, val,
+                Countries.Strings[(int) self], Countries.Strings[(int) target]);
+
+            // 値を更新する
+            relation.Guaranteed.Year = val;
+
+            // 編集済みフラグを設定する
+            relation.SetDirty(RelationItemId.GuaranteedYear);
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            guaranteeYearTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     独立保証期限月テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGuaranteeMonthTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
+            Relation relation = Scenarios.GetCountryRelation(self, target);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(guaranteeMonthTextBox.Text, out val))
+            {
+                guaranteeMonthTextBox.Text = ((relation != null) && (relation.Guaranteed != null))
+                    ? IntHelper.ToString(relation.Guaranteed.Month)
+                    : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == relation.Guaranteed.Month)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] guarantee month: {0} -> {1} ({2} > {3})", relation.Guaranteed.Month, val,
+                Countries.Strings[(int) self], Countries.Strings[(int) target]);
+
+            // 値を更新する
+            relation.Guaranteed.Month = val;
+
+            // 編集済みフラグを設定する
+            relation.SetDirty(RelationItemId.GuaranteedMonth);
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            guaranteeMonthTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     独立保証期限日テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGuaranteeDayTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            CountrySettings settings = Scenarios.GetCountrySettings(self);
+            Relation relation = Scenarios.GetCountryRelation(self, target);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(guaranteeDayTextBox.Text, out val))
+            {
+                guaranteeDayTextBox.Text = ((relation != null) && (relation.Guaranteed != null))
+                    ? IntHelper.ToString(relation.Guaranteed.Day)
+                    : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == relation.Guaranteed.Day)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] guarantee day: {0} -> {1} ({2} > {3})", relation.Guaranteed.Day, val,
+                Countries.Strings[(int) self], Countries.Strings[(int) target]);
+
+            // 値を更新する
+            relation.Guaranteed.Day = val;
+
+            // 編集済みフラグを設定する
+            relation.SetDirty(RelationItemId.GuaranteedDay);
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            guaranteeDayTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     不可侵条約チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNonAggressionCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            List<Treaty> treaties = Scenarios.Data.GlobalData.Treaties;
+            Treaty nonAggression = Scenarios.GetNonAggression(self, target);
+
+            if (nonAggression != null)
+            {
+                // 値に変化がなければ何もしない
+                if (nonAggressionCheckBox.Checked)
+                {
+                    return;
+                }
+
+                // 不可侵条約を削除する
+                treaties.Remove(nonAggression);
+                Scenarios.RemoveNonAggression(nonAggression);
+            }
+            else
+            {
+                // 値に変化がなければ何もしない
+                if (!nonAggressionCheckBox.Checked)
+                {
+                    return;
+                }
+
+                // 不可侵条約を設定する
+                nonAggression = new Treaty
+                {
+                    Type = TreatyType.NonAggression,
+                    Country1 = self,
+                    Country2 = target,
+                    StartDate = new GameDate(),
+                    EndDate = new GameDate(),
+                    Id = new TypeId
+                    {
+                        Type = Scenarios.DefaultTreatyType,
+                        Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, 1)
+                    }
+                };
+                treaties.Add(nonAggression);
+                Scenarios.SetNonAggression(nonAggression);
+            }
+
+            Log.Info("[Scenario] non aggression: {0} -> {1} ({2} > {3})",
+                BoolHelper.ToYesNo(nonAggressionCheckBox.Checked), BoolHelper.ToYesNo(!nonAggressionCheckBox.Checked),
+                Countries.Strings[(int) self], Countries.Strings[(int) target]);
+
+            // 編集項目を更新する
+            bool flag = nonAggressionCheckBox.Checked && (nonAggression.StartDate != null);
+            nonAggressionStartYearTextBox.Text = flag ? IntHelper.ToString(nonAggression.StartDate.Year) : "";
+            nonAggressionStartMonthTextBox.Text = flag ? IntHelper.ToString(nonAggression.StartDate.Month) : "";
+            nonAggressionStartDayTextBox.Text = flag ? IntHelper.ToString(nonAggression.StartDate.Day) : "";
+            flag = nonAggressionCheckBox.Checked && (nonAggression.EndDate != null);
+            nonAggressionEndYearTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Year) : "";
+            nonAggressionEndMonthTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Month) : "";
+            nonAggressionEndDayTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Day) : "";
+            flag = nonAggressionCheckBox.Checked;
+            nonAggressionStartLabel.Enabled = flag;
+            nonAggressionStartYearTextBox.Enabled = flag;
+            nonAggressionStartMonthTextBox.Enabled = flag;
+            nonAggressionStartDayTextBox.Enabled = flag;
+            nonAggressionEndLabel.Enabled = flag;
+            nonAggressionEndYearTextBox.Enabled = flag;
+            nonAggressionEndMonthTextBox.Enabled = flag;
+            nonAggressionEndDayTextBox.Enabled = flag;
+
+            // 関係リストビューの表示を更新する
+            relationListView.SelectedItems[0].SubItems[6].Text = BoolHelper.ToYesNo(nonAggressionCheckBox.Checked);
+
+            // 編集済みフラグを設定する
+            nonAggression.SetDirty(TreatyItemId.StartYear);
+            nonAggression.SetDirty(TreatyItemId.StartMonth);
+            nonAggression.SetDirty(TreatyItemId.StartDay);
+            nonAggression.SetDirty(TreatyItemId.EndYear);
+            nonAggression.SetDirty(TreatyItemId.EndMonth);
+            nonAggression.SetDirty(TreatyItemId.EndDay);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            nonAggressionCheckBox.ForeColor = Color.Red;
+            nonAggressionStartYearTextBox.ForeColor = Color.Red;
+            nonAggressionStartMonthTextBox.ForeColor = Color.Red;
+            nonAggressionStartDayTextBox.ForeColor = Color.Red;
+            nonAggressionEndYearTextBox.ForeColor = Color.Red;
+            nonAggressionEndMonthTextBox.ForeColor = Color.Red;
+            nonAggressionEndDayTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     不可侵条約開始年テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNonAggressionStartYearTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (relationListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            Country self = Countries.Tags[relationCountryListBox.SelectedIndex];
+            Country target = Countries.Tags[relationListView.SelectedIndices[0]];
+            Treaty nonAggression = Scenarios.GetNonAggression(self, target);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(nonAggressionStartYearTextBox.Text, out val))
+            {
+                nonAggressionStartYearTextBox.Text = (nonAggression.StartDate != null)
+                    ? IntHelper.ToString(nonAggression.StartDate.Year)
+                    : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((nonAggression.StartDate != null) && (val == nonAggression.StartDate.Year))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] non aggression year: {0} -> {1} ({2} > {3})",
+                (nonAggression.StartDate != null) ? IntHelper.ToString(nonAggression.StartDate.Year) : "", val,
+                Countries.Strings[(int) self], Countries.Strings[(int) target]);
+
+            // 値を更新する
+            if (nonAggression.StartDate == null)
+            {
+                nonAggression.StartDate = new GameDate();
+            }
+            nonAggression.StartDate.Year = val;
+
+            // 編集済みフラグを設定する
+            nonAggression.SetDirty(TreatyItemId.StartYear);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            nonAggressionStartYearTextBox.ForeColor = Color.Red;
+        }
+
+        #endregion
 
         #endregion
 
