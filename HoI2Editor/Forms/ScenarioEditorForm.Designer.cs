@@ -711,6 +711,7 @@
             // 
             resources.ApplyResources(this.spyNumNumericUpDown, "spyNumNumericUpDown");
             this.spyNumNumericUpDown.Name = "spyNumNumericUpDown";
+            this.spyNumNumericUpDown.ValueChanged += new System.EventHandler(this.OnSpyNumNumericUpDownValueChanged);
             // 
             // spyNumLabel
             // 
@@ -794,16 +795,19 @@
             // 
             resources.ApplyResources(this.peaceIdTextBox, "peaceIdTextBox");
             this.peaceIdTextBox.Name = "peaceIdTextBox";
+            this.peaceIdTextBox.Validated += new System.EventHandler(this.OnPeaceIdTextBoxValidated);
             // 
             // peaceTypeTextBox
             // 
             resources.ApplyResources(this.peaceTypeTextBox, "peaceTypeTextBox");
             this.peaceTypeTextBox.Name = "peaceTypeTextBox";
+            this.peaceTypeTextBox.Validated += new System.EventHandler(this.OnPeaceTypeTextBoxValidated);
             // 
             // peaceEndDayTextBox
             // 
             resources.ApplyResources(this.peaceEndDayTextBox, "peaceEndDayTextBox");
             this.peaceEndDayTextBox.Name = "peaceEndDayTextBox";
+            this.peaceEndDayTextBox.Validated += new System.EventHandler(this.OnPeaceEndDayTextBoxValidated);
             // 
             // peaceEndLabel
             // 
@@ -814,6 +818,7 @@
             // 
             resources.ApplyResources(this.peaceEndMonthTextBox, "peaceEndMonthTextBox");
             this.peaceEndMonthTextBox.Name = "peaceEndMonthTextBox";
+            this.peaceEndMonthTextBox.Validated += new System.EventHandler(this.OnPeaceEndMonthTextBoxValidated);
             // 
             // peaceIdLabel
             // 
@@ -824,6 +829,7 @@
             // 
             resources.ApplyResources(this.peaceEndYearTextBox, "peaceEndYearTextBox");
             this.peaceEndYearTextBox.Name = "peaceEndYearTextBox";
+            this.peaceEndYearTextBox.Validated += new System.EventHandler(this.OnPeaceEndYearTextBoxValidated);
             // 
             // peaceStartLabel
             // 
@@ -834,22 +840,26 @@
             // 
             resources.ApplyResources(this.peaceStartYearTextBox, "peaceStartYearTextBox");
             this.peaceStartYearTextBox.Name = "peaceStartYearTextBox";
+            this.peaceStartYearTextBox.Validated += new System.EventHandler(this.OnPeaceStartYearTextBoxValidated);
             // 
             // peaceStartDayTextBox
             // 
             resources.ApplyResources(this.peaceStartDayTextBox, "peaceStartDayTextBox");
             this.peaceStartDayTextBox.Name = "peaceStartDayTextBox";
+            this.peaceStartDayTextBox.Validated += new System.EventHandler(this.OnPeaceStartDayTextBoxValidated);
             // 
             // peaceCheckBox
             // 
             resources.ApplyResources(this.peaceCheckBox, "peaceCheckBox");
             this.peaceCheckBox.Name = "peaceCheckBox";
             this.peaceCheckBox.UseVisualStyleBackColor = true;
+            this.peaceCheckBox.CheckedChanged += new System.EventHandler(this.OnPeaceCheckBoxCheckedChanged);
             // 
             // peaceStartMonthTextBox
             // 
             resources.ApplyResources(this.peaceStartMonthTextBox, "peaceStartMonthTextBox");
             this.peaceStartMonthTextBox.Name = "peaceStartMonthTextBox";
+            this.peaceStartMonthTextBox.Validated += new System.EventHandler(this.OnPeaceStartMonthTextBoxValidated);
             // 
             // relationValueNumericUpDown
             // 
@@ -889,11 +899,13 @@
             // 
             resources.ApplyResources(this.nonAggressionIdTextBox, "nonAggressionIdTextBox");
             this.nonAggressionIdTextBox.Name = "nonAggressionIdTextBox";
+            this.nonAggressionIdTextBox.Validated += new System.EventHandler(this.OnNonAggressionIdTextBoxValidated);
             // 
             // nonAggressionTypeTextBox
             // 
             resources.ApplyResources(this.nonAggressionTypeTextBox, "nonAggressionTypeTextBox");
             this.nonAggressionTypeTextBox.Name = "nonAggressionTypeTextBox";
+            this.nonAggressionTypeTextBox.Validated += new System.EventHandler(this.OnNonAggressionTypeTextBoxValidated);
             // 
             // nonAggressionIdLabel
             // 
@@ -905,21 +917,25 @@
             resources.ApplyResources(this.nonAggressionCheckBox, "nonAggressionCheckBox");
             this.nonAggressionCheckBox.Name = "nonAggressionCheckBox";
             this.nonAggressionCheckBox.UseVisualStyleBackColor = true;
+            this.nonAggressionCheckBox.CheckedChanged += new System.EventHandler(this.OnNonAggressionCheckBoxCheckedChanged);
             // 
             // nonAggressionStartMonthTextBox
             // 
             resources.ApplyResources(this.nonAggressionStartMonthTextBox, "nonAggressionStartMonthTextBox");
             this.nonAggressionStartMonthTextBox.Name = "nonAggressionStartMonthTextBox";
+            this.nonAggressionStartMonthTextBox.Validated += new System.EventHandler(this.OnNonAggressionStartMonthTextBoxValidated);
             // 
             // nonAggressionStartYearTextBox
             // 
             resources.ApplyResources(this.nonAggressionStartYearTextBox, "nonAggressionStartYearTextBox");
             this.nonAggressionStartYearTextBox.Name = "nonAggressionStartYearTextBox";
+            this.nonAggressionStartYearTextBox.Validated += new System.EventHandler(this.OnNonAggressionStartYearTextBoxValidated);
             // 
             // nonAggressionStartDayTextBox
             // 
             resources.ApplyResources(this.nonAggressionStartDayTextBox, "nonAggressionStartDayTextBox");
             this.nonAggressionStartDayTextBox.Name = "nonAggressionStartDayTextBox";
+            this.nonAggressionStartDayTextBox.Validated += new System.EventHandler(this.OnNonAggressionStartDayTextBoxValidated);
             // 
             // nonAggressionStartLabel
             // 
@@ -930,16 +946,19 @@
             // 
             resources.ApplyResources(this.nonAggressionEndYearTextBox, "nonAggressionEndYearTextBox");
             this.nonAggressionEndYearTextBox.Name = "nonAggressionEndYearTextBox";
+            this.nonAggressionEndYearTextBox.Validated += new System.EventHandler(this.OnNonAggressionEndYearTextBoxValidated);
             // 
             // nonAggressionEndMonthTextBox
             // 
             resources.ApplyResources(this.nonAggressionEndMonthTextBox, "nonAggressionEndMonthTextBox");
             this.nonAggressionEndMonthTextBox.Name = "nonAggressionEndMonthTextBox";
+            this.nonAggressionEndMonthTextBox.Validated += new System.EventHandler(this.OnNonAggressionEndMonthTextBoxValidated);
             // 
             // nonAggressionEndDayTextBox
             // 
             resources.ApplyResources(this.nonAggressionEndDayTextBox, "nonAggressionEndDayTextBox");
             this.nonAggressionEndDayTextBox.Name = "nonAggressionEndDayTextBox";
+            this.nonAggressionEndDayTextBox.Validated += new System.EventHandler(this.OnNonAggressionEndDayTextBoxValidated);
             // 
             // nonAggressionEndLabel
             // 
@@ -986,6 +1005,7 @@
             this.relationSpyColumnHeader});
             this.relationListView.FullRowSelect = true;
             this.relationListView.GridLines = true;
+            this.relationListView.HideSelection = false;
             resources.ApplyResources(this.relationListView, "relationListView");
             this.relationListView.MultiSelect = false;
             this.relationListView.Name = "relationListView";

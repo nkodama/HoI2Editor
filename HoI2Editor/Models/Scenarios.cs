@@ -604,6 +604,20 @@ namespace HoI2Editor.Models
             return _spies[country1][country2];
         }
 
+        /// <summary>
+        ///     諜報設定を設定する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        /// <param name="spy">諜報設定</param>
+        public static void SetCountryIntelligence(Country country, SpySettings spy)
+        {
+            if (!_spies.ContainsKey(country))
+            {
+                _spies.Add(country, new Dictionary<Country, SpySettings>());
+            }
+            _spies[country][spy.Country] = spy;
+        }
+
         #endregion
 
         #region typeとidの組
@@ -811,7 +825,7 @@ namespace HoI2Editor.Models
         /// <param name="type">type</param>
         /// <param name="startId">探索開始id</param>
         /// <returns>新規id</returns>
-        public static int GetNewTypeId(int type, int startId)
+        public static TypeId GetNewTypeId(int type, int startId)
         {
             if (!_usedTypeIds.ContainsKey(type))
             {
@@ -823,7 +837,8 @@ namespace HoI2Editor.Models
             {
                 id++;
             }
-            return id;
+            _usedTypeIds[type].Add(id);
+            return new TypeId { Type = type, Id = id };
         }
 
         #endregion

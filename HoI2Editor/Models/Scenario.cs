@@ -1389,6 +1389,11 @@ namespace HoI2Editor.Models
         /// </summary>
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TreatyItemId)).Length];
 
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
         #endregion
 
         #region 初期化
@@ -1404,6 +1409,15 @@ namespace HoI2Editor.Models
         #endregion
 
         #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     外交協定設定が編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
 
         /// <summary>
         ///     項目が編集済みかどうかを取得する
@@ -1425,6 +1439,14 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
         public void ResetDirtyAll()
@@ -1433,6 +1455,7 @@ namespace HoI2Editor.Models
             {
                 _dirtyFlags[(int) id] = false;
             }
+            _dirtyFlag = false;
         }
 
         #endregion
