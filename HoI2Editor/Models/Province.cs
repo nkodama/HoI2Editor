@@ -978,7 +978,7 @@ namespace HoI2Editor.Models
         PernambucoPlain,
         AscensionFractureZone,
         EastNorthSea,
-        CaspianSea, // DHのみ
+        CaspianSea // DHのみ
     }
 
     /// <summary>
@@ -1141,7 +1141,7 @@ namespace HoI2Editor.Models
         SouthcentralAtlantic,
         EasternAtlantic,
         CelticSea,
-        IberianWestCoast,
+        IberianWestCoast
     }
 
     /// <summary>
@@ -1159,7 +1159,7 @@ namespace HoI2Editor.Models
         Lake,
         AtlanticOcean,
         PacificOcean,
-        IndianOcean,
+        IndianOcean
     }
 
     /// <summary>
@@ -1175,7 +1175,7 @@ namespace HoI2Editor.Models
         Mediterranean,
         Subtropical,
         Tropical,
-        Arid,
+        Arid
     }
 
     /// <summary>
@@ -1195,7 +1195,7 @@ namespace HoI2Editor.Models
         River,
         TerraIncognito,
         Unknown,
-        Clear,
+        Clear
     }
 
     /// <summary>
@@ -1258,6 +1258,6 @@ namespace HoI2Editor.Models
         FillCoordY4, // 塗りつぶしY座標4
         FillCoordX5, // 塗りつぶしX座標5
         FillCoordY5, // 塗りつぶしY座標5
-        FillCoordX6, // 塗りつぶしX座標6
+        FillCoordX6 // 塗りつぶしX座標6
     }
 }

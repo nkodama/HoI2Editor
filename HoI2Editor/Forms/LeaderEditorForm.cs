@@ -48,7 +48,7 @@ namespace HoI2Editor.Forms
             MaxSkill,
             StartYear,
             EndYear,
-            Traits,
+            Traits
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace HoI2Editor.Forms
         private enum SortOrder
         {
             Ascendant,
-            Decendant,
+            Decendant
         }
 
         #endregion
@@ -707,7 +707,7 @@ namespace HoI2Editor.Forms
                     IdealRank = LeaderRank.None,
                     StartYear = 1930,
                     EndYear = 1990,
-                    RetirementYear = 1999,
+                    RetirementYear = 1999
                 };
                 leader.RankYear[0] = 1930;
                 leader.RankYear[1] = 1990;
@@ -733,7 +733,7 @@ namespace HoI2Editor.Forms
                     IdealRank = LeaderRank.None,
                     StartYear = 1930,
                     EndYear = 1990,
-                    RetirementYear = 1999,
+                    RetirementYear = 1999
                 };
                 leader.RankYear[0] = 1930;
                 leader.RankYear[1] = 1990;

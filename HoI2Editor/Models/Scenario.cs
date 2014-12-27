@@ -270,7 +270,7 @@ namespace HoI2Editor.Models
         StartDay, // 開始日
         EndYear, // 終了年
         EndMonth, // 終了月
-        EndDay, // 終了日
+        EndDay // 終了日
     }
 
     #endregion
@@ -1542,7 +1542,7 @@ namespace HoI2Editor.Models
         None,
         NonAggression, // 不可侵条約
         Peace, // 休戦協定
-        Trade, // 貿易
+        Trade // 貿易
     }
 
     /// <summary>
@@ -1552,7 +1552,7 @@ namespace HoI2Editor.Models
     {
         Type, // type
         Id, // id
-        Name, // 同盟名
+        Name // 同盟名
     }
 
     /// <summary>
@@ -1571,7 +1571,7 @@ namespace HoI2Editor.Models
         AttackerType, // 攻撃側type
         AttackerId, // 攻撃側id
         DefenderType, // 防御側type
-        DefenderId, // 防御側id
+        DefenderId // 防御側id
     }
 
     /// <summary>
@@ -1595,7 +1595,7 @@ namespace HoI2Editor.Models
         Metal, // 金属
         RareMaterials, // 希少資源
         Oil, // 石油
-        Cancel, // 取り消し可能かどうか
+        Cancel // 取り消し可能かどうか
     }
 
     /// <summary>
@@ -1608,7 +1608,7 @@ namespace HoI2Editor.Models
         Guaranteed, // 独立保証
         GuaranteedYear, // 独立保障期限年
         GuaranteedMonth, // 独立保障期限月
-        GuaranteedDay, // 独立保障期限日
+        GuaranteedDay // 独立保障期限日
     }
 
     #endregion
@@ -2361,7 +2361,7 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum SpySettingsItemId
     {
-        Spies, // スパイの数
+        Spies // スパイの数
     }
 
     #endregion

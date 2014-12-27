@@ -354,7 +354,7 @@ namespace HoI2Editor.Dialogs
     {
         All, // 全て
         Selected, // 選択国
-        Specified, // 指定国
+        Specified // 指定国
     }
 
     /// <summary>
@@ -373,6 +373,6 @@ namespace HoI2Editor.Dialogs
         Rank3Year, // 少将任官年
         Rank2Year, // 中将任官年
         Rank1Year, // 大将任官年
-        Rank0Year, // 元帥任官年
+        Rank0Year // 元帥任官年
     }
 }

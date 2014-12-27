@@ -26,7 +26,7 @@ namespace HoI2Editor.Parsers
                 { "chiefofstaff", (int) MinisterPosition.ChiefOfStaff },
                 { "chiefofarmy", (int) MinisterPosition.ChiefOfArmy },
                 { "chiefofnavy", (int) MinisterPosition.ChiefOfNavy },
-                { "chiefofair", (int) MinisterPosition.ChiefOfAirForce },
+                { "chiefofair", (int) MinisterPosition.ChiefOfAirForce }
             };
 
         #endregion

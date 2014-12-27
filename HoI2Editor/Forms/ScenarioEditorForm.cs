@@ -1139,7 +1139,7 @@ namespace HoI2Editor.Forms
             var dialog = new FolderBrowserDialog
             {
                 SelectedPath = Game.GetReadFileName(Game.ScenarioDataPathName),
-                ShowNewFolderButton = true,
+                ShowNewFolderButton = true
             };
             if (dialog.ShowDialog() == DialogResult.OK)
             {

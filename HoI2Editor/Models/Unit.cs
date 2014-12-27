@@ -3003,7 +3003,7 @@ namespace HoI2Editor.Models
     public enum UnitOrganization
     {
         Division, // 師団
-        Brigade, // 旅団
+        Brigade // 旅団
     }
 
     /// <summary>
@@ -3320,7 +3320,7 @@ namespace HoI2Editor.Models
         Brigade96,
         Brigade97,
         Brigade98,
-        Brigade99,
+        Brigade99
     }
 
     /// <summary>
@@ -3364,7 +3364,7 @@ namespace HoI2Editor.Models
         FlyingRocket,
         Militia,
         EscortCarrier,
-        NuclearSubmarine,
+        NuclearSubmarine
     }
 
     /// <summary>
@@ -3512,7 +3512,7 @@ namespace HoI2Editor.Models
         Division96,
         Division97,
         Division98,
-        Division99,
+        Division99
     }
 
     /// <summary>
@@ -3556,7 +3556,7 @@ namespace HoI2Editor.Models
         LightCruiser,
         Destroyer,
         Submarine,
-        NuclearSubmarine,
+        NuclearSubmarine
     }
 
     /// <summary>
@@ -3586,7 +3586,7 @@ namespace HoI2Editor.Models
         Engineer, // 工兵かどうか
         DefaultType, // 標準の生産タイプかどうか
         Detachable, // 旅団が着脱可能か
-        MaxAllowedBrigades, // 最大旅団数
+        MaxAllowedBrigades // 最大旅団数
     }
 
     /// <summary>
@@ -3643,7 +3643,7 @@ namespace HoI2Editor.Models
         AutoUpgrade, // 他師団への自動改良を許可するか (DH)
         UpgradeClass, // 自動改良先のユニットクラス (DH)
         UpgradeModel, // 自動改良先モデル番号 (DH)
-        SpeedCap, // 速度キャップ (DH1.03以降)
+        SpeedCap // 速度キャップ (DH1.03以降)
     }
 
     /// <summary>
@@ -3652,7 +3652,7 @@ namespace HoI2Editor.Models
     public enum UnitEquipmentItemId
     {
         Resource, // 資源
-        Quantity, // 量
+        Quantity // 量
     }
 
     /// <summary>
@@ -3662,6 +3662,6 @@ namespace HoI2Editor.Models
     {
         Type, // ユニットの種類
         UpgradeTimeFactor, // 改良時間補正
-        UpgradeCostFactor, // 改良IC補正
+        UpgradeCostFactor // 改良IC補正
     }
 }

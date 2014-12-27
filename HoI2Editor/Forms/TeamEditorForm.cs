@@ -51,7 +51,7 @@ namespace HoI2Editor.Forms
             Skill,
             StartYear,
             EndYear,
-            Speciality,
+            Speciality
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace HoI2Editor.Forms
         private enum SortOrder
         {
             Ascendant,
-            Decendant,
+            Decendant
         }
 
         #endregion
@@ -827,7 +827,7 @@ namespace HoI2Editor.Forms
                     Id = Teams.GetNewId(selected.Country),
                     Skill = 1,
                     StartYear = 1930,
-                    EndYear = 1970,
+                    EndYear = 1970
                 };
 
                 // 研究機関ごとの編集済みフラグを設定する
@@ -847,7 +847,7 @@ namespace HoI2Editor.Forms
                     Id = Teams.GetNewId(country),
                     Skill = 1,
                     StartYear = 1930,
-                    EndYear = 1970,
+                    EndYear = 1970
                 };
 
                 // 研究機関ごとの編集済みフラグを設定する
@@ -898,7 +898,7 @@ namespace HoI2Editor.Forms
                 Skill = selected.Skill,
                 StartYear = selected.StartYear,
                 EndYear = selected.EndYear,
-                PictureName = selected.PictureName,
+                PictureName = selected.PictureName
             };
             for (int i = 0; i < Team.SpecialityLength; i++)
             {

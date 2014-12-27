@@ -475,7 +475,7 @@ namespace HoI2Editor.Models
         Intelligence,
         Area,
         Region,
-        ResearchMod,
+        ResearchMod
     }
 
     /// <summary>

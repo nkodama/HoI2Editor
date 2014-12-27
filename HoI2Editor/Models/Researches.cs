@@ -90,6 +90,6 @@ namespace HoI2Editor.Models
     public enum ResearchDateMode
     {
         Historical, // 史実年度を使用する
-        Specified, // 指定日付を使用する
+        Specified // 指定日付を使用する
     }
 }

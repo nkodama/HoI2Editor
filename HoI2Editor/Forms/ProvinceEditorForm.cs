@@ -54,7 +54,7 @@ namespace HoI2Editor.Forms
             Energy,
             Metal,
             RareMaterials,
-            Oil,
+            Oil
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace HoI2Editor.Forms
         private enum SortOrder
         {
             Ascendant,
-            Decendant,
+            Decendant
         }
 
         #endregion

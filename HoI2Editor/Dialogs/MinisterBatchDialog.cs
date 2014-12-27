@@ -302,7 +302,7 @@ namespace HoI2Editor.Dialogs
     {
         All, // 全て
         Selected, // 選択国
-        Specified, // 指定国
+        Specified // 指定国
     }
 
     /// <summary>
@@ -314,6 +314,6 @@ namespace HoI2Editor.Dialogs
         EndYear, // 終了年
         RetirementYear, // 引退年
         Ideology, // イデオロギー
-        Loyalty, // 忠誠度
+        Loyalty // 忠誠度
     }
 }

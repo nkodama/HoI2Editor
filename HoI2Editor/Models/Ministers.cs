@@ -608,7 +608,7 @@ namespace HoI2Editor.Models
                 { "school of maneouvre", "school of manoeuvre" },
                 { "elastic defense doctrine", "elastic defence doctrine" },
                 { "static defense doctrine", "static defence doctrine" },
-                { "vertical envelopement doctrine", "vertical envelopment doctrine" },
+                { "vertical envelopement doctrine", "vertical envelopment doctrine" }
             };
 
         /// <summary>
@@ -721,7 +721,7 @@ namespace HoI2Editor.Models
             ArmyAviationDoctrine, // 陸軍支援ドクトリン
             CarpetBombingDoctrine, // 絨毯爆撃ドクトリン
             NavalAviationDoctrine, // 海軍支援ドクトリン
-            VerticalEnvelopmentDoctrine, // 立体集中攻撃ドクトリン
+            VerticalEnvelopmentDoctrine // 立体集中攻撃ドクトリン
         }
 
         #endregion

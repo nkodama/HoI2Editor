@@ -167,7 +167,7 @@ namespace HoI2Editor.Models
         ChiefOfStaff, // 統合参謀総長
         ChiefOfArmy, // 陸軍総司令官
         ChiefOfNavy, // 海軍総司令官
-        ChiefOfAirForce, // 空軍総司令官
+        ChiefOfAirForce // 空軍総司令官
     }
 
     /// <summary>
@@ -182,7 +182,7 @@ namespace HoI2Editor.Models
         High,
         VeryHigh,
         Undying,
-        Na,
+        Na
     }
 
     /// <summary>
@@ -200,7 +200,7 @@ namespace HoI2Editor.Models
         SocialDemocrat, // SD 社会民主派
         LeftWingRadical, // LWR 急進的左翼
         Leninist, // LE レーニン主義者
-        Stalinist, // ST スターリン主義者
+        Stalinist // ST スターリン主義者
     }
 
     /// <summary>
@@ -218,6 +218,6 @@ namespace HoI2Editor.Models
         Personality, // 閣僚特性
         Ideology, // イデオロギー
         Loyalty, // 忠誠度
-        PictureName, // 画像ファイル名
+        PictureName // 画像ファイル名
     }
 }

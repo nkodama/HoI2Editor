@@ -3017,7 +3017,7 @@ namespace HoI2Editor.Models
             { MiscItemId.EnablePicturesNavalBrigades, 0 },
             { MiscItemId.BuildingsBuildableOnlyProvinces, 0 },
             { MiscItemId.TotalProvinces, 1 },
-            { MiscItemId.DistanceCalculationModel, 0 },
+            { MiscItemId.DistanceCalculationModel, 0 }
         };
 
         /// <summary>
@@ -3146,7 +3146,7 @@ namespace HoI2Editor.Models
             { MiscItemId.EnablePicturesNavalBrigades, 1 },
             { MiscItemId.BuildingsBuildableOnlyProvinces, 2 },
             { MiscItemId.TotalProvinces, 10000 },
-            { MiscItemId.DistanceCalculationModel, 1 },
+            { MiscItemId.DistanceCalculationModel, 1 }
         };
 
         /// <summary>
@@ -3208,7 +3208,7 @@ namespace HoI2Editor.Models
             { MiscItemId.MilitaryStrengthTotalIcRatioPeacetime, 0 },
             { MiscItemId.MilitaryStrengthTotalIcRatioWartime, 0 },
             { MiscItemId.NotUseOffensiveOrgStrDamage, 0 },
-            { MiscItemId.MinRequiredRelationsAlliedClaimed, -200 },
+            { MiscItemId.MinRequiredRelationsAlliedClaimed, -200 }
         };
 
         /// <summary>
@@ -3270,7 +3270,7 @@ namespace HoI2Editor.Models
             { MiscItemId.MilitaryStrengthTotalIcRatioPeacetime, 1 },
             { MiscItemId.MilitaryStrengthTotalIcRatioWartime, 1 },
             { MiscItemId.NotUseOffensiveOrgStrDamage, 1 },
-            { MiscItemId.MinRequiredRelationsAlliedClaimed, 200 },
+            { MiscItemId.MinRequiredRelationsAlliedClaimed, 200 }
         };
 
         /// <summary>
@@ -5373,7 +5373,7 @@ namespace HoI2Editor.Models
         TotalProvinces, // 総プロヴィンス数
         DistanceCalculationModel, // 距離算出方法
         MapWidth, // マップの幅
-        MapHeight, // マップの高さ
+        MapHeight // マップの高さ
     }
 
     /// <summary>
@@ -5391,7 +5391,7 @@ namespace HoI2Editor.Models
         Trade, // 貿易
         Ai, // AI
         Mod, // MOD
-        Map, // マップ
+        Map // マップ
     }
 
     /// <summary>
@@ -5405,7 +5405,7 @@ namespace HoI2Editor.Models
         Aod107, // AoD1.07
         Aod108, // AoD1.08-
         Dh102, // DH1.02
-        Dh103, // DH1.03-
+        Dh103 // DH1.03-
     }
 
     /// <summary>
@@ -5448,6 +5448,6 @@ namespace HoI2Editor.Models
         RangedDblMinusOne, // 範囲あり実数 or -1
         RangedDblMinusOne1, // 範囲あり実数 or -1.0
         RangedDbl0, // 範囲あり実数 (小数点以下なし)
-        NonNegIntNegDbl, // 非負の整数 or 負の実数
+        NonNegIntNegDbl // 非負の整数 or 負の実数
     }
 }

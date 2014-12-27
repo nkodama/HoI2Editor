@@ -47,7 +47,7 @@ namespace HoI2Editor.Forms
             EndYear,
             Position,
             Personality,
-            Ideology,
+            Ideology
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace HoI2Editor.Forms
         private enum SortOrder
         {
             Ascendant,
-            Decendant,
+            Decendant
         }
 
         #endregion
@@ -620,7 +620,7 @@ namespace HoI2Editor.Forms
                     Position = MinisterPosition.None,
                     Personality = 0,
                     Ideology = MinisterIdeology.None,
-                    Loyalty = MinisterLoyalty.None,
+                    Loyalty = MinisterLoyalty.None
                 };
 
                 // 閣僚ごとの編集済みフラグを設定する
@@ -644,7 +644,7 @@ namespace HoI2Editor.Forms
                     Position = MinisterPosition.None,
                     Personality = 0,
                     Ideology = MinisterIdeology.None,
-                    Loyalty = MinisterLoyalty.None,
+                    Loyalty = MinisterLoyalty.None
                 };
 
                 // 閣僚ごとの編集済みフラグを設定する

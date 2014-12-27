@@ -7403,6 +7403,6 @@ namespace HoI2Editor.Forms
     public enum UnitEditorTab
     {
         Class, // ユニットクラス
-        Model, // ユニットモデル
+        Model // ユニットモデル
     }
 }

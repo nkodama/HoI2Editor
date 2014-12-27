@@ -197,6 +197,6 @@ namespace HoI2Editor.Models
         Speciality29, // 研究特性29
         Speciality30, // 研究特性30
         Speciality31, // 研究特性31
-        Speciality32, // 研究特性32
+        Speciality32 // 研究特性32
     }
 }

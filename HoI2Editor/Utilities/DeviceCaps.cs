@@ -84,7 +84,7 @@ namespace HoI2Editor.Utilities
         private enum DeviceCapsIndices
         {
             LogPixelsX = 88,
-            LogPixelsY = 90,
+            LogPixelsY = 90
         }
 
         /// <summary>

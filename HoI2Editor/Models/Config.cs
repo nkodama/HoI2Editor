@@ -1327,6 +1327,6 @@ namespace HoI2Editor.Models
         PatchedJapanese, // 英語版日本語化
         PatchedKorean, // 英語版韓国語化
         PatchedTraditionalChinese, // 英語版繁体字中国語化
-        PatchedSimplifiedChinese, // 英語版簡体字中国語化
+        PatchedSimplifiedChinese // 英語版簡体字中国語化
     }
 }

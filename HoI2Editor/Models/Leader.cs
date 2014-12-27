@@ -410,7 +410,7 @@ namespace HoI2Editor.Models
         Ambusher, // 奇襲戦
         Disciplined, // 規律
         ElasticDefenceSpecialist, // 戦術的退却
-        Blitzer, // 電撃戦
+        Blitzer // 電撃戦
     }
 
     /// <summary>
@@ -422,7 +422,7 @@ namespace HoI2Editor.Models
         MajorGeneral, // 少将
         LieutenantGeneral, // 中将
         General, // 大将
-        Marshal, // 元帥
+        Marshal // 元帥
     }
 
     /// <summary>
@@ -477,6 +477,6 @@ namespace HoI2Editor.Models
         Ambusher, // 特性: 奇襲戦
         Disciplined, // 特性: 規律
         ElasticDefenceSpecialist, // 特性: 戦術的退却
-        Blitzer, // 特性: 電撃戦
+        Blitzer // 特性: 電撃戦
     }
 }

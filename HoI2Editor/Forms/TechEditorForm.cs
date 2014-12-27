@@ -729,7 +729,7 @@ namespace HoI2Editor.Forms
                 Name = Config.GetTempKey(),
                 ShortName = Config.GetTempKey(),
                 Desc = Config.GetTempKey(),
-                Year = 1936,
+                Year = 1936
             };
             Config.SetText(item.Name, "", Game.TechTextFileName);
             Config.SetText(item.ShortName, "", Game.TechTextFileName);
@@ -6387,6 +6387,6 @@ namespace HoI2Editor.Forms
         Component, // 小研究
         Effect, // 技術効果
         Label, // 技術ラベル
-        Event, // 技術イベント
+        Event // 技術イベント
     }
 }

@@ -886,6 +886,6 @@ namespace HoI2Editor.Models
         Destroyer, // 駆逐艦
         Submarine, // 潜水艦
         NuclearSubmarine, // 原子力潜水艦
-        Transport, // 輸送艦
+        Transport // 輸送艦
     }
 }

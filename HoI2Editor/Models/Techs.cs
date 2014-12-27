@@ -233,7 +233,7 @@ namespace HoI2Editor.Models
                 { "land_doctrines", TechCategory.LandDoctrines },
                 { "secret_weapons", TechCategory.SecretWeapons },
                 { "naval_doctrines", TechCategory.NavalDoctrines },
-                { "air_doctrines", TechCategory.AirDoctrines },
+                { "air_doctrines", TechCategory.AirDoctrines }
             };
 
         #endregion

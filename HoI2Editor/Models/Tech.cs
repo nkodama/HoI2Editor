@@ -404,7 +404,7 @@ namespace HoI2Editor.Models
                 ShortName = Config.GetTempKey(),
                 Desc = Config.GetTempKey(),
                 PictureName = PictureName,
-                Year = Year,
+                Year = Year
             };
 
             // 文字列設定
@@ -1712,7 +1712,7 @@ namespace HoI2Editor.Models
             {
                 Name = Config.GetTempKey(),
                 Speciality = TechSpeciality.Artillery,
-                Difficulty = 1,
+                Difficulty = 1
             };
 
             // 文字列設定
@@ -1732,7 +1732,7 @@ namespace HoI2Editor.Models
                 Name = Config.GetTempKey(),
                 Speciality = Speciality,
                 Difficulty = Difficulty,
-                DoubleTime = DoubleTime,
+                DoubleTime = DoubleTime
             };
 
             Config.SetText(component.Name, Config.GetText(Name), Game.TechTextFileName);
@@ -1833,7 +1833,7 @@ namespace HoI2Editor.Models
         LandDoctrines, // 陸戦ドクトリン
         SecretWeapons, // 秘密兵器
         NavalDoctrines, // 海戦ドクトリン
-        AirDoctrines, // 空戦ドクトリン
+        AirDoctrines // 空戦ドクトリン
     }
 
     /// <summary>
@@ -1954,7 +1954,7 @@ namespace HoI2Editor.Models
         RtUser57,
         RtUser58,
         RtUser59,
-        RtUser60,
+        RtUser60
     }
 
     /// <summary>
@@ -1963,7 +1963,7 @@ namespace HoI2Editor.Models
     public enum TechGroupItemId
     {
         Name, // 名前
-        Desc, // 説明
+        Desc // 説明
     }
 
     /// <summary>
@@ -1977,7 +1977,7 @@ namespace HoI2Editor.Models
         Desc, // 説明
         PictureName, // 画像ファイル名
         Year, // 史実年
-        TechId, // 技術ID
+        TechId // 技術ID
     }
 
     /// <summary>
@@ -1986,7 +1986,7 @@ namespace HoI2Editor.Models
     public enum TechPositionItemId
     {
         X, // X座標
-        Y, // Y座標
+        Y // Y座標
     }
 
     /// <summary>
@@ -1998,6 +1998,6 @@ namespace HoI2Editor.Models
         Name, // 小研究名
         Specilaity, // 研究特性
         Difficulty, // 難易度
-        DoubleTime, // 2倍の時間を要するかどうか
+        DoubleTime // 2倍の時間を要するかどうか
     }
 }

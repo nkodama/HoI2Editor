@@ -1014,6 +1014,6 @@ namespace HoI2Editor
         MaxAllowedBrigades, // 最大付属可能旅団数
         ModelList, // ユニットモデルリスト
         CommonModelName, // 共通のユニットモデル名
-        CountryModelName, // 国別のユニットモデル名
+        CountryModelName // 国別のユニットモデル名
     }
 }

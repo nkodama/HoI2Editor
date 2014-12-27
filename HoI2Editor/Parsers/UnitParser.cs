@@ -1493,7 +1493,7 @@ namespace HoI2Editor.Parsers
                     }
                 }
 
-                    // DH固有
+                // DH固有
                 else if (Game.Type == GameType.DarkestHour)
                 {
                     // no_fuel_combat_mod

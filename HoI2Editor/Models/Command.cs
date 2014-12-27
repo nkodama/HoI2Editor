@@ -766,7 +766,7 @@ namespace HoI2Editor.Models
         Softness,
         Toughness,
         PlainAttack,
-        PlainDefense,
+        PlainDefense
     }
 
     /// <summary>
@@ -778,6 +778,6 @@ namespace HoI2Editor.Models
         Which, // whichパラメータ
         Value, // valueパラメータ
         When, // whenパラメータ
-        Where, // whereパラメータ
+        Where // whereパラメータ
     }
 }
