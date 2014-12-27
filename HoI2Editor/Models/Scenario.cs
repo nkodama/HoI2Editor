@@ -214,26 +214,25 @@ namespace HoI2Editor.Models
                 {
                     GlobalData.Comintern.ResetDirtyAll();
                 }
-                if (GlobalData.Alliances != null)
+                foreach (Alliance alliance in GlobalData.Alliances)
                 {
-                    foreach (Alliance alliance in GlobalData.Alliances)
-                    {
-                        alliance.ResetDirtyAll();
-                    }
+                    alliance.ResetDirtyAll();
                 }
-                if (GlobalData.Wars != null)
+                foreach (War war in GlobalData.Wars)
                 {
-                    foreach (War war in GlobalData.Wars)
-                    {
-                        war.ResetDirtyAll();
-                    }
+                    war.ResetDirtyAll();
                 }
-                if (GlobalData.Treaties != null)
+                foreach (Treaty nonAggression in GlobalData.NonAggressions)
                 {
-                    foreach (Treaty treaty in GlobalData.Treaties)
-                    {
-                        treaty.ResetDirtyAll();
-                    }
+                    nonAggression.ResetDirtyAll();
+                }
+                foreach (Treaty peace in GlobalData.Peaces)
+                {
+                    peace.ResetDirtyAll();
+                }
+                foreach (Treaty trade in GlobalData.Trades)
+                {
+                    trade.ResetDirtyAll();
                 }
             }
 
@@ -520,19 +519,29 @@ namespace HoI2Editor.Models
         public Alliance Comintern { get; set; }
 
         /// <summary>
-        ///     同盟国設定
+        ///     同盟リスト
         /// </summary>
         public List<Alliance> Alliances { get; private set; }
 
         /// <summary>
-        ///     戦争設定
+        ///     戦争リスト
         /// </summary>
         public List<War> Wars { get; private set; }
 
         /// <summary>
-        ///     外交協定設定
+        ///     不可侵条約リスト
         /// </summary>
-        public List<Treaty> Treaties { get; private set; }
+        public List<Treaty> NonAggressions { get; private set; }
+
+        /// <summary>
+        ///     講和条約リスト
+        /// </summary>
+        public List<Treaty> Peaces { get; private set; }
+
+        /// <summary>
+        ///     貿易リスト
+        /// </summary>
+        public List<Treaty> Trades { get; private set; }
 
         /// <summary>
         ///     休止指揮官
@@ -571,7 +580,9 @@ namespace HoI2Editor.Models
             Rules = new ScenarioRules();
             Alliances = new List<Alliance>();
             Wars = new List<War>();
-            Treaties = new List<Treaty>();
+            NonAggressions = new List<Treaty>();
+            Peaces = new List<Treaty>();
+            Trades = new List<Treaty>();
             DormantLeaders = new List<int>();
             DormantMinisters = new List<int>();
             DormantTeams = new List<int>();

@@ -921,7 +921,20 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 外交協定
-                    data.Treaties.Add(treaty);
+                    switch (treaty.Type)
+                    {
+                        case TreatyType.NonAggression:
+                            data.NonAggressions.Add(treaty);
+                            break;
+
+                        case TreatyType.Peace:
+                            data.Peaces.Add(treaty);
+                            break;
+
+                        case TreatyType.Trade:
+                            data.Trades.Add(treaty);
+                            break;
+                    }
                     continue;
                 }
 

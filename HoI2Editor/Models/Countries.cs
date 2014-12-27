@@ -1058,7 +1058,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国名を取得する
         /// </summary>
-        /// <param name="country">国タグ</param>
+        /// <param name="country">国家</param>
         /// <returns>国名</returns>
         public static string GetName(Country country)
         {
@@ -1073,7 +1073,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ名と国名を取得する
         /// </summary>
-        /// <param name="country">国タグ</param>
+        /// <param name="country">国家</param>
         /// <returns>国タグ名と国名</returns>
         public static string GetTagName(Country country)
         {
@@ -1088,11 +1088,27 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     国タグリストの文字列を取得する
+        ///     国タグ名リストの文字列を取得する
         /// </summary>
-        /// <param name="countries">国タグリスト</param>
-        /// <returns>国タグリストの文字列</returns>
-        public static string GetListString(IEnumerable<Country> countries)
+        /// <param name="countries">国家リスト</param>
+        /// <returns>国タグ名リストの文字列</returns>
+        public static string GetTagList(IEnumerable<Country> countries)
+        {
+            var sb = new StringBuilder();
+            foreach (Country country in countries)
+            {
+                sb.AppendFormat("{0}, ", Strings[(int) country]);
+            }
+            int len = sb.Length;
+            return (len > 0) ? sb.ToString(0, len - 2) : "";
+        }
+
+        /// <summary>
+        ///     国名リストの文字列を取得する
+        /// </summary>
+        /// <param name="countries">国家リスト</param>
+        /// <returns>国名リストの文字列</returns>
+        public static string GetNameList(IEnumerable<Country> countries)
         {
             var sb = new StringBuilder();
             foreach (Country country in countries)

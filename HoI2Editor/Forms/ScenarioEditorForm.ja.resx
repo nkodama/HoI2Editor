@@ -148,6 +148,12 @@
   <data name="countryTabPage.Text" xml:space="preserve">
     <value>国家</value>
   </data>
+  <data name="tradeCountryComboBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
+  <data name="tradeCountryComboBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
   <data name="tradeRareMaterialsLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
   </data>
@@ -171,6 +177,12 @@
   </data>
   <data name="tradeSuppliesLabel.Text" xml:space="preserve">
     <value>物資</value>
+  </data>
+  <data name="tradeCountryComboBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
+  <data name="tradeCountryComboBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
   </data>
   <data name="tradeMoneyLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -201,12 +213,6 @@
   </data>
   <data name="tradeCancelCheckBox.Text" xml:space="preserve">
     <value>キャンセルを許可</value>
-  </data>
-  <data name="tradeStartDateColumnHeader.Text" xml:space="preserve">
-    <value>開始日時</value>
-  </data>
-  <data name="tradeEndDateColumnHeader.Text" xml:space="preserve">
-    <value>終了日時</value>
   </data>
   <data name="tradeCountryColumnHeader1.Text" xml:space="preserve">
     <value>国家1</value>
@@ -343,6 +349,16 @@
   <data name="relationSpyColumnHeader.Text" xml:space="preserve">
     <value>スパイ</value>
   </data>
+  <data name="relationCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="relationCountryListBox.ItemHeight" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="relationCountryListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 208</value>
+  </data>
   <data name="relationTabPage.Text" xml:space="preserve">
     <value>関係</value>
   </data>
@@ -370,12 +386,6 @@
   <data name="warDefenderLabel.Text" xml:space="preserve">
     <value>防御側</value>
   </data>
-  <data name="warStartDateColumnHeader.Text" xml:space="preserve">
-    <value>開始日時</value>
-  </data>
-  <data name="warEndDateColumnHeader.Text" xml:space="preserve">
-    <value>終了日時</value>
-  </data>
   <data name="warAttackerColumnHeader.Text" xml:space="preserve">
     <value>攻撃側</value>
   </data>
@@ -388,14 +398,23 @@
   <data name="warUpButton.Text" xml:space="preserve">
     <value>上へ</value>
   </data>
+  <data name="warAttackerListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="warAttackerLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 12</value>
   </data>
   <data name="warAttackerLabel.Text" xml:space="preserve">
     <value>攻撃側</value>
   </data>
+  <data name="warDefenderListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="warDownButton.Text" xml:space="preserve">
     <value>下へ</value>
+  </data>
+  <data name="warCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="warRemoveButton.Text" xml:space="preserve">
     <value>削除</value>
@@ -421,8 +440,14 @@
   <data name="allianceLeaderButton.Text" xml:space="preserve">
     <value>リーダーに設定</value>
   </data>
+  <data name="allianceParticipantListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="allianceUpButton.Text" xml:space="preserve">
     <value>上へ</value>
+  </data>
+  <data name="allianceCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="allianceRemoveButton.Text" xml:space="preserve">
     <value>削除</value>

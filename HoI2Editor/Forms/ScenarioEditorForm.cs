@@ -84,6 +84,36 @@ namespace HoI2Editor.Forms
             "FEOPT_GAMESPEED7" // きわめて速い
         };
 
+        /// <summary>
+        ///     エネルギーの文字列名
+        /// </summary>
+        private const string EnergyName = "RESOURCE_ENERGY";
+
+        /// <summary>
+        ///     金属の文字列名
+        /// </summary>
+        private const string MetalName = "RESOURCE_METAL";
+
+        /// <summary>
+        ///     希少資源の文字列名
+        /// </summary>
+        private const string RareMaterialsName = "RESOURCE_RARE_MATERIALS";
+
+        /// <summary>
+        ///     石油の文字列名
+        /// </summary>
+        private const string OilName = "RESOURCE_OIL";
+
+        /// <summary>
+        ///     物資の文字列名
+        /// </summary>
+        private const string SuppliesName = "RESOURCE_SUPPLY";
+
+        /// <summary>
+        ///     資金の文字列名
+        /// </summary>
+        private const string MoneyName = "RESOURCE_MONEY";
+
         #endregion
 
         #region 初期化
@@ -389,9 +419,6 @@ namespace HoI2Editor.Forms
                 gameSpeedComboBox.Items.Add(Config.GetText(_gameSpeedStrings[i]));
             }
             gameSpeedComboBox.EndUpdate();
-
-            // 編集項目を無効化する
-            DisableMainItems();
         }
 
         /// <summary>
@@ -401,29 +428,6 @@ namespace HoI2Editor.Forms
         {
             // 編集項目を更新する
             UpdateMainItems();
-
-            // 編集項目を有効化する
-            EnableMainItems();
-        }
-
-        /// <summary>
-        ///     メインタブの編集項目を有効化する
-        /// </summary>
-        private void EnableMainItems()
-        {
-            infoGroupBox.Enabled = true;
-            optionGroupBox.Enabled = true;
-            countrySelectionGroupBox.Enabled = true;
-        }
-
-        /// <summary>
-        ///     メインタブの編集項目を無効化する
-        /// </summary>
-        private void DisableMainItems()
-        {
-            infoGroupBox.Enabled = false;
-            optionGroupBox.Enabled = false;
-            countrySelectionGroupBox.Enabled = false;
         }
 
         /// <summary>
@@ -448,9 +452,10 @@ namespace HoI2Editor.Forms
                 old.Dispose();
             }
 
-            startYearTextBox.Text = (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Year) : "";
-            startMonthTextBox.Text = (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Month) : "";
-            startDayTextBox.Text = (data.StartDate != null) ? IntHelper.ToString(data.StartDate.Day) : "";
+            bool flag = (data.StartDate != null);
+            startYearTextBox.Text = flag ? IntHelper.ToString(data.StartDate.Year) : "";
+            startMonthTextBox.Text = flag ? IntHelper.ToString(data.StartDate.Month) : "";
+            startDayTextBox.Text = flag ? IntHelper.ToString(data.StartDate.Day) : "";
 
             startYearTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartYear)
                 ? Color.Red
@@ -458,13 +463,12 @@ namespace HoI2Editor.Forms
             startMonthTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartMonth)
                 ? Color.Red
                 : SystemColors.WindowText;
-            startDayTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartDay)
-                ? Color.Red
-                : SystemColors.WindowText;
+            startDayTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartDay) ? Color.Red : SystemColors.WindowText;
 
-            endYearTextBox.Text = (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Year) : "";
-            endMonthTextBox.Text = (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Month) : "";
-            endDayTextBox.Text = (data.EndDate != null) ? IntHelper.ToString(data.EndDate.Day) : "";
+            flag = (data.EndDate != null);
+            endYearTextBox.Text = flag ? IntHelper.ToString(data.EndDate.Year) : "";
+            endMonthTextBox.Text = flag ? IntHelper.ToString(data.EndDate.Month) : "";
+            endDayTextBox.Text = flag ? IntHelper.ToString(data.EndDate.Day) : "";
 
             endYearTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndYear) ? Color.Red : SystemColors.WindowText;
             endMonthTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
@@ -484,15 +488,16 @@ namespace HoI2Editor.Forms
                 ? Color.Red
                 : SystemColors.WindowText;
 
-            allowDiplomacyCheckBox.Checked = ((data.Rules == null) || data.Rules.AllowDiplomacy);
+            flag = (data.Rules == null);
+            allowDiplomacyCheckBox.Checked = (flag || data.Rules.AllowDiplomacy);
             allowDiplomacyCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.AllowDiplomacy)
                 ? Color.Red
                 : SystemColors.WindowText;
-            allowProductionCheckBox.Checked = ((data.Rules == null) || data.Rules.AllowProduction);
+            allowProductionCheckBox.Checked = (flag || data.Rules.AllowProduction);
             allowProductionCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.AllowProduction)
                 ? Color.Red
                 : SystemColors.WindowText;
-            allowTechnologyCheckBox.Checked = ((data.Rules == null) || data.Rules.AllowTechnology);
+            allowTechnologyCheckBox.Checked = (flag || data.Rules.AllowTechnology);
             allowTechnologyCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.AllowTechnology)
                 ? Color.Red
                 : SystemColors.WindowText;
@@ -508,6 +513,7 @@ namespace HoI2Editor.Forms
             {
                 majorListBox.Items.Add(Countries.GetTagName(country));
             }
+            majorListBox.EndUpdate();
 
             _majorFreeCountries = header.SelectableCountries.Where(country => !majors.Contains(country)).ToList();
             selectableListBox.BeginUpdate();
@@ -528,16 +534,10 @@ namespace HoI2Editor.Forms
             }
             unselectableListBox.EndUpdate();
 
-            majorAddButton.Enabled = false;
-            selectableAddButton.Enabled = false;
-            selectableRemoveButton.Enabled = false;
-
-            // 主要国リストボックスの先頭項目を選択する
-            majorListBox.EndUpdate();
-            if (majorListBox.Items.Count > 0)
-            {
-                majorListBox.SelectedIndex = 0;
-            }
+            // 編集項目を有効化する
+            infoGroupBox.Enabled = true;
+            optionGroupBox.Enabled = true;
+            countrySelectionGroupBox.Enabled = true;
         }
 
         #endregion
@@ -1696,6 +1696,7 @@ namespace HoI2Editor.Forms
                 propagandaLabel.Enabled = false;
                 propagandaTextBox.Enabled = false;
                 propagandaBrowseButton.Enabled = false;
+
                 majorRemoveButton.Enabled = false;
                 majorUpButton.Enabled = false;
                 majorDownButton.Enabled = false;
@@ -1722,6 +1723,7 @@ namespace HoI2Editor.Forms
                 propagandaLabel.Enabled = true;
                 propagandaTextBox.Enabled = true;
                 propagandaBrowseButton.Enabled = true;
+
                 majorRemoveButton.Enabled = true;
                 majorUpButton.Enabled = (index > 0);
                 majorDownButton.Enabled = (index < header.MajorCountries.Count - 1);
@@ -2210,11 +2212,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitAllianceTab()
         {
-            // 同盟グループボックスを無効化する
-            allianceGroupBox.Enabled = false;
-
-            // 戦争グループボックスを無効化する
-            warGroupBox.Enabled = false;
+            // 何もしない
         }
 
         /// <summary>
@@ -2227,12 +2225,6 @@ namespace HoI2Editor.Forms
 
             // 戦争情報の編集項目を無効化する
             DisableWarItems();
-
-            // 同盟情報の編集項目をクリアする
-            ClearAllianceItems();
-
-            // 戦争情報の編集項目をクリアする
-            ClearWarItems();
 
             // 同盟情報の新規ボタンを有効化する
             allianceNewButton.Enabled = true;
@@ -2273,7 +2265,7 @@ namespace HoI2Editor.Forms
             {
                 item.Text = GetAllianceName(data.Axis);
                 item.Tag = data.Axis;
-                item.SubItems.Add(Countries.GetListString(data.Axis.Participant));
+                item.SubItems.Add(Countries.GetNameList(data.Axis.Participant));
             }
             else
             {
@@ -2287,7 +2279,7 @@ namespace HoI2Editor.Forms
             {
                 item.Text = GetAllianceName(data.Allies);
                 item.Tag = data.Allies;
-                item.SubItems.Add(Countries.GetListString(data.Allies.Participant));
+                item.SubItems.Add(Countries.GetNameList(data.Allies.Participant));
             }
             else
             {
@@ -2301,7 +2293,7 @@ namespace HoI2Editor.Forms
             {
                 item.Text = GetAllianceName(data.Comintern);
                 item.Tag = data.Comintern;
-                item.SubItems.Add(Countries.GetListString(data.Comintern.Participant));
+                item.SubItems.Add(Countries.GetNameList(data.Comintern.Participant));
             }
             else
             {
@@ -2312,8 +2304,13 @@ namespace HoI2Editor.Forms
             // その他の同盟
             foreach (Alliance alliance in data.Alliances)
             {
-                item = new ListViewItem { Text = GetAllianceName(alliance), Tag = alliance };
-                item.SubItems.Add(Countries.GetListString(alliance.Participant));
+                string name = GetAllianceName(alliance);
+                item = new ListViewItem
+                {
+                    Text = !string.IsNullOrEmpty(name) ? name : Resources.Alliance,
+                    Tag = alliance
+                };
+                item.SubItems.Add(Countries.GetNameList(alliance.Participant));
                 allianceListView.Items.Add(item);
             }
 
@@ -2321,40 +2318,10 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     同盟情報の編集項目を有効化する
-        /// </summary>
-        private void EnableAllianceItems()
-        {
-            int count = allianceListView.Items.Count;
-            int index = allianceListView.SelectedIndices[0];
-
-            // 枢軸国/連合国/共産国は順番変更/削除できない
-            allianceUpButton.Enabled = (index > 3);
-            allianceDownButton.Enabled = ((index < count - 1) && (index >= 3));
-            allianceRemoveButton.Enabled = (index >= 3);
-
-            allianceNameLabel.Enabled = (index < 3);
-            allianceNameTextBox.Enabled = (index < 3);
-            allianceIdLabel.Enabled = true;
-            allianceTypeTextBox.Enabled = true;
-            allianceIdTextBox.Enabled = true;
-            allianceParticipantLabel.Enabled = true;
-            allianceParticipantListBox.Enabled = true;
-            allianceCountryListBox.Enabled = true;
-        }
-
-        /// <summary>
         ///     同盟情報の編集項目を無効化する
         /// </summary>
         private void DisableAllianceItems()
         {
-            allianceNameTextBox.Text = "";
-            allianceTypeTextBox.Text = "";
-            allianceIdTextBox.Text = "";
-
-            allianceParticipantListBox.Items.Clear();
-            allianceCountryListBox.Items.Clear();
-
             allianceUpButton.Enabled = false;
             allianceDownButton.Enabled = false;
             allianceRemoveButton.Enabled = false;
@@ -2371,6 +2338,13 @@ namespace HoI2Editor.Forms
             allianceParticipantAddButton.Enabled = false;
             allianceParticipantRemoveButton.Enabled = false;
             allianceLeaderButton.Enabled = false;
+
+            allianceNameTextBox.Text = "";
+            allianceTypeTextBox.Text = "";
+            allianceIdTextBox.Text = "";
+
+            allianceParticipantListBox.Items.Clear();
+            allianceCountryListBox.Items.Clear();
         }
 
         /// <summary>
@@ -2392,12 +2366,11 @@ namespace HoI2Editor.Forms
                 : SystemColors.WindowText;
 
             // 同盟ID
-            allianceTypeTextBox.Text = (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Type) : "";
-            allianceIdTextBox.Text = (alliance.Id != null) ? IntHelper.ToString(alliance.Id.Id) : "";
+            bool flag = (alliance.Id != null);
+            allianceTypeTextBox.Text = flag ? IntHelper.ToString(alliance.Id.Type) : "";
+            allianceIdTextBox.Text = flag ? IntHelper.ToString(alliance.Id.Id) : "";
 
-            allianceTypeTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Type)
-                ? Color.Red
-                : SystemColors.WindowText;
+            allianceTypeTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Type) ? Color.Red : SystemColors.WindowText;
             allianceIdTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Id) ? Color.Red : SystemColors.WindowText;
 
             IEnumerable<Country> countries = Countries.Tags;
@@ -2421,19 +2394,24 @@ namespace HoI2Editor.Forms
                 allianceCountryListBox.Items.Add(Countries.GetTagName(country));
             }
             allianceCountryListBox.EndUpdate();
-        }
 
-        /// <summary>
-        ///     同盟情報の編集項目をクリアする
-        /// </summary>
-        private void ClearAllianceItems()
-        {
-            allianceNameTextBox.Text = "";
-            allianceTypeTextBox.Text = "";
-            allianceIdTextBox.Text = "";
+            int count = allianceListView.Items.Count;
+            int index = allianceListView.SelectedIndices[0];
 
-            allianceParticipantListBox.Items.Clear();
-            allianceCountryListBox.Items.Clear();
+            // 枢軸国/連合国/共産国は順番変更/削除できない
+            allianceUpButton.Enabled = (index > 3);
+            allianceDownButton.Enabled = ((index < count - 1) && (index >= 3));
+            allianceRemoveButton.Enabled = (index >= 3);
+
+            // 編集項目を有効化する
+            allianceNameLabel.Enabled = (index < 3);
+            allianceNameTextBox.Enabled = (index < 3);
+            allianceIdLabel.Enabled = true;
+            allianceTypeTextBox.Enabled = true;
+            allianceIdTextBox.Enabled = true;
+            allianceParticipantLabel.Enabled = true;
+            allianceParticipantListBox.Enabled = true;
+            allianceCountryListBox.Enabled = true;
         }
 
         /// <summary>
@@ -2443,23 +2421,15 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAllianceListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            // 選択項目がない場合
+            // 選択項目がなければ編集項目を無効化する
             if (allianceListView.SelectedItems.Count == 0)
             {
-                // 編集項目を無効化する
                 DisableAllianceItems();
-
-                // 編集項目をクリアする
-                ClearAllianceItems();
-
                 return;
             }
 
             // 編集項目を更新する
             UpdateAllianceItems();
-
-            // 編集項目を有効化する
-            EnableAllianceItems();
 
             // 同盟参加国の追加ボタンを無効化する
             allianceParticipantAddButton.Enabled = false;
@@ -2548,6 +2518,11 @@ namespace HoI2Editor.Forms
             item.SubItems.Add("");
             allianceListView.Items.Add(item);
 
+            // 編集済みフラグを設定する
+            alliance.SetDirty(AllianceItemId.Type);
+            alliance.SetDirty(AllianceItemId.Id);
+            Scenarios.SetDirty();
+
             // 追加した項目を選択する
             if (allianceListView.SelectedIndices.Count > 0)
             {
@@ -2586,6 +2561,9 @@ namespace HoI2Editor.Forms
 
             // 同盟リストビューから項目を削除する
             allianceListView.Items.RemoveAt(index + 3);
+
+            // 編集済みフラグを設定する
+            Scenarios.SetDirty();
 
             // 削除した項目の次を選択する
             index += (index < alliances.Count) ? 3 : (3 - 1);
@@ -2950,7 +2928,7 @@ namespace HoI2Editor.Forms
                 Scenarios.SetDirty();
 
                 // 同盟リストビューの項目を更新する
-                allianceListView.SelectedItems[0].SubItems[1].Text = Countries.GetListString(alliance.Participant);
+                allianceListView.SelectedItems[0].SubItems[1].Text = Countries.GetNameList(alliance.Participant);
 
                 string name = GetAllianceName(alliance);
                 if (string.IsNullOrEmpty(name))
@@ -3005,7 +2983,7 @@ namespace HoI2Editor.Forms
                 Scenarios.SetDirty();
 
                 // 同盟リストビューの項目を更新する
-                allianceListView.SelectedItems[0].SubItems[1].Text = Countries.GetListString(alliance.Participant);
+                allianceListView.SelectedItems[0].SubItems[1].Text = Countries.GetNameList(alliance.Participant);
 
                 string name = GetAllianceName(alliance);
                 if (string.IsNullOrEmpty(name))
@@ -3050,7 +3028,7 @@ namespace HoI2Editor.Forms
             Scenarios.SetDirty();
 
             // 同盟リストビューの項目を更新する
-            allianceListView.SelectedItems[0].SubItems[1].Text = Countries.GetListString(alliance.Participant);
+            allianceListView.SelectedItems[0].SubItems[1].Text = Countries.GetNameList(alliance.Participant);
 
             string name = GetAllianceName(alliance);
             if (string.IsNullOrEmpty(name))
@@ -3117,10 +3095,8 @@ namespace HoI2Editor.Forms
             warListView.Items.Clear();
             foreach (War war in data.Wars)
             {
-                var item = new ListViewItem { Text = war.StartDate.ToString(), Tag = war };
-                item.SubItems.Add(war.EndDate.ToString());
-                item.SubItems.Add(Countries.GetListString(war.Attackers.Participant));
-                item.SubItems.Add(Countries.GetListString(war.Defenders.Participant));
+                var item = new ListViewItem { Text = Countries.GetNameList(war.Attackers.Participant), Tag = war };
+                item.SubItems.Add(Countries.GetNameList(war.Defenders.Participant));
                 warListView.Items.Add(item);
             }
             warListView.EndUpdate();
@@ -3231,37 +3207,37 @@ namespace HoI2Editor.Forms
             }
 
             // 開始日時
-            warStartYearTextBox.Text = (war.StartDate != null) ? IntHelper.ToString(war.StartDate.Year) : "";
-            warStartMonthTextBox.Text = (war.StartDate != null) ? IntHelper.ToString(war.StartDate.Month) : "";
-            warStartDayTextBox.Text = (war.StartDate != null) ? IntHelper.ToString(war.StartDate.Day) : "";
+            bool flag = (war.StartDate != null);
+            warStartYearTextBox.Text = flag ? IntHelper.ToString(war.StartDate.Year) : "";
+            warStartMonthTextBox.Text = flag ? IntHelper.ToString(war.StartDate.Month) : "";
+            warStartDayTextBox.Text = flag ? IntHelper.ToString(war.StartDate.Day) : "";
 
             warStartYearTextBox.ForeColor = war.IsDirty(WarItemId.StartYear) ? Color.Red : SystemColors.WindowText;
             warStartMonthTextBox.ForeColor = war.IsDirty(WarItemId.StartMonth) ? Color.Red : SystemColors.WindowText;
             warStartDayTextBox.ForeColor = war.IsDirty(WarItemId.StartDay) ? Color.Red : SystemColors.WindowText;
 
             // 終了日時
-            warEndYearTextBox.Text = (war.EndDate != null) ? IntHelper.ToString(war.EndDate.Year) : "";
-            warEndMonthTextBox.Text = (war.EndDate != null) ? IntHelper.ToString(war.EndDate.Month) : "";
-            warEndDayTextBox.Text = (war.EndDate != null) ? IntHelper.ToString(war.EndDate.Day) : "";
+            flag = (war.EndDate != null);
+            warEndYearTextBox.Text = flag ? IntHelper.ToString(war.EndDate.Year) : "";
+            warEndMonthTextBox.Text = flag ? IntHelper.ToString(war.EndDate.Month) : "";
+            warEndDayTextBox.Text = flag ? IntHelper.ToString(war.EndDate.Day) : "";
 
             warEndYearTextBox.ForeColor = war.IsDirty(WarItemId.EndYear) ? Color.Red : SystemColors.WindowText;
             warEndMonthTextBox.ForeColor = war.IsDirty(WarItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
             warEndDayTextBox.ForeColor = war.IsDirty(WarItemId.EndDay) ? Color.Red : SystemColors.WindowText;
 
             // 戦争ID
-            warTypeTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Type) : "";
-            warIdTextBox.Text = (war.Id != null) ? IntHelper.ToString(war.Id.Id) : "";
+            flag = (war.Id != null);
+            warTypeTextBox.Text = flag ? IntHelper.ToString(war.Id.Type) : "";
+            warIdTextBox.Text = flag ? IntHelper.ToString(war.Id.Id) : "";
 
             warTypeTextBox.ForeColor = war.IsDirty(WarItemId.Type) ? Color.Red : SystemColors.WindowText;
             warIdTextBox.ForeColor = war.IsDirty(WarItemId.Id) ? Color.Red : SystemColors.WindowText;
 
             // 攻撃側ID
-            warAttackerTypeTextBox.Text = ((war.Attackers != null) && (war.Attackers.Id != null))
-                ? IntHelper.ToString(war.Attackers.Id.Type)
-                : "";
-            warAttackerIdTextBox.Text = ((war.Attackers != null) && (war.Attackers.Id != null))
-                ? IntHelper.ToString(war.Attackers.Id.Id)
-                : "";
+            flag = ((war.Attackers != null) && (war.Attackers.Id != null));
+            warAttackerTypeTextBox.Text = flag ? IntHelper.ToString(war.Attackers.Id.Type) : "";
+            warAttackerIdTextBox.Text = flag ? IntHelper.ToString(war.Attackers.Id.Id) : "";
 
             warAttackerTypeTextBox.ForeColor = war.IsDirty(WarItemId.AttackerType)
                 ? Color.Red
@@ -3269,12 +3245,9 @@ namespace HoI2Editor.Forms
             warAttackerIdTextBox.ForeColor = war.IsDirty(WarItemId.AttackerId) ? Color.Red : SystemColors.WindowText;
 
             // 防御側ID
-            warDefenderTypeTextBox.Text = ((war.Defenders != null) && (war.Defenders.Id != null))
-                ? IntHelper.ToString(war.Defenders.Id.Type)
-                : "";
-            warDefenderIdTextBox.Text = ((war.Defenders != null) && (war.Defenders.Id != null))
-                ? IntHelper.ToString(war.Defenders.Id.Id)
-                : "";
+            flag = ((war.Defenders != null) && (war.Defenders.Id != null));
+            warDefenderTypeTextBox.Text = flag ? IntHelper.ToString(war.Defenders.Id.Type) : "";
+            warDefenderIdTextBox.Text = flag ? IntHelper.ToString(war.Defenders.Id.Id) : "";
             warDefenderTypeTextBox.ForeColor = war.IsDirty(WarItemId.DefenderType)
                 ? Color.Red
                 : SystemColors.WindowText;
@@ -3317,6 +3290,37 @@ namespace HoI2Editor.Forms
                 warCountryListBox.Items.Add(Countries.GetTagName(country));
             }
             warCountryListBox.EndUpdate();
+
+            int count = warListView.Items.Count;
+            int index = warListView.SelectedIndices[0];
+
+            warUpButton.Enabled = (index > 0);
+            warDownButton.Enabled = (index < count - 1);
+            warRemoveButton.Enabled = true;
+
+            // 編集項目を有効化する
+            warStartDateLabel.Enabled = true;
+            warStartYearTextBox.Enabled = true;
+            warStartMonthTextBox.Enabled = true;
+            warStartDayTextBox.Enabled = true;
+            warEndDateLabel.Enabled = true;
+            warEndYearTextBox.Enabled = true;
+            warEndMonthTextBox.Enabled = true;
+            warEndDayTextBox.Enabled = true;
+            warIdLabel.Enabled = true;
+            warTypeTextBox.Enabled = true;
+            warIdTextBox.Enabled = true;
+            warAttackerLabel.Enabled = true;
+            warAttackerListBox.Enabled = true;
+            warAttackerIdLabel.Enabled = true;
+            warAttackerTypeTextBox.Enabled = true;
+            warAttackerIdTextBox.Enabled = true;
+            warDefenderLabel.Enabled = true;
+            warDefenderListBox.Enabled = true;
+            warDefenderIdLabel.Enabled = true;
+            warDefenderTypeTextBox.Enabled = true;
+            warDefenderIdTextBox.Enabled = true;
+            warCountryListBox.Enabled = true;
         }
 
         /// <summary>
@@ -3453,15 +3457,35 @@ namespace HoI2Editor.Forms
             List<War> wars = scenario.GlobalData.Wars;
 
             // 戦争リストに項目を追加する
-            var war = new War { Id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, 1) };
+            var war = new War
+            {
+                StartDate = new GameDate(),
+                EndDate = new GameDate(),
+                Id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, 1),
+                Attackers = new Alliance { Id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, 1) },
+                Defenders = new Alliance { Id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, 1) }
+            };
             wars.Add(war);
 
             // 戦争リストビューに項目を追加する
             var item = new ListViewItem { Tag = war };
             item.SubItems.Add("");
-            item.SubItems.Add("");
-            item.SubItems.Add("");
             warListView.Items.Add(item);
+
+            // 編集済みフラグを設定する
+            war.SetDirty(WarItemId.StartYear);
+            war.SetDirty(WarItemId.StartMonth);
+            war.SetDirty(WarItemId.StartDay);
+            war.SetDirty(WarItemId.EndYear);
+            war.SetDirty(WarItemId.EndMonth);
+            war.SetDirty(WarItemId.EndDay);
+            war.SetDirty(WarItemId.Type);
+            war.SetDirty(WarItemId.Id);
+            war.SetDirty(WarItemId.AttackerType);
+            war.SetDirty(WarItemId.AttackerId);
+            war.SetDirty(WarItemId.DefenderType);
+            war.SetDirty(WarItemId.DefenderId);
+            Scenarios.SetDirty();
 
             // 追加した項目を選択する
             if (warListView.SelectedIndices.Count > 0)
@@ -3501,6 +3525,9 @@ namespace HoI2Editor.Forms
 
             // 戦争リストビューから項目を削除する
             warListView.Items.RemoveAt(index);
+
+            // 編集済みフラグを設定する
+            Scenarios.SetDirty();
 
             // 削除した項目の次を選択する
             if (index >= wars.Count)
@@ -3567,9 +3594,6 @@ namespace HoI2Editor.Forms
             war.SetDirty(WarItemId.StartYear);
             Scenarios.SetDirty();
 
-            // 戦争リストビューの項目を更新する
-            warListView.SelectedItems[0].Text = war.StartDate.ToString();
-
             // 文字色を変更する
             warStartYearTextBox.ForeColor = Color.Red;
         }
@@ -3629,9 +3653,6 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             war.SetDirty(WarItemId.StartMonth);
             Scenarios.SetDirty();
-
-            // 戦争リストビューの項目を更新する
-            warListView.SelectedItems[0].Text = war.StartDate.ToString();
 
             // 文字色を変更する
             warStartMonthTextBox.ForeColor = Color.Red;
@@ -3693,9 +3714,6 @@ namespace HoI2Editor.Forms
             war.SetDirty(WarItemId.StartDay);
             Scenarios.SetDirty();
 
-            // 戦争リストビューの項目を更新する
-            warListView.SelectedItems[0].Text = war.StartDate.ToString();
-
             // 文字色を変更する
             warStartDayTextBox.ForeColor = Color.Red;
         }
@@ -3755,9 +3773,6 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             war.SetDirty(WarItemId.EndYear);
             Scenarios.SetDirty();
-
-            // 戦争リストビューの項目を更新する
-            warListView.SelectedItems[0].Text = war.EndDate.ToString();
 
             // 文字色を変更する
             warEndYearTextBox.ForeColor = Color.Red;
@@ -3819,9 +3834,6 @@ namespace HoI2Editor.Forms
             war.SetDirty(WarItemId.EndMonth);
             Scenarios.SetDirty();
 
-            // 戦争リストビューの項目を更新する
-            warListView.SelectedItems[0].Text = war.EndDate.ToString();
-
             // 文字色を変更する
             warEndMonthTextBox.ForeColor = Color.Red;
         }
@@ -3881,9 +3893,6 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             war.SetDirty(WarItemId.EndDay);
             Scenarios.SetDirty();
-
-            // 戦争リストビューの項目を更新する
-            warListView.SelectedItems[0].Text = war.EndDate.ToString();
 
             // 文字色を変更する
             warEndDayTextBox.ForeColor = Color.Red;
@@ -4569,7 +4578,7 @@ namespace HoI2Editor.Forms
                 Scenarios.SetDirty();
 
                 // 戦争リストビューの項目を更新する
-                warListView.SelectedItems[0].SubItems[2].Text = Countries.GetListString(war.Attackers.Participant);
+                warListView.SelectedItems[0].SubItems[2].Text = Countries.GetNameList(war.Attackers.Participant);
 
                 Log.Info("[Scenario] war attacker: +{0} ({1})", Countries.Strings[(int) country],
                     warListView.SelectedIndices[0]);
@@ -4619,7 +4628,7 @@ namespace HoI2Editor.Forms
                 Scenarios.SetDirty();
 
                 // 戦争リストビューの項目を更新する
-                warListView.SelectedItems[0].SubItems[2].Text = Countries.GetListString(war.Attackers.Participant);
+                warListView.SelectedItems[0].SubItems[2].Text = Countries.GetNameList(war.Attackers.Participant);
 
                 Log.Info("[Scenario] war attacker: -{0} ({1})", Countries.Strings[(int) country],
                     warListView.SelectedIndices[0]);
@@ -4664,7 +4673,7 @@ namespace HoI2Editor.Forms
                 Scenarios.SetDirty();
 
                 // 戦争リストビューの項目を更新する
-                warListView.SelectedItems[0].SubItems[3].Text = Countries.GetListString(war.Defenders.Participant);
+                warListView.SelectedItems[0].SubItems[3].Text = Countries.GetNameList(war.Defenders.Participant);
 
                 Log.Info("[Scenario] war defender: +{0} ({1})", Countries.Strings[(int) country],
                     warListView.SelectedIndices[0]);
@@ -4714,7 +4723,7 @@ namespace HoI2Editor.Forms
                 Scenarios.SetDirty();
 
                 // 戦争リストビューの項目を更新する
-                warListView.SelectedItems[0].SubItems[3].Text = Countries.GetListString(war.Defenders.Participant);
+                warListView.SelectedItems[0].SubItems[3].Text = Countries.GetNameList(war.Defenders.Participant);
 
                 Log.Info("[Scenario] war defender: -{0} ({1})", Countries.Strings[(int) country],
                     warListView.SelectedIndices[0]);
@@ -4755,7 +4764,7 @@ namespace HoI2Editor.Forms
             Scenarios.SetDirty();
 
             // 戦争リストビューの項目を更新する
-            warListView.SelectedItems[0].SubItems[2].Text = Countries.GetListString(war.Attackers.Participant);
+            warListView.SelectedItems[0].SubItems[2].Text = Countries.GetNameList(war.Attackers.Participant);
 
             Log.Info("[Scenario] war attacker leader: {0} ({1})", Countries.Strings[(int) country],
                 warListView.SelectedIndices[0]);
@@ -4793,7 +4802,7 @@ namespace HoI2Editor.Forms
             Scenarios.SetDirty();
 
             // 戦争リストビューの項目を更新する
-            warListView.SelectedItems[0].SubItems[3].Text = Countries.GetListString(war.Defenders.Participant);
+            warListView.SelectedItems[0].SubItems[3].Text = Countries.GetNameList(war.Defenders.Participant);
 
             Log.Info("[Scenario] war defender leader: {0} ({1})", Countries.Strings[(int) country],
                 warListView.SelectedIndices[0]);
@@ -4834,15 +4843,6 @@ namespace HoI2Editor.Forms
                 relationCountryListBox.Items.Add(s);
             }
             relationCountryListBox.EndUpdate();
-
-            // 国家リストボックスを無効化する
-            relationCountryListBox.Enabled = false;
-
-            // 関係リストビューを無効化する
-            relationListView.Enabled = false;
-
-            // 編集項目を無効化する
-            DisableRelationItems();
         }
 
         /// <summary>
@@ -4850,17 +4850,14 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateRelationTab()
         {
+            // 編集項目を無効化する
+            DisableRelationItems();
+
             // 国家リストボックスを有効化する
             relationCountryListBox.Enabled = true;
 
             // 関係リストビューを有効化する
             relationListView.Enabled = true;
-
-            // 編集項目を無効化する
-            DisableRelationItems();
-
-            // 編集項目をクリアする
-            ClearRelationItems();
         }
 
         /// <summary>
@@ -4921,29 +4918,12 @@ namespace HoI2Editor.Forms
             if ((relationListView.SelectedIndices.Count == 0) ||
                 (relationCountryListBox.SelectedIndex < 0))
             {
-                // 編集項目を無効化する
                 DisableRelationItems();
-
-                // 編集項目をクリアする
-                ClearRelationItems();
-
                 return;
             }
 
             // 編集項目を更新する
             UpdateRelationItems();
-
-            // 編集項目を有効化する
-            EnableRelationItems();
-        }
-
-        /// <summary>
-        ///     関係タブの編集項目を有効化する
-        /// </summary>
-        private void EnableRelationItems()
-        {
-            diplomacyGroupBox.Enabled = true;
-            intelligenceGroupBox.Enabled = true;
         }
 
         /// <summary>
@@ -4953,6 +4933,38 @@ namespace HoI2Editor.Forms
         {
             diplomacyGroupBox.Enabled = false;
             intelligenceGroupBox.Enabled = false;
+
+            relationValueNumericUpDown.Value = 0;
+            masterCheckBox.Checked = false;
+            controlCheckBox.Checked = false;
+            accessCheckBox.Checked = false;
+
+            guaranteeCheckBox.Checked = false;
+            guaranteeYearTextBox.Text = "";
+            guaranteeMonthTextBox.Text = "";
+            guaranteeDayTextBox.Text = "";
+
+            nonAggressionCheckBox.Checked = false;
+            nonAggressionStartYearTextBox.Text = "";
+            nonAggressionStartMonthTextBox.Text = "";
+            nonAggressionStartDayTextBox.Text = "";
+            nonAggressionEndYearTextBox.Text = "";
+            nonAggressionEndMonthTextBox.Text = "";
+            nonAggressionEndDayTextBox.Text = "";
+            nonAggressionTypeTextBox.Text = "";
+            nonAggressionIdTextBox.Text = "";
+
+            peaceCheckBox.Checked = false;
+            peaceStartYearTextBox.Text = "";
+            peaceStartMonthTextBox.Text = "";
+            peaceStartDayTextBox.Text = "";
+            peaceEndYearTextBox.Text = "";
+            peaceEndMonthTextBox.Text = "";
+            peaceEndDayTextBox.Text = "";
+            peaceTypeTextBox.Text = "";
+            peaceIdTextBox.Text = "";
+
+            spyNumNumericUpDown.Value = 0;
         }
 
         /// <summary>
@@ -4965,51 +4977,11 @@ namespace HoI2Editor.Forms
 
             // 諜報情報の編集項目を更新する
             UpdateIntelligenceItems();
+
+            // 編集項目を有効化する
+            diplomacyGroupBox.Enabled = true;
+            intelligenceGroupBox.Enabled = true;
         }
-
-        /// <summary>
-        ///     関係タブの編集項目をクリアする
-        /// </summary>
-        private void ClearRelationItems()
-        {
-            // 外交情報の編集項目をクリアする
-            ClearDiplomacyItems();
-
-            // 諜報情報の編集項目をクリアする
-            ClearIntelligenceItems();
-        }
-
-        /// <summary>
-        ///     関係タブで選択中の対象国を取得する
-        /// </summary>
-        /// <returns>対象国</returns>
-        private Country GetSelectedRelationCountry()
-        {
-            if (relationCountryListBox.SelectedIndex < 0)
-            {
-                return Country.None;
-            }
-
-            return Countries.Tags[relationCountryListBox.SelectedIndex];
-        }
-
-        /// <summary>
-        ///     関係タブで選択中の相手国を取得する
-        /// </summary>
-        /// <returns>相手国</returns>
-        private Country GetSelectedRelationTarget()
-        {
-            if (relationListView.SelectedItems.Count == 0)
-            {
-                return Country.None;
-            }
-
-            return Countries.Tags[relationListView.SelectedIndices[0]];
-        }
-
-        #endregion
-
-        #region 関係タブ - 外交
 
         /// <summary>
         ///     外交情報の編集項目を更新する
@@ -5023,21 +4995,26 @@ namespace HoI2Editor.Forms
             Treaty nonAggression = Scenarios.GetNonAggression(self, target);
             Treaty peace = Scenarios.GetPeace(self, target);
 
-            relationValueNumericUpDown.Value = (relation != null) ? (decimal) relation.Value : 0;
-            masterCheckBox.Checked = (settings != null) && (settings.Master == target);
-            controlCheckBox.Checked = (settings != null) && (settings.Control == target);
-            accessCheckBox.Checked = (relation != null) && relation.Access;
+            bool flag = (relation != null);
+            relationValueNumericUpDown.Value = flag ? (decimal) relation.Value : 0;
+            relationValueNumericUpDown.ForeColor = (flag && relation.IsDirty(RelationItemId.Value))
+                ? Color.Red
+                : SystemColors.WindowText;
 
-            relationValueNumericUpDown.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.Value))
+            flag = (settings != null);
+            masterCheckBox.Checked = flag && (settings.Master == target);
+            controlCheckBox.Checked = flag && (settings.Control == target);
+            masterCheckBox.ForeColor = (flag && settings.IsDirty(CountrySettingsItemId.Master))
                 ? Color.Red
                 : SystemColors.WindowText;
-            masterCheckBox.ForeColor = ((settings != null) && settings.IsDirty(CountrySettingsItemId.Master))
+            controlCheckBox.ForeColor = (flag && settings.IsDirty(CountrySettingsItemId.Control))
                 ? Color.Red
                 : SystemColors.WindowText;
-            controlCheckBox.ForeColor = ((settings != null) && settings.IsDirty(CountrySettingsItemId.Control))
-                ? Color.Red
-                : SystemColors.WindowText;
-            accessCheckBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.Access))
+
+            flag = (relation != null);
+            accessCheckBox.Checked = flag && relation.Access;
+
+            accessCheckBox.ForeColor = (flag && relation.IsDirty(RelationItemId.Access))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -5061,13 +5038,13 @@ namespace HoI2Editor.Forms
             guaranteeCheckBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.Guaranteed))
                 ? Color.Red
                 : SystemColors.WindowText;
-            guaranteeYearTextBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.GuaranteedYear))
+            guaranteeYearTextBox.ForeColor = (flag && relation.IsDirty(RelationItemId.GuaranteedYear))
                 ? Color.Red
                 : SystemColors.WindowText;
-            guaranteeMonthTextBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.GuaranteedMonth))
+            guaranteeMonthTextBox.ForeColor = (flag && relation.IsDirty(RelationItemId.GuaranteedMonth))
                 ? Color.Red
                 : SystemColors.WindowText;
-            guaranteeDayTextBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.GuaranteedDay))
+            guaranteeDayTextBox.ForeColor = (flag && relation.IsDirty(RelationItemId.GuaranteedDay))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -5210,40 +5187,52 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     外交情報の編集項目をクリアする
+        ///     諜報情報の編集項目を更新する
         /// </summary>
-        private void ClearDiplomacyItems()
+        private void UpdateIntelligenceItems()
         {
-            relationValueNumericUpDown.Value = 0;
-            masterCheckBox.Checked = false;
-            controlCheckBox.Checked = false;
-            accessCheckBox.Checked = false;
+            Country self = GetSelectedRelationCountry();
+            Country target = GetSelectedRelationTarget();
+            SpySettings spy = Scenarios.GetCountryIntelligence(self, target);
 
-            guaranteeCheckBox.Checked = false;
-            guaranteeYearTextBox.Text = "";
-            guaranteeMonthTextBox.Text = "";
-            guaranteeDayTextBox.Text = "";
-
-            nonAggressionCheckBox.Checked = false;
-            nonAggressionStartYearTextBox.Text = "";
-            nonAggressionStartMonthTextBox.Text = "";
-            nonAggressionStartDayTextBox.Text = "";
-            nonAggressionEndYearTextBox.Text = "";
-            nonAggressionEndMonthTextBox.Text = "";
-            nonAggressionEndDayTextBox.Text = "";
-            nonAggressionTypeTextBox.Text = "";
-            nonAggressionIdTextBox.Text = "";
-
-            peaceCheckBox.Checked = false;
-            peaceStartYearTextBox.Text = "";
-            peaceStartMonthTextBox.Text = "";
-            peaceStartDayTextBox.Text = "";
-            peaceEndYearTextBox.Text = "";
-            peaceEndMonthTextBox.Text = "";
-            peaceEndDayTextBox.Text = "";
-            peaceTypeTextBox.Text = "";
-            peaceIdTextBox.Text = "";
+            bool flag = (spy != null);
+            spyNumNumericUpDown.Value = flag ? spy.Spies : 0;
+            spyNumNumericUpDown.ForeColor = (flag && spy.IsDirty(SpySettingsItemId.Spies))
+                ? Color.Red
+                : SystemColors.WindowText;
         }
+
+        /// <summary>
+        ///     関係タブで選択中の対象国を取得する
+        /// </summary>
+        /// <returns>対象国</returns>
+        private Country GetSelectedRelationCountry()
+        {
+            if (relationCountryListBox.SelectedIndex < 0)
+            {
+                return Country.None;
+            }
+
+            return Countries.Tags[relationCountryListBox.SelectedIndex];
+        }
+
+        /// <summary>
+        ///     関係タブで選択中の相手国を取得する
+        /// </summary>
+        /// <returns>相手国</returns>
+        private Country GetSelectedRelationTarget()
+        {
+            if (relationListView.SelectedItems.Count == 0)
+            {
+                return Country.None;
+            }
+
+            return Countries.Tags[relationListView.SelectedIndices[0]];
+        }
+
+        #endregion
+
+        #region 関係タブ - 外交
 
         /// <summary>
         ///     関係値変更時の処理
@@ -5809,7 +5798,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            List<Treaty> treaties = Scenarios.Data.GlobalData.Treaties;
+            List<Treaty> nonAggressions = Scenarios.Data.GlobalData.NonAggressions;
             Treaty nonAggression = Scenarios.GetNonAggression(self, target);
 
             // 値に変化がなければ何もしない
@@ -5834,12 +5823,12 @@ namespace HoI2Editor.Forms
                     EndDate = new GameDate(),
                     Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, 1)
                 };
-                treaties.Add(nonAggression);
+                nonAggressions.Add(nonAggression);
                 Scenarios.SetNonAggression(nonAggression);
             }
             else
             {
-                treaties.Remove(nonAggression);
+                nonAggressions.Remove(nonAggression);
                 Scenarios.RemoveNonAggression(nonAggression);
             }
 
@@ -6493,7 +6482,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            List<Treaty> treaties = Scenarios.Data.GlobalData.Treaties;
+            List<Treaty> peaces = Scenarios.Data.GlobalData.Peaces;
             Treaty peace = Scenarios.GetPeace(self, target);
 
             // 値に変化がなければ何もしない
@@ -6518,12 +6507,12 @@ namespace HoI2Editor.Forms
                     EndDate = new GameDate(),
                     Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, 1)
                 };
-                treaties.Add(peace);
+                peaces.Add(peace);
                 Scenarios.SetPeace(peace);
             }
             else
             {
-                treaties.Remove(peace);
+                peaces.Remove(peace);
                 Scenarios.RemovePeace(peace);
             }
 
@@ -7163,29 +7152,6 @@ namespace HoI2Editor.Forms
         #region 関係タブ - 諜報
 
         /// <summary>
-        ///     諜報情報の編集項目を更新する
-        /// </summary>
-        private void UpdateIntelligenceItems()
-        {
-            Country self = GetSelectedRelationCountry();
-            Country target = GetSelectedRelationTarget();
-            SpySettings spy = Scenarios.GetCountryIntelligence(self, target);
-
-            spyNumNumericUpDown.Value = (spy != null) ? spy.Spies : 0;
-            spyNumNumericUpDown.ForeColor = ((spy != null) && spy.IsDirty(SpySettingsItemId.Spies))
-                ? Color.Red
-                : SystemColors.WindowText;
-        }
-
-        /// <summary>
-        ///     諜報情報の編集項目をクリアする
-        /// </summary>
-        private void ClearIntelligenceItems()
-        {
-            spyNumNumericUpDown.Value = 0;
-        }
-
-        /// <summary>
         ///     スパイの数変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -7249,54 +7215,209 @@ namespace HoI2Editor.Forms
 
         #region 貿易タブ
 
+        #region 貿易タブ - 共通
+
         /// <summary>
-        ///     貿易タブの項目を初期化する
+        ///     貿易タブを初期化する
         /// </summary>
         private void InitTradeTab()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             // 貿易国家コンボボックス
             tradeCountryComboBox1.BeginUpdate();
             tradeCountryComboBox2.BeginUpdate();
             tradeCountryComboBox1.Items.Clear();
             tradeCountryComboBox2.Items.Clear();
+            int width = tradeCountryComboBox1.Width;
             foreach (Country country in Countries.Tags)
             {
                 string s = Countries.GetTagName(country);
                 tradeCountryComboBox1.Items.Add(s);
                 tradeCountryComboBox2.Items.Add(s);
+                width = Math.Max(width,
+                    (int) g.MeasureString(s, tradeCountryComboBox1.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
             }
+            tradeCountryComboBox1.DropDownWidth = width;
+            tradeCountryComboBox2.DropDownWidth = width;
             tradeCountryComboBox1.EndUpdate();
             tradeCountryComboBox2.EndUpdate();
 
             // 貿易資源ラベル
-            tradeEnergyLabel.Text = Config.GetText("RESOURCE_ENERGY");
-            tradeMetalLabel.Text = Config.GetText("RESOURCE_METAL");
-            tradeRareMaterialsLabel.Text = Config.GetText("RESOURCE_RARE_MATERIALS");
-            tradeOilLabel.Text = Config.GetText("RESOURCE_OIL");
-            tradeSuppliesLabel.Text = Config.GetText("RESOURCE_SUPPLY");
-            tradeMoneyLabel.Text = Config.GetText("RESOURCE_MONEY");
+            tradeEnergyLabel.Text = Config.GetText(EnergyName);
+            tradeMetalLabel.Text = Config.GetText(MetalName);
+            tradeRareMaterialsLabel.Text = Config.GetText(RareMaterialsName);
+            tradeOilLabel.Text = Config.GetText(OilName);
+            tradeSuppliesLabel.Text = Config.GetText(SuppliesName);
+            tradeMoneyLabel.Text = Config.GetText(MoneyName);
         }
 
         /// <summary>
-        ///     貿易タブの項目を更新する
+        ///     貿易タブを更新する
         /// </summary>
         private void UpdateTradeTab()
         {
-            ScenarioGlobalData data = Scenarios.Data.GlobalData;
+            // 編集項目を無効化する
+            DisableTradeItems();
 
             // 貿易リストビュー
+            List<Treaty> trades = Scenarios.Data.GlobalData.Trades;
             tradeListView.BeginUpdate();
             tradeListView.Items.Clear();
-            foreach (Treaty treaty in data.Treaties.Where(treaty => treaty.Type == TreatyType.Trade))
+            foreach (Treaty trade in trades)
             {
-                var item = new ListViewItem { Text = treaty.StartDate.ToString(), Tag = treaty };
-                item.SubItems.Add(treaty.EndDate.ToString());
-                item.SubItems.Add(Countries.GetName(treaty.Country1));
-                item.SubItems.Add(Countries.GetName(treaty.Country2));
-                item.SubItems.Add(GetTradeString(treaty));
-                tradeListView.Items.Add(item);
+                tradeListView.Items.Add(CreateTradeListViewItem(trade));
             }
             tradeListView.EndUpdate();
+
+            // 貿易リストビューを有効化する
+            tradeListView.Enabled = true;
+
+            // 新規ボタンを有効化する
+            tradeNewButton.Enabled = true;
+        }
+
+        /// <summary>
+        ///     貿易タブの編集項目を無効化する
+        /// </summary>
+        private void DisableTradeItems()
+        {
+            tradeInfoGroupBox.Enabled = false;
+            tradeDealGroupBox.Enabled = false;
+
+            tradeUpButton.Enabled = false;
+            tradeDownButton.Enabled = false;
+            tradeRemoveButton.Enabled = false;
+
+            tradeStartYearTextBox.Text = "";
+            tradeStartMonthTextBox.Text = "";
+            tradeStartDayTextBox.Text = "";
+            tradeEndYearTextBox.Text = "";
+            tradeEndMonthTextBox.Text = "";
+            tradeEndDayTextBox.Text = "";
+            tradeTypeTextBox.Text = "";
+            tradeIdTextBox.Text = "";
+            tradeCancelCheckBox.Checked = false;
+
+            tradeCountryComboBox1.SelectedIndex = -1;
+            tradeCountryComboBox2.SelectedIndex = -1;
+            tradeEnergyTextBox1.Text = "";
+            tradeEnergyTextBox2.Text = "";
+            tradeMetalTextBox1.Text = "";
+            tradeMetalTextBox2.Text = "";
+            tradeRareMaterialsTextBox1.Text = "";
+            tradeRareMaterialsTextBox2.Text = "";
+            tradeOilTextBox1.Text = "";
+            tradeOilTextBox2.Text = "";
+            tradeSuppliesTextBox1.Text = "";
+            tradeSuppliesTextBox2.Text = "";
+            tradeMoneyTextBox1.Text = "";
+            tradeMoneyTextBox2.Text = "";
+        }
+
+        /// <summary>
+        ///     貿易タブの編集項目を更新する
+        /// </summary>
+        private void UpdateTradeItems()
+        {
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 開始日時
+            bool flag = (trade.StartDate != null);
+            tradeStartYearTextBox.Text = flag ? IntHelper.ToString(trade.StartDate.Year) : "";
+            tradeStartMonthTextBox.Text = flag ? IntHelper.ToString(trade.StartDate.Month) : "";
+            tradeStartDayTextBox.Text = flag ? IntHelper.ToString(trade.StartDate.Day) : "";
+
+            tradeStartYearTextBox.ForeColor = trade.IsDirty(TreatyItemId.StartYear)
+                ? Color.Red
+                : SystemColors.WindowText;
+            tradeStartMonthTextBox.ForeColor = trade.IsDirty(TreatyItemId.StartMonth)
+                ? Color.Red
+                : SystemColors.WindowText;
+            tradeStartDayTextBox.ForeColor = trade.IsDirty(TreatyItemId.StartDay) ? Color.Red : SystemColors.WindowText;
+
+            // 終了日時
+            flag = (trade.EndDate != null);
+            tradeEndYearTextBox.Text = flag ? IntHelper.ToString(trade.EndDate.Year) : "";
+            tradeEndMonthTextBox.Text = flag ? IntHelper.ToString(trade.EndDate.Month) : "";
+            tradeEndDayTextBox.Text = flag ? IntHelper.ToString(trade.EndDate.Day) : "";
+
+            tradeEndYearTextBox.ForeColor = trade.IsDirty(TreatyItemId.EndYear) ? Color.Red : SystemColors.WindowText;
+            tradeEndMonthTextBox.ForeColor = trade.IsDirty(TreatyItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
+            tradeEndDayTextBox.ForeColor = trade.IsDirty(TreatyItemId.EndDay) ? Color.Red : SystemColors.WindowText;
+
+            // ID
+            flag = (trade.Id != null);
+            tradeTypeTextBox.Text = flag ? IntHelper.ToString(trade.Id.Type) : "";
+            tradeIdTextBox.Text = flag ? IntHelper.ToString(trade.Id.Id) : "";
+
+            tradeTypeTextBox.ForeColor = trade.IsDirty(TreatyItemId.Type) ? Color.Red : SystemColors.WindowText;
+            tradeIdTextBox.ForeColor = trade.IsDirty(TreatyItemId.Id) ? Color.Red : SystemColors.WindowText;
+
+            // キャンセルを許可
+            tradeCancelCheckBox.Checked = trade.Cancel;
+            tradeCancelCheckBox.ForeColor = trade.IsDirty(TreatyItemId.Cancel) ? Color.Red : SystemColors.WindowText;
+
+            // 貿易国家コンボボックス
+            if (Countries.Tags.Contains(trade.Country1))
+            {
+                tradeCountryComboBox1.SelectedIndex = Array.IndexOf(Countries.Tags, trade.Country1);
+            }
+            if (Countries.Tags.Contains(trade.Country2))
+            {
+                tradeCountryComboBox2.SelectedIndex = Array.IndexOf(Countries.Tags, trade.Country2);
+            }
+
+            // 貿易量
+            tradeEnergyTextBox1.Text = (trade.Energy < 0) ? DoubleHelper.ToString(-trade.Energy) : "";
+            tradeEnergyTextBox2.Text = (trade.Energy > 0) ? DoubleHelper.ToString(trade.Energy) : "";
+            tradeMetalTextBox1.Text = (trade.Metal < 0) ? DoubleHelper.ToString(-trade.Metal) : "";
+            tradeMetalTextBox2.Text = (trade.Metal > 0) ? DoubleHelper.ToString(trade.Metal) : "";
+            tradeRareMaterialsTextBox1.Text = (trade.RareMaterials < 0)
+                ? DoubleHelper.ToString(-trade.RareMaterials)
+                : "";
+            tradeRareMaterialsTextBox2.Text = (trade.RareMaterials > 0)
+                ? DoubleHelper.ToString(trade.RareMaterials)
+                : "";
+            tradeOilTextBox1.Text = (trade.Oil < 0) ? DoubleHelper.ToString(-trade.Oil) : "";
+            tradeOilTextBox2.Text = (trade.Oil > 0) ? DoubleHelper.ToString(trade.Oil) : "";
+            tradeSuppliesTextBox1.Text = (trade.Supplies < 0) ? DoubleHelper.ToString(-trade.Supplies) : "";
+            tradeSuppliesTextBox2.Text = (trade.Supplies > 0) ? DoubleHelper.ToString(trade.Supplies) : "";
+            tradeMoneyTextBox1.Text = (trade.Money < 0) ? DoubleHelper.ToString(-trade.Money) : "";
+            tradeMoneyTextBox2.Text = (trade.Money > 0) ? DoubleHelper.ToString(trade.Money) : "";
+
+            tradeEnergyTextBox1.ForeColor = trade.IsDirty(TreatyItemId.Energy) ? Color.Red : SystemColors.WindowText;
+            tradeEnergyTextBox2.ForeColor = trade.IsDirty(TreatyItemId.Energy) ? Color.Red : SystemColors.WindowText;
+            tradeMetalTextBox1.ForeColor = trade.IsDirty(TreatyItemId.Metal) ? Color.Red : SystemColors.WindowText;
+            tradeMetalTextBox2.ForeColor = trade.IsDirty(TreatyItemId.Metal) ? Color.Red : SystemColors.WindowText;
+            tradeRareMaterialsTextBox1.ForeColor = trade.IsDirty(TreatyItemId.RareMaterials)
+                ? Color.Red
+                : SystemColors.WindowText;
+            tradeRareMaterialsTextBox2.ForeColor = trade.IsDirty(TreatyItemId.RareMaterials)
+                ? Color.Red
+                : SystemColors.WindowText;
+            tradeOilTextBox1.ForeColor = trade.IsDirty(TreatyItemId.Oil) ? Color.Red : SystemColors.WindowText;
+            tradeOilTextBox2.ForeColor = trade.IsDirty(TreatyItemId.Oil) ? Color.Red : SystemColors.WindowText;
+            tradeSuppliesTextBox1.ForeColor = trade.IsDirty(TreatyItemId.Supplies) ? Color.Red : SystemColors.WindowText;
+            tradeSuppliesTextBox2.ForeColor = trade.IsDirty(TreatyItemId.Supplies) ? Color.Red : SystemColors.WindowText;
+            tradeMoneyTextBox1.ForeColor = trade.IsDirty(TreatyItemId.Money) ? Color.Red : SystemColors.WindowText;
+            tradeMoneyTextBox2.ForeColor = trade.IsDirty(TreatyItemId.Money) ? Color.Red : SystemColors.WindowText;
+
+            // 編集項目を有効化する
+            tradeInfoGroupBox.Enabled = true;
+            tradeDealGroupBox.Enabled = true;
+
+            var index = tradeListView.SelectedIndices[0];
+            var count = tradeListView.Items.Count;
+            tradeUpButton.Enabled = (index > 0);
+            tradeDownButton.Enabled = (index < count - 1);
+            tradeRemoveButton.Enabled = true;
         }
 
         /// <summary>
@@ -7306,192 +7427,1619 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTradeListViewSelectedIndexChanged(object sender, EventArgs e)
         {
-            // 選択項目がなければ何もしない
-            if (tradeListView.SelectedItems.Count == 0)
+            // 選択項目がなければ編集項目を無効化する
+            if (tradeListView.SelectedIndices.Count == 0)
             {
+                DisableTradeItems();
                 return;
             }
 
-            var treaty = tradeListView.SelectedItems[0].Tag as Treaty;
-            if (treaty == null)
-            {
-                return;
-            }
-
-            // 開始日時
-            tradeStartYearTextBox.Text = IntHelper.ToString(treaty.StartDate.Year);
-            tradeStartMonthTextBox.Text = IntHelper.ToString(treaty.StartDate.Month);
-            tradeStartDayTextBox.Text = IntHelper.ToString(treaty.StartDate.Day);
-
-            // 終了日時
-            tradeEndYearTextBox.Text = IntHelper.ToString(treaty.EndDate.Year);
-            tradeEndMonthTextBox.Text = IntHelper.ToString(treaty.EndDate.Month);
-            tradeEndDayTextBox.Text = IntHelper.ToString(treaty.EndDate.Day);
-
-            // 貿易国家コンボボックス
-            if (Countries.Tags.Contains(treaty.Country1))
-            {
-                tradeCountryComboBox1.SelectedIndex = Array.IndexOf(Countries.Tags, treaty.Country1);
-            }
-            if (Countries.Tags.Contains(treaty.Country2))
-            {
-                tradeCountryComboBox2.SelectedIndex = Array.IndexOf(Countries.Tags, treaty.Country2);
-            }
-
-            // 貿易量
-            if (!DoubleHelper.IsZero(treaty.Energy))
-            {
-                if (treaty.Energy < 0)
-                {
-                    tradeEnergyTextBox1.Text = DoubleHelper.ToString1(-treaty.Energy);
-                    tradeEnergyTextBox2.Text = "";
-                }
-                else
-                {
-                    tradeEnergyTextBox1.Text = "";
-                    tradeEnergyTextBox2.Text = DoubleHelper.ToString1(treaty.Energy);
-                }
-            }
-            else
-            {
-                tradeEnergyTextBox1.Text = "";
-                tradeEnergyTextBox2.Text = "";
-            }
-            if (!DoubleHelper.IsZero(treaty.Metal))
-            {
-                if (treaty.Metal < 0)
-                {
-                    tradeMetalTextBox1.Text = DoubleHelper.ToString1(-treaty.Metal);
-                    tradeMetalTextBox2.Text = "";
-                }
-                else
-                {
-                    tradeMetalTextBox1.Text = "";
-                    tradeMetalTextBox2.Text = DoubleHelper.ToString1(treaty.Metal);
-                }
-            }
-            else
-            {
-                tradeMetalTextBox1.Text = "";
-                tradeMetalTextBox2.Text = "";
-            }
-            if (!DoubleHelper.IsZero(treaty.RareMaterials))
-            {
-                if (treaty.RareMaterials < 0)
-                {
-                    tradeRareMaterialsTextBox1.Text = DoubleHelper.ToString1(-treaty.RareMaterials);
-                    tradeRareMaterialsTextBox2.Text = "";
-                }
-                else
-                {
-                    tradeRareMaterialsTextBox1.Text = "";
-                    tradeRareMaterialsTextBox2.Text = DoubleHelper.ToString1(treaty.RareMaterials);
-                }
-            }
-            else
-            {
-                tradeRareMaterialsTextBox1.Text = "";
-                tradeRareMaterialsTextBox2.Text = "";
-            }
-            if (!DoubleHelper.IsZero(treaty.Oil))
-            {
-                if (treaty.Oil < 0)
-                {
-                    tradeOilTextBox1.Text = DoubleHelper.ToString1(-treaty.Oil);
-                    tradeOilTextBox2.Text = "";
-                }
-                else
-                {
-                    tradeOilTextBox1.Text = "";
-                    tradeOilTextBox2.Text = DoubleHelper.ToString1(treaty.Oil);
-                }
-            }
-            else
-            {
-                tradeOilTextBox1.Text = "";
-                tradeOilTextBox2.Text = "";
-            }
-            if (!DoubleHelper.IsZero(treaty.Supplies))
-            {
-                if (treaty.Supplies < 0)
-                {
-                    tradeSuppliesTextBox1.Text = DoubleHelper.ToString1(-treaty.Supplies);
-                    tradeSuppliesTextBox2.Text = "";
-                }
-                else
-                {
-                    tradeSuppliesTextBox1.Text = "";
-                    tradeSuppliesTextBox2.Text = DoubleHelper.ToString1(treaty.Supplies);
-                }
-            }
-            else
-            {
-                tradeSuppliesTextBox1.Text = "";
-                tradeSuppliesTextBox2.Text = "";
-            }
-            if (!DoubleHelper.IsZero(treaty.Money))
-            {
-                if (treaty.Money < 0)
-                {
-                    tradeMoneyTextBox1.Text = DoubleHelper.ToString1(-treaty.Money);
-                    tradeMoneyTextBox2.Text = "";
-                }
-                else
-                {
-                    tradeMoneyTextBox1.Text = "";
-                    tradeMoneyTextBox2.Text = DoubleHelper.ToString1(treaty.Money);
-                }
-            }
-            else
-            {
-                tradeMoneyTextBox1.Text = "";
-                tradeMoneyTextBox2.Text = "";
-            }
-
-            // キャンセルを許可
-            tradeCancelCheckBox.Checked = treaty.Cancel;
+            // 編集項目を更新する
+            UpdateTradeItems();
         }
 
-        #endregion
+        /// <summary>
+        ///     貿易の上へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeUpButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<Treaty> trades = scenario.GlobalData.Trades;
 
-        #region 文字列操作
+            // 貿易リストビューの項目を移動する
+            var index = tradeListView.SelectedIndices[0];
+            var item = tradeListView.Items[index];
+            tradeListView.Items.RemoveAt(index);
+            tradeListView.Items.Insert(index - 1, item);
+            tradeListView.Items[index - 1].Focused = true;
+            tradeListView.Items[index - 1].Selected = true;
+            tradeListView.EnsureVisible(index - 1);
+
+            // 貿易リストの項目を移動する
+            var trade = trades[index];
+            trades.RemoveAt(index);
+            trades.Insert(index - 1, trade);
+
+            // 編集済みフラグを設定する
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     貿易の下へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeDownButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<Treaty> trades = scenario.GlobalData.Trades;
+
+            // 貿易リストビューの項目を移動する
+            var index = tradeListView.SelectedIndices[0];
+            var item = tradeListView.Items[index];
+            tradeListView.Items.RemoveAt(index);
+            tradeListView.Items.Insert(index + 1, item);
+            tradeListView.Items[index + 1].Focused = true;
+            tradeListView.Items[index + 1].Selected = true;
+            tradeListView.EnsureVisible(index + 1);
+
+            // 貿易リストの項目を移動する
+            var trade = trades[index];
+            trades.RemoveAt(index);
+            trades.Insert(index + 1, trade);
+
+            // 編集済みフラグを設定する
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     貿易の新規ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeNewButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<Treaty> trades = scenario.GlobalData.Trades;
+
+            // 貿易リストに項目を追加する
+            var trade = new Treaty
+            {
+                StartDate = new GameDate(),
+                EndDate = new GameDate(),
+                Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, 1)
+            };
+            trades.Add(trade);
+
+            // 貿易リストビューに項目を追加する
+            var item = new ListViewItem { Tag = trade };
+            item.SubItems.Add("");
+            item.SubItems.Add("");
+            tradeListView.Items.Add(item);
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.StartYear);
+            trade.SetDirty(TreatyItemId.StartMonth);
+            trade.SetDirty(TreatyItemId.StartDay);
+            trade.SetDirty(TreatyItemId.EndYear);
+            trade.SetDirty(TreatyItemId.EndMonth);
+            trade.SetDirty(TreatyItemId.EndDay);
+            trade.SetDirty(TreatyItemId.Type);
+            trade.SetDirty(TreatyItemId.Id);
+            trade.SetDirty(TreatyItemId.Cancel);
+            Scenarios.SetDirty();
+
+            // 追加した項目を選択する
+            if (tradeListView.SelectedIndices.Count > 0)
+            {
+                var prev = tradeListView.SelectedItems[0];
+                prev.Focused = false;
+                prev.Selected = false;
+            }
+            item.Focused = true;
+            item.Selected = true;
+        }
+
+        /// <summary>
+        ///     貿易の削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeRemoveButtonClick(object sender, EventArgs e)
+        {
+            Scenario scenario = Scenarios.Data;
+            List<Treaty> trades = scenario.GlobalData.Trades;
+
+            var index = tradeListView.SelectedIndices[0];
+            var trade = trades[index];
+
+            // typeとidの組を削除する
+            Scenarios.RemoveTypeId(trade.Id);
+
+            // 貿易リストから項目を削除する
+            trades.RemoveAt(index);
+
+            // 貿易リストビューから項目を削除する
+            tradeListView.Items.RemoveAt(index);
+
+            // 編集済みフラグを設定する
+            Scenarios.SetDirty();
+
+            // 削除した項目の次を選択する
+            if (index == trades.Count)
+            {
+                index--;
+            }
+            tradeListView.Items[index].Focused = true;
+            tradeListView.Items[index].Selected = true;
+        }
+
+        /// <summary>
+        ///     選択中の貿易情報を取得する
+        /// </summary>
+        /// <returns>選択中の貿易情報</returns>
+        private Treaty GetSelectedTrade()
+        {
+            if (tradeListView.SelectedItems.Count == 0)
+            {
+                return null;
+            }
+
+            return tradeListView.SelectedItems[0].Tag as Treaty;
+        }
+
+        /// <summary>
+        ///     貿易リストビューの項目を作成する
+        /// </summary>
+        /// <param name="trade">貿易情報</param>
+        /// <returns>貿易リストビューの項目</returns>
+        private ListViewItem CreateTradeListViewItem(Treaty trade)
+        {
+            var item = new ListViewItem
+            {
+                Text = Countries.GetName(trade.Country1),
+                Tag = trade
+            };
+            item.SubItems.Add(Countries.GetName(trade.Country2));
+            item.SubItems.Add(GetTradeString(trade));
+
+            return item;
+        }
 
         /// <summary>
         ///     貿易内容の文字列を取得する
         /// </summary>
-        /// <param name="treaty">外交協定情報</param>
+        /// <param name="trade">外交協定情報</param>
         /// <returns>貿易内容の文字列</returns>
-        private static string GetTradeString(Treaty treaty)
+        private static string GetTradeString(Treaty trade)
         {
             var sb = new StringBuilder();
-            if (!DoubleHelper.IsZero(treaty.Energy))
+            if (!DoubleHelper.IsZero(trade.Energy))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_ENERGY"), DoubleHelper.ToString1(treaty.Energy));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(EnergyName), DoubleHelper.ToString1(trade.Energy));
             }
-            if (!DoubleHelper.IsZero(treaty.Metal))
+            if (!DoubleHelper.IsZero(trade.Metal))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_METAL"), DoubleHelper.ToString1(treaty.Metal));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(MetalName), DoubleHelper.ToString1(trade.Metal));
             }
-            if (!DoubleHelper.IsZero(treaty.RareMaterials))
+            if (!DoubleHelper.IsZero(trade.RareMaterials))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_RARE_MATERIALS"),
-                    DoubleHelper.ToString1(treaty.RareMaterials));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(RareMaterialsName),
+                    DoubleHelper.ToString1(trade.RareMaterials));
             }
-            if (!DoubleHelper.IsZero(treaty.Oil))
+            if (!DoubleHelper.IsZero(trade.Oil))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_OIL"), DoubleHelper.ToString1(treaty.Oil));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(OilName), DoubleHelper.ToString1(trade.Oil));
             }
-            if (!DoubleHelper.IsZero(treaty.Supplies))
+            if (!DoubleHelper.IsZero(trade.Supplies))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_SUPPLY"), DoubleHelper.ToString1(treaty.Supplies));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(SuppliesName), DoubleHelper.ToString1(trade.Supplies));
             }
-            if (!DoubleHelper.IsZero(treaty.Money))
+            if (!DoubleHelper.IsZero(trade.Money))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText("RESOURCE_MONEY"), DoubleHelper.ToString1(treaty.Money));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(MoneyName), DoubleHelper.ToString1(trade.Money));
             }
             int len = sb.Length;
             return (len > 0) ? sb.ToString(0, len - 2) : "";
         }
+
+        #endregion
+
+        #region 貿易タブ - 貿易情報
+
+        /// <summary>
+        ///     貿易開始年テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeStartYearTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(tradeStartYearTextBox.Text, out val))
+            {
+                tradeStartYearTextBox.Text = (trade.Id != null) ? IntHelper.ToString(trade.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((trade.StartDate != null) && (val == trade.StartDate.Year))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade start year: {0} -> {1} ({2})",
+                (trade.StartDate != null) ? IntHelper.ToString(trade.StartDate.Year) : "", val,
+                tradeListView.SelectedIndices[0]);
+
+            if (trade.StartDate == null)
+            {
+                trade.StartDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                trade.SetDirty(TreatyItemId.StartMonth);
+                trade.SetDirty(TreatyItemId.StartDay);
+
+                // 編集項目を更新する
+                tradeStartMonthTextBox.Text = IntHelper.ToString(trade.StartDate.Month);
+                tradeStartDayTextBox.Text = IntHelper.ToString(trade.StartDate.Day);
+
+                // 文字色を変更する
+                tradeStartMonthTextBox.ForeColor = Color.Red;
+                tradeStartDayTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            trade.StartDate.Year = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.StartYear);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            tradeStartYearTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     貿易開始月テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeStartMonthTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(tradeStartMonthTextBox.Text, out val))
+            {
+                tradeStartMonthTextBox.Text = (trade.Id != null) ? IntHelper.ToString(trade.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((trade.StartDate != null) && (val == trade.StartDate.Month))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade start month: {0} -> {1} ({2})",
+                (trade.StartDate != null) ? IntHelper.ToString(trade.StartDate.Month) : "", val,
+                tradeListView.SelectedIndices[0]);
+
+            if (trade.StartDate == null)
+            {
+                trade.StartDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                trade.SetDirty(TreatyItemId.StartYear);
+                trade.SetDirty(TreatyItemId.StartDay);
+
+                // 編集項目を更新する
+                tradeStartYearTextBox.Text = IntHelper.ToString(trade.StartDate.Year);
+                tradeStartDayTextBox.Text = IntHelper.ToString(trade.StartDate.Day);
+
+                // 文字色を変更する
+                tradeStartYearTextBox.ForeColor = Color.Red;
+                tradeStartDayTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            trade.StartDate.Month = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.StartMonth);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            tradeStartMonthTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     貿易開始日テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeStartDayTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(tradeStartDayTextBox.Text, out val))
+            {
+                tradeStartDayTextBox.Text = (trade.Id != null) ? IntHelper.ToString(trade.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((trade.StartDate != null) && (val == trade.StartDate.Day))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade start day: {0} -> {1} ({2})",
+                (trade.StartDate != null) ? IntHelper.ToString(trade.StartDate.Day) : "", val,
+                tradeListView.SelectedIndices[0]);
+
+            if (trade.StartDate == null)
+            {
+                trade.StartDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                trade.SetDirty(TreatyItemId.StartYear);
+                trade.SetDirty(TreatyItemId.StartMonth);
+
+                // 編集項目を更新する
+                tradeStartYearTextBox.Text = IntHelper.ToString(trade.StartDate.Year);
+                tradeStartMonthTextBox.Text = IntHelper.ToString(trade.StartDate.Month);
+
+                // 文字色を変更する
+                tradeStartYearTextBox.ForeColor = Color.Red;
+                tradeStartMonthTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            trade.StartDate.Day = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.StartDay);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            tradeStartDayTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     貿易終了年テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeEndYearTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(tradeEndYearTextBox.Text, out val))
+            {
+                tradeEndYearTextBox.Text = (trade.Id != null) ? IntHelper.ToString(trade.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((trade.EndDate != null) && (val == trade.EndDate.Year))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade end year: {0} -> {1} ({2})",
+                (trade.EndDate != null) ? IntHelper.ToString(trade.EndDate.Year) : "", val,
+                tradeListView.SelectedIndices[0]);
+
+            if (trade.EndDate == null)
+            {
+                trade.EndDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                trade.SetDirty(TreatyItemId.EndMonth);
+                trade.SetDirty(TreatyItemId.EndDay);
+
+                // 編集項目を更新する
+                tradeEndMonthTextBox.Text = IntHelper.ToString(trade.EndDate.Month);
+                tradeEndDayTextBox.Text = IntHelper.ToString(trade.EndDate.Day);
+
+                // 文字色を変更する
+                tradeEndMonthTextBox.ForeColor = Color.Red;
+                tradeEndDayTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            trade.EndDate.Year = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.EndYear);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            tradeEndYearTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     貿易終了月テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeEndMonthTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(tradeEndMonthTextBox.Text, out val))
+            {
+                tradeEndMonthTextBox.Text = (trade.Id != null) ? IntHelper.ToString(trade.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((trade.EndDate != null) && (val == trade.EndDate.Month))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade end month: {0} -> {1} ({2})",
+                (trade.EndDate != null) ? IntHelper.ToString(trade.EndDate.Month) : "", val,
+                tradeListView.SelectedIndices[0]);
+
+            if (trade.EndDate == null)
+            {
+                trade.EndDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                trade.SetDirty(TreatyItemId.EndYear);
+                trade.SetDirty(TreatyItemId.EndDay);
+
+                // 編集項目を更新する
+                tradeEndYearTextBox.Text = IntHelper.ToString(trade.EndDate.Year);
+                tradeEndDayTextBox.Text = IntHelper.ToString(trade.EndDate.Day);
+
+                // 文字色を変更する
+                tradeEndYearTextBox.ForeColor = Color.Red;
+                tradeEndDayTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            trade.EndDate.Month = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.EndMonth);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            tradeEndMonthTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     貿易終了日テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeEndDayTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(tradeEndDayTextBox.Text, out val))
+            {
+                tradeEndDayTextBox.Text = (trade.Id != null) ? IntHelper.ToString(trade.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((trade.EndDate != null) && (val == trade.EndDate.Day))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade end day: {0} -> {1} ({2})",
+                (trade.EndDate != null) ? IntHelper.ToString(trade.EndDate.Day) : "", val,
+                tradeListView.SelectedIndices[0]);
+
+            if (trade.EndDate == null)
+            {
+                trade.EndDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                trade.SetDirty(TreatyItemId.EndYear);
+                trade.SetDirty(TreatyItemId.EndMonth);
+
+                // 編集項目を更新する
+                tradeEndYearTextBox.Text = IntHelper.ToString(trade.EndDate.Year);
+                tradeEndMonthTextBox.Text = IntHelper.ToString(trade.EndDate.Month);
+
+                // 文字色を変更する
+                tradeEndYearTextBox.ForeColor = Color.Red;
+                tradeEndMonthTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            trade.EndDate.Day = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.EndDay);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            tradeEndDayTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     貿易のtypeテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeTypeTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(tradeTypeTextBox.Text, out val))
+            {
+                tradeTypeTextBox.Text = (trade.Id != null) ? IntHelper.ToString(trade.Id.Type) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((trade.Id != null) && (val == trade.Id.Type))
+            {
+                return;
+            }
+
+            // 変更後のtypeとidの組が存在すれば元に戻す
+            if ((trade.Id != null) && Scenarios.ExistsTypeId(val, trade.Id.Id))
+            {
+                tradeTypeTextBox.Text = IntHelper.ToString(trade.Id.Type);
+                return;
+            }
+
+            Log.Info("[Scenario] trade type: {0} -> {1} ({2})",
+                (trade.Id != null) ? IntHelper.ToString(trade.Id.Type) : "",
+                val, tradeListView.SelectedIndices[0]);
+
+            if (trade.Id != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(trade.Id);
+
+                // 値を更新する
+                trade.Id.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(trade.Id);
+            }
+            else
+            {
+                // 値を更新する
+                trade.Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, 1);
+
+                // 編集済みフラグを設定する
+                trade.SetDirty(TreatyItemId.Id);
+
+                // 編集項目を更新する
+                tradeIdTextBox.Text = IntHelper.ToString(trade.Id.Id);
+
+                // 文字色を変更する
+                tradeIdTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Type);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            tradeTypeTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     貿易のidテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeIdTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(tradeIdTextBox.Text, out val))
+            {
+                tradeIdTextBox.Text = (trade.Id != null) ? IntHelper.ToString(trade.Id.Id) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((trade.Id != null) && (val == trade.Id.Id))
+            {
+                return;
+            }
+
+            // 変更後のtypeとidの組が存在すれば元に戻す
+            if (Scenarios.ExistsTypeId((trade.Id != null) ? trade.Id.Type : Scenarios.DefaultTreatyType, val))
+            {
+                tradeIdTextBox.Text = (trade.Id != null) ? IntHelper.ToString(trade.Id.Id) : "";
+                return;
+            }
+
+            Log.Info("[Scenario] trade id: {0} -> {1} ({2})", (trade.Id != null) ? IntHelper.ToString(trade.Id.Id) : "",
+                val,
+                tradeListView.SelectedIndices[0]);
+
+            if (trade.Id != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(trade.Id);
+
+                // 値を更新する
+                trade.Id.Id = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(trade.Id);
+            }
+            else
+            {
+                // 値を更新する
+                trade.Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, val);
+
+                // 編集済みフラグを設定する
+                trade.SetDirty(TreatyItemId.Type);
+
+                // 編集項目を更新する
+                tradeTypeTextBox.Text = IntHelper.ToString(trade.Id.Type);
+
+                // 文字色を変更する
+                tradeTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Id);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            tradeIdTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     貿易のキャンセルを許可チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeCancelCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (tradeCancelCheckBox.Checked == trade.Cancel)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade cancel: {0} -> {1} ({2})", BoolHelper.ToYesNo(trade.Cancel),
+                BoolHelper.ToYesNo(tradeCancelCheckBox.Checked), tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Cancel = tradeCancelCheckBox.Checked;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Cancel);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            tradeCancelCheckBox.ForeColor = Color.Red;
+        }
+
+        #endregion
+
+        #region 貿易タブ - 貿易内容
+
+        /// <summary>
+        ///     貿易国コンボボックス1の項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeCountryComboBox1DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Treaty trade = GetSelectedTrade();
+            if (trade != null)
+            {
+                Brush brush = ((Countries.Tags[e.Index] == trade.Country1) && trade.IsDirty(TreatyItemId.Country1))
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
+                string s = tradeCountryComboBox1.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     貿易国コンボボックス2の項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeCountryComboBox2DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Treaty trade = GetSelectedTrade();
+            if (trade != null)
+            {
+                Brush brush = ((Countries.Tags[e.Index] == trade.Country2) && trade.IsDirty(TreatyItemId.Country2))
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
+                string s = tradeCountryComboBox2.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     貿易国コンボボックス1の選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeCountryComboBox1SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (tradeCountryComboBox1.SelectedIndex < 0)
+            {
+                return;
+            }
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            Country country = Countries.Tags[tradeCountryComboBox1.SelectedIndex];
+            if (country == trade.Country1)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade country1: {0} -> {1} ({2})", Countries.Strings[(int) trade.Country1],
+                Countries.Strings[(int) country], tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Country1 = country;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Country1);
+            Scenarios.SetDirty();
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].Text = Countries.GetName(country);
+
+            // 項目色を変更するため描画更新する
+            tradeCountryComboBox1.Refresh();
+        }
+
+        /// <summary>
+        ///     貿易国コンボボックス2の選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeCountryComboBox2SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (tradeCountryComboBox2.SelectedIndex < 0)
+            {
+                return;
+            }
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            Country country = Countries.Tags[tradeCountryComboBox2.SelectedIndex];
+            if (country == trade.Country2)
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade country2: {0} -> {1} ({2})", Countries.Strings[(int) trade.Country2],
+                Countries.Strings[(int) country], tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Country2 = country;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Country2);
+            Scenarios.SetDirty();
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[1].Text = Countries.GetName(country);
+
+            // 項目色を変更するため描画更新する
+            tradeCountryComboBox2.Refresh();
+        }
+
+        /// <summary>
+        ///     貿易国入れ替えボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeSwapButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 値を入れ替える
+            Country country = trade.Country1;
+            trade.Country1 = trade.Country2;
+            trade.Country2 = country;
+
+            trade.Energy = -trade.Energy;
+            trade.Metal = -trade.Metal;
+            trade.RareMaterials = -trade.RareMaterials;
+            trade.Oil = -trade.Oil;
+            trade.Supplies = -trade.Supplies;
+            trade.Money = -trade.Money;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Country1);
+            trade.SetDirty(TreatyItemId.Country2);
+            trade.SetDirty(TreatyItemId.Energy);
+            trade.SetDirty(TreatyItemId.Metal);
+            trade.SetDirty(TreatyItemId.RareMaterials);
+            trade.SetDirty(TreatyItemId.Oil);
+            trade.SetDirty(TreatyItemId.Supplies);
+            trade.SetDirty(TreatyItemId.Money);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            int index = tradeCountryComboBox1.SelectedIndex;
+            tradeCountryComboBox1.SelectedIndex = tradeCountryComboBox2.SelectedIndex;
+            tradeCountryComboBox2.SelectedIndex = index;
+
+            string s = tradeEnergyTextBox1.Text;
+            tradeEnergyTextBox1.Text = tradeEnergyTextBox2.Text;
+            tradeEnergyTextBox2.Text = s;
+            s = tradeMetalTextBox1.Text;
+            tradeMetalTextBox1.Text = tradeMetalTextBox2.Text;
+            tradeMetalTextBox2.Text = s;
+            s = tradeRareMaterialsTextBox1.Text;
+            tradeRareMaterialsTextBox1.Text = tradeRareMaterialsTextBox2.Text;
+            tradeRareMaterialsTextBox2.Text = s;
+            s = tradeOilTextBox1.Text;
+            tradeOilTextBox1.Text = tradeOilTextBox2.Text;
+            tradeOilTextBox2.Text = s;
+            s = tradeSuppliesTextBox1.Text;
+            tradeSuppliesTextBox1.Text = tradeSuppliesTextBox2.Text;
+            tradeSuppliesTextBox2.Text = s;
+            s = tradeMoneyTextBox1.Text;
+            tradeMoneyTextBox1.Text = tradeMoneyTextBox2.Text;
+            tradeMoneyTextBox2.Text = s;
+
+            // 文字色を変更する
+            tradeEnergyTextBox1.ForeColor = Color.Red;
+            tradeEnergyTextBox2.ForeColor = Color.Red;
+            tradeMetalTextBox1.ForeColor = Color.Red;
+            tradeMetalTextBox2.ForeColor = Color.Red;
+            tradeRareMaterialsTextBox1.ForeColor = Color.Red;
+            tradeRareMaterialsTextBox2.ForeColor = Color.Red;
+            tradeOilTextBox1.ForeColor = Color.Red;
+            tradeOilTextBox2.ForeColor = Color.Red;
+            tradeSuppliesTextBox1.ForeColor = Color.Red;
+            tradeSuppliesTextBox2.ForeColor = Color.Red;
+            tradeMoneyTextBox1.ForeColor = Color.Red;
+            tradeMoneyTextBox2.ForeColor = Color.Red;
+
+            // 項目色を変更するため描画更新する
+            tradeCountryComboBox1.Refresh();
+            tradeCountryComboBox2.Refresh();
+
+            // 貿易リストビューの項目を更新する
+            ListViewItem item = tradeListView.SelectedItems[0];
+            item.Text = Countries.GetName(trade.Country1);
+            item.SubItems[1].Text = Countries.GetName(trade.Country2);
+            item.SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     エネルギー貿易量テキストボックス1のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeEnergyTextBox1Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeEnergyTextBox1.Text, out val))
+            {
+                tradeEnergyTextBox1.Text = (trade.Energy < 0) ? DoubleHelper.ToString(-trade.Energy) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(-val, trade.Energy))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade energy: {0} -> {1} ({2})", DoubleHelper.ToString(trade.Energy), -val,
+                tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Energy = -val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Energy);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeEnergyTextBox1.Text = (trade.Energy < 0) ? DoubleHelper.ToString(-trade.Energy) : "";
+            tradeEnergyTextBox2.Text = (trade.Energy > 0) ? DoubleHelper.ToString(trade.Energy) : "";
+
+            // 文字色を変更する
+            tradeEnergyTextBox1.ForeColor = Color.Red;
+            tradeEnergyTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     エネルギー貿易量テキストボックス2のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeEnergyTextBox2Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeEnergyTextBox2.Text, out val))
+            {
+                tradeEnergyTextBox2.Text = (trade.Energy > 0) ? DoubleHelper.ToString(trade.Energy) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(val, trade.Energy))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade energy: {0} -> {1} ({2})", DoubleHelper.ToString(trade.Energy), val,
+                tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Energy = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Energy);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeEnergyTextBox1.Text = (trade.Energy < 0) ? DoubleHelper.ToString(-trade.Energy) : "";
+            tradeEnergyTextBox2.Text = (trade.Energy > 0) ? DoubleHelper.ToString(trade.Energy) : "";
+
+            // 文字色を変更する
+            tradeEnergyTextBox1.ForeColor = Color.Red;
+            tradeEnergyTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     金属貿易量テキストボックス1のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeMetalTextBox1Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeMetalTextBox1.Text, out val))
+            {
+                tradeMetalTextBox1.Text = (trade.Metal < 0) ? DoubleHelper.ToString(-trade.Metal) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(-val, trade.Metal))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade metal: {0} -> {1} ({2})", DoubleHelper.ToString(trade.Metal), -val,
+                tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Metal = -val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Metal);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeMetalTextBox1.Text = (trade.Metal < 0) ? DoubleHelper.ToString(-trade.Metal) : "";
+            tradeMetalTextBox2.Text = (trade.Metal > 0) ? DoubleHelper.ToString(trade.Metal) : "";
+
+            // 文字色を変更する
+            tradeMetalTextBox1.ForeColor = Color.Red;
+            tradeMetalTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     金属貿易量テキストボックス2のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeMetalTextBox2Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeMetalTextBox2.Text, out val))
+            {
+                tradeMetalTextBox2.Text = (trade.Metal > 0) ? DoubleHelper.ToString(trade.Metal) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(val, trade.Metal))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade metal: {0} -> {1} ({2})", DoubleHelper.ToString(trade.Metal), val,
+                tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Metal = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Metal);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeMetalTextBox1.Text = (trade.Metal < 0) ? DoubleHelper.ToString(-trade.Metal) : "";
+            tradeMetalTextBox2.Text = (trade.Metal > 0) ? DoubleHelper.ToString(trade.Metal) : "";
+
+            // 文字色を変更する
+            tradeMetalTextBox1.ForeColor = Color.Red;
+            tradeMetalTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     希少資源貿易量テキストボックス1のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeRareMaterialsTextBox1Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeRareMaterialsTextBox1.Text, out val))
+            {
+                tradeRareMaterialsTextBox1.Text = (trade.RareMaterials < 0)
+                    ? DoubleHelper.ToString(-trade.RareMaterials)
+                    : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(-val, trade.RareMaterials))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade rare materials: {0} -> {1} ({2})", DoubleHelper.ToString(trade.RareMaterials),
+                -val, tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.RareMaterials = -val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.RareMaterials);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeRareMaterialsTextBox1.Text = (trade.RareMaterials < 0)
+                ? DoubleHelper.ToString(-trade.RareMaterials)
+                : "";
+            tradeRareMaterialsTextBox2.Text = (trade.RareMaterials > 0)
+                ? DoubleHelper.ToString(trade.RareMaterials)
+                : "";
+
+            // 文字色を変更する
+            tradeRareMaterialsTextBox1.ForeColor = Color.Red;
+            tradeRareMaterialsTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     希少資源貿易量テキストボックス2のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeRareMaterialsTextBox2Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeRareMaterialsTextBox2.Text, out val))
+            {
+                tradeRareMaterialsTextBox2.Text = (trade.RareMaterials > 0)
+                    ? DoubleHelper.ToString(trade.RareMaterials)
+                    : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(val, trade.RareMaterials))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade rare materials: {0} -> {1} ({2})", DoubleHelper.ToString(trade.RareMaterials),
+                val, tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.RareMaterials = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.RareMaterials);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeRareMaterialsTextBox1.Text = (trade.RareMaterials < 0)
+                ? DoubleHelper.ToString(-trade.RareMaterials)
+                : "";
+            tradeRareMaterialsTextBox2.Text = (trade.RareMaterials > 0)
+                ? DoubleHelper.ToString(trade.RareMaterials)
+                : "";
+
+            // 文字色を変更する
+            tradeRareMaterialsTextBox1.ForeColor = Color.Red;
+            tradeRareMaterialsTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     石油貿易量テキストボックス1のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeOilTextBox1Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeOilTextBox1.Text, out val))
+            {
+                tradeOilTextBox1.Text = (trade.Oil < 0) ? DoubleHelper.ToString(-trade.Oil) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(-val, trade.Oil))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade oil: {0} -> {1} ({2})", DoubleHelper.ToString(trade.Oil), -val,
+                tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Oil = -val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Oil);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeOilTextBox1.Text = (trade.Oil < 0) ? DoubleHelper.ToString(-trade.Oil) : "";
+            tradeOilTextBox2.Text = (trade.Oil > 0) ? DoubleHelper.ToString(trade.Oil) : "";
+
+            // 文字色を変更する
+            tradeOilTextBox1.ForeColor = Color.Red;
+            tradeOilTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     石油貿易量テキストボックス2のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeOilTextBox2Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeOilTextBox2.Text, out val))
+            {
+                tradeOilTextBox2.Text = (trade.Oil > 0) ? DoubleHelper.ToString(trade.Oil) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(val, trade.Oil))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade oil: {0} -> {1} ({2})", DoubleHelper.ToString(trade.Oil), val,
+                tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Oil = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Oil);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeOilTextBox1.Text = (trade.Oil < 0) ? DoubleHelper.ToString(-trade.Oil) : "";
+            tradeOilTextBox2.Text = (trade.Oil > 0) ? DoubleHelper.ToString(trade.Oil) : "";
+
+            // 文字色を変更する
+            tradeOilTextBox1.ForeColor = Color.Red;
+            tradeOilTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     物資貿易量テキストボックス1のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeSuppliesTextBox1Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeSuppliesTextBox1.Text, out val))
+            {
+                tradeSuppliesTextBox1.Text = (trade.Supplies < 0) ? DoubleHelper.ToString(-trade.Supplies) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(-val, trade.Supplies))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade supplies: {0} -> {1} ({2})", DoubleHelper.ToString(trade.Supplies), -val,
+                tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Supplies = -val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Supplies);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeSuppliesTextBox1.Text = (trade.Supplies < 0) ? DoubleHelper.ToString(-trade.Supplies) : "";
+            tradeSuppliesTextBox2.Text = (trade.Supplies > 0) ? DoubleHelper.ToString(trade.Supplies) : "";
+
+            // 文字色を変更する
+            tradeSuppliesTextBox1.ForeColor = Color.Red;
+            tradeSuppliesTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     物資貿易量テキストボックス2のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeSuppliesTextBox2Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeSuppliesTextBox2.Text, out val))
+            {
+                tradeSuppliesTextBox2.Text = (trade.Supplies > 0) ? DoubleHelper.ToString(trade.Supplies) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(val, trade.Supplies))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade supplies: {0} -> {1} ({2})", DoubleHelper.ToString(trade.Supplies), val,
+                tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Supplies = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Supplies);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeSuppliesTextBox1.Text = (trade.Supplies < 0) ? DoubleHelper.ToString(-trade.Supplies) : "";
+            tradeSuppliesTextBox2.Text = (trade.Supplies > 0) ? DoubleHelper.ToString(trade.Supplies) : "";
+
+            // 文字色を変更する
+            tradeSuppliesTextBox1.ForeColor = Color.Red;
+            tradeSuppliesTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     資金貿易量テキストボックス1のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeMoneyTextBox1Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeMoneyTextBox1.Text, out val))
+            {
+                tradeMoneyTextBox1.Text = (trade.Money < 0) ? DoubleHelper.ToString(-trade.Money) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(-val, trade.Money))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade money: {0} -> {1} ({2})", DoubleHelper.ToString(trade.Money), -val,
+                tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Money = -val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Money);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeMoneyTextBox1.Text = (trade.Money < 0) ? DoubleHelper.ToString(-trade.Money) : "";
+            tradeMoneyTextBox2.Text = (trade.Money > 0) ? DoubleHelper.ToString(trade.Money) : "";
+
+            // 文字色を変更する
+            tradeMoneyTextBox1.ForeColor = Color.Red;
+            tradeMoneyTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        /// <summary>
+        ///     資金貿易量テキストボックス2のフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTradeMoneyTextBox2Validated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Treaty trade = GetSelectedTrade();
+            if (trade == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(tradeMoneyTextBox2.Text, out val))
+            {
+                tradeMoneyTextBox2.Text = (trade.Money > 0) ? DoubleHelper.ToString(trade.Money) : "";
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (DoubleHelper.IsEqual(val, trade.Money))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] trade money: {0} -> {1} ({2})", DoubleHelper.ToString(trade.Money), val,
+                tradeListView.SelectedIndices[0]);
+
+            // 値を更新する
+            trade.Money = val;
+
+            // 編集済みフラグを設定する
+            trade.SetDirty(TreatyItemId.Money);
+            Scenarios.SetDirty();
+
+            // 編集項目を更新する
+            tradeMoneyTextBox1.Text = (trade.Money < 0) ? DoubleHelper.ToString(-trade.Money) : "";
+            tradeMoneyTextBox2.Text = (trade.Money > 0) ? DoubleHelper.ToString(trade.Money) : "";
+
+            // 文字色を変更する
+            tradeMoneyTextBox1.ForeColor = Color.Red;
+            tradeMoneyTextBox2.ForeColor = Color.Red;
+
+            // 貿易リストビューの項目を更新する
+            tradeListView.SelectedItems[0].SubItems[2].Text = GetTradeString(trade);
+        }
+
+        #endregion
 
         #endregion
 

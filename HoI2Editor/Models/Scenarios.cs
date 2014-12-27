@@ -380,40 +380,36 @@ namespace HoI2Editor.Models
                 }
             }
 
+            // 国タグと不可侵条約の対応付け
             _nonAggressions = new Dictionary<Country, Dictionary<Country, Treaty>>();
-            _peaces = new Dictionary<Country, Dictionary<Country, Treaty>>();
-            foreach (Treaty treaty in data.Treaties)
+            foreach (Treaty nonAggression in data.NonAggressions)
             {
-                switch (treaty.Type)
+                if (!_nonAggressions.ContainsKey(nonAggression.Country1))
                 {
-                    case TreatyType.NonAggression:
-                        // 国タグと不可侵条約の対応付け
-                        if (!_nonAggressions.ContainsKey(treaty.Country1))
-                        {
-                            _nonAggressions.Add(treaty.Country1, new Dictionary<Country, Treaty>());
-                        }
-                        _nonAggressions[treaty.Country1][treaty.Country2] = treaty;
-                        if (!_nonAggressions.ContainsKey(treaty.Country2))
-                        {
-                            _nonAggressions.Add(treaty.Country2, new Dictionary<Country, Treaty>());
-                        }
-                        _nonAggressions[treaty.Country2][treaty.Country1] = treaty;
-                        break;
-
-                    case TreatyType.Peace:
-                        // 国タグと講和条約の対応付け
-                        if (!_peaces.ContainsKey(treaty.Country1))
-                        {
-                            _peaces.Add(treaty.Country1, new Dictionary<Country, Treaty>());
-                        }
-                        _peaces[treaty.Country1][treaty.Country2] = treaty;
-                        if (!_peaces.ContainsKey(treaty.Country2))
-                        {
-                            _peaces.Add(treaty.Country2, new Dictionary<Country, Treaty>());
-                        }
-                        _peaces[treaty.Country2][treaty.Country1] = treaty;
-                        break;
+                    _nonAggressions.Add(nonAggression.Country1, new Dictionary<Country, Treaty>());
                 }
+                _nonAggressions[nonAggression.Country1][nonAggression.Country2] = nonAggression;
+                if (!_nonAggressions.ContainsKey(nonAggression.Country2))
+                {
+                    _nonAggressions.Add(nonAggression.Country2, new Dictionary<Country, Treaty>());
+                }
+                _nonAggressions[nonAggression.Country2][nonAggression.Country1] = nonAggression;
+            }
+
+            // 国タグと講和条約の対応付け
+            _peaces = new Dictionary<Country, Dictionary<Country, Treaty>>();
+            foreach (Treaty peace in data.Peaces)
+            {
+                if (!_peaces.ContainsKey(peace.Country1))
+                {
+                    _peaces.Add(peace.Country1, new Dictionary<Country, Treaty>());
+                }
+                _peaces[peace.Country1][peace.Country2] = peace;
+                if (!_peaces.ContainsKey(peace.Country2))
+                {
+                    _peaces.Add(peace.Country2, new Dictionary<Country, Treaty>());
+                }
+                _peaces[peace.Country2][peace.Country1] = peace;
             }
         }
 
@@ -668,9 +664,17 @@ namespace HoI2Editor.Models
                 }
             }
 
-            foreach (Treaty treaty in data.Treaties)
+            foreach (Treaty nonAggression in data.NonAggressions)
             {
-                AddTypeId(treaty.Id);
+                AddTypeId(nonAggression.Id);
+            }
+            foreach (Treaty peace in data.Peaces)
+            {
+                AddTypeId(peace.Id);
+            }
+            foreach (Treaty trade in data.Trades)
+            {
+                AddTypeId(trade.Id);
             }
 
             if (data.Weather != null)
