@@ -337,7 +337,7 @@ namespace HoI2Editor.Parsers
         /// <returns>トークン</returns>
         private Token ParseNumber()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             bool point = false;
 
             int c = _reader.Peek();
@@ -394,7 +394,7 @@ namespace HoI2Editor.Parsers
         /// <returns>トークン</returns>
         private Token ParseIdentifier()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
             while (true)
             {
@@ -427,7 +427,7 @@ namespace HoI2Editor.Parsers
         /// <returns>トークン</returns>
         private Token ParseString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
             while (true)
             {
@@ -466,7 +466,7 @@ namespace HoI2Editor.Parsers
         /// <returns>トークン</returns>
         private Token ParseWhiteSpace()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
             int c = _reader.Peek();
             while (true)
@@ -517,7 +517,7 @@ namespace HoI2Editor.Parsers
         /// <returns>トークン</returns>
         private Token ParseComment()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
             while (true)
             {
@@ -548,7 +548,7 @@ namespace HoI2Editor.Parsers
         /// <returns>トークン</returns>
         private Token ParseInvalid()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
             while (true)
             {

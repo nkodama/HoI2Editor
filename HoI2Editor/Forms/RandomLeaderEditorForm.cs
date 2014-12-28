@@ -343,7 +343,7 @@ namespace HoI2Editor.Forms
             Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // ランダム指揮官名を順に追加する
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             foreach (string name in RandomLeaders.GetNames(country))
             {
                 sb.AppendLine(name);

@@ -29,7 +29,7 @@ namespace HoI2Editor.Parsers
             // ゲームの種類を設定する
             MiscGameType type = Misc.GetGameType();
 
-            using (var lexer = new TextLexer(fileName, false))
+            using (TextLexer lexer = new TextLexer(fileName, false))
             {
                 while (true)
                 {
@@ -54,7 +54,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var keyword = token.Value as string;
+                    string keyword = token.Value as string;
                     if (string.IsNullOrEmpty(keyword))
                     {
                         continue;

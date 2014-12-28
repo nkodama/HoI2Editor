@@ -59,7 +59,7 @@ namespace HoI2Editor
         /// <param name="e"></param>
         public static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var exception = e.ExceptionObject as Exception;
+            Exception exception = e.ExceptionObject as Exception;
             if (exception != null)
             {
                 UnhandledExceptionHandler(exception);

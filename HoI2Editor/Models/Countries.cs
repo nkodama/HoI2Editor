@@ -1094,7 +1094,7 @@ namespace HoI2Editor.Models
         /// <returns>国タグ名リストの文字列</returns>
         public static string GetTagList(IEnumerable<Country> countries)
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             foreach (Country country in countries)
             {
                 sb.AppendFormat("{0}, ", Strings[(int) country]);
@@ -1110,7 +1110,7 @@ namespace HoI2Editor.Models
         /// <returns>国名リストの文字列</returns>
         public static string GetNameList(IEnumerable<Country> countries)
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             foreach (Country country in countries)
             {
                 sb.AppendFormat("{0}, ", GetName(country));

@@ -51,7 +51,7 @@ namespace HoI2Editor.Parsers
         {
             List<MinisterPersonalityInfo> list = null;
 
-            using (var lexer = new TextLexer(fileName, true))
+            using (TextLexer lexer = new TextLexer(fileName, true))
             {
                 while (true)
                 {
@@ -70,7 +70,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var keyword = token.Value as string;
+                    string keyword = token.Value as string;
                     if (string.IsNullOrEmpty(keyword))
                     {
                         continue;
@@ -168,7 +168,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var list = new List<MinisterPersonalityInfo>();
+            List<MinisterPersonalityInfo> list = new List<MinisterPersonalityInfo>();
             while (true)
             {
                 // ファイル終端
@@ -229,7 +229,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var info = new MinisterPersonalityInfo();
+            MinisterPersonalityInfo info = new MinisterPersonalityInfo();
             while (true)
             {
                 // ファイル終端
@@ -252,7 +252,7 @@ namespace HoI2Editor.Parsers
                     return null;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (keyword == null)
                 {
                     return null;
@@ -339,7 +339,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var position = token.Value as string;
+                    string position = token.Value as string;
                     if (string.IsNullOrEmpty(position))
                     {
                         continue;
@@ -431,7 +431,7 @@ namespace HoI2Editor.Parsers
                     return false;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (keyword == null)
                 {
                     return false;

@@ -342,7 +342,7 @@ namespace HoI2Editor.Forms
         private void AddContinentTreeItem(ContinentId continent, TreeNode parent)
         {
             // 大陸ノードを追加する
-            var node = new TreeNode { Text = Provinces.GetContinentName(continent), Tag = continent };
+            TreeNode node = new TreeNode { Text = Provinces.GetContinentName(continent), Tag = continent };
             parent.Nodes.Add(node);
 
             // 地方ノードを順に追加する
@@ -363,7 +363,7 @@ namespace HoI2Editor.Forms
         private void AddRegionTreeItem(RegionId region, TreeNode parent)
         {
             // 地方ノードを追加する
-            var node = new TreeNode { Text = Provinces.GetRegionName(region), Tag = region };
+            TreeNode node = new TreeNode { Text = Provinces.GetRegionName(region), Tag = region };
             parent.Nodes.Add(node);
 
             // 地域ノードを順に追加する
@@ -384,7 +384,7 @@ namespace HoI2Editor.Forms
         private void AddAreaTreeItem(AreaId area, TreeNode parent)
         {
             // 地域ノードを追加する
-            var node = new TreeNode { Text = Provinces.GetAreaName(area), Tag = area };
+            TreeNode node = new TreeNode { Text = Provinces.GetAreaName(area), Tag = area };
             parent.Nodes.Add(node);
         }
 
@@ -443,7 +443,7 @@ namespace HoI2Editor.Forms
             // 大陸
             if (node.Tag is ContinentId)
             {
-                var continent = (ContinentId) node.Tag;
+                ContinentId continent = (ContinentId) node.Tag;
                 _list.AddRange(Provinces.Items.Where(province => province.Continent == continent));
                 return;
             }
@@ -451,7 +451,7 @@ namespace HoI2Editor.Forms
             // 地方
             if (node.Tag is RegionId)
             {
-                var region = (RegionId) node.Tag;
+                RegionId region = (RegionId) node.Tag;
                 _list.AddRange(Provinces.Items.Where(province => province.Region == region));
                 return;
             }
@@ -459,7 +459,7 @@ namespace HoI2Editor.Forms
             // 地域
             if (node.Tag is AreaId)
             {
-                var area = (AreaId) node.Tag;
+                AreaId area = (AreaId) node.Tag;
                 _list.AddRange(Provinces.Items.Where(province => province.Area == area));
                 return;
             }
@@ -871,7 +871,7 @@ namespace HoI2Editor.Forms
                 return null;
             }
 
-            var item = new ListViewItem
+            ListViewItem item = new ListViewItem
             {
                 Text = province.GetName(),
                 Tag = province
@@ -2185,7 +2185,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) beachXNumericUpDown.Value;
+            int x = (int) beachXNumericUpDown.Value;
             if (x == province.BeachXPos)
             {
                 return;
@@ -2220,7 +2220,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) beachYNumericUpDown.Value;
+            int y = (int) beachYNumericUpDown.Value;
             if (y == province.BeachYPos)
             {
                 return;
@@ -2255,7 +2255,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var icon = (int) beachIconNumericUpDown.Value;
+            int icon = (int) beachIconNumericUpDown.Value;
             if (icon == province.BeachIcon)
             {
                 return;
@@ -2328,7 +2328,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) portXNumericUpDown.Value;
+            int x = (int) portXNumericUpDown.Value;
             if (x == province.PortXPos)
             {
                 return;
@@ -2363,7 +2363,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) portYNumericUpDown.Value;
+            int y = (int) portYNumericUpDown.Value;
             if (y == province.PortYPos)
             {
                 return;
@@ -2398,7 +2398,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var seaZone = (int) portSeaZoneNumericUpDown.Value;
+            int seaZone = (int) portSeaZoneNumericUpDown.Value;
             if (seaZone == province.PortSeaZone)
             {
                 return;
@@ -2487,7 +2487,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) cityXNumericUpDown.Value;
+            int x = (int) cityXNumericUpDown.Value;
             if (x == province.CityXPos)
             {
                 return;
@@ -2522,7 +2522,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) cityYNumericUpDown.Value;
+            int y = (int) cityYNumericUpDown.Value;
             if (y == province.CityYPos)
             {
                 return;
@@ -2557,7 +2557,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) fortXNumericUpDown.Value;
+            int x = (int) fortXNumericUpDown.Value;
             if (x == province.FortXPos)
             {
                 return;
@@ -2592,7 +2592,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) fortYNumericUpDown.Value;
+            int y = (int) fortYNumericUpDown.Value;
             if (y == province.FortYPos)
             {
                 return;
@@ -2627,7 +2627,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) aaXNumericUpDown.Value;
+            int x = (int) aaXNumericUpDown.Value;
             if (x == province.AaXPos)
             {
                 return;
@@ -2662,7 +2662,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) aaYNumericUpDown.Value;
+            int y = (int) aaYNumericUpDown.Value;
             if (y == province.AaYPos)
             {
                 return;
@@ -2697,7 +2697,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) armyXNumericUpDown.Value;
+            int x = (int) armyXNumericUpDown.Value;
             if (x == province.ArmyXPos)
             {
                 return;
@@ -2732,7 +2732,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) armyYNumericUpDown.Value;
+            int y = (int) armyYNumericUpDown.Value;
             if (y == province.ArmyYPos)
             {
                 return;
@@ -2767,7 +2767,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) counterXNumericUpDown.Value;
+            int x = (int) counterXNumericUpDown.Value;
             if (x == province.CounterXPos)
             {
                 return;
@@ -2802,7 +2802,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) counterYNumericUpDown.Value;
+            int y = (int) counterYNumericUpDown.Value;
             if (y == province.CounterYPos)
             {
                 return;
@@ -2837,7 +2837,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) fillXNumericUpDown1.Value;
+            int x = (int) fillXNumericUpDown1.Value;
             if (x == province.FillCoordX1)
             {
                 return;
@@ -2872,7 +2872,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) fillYNumericUpDown1.Value;
+            int y = (int) fillYNumericUpDown1.Value;
             if (y == province.FillCoordY1)
             {
                 return;
@@ -2907,7 +2907,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) fillXNumericUpDown2.Value;
+            int x = (int) fillXNumericUpDown2.Value;
             if (x == province.FillCoordX2)
             {
                 return;
@@ -2942,7 +2942,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) fillYNumericUpDown2.Value;
+            int y = (int) fillYNumericUpDown2.Value;
             if (y == province.FillCoordY2)
             {
                 return;
@@ -2977,7 +2977,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) fillXNumericUpDown3.Value;
+            int x = (int) fillXNumericUpDown3.Value;
             if (x == province.FillCoordX3)
             {
                 return;
@@ -3012,7 +3012,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) fillYNumericUpDown3.Value;
+            int y = (int) fillYNumericUpDown3.Value;
             if (y == province.FillCoordY3)
             {
                 return;
@@ -3047,7 +3047,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var x = (int) fillXNumericUpDown4.Value;
+            int x = (int) fillXNumericUpDown4.Value;
             if (x == province.FillCoordX4)
             {
                 return;
@@ -3082,7 +3082,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var y = (int) fillYNumericUpDown4.Value;
+            int y = (int) fillYNumericUpDown4.Value;
             if (y == province.FillCoordY4)
             {
                 return;

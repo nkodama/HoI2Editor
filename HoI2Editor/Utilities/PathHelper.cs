@@ -39,7 +39,7 @@ namespace HoI2Editor.Utilities
                 return "";
             }
 
-            var sb = new StringBuilder(MaxPath);
+            StringBuilder sb = new StringBuilder(MaxPath);
             bool result = NativeMethods.PathRelativePathTo(sb, baseDirName, FileAttributes.Directory, pathName,
                 FileAttributes.Normal);
             if (!result)

@@ -48,7 +48,7 @@ namespace HoI2Editor.Parsers
         public static bool Parse(string fileName, Scenario scenario)
         {
             _fileName = fileName;
-            using (var lexer = new TextLexer(fileName, true))
+            using (TextLexer lexer = new TextLexer(fileName, true))
             {
                 while (true)
                 {
@@ -68,7 +68,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var keyword = token.Value as string;
+                    string keyword = token.Value as string;
                     if (string.IsNullOrEmpty(keyword))
                     {
                         return false;
@@ -343,7 +343,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var dates = new Dictionary<int, GameDate>();
+            Dictionary<int, GameDate> dates = new Dictionary<int, GameDate>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -368,7 +368,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var id = (int) (double) token.Value;
+                int id = (int) (double) token.Value;
 
                 int? n = ParseInt(lexer);
                 if (!n.HasValue)
@@ -412,7 +412,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var header = new ScenarioHeader();
+            ScenarioHeader header = new ScenarioHeader();
             while (true)
             {
                 token = lexer.GetToken();
@@ -437,7 +437,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -646,7 +646,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var country = new MajorCountrySettings();
+            MajorCountrySettings country = new MajorCountrySettings();
             while (true)
             {
                 token = lexer.GetToken();
@@ -671,7 +671,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -758,7 +758,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var data = new ScenarioGlobalData();
+            ScenarioGlobalData data = new ScenarioGlobalData();
             while (true)
             {
                 token = lexer.GetToken();
@@ -783,7 +783,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -953,7 +953,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type == TokenType.Identifier)
                     {
-                        var s = token.Value as string;
+                        string s = token.Value as string;
                         if (string.IsNullOrEmpty(s))
                         {
                             continue;
@@ -986,7 +986,7 @@ namespace HoI2Editor.Parsers
                         return null;
                     }
 
-                    var list = new List<int>();
+                    List<int> list = new List<int>();
                     while (true)
                     {
                         token = lexer.GetToken();
@@ -1095,7 +1095,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var rules = new ScenarioRules();
+            ScenarioRules rules = new ScenarioRules();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1120,7 +1120,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -1207,7 +1207,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var weather = new Weather();
+            Weather weather = new Weather();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1232,7 +1232,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -1300,7 +1300,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var pattern = new WeatherPattern();
+            WeatherPattern pattern = new WeatherPattern();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1325,7 +1325,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -1442,7 +1442,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var map = new MapSettings();
+            MapSettings map = new MapSettings();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1467,7 +1467,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -1496,7 +1496,7 @@ namespace HoI2Editor.Parsers
 
                     if (token.Type == TokenType.Identifier)
                     {
-                        var s = token.Value as string;
+                        string s = token.Value as string;
                         if (string.IsNullOrEmpty(s))
                         {
                             continue;
@@ -1538,7 +1538,7 @@ namespace HoI2Editor.Parsers
 
                     if (token.Type == TokenType.Identifier)
                     {
-                        var s = token.Value as string;
+                        string s = token.Value as string;
                         if (string.IsNullOrEmpty(s))
                         {
                             continue;
@@ -1619,7 +1619,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var point = new MapPoint();
+            MapPoint point = new MapPoint();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1644,7 +1644,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -1716,7 +1716,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var province = new ProvinceSettings();
+            ProvinceSettings province = new ProvinceSettings();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1741,7 +1741,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -2293,7 +2293,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var size = new BuildingSize();
+            BuildingSize size = new BuildingSize();
             while (true)
             {
                 token = lexer.GetToken();
@@ -2318,7 +2318,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -2398,7 +2398,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var building = new BuildingDevelopment();
+            BuildingDevelopment building = new BuildingDevelopment();
             while (true)
             {
                 token = lexer.GetToken();
@@ -2423,7 +2423,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -2465,7 +2465,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         return null;
@@ -2684,7 +2684,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var alliance = new Alliance();
+            Alliance alliance = new Alliance();
             while (true)
             {
                 token = lexer.GetToken();
@@ -2709,7 +2709,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -2795,7 +2795,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var war = new War();
+            War war = new War();
             while (true)
             {
                 token = lexer.GetToken();
@@ -2820,7 +2820,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -2933,7 +2933,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var treaty = new Treaty();
+            Treaty treaty = new Treaty();
             while (true)
             {
                 token = lexer.GetToken();
@@ -2958,7 +2958,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -3205,7 +3205,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var list = new List<Relation>();
+            List<Relation> list = new List<Relation>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3230,7 +3230,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -3283,7 +3283,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var relation = new Relation();
+            Relation relation = new Relation();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3308,7 +3308,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -3410,7 +3410,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var country = new CountrySettings();
+            CountrySettings country = new CountrySettings();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3435,7 +3435,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -4502,7 +4502,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var settings = new AiSettings();
+            AiSettings settings = new AiSettings();
             while (true)
             {
                 token = lexer.GetToken();
@@ -4527,7 +4527,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -4580,7 +4580,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var flags = new Dictionary<string, string>();
+            Dictionary<string, string> flags = new Dictionary<string, string>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -4605,7 +4605,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -4622,7 +4622,7 @@ namespace HoI2Editor.Parsers
                 token = lexer.GetToken();
                 if (token.Type == TokenType.Number)
                 {
-                    var n = (int) (double) token.Value;
+                    int n = (int) (double) token.Value;
                     if (n == 0 || n == 1)
                     {
                         flags.Add(keyword, ObjectHelper.ToString(token.Value));
@@ -4636,7 +4636,7 @@ namespace HoI2Editor.Parsers
 
                 if (token.Type == TokenType.Identifier)
                 {
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         continue;
@@ -4685,7 +4685,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var free = new ResourceSettings();
+            ResourceSettings free = new ResourceSettings();
             while (true)
             {
                 token = lexer.GetToken();
@@ -4710,7 +4710,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -4898,7 +4898,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var spyInfo = new SpySettings();
+            SpySettings spyInfo = new SpySettings();
             while (true)
             {
                 token = lexer.GetToken();
@@ -4923,7 +4923,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -4991,7 +4991,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var policy = new CountryPolicy();
+            CountryPolicy policy = new CountryPolicy();
             while (true)
             {
                 token = lexer.GetToken();
@@ -5016,7 +5016,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -5220,7 +5220,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var unit = new LandUnit();
+            LandUnit unit = new LandUnit();
             while (true)
             {
                 token = lexer.GetToken();
@@ -5245,7 +5245,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -5508,7 +5508,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var unit = new NavalUnit();
+            NavalUnit unit = new NavalUnit();
             while (true)
             {
                 token = lexer.GetToken();
@@ -5533,7 +5533,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -5781,7 +5781,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var unit = new AirUnit();
+            AirUnit unit = new AirUnit();
             while (true)
             {
                 token = lexer.GetToken();
@@ -5806,7 +5806,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -6058,7 +6058,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var division = new LandDivision();
+            LandDivision division = new LandDivision();
             while (true)
             {
                 token = lexer.GetToken();
@@ -6083,7 +6083,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -6481,7 +6481,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var division = new NavalDivision();
+            NavalDivision division = new NavalDivision();
             while (true)
             {
                 token = lexer.GetToken();
@@ -6506,7 +6506,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -7084,7 +7084,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var division = new AirDivision();
+            AirDivision division = new AirDivision();
             while (true)
             {
                 token = lexer.GetToken();
@@ -7109,7 +7109,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -7492,7 +7492,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var division = new DivisionDevelopment();
+            DivisionDevelopment division = new DivisionDevelopment();
             while (true)
             {
                 token = lexer.GetToken();
@@ -7517,7 +7517,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -7979,7 +7979,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var mission = new LandMission();
+            LandMission mission = new LandMission();
             while (true)
             {
                 token = lexer.GetToken();
@@ -8004,7 +8004,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -8031,7 +8031,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         return null;
@@ -8186,7 +8186,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var mission = new NavalMission();
+            NavalMission mission = new NavalMission();
             while (true)
             {
                 token = lexer.GetToken();
@@ -8211,7 +8211,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -8238,7 +8238,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         return null;
@@ -8408,7 +8408,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var mission = new AirMission();
+            AirMission mission = new AirMission();
             while (true)
             {
                 token = lexer.GetToken();
@@ -8433,7 +8433,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -8460,7 +8460,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         return null;
@@ -8634,7 +8634,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var convoy = new Convoy();
+            Convoy convoy = new Convoy();
             while (true)
             {
                 token = lexer.GetToken();
@@ -8659,7 +8659,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -8861,7 +8861,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var convoy = new ConvoyDevelopment();
+            ConvoyDevelopment convoy = new ConvoyDevelopment();
             while (true)
             {
                 token = lexer.GetToken();
@@ -8886,7 +8886,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -8924,7 +8924,7 @@ namespace HoI2Editor.Parsers
                     if (token.Type == TokenType.Identifier)
                     {
                         // 無効なトークン
-                        var s = token.Value as string;
+                        string s = token.Value as string;
                         if (string.IsNullOrEmpty(s))
                         {
                             continue;
@@ -9152,7 +9152,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var list = new List<int>();
+            List<int> list = new List<int>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -9207,7 +9207,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var list = new List<Country>();
+            List<Country> list = new List<Country>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -9231,7 +9231,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var name = token.Value as string;
+                string name = token.Value as string;
                 if (string.IsNullOrEmpty(name))
                 {
                     continue;
@@ -9281,7 +9281,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var date = new GameDate();
+            GameDate date = new GameDate();
             while (true)
             {
                 token = lexer.GetToken();
@@ -9306,7 +9306,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -9344,7 +9344,7 @@ namespace HoI2Editor.Parsers
                     if (token.Type == TokenType.Number)
                     {
                         // 無効なトークン
-                        var month = (int) (double) token.Value;
+                        int month = (int) (double) token.Value;
                         if (month < 0 || month >= 12)
                         {
                             Log.OutOfRange(LogCategory, "month", month, lexer);
@@ -9358,7 +9358,7 @@ namespace HoI2Editor.Parsers
                     if (token.Type == TokenType.Identifier)
                     {
                         // 無効なトークン
-                        var name = token.Value as string;
+                        string name = token.Value as string;
                         if (string.IsNullOrEmpty(name))
                         {
                             continue;
@@ -9465,7 +9465,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var id = new TypeId();
+            TypeId id = new TypeId();
             while (true)
             {
                 token = lexer.GetToken();
@@ -9490,7 +9490,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -9694,7 +9694,7 @@ namespace HoI2Editor.Parsers
             token = lexer.GetToken();
             if (token.Type == TokenType.Identifier)
             {
-                var s = token.Value as string;
+                string s = token.Value as string;
                 if (string.IsNullOrEmpty(s))
                 {
                     return null;
@@ -9716,7 +9716,7 @@ namespace HoI2Editor.Parsers
 
             else if (token.Type == TokenType.Number)
             {
-                var n = (int) (double) token.Value;
+                int n = (int) (double) token.Value;
 
                 if (n == 1)
                 {
@@ -9758,7 +9758,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var name = token.Value as string;
+            string name = token.Value as string;
             if (string.IsNullOrEmpty(name))
             {
                 return null;
@@ -9805,7 +9805,7 @@ namespace HoI2Editor.Parsers
                 return UnitType.None;
             }
 
-            var s = token.Value as string;
+            string s = token.Value as string;
             if (string.IsNullOrEmpty(s))
             {
                 return UnitType.None;
@@ -9854,7 +9854,7 @@ namespace HoI2Editor.Parsers
                 return UnitType.None;
             }
 
-            var s = token.Value as string;
+            string s = token.Value as string;
             if (string.IsNullOrEmpty(s))
             {
                 return UnitType.None;

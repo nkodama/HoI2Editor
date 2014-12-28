@@ -73,7 +73,7 @@ namespace HoI2Editor.Models
             // 研究速度を順に登録する
             foreach (Team team in teams)
             {
-                var research = new Research(tech, team);
+                Research research = new Research(tech, team);
                 Items.Add(research);
             }
 

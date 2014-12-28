@@ -452,7 +452,7 @@ namespace HoI2Editor.Forms
             Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // 選択中のユニット名種類がなければ戻る
-            var unit = typeListBox.SelectedItem as Unit;
+            Unit unit = typeListBox.SelectedItem as Unit;
             if (unit == null)
             {
                 return;
@@ -482,7 +482,7 @@ namespace HoI2Editor.Forms
                 for (int i = index; i < max; i++)
                 {
                     // ラベルを作成する
-                    var label = new Label
+                    Label label = new Label
                     {
                         Text = string.Format("{0}: {1}", i, unit.GetModelName(i)),
                         AutoSize = true,
@@ -505,7 +505,7 @@ namespace HoI2Editor.Forms
                 for (int i = index; i < max; i++)
                 {
                     // テキストボックスを作成する
-                    var textBox = new TextBox
+                    TextBox textBox = new TextBox
                     {
                         Size = new Size(maxEditWidth, textBoxHeight),
                         Location = new Point(textBoxX, textBoxY),
@@ -545,7 +545,7 @@ namespace HoI2Editor.Forms
             Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // 選択中のユニット名種類がなければ戻る
-            var unit = typeListBox.SelectedItem as Unit;
+            Unit unit = typeListBox.SelectedItem as Unit;
             if (unit == null)
             {
                 return;
@@ -555,8 +555,8 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            var textBox = sender as TextBox;
-            var index = (int) textBox.Tag;
+            TextBox textBox = sender as TextBox;
+            int index = (int) textBox.Tag;
 
             if (unit.ExistsModelName(index, country))
             {

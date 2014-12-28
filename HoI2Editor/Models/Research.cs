@@ -180,13 +180,13 @@ namespace HoI2Editor.Models
                     : 0.1;
 
                 // 史実年度前ペナルティが下限値になる日を求める
-                var preHistoricalLimitOffset = (int) Math.Floor((1 - preHistoricalLimit) / preHistoricalModifier);
+                int preHistoricalLimitOffset = (int) Math.Floor((1 - preHistoricalLimit) / preHistoricalModifier);
 
                 // 差分日数が下限値日数を超える場合
                 if (offset <= preHistoricalLimitOffset)
                 {
                     // 下限値で研究完了する日数を求める
-                    var preHistoricalLimitDays = (int) Math.Ceiling(100 / (baseProgress * preHistoricalLimit));
+                    int preHistoricalLimitDays = (int) Math.Ceiling(100 / (baseProgress * preHistoricalLimit));
 
                     // 下限値で研究完了する場合は日数を返す
                     if (offset + preHistoricalLimitDays <= preHistoricalLimitOffset)
@@ -264,7 +264,7 @@ namespace HoI2Editor.Models
                 if (offset < 0)
                 {
                     // 史実年度後ボーナスなしで研究する日数を求める
-                    var historicalDays = (int) Math.Ceiling((100 - totalProgress) / baseProgress);
+                    int historicalDays = (int) Math.Ceiling((100 - totalProgress) / baseProgress);
 
                     // 史実年度後ボーナスなしの機関に研究が完了する場合
                     if (offset + historicalDays < 0)
@@ -289,7 +289,7 @@ namespace HoI2Editor.Models
                 : Misc.BlueprintBonus;
 
             // 史実年度後ボーナスが上限値になる日を求める
-            var postHistoricalLimitOffset =
+            int postHistoricalLimitOffset =
                 (int) Math.Ceiling(Math.Abs((postHistoricalLimit - 1) / postHistoricalModifier));
 
             if (offset < postHistoricalLimitOffset)

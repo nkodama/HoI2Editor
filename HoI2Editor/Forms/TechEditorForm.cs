@@ -592,7 +592,7 @@ namespace HoI2Editor.Forms
             if (item is TechItem)
             {
                 // 編集項目を更新する
-                var applicationItem = item as TechItem;
+                TechItem applicationItem = item as TechItem;
                 UpdateTechItems(applicationItem);
                 UpdateRequiredItems(applicationItem);
                 UpdateComponentItems(applicationItem);
@@ -698,7 +698,7 @@ namespace HoI2Editor.Forms
             if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
                 // 変更ありの項目は文字色を変更する
-                var item = techListBox.Items[e.Index] as ITechItem;
+                ITechItem item = techListBox.Items[e.Index] as ITechItem;
                 brush = (item != null && item.IsDirty())
                     ? new SolidBrush(Color.Red)
                     : new SolidBrush(categoryListBox.ForeColor);
@@ -724,7 +724,7 @@ namespace HoI2Editor.Forms
             TechGroup grp = GetSelectedGroup();
 
             // 項目を作成する
-            var item = new TechItem
+            TechItem item = new TechItem
             {
                 Name = Config.GetTempKey(),
                 ShortName = Config.GetTempKey(),
@@ -744,7 +744,7 @@ namespace HoI2Editor.Forms
 
             if (techListBox.SelectedItem is ITechItem)
             {
-                var selected = techListBox.SelectedItem as ITechItem;
+                ITechItem selected = techListBox.SelectedItem as ITechItem;
 
                 // 選択項目の先頭座標を引き継ぐ
                 item.Positions.Add(new TechPosition { X = selected.Positions[0].X, Y = selected.Positions[0].Y });
@@ -752,7 +752,7 @@ namespace HoI2Editor.Forms
                 if (selected is TechItem)
                 {
                     // 選択項目が技術アプリケーションならばIDを10増やす
-                    var selectedApplication = selected as TechItem;
+                    TechItem selectedApplication = selected as TechItem;
                     item.Id = Techs.GetNewId(selectedApplication.Id + 10);
                 }
                 else
@@ -814,7 +814,7 @@ namespace HoI2Editor.Forms
             TechGroup grp = GetSelectedGroup();
 
             // 項目を作成する
-            var item = new TechLabel { Name = Config.GetTempKey() };
+            TechLabel item = new TechLabel { Name = Config.GetTempKey() };
             Config.SetText(item.Name, "", Game.TechTextFileName);
 
             // 重複文字列リストに登録する
@@ -826,7 +826,7 @@ namespace HoI2Editor.Forms
 
             if (techListBox.SelectedItem is ITechItem)
             {
-                var selected = techListBox.SelectedItem as ITechItem;
+                ITechItem selected = techListBox.SelectedItem as ITechItem;
 
                 // 選択項目の先頭座標を引き継ぐ
                 item.Positions.Add(new TechPosition { X = selected.Positions[0].X, Y = selected.Positions[0].Y });
@@ -865,7 +865,7 @@ namespace HoI2Editor.Forms
             TechGroup grp = GetSelectedGroup();
 
             // 項目を作成する
-            var item = new TechEvent();
+            TechEvent item = new TechEvent();
 
             // 編集済みフラグを設定する
             grp.SetDirty();
@@ -873,7 +873,7 @@ namespace HoI2Editor.Forms
 
             if (techListBox.SelectedItem is ITechItem)
             {
-                var selected = techListBox.SelectedItem as ITechItem;
+                ITechItem selected = techListBox.SelectedItem as ITechItem;
 
                 // 選択項目の先頭座標を引き継ぐ
                 item.Positions.Add(new TechPosition { X = selected.Positions[0].X, Y = selected.Positions[0].Y });
@@ -881,7 +881,7 @@ namespace HoI2Editor.Forms
                 // 選択項目が技術イベントならばIDを10増やす
                 if (selected is TechEvent)
                 {
-                    var selectedEvent = selected as TechEvent;
+                    TechEvent selectedEvent = selected as TechEvent;
                     item.Id = selectedEvent.Id + 10;
                 }
 
@@ -959,7 +959,7 @@ namespace HoI2Editor.Forms
                 // 技術項目リストの更新を通知する
                 HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
 
-                var techItem = item as TechItem;
+                TechItem techItem = item as TechItem;
                 Log.Info("[Tech] Added new tech: {0}", techItem.Id);
             }
             else if (item is TechLabel)
@@ -968,7 +968,7 @@ namespace HoI2Editor.Forms
             }
             else if (item is TechEvent)
             {
-                var eventItem = item as TechEvent;
+                TechEvent eventItem = item as TechEvent;
                 Log.Info("[Tech] Added new event: {0}", eventItem.Id);
             }
         }
@@ -1029,17 +1029,17 @@ namespace HoI2Editor.Forms
                 // 技術項目リストの更新を通知する
                 HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
 
-                var techItem = selected as TechItem;
+                TechItem techItem = selected as TechItem;
                 Log.Info("[Tech] Removed tech: {0} [{1}]", techItem.Id, techItem);
             }
             else if (selected is TechLabel)
             {
-                var labelItem = selected as TechLabel;
+                TechLabel labelItem = selected as TechLabel;
                 Log.Info("[Tech] Removed label: {0}", labelItem);
             }
             else if (selected is TechEvent)
             {
-                var eventItem = selected as TechEvent;
+                TechEvent eventItem = selected as TechEvent;
                 Log.Info("[Tech] Removed event: {0}", eventItem.Id);
             }
         }
@@ -1271,7 +1271,7 @@ namespace HoI2Editor.Forms
         /// <param name="dest">移動先の位置</param>
         private void MoveTechListItem(int src, int dest)
         {
-            var item = techListBox.Items[src] as ITechItem;
+            ITechItem item = techListBox.Items[src] as ITechItem;
             if (item == null)
             {
                 return;
@@ -1314,12 +1314,13 @@ namespace HoI2Editor.Forms
         {
             TechGroup grp = GetSelectedGroup();
 
-            var original = new Bitmap(Game.GetReadFileName(Game.PicturePathName, TechTreeFileNames[(int) grp.Category]));
+            Bitmap original =
+                new Bitmap(Game.GetReadFileName(Game.PicturePathName, TechTreeFileNames[(int) grp.Category]));
             int width = DeviceCaps.GetScaledWidth(original.Width);
             int height = DeviceCaps.GetScaledHeight(original.Height);
             original.MakeTransparent(Color.Lime);
 
-            var scaled = new Bitmap(width, height);
+            Bitmap scaled = new Bitmap(width, height);
             Graphics g = Graphics.FromImage(scaled);
             g.DrawImage(original, 0, 0, width, height);
             g.Dispose();
@@ -1352,7 +1353,7 @@ namespace HoI2Editor.Forms
         /// <param name="position">追加対象の位置</param>
         private void AddTechTreeItem(ITechItem item, TechPosition position)
         {
-            var label = new Label
+            Label label = new Label
             {
                 Location = new Point(DeviceCaps.GetScaledWidth(position.X), DeviceCaps.GetScaledHeight(position.Y)),
                 BackColor = Color.Transparent,
@@ -1368,7 +1369,7 @@ namespace HoI2Editor.Forms
             }
             else if (item is TechLabel)
             {
-                var labelItem = item as TechLabel;
+                TechLabel labelItem = item as TechLabel;
                 label.Size = Graphics.FromHwnd(label.Handle).MeasureString(labelItem.ToString(), label.Font).ToSize();
                 label.Paint += OnTechTreeLabelPaint;
             }
@@ -1396,7 +1397,7 @@ namespace HoI2Editor.Forms
             Control.ControlCollection labels = treePictureBox.Controls;
             foreach (Label label in labels)
             {
-                var info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label.Tag as TechLabelInfo;
                 if (info == null)
                 {
                     continue;
@@ -1418,7 +1419,7 @@ namespace HoI2Editor.Forms
             Control.ControlCollection labels = treePictureBox.Controls;
             foreach (Label label in labels)
             {
-                var info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label.Tag as TechLabelInfo;
                 if (info == null)
                 {
                     continue;
@@ -1437,13 +1438,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private static void OnTechTreeLabelPaint(object sender, PaintEventArgs e)
         {
-            var label = sender as Label;
+            Label label = sender as Label;
             if (label == null)
             {
                 return;
             }
 
-            var info = label.Tag as TechLabelInfo;
+            TechLabelInfo info = label.Tag as TechLabelInfo;
             if (info == null)
             {
                 return;
@@ -1451,7 +1452,7 @@ namespace HoI2Editor.Forms
 
             if (info.Item is TechItem)
             {
-                var item = info.Item as TechItem;
+                TechItem item = info.Item as TechItem;
                 string s = item.GetShortName();
                 if (string.IsNullOrEmpty(s))
                 {
@@ -1463,7 +1464,7 @@ namespace HoI2Editor.Forms
             }
             else if (info.Item is TechLabel)
             {
-                var item = info.Item as TechLabel;
+                TechLabel item = info.Item as TechLabel;
                 string s = item.ToString();
                 if (string.IsNullOrEmpty(s))
                 {
@@ -1496,7 +1497,7 @@ namespace HoI2Editor.Forms
         private void InitLabelBitmap()
         {
             // 技術
-            var original = new Bitmap(Game.GetReadFileName(Game.TechLabelPathName));
+            Bitmap original = new Bitmap(Game.GetReadFileName(Game.TechLabelPathName));
             _techLabelBitmap = new Bitmap(_techLabelWidth, _techLabelHeight);
             Graphics g = Graphics.FromImage(_techLabelBitmap);
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
@@ -1567,13 +1568,13 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var label = sender as Label;
+            Label label = sender as Label;
             if (label == null)
             {
                 return;
             }
 
-            var info = label.Tag as TechLabelInfo;
+            TechLabelInfo info = label.Tag as TechLabelInfo;
             if (info == null)
             {
                 return;
@@ -1638,7 +1639,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var label = sender as Label;
+            Label label = sender as Label;
             if (label == null)
             {
                 return;
@@ -1646,21 +1647,21 @@ namespace HoI2Editor.Forms
 
             // ドラッグ判定サイズを超えていなければ何もしない
             Size dragSize = SystemInformation.DragSize;
-            var dragRect = new Rectangle(_dragPoint.X - dragSize.Width / 2, _dragPoint.Y - dragSize.Height / 2,
+            Rectangle dragRect = new Rectangle(_dragPoint.X - dragSize.Width / 2, _dragPoint.Y - dragSize.Height / 2,
                 dragSize.Width, dragSize.Height);
             if (dragRect.Contains(label.Left + e.X, label.Top + e.Y))
             {
                 return;
             }
 
-            var info = label.Tag as TechLabelInfo;
+            TechLabelInfo info = label.Tag as TechLabelInfo;
             if (info == null)
             {
                 return;
             }
 
             // カーソル画像を作成する
-            var bitmap = new Bitmap(label.Width, label.Height);
+            Bitmap bitmap = new Bitmap(label.Width, label.Height);
             bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
             label.DrawToBitmap(bitmap, new Rectangle(0, 0, label.Width, label.Height));
             if (info.Item is TechItem)
@@ -1722,16 +1723,16 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var label = e.Data.GetData(typeof (Label)) as Label;
+            Label label = e.Data.GetData(typeof (Label)) as Label;
             if (label == null)
             {
                 return;
             }
 
             // 技術ツリー画像の範囲外ならばドロップを禁止する
-            var dragRect = new Rectangle(0, 0, treePictureBox.Image.Width, treePictureBox.Image.Height);
+            Rectangle dragRect = new Rectangle(0, 0, treePictureBox.Image.Width, treePictureBox.Image.Height);
             Point p = treePictureBox.PointToClient(new Point(e.X, e.Y));
-            var r = new Rectangle(label.Left + p.X - _dragPoint.X, label.Top + p.Y - _dragPoint.Y, label.Width,
+            Rectangle r = new Rectangle(label.Left + p.X - _dragPoint.X, label.Top + p.Y - _dragPoint.Y, label.Width,
                 label.Height);
             e.Effect = dragRect.Contains(r) ? DragDropEffects.Move : DragDropEffects.None;
         }
@@ -1749,20 +1750,20 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var label = e.Data.GetData(typeof (Label)) as Label;
+            Label label = e.Data.GetData(typeof (Label)) as Label;
             if (label == null)
             {
                 return;
             }
 
             // 技術ツリー上のドロップ座標を計算する
-            var p = new Point(e.X, e.Y);
+            Point p = new Point(e.X, e.Y);
             p = treePictureBox.PointToClient(p);
             p.X = label.Left + p.X - _dragPoint.X;
             p.Y = label.Top + p.Y - _dragPoint.Y;
 
             // ラベル情報の座標を更新する
-            var info = label.Tag as TechLabelInfo;
+            TechLabelInfo info = label.Tag as TechLabelInfo;
             if (info == null)
             {
                 return;
@@ -1996,7 +1997,7 @@ namespace HoI2Editor.Forms
 
             foreach (TechPosition position in item.Positions)
             {
-                var li = new ListViewItem(IntHelper.ToString(position.X));
+                ListViewItem li = new ListViewItem(IntHelper.ToString(position.X));
                 li.SubItems.Add(IntHelper.ToString(position.Y));
                 techPositionListView.Items.Add(li);
             }
@@ -2059,7 +2060,7 @@ namespace HoI2Editor.Forms
         private void OnTechNameTextBoxTextChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -2127,7 +2128,7 @@ namespace HoI2Editor.Forms
         private void OnTechShortNameTextBoxTextChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -2156,7 +2157,7 @@ namespace HoI2Editor.Forms
             // 技術ツリー上のラベル名を更新する
             foreach (Label label in treePictureBox.Controls)
             {
-                var info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label.Tag as TechLabelInfo;
                 if (info != null && info.Item == item)
                 {
                     label.Refresh();
@@ -2178,14 +2179,14 @@ namespace HoI2Editor.Forms
         private void OnTechIdNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
             }
 
             // 値に変化がなければ何もしない
-            var id = (int) techIdNumericUpDown.Value;
+            int id = (int) techIdNumericUpDown.Value;
             if (id == item.Id)
             {
                 return;
@@ -2216,14 +2217,14 @@ namespace HoI2Editor.Forms
         private void OnTechYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
             }
 
             // 値に変化がなければ何もしない
-            var year = (int) techYearNumericUpDown.Value;
+            int year = (int) techYearNumericUpDown.Value;
             if (year == item.Year)
             {
                 return;
@@ -2254,7 +2255,7 @@ namespace HoI2Editor.Forms
         private void OnTechPositionListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -2302,7 +2303,7 @@ namespace HoI2Editor.Forms
         private void OnTechXNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -2317,7 +2318,7 @@ namespace HoI2Editor.Forms
             TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もしない
-            var x = (int) techXNumericUpDown.Value;
+            int x = (int) techXNumericUpDown.Value;
             if (x == position.X)
             {
                 return;
@@ -2334,7 +2335,7 @@ namespace HoI2Editor.Forms
             // ラベルの位置を更新する
             foreach (Label label in treePictureBox.Controls)
             {
-                var info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
                     label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
@@ -2360,7 +2361,7 @@ namespace HoI2Editor.Forms
         private void OnTechYNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -2374,7 +2375,7 @@ namespace HoI2Editor.Forms
             TechPosition position = item.Positions[techPositionListView.SelectedIndices[0]];
 
             // 値に変化がなければ何もしない
-            var y = (int) techYNumericUpDown.Value;
+            int y = (int) techYNumericUpDown.Value;
             if (y == position.Y)
             {
                 return;
@@ -2391,7 +2392,7 @@ namespace HoI2Editor.Forms
             // ラベルの位置を更新する
             foreach (Label label in treePictureBox.Controls)
             {
-                var info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
                     label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
@@ -2417,14 +2418,14 @@ namespace HoI2Editor.Forms
         private void OnTechPositionAddButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
             }
 
             // 座標をリストに追加する
-            var position = new TechPosition { X = 0, Y = 0 };
+            TechPosition position = new TechPosition { X = 0, Y = 0 };
             item.Positions.Add(position);
 
             Log.Info("[Tech] Added tech position: ({0}, {1}) [{2}]", position.X, position.Y, item);
@@ -2436,7 +2437,7 @@ namespace HoI2Editor.Forms
             position.SetDirtyAll();
 
             // 座標リストビューの項目を追加する
-            var li = new ListViewItem { Text = IntHelper.ToString(position.X) };
+            ListViewItem li = new ListViewItem { Text = IntHelper.ToString(position.X) };
             li.SubItems.Add(IntHelper.ToString(position.Y));
             techPositionListView.Items.Add(li);
 
@@ -2460,7 +2461,7 @@ namespace HoI2Editor.Forms
         private void OnTechPositionRemoveButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -2531,7 +2532,7 @@ namespace HoI2Editor.Forms
             if (File.Exists(fileName))
             {
                 // 技術画像を更新する
-                var bitmap = new Bitmap(fileName);
+                Bitmap bitmap = new Bitmap(fileName);
                 bitmap.MakeTransparent();
                 techPictureBox.Image = bitmap;
             }
@@ -2549,7 +2550,7 @@ namespace HoI2Editor.Forms
         private void OnTechPictureNameTextBoxTextChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -2587,13 +2588,13 @@ namespace HoI2Editor.Forms
         private void OnTechPictureNameBrowseButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
             }
 
-            var dialog = new OpenFileDialog
+            OpenFileDialog dialog = new OpenFileDialog
             {
                 InitialDirectory = Path.Combine(Game.FolderName, Game.TechPicturePathName),
                 FileName = item.PictureName,
@@ -2687,7 +2688,7 @@ namespace HoI2Editor.Forms
 
             foreach (int id in item.AndRequiredTechs.Select(tech => tech.Id))
             {
-                var li = new ListViewItem { Text = IntHelper.ToString(id) };
+                ListViewItem li = new ListViewItem { Text = IntHelper.ToString(id) };
                 if (Techs.TechIdMap.ContainsKey(id))
                 {
                     li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -2725,7 +2726,7 @@ namespace HoI2Editor.Forms
 
             foreach (int id in item.OrRequiredTechs.Select(tech => tech.Id))
             {
-                var li = new ListViewItem { Text = IntHelper.ToString(id) };
+                ListViewItem li = new ListViewItem { Text = IntHelper.ToString(id) };
                 if (Techs.TechIdMap.ContainsKey(id))
                 {
                     li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -2832,7 +2833,7 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item != null && andRequiredListView.SelectedIndices.Count > 0)
             {
                 RequiredTech tech = item.AndRequiredTechs[andRequiredListView.SelectedIndices[0]];
@@ -2871,7 +2872,7 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item != null && orRequiredListView.SelectedIndices.Count > 0)
             {
                 RequiredTech tech = item.OrRequiredTechs[orRequiredListView.SelectedIndices[0]];
@@ -2901,7 +2902,7 @@ namespace HoI2Editor.Forms
         private void OnAndRequiredListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 技術項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -2948,7 +2949,7 @@ namespace HoI2Editor.Forms
         private void OnOrRequiredListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 技術項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3023,14 +3024,14 @@ namespace HoI2Editor.Forms
         private void OnAndAddButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
             }
 
             // AND条件必要技術リストに項目を追加する
-            var tech = new RequiredTech();
+            RequiredTech tech = new RequiredTech();
             item.AndRequiredTechs.Add(tech);
 
             Log.Info("[Tech] Added and required tech: {0} [{1}]", tech.Id, item);
@@ -3053,14 +3054,14 @@ namespace HoI2Editor.Forms
         private void OnOrAddButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
             }
 
             // OR条件必要技術リストに項目を追加する
-            var tech = new RequiredTech();
+            RequiredTech tech = new RequiredTech();
             item.OrRequiredTechs.Add(tech);
 
             Log.Info("[Tech] Added or required tech: {0} [{1}]", tech.Id, item);
@@ -3083,7 +3084,7 @@ namespace HoI2Editor.Forms
         private void OnAndRemoveButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3117,7 +3118,7 @@ namespace HoI2Editor.Forms
         private void OnOrRemoveButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3151,7 +3152,7 @@ namespace HoI2Editor.Forms
         private void OnAndIdNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3165,7 +3166,7 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             RequiredTech tech = item.AndRequiredTechs[index];
-            var id = (int) andIdNumericUpDown.Value;
+            int id = (int) andIdNumericUpDown.Value;
             if (id == tech.Id)
             {
                 return;
@@ -3211,7 +3212,7 @@ namespace HoI2Editor.Forms
         private void OnOrIdNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3225,7 +3226,7 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             RequiredTech tech = item.OrRequiredTechs[index];
-            var id = (int) orIdNumericUpDown.Value;
+            int id = (int) orIdNumericUpDown.Value;
             if (id == tech.Id)
             {
                 return;
@@ -3272,7 +3273,7 @@ namespace HoI2Editor.Forms
         private void OnAndTechComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3312,7 +3313,7 @@ namespace HoI2Editor.Forms
         private void OnOrTechComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3351,7 +3352,7 @@ namespace HoI2Editor.Forms
         private void AddAndRequiredListItem(int id)
         {
             // リストに項目を追加する
-            var li = new ListViewItem { Text = IntHelper.ToString(id) };
+            ListViewItem li = new ListViewItem { Text = IntHelper.ToString(id) };
             if (Techs.TechIdMap.ContainsKey(id))
             {
                 li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -3375,7 +3376,7 @@ namespace HoI2Editor.Forms
         private void AddOrRequiredListItem(int id)
         {
             // リストに項目を追加する
-            var li = new ListViewItem { Text = IntHelper.ToString(id) };
+            ListViewItem li = new ListViewItem { Text = IntHelper.ToString(id) };
             if (Techs.TechIdMap.ContainsKey(id))
             {
                 li.SubItems.Add(Techs.TechIdMap[id].ToString());
@@ -3617,7 +3618,7 @@ namespace HoI2Editor.Forms
         private void OnComponentListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3709,7 +3710,7 @@ namespace HoI2Editor.Forms
             }
 
             // 項目の文字列を描画する
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item != null && componentListView.SelectedIndices.Count > 0)
             {
                 TechComponent component = item.Components[componentListView.SelectedIndices[0]];
@@ -3742,7 +3743,7 @@ namespace HoI2Editor.Forms
         private void OnComponentNewButtonClick(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3796,7 +3797,7 @@ namespace HoI2Editor.Forms
         private void OnComponentCloneButtonClick(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3842,7 +3843,7 @@ namespace HoI2Editor.Forms
         private void OnComponentRemoveButtonClick(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3880,7 +3881,7 @@ namespace HoI2Editor.Forms
         private void OnComponentUpButtonClick(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3917,7 +3918,7 @@ namespace HoI2Editor.Forms
         private void OnComponentDownButtonClick(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3954,7 +3955,7 @@ namespace HoI2Editor.Forms
         private void OnComponentIdNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -3974,7 +3975,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var id = (int) componentIdNumericUpDown.Value;
+            int id = (int) componentIdNumericUpDown.Value;
             if (id == component.Id)
             {
                 return;
@@ -4006,7 +4007,7 @@ namespace HoI2Editor.Forms
         private void OnComponentNameTextBoxTextChanged(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -4064,7 +4065,7 @@ namespace HoI2Editor.Forms
         private void OnComponentSpecialityComboBoxSelectionChangeCommitted(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -4120,7 +4121,7 @@ namespace HoI2Editor.Forms
         private void OnComponentDifficultyNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -4140,7 +4141,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var difficulty = (int) componentDifficultyNumericUpDown.Value;
+            int difficulty = (int) componentDifficultyNumericUpDown.Value;
             if (difficulty == component.Difficulty)
             {
                 return;
@@ -4176,7 +4177,7 @@ namespace HoI2Editor.Forms
         private void OnComponentDoubleTimeCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -4231,7 +4232,7 @@ namespace HoI2Editor.Forms
         /// <returns>小研究リストの項目</returns>
         private static ListViewItem CreateComponentListItem(TechComponent component)
         {
-            var li = new ListViewItem { Text = IntHelper.ToString(component.Id) };
+            ListViewItem li = new ListViewItem { Text = IntHelper.ToString(component.Id) };
             li.SubItems.Add(component.ToString());
             li.SubItems.Add(Techs.GetSpecialityName(component.Speciality));
             li.SubItems.Add(IntHelper.ToString(component.Difficulty));
@@ -4284,7 +4285,7 @@ namespace HoI2Editor.Forms
         /// <param name="dest">移動先の位置</param>
         private void MoveComponentListItem(int src, int dest)
         {
-            var li = componentListView.Items[src].Clone() as ListViewItem;
+            ListViewItem li = componentListView.Items[src].Clone() as ListViewItem;
             if (li == null)
             {
                 return;
@@ -4485,7 +4486,7 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item != null && effectListView.SelectedIndices.Count > 0)
             {
                 Command command = item.Effects[effectListView.SelectedIndices[0]];
@@ -4524,7 +4525,7 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item != null && effectListView.SelectedIndices.Count > 0)
             {
                 Command command = item.Effects[effectListView.SelectedIndices[0]];
@@ -4557,7 +4558,7 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item != null && effectListView.SelectedIndices.Count > 0)
             {
                 Command command = item.Effects[effectListView.SelectedIndices[0]];
@@ -4590,7 +4591,7 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item != null && effectListView.SelectedIndices.Count > 0)
             {
                 Command command = item.Effects[effectListView.SelectedIndices[0]];
@@ -4623,7 +4624,7 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item != null && effectListView.SelectedIndices.Count > 0)
             {
                 Command command = item.Effects[effectListView.SelectedIndices[0]];
@@ -4647,7 +4648,7 @@ namespace HoI2Editor.Forms
         private void OnEffectListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -4722,13 +4723,13 @@ namespace HoI2Editor.Forms
         private void OnEffectNewButtonClick(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
             }
 
-            var command = new Command();
+            Command command = new Command();
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4765,7 +4766,7 @@ namespace HoI2Editor.Forms
         private void OnEffectCloneButtonClick(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -4803,7 +4804,7 @@ namespace HoI2Editor.Forms
         private void OnEffectRemoveButtonClick(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -4838,7 +4839,7 @@ namespace HoI2Editor.Forms
         private void OnEffectUpButtonClick(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -4875,7 +4876,7 @@ namespace HoI2Editor.Forms
         private void OnEffectDownButtonClick(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -4912,7 +4913,7 @@ namespace HoI2Editor.Forms
         private void OnCommandTypeComboBoxSelectionChangeCommitted(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -4938,7 +4939,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var type = (CommandType) commandTypeComboBox.SelectedIndex;
+            CommandType type = (CommandType) commandTypeComboBox.SelectedIndex;
             if (type == command.Type)
             {
                 return;
@@ -4971,7 +4972,7 @@ namespace HoI2Editor.Forms
         private void OnCommandWhichComboBoxTextUpdate(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -5045,7 +5046,7 @@ namespace HoI2Editor.Forms
         private void OnCommandValueComboBoxTextUpdate(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -5119,7 +5120,7 @@ namespace HoI2Editor.Forms
         private void OnCommandWhenComboBoxTextUpdate(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -5193,7 +5194,7 @@ namespace HoI2Editor.Forms
         private void OnCommandWhereComboBoxTextUpdate(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechItem;
+            TechItem item = GetSelectedItem() as TechItem;
             if (item == null)
             {
                 return;
@@ -5266,7 +5267,7 @@ namespace HoI2Editor.Forms
         /// <returns>技術効果リストの項目</returns>
         private static ListViewItem CreateEffectListItem(Command command)
         {
-            var li = new ListViewItem { Text = Command.TypeStringTable[(int) command.Type] };
+            ListViewItem li = new ListViewItem { Text = Command.TypeStringTable[(int) command.Type] };
             li.SubItems.Add(ObjectHelper.ToString(command.Which));
             li.SubItems.Add(ObjectHelper.ToString(command.Value));
             li.SubItems.Add(ObjectHelper.ToString(command.When));
@@ -5319,7 +5320,7 @@ namespace HoI2Editor.Forms
         /// <param name="dest">移動先の位置</param>
         private void MoveEffectListItem(int src, int dest)
         {
-            var li = effectListView.Items[src].Clone() as ListViewItem;
+            ListViewItem li = effectListView.Items[src].Clone() as ListViewItem;
             if (li == null)
             {
                 return;
@@ -5461,7 +5462,7 @@ namespace HoI2Editor.Forms
 
             foreach (TechPosition position in item.Positions)
             {
-                var listItem = new ListViewItem(IntHelper.ToString(position.X));
+                ListViewItem listItem = new ListViewItem(IntHelper.ToString(position.X));
                 listItem.SubItems.Add(IntHelper.ToString(position.Y));
                 labelPositionListView.Items.Add(listItem);
             }
@@ -5492,7 +5493,7 @@ namespace HoI2Editor.Forms
         private void OnLabelNameTextBoxTextChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechLabel;
+            TechLabel item = GetSelectedItem() as TechLabel;
             if (item == null)
             {
                 return;
@@ -5527,7 +5528,7 @@ namespace HoI2Editor.Forms
             // 技術ツリー上のラベル名を更新する
             foreach (Label label in treePictureBox.Controls)
             {
-                var info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label.Tag as TechLabelInfo;
                 if (info != null && info.Item == item)
                 {
                     label.Size = Graphics.FromHwnd(label.Handle).MeasureString(item.ToString(), label.Font).ToSize();
@@ -5550,7 +5551,7 @@ namespace HoI2Editor.Forms
         private void OnLabelPositionListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 項目リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechLabel;
+            TechLabel item = GetSelectedItem() as TechLabel;
             if (item == null)
             {
                 return;
@@ -5598,7 +5599,7 @@ namespace HoI2Editor.Forms
         private void OnLabelXNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechLabel;
+            TechLabel item = GetSelectedItem() as TechLabel;
             if (item == null)
             {
                 return;
@@ -5613,7 +5614,7 @@ namespace HoI2Editor.Forms
             TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もしない
-            var x = (int) labelXNumericUpDown.Value;
+            int x = (int) labelXNumericUpDown.Value;
             if (x == position.X)
             {
                 return;
@@ -5630,7 +5631,7 @@ namespace HoI2Editor.Forms
             // 技術ツリー上のラベルを移動する
             foreach (Label label in treePictureBox.Controls)
             {
-                var info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
                     label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
@@ -5656,7 +5657,7 @@ namespace HoI2Editor.Forms
         private void OnLabelYNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechLabel;
+            TechLabel item = GetSelectedItem() as TechLabel;
             if (item == null)
             {
                 return;
@@ -5671,7 +5672,7 @@ namespace HoI2Editor.Forms
             TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もしない
-            var y = (int) labelYNumericUpDown.Value;
+            int y = (int) labelYNumericUpDown.Value;
             if (y == position.Y)
             {
                 return;
@@ -5688,7 +5689,7 @@ namespace HoI2Editor.Forms
             // 技術ツリー上のラベルを移動する
             foreach (Label label in treePictureBox.Controls)
             {
-                var info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
                     label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
@@ -5714,14 +5715,14 @@ namespace HoI2Editor.Forms
         private void OnLabelPositionAddButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechLabel;
+            TechLabel item = GetSelectedItem() as TechLabel;
             if (item == null)
             {
                 return;
             }
 
             // ラベル座標リストに項目を追加する
-            var position = new TechPosition { X = 0, Y = 0 };
+            TechPosition position = new TechPosition { X = 0, Y = 0 };
             item.Positions.Add(position);
 
             Log.Info("[Tech] Added label position: ({0},{1}) [{2}]", position.X, position.Y, item);
@@ -5733,7 +5734,7 @@ namespace HoI2Editor.Forms
             position.SetDirtyAll();
 
             // ラベル座標リストビューの項目を追加する
-            var li = new ListViewItem { Text = IntHelper.ToString(position.X) };
+            ListViewItem li = new ListViewItem { Text = IntHelper.ToString(position.X) };
             li.SubItems.Add(IntHelper.ToString(position.Y));
             labelPositionListView.Items.Add(li);
 
@@ -5756,7 +5757,7 @@ namespace HoI2Editor.Forms
         private void OnLabelPositionRemoveButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechLabel;
+            TechLabel item = GetSelectedItem() as TechLabel;
             if (item == null)
             {
                 return;
@@ -5936,7 +5937,7 @@ namespace HoI2Editor.Forms
 
             foreach (TechPosition position in item.Positions)
             {
-                var listItem = new ListViewItem(IntHelper.ToString(position.X));
+                ListViewItem listItem = new ListViewItem(IntHelper.ToString(position.X));
                 listItem.SubItems.Add(IntHelper.ToString(position.Y));
                 eventPositionListView.Items.Add(listItem);
             }
@@ -5976,7 +5977,7 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            var item = GetSelectedItem() as TechEvent;
+            TechEvent item = GetSelectedItem() as TechEvent;
             if (item != null)
             {
                 Brush brush;
@@ -6005,14 +6006,14 @@ namespace HoI2Editor.Forms
         private void OnEventIdNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechEvent;
+            TechEvent item = GetSelectedItem() as TechEvent;
             if (item == null)
             {
                 return;
             }
 
             // 値に変化がなければ何もしない
-            var id = (int) eventIdNumericUpDown.Value;
+            int id = (int) eventIdNumericUpDown.Value;
             if (id == item.Id)
             {
                 return;
@@ -6046,14 +6047,14 @@ namespace HoI2Editor.Forms
         private void OnEventTechNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechEvent;
+            TechEvent item = GetSelectedItem() as TechEvent;
             if (item == null)
             {
                 return;
             }
 
             // 値に変化がなければ何もしない
-            var id = (int) eventTechNumericUpDown.Value;
+            int id = (int) eventTechNumericUpDown.Value;
             if (id == item.TechId)
             {
                 return;
@@ -6095,7 +6096,7 @@ namespace HoI2Editor.Forms
         private void OnEventTechComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechEvent;
+            TechEvent item = GetSelectedItem() as TechEvent;
             if (item == null)
             {
                 return;
@@ -6119,7 +6120,7 @@ namespace HoI2Editor.Forms
         private void OnEventPositionListViewSelectedIndexChanged(object sender, EventArgs e)
         {
             // 技術リストの選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechEvent;
+            TechEvent item = GetSelectedItem() as TechEvent;
             if (item == null)
             {
                 return;
@@ -6167,7 +6168,7 @@ namespace HoI2Editor.Forms
         private void OnEventXNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechEvent;
+            TechEvent item = GetSelectedItem() as TechEvent;
             if (item == null)
             {
                 return;
@@ -6182,7 +6183,7 @@ namespace HoI2Editor.Forms
             TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もしない
-            var x = (int) eventXNumericUpDown.Value;
+            int x = (int) eventXNumericUpDown.Value;
             if (x == position.X)
             {
                 return;
@@ -6199,7 +6200,7 @@ namespace HoI2Editor.Forms
             // 技術ツリー上のラベルを移動する
             foreach (Label label in treePictureBox.Controls)
             {
-                var info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
                     label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
@@ -6225,7 +6226,7 @@ namespace HoI2Editor.Forms
         private void OnEventYNumericUpDownValueChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechEvent;
+            TechEvent item = GetSelectedItem() as TechEvent;
             if (item == null)
             {
                 return;
@@ -6240,7 +6241,7 @@ namespace HoI2Editor.Forms
             TechPosition position = item.Positions[index];
 
             // 値に変化がなければ何もしない
-            var y = (int) eventYNumericUpDown.Value;
+            int y = (int) eventYNumericUpDown.Value;
             if (y == position.Y)
             {
                 return;
@@ -6257,7 +6258,7 @@ namespace HoI2Editor.Forms
             // 技術ツリー上のラベルを移動する
             foreach (Label label in treePictureBox.Controls)
             {
-                var info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label.Tag as TechLabelInfo;
                 if (info != null && info.Position == position)
                 {
                     label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
@@ -6283,14 +6284,14 @@ namespace HoI2Editor.Forms
         private void OnEventPositionAddButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechEvent;
+            TechEvent item = GetSelectedItem() as TechEvent;
             if (item == null)
             {
                 return;
             }
 
             // 発明イベント座標リストに項目を追加する
-            var position = new TechPosition { X = 0, Y = 0 };
+            TechPosition position = new TechPosition { X = 0, Y = 0 };
             item.Positions.Add(position);
 
             Log.Info("[Tech] Added event position: ({0},{1}) [{2}]", position.X, position.Y, item);
@@ -6302,7 +6303,7 @@ namespace HoI2Editor.Forms
             position.SetDirtyAll();
 
             // 発明イベント座標リストビューに項目を追加する
-            var li = new ListViewItem { Text = IntHelper.ToString(position.X) };
+            ListViewItem li = new ListViewItem { Text = IntHelper.ToString(position.X) };
             li.SubItems.Add(IntHelper.ToString(position.Y));
             eventPositionListView.Items.Add(li);
 
@@ -6325,7 +6326,7 @@ namespace HoI2Editor.Forms
         private void OnEventPositionRemoveButtonClick(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            var item = GetSelectedItem() as TechEvent;
+            TechEvent item = GetSelectedItem() as TechEvent;
             if (item == null)
             {
                 return;

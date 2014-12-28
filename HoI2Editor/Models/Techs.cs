@@ -649,7 +649,7 @@ namespace HoI2Editor.Models
             }
 
             // 研究特性画像リストを作成する
-            var bitmap = new Bitmap(Game.GetReadFileName(Game.TechIconPathName));
+            Bitmap bitmap = new Bitmap(Game.GetReadFileName(Game.TechIconPathName));
             SpecialityImages = new ImageList
             {
                 ImageSize = new Size(24, 24),
@@ -846,7 +846,7 @@ namespace HoI2Editor.Models
                 bool dirty = false;
 
                 // 技術
-                var list = new List<int>();
+                List<int> list = new List<int>();
                 foreach (TechItem item in grp.Items.OfType<TechItem>())
                 {
                     item.AddKeyNumbers(list);
@@ -969,7 +969,7 @@ namespace HoI2Editor.Models
         {
             if (item is TechItem)
             {
-                var techItem = item as TechItem;
+                TechItem techItem = item as TechItem;
                 IncrementDuplicatedListCount(techItem.Name);
                 IncrementDuplicatedListCount(techItem.ShortName);
                 IncrementDuplicatedListCount(techItem.Desc);
@@ -980,7 +980,7 @@ namespace HoI2Editor.Models
             }
             else if (item is TechLabel)
             {
-                var labelItem = item as TechLabel;
+                TechLabel labelItem = item as TechLabel;
                 IncrementDuplicatedListCount(labelItem.Name);
             }
         }
@@ -993,7 +993,7 @@ namespace HoI2Editor.Models
         {
             if (item is TechItem)
             {
-                var techItem = item as TechItem;
+                TechItem techItem = item as TechItem;
                 DecrementDuplicatedListCount(techItem.Name);
                 DecrementDuplicatedListCount(techItem.ShortName);
                 DecrementDuplicatedListCount(techItem.Desc);
@@ -1004,7 +1004,7 @@ namespace HoI2Editor.Models
             }
             else if (item is TechLabel)
             {
-                var labelItem = item as TechLabel;
+                TechLabel labelItem = item as TechLabel;
                 DecrementDuplicatedListCount(labelItem.Name);
             }
         }
@@ -1059,7 +1059,7 @@ namespace HoI2Editor.Models
             {
                 if (item is TechItem)
                 {
-                    var techItem = item as TechItem;
+                    TechItem techItem = item as TechItem;
                     if (Config.IsTempKey(techItem.Name))
                     {
                         Config.AddTempKey(techItem.Name);
@@ -1082,7 +1082,7 @@ namespace HoI2Editor.Models
                 }
                 else if (item is TechLabel)
                 {
-                    var labelItem = item as TechLabel;
+                    TechLabel labelItem = item as TechLabel;
                     if (Config.IsTempKey(labelItem.Name))
                     {
                         Config.AddTempKey(labelItem.Name);

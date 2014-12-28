@@ -475,7 +475,7 @@ namespace HoI2Editor.Forms
             UnitNameType type = UnitNames.Types[typeListBox.SelectedIndex];
 
             // ユニット名を順に追加する
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             foreach (string name in UnitNames.GetNames(country, type))
             {
                 sb.AppendLine(name);
@@ -655,8 +655,8 @@ namespace HoI2Editor.Forms
 
             string prefix = prefixComboBox.Text;
             string suffix = suffixComboBox.Text;
-            var start = (int) startNumericUpDown.Value;
-            var end = (int) endNumericUpDown.Value;
+            int start = (int) startNumericUpDown.Value;
+            int end = (int) endNumericUpDown.Value;
 
             Log.Info("[UnitName] Add: {0}-{1} {2} {3} [{4}] <{5}>", start, end, prefix, suffix,
                 Config.GetText(UnitNames.TypeNames[(int) type]), Countries.Strings[(int) country]);

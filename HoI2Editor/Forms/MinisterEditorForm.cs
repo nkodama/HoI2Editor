@@ -257,9 +257,9 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnBatchButtonClick(object sender, EventArgs e)
         {
-            var countryName = countryListBox.SelectedItem as string;
+            string countryName = countryListBox.SelectedItem as string;
             Country country = !string.IsNullOrEmpty(countryName) ? Countries.StringMap[countryName] : Country.None;
-            var dialog = new MinisterBatchDialog(country);
+            MinisterBatchDialog dialog = new MinisterBatchDialog(country);
             if (dialog.ShowDialog() == DialogResult.Cancel)
             {
                 return;
@@ -684,7 +684,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択項目を引き継いで項目を作成する
-            var minister = new Minister
+            Minister minister = new Minister
             {
                 Country = selected.Country,
                 Id = Ministers.GetNewId(selected.Country),
@@ -759,7 +759,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var top = ministerListView.Items[0].Tag as Minister;
+            Minister top = ministerListView.Items[0].Tag as Minister;
             if (top == null)
             {
                 return;
@@ -794,7 +794,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var upper = ministerListView.Items[index - 1].Tag as Minister;
+            Minister upper = ministerListView.Items[index - 1].Tag as Minister;
             if (upper == null)
             {
                 return;
@@ -829,7 +829,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var lower = ministerListView.Items[index + 1].Tag as Minister;
+            Minister lower = ministerListView.Items[index + 1].Tag as Minister;
             if (lower == null)
             {
                 return;
@@ -865,7 +865,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var bottom = ministerListView.Items[ministerListView.Items.Count - 1].Tag as Minister;
+            Minister bottom = ministerListView.Items[ministerListView.Items.Count - 1].Tag as Minister;
             if (bottom == null)
             {
                 return;
@@ -992,7 +992,7 @@ namespace HoI2Editor.Forms
                 return null;
             }
 
-            var item = new ListViewItem
+            ListViewItem item = new ListViewItem
             {
                 Text = Countries.Strings[(int) minister.Country],
                 Tag = minister
@@ -1746,7 +1746,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var id = (int) idNumericUpDown.Value;
+            int id = (int) idNumericUpDown.Value;
             if (id == minister.Id)
             {
                 return;
@@ -1830,7 +1830,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var startYear = (int) startYearNumericUpDown.Value;
+            int startYear = (int) startYearNumericUpDown.Value;
             if (startYear == minister.StartYear)
             {
                 return;
@@ -1868,7 +1868,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var endYear = (int) endYearNumericUpDown.Value;
+            int endYear = (int) endYearNumericUpDown.Value;
             if (endYear == minister.EndYear)
             {
                 return;
@@ -1905,7 +1905,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var retirementYear = (int) retirementYearNumericUpDown.Value;
+            int retirementYear = (int) retirementYearNumericUpDown.Value;
             if (retirementYear == minister.RetirementYear)
             {
                 return;
@@ -1940,7 +1940,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var position = (MinisterPosition) (positionComboBox.SelectedIndex + 1);
+            MinisterPosition position = (MinisterPosition) (positionComboBox.SelectedIndex + 1);
             if (position == minister.Position)
             {
                 return;
@@ -2170,7 +2170,7 @@ namespace HoI2Editor.Forms
             }
 
             // ファイル選択ダイアログを開く
-            var dialog = new OpenFileDialog
+            OpenFileDialog dialog = new OpenFileDialog
             {
                 InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
                 FileName = minister.PictureName,
@@ -2287,7 +2287,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             foreach (string s in countries.Select(country => Countries.Strings[(int) country]))
             {
                 sb.AppendFormat("{0} ", s);
@@ -2415,7 +2415,7 @@ namespace HoI2Editor.Forms
         private static void LogBatchEdit(string countries, bool[] items, int startYear, int endYear, int retirementYear,
             MinisterIdeology ideology, MinisterLoyalty loyalty)
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
             if (items[(int) MinisterBatchItemId.StartYear])
             {

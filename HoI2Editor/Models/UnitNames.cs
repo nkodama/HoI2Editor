@@ -336,7 +336,7 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[UnitName] Load: {0}", Path.GetFileName(fileName));
 
-            using (var lexer = new CsvLexer(fileName))
+            using (CsvLexer lexer = new CsvLexer(fileName))
             {
                 while (!lexer.EndOfStream)
                 {
@@ -456,7 +456,7 @@ namespace HoI2Editor.Models
         {
             Log.Info("[UnitName] Save: {0}", Path.GetFileName(fileName));
 
-            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 foreach (Country country in Items.Select(pair => pair.Key)
                     .Where(country => ExistsCountry(country) && Items[country].Count > 0))
@@ -579,7 +579,7 @@ namespace HoI2Editor.Models
                 (from country in Items.Select(pair => pair.Key)
                     from type in Items[country].Select(pair => pair.Key)
                     select new KeyValuePair<Country, UnitNameType>(country, type)).ToList();
-            foreach (var pair in pairs)
+            foreach (KeyValuePair<Country, UnitNameType> pair in pairs)
             {
                 Replace(s, t, pair.Key, pair.Value, regex);
             }
@@ -611,7 +611,7 @@ namespace HoI2Editor.Models
         /// <param name="regex">正規表現を使用するか</param>
         public static void ReplaceAllTypes(string s, string t, Country country, bool regex)
         {
-            var types = new List<UnitNameType>();
+            List<UnitNameType> types = new List<UnitNameType>();
             if (Items.ContainsKey(country))
             {
                 types.AddRange(Items[country].Select(pair => pair.Key));
@@ -652,8 +652,8 @@ namespace HoI2Editor.Models
         /// <param name="type">ユニット名種類</param>
         public static void Interpolate(Country country, UnitNameType type)
         {
-            var names = new List<string>();
-            var r = new Regex("([^\\d]*)(\\d+)(.*)");
+            List<string> names = new List<string>();
+            Regex r = new Regex("([^\\d]*)(\\d+)(.*)");
             string pattern = "";
             int prev = 0;
             bool found = false;
@@ -703,7 +703,7 @@ namespace HoI2Editor.Models
                 (from country in Items.Select(pair => pair.Key)
                     from type in Items[country].Select(pair => pair.Key)
                     select new KeyValuePair<Country, UnitNameType>(country, type)).ToList();
-            foreach (var pair in pairs)
+            foreach (KeyValuePair<Country, UnitNameType> pair in pairs)
             {
                 Interpolate(pair.Key, pair.Value);
             }
@@ -729,7 +729,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         public static void InterpolateAllTypes(Country country)
         {
-            var types = new List<UnitNameType>();
+            List<UnitNameType> types = new List<UnitNameType>();
             if (Items.ContainsKey(country))
             {
                 types.AddRange(Items[country].Select(pair => pair.Key));

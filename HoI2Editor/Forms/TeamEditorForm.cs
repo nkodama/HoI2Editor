@@ -307,9 +307,9 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnBatchButtonClick(object sender, EventArgs e)
         {
-            var countryName = countryListBox.SelectedItem as string;
+            string countryName = countryListBox.SelectedItem as string;
             Country country = !string.IsNullOrEmpty(countryName) ? Countries.StringMap[countryName] : Country.None;
-            var dialog = new TeamBatchDialog(country);
+            TeamBatchDialog dialog = new TeamBatchDialog(country);
             if (dialog.ShowDialog() == DialogResult.Cancel)
             {
                 return;
@@ -656,7 +656,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16),
+            Rectangle rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16),
                 DeviceCaps.GetScaledHeight(16));
             for (int i = 0; i < Team.SpecialityLength; i++)
             {
@@ -890,7 +890,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択項目を引き継いで項目を作成する
-            var team = new Team
+            Team team = new Team
             {
                 Country = selected.Country,
                 Id = Teams.GetNewId(selected.Country),
@@ -971,7 +971,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var top = teamListView.Items[0].Tag as Team;
+            Team top = teamListView.Items[0].Tag as Team;
             if (top == null)
             {
                 return;
@@ -1006,7 +1006,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var upper = teamListView.Items[index - 1].Tag as Team;
+            Team upper = teamListView.Items[index - 1].Tag as Team;
             if (upper == null)
             {
                 return;
@@ -1041,7 +1041,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var lower = teamListView.Items[index + 1].Tag as Team;
+            Team lower = teamListView.Items[index + 1].Tag as Team;
             if (lower == null)
             {
                 return;
@@ -1076,7 +1076,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var bottom = teamListView.Items[teamListView.Items.Count - 1].Tag as Team;
+            Team bottom = teamListView.Items[teamListView.Items.Count - 1].Tag as Team;
             if (bottom == null)
             {
                 return;
@@ -1203,7 +1203,7 @@ namespace HoI2Editor.Forms
                 return null;
             }
 
-            var item = new ListViewItem
+            ListViewItem item = new ListViewItem
             {
                 Text = Countries.Strings[(int) team.Country],
                 Tag = team
@@ -1607,12 +1607,12 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var comboBox = sender as ComboBox;
+            ComboBox comboBox = sender as ComboBox;
             if (comboBox == null)
             {
                 return;
             }
-            var no = (int) comboBox.Tag;
+            int no = (int) comboBox.Tag;
 
             // 背景を描画する
             e.DrawBackground();
@@ -1623,7 +1623,7 @@ namespace HoI2Editor.Forms
                 // アイコンを描画する
                 if (e.Index > 0 && e.Index - 1 < Techs.SpecialityImages.Images.Count)
                 {
-                    var gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16),
+                    Rectangle gr = new Rectangle(e.Bounds.X + 1, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16),
                         DeviceCaps.GetScaledHeight(16));
                     e.Graphics.DrawImage(Techs.SpecialityImages.Images[e.Index - 1], gr);
                 }
@@ -1639,7 +1639,7 @@ namespace HoI2Editor.Forms
                     brush = new SolidBrush(SystemColors.WindowText);
                 }
                 string s = comboBox.Items[e.Index].ToString();
-                var tr = new Rectangle(e.Bounds.X + DeviceCaps.GetScaledWidth(16) + 3, e.Bounds.Y + 3,
+                Rectangle tr = new Rectangle(e.Bounds.X + DeviceCaps.GetScaledWidth(16) + 3, e.Bounds.Y + 3,
                     e.Bounds.Width - DeviceCaps.GetScaledWidth(16) - 3, e.Bounds.Height);
                 e.Graphics.DrawString(s, e.Font, brush, tr);
                 brush.Dispose();
@@ -1738,7 +1738,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var id = (int) idNumericUpDown.Value;
+            int id = (int) idNumericUpDown.Value;
             if (id == team.Id)
             {
                 return;
@@ -1828,7 +1828,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var skill = (int) skillNumericUpDown.Value;
+            int skill = (int) skillNumericUpDown.Value;
             if (skill == team.Skill)
             {
                 return;
@@ -1868,7 +1868,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var startYear = (int) startYearNumericUpDown.Value;
+            int startYear = (int) startYearNumericUpDown.Value;
             if (startYear == team.StartYear)
             {
                 return;
@@ -1905,7 +1905,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var endYear = (int) endYearNumericUpDown.Value;
+            int endYear = (int) endYearNumericUpDown.Value;
             if (endYear == team.EndYear)
             {
                 return;
@@ -1941,12 +1941,12 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var comboBox = sender as ComboBox;
+            ComboBox comboBox = sender as ComboBox;
             if (comboBox == null)
             {
                 return;
             }
-            var no = (int) comboBox.Tag;
+            int no = (int) comboBox.Tag;
 
             // 値に変化がなければ何もしない
             TechSpeciality speciality = Techs.Specialities[comboBox.SelectedIndex];
@@ -2100,7 +2100,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var dialog = new OpenFileDialog
+            OpenFileDialog dialog = new OpenFileDialog
             {
                 InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
                 FileName = team.PictureName,
@@ -2157,7 +2157,7 @@ namespace HoI2Editor.Forms
         {
             // ソート前の項目を退避する
             const int max = 7;
-            var old = new TechSpeciality[max];
+            TechSpeciality[] old = new TechSpeciality[max];
             for (int i = 0; i < max; i++)
             {
                 old[i] = team.Specialities[i];
@@ -2470,7 +2470,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             foreach (string s in countries.Select(country => Countries.Strings[(int) country]))
             {
                 sb.AppendFormat("{0} ", s);
@@ -2567,7 +2567,7 @@ namespace HoI2Editor.Forms
         /// <param name="endYear">終了年</param>
         private static void LogBatchEdit(string countries, bool[] items, int skill, int startYear, int endYear)
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
             if (items[(int) TeamBatchItemId.Skill])
             {

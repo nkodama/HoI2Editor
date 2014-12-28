@@ -19,8 +19,8 @@ namespace HoI2Editor.Utilities
         /// <returns>作成したカーソル</returns>
         public static Cursor CreateCursor(Bitmap bitmap, int xHotSpot, int yHotSpot)
         {
-            var andMask = new Bitmap(bitmap.Width, bitmap.Height);
-            var xorMask = new Bitmap(bitmap.Width, bitmap.Height);
+            Bitmap andMask = new Bitmap(bitmap.Width, bitmap.Height);
+            Bitmap xorMask = new Bitmap(bitmap.Width, bitmap.Height);
             Color transparent = bitmap.GetPixel(bitmap.Width - 1, bitmap.Height - 1);
             for (int x = 0; x < bitmap.Width; x++)
             {
@@ -41,7 +41,7 @@ namespace HoI2Editor.Utilities
             }
 
             IntPtr hIcon = bitmap.GetHicon();
-            var info = new IconInfo();
+            IconInfo info = new IconInfo();
             NativeMethods.GetIconInfo(hIcon, ref info);
             info.xHotspot = xHotSpot;
             info.yHotspot = yHotSpot;
@@ -62,7 +62,7 @@ namespace HoI2Editor.Utilities
         /// <returns>作成したカーソル</returns>
         public static Cursor CreateCursor(Bitmap bitmap, Bitmap andMask, int xHotSpot, int yHotSpot)
         {
-            var xorMask = new Bitmap(bitmap.Width, bitmap.Height);
+            Bitmap xorMask = new Bitmap(bitmap.Width, bitmap.Height);
             Color transparent = andMask.GetPixel(0, 0);
             for (int x = 0; x < bitmap.Width; x++)
             {
@@ -74,7 +74,7 @@ namespace HoI2Editor.Utilities
             }
 
             IntPtr hIcon = bitmap.GetHicon();
-            var info = new IconInfo();
+            IconInfo info = new IconInfo();
             NativeMethods.GetIconInfo(hIcon, ref info);
             info.xHotspot = xHotSpot;
             info.yHotspot = yHotSpot;

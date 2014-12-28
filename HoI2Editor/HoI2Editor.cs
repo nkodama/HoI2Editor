@@ -943,8 +943,8 @@ namespace HoI2Editor
             {
                 try
                 {
-                    var serializer = new XmlSerializer(typeof (HoI2EditorSettings));
-                    using (var fs = new FileStream(SettingsFileName, FileMode.Open, FileAccess.Read))
+                    XmlSerializer serializer = new XmlSerializer(typeof (HoI2EditorSettings));
+                    using (FileStream fs = new FileStream(SettingsFileName, FileMode.Open, FileAccess.Read))
                     {
                         Settings = serializer.Deserialize(fs) as HoI2EditorSettings;
                         if (Settings == null)
@@ -973,8 +973,8 @@ namespace HoI2Editor
             }
             try
             {
-                var serializer = new XmlSerializer(typeof (HoI2EditorSettings));
-                using (var fs = new FileStream(SettingsFileName, FileMode.Create, FileAccess.Write))
+                XmlSerializer serializer = new XmlSerializer(typeof (HoI2EditorSettings));
+                using (FileStream fs = new FileStream(SettingsFileName, FileMode.Create, FileAccess.Write))
                 {
                     serializer.Serialize(fs, Settings);
                 }

@@ -67,7 +67,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var command = new Command();
+            Command command = new Command();
             while (true)
             {
                 token = lexer.GetToken();
@@ -92,7 +92,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -121,7 +121,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なコマンド種類文字列
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         continue;

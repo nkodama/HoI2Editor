@@ -49,9 +49,9 @@ namespace HoI2Editor.Parsers
         /// <returns>閣僚特性リスト</returns>
         public static List<MinisterPersonalityInfo> Parse(string fileName)
         {
-            var list = new List<MinisterPersonalityInfo>();
+            List<MinisterPersonalityInfo> list = new List<MinisterPersonalityInfo>();
 
-            using (var lexer = new TextLexer(fileName, true))
+            using (TextLexer lexer = new TextLexer(fileName, true))
             {
                 while (true)
                 {
@@ -108,7 +108,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var info = new MinisterPersonalityInfo();
+            MinisterPersonalityInfo info = new MinisterPersonalityInfo();
             while (true)
             {
                 // ファイル終端
@@ -131,7 +131,7 @@ namespace HoI2Editor.Parsers
                     return null;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (keyword == null)
                 {
                     return null;
@@ -226,7 +226,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var position = token.Value as string;
+                    string position = token.Value as string;
                     if (string.IsNullOrEmpty(position))
                     {
                         continue;

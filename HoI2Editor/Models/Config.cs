@@ -237,7 +237,7 @@ namespace HoI2Editor.Models
             TempKeyList.Clear();
             DirtyFiles.Clear();
 
-            var fileList = new List<string>();
+            List<string> fileList = new List<string>();
             string folderName;
             bool error = false;
 
@@ -530,9 +530,9 @@ namespace HoI2Editor.Models
                 effectiveCount = 11;
             }
 
-            var orderList = new List<string>();
+            List<string> orderList = new List<string>();
 
-            using (var lexer = new CsvLexer(fileName))
+            using (CsvLexer lexer = new CsvLexer(fileName))
             {
                 while (!lexer.EndOfStream)
                 {
@@ -575,7 +575,7 @@ namespace HoI2Editor.Models
                     }
 
                     // 変換テーブルに登録する
-                    var t = new string[MaxLanguages];
+                    string[] t = new string[MaxLanguages];
                     for (int i = 0; i < MaxLanguages; i++)
                     {
                         t[i] = tokens[i + 1];
@@ -677,7 +677,7 @@ namespace HoI2Editor.Models
             }
             string pathName = Path.Combine(folderName, fileName);
 
-            using (var writer = new StreamWriter(fileName))
+            using (StreamWriter writer = new StreamWriter(fileName))
             {
                 // 最初のEOF定義で追加文字列を書き込むためのフラグ
                 bool firsteof = true;

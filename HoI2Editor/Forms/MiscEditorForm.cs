@@ -107,10 +107,10 @@ namespace HoI2Editor.Forms
                         continue;
                     }
 
-                    var id = (MiscItemId) control.Tag;
+                    MiscItemId id = (MiscItemId) control.Tag;
                     if ((MiscItemId) control.Tag == MiscItemId.EnableRetirementYearLeaders)
                     {
-                        var comboBox = control as ComboBox;
+                        ComboBox comboBox = control as ComboBox;
                         if (comboBox != null)
                         {
                             comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
@@ -142,10 +142,10 @@ namespace HoI2Editor.Forms
                         continue;
                     }
 
-                    var id = (MiscItemId) control.Tag;
+                    MiscItemId id = (MiscItemId) control.Tag;
                     if ((MiscItemId) control.Tag == MiscItemId.UseNewMinisterFilesFormat)
                     {
-                        var comboBox = control as ComboBox;
+                        ComboBox comboBox = control as ComboBox;
                         if (comboBox != null)
                         {
                             comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
@@ -177,10 +177,10 @@ namespace HoI2Editor.Forms
                         continue;
                     }
 
-                    var id = (MiscItemId) control.Tag;
+                    MiscItemId id = (MiscItemId) control.Tag;
                     if ((MiscItemId) control.Tag == MiscItemId.EnableRetirementYearMinisters)
                     {
-                        var comboBox = control as ComboBox;
+                        ComboBox comboBox = control as ComboBox;
                         if (comboBox != null)
                         {
                             comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
@@ -212,7 +212,7 @@ namespace HoI2Editor.Forms
                         continue;
                     }
 
-                    var id = (MiscItemId) control.Tag;
+                    MiscItemId id = (MiscItemId) control.Tag;
                     switch (id)
                     {
                         case MiscItemId.TpMaxAttach: // 輸送艦最大付属装備数
@@ -225,7 +225,7 @@ namespace HoI2Editor.Forms
                         case MiscItemId.BbMaxAttach: // 戦艦最大付属装備数
                         case MiscItemId.CvlMaxAttach: // 軽空母最大付属装備数
                         case MiscItemId.CvMaxAttach: // 空母最大付属装備数
-                            var textBox = control as TextBox;
+                            TextBox textBox = control as TextBox;
                             if (textBox != null)
                             {
                                 textBox.Text = Misc.GetString(id);
@@ -420,13 +420,13 @@ namespace HoI2Editor.Forms
                 .Cast<MiscSectionId>()
                 .Where(section => Misc.SectionTable[(int) section, (int) type]))
             {
-                var tabPage = new TabPage
+                TabPage tabPage = new TabPage
                 {
                     Text = Misc.GetSectionName(section),
                     BackColor = SystemColors.Control
                 };
-                var table = new List<List<MiscItemId>>();
-                var list = new List<MiscItemId>();
+                List<List<MiscItemId>> table = new List<List<MiscItemId>>();
+                List<MiscItemId> list = new List<MiscItemId>();
                 int row = 0;
                 int column = 0;
                 int page = 1;
@@ -493,7 +493,7 @@ namespace HoI2Editor.Forms
         /// <param name="tabPage">対象のタブページ</param>
         private void CreateEditableItems(TabPage tabPage)
         {
-            var table = tabPage.Tag as List<List<MiscItemId>>;
+            List<List<MiscItemId>> table = tabPage.Tag as List<List<MiscItemId>>;
             if (table == null)
             {
                 return;
@@ -514,14 +514,14 @@ namespace HoI2Editor.Forms
             int comboBoxHeight = DeviceCaps.GetScaledHeight(20);
 
             int labelX = labelStartX;
-            foreach (var list in table)
+            foreach (List<MiscItemId> list in table)
             {
                 int labelY = labelStartY;
                 int editX = labelX; // 編集コントロールの右端X座標(左端ではない)
                 foreach (MiscItemId id in list)
                 {
                     // ラベルを作成する
-                    var label = new Label
+                    Label label = new Label
                     {
                         Text = Misc.GetItemName(id),
                         AutoSize = true,
@@ -579,7 +579,7 @@ namespace HoI2Editor.Forms
                     {
                         case MiscItemType.Bool:
                         case MiscItemType.Enum:
-                            var comboBox = new ComboBox
+                            ComboBox comboBox = new ComboBox
                             {
                                 DropDownStyle = ComboBoxStyle.DropDownList,
                                 DrawMode = DrawMode.OwnerDrawFixed,
@@ -610,7 +610,7 @@ namespace HoI2Editor.Forms
                             break;
 
                         default:
-                            var textBox = new TextBox
+                            TextBox textBox = new TextBox
                             {
                                 Size = new Size(textBoxWidth, textBoxHeight),
                                 Location = new Point(editX - textBoxWidth, editY),
@@ -642,7 +642,7 @@ namespace HoI2Editor.Forms
                     continue;
                 }
 
-                var id = (MiscItemId) control.Tag;
+                MiscItemId id = (MiscItemId) control.Tag;
                 ComboBox comboBox;
                 switch (Misc.ItemTypes[(int) id])
                 {
@@ -666,7 +666,7 @@ namespace HoI2Editor.Forms
                         break;
 
                     default:
-                        var textBox = control as TextBox;
+                        TextBox textBox = control as TextBox;
                         if (textBox != null)
                         {
                             textBox.Text = Misc.GetString(id);
@@ -690,7 +690,7 @@ namespace HoI2Editor.Forms
                     continue;
                 }
 
-                var id = (MiscItemId) control.Tag;
+                MiscItemId id = (MiscItemId) control.Tag;
                 switch (Misc.ItemTypes[(int) id])
                 {
                     case MiscItemType.None:
@@ -699,7 +699,7 @@ namespace HoI2Editor.Forms
                         break;
 
                     default:
-                        var textBox = control as TextBox;
+                        TextBox textBox = control as TextBox;
                         if (textBox != null)
                         {
                             textBox.ForeColor = Misc.IsDirty(id) ? Color.Red : SystemColors.WindowText;
@@ -737,12 +737,12 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnItemTextBoxValidated(object sender, EventArgs e)
         {
-            var textBox = sender as TextBox;
+            TextBox textBox = sender as TextBox;
             if (textBox == null)
             {
                 return;
             }
-            var id = (MiscItemId) textBox.Tag;
+            MiscItemId id = (MiscItemId) textBox.Tag;
             MiscItemType type = Misc.ItemTypes[(int) id];
 
             double d = 0;
@@ -1140,12 +1140,12 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnItemComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
-            var comboBox = sender as ComboBox;
+            ComboBox comboBox = sender as ComboBox;
             if (comboBox == null)
             {
                 return;
             }
-            var id = (MiscItemId) comboBox.Tag;
+            MiscItemId id = (MiscItemId) comboBox.Tag;
             MiscItemType type = Misc.ItemTypes[(int) id];
 
             // 項目がなければ何もしない
@@ -1193,12 +1193,12 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnItemComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            var comboBox = sender as ComboBox;
+            ComboBox comboBox = sender as ComboBox;
             if (comboBox == null)
             {
                 return;
             }
-            var id = (MiscItemId) comboBox.Tag;
+            MiscItemId id = (MiscItemId) comboBox.Tag;
             MiscItemType type = Misc.ItemTypes[(int) id];
 
             if (comboBox.SelectedIndex == -1)

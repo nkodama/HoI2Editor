@@ -3497,7 +3497,7 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[Province] Load: {0}", Path.GetFileName(fileName));
 
-            using (var lexer = new CsvLexer(fileName))
+            using (CsvLexer lexer = new CsvLexer(fileName))
             {
                 // 空ファイルを読み飛ばす
                 if (lexer.EndOfStream)
@@ -3560,7 +3560,7 @@ namespace HoI2Editor.Models
                 return null;
             }
 
-            var province = new Province();
+            Province province = new Province();
             int index = 0;
 
             // プロヴィンスID
@@ -4289,7 +4289,7 @@ namespace HoI2Editor.Models
         /// <param name="fileName">対象ファイル名</param>
         private static void SaveFile(string fileName)
         {
-            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 // ヘッダ行を書き込む
                 writer.WriteLine(

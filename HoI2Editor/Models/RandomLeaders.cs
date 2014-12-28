@@ -118,7 +118,7 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[RandomLeader] Load: {0}", Path.GetFileName(fileName));
 
-            using (var lexer = new CsvLexer(fileName))
+            using (CsvLexer lexer = new CsvLexer(fileName))
             {
                 while (!lexer.EndOfStream)
                 {
@@ -225,7 +225,7 @@ namespace HoI2Editor.Models
         {
             Log.Info("[RandomLeader] Save: {0}", Path.GetFileName(fileName));
 
-            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 foreach (Country country in Countries.Tags.Where(country => Items[(int) country] != null))
                 {

@@ -192,7 +192,7 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[CorpsName] Load: {0}", Path.GetFileName(fileName));
 
-            using (var lexer = new CsvLexer(fileName))
+            using (CsvLexer lexer = new CsvLexer(fileName))
             {
                 while (!lexer.EndOfStream)
                 {
@@ -352,7 +352,7 @@ namespace HoI2Editor.Models
 
             Log.Info("[CorpsName] Save: {0}", Path.GetFileName(fileName));
 
-            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 foreach (Country country in Countries.Tags.Where(country => Items[(int) branch, (int) country] != null))
                 {
@@ -530,8 +530,8 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            var names = new List<string>();
-            var r = new Regex("([^\\d]*)(\\d+)(.*)");
+            List<string> names = new List<string>();
+            Regex r = new Regex("([^\\d]*)(\\d+)(.*)");
             string pattern = "";
             int prev = 0;
             bool found = false;

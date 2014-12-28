@@ -313,7 +313,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnGameFolderBrowseButtonClick(object sender, EventArgs e)
         {
-            var dialog = new FolderBrowserDialog
+            FolderBrowserDialog dialog = new FolderBrowserDialog
             {
                 SelectedPath = Game.FolderName,
                 ShowNewFolderButton = false,
@@ -368,7 +368,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnModFolderBrowseButtonClick(object sender, EventArgs e)
         {
-            var dialog = new FolderBrowserDialog
+            FolderBrowserDialog dialog = new FolderBrowserDialog
             {
                 SelectedPath = Game.IsModActive ? Game.ModFolderName : Game.FolderName,
                 ShowNewFolderButton = false,
@@ -413,7 +413,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnExportFolderBrowseButtonClick(object sender, EventArgs e)
         {
-            var dialog = new FolderBrowserDialog
+            FolderBrowserDialog dialog = new FolderBrowserDialog
             {
                 SelectedPath = Game.IsExportFolderActive ? Game.ExportFolderName : Game.FolderName,
                 ShowNewFolderButton = false,
@@ -468,7 +468,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnGameFolderTextBoxDragDrop(object sender, DragEventArgs e)
         {
-            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            string[] fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             gameFolderTextBox.Text = fileNames[0];
             modTextBox.Text = "";
             exportFolderTextBox.Text = "";
@@ -487,7 +487,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            string[] fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             string folderName = Path.GetDirectoryName(fileNames[0]);
             if (string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh))
             {
@@ -511,7 +511,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnModTextBoxDragDrop(object sender, DragEventArgs e)
         {
-            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            string[] fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             string modName = Path.GetFileName(fileNames[0]);
             string folderName = Path.GetDirectoryName(fileNames[0]);
             if (string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh))
@@ -542,7 +542,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            string[] fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             string folderName = Path.GetDirectoryName(fileNames[0]);
             if (string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh))
             {
@@ -566,7 +566,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnExportFolderTextBoxDragDrop(object sender, DragEventArgs e)
         {
-            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            string[] fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             string exportName = Path.GetFileName(fileNames[0]);
             string folderName = Path.GetDirectoryName(fileNames[0]);
             if (string.Equals(Path.GetFileName(folderName), Game.ModPathNameDh))
@@ -601,7 +601,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMainFormDragDrop(object sender, DragEventArgs e)
         {
-            var fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
+            string[] fileNames = (string[]) e.Data.GetData(DataFormats.FileDrop, false);
             SetFolderName(fileNames[0]);
         }
 

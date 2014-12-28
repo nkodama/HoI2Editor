@@ -21,7 +21,7 @@ namespace HoI2Editor.Writers
         /// <param name="fileName">ファイル名</param>
         public static void Write(Unit unit, string fileName)
         {
-            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 // unit_type
                 if (Game.Type == GameType.ArsenalOfDemocracy)
@@ -552,7 +552,7 @@ namespace HoI2Editor.Writers
         /// <param name="fileName">ファイル名</param>
         public static void WriteDivisionTypes(List<Unit> units, string fileName)
         {
-            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 // ヘッダを出力する
                 WriteDivisionTypesHeader(writer);
@@ -810,7 +810,7 @@ namespace HoI2Editor.Writers
         /// <param name="fileName">ファイル名</param>
         public static void WriteBrigadeTypes(List<Unit> units, string fileName)
         {
-            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 // ヘッダを出力する
                 WriteBrigadeTypesHeader(writer);

@@ -21,7 +21,7 @@ namespace HoI2Editor.Writers
             MiscGameType type = Misc.GetGameType();
 
             // ファイルへ書き込む
-            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 writer.WriteLine("# NOTE: Obviously, the order of these variables cannot be changed.");
 

@@ -215,7 +215,7 @@ namespace HoI2Editor.Models
             }
             string fileName = Game.GetReadFileName(Game.GetMapFolderName(), name);
 
-            using (var reader = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            using (FileStream reader = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
                 _data = new byte[reader.Length];
                 reader.Read(_data, 0, (int) reader.Length);
@@ -246,7 +246,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private MapBlock LoadBlock()
         {
-            var block = new MapBlock();
+            MapBlock block = new MapBlock();
 
             LoadProvinceIds(block);
             LoadMapTree(block);
@@ -262,7 +262,7 @@ namespace HoI2Editor.Models
         /// <param name="block">対象マップブロック</param>
         private void LoadProvinceIds(MapBlock block)
         {
-            var ids = new ushort[MaxBlockProvinces];
+            ushort[] ids = new ushort[MaxBlockProvinces];
             int no = 0;
 
             ushort work;
@@ -286,7 +286,7 @@ namespace HoI2Editor.Models
             MapTreeNode[] stack = _stack;
             int sp = 0;
 
-            var node = new MapTreeNode { Level = MapTreeNode.MaxLevel };
+            MapTreeNode node = new MapTreeNode { Level = MapTreeNode.MaxLevel };
             block.Nodes = node;
             int no = 0;
 
@@ -323,19 +323,19 @@ namespace HoI2Editor.Models
                         int top = node.Y;
                         int bottom = top + width;
 
-                        var topLeft = new MapTreeNode { Level = level, X = left, Y = top };
+                        MapTreeNode topLeft = new MapTreeNode { Level = level, X = left, Y = top };
                         node.TopLeftChild = topLeft;
                         stack[sp++] = topLeft;
 
-                        var topRight = new MapTreeNode { Level = level, X = right, Y = top };
+                        MapTreeNode topRight = new MapTreeNode { Level = level, X = right, Y = top };
                         node.TopRightChild = topRight;
                         stack[sp++] = topRight;
 
-                        var bottomLeft = new MapTreeNode { Level = level, X = left, Y = bottom };
+                        MapTreeNode bottomLeft = new MapTreeNode { Level = level, X = left, Y = bottom };
                         node.BottomLeftChild = bottomLeft;
                         stack[sp++] = bottomLeft;
 
-                        var bottomRight = new MapTreeNode { Level = level, X = right, Y = bottom };
+                        MapTreeNode bottomRight = new MapTreeNode { Level = level, X = right, Y = bottom };
                         node.BottomRightChild = bottomRight;
                         node = bottomRight;
                     }
@@ -370,7 +370,7 @@ namespace HoI2Editor.Models
         private void LoadNodeIds(MapBlock block)
         {
             int count = block.NodeCount;
-            var ids = new byte[count + 7];
+            byte[] ids = new byte[count + 7];
 
             switch (block.ProvinceIdCount)
             {
@@ -457,12 +457,12 @@ namespace HoI2Editor.Models
         private void LoadNodeColors(MapBlock block)
         {
             int count = block.NodeCount;
-            var colors = new byte[count + 3];
+            byte[] colors = new byte[count + 3];
             const uint mask = 0x3F;
 
             for (int i = 0; i < count;)
             {
-                var data = (uint) (_data[_index++] | (_data[_index++] << 8) | (_data[_index++] << 16));
+                uint data = (uint) (_data[_index++] | (_data[_index++] << 8) | (_data[_index++] << 16));
                 colors[i++] = (byte) (data & mask);
                 colors[i++] = (byte) ((data >> 6) & mask);
                 colors[i++] = (byte) ((data >> 12) & mask);
@@ -482,7 +482,7 @@ namespace HoI2Editor.Models
         /// <returns>マップ画像</returns>
         public Bitmap GetImage()
         {
-            var bitmap = new Bitmap(Width * MapBlock.Width, Height * MapBlock.Height, PixelFormat.Format8bppIndexed);
+            Bitmap bitmap = new Bitmap(Width * MapBlock.Width, Height * MapBlock.Height, PixelFormat.Format8bppIndexed);
 
             // グレースケールのパレットを準備する
             ColorPalette palette = bitmap.Palette;
@@ -750,7 +750,7 @@ namespace HoI2Editor.Models
                         int right = pixels[pos + width] << 8;
                         if (left == right || (right - left) >= SmoothingThrethold)
                         {
-                            var color = (byte) (left >> 8);
+                            byte color = (byte) (left >> 8);
                             pixels[pos++] = color;
                             pixels[pos] = color;
                         }
@@ -773,7 +773,7 @@ namespace HoI2Editor.Models
                         int right = pixels[pos + width] << 8;
                         if (left == right || (right - left) >= SmoothingThrethold)
                         {
-                            var color = (byte) (left >> 8);
+                            byte color = (byte) (left >> 8);
                             pixels[pos++] = color;
                             pixels[pos++] = color;
                             pixels[pos++] = color;
@@ -802,7 +802,7 @@ namespace HoI2Editor.Models
                         int right = pixels[pos + width] << 8;
                         if (left == right || (right - left) >= SmoothingThrethold)
                         {
-                            var color = (byte) (left >> 8);
+                            byte color = (byte) (left >> 8);
                             pixels[pos++] = color;
                             pixels[pos++] = color;
                             pixels[pos++] = color;
@@ -843,7 +843,7 @@ namespace HoI2Editor.Models
                         int right = pixels[pos + width] << 8;
                         if (left == right || (right - left) >= SmoothingThrethold)
                         {
-                            var color = (byte) (left >> 8);
+                            byte color = (byte) (left >> 8);
                             pixels[pos++] = color;
                             pixels[pos++] = color;
                             pixels[pos++] = color;
@@ -908,7 +908,7 @@ namespace HoI2Editor.Models
                         int right = pixels[pos + width] << 8;
                         if (left == right || (right - left) >= SmoothingThrethold)
                         {
-                            var color = (byte) (left >> 8);
+                            byte color = (byte) (left >> 8);
                             pixels[pos++] = color;
                             pixels[pos++] = color;
                             pixels[pos++] = color;
@@ -1212,7 +1212,7 @@ namespace HoI2Editor.Models
         /// <param name="callback">葉ノードで呼び出す処理</param>
         private void VisitTree(MapTreeNode node, VisitorCallback callback)
         {
-            var stack = new Stack<MapTreeNode>();
+            Stack<MapTreeNode> stack = new Stack<MapTreeNode>();
             while (true)
             {
                 if (node.TopLeftChild != null)
@@ -1241,7 +1241,7 @@ namespace HoI2Editor.Models
         /// <param name="callback">葉ノードで呼び出す処理</param>
         private void VisitTreeBottom(MapTreeNode node, VisitorCallback callback)
         {
-            var stack = new Stack<MapTreeNode>();
+            Stack<MapTreeNode> stack = new Stack<MapTreeNode>();
             while (true)
             {
                 if (node.BottomLeftChild != null)
@@ -1268,7 +1268,7 @@ namespace HoI2Editor.Models
         /// <param name="callback">葉ノードで呼び出す処理</param>
         private void VisitTreeLeft(MapTreeNode node, VisitorCallback callback)
         {
-            var stack = new Stack<MapTreeNode>();
+            Stack<MapTreeNode> stack = new Stack<MapTreeNode>();
             while (true)
             {
                 if (node.TopLeftChild != null)

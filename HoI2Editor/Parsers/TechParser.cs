@@ -26,7 +26,7 @@ namespace HoI2Editor.Parsers
         /// <returns>技術グループデータ</returns>
         public static TechGroup Parse(string fileName)
         {
-            using (var lexer = new TextLexer(fileName, true))
+            using (TextLexer lexer = new TextLexer(fileName, true))
             {
                 Token token = lexer.GetToken();
                 // 無効なトークン
@@ -36,7 +36,7 @@ namespace HoI2Editor.Parsers
                     return null;
                 }
 
-                var s = token.Value as string;
+                string s = token.Value as string;
                 if (string.IsNullOrEmpty(s))
                 {
                     return null;
@@ -83,7 +83,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var group = new TechGroup();
+            TechGroup group = new TechGroup();
             while (true)
             {
                 token = lexer.GetToken();
@@ -108,7 +108,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -163,7 +163,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効なカテゴリ文字列
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         continue;
@@ -308,7 +308,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var application = new TechItem();
+            TechItem application = new TechItem();
             while (true)
             {
                 token = lexer.GetToken();
@@ -333,7 +333,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -516,7 +516,7 @@ namespace HoI2Editor.Parsers
                     // 必要とする技術群(AND)
                     foreach (int id in ids)
                     {
-                        var tech = new RequiredTech { Id = id };
+                        RequiredTech tech = new RequiredTech { Id = id };
                         application.AndRequiredTechs.Add(tech);
                     }
                     continue;
@@ -535,7 +535,7 @@ namespace HoI2Editor.Parsers
                     // 必要とする技術群(OR)
                     foreach (int id in ids)
                     {
-                        var tech = new RequiredTech { Id = id };
+                        RequiredTech tech = new RequiredTech { Id = id };
                         application.OrRequiredTechs.Add(tech);
                     }
                     continue;
@@ -587,7 +587,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var label = new TechLabel();
+            TechLabel label = new TechLabel();
             while (true)
             {
                 token = lexer.GetToken();
@@ -612,7 +612,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -691,7 +691,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var ev = new TechEvent();
+            TechEvent ev = new TechEvent();
             while (true)
             {
                 token = lexer.GetToken();
@@ -716,7 +716,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -821,7 +821,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var position = new TechPosition();
+            TechPosition position = new TechPosition();
             while (true)
             {
                 token = lexer.GetToken();
@@ -846,7 +846,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -936,7 +936,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var component = new TechComponent();
+            TechComponent component = new TechComponent();
             while (true)
             {
                 token = lexer.GetToken();
@@ -961,7 +961,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -1042,7 +1042,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 無効な研究特性文字列
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         continue;
@@ -1107,7 +1107,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         continue;
@@ -1165,7 +1165,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var list = new List<int>();
+            List<int> list = new List<int>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1218,7 +1218,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var list = new List<Command>();
+            List<Command> list = new List<Command>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1243,7 +1243,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;

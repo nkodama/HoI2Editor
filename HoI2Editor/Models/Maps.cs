@@ -44,10 +44,10 @@ namespace HoI2Editor.Models
         /// <param name="level">マップレベル</param>
         public static void Load(MapLevel level)
         {
-            var sw = new Stopwatch();
+            Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            var map = new Map(level);
+            Map map = new Map(level);
 
             // マップデータを読み込む
             map.Load();
@@ -72,9 +72,9 @@ namespace HoI2Editor.Models
             string fileName = Game.GetReadFileName(Game.GetMapFolderName(), Game.BoundBoxFileName);
             byte[] data;
             int count;
-            using (var reader = new FileStream(fileName, FileMode.Open, FileAccess.Read))
+            using (FileStream reader = new FileStream(fileName, FileMode.Open, FileAccess.Read))
             {
-                var len = (int) reader.Length;
+                int len = (int) reader.Length;
                 data = new byte[len];
                 count = len / 16;
                 reader.Read(data, 0, len);

@@ -317,7 +317,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        /// プロヴィンス名を取得する
+        ///     プロヴィンス名を取得する
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <returns>プロヴィンス名</returns>

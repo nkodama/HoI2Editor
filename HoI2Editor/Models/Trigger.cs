@@ -320,9 +320,9 @@ namespace HoI2Editor.Models
             }
 
             // コンテナトリガーの場合
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             sb.AppendFormat("{0} = {{", TypeStringTable[(int) Type]);
-            var triggers = Value as List<Trigger>;
+            List<Trigger> triggers = Value as List<Trigger>;
             if (triggers != null)
             {
                 foreach (Trigger trigger in triggers)

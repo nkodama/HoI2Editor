@@ -237,7 +237,7 @@ namespace HoI2Editor.Models
         /// <returns>読み込みに失敗すればfalseを返す</returns>
         private static bool LoadHoI2()
         {
-            var filelist = new List<string>();
+            List<string> filelist = new List<string>();
             string folderName;
             bool error = false;
 
@@ -404,8 +404,8 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[Leader] Load: {0}", Path.GetFileName(fileName));
 
-            var list = new List<string>();
-            using (var reader = new StreamReader(fileName))
+            List<string> list = new List<string>();
+            using (StreamReader reader = new StreamReader(fileName))
             {
                 while (!reader.EndOfStream)
                 {
@@ -437,7 +437,7 @@ namespace HoI2Editor.Models
         {
             Log.Verbose("[Leader] Load: {0}", Path.GetFileName(fileName));
 
-            using (var lexer = new CsvLexer(fileName))
+            using (CsvLexer lexer = new CsvLexer(fileName))
             {
                 // 空ファイルを読み飛ばす
                 if (lexer.EndOfStream)
@@ -455,7 +455,7 @@ namespace HoI2Editor.Models
                 }
 
                 // 1行ずつ順に読み込む
-                var country = Country.None;
+                Country country = Country.None;
                 while (!lexer.EndOfStream)
                 {
                     Leader leader = ParseLine(lexer);
@@ -514,7 +514,7 @@ namespace HoI2Editor.Models
                 return null;
             }
 
-            var leader = new Leader();
+            Leader leader = new Leader();
             int index = 0;
 
             // 名前
@@ -796,7 +796,7 @@ namespace HoI2Editor.Models
             Log.Info("[Leader] Save: {0}", Path.GetFileName(fileName));
 
             // 登録された指揮官ファイル名を順に書き込む
-            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 foreach (string name in FileNameMap.Select(pair => pair.Value))
                 {
@@ -825,7 +825,7 @@ namespace HoI2Editor.Models
             string fileName = Path.Combine(folderName, name);
             Log.Info("[Leader] Save: {0}", name);
 
-            using (var writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 int lineNo = 2;
 

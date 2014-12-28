@@ -1789,7 +1789,7 @@ namespace HoI2Editor.Models
 
             // 移動先のユニットモデル名を変更する
             SetModelName(dest, name);
-            foreach (var pair in names)
+            foreach (KeyValuePair<Country, string> pair in names)
             {
                 SetModelName(dest, pair.Key, pair.Value);
             }

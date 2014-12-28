@@ -843,9 +843,9 @@ namespace HoI2Editor.Models
             }
 
             // 実行ファイルのバイナリ列を読み込む
-            var info = new FileInfo(_exeFileName);
+            FileInfo info = new FileInfo(_exeFileName);
             long size = info.Length;
-            var data = new byte[size];
+            byte[] data = new byte[size];
 
             FileStream s = info.OpenRead();
             s.Read(data, 0, (int) size);
@@ -972,7 +972,7 @@ namespace HoI2Editor.Models
         /// <returns>探索に成功すればtrueを返す</returns>
         private static List<uint> BinaryScan(byte[] target, byte[] pattern, uint start, uint size)
         {
-            var result = new List<uint>();
+            List<uint> result = new List<uint>();
             for (uint offset = start; offset <= start + size - pattern.Length; offset++)
             {
                 if (IsBinaryMatch(target, pattern, offset))

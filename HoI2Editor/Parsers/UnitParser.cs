@@ -28,7 +28,7 @@ namespace HoI2Editor.Parsers
         /// <returns>構文解析の成否</returns>
         public static bool Parse(string fileName, Unit unit)
         {
-            using (var lexer = new TextLexer(fileName, true))
+            using (TextLexer lexer = new TextLexer(fileName, true))
             {
                 while (true)
                 {
@@ -48,7 +48,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var keyword = token.Value as string;
+                    string keyword = token.Value as string;
                     if (string.IsNullOrEmpty(keyword))
                     {
                         return false;
@@ -76,7 +76,7 @@ namespace HoI2Editor.Parsers
                             continue;
                         }
 
-                        var s = token.Value as string;
+                        string s = token.Value as string;
                         if (string.IsNullOrEmpty(s))
                         {
                             return false;
@@ -268,7 +268,7 @@ namespace HoI2Editor.Parsers
                                 lexer.SkipLine();
                                 continue;
                             }
-                            var step = (int) (double) token.Value;
+                            int step = (int) (double) token.Value;
                             if (step < 0 || step > 2)
                             {
                                 Log.InvalidToken(LogCategory, token, lexer);
@@ -331,7 +331,7 @@ namespace HoI2Editor.Parsers
                                 continue;
                             }
 
-                            var s = token.Value as string;
+                            string s = token.Value as string;
                             if (string.IsNullOrEmpty(s))
                             {
                                 return false;
@@ -391,7 +391,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var model = new UnitModel();
+            UnitModel model = new UnitModel();
             while (true)
             {
                 token = lexer.GetToken();
@@ -416,7 +416,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -1595,7 +1595,7 @@ namespace HoI2Editor.Parsers
                             continue;
                         }
 
-                        var s = token.Value as string;
+                        string s = token.Value as string;
                         if (string.IsNullOrEmpty(s))
                         {
                             continue;
@@ -1736,7 +1736,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var equipments = new List<UnitEquipment>();
+            List<UnitEquipment> equipments = new List<UnitEquipment>();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1760,7 +1760,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -1790,7 +1790,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var equipment = new UnitEquipment { Resource = resource, Quantity = (double) token.Value };
+                UnitEquipment equipment = new UnitEquipment { Resource = resource, Quantity = (double) token.Value };
                 equipments.Add(equipment);
             }
 
@@ -1820,7 +1820,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            var upgrade = new UnitUpgrade();
+            UnitUpgrade upgrade = new UnitUpgrade();
             while (true)
             {
                 token = lexer.GetToken();
@@ -1843,7 +1843,7 @@ namespace HoI2Editor.Parsers
                     Log.InvalidToken(LogCategory, token, lexer);
                     continue;
                 }
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     return null;
@@ -1871,7 +1871,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         return null;
@@ -1969,7 +1969,7 @@ namespace HoI2Editor.Parsers
         /// <returns>構文解析の成否</returns>
         public static bool ParseDivisionTypes(string fileName, List<Unit> units)
         {
-            using (var lexer = new TextLexer(fileName, true))
+            using (TextLexer lexer = new TextLexer(fileName, true))
             {
                 while (true)
                 {
@@ -1989,7 +1989,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var keyword = token.Value as string;
+                    string keyword = token.Value as string;
                     if (string.IsNullOrEmpty(keyword))
                     {
                         return false;
@@ -2046,7 +2046,7 @@ namespace HoI2Editor.Parsers
         /// <returns>構文解析の成否</returns>
         public static bool ParseBrigadeTypes(string fileName, List<Unit> units)
         {
-            using (var lexer = new TextLexer(fileName, true))
+            using (TextLexer lexer = new TextLexer(fileName, true))
             {
                 while (true)
                 {
@@ -2066,7 +2066,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var keyword = token.Value as string;
+                    string keyword = token.Value as string;
                     if (string.IsNullOrEmpty(keyword))
                     {
                         return false;
@@ -2146,7 +2146,7 @@ namespace HoI2Editor.Parsers
                     Log.InvalidToken(LogCategory, token, lexer);
                     continue;
                 }
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     return false;
@@ -2233,7 +2233,7 @@ namespace HoI2Editor.Parsers
                     Log.InvalidToken(LogCategory, token, lexer);
                     continue;
                 }
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     return false;
@@ -2261,7 +2261,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         return false;
@@ -2480,7 +2480,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         return false;
@@ -2523,7 +2523,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         return false;
@@ -2690,7 +2690,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         continue;
@@ -2742,7 +2742,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         continue;
@@ -2794,7 +2794,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         continue;
@@ -2846,7 +2846,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         continue;
@@ -2898,7 +2898,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    var s = token.Value as string;
+                    string s = token.Value as string;
                     if (string.IsNullOrEmpty(s))
                     {
                         continue;

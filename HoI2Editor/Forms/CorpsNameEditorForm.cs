@@ -305,7 +305,7 @@ namespace HoI2Editor.Forms
             if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
                 // 変更ありの項目は文字色を変更する
-                var branch = (Branch) (e.Index + 1);
+                Branch branch = (Branch) (e.Index + 1);
                 brush = CorpsNames.IsDirty(branch)
                     ? new SolidBrush(Color.Red)
                     : new SolidBrush(SystemColors.WindowText);
@@ -391,7 +391,7 @@ namespace HoI2Editor.Forms
             if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
                 // 変更ありの項目は文字色を変更する
-                var branch = (Branch) (branchListBox.SelectedIndex + 1);
+                Branch branch = (Branch) (branchListBox.SelectedIndex + 1);
                 Country country = Countries.Tags[e.Index];
                 brush = CorpsNames.IsDirty(branch, country)
                     ? new SolidBrush(Color.Red)
@@ -439,7 +439,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            var branch = (Branch) (branchListBox.SelectedIndex + 1);
+            Branch branch = (Branch) (branchListBox.SelectedIndex + 1);
 
             // 選択中の国家がなければ戻る
             if (countryListBox.SelectedIndex < 0)
@@ -449,7 +449,7 @@ namespace HoI2Editor.Forms
             Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // 軍団名を順に追加する
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             foreach (string name in CorpsNames.GetNames(branch, country))
             {
                 sb.AppendLine(name);
@@ -470,7 +470,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            var branch = (Branch) (branchListBox.SelectedIndex + 1);
+            Branch branch = (Branch) (branchListBox.SelectedIndex + 1);
 
             // 選択中の国家がなければ戻る
             if (countryListBox.SelectedIndex < 0)
@@ -571,7 +571,7 @@ namespace HoI2Editor.Forms
                 {
                     return;
                 }
-                var branch = (Branch) (branchListBox.SelectedIndex + 1);
+                Branch branch = (Branch) (branchListBox.SelectedIndex + 1);
 
                 if (allCountryCheckBox.Checked)
                 {
@@ -622,7 +622,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            var branch = (Branch) (branchListBox.SelectedIndex + 1);
+            Branch branch = (Branch) (branchListBox.SelectedIndex + 1);
 
             // 国家リストボックスの選択項目がなければ戻る
             if (countryListBox.SelectedIndex < 0)
@@ -633,8 +633,8 @@ namespace HoI2Editor.Forms
 
             string prefix = prefixComboBox.Text;
             string suffix = suffixComboBox.Text;
-            var start = (int) startNumericUpDown.Value;
-            var end = (int) endNumericUpDown.Value;
+            int start = (int) startNumericUpDown.Value;
+            int end = (int) endNumericUpDown.Value;
 
             Log.Info("[CorpsName] Add: {0}-{1} {2} {3} [{4}] <{5}>", start, end, prefix, suffix,
                 Branches.GetName(branch), Countries.Strings[(int) country]);
@@ -696,7 +696,7 @@ namespace HoI2Editor.Forms
                 {
                     return;
                 }
-                var branch = (Branch) (branchListBox.SelectedIndex + 1);
+                Branch branch = (Branch) (branchListBox.SelectedIndex + 1);
 
                 if (allCountryCheckBox.Checked)
                 {

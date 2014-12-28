@@ -386,7 +386,7 @@ namespace HoI2Editor.Forms
                 return null;
             }
 
-            var item = new ListViewItem
+            ListViewItem item = new ListViewItem
             {
                 Text = Config.GetText(tech.Name),
                 Tag = tech
@@ -412,7 +412,7 @@ namespace HoI2Editor.Forms
                         techListView.SelectedIndices.Count > 0 && e.ItemIndex == techListView.SelectedIndices[0]
                             ? (techListView.Focused ? SystemBrushes.Highlight : SystemBrushes.Control)
                             : SystemBrushes.Window, e.Bounds);
-                    var tech = techListView.Items[e.ItemIndex].Tag as TechItem;
+                    TechItem tech = techListView.Items[e.ItemIndex].Tag as TechItem;
                     if (tech == null)
                     {
                         break;
@@ -439,9 +439,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var gr = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16),
+            Rectangle gr = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16),
                 DeviceCaps.GetScaledHeight(16));
-            var tr = new Rectangle(e.Bounds.X + DeviceCaps.GetScaledWidth(16) + 3, e.Bounds.Y + 3,
+            Rectangle tr = new Rectangle(e.Bounds.X + DeviceCaps.GetScaledWidth(16) + 3, e.Bounds.Y + 3,
                 e.Bounds.Width - DeviceCaps.GetScaledWidth(16) - 3, e.Bounds.Height);
             Brush brush = new SolidBrush(
                 ((techListView.SelectedIndices.Count > 0) && (e.ItemIndex == techListView.SelectedIndices[0]))
@@ -578,7 +578,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var tech = techListView.SelectedItems[0].Tag as TechItem;
+            TechItem tech = techListView.SelectedItems[0].Tag as TechItem;
             if (tech == null)
             {
                 return;
@@ -629,7 +629,7 @@ namespace HoI2Editor.Forms
                 return null;
             }
 
-            var item = new ListViewItem
+            ListViewItem item = new ListViewItem
             {
                 Tag = research
             };
@@ -658,7 +658,7 @@ namespace HoI2Editor.Forms
                         teamListView.SelectedIndices.Count > 0 && e.ItemIndex == teamListView.SelectedIndices[0]
                             ? (teamListView.Focused ? SystemBrushes.Highlight : SystemBrushes.Control)
                             : SystemBrushes.Window, e.Bounds);
-                    var research = teamListView.Items[e.ItemIndex].Tag as Research;
+                    Research research = teamListView.Items[e.ItemIndex].Tag as Research;
                     if (research == null)
                     {
                         break;
@@ -684,7 +684,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16),
+            Rectangle rect = new Rectangle(e.Bounds.X + 4, e.Bounds.Y + 1, DeviceCaps.GetScaledWidth(16),
                 DeviceCaps.GetScaledHeight(16));
             for (int i = 0; i < Team.SpecialityLength; i++)
             {

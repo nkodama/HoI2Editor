@@ -259,9 +259,9 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnBatchButtonClick(object sender, EventArgs e)
         {
-            var countryName = countryListBox.SelectedItem as string;
+            string countryName = countryListBox.SelectedItem as string;
             Country country = !string.IsNullOrEmpty(countryName) ? Countries.StringMap[countryName] : Country.None;
-            var dialog = new LeaderBatchDialog(country);
+            LeaderBatchDialog dialog = new LeaderBatchDialog(country);
             if (dialog.ShowDialog() == DialogResult.Cancel)
             {
                 return;
@@ -777,7 +777,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択項目を引き継いで項目を作成する
-            var leader = new Leader
+            Leader leader = new Leader
             {
                 Country = selected.Country,
                 Id = Leaders.GetNewId(selected.Country),
@@ -859,7 +859,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var top = leaderListView.Items[0].Tag as Leader;
+            Leader top = leaderListView.Items[0].Tag as Leader;
             if (top == null)
             {
                 return;
@@ -894,7 +894,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var upper = leaderListView.Items[index - 1].Tag as Leader;
+            Leader upper = leaderListView.Items[index - 1].Tag as Leader;
             if (upper == null)
             {
                 return;
@@ -929,7 +929,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var lower = leaderListView.Items[index + 1].Tag as Leader;
+            Leader lower = leaderListView.Items[index + 1].Tag as Leader;
             if (lower == null)
             {
                 return;
@@ -964,7 +964,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var bottom = leaderListView.Items[leaderListView.Items.Count - 1].Tag as Leader;
+            Leader bottom = leaderListView.Items[leaderListView.Items.Count - 1].Tag as Leader;
             if (bottom == null)
             {
                 return;
@@ -1088,7 +1088,7 @@ namespace HoI2Editor.Forms
         /// <returns>指揮官リストビューの項目</returns>
         private static ListViewItem CreateLeaderListViewItem(Leader leader)
         {
-            var item = new ListViewItem
+            ListViewItem item = new ListViewItem
             {
                 Text = Countries.Strings[(int) leader.Country],
                 Tag = leader
@@ -2247,7 +2247,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var id = (int) idNumericUpDown.Value;
+            int id = (int) idNumericUpDown.Value;
             if (id == leader.Id)
             {
                 return;
@@ -2331,7 +2331,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var branch = (Branch) (branchComboBox.SelectedIndex + 1);
+            Branch branch = (Branch) (branchComboBox.SelectedIndex + 1);
             if (branch == leader.Branch)
             {
                 return;
@@ -2369,7 +2369,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var idealRank = (LeaderRank) (idealRankComboBox.SelectedIndex + 1);
+            LeaderRank idealRank = (LeaderRank) (idealRankComboBox.SelectedIndex + 1);
             if (idealRank == leader.IdealRank)
             {
                 return;
@@ -2404,7 +2404,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var skill = (int) skillNumericUpDown.Value;
+            int skill = (int) skillNumericUpDown.Value;
             if (skill == leader.Skill)
             {
                 return;
@@ -2441,7 +2441,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var maxSkill = (int) maxSkillNumericUpDown.Value;
+            int maxSkill = (int) maxSkillNumericUpDown.Value;
             if (maxSkill == leader.MaxSkill)
             {
                 return;
@@ -2478,7 +2478,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var experience = (int) experienceNumericUpDown.Value;
+            int experience = (int) experienceNumericUpDown.Value;
             if (experience == leader.Experience)
             {
                 return;
@@ -2511,7 +2511,7 @@ namespace HoI2Editor.Forms
                 return;
             }
             // 値に変化がなければ何もしない
-            var loyalty = (int) loyaltyNumericUpDown.Value;
+            int loyalty = (int) loyaltyNumericUpDown.Value;
             if (loyalty == leader.Loyalty)
             {
                 return;
@@ -2545,7 +2545,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var startYear = (int) startYearNumericUpDown.Value;
+            int startYear = (int) startYearNumericUpDown.Value;
             if (startYear == leader.StartYear)
             {
                 return;
@@ -2582,7 +2582,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var endYear = (int) endYearNumericUpDown.Value;
+            int endYear = (int) endYearNumericUpDown.Value;
             if (endYear == leader.EndYear)
             {
                 return;
@@ -2619,7 +2619,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var retirementYear = (int) retirementYearNumericUpDown.Value;
+            int retirementYear = (int) retirementYearNumericUpDown.Value;
             if (retirementYear == leader.RetirementYear)
             {
                 return;
@@ -2654,7 +2654,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var year = (int) rankYearNumericUpDown1.Value;
+            int year = (int) rankYearNumericUpDown1.Value;
             if (year == leader.RankYear[0])
             {
                 return;
@@ -2688,7 +2688,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var year = (int) rankYearNumericUpDown2.Value;
+            int year = (int) rankYearNumericUpDown2.Value;
             if (year == leader.RankYear[1])
             {
                 return;
@@ -2722,7 +2722,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var year = (int) rankYearNumericUpDown3.Value;
+            int year = (int) rankYearNumericUpDown3.Value;
             if (year == leader.RankYear[2])
             {
                 return;
@@ -2756,7 +2756,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            var year = (int) rankYearNumericUpDown4.Value;
+            int year = (int) rankYearNumericUpDown4.Value;
             if (year == leader.RankYear[3])
             {
                 return;
@@ -2838,7 +2838,7 @@ namespace HoI2Editor.Forms
             }
 
             // ファイル選択ダイアログを開く
-            var dialog = new OpenFileDialog
+            OpenFileDialog dialog = new OpenFileDialog
             {
                 InitialDirectory = Path.Combine(Game.FolderName, Game.PersonPicturePathName),
                 FileName = leader.PictureName,
@@ -4249,7 +4249,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             foreach (string s in countries.Select(country => Countries.Strings[(int) country]))
             {
                 sb.AppendFormat("{0} ", s);
@@ -4470,7 +4470,7 @@ namespace HoI2Editor.Forms
         private static void LogBatchEdit(string countries, bool[] items, LeaderRank idealRank, int skill, int maxSkill,
             int experience, int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
             if (items[(int) LeaderBatchItemId.IdealRank])
             {

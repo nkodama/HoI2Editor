@@ -77,7 +77,7 @@ namespace HoI2Editor.Parsers
         /// <returns></returns>
         private static List<Trigger> ParseContainerTrigger(TextLexer lexer)
         {
-            var list = new List<Trigger>();
+            List<Trigger> list = new List<Trigger>();
             while (true)
             {
                 Token token = lexer.GetToken();
@@ -101,7 +101,7 @@ namespace HoI2Editor.Parsers
                     lexer.SkipLine();
                     continue;
                 }
-                var keyword = token.Value as string;
+                string keyword = token.Value as string;
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
@@ -116,7 +116,7 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                var trigger = new Trigger { Type = TypeMap[keyword] };
+                Trigger trigger = new Trigger { Type = TypeMap[keyword] };
 
                 // =
                 token = lexer.GetToken();

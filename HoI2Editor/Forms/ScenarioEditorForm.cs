@@ -115,22 +115,22 @@ namespace HoI2Editor.Forms
         private const string MoneyName = "RESOURCE_MONEY";
 
         /// <summary>
-        /// 輸送船団の文字列名
+        ///     輸送船団の文字列名
         /// </summary>
         private const string TransportsName = "CIW_TRANSPORTS";
 
         /// <summary>
-        /// 護衛艦の文字列名
+        ///     護衛艦の文字列名
         /// </summary>
         private const string EscortsName = "CIW_ESCORTS";
 
         /// <summary>
-        /// ICの文字列名
+        ///     ICの文字列名
         /// </summary>
         private const string IcName = "RESOURCE_IC";
 
         /// <summary>
-        /// 人的資源の文字列名
+        ///     人的資源の文字列名
         /// </summary>
         private const string ManpowerName = "RESOURCE_MANPOWER";
 
@@ -675,7 +675,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFolderRadioButtonCheckedChanged(object sender, EventArgs e)
         {
-            var button = sender as RadioButton;
+            RadioButton button = sender as RadioButton;
             if (button != null && button.Checked)
             {
                 UpdateScenarioListBox();
@@ -757,7 +757,7 @@ namespace HoI2Editor.Forms
         {
             Scenario scenario = Scenarios.Data;
 
-            var dialog = new OpenFileDialog
+            OpenFileDialog dialog = new OpenFileDialog
             {
                 InitialDirectory = Game.GetReadFileName(Game.ScenarioDataPathName),
                 FileName = scenario.PanelName,
@@ -1158,7 +1158,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnIncludeFolderBrowseButtonClick(object sender, EventArgs e)
         {
-            var dialog = new FolderBrowserDialog
+            FolderBrowserDialog dialog = new FolderBrowserDialog
             {
                 SelectedPath = Game.GetReadFileName(Game.ScenarioDataPathName),
                 ShowNewFolderButton = true
@@ -1210,7 +1210,7 @@ namespace HoI2Editor.Forms
                 return null;
             }
 
-            var bitmap = new Bitmap(pathName);
+            Bitmap bitmap = new Bitmap(pathName);
             bitmap.MakeTransparent(Color.Lime);
             return bitmap;
         }
@@ -1866,7 +1866,7 @@ namespace HoI2Editor.Forms
                 majorListBox.Items.Add(Countries.GetTagName(country));
 
                 // 主要国リストに追加する
-                var major = new MajorCountrySettings { Country = country };
+                MajorCountrySettings major = new MajorCountrySettings { Country = country };
                 header.MajorCountries.Add(major);
 
                 // 選択可能国リストボックスから削除する
@@ -2080,7 +2080,7 @@ namespace HoI2Editor.Forms
             List<MajorCountrySettings> majors = scenario.Header.MajorCountries;
             MajorCountrySettings major = majors[majorListBox.SelectedIndex];
 
-            var dialog = new OpenFileDialog
+            OpenFileDialog dialog = new OpenFileDialog
             {
                 InitialDirectory = Game.GetReadFileName(Game.ScenarioDataPathName),
                 FileName = major.PictureName,
@@ -2282,7 +2282,7 @@ namespace HoI2Editor.Forms
             allianceListView.Items.Clear();
 
             // 枢軸国
-            var item = new ListViewItem();
+            ListViewItem item = new ListViewItem();
             if (data.Axis != null)
             {
                 item.Text = GetAllianceName(data.Axis);
@@ -2532,11 +2532,11 @@ namespace HoI2Editor.Forms
             List<Alliance> alliances = scenario.GlobalData.Alliances;
 
             // 同盟リストに項目を追加する
-            var alliance = new Alliance { Id = Scenarios.GetNewTypeId(Scenarios.DefaultAllianceType, 1) };
+            Alliance alliance = new Alliance { Id = Scenarios.GetNewTypeId(Scenarios.DefaultAllianceType, 1) };
             alliances.Add(alliance);
 
             // 同盟リストビューに項目を追加する
-            var item = new ListViewItem { Text = Resources.Alliance, Tag = alliance };
+            ListViewItem item = new ListViewItem { Text = Resources.Alliance, Tag = alliance };
             item.SubItems.Add("");
             allianceListView.Items.Add(item);
 
@@ -3117,7 +3117,11 @@ namespace HoI2Editor.Forms
             warListView.Items.Clear();
             foreach (War war in data.Wars)
             {
-                var item = new ListViewItem { Text = Countries.GetNameList(war.Attackers.Participant), Tag = war };
+                ListViewItem item = new ListViewItem
+                {
+                    Text = Countries.GetNameList(war.Attackers.Participant),
+                    Tag = war
+                };
                 item.SubItems.Add(Countries.GetNameList(war.Defenders.Participant));
                 warListView.Items.Add(item);
             }
@@ -3479,7 +3483,7 @@ namespace HoI2Editor.Forms
             List<War> wars = scenario.GlobalData.Wars;
 
             // 戦争リストに項目を追加する
-            var war = new War
+            War war = new War
             {
                 StartDate = new GameDate(),
                 EndDate = new GameDate(),
@@ -3490,7 +3494,7 @@ namespace HoI2Editor.Forms
             wars.Add(war);
 
             // 戦争リストビューに項目を追加する
-            var item = new ListViewItem { Tag = war };
+            ListViewItem item = new ListViewItem { Tag = war };
             item.SubItems.Add("");
             warListView.Items.Add(item);
 
@@ -7196,7 +7200,7 @@ namespace HoI2Editor.Forms
             SpySettings spy = Scenarios.GetCountryIntelligence(self, target);
 
             // 値に変化がなければ何もしない
-            var val = (int) spyNumNumericUpDown.Value;
+            int val = (int) spyNumNumericUpDown.Value;
             if ((spy != null) && (val == spy.Spies))
             {
                 return;
@@ -7435,8 +7439,8 @@ namespace HoI2Editor.Forms
             tradeInfoGroupBox.Enabled = true;
             tradeDealGroupBox.Enabled = true;
 
-            var index = tradeListView.SelectedIndices[0];
-            var count = tradeListView.Items.Count;
+            int index = tradeListView.SelectedIndices[0];
+            int count = tradeListView.Items.Count;
             tradeUpButton.Enabled = (index > 0);
             tradeDownButton.Enabled = (index < count - 1);
             tradeRemoveButton.Enabled = true;
@@ -7471,8 +7475,8 @@ namespace HoI2Editor.Forms
             List<Treaty> trades = scenario.GlobalData.Trades;
 
             // 貿易リストビューの項目を移動する
-            var index = tradeListView.SelectedIndices[0];
-            var item = tradeListView.Items[index];
+            int index = tradeListView.SelectedIndices[0];
+            ListViewItem item = tradeListView.Items[index];
             tradeListView.Items.RemoveAt(index);
             tradeListView.Items.Insert(index - 1, item);
             tradeListView.Items[index - 1].Focused = true;
@@ -7480,7 +7484,7 @@ namespace HoI2Editor.Forms
             tradeListView.EnsureVisible(index - 1);
 
             // 貿易リストの項目を移動する
-            var trade = trades[index];
+            Treaty trade = trades[index];
             trades.RemoveAt(index);
             trades.Insert(index - 1, trade);
 
@@ -7499,8 +7503,8 @@ namespace HoI2Editor.Forms
             List<Treaty> trades = scenario.GlobalData.Trades;
 
             // 貿易リストビューの項目を移動する
-            var index = tradeListView.SelectedIndices[0];
-            var item = tradeListView.Items[index];
+            int index = tradeListView.SelectedIndices[0];
+            ListViewItem item = tradeListView.Items[index];
             tradeListView.Items.RemoveAt(index);
             tradeListView.Items.Insert(index + 1, item);
             tradeListView.Items[index + 1].Focused = true;
@@ -7508,7 +7512,7 @@ namespace HoI2Editor.Forms
             tradeListView.EnsureVisible(index + 1);
 
             // 貿易リストの項目を移動する
-            var trade = trades[index];
+            Treaty trade = trades[index];
             trades.RemoveAt(index);
             trades.Insert(index + 1, trade);
 
@@ -7527,7 +7531,7 @@ namespace HoI2Editor.Forms
             List<Treaty> trades = scenario.GlobalData.Trades;
 
             // 貿易リストに項目を追加する
-            var trade = new Treaty
+            Treaty trade = new Treaty
             {
                 StartDate = new GameDate(),
                 EndDate = new GameDate(),
@@ -7536,7 +7540,7 @@ namespace HoI2Editor.Forms
             trades.Add(trade);
 
             // 貿易リストビューに項目を追加する
-            var item = new ListViewItem { Tag = trade };
+            ListViewItem item = new ListViewItem { Tag = trade };
             item.SubItems.Add("");
             item.SubItems.Add("");
             tradeListView.Items.Add(item);
@@ -7556,7 +7560,7 @@ namespace HoI2Editor.Forms
             // 追加した項目を選択する
             if (tradeListView.SelectedIndices.Count > 0)
             {
-                var prev = tradeListView.SelectedItems[0];
+                ListViewItem prev = tradeListView.SelectedItems[0];
                 prev.Focused = false;
                 prev.Selected = false;
             }
@@ -7574,8 +7578,8 @@ namespace HoI2Editor.Forms
             Scenario scenario = Scenarios.Data;
             List<Treaty> trades = scenario.GlobalData.Trades;
 
-            var index = tradeListView.SelectedIndices[0];
-            var trade = trades[index];
+            int index = tradeListView.SelectedIndices[0];
+            Treaty trade = trades[index];
 
             // typeとidの組を削除する
             Scenarios.RemoveTypeId(trade.Id);
@@ -7619,7 +7623,7 @@ namespace HoI2Editor.Forms
         /// <returns>貿易リストビューの項目</returns>
         private ListViewItem CreateTradeListViewItem(Treaty trade)
         {
-            var item = new ListViewItem
+            ListViewItem item = new ListViewItem
             {
                 Text = Countries.GetName(trade.Country1),
                 Tag = trade
@@ -7637,7 +7641,7 @@ namespace HoI2Editor.Forms
         /// <returns>貿易内容の文字列</returns>
         private static string GetTradeString(Treaty trade)
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             if (!DoubleHelper.IsZero(trade.Energy))
             {
                 sb.AppendFormat("{0}:{1}, ", Config.GetText(EnergyName), DoubleHelper.ToString1(trade.Energy));
@@ -9194,7 +9198,7 @@ namespace HoI2Editor.Forms
                 ? Config.GetText(settings.Name)
                 : Countries.GetName(country));
             regularIdComboBox.SelectedIndex = (flag && settings.Country != Country.None)
-                ? Array.IndexOf(Countries.Tags, (Country) settings.Country) + 1
+                ? Array.IndexOf(Countries.Tags, settings.Country) + 1
                 : 0;
             flagExtTextBox.Text = (flag && !string.IsNullOrEmpty(settings.FlagExt)) ? settings.FlagExt : "";
 
@@ -9210,8 +9214,8 @@ namespace HoI2Editor.Forms
             nukeTextBox.Text = flag ? IntHelper.ToString(settings.Nuke) : "";
 
             groundDefEffTextBox.Text = (flag && !DoubleHelper.IsZero(settings.GroundDefEff))
-             ? DoubleHelper.ToString(settings.GroundDefEff)
-             : "";
+                ? DoubleHelper.ToString(settings.GroundDefEff)
+                : "";
             peacetimeIcModifierTextBox.Text = (flag && !DoubleHelper.IsZero(settings.PeacetimeIcModifier))
                 ? DoubleHelper.ToString(settings.PeacetimeIcModifier)
                 : "";
@@ -9310,7 +9314,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 選択中の国家を取得する
+        ///     選択中の国家を取得する
         /// </summary>
         /// <returns></returns>
         private Country GetSelectedCountry()

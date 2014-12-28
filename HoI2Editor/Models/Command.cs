@@ -368,7 +368,7 @@ namespace HoI2Editor.Models
         /// <returns>複製するコマンド</returns>
         public Command Clone()
         {
-            var command = new Command { Type = Type, Which = Which, Value = Value, When = When, Where = Where };
+            Command command = new Command { Type = Type, Which = Which, Value = Value, When = When, Where = Where };
 
             return command;
         }
@@ -383,7 +383,7 @@ namespace HoI2Editor.Models
         /// <returns>文字列</returns>
         public override string ToString()
         {
-            var sb = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             if (Game.Type == GameType.DarkestHour && Triggers != null && Triggers.Count > 0)
             {
                 sb.Append("trigger = {");
