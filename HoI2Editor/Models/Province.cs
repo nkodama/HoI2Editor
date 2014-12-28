@@ -316,6 +316,16 @@ namespace HoI2Editor.Models
             return Config.GetText(Name);
         }
 
+        /// <summary>
+        /// プロヴィンス名を取得する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <returns>プロヴィンス名</returns>
+        public static string GetName(int id)
+        {
+            return Config.GetText(string.Format("PROV{0}", id));
+        }
+
         #endregion
 
         #region 編集済みフラグ操作

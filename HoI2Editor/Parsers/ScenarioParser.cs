@@ -3594,7 +3594,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 平時IC補正
-                    country.PeacetimeIcMod = (double) d;
+                    country.PeacetimeIcModifier = (double) d;
                     continue;
                 }
 
@@ -3609,7 +3609,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 戦時IC補正
-                    country.WartimeIcMod = (double) d;
+                    country.WartimeIcModifier = (double) d;
                     continue;
                 }
 
@@ -3834,7 +3834,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // マップ外資源
-                    country.Free = free;
+                    country.Offmap = free;
                     continue;
                 }
 
@@ -3849,7 +3849,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 消費財IC比率
-                    country.Consumer = (double) d;
+                    country.ConsumerSlider = (double) d;
                     continue;
                 }
 
@@ -3864,7 +3864,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 物資IC比率
-                    country.Consumer = (double) d;
+                    country.ConsumerSlider = (double) d;
                     continue;
                 }
 
@@ -3879,7 +3879,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 生産IC比率
-                    country.Consumer = (double) d;
+                    country.ConsumerSlider = (double) d;
                     continue;
                 }
 
@@ -3894,7 +3894,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 補充IC比率
-                    country.Consumer = (double) d;
+                    country.ConsumerSlider = (double) d;
                     continue;
                 }
 

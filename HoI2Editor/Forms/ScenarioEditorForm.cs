@@ -114,6 +114,26 @@ namespace HoI2Editor.Forms
         /// </summary>
         private const string MoneyName = "RESOURCE_MONEY";
 
+        /// <summary>
+        /// 輸送船団の文字列名
+        /// </summary>
+        private const string TransportsName = "CIW_TRANSPORTS";
+
+        /// <summary>
+        /// 護衛艦の文字列名
+        /// </summary>
+        private const string EscortsName = "CIW_ESCORTS";
+
+        /// <summary>
+        /// ICの文字列名
+        /// </summary>
+        private const string IcName = "RESOURCE_IC";
+
+        /// <summary>
+        /// 人的資源の文字列名
+        /// </summary>
+        private const string ManpowerName = "RESOURCE_MANPOWER";
+
         #endregion
 
         #region 初期化
@@ -138,7 +158,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void LoadMaps()
         {
-            var worker = new BackgroundWorker();
+            BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += OnMapWorkerDoWork;
             worker.RunWorkerCompleted += OnMapWorkerRunWorkerCompleted;
             worker.RunWorkerAsync();
@@ -190,28 +210,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集項目を初期化する
-        /// </summary>
-        private void InitEditableItems()
-        {
-            InitMainTab();
-            InitAllianceTab();
-            InitRelationTab();
-            InitTradeTab();
-        }
-
-        /// <summary>
-        ///     編集項目を更新する
-        /// </summary>
-        private void UpdateEditableItems()
-        {
-            UpdateMainTab();
-            UpdateAllianceTab();
-            UpdateRelationTab();
-            UpdateTradeTab();
-        }
-
-        /// <summary>
         ///     データ保存後の処理
         /// </summary>
         public void OnFileSaved()
@@ -240,6 +238,30 @@ namespace HoI2Editor.Forms
             // ウィンドウの位置
             Location = HoI2Editor.Settings.ScenarioEditor.Location;
             Size = HoI2Editor.Settings.ScenarioEditor.Size;
+        }
+
+        /// <summary>
+        ///     編集項目を初期化する
+        /// </summary>
+        private void InitEditableItems()
+        {
+            InitMainTab();
+            InitAllianceTab();
+            InitRelationTab();
+            InitTradeTab();
+            InitCountryTab();
+        }
+
+        /// <summary>
+        ///     編集項目を更新する
+        /// </summary>
+        private void UpdateEditableItems()
+        {
+            UpdateMainTab();
+            UpdateAllianceTab();
+            UpdateRelationTab();
+            UpdateTradeTab();
+            UpdateCountryTab();
         }
 
         /// <summary>
@@ -4889,7 +4911,7 @@ namespace HoI2Editor.Forms
             relationListView.Items.Clear();
             foreach (Country target in Countries.Tags)
             {
-                var item = new ListViewItem(Countries.GetTagName(target));
+                ListViewItem item = new ListViewItem(Countries.GetTagName(target));
                 Relation relation = Scenarios.GetCountryRelation(self, target);
                 Treaty nonAggression = Scenarios.GetNonAggression(self, target);
                 Treaty peace = Scenarios.GetPeace(self, target);
@@ -5257,7 +5279,7 @@ namespace HoI2Editor.Forms
             Relation relation = Scenarios.GetCountryRelation(self, target);
 
             // 値に変化がなければ何もしない
-            var val = (double) relationValueNumericUpDown.Value;
+            double val = (double) relationValueNumericUpDown.Value;
             if ((relation != null) && DoubleHelper.IsEqual(val, relation.Value))
             {
                 return;
@@ -9043,6 +9065,267 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region 国家タブ
+
+        #region 国家タブ- 共通
+
+        /// <summary>
+        ///     国家タブを初期化する
+        /// </summary>
+        private void InitCountryTab()
+        {
+            // 国家リストボックス
+            countryListBox.BeginUpdate();
+            countryListBox.Items.Clear();
+            foreach (Country country in Countries.Tags)
+            {
+                countryListBox.Items.Add(Countries.GetTagName(country));
+            }
+            countryListBox.EndUpdate();
+
+            // 兄弟国コンボボックス
+            regularIdComboBox.BeginUpdate();
+            regularIdComboBox.Items.Clear();
+            regularIdComboBox.Items.Add("");
+            foreach (Country country in Countries.Tags)
+            {
+                regularIdComboBox.Items.Add(Countries.GetTagName(country));
+            }
+            regularIdComboBox.EndUpdate();
+
+            // 国家資源ラベル
+            countryEnergyLabel.Text = Config.GetText(EnergyName);
+            countryMetalLabel.Text = Config.GetText(MetalName);
+            countryRareMaterialsLabel.Text = Config.GetText(RareMaterialsName);
+            countryOilLabel.Text = Config.GetText(OilName);
+            countrySuppliesLabel.Text = Config.GetText(SuppliesName);
+            countryMoneyLabel.Text = Config.GetText(MoneyName);
+            countryTransportsLabel.Text = Config.GetText(TransportsName);
+            countryEscortsLabel.Text = Config.GetText(EscortsName);
+            countryManpowerLabel.Text = Config.GetText(ManpowerName);
+            countryIcLabel.Text = Config.GetText(IcName);
+        }
+
+        /// <summary>
+        ///     国家タブを更新する
+        /// </summary>
+        private void UpdateCountryTab()
+        {
+            // 編集項目を無効化する
+            DisableCountryItems();
+
+            // 国家リストボックスを有効化する
+            countryListBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     国家タブの編集項目を無効化する
+        /// </summary>
+        private void DisableCountryItems()
+        {
+            countryInfoGroupBox.Enabled = false;
+            countryModifierGroupBox.Enabled = false;
+            countryResourceGroupBox.Enabled = false;
+            productionGroupBox.Enabled = false;
+            aiGroupBox.Enabled = false;
+
+            countryNameTextBox.Text = "";
+            regularIdComboBox.SelectedIndex = -1;
+            flagExtTextBox.Text = "";
+            belligerenceTextBox.Text = "";
+            dissentTextBox.Text = "";
+            extraTcTextBox.Text = "";
+            nukeTextBox.Text = "";
+            nukeYearTextBox.Text = "";
+            nukeMonthTextBox.Text = "";
+            nukeDayTextBox.Text = "";
+
+            groundDefEffTextBox.Text = "";
+            peacetimeIcModifierTextBox.Text = "";
+            wartimeIcModifierTextBox.Text = "";
+            industrialModifierTextBox.Text = "";
+            relativeManpowerTextBox.Text = "";
+
+            countryEnergyTextBox.Text = "";
+            countryMetalTextBox.Text = "";
+            countryRareMaterialsTextBox.Text = "";
+            countryOilTextBox.Text = "";
+            countrySuppliesTextBox.Text = "";
+            countryMoneyTextBox.Text = "";
+            countryTransportsTextBox.Text = "";
+            countryEscortsTextBox.Text = "";
+            countryManpowerTextBox.Text = "";
+            offmapEnergyTextBox.Text = "";
+            offmapMetalTextBox.Text = "";
+            offmapRareMaterialsTextBox.Text = "";
+            offmapOilTextBox.Text = "";
+            offmapSuppliesTextBox.Text = "";
+            offmapMoneyTextBox.Text = "";
+            offmapTransportsTextBox.Text = "";
+            offmapEscortsTextBox.Text = "";
+            offmapManpowerTextBox.Text = "";
+            offmapIcTextBox.Text = "";
+
+            consumerSliderTextBox.Text = "";
+            supplySliderTextBox.Text = "";
+            productionSliderTextBox.Text = "";
+            reinforcementSliderTextBox.Text = "";
+
+            aiFileTextBox.Text = "";
+            aiFlagsListView.Items.Clear();
+        }
+
+        /// <summary>
+        ///     国家タブの編集項目を更新する
+        /// </summary>
+        private void UpdateCountryItems()
+        {
+            // 選択中の国家がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            bool flag = (settings != null);
+
+            countryNameTextBox.Text = (flag && !string.IsNullOrEmpty(settings.Name)
+                ? Config.GetText(settings.Name)
+                : Countries.GetName(country));
+            regularIdComboBox.SelectedIndex = (flag && settings.Country != Country.None)
+                ? Array.IndexOf(Countries.Tags, (Country) settings.Country) + 1
+                : 0;
+            flagExtTextBox.Text = (flag && !string.IsNullOrEmpty(settings.FlagExt)) ? settings.FlagExt : "";
+
+            belligerenceTextBox.Text = (flag && (settings.Belligerence != 0))
+                ? IntHelper.ToString(settings.Belligerence)
+                : "";
+            dissentTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Dissent))
+                ? DoubleHelper.ToString(settings.Dissent)
+                : "";
+            extraTcTextBox.Text = (flag && !DoubleHelper.IsZero(settings.ExtraTc))
+                ? DoubleHelper.ToString(settings.ExtraTc)
+                : "";
+            nukeTextBox.Text = flag ? IntHelper.ToString(settings.Nuke) : "";
+
+            groundDefEffTextBox.Text = (flag && !DoubleHelper.IsZero(settings.GroundDefEff))
+             ? DoubleHelper.ToString(settings.GroundDefEff)
+             : "";
+            peacetimeIcModifierTextBox.Text = (flag && !DoubleHelper.IsZero(settings.PeacetimeIcModifier))
+                ? DoubleHelper.ToString(settings.PeacetimeIcModifier)
+                : "";
+            wartimeIcModifierTextBox.Text = (flag && !DoubleHelper.IsZero(settings.WartimeIcModifier))
+                ? DoubleHelper.ToString(settings.WartimeIcModifier)
+                : "";
+            industrialModifierTextBox.Text = (flag && !DoubleHelper.IsZero(settings.IndustrialModifier))
+                ? DoubleHelper.ToString(settings.IndustrialModifier)
+                : "";
+            relativeManpowerTextBox.Text = (flag && !DoubleHelper.IsZero(settings.RelativeManpower))
+                ? DoubleHelper.ToString(settings.RelativeManpower)
+                : "";
+
+            countryEnergyTextBox.Text = flag ? DoubleHelper.ToString(settings.Energy) : "0";
+            countryMetalTextBox.Text = flag ? DoubleHelper.ToString(settings.Metal) : "0";
+            countryRareMaterialsTextBox.Text = flag ? DoubleHelper.ToString(settings.RareMaterials) : "0";
+            countryOilTextBox.Text = flag ? DoubleHelper.ToString(settings.Oil) : "0";
+            countrySuppliesTextBox.Text = flag ? DoubleHelper.ToString(settings.Supplies) : "0";
+            countryMoneyTextBox.Text = flag ? DoubleHelper.ToString(settings.Money) : "0";
+            countryTransportsTextBox.Text = flag ? DoubleHelper.ToString(settings.Transports) : "0";
+            countryEscortsTextBox.Text = flag ? DoubleHelper.ToString(settings.Escorts) : "0";
+            countryManpowerTextBox.Text = flag ? DoubleHelper.ToString(settings.Manpower) : "0";
+
+            consumerSliderTextBox.Text = (flag && !DoubleHelper.IsZero(settings.ConsumerSlider))
+                ? DoubleHelper.ToString(settings.ConsumerSlider)
+                : "";
+
+            supplySliderTextBox.Text = (flag && !DoubleHelper.IsZero(settings.SupplySlider))
+                ? DoubleHelper.ToString(settings.SupplySlider)
+                : "";
+
+            productionSliderTextBox.Text = (flag && !DoubleHelper.IsZero(settings.ProductionSlider))
+                ? DoubleHelper.ToString(settings.ProductionSlider)
+                : "";
+
+            reinforcementSliderTextBox.Text = (flag && !DoubleHelper.IsZero(settings.ReinforcementSlider))
+                ? DoubleHelper.ToString(settings.ReinforcementSlider)
+                : "";
+
+            aiFileTextBox.Text = (flag && !string.IsNullOrEmpty(settings.Ai)) ? settings.Ai : "";
+            aiFlagsListView.BeginUpdate();
+            aiFlagsListView.Items.Clear();
+            if (flag && (settings.AiSettings != null) && (settings.AiSettings.Flags != null))
+            {
+                foreach (KeyValuePair<string, string> pair in settings.AiSettings.Flags)
+                {
+                    ListViewItem item = new ListViewItem { Text = pair.Key };
+                    item.SubItems[1].Text = pair.Value;
+                }
+            }
+            aiFlagsListView.EndUpdate();
+
+            flag = ((settings != null) && (settings.NukeDate != null));
+            nukeYearTextBox.Text = flag ? IntHelper.ToString(settings.NukeDate.Year) : "";
+            nukeMonthTextBox.Text = flag ? IntHelper.ToString(settings.NukeDate.Month) : "";
+            nukeDayTextBox.Text = flag ? IntHelper.ToString(settings.NukeDate.Day) : "";
+
+            flag = ((settings != null) && (settings.Offmap != null));
+            offmapEnergyTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Energy))
+                ? DoubleHelper.ToString(settings.Offmap.Energy)
+                : "";
+            offmapMetalTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Metal))
+                ? DoubleHelper.ToString(settings.Offmap.Metal)
+                : "";
+            offmapRareMaterialsTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.RareMaterials))
+                ? DoubleHelper.ToString(settings.Offmap.RareMaterials)
+                : "";
+            offmapOilTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Oil))
+                ? DoubleHelper.ToString(settings.Offmap.Oil)
+                : "";
+            offmapSuppliesTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Supplies))
+                ? DoubleHelper.ToString(settings.Offmap.Supplies)
+                : "";
+            offmapMoneyTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Money))
+                ? DoubleHelper.ToString(settings.Offmap.Money)
+                : "";
+            offmapTransportsTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Transports))
+                ? DoubleHelper.ToString(settings.Offmap.Transports)
+                : "";
+            offmapEscortsTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Escorts))
+                ? DoubleHelper.ToString(settings.Offmap.Escorts)
+                : "";
+            offmapManpowerTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Manpower))
+                ? DoubleHelper.ToString(settings.Offmap.Manpower)
+                : "";
+            offmapIcTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Ic))
+                ? DoubleHelper.ToString(settings.Offmap.Ic)
+                : "";
+
+            // 編集項目を有効化する
+            countryInfoGroupBox.Enabled = true;
+            countryModifierGroupBox.Enabled = true;
+            countryResourceGroupBox.Enabled = true;
+            productionGroupBox.Enabled = true;
+            aiGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        /// 選択中の国家を取得する
+        /// </summary>
+        /// <returns></returns>
+        private Country GetSelectedCountry()
+        {
+            if (countryListBox.SelectedIndex < 0)
+            {
+                return Country.None;
+            }
+            return Countries.Tags[countryListBox.SelectedIndex];
+        }
+
+        #endregion
+
+        #endregion
+
         private void OnTextBox1Validated(object sender, EventArgs e)
         {
             ushort id;
@@ -9053,7 +9336,7 @@ namespace HoI2Editor.Forms
             if (id > 0 && id < 10000)
             {
                 Map map = Maps.Data[(int) MapLevel.Level1];
-                var bitmap = provinceMapPictureBox.Image as Bitmap;
+                Bitmap bitmap = provinceMapPictureBox.Image as Bitmap;
                 if (_prevId != 0)
                 {
                     map.ResetProvinceMask(bitmap, _prevId);

@@ -1691,12 +1691,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     平時IC補正
         /// </summary>
-        public double PeacetimeIcMod { get; set; }
+        public double PeacetimeIcModifier { get; set; }
 
         /// <summary>
         ///     戦時IC補正
         /// </summary>
-        public double WartimeIcMod { get; set; }
+        public double WartimeIcModifier { get; set; }
 
         /// <summary>
         ///     工業力補正
@@ -1776,27 +1776,27 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップ外資源
         /// </summary>
-        public ResourceSettings Free { get; set; }
+        public ResourceSettings Offmap { get; set; }
 
         /// <summary>
         ///     消費財IC比率
         /// </summary>
-        public double Consumer { get; set; }
+        public double ConsumerSlider { get; set; }
 
         /// <summary>
         ///     物資IC比率
         /// </summary>
-        public double Supply { get; set; }
+        public double SupplySlider { get; set; }
 
         /// <summary>
         ///     生産IC比率
         /// </summary>
-        public double Production { get; set; }
+        public double ProductionSlider { get; set; }
 
         /// <summary>
         ///     補充IC比率
         /// </summary>
-        public double Reinforcement { get; set; }
+        public double ReinforcementSlider { get; set; }
 
         /// <summary>
         ///     外交関係
