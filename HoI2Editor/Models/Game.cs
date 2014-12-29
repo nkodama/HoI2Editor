@@ -218,6 +218,11 @@ namespace HoI2Editor.Models
         #region 公開定数
 
         /// <summary>
+        ///     AIフォルダ
+        /// </summary>
+        public const string AiPathName = "ai";
+
+        /// <summary>
         ///     文字列定義フォルダ
         /// </summary>
         public const string ConfigPathName = "config";
@@ -396,6 +401,11 @@ namespace HoI2Editor.Models
         ///     プロヴィンス名定義ファイル名
         /// </summary>
         public const string ProvinceTextFileName = "province_names.csv";
+
+        /// <summary>
+        ///     地名定義ファイル名
+        /// </summary>
+        public const string WorldTextFileName = "world_names.csv";
 
         /// <summary>
         ///     シナリオ文字列定義のファイル名

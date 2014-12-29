@@ -1711,7 +1711,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     AIファイル名
         /// </summary>
-        public string Ai { get; set; }
+        public string AiFileName { get; set; }
 
         /// <summary>
         ///     AI設定
@@ -2314,11 +2314,11 @@ namespace HoI2Editor.Models
         ExtraTc, // 追加輸送能力
         Dissent, // 国民不満度
         Capital, // 首都
-        PeacetimeIcMod, // 平時IC補正
-        WartimeIcMod, // 戦時IC補正
+        PeacetimeIcModifier, // 平時IC補正
+        WartimeIcModifier, // 戦時IC補正
         IndustrialModifier, // 工業力補正
         GroundDefEff, // 対地防御補正
-        Ai, // AIファイル名
+        AiFileName, // AIファイル名
         AiSettings, // AI設定
         Manpower, // 人的資源
         RelativeManpower, // 人的資源補正値
@@ -2331,20 +2331,20 @@ namespace HoI2Editor.Models
         Transports, // 輸送船団
         Escorts, // 護衛艦
         Nuke, // 核兵器
-        FreeIc, // マップ外工業力
-        FreeManpower, // マップ外人的資源
-        FreeEnergy, // マップ外エネルギー
-        FreeMetal, // マップ外金属
-        FreeRareMaterials, // マップ外希少資源
-        FreeOil, // マップ外石油
-        FreeSupplies, // マップ外物資
-        FreeMoney, // マップ外資金
-        FreeTransports, // マップ外輸送船団
-        FreeEscorts, // マップ外護衛艦
-        Consumer, // 消費財IC比率
-        Supply, // 物資IC比率
-        Production, // 生産IC比率
-        Reinforcement, // 補充IC比率
+        OffmapIc, // マップ外工業力
+        OffmapManpower, // マップ外人的資源
+        OffmapEnergy, // マップ外エネルギー
+        OffmapMetal, // マップ外金属
+        OffmapRareMaterials, // マップ外希少資源
+        OffmapOil, // マップ外石油
+        OffmapSupplies, // マップ外物資
+        OffmapMoney, // マップ外資金
+        OffmapTransports, // マップ外輸送船団
+        OffmapEscorts, // マップ外護衛艦
+        ConsumerSlider, // 消費財IC比率
+        SupplySlider, // 物資IC比率
+        ProductionSlider, // 生産IC比率
+        ReinforcementSlider, // 補充IC比率
         NationalProvinces, // 中核プロヴィンス
         OwnedProvinces, // 保有プロヴィンス
         ControlledProvinces, // 支配プロヴィンス
@@ -2352,7 +2352,9 @@ namespace HoI2Editor.Models
         TechApps, // 保有技術
         BluePrints, // 青写真
         Inventions, // 発明イベント
-        SliderDate, // スライダー移動可能日時
+        SliderYear, // スライダー移動可能年
+        SliderMonth, // スライダー移動可能月
+        SliderDay, // スライダー移動可能日
         Democratic, // 民主的 - 独裁的
         PoliticalLeft, // 政治的左派 - 政治的右派
         Freedom, // 開放社会 - 閉鎖社会
@@ -2360,7 +2362,9 @@ namespace HoI2Editor.Models
         ProfessionalArmy, // 常備軍 - 徴兵軍
         DefenseLobby, // タカ派 - ハト派
         Interventionism, // 介入主義 - 孤立主義
-        NukeDate, // 核兵器完成日時
+        NukeYear, // 核兵器生産年
+        NukeMonth, // 核兵器生産月
+        NukeDay, // 核兵器生産日
         DormantLeaders, // 休止指揮官
         DormantMinisters, // 休止閣僚
         DormantTeams, // 休止研究機関

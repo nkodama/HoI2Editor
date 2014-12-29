@@ -420,6 +420,10 @@ namespace HoI2Editor.Models
         /// <returns>国家設定</returns>
         public static CountrySettings GetCountrySettings(Country country)
         {
+            if (_countries == null)
+            {
+                return null;
+            }
             if (!_countries.ContainsKey(country))
             {
                 return null;

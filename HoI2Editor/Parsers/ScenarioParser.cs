@@ -3654,7 +3654,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // AIファイル名
-                    country.Ai = s;
+                    country.AiFileName = s;
                     continue;
                 }
 

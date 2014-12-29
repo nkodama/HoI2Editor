@@ -3702,4 +3702,7 @@
   <data name="Alliance" xml:space="preserve">
     <value>同盟</value>
   </data>
+  <data name="OpenAiFileDialogFilter" xml:space="preserve">
+    <value>AIファイル (*.ai)|*.ai|すべてのファイル (*.*)|*.*</value>
+  </data>
 </root>

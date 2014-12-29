@@ -41,6 +41,56 @@ namespace HoI2Editor.Forms
         /// </summary>
         private List<Country> _warFreeCountries;
 
+        /// <summary>
+        ///     国家元首リスト
+        /// </summary>
+        private List<Minister> _headOfStateList;
+
+        /// <summary>
+        ///     政府首班リスト
+        /// </summary>
+        private List<Minister> _headOfGovernmentList;
+
+        /// <summary>
+        ///     外務大臣リスト
+        /// </summary>
+        private List<Minister> _foreignMinisterList;
+
+        /// <summary>
+        ///     軍需大臣リスト
+        /// </summary>
+        private List<Minister> _armamentMinisterList;
+
+        /// <summary>
+        ///     内務大臣リスト
+        /// </summary>
+        private List<Minister> _ministerOfSecurityList;
+
+        /// <summary>
+        ///     情報大臣リスト
+        /// </summary>
+        private List<Minister> _ministerOfIntelligenceList;
+
+        /// <summary>
+        ///     統合参謀総長リスト
+        /// </summary>
+        private List<Minister> _chiefOfStaffList;
+
+        /// <summary>
+        ///     陸軍総司令官リスト
+        /// </summary>
+        private List<Minister> _chiefOfArmyList;
+
+        /// <summary>
+        ///     海軍総司令官リスト
+        /// </summary>
+        private List<Minister> _chiefOfNavyList;
+
+        /// <summary>
+        ///     空軍総司令官リスト
+        /// </summary>
+        private List<Minister> _chiefOfAirList;
+
         #endregion
 
         #region 内部定数
@@ -83,56 +133,6 @@ namespace HoI2Editor.Forms
             "FEOPT_GAMESPEED6", // 非常に速い
             "FEOPT_GAMESPEED7" // きわめて速い
         };
-
-        /// <summary>
-        ///     エネルギーの文字列名
-        /// </summary>
-        private const string EnergyName = "RESOURCE_ENERGY";
-
-        /// <summary>
-        ///     金属の文字列名
-        /// </summary>
-        private const string MetalName = "RESOURCE_METAL";
-
-        /// <summary>
-        ///     希少資源の文字列名
-        /// </summary>
-        private const string RareMaterialsName = "RESOURCE_RARE_MATERIALS";
-
-        /// <summary>
-        ///     石油の文字列名
-        /// </summary>
-        private const string OilName = "RESOURCE_OIL";
-
-        /// <summary>
-        ///     物資の文字列名
-        /// </summary>
-        private const string SuppliesName = "RESOURCE_SUPPLY";
-
-        /// <summary>
-        ///     資金の文字列名
-        /// </summary>
-        private const string MoneyName = "RESOURCE_MONEY";
-
-        /// <summary>
-        ///     輸送船団の文字列名
-        /// </summary>
-        private const string TransportsName = "CIW_TRANSPORTS";
-
-        /// <summary>
-        ///     護衛艦の文字列名
-        /// </summary>
-        private const string EscortsName = "CIW_ESCORTS";
-
-        /// <summary>
-        ///     ICの文字列名
-        /// </summary>
-        private const string IcName = "RESOURCE_IC";
-
-        /// <summary>
-        ///     人的資源の文字列名
-        /// </summary>
-        private const string ManpowerName = "RESOURCE_MANPOWER";
 
         #endregion
 
@@ -250,6 +250,7 @@ namespace HoI2Editor.Forms
             InitRelationTab();
             InitTradeTab();
             InitCountryTab();
+            InitGovernmentTab();
         }
 
         /// <summary>
@@ -262,6 +263,7 @@ namespace HoI2Editor.Forms
             UpdateRelationTab();
             UpdateTradeTab();
             UpdateCountryTab();
+            UpdateGovernmentTab();
         }
 
         /// <summary>
@@ -277,6 +279,9 @@ namespace HoI2Editor.Forms
             // 国家データを初期化する
             Countries.Init();
 
+            // 閣僚特性を初期化する
+            Ministers.InitPersonality();
+
             // ユニットデータを初期化する
             Units.Init();
 
@@ -285,6 +290,9 @@ namespace HoI2Editor.Forms
 
             // 文字列定義ファイルを読み込む
             Config.Load();
+
+            // 閣僚データを読み込む
+            Ministers.Load();
 
             // 表示項目を初期化する
             InitEditableItems();
@@ -7272,12 +7280,12 @@ namespace HoI2Editor.Forms
             tradeCountryComboBox2.EndUpdate();
 
             // 貿易資源ラベル
-            tradeEnergyLabel.Text = Config.GetText(EnergyName);
-            tradeMetalLabel.Text = Config.GetText(MetalName);
-            tradeRareMaterialsLabel.Text = Config.GetText(RareMaterialsName);
-            tradeOilLabel.Text = Config.GetText(OilName);
-            tradeSuppliesLabel.Text = Config.GetText(SuppliesName);
-            tradeMoneyLabel.Text = Config.GetText(MoneyName);
+            tradeEnergyLabel.Text = Config.GetText(TextId.ResourceEnergy);
+            tradeMetalLabel.Text = Config.GetText(TextId.ResourceMetal);
+            tradeRareMaterialsLabel.Text = Config.GetText(TextId.ResourceRareMaterials);
+            tradeOilLabel.Text = Config.GetText(TextId.ResourceOil);
+            tradeSuppliesLabel.Text = Config.GetText(TextId.ResourceSupplies);
+            tradeMoneyLabel.Text = Config.GetText(TextId.ResourceMoney);
         }
 
         /// <summary>
@@ -7644,28 +7652,29 @@ namespace HoI2Editor.Forms
             StringBuilder sb = new StringBuilder();
             if (!DoubleHelper.IsZero(trade.Energy))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText(EnergyName), DoubleHelper.ToString1(trade.Energy));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceEnergy), DoubleHelper.ToString1(trade.Energy));
             }
             if (!DoubleHelper.IsZero(trade.Metal))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText(MetalName), DoubleHelper.ToString1(trade.Metal));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceMetal), DoubleHelper.ToString1(trade.Metal));
             }
             if (!DoubleHelper.IsZero(trade.RareMaterials))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText(RareMaterialsName),
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceRareMaterials),
                     DoubleHelper.ToString1(trade.RareMaterials));
             }
             if (!DoubleHelper.IsZero(trade.Oil))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText(OilName), DoubleHelper.ToString1(trade.Oil));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceOil), DoubleHelper.ToString1(trade.Oil));
             }
             if (!DoubleHelper.IsZero(trade.Supplies))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText(SuppliesName), DoubleHelper.ToString1(trade.Supplies));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceSupplies),
+                    DoubleHelper.ToString1(trade.Supplies));
             }
             if (!DoubleHelper.IsZero(trade.Money))
             {
-                sb.AppendFormat("{0}:{1}, ", Config.GetText(MoneyName), DoubleHelper.ToString1(trade.Money));
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceMoney), DoubleHelper.ToString1(trade.Money));
             }
             int len = sb.Length;
             return (len > 0) ? sb.ToString(0, len - 2) : "";
@@ -9078,6 +9087,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCountryTab()
         {
+            Graphics g = Graphics.FromHwnd(Handle);
+            int margin = DeviceCaps.GetScaledWidth(2) + 1;
+
             // 国家リストボックス
             countryListBox.BeginUpdate();
             countryListBox.Items.Clear();
@@ -9088,26 +9100,32 @@ namespace HoI2Editor.Forms
             countryListBox.EndUpdate();
 
             // 兄弟国コンボボックス
+            int width = regularIdComboBox.Width;
             regularIdComboBox.BeginUpdate();
             regularIdComboBox.Items.Clear();
             regularIdComboBox.Items.Add("");
             foreach (Country country in Countries.Tags)
             {
-                regularIdComboBox.Items.Add(Countries.GetTagName(country));
+                string s = Countries.GetTagName(country);
+                regularIdComboBox.Items.Add(s);
+                width = Math.Max(width,
+                    (int) g.MeasureString(s, regularIdComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth + margin);
             }
+            regularIdComboBox.DropDownWidth = width;
             regularIdComboBox.EndUpdate();
 
             // 国家資源ラベル
-            countryEnergyLabel.Text = Config.GetText(EnergyName);
-            countryMetalLabel.Text = Config.GetText(MetalName);
-            countryRareMaterialsLabel.Text = Config.GetText(RareMaterialsName);
-            countryOilLabel.Text = Config.GetText(OilName);
-            countrySuppliesLabel.Text = Config.GetText(SuppliesName);
-            countryMoneyLabel.Text = Config.GetText(MoneyName);
-            countryTransportsLabel.Text = Config.GetText(TransportsName);
-            countryEscortsLabel.Text = Config.GetText(EscortsName);
-            countryManpowerLabel.Text = Config.GetText(ManpowerName);
-            countryIcLabel.Text = Config.GetText(IcName);
+            countryEnergyLabel.Text = Config.GetText(TextId.ResourceEnergy);
+            countryMetalLabel.Text = Config.GetText(TextId.ResourceMetal);
+            countryRareMaterialsLabel.Text = Config.GetText(TextId.ResourceRareMaterials);
+            countryOilLabel.Text = Config.GetText(TextId.ResourceOil);
+            countrySuppliesLabel.Text = Config.GetText(TextId.ResourceSupplies);
+            countryMoneyLabel.Text = Config.GetText(TextId.ResourceMoney);
+            countryTransportsLabel.Text = Config.GetText(TextId.ResourceTransports);
+            countryEscortsLabel.Text = Config.GetText(TextId.ResourceEscorts);
+            countryManpowerLabel.Text = Config.GetText(TextId.ResourceManpower);
+            countryIcLabel.Text = Config.GetText(TextId.ResourceIc);
         }
 
         /// <summary>
@@ -9130,7 +9148,6 @@ namespace HoI2Editor.Forms
             countryInfoGroupBox.Enabled = false;
             countryModifierGroupBox.Enabled = false;
             countryResourceGroupBox.Enabled = false;
-            productionGroupBox.Enabled = false;
             aiGroupBox.Enabled = false;
 
             countryNameTextBox.Text = "";
@@ -9170,13 +9187,7 @@ namespace HoI2Editor.Forms
             offmapManpowerTextBox.Text = "";
             offmapIcTextBox.Text = "";
 
-            consumerSliderTextBox.Text = "";
-            supplySliderTextBox.Text = "";
-            productionSliderTextBox.Text = "";
-            reinforcementSliderTextBox.Text = "";
-
-            aiFileTextBox.Text = "";
-            aiFlagsListView.Items.Clear();
+            aiFileNameTextBox.Text = "";
         }
 
         /// <summary>
@@ -9192,42 +9203,25 @@ namespace HoI2Editor.Forms
             }
 
             CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            countryNameTextBox.Text = GetCountryName(settings);
+
             bool flag = (settings != null);
-
-            countryNameTextBox.Text = (flag && !string.IsNullOrEmpty(settings.Name)
-                ? Config.GetText(settings.Name)
-                : Countries.GetName(country));
-            regularIdComboBox.SelectedIndex = (flag && settings.Country != Country.None)
-                ? Array.IndexOf(Countries.Tags, settings.Country) + 1
+            regularIdComboBox.SelectedIndex = (flag && settings.RegularId != Country.None)
+                ? Array.IndexOf(Countries.Tags, settings.RegularId) + 1
                 : 0;
-            flagExtTextBox.Text = (flag && !string.IsNullOrEmpty(settings.FlagExt)) ? settings.FlagExt : "";
+            flagExtTextBox.Text = flag ? settings.FlagExt : "";
 
-            belligerenceTextBox.Text = (flag && (settings.Belligerence != 0))
-                ? IntHelper.ToString(settings.Belligerence)
-                : "";
-            dissentTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Dissent))
-                ? DoubleHelper.ToString(settings.Dissent)
-                : "";
-            extraTcTextBox.Text = (flag && !DoubleHelper.IsZero(settings.ExtraTc))
-                ? DoubleHelper.ToString(settings.ExtraTc)
-                : "";
+            belligerenceTextBox.Text = flag ? IntHelper.ToString(settings.Belligerence) : "";
+            dissentTextBox.Text = flag ? DoubleHelper.ToString(settings.Dissent) : "";
+            extraTcTextBox.Text = flag ? DoubleHelper.ToString(settings.ExtraTc) : "";
             nukeTextBox.Text = flag ? IntHelper.ToString(settings.Nuke) : "";
 
-            groundDefEffTextBox.Text = (flag && !DoubleHelper.IsZero(settings.GroundDefEff))
-                ? DoubleHelper.ToString(settings.GroundDefEff)
-                : "";
-            peacetimeIcModifierTextBox.Text = (flag && !DoubleHelper.IsZero(settings.PeacetimeIcModifier))
-                ? DoubleHelper.ToString(settings.PeacetimeIcModifier)
-                : "";
-            wartimeIcModifierTextBox.Text = (flag && !DoubleHelper.IsZero(settings.WartimeIcModifier))
-                ? DoubleHelper.ToString(settings.WartimeIcModifier)
-                : "";
-            industrialModifierTextBox.Text = (flag && !DoubleHelper.IsZero(settings.IndustrialModifier))
-                ? DoubleHelper.ToString(settings.IndustrialModifier)
-                : "";
-            relativeManpowerTextBox.Text = (flag && !DoubleHelper.IsZero(settings.RelativeManpower))
-                ? DoubleHelper.ToString(settings.RelativeManpower)
-                : "";
+            groundDefEffTextBox.Text = flag ? DoubleHelper.ToString(settings.GroundDefEff) : "";
+            peacetimeIcModifierTextBox.Text = flag ? DoubleHelper.ToString(settings.PeacetimeIcModifier) : "";
+            wartimeIcModifierTextBox.Text = flag ? DoubleHelper.ToString(settings.WartimeIcModifier) : "";
+            industrialModifierTextBox.Text = flag ? DoubleHelper.ToString(settings.IndustrialModifier) : "";
+            relativeManpowerTextBox.Text = flag ? DoubleHelper.ToString(settings.RelativeManpower) : "";
 
             countryEnergyTextBox.Text = flag ? DoubleHelper.ToString(settings.Energy) : "0";
             countryMetalTextBox.Text = flag ? DoubleHelper.ToString(settings.Metal) : "0";
@@ -9239,34 +9233,7 @@ namespace HoI2Editor.Forms
             countryEscortsTextBox.Text = flag ? DoubleHelper.ToString(settings.Escorts) : "0";
             countryManpowerTextBox.Text = flag ? DoubleHelper.ToString(settings.Manpower) : "0";
 
-            consumerSliderTextBox.Text = (flag && !DoubleHelper.IsZero(settings.ConsumerSlider))
-                ? DoubleHelper.ToString(settings.ConsumerSlider)
-                : "";
-
-            supplySliderTextBox.Text = (flag && !DoubleHelper.IsZero(settings.SupplySlider))
-                ? DoubleHelper.ToString(settings.SupplySlider)
-                : "";
-
-            productionSliderTextBox.Text = (flag && !DoubleHelper.IsZero(settings.ProductionSlider))
-                ? DoubleHelper.ToString(settings.ProductionSlider)
-                : "";
-
-            reinforcementSliderTextBox.Text = (flag && !DoubleHelper.IsZero(settings.ReinforcementSlider))
-                ? DoubleHelper.ToString(settings.ReinforcementSlider)
-                : "";
-
-            aiFileTextBox.Text = (flag && !string.IsNullOrEmpty(settings.Ai)) ? settings.Ai : "";
-            aiFlagsListView.BeginUpdate();
-            aiFlagsListView.Items.Clear();
-            if (flag && (settings.AiSettings != null) && (settings.AiSettings.Flags != null))
-            {
-                foreach (KeyValuePair<string, string> pair in settings.AiSettings.Flags)
-                {
-                    ListViewItem item = new ListViewItem { Text = pair.Key };
-                    item.SubItems[1].Text = pair.Value;
-                }
-            }
-            aiFlagsListView.EndUpdate();
+            aiFileNameTextBox.Text = flag ? settings.AiFileName : "";
 
             flag = ((settings != null) && (settings.NukeDate != null));
             nukeYearTextBox.Text = flag ? IntHelper.ToString(settings.NukeDate.Year) : "";
@@ -9274,49 +9241,84 @@ namespace HoI2Editor.Forms
             nukeDayTextBox.Text = flag ? IntHelper.ToString(settings.NukeDate.Day) : "";
 
             flag = ((settings != null) && (settings.Offmap != null));
-            offmapEnergyTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Energy))
-                ? DoubleHelper.ToString(settings.Offmap.Energy)
-                : "";
-            offmapMetalTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Metal))
-                ? DoubleHelper.ToString(settings.Offmap.Metal)
-                : "";
-            offmapRareMaterialsTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.RareMaterials))
-                ? DoubleHelper.ToString(settings.Offmap.RareMaterials)
-                : "";
-            offmapOilTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Oil))
-                ? DoubleHelper.ToString(settings.Offmap.Oil)
-                : "";
-            offmapSuppliesTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Supplies))
-                ? DoubleHelper.ToString(settings.Offmap.Supplies)
-                : "";
-            offmapMoneyTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Money))
-                ? DoubleHelper.ToString(settings.Offmap.Money)
-                : "";
-            offmapTransportsTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Transports))
-                ? DoubleHelper.ToString(settings.Offmap.Transports)
-                : "";
-            offmapEscortsTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Escorts))
-                ? DoubleHelper.ToString(settings.Offmap.Escorts)
-                : "";
-            offmapManpowerTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Manpower))
-                ? DoubleHelper.ToString(settings.Offmap.Manpower)
-                : "";
-            offmapIcTextBox.Text = (flag && !DoubleHelper.IsZero(settings.Offmap.Ic))
-                ? DoubleHelper.ToString(settings.Offmap.Ic)
-                : "";
+            offmapEnergyTextBox.Text = flag ? DoubleHelper.ToString(settings.Offmap.Energy) : "";
+            offmapMetalTextBox.Text = flag ? DoubleHelper.ToString(settings.Offmap.Metal) : "";
+            offmapRareMaterialsTextBox.Text = flag ? DoubleHelper.ToString(settings.Offmap.RareMaterials) : "";
+            offmapOilTextBox.Text = flag ? DoubleHelper.ToString(settings.Offmap.Oil) : "";
+            offmapSuppliesTextBox.Text = flag ? DoubleHelper.ToString(settings.Offmap.Supplies) : "";
+            offmapMoneyTextBox.Text = flag ? DoubleHelper.ToString(settings.Offmap.Money) : "";
+            offmapTransportsTextBox.Text = flag ? DoubleHelper.ToString(settings.Offmap.Transports) : "";
+            offmapEscortsTextBox.Text = flag ? DoubleHelper.ToString(settings.Offmap.Escorts) : "";
+            offmapManpowerTextBox.Text = flag ? DoubleHelper.ToString(settings.Offmap.Manpower) : "";
+            offmapIcTextBox.Text = flag ? DoubleHelper.ToString(settings.Offmap.Ic) : "";
 
             // 編集項目を有効化する
             countryInfoGroupBox.Enabled = true;
             countryModifierGroupBox.Enabled = true;
             countryResourceGroupBox.Enabled = true;
-            productionGroupBox.Enabled = true;
             aiGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     国家リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                CountrySettings settings = Scenarios.GetCountrySettings(Countries.Tags[e.Index]);
+                brush = ((settings != null) && settings.IsDirty())
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(countryListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = countryListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     国家リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ編集項目を無効化する
+            if (countryListBox.SelectedIndex < 0)
+            {
+                DisableCountryItems();
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateCountryItems();
         }
 
         /// <summary>
         ///     選択中の国家を取得する
         /// </summary>
-        /// <returns></returns>
+        /// <returns>選択中の国家</returns>
         private Country GetSelectedCountry()
         {
             if (countryListBox.SelectedIndex < 0)
@@ -9324,6 +9326,3556 @@ namespace HoI2Editor.Forms
                 return Country.None;
             }
             return Countries.Tags[countryListBox.SelectedIndex];
+        }
+
+        /// <summary>
+        ///     国名を取得する
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <returns>国名</returns>
+        private static string GetCountryName(CountrySettings settings)
+        {
+            if (settings == null)
+            {
+                return "";
+            }
+            return !string.IsNullOrEmpty(settings.Name)
+                ? Config.GetText(settings.Name)
+                : Countries.GetName(settings.Country);
+        }
+
+        #endregion
+
+        #region 国家タブ - 国家情報
+
+        /// <summary>
+        ///     国名テキストボックスの文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryNameTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            string name = GetCountryName(settings);
+            if (countryNameTextBox.Text.Equals(name))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] country name: {0} -> {1} ({2})", name, countryNameTextBox.Text,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+            }
+
+            // 値を更新する
+            string s = countryNameTextBox.Text;
+            if (!string.IsNullOrEmpty(settings.Name))
+            {
+                Config.SetText(!string.IsNullOrEmpty(settings.Name) ? settings.Name : Countries.Strings[(int) country],
+                    s, Game.WorldTextFileName);
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Name);
+            Scenarios.SetDirty();
+
+            // 国家リストボックスの項目を更新する
+            countryListBox.SelectedItem = s;
+
+            // 文字色を変更する
+            countryNameTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     国旗接尾辞テキストボックスの文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFlagExtTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || string.IsNullOrEmpty(settings.FlagExt)) &&
+                string.IsNullOrEmpty(flagExtTextBox.Text))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && flagExtTextBox.Text.Equals(settings.FlagExt))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] flag ext: {0} -> {1} ({2})", (settings != null) ? settings.FlagExt : "",
+                flagExtTextBox.Text, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.FlagExt = flagExtTextBox.Text;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.FlagExt);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            flagExtTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     兄弟国コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRegularIdComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            if (e.Index > 0)
+            {
+                Country country = Countries.Tags[countryListBox.SelectedIndex];
+                CountrySettings settings = Scenarios.GetCountrySettings(country);
+                Brush brush = ((settings != null) &&
+                               (Countries.Tags[e.Index - 1] == settings.RegularId) &&
+                               settings.IsDirty(CountrySettingsItemId.RegularId))
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(SystemColors.WindowText);
+                string s = regularIdComboBox.Items[e.Index].ToString();
+                e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+                brush.Dispose();
+            }
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     兄弟国コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRegularIdComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && (regularIdComboBox.SelectedIndex == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            Country val = (regularIdComboBox.SelectedIndex > 0)
+                ? Countries.Tags[regularIdComboBox.SelectedIndex - 1]
+                : Country.None;
+            if ((settings != null) && (val == settings.RegularId))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] regular id: {0} -> {1} ({2})",
+                (settings != null) ? Countries.Strings[(int) settings.RegularId] : "", Countries.Strings[(int) val],
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.RegularId = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.RegularId);
+            Scenarios.SetDirty();
+
+            // 兄弟国コンボボックスの項目色を変更するために描画更新する
+            regularIdComboBox.Refresh();
+        }
+
+        /// <summary>
+        ///     好戦性テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBelligerenceTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(belligerenceTextBox.Text, out val))
+            {
+                belligerenceTextBox.Text = (settings != null) ? IntHelper.ToString(settings.Belligerence) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (val == settings.Belligerence))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] belligerence: {0} -> {1} ({2})",
+                (settings != null) ? IntHelper.ToString(settings.Belligerence) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Belligerence = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Belligerence);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            belligerenceTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     国民不満度テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDissentTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(dissentTextBox.Text, out val))
+            {
+                dissentTextBox.Text = (settings != null) ? DoubleHelper.ToString(settings.Dissent) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.Dissent))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] dissent: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.Dissent) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Dissent = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Dissent);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            dissentTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     輸送力補正テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnExtraTcTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(extraTcTextBox.Text, out val))
+            {
+                extraTcTextBox.Text = (settings != null) ? DoubleHelper.ToString(settings.ExtraTc) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.ExtraTc))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] extra tc: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.ExtraTc) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.ExtraTc = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.ExtraTc);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            extraTcTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     核兵器テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNukeTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(nukeTextBox.Text, out val))
+            {
+                nukeTextBox.Text = (settings != null) ? IntHelper.ToString(settings.Nuke) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (val == settings.Nuke))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] nuke: {0} -> {1} ({2})",
+                (settings != null) ? IntHelper.ToString(settings.Nuke) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Nuke = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Nuke);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            nukeTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     核兵器生産年テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNukeYearTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(nukeYearTextBox.Text, out val))
+            {
+                nukeYearTextBox.Text = ((settings != null) && (settings.NukeDate != null))
+                    ? IntHelper.ToString(settings.NukeDate.Year)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.NukeDate == null)) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.NukeDate != null) && (val == settings.NukeDate.Year))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] nuke year: {0} -> {1} ({2})",
+                ((settings != null) && (settings.NukeDate != null)) ? IntHelper.ToString(settings.NukeDate.Year) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.NukeDate == null)
+            {
+                settings.NukeDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.NukeMonth);
+                settings.SetDirty(CountrySettingsItemId.NukeDay);
+
+                // 編集項目を更新する
+                nukeMonthTextBox.Text = IntHelper.ToString(settings.NukeDate.Month);
+                nukeDayTextBox.Text = IntHelper.ToString(settings.NukeDate.Day);
+
+                // 文字色を変更する
+                nukeMonthTextBox.ForeColor = Color.Red;
+                nukeDayTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            settings.NukeDate.Year = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.NukeYear);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            nukeYearTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     核兵器生産月テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNukeMonthTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(nukeMonthTextBox.Text, out val))
+            {
+                nukeMonthTextBox.Text = ((settings != null) && (settings.NukeDate != null))
+                    ? IntHelper.ToString(settings.NukeDate.Month)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.NukeDate == null)) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.NukeDate != null) && (val == settings.NukeDate.Month))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] nuke month: {0} -> {1} ({2})",
+                ((settings != null) && (settings.NukeDate != null)) ? IntHelper.ToString(settings.NukeDate.Month) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.NukeDate == null)
+            {
+                settings.NukeDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.NukeYear);
+                settings.SetDirty(CountrySettingsItemId.NukeDay);
+
+                // 編集項目を更新する
+                nukeYearTextBox.Text = IntHelper.ToString(settings.NukeDate.Year);
+                nukeDayTextBox.Text = IntHelper.ToString(settings.NukeDate.Day);
+
+                // 文字色を変更する
+                nukeYearTextBox.ForeColor = Color.Red;
+                nukeDayTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            settings.NukeDate.Month = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.NukeMonth);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            nukeMonthTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     核兵器生産日テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnNukeDayTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(nukeDayTextBox.Text, out val))
+            {
+                nukeDayTextBox.Text = ((settings != null) && (settings.NukeDate != null))
+                    ? IntHelper.ToString(settings.NukeDate.Day)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.NukeDate == null)) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.NukeDate != null) && (val == settings.NukeDate.Day))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] nuke day: {0} -> {1} ({2})",
+                ((settings != null) && (settings.NukeDate != null)) ? IntHelper.ToString(settings.NukeDate.Day) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.NukeDate == null)
+            {
+                settings.NukeDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.NukeYear);
+                settings.SetDirty(CountrySettingsItemId.NukeMonth);
+
+                // 編集項目を更新する
+                nukeYearTextBox.Text = IntHelper.ToString(settings.NukeDate.Year);
+                nukeMonthTextBox.Text = IntHelper.ToString(settings.NukeDate.Month);
+
+                // 文字色を変更する
+                nukeYearTextBox.ForeColor = Color.Red;
+                nukeMonthTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            settings.NukeDate.Day = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.NukeDay);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            nukeDayTextBox.ForeColor = Color.Red;
+        }
+
+        #endregion
+
+        #region 国家タブ - 補正値
+
+        /// <summary>
+        ///     対地防御補正テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGroundDefEffTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(groundDefEffTextBox.Text, out val))
+            {
+                groundDefEffTextBox.Text = (settings != null) ? DoubleHelper.ToString(settings.GroundDefEff) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.GroundDefEff))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] ground def eff: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.GroundDefEff) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.GroundDefEff = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.GroundDefEff);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            groundDefEffTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     平時IC補正テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPeacetimeIcModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(peacetimeIcModifierTextBox.Text, out val))
+            {
+                peacetimeIcModifierTextBox.Text = (settings != null)
+                    ? DoubleHelper.ToString(settings.PeacetimeIcModifier)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.PeacetimeIcModifier))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] peacetime ic modifier: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.PeacetimeIcModifier) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.PeacetimeIcModifier = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.PeacetimeIcModifier);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            peacetimeIcModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     戦時IC補正テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnWartimeIcModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(wartimeIcModifierTextBox.Text, out val))
+            {
+                wartimeIcModifierTextBox.Text = (settings != null)
+                    ? DoubleHelper.ToString(settings.WartimeIcModifier)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.WartimeIcModifier))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] wartime ic modifier: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.WartimeIcModifier) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.WartimeIcModifier = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.WartimeIcModifier);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            wartimeIcModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     工業力補正テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnIndustrialModifierTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(industrialModifierTextBox.Text, out val))
+            {
+                industrialModifierTextBox.Text = (settings != null)
+                    ? DoubleHelper.ToString(settings.IndustrialModifier)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.IndustrialModifier))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] industrial modifier: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.IndustrialModifier) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.IndustrialModifier = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.IndustrialModifier);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            industrialModifierTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     人的資源補正テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnRelativeManpowerTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(relativeManpowerTextBox.Text, out val))
+            {
+                relativeManpowerTextBox.Text = (settings != null)
+                    ? DoubleHelper.ToString(settings.RelativeManpower)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.RelativeManpower))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] relative manpower: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.RelativeManpower) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.RelativeManpower = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.RelativeManpower);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            relativeManpowerTextBox.ForeColor = Color.Red;
+        }
+
+        #endregion
+
+        #region 国家タブ - 資源
+
+        /// <summary>
+        ///     エネルギー備蓄量テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryEnergyTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(countryEnergyTextBox.Text, out val))
+            {
+                countryEnergyTextBox.Text = (settings != null) ? DoubleHelper.ToString(settings.Energy) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.Energy))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] energy: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.Energy) : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Energy = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Energy);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            countryEnergyTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     金属備蓄量テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryMetalTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(countryMetalTextBox.Text, out val))
+            {
+                countryMetalTextBox.Text = (settings != null) ? DoubleHelper.ToString(settings.Metal) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.Metal))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] metal: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.Metal) : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Metal = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Metal);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            countryMetalTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     希少資源備蓄量テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryRareMaterialsTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(countryRareMaterialsTextBox.Text, out val))
+            {
+                countryRareMaterialsTextBox.Text = (settings != null)
+                    ? DoubleHelper.ToString(settings.RareMaterials)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.RareMaterials))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] rare materials: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.RareMaterials) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.RareMaterials = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.RareMaterials);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            countryRareMaterialsTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     石油備蓄量テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryOilTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(countryOilTextBox.Text, out val))
+            {
+                countryOilTextBox.Text = (settings != null) ? DoubleHelper.ToString(settings.Oil) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.Oil))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] oil: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.Oil) : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Oil = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Oil);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            countryOilTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     物資備蓄量テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountrySuppliesTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(countrySuppliesTextBox.Text, out val))
+            {
+                countrySuppliesTextBox.Text = (settings != null) ? DoubleHelper.ToString(settings.Supplies) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.Supplies))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] supplies: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.Supplies) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Supplies = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Supplies);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            countrySuppliesTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     資金備蓄量テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryMoneyTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(countryMoneyTextBox.Text, out val))
+            {
+                countryMoneyTextBox.Text = (settings != null) ? DoubleHelper.ToString(settings.Money) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.Money))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] money: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.Money) : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Money = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Money);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            countryMoneyTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     輸送船団保有数テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryTransportsTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(countryTransportsTextBox.Text, out val))
+            {
+                countryTransportsTextBox.Text = (settings != null) ? IntHelper.ToString(settings.Transports) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (val == settings.Transports))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] transports: {0} -> {1} ({2})",
+                (settings != null) ? IntHelper.ToString(settings.Transports) : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Transports = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Transports);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            countryTransportsTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     護衛船保有数テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryEscortsTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(countryEscortsTextBox.Text, out val))
+            {
+                countryEscortsTextBox.Text = (settings != null) ? IntHelper.ToString(settings.Escorts) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (val == settings.Escorts))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] transports: {0} -> {1} ({2})",
+                (settings != null) ? IntHelper.ToString(settings.Escorts) : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Escorts = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Escorts);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            countryEscortsTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     人的資源テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryManpowerTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(countryManpowerTextBox.Text, out val))
+            {
+                countryManpowerTextBox.Text = (settings != null) ? DoubleHelper.ToString(settings.Manpower) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, settings.Manpower))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] money: {0} -> {1} ({2})",
+                (settings != null) ? DoubleHelper.ToString(settings.Manpower) : "", val,
+                Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.Manpower = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Manpower);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            countryManpowerTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     マップ外エネルギーテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffmapEnergyTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(offmapEnergyTextBox.Text, out val))
+            {
+                offmapEnergyTextBox.Text = ((settings != null) && (settings.Offmap != null))
+                    ? DoubleHelper.ToString(settings.Offmap.Energy)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Offmap == null)) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (((settings != null) && (settings.Offmap != null)) && DoubleHelper.IsEqual(val, settings.Offmap.Energy))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] offmap energy: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Offmap != null)) ? DoubleHelper.ToString(settings.Offmap.Energy) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Offmap == null)
+            {
+                settings.Offmap = new ResourceSettings();
+            }
+
+            // 値を更新する
+            settings.Offmap.Energy = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.OffmapEnergy);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            offmapEnergyTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     マップ外金属テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffmapMetalTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(offmapMetalTextBox.Text, out val))
+            {
+                offmapMetalTextBox.Text = ((settings != null) && (settings.Offmap != null))
+                    ? DoubleHelper.ToString(settings.Offmap.Metal)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Offmap == null)) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (((settings != null) && (settings.Offmap != null)) && DoubleHelper.IsEqual(val, settings.Offmap.Metal))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] offmap metal: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Offmap != null)) ? DoubleHelper.ToString(settings.Offmap.Metal) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Offmap == null)
+            {
+                settings.Offmap = new ResourceSettings();
+            }
+
+            // 値を更新する
+            settings.Offmap.Metal = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.OffmapMetal);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            offmapMetalTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     マップ外希少資源テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffmapRareMaterialsTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(offmapRareMaterialsTextBox.Text, out val))
+            {
+                offmapRareMaterialsTextBox.Text = ((settings != null) && (settings.Offmap != null))
+                    ? DoubleHelper.ToString(settings.Offmap.RareMaterials)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Offmap == null)) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (((settings != null) && (settings.Offmap != null)) &&
+                DoubleHelper.IsEqual(val, settings.Offmap.RareMaterials))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] offmap rare materials: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Offmap != null))
+                    ? DoubleHelper.ToString(settings.Offmap.RareMaterials)
+                    : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Offmap == null)
+            {
+                settings.Offmap = new ResourceSettings();
+            }
+
+            // 値を更新する
+            settings.Offmap.RareMaterials = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.OffmapRareMaterials);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            offmapRareMaterialsTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     マップ外石油テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffmapOilTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(offmapOilTextBox.Text, out val))
+            {
+                offmapOilTextBox.Text = ((settings != null) && (settings.Offmap != null))
+                    ? DoubleHelper.ToString(settings.Offmap.Oil)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Offmap == null)) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (((settings != null) && (settings.Offmap != null)) && DoubleHelper.IsEqual(val, settings.Offmap.Oil))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] offmap oil: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Offmap != null)) ? DoubleHelper.ToString(settings.Offmap.Oil) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Offmap == null)
+            {
+                settings.Offmap = new ResourceSettings();
+            }
+
+            // 値を更新する
+            settings.Offmap.Oil = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.OffmapOil);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            offmapOilTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     マップ外物資テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffmapSuppliesTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(offmapSuppliesTextBox.Text, out val))
+            {
+                offmapSuppliesTextBox.Text = ((settings != null) && (settings.Offmap != null))
+                    ? DoubleHelper.ToString(settings.Offmap.Supplies)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Offmap == null)) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (((settings != null) && (settings.Offmap != null)) && DoubleHelper.IsEqual(val, settings.Offmap.Supplies))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] offmap supplies: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Offmap != null)) ? DoubleHelper.ToString(settings.Offmap.Supplies) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Offmap == null)
+            {
+                settings.Offmap = new ResourceSettings();
+            }
+
+            // 値を更新する
+            settings.Offmap.Supplies = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.OffmapSupplies);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            offmapSuppliesTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     マップ外資金テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffmapMoneyTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(offmapMoneyTextBox.Text, out val))
+            {
+                offmapMoneyTextBox.Text = ((settings != null) && (settings.Offmap != null))
+                    ? DoubleHelper.ToString(settings.Offmap.Money)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Offmap == null)) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (((settings != null) && (settings.Offmap != null)) && DoubleHelper.IsEqual(val, settings.Offmap.Money))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] offmap money: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Offmap != null)) ? DoubleHelper.ToString(settings.Offmap.Money) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Offmap == null)
+            {
+                settings.Offmap = new ResourceSettings();
+            }
+
+            // 値を更新する
+            settings.Offmap.Money = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.OffmapMoney);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            offmapMoneyTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     マップ外輸送船団テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffmapTransportsTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(offmapTransportsTextBox.Text, out val))
+            {
+                offmapTransportsTextBox.Text = ((settings != null) && (settings.Offmap != null))
+                    ? IntHelper.ToString(settings.Offmap.Transports)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Offmap == null)) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (((settings != null) && (settings.Offmap != null)) && (val == settings.Offmap.Transports))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] offmap transports: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Offmap != null)) ? IntHelper.ToString(settings.Offmap.Transports) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Offmap == null)
+            {
+                settings.Offmap = new ResourceSettings();
+            }
+
+            // 値を更新する
+            settings.Offmap.Transports = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.OffmapTransports);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            offmapTransportsTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     マップ外護衛艦テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffmapEscortsTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(offmapEscortsTextBox.Text, out val))
+            {
+                offmapEscortsTextBox.Text = ((settings != null) && (settings.Offmap != null))
+                    ? IntHelper.ToString(settings.Offmap.Escorts)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Offmap == null)) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (((settings != null) && (settings.Offmap != null)) && (val == settings.Offmap.Escorts))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] offmap escorts: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Offmap != null)) ? IntHelper.ToString(settings.Offmap.Escorts) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Offmap == null)
+            {
+                settings.Offmap = new ResourceSettings();
+            }
+
+            // 値を更新する
+            settings.Offmap.Escorts = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.OffmapEscorts);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            offmapEscortsTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     マップ外人的資源テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffmapManpowerTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(offmapManpowerTextBox.Text, out val))
+            {
+                offmapManpowerTextBox.Text = ((settings != null) && (settings.Offmap != null))
+                    ? DoubleHelper.ToString(settings.Offmap.Manpower)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Offmap == null)) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (((settings != null) && (settings.Offmap != null)) && DoubleHelper.IsEqual(val, settings.Offmap.Manpower))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] offmap manpower: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Offmap != null)) ? DoubleHelper.ToString(settings.Offmap.Manpower) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Offmap == null)
+            {
+                settings.Offmap = new ResourceSettings();
+            }
+
+            // 値を更新する
+            settings.Offmap.Manpower = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.OffmapManpower);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            offmapManpowerTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     マップ外ICテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOffmapIcTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(offmapIcTextBox.Text, out val))
+            {
+                offmapIcTextBox.Text = ((settings != null) && (settings.Offmap != null))
+                    ? DoubleHelper.ToString(settings.Offmap.Ic)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Offmap == null)) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (((settings != null) && (settings.Offmap != null)) && DoubleHelper.IsEqual(val, settings.Offmap.Ic))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] offmap ic: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Offmap != null)) ? DoubleHelper.ToString(settings.Offmap.Ic) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Offmap == null)
+            {
+                settings.Offmap = new ResourceSettings();
+            }
+
+            // 値を更新する
+            settings.Offmap.Ic = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.OffmapIc);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            offmapIcTextBox.ForeColor = Color.Red;
+        }
+
+        #endregion
+
+        #region 国家タブ - AI
+
+        /// <summary>
+        ///     AIファイル名テキストボックスの文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAiFileNameTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || string.IsNullOrEmpty(settings.AiFileName)) &&
+                string.IsNullOrEmpty(aiFileNameTextBox.Text))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && aiFileNameTextBox.Text.Equals(settings.AiFileName))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] ai file name: {0} -> {1} ({2})", (settings != null) ? settings.AiFileName : "",
+                aiFileNameTextBox.Text, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            // 値を更新する
+            settings.AiFileName = aiFileNameTextBox.Text;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.AiFileName);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            aiFileNameTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     AIファイル名参照ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAiFileNameBrowseButtonClick(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                InitialDirectory = Game.GetReadFileName(Game.AiPathName),
+                FileName = settings.AiFileName,
+                Filter = Resources.OpenAiFileDialogFilter
+            };
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string fileName;
+                if (Game.IsExportFolderActive)
+                {
+                    fileName = PathHelper.GetRelativePathName(dialog.FileName, Game.ExportFolderName);
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        aiFileNameTextBox.Text = fileName;
+                        return;
+                    }
+                }
+                if (Game.IsModActive)
+                {
+                    fileName = PathHelper.GetRelativePathName(dialog.FileName, Game.ModFolderName);
+                    if (!string.IsNullOrEmpty(fileName))
+                    {
+                        aiFileNameTextBox.Text = fileName;
+                        return;
+                    }
+                }
+                fileName = PathHelper.GetRelativePathName(dialog.FileName, Game.FolderName);
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    aiFileNameTextBox.Text = fileName;
+                    return;
+                }
+                aiFileNameTextBox.Text = dialog.FileName;
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 政府タブ
+
+        #region 政府タブ - 共通
+
+        /// <summary>
+        ///     政府タブを初期化する
+        /// </summary>
+        private void InitGovernmentTab()
+        {
+            // 国家リストボックス
+            governmentCountryListBox.BeginUpdate();
+            governmentCountryListBox.Items.Clear();
+            foreach (Country country in Countries.Tags)
+            {
+                governmentCountryListBox.Items.Add(Countries.GetTagName(country));
+            }
+            governmentCountryListBox.EndUpdate();
+
+            // 政策スライダーラベル
+            democraticLabel.Text = Config.GetText(TextId.SliderDemocratic);
+            authoritarianLabel.Text = Config.GetText(TextId.SliderAuthoritarian);
+            politicalLeftLabel.Text = Config.GetText(TextId.SliderPoliticalLeft);
+            politicalRightLabel.Text = Config.GetText(TextId.SliderPoliticalRight);
+            openSocietyLabel.Text = Config.GetText(TextId.SliderOpenSociety);
+            closedSocietyLabel.Text = Config.GetText(TextId.SliderClosedSociety);
+            freeMarketLabel.Text = Config.GetText(TextId.SliderFreeMarket);
+            centralPlanningLabel.Text = Config.GetText(TextId.SliderCentralPlanning);
+            standingArmyLabel.Text = Config.GetText(TextId.SliderStandingArmy);
+            draftedArmyLabel.Text = Config.GetText(TextId.SliderDraftedArmy);
+            hawkLobbyLabel.Text = Config.GetText(TextId.SliderHawkLobby);
+            doveLobbyLabel.Text = Config.GetText(TextId.SliderDoveLobby);
+            interventionismLabel.Text = Config.GetText(TextId.SliderInterventionism);
+            isolationismLabel.Text = Config.GetText(TextId.SlidlaIsolationism);
+
+            authoritarianLabel.Left = democraticTrackBar.Left + democraticTrackBar.Width - authoritarianLabel.Width;
+            politicalRightLabel.Left = politicalLeftTrackBar.Left + politicalLeftTrackBar.Width -
+                                       politicalRightLabel.Width;
+            closedSocietyLabel.Left = freedomTrackBar.Left + freedomTrackBar.Width - closedSocietyLabel.Width;
+            centralPlanningLabel.Left = freeMarketTrackBar.Left + freeMarketTrackBar.Width - centralPlanningLabel.Width;
+            draftedArmyLabel.Left = professionalArmyTrackBar.Left + professionalArmyTrackBar.Width -
+                                    draftedArmyLabel.Width;
+            doveLobbyLabel.Left = defenseLobbyTrackBar.Left + defenseLobbyTrackBar.Width - doveLobbyLabel.Width;
+            isolationismLabel.Left = interventionismTrackBar.Left + interventionismTrackBar.Width -
+                                     isolationismLabel.Width;
+
+            // 閣僚地位ラベル
+            headOfStateLabel.Text = Config.GetText(TextId.MinisterHeadOfState);
+            headOfGovernmentLabel.Text = Config.GetText(TextId.MinisterHeadOfGovernment);
+            foreignMinisterlabel.Text = Config.GetText(TextId.MinisterForeignMinister);
+            armamentMinisterLabel.Text = Config.GetText(TextId.MinisterArmamentMinister);
+            ministerOfSecurityLabel.Text = Config.GetText(TextId.MinisterMinisterOfSecurity);
+            ministerOfIntelligenceLabel.Text = Config.GetText(TextId.MinisterMinisterOfIntelligence);
+            chiefOfStaffLabel.Text = Config.GetText(TextId.MinisterChiefOfStaff);
+            chiefOfArmyLabel.Text = Config.GetText(TextId.MinisterChiefOfArmy);
+            chiefOfNavyLabel.Text = Config.GetText(TextId.MinisterChiefOfNavy);
+            chiefOfAirLabel.Text = Config.GetText(TextId.MinisterChiefOfAir);
+        }
+
+        /// <summary>
+        ///     政府タブを更新する
+        /// </summary>
+        private void UpdateGovernmentTab()
+        {
+            // 編集項目を無効化する
+            DisableGovernmentItems();
+
+            // 国家リストボックスを有効化する
+            governmentCountryListBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     政府タブの編集項目を無効化する
+        /// </summary>
+        private void DisableGovernmentItems()
+        {
+            // 編集項目を無効化する
+            politicalSliderGroupBox.Enabled = false;
+            cabinetGroupBox.Enabled = false;
+
+            // 編集項目をクリアする
+            sliderYearTextBox.Text = "";
+            sliderMonthTextBox.Text = "";
+            sliderDayTextBox.Text = "";
+
+            democraticTrackBar.Value = 6;
+            politicalLeftTrackBar.Value = 6;
+            freedomTrackBar.Value = 6;
+            freeMarketTrackBar.Value = 6;
+            professionalArmyTrackBar.Value = 6;
+            defenseLobbyTrackBar.Value = 6;
+            interventionismTrackBar.Value = 6;
+
+            headOfStateComboBox.SelectedIndex = -1;
+            headOfGovernmentComboBox.SelectedIndex = -1;
+            foreignMinisterComboBox.SelectedIndex = -1;
+            armamentMinisterComboBox.SelectedIndex = -1;
+            ministerOfSecurityComboBox.SelectedIndex = -1;
+            ministerOfIntelligenceComboBox.SelectedIndex = -1;
+            chiefOfStaffComboBox.SelectedIndex = -1;
+            chiefOfArmyComboBox.SelectedIndex = -1;
+            chiefOfNavyComboBox.SelectedIndex = -1;
+            chiefOfAirComboBox.SelectedIndex = -1;
+
+            headOfStateTypeTextBox.Text = "";
+            headOfStateIdTextBox.Text = "";
+            headOfGovernmentTypeTextBox.Text = "";
+            headOfGovernmentIdTextBox.Text = "";
+            foreignMinisterTypeTextBox.Text = "";
+            foreignMinisterIdTextBox.Text = "";
+            armamentMinisterTypeTextBox.Text = "";
+            armamentMinisterIdTextBox.Text = "";
+            ministerOfSecurityTypeTextBox.Text = "";
+            ministerOfSecurityIdTextBox.Text = "";
+            ministerOfIntelligenceTypeTextBox.Text = "";
+            ministerOfIntelligenceIdTextBox.Text = "";
+            chiefOfStaffTypeTextBox.Text = "";
+            chiefOfStaffIdTextBox.Text = "";
+            chiefOfArmyTypeTextBox.Text = "";
+            chiefOfArmyIdTextBox.Text = "";
+            chiefOfNavyTypeTextBox.Text = "";
+            chiefOfNavyIdTextBox.Text = "";
+            chiefOfAirTypeTextBox.Text = "";
+            chiefOfAirIdTextBox.Text = "";
+        }
+
+        /// <summary>
+        ///     政府タブの編集項目を更新する
+        /// </summary>
+        private void UpdateGovernmentItems()
+        {
+            // 選択中の国家がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 編集項目を更新する
+            UpdatePoliticalSliderItems(settings);
+            UpdateCabinetItems(settings);
+
+            // 編集項目を有効化する
+            politicalSliderGroupBox.Enabled = true;
+            cabinetGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     国家リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGovernmentCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                CountrySettings settings = Scenarios.GetCountrySettings(Countries.Tags[e.Index]);
+                brush = ((settings != null) && settings.IsDirty())
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(governmentCountryListBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = governmentCountryListBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     国家リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGovernmentCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ編集項目を無効化する
+            if (governmentCountryListBox.SelectedIndex < 0)
+            {
+                DisableGovernmentItems();
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateGovernmentItems();
+        }
+
+        /// <summary>
+        ///     選択中の国家を取得する
+        /// </summary>
+        /// <returns>選択中の国家</returns>
+        private Country GetSelectedGovernmentCountry()
+        {
+            if (governmentCountryListBox.SelectedIndex < 0)
+            {
+                return Country.None;
+            }
+            return Countries.Tags[governmentCountryListBox.SelectedIndex];
+        }
+
+        #endregion
+
+        #region 政府タブ - 政策スライダー
+
+        /// <summary>
+        ///     政策スライダーの編集項目を更新する
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        private void UpdatePoliticalSliderItems(CountrySettings settings)
+        {
+            bool flag = ((settings != null) && (settings.Policy != null) && (settings.Policy.Date != null));
+            sliderYearTextBox.Text = flag ? IntHelper.ToString(settings.Policy.Date.Year) : "";
+            sliderMonthTextBox.Text = flag ? IntHelper.ToString(settings.Policy.Date.Month) : "";
+            sliderDayTextBox.Text = flag ? IntHelper.ToString(settings.Policy.Date.Day) : "";
+
+            sliderYearTextBox.ForeColor = (flag && settings.IsDirty(CountrySettingsItemId.SliderYear))
+                ? Color.Red
+                : SystemColors.WindowText;
+            sliderMonthTextBox.ForeColor = (flag && settings.IsDirty(CountrySettingsItemId.SliderMonth))
+                ? Color.Red
+                : SystemColors.WindowText;
+            sliderDayTextBox.ForeColor = (flag && settings.IsDirty(CountrySettingsItemId.SliderDay))
+                ? Color.Red
+                : SystemColors.WindowText;
+
+            if ((settings == null) || (settings.Policy == null))
+            {
+                democraticTrackBar.Value = 6;
+                politicalLeftTrackBar.Value = 6;
+                freedomTrackBar.Value = 6;
+                freeMarketTrackBar.Value = 6;
+                professionalArmyTrackBar.Value = 6;
+                defenseLobbyTrackBar.Value = 6;
+                interventionismTrackBar.Value = 6;
+                return;
+            }
+
+            int val = settings.Policy.Democratic;
+            if (val < 1)
+            {
+                val = 1;
+            }
+            else if (val > 10)
+            {
+                val = 10;
+            }
+            democraticTrackBar.Value = 11 - val;
+
+            val = settings.Policy.PoliticalLeft;
+            if (val < 1)
+            {
+                val = 1;
+            }
+            else if (val > 10)
+            {
+                val = 10;
+            }
+            politicalLeftTrackBar.Value = 11 - val;
+
+            val = settings.Policy.Freedom;
+            if (val < 1)
+            {
+                val = 1;
+            }
+            else if (val > 10)
+            {
+                val = 10;
+            }
+            freedomTrackBar.Value = 11 - val;
+
+            val = settings.Policy.FreeMarket;
+            if (val < 1)
+            {
+                val = 1;
+            }
+            else if (val > 10)
+            {
+                val = 10;
+            }
+            freeMarketTrackBar.Value = 11 - val;
+
+            val = settings.Policy.ProfessionalArmy;
+            if (val < 1)
+            {
+                val = 1;
+            }
+            else if (val > 10)
+            {
+                val = 10;
+            }
+            professionalArmyTrackBar.Value = 11 - val;
+
+            val = settings.Policy.DefenseLobby;
+            if (val < 1)
+            {
+                val = 1;
+            }
+            else if (val > 10)
+            {
+                val = 10;
+            }
+            defenseLobbyTrackBar.Value = 11 - val;
+
+            val = settings.Policy.Interventionism;
+            if (val < 1)
+            {
+                val = 1;
+            }
+            else if (val > 10)
+            {
+                val = 10;
+            }
+            interventionismTrackBar.Value = 11 - val;
+        }
+
+        /// <summary>
+        ///     スライダー移動可能年テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSliderYearTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(sliderYearTextBox.Text, out val))
+            {
+                sliderYearTextBox.Text = ((settings != null) && (settings.Policy != null) &&
+                                          (settings.Policy.Date != null))
+                    ? IntHelper.ToString(settings.Policy.Date.Year)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Policy == null) || (settings.Policy.Date == null)) && (val == 5))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.Policy != null) && (settings.Policy.Date != null) &&
+                (val == settings.Policy.Date.Year))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] slider year: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Policy != null) && (settings.Policy.Date != null))
+                    ? IntHelper.ToString(settings.Policy.Date.Year)
+                    : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Policy == null)
+            {
+                settings.Policy = new CountryPolicy
+                {
+                    Democratic = 5,
+                    PoliticalLeft = 5,
+                    Freedom = 5,
+                    FreeMarket = 5,
+                    ProfessionalArmy = 5,
+                    DefenseLobby = 5,
+                    Interventionism = 5
+                };
+            }
+            if (settings.Policy.Date == null)
+            {
+                settings.Policy.Date = new GameDate();
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.SliderMonth);
+                settings.SetDirty(CountrySettingsItemId.SliderDay);
+
+                // 編集項目を更新する
+                sliderMonthTextBox.Text = IntHelper.ToString(settings.Policy.Date.Month);
+                sliderDayTextBox.Text = IntHelper.ToString(settings.Policy.Date.Day);
+
+                // 文字色を変更する
+                sliderMonthTextBox.ForeColor = Color.Red;
+                sliderDayTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            settings.Policy.Date.Year = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.SliderYear);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            sliderYearTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     スライダー移動可能月テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSliderMonthTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(sliderMonthTextBox.Text, out val))
+            {
+                sliderMonthTextBox.Text = ((settings != null) && (settings.Policy != null) &&
+                                           (settings.Policy.Date != null))
+                    ? IntHelper.ToString(settings.Policy.Date.Month)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Policy == null) || (settings.Policy.Date == null)) && (val == 5))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.Policy != null) && (settings.Policy.Date != null) &&
+                (val == settings.Policy.Date.Month))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] slider month: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Policy != null) && (settings.Policy.Date != null))
+                    ? IntHelper.ToString(settings.Policy.Date.Month)
+                    : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Policy == null)
+            {
+                settings.Policy = new CountryPolicy
+                {
+                    Democratic = 5,
+                    PoliticalLeft = 5,
+                    Freedom = 5,
+                    FreeMarket = 5,
+                    ProfessionalArmy = 5,
+                    DefenseLobby = 5,
+                    Interventionism = 5
+                };
+            }
+            if (settings.Policy.Date == null)
+            {
+                settings.Policy.Date = new GameDate();
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.SliderYear);
+                settings.SetDirty(CountrySettingsItemId.SliderDay);
+
+                // 編集項目を更新する
+                sliderYearTextBox.Text = IntHelper.ToString(settings.Policy.Date.Year);
+                sliderDayTextBox.Text = IntHelper.ToString(settings.Policy.Date.Day);
+
+                // 文字色を変更する
+                sliderYearTextBox.ForeColor = Color.Red;
+                sliderDayTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            settings.Policy.Date.Month = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.SliderMonth);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            sliderMonthTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     スライダー移動可能日テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSliderDayTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(sliderDayTextBox.Text, out val))
+            {
+                sliderDayTextBox.Text = ((settings != null) && (settings.Policy != null) &&
+                                         (settings.Policy.Date != null))
+                    ? IntHelper.ToString(settings.Policy.Date.Day)
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if (((settings == null) || (settings.Policy == null) || (settings.Policy.Date == null)) && (val == 5))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.Policy != null) && (settings.Policy.Date != null) &&
+                (val == settings.Policy.Date.Day))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] slider day: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Policy != null) && (settings.Policy.Date != null))
+                    ? IntHelper.ToString(settings.Policy.Date.Day)
+                    : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Policy == null)
+            {
+                settings.Policy = new CountryPolicy
+                {
+                    Democratic = 5,
+                    PoliticalLeft = 5,
+                    Freedom = 5,
+                    FreeMarket = 5,
+                    ProfessionalArmy = 5,
+                    DefenseLobby = 5,
+                    Interventionism = 5
+                };
+            }
+            if (settings.Policy.Date == null)
+            {
+                settings.Policy.Date = new GameDate();
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.SliderYear);
+                settings.SetDirty(CountrySettingsItemId.SliderMonth);
+
+                // 編集項目を更新する
+                sliderYearTextBox.Text = IntHelper.ToString(settings.Policy.Date.Year);
+                sliderMonthTextBox.Text = IntHelper.ToString(settings.Policy.Date.Month);
+
+                // 文字色を変更する
+                sliderYearTextBox.ForeColor = Color.Red;
+                sliderMonthTextBox.ForeColor = Color.Red;
+            }
+
+            // 値を更新する
+            settings.Policy.Date.Day = val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.SliderDay);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            sliderDayTextBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     民主的 - 独裁的スライドバーの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDemocraticTrackBarScroll(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 初期値から変更されていなければ何もしない
+            int val = democraticTrackBar.Value;
+            if (((settings == null) || (settings.Policy == null)) && (val == 6))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.Democratic))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] democratic: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Policy != null)) ? IntHelper.ToString(settings.Policy.Democratic) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Policy == null)
+            {
+                settings.Policy = new CountryPolicy
+                {
+                    PoliticalLeft = 5,
+                    Freedom = 5,
+                    FreeMarket = 5,
+                    ProfessionalArmy = 5,
+                    DefenseLobby = 5,
+                    Interventionism = 5
+                };
+            }
+
+            // 値を更新する
+            settings.Policy.Democratic = 11 - val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Democratic);
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     政治的左派 - 政治的右派スライドバーの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPoliticalLeftTrackBarScroll(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 初期値から変更されていなければ何もしない
+            int val = politicalLeftTrackBar.Value;
+            if (((settings == null) || (settings.Policy == null)) && (val == 6))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.PoliticalLeft))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] political left: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Policy != null))
+                    ? IntHelper.ToString(settings.Policy.PoliticalLeft)
+                    : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Policy == null)
+            {
+                settings.Policy = new CountryPolicy
+                {
+                    Democratic = 5,
+                    Freedom = 5,
+                    FreeMarket = 5,
+                    ProfessionalArmy = 5,
+                    DefenseLobby = 5,
+                    Interventionism = 5
+                };
+            }
+
+            // 値を更新する
+            settings.Policy.PoliticalLeft = 11 - val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.PoliticalLeft);
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     開放社会 - 閉鎖社会スライドバーの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFreedomTrackBarScroll(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 初期値から変更されていなければ何もしない
+            int val = freedomTrackBar.Value;
+            if (((settings == null) || (settings.Policy == null)) && (val == 6))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.Freedom))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] freedom: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Policy != null)) ? IntHelper.ToString(settings.Policy.Freedom) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Policy == null)
+            {
+                settings.Policy = new CountryPolicy
+                {
+                    Democratic = 5,
+                    PoliticalLeft = 5,
+                    FreeMarket = 5,
+                    ProfessionalArmy = 5,
+                    DefenseLobby = 5,
+                    Interventionism = 5
+                };
+            }
+
+            // 値を更新する
+            settings.Policy.Freedom = 11 - val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Freedom);
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     自由経済 - 中央計画経済スライドバーの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnFreeMarketTrackBarScroll(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 初期値から変更されていなければ何もしない
+            int val = freeMarketTrackBar.Value;
+            if (((settings == null) || (settings.Policy == null)) && (val == 6))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.FreeMarket))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] free market: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Policy != null)) ? IntHelper.ToString(settings.Policy.FreeMarket) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Policy == null)
+            {
+                settings.Policy = new CountryPolicy
+                {
+                    Democratic = 5,
+                    PoliticalLeft = 5,
+                    Freedom = 5,
+                    ProfessionalArmy = 5,
+                    DefenseLobby = 5,
+                    Interventionism = 5
+                };
+            }
+
+            // 値を更新する
+            settings.Policy.FreeMarket = 11 - val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.FreeMarket);
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     常備軍 - 徴兵軍スライドバーの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProfessionalArmyTrackBarScroll(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 初期値から変更されていなければ何もしない
+            int val = professionalArmyTrackBar.Value;
+            if (((settings == null) || (settings.Policy == null)) && (val == 6))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.ProfessionalArmy))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] professional army: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Policy != null))
+                    ? IntHelper.ToString(settings.Policy.ProfessionalArmy)
+                    : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Policy == null)
+            {
+                settings.Policy = new CountryPolicy
+                {
+                    Democratic = 5,
+                    PoliticalLeft = 5,
+                    Freedom = 5,
+                    FreeMarket = 5,
+                    DefenseLobby = 5,
+                    Interventionism = 5
+                };
+            }
+
+            // 値を更新する
+            settings.Policy.ProfessionalArmy = 11 - val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.ProfessionalArmy);
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     タカ派 - ハト派スライドバーの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDefenseLobbyTrackBarScroll(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 初期値から変更されていなければ何もしない
+            int val = defenseLobbyTrackBar.Value;
+            if (((settings == null) || (settings.Policy == null)) && (val == 6))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.DefenseLobby))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] defense lobby: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Policy != null))
+                    ? IntHelper.ToString(settings.Policy.DefenseLobby)
+                    : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Policy == null)
+            {
+                settings.Policy = new CountryPolicy
+                {
+                    Democratic = 5,
+                    PoliticalLeft = 5,
+                    Freedom = 5,
+                    FreeMarket = 5,
+                    ProfessionalArmy = 5,
+                    Interventionism = 5
+                };
+            }
+
+            // 値を更新する
+            settings.Policy.DefenseLobby = 11 - val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.DefenseLobby);
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     介入主義 - 孤立主義スライドバーの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnIntervensionismTrackBarScroll(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 初期値から変更されていなければ何もしない
+            int val = interventionismTrackBar.Value;
+            if (((settings == null) || (settings.Policy == null)) && (val == 6))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.Interventionism))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] interventionism: {0} -> {1} ({2})",
+                ((settings != null) && (settings.Policy != null))
+                    ? IntHelper.ToString(settings.Policy.Interventionism)
+                    : "", val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+            if (settings.Policy == null)
+            {
+                settings.Policy = new CountryPolicy
+                {
+                    Democratic = 5,
+                    PoliticalLeft = 5,
+                    Freedom = 5,
+                    FreeMarket = 5,
+                    ProfessionalArmy = 5,
+                    DefenseLobby = 5
+                };
+            }
+
+            // 値を更新する
+            settings.Policy.Interventionism = 11 - val;
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.Interventionism);
+            Scenarios.SetDirty();
+        }
+
+        #endregion
+
+        #region 政府タブ - 閣僚
+
+        /// <summary>
+        ///     閣僚の編集項目を更新する
+        /// </summary>
+        /// <param name="settings"></param>
+        private void UpdateCabinetItems(CountrySettings settings)
+        {
+            ScenarioHeader header = Scenarios.Data.Header;
+            int year = (header.StartDate != null) ? header.StartDate.Year : header.StartYear;
+            Country country = GetSelectedGovernmentCountry();
+            List<Minister> ministers = Misc.EnableRetirementYearMinisters
+                ? Ministers.Items.Where(
+                    minister => (minister.Country == country) &&
+                                (year >= minister.StartYear) &&
+                                (year < minister.EndYear) &&
+                                (year < minister.RetirementYear)).ToList()
+                : Ministers.Items.Where(
+                    minister => (minister.Country == country) &&
+                                (year >= minister.StartYear) &&
+                                (year < minister.EndYear)).ToList();
+
+            bool flag = ((settings != null) && (settings.HeadOfState != null));
+            _headOfStateList = ministers.Where(minister => minister.Position == MinisterPosition.HeadOfState).ToList();
+            headOfStateComboBox.BeginUpdate();
+            headOfStateComboBox.Items.Clear();
+            foreach (Minister minister in _headOfStateList)
+            {
+                headOfStateComboBox.Items.Add(minister.Name);
+            }
+            headOfStateComboBox.SelectedIndex = flag
+                ? _headOfStateList.FindIndex(minister => minister.Id == settings.HeadOfState.Id)
+                : -1;
+            headOfStateComboBox.EndUpdate();
+            headOfStateTypeTextBox.Text = flag ? IntHelper.ToString(settings.HeadOfState.Type) : "";
+            headOfStateIdTextBox.Text = flag ? IntHelper.ToString(settings.HeadOfState.Id) : "";
+
+            flag = ((settings != null) && (settings.HeadOfGovernment != null));
+            _headOfGovernmentList =
+                ministers.Where(minister => minister.Position == MinisterPosition.HeadOfGovernment).ToList();
+            headOfGovernmentComboBox.BeginUpdate();
+            headOfGovernmentComboBox.Items.Clear();
+            foreach (Minister minister in _headOfGovernmentList)
+            {
+                headOfGovernmentComboBox.Items.Add(minister.Name);
+            }
+            headOfGovernmentComboBox.SelectedIndex = flag
+                ? _headOfGovernmentList.FindIndex(minister => minister.Id == settings.HeadOfGovernment.Id)
+                : -1;
+            headOfGovernmentComboBox.EndUpdate();
+            headOfGovernmentTypeTextBox.Text = flag ? IntHelper.ToString(settings.HeadOfGovernment.Type) : "";
+            headOfGovernmentIdTextBox.Text = flag ? IntHelper.ToString(settings.HeadOfGovernment.Id) : "";
+
+            flag = ((settings != null) && (settings.ForeignMinister != null));
+            _foreignMinisterList =
+                ministers.Where(minister => minister.Position == MinisterPosition.ForeignMinister).ToList();
+            foreignMinisterComboBox.BeginUpdate();
+            foreignMinisterComboBox.Items.Clear();
+            foreach (Minister minister in _foreignMinisterList)
+            {
+                foreignMinisterComboBox.Items.Add(minister.Name);
+            }
+            foreignMinisterComboBox.SelectedIndex = flag
+                ? _foreignMinisterList.FindIndex(minister => minister.Id == settings.ForeignMinister.Id)
+                : -1;
+            foreignMinisterComboBox.EndUpdate();
+            foreignMinisterTypeTextBox.Text = flag ? IntHelper.ToString(settings.ForeignMinister.Type) : "";
+            foreignMinisterIdTextBox.Text = flag ? IntHelper.ToString(settings.ForeignMinister.Id) : "";
+
+            flag = ((settings != null) && (settings.ArmamentMinister != null));
+            _armamentMinisterList =
+                ministers.Where(minister => minister.Position == MinisterPosition.MinisterOfArmament).ToList();
+            armamentMinisterComboBox.BeginUpdate();
+            armamentMinisterComboBox.Items.Clear();
+            foreach (Minister minister in _armamentMinisterList)
+            {
+                armamentMinisterComboBox.Items.Add(minister.Name);
+            }
+            armamentMinisterComboBox.SelectedIndex = flag
+                ? _armamentMinisterList.FindIndex(minister => minister.Id == settings.ArmamentMinister.Id)
+                : -1;
+            armamentMinisterComboBox.EndUpdate();
+            armamentMinisterTypeTextBox.Text = flag ? IntHelper.ToString(settings.ArmamentMinister.Type) : "";
+            armamentMinisterIdTextBox.Text = flag ? IntHelper.ToString(settings.ArmamentMinister.Id) : "";
+
+            flag = ((settings != null) && (settings.MinisterOfSecurity != null));
+            _ministerOfSecurityList =
+                ministers.Where(minister => minister.Position == MinisterPosition.MinisterOfSecurity).ToList();
+            ministerOfSecurityComboBox.BeginUpdate();
+            ministerOfSecurityComboBox.Items.Clear();
+            foreach (Minister minister in _ministerOfSecurityList)
+            {
+                ministerOfSecurityComboBox.Items.Add(minister.Name);
+            }
+            ministerOfSecurityComboBox.SelectedIndex = flag
+                ? _ministerOfSecurityList.FindIndex(minister => minister.Id == settings.MinisterOfSecurity.Id)
+                : -1;
+            ministerOfSecurityComboBox.EndUpdate();
+            ministerOfSecurityTypeTextBox.Text = flag ? IntHelper.ToString(settings.MinisterOfSecurity.Type) : "";
+            ministerOfSecurityIdTextBox.Text = flag ? IntHelper.ToString(settings.MinisterOfSecurity.Id) : "";
+
+            flag = ((settings != null) && (settings.MinisterOfIntelligence != null));
+            _ministerOfIntelligenceList =
+                ministers.Where(minister => minister.Position == MinisterPosition.HeadOfMilitaryIntelligence).ToList();
+            ministerOfIntelligenceComboBox.BeginUpdate();
+            ministerOfIntelligenceComboBox.Items.Clear();
+            foreach (Minister minister in _ministerOfIntelligenceList)
+            {
+                ministerOfIntelligenceComboBox.Items.Add(minister.Name);
+            }
+            ministerOfIntelligenceComboBox.SelectedIndex = flag
+                ? _ministerOfIntelligenceList.FindIndex(minister => minister.Id == settings.MinisterOfIntelligence.Id)
+                : -1;
+            ministerOfIntelligenceComboBox.EndUpdate();
+            ministerOfIntelligenceTypeTextBox.Text = flag
+                ? IntHelper.ToString(settings.MinisterOfIntelligence.Type)
+                : "";
+            ministerOfIntelligenceIdTextBox.Text = flag ? IntHelper.ToString(settings.MinisterOfIntelligence.Id) : "";
+
+            flag = ((settings != null) && (settings.ChiefOfStaff != null));
+            _chiefOfStaffList = ministers.Where(minister => minister.Position == MinisterPosition.ChiefOfStaff).ToList();
+            chiefOfStaffComboBox.BeginUpdate();
+            chiefOfStaffComboBox.Items.Clear();
+            foreach (Minister minister in _chiefOfStaffList)
+            {
+                chiefOfStaffComboBox.Items.Add(minister.Name);
+            }
+            chiefOfStaffComboBox.SelectedIndex = flag
+                ? _chiefOfStaffList.FindIndex(minister => minister.Id == settings.ChiefOfStaff.Id)
+                : -1;
+            chiefOfStaffComboBox.EndUpdate();
+            chiefOfStaffTypeTextBox.Text = flag ? IntHelper.ToString(settings.ChiefOfStaff.Type) : "";
+            chiefOfStaffIdTextBox.Text = flag ? IntHelper.ToString(settings.ChiefOfStaff.Id) : "";
+
+            flag = ((settings != null) && (settings.ChiefOfArmy != null));
+            _chiefOfArmyList = ministers.Where(minister => minister.Position == MinisterPosition.ChiefOfArmy).ToList();
+            chiefOfArmyComboBox.BeginUpdate();
+            chiefOfArmyComboBox.Items.Clear();
+            foreach (Minister minister in _chiefOfArmyList)
+            {
+                chiefOfArmyComboBox.Items.Add(minister.Name);
+            }
+            chiefOfArmyComboBox.SelectedIndex = flag
+                ? _chiefOfArmyList.FindIndex(minister => minister.Id == settings.ChiefOfArmy.Id)
+                : -1;
+            chiefOfArmyComboBox.EndUpdate();
+            chiefOfArmyTypeTextBox.Text = flag ? IntHelper.ToString(settings.ChiefOfArmy.Type) : "";
+            chiefOfArmyIdTextBox.Text = flag ? IntHelper.ToString(settings.ChiefOfArmy.Id) : "";
+
+            flag = ((settings != null) && (settings.ChiefOfNavy != null));
+            _chiefOfNavyList = ministers.Where(minister => minister.Position == MinisterPosition.ChiefOfNavy).ToList();
+            chiefOfNavyComboBox.BeginUpdate();
+            chiefOfNavyComboBox.Items.Clear();
+            foreach (Minister minister in _chiefOfNavyList)
+            {
+                chiefOfNavyComboBox.Items.Add(minister.Name);
+            }
+            chiefOfNavyComboBox.SelectedIndex = flag
+                ? _chiefOfNavyList.FindIndex(minister => minister.Id == settings.ChiefOfNavy.Id)
+                : -1;
+            chiefOfNavyComboBox.EndUpdate();
+            chiefOfNavyTypeTextBox.Text = flag ? IntHelper.ToString(settings.ChiefOfNavy.Type) : "";
+            chiefOfNavyIdTextBox.Text = flag ? IntHelper.ToString(settings.ChiefOfNavy.Id) : "";
+
+            flag = ((settings != null) && (settings.ChiefOfAir != null));
+            _chiefOfAirList =
+                ministers.Where(minister => minister.Position == MinisterPosition.ChiefOfAirForce).ToList();
+            chiefOfAirComboBox.BeginUpdate();
+            chiefOfAirComboBox.Items.Clear();
+            foreach (Minister minister in _chiefOfAirList)
+            {
+                chiefOfAirComboBox.Items.Add(minister.Name);
+            }
+            chiefOfAirComboBox.SelectedIndex = flag
+                ? _chiefOfAirList.FindIndex(minister => minister.Id == settings.ChiefOfAir.Id)
+                : -1;
+            chiefOfAirComboBox.EndUpdate();
+            chiefOfAirTypeTextBox.Text = flag ? IntHelper.ToString(settings.ChiefOfAir.Type) : "";
+            chiefOfAirIdTextBox.Text = flag ? IntHelper.ToString(settings.ChiefOfAir.Id) : "";
         }
 
         #endregion

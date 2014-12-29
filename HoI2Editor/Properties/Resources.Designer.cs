@@ -10546,6 +10546,15 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   AI file (*.ai)|*.ai|All files (*.*)|*.* に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string OpenAiFileDialogFilter {
+            get {
+                return ResourceManager.GetString("OpenAiFileDialogFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Bitmap (*.bmp)|*.bmp|All files (*.*)|*.* に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string OpenBitmapFileDialogFilter {

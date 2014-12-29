@@ -186,6 +186,50 @@ namespace HoI2Editor.Models
             "Patched Simplified Chinese"
         };
 
+        /// <summary>
+        ///     キー文字列
+        /// </summary>
+        private static readonly string[] KeyStrings =
+        {
+            "EYR_AXIS",
+            "EYR_ALLIES",
+            "EYR_COM",
+            "HOIG_HEAD_OF_STATE",
+            "HOIG_HEAD_OF_GOVERNMENT",
+            "HOIG_FOREIGN_MINISTER",
+            "HOIG_ARMAMENT_MINISTER",
+            "HOIG_MINISTER_OF_SECURITY",
+            "HOIG_MINISTER_OF_INTELLIGENCE",
+            "HOIG_CHIEF_OF_STAFF",
+            "HOIG_CHIEF_OF_ARMY",
+            "HOIG_CHIEF_OF_NAVY",
+            "HOIG_CHIEF_OF_AIR",
+            "RESOURCE_ENERGY",
+            "RESOURCE_METAL",
+            "RESOURCE_RARE_MATERIALS",
+            "RESOURCE_OIL",
+            "RESOURCE_SUPPLY",
+            "RESOURCE_MONEY",
+            "CIW_TRANSPORTS",
+            "CIW_ESCORTS",
+            "RESOURCE_IC",
+            "RESOURCE_MANPOWER",
+            "DOMNAME_DEM_L",
+            "DOMNAME_DEM_R",
+            "DOMNAME_POL_L",
+            "DOMNAME_POL_R",
+            "DOMNAME_FRE_L",
+            "DOMNAME_FRE_R",
+            "DOMNAME_FRM_L",
+            "DOMNAME_FRM_R",
+            "DOMNAME_PRO_L",
+            "DOMNAME_PRO_R",
+            "DOMNAME_DEF_L",
+            "DOMNAME_DEF_R",
+            "DOMNAME_INT_L",
+            "DOMNAME_INT_R"
+        };
+
         #endregion
 
         #region ファイル読み込み
@@ -822,6 +866,17 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     文字列を取得する
+        /// </summary>
+        /// <param name="id">文字列ID</param>
+        /// <returns>取得した文字列</returns>
+        public static string GetText(TextId id)
+        {
+            string key = KeyStrings[(int) id];
+            return GetText(key);
+        }
+
+        /// <summary>
         ///     文字列を設定する
         /// </summary>
         /// <param name="key">文字列の定義名</param>
@@ -871,6 +926,18 @@ namespace HoI2Editor.Models
 
             // 編集済みフラグを設定する
             SetDirty(fileName);
+        }
+
+        /// <summary>
+        ///     文字列を設定する
+        /// </summary>
+        /// <param name="id">文字列ID</param>
+        /// <param name="text">登録する文字列</param>
+        /// <param name="fileName">文字列定義ファイル名</param>
+        public static void SetText(TextId id, string text, string fileName)
+        {
+            string key = KeyStrings[(int) id];
+            SetText(key, text, fileName);
         }
 
         /// <summary>
@@ -1328,5 +1395,49 @@ namespace HoI2Editor.Models
         PatchedKorean, // 英語版韓国語化
         PatchedTraditionalChinese, // 英語版繁体字中国語化
         PatchedSimplifiedChinese // 英語版簡体字中国語化
+    }
+
+    /// <summary>
+    ///     文字列ID
+    /// </summary>
+    public enum TextId
+    {
+        AllianceAxis,
+        AllianceAllies,
+        AllianceComintern,
+        MinisterHeadOfState,
+        MinisterHeadOfGovernment,
+        MinisterForeignMinister,
+        MinisterArmamentMinister,
+        MinisterMinisterOfSecurity,
+        MinisterMinisterOfIntelligence,
+        MinisterChiefOfStaff,
+        MinisterChiefOfArmy,
+        MinisterChiefOfNavy,
+        MinisterChiefOfAir,
+        ResourceEnergy,
+        ResourceMetal,
+        ResourceRareMaterials,
+        ResourceOil,
+        ResourceSupplies,
+        ResourceMoney,
+        ResourceTransports,
+        ResourceEscorts,
+        ResourceIc,
+        ResourceManpower,
+        SliderDemocratic,
+        SliderAuthoritarian,
+        SliderPoliticalLeft,
+        SliderPoliticalRight,
+        SliderOpenSociety,
+        SliderClosedSociety,
+        SliderFreeMarket,
+        SliderCentralPlanning,
+        SliderStandingArmy,
+        SliderDraftedArmy,
+        SliderHawkLobby,
+        SliderDoveLobby,
+        SliderInterventionism,
+        SlidlaIsolationism
     }
 }
