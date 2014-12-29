@@ -2319,7 +2319,6 @@ namespace HoI2Editor.Models
         IndustrialModifier, // 工業力補正
         GroundDefEff, // 対地防御補正
         AiFileName, // AIファイル名
-        AiSettings, // AI設定
         Manpower, // 人的資源
         RelativeManpower, // 人的資源補正値
         Energy, // エネルギー
@@ -2330,7 +2329,6 @@ namespace HoI2Editor.Models
         Money, // 資金
         Transports, // 輸送船団
         Escorts, // 護衛艦
-        Nuke, // 核兵器
         OffmapIc, // マップ外工業力
         OffmapManpower, // マップ外人的資源
         OffmapEnergy, // マップ外エネルギー
@@ -2345,13 +2343,6 @@ namespace HoI2Editor.Models
         SupplySlider, // 物資IC比率
         ProductionSlider, // 生産IC比率
         ReinforcementSlider, // 補充IC比率
-        NationalProvinces, // 中核プロヴィンス
-        OwnedProvinces, // 保有プロヴィンス
-        ControlledProvinces, // 支配プロヴィンス
-        ClaimedProvinces, // 領有権主張プロヴィンス
-        TechApps, // 保有技術
-        BluePrints, // 青写真
-        Inventions, // 発明イベント
         SliderYear, // スライダー移動可能年
         SliderMonth, // スライダー移動可能月
         SliderDay, // スライダー移動可能日
@@ -2362,13 +2353,30 @@ namespace HoI2Editor.Models
         ProfessionalArmy, // 常備軍 - 徴兵軍
         DefenseLobby, // タカ派 - ハト派
         Interventionism, // 介入主義 - 孤立主義
+        Nuke, // 核兵器
         NukeYear, // 核兵器生産年
         NukeMonth, // 核兵器生産月
         NukeDay, // 核兵器生産日
-        DormantLeaders, // 休止指揮官
-        DormantMinisters, // 休止閣僚
-        DormantTeams, // 休止研究機関
-        StealLeaders // 抽出指揮官
+        HeadOfStateType, // 国家元首のtype
+        HeadOfGovernmentType, // 政府首班のtype
+        ForeignMinisterType, // 外務大臣のtype
+        ArmamentMinisterType, // 軍需大臣のtype
+        MinisterOfSecurityType, // 内務大臣のtype
+        MinisterOfIntelligenceType, // 情報大臣のtype
+        ChiefOfStaffType, // 統合参謀総長のtype
+        ChiefOfArmyType, // 陸軍総司令官のtype
+        ChiefOfNavyType, // 海軍総司令官のtype
+        ChiefOfAirType, // 空軍総司令官のtype
+        HeadOfStateId, // 国家元首のid
+        HeadOfGovernmentId, // 政府首班のid
+        ForeignMinisterId, // 外務大臣のid
+        ArmamentMinisterId, // 軍需大臣のid
+        MinisterOfSecurityId, // 内務大臣のid
+        MinisterOfIntelligenceId, // 情報大臣のid
+        ChiefOfStaffId, // 統合参謀総長のid
+        ChiefOfArmyId, // 陸軍総司令官のid
+        ChiefOfNavyId, // 海軍総司令官のid
+        ChiefOfAirId // 空軍総司令官のid
     }
 
     /// <summary>

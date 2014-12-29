@@ -549,10 +549,13 @@
             // 
             // chiefOfAirComboBox
             // 
+            this.chiefOfAirComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.chiefOfAirComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chiefOfAirComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.chiefOfAirComboBox, "chiefOfAirComboBox");
             this.chiefOfAirComboBox.Name = "chiefOfAirComboBox";
+            this.chiefOfAirComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnChiefOfAirComboBoxDrawItem);
+            this.chiefOfAirComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfAirComboBoxSelectedIndexChanged);
             // 
             // chiefOfAirLabel
             // 
@@ -571,10 +574,13 @@
             // 
             // chiefOfNavyComboBox
             // 
+            this.chiefOfNavyComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.chiefOfNavyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chiefOfNavyComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.chiefOfNavyComboBox, "chiefOfNavyComboBox");
             this.chiefOfNavyComboBox.Name = "chiefOfNavyComboBox";
+            this.chiefOfNavyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnChiefOfNavyComboBoxDrawItem);
+            this.chiefOfNavyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfNavyComboBoxSelectedIndexChanged);
             // 
             // chiefOfNavyLabel
             // 
@@ -593,10 +599,13 @@
             // 
             // chiefOfArmyComboBox
             // 
+            this.chiefOfArmyComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.chiefOfArmyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chiefOfArmyComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.chiefOfArmyComboBox, "chiefOfArmyComboBox");
             this.chiefOfArmyComboBox.Name = "chiefOfArmyComboBox";
+            this.chiefOfArmyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnChiefOfArmyComboBoxDrawItem);
+            this.chiefOfArmyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfArmyComboBoxSelectedIndexChanged);
             // 
             // chiefOfArmyLabel
             // 
@@ -615,10 +624,13 @@
             // 
             // chiefOfStaffComboBox
             // 
+            this.chiefOfStaffComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.chiefOfStaffComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chiefOfStaffComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.chiefOfStaffComboBox, "chiefOfStaffComboBox");
             this.chiefOfStaffComboBox.Name = "chiefOfStaffComboBox";
+            this.chiefOfStaffComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnChiefOfStaffComboBoxDrawItem);
+            this.chiefOfStaffComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfStaffComboBoxSelectedIndexChanged);
             // 
             // chiefOfStaffLabel
             // 
@@ -637,10 +649,13 @@
             // 
             // ministerOfIntelligenceComboBox
             // 
+            this.ministerOfIntelligenceComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.ministerOfIntelligenceComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ministerOfIntelligenceComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.ministerOfIntelligenceComboBox, "ministerOfIntelligenceComboBox");
             this.ministerOfIntelligenceComboBox.Name = "ministerOfIntelligenceComboBox";
+            this.ministerOfIntelligenceComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnMinisterOfIntelligenceComboBoxDrawItem);
+            this.ministerOfIntelligenceComboBox.SelectedIndexChanged += new System.EventHandler(this.OnMinisterOfIntelligenceComboBoxSelectedIndexChanged);
             // 
             // ministerOfIntelligenceLabel
             // 
@@ -659,10 +674,13 @@
             // 
             // ministerOfSecurityComboBox
             // 
+            this.ministerOfSecurityComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.ministerOfSecurityComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ministerOfSecurityComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.ministerOfSecurityComboBox, "ministerOfSecurityComboBox");
             this.ministerOfSecurityComboBox.Name = "ministerOfSecurityComboBox";
+            this.ministerOfSecurityComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnMinisterOfSecurityComboBoxDrawItem);
+            this.ministerOfSecurityComboBox.SelectedIndexChanged += new System.EventHandler(this.OnMinisterOfSecurityComboBoxSelectedIndexChanged);
             // 
             // ministerOfSecurityLabel
             // 
@@ -681,10 +699,13 @@
             // 
             // armamentMinisterComboBox
             // 
+            this.armamentMinisterComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.armamentMinisterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.armamentMinisterComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.armamentMinisterComboBox, "armamentMinisterComboBox");
             this.armamentMinisterComboBox.Name = "armamentMinisterComboBox";
+            this.armamentMinisterComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnArmamentMinisterComboBoxDrawItem);
+            this.armamentMinisterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnArmamentMinisterComboBoxSelectedIndexChanged);
             // 
             // armamentMinisterLabel
             // 
@@ -703,10 +724,13 @@
             // 
             // foreignMinisterComboBox
             // 
+            this.foreignMinisterComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.foreignMinisterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.foreignMinisterComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.foreignMinisterComboBox, "foreignMinisterComboBox");
             this.foreignMinisterComboBox.Name = "foreignMinisterComboBox";
+            this.foreignMinisterComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnForeignMinisterComboBoxDrawItem);
+            this.foreignMinisterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnForeignMinisterComboBoxSelectedIndexChanged);
             // 
             // foreignMinisterlabel
             // 
@@ -725,10 +749,13 @@
             // 
             // headOfGovernmentComboBox
             // 
+            this.headOfGovernmentComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.headOfGovernmentComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.headOfGovernmentComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.headOfGovernmentComboBox, "headOfGovernmentComboBox");
             this.headOfGovernmentComboBox.Name = "headOfGovernmentComboBox";
+            this.headOfGovernmentComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnHeadOfGovernmentComboBoxDrawItem);
+            this.headOfGovernmentComboBox.SelectedIndexChanged += new System.EventHandler(this.OnHeadOfGovernmentComboBoxSelectedIndexChanged);
             // 
             // headOfGovernmentLabel
             // 
@@ -744,13 +771,18 @@
             // 
             resources.ApplyResources(this.headOfStateTypeTextBox, "headOfStateTypeTextBox");
             this.headOfStateTypeTextBox.Name = "headOfStateTypeTextBox";
+            this.headOfStateTypeTextBox.Validated += new System.EventHandler(this.OnHeadOfStateTypeTextBoxValidated);
             // 
             // headOfStateComboBox
             // 
+            this.headOfStateComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.headOfStateComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.headOfStateComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.headOfStateComboBox, "headOfStateComboBox");
             this.headOfStateComboBox.Name = "headOfStateComboBox";
+            this.headOfStateComboBox.Tag = "";
+            this.headOfStateComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnHeadOfStateComboBoxDrawItem);
+            this.headOfStateComboBox.SelectedIndexChanged += new System.EventHandler(this.OnHeadOfStateComboBoxSelectedIndexChanged);
             // 
             // headOfStateLabel
             // 

@@ -12878,6 +12878,1118 @@ namespace HoI2Editor.Forms
             chiefOfAirIdTextBox.Text = flag ? IntHelper.ToString(settings.ChiefOfAir.Id) : "";
         }
 
+        /// <summary>
+        ///     国家元首コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnHeadOfStateComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            Brush brush = ((settings != null) && (settings.HeadOfState != null) &&
+                           (_headOfStateList[e.Index].Id == settings.HeadOfState.Id) &&
+                           settings.IsDirty(CountrySettingsItemId.HeadOfStateId))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = headOfStateComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     政府首班コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnHeadOfGovernmentComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            Brush brush = ((settings != null) && (settings.HeadOfGovernment != null) &&
+                           (_headOfGovernmentList[e.Index].Id == settings.HeadOfGovernment.Id) &&
+                           settings.IsDirty(CountrySettingsItemId.HeadOfGovernmentId))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = headOfGovernmentComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     外務大臣コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnForeignMinisterComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            Brush brush = ((settings != null) && (settings.ForeignMinister != null) &&
+                           (_foreignMinisterList[e.Index].Id == settings.ForeignMinister.Id) &&
+                           settings.IsDirty(CountrySettingsItemId.ForeignMinisterId))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = foreignMinisterComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     軍需大臣コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnArmamentMinisterComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            Brush brush = ((settings != null) && (settings.ArmamentMinister != null) &&
+                           (_armamentMinisterList[e.Index].Id == settings.ArmamentMinister.Id) &&
+                           settings.IsDirty(CountrySettingsItemId.ArmamentMinisterId))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = armamentMinisterComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     内務大臣コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterOfSecurityComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            Brush brush = ((settings != null) && (settings.MinisterOfSecurity != null) &&
+                           (_ministerOfSecurityList[e.Index].Id == settings.MinisterOfSecurity.Id) &&
+                           settings.IsDirty(CountrySettingsItemId.MinisterOfSecurityId))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = ministerOfSecurityComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     情報大臣コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterOfIntelligenceComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            Brush brush = ((settings != null) && (settings.MinisterOfIntelligence != null) &&
+                           (_ministerOfIntelligenceList[e.Index].Id == settings.MinisterOfIntelligence.Id) &&
+                           settings.IsDirty(CountrySettingsItemId.MinisterOfIntelligenceId))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = ministerOfIntelligenceComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     統合参謀総長コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChiefOfStaffComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            Brush brush = ((settings != null) && (settings.ChiefOfStaff != null) &&
+                           (_chiefOfStaffList[e.Index].Id == settings.ChiefOfStaff.Id) &&
+                           settings.IsDirty(CountrySettingsItemId.ChiefOfStaffId))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = chiefOfStaffComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     陸軍総司令官コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChiefOfArmyComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            Brush brush = ((settings != null) && (settings.ChiefOfArmy != null) &&
+                           (_chiefOfArmyList[e.Index].Id == settings.ChiefOfArmy.Id) &&
+                           settings.IsDirty(CountrySettingsItemId.ChiefOfArmyId))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = chiefOfArmyComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     海軍総司令官コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChiefOfNavyComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            Brush brush = ((settings != null) && (settings.ChiefOfNavy != null) &&
+                           (_chiefOfNavyList[e.Index].Id == settings.ChiefOfNavy.Id) &&
+                           settings.IsDirty(CountrySettingsItemId.ChiefOfNavyId))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = chiefOfNavyComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     空軍総司令官コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChiefOfAirComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            Country country = Countries.Tags[countryListBox.SelectedIndex];
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            Brush brush = ((settings != null) && (settings.ChiefOfAir != null) &&
+                           (_chiefOfAirList[e.Index].Id == settings.ChiefOfAir.Id) &&
+                           settings.IsDirty(CountrySettingsItemId.ChiefOfAirId))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = chiefOfAirComboBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        /// 国家元首コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnHeadOfStateComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            int val = _headOfStateList[headOfStateComboBox.SelectedIndex].Id;
+            if ((settings != null) && (settings.HeadOfState != null) &&
+                (val == settings.HeadOfState.Id))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] head of state {0} -> {1} ({2})",
+                (settings != null) && (settings.HeadOfState != null) ? IntHelper.ToString(settings.HeadOfState.Id) : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            if (settings.HeadOfState != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(settings.HeadOfState);
+
+                // 値を更新する
+                settings.HeadOfState.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(settings.HeadOfState);
+            }
+            else
+            {
+                // 値を更新する
+                int type = 1;
+                while (Scenarios.ExistsTypeId(type, val))
+                {
+                    type++;
+                }
+                settings.HeadOfState = Scenarios.GetNewTypeId(type, val);
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+
+                // 編集項目を更新する
+                headOfStateTypeTextBox.Text = IntHelper.ToString(type);
+
+                // 文字色を変更する
+                headOfStateTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.HeadOfStateId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            headOfStateIdTextBox.ForeColor = Color.Red;
+
+            // 国家元首コンボボックスの項目色を変更するために描画更新する
+            headOfStateComboBox.Refresh();
+        }
+
+        /// <summary>
+        /// 政府首班コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnHeadOfGovernmentComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            int val = _headOfGovernmentList[headOfGovernmentComboBox.SelectedIndex].Id;
+            if ((settings != null) && (settings.HeadOfGovernment != null) &&
+                (val == settings.HeadOfGovernment.Id))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] head of government {0} -> {1} ({2})",
+                (settings != null) && (settings.HeadOfGovernment != null) ? IntHelper.ToString(settings.HeadOfGovernment.Id) : "",
+                val, Countries.Strings[(int)country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            if (settings.HeadOfGovernment != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(settings.HeadOfGovernment);
+
+                // 値を更新する
+                settings.HeadOfGovernment.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(settings.HeadOfGovernment);
+            }
+            else
+            {
+                // 値を更新する
+                int type = 1;
+                while (Scenarios.ExistsTypeId(type, val))
+                {
+                    type++;
+                }
+                settings.HeadOfGovernment = Scenarios.GetNewTypeId(type, val);
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+
+                // 編集項目を更新する
+                headOfGovernmentTypeTextBox.Text = IntHelper.ToString(type);
+
+                // 文字色を変更する
+                headOfGovernmentTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            headOfGovernmentIdTextBox.ForeColor = Color.Red;
+
+            // 政府首班コンボボックスの項目色を変更するために描画更新する
+            headOfGovernmentComboBox.Refresh();
+        }
+
+        /// <summary>
+        /// 外務大臣コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnForeignMinisterComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            int val = _foreignMinisterList[foreignMinisterComboBox.SelectedIndex].Id;
+            if ((settings != null) && (settings.ForeignMinister != null) &&
+                (val == settings.ForeignMinister.Id))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] foreign minister {0} -> {1} ({2})",
+                (settings != null) && (settings.ForeignMinister != null) ? IntHelper.ToString(settings.ForeignMinister.Id) : "",
+                val, Countries.Strings[(int)country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            if (settings.ForeignMinister != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(settings.ForeignMinister);
+
+                // 値を更新する
+                settings.ForeignMinister.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(settings.ForeignMinister);
+            }
+            else
+            {
+                // 値を更新する
+                int type = 1;
+                while (Scenarios.ExistsTypeId(type, val))
+                {
+                    type++;
+                }
+                settings.ForeignMinister = Scenarios.GetNewTypeId(type, val);
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+
+                // 編集項目を更新する
+                foreignMinisterTypeTextBox.Text = IntHelper.ToString(type);
+
+                // 文字色を変更する
+                foreignMinisterTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.ForeignMinisterId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            foreignMinisterIdTextBox.ForeColor = Color.Red;
+
+            // 外務大臣コンボボックスの項目色を変更するために描画更新する
+            foreignMinisterComboBox.Refresh();
+        }
+
+        /// <summary>
+        /// 軍需大臣コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnArmamentMinisterComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            int val = _armamentMinisterList[armamentMinisterComboBox.SelectedIndex].Id;
+            if ((settings != null) && (settings.ArmamentMinister != null) &&
+                (val == settings.ArmamentMinister.Id))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] armament minister {0} -> {1} ({2})",
+                (settings != null) && (settings.ArmamentMinister != null) ? IntHelper.ToString(settings.ArmamentMinister.Id) : "",
+                val, Countries.Strings[(int)country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            if (settings.ArmamentMinister != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(settings.ArmamentMinister);
+
+                // 値を更新する
+                settings.ArmamentMinister.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(settings.ArmamentMinister);
+            }
+            else
+            {
+                // 値を更新する
+                int type = 1;
+                while (Scenarios.ExistsTypeId(type, val))
+                {
+                    type++;
+                }
+                settings.ArmamentMinister = Scenarios.GetNewTypeId(type, val);
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+
+                // 編集項目を更新する
+                armamentMinisterTypeTextBox.Text = IntHelper.ToString(type);
+
+                // 文字色を変更する
+                armamentMinisterTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.ArmamentMinisterId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            armamentMinisterIdTextBox.ForeColor = Color.Red;
+
+            // 軍需大臣コンボボックスの項目色を変更するために描画更新する
+            armamentMinisterComboBox.Refresh();
+        }
+
+        /// <summary>
+        /// 内務大臣コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterOfSecurityComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            int val = _ministerOfSecurityList[ministerOfSecurityComboBox.SelectedIndex].Id;
+            if ((settings != null) && (settings.MinisterOfSecurity != null) &&
+                (val == settings.MinisterOfSecurity.Id))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] minister of security {0} -> {1} ({2})",
+                (settings != null) && (settings.MinisterOfSecurity != null) ? IntHelper.ToString(settings.MinisterOfSecurity.Id) : "",
+                val, Countries.Strings[(int)country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            if (settings.MinisterOfSecurity != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(settings.MinisterOfSecurity);
+
+                // 値を更新する
+                settings.MinisterOfSecurity.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(settings.MinisterOfSecurity);
+            }
+            else
+            {
+                // 値を更新する
+                int type = 1;
+                while (Scenarios.ExistsTypeId(type, val))
+                {
+                    type++;
+                }
+                settings.MinisterOfSecurity = Scenarios.GetNewTypeId(type, val);
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+
+                // 編集項目を更新する
+                ministerOfSecurityTypeTextBox.Text = IntHelper.ToString(type);
+
+                // 文字色を変更する
+                ministerOfSecurityTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.MinisterOfSecurityId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            ministerOfSecurityIdTextBox.ForeColor = Color.Red;
+
+            // 内務大臣コンボボックスの項目色を変更するために描画更新する
+            ministerOfSecurityComboBox.Refresh();
+        }
+
+        /// <summary>
+        /// 情報大臣コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterOfIntelligenceComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            int val = _ministerOfIntelligenceList[ministerOfIntelligenceComboBox.SelectedIndex].Id;
+            if ((settings != null) && (settings.MinisterOfIntelligence != null) &&
+                (val == settings.MinisterOfIntelligence.Id))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] minister of intelligence {0} -> {1} ({2})",
+                (settings != null) && (settings.MinisterOfIntelligence != null)
+                    ? IntHelper.ToString(settings.MinisterOfIntelligence.Id)
+                    : "",
+                val, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            if (settings.MinisterOfIntelligence != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(settings.MinisterOfIntelligence);
+
+                // 値を更新する
+                settings.MinisterOfIntelligence.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(settings.MinisterOfIntelligence);
+            }
+            else
+            {
+                // 値を更新する
+                int type = 1;
+                while (Scenarios.ExistsTypeId(type, val))
+                {
+                    type++;
+                }
+                settings.MinisterOfIntelligence = Scenarios.GetNewTypeId(type, val);
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+
+                // 編集項目を更新する
+                ministerOfIntelligenceTypeTextBox.Text = IntHelper.ToString(type);
+
+                // 文字色を変更する
+                ministerOfIntelligenceTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.MinisterOfIntelligenceId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            ministerOfIntelligenceIdTextBox.ForeColor = Color.Red;
+
+            // 情報大臣コンボボックスの項目色を変更するために描画更新する
+            ministerOfIntelligenceComboBox.Refresh();
+        }
+
+        /// <summary>
+        /// 統合参謀総長コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChiefOfStaffComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            int val = _chiefOfStaffList[chiefOfStaffComboBox.SelectedIndex].Id;
+            if ((settings != null) && (settings.ChiefOfStaff != null) &&
+                (val == settings.ChiefOfStaff.Id))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] chief of staff {0} -> {1} ({2})",
+                (settings != null) && (settings.ChiefOfStaff != null) ? IntHelper.ToString(settings.ChiefOfStaff.Id) : "",
+                val, Countries.Strings[(int)country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            if (settings.ChiefOfStaff != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(settings.ChiefOfStaff);
+
+                // 値を更新する
+                settings.ChiefOfStaff.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(settings.ChiefOfStaff);
+            }
+            else
+            {
+                // 値を更新する
+                int type = 1;
+                while (Scenarios.ExistsTypeId(type, val))
+                {
+                    type++;
+                }
+                settings.ChiefOfStaff = Scenarios.GetNewTypeId(type, val);
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+
+                // 編集項目を更新する
+                chiefOfStaffTypeTextBox.Text = IntHelper.ToString(type);
+
+                // 文字色を変更する
+                chiefOfStaffTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.ChiefOfStaffId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            chiefOfStaffIdTextBox.ForeColor = Color.Red;
+
+            // 統合参謀総長コンボボックスの項目色を変更するために描画更新する
+            chiefOfStaffComboBox.Refresh();
+        }
+
+        /// <summary>
+        /// 陸軍総司令官コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChiefOfArmyComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            int val = _chiefOfArmyList[chiefOfArmyComboBox.SelectedIndex].Id;
+            if ((settings != null) && (settings.ChiefOfArmy != null) &&
+                (val == settings.ChiefOfArmy.Id))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] chief of army {0} -> {1} ({2})",
+                (settings != null) && (settings.ChiefOfArmy != null) ? IntHelper.ToString(settings.ChiefOfArmy.Id) : "",
+                val, Countries.Strings[(int)country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            if (settings.ChiefOfArmy != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(settings.ChiefOfArmy);
+
+                // 値を更新する
+                settings.ChiefOfArmy.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(settings.ChiefOfArmy);
+            }
+            else
+            {
+                // 値を更新する
+                int type = 1;
+                while (Scenarios.ExistsTypeId(type, val))
+                {
+                    type++;
+                }
+                settings.ChiefOfArmy = Scenarios.GetNewTypeId(type, val);
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+
+                // 編集項目を更新する
+                chiefOfArmyTypeTextBox.Text = IntHelper.ToString(type);
+
+                // 文字色を変更する
+                chiefOfArmyTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.ChiefOfArmyId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            chiefOfArmyIdTextBox.ForeColor = Color.Red;
+
+            // 陸軍総司令官コンボボックスの項目色を変更するために描画更新する
+            chiefOfArmyComboBox.Refresh();
+        }
+
+        /// <summary>
+        /// 海軍総司令官コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChiefOfNavyComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            int val = _chiefOfNavyList[chiefOfNavyComboBox.SelectedIndex].Id;
+            if ((settings != null) && (settings.ChiefOfNavy != null) &&
+                (val == settings.ChiefOfNavy.Id))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] head of state {0} -> {1} ({2})",
+                (settings != null) && (settings.ChiefOfNavy != null) ? IntHelper.ToString(settings.ChiefOfNavy.Id) : "",
+                val, Countries.Strings[(int)country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            if (settings.ChiefOfNavy != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(settings.ChiefOfNavy);
+
+                // 値を更新する
+                settings.ChiefOfNavy.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(settings.ChiefOfNavy);
+            }
+            else
+            {
+                // 値を更新する
+                int type = 1;
+                while (Scenarios.ExistsTypeId(type, val))
+                {
+                    type++;
+                }
+                settings.ChiefOfNavy = Scenarios.GetNewTypeId(type, val);
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+
+                // 編集項目を更新する
+                chiefOfNavyTypeTextBox.Text = IntHelper.ToString(type);
+
+                // 文字色を変更する
+                chiefOfNavyTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.ChiefOfNavyId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            chiefOfNavyIdTextBox.ForeColor = Color.Red;
+
+            // 海軍総司令官コンボボックスの項目色を変更するために描画更新する
+            chiefOfNavyComboBox.Refresh();
+        }
+
+        /// <summary>
+        /// 空軍総司令官コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnChiefOfAirComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Country country = GetSelectedCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            int val = _chiefOfAirList[chiefOfAirComboBox.SelectedIndex].Id;
+            if ((settings != null) && (settings.ChiefOfAir != null) &&
+                (val == settings.ChiefOfAir.Id))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] head of state id {0} -> {1} ({2})",
+                (settings != null) && (settings.ChiefOfAir != null) ? IntHelper.ToString(settings.ChiefOfAir.Id) : "",
+                val, Countries.Strings[(int)country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+
+                // 編集項目を更新する
+                countryNameTextBox.Text = GetCountryName(settings);
+            }
+
+            if (settings.ChiefOfAir != null)
+            {
+                // 変更前のtypeとidの組を削除する
+                Scenarios.RemoveTypeId(settings.ChiefOfAir);
+
+                // 値を更新する
+                settings.ChiefOfAir.Type = val;
+
+                // 変更後のtypeとidの組を登録する
+                Scenarios.AddTypeId(settings.ChiefOfAir);
+            }
+            else
+            {
+                // 値を更新する
+                int type = 1;
+                while (Scenarios.ExistsTypeId(type, val))
+                {
+                    type++;
+                }
+                settings.ChiefOfAir = Scenarios.GetNewTypeId(type, val);
+
+                // 編集済みフラグを設定する
+                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+
+                // 編集項目を更新する
+                chiefOfAirTypeTextBox.Text = IntHelper.ToString(type);
+
+                // 文字色を変更する
+                chiefOfAirTypeTextBox.ForeColor = Color.Red;
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirty(CountrySettingsItemId.ChiefOfAirId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            chiefOfAirIdTextBox.ForeColor = Color.Red;
+
+            // 空軍総司令官コンボボックスの項目色を変更するために描画更新する
+            chiefOfAirComboBox.Refresh();
+        }
+
         #endregion
 
         #endregion
