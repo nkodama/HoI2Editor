@@ -129,7 +129,7 @@
   <data name="provinceTabPage.Text" xml:space="preserve">
     <value>プロヴィンス</value>
   </data>
-  <data name="techTabPage.Text" xml:space="preserve">
+  <data name="technologyTabPage.Text" xml:space="preserve">
     <value>技術</value>
   </data>
   <data name="cabinetGroupBox.Text" xml:space="preserve">
@@ -546,6 +546,9 @@
     <value>29, 12</value>
   </data>
   <data name="allianceNameLabel.Text" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="allianceNameColumnHeader.Text" xml:space="preserve">
     <value>名前</value>
   </data>
   <data name="allianceParticipantColumnHeader.Text" xml:space="preserve">
