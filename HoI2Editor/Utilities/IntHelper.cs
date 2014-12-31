@@ -51,7 +51,7 @@ namespace HoI2Editor.Utilities
         /// <returns>変換が成功すればtrueを返す</returns>
         public static bool TryParse(string s, out int val)
         {
-            return int.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out val);
+            return int.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture, out val);
         }
 
         #endregion

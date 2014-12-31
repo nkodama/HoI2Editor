@@ -771,7 +771,6 @@
             // 
             resources.ApplyResources(this.headOfStateTypeTextBox, "headOfStateTypeTextBox");
             this.headOfStateTypeTextBox.Name = "headOfStateTypeTextBox";
-            this.headOfStateTypeTextBox.Validated += new System.EventHandler(this.OnHeadOfStateTypeTextBoxValidated);
             // 
             // headOfStateComboBox
             // 

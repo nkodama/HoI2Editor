@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.IO;
 using System.Threading;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Models
 {
@@ -618,6 +619,71 @@ namespace HoI2Editor.Models
         {
             string pathName = Path.Combine(folderName, fileName);
             return GetWriteFileName(pathName);
+        }
+
+        /// <summary>
+        ///     相対パス名を取得する
+        /// </summary>
+        /// <param name="pathName">パス名</param>
+        /// <returns>相対パス名</returns>
+        public static string GetRelativePathName(string pathName)
+        {
+            string name;
+            if (IsExportFolderActive)
+            {
+                name = PathHelper.GetRelativePathName(pathName, ExportFolderName);
+                if (!string.IsNullOrEmpty(name))
+                {
+                    return name;
+                }
+            }
+            if (IsModActive)
+            {
+                name = PathHelper.GetRelativePathName(pathName, ModFolderName);
+                if (!string.IsNullOrEmpty(name))
+                {
+                    return name;
+                }
+            }
+            name = PathHelper.GetRelativePathName(pathName, FolderName);
+            if (!string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+            return pathName;
+        }
+
+        /// <summary>
+        ///     相対パス名を取得する
+        /// </summary>
+        /// <param name="pathName">パス名</param>
+        /// <param name="folderName">基準フォルダ名</param>
+        /// <returns>相対パス名</returns>
+        public static string GetRelativePathName(string pathName, string folderName)
+        {
+            string name;
+            if (IsExportFolderActive)
+            {
+                name = PathHelper.GetRelativePathName(pathName, Path.Combine(ExportFolderName, folderName));
+                if (!string.IsNullOrEmpty(name))
+                {
+                    return name;
+                }
+            }
+            if (IsModActive)
+            {
+                name = PathHelper.GetRelativePathName(pathName, Path.Combine(ModFolderName, folderName));
+                if (!string.IsNullOrEmpty(name))
+                {
+                    return name;
+                }
+            }
+            name = PathHelper.GetRelativePathName(pathName, Path.Combine(FolderName, folderName));
+            if (!string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+            return pathName;
         }
 
         /// <summary>

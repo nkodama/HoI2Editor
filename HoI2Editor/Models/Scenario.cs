@@ -113,6 +113,11 @@ namespace HoI2Editor.Models
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ScenarioItemId)).Length];
 
         /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        /// <summary>
         ///     選択可能国の編集済みフラグ
         /// </summary>
         private readonly HashSet<Country> _dirtySelectableCountries = new HashSet<Country>();
@@ -143,6 +148,15 @@ namespace HoI2Editor.Models
         #region 編集済みフラグ操作
 
         /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
         ///     項目が編集済みかどうかを取得する
         /// </summary>
         /// <param name="id">項目ID</param>
@@ -159,6 +173,15 @@ namespace HoI2Editor.Models
         public void SetDirty(ScenarioItemId id)
         {
             _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
         }
 
         /// <summary>
@@ -243,6 +266,8 @@ namespace HoI2Editor.Models
                     settings.ResetDirtyAll();
                 }
             }
+
+            _dirtyFlag = false;
         }
 
         #endregion

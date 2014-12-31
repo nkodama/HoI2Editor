@@ -204,6 +204,24 @@ namespace HoI2Editor.Models
             "HOIG_CHIEF_OF_ARMY",
             "HOIG_CHIEF_OF_NAVY",
             "HOIG_CHIEF_OF_AIR",
+            "FEOPT_AI_LEVEL1",
+            "FEOPT_AI_LEVEL2",
+            "FEOPT_AI_LEVEL3",
+            "FEOPT_AI_LEVEL4",
+            "FEOPT_AI_LEVEL5",
+            "FE_DIFFI1",
+            "FE_DIFFI2",
+            "FE_DIFFI3",
+            "FE_DIFFI4",
+            "FE_DIFFI5",
+            "FEOPT_GAMESPEED0",
+            "FEOPT_GAMESPEED1",
+            "FEOPT_GAMESPEED2",
+            "FEOPT_GAMESPEED3",
+            "FEOPT_GAMESPEED4",
+            "FEOPT_GAMESPEED5",
+            "FEOPT_GAMESPEED6",
+            "FEOPT_GAMESPEED7",
             "RESOURCE_ENERGY",
             "RESOURCE_METAL",
             "RESOURCE_RARE_MATERIALS",
@@ -719,7 +737,6 @@ namespace HoI2Editor.Models
             {
                 Directory.CreateDirectory(folderName);
             }
-            string pathName = Path.Combine(folderName, fileName);
 
             using (StreamWriter writer = new StreamWriter(fileName))
             {
@@ -1402,42 +1419,60 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum TextId
     {
-        AllianceAxis,
-        AllianceAllies,
-        AllianceComintern,
-        MinisterHeadOfState,
-        MinisterHeadOfGovernment,
-        MinisterForeignMinister,
-        MinisterArmamentMinister,
-        MinisterMinisterOfSecurity,
-        MinisterMinisterOfIntelligence,
-        MinisterChiefOfStaff,
-        MinisterChiefOfArmy,
-        MinisterChiefOfNavy,
-        MinisterChiefOfAir,
-        ResourceEnergy,
-        ResourceMetal,
-        ResourceRareMaterials,
-        ResourceOil,
-        ResourceSupplies,
-        ResourceMoney,
-        ResourceTransports,
-        ResourceEscorts,
-        ResourceIc,
-        ResourceManpower,
-        SliderDemocratic,
-        SliderAuthoritarian,
-        SliderPoliticalLeft,
-        SliderPoliticalRight,
-        SliderOpenSociety,
-        SliderClosedSociety,
-        SliderFreeMarket,
-        SliderCentralPlanning,
-        SliderStandingArmy,
-        SliderDraftedArmy,
-        SliderHawkLobby,
-        SliderDoveLobby,
-        SliderInterventionism,
-        SlidlaIsolationism
+        AllianceAxis, // 枢軸国
+        AllianceAllies, // 連合国
+        AllianceComintern, // 共産国
+        MinisterHeadOfState, // 国家元首
+        MinisterHeadOfGovernment, // 政府首班
+        MinisterForeignMinister, // 外務大臣
+        MinisterArmamentMinister, // 軍需大臣
+        MinisterMinisterOfSecurity, // 内務大臣
+        MinisterMinisterOfIntelligence, // 情報大臣
+        MinisterChiefOfStaff, // 統合参謀総長
+        MinisterChiefOfArmy, // 陸軍総司令官
+        MinisterChiefOfNavy, // 海軍総司令官
+        MinisterChiefOfAir, // 空軍総司令官
+        OptionAiAggressiveness1, // 臆病
+        OptionAiAggressiveness2, // 弱気
+        OptionAiAggressiveness3, // 標準
+        OptionAiAggressiveness4, // 攻撃的
+        OptionAiAggressiveness5, // 過激
+        OptionDifficulty1, // 非常に難しい
+        OptionDifficulty2, // 難しい
+        OptionDifficulty3, // 標準
+        OptionDifficulty4, // 簡単
+        OptionDifficulty5, // 非常に簡単
+        OptionGameSpeed0, // 非常に遅い
+        OptionGameSpeed1, // 遅い
+        OptionGameSpeed2, // やや遅い
+        OptionGameSpeed3, // 標準
+        OptionGameSpeed4, // やや速い
+        OptionGameSpeed5, // 速い
+        OptionGameSpeed6, // 非常に速い
+        OptionGameSpeed7, // きわめて速い
+        ResourceEnergy, // エネルギー
+        ResourceMetal, // 金属
+        ResourceRareMaterials, // 希少資源
+        ResourceOil, // 石油
+        ResourceSupplies, // 物資
+        ResourceMoney, // 資金
+        ResourceTransports, // 輸送船団
+        ResourceEscorts, // 護衛艦
+        ResourceIc, // 工業力
+        ResourceManpower, // 労働力
+        SliderDemocratic, // 民主的
+        SliderAuthoritarian, // 独裁的
+        SliderPoliticalLeft, // 政治的左派
+        SliderPoliticalRight, // 政治的右派
+        SliderOpenSociety, // 開放社会
+        SliderClosedSociety, // 閉鎖社会
+        SliderFreeMarket, // 自由経済
+        SliderCentralPlanning, // 中央計画経済
+        SliderStandingArmy, // 常備軍
+        SliderDraftedArmy, // 徴兵軍
+        SliderHawkLobby, // タカ派
+        SliderDoveLobby, // ハト派
+        SliderInterventionism, // 介入主義
+        SlidlaIsolationism // 孤立主義
     }
 }

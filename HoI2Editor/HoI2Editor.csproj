@@ -339,6 +339,7 @@
     <None Include="Documents\Design\provinces.xlsx" />
     <None Include="Documents\Design\research.xlsx" />
     <None Include="Documents\Design\scenario.xlsx" />
+    <None Include="Documents\Design\text.xlsx" />
     <None Include="Documents\Design\units.xlsx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
