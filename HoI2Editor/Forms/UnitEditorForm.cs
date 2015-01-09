@@ -2529,7 +2529,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     付属旅団リストビューののチェック状態変更時の処理
+        ///     付属旅団リストビューのチェック状態変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

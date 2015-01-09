@@ -89,6 +89,16 @@ namespace HoI2Editor.Forms
         /// </summary>
         private List<Minister> _chiefOfAirList;
 
+        /// <summary>
+        ///     技術項目リスト
+        /// </summary>
+        private List<TechItem> _techs;
+
+        /// <summary>
+        ///     発明イベントリスト
+        /// </summary>
+        private List<TechEvent> _inventions;
+
         private ushort _prevId;
 
         #endregion
@@ -251,6 +261,7 @@ namespace HoI2Editor.Forms
             InitTradeTab();
             InitCountryTab();
             InitGovernmentTab();
+            InitTechTab();
         }
 
         /// <summary>
@@ -264,6 +275,7 @@ namespace HoI2Editor.Forms
             UpdateTradeTab();
             UpdateCountryTab();
             UpdateGovernmentTab();
+            UpdateTechTab();
         }
 
         /// <summary>
@@ -293,6 +305,9 @@ namespace HoI2Editor.Forms
 
             // 閣僚データを読み込む
             Ministers.Load();
+
+            // 技術定義ファイルを読み込む
+            Techs.Load();
 
             // 表示項目を初期化する
             InitEditableItems();
@@ -11529,6 +11544,11 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
+            ListBox listBox = sender as ListBox;
+            if (listBox == null)
+            {
+                return;
+            }
 
             // 背景を描画する
             e.DrawBackground();
@@ -11541,13 +11561,13 @@ namespace HoI2Editor.Forms
                 CountrySettings settings = Scenarios.GetCountrySettings(Countries.Tags[e.Index]);
                 brush = ((settings != null) && settings.IsDirty())
                     ? new SolidBrush(Color.Red)
-                    : new SolidBrush(governmentCountryListBox.ForeColor);
+                    : new SolidBrush(listBox.ForeColor);
             }
             else
             {
                 brush = new SolidBrush(SystemColors.HighlightText);
             }
-            string s = governmentCountryListBox.Items[e.Index].ToString();
+            string s = listBox.Items[e.Index].ToString();
             e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
             brush.Dispose();
 
@@ -15568,6 +15588,435 @@ namespace HoI2Editor.Forms
             // コンボボックスの選択項目を変更する
             chiefOfAirComboBox.SelectedIndex =
                 _chiefOfAirList.FindIndex(minister => minister.Id == settings.ChiefOfAir.Id);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 技術タブ
+
+        #region 技術タブ - 共通
+
+        /// <summary>
+        ///     技術タブの編集項目を初期化する
+        /// </summary>
+        private void InitTechTab()
+        {
+            // 技術カテゴリリスト
+            techCategoryListBox.BeginUpdate();
+            techCategoryListBox.Items.Clear();
+            foreach (TechGroup grp in Techs.Groups)
+            {
+                techCategoryListBox.Items.Add(grp);
+            }
+            techCategoryListBox.SelectedIndex = 0;
+            techCategoryListBox.EndUpdate();
+
+            // 国家リストボックス
+            techCountryListBox.BeginUpdate();
+            techCountryListBox.Items.Clear();
+            foreach (Country country in Countries.Tags)
+            {
+                techCountryListBox.Items.Add(Countries.GetTagName(country));
+            }
+            techCountryListBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     技術タブの編集項目を更新する
+        /// </summary>
+        private void UpdateTechTab()
+        {
+            // 編集項目を無効化する
+            DisableTechItems();
+
+            // 技術カテゴリリストボックスを有効化する
+            techCategoryListBox.Enabled = true;
+
+            // 国家リストボックスを有効化する
+            techCountryListBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     技術の編集項目を無効化する
+        /// </summary>
+        private void DisableTechItems()
+        {
+            // 編集項目を無効化する
+            ownedTechsLabel.Enabled = false;
+            ownedTechsListView.Enabled = false;
+            blueprintsLabel.Enabled = false;
+            blueprintsListView.Enabled = false;
+            inventionsLabel.Enabled = false;
+            inventionsListView.Enabled = false;
+
+            // TODO: 技術ツリーをクリアする
+
+            // 編集項目をクリアする
+            ownedTechsListView.Items.Clear();
+            blueprintsListView.Items.Clear();
+            inventionsListView.Items.Clear();
+        }
+
+        /// <summary>
+        ///     技術の編集項目を更新する
+        /// </summary>
+        private void UpdateTechItems()
+        {
+            Country country = GetSelectedTechCountry();
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            TechGroup grp = GetSelectedTechGroup();
+
+            // 保有技術リスト/青写真リスト
+            _techs = grp.Items.OfType<TechItem>().ToList();
+            ownedTechsListView.ItemChecked -= OnOwnedTechsListViewItemChecked;
+            blueprintsListView.ItemChecked -= OnBlueprintsListViewItemChecked;
+            ownedTechsListView.BeginUpdate();
+            blueprintsListView.BeginUpdate();
+            ownedTechsListView.Items.Clear();
+            blueprintsListView.Items.Clear();
+            if (settings != null)
+            {
+                foreach (TechItem item in _techs)
+                {
+                    string name = item.ToString();
+                    ownedTechsListView.Items.Add(new ListViewItem
+                    {
+                        Text = name,
+                        Checked = settings.TechApps.Contains(item.Id),
+                        Tag = item
+                    });
+                    blueprintsListView.Items.Add(new ListViewItem
+                    {
+                        Text = name,
+                        Checked = settings.BluePrints.Contains(item.Id),
+                        Tag = item
+                    });
+                }
+            }
+            else
+            {
+                foreach (TechItem item in _techs)
+                {
+                    string name = item.ToString();
+                    ownedTechsListView.Items.Add(new ListViewItem { Text = name, Tag = item });
+                    blueprintsListView.Items.Add(new ListViewItem { Text = name, Tag = item });
+                }
+            }
+            ownedTechsListView.EndUpdate();
+            blueprintsListView.EndUpdate();
+            ownedTechsListView.ItemChecked += OnOwnedTechsListViewItemChecked;
+            blueprintsListView.ItemChecked += OnBlueprintsListViewItemChecked;
+
+            // 発明イベントリスト
+            _inventions = Techs.Groups.SelectMany(g => g.Items.OfType<TechEvent>()).ToList();
+            inventionsListView.ItemChecked -= OnInveitionsListViewItemChecked;
+            inventionsListView.BeginUpdate();
+            inventionsListView.Items.Clear();
+            if (settings != null)
+            {
+                foreach (TechEvent ev in _inventions)
+                {
+                    inventionsListView.Items.Add(new ListViewItem
+                    {
+                        Text = ev.ToString(),
+                        Checked = settings.Inventions.Contains(ev.Id),
+                        Tag = ev
+                    });
+                }
+            }
+            else
+            {
+                foreach (TechEvent ev in _inventions)
+                {
+                    inventionsListView.Items.Add(new ListViewItem { Text = ev.ToString(), Tag = ev });
+                }
+            }
+            inventionsListView.EndUpdate();
+            inventionsListView.ItemChecked += OnInveitionsListViewItemChecked;
+
+            // TODO: 技術ツリーを更新する
+
+            // 編集項目を有効化する
+            ownedTechsLabel.Enabled = true;
+            ownedTechsListView.Enabled = true;
+            blueprintsLabel.Enabled = true;
+            blueprintsListView.Enabled = true;
+            inventionsLabel.Enabled = true;
+            inventionsListView.Enabled = true;
+        }
+
+        /// <summary>
+        ///     技術カテゴリリストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechCategoryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択中の国家がなければ編集項目を無効化する
+            Country country = GetSelectedTechCountry();
+            if (country == Country.None)
+            {
+                DisableTechItems();
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateTechItems();
+        }
+
+        /// <summary>
+        ///     国家リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+            ListBox listBox = sender as ListBox;
+            if (listBox == null)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                CountrySettings settings = Scenarios.GetCountrySettings(Countries.Tags[e.Index]);
+                brush = ((settings != null) && settings.IsDirty())
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(listBox.ForeColor);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = listBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     国家リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ編集項目を無効化する
+            if (techCountryListBox.SelectedIndex < 0)
+            {
+                DisableTechItems();
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateTechItems();
+        }
+
+        /// <summary>
+        ///     選択中の技術グループを取得する
+        /// </summary>
+        /// <returns>選択中の技術グループ</returns>
+        private TechGroup GetSelectedTechGroup()
+        {
+            if (techCategoryListBox.SelectedIndex < 0)
+            {
+                return null;
+            }
+            return Techs.Groups[techCategoryListBox.SelectedIndex];
+        }
+
+        /// <summary>
+        ///     選択中の国家を取得する
+        /// </summary>
+        /// <returns>選択中の国家</returns>
+        private Country GetSelectedTechCountry()
+        {
+            if (techCountryListBox.SelectedIndex < 0)
+            {
+                return Country.None;
+            }
+            return Countries.Tags[techCountryListBox.SelectedIndex];
+        }
+
+        #endregion
+
+        #region 技術タブ - 編集項目
+
+        /// <summary>
+        ///     保有技術リストビューのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOwnedTechsListViewItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            // 選択中の国家がなければ何もしない
+            Country country = GetSelectedTechCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            TechItem item = e.Item.Tag as TechItem;
+            if (item == null)
+            {
+                return;
+            }
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            bool val = e.Item.Checked;
+            if ((settings != null) && (val == (settings.TechApps.Contains(item.Id))))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] owned techs: {0}{1} ({2})", val ? '+' : '-', item.Id, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+            }
+
+            // 値を更新する
+            if (val)
+            {
+                settings.TechApps.Add(item.Id);
+            }
+            else
+            {
+                settings.TechApps.Remove(item.Id);
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirtyOwnedTech(item.Id);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            e.Item.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     青写真リストビューのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnBlueprintsListViewItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            // 選択中の国家がなければ何もしない
+            Country country = GetSelectedTechCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            TechItem item = e.Item.Tag as TechItem;
+            if (item == null)
+            {
+                return;
+            }
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            bool val = e.Item.Checked;
+            if ((settings != null) && (val == (settings.BluePrints.Contains(item.Id))))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] blurprints: {0}{1} ({2})", val ? '+' : '-', item.Id, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+            }
+
+            // 値を更新する
+            if (val)
+            {
+                settings.BluePrints.Add(item.Id);
+            }
+            else
+            {
+                settings.BluePrints.Remove(item.Id);
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirtyBlueprint(item.Id);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            e.Item.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     発明イベントリストビューのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnInveitionsListViewItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            // 選択中の国家がなければ何もしない
+            Country country = GetSelectedTechCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            TechEvent ev = e.Item.Tag as TechEvent;
+            if (ev == null)
+            {
+                return;
+            }
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            // 値に変化がなければ何もしない
+            bool val = e.Item.Checked;
+            if ((settings != null) && (val == (settings.Inventions.Contains(ev.Id))))
+            {
+                return;
+            }
+
+            Log.Info("[Scenario] inventions: {0}{1} ({2})", val ? '+' : '-', ev.Id, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+            }
+
+            // 値を更新する
+            if (val)
+            {
+                settings.Inventions.Add(ev.Id);
+            }
+            else
+            {
+                settings.Inventions.Remove(ev.Id);
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirtyInvention(ev.Id);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            e.Item.ForeColor = Color.Red;
         }
 
         #endregion

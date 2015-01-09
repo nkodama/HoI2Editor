@@ -201,6 +201,7 @@ namespace HoI2Editor.Models
         public void SetDirtySelectableCountry(Country country)
         {
             _dirtySelectableCountries.Add(country);
+            _dirtyFlag = true;
         }
 
         /// <summary>
@@ -2008,6 +2009,21 @@ namespace HoI2Editor.Models
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (CountrySettingsItemId)).Length];
 
         /// <summary>
+        ///     保有技術の編集済みフラグ
+        /// </summary>
+        private readonly HashSet<int> _dirtyOwnedTechs = new HashSet<int>();
+
+        /// <summary>
+        ///     青写真の編集済みフラグ
+        /// </summary>
+        private readonly HashSet<int> _dirtyBlueprints = new HashSet<int>();
+
+        /// <summary>
+        ///     発明イベントの編集済みフラグ
+        /// </summary>
+        private readonly HashSet<int> _dirtyInventions = new HashSet<int>();
+
+        /// <summary>
         ///     編集済みフラグ
         /// </summary>
         private bool _dirtyFlag;
@@ -2088,6 +2104,66 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     対象の保有技術が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">技術ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyOwnedTech(int id)
+        {
+            return _dirtyOwnedTechs.Contains(id);
+        }
+
+        /// <summary>
+        ///     保有技術の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">技術ID</param>
+        public void SetDirtyOwnedTech(int id)
+        {
+            _dirtyOwnedTechs.Add(id);
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     対象の青写真が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">技術ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyBlueprint(int id)
+        {
+            return _dirtyBlueprints.Contains(id);
+        }
+
+        /// <summary>
+        ///     青写真の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">技術ID</param>
+        public void SetDirtyBlueprint(int id)
+        {
+            _dirtyBlueprints.Add(id);
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     対象の発明イベントが編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">イベントID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyInvention(int id)
+        {
+            return _dirtyInventions.Contains(id);
+        }
+
+        /// <summary>
+        ///     発明イベントの編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">イベントID</param>
+        public void SetDirtyInvention(int id)
+        {
+            _dirtyInventions.Add(id);
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
         public void ResetDirtyAll()
@@ -2097,6 +2173,10 @@ namespace HoI2Editor.Models
                 _dirtyFlags[(int) id] = false;
             }
             _dirtyFlag = false;
+
+            _dirtyOwnedTechs.Clear();
+            _dirtyBlueprints.Clear();
+            _dirtyInventions.Clear();
 
             if (Relations != null)
             {
