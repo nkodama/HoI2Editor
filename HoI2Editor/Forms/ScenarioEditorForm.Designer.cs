@@ -37,6 +37,9 @@
             this.provinceMapPictureBox = new System.Windows.Forms.PictureBox();
             this.testProvinceIdTextBox = new System.Windows.Forms.TextBox();
             this.technologyTabPage = new System.Windows.Forms.TabPage();
+            this.inventionsListView = new System.Windows.Forms.ListView();
+            this.blueprintsListView = new System.Windows.Forms.ListView();
+            this.ownedTechsListView = new System.Windows.Forms.ListView();
             this.techTreePanel = new System.Windows.Forms.Panel();
             this.techTreePictureBox = new System.Windows.Forms.PictureBox();
             this.ownedTechsLabel = new System.Windows.Forms.Label();
@@ -393,9 +396,6 @@
             this.scenarioRadioButton = new System.Windows.Forms.RadioButton();
             this.scenarioListBox = new System.Windows.Forms.ListBox();
             this.scenarioTabControl = new System.Windows.Forms.TabControl();
-            this.ownedTechsListView = new System.Windows.Forms.ListView();
-            this.blueprintsListView = new System.Windows.Forms.ListView();
-            this.inventionsListView = new System.Windows.Forms.ListView();
             this.provinceTabPage.SuspendLayout();
             this.provinceMapPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.provinceMapPictureBox)).BeginInit();
@@ -503,6 +503,33 @@
             this.technologyTabPage.Controls.Add(this.techCountryListBox);
             resources.ApplyResources(this.technologyTabPage, "technologyTabPage");
             this.technologyTabPage.Name = "technologyTabPage";
+            // 
+            // inventionsListView
+            // 
+            this.inventionsListView.CheckBoxes = true;
+            resources.ApplyResources(this.inventionsListView, "inventionsListView");
+            this.inventionsListView.MultiSelect = false;
+            this.inventionsListView.Name = "inventionsListView";
+            this.inventionsListView.UseCompatibleStateImageBehavior = false;
+            this.inventionsListView.View = System.Windows.Forms.View.List;
+            // 
+            // blueprintsListView
+            // 
+            this.blueprintsListView.CheckBoxes = true;
+            resources.ApplyResources(this.blueprintsListView, "blueprintsListView");
+            this.blueprintsListView.MultiSelect = false;
+            this.blueprintsListView.Name = "blueprintsListView";
+            this.blueprintsListView.UseCompatibleStateImageBehavior = false;
+            this.blueprintsListView.View = System.Windows.Forms.View.List;
+            // 
+            // ownedTechsListView
+            // 
+            this.ownedTechsListView.CheckBoxes = true;
+            resources.ApplyResources(this.ownedTechsListView, "ownedTechsListView");
+            this.ownedTechsListView.MultiSelect = false;
+            this.ownedTechsListView.Name = "ownedTechsListView";
+            this.ownedTechsListView.UseCompatibleStateImageBehavior = false;
+            this.ownedTechsListView.View = System.Windows.Forms.View.List;
             // 
             // techTreePanel
             // 
@@ -3081,33 +3108,7 @@
             this.scenarioTabControl.Controls.Add(this.provinceTabPage);
             this.scenarioTabControl.Name = "scenarioTabControl";
             this.scenarioTabControl.SelectedIndex = 0;
-            // 
-            // ownedTechsListView
-            // 
-            this.ownedTechsListView.CheckBoxes = true;
-            resources.ApplyResources(this.ownedTechsListView, "ownedTechsListView");
-            this.ownedTechsListView.MultiSelect = false;
-            this.ownedTechsListView.Name = "ownedTechsListView";
-            this.ownedTechsListView.UseCompatibleStateImageBehavior = false;
-            this.ownedTechsListView.View = System.Windows.Forms.View.List;
-            // 
-            // blueprintsListView
-            // 
-            this.blueprintsListView.CheckBoxes = true;
-            resources.ApplyResources(this.blueprintsListView, "blueprintsListView");
-            this.blueprintsListView.MultiSelect = false;
-            this.blueprintsListView.Name = "blueprintsListView";
-            this.blueprintsListView.UseCompatibleStateImageBehavior = false;
-            this.blueprintsListView.View = System.Windows.Forms.View.List;
-            // 
-            // inventionsListView
-            // 
-            this.inventionsListView.CheckBoxes = true;
-            resources.ApplyResources(this.inventionsListView, "inventionsListView");
-            this.inventionsListView.MultiSelect = false;
-            this.inventionsListView.Name = "inventionsListView";
-            this.inventionsListView.UseCompatibleStateImageBehavior = false;
-            this.inventionsListView.View = System.Windows.Forms.View.List;
+            this.scenarioTabControl.SelectedIndexChanged += new System.EventHandler(this.OnScenarioTabControlSelectedIndexChanged);
             // 
             // ScenarioEditorForm
             // 
