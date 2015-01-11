@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\TechTreePanel.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\TechTreePanel.Designer.cs">
       <DependentUpon>TechTreePanel.cs</DependentUpon>

@@ -379,7 +379,7 @@ namespace HoI2Editor.Forms
             Maps.Load(MapLevel.Level4);
 
             Log.Info("[Scenario] Load level-4 map");
-            
+
             Maps.Load(MapLevel.Level2);
 
             Log.Info("[Scenario] Load level-2 map");

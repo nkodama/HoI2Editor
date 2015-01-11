@@ -2,7 +2,7 @@
 {
     partial class TechTreePanel
     {
-        /// <summary>
+        /// <summary> 
         /// 必要なデザイナー変数です。
         /// </summary>
         private System.ComponentModel.IContainer components = null;
@@ -22,8 +22,8 @@
 
         #region コンポーネント デザイナーで生成されたコード
 
-        /// <summary>
-        /// デザイナー サポートに必要なメソッドです。このメソッドの内容を
+        /// <summary> 
+        /// デザイナー サポートに必要なメソッドです。このメソッドの内容を 
         /// コード エディターで変更しないでください。
         /// </summary>
         private void InitializeComponent()
@@ -45,16 +45,19 @@
             // 
             // TechTreePanel
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
+            this.Controls.Add(this.techTreePictureBox);
+            this.Name = "TechTreePanel";
             ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox techTreePictureBox;
-
-
     }
 }

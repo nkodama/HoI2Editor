@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -11,7 +10,7 @@ namespace HoI2Editor.Controls
     /// <summary>
     ///     技術ツリーパネル
     /// </summary>
-    public partial class TechTreePanel : Panel
+    public partial class TechTreePanel : UserControl
     {
         #region 公開プロパティ
 
@@ -93,7 +92,6 @@ namespace HoI2Editor.Controls
         ///     イベントラベルのマスク画像
         /// </summary>
         private static Bitmap _eventLabelMask;
-
 
         /// <summary>
         ///     技術ラベルの描画領域
@@ -224,19 +222,6 @@ namespace HoI2Editor.Controls
         }
 
         /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public TechTreePanel(IContainer container)
-        {
-            container.Add(this);
-
-            InitializeComponent();
-
-            // コントロールを初期化する
-            InitControl();
-        }
-
-        /// <summary>
         ///     コントロールを初期化する
         /// </summary>
         private void InitControl()
@@ -251,10 +236,10 @@ namespace HoI2Editor.Controls
 
         #endregion
 
-        #region コンポーネント
+        #region コントロール
 
         /// <summary>
-        ///     技術ツリーパネルを更新する
+        ///     技術ツリーを更新する
         /// </summary>
         public void UpdateTechTree()
         {
@@ -266,7 +251,7 @@ namespace HoI2Editor.Controls
         }
 
         /// <summary>
-        ///     技術ツリーパネルをクリアする
+        ///     技術ツリーをクリアする
         /// </summary>
         public void Clear()
         {
