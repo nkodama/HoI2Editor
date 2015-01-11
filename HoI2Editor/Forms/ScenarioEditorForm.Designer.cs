@@ -40,8 +40,6 @@
             this.inventionsListView = new System.Windows.Forms.ListView();
             this.blueprintsListView = new System.Windows.Forms.ListView();
             this.ownedTechsListView = new System.Windows.Forms.ListView();
-            this.techTreePanel = new System.Windows.Forms.Panel();
-            this.techTreePictureBox = new System.Windows.Forms.PictureBox();
             this.ownedTechsLabel = new System.Windows.Forms.Label();
             this.techCategoryListBox = new System.Windows.Forms.ListBox();
             this.blueprintsLabel = new System.Windows.Forms.Label();
@@ -400,8 +398,6 @@
             this.provinceMapPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.provinceMapPictureBox)).BeginInit();
             this.technologyTabPage.SuspendLayout();
-            this.techTreePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).BeginInit();
             this.governmentTabPage.SuspendLayout();
             this.cabinetGroupBox.SuspendLayout();
             this.politicalSliderGroupBox.SuspendLayout();
@@ -495,7 +491,6 @@
             this.technologyTabPage.Controls.Add(this.inventionsListView);
             this.technologyTabPage.Controls.Add(this.blueprintsListView);
             this.technologyTabPage.Controls.Add(this.ownedTechsListView);
-            this.technologyTabPage.Controls.Add(this.techTreePanel);
             this.technologyTabPage.Controls.Add(this.ownedTechsLabel);
             this.technologyTabPage.Controls.Add(this.techCategoryListBox);
             this.technologyTabPage.Controls.Add(this.blueprintsLabel);
@@ -531,18 +526,6 @@
             this.ownedTechsListView.UseCompatibleStateImageBehavior = false;
             this.ownedTechsListView.View = System.Windows.Forms.View.List;
             // 
-            // techTreePanel
-            // 
-            resources.ApplyResources(this.techTreePanel, "techTreePanel");
-            this.techTreePanel.Controls.Add(this.techTreePictureBox);
-            this.techTreePanel.Name = "techTreePanel";
-            // 
-            // techTreePictureBox
-            // 
-            resources.ApplyResources(this.techTreePictureBox, "techTreePictureBox");
-            this.techTreePictureBox.Name = "techTreePictureBox";
-            this.techTreePictureBox.TabStop = false;
-            // 
             // ownedTechsLabel
             // 
             resources.ApplyResources(this.ownedTechsLabel, "ownedTechsLabel");
@@ -571,7 +554,7 @@
             resources.ApplyResources(this.techCountryListBox, "techCountryListBox");
             this.techCountryListBox.FormattingEnabled = true;
             this.techCountryListBox.Name = "techCountryListBox";
-            this.techCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTechCountryListBoxDrawItem);
+            this.techCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.techCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechCountryListBoxSelectedIndexChanged);
             // 
             // governmentTabPage
@@ -906,7 +889,7 @@
             resources.ApplyResources(this.governmentCountryListBox, "governmentCountryListBox");
             this.governmentCountryListBox.FormattingEnabled = true;
             this.governmentCountryListBox.Name = "governmentCountryListBox";
-            this.governmentCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnGovernmentCountryListBoxDrawItem);
+            this.governmentCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.governmentCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnGovernmentCountryListBoxSelectedIndexChanged);
             // 
             // politicalSliderGroupBox
@@ -2228,9 +2211,11 @@
             // 
             // relationCountryListBox
             // 
+            this.relationCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             resources.ApplyResources(this.relationCountryListBox, "relationCountryListBox");
             this.relationCountryListBox.FormattingEnabled = true;
             this.relationCountryListBox.Name = "relationCountryListBox";
+            this.relationCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.relationCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnRelationCountryListBoxSelectedIndexChanged);
             // 
             // allianceTabPage
@@ -3131,9 +3116,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.provinceMapPictureBox)).EndInit();
             this.technologyTabPage.ResumeLayout(false);
             this.technologyTabPage.PerformLayout();
-            this.techTreePanel.ResumeLayout(false);
-            this.techTreePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).EndInit();
             this.governmentTabPage.ResumeLayout(false);
             this.cabinetGroupBox.ResumeLayout(false);
             this.cabinetGroupBox.PerformLayout();
@@ -3560,8 +3542,6 @@
         private System.Windows.Forms.ListBox techCategoryListBox;
         private System.Windows.Forms.ListBox techCountryListBox;
         private System.Windows.Forms.Label inventionsLabel;
-        private System.Windows.Forms.Panel techTreePanel;
-        private System.Windows.Forms.PictureBox techTreePictureBox;
         private System.Windows.Forms.ListView ownedTechsListView;
         private System.Windows.Forms.ListView inventionsListView;
         private System.Windows.Forms.ListView blueprintsListView;

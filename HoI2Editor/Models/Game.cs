@@ -379,7 +379,7 @@ namespace HoI2Editor.Models
         public const string TechLabelPathName = "gfx\\interface\\button_tech_normal.bmp";
 
         /// <summary>
-        /// 完了技術ラベルのファイル名
+        ///     完了技術ラベルのファイル名
         /// </summary>
         public const string DoneTechLabelPathName = "gfx\\interface\\button_tech_done.bmp";
 
@@ -389,7 +389,7 @@ namespace HoI2Editor.Models
         public const string SecretLabelPathName = "gfx\\interface\\button_tech_secret.bmp";
 
         /// <summary>
-        /// 青写真アイコンのファイル名
+        ///     青写真アイコンのファイル名
         /// </summary>
         public const string BlueprintIconPathName = "gfx\\interface\\icon_blueprints.bmp";
 

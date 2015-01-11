@@ -73,7 +73,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="y">スケーリング後の高さ</param>
         /// <returns>スケーリング前の高さ</returns>
-        public static int GetUncaledHeight(int y)
+        public static int GetUnscaledHeight(int y)
         {
             return NativeMethods.MulDiv(y, DefaultDpiY, DpiY);
         }

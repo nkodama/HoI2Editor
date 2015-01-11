@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Windows.Forms;
+using HoI2Editor.Controls;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
@@ -120,61 +119,26 @@ namespace HoI2Editor.Forms
         #region 技術ツリー
 
         /// <summary>
-        ///     技術ラベルの画像
+        ///     技術ツリーパネル
         /// </summary>
-        private static Bitmap _techLabelBitmap;
-
-        /// <summary>
-        /// 完了技術ラベルの画像
-        /// </summary>
-        private static Bitmap _doneTechLabelBitmap;
-
-        /// <summary>
-        /// 青写真付き技術ラベルの画像
-        /// </summary>
-        private static Bitmap _blueprintTechLabelBitmap;
-
-        /// <summary>
-        /// 青写真付き完了技術ラベルの画像
-        /// </summary>
-        private static Bitmap _blueprintDoneTechLabelBitmap;
-
-        /// <summary>
-        ///     イベントラベルの画像
-        /// </summary>
-        private static Bitmap _eventLabelBitmap;
-
-        /// <summary>
-        /// 完了イベントラベルの画像
-        /// </summary>
-        private static Bitmap _doneEventLabelBitmap;
-
-        /// <summary>
-        ///     技術ラベルの描画領域
-        /// </summary>
-        private static Region _techLabelRegion;
-
-        /// <summary>
-        ///     イベントラベルの描画領域
-        /// </summary>
-        private static Region _eventLabelRegion;
+        private TechTreePanel _techTreePanel;
 
         #endregion
 
         #region データ遅延読み込み
 
         /// <summary>
-        /// 閣僚データロード用
+        ///     閣僚データロード用
         /// </summary>
         private readonly BackgroundWorker _ministerWorker = new BackgroundWorker();
 
         /// <summary>
-        /// 技術データロード用
+        ///     技術データロード用
         /// </summary>
         private readonly BackgroundWorker _techWorker = new BackgroundWorker();
 
         /// <summary>
-        /// マップデータロード用
+        ///     マップデータロード用
         /// </summary>
         private readonly BackgroundWorker _mapWorker = new BackgroundWorker();
 
@@ -185,62 +149,6 @@ namespace HoI2Editor.Forms
         #endregion
 
         #region 内部定数
-
-        /// <summary>
-        ///     技術ラベルの幅
-        /// </summary>
-        private const int TechLabelWidthBase = 112;
-
-        /// <summary>
-        ///     技術ラベルの高さ
-        /// </summary>
-        private const int TechLabelHeightBase = 16;
-
-        /// <summary>
-        ///     イベントラベルの幅
-        /// </summary>
-        private const int EventLabelWidthBase = 112;
-
-        /// <summary>
-        ///     イベントラベルの高さ
-        /// </summary>
-        private const int EventLabelHeightBase = 24;
-
-        /// <summary>
-        /// 青写真アイコンの幅
-        /// </summary>
-        private const int BlueprintIconWidth = 16;
-
-        /// <summary>
-        /// 青写真アイコンの幅
-        /// </summary>
-        private const int BlueprintIconHeight = 16;
-
-        /// <summary>
-        /// 青写真アイコンのX座標
-        /// </summary>
-        private const int BlueprintIconX = 88;
-
-        /// <summary>
-        /// 青写真アイコンのY座標
-        /// </summary>
-        private const int BlueprintIconY = 0;
-
-        /// <summary>
-        ///     技術ツリー画像ファイル名
-        /// </summary>
-        private static readonly string[] TechTreeFileNames =
-        {
-            "techtree_infantry.bmp",
-            "techtree_armor.bmp",
-            "techtree_naval.bmp",
-            "techtree_aircraft.bmp",
-            "techtree_industry.bmp",
-            "techtree_land_doctrine.bmp",
-            "techtree_secret_weapons.bmp",
-            "techtree_naval_doctrines.bmp",
-            "techtree_air_doctrines.bmp"
-        };
 
         /// <summary>
         ///     AIの攻撃性の文字列
@@ -330,7 +238,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚データを遅延読み込みする
+        ///     閣僚データを遅延読み込みする
         /// </summary>
         private void LoadMinisters()
         {
@@ -340,7 +248,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚データの読み込み完了まで待機する
+        ///     閣僚データの読み込み完了まで待機する
         /// </summary>
         private void WaitLoadingMinisters()
         {
@@ -351,7 +259,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚データを読み込む
+        ///     閣僚データを読み込む
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -359,10 +267,12 @@ namespace HoI2Editor.Forms
         {
             // 閣僚データを読み込む
             Ministers.Load();
+
+            Log.Info("[Scenario] Load ministers");
         }
 
         /// <summary>
-        /// 閣僚データ読み込み完了時の処理
+        ///     閣僚データ読み込み完了時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -383,7 +293,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 技術データを遅延読み込みする
+        ///     技術データを遅延読み込みする
         /// </summary>
         private void LoadTechs()
         {
@@ -393,7 +303,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 技術データの読み込み完了まで待機する
+        ///     技術データの読み込み完了まで待機する
         /// </summary>
         private void WaitLoadingTechs()
         {
@@ -404,7 +314,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 技術データを読み込む
+        ///     技術データを読み込む
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -412,10 +322,12 @@ namespace HoI2Editor.Forms
         {
             // 技術定義ファイルを読み込む
             Techs.Load();
+
+            Log.Info("[Scenario] Load techs");
         }
 
         /// <summary>
-        /// 技術データ読み込み完了時の処理
+        ///     技術データ読み込み完了時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -447,7 +359,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// マップの読み込み完了まで待機する
+        ///     マップの読み込み完了まで待機する
         /// </summary>
         private void WaitLoadingMaps()
         {
@@ -464,8 +376,13 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMapWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            Maps.Load(MapLevel.Level1);
+            Maps.Load(MapLevel.Level4);
+
+            Log.Info("[Scenario] Load level-4 map");
+            
             Maps.Load(MapLevel.Level2);
+
+            Log.Info("[Scenario] Load level-2 map");
         }
 
         /// <summary>
@@ -485,7 +402,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Map map = Maps.Data[(int)MapLevel.Level2];
+            Map map = Maps.Data[(int) MapLevel.Level2];
             Bitmap bitmap = map.GetImage();
             map.SetMaskColor(bitmap, Color.LightSteelBlue);
             provinceMapPictureBox.Image = bitmap;
@@ -503,6 +420,18 @@ namespace HoI2Editor.Forms
             // ウィンドウの位置
             Location = HoI2Editor.Settings.ScenarioEditor.Location;
             Size = HoI2Editor.Settings.ScenarioEditor.Size;
+
+            // 技術ツリーパネル
+            _techTreePanel = new TechTreePanel
+            {
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                Location = new Point(404, 12),
+                Size = new Size(560, 535),
+                ApplyItemStatus = true
+            };
+            _techTreePanel.ItemMouseClick += OnTechTreeItemMouseClick;
+            _techTreePanel.QueryItemStatus += OnQueryTechTreeItemStatus;
+            technologyTabPage.Controls.Add(_techTreePanel);
         }
 
         /// <summary>
@@ -563,9 +492,6 @@ namespace HoI2Editor.Forms
 
             // 技術データを遅延読み込みする
             LoadTechs();
-
-            // ラベル画像を読み込む
-            InitLabelBitmap();
 
             // 表示項目を初期化する
             InitEditableItems();
@@ -689,7 +615,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 選択タブ変更時の処理
+        ///     選択タブ変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -5057,7 +4983,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     選択国リストボックスの選択項目変更時の処理
+        ///     国家リストボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -9386,48 +9312,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     国家リストボックスの項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 項目がなければ何もしない
-            if (e.Index < 0)
-            {
-                return;
-            }
-            ListBox listBox = sender as ListBox;
-            if (listBox == null)
-            {
-                return;
-            }
-
-            // 背景を描画する
-            e.DrawBackground();
-
-            // 項目を描画する
-            Brush brush;
-            if ((e.State & DrawItemState.Selected) == 0)
-            {
-                // 変更ありの項目は文字色を変更する
-                CountrySettings settings = Scenarios.GetCountrySettings(Countries.Tags[e.Index]);
-                bool dirty = ((settings != null) && settings.IsDirty());
-                brush = new SolidBrush(dirty ? Color.Red : listBox.ForeColor);
-            }
-            else
-            {
-                brush = new SolidBrush(SystemColors.HighlightText);
-            }
-            string s = listBox.Items[e.Index].ToString();
-            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-            brush.Dispose();
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
-        }
-
-        /// <summary>
         ///     国家リストボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -11810,55 +11694,12 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 政府タブ選択時の処理
+        ///     政府タブ選択時の処理
         /// </summary>
         private void OnGovernmentTabSelected()
         {
             // 閣僚データの読み込み完了まで待機する
             WaitLoadingMinisters();
-        }
-
-        /// <summary>
-        ///     国家リストボックスの項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnGovernmentCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 項目がなければ何もしない
-            if (e.Index < 0)
-            {
-                return;
-            }
-            ListBox listBox = sender as ListBox;
-            if (listBox == null)
-            {
-                return;
-            }
-
-            // 背景を描画する
-            e.DrawBackground();
-
-            // 項目を描画する
-            Brush brush;
-            if ((e.State & DrawItemState.Selected) == 0)
-            {
-                // 変更ありの項目は文字色を変更する
-                CountrySettings settings = Scenarios.GetCountrySettings(Countries.Tags[e.Index]);
-                brush = ((settings != null) && settings.IsDirty())
-                    ? new SolidBrush(Color.Red)
-                    : new SolidBrush(listBox.ForeColor);
-            }
-            else
-            {
-                brush = new SolidBrush(SystemColors.HighlightText);
-            }
-            string s = listBox.Items[e.Index].ToString();
-            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-            brush.Dispose();
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
         }
 
         /// <summary>
@@ -15937,7 +15778,8 @@ namespace HoI2Editor.Forms
             inventionsLabel.Enabled = false;
             inventionsListView.Enabled = false;
 
-            // TODO: 技術ツリーをクリアする
+            // 技術ツリーをクリアする
+            _techTreePanel.Clear();
 
             // 編集項目をクリアする
             ownedTechsListView.Items.Clear();
@@ -15971,12 +15813,14 @@ namespace HoI2Editor.Forms
                     {
                         Text = name,
                         Checked = settings.TechApps.Contains(item.Id),
+                        ForeColor = settings.IsDirtyOwnedTech(item.Id) ? Color.Red : ownedTechsListView.ForeColor,
                         Tag = item
                     });
                     blueprintsListView.Items.Add(new ListViewItem
                     {
                         Text = name,
                         Checked = settings.BluePrints.Contains(item.Id),
+                        ForeColor = settings.IsDirtyBlueprint(item.Id) ? Color.Red : ownedTechsListView.ForeColor,
                         Tag = item
                     });
                 }
@@ -16008,6 +15852,7 @@ namespace HoI2Editor.Forms
                     {
                         Text = ev.ToString(),
                         Checked = settings.Inventions.Contains(ev.Id),
+                        ForeColor = settings.IsDirtyInvention(ev.Id) ? Color.Red : inventionsListView.ForeColor,
                         Tag = ev
                     });
                 }
@@ -16023,7 +15868,8 @@ namespace HoI2Editor.Forms
             inventionsListView.ItemChecked += OnInveitionsListViewItemChecked;
 
             // 技術ツリーを更新する
-            UpdateTechTree();
+            _techTreePanel.Category = grp.Category;
+            _techTreePanel.UpdateTechTree();
 
             // 編集項目を有効化する
             ownedTechsLabel.Enabled = true;
@@ -16035,7 +15881,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 技術タブ選択時の処理
+        ///     技術タブ選択時の処理
         /// </summary>
         private void OnTechTabPageSelected()
         {
@@ -16060,49 +15906,6 @@ namespace HoI2Editor.Forms
 
             // 編集項目を更新する
             UpdateTechItems();
-        }
-
-        /// <summary>
-        ///     国家リストボックスの項目描画処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTechCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
-        {
-            // 項目がなければ何もしない
-            if (e.Index < 0)
-            {
-                return;
-            }
-            ListBox listBox = sender as ListBox;
-            if (listBox == null)
-            {
-                return;
-            }
-
-            // 背景を描画する
-            e.DrawBackground();
-
-            // 項目を描画する
-            Brush brush;
-            if ((e.State & DrawItemState.Selected) == 0)
-            {
-                // 変更ありの項目は文字色を変更する
-                CountrySettings settings = Scenarios.GetCountrySettings(Countries.Tags[e.Index]);
-                brush = ((settings != null) && settings.IsDirty())
-                    ? new SolidBrush(Color.Red)
-                    : new SolidBrush(listBox.ForeColor);
-            }
-            else
-            {
-                brush = new SolidBrush(SystemColors.HighlightText);
-            }
-            string s = listBox.Items[e.Index].ToString();
-            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-            brush.Dispose();
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
         }
 
         /// <summary>
@@ -16205,6 +16008,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             e.Item.ForeColor = Color.Red;
+
+            // 技術ツリーの項目ラベルを更新する
+            _techTreePanel.UpdateTechTreeItem(item);
         }
 
         /// <summary>
@@ -16259,6 +16065,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             e.Item.ForeColor = Color.Red;
+
+            // 技術ツリーの項目ラベルを更新する
+            _techTreePanel.UpdateTechTreeItem(item);
         }
 
         /// <summary>
@@ -16313,6 +16122,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             e.Item.ForeColor = Color.Red;
+
+            // 技術ツリーの項目ラベルを更新する
+            _techTreePanel.UpdateTechTreeItem(ev);
         }
 
         #endregion
@@ -16320,257 +16132,265 @@ namespace HoI2Editor.Forms
         #region 技術タブ - 技術ツリー
 
         /// <summary>
-        ///     ラベル画像を初期化する
-        /// </summary>
-        private void InitLabelBitmap()
-        {
-            // 技術ラベル
-            Bitmap bitmap = new Bitmap(Game.GetReadFileName(Game.TechLabelPathName));
-            int width = DeviceCaps.GetScaledWidth(TechLabelWidthBase);
-            int height = DeviceCaps.GetScaledHeight(TechLabelHeightBase);
-            _techLabelBitmap = new Bitmap(width, height);
-            Graphics g = Graphics.FromImage(_techLabelBitmap);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(bitmap, new Rectangle(0, 0, width, height),
-                new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
-            g.Dispose();
-
-            // 青写真付き技術ラベル
-            Bitmap icon = new Bitmap(Game.GetReadFileName(Game.BlueprintIconPathName));
-            icon.MakeTransparent(icon.GetPixel(0, 0));
-            g = Graphics.FromImage(bitmap);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(icon, new Rectangle(BlueprintIconX, BlueprintIconY, BlueprintIconWidth, BlueprintIconHeight),
-                new Rectangle(0, 0, BlueprintIconWidth, BlueprintIconHeight), GraphicsUnit.Pixel);
-            g.Dispose();
-            _blueprintTechLabelBitmap = new Bitmap(width, height);
-            g = Graphics.FromImage(_blueprintTechLabelBitmap);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(bitmap, new Rectangle(0, 0, width, height),
-                new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
-            g.Dispose();
-            bitmap.Dispose();
-
-            // 完了技術ラベル
-            bitmap = new Bitmap(Game.GetReadFileName(Game.DoneTechLabelPathName));
-            _doneTechLabelBitmap = new Bitmap(width, height);
-            g = Graphics.FromImage(_doneTechLabelBitmap);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(bitmap, new Rectangle(0, 0, width, height),
-                new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
-            g.Dispose();
-
-            // 青写真付き完了技術ラベル
-            g = Graphics.FromImage(bitmap);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(icon, new Rectangle(BlueprintIconX, BlueprintIconY, BlueprintIconWidth, BlueprintIconHeight),
-                new Rectangle(0, 0, BlueprintIconWidth, BlueprintIconHeight), GraphicsUnit.Pixel);
-            g.Dispose();
-            icon.Dispose();
-            _blueprintDoneTechLabelBitmap = new Bitmap(width, height);
-            g = Graphics.FromImage(_blueprintDoneTechLabelBitmap);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(bitmap, new Rectangle(0, 0, width, height),
-                new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
-            g.Dispose();
-            bitmap.Dispose();
-
-            // 技術ラベルの領域
-            _techLabelRegion = new Region(new Rectangle(0, 0, width, height));
-            Color transparent = _techLabelBitmap.GetPixel(0, 0);
-            for (int y = 0; y < _techLabelBitmap.Height; y++)
-            {
-                for (int x = 0; x < _techLabelBitmap.Width; x++)
-                {
-                    if (_techLabelBitmap.GetPixel(x, y) == transparent)
-                    {
-                        _techLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
-                    }
-                }
-            }
-            _techLabelBitmap.MakeTransparent(transparent);
-
-            // 発明イベントラベル
-            bitmap = new Bitmap(Game.GetReadFileName(Game.SecretLabelPathName));
-            width = DeviceCaps.GetScaledWidth(EventLabelWidthBase);
-            height = DeviceCaps.GetScaledHeight(EventLabelHeightBase);
-            _eventLabelBitmap = new Bitmap(width, height);
-            g = Graphics.FromImage(_eventLabelBitmap);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(bitmap, new Rectangle(0, 0, width, height),
-                new Rectangle(EventLabelWidthBase, 0, EventLabelWidthBase, EventLabelHeightBase), GraphicsUnit.Pixel);
-            g.Dispose();
-
-            // 完了発明イベントラベル
-            _doneEventLabelBitmap = new Bitmap(width, height);
-            g = Graphics.FromImage(_doneTechLabelBitmap);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(bitmap, new Rectangle(0, 0, width, height),
-                new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
-            g.Dispose();
-            bitmap.Dispose();
-
-            // 発明イベントラベルの領域
-            _eventLabelRegion = new Region(new Rectangle(0, 0, width, height));
-            transparent = _eventLabelBitmap.GetPixel(0, 0);
-            for (int y = 0; y < _eventLabelBitmap.Height; y++)
-            {
-                for (int x = 0; x < _eventLabelBitmap.Width; x++)
-                {
-                    if (_eventLabelBitmap.GetPixel(x, y) == transparent)
-                    {
-                        _eventLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
-                    }
-                }
-            }
-            _eventLabelBitmap.MakeTransparent(transparent);
-        }
-
-        /// <summary>
-        /// 技術ツリーを更新する
-        /// </summary>
-        private void UpdateTechTree()
-        {
-            TechGroup grp = GetSelectedTechGroup();
-
-            Bitmap bitmap = new Bitmap(Game.GetReadFileName(Game.PicturePathName, TechTreeFileNames[(int) grp.Category]));
-            int width = DeviceCaps.GetScaledWidth(bitmap.Width);
-            int height = DeviceCaps.GetScaledHeight(bitmap.Height);
-            bitmap.MakeTransparent(Color.Lime);
-
-            Bitmap scaled = new Bitmap(width, height);
-            Graphics g = Graphics.FromImage(scaled);
-            g.DrawImage(bitmap, 0, 0, width, height);
-            g.Dispose();
-            bitmap.Dispose();
-
-            Image prev = techTreePictureBox.Image;
-            techTreePictureBox.Image = scaled;
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
-
-            techTreePictureBox.Controls.Clear();
-            foreach (ITechItem item in grp.Items)
-            {
-                foreach (TechPosition position in item.Positions)
-                {
-                    AddTechTreeItem(item, position);
-                }
-            }
-        }
-
-        /// <summary>
-        ///     技術ツリーに項目を追加する
-        /// </summary>
-        /// <param name="item">追加対象の項目</param>
-        /// <param name="position">追加対象の位置</param>
-        private void AddTechTreeItem(ITechItem item, TechPosition position)
-        {
-            Label label = new Label
-            {
-                Location = new Point(DeviceCaps.GetScaledWidth(position.X), DeviceCaps.GetScaledHeight(position.Y)),
-                BackColor = Color.Transparent,
-                Tag = item
-            };
-
-            if (item is TechItem)
-            {
-                TechItem techItem = (TechItem) item;
-                label.Size = new Size(_techLabelBitmap.Width, _techLabelBitmap.Height);
-                label.Image = _techLabelBitmap;
-                label.Region = _techLabelRegion;
-                label.Paint += OnTechTreeLabelPaint;
-            }
-            else if (item is TechLabel)
-            {
-                TechLabel labelItem = (TechLabel) item;
-                label.Size = Graphics.FromHwnd(label.Handle).MeasureString(labelItem.ToString(), label.Font).ToSize();
-                label.Paint += OnTechTreeLabelPaint;
-            }
-            else if (item is TechEvent)
-            {
-                label.Size = new Size(_eventLabelBitmap.Width, _eventLabelBitmap.Height);
-                label.Image = _eventLabelBitmap;
-                label.Region = _eventLabelRegion;
-            }
-
-            label.MouseClick += OnTechTreeLabelMouseClick;
-
-            techTreePictureBox.Controls.Add(label);
-        }
-
-        /// <summary>
-        ///     技術ツリーラベルのマウスクリック時の処理
+        ///     項目ラベルマウスクリック時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechTreeLabelMouseClick(object sender, MouseEventArgs e)
+        private void OnTechTreeItemMouseClick(object sender, TechTreePanel.ItemMouseEventArgs e)
         {
-        }
-
-        /// <summary>
-        ///     技術ツリーのラベル描画時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnTechTreeLabelPaint(object sender, PaintEventArgs e)
-        {
-            Label label = sender as Label;
-            if (label == null)
+            // 選択中の国家がなければ何もしない
+            Country country = GetSelectedTechCountry();
+            if (country == Country.None)
             {
                 return;
             }
 
-            ITechItem item = label.Tag as ITechItem;
-            if (item == null)
+            TechItem tech = e.Item as TechItem;
+            if (tech != null)
+            {
+                // 左クリックで保有技術の有無を切り替える
+                if (e.MouseEvent.Button == MouseButtons.Left)
+                {
+                    ToggleOwnedTech(tech, country);
+                }
+                // 右クリックで青写真の有無を切り替える
+                else if (e.MouseEvent.Button == MouseButtons.Right)
+                {
+                    ToggleBlueprint(tech, country);
+                }
+                return;
+            }
+
+            TechEvent ev = e.Item as TechEvent;
+            if (ev != null)
+            {
+                // 左クリックで保有技術の有無を切り替える
+                if (e.MouseEvent.Button == MouseButtons.Left)
+                {
+                    ToggleInvention(ev, country);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     保有技術の有無を切り替える
+        /// </summary>
+        /// <param name="item">対象技術</param>
+        /// <param name="country">対象国</param>
+        private void ToggleOwnedTech(TechItem item, Country country)
+        {
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            bool val = (settings == null) || !settings.TechApps.Contains(item.Id);
+
+            Log.Info("[Scenario] owned techs: {0}{1} ({2})", val ? '+' : '-', item.Id, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+            }
+
+            // 値を更新する
+            if (val)
+            {
+                settings.TechApps.Add(item.Id);
+            }
+            else
+            {
+                settings.TechApps.Remove(item.Id);
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirtyOwnedTech(item.Id);
+            Scenarios.SetDirty();
+
+            // 技術ツリーの項目ラベルを更新する
+            _techTreePanel.UpdateTechTreeItem(item);
+
+            // 保有技術リストビューの表示を更新する
+            int index = _techs.IndexOf(item);
+            if (index >= 0)
+            {
+                ListViewItem li = ownedTechsListView.Items[index];
+                li.Checked = val;
+                li.ForeColor = Color.Red;
+                li.EnsureVisible();
+            }
+        }
+
+        /// <summary>
+        ///     保有技術の有無を切り替える
+        /// </summary>
+        /// <param name="item">対象技術</param>
+        /// <param name="country">対象国</param>
+        private void ToggleBlueprint(TechItem item, Country country)
+        {
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            bool val = (settings == null) || !settings.BluePrints.Contains(item.Id);
+
+            Log.Info("[Scenario] blueprints: {0}{1} ({2})", val ? '+' : '-', item.Id, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+            }
+
+            if (val)
+            {
+                settings.BluePrints.Add(item.Id);
+            }
+            else
+            {
+                settings.BluePrints.Remove(item.Id);
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirtyBlueprint(item.Id);
+            Scenarios.SetDirty();
+
+            // 技術ツリーの項目ラベルを更新する
+            _techTreePanel.UpdateTechTreeItem(item);
+
+            // 保有技術リストビューの表示を更新する
+            int index = _techs.IndexOf(item);
+            if (index >= 0)
+            {
+                ListViewItem li = blueprintsListView.Items[index];
+                li.Checked = val;
+                li.ForeColor = Color.Red;
+                li.EnsureVisible();
+            }
+        }
+
+        /// <summary>
+        ///     発明イベントの有無を切り替える
+        /// </summary>
+        /// <param name="item">対象発明イベント</param>
+        /// <param name="country">対象国</param>
+        private void ToggleInvention(TechEvent item, Country country)
+        {
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            bool val = (settings == null) || !settings.Inventions.Contains(item.Id);
+
+            Log.Info("[Scenario] inventions: {0}{1} ({2})", val ? '+' : '-', item.Id, Countries.Strings[(int) country]);
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+            }
+
+            if (val)
+            {
+                settings.Inventions.Add(item.Id);
+            }
+            else
+            {
+                settings.Inventions.Remove(item.Id);
+            }
+
+            // 編集済みフラグを設定する
+            settings.SetDirtyInvention(item.Id);
+            Scenarios.SetDirty();
+
+            // 技術ツリーの項目ラベルを更新する
+            _techTreePanel.UpdateTechTreeItem(item);
+
+            // 保有技術リストビューの表示を更新する
+            int index = _inventions.IndexOf(item);
+            if (index >= 0)
+            {
+                ListViewItem li = inventionsListView.Items[index];
+                li.Checked = val;
+                li.ForeColor = Color.Red;
+                li.EnsureVisible();
+            }
+        }
+
+        /// <summary>
+        ///     技術項目の状態を返す
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnQueryTechTreeItemStatus(object sender, TechTreePanel.QueryItemStatusEventArgs e)
+        {
+            // 選択中の国家がなければ何もしない
+            Country country = GetSelectedTechCountry();
+            if (country == Country.None)
             {
                 return;
             }
 
-            if (item is TechItem)
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            if (settings == null)
             {
-                TechItem techItem = item as TechItem;
-                string s = techItem.GetShortName();
-                if (string.IsNullOrEmpty(s))
-                {
-                    return;
-                }
-                Brush brush = new SolidBrush(Color.Black);
-                e.Graphics.DrawString(s, label.Font, brush, 6, 2);
-                brush.Dispose();
+                return;
             }
-            else if (item is TechLabel)
-            {
-                TechLabel labelItem = item as TechLabel;
-                string s = labelItem.ToString();
-                if (string.IsNullOrEmpty(s))
-                {
-                    return;
-                }
 
-                // 色指定文字列を解釈する
-                Brush brush;
-                if ((s[0] == '%' || s[0] == 'ｧ' || s[0] == '§') &&
-                    s.Length > 4 &&
-                    s[1] >= '0' && s[1] <= '9' &&
-                    s[2] >= '0' && s[2] <= '9' &&
-                    s[3] >= '0' && s[3] <= '9')
-                {
-                    brush = new SolidBrush(Color.FromArgb((s[3] - '0') << 5, (s[2] - '0') << 5, (s[1] - '0') << 5));
-                    s = s.Substring(4);
-                }
-                else
-                {
-                    brush = new SolidBrush(Color.White);
-                }
-                e.Graphics.DrawString(s, label.Font, brush, -2, 0);
-                brush.Dispose();
+            TechItem tech = e.Item as TechItem;
+            if (tech != null)
+            {
+                e.Done = settings.TechApps.Contains(tech.Id);
+                e.Blueprint = settings.BluePrints.Contains(tech.Id);
+                return;
+            }
+
+            TechEvent ev = e.Item as TechEvent;
+            if (ev != null)
+            {
+                e.Done = settings.Inventions.Contains(ev.Id);
             }
         }
 
         #endregion
+
+        #endregion
+
+        #region 汎用
+
+        /// <summary>
+        ///     国家リストボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index < 0)
+            {
+                return;
+            }
+            ListBox listBox = sender as ListBox;
+            if (listBox == null)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目を描画する
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) == 0)
+            {
+                // 変更ありの項目は文字色を変更する
+                CountrySettings settings = Scenarios.GetCountrySettings(Countries.Tags[e.Index]);
+                brush = new SolidBrush((settings != null)
+                    ? (settings.IsDirty() ? Color.Red : listBox.ForeColor)
+                    : Color.LightGray);
+            }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            string s = listBox.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
 
         #endregion
 

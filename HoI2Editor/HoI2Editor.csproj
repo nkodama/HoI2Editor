@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\TechTreePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TechTreePanel.Designer.cs">
+      <DependentUpon>TechTreePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\LeaderBatchDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +213,9 @@
     <Compile Include="Writers\MiscWriter.cs" />
     <Compile Include="Writers\TechWriter.cs" />
     <Compile Include="Writers\UnitWriter.cs" />
+    <EmbeddedResource Include="Controls\TechTreePanel.resx">
+      <DependentUpon>TechTreePanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\LeaderBatchDialog.ja.resx">
       <DependentUpon>LeaderBatchDialog.cs</DependentUpon>
     </EmbeddedResource>

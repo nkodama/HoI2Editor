@@ -1769,7 +1769,7 @@ namespace HoI2Editor.Forms
                 return;
             }
             info.Position.X = DeviceCaps.GetUnscaledWidth(p.X);
-            info.Position.Y = DeviceCaps.GetUncaledHeight(p.Y);
+            info.Position.Y = DeviceCaps.GetUnscaledHeight(p.Y);
 
             // 座標リストビューの項目を更新する
             for (int i = 0; i < info.Item.Positions.Count; i++)
