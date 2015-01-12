@@ -29,6 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScenarioEditorForm));
+            System.Windows.Forms.Label provinceIcLabel;
+            System.Windows.Forms.Label provinceInfrastructureLabel;
+            System.Windows.Forms.Label provinceLandFortLabel;
+            System.Windows.Forms.Label provinceCoastalFortLabel;
+            System.Windows.Forms.Label provinceNavalBaseLabel;
+            System.Windows.Forms.Label provinceAirBaseLabel;
+            System.Windows.Forms.Label provinceAntiAirLabel;
+            System.Windows.Forms.Label provinceNuclearReactorLabel;
+            System.Windows.Forms.Label provinceRocketTestLabel;
+            System.Windows.Forms.Label provinceRadarStationLbel;
+            System.Windows.Forms.Label provinceSyntheticOilLabel;
+            System.Windows.Forms.Label provinceSyntheticRaresLabel;
+            System.Windows.Forms.Label provinceNuclearPowerLabel;
+            System.Windows.Forms.Label buildingCurrentLabel1;
+            System.Windows.Forms.Label buildingMaxLabel1;
+            System.Windows.Forms.Label buildingRelativeLabel1;
             this.closeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
@@ -394,6 +410,109 @@
             this.scenarioRadioButton = new System.Windows.Forms.RadioButton();
             this.scenarioListBox = new System.Windows.Forms.ListBox();
             this.scenarioTabControl = new System.Windows.Forms.TabControl();
+            this.mapFilterGroupBox = new System.Windows.Forms.GroupBox();
+            this.mapFilterNoneRadioButton = new System.Windows.Forms.RadioButton();
+            this.mapFilterCoreRadioButton = new System.Windows.Forms.RadioButton();
+            this.mapFilterOwnedRadioButton = new System.Windows.Forms.RadioButton();
+            this.mapFilterControlledRadioButton = new System.Windows.Forms.RadioButton();
+            this.mapFilterClaimedRadioButton = new System.Windows.Forms.RadioButton();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.coreProvinceCheckBox = new System.Windows.Forms.CheckBox();
+            this.ownedProvinceCheckBox = new System.Windows.Forms.CheckBox();
+            this.controlledProvinceCheckBox = new System.Windows.Forms.CheckBox();
+            this.claimedProvinceCheckBox = new System.Windows.Forms.CheckBox();
+            this.provinceIdLabel = new System.Windows.Forms.Label();
+            this.provinceIdTextBox = new System.Windows.Forms.TextBox();
+            this.provinceNameTextBox = new System.Windows.Forms.TextBox();
+            this.provinceNameLabel = new System.Windows.Forms.Label();
+            this.provinceSuppliesLabel = new System.Windows.Forms.Label();
+            this.provinceEnergyLabel = new System.Windows.Forms.Label();
+            this.provinceOilLabel = new System.Windows.Forms.Label();
+            this.provinceMetalLabel = new System.Windows.Forms.Label();
+            this.provinceRareMaterialsLabel = new System.Windows.Forms.Label();
+            this.provinceManpowerLabel = new System.Windows.Forms.Label();
+            this.provinceVpLabel = new System.Windows.Forms.Label();
+            this.provinceRevoltRiskLabel = new System.Windows.Forms.Label();
+            this.provinceBuildingGroupBox = new System.Windows.Forms.GroupBox();
+            this.provinceResourceGroupBox = new System.Windows.Forms.GroupBox();
+            this.landFortCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.landFortMaxTextBox = new System.Windows.Forms.TextBox();
+            this.landFortRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.coastalFortRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.coastalFortMaxTextBox = new System.Windows.Forms.TextBox();
+            this.coastalFortCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.antiAirRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.antiAirMaxTextBox = new System.Windows.Forms.TextBox();
+            this.antiAirCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.airBaseRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.airBaseMaxTextBox = new System.Windows.Forms.TextBox();
+            this.airBaseCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.navalBaseRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.navalBaseMaxTextBox = new System.Windows.Forms.TextBox();
+            this.navalBaseCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.radarStationRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.radarStationMaxTextBox = new System.Windows.Forms.TextBox();
+            this.radarStationCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.nuclearReactorRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.nuclearReactorMaxTextBox = new System.Windows.Forms.TextBox();
+            this.nuclearReactorCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.icRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.icMaxTextBox = new System.Windows.Forms.TextBox();
+            this.icCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.infrastractureRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.infrastructureMaxTextBox = new System.Windows.Forms.TextBox();
+            this.infrastructureCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.rocketTestRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.rocketTestMaxTextBox = new System.Windows.Forms.TextBox();
+            this.rocketTestCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.syntheticOilRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.syntheticOilMaxTextBox = new System.Windows.Forms.TextBox();
+            this.syntheticOilCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.syntheticRaresRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.syntheticRaresMaxTextBox = new System.Windows.Forms.TextBox();
+            this.syntheticRaresCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.nuclearPowerRelativeTextBox = new System.Windows.Forms.TextBox();
+            this.nuclearPowerMaxTextBox = new System.Windows.Forms.TextBox();
+            this.nuclearPowerCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.resourcePoolLabel = new System.Windows.Forms.Label();
+            this.resourceCurrentLabel = new System.Windows.Forms.Label();
+            this.resourceMaxLabel = new System.Windows.Forms.Label();
+            this.energyPoolTextBox = new System.Windows.Forms.TextBox();
+            this.energyCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.energyMaxTextBox = new System.Windows.Forms.TextBox();
+            this.metalMaxTextBox = new System.Windows.Forms.TextBox();
+            this.metalCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.metalPoolTextBox = new System.Windows.Forms.TextBox();
+            this.rareMaterialsMaxTextBox = new System.Windows.Forms.TextBox();
+            this.rareMaterialsCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.rareMaterialsPoolTextBox = new System.Windows.Forms.TextBox();
+            this.oilMaxTextBox = new System.Windows.Forms.TextBox();
+            this.oilCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.oilPoolTextBox = new System.Windows.Forms.TextBox();
+            this.suppliesPoolTextBox = new System.Windows.Forms.TextBox();
+            this.manpowerCurrentTextBox = new System.Windows.Forms.TextBox();
+            this.manpowerMaxTextBox = new System.Windows.Forms.TextBox();
+            this.revoltRiskTextBox = new System.Windows.Forms.TextBox();
+            this.vpTextBox = new System.Windows.Forms.TextBox();
+            this.provinceGroupBox = new System.Windows.Forms.GroupBox();
+            this.capitalCheckBox = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            provinceIcLabel = new System.Windows.Forms.Label();
+            provinceInfrastructureLabel = new System.Windows.Forms.Label();
+            provinceLandFortLabel = new System.Windows.Forms.Label();
+            provinceCoastalFortLabel = new System.Windows.Forms.Label();
+            provinceNavalBaseLabel = new System.Windows.Forms.Label();
+            provinceAirBaseLabel = new System.Windows.Forms.Label();
+            provinceAntiAirLabel = new System.Windows.Forms.Label();
+            provinceNuclearReactorLabel = new System.Windows.Forms.Label();
+            provinceRocketTestLabel = new System.Windows.Forms.Label();
+            provinceRadarStationLbel = new System.Windows.Forms.Label();
+            provinceSyntheticOilLabel = new System.Windows.Forms.Label();
+            provinceSyntheticRaresLabel = new System.Windows.Forms.Label();
+            provinceNuclearPowerLabel = new System.Windows.Forms.Label();
+            buildingCurrentLabel1 = new System.Windows.Forms.Label();
+            buildingMaxLabel1 = new System.Windows.Forms.Label();
+            buildingRelativeLabel1 = new System.Windows.Forms.Label();
             this.provinceTabPage.SuspendLayout();
             this.provinceMapPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.provinceMapPictureBox)).BeginInit();
@@ -436,6 +555,10 @@
             this.folderGroupBox.SuspendLayout();
             this.typeGroupBox.SuspendLayout();
             this.scenarioTabControl.SuspendLayout();
+            this.mapFilterGroupBox.SuspendLayout();
+            this.provinceBuildingGroupBox.SuspendLayout();
+            this.provinceResourceGroupBox.SuspendLayout();
+            this.provinceGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // closeButton
@@ -462,8 +585,18 @@
             // provinceTabPage
             // 
             this.provinceTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.provinceTabPage.Controls.Add(this.comboBox1);
+            this.provinceTabPage.Controls.Add(this.capitalCheckBox);
+            this.provinceTabPage.Controls.Add(this.claimedProvinceCheckBox);
+            this.provinceTabPage.Controls.Add(this.controlledProvinceCheckBox);
+            this.provinceTabPage.Controls.Add(this.provinceGroupBox);
+            this.provinceTabPage.Controls.Add(this.coreProvinceCheckBox);
+            this.provinceTabPage.Controls.Add(this.mapFilterGroupBox);
+            this.provinceTabPage.Controls.Add(this.ownedProvinceCheckBox);
+            this.provinceTabPage.Controls.Add(this.provinceResourceGroupBox);
+            this.provinceTabPage.Controls.Add(this.provinceBuildingGroupBox);
             this.provinceTabPage.Controls.Add(this.provinceMapPanel);
-            this.provinceTabPage.Controls.Add(this.testProvinceIdTextBox);
+            this.provinceTabPage.Controls.Add(this.listView1);
             resources.ApplyResources(this.provinceTabPage, "provinceTabPage");
             this.provinceTabPage.Name = "provinceTabPage";
             // 
@@ -3095,6 +3228,632 @@
             this.scenarioTabControl.SelectedIndex = 0;
             this.scenarioTabControl.SelectedIndexChanged += new System.EventHandler(this.OnScenarioTabControlSelectedIndexChanged);
             // 
+            // mapFilterGroupBox
+            // 
+            this.mapFilterGroupBox.Controls.Add(this.mapFilterClaimedRadioButton);
+            this.mapFilterGroupBox.Controls.Add(this.mapFilterControlledRadioButton);
+            this.mapFilterGroupBox.Controls.Add(this.mapFilterOwnedRadioButton);
+            this.mapFilterGroupBox.Controls.Add(this.mapFilterCoreRadioButton);
+            this.mapFilterGroupBox.Controls.Add(this.mapFilterNoneRadioButton);
+            resources.ApplyResources(this.mapFilterGroupBox, "mapFilterGroupBox");
+            this.mapFilterGroupBox.Name = "mapFilterGroupBox";
+            this.mapFilterGroupBox.TabStop = false;
+            // 
+            // mapFilterNoneRadioButton
+            // 
+            resources.ApplyResources(this.mapFilterNoneRadioButton, "mapFilterNoneRadioButton");
+            this.mapFilterNoneRadioButton.Checked = true;
+            this.mapFilterNoneRadioButton.Name = "mapFilterNoneRadioButton";
+            this.mapFilterNoneRadioButton.TabStop = true;
+            this.mapFilterNoneRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // mapFilterCoreRadioButton
+            // 
+            resources.ApplyResources(this.mapFilterCoreRadioButton, "mapFilterCoreRadioButton");
+            this.mapFilterCoreRadioButton.Name = "mapFilterCoreRadioButton";
+            this.mapFilterCoreRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // mapFilterOwnedRadioButton
+            // 
+            resources.ApplyResources(this.mapFilterOwnedRadioButton, "mapFilterOwnedRadioButton");
+            this.mapFilterOwnedRadioButton.Name = "mapFilterOwnedRadioButton";
+            this.mapFilterOwnedRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // mapFilterControlledRadioButton
+            // 
+            resources.ApplyResources(this.mapFilterControlledRadioButton, "mapFilterControlledRadioButton");
+            this.mapFilterControlledRadioButton.Name = "mapFilterControlledRadioButton";
+            this.mapFilterControlledRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // mapFilterClaimedRadioButton
+            // 
+            resources.ApplyResources(this.mapFilterClaimedRadioButton, "mapFilterClaimedRadioButton");
+            this.mapFilterClaimedRadioButton.Name = "mapFilterClaimedRadioButton";
+            this.mapFilterClaimedRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // listView1
+            // 
+            resources.ApplyResources(this.listView1, "listView1");
+            this.listView1.Name = "listView1";
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // coreProvinceCheckBox
+            // 
+            resources.ApplyResources(this.coreProvinceCheckBox, "coreProvinceCheckBox");
+            this.coreProvinceCheckBox.Name = "coreProvinceCheckBox";
+            this.coreProvinceCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // ownedProvinceCheckBox
+            // 
+            resources.ApplyResources(this.ownedProvinceCheckBox, "ownedProvinceCheckBox");
+            this.ownedProvinceCheckBox.Name = "ownedProvinceCheckBox";
+            this.ownedProvinceCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // controlledProvinceCheckBox
+            // 
+            resources.ApplyResources(this.controlledProvinceCheckBox, "controlledProvinceCheckBox");
+            this.controlledProvinceCheckBox.Name = "controlledProvinceCheckBox";
+            this.controlledProvinceCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // claimedProvinceCheckBox
+            // 
+            resources.ApplyResources(this.claimedProvinceCheckBox, "claimedProvinceCheckBox");
+            this.claimedProvinceCheckBox.Name = "claimedProvinceCheckBox";
+            this.claimedProvinceCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // provinceIdLabel
+            // 
+            resources.ApplyResources(this.provinceIdLabel, "provinceIdLabel");
+            this.provinceIdLabel.Name = "provinceIdLabel";
+            // 
+            // provinceIdTextBox
+            // 
+            resources.ApplyResources(this.provinceIdTextBox, "provinceIdTextBox");
+            this.provinceIdTextBox.Name = "provinceIdTextBox";
+            // 
+            // provinceNameTextBox
+            // 
+            resources.ApplyResources(this.provinceNameTextBox, "provinceNameTextBox");
+            this.provinceNameTextBox.Name = "provinceNameTextBox";
+            // 
+            // provinceNameLabel
+            // 
+            resources.ApplyResources(this.provinceNameLabel, "provinceNameLabel");
+            this.provinceNameLabel.Name = "provinceNameLabel";
+            // 
+            // provinceIcLabel
+            // 
+            resources.ApplyResources(provinceIcLabel, "provinceIcLabel");
+            provinceIcLabel.Name = "provinceIcLabel";
+            // 
+            // provinceInfrastructureLabel
+            // 
+            resources.ApplyResources(provinceInfrastructureLabel, "provinceInfrastructureLabel");
+            provinceInfrastructureLabel.Name = "provinceInfrastructureLabel";
+            // 
+            // provinceLandFortLabel
+            // 
+            resources.ApplyResources(provinceLandFortLabel, "provinceLandFortLabel");
+            provinceLandFortLabel.Name = "provinceLandFortLabel";
+            // 
+            // provinceCoastalFortLabel
+            // 
+            resources.ApplyResources(provinceCoastalFortLabel, "provinceCoastalFortLabel");
+            provinceCoastalFortLabel.Name = "provinceCoastalFortLabel";
+            // 
+            // provinceNavalBaseLabel
+            // 
+            resources.ApplyResources(provinceNavalBaseLabel, "provinceNavalBaseLabel");
+            provinceNavalBaseLabel.Name = "provinceNavalBaseLabel";
+            // 
+            // provinceAirBaseLabel
+            // 
+            resources.ApplyResources(provinceAirBaseLabel, "provinceAirBaseLabel");
+            provinceAirBaseLabel.Name = "provinceAirBaseLabel";
+            // 
+            // provinceAntiAirLabel
+            // 
+            resources.ApplyResources(provinceAntiAirLabel, "provinceAntiAirLabel");
+            provinceAntiAirLabel.Name = "provinceAntiAirLabel";
+            // 
+            // provinceNuclearReactorLabel
+            // 
+            resources.ApplyResources(provinceNuclearReactorLabel, "provinceNuclearReactorLabel");
+            provinceNuclearReactorLabel.Name = "provinceNuclearReactorLabel";
+            // 
+            // provinceRocketTestLabel
+            // 
+            resources.ApplyResources(provinceRocketTestLabel, "provinceRocketTestLabel");
+            provinceRocketTestLabel.Name = "provinceRocketTestLabel";
+            // 
+            // provinceRadarStationLbel
+            // 
+            resources.ApplyResources(provinceRadarStationLbel, "provinceRadarStationLbel");
+            provinceRadarStationLbel.Name = "provinceRadarStationLbel";
+            // 
+            // provinceSyntheticOilLabel
+            // 
+            resources.ApplyResources(provinceSyntheticOilLabel, "provinceSyntheticOilLabel");
+            provinceSyntheticOilLabel.Name = "provinceSyntheticOilLabel";
+            // 
+            // provinceSyntheticRaresLabel
+            // 
+            resources.ApplyResources(provinceSyntheticRaresLabel, "provinceSyntheticRaresLabel");
+            provinceSyntheticRaresLabel.Name = "provinceSyntheticRaresLabel";
+            // 
+            // provinceNuclearPowerLabel
+            // 
+            resources.ApplyResources(provinceNuclearPowerLabel, "provinceNuclearPowerLabel");
+            provinceNuclearPowerLabel.Name = "provinceNuclearPowerLabel";
+            // 
+            // provinceSuppliesLabel
+            // 
+            resources.ApplyResources(this.provinceSuppliesLabel, "provinceSuppliesLabel");
+            this.provinceSuppliesLabel.Name = "provinceSuppliesLabel";
+            // 
+            // provinceEnergyLabel
+            // 
+            resources.ApplyResources(this.provinceEnergyLabel, "provinceEnergyLabel");
+            this.provinceEnergyLabel.Name = "provinceEnergyLabel";
+            // 
+            // provinceOilLabel
+            // 
+            resources.ApplyResources(this.provinceOilLabel, "provinceOilLabel");
+            this.provinceOilLabel.Name = "provinceOilLabel";
+            // 
+            // provinceMetalLabel
+            // 
+            resources.ApplyResources(this.provinceMetalLabel, "provinceMetalLabel");
+            this.provinceMetalLabel.Name = "provinceMetalLabel";
+            // 
+            // provinceRareMaterialsLabel
+            // 
+            resources.ApplyResources(this.provinceRareMaterialsLabel, "provinceRareMaterialsLabel");
+            this.provinceRareMaterialsLabel.Name = "provinceRareMaterialsLabel";
+            // 
+            // provinceManpowerLabel
+            // 
+            resources.ApplyResources(this.provinceManpowerLabel, "provinceManpowerLabel");
+            this.provinceManpowerLabel.Name = "provinceManpowerLabel";
+            // 
+            // provinceVpLabel
+            // 
+            resources.ApplyResources(this.provinceVpLabel, "provinceVpLabel");
+            this.provinceVpLabel.Name = "provinceVpLabel";
+            // 
+            // provinceRevoltRiskLabel
+            // 
+            resources.ApplyResources(this.provinceRevoltRiskLabel, "provinceRevoltRiskLabel");
+            this.provinceRevoltRiskLabel.Name = "provinceRevoltRiskLabel";
+            // 
+            // provinceBuildingGroupBox
+            // 
+            this.provinceBuildingGroupBox.Controls.Add(this.nuclearPowerRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.nuclearPowerMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.nuclearPowerCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.syntheticRaresRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.syntheticRaresMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.syntheticRaresCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.syntheticOilRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.syntheticOilMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.syntheticOilCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.rocketTestRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.rocketTestMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.rocketTestCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.infrastractureRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.infrastructureMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.infrastructureCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.icRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.icMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.icCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(provinceInfrastructureLabel);
+            this.provinceBuildingGroupBox.Controls.Add(this.nuclearReactorRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(provinceIcLabel);
+            this.provinceBuildingGroupBox.Controls.Add(this.nuclearReactorMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.nuclearReactorCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.radarStationRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.radarStationMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.radarStationCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.navalBaseRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.navalBaseMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.navalBaseCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.airBaseRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.airBaseMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.airBaseCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.antiAirRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.antiAirMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.antiAirCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.coastalFortRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.coastalFortMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.coastalFortCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.landFortRelativeTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.landFortMaxTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(this.landFortCurrentTextBox);
+            this.provinceBuildingGroupBox.Controls.Add(buildingRelativeLabel1);
+            this.provinceBuildingGroupBox.Controls.Add(buildingMaxLabel1);
+            this.provinceBuildingGroupBox.Controls.Add(buildingCurrentLabel1);
+            this.provinceBuildingGroupBox.Controls.Add(provinceLandFortLabel);
+            this.provinceBuildingGroupBox.Controls.Add(provinceCoastalFortLabel);
+            this.provinceBuildingGroupBox.Controls.Add(provinceAntiAirLabel);
+            this.provinceBuildingGroupBox.Controls.Add(provinceAirBaseLabel);
+            this.provinceBuildingGroupBox.Controls.Add(provinceNavalBaseLabel);
+            this.provinceBuildingGroupBox.Controls.Add(provinceRadarStationLbel);
+            this.provinceBuildingGroupBox.Controls.Add(provinceNuclearPowerLabel);
+            this.provinceBuildingGroupBox.Controls.Add(provinceRocketTestLabel);
+            this.provinceBuildingGroupBox.Controls.Add(provinceSyntheticOilLabel);
+            this.provinceBuildingGroupBox.Controls.Add(provinceNuclearReactorLabel);
+            this.provinceBuildingGroupBox.Controls.Add(provinceSyntheticRaresLabel);
+            resources.ApplyResources(this.provinceBuildingGroupBox, "provinceBuildingGroupBox");
+            this.provinceBuildingGroupBox.Name = "provinceBuildingGroupBox";
+            this.provinceBuildingGroupBox.TabStop = false;
+            // 
+            // provinceResourceGroupBox
+            // 
+            this.provinceResourceGroupBox.Controls.Add(this.manpowerCurrentTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.testProvinceIdTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.suppliesPoolTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.oilMaxTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.manpowerMaxTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.oilCurrentTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.oilPoolTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.rareMaterialsMaxTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.rareMaterialsCurrentTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.rareMaterialsPoolTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.metalMaxTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.metalCurrentTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.metalPoolTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.energyMaxTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.energyCurrentTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.provinceSuppliesLabel);
+            this.provinceResourceGroupBox.Controls.Add(this.energyPoolTextBox);
+            this.provinceResourceGroupBox.Controls.Add(this.resourceMaxLabel);
+            this.provinceResourceGroupBox.Controls.Add(this.resourceCurrentLabel);
+            this.provinceResourceGroupBox.Controls.Add(this.resourcePoolLabel);
+            this.provinceResourceGroupBox.Controls.Add(this.provinceEnergyLabel);
+            this.provinceResourceGroupBox.Controls.Add(this.provinceOilLabel);
+            this.provinceResourceGroupBox.Controls.Add(this.provinceMetalLabel);
+            this.provinceResourceGroupBox.Controls.Add(this.provinceRareMaterialsLabel);
+            this.provinceResourceGroupBox.Controls.Add(this.provinceManpowerLabel);
+            resources.ApplyResources(this.provinceResourceGroupBox, "provinceResourceGroupBox");
+            this.provinceResourceGroupBox.Name = "provinceResourceGroupBox";
+            this.provinceResourceGroupBox.TabStop = false;
+            // 
+            // buildingCurrentLabel1
+            // 
+            resources.ApplyResources(buildingCurrentLabel1, "buildingCurrentLabel1");
+            buildingCurrentLabel1.Name = "buildingCurrentLabel1";
+            // 
+            // buildingMaxLabel1
+            // 
+            resources.ApplyResources(buildingMaxLabel1, "buildingMaxLabel1");
+            buildingMaxLabel1.Name = "buildingMaxLabel1";
+            // 
+            // buildingRelativeLabel1
+            // 
+            resources.ApplyResources(buildingRelativeLabel1, "buildingRelativeLabel1");
+            buildingRelativeLabel1.Name = "buildingRelativeLabel1";
+            // 
+            // landFortCurrentTextBox
+            // 
+            resources.ApplyResources(this.landFortCurrentTextBox, "landFortCurrentTextBox");
+            this.landFortCurrentTextBox.Name = "landFortCurrentTextBox";
+            // 
+            // landFortMaxTextBox
+            // 
+            resources.ApplyResources(this.landFortMaxTextBox, "landFortMaxTextBox");
+            this.landFortMaxTextBox.Name = "landFortMaxTextBox";
+            // 
+            // landFortRelativeTextBox
+            // 
+            resources.ApplyResources(this.landFortRelativeTextBox, "landFortRelativeTextBox");
+            this.landFortRelativeTextBox.Name = "landFortRelativeTextBox";
+            // 
+            // coastalFortRelativeTextBox
+            // 
+            resources.ApplyResources(this.coastalFortRelativeTextBox, "coastalFortRelativeTextBox");
+            this.coastalFortRelativeTextBox.Name = "coastalFortRelativeTextBox";
+            // 
+            // coastalFortMaxTextBox
+            // 
+            resources.ApplyResources(this.coastalFortMaxTextBox, "coastalFortMaxTextBox");
+            this.coastalFortMaxTextBox.Name = "coastalFortMaxTextBox";
+            // 
+            // coastalFortCurrentTextBox
+            // 
+            resources.ApplyResources(this.coastalFortCurrentTextBox, "coastalFortCurrentTextBox");
+            this.coastalFortCurrentTextBox.Name = "coastalFortCurrentTextBox";
+            // 
+            // antiAirRelativeTextBox
+            // 
+            resources.ApplyResources(this.antiAirRelativeTextBox, "antiAirRelativeTextBox");
+            this.antiAirRelativeTextBox.Name = "antiAirRelativeTextBox";
+            // 
+            // antiAirMaxTextBox
+            // 
+            resources.ApplyResources(this.antiAirMaxTextBox, "antiAirMaxTextBox");
+            this.antiAirMaxTextBox.Name = "antiAirMaxTextBox";
+            // 
+            // antiAirCurrentTextBox
+            // 
+            resources.ApplyResources(this.antiAirCurrentTextBox, "antiAirCurrentTextBox");
+            this.antiAirCurrentTextBox.Name = "antiAirCurrentTextBox";
+            // 
+            // airBaseRelativeTextBox
+            // 
+            resources.ApplyResources(this.airBaseRelativeTextBox, "airBaseRelativeTextBox");
+            this.airBaseRelativeTextBox.Name = "airBaseRelativeTextBox";
+            // 
+            // airBaseMaxTextBox
+            // 
+            resources.ApplyResources(this.airBaseMaxTextBox, "airBaseMaxTextBox");
+            this.airBaseMaxTextBox.Name = "airBaseMaxTextBox";
+            // 
+            // airBaseCurrentTextBox
+            // 
+            resources.ApplyResources(this.airBaseCurrentTextBox, "airBaseCurrentTextBox");
+            this.airBaseCurrentTextBox.Name = "airBaseCurrentTextBox";
+            // 
+            // navalBaseRelativeTextBox
+            // 
+            resources.ApplyResources(this.navalBaseRelativeTextBox, "navalBaseRelativeTextBox");
+            this.navalBaseRelativeTextBox.Name = "navalBaseRelativeTextBox";
+            // 
+            // navalBaseMaxTextBox
+            // 
+            resources.ApplyResources(this.navalBaseMaxTextBox, "navalBaseMaxTextBox");
+            this.navalBaseMaxTextBox.Name = "navalBaseMaxTextBox";
+            // 
+            // navalBaseCurrentTextBox
+            // 
+            resources.ApplyResources(this.navalBaseCurrentTextBox, "navalBaseCurrentTextBox");
+            this.navalBaseCurrentTextBox.Name = "navalBaseCurrentTextBox";
+            // 
+            // radarStationRelativeTextBox
+            // 
+            resources.ApplyResources(this.radarStationRelativeTextBox, "radarStationRelativeTextBox");
+            this.radarStationRelativeTextBox.Name = "radarStationRelativeTextBox";
+            // 
+            // radarStationMaxTextBox
+            // 
+            resources.ApplyResources(this.radarStationMaxTextBox, "radarStationMaxTextBox");
+            this.radarStationMaxTextBox.Name = "radarStationMaxTextBox";
+            // 
+            // radarStationCurrentTextBox
+            // 
+            resources.ApplyResources(this.radarStationCurrentTextBox, "radarStationCurrentTextBox");
+            this.radarStationCurrentTextBox.Name = "radarStationCurrentTextBox";
+            // 
+            // nuclearReactorRelativeTextBox
+            // 
+            resources.ApplyResources(this.nuclearReactorRelativeTextBox, "nuclearReactorRelativeTextBox");
+            this.nuclearReactorRelativeTextBox.Name = "nuclearReactorRelativeTextBox";
+            // 
+            // nuclearReactorMaxTextBox
+            // 
+            resources.ApplyResources(this.nuclearReactorMaxTextBox, "nuclearReactorMaxTextBox");
+            this.nuclearReactorMaxTextBox.Name = "nuclearReactorMaxTextBox";
+            // 
+            // nuclearReactorCurrentTextBox
+            // 
+            resources.ApplyResources(this.nuclearReactorCurrentTextBox, "nuclearReactorCurrentTextBox");
+            this.nuclearReactorCurrentTextBox.Name = "nuclearReactorCurrentTextBox";
+            // 
+            // icRelativeTextBox
+            // 
+            resources.ApplyResources(this.icRelativeTextBox, "icRelativeTextBox");
+            this.icRelativeTextBox.Name = "icRelativeTextBox";
+            // 
+            // icMaxTextBox
+            // 
+            resources.ApplyResources(this.icMaxTextBox, "icMaxTextBox");
+            this.icMaxTextBox.Name = "icMaxTextBox";
+            // 
+            // icCurrentTextBox
+            // 
+            resources.ApplyResources(this.icCurrentTextBox, "icCurrentTextBox");
+            this.icCurrentTextBox.Name = "icCurrentTextBox";
+            // 
+            // infrastractureRelativeTextBox
+            // 
+            resources.ApplyResources(this.infrastractureRelativeTextBox, "infrastractureRelativeTextBox");
+            this.infrastractureRelativeTextBox.Name = "infrastractureRelativeTextBox";
+            // 
+            // infrastructureMaxTextBox
+            // 
+            resources.ApplyResources(this.infrastructureMaxTextBox, "infrastructureMaxTextBox");
+            this.infrastructureMaxTextBox.Name = "infrastructureMaxTextBox";
+            // 
+            // infrastructureCurrentTextBox
+            // 
+            resources.ApplyResources(this.infrastructureCurrentTextBox, "infrastructureCurrentTextBox");
+            this.infrastructureCurrentTextBox.Name = "infrastructureCurrentTextBox";
+            // 
+            // rocketTestRelativeTextBox
+            // 
+            resources.ApplyResources(this.rocketTestRelativeTextBox, "rocketTestRelativeTextBox");
+            this.rocketTestRelativeTextBox.Name = "rocketTestRelativeTextBox";
+            // 
+            // rocketTestMaxTextBox
+            // 
+            resources.ApplyResources(this.rocketTestMaxTextBox, "rocketTestMaxTextBox");
+            this.rocketTestMaxTextBox.Name = "rocketTestMaxTextBox";
+            // 
+            // rocketTestCurrentTextBox
+            // 
+            resources.ApplyResources(this.rocketTestCurrentTextBox, "rocketTestCurrentTextBox");
+            this.rocketTestCurrentTextBox.Name = "rocketTestCurrentTextBox";
+            // 
+            // syntheticOilRelativeTextBox
+            // 
+            resources.ApplyResources(this.syntheticOilRelativeTextBox, "syntheticOilRelativeTextBox");
+            this.syntheticOilRelativeTextBox.Name = "syntheticOilRelativeTextBox";
+            // 
+            // syntheticOilMaxTextBox
+            // 
+            resources.ApplyResources(this.syntheticOilMaxTextBox, "syntheticOilMaxTextBox");
+            this.syntheticOilMaxTextBox.Name = "syntheticOilMaxTextBox";
+            // 
+            // syntheticOilCurrentTextBox
+            // 
+            resources.ApplyResources(this.syntheticOilCurrentTextBox, "syntheticOilCurrentTextBox");
+            this.syntheticOilCurrentTextBox.Name = "syntheticOilCurrentTextBox";
+            // 
+            // syntheticRaresRelativeTextBox
+            // 
+            resources.ApplyResources(this.syntheticRaresRelativeTextBox, "syntheticRaresRelativeTextBox");
+            this.syntheticRaresRelativeTextBox.Name = "syntheticRaresRelativeTextBox";
+            // 
+            // syntheticRaresMaxTextBox
+            // 
+            resources.ApplyResources(this.syntheticRaresMaxTextBox, "syntheticRaresMaxTextBox");
+            this.syntheticRaresMaxTextBox.Name = "syntheticRaresMaxTextBox";
+            // 
+            // syntheticRaresCurrentTextBox
+            // 
+            resources.ApplyResources(this.syntheticRaresCurrentTextBox, "syntheticRaresCurrentTextBox");
+            this.syntheticRaresCurrentTextBox.Name = "syntheticRaresCurrentTextBox";
+            // 
+            // nuclearPowerRelativeTextBox
+            // 
+            resources.ApplyResources(this.nuclearPowerRelativeTextBox, "nuclearPowerRelativeTextBox");
+            this.nuclearPowerRelativeTextBox.Name = "nuclearPowerRelativeTextBox";
+            // 
+            // nuclearPowerMaxTextBox
+            // 
+            resources.ApplyResources(this.nuclearPowerMaxTextBox, "nuclearPowerMaxTextBox");
+            this.nuclearPowerMaxTextBox.Name = "nuclearPowerMaxTextBox";
+            // 
+            // nuclearPowerCurrentTextBox
+            // 
+            resources.ApplyResources(this.nuclearPowerCurrentTextBox, "nuclearPowerCurrentTextBox");
+            this.nuclearPowerCurrentTextBox.Name = "nuclearPowerCurrentTextBox";
+            // 
+            // resourcePoolLabel
+            // 
+            resources.ApplyResources(this.resourcePoolLabel, "resourcePoolLabel");
+            this.resourcePoolLabel.Name = "resourcePoolLabel";
+            // 
+            // resourceCurrentLabel
+            // 
+            resources.ApplyResources(this.resourceCurrentLabel, "resourceCurrentLabel");
+            this.resourceCurrentLabel.Name = "resourceCurrentLabel";
+            // 
+            // resourceMaxLabel
+            // 
+            resources.ApplyResources(this.resourceMaxLabel, "resourceMaxLabel");
+            this.resourceMaxLabel.Name = "resourceMaxLabel";
+            // 
+            // energyPoolTextBox
+            // 
+            resources.ApplyResources(this.energyPoolTextBox, "energyPoolTextBox");
+            this.energyPoolTextBox.Name = "energyPoolTextBox";
+            // 
+            // energyCurrentTextBox
+            // 
+            resources.ApplyResources(this.energyCurrentTextBox, "energyCurrentTextBox");
+            this.energyCurrentTextBox.Name = "energyCurrentTextBox";
+            // 
+            // energyMaxTextBox
+            // 
+            resources.ApplyResources(this.energyMaxTextBox, "energyMaxTextBox");
+            this.energyMaxTextBox.Name = "energyMaxTextBox";
+            // 
+            // metalMaxTextBox
+            // 
+            resources.ApplyResources(this.metalMaxTextBox, "metalMaxTextBox");
+            this.metalMaxTextBox.Name = "metalMaxTextBox";
+            // 
+            // metalCurrentTextBox
+            // 
+            resources.ApplyResources(this.metalCurrentTextBox, "metalCurrentTextBox");
+            this.metalCurrentTextBox.Name = "metalCurrentTextBox";
+            // 
+            // metalPoolTextBox
+            // 
+            resources.ApplyResources(this.metalPoolTextBox, "metalPoolTextBox");
+            this.metalPoolTextBox.Name = "metalPoolTextBox";
+            // 
+            // rareMaterialsMaxTextBox
+            // 
+            resources.ApplyResources(this.rareMaterialsMaxTextBox, "rareMaterialsMaxTextBox");
+            this.rareMaterialsMaxTextBox.Name = "rareMaterialsMaxTextBox";
+            // 
+            // rareMaterialsCurrentTextBox
+            // 
+            resources.ApplyResources(this.rareMaterialsCurrentTextBox, "rareMaterialsCurrentTextBox");
+            this.rareMaterialsCurrentTextBox.Name = "rareMaterialsCurrentTextBox";
+            // 
+            // rareMaterialsPoolTextBox
+            // 
+            resources.ApplyResources(this.rareMaterialsPoolTextBox, "rareMaterialsPoolTextBox");
+            this.rareMaterialsPoolTextBox.Name = "rareMaterialsPoolTextBox";
+            // 
+            // oilMaxTextBox
+            // 
+            resources.ApplyResources(this.oilMaxTextBox, "oilMaxTextBox");
+            this.oilMaxTextBox.Name = "oilMaxTextBox";
+            // 
+            // oilCurrentTextBox
+            // 
+            resources.ApplyResources(this.oilCurrentTextBox, "oilCurrentTextBox");
+            this.oilCurrentTextBox.Name = "oilCurrentTextBox";
+            // 
+            // oilPoolTextBox
+            // 
+            resources.ApplyResources(this.oilPoolTextBox, "oilPoolTextBox");
+            this.oilPoolTextBox.Name = "oilPoolTextBox";
+            // 
+            // suppliesPoolTextBox
+            // 
+            resources.ApplyResources(this.suppliesPoolTextBox, "suppliesPoolTextBox");
+            this.suppliesPoolTextBox.Name = "suppliesPoolTextBox";
+            // 
+            // manpowerCurrentTextBox
+            // 
+            resources.ApplyResources(this.manpowerCurrentTextBox, "manpowerCurrentTextBox");
+            this.manpowerCurrentTextBox.Name = "manpowerCurrentTextBox";
+            // 
+            // manpowerMaxTextBox
+            // 
+            resources.ApplyResources(this.manpowerMaxTextBox, "manpowerMaxTextBox");
+            this.manpowerMaxTextBox.Name = "manpowerMaxTextBox";
+            // 
+            // revoltRiskTextBox
+            // 
+            resources.ApplyResources(this.revoltRiskTextBox, "revoltRiskTextBox");
+            this.revoltRiskTextBox.Name = "revoltRiskTextBox";
+            // 
+            // vpTextBox
+            // 
+            resources.ApplyResources(this.vpTextBox, "vpTextBox");
+            this.vpTextBox.Name = "vpTextBox";
+            // 
+            // provinceGroupBox
+            // 
+            this.provinceGroupBox.Controls.Add(this.revoltRiskTextBox);
+            this.provinceGroupBox.Controls.Add(this.provinceIdTextBox);
+            this.provinceGroupBox.Controls.Add(this.provinceNameLabel);
+            this.provinceGroupBox.Controls.Add(this.vpTextBox);
+            this.provinceGroupBox.Controls.Add(this.provinceNameTextBox);
+            this.provinceGroupBox.Controls.Add(this.provinceVpLabel);
+            this.provinceGroupBox.Controls.Add(this.provinceRevoltRiskLabel);
+            this.provinceGroupBox.Controls.Add(this.provinceIdLabel);
+            resources.ApplyResources(this.provinceGroupBox, "provinceGroupBox");
+            this.provinceGroupBox.Name = "provinceGroupBox";
+            this.provinceGroupBox.TabStop = false;
+            // 
+            // capitalCheckBox
+            // 
+            resources.ApplyResources(this.capitalCheckBox, "capitalCheckBox");
+            this.capitalCheckBox.Name = "capitalCheckBox";
+            this.capitalCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
+            // 
             // ScenarioEditorForm
             // 
             resources.ApplyResources(this, "$this");
@@ -3174,6 +3933,14 @@
             this.typeGroupBox.ResumeLayout(false);
             this.typeGroupBox.PerformLayout();
             this.scenarioTabControl.ResumeLayout(false);
+            this.mapFilterGroupBox.ResumeLayout(false);
+            this.mapFilterGroupBox.PerformLayout();
+            this.provinceBuildingGroupBox.ResumeLayout(false);
+            this.provinceBuildingGroupBox.PerformLayout();
+            this.provinceResourceGroupBox.ResumeLayout(false);
+            this.provinceResourceGroupBox.PerformLayout();
+            this.provinceGroupBox.ResumeLayout(false);
+            this.provinceGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -3545,6 +4312,93 @@
         private System.Windows.Forms.ListView ownedTechsListView;
         private System.Windows.Forms.ListView inventionsListView;
         private System.Windows.Forms.ListView blueprintsListView;
+        private System.Windows.Forms.GroupBox mapFilterGroupBox;
+        private System.Windows.Forms.RadioButton mapFilterClaimedRadioButton;
+        private System.Windows.Forms.RadioButton mapFilterControlledRadioButton;
+        private System.Windows.Forms.RadioButton mapFilterOwnedRadioButton;
+        private System.Windows.Forms.RadioButton mapFilterCoreRadioButton;
+        private System.Windows.Forms.RadioButton mapFilterNoneRadioButton;
+        private System.Windows.Forms.CheckBox claimedProvinceCheckBox;
+        private System.Windows.Forms.CheckBox controlledProvinceCheckBox;
+        private System.Windows.Forms.CheckBox ownedProvinceCheckBox;
+        private System.Windows.Forms.CheckBox coreProvinceCheckBox;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.TextBox provinceIdTextBox;
+        private System.Windows.Forms.Label provinceIdLabel;
+        private System.Windows.Forms.TextBox provinceNameTextBox;
+        private System.Windows.Forms.Label provinceNameLabel;
+        private System.Windows.Forms.Label provinceMetalLabel;
+        private System.Windows.Forms.Label provinceRareMaterialsLabel;
+        private System.Windows.Forms.Label provinceOilLabel;
+        private System.Windows.Forms.Label provinceEnergyLabel;
+        private System.Windows.Forms.Label provinceSuppliesLabel;
+        private System.Windows.Forms.Label provinceManpowerLabel;
+        private System.Windows.Forms.Label provinceRevoltRiskLabel;
+        private System.Windows.Forms.Label provinceVpLabel;
+        private System.Windows.Forms.GroupBox provinceResourceGroupBox;
+        private System.Windows.Forms.GroupBox provinceBuildingGroupBox;
+        private System.Windows.Forms.Label resourceCurrentLabel;
+        private System.Windows.Forms.Label resourcePoolLabel;
+        private System.Windows.Forms.TextBox nuclearPowerRelativeTextBox;
+        private System.Windows.Forms.TextBox nuclearPowerMaxTextBox;
+        private System.Windows.Forms.TextBox nuclearPowerCurrentTextBox;
+        private System.Windows.Forms.TextBox syntheticRaresRelativeTextBox;
+        private System.Windows.Forms.TextBox syntheticRaresMaxTextBox;
+        private System.Windows.Forms.TextBox syntheticRaresCurrentTextBox;
+        private System.Windows.Forms.TextBox syntheticOilRelativeTextBox;
+        private System.Windows.Forms.TextBox syntheticOilMaxTextBox;
+        private System.Windows.Forms.TextBox syntheticOilCurrentTextBox;
+        private System.Windows.Forms.TextBox rocketTestRelativeTextBox;
+        private System.Windows.Forms.TextBox rocketTestMaxTextBox;
+        private System.Windows.Forms.TextBox rocketTestCurrentTextBox;
+        private System.Windows.Forms.TextBox infrastractureRelativeTextBox;
+        private System.Windows.Forms.TextBox infrastructureMaxTextBox;
+        private System.Windows.Forms.TextBox infrastructureCurrentTextBox;
+        private System.Windows.Forms.TextBox icRelativeTextBox;
+        private System.Windows.Forms.TextBox icMaxTextBox;
+        private System.Windows.Forms.TextBox icCurrentTextBox;
+        private System.Windows.Forms.TextBox nuclearReactorRelativeTextBox;
+        private System.Windows.Forms.TextBox nuclearReactorMaxTextBox;
+        private System.Windows.Forms.TextBox nuclearReactorCurrentTextBox;
+        private System.Windows.Forms.TextBox radarStationRelativeTextBox;
+        private System.Windows.Forms.TextBox radarStationMaxTextBox;
+        private System.Windows.Forms.TextBox radarStationCurrentTextBox;
+        private System.Windows.Forms.TextBox navalBaseRelativeTextBox;
+        private System.Windows.Forms.TextBox navalBaseMaxTextBox;
+        private System.Windows.Forms.TextBox navalBaseCurrentTextBox;
+        private System.Windows.Forms.TextBox airBaseRelativeTextBox;
+        private System.Windows.Forms.TextBox airBaseMaxTextBox;
+        private System.Windows.Forms.TextBox airBaseCurrentTextBox;
+        private System.Windows.Forms.TextBox antiAirRelativeTextBox;
+        private System.Windows.Forms.TextBox antiAirMaxTextBox;
+        private System.Windows.Forms.TextBox antiAirCurrentTextBox;
+        private System.Windows.Forms.TextBox coastalFortRelativeTextBox;
+        private System.Windows.Forms.TextBox coastalFortMaxTextBox;
+        private System.Windows.Forms.TextBox coastalFortCurrentTextBox;
+        private System.Windows.Forms.TextBox landFortRelativeTextBox;
+        private System.Windows.Forms.TextBox landFortMaxTextBox;
+        private System.Windows.Forms.TextBox landFortCurrentTextBox;
+        private System.Windows.Forms.TextBox rareMaterialsMaxTextBox;
+        private System.Windows.Forms.TextBox rareMaterialsCurrentTextBox;
+        private System.Windows.Forms.TextBox rareMaterialsPoolTextBox;
+        private System.Windows.Forms.TextBox metalMaxTextBox;
+        private System.Windows.Forms.TextBox metalCurrentTextBox;
+        private System.Windows.Forms.TextBox metalPoolTextBox;
+        private System.Windows.Forms.TextBox energyMaxTextBox;
+        private System.Windows.Forms.TextBox energyCurrentTextBox;
+        private System.Windows.Forms.TextBox energyPoolTextBox;
+        private System.Windows.Forms.Label resourceMaxLabel;
+        private System.Windows.Forms.GroupBox provinceGroupBox;
+        private System.Windows.Forms.TextBox revoltRiskTextBox;
+        private System.Windows.Forms.TextBox vpTextBox;
+        private System.Windows.Forms.TextBox manpowerCurrentTextBox;
+        private System.Windows.Forms.TextBox suppliesPoolTextBox;
+        private System.Windows.Forms.TextBox oilMaxTextBox;
+        private System.Windows.Forms.TextBox manpowerMaxTextBox;
+        private System.Windows.Forms.TextBox oilCurrentTextBox;
+        private System.Windows.Forms.TextBox oilPoolTextBox;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.CheckBox capitalCheckBox;
 
     }
 }
