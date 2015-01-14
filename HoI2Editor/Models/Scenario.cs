@@ -1004,6 +1004,141 @@ namespace HoI2Editor.Models
         public WeatherType Weather { get; set; }
 
         #endregion
+
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (CountrySettingsItemId)).Length];
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        #endregion
+
+        #region 公開定数
+
+        /// <summary>
+        ///     プロヴィンス設定項目ID
+        /// </summary>
+        public enum ItemId
+        {
+            Name, // プロヴィンス名
+            Ic, // IC
+            MaxIc, // 最大IC
+            RelativeIc, // 相対IC
+            Infrastructure, // インフラ
+            MaxInfrastructure, // 最大インフラ
+            RelativeInfrastructure, // 相対インフラ
+            LandFort, // 陸上要塞
+            MaxLandFort, // 最大陸上要塞
+            RelativeLandFort, // 相対陸上要塞
+            CoastalFort, // 沿岸要塞
+            MaxCoastalFort, // 最大沿岸要塞
+            RelativeCoastalFort, // 相対沿岸要塞
+            AntiAir, // 対空砲
+            MaxAntiAir, // 最大対空砲
+            RelativeAntiAir, // 相対対空砲
+            AirBase, // 空軍基地
+            MaxAirBase, // 最大空軍基地
+            RelativeAirBase, // 相対空軍基地
+            NavalBase, // 海軍基地
+            MaxNavalBase, // 最大海軍基地
+            RelativeNavalBase, // 相対海軍基地
+            RadarStation, // レーダー基地
+            MaxRadarStation, // 最大レーダー基地
+            RelativeRadarStation, // 相対レーダー基地
+            NuclearReactor, // 原子炉
+            MaxNuclearReactor, // 最大原子炉
+            RelativeNuclearReactor, // 相対原子炉
+            RocketTest, // ロケット試験場
+            MaxRocketTest, // 最大ロケット試験場
+            RelativeRocketTest, // 相対ロケット試験場
+            SyntheticOil, // 合成石油工場
+            MaxSyntheticOil, // 最大合成石油工場
+            RelativeSyntheticOil, // 相対合成石油工場
+            SyntheticRares, // 合成素材工場
+            MaxSyntheticRares, // 最大合成素材工場
+            RelativeSyntheticRares, // 相対合成素材工場
+            NuclearPower, // 原子力発電所
+            MaxNuclearPower, // 最大原子力発電所
+            RelativeNuclearPower, // 相対原子力発電所
+            SupplyPool, // 物資備蓄量
+            OilPool, // 石油備蓄量
+            EnergyPool, // エネルギー備蓄量
+            MetalPool, // 金属備蓄量
+            RareMaterialsPool, // 希少資源備蓄量
+            Energy, // エネルギー産出量
+            MaxEnergy, // 最大エネルギー産出量
+            Metal, // 金属産出量
+            MaxMetal, // 最大金属産出量
+            RareMaterials, // 希少資源産出量
+            MaxRareMaterials, // 最大希少資源産出量
+            Oil, // 石油産出量
+            MaxOil, // 最大石油産出量
+            Manpower, // 人的資源
+            MaxManpower, // 最大人的資源
+            Vp, // 勝利ポイント
+            RevoltRisk // 反乱率
+        }
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     プロヴィンス設定が編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(ItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(ItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            _dirtyFlag = false;
+        }
+
+        #endregion
     }
 
     #endregion
@@ -2067,7 +2202,7 @@ namespace HoI2Editor.Models
         #region 編集済みフラグ操作
 
         /// <summary>
-        ///     国家関係設定が編集済みかどうかを取得する
+        ///     国家設定が編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
         public bool IsDirty()

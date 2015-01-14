@@ -125,6 +125,20 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region プロヴィンス
+
+        /// <summary>
+        ///     プロヴィンスIDとプロヴィンス設定の対応付け
+        /// </summary>
+        private readonly Dictionary<int, ProvinceSettings> _provinces = new Dictionary<int, ProvinceSettings>();
+
+        /// <summary>
+        ///     マップ表示のフィルターモード
+        /// </summary>
+        private MapFilterMode _mapFilterMode;
+
+        #endregion
+
         #region データ遅延読み込み
 
         /// <summary>
@@ -149,6 +163,18 @@ namespace HoI2Editor.Forms
         #endregion
 
         #region 内部定数
+
+        /// <summary>
+        ///     マップ表示のフィルターモード
+        /// </summary>
+        private enum MapFilterMode
+        {
+            None,
+            Core,
+            Owned,
+            Controlled,
+            Claimed
+        }
 
         /// <summary>
         ///     AIの攻撃性の文字列
@@ -187,6 +213,70 @@ namespace HoI2Editor.Forms
             TextId.OptionGameSpeed5,
             TextId.OptionGameSpeed6,
             TextId.OptionGameSpeed7
+        };
+
+        /// <summary>
+        ///     プロヴィンス設定の項目文字列
+        /// </summary>
+        private readonly string[] _provinceItemStrings =
+        {
+            "name",
+            "ic",
+            "max ic",
+            "relative ic",
+            "infrastructure",
+            "max infrastructure",
+            "relative infrastructure",
+            "land fort",
+            "max land fort",
+            "relative land fort",
+            "coastal fort",
+            "max coastal fort",
+            "relative coastal fort",
+            "anti air",
+            "max anti air",
+            "relative anti air",
+            "air base",
+            "max air base",
+            "relative air base",
+            "naval base",
+            "max naval base",
+            "relative naval base",
+            "radar station",
+            "max radar station",
+            "relative radar station",
+            "nuclear reactor",
+            "max nuclear reactor",
+            "relative nuclear reactor",
+            "rocket test",
+            "max rocket test",
+            "relative rocket test",
+            "synthetic oil",
+            "max synthetic oil",
+            "relative synthetic oil",
+            "synthetic rares",
+            "max synthetic rares",
+            "relative synthetic rares",
+            "nuclear power",
+            "max nuclear power",
+            "relative nuclear power",
+            "supply pool",
+            "oil pool",
+            "energy pool",
+            "metal pool",
+            "rarematerials pool",
+            "energy",
+            "max energy",
+            "metal",
+            "max metal",
+            "rarematerials",
+            "max rarematerials",
+            "oil",
+            "max oil",
+            "manpower",
+            "max manpower",
+            "vp",
+            "revolt risk"
         };
 
         #endregion
@@ -16344,6 +16434,626 @@ namespace HoI2Editor.Forms
         }
 
         #endregion
+
+        #endregion
+
+        #region プロヴィンスタブ
+
+        /// <summary>
+        ///     プロヴィンスタブの編集項目を初期化する
+        /// </summary>
+        private void InitProvinceTab()
+        {
+            // マップフィルターラジオボタン
+            mapFilterNoneRadioButton.Tag = MapFilterMode.None;
+            mapFilterCoreRadioButton.Tag = MapFilterMode.Core;
+            mapFilterOwnedRadioButton.Tag = MapFilterMode.Owned;
+            mapFilterControlledRadioButton.Tag = MapFilterMode.Controlled;
+            mapFilterClaimedRadioButton.Tag = MapFilterMode.Claimed;
+
+            // 資源名ラベル
+            provinceManpowerLabel.Text = Config.GetText(TextId.ResourceManpower);
+            provinceEnergyLabel.Text = Config.GetText(TextId.ResourceEnergy);
+            provinceMetalLabel.Text = Config.GetText(TextId.ResourceMetal);
+            provinceRareMaterialsLabel.Text = Config.GetText(TextId.ResourceRareMaterials);
+            provinceOilLabel.Text = Config.GetText(TextId.ResourceOil);
+            provinceSuppliesLabel.Text = Config.GetText(TextId.ResourceSupplies);
+        }
+
+        /// <summary>
+        ///     マップフィルターラジオボタンのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMapFilterNoneRadioButtonCheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (radioButton == null)
+            {
+                return;
+            }
+
+            // チェックなしの時には他の項目にチェックがついているので処理しない
+            if (!radioButton.Checked)
+            {
+                return;
+            }
+
+            // マップの表示を更新する
+            UpdateMap((MapFilterMode) radioButton.Tag);
+        }
+
+        /// <summary>
+        ///     マップの表示を更新する
+        /// </summary>
+        /// <param name="mode">変更後のフィルターモード</param>
+        private void UpdateMap(MapFilterMode mode)
+        {
+            // TODO: フィルターモードごとにマップの表示を更新する
+            // 高速化のため、前のモードを考慮して必要な箇所だけ更新する
+
+            _mapFilterMode = mode;
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定テキストボックスの文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceIntTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (provinceListView.SelectedItems.Count > 0)
+            {
+                return;
+            }
+            int provinceId = (int) provinceListView.SelectedItems[0].Tag;
+            ProvinceSettings province = _provinces.ContainsKey(provinceId) ? _provinces[provinceId] : null;
+
+            TextBox textBox = sender as TextBox;
+            if (textBox == null)
+            {
+                return;
+            }
+            ProvinceSettings.ItemId itemId = (ProvinceSettings.ItemId) textBox.Tag;
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(textBox.Text, out val))
+            {
+                textBox.Text = (province != null) ? ObjectHelper.ToString(GetProvinceValue(province, itemId)) : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((province == null) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((province != null) && (val == (int) GetProvinceValue(province, itemId)))
+            {
+                return;
+            }
+
+            string s = _provinceItemStrings[(int) itemId];
+            if (province != null)
+            {
+                Log.Info("[Scenario] province {0}: {1} -> {2} ({3})", s,
+                    ObjectHelper.ToString(GetProvinceValue(province, itemId)), val, province.Id);
+            }
+            else
+            {
+                Log.Info("[Scenario] province {0}: -> {1}", s, val);
+            }
+
+            if (province == null)
+            {
+                province = new ProvinceSettings { Id = provinceId };
+                _provinces[provinceId] = province;
+            }
+
+            // 値を更新する
+            SetProvinceValue(province, itemId, val);
+
+            // 編集済みフラグを設定する
+            province.SetDirty(itemId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            textBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定テキストボックスの文字列変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceDoubleTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            if (provinceListView.SelectedItems.Count > 0)
+            {
+                return;
+            }
+            int provinceId = (int) provinceListView.SelectedItems[0].Tag;
+            ProvinceSettings province = _provinces.ContainsKey(provinceId) ? _provinces[provinceId] : null;
+
+            TextBox textBox = sender as TextBox;
+            if (textBox == null)
+            {
+                return;
+            }
+            ProvinceSettings.ItemId itemId = (ProvinceSettings.ItemId) textBox.Tag;
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(textBox.Text, out val))
+            {
+                textBox.Text = (province != null)
+                    ? ObjectHelper.ToString(GetProvinceValue(province, itemId))
+                    : "";
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((province == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((province != null) && DoubleHelper.IsEqual(val, (double) GetProvinceValue(province, itemId)))
+            {
+                return;
+            }
+
+            string s = _provinceItemStrings[(int) itemId];
+            if (province != null)
+            {
+                Log.Info("[Scenario] {0}: {1} -> {2} ({3})", s,
+                    ObjectHelper.ToString(GetProvinceValue(province, itemId)), val, province.Id);
+            }
+            else
+            {
+                Log.Info("[Scenario] {0}: -> {1}", s, val);
+            }
+
+            if (province == null)
+            {
+                province = new ProvinceSettings { Id = provinceId };
+                _provinces[provinceId] = province;
+            }
+
+            // 値を更新する
+            SetProvinceValue(province, itemId, val);
+
+            // 編集済みフラグを設定する
+            province.SetDirty(itemId);
+            Scenarios.SetDirty();
+
+            // 文字色を変更する
+            textBox.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定の項目値を取得する
+        /// </summary>
+        /// <param name="province">プロヴィンス設定</param>
+        /// <param name="id">項目ID</param>
+        /// <returns>項目値</returns>
+        private static object GetProvinceValue(ProvinceSettings province, ProvinceSettings.ItemId id)
+        {
+            switch (id)
+            {
+                case ProvinceSettings.ItemId.Ic:
+                    return province.Ic.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxIc:
+                    return province.Ic.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeIc:
+                    return province.Ic.Size;
+
+                case ProvinceSettings.ItemId.Infrastructure:
+                    return province.Infrastructure.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxInfrastructure:
+                    return province.Infrastructure.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeInfrastructure:
+                    return province.Infrastructure.Size;
+
+                case ProvinceSettings.ItemId.LandFort:
+                    return province.LandFort.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxLandFort:
+                    return province.LandFort.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeLandFort:
+                    return province.LandFort.Size;
+
+                case ProvinceSettings.ItemId.CoastalFort:
+                    return province.CoastalFort.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxCoastalFort:
+                    return province.CoastalFort.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeCoastalFort:
+                    return province.CoastalFort.Size;
+
+                case ProvinceSettings.ItemId.AntiAir:
+                    return province.AntiAir.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxAntiAir:
+                    return province.AntiAir.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeAntiAir:
+                    return province.AntiAir.Size;
+
+                case ProvinceSettings.ItemId.AirBase:
+                    return province.AirBase.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxAirBase:
+                    return province.AirBase.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeAirBase:
+                    return province.AirBase.Size;
+
+                case ProvinceSettings.ItemId.NavalBase:
+                    return province.NavalBase.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxNavalBase:
+                    return province.NavalBase.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeNavalBase:
+                    return province.NavalBase.Size;
+
+                case ProvinceSettings.ItemId.RadarStation:
+                    return province.RadarStation.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxRadarStation:
+                    return province.RadarStation.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeRadarStation:
+                    return province.RadarStation.Size;
+
+                case ProvinceSettings.ItemId.NuclearReactor:
+                    return province.NuclearReactor.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxNuclearReactor:
+                    return province.NuclearReactor.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeNuclearReactor:
+                    return province.NuclearReactor.Size;
+
+                case ProvinceSettings.ItemId.RocketTest:
+                    return province.RocketTest.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxRocketTest:
+                    return province.RocketTest.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeRocketTest:
+                    return province.RocketTest.Size;
+
+                case ProvinceSettings.ItemId.SyntheticOil:
+                    return province.SyntheticOil.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxSyntheticOil:
+                    return province.SyntheticOil.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeSyntheticOil:
+                    return province.SyntheticOil.Size;
+
+                case ProvinceSettings.ItemId.SyntheticRares:
+                    return province.SyntheticRares.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxSyntheticRares:
+                    return province.SyntheticRares.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeSyntheticRares:
+                    return province.SyntheticRares.Size;
+
+                case ProvinceSettings.ItemId.NuclearPower:
+                    return province.NuclearPower.CurrentSize;
+
+                case ProvinceSettings.ItemId.MaxNuclearPower:
+                    return province.NuclearPower.MaxSize;
+
+                case ProvinceSettings.ItemId.RelativeNuclearPower:
+                    return province.NuclearPower.Size;
+
+                case ProvinceSettings.ItemId.SupplyPool:
+                    return province.SupplyPool;
+
+                case ProvinceSettings.ItemId.OilPool:
+                    return province.OilPool;
+
+                case ProvinceSettings.ItemId.EnergyPool:
+                    return province.EnergyPool;
+
+                case ProvinceSettings.ItemId.MetalPool:
+                    return province.MetalPool;
+
+                case ProvinceSettings.ItemId.RareMaterialsPool:
+                    return province.RareMaterialsPool;
+
+                case ProvinceSettings.ItemId.Energy:
+                    return province.Energy;
+
+                case ProvinceSettings.ItemId.MaxEnergy:
+                    return province.MaxEnergy;
+
+                case ProvinceSettings.ItemId.Metal:
+                    return province.Metal;
+
+                case ProvinceSettings.ItemId.MaxMetal:
+                    return province.MaxMetal;
+
+                case ProvinceSettings.ItemId.RareMaterials:
+                    return province.RareMaterials;
+
+                case ProvinceSettings.ItemId.MaxRareMaterials:
+                    return province.MaxRareMaterials;
+
+                case ProvinceSettings.ItemId.Oil:
+                    return province.Oil;
+
+                case ProvinceSettings.ItemId.MaxOil:
+                    return province.MaxOil;
+
+                case ProvinceSettings.ItemId.Manpower:
+                    return province.Manpower;
+
+                case ProvinceSettings.ItemId.MaxManpower:
+                    return province.MaxManpower;
+
+                case ProvinceSettings.ItemId.Vp:
+                    return province.Vp;
+
+                case ProvinceSettings.ItemId.RevoltRisk:
+                    return province.RevoltRisk;
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定の項目値を設定する
+        /// </summary>
+        /// <param name="province">プロヴィンス設定</param>
+        /// <param name="id">項目ID</param>
+        /// <param name="val">項目値</param>
+        private static void SetProvinceValue(ProvinceSettings province, ProvinceSettings.ItemId id, object val)
+        {
+            switch (id)
+            {
+                case ProvinceSettings.ItemId.Ic:
+                    province.Ic.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxIc:
+                    province.Ic.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeIc:
+                    province.Ic.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.Infrastructure:
+                    province.Infrastructure.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxInfrastructure:
+                    province.Infrastructure.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeInfrastructure:
+                    province.Infrastructure.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.LandFort:
+                    province.LandFort.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxLandFort:
+                    province.LandFort.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeLandFort:
+                    province.LandFort.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.CoastalFort:
+                    province.CoastalFort.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxCoastalFort:
+                    province.CoastalFort.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeCoastalFort:
+                    province.CoastalFort.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.AntiAir:
+                    province.AntiAir.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxAntiAir:
+                    province.AntiAir.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeAntiAir:
+                    province.AntiAir.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.AirBase:
+                    province.AirBase.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxAirBase:
+                    province.AirBase.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeAirBase:
+                    province.AirBase.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.NavalBase:
+                    province.NavalBase.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxNavalBase:
+                    province.NavalBase.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeNavalBase:
+                    province.NavalBase.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RadarStation:
+                    province.RadarStation.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxRadarStation:
+                    province.RadarStation.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeRadarStation:
+                    province.RadarStation.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.NuclearReactor:
+                    province.NuclearReactor.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxNuclearReactor:
+                    province.NuclearReactor.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeNuclearReactor:
+                    province.NuclearReactor.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RocketTest:
+                    province.RocketTest.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxRocketTest:
+                    province.RocketTest.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeRocketTest:
+                    province.RocketTest.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.SyntheticOil:
+                    province.SyntheticOil.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxSyntheticOil:
+                    province.SyntheticOil.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeSyntheticOil:
+                    province.SyntheticOil.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.SyntheticRares:
+                    province.SyntheticRares.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxSyntheticRares:
+                    province.SyntheticRares.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeSyntheticRares:
+                    province.SyntheticRares.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.NuclearPower:
+                    province.NuclearPower.CurrentSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxNuclearPower:
+                    province.NuclearPower.MaxSize = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RelativeNuclearPower:
+                    province.NuclearPower.Size = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.SupplyPool:
+                    province.SupplyPool = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.OilPool:
+                    province.OilPool = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.EnergyPool:
+                    province.EnergyPool = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MetalPool:
+                    province.MetalPool = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RareMaterialsPool:
+                    province.RareMaterialsPool = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.Energy:
+                    province.Energy = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxEnergy:
+                    province.MaxEnergy = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.Metal:
+                    province.Metal = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxMetal:
+                    province.MaxMetal = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RareMaterials:
+                    province.RareMaterials = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxRareMaterials:
+                    province.MaxRareMaterials = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.Oil:
+                    province.Oil = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxOil:
+                    province.MaxOil = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.Manpower:
+                    province.Manpower = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.MaxManpower:
+                    province.MaxManpower = (double) val;
+                    break;
+
+                case ProvinceSettings.ItemId.Vp:
+                    province.Vp = (int) val;
+                    break;
+
+                case ProvinceSettings.ItemId.RevoltRisk:
+                    province.RevoltRisk = (double) val;
+                    break;
+            }
+        }
 
         #endregion
 
