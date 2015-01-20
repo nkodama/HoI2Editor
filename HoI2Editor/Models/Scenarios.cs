@@ -64,6 +64,12 @@ namespace HoI2Editor.Models
         private static Dictionary<Country, Dictionary<Country, SpySettings>> _spies;
 
         /// <summary>
+        ///     プロヴィンスIDとプロヴィンス設定の対応付け
+        /// </summary>
+        private static readonly Dictionary<int, ProvinceSettings> ProvinceTable =
+            new Dictionary<int, ProvinceSettings>();
+
+        /// <summary>
         ///     使用済みのtypeとidの組
         /// </summary>
         private static Dictionary<int, HashSet<int>> _usedTypeIds;
@@ -616,6 +622,45 @@ namespace HoI2Editor.Models
                 _spies.Add(country, new Dictionary<Country, SpySettings>());
             }
             _spies[country][spy.Country] = spy;
+        }
+
+        #endregion
+
+        #region プロヴィンス設定
+
+        /// <summary>
+        ///     プロヴィンステーブルを初期化する
+        /// </summary>
+        public static void InitProvinceTable()
+        {
+            ProvinceTable.Clear();
+            foreach (ProvinceSettings settings in Data.Provinces)
+            {
+                ProvinceTable[settings.Id] = settings;
+            }
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定を取得する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <returns>プロヴィンス設定</returns>
+        public static ProvinceSettings GetProvinceSettings(int id)
+        {
+            if (!ProvinceTable.ContainsKey(id))
+            {
+                return null;
+            }
+            return ProvinceTable[id];
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定を追加する
+        /// </summary>
+        /// <param name="settings">プロヴィンス設定</param>
+        public static void AddProvinceSettings(ProvinceSettings settings)
+        {
+            ProvinceTable[settings.Id] = settings;
         }
 
         #endregion

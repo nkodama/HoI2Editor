@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -22,6 +23,44 @@ namespace HoI2Editor.Models
         /// </summary>
         public static Rectangle[] BoundBoxes { get; private set; }
 
+        /// <summary>
+        ///     カラースケールテーブル
+        /// </summary>
+        public static Dictionary<string, Color[]> ColorScales { get; private set; }
+
+        /// <summary>
+        ///     カラーパレット
+        /// </summary>
+        public static Color[] ColorPalette { get; private set; }
+
+        /// <summary>
+        ///     カラーマスクの配列
+        /// </summary>
+        public static byte[] ColorMasks { get; private set; }
+
+        #endregion
+
+        #region 公開定数
+
+        /// <summary>
+        ///     最大プロヴィンス数
+        /// </summary>
+        public const int MaxProvinces = 10000;
+
+        #endregion
+
+        #region 内部定数
+
+        /// <summary>
+        ///     カラーインデックスの最大数
+        /// </summary>
+        private const int MaxColorIndex = 4;
+
+        /// <summary>
+        ///     カラースケールの数
+        /// </summary>
+        private const int ColorScaleCount = 64;
+
         #endregion
 
         #region 初期化
@@ -32,6 +71,9 @@ namespace HoI2Editor.Models
         static Maps()
         {
             Data = new Map[Enum.GetNames(typeof (MapLevel)).Length];
+            ColorMasks = new byte[MaxProvinces];
+
+            InitColorPalette();
         }
 
         #endregion
@@ -57,6 +99,12 @@ namespace HoI2Editor.Models
             if (BoundBoxes == null)
             {
                 LoadBoundBox();
+            }
+
+            // カラースケールテーブルを読み込む
+            if (ColorScales == null)
+            {
+                LoadColorScales();
             }
 
             sw.Stop();
@@ -93,6 +141,208 @@ namespace HoI2Editor.Models
                 BoundBoxes[i].Y = top;
                 BoundBoxes[i].Height = (data[index + 12] | (data[index + 13] << 8)) - top + 1;
                 index += 16;
+            }
+        }
+
+        /// <summary>
+        ///     カラースケールテーブルを読み込む
+        /// </summary>
+        private static void LoadColorScales()
+        {
+            string fileName = Game.GetReadFileName(Game.GetMapFolderName(), Game.ColorScalesFileName);
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                ColorScales = new Dictionary<string, Color[]>();
+                while (!reader.EndOfStream)
+                {
+                    string line = reader.ReadLine();
+                    if (String.IsNullOrEmpty(line))
+                    {
+                        continue;
+                    }
+                    string[] tokens = line.Split(';');
+                    if (tokens.Length == 0)
+                    {
+                        continue;
+                    }
+                    string name = tokens[0].ToLower();
+                    reader.ReadLine();
+                    int[][] colors = new int[4][];
+                    line = reader.ReadLine();
+                    colors[0] = ParseColor(line);
+                    if (colors[0] == null)
+                    {
+                        continue;
+                    }
+                    line = reader.ReadLine();
+                    colors[1] = ParseColor(line);
+                    if (colors[1] == null)
+                    {
+                        continue;
+                    }
+                    line = reader.ReadLine();
+                    colors[2] = ParseColor(line);
+                    if (colors[2] == null)
+                    {
+                        continue;
+                    }
+                    line = reader.ReadLine();
+                    colors[3] = ParseColor(line);
+                    if (colors[3] == null)
+                    {
+                        continue;
+                    }
+                    Color[] colorScale = GetColorScale(colors);
+                    ColorScales.Add(name, colorScale);
+
+                    Log.Info("Color: {0} R:{1} G:{2} B:{3}", name, colorScale[0].R, colorScale[1].G, colorScale[2].B);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     色定義を解析する
+        /// </summary>
+        /// <param name="s">解析対象の文字列</param>
+        /// <returns>色定義</returns>
+        private static int[] ParseColor(string s)
+        {
+            if (String.IsNullOrEmpty(s))
+            {
+                return null;
+            }
+            string[] tokens = s.Split(';');
+            if (tokens.Length < 4)
+            {
+                return null;
+            }
+            int[] color = new int[4];
+            for (int i = 0; i < 4; i++)
+            {
+                if (!int.TryParse(tokens[i], out color[i]))
+                {
+                    return null;
+                }
+                if (color[i] > 255)
+                {
+                    color[i] = 255;
+                }
+            }
+            return color;
+        }
+
+        /// <summary>
+        ///     カラースケールを取得する
+        /// </summary>
+        /// <param name="colors">色定義の配列</param>
+        /// <returns>カラースケール</returns>
+        private static Color[] GetColorScale(int[][] colors)
+        {
+            Color[] colorScale = new Color[64];
+            int width = colors[1][3] - colors[0][3];
+            int deltaR = (width > 0) ? ((colors[1][0] - colors[0][0]) << 10) / width : 0;
+            int deltaG = (width > 0) ? ((colors[1][1] - colors[0][1]) << 10) / width : 0;
+            int deltaB = (width > 0) ? ((colors[1][2] - colors[0][2]) << 10) / width : 0;
+            int r = colors[0][0] << 10;
+            int g = colors[0][1] << 10;
+            int b = colors[0][2] << 10;
+            for (int i = colors[0][3]; i < colors[1][3]; i++)
+            {
+                colorScale[i] = Color.FromArgb(r >> 10, g >> 10, b >> 10);
+                r += deltaR;
+                g += deltaG;
+                b += deltaB;
+            }
+            width = colors[2][3] - colors[1][3];
+            deltaR = (width > 0) ? ((colors[2][0] - colors[1][0]) << 10) / width : 0;
+            deltaG = (width > 0) ? ((colors[2][1] - colors[1][1]) << 10) / width : 0;
+            deltaB = (width > 0) ? ((colors[2][2] - colors[1][2]) << 10) / width : 0;
+            r = colors[1][0] << 10;
+            g = colors[1][1] << 10;
+            b = colors[1][2] << 10;
+            for (int i = colors[1][3]; i < colors[2][3]; i++)
+            {
+                colorScale[i] = Color.FromArgb(r >> 10, g >> 10, b >> 10);
+                r += deltaR;
+                g += deltaG;
+                b += deltaB;
+            }
+            width = colors[3][3] - colors[2][3];
+            deltaR = (width > 0) ? ((colors[3][0] - colors[2][0]) << 10) / width : 0;
+            deltaG = (width > 0) ? ((colors[3][1] - colors[2][1]) << 10) / width : 0;
+            deltaB = (width > 0) ? ((colors[3][2] - colors[2][2]) << 10) / width : 0;
+            r = colors[2][0] << 10;
+            g = colors[2][1] << 10;
+            b = colors[2][2] << 10;
+            for (int i = colors[2][3]; i < colors[3][3]; i++)
+            {
+                colorScale[i] = Color.FromArgb(r >> 10, g >> 10, b >> 10);
+                r += deltaR;
+                g += deltaG;
+                b += deltaB;
+            }
+            return colorScale;
+        }
+
+        #endregion
+
+        #region カラースケール
+
+        /// <summary>
+        ///     プロヴィンスのカラーインデックスを設定する
+        /// </summary>
+        /// <param name="ids">プロヴィンスIDの配列</param>
+        /// <param name="index">カラーインデックス</param>
+        public static void SetColorIndex(IEnumerable<ushort> ids, int index)
+        {
+            foreach (ushort id in ids)
+            {
+                ColorMasks[id] = (byte) (index << 6);
+            }
+        }
+
+        /// <summary>
+        ///     プロヴィンスのカラーインデックスを設定する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <param name="index">カラーインデックス</param>
+        public static void SetColorIndex(ushort id, int index)
+        {
+            ColorMasks[id] = (byte) (index << 6);
+        }
+
+        /// <summary>
+        ///     カラースケールを設定する
+        /// </summary>
+        /// <param name="index">カラーインデックス</param>
+        /// <param name="color">カラースケール名</param>
+        public static void SetColorPalette(int index, string color)
+        {
+            // 存在しない色名ならば何もしない
+            if (!ColorScales.ContainsKey(color.ToLower()))
+            {
+                return;
+            }
+
+            Color[] colorScale = ColorScales[color];
+            for (int i = 0; i < ColorScaleCount; i++)
+            {
+                ColorPalette[index * ColorScaleCount + i] = colorScale[i];
+            }
+        }
+
+        /// <summary>
+        ///     カラーパレットを初期化する
+        /// </summary>
+        private static void InitColorPalette()
+        {
+            ColorPalette = new Color[ColorScaleCount * MaxColorIndex];
+            for (int i = 0; i < MaxColorIndex; i++)
+            {
+                for (int j = 0; j < ColorScaleCount; j++)
+                {
+                    ColorPalette[i * ColorScaleCount + j] = Color.FromArgb(255 - j * 4, 255 - j * 4, 255 - j * 4);
+                }
             }
         }
 

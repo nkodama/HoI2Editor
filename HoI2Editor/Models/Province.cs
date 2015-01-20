@@ -317,13 +317,12 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     プロヴィンス名を取得する
+        ///     プロヴィンス名を設定する
         /// </summary>
-        /// <param name="id">プロヴィンスID</param>
-        /// <returns>プロヴィンス名</returns>
-        public static string GetName(int id)
+        /// <param name="s">プロヴィンス名</param>
+        public void SetName(string s)
         {
-            return Config.GetText(string.Format("PROV{0}", id));
+            Config.SetText(Name, s, Game.ProvinceTextFileName);
         }
 
         #endregion

@@ -273,23 +273,27 @@ namespace HoI2Editor.Parsers
                         switch (GetScenarioFileKind())
                         {
                             case ScenarioFileKind.BasesInc: // bases.inc
-                                scenario.BasesProvinces.Add(province);
+                                scenario.Provinces.Add(province);
+                                scenario.IsBaseProvinceSettings = true;
                                 break;
 
                             case ScenarioFileKind.BasesDodInc: // bases_DOD.inc
-                                scenario.BasesDodProvinces.Add(province);
+                                scenario.Provinces.Add(province);
+                                scenario.IsBaseDodProvinceSettings = true;
                                 break;
 
                             case ScenarioFileKind.VpInc: // vp.inc
-                                scenario.VpProvinces.Add(province);
+                                scenario.Provinces.Add(province);
+                                scenario.IsVpProvinceSettings = true;
                                 break;
 
                             case ScenarioFileKind.Top: // シナリオ.eug
-                                scenario.TopProvinces.Add(province);
+                                scenario.Provinces.Add(province);
                                 break;
 
                             default:
-                                scenario.CountryProvinces.Add(province);
+                                scenario.Provinces.Add(province);
+                                scenario.IsCountryProvinceSettings = true;
                                 break;
                         }
                         continue;

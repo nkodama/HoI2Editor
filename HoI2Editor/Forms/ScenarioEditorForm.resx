@@ -957,6 +957,81 @@
   <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="testProvinceIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>373, 60</value>
+  </data>
+  <data name="testProvinceIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 19</value>
+  </data>
+  <data name="testProvinceIdTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;testProvinceIdTextBox.Name" xml:space="preserve">
+    <value>testProvinceIdTextBox</value>
+  </data>
+  <data name="&gt;&gt;testProvinceIdTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;testProvinceIdTextBox.Parent" xml:space="preserve">
+    <value>provinceTabPage</value>
+  </data>
+  <data name="&gt;&gt;testProvinceIdTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="provinceCountryFilterLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="provinceCountryFilterLabel.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="provinceCountryFilterLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 63</value>
+  </data>
+  <data name="provinceCountryFilterLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 12</value>
+  </data>
+  <data name="provinceCountryFilterLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>70</value>
+  </data>
+  <data name="provinceCountryFilterLabel.Text" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="&gt;&gt;provinceCountryFilterLabel.Name" xml:space="preserve">
+    <value>provinceCountryFilterLabel</value>
+  </data>
+  <data name="&gt;&gt;provinceCountryFilterLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;provinceCountryFilterLabel.Parent" xml:space="preserve">
+    <value>provinceTabPage</value>
+  </data>
+  <data name="&gt;&gt;provinceCountryFilterLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="provinceCountryFilterComboBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="provinceCountryFilterComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>78, 60</value>
+  </data>
+  <data name="provinceCountryFilterComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 20</value>
+  </data>
+  <data name="provinceCountryFilterComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>69</value>
+  </data>
+  <data name="&gt;&gt;provinceCountryFilterComboBox.Name" xml:space="preserve">
+    <value>provinceCountryFilterComboBox</value>
+  </data>
+  <data name="&gt;&gt;provinceCountryFilterComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;provinceCountryFilterComboBox.Parent" xml:space="preserve">
+    <value>provinceTabPage</value>
+  </data>
+  <data name="&gt;&gt;provinceCountryFilterComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="claimedProvinceCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1101,6 +1176,9 @@
   <data name="&gt;&gt;ownedProvinceCheckBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="provinceCountryGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="provinceCountryGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>465, 177</value>
   </data>
@@ -1123,76 +1201,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;provinceCountryGroupBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="provinceCountryFilterLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="provinceCountryFilterLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 43</value>
-  </data>
-  <data name="provinceCountryFilterLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 12</value>
-  </data>
-  <data name="provinceCountryFilterLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>70</value>
-  </data>
-  <data name="provinceCountryFilterLabel.Text" xml:space="preserve">
-    <value>Country</value>
-  </data>
-  <data name="&gt;&gt;provinceCountryFilterLabel.Name" xml:space="preserve">
-    <value>provinceCountryFilterLabel</value>
-  </data>
-  <data name="&gt;&gt;provinceCountryFilterLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;provinceCountryFilterLabel.Parent" xml:space="preserve">
-    <value>mapFilterGroupBox</value>
-  </data>
-  <data name="&gt;&gt;provinceCountryFilterLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="testProvinceIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>347, 40</value>
-  </data>
-  <data name="testProvinceIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 19</value>
-  </data>
-  <data name="testProvinceIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;testProvinceIdTextBox.Name" xml:space="preserve">
-    <value>testProvinceIdTextBox</value>
-  </data>
-  <data name="&gt;&gt;testProvinceIdTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;testProvinceIdTextBox.Parent" xml:space="preserve">
-    <value>mapFilterGroupBox</value>
-  </data>
-  <data name="&gt;&gt;testProvinceIdTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="provinceCountryFilterComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>69, 40</value>
-  </data>
-  <data name="provinceCountryFilterComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 20</value>
-  </data>
-  <data name="provinceCountryFilterComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>69</value>
-  </data>
-  <data name="&gt;&gt;provinceCountryFilterComboBox.Name" xml:space="preserve">
-    <value>provinceCountryFilterComboBox</value>
-  </data>
-  <data name="&gt;&gt;provinceCountryFilterComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;provinceCountryFilterComboBox.Parent" xml:space="preserve">
-    <value>mapFilterGroupBox</value>
-  </data>
-  <data name="&gt;&gt;provinceCountryFilterComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="mapFilterClaimedRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1201,7 +1210,7 @@
     <value>NoControl</value>
   </data>
   <data name="mapFilterClaimedRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>278, 18</value>
+    <value>315, 18</value>
   </data>
   <data name="mapFilterClaimedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 16</value>
@@ -1222,7 +1231,7 @@
     <value>mapFilterGroupBox</value>
   </data>
   <data name="&gt;&gt;mapFilterClaimedRadioButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>0</value>
   </data>
   <data name="mapFilterControlledRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1231,7 +1240,7 @@
     <value>NoControl</value>
   </data>
   <data name="mapFilterControlledRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 18</value>
+    <value>235, 18</value>
   </data>
   <data name="mapFilterControlledRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 16</value>
@@ -1252,7 +1261,7 @@
     <value>mapFilterGroupBox</value>
   </data>
   <data name="&gt;&gt;mapFilterControlledRadioButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="mapFilterOwnedRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1261,7 +1270,7 @@
     <value>NoControl</value>
   </data>
   <data name="mapFilterOwnedRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 18</value>
+    <value>160, 18</value>
   </data>
   <data name="mapFilterOwnedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 16</value>
@@ -1282,7 +1291,7 @@
     <value>mapFilterGroupBox</value>
   </data>
   <data name="&gt;&gt;mapFilterOwnedRadioButton.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>2</value>
   </data>
   <data name="mapFilterCoreRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1291,7 +1300,7 @@
     <value>NoControl</value>
   </data>
   <data name="mapFilterCoreRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>69, 18</value>
+    <value>85, 18</value>
   </data>
   <data name="mapFilterCoreRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 16</value>
@@ -1312,7 +1321,7 @@
     <value>mapFilterGroupBox</value>
   </data>
   <data name="&gt;&gt;mapFilterCoreRadioButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>3</value>
   </data>
   <data name="mapFilterNoneRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1339,13 +1348,16 @@
     <value>mapFilterGroupBox</value>
   </data>
   <data name="&gt;&gt;mapFilterNoneRadioButton.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>4</value>
+  </data>
+  <data name="mapFilterGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="mapFilterGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>9, 10</value>
   </data>
   <data name="mapFilterGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>450, 68</value>
+    <value>450, 44</value>
   </data>
   <data name="mapFilterGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>62</value>
@@ -1363,7 +1375,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;mapFilterGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="revoltRiskTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>191, 68</value>
@@ -1373,6 +1385,9 @@
   </data>
   <data name="revoltRiskTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>138</value>
+  </data>
+  <data name="revoltRiskTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;revoltRiskTextBox.Name" xml:space="preserve">
     <value>revoltRiskTextBox</value>
@@ -1395,6 +1410,9 @@
   <data name="provinceIdTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>72</value>
   </data>
+  <data name="provinceIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;provinceIdTextBox.Name" xml:space="preserve">
     <value>provinceIdTextBox</value>
   </data>
@@ -1415,6 +1433,9 @@
   </data>
   <data name="vpTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>137</value>
+  </data>
+  <data name="vpTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;vpTextBox.Name" xml:space="preserve">
     <value>vpTextBox</value>
@@ -1449,6 +1470,9 @@
   <data name="&gt;&gt;provinceNameTextBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="provinceInfoGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="provinceInfoGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>465, 250</value>
   </data>
@@ -1471,7 +1495,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;provinceInfoGroupBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="manpowerCurrentTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>145, 30</value>
@@ -1481,6 +1505,9 @@
   </data>
   <data name="manpowerCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>147</value>
+  </data>
+  <data name="manpowerCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;manpowerCurrentTextBox.Name" xml:space="preserve">
     <value>manpowerCurrentTextBox</value>
@@ -1503,6 +1530,9 @@
   <data name="suppliesPoolTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>145</value>
   </data>
+  <data name="suppliesPoolTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;suppliesPoolTextBox.Name" xml:space="preserve">
     <value>suppliesPoolTextBox</value>
   </data>
@@ -1523,6 +1553,9 @@
   </data>
   <data name="oilMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>144</value>
+  </data>
+  <data name="oilMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;oilMaxTextBox.Name" xml:space="preserve">
     <value>oilMaxTextBox</value>
@@ -1545,6 +1578,9 @@
   <data name="manpowerMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>146</value>
   </data>
+  <data name="manpowerMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;manpowerMaxTextBox.Name" xml:space="preserve">
     <value>manpowerMaxTextBox</value>
   </data>
@@ -1565,6 +1601,9 @@
   </data>
   <data name="oilCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>143</value>
+  </data>
+  <data name="oilCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;oilCurrentTextBox.Name" xml:space="preserve">
     <value>oilCurrentTextBox</value>
@@ -1587,6 +1626,9 @@
   <data name="oilPoolTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>142</value>
   </data>
+  <data name="oilPoolTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;oilPoolTextBox.Name" xml:space="preserve">
     <value>oilPoolTextBox</value>
   </data>
@@ -1607,6 +1649,9 @@
   </data>
   <data name="rareMaterialsMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>141</value>
+  </data>
+  <data name="rareMaterialsMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;rareMaterialsMaxTextBox.Name" xml:space="preserve">
     <value>rareMaterialsMaxTextBox</value>
@@ -1629,6 +1674,9 @@
   <data name="rareMaterialsCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>140</value>
   </data>
+  <data name="rareMaterialsCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;rareMaterialsCurrentTextBox.Name" xml:space="preserve">
     <value>rareMaterialsCurrentTextBox</value>
   </data>
@@ -1649,6 +1697,9 @@
   </data>
   <data name="rareMaterialsPoolTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>139</value>
+  </data>
+  <data name="rareMaterialsPoolTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;rareMaterialsPoolTextBox.Name" xml:space="preserve">
     <value>rareMaterialsPoolTextBox</value>
@@ -1671,6 +1722,9 @@
   <data name="metalMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>138</value>
   </data>
+  <data name="metalMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;metalMaxTextBox.Name" xml:space="preserve">
     <value>metalMaxTextBox</value>
   </data>
@@ -1691,6 +1745,9 @@
   </data>
   <data name="metalCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>137</value>
+  </data>
+  <data name="metalCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;metalCurrentTextBox.Name" xml:space="preserve">
     <value>metalCurrentTextBox</value>
@@ -1713,6 +1770,9 @@
   <data name="metalPoolTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>136</value>
   </data>
+  <data name="metalPoolTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;metalPoolTextBox.Name" xml:space="preserve">
     <value>metalPoolTextBox</value>
   </data>
@@ -1734,6 +1794,9 @@
   <data name="energyMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>135</value>
   </data>
+  <data name="energyMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;energyMaxTextBox.Name" xml:space="preserve">
     <value>energyMaxTextBox</value>
   </data>
@@ -1754,6 +1817,9 @@
   </data>
   <data name="energyCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>134</value>
+  </data>
+  <data name="energyCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;energyCurrentTextBox.Name" xml:space="preserve">
     <value>energyCurrentTextBox</value>
@@ -1805,6 +1871,9 @@
   </data>
   <data name="energyPoolTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>133</value>
+  </data>
+  <data name="energyPoolTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;energyPoolTextBox.Name" xml:space="preserve">
     <value>energyPoolTextBox</value>
@@ -1968,6 +2037,9 @@
   <data name="&gt;&gt;provinceManpowerLabel.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
+  <data name="provinceResourceGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="provinceResourceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>466, 357</value>
   </data>
@@ -1990,7 +2062,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;provinceResourceGroupBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="nuclearPowerRelativeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 334</value>
@@ -2000,6 +2072,9 @@
   </data>
   <data name="nuclearPowerRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>132</value>
+  </data>
+  <data name="nuclearPowerRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;nuclearPowerRelativeTextBox.Name" xml:space="preserve">
     <value>nuclearPowerRelativeTextBox</value>
@@ -2022,6 +2097,9 @@
   <data name="nuclearPowerMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>131</value>
   </data>
+  <data name="nuclearPowerMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;nuclearPowerMaxTextBox.Name" xml:space="preserve">
     <value>nuclearPowerMaxTextBox</value>
   </data>
@@ -2042,6 +2120,9 @@
   </data>
   <data name="nuclearPowerCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>130</value>
+  </data>
+  <data name="nuclearPowerCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;nuclearPowerCurrentTextBox.Name" xml:space="preserve">
     <value>nuclearPowerCurrentTextBox</value>
@@ -2064,6 +2145,9 @@
   <data name="syntheticRaresRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>129</value>
   </data>
+  <data name="syntheticRaresRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;syntheticRaresRelativeTextBox.Name" xml:space="preserve">
     <value>syntheticRaresRelativeTextBox</value>
   </data>
@@ -2084,6 +2168,9 @@
   </data>
   <data name="syntheticRaresMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>128</value>
+  </data>
+  <data name="syntheticRaresMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;syntheticRaresMaxTextBox.Name" xml:space="preserve">
     <value>syntheticRaresMaxTextBox</value>
@@ -2106,6 +2193,9 @@
   <data name="syntheticRaresCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>127</value>
   </data>
+  <data name="syntheticRaresCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;syntheticRaresCurrentTextBox.Name" xml:space="preserve">
     <value>syntheticRaresCurrentTextBox</value>
   </data>
@@ -2126,6 +2216,9 @@
   </data>
   <data name="syntheticOilRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>126</value>
+  </data>
+  <data name="syntheticOilRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;syntheticOilRelativeTextBox.Name" xml:space="preserve">
     <value>syntheticOilRelativeTextBox</value>
@@ -2148,6 +2241,9 @@
   <data name="syntheticOilMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>125</value>
   </data>
+  <data name="syntheticOilMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;syntheticOilMaxTextBox.Name" xml:space="preserve">
     <value>syntheticOilMaxTextBox</value>
   </data>
@@ -2168,6 +2264,9 @@
   </data>
   <data name="syntheticOilCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>124</value>
+  </data>
+  <data name="syntheticOilCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;syntheticOilCurrentTextBox.Name" xml:space="preserve">
     <value>syntheticOilCurrentTextBox</value>
@@ -2190,6 +2289,9 @@
   <data name="rocketTestRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>120</value>
   </data>
+  <data name="rocketTestRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;rocketTestRelativeTextBox.Name" xml:space="preserve">
     <value>rocketTestRelativeTextBox</value>
   </data>
@@ -2210,6 +2312,9 @@
   </data>
   <data name="rocketTestMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>119</value>
+  </data>
+  <data name="rocketTestMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;rocketTestMaxTextBox.Name" xml:space="preserve">
     <value>rocketTestMaxTextBox</value>
@@ -2232,6 +2337,9 @@
   <data name="rocketTestCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>118</value>
   </data>
+  <data name="rocketTestCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;rocketTestCurrentTextBox.Name" xml:space="preserve">
     <value>rocketTestCurrentTextBox</value>
   </data>
@@ -2244,25 +2352,28 @@
   <data name="&gt;&gt;rocketTestCurrentTextBox.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="infrastractureRelativeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="infrastructureRelativeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 59</value>
   </data>
-  <data name="infrastractureRelativeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="infrastructureRelativeTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 19</value>
   </data>
-  <data name="infrastractureRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="infrastructureRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>117</value>
   </data>
-  <data name="&gt;&gt;infrastractureRelativeTextBox.Name" xml:space="preserve">
-    <value>infrastractureRelativeTextBox</value>
+  <data name="infrastructureRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;infrastractureRelativeTextBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;infrastructureRelativeTextBox.Name" xml:space="preserve">
+    <value>infrastructureRelativeTextBox</value>
+  </data>
+  <data name="&gt;&gt;infrastructureRelativeTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;infrastractureRelativeTextBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;infrastructureRelativeTextBox.Parent" xml:space="preserve">
     <value>provinceBuildingGroupBox</value>
   </data>
-  <data name="&gt;&gt;infrastractureRelativeTextBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;infrastructureRelativeTextBox.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
   <data name="infrastructureMaxTextBox.Location" type="System.Drawing.Point, System.Drawing">
@@ -2273,6 +2384,9 @@
   </data>
   <data name="infrastructureMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>116</value>
+  </data>
+  <data name="infrastructureMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;infrastructureMaxTextBox.Name" xml:space="preserve">
     <value>infrastructureMaxTextBox</value>
@@ -2295,6 +2409,9 @@
   <data name="infrastructureCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>115</value>
   </data>
+  <data name="infrastructureCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;infrastructureCurrentTextBox.Name" xml:space="preserve">
     <value>infrastructureCurrentTextBox</value>
   </data>
@@ -2315,6 +2432,9 @@
   </data>
   <data name="icRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>114</value>
+  </data>
+  <data name="icRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;icRelativeTextBox.Name" xml:space="preserve">
     <value>icRelativeTextBox</value>
@@ -2337,6 +2457,9 @@
   <data name="icMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>113</value>
   </data>
+  <data name="icMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;icMaxTextBox.Name" xml:space="preserve">
     <value>icMaxTextBox</value>
   </data>
@@ -2357,6 +2480,9 @@
   </data>
   <data name="icCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>112</value>
+  </data>
+  <data name="icCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;icCurrentTextBox.Name" xml:space="preserve">
     <value>icCurrentTextBox</value>
@@ -2379,6 +2505,9 @@
   <data name="nuclearReactorRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>111</value>
   </data>
+  <data name="nuclearReactorRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;nuclearReactorRelativeTextBox.Name" xml:space="preserve">
     <value>nuclearReactorRelativeTextBox</value>
   </data>
@@ -2399,6 +2528,9 @@
   </data>
   <data name="nuclearReactorMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>110</value>
+  </data>
+  <data name="nuclearReactorMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;nuclearReactorMaxTextBox.Name" xml:space="preserve">
     <value>nuclearReactorMaxTextBox</value>
@@ -2421,6 +2553,9 @@
   <data name="nuclearReactorCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>109</value>
   </data>
+  <data name="nuclearReactorCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;nuclearReactorCurrentTextBox.Name" xml:space="preserve">
     <value>nuclearReactorCurrentTextBox</value>
   </data>
@@ -2441,6 +2576,9 @@
   </data>
   <data name="radarStationRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>108</value>
+  </data>
+  <data name="radarStationRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;radarStationRelativeTextBox.Name" xml:space="preserve">
     <value>radarStationRelativeTextBox</value>
@@ -2463,6 +2601,9 @@
   <data name="radarStationMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>107</value>
   </data>
+  <data name="radarStationMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;radarStationMaxTextBox.Name" xml:space="preserve">
     <value>radarStationMaxTextBox</value>
   </data>
@@ -2483,6 +2624,9 @@
   </data>
   <data name="radarStationCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>106</value>
+  </data>
+  <data name="radarStationCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;radarStationCurrentTextBox.Name" xml:space="preserve">
     <value>radarStationCurrentTextBox</value>
@@ -2505,6 +2649,9 @@
   <data name="navalBaseRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>105</value>
   </data>
+  <data name="navalBaseRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;navalBaseRelativeTextBox.Name" xml:space="preserve">
     <value>navalBaseRelativeTextBox</value>
   </data>
@@ -2525,6 +2672,9 @@
   </data>
   <data name="navalBaseMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>104</value>
+  </data>
+  <data name="navalBaseMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;navalBaseMaxTextBox.Name" xml:space="preserve">
     <value>navalBaseMaxTextBox</value>
@@ -2547,6 +2697,9 @@
   <data name="navalBaseCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>103</value>
   </data>
+  <data name="navalBaseCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;navalBaseCurrentTextBox.Name" xml:space="preserve">
     <value>navalBaseCurrentTextBox</value>
   </data>
@@ -2567,6 +2720,9 @@
   </data>
   <data name="airBaseRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>102</value>
+  </data>
+  <data name="airBaseRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;airBaseRelativeTextBox.Name" xml:space="preserve">
     <value>airBaseRelativeTextBox</value>
@@ -2589,6 +2745,9 @@
   <data name="airBaseMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>101</value>
   </data>
+  <data name="airBaseMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;airBaseMaxTextBox.Name" xml:space="preserve">
     <value>airBaseMaxTextBox</value>
   </data>
@@ -2609,6 +2768,9 @@
   </data>
   <data name="airBaseCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>100</value>
+  </data>
+  <data name="airBaseCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;airBaseCurrentTextBox.Name" xml:space="preserve">
     <value>airBaseCurrentTextBox</value>
@@ -2631,6 +2793,9 @@
   <data name="antiAirRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>99</value>
   </data>
+  <data name="antiAirRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;antiAirRelativeTextBox.Name" xml:space="preserve">
     <value>antiAirRelativeTextBox</value>
   </data>
@@ -2651,6 +2816,9 @@
   </data>
   <data name="antiAirMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>98</value>
+  </data>
+  <data name="antiAirMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;antiAirMaxTextBox.Name" xml:space="preserve">
     <value>antiAirMaxTextBox</value>
@@ -2673,6 +2841,9 @@
   <data name="antiAirCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>97</value>
   </data>
+  <data name="antiAirCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;antiAirCurrentTextBox.Name" xml:space="preserve">
     <value>antiAirCurrentTextBox</value>
   </data>
@@ -2693,6 +2864,9 @@
   </data>
   <data name="coastalFortRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>96</value>
+  </data>
+  <data name="coastalFortRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;coastalFortRelativeTextBox.Name" xml:space="preserve">
     <value>coastalFortRelativeTextBox</value>
@@ -2715,6 +2889,9 @@
   <data name="coastalFortMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>95</value>
   </data>
+  <data name="coastalFortMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;coastalFortMaxTextBox.Name" xml:space="preserve">
     <value>coastalFortMaxTextBox</value>
   </data>
@@ -2735,6 +2912,9 @@
   </data>
   <data name="coastalFortCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>94</value>
+  </data>
+  <data name="coastalFortCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;coastalFortCurrentTextBox.Name" xml:space="preserve">
     <value>coastalFortCurrentTextBox</value>
@@ -2757,6 +2937,9 @@
   <data name="landFortRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>93</value>
   </data>
+  <data name="landFortRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;landFortRelativeTextBox.Name" xml:space="preserve">
     <value>landFortRelativeTextBox</value>
   </data>
@@ -2777,6 +2960,9 @@
   </data>
   <data name="landFortMaxTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>92</value>
+  </data>
+  <data name="landFortMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;landFortMaxTextBox.Name" xml:space="preserve">
     <value>landFortMaxTextBox</value>
@@ -2799,6 +2985,9 @@
   <data name="landFortCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>91</value>
   </data>
+  <data name="landFortCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;landFortCurrentTextBox.Name" xml:space="preserve">
     <value>landFortCurrentTextBox</value>
   </data>
@@ -2810,6 +2999,9 @@
   </data>
   <data name="&gt;&gt;landFortCurrentTextBox.ZOrder" xml:space="preserve">
     <value>40</value>
+  </data>
+  <data name="provinceBuildingGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="provinceBuildingGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>716, 177</value>
@@ -2833,7 +3025,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;provinceBuildingGroupBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="provinceMapPanel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2866,10 +3058,10 @@
     <value>0</value>
   </data>
   <data name="provinceMapPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 84</value>
+    <value>10, 86</value>
   </data>
   <data name="provinceMapPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>450, 465</value>
+    <value>450, 463</value>
   </data>
   <data name="provinceMapPanel.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -2884,7 +3076,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;provinceMapPanel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="provinceIdColumnHeader.Text" xml:space="preserve">
     <value>ID</value>
@@ -2928,6 +3120,9 @@
   <data name="claimedProvinceColumnHeader.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
   </data>
+  <data name="provinceListView.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="provinceListView.Location" type="System.Drawing.Point, System.Drawing">
     <value>467, 10</value>
   </data>
@@ -2947,7 +3142,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;provinceListView.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="provinceTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

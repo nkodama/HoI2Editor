@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HoI2Editor.Controller;
 using HoI2Editor.Controls;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -19,6 +20,20 @@ namespace HoI2Editor.Forms
     public partial class ScenarioEditorForm : Form
     {
         #region 内部フィールド
+
+        #region 共通
+
+        /// <summary>
+        ///     タブページ番号
+        /// </summary>
+        private TabPageNo _tabPageNo;
+
+        /// <summary>
+        ///     タブページの初期化フラグ
+        /// </summary>
+        private readonly bool[] _tabPageInitialized = new bool[Enum.GetValues(typeof (TabPageNo)).Length];
+
+        #endregion
 
         #region 選択可能国リスト
 
@@ -128,9 +143,9 @@ namespace HoI2Editor.Forms
         #region プロヴィンス
 
         /// <summary>
-        ///     プロヴィンスIDとプロヴィンス設定の対応付け
+        ///     マップパネルのコントローラ
         /// </summary>
-        private readonly Dictionary<int, ProvinceSettings> _provinces = new Dictionary<int, ProvinceSettings>();
+        private MapPanelController _mapPanelController;
 
         /// <summary>
         ///     マップ表示のフィルターモード
@@ -152,6 +167,11 @@ namespace HoI2Editor.Forms
         private readonly BackgroundWorker _techWorker = new BackgroundWorker();
 
         /// <summary>
+        ///     プロヴィンスデータロード用
+        /// </summary>
+        private readonly BackgroundWorker _provinceWorker = new BackgroundWorker();
+
+        /// <summary>
         ///     マップデータロード用
         /// </summary>
         private readonly BackgroundWorker _mapWorker = new BackgroundWorker();
@@ -163,6 +183,21 @@ namespace HoI2Editor.Forms
         #endregion
 
         #region 内部定数
+
+        /// <summary>
+        ///     タブページ番号
+        /// </summary>
+        private enum TabPageNo
+        {
+            Main, // メイン
+            Alliance, // 同盟
+            Relation, // 関係
+            Trade, // 貿易
+            Country, // 国家
+            Government, // 政府
+            Technology, // 技術
+            Province // プロヴィンス
+        }
 
         /// <summary>
         ///     マップ表示のフィルターモード
@@ -216,67 +251,213 @@ namespace HoI2Editor.Forms
         };
 
         /// <summary>
-        ///     プロヴィンス設定の項目文字列
+        ///     シナリオエディタの項目ID
         /// </summary>
-        private readonly string[] _provinceItemStrings =
+        private enum ItemId
         {
-            "name",
-            "ic",
-            "max ic",
-            "relative ic",
-            "infrastructure",
-            "max infrastructure",
-            "relative infrastructure",
-            "land fort",
-            "max land fort",
-            "relative land fort",
-            "coastal fort",
-            "max coastal fort",
-            "relative coastal fort",
-            "anti air",
-            "max anti air",
-            "relative anti air",
-            "air base",
-            "max air base",
-            "relative air base",
-            "naval base",
-            "max naval base",
-            "relative naval base",
-            "radar station",
-            "max radar station",
-            "relative radar station",
-            "nuclear reactor",
-            "max nuclear reactor",
-            "relative nuclear reactor",
-            "rocket test",
-            "max rocket test",
-            "relative rocket test",
-            "synthetic oil",
-            "max synthetic oil",
-            "relative synthetic oil",
-            "synthetic rares",
-            "max synthetic rares",
-            "relative synthetic rares",
-            "nuclear power",
-            "max nuclear power",
-            "relative nuclear power",
-            "supply pool",
-            "oil pool",
-            "energy pool",
-            "metal pool",
-            "rarematerials pool",
-            "energy",
-            "max energy",
-            "metal",
-            "max metal",
-            "rarematerials",
-            "max rarematerials",
-            "oil",
-            "max oil",
-            "manpower",
-            "max manpower",
-            "vp",
-            "revolt risk"
+            CountryCapital,
+            CountryCoreProvinces,
+            CountryOwnedProvinces,
+            CountryControlledProvinces,
+            CountryClaimedProvinces,
+            ProvinceId,
+            ProvinceName,
+            ProvinceVp,
+            ProvinceRevoltRisk,
+            ProvinceManpowerCurrent,
+            ProvinceManpowerMax,
+            ProvinceEnergyPool,
+            ProvinceEnergyCurrent,
+            ProvinceEnergyMax,
+            ProvinceMetalPool,
+            ProvinceMetalCurrent,
+            ProvinceMetalMax,
+            ProvinceRareMaterialsPool,
+            ProvinceRareMaterialsCurrent,
+            ProvinceRareMaterialsMax,
+            ProvinceOilPool,
+            ProvinceOilCurrent,
+            ProvinceOilMax,
+            ProvinceSupplyPool,
+            ProvinceIcCurrent,
+            ProvinceIcMax,
+            ProvinceIcRelative,
+            ProvinceInfrastructureCurrent,
+            ProvinceInfrastructureMax,
+            ProvinceInfrastructureRelative,
+            ProvinceLandFortCurrent,
+            ProvinceLandFortMax,
+            ProvinceLandFortRelative,
+            ProvinceCoastalFortCurrent,
+            ProvinceCoastalFortMax,
+            ProvinceCoastalFortRelative,
+            ProvinceAntiAirCurrent,
+            ProvinceAntiAirMax,
+            ProvinceAntiAirRelative,
+            ProvinceAirBaseCurrent,
+            ProvinceAirBaseMax,
+            ProvinceAirBaseRelative,
+            ProvinceNavalBaseCurrent,
+            ProvinceNavalBaseMax,
+            ProvinceNavalBaseRelative,
+            ProvinceRadarStationCurrent,
+            ProvinceRadarStationMax,
+            ProvinceRadarStationRelative,
+            ProvinceNuclearReactorCurrent,
+            ProvinceNuclearReactorMax,
+            ProvinceNuclearReactorRelative,
+            ProvinceRocketTestCurrent,
+            ProvinceRocketTestMax,
+            ProvinceRocketTestRelative,
+            ProvinceSyntheticOilCurrent,
+            ProvinceSyntheticOilMax,
+            ProvinceSyntheticOilRelative,
+            ProvinceSyntheticRaresCurrent,
+            ProvinceSyntheticRaresMax,
+            ProvinceSyntheticRaresRelative,
+            ProvinceNuclearPowerCurrent,
+            ProvinceNuclearPowerMax,
+            ProvinceNuclearPowerRelative
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグ
+        /// </summary>
+        private readonly object[] _itemDirtyFlags =
+        {
+            CountrySettings.ItemId.Capital,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            ProvinceSettings.ItemId.Vp,
+            ProvinceSettings.ItemId.RevoltRisk,
+            ProvinceSettings.ItemId.Manpower,
+            ProvinceSettings.ItemId.MaxManpower,
+            ProvinceSettings.ItemId.EnergyPool,
+            ProvinceSettings.ItemId.Energy,
+            ProvinceSettings.ItemId.MaxEnergy,
+            ProvinceSettings.ItemId.MetalPool,
+            ProvinceSettings.ItemId.Metal,
+            ProvinceSettings.ItemId.MaxMetal,
+            ProvinceSettings.ItemId.RareMaterialsPool,
+            ProvinceSettings.ItemId.RareMaterials,
+            ProvinceSettings.ItemId.MaxRareMaterials,
+            ProvinceSettings.ItemId.OilPool,
+            ProvinceSettings.ItemId.Oil,
+            ProvinceSettings.ItemId.MaxOil,
+            ProvinceSettings.ItemId.SupplyPool,
+            ProvinceSettings.ItemId.Ic,
+            ProvinceSettings.ItemId.MaxIc,
+            ProvinceSettings.ItemId.RelativeIc,
+            ProvinceSettings.ItemId.Infrastructure,
+            ProvinceSettings.ItemId.MaxInfrastructure,
+            ProvinceSettings.ItemId.RelativeInfrastructure,
+            ProvinceSettings.ItemId.LandFort,
+            ProvinceSettings.ItemId.MaxLandFort,
+            ProvinceSettings.ItemId.RelativeLandFort,
+            ProvinceSettings.ItemId.CoastalFort,
+            ProvinceSettings.ItemId.MaxCoastalFort,
+            ProvinceSettings.ItemId.RelativeCoastalFort,
+            ProvinceSettings.ItemId.AntiAir,
+            ProvinceSettings.ItemId.MaxAntiAir,
+            ProvinceSettings.ItemId.RelativeAntiAir,
+            ProvinceSettings.ItemId.AirBase,
+            ProvinceSettings.ItemId.MaxAirBase,
+            ProvinceSettings.ItemId.RelativeAirBase,
+            ProvinceSettings.ItemId.NavalBase,
+            ProvinceSettings.ItemId.MaxNavalBase,
+            ProvinceSettings.ItemId.RelativeNavalBase,
+            ProvinceSettings.ItemId.RadarStation,
+            ProvinceSettings.ItemId.MaxRadarStation,
+            ProvinceSettings.ItemId.RelativeRadarStation,
+            ProvinceSettings.ItemId.NuclearReactor,
+            ProvinceSettings.ItemId.MaxNuclearReactor,
+            ProvinceSettings.ItemId.RelativeNuclearReactor,
+            ProvinceSettings.ItemId.RocketTest,
+            ProvinceSettings.ItemId.MaxRocketTest,
+            ProvinceSettings.ItemId.RelativeRocketTest,
+            ProvinceSettings.ItemId.SyntheticOil,
+            ProvinceSettings.ItemId.MaxSyntheticOil,
+            ProvinceSettings.ItemId.RelativeSyntheticOil,
+            ProvinceSettings.ItemId.SyntheticRares,
+            ProvinceSettings.ItemId.MaxSyntheticRares,
+            ProvinceSettings.ItemId.RelativeSyntheticRares,
+            ProvinceSettings.ItemId.NuclearPower,
+            ProvinceSettings.ItemId.MaxNuclearPower,
+            ProvinceSettings.ItemId.RelativeNuclearPower
+        };
+
+        /// <summary>
+        ///     編集項目の文字列
+        /// </summary>
+        private readonly string[] _itemStrings =
+        {
+            "capital",
+            "core provinces",
+            "owned provinces",
+            "controlled provinces",
+            "claimed provinces",
+            "province id",
+            "province name",
+            "province vp",
+            "province revolt risk",
+            "province manpower",
+            "province max manpower",
+            "province energy pool",
+            "province energy",
+            "province max energy",
+            "province metal pool",
+            "province metal",
+            "province max metal",
+            "province rarematerials pool",
+            "province rarematerials",
+            "province max rarematerials",
+            "province oil pool",
+            "province oil",
+            "province max oil",
+            "province supply pool",
+            "province ic",
+            "province max ic",
+            "province relative ic",
+            "province infrastructure",
+            "province max infrastructure",
+            "province relative infrastructure",
+            "province land fort",
+            "province max land fort",
+            "province relative land fort",
+            "province coastal fort",
+            "province max coastal fort",
+            "province relative coastal fort",
+            "province anti air",
+            "province max anti air",
+            "province relative anti air",
+            "province air base",
+            "province max air base",
+            "province relative air base",
+            "province naval base",
+            "province max naval base",
+            "province relative naval base",
+            "province radar station",
+            "province max radar station",
+            "province relative radar station",
+            "province nuclear reactor",
+            "province max nuclear reactor",
+            "province relative nuclear reactor",
+            "province rocket test",
+            "province max rocket test",
+            "province relative rocket test",
+            "province synthetic oil",
+            "province max synthetic oil",
+            "province relative synthetic oil",
+            "province synthetic rares",
+            "province max synthetic rares",
+            "province relative synthetic rares",
+            "province nuclear power",
+            "province max nuclear power",
+            "province relative nuclear power"
         };
 
         #endregion
@@ -305,6 +486,9 @@ namespace HoI2Editor.Forms
         {
             // 国家関係を初期化する
             Scenarios.Init();
+
+            // プロヴィンステーブルを初期化する
+            Scenarios.InitProvinceTable();
 
             // 編集項目を更新する
             UpdateEditableItems();
@@ -438,6 +622,61 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     プロヴィンスデータを遅延読み込みする
+        /// </summary>
+        private void LoadProvinces()
+        {
+            _provinceWorker.DoWork += OnProvinceWorkerDoWork;
+            _provinceWorker.RunWorkerCompleted += OnProvinceWorkerRunWorkerCompleted;
+            _provinceWorker.RunWorkerAsync();
+        }
+
+        /// <summary>
+        ///     プロヴィンスデータの読み込み完了まで待機する
+        /// </summary>
+        private void WaitLoadingProvinces()
+        {
+            while (_provinceWorker.IsBusy)
+            {
+                Application.DoEvents();
+            }
+        }
+
+        /// <summary>
+        ///     プロヴィンスデータを読み込む
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnProvinceWorkerDoWork(object sender, DoWorkEventArgs e)
+        {
+            // プロヴィンス定義ファイルを読み込む
+            Provinces.Load();
+
+            Log.Info("[Scenario] Load provinces");
+        }
+
+        /// <summary>
+        ///     プロヴィンスデータ読み込み完了時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                return;
+            }
+
+            if (e.Cancelled)
+            {
+                return;
+            }
+
+            // プロヴィンスタブの編集項目を初期化する
+            InitProvinceTab();
+        }
+
+        /// <summary>
         ///     マップを遅延読み込みする
         /// </summary>
         private void LoadMaps()
@@ -466,9 +705,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMapWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            Maps.Load(MapLevel.Level4);
-
-            Log.Info("[Scenario] Load level-4 map");
+            Provinces.Load();
 
             Maps.Load(MapLevel.Level2);
 
@@ -492,10 +729,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Map map = Maps.Data[(int) MapLevel.Level2];
-            Bitmap bitmap = map.GetImage();
-            map.SetMaskColor(bitmap, Color.LightSteelBlue);
-            provinceMapPictureBox.Image = bitmap;
+            _mapPanelController = new MapPanelController(provinceMapPictureBox);
+            _mapPanelController.ShowMapImage();
         }
 
         #endregion
@@ -536,6 +771,8 @@ namespace HoI2Editor.Forms
             InitCountryTab();
             //InitGovernmentTab();
             //InitTechTab();
+            //InitProvinceTab();
+            OnProvinceTabPageFormLoad();
         }
 
         /// <summary>
@@ -550,6 +787,8 @@ namespace HoI2Editor.Forms
             UpdateCountryTab();
             UpdateGovernmentTab();
             UpdateTechTab();
+            //UpdateProvinceTab();
+            OnProvinceTabPageFileLoad();
         }
 
         /// <summary>
@@ -559,9 +798,6 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormLoad(object sender, EventArgs e)
         {
-            // マップを遅延読み込みする
-            LoadMaps();
-
             // 国家データを初期化する
             Countries.Init();
 
@@ -571,17 +807,28 @@ namespace HoI2Editor.Forms
             // ユニットデータを初期化する
             Units.Init();
 
+            // プロヴィンスデータを初期化する
+            Provinces.Init();
+
             // ゲーム設定ファイルを読み込む
             Misc.Load();
 
             // 文字列定義ファイルを読み込む
             Config.Load();
 
+            Provinces.Load();
+
+            // マップを遅延読み込みする
+            LoadMaps();
+
             // 閣僚データを遅延読込する
             LoadMinisters();
 
             // 技術データを遅延読み込みする
             LoadTechs();
+
+            // プロヴィンスデータを遅延読み込みする
+            //LoadProvinces();
 
             // 表示項目を初期化する
             InitEditableItems();
@@ -711,14 +958,20 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnScenarioTabControlSelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (scenarioTabControl.SelectedIndex)
+            _tabPageNo = (TabPageNo) scenarioTabControl.SelectedIndex;
+
+            switch (_tabPageNo)
             {
-                case 5: // 政府タブ
+                case TabPageNo.Government:
                     OnGovernmentTabSelected();
                     break;
 
-                case 6: // 技術タブ
+                case TabPageNo.Technology:
                     OnTechTabPageSelected();
+                    break;
+
+                case TabPageNo.Province:
+                    OnProvinceTabPageSelected();
                     break;
             }
         }
@@ -784,9 +1037,9 @@ namespace HoI2Editor.Forms
             ScenarioGlobalData data = scenario.GlobalData;
 
             scenarioNameTextBox.Text = Config.GetText(scenario.Name);
-            scenarioNameTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.Name) ? Color.Red : SystemColors.WindowText;
+            scenarioNameTextBox.ForeColor = scenario.IsDirty(Scenario.ItemId.Name) ? Color.Red : SystemColors.WindowText;
             panelImageTextBox.Text = scenario.PanelName;
-            panelImageTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.PanelName)
+            panelImageTextBox.ForeColor = scenario.IsDirty(Scenario.ItemId.PanelName)
                 ? Color.Red
                 : SystemColors.WindowText;
             UpdatePanelImage(scenario.PanelName);
@@ -796,48 +1049,48 @@ namespace HoI2Editor.Forms
             startMonthTextBox.Text = flag ? IntHelper.ToString(data.StartDate.Month) : "";
             startDayTextBox.Text = flag ? IntHelper.ToString(data.StartDate.Day) : "";
 
-            startYearTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartYear)
+            startYearTextBox.ForeColor = scenario.IsDirty(Scenario.ItemId.StartYear)
                 ? Color.Red
                 : SystemColors.WindowText;
-            startMonthTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartMonth)
+            startMonthTextBox.ForeColor = scenario.IsDirty(Scenario.ItemId.StartMonth)
                 ? Color.Red
                 : SystemColors.WindowText;
-            startDayTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.StartDay) ? Color.Red : SystemColors.WindowText;
+            startDayTextBox.ForeColor = scenario.IsDirty(Scenario.ItemId.StartDay) ? Color.Red : SystemColors.WindowText;
 
             flag = (data.EndDate != null);
             endYearTextBox.Text = flag ? IntHelper.ToString(data.EndDate.Year) : "";
             endMonthTextBox.Text = flag ? IntHelper.ToString(data.EndDate.Month) : "";
             endDayTextBox.Text = flag ? IntHelper.ToString(data.EndDate.Day) : "";
 
-            endYearTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndYear) ? Color.Red : SystemColors.WindowText;
-            endMonthTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
-            endDayTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.EndDay) ? Color.Red : SystemColors.WindowText;
+            endYearTextBox.ForeColor = scenario.IsDirty(Scenario.ItemId.EndYear) ? Color.Red : SystemColors.WindowText;
+            endMonthTextBox.ForeColor = scenario.IsDirty(Scenario.ItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
+            endDayTextBox.ForeColor = scenario.IsDirty(Scenario.ItemId.EndDay) ? Color.Red : SystemColors.WindowText;
 
             includeFolderTextBox.Text = scenario.IncludeFolder;
-            includeFolderTextBox.ForeColor = scenario.IsDirty(ScenarioItemId.IncludeFolder)
+            includeFolderTextBox.ForeColor = scenario.IsDirty(Scenario.ItemId.IncludeFolder)
                 ? Color.Red
                 : SystemColors.WindowText;
 
             battleScenarioCheckBox.Checked = header.IsCombatScenario;
-            battleScenarioCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.BattleScenario)
+            battleScenarioCheckBox.ForeColor = scenario.IsDirty(Scenario.ItemId.BattleScenario)
                 ? Color.Red
                 : SystemColors.WindowText;
             freeCountryCheckBox.Checked = header.IsFreeSelection;
-            freeCountryCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.FreeSelection)
+            freeCountryCheckBox.ForeColor = scenario.IsDirty(Scenario.ItemId.FreeSelection)
                 ? Color.Red
                 : SystemColors.WindowText;
 
             flag = (data.Rules == null);
             allowDiplomacyCheckBox.Checked = (flag || data.Rules.AllowDiplomacy);
-            allowDiplomacyCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.AllowDiplomacy)
+            allowDiplomacyCheckBox.ForeColor = scenario.IsDirty(Scenario.ItemId.AllowDiplomacy)
                 ? Color.Red
                 : SystemColors.WindowText;
             allowProductionCheckBox.Checked = (flag || data.Rules.AllowProduction);
-            allowProductionCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.AllowProduction)
+            allowProductionCheckBox.ForeColor = scenario.IsDirty(Scenario.ItemId.AllowProduction)
                 ? Color.Red
                 : SystemColors.WindowText;
             allowTechnologyCheckBox.Checked = (flag || data.Rules.AllowTechnology);
-            allowTechnologyCheckBox.ForeColor = scenario.IsDirty(ScenarioItemId.AllowTechnology)
+            allowTechnologyCheckBox.ForeColor = scenario.IsDirty(Scenario.ItemId.AllowTechnology)
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -1025,7 +1278,7 @@ namespace HoI2Editor.Forms
             Config.SetText(scenario.Name, val, Game.ScenarioTextFileName);
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.Name);
+            scenario.SetDirty(Scenario.ItemId.Name);
 
             // 文字色を変更する
             scenarioNameTextBox.ForeColor = Color.Red;
@@ -1052,7 +1305,7 @@ namespace HoI2Editor.Forms
             scenario.PanelName = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.PanelName);
+            scenario.SetDirty(Scenario.ItemId.PanelName);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -1115,8 +1368,8 @@ namespace HoI2Editor.Forms
                 data.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                scenario.SetDirty(ScenarioItemId.StartMonth);
-                scenario.SetDirty(ScenarioItemId.StartDay);
+                scenario.SetDirty(Scenario.ItemId.StartMonth);
+                scenario.SetDirty(Scenario.ItemId.StartDay);
 
                 // 編集項目を更新する
                 startMonthTextBox.Text = IntHelper.ToString(data.StartDate.Month);
@@ -1131,7 +1384,7 @@ namespace HoI2Editor.Forms
             data.StartDate.Year = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.StartYear);
+            scenario.SetDirty(Scenario.ItemId.StartYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -1170,8 +1423,8 @@ namespace HoI2Editor.Forms
                 data.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                scenario.SetDirty(ScenarioItemId.StartYear);
-                scenario.SetDirty(ScenarioItemId.StartDay);
+                scenario.SetDirty(Scenario.ItemId.StartYear);
+                scenario.SetDirty(Scenario.ItemId.StartDay);
 
                 // 編集項目を更新する
                 startYearTextBox.Text = IntHelper.ToString(data.StartDate.Year);
@@ -1186,7 +1439,7 @@ namespace HoI2Editor.Forms
             data.StartDate.Month = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.StartMonth);
+            scenario.SetDirty(Scenario.ItemId.StartMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -1225,8 +1478,8 @@ namespace HoI2Editor.Forms
                 data.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                scenario.SetDirty(ScenarioItemId.StartYear);
-                scenario.SetDirty(ScenarioItemId.StartMonth);
+                scenario.SetDirty(Scenario.ItemId.StartYear);
+                scenario.SetDirty(Scenario.ItemId.StartMonth);
 
                 // 編集項目を更新する
                 startYearTextBox.Text = IntHelper.ToString(data.StartDate.Year);
@@ -1241,7 +1494,7 @@ namespace HoI2Editor.Forms
             data.StartDate.Day = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.StartDay);
+            scenario.SetDirty(Scenario.ItemId.StartDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -1280,8 +1533,8 @@ namespace HoI2Editor.Forms
                 data.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                scenario.SetDirty(ScenarioItemId.EndMonth);
-                scenario.SetDirty(ScenarioItemId.EndDay);
+                scenario.SetDirty(Scenario.ItemId.EndMonth);
+                scenario.SetDirty(Scenario.ItemId.EndDay);
 
                 // 編集項目を更新する
                 endMonthTextBox.Text = IntHelper.ToString(data.EndDate.Month);
@@ -1296,7 +1549,7 @@ namespace HoI2Editor.Forms
             data.EndDate.Year = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.EndYear);
+            scenario.SetDirty(Scenario.ItemId.EndYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -1335,8 +1588,8 @@ namespace HoI2Editor.Forms
                 data.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                scenario.SetDirty(ScenarioItemId.EndYear);
-                scenario.SetDirty(ScenarioItemId.EndDay);
+                scenario.SetDirty(Scenario.ItemId.EndYear);
+                scenario.SetDirty(Scenario.ItemId.EndDay);
 
                 // 編集項目を更新する
                 endYearTextBox.Text = IntHelper.ToString(data.EndDate.Year);
@@ -1351,7 +1604,7 @@ namespace HoI2Editor.Forms
             data.EndDate.Month = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.EndMonth);
+            scenario.SetDirty(Scenario.ItemId.EndMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -1390,8 +1643,8 @@ namespace HoI2Editor.Forms
                 data.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                scenario.SetDirty(ScenarioItemId.EndYear);
-                scenario.SetDirty(ScenarioItemId.EndMonth);
+                scenario.SetDirty(Scenario.ItemId.EndYear);
+                scenario.SetDirty(Scenario.ItemId.EndMonth);
 
                 // 編集項目を更新する
                 endYearTextBox.Text = IntHelper.ToString(data.EndDate.Year);
@@ -1406,7 +1659,7 @@ namespace HoI2Editor.Forms
             data.EndDate.Day = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.EndDay);
+            scenario.SetDirty(Scenario.ItemId.EndDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -1434,7 +1687,7 @@ namespace HoI2Editor.Forms
             scenario.IncludeFolder = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.IncludeFolder);
+            scenario.SetDirty(Scenario.ItemId.IncludeFolder);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -1510,7 +1763,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             ScenarioHeader header = Scenarios.Data.Header;
-            bool dirty = ((e.Index == header.AiAggressive) && Scenarios.Data.IsDirty(ScenarioItemId.AiAggressive));
+            bool dirty = ((e.Index == header.AiAggressive) && Scenarios.Data.IsDirty(Scenario.ItemId.AiAggressive));
             Brush brush = new SolidBrush(dirty ? Color.Red : comboBox.ForeColor);
             string s = comboBox.Items[e.Index].ToString();
             e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
@@ -1543,7 +1796,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             ScenarioHeader header = Scenarios.Data.Header;
-            bool dirty = ((e.Index == header.Difficulty) && Scenarios.Data.IsDirty(ScenarioItemId.Difficulty));
+            bool dirty = ((e.Index == header.Difficulty) && Scenarios.Data.IsDirty(Scenario.ItemId.Difficulty));
             Brush brush = new SolidBrush(dirty ? Color.Red : comboBox.ForeColor);
             string s = comboBox.Items[e.Index].ToString();
             e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
@@ -1576,7 +1829,7 @@ namespace HoI2Editor.Forms
 
             // 項目の文字列を描画する
             ScenarioHeader header = Scenarios.Data.Header;
-            bool dirty = ((e.Index == header.GameSpeed) && Scenarios.Data.IsDirty(ScenarioItemId.GameSpeed));
+            bool dirty = ((e.Index == header.GameSpeed) && Scenarios.Data.IsDirty(Scenario.ItemId.GameSpeed));
             Brush brush = new SolidBrush(dirty ? Color.Red : comboBox.ForeColor);
             string s = comboBox.Items[e.Index].ToString();
             e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
@@ -1609,7 +1862,7 @@ namespace HoI2Editor.Forms
             header.IsCombatScenario = battleScenarioCheckBox.Checked;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.BattleScenario);
+            scenario.SetDirty(Scenario.ItemId.BattleScenario);
 
             // 文字色を変更する
             battleScenarioCheckBox.ForeColor = Color.Red;
@@ -1639,7 +1892,7 @@ namespace HoI2Editor.Forms
             header.IsFreeSelection = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.FreeSelection);
+            scenario.SetDirty(Scenario.ItemId.FreeSelection);
 
             // 文字色を変更する
             freeCountryCheckBox.ForeColor = Color.Red;
@@ -1674,7 +1927,7 @@ namespace HoI2Editor.Forms
             data.Rules.AllowDiplomacy = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.AllowDiplomacy);
+            scenario.SetDirty(Scenario.ItemId.AllowDiplomacy);
 
             // 文字色を変更する
             allowDiplomacyCheckBox.ForeColor = Color.Red;
@@ -1709,7 +1962,7 @@ namespace HoI2Editor.Forms
             data.Rules.AllowProduction = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.AllowProduction);
+            scenario.SetDirty(Scenario.ItemId.AllowProduction);
 
             // 文字色を変更する
             allowProductionCheckBox.ForeColor = Color.Red;
@@ -1744,7 +1997,7 @@ namespace HoI2Editor.Forms
             data.Rules.AllowTechnology = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.AllowTechnology);
+            scenario.SetDirty(Scenario.ItemId.AllowTechnology);
 
             // 文字色を変更する
             allowTechnologyCheckBox.ForeColor = Color.Red;
@@ -1779,7 +2032,7 @@ namespace HoI2Editor.Forms
             header.AiAggressive = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.AiAggressive);
+            scenario.SetDirty(Scenario.ItemId.AiAggressive);
 
             // 項目色を変更するために描画更新する
             aiAggressiveComboBox.Refresh();
@@ -1814,7 +2067,7 @@ namespace HoI2Editor.Forms
             header.Difficulty = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.Difficulty);
+            scenario.SetDirty(Scenario.ItemId.Difficulty);
 
             // 項目色を変更するために描画更新する
             difficultyComboBox.Refresh();
@@ -1849,7 +2102,7 @@ namespace HoI2Editor.Forms
             header.GameSpeed = val;
 
             // 編集済みフラグを設定する
-            scenario.SetDirty(ScenarioItemId.GameSpeed);
+            scenario.SetDirty(Scenario.ItemId.GameSpeed);
 
             // 項目色を変更するために描画更新する
             gameSpeedComboBox.Refresh();
@@ -1871,12 +2124,12 @@ namespace HoI2Editor.Forms
             // 編集項目を更新する
             int year = (header.StartDate != null) ? header.StartDate.Year : header.StartYear;
             countryDescTextBox.Text = GetCountryDesc(major.Country, year, major.Desc);
-            countryDescTextBox.ForeColor = major.IsDirty(MajorCountrySettingsItemId.Desc)
+            countryDescTextBox.ForeColor = major.IsDirty(MajorCountrySettings.ItemId.Desc)
                 ? Color.Red
                 : SystemColors.WindowText;
 
             propagandaPictureBox.Text = major.PictureName;
-            propagandaPictureBox.ForeColor = major.IsDirty(MajorCountrySettingsItemId.PictureName)
+            propagandaPictureBox.ForeColor = major.IsDirty(MajorCountrySettings.ItemId.PictureName)
                 ? Color.Red
                 : SystemColors.WindowText;
             UpdatePropagandaImage(major.Country, major.PictureName);
@@ -2360,7 +2613,7 @@ namespace HoI2Editor.Forms
             major.PictureName = val;
 
             // 編集済みフラグを設定する
-            major.SetDirty(MajorCountrySettingsItemId.PictureName);
+            major.SetDirty(MajorCountrySettings.ItemId.PictureName);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -2423,7 +2676,7 @@ namespace HoI2Editor.Forms
             countryDescTextBox.ForeColor = Color.Red;
 
             // 編集済みフラグを設定する
-            major.SetDirty(MajorCountrySettingsItemId.Desc);
+            major.SetDirty(MajorCountrySettings.ItemId.Desc);
         }
 
         /// <summary>
@@ -2645,7 +2898,7 @@ namespace HoI2Editor.Forms
 
             // 同盟名
             allianceNameTextBox.Text = GetAllianceName(alliance);
-            allianceNameTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Name)
+            allianceNameTextBox.ForeColor = alliance.IsDirty(Alliance.ItemId.Name)
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -2654,8 +2907,8 @@ namespace HoI2Editor.Forms
             allianceTypeTextBox.Text = flag ? IntHelper.ToString(alliance.Id.Type) : "";
             allianceIdTextBox.Text = flag ? IntHelper.ToString(alliance.Id.Id) : "";
 
-            allianceTypeTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Type) ? Color.Red : SystemColors.WindowText;
-            allianceIdTextBox.ForeColor = alliance.IsDirty(AllianceItemId.Id) ? Color.Red : SystemColors.WindowText;
+            allianceTypeTextBox.ForeColor = alliance.IsDirty(Alliance.ItemId.Type) ? Color.Red : SystemColors.WindowText;
+            allianceIdTextBox.ForeColor = alliance.IsDirty(Alliance.ItemId.Id) ? Color.Red : SystemColors.WindowText;
 
             // 参加国リストボックス
             allianceParticipantListBox.BeginUpdate();
@@ -2800,8 +3053,8 @@ namespace HoI2Editor.Forms
             allianceListView.Items.Add(item);
 
             // 編集済みフラグを設定する
-            alliance.SetDirty(AllianceItemId.Type);
-            alliance.SetDirty(AllianceItemId.Id);
+            alliance.SetDirty(Alliance.ItemId.Type);
+            alliance.SetDirty(Alliance.ItemId.Id);
             Scenarios.SetDirty();
 
             // 追加した項目を選択する
@@ -2906,7 +3159,7 @@ namespace HoI2Editor.Forms
             allianceNameTextBox.ForeColor = Color.Red;
 
             // 編集済みフラグを設定する
-            alliance.SetDirty(AllianceItemId.Name);
+            alliance.SetDirty(Alliance.ItemId.Name);
         }
 
         /// <summary>
@@ -2965,7 +3218,7 @@ namespace HoI2Editor.Forms
                 alliance.Id = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                alliance.SetDirty(AllianceItemId.Id);
+                alliance.SetDirty(Alliance.ItemId.Id);
 
                 // 編集項目を更新する
                 allianceIdTextBox.Text = IntHelper.ToString(alliance.Id.Id);
@@ -2975,7 +3228,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            alliance.SetDirty(AllianceItemId.Type);
+            alliance.SetDirty(Alliance.ItemId.Type);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -3037,7 +3290,7 @@ namespace HoI2Editor.Forms
                 alliance.Id = Scenarios.GetNewTypeId(Scenarios.DefaultAllianceType, val);
 
                 // 編集済みフラグを設定する
-                alliance.SetDirty(AllianceItemId.Type);
+                alliance.SetDirty(Alliance.ItemId.Type);
 
                 // 編集項目を更新する
                 allianceTypeTextBox.Text = IntHelper.ToString(alliance.Id.Type);
@@ -3047,7 +3300,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            alliance.SetDirty(AllianceItemId.Id);
+            alliance.SetDirty(Alliance.ItemId.Id);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -3448,9 +3701,9 @@ namespace HoI2Editor.Forms
             warStartMonthTextBox.Text = flag ? IntHelper.ToString(war.StartDate.Month) : "";
             warStartDayTextBox.Text = flag ? IntHelper.ToString(war.StartDate.Day) : "";
 
-            warStartYearTextBox.ForeColor = war.IsDirty(WarItemId.StartYear) ? Color.Red : SystemColors.WindowText;
-            warStartMonthTextBox.ForeColor = war.IsDirty(WarItemId.StartMonth) ? Color.Red : SystemColors.WindowText;
-            warStartDayTextBox.ForeColor = war.IsDirty(WarItemId.StartDay) ? Color.Red : SystemColors.WindowText;
+            warStartYearTextBox.ForeColor = war.IsDirty(War.ItemId.StartYear) ? Color.Red : SystemColors.WindowText;
+            warStartMonthTextBox.ForeColor = war.IsDirty(War.ItemId.StartMonth) ? Color.Red : SystemColors.WindowText;
+            warStartDayTextBox.ForeColor = war.IsDirty(War.ItemId.StartDay) ? Color.Red : SystemColors.WindowText;
 
             // 終了日時
             flag = (war.EndDate != null);
@@ -3458,36 +3711,36 @@ namespace HoI2Editor.Forms
             warEndMonthTextBox.Text = flag ? IntHelper.ToString(war.EndDate.Month) : "";
             warEndDayTextBox.Text = flag ? IntHelper.ToString(war.EndDate.Day) : "";
 
-            warEndYearTextBox.ForeColor = war.IsDirty(WarItemId.EndYear) ? Color.Red : SystemColors.WindowText;
-            warEndMonthTextBox.ForeColor = war.IsDirty(WarItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
-            warEndDayTextBox.ForeColor = war.IsDirty(WarItemId.EndDay) ? Color.Red : SystemColors.WindowText;
+            warEndYearTextBox.ForeColor = war.IsDirty(War.ItemId.EndYear) ? Color.Red : SystemColors.WindowText;
+            warEndMonthTextBox.ForeColor = war.IsDirty(War.ItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
+            warEndDayTextBox.ForeColor = war.IsDirty(War.ItemId.EndDay) ? Color.Red : SystemColors.WindowText;
 
             // 戦争ID
             flag = (war.Id != null);
             warTypeTextBox.Text = flag ? IntHelper.ToString(war.Id.Type) : "";
             warIdTextBox.Text = flag ? IntHelper.ToString(war.Id.Id) : "";
 
-            warTypeTextBox.ForeColor = war.IsDirty(WarItemId.Type) ? Color.Red : SystemColors.WindowText;
-            warIdTextBox.ForeColor = war.IsDirty(WarItemId.Id) ? Color.Red : SystemColors.WindowText;
+            warTypeTextBox.ForeColor = war.IsDirty(War.ItemId.Type) ? Color.Red : SystemColors.WindowText;
+            warIdTextBox.ForeColor = war.IsDirty(War.ItemId.Id) ? Color.Red : SystemColors.WindowText;
 
             // 攻撃側ID
             flag = ((war.Attackers != null) && (war.Attackers.Id != null));
             warAttackerTypeTextBox.Text = flag ? IntHelper.ToString(war.Attackers.Id.Type) : "";
             warAttackerIdTextBox.Text = flag ? IntHelper.ToString(war.Attackers.Id.Id) : "";
 
-            warAttackerTypeTextBox.ForeColor = war.IsDirty(WarItemId.AttackerType)
+            warAttackerTypeTextBox.ForeColor = war.IsDirty(War.ItemId.AttackerType)
                 ? Color.Red
                 : SystemColors.WindowText;
-            warAttackerIdTextBox.ForeColor = war.IsDirty(WarItemId.AttackerId) ? Color.Red : SystemColors.WindowText;
+            warAttackerIdTextBox.ForeColor = war.IsDirty(War.ItemId.AttackerId) ? Color.Red : SystemColors.WindowText;
 
             // 防御側ID
             flag = ((war.Defenders != null) && (war.Defenders.Id != null));
             warDefenderTypeTextBox.Text = flag ? IntHelper.ToString(war.Defenders.Id.Type) : "";
             warDefenderIdTextBox.Text = flag ? IntHelper.ToString(war.Defenders.Id.Id) : "";
-            warDefenderTypeTextBox.ForeColor = war.IsDirty(WarItemId.DefenderType)
+            warDefenderTypeTextBox.ForeColor = war.IsDirty(War.ItemId.DefenderType)
                 ? Color.Red
                 : SystemColors.WindowText;
-            warDefenderIdTextBox.ForeColor = war.IsDirty(WarItemId.DefenderId) ? Color.Red : SystemColors.WindowText;
+            warDefenderIdTextBox.ForeColor = war.IsDirty(War.ItemId.DefenderId) ? Color.Red : SystemColors.WindowText;
 
             IEnumerable<Country> countries = Countries.Tags;
 
@@ -3678,18 +3931,18 @@ namespace HoI2Editor.Forms
             warListView.Items.Add(item);
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.StartYear);
-            war.SetDirty(WarItemId.StartMonth);
-            war.SetDirty(WarItemId.StartDay);
-            war.SetDirty(WarItemId.EndYear);
-            war.SetDirty(WarItemId.EndMonth);
-            war.SetDirty(WarItemId.EndDay);
-            war.SetDirty(WarItemId.Type);
-            war.SetDirty(WarItemId.Id);
-            war.SetDirty(WarItemId.AttackerType);
-            war.SetDirty(WarItemId.AttackerId);
-            war.SetDirty(WarItemId.DefenderType);
-            war.SetDirty(WarItemId.DefenderId);
+            war.SetDirty(War.ItemId.StartYear);
+            war.SetDirty(War.ItemId.StartMonth);
+            war.SetDirty(War.ItemId.StartDay);
+            war.SetDirty(War.ItemId.EndYear);
+            war.SetDirty(War.ItemId.EndMonth);
+            war.SetDirty(War.ItemId.EndDay);
+            war.SetDirty(War.ItemId.Type);
+            war.SetDirty(War.ItemId.Id);
+            war.SetDirty(War.ItemId.AttackerType);
+            war.SetDirty(War.ItemId.AttackerId);
+            war.SetDirty(War.ItemId.DefenderType);
+            war.SetDirty(War.ItemId.DefenderId);
             Scenarios.SetDirty();
 
             // 追加した項目を選択する
@@ -3780,8 +4033,8 @@ namespace HoI2Editor.Forms
                 war.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.StartMonth);
-                war.SetDirty(WarItemId.StartDay);
+                war.SetDirty(War.ItemId.StartMonth);
+                war.SetDirty(War.ItemId.StartDay);
 
                 // 編集項目を更新する
                 warStartMonthTextBox.Text = IntHelper.ToString(war.StartDate.Month);
@@ -3796,7 +4049,7 @@ namespace HoI2Editor.Forms
             war.StartDate.Year = val;
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.StartYear);
+            war.SetDirty(War.ItemId.StartYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -3840,8 +4093,8 @@ namespace HoI2Editor.Forms
                 war.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.StartYear);
-                war.SetDirty(WarItemId.StartDay);
+                war.SetDirty(War.ItemId.StartYear);
+                war.SetDirty(War.ItemId.StartDay);
 
                 // 編集項目を更新する
                 warStartYearTextBox.Text = IntHelper.ToString(war.StartDate.Year);
@@ -3856,7 +4109,7 @@ namespace HoI2Editor.Forms
             war.StartDate.Month = val;
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.StartMonth);
+            war.SetDirty(War.ItemId.StartMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -3900,8 +4153,8 @@ namespace HoI2Editor.Forms
                 war.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.StartYear);
-                war.SetDirty(WarItemId.StartMonth);
+                war.SetDirty(War.ItemId.StartYear);
+                war.SetDirty(War.ItemId.StartMonth);
 
                 // 編集項目を更新する
                 warStartYearTextBox.Text = IntHelper.ToString(war.StartDate.Year);
@@ -3916,7 +4169,7 @@ namespace HoI2Editor.Forms
             war.StartDate.Day = val;
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.StartDay);
+            war.SetDirty(War.ItemId.StartDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -3960,8 +4213,8 @@ namespace HoI2Editor.Forms
                 war.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.EndMonth);
-                war.SetDirty(WarItemId.EndDay);
+                war.SetDirty(War.ItemId.EndMonth);
+                war.SetDirty(War.ItemId.EndDay);
 
                 // 編集項目を更新する
                 warEndMonthTextBox.Text = IntHelper.ToString(war.EndDate.Month);
@@ -3976,7 +4229,7 @@ namespace HoI2Editor.Forms
             war.EndDate.Year = val;
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.EndYear);
+            war.SetDirty(War.ItemId.EndYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -4020,8 +4273,8 @@ namespace HoI2Editor.Forms
                 war.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.EndYear);
-                war.SetDirty(WarItemId.EndDay);
+                war.SetDirty(War.ItemId.EndYear);
+                war.SetDirty(War.ItemId.EndDay);
 
                 // 編集項目を更新する
                 warEndYearTextBox.Text = IntHelper.ToString(war.EndDate.Year);
@@ -4036,7 +4289,7 @@ namespace HoI2Editor.Forms
             war.EndDate.Month = val;
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.EndMonth);
+            war.SetDirty(War.ItemId.EndMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -4080,8 +4333,8 @@ namespace HoI2Editor.Forms
                 war.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.EndYear);
-                war.SetDirty(WarItemId.EndMonth);
+                war.SetDirty(War.ItemId.EndYear);
+                war.SetDirty(War.ItemId.EndMonth);
 
                 // 編集項目を更新する
                 warEndYearTextBox.Text = IntHelper.ToString(war.EndDate.Year);
@@ -4096,7 +4349,7 @@ namespace HoI2Editor.Forms
             war.EndDate.Day = val;
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.EndDay);
+            war.SetDirty(War.ItemId.EndDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -4158,7 +4411,7 @@ namespace HoI2Editor.Forms
                 war.Id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, 1);
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.Id);
+                war.SetDirty(War.ItemId.Id);
 
                 // 編集項目を更新する
                 warIdTextBox.Text = IntHelper.ToString(war.Id.Id);
@@ -4168,7 +4421,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.Type);
+            war.SetDirty(War.ItemId.Type);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -4230,7 +4483,7 @@ namespace HoI2Editor.Forms
                 war.Id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, val);
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.Type);
+                war.SetDirty(War.ItemId.Type);
 
                 // 編集項目を更新する
                 warTypeTextBox.Text = IntHelper.ToString(war.Id.Type);
@@ -4240,7 +4493,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.Id);
+            war.SetDirty(War.ItemId.Id);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -4312,7 +4565,7 @@ namespace HoI2Editor.Forms
                 war.Attackers.Id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, 1);
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.AttackerId);
+                war.SetDirty(War.ItemId.AttackerId);
 
                 // 編集項目を更新する
                 warAttackerIdTextBox.Text = IntHelper.ToString(war.Attackers.Id.Id);
@@ -4322,7 +4575,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.AttackerType);
+            war.SetDirty(War.ItemId.AttackerType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -4395,7 +4648,7 @@ namespace HoI2Editor.Forms
                 war.Attackers.Id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, val);
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.AttackerType);
+                war.SetDirty(War.ItemId.AttackerType);
 
                 // 編集項目を更新する
                 warAttackerTypeTextBox.Text = IntHelper.ToString(war.Attackers.Id.Type);
@@ -4405,7 +4658,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.AttackerId);
+            war.SetDirty(War.ItemId.AttackerId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -4477,7 +4730,7 @@ namespace HoI2Editor.Forms
                 war.Defenders.Id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, 1);
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.DefenderId);
+                war.SetDirty(War.ItemId.DefenderId);
 
                 // 編集項目を更新する
                 warDefenderIdTextBox.Text = IntHelper.ToString(war.Defenders.Id.Id);
@@ -4487,7 +4740,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.DefenderType);
+            war.SetDirty(War.ItemId.DefenderType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -4560,7 +4813,7 @@ namespace HoI2Editor.Forms
                 war.Defenders.Id = Scenarios.GetNewTypeId(Scenarios.DefaultWarType, val);
 
                 // 編集済みフラグを設定する
-                war.SetDirty(WarItemId.DefenderType);
+                war.SetDirty(War.ItemId.DefenderType);
 
                 // 編集項目を更新する
                 warDefenderTypeTextBox.Text = IntHelper.ToString(war.Defenders.Id.Type);
@@ -4570,7 +4823,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            war.SetDirty(WarItemId.DefenderId);
+            war.SetDirty(War.ItemId.DefenderId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -5213,24 +5466,24 @@ namespace HoI2Editor.Forms
 
             bool flag = (relation != null);
             relationValueNumericUpDown.Value = flag ? (decimal) relation.Value : 0;
-            relationValueNumericUpDown.ForeColor = (flag && relation.IsDirty(RelationItemId.Value))
+            relationValueNumericUpDown.ForeColor = (flag && relation.IsDirty(Relation.ItemId.Value))
                 ? Color.Red
                 : SystemColors.WindowText;
 
             flag = (settings != null);
             masterCheckBox.Checked = flag && (settings.Master == target);
             controlCheckBox.Checked = flag && (settings.Control == target);
-            masterCheckBox.ForeColor = (flag && settings.IsDirty(CountrySettingsItemId.Master))
+            masterCheckBox.ForeColor = (flag && settings.IsDirty(CountrySettings.ItemId.Master))
                 ? Color.Red
                 : SystemColors.WindowText;
-            controlCheckBox.ForeColor = (flag && settings.IsDirty(CountrySettingsItemId.Control))
+            controlCheckBox.ForeColor = (flag && settings.IsDirty(CountrySettings.ItemId.Control))
                 ? Color.Red
                 : SystemColors.WindowText;
 
             flag = (relation != null);
             accessCheckBox.Checked = flag && relation.Access;
 
-            accessCheckBox.ForeColor = (flag && relation.IsDirty(RelationItemId.Access))
+            accessCheckBox.ForeColor = (flag && relation.IsDirty(Relation.ItemId.Access))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -5277,16 +5530,16 @@ namespace HoI2Editor.Forms
             guaranteeMonthTextBox.Text = flag ? IntHelper.ToString(relation.Guaranteed.Month) : "";
             guaranteeDayTextBox.Text = flag ? IntHelper.ToString(relation.Guaranteed.Day) : "";
 
-            guaranteeCheckBox.ForeColor = ((relation != null) && relation.IsDirty(RelationItemId.Guaranteed))
+            guaranteeCheckBox.ForeColor = ((relation != null) && relation.IsDirty(Relation.ItemId.Guaranteed))
                 ? Color.Red
                 : SystemColors.WindowText;
-            guaranteeYearTextBox.ForeColor = (flag && relation.IsDirty(RelationItemId.GuaranteedYear))
+            guaranteeYearTextBox.ForeColor = (flag && relation.IsDirty(Relation.ItemId.GuaranteedYear))
                 ? Color.Red
                 : SystemColors.WindowText;
-            guaranteeMonthTextBox.ForeColor = (flag && relation.IsDirty(RelationItemId.GuaranteedMonth))
+            guaranteeMonthTextBox.ForeColor = (flag && relation.IsDirty(Relation.ItemId.GuaranteedMonth))
                 ? Color.Red
                 : SystemColors.WindowText;
-            guaranteeDayTextBox.ForeColor = (flag && relation.IsDirty(RelationItemId.GuaranteedDay))
+            guaranteeDayTextBox.ForeColor = (flag && relation.IsDirty(Relation.ItemId.GuaranteedDay))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -5311,13 +5564,13 @@ namespace HoI2Editor.Forms
             nonAggressionStartMonthTextBox.Text = flag ? IntHelper.ToString(nonAggression.StartDate.Month) : "";
             nonAggressionStartDayTextBox.Text = flag ? IntHelper.ToString(nonAggression.StartDate.Day) : "";
 
-            nonAggressionStartYearTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.StartYear))
+            nonAggressionStartYearTextBox.ForeColor = (flag && nonAggression.IsDirty(Treaty.ItemId.StartYear))
                 ? Color.Red
                 : SystemColors.WindowText;
-            nonAggressionStartMonthTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.StartMonth))
+            nonAggressionStartMonthTextBox.ForeColor = (flag && nonAggression.IsDirty(Treaty.ItemId.StartMonth))
                 ? Color.Red
                 : SystemColors.WindowText;
-            nonAggressionStartDayTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.StartDay))
+            nonAggressionStartDayTextBox.ForeColor = (flag && nonAggression.IsDirty(Treaty.ItemId.StartDay))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -5331,13 +5584,13 @@ namespace HoI2Editor.Forms
             nonAggressionEndMonthTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Month) : "";
             nonAggressionEndDayTextBox.Text = flag ? IntHelper.ToString(nonAggression.EndDate.Day) : "";
 
-            nonAggressionEndYearTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.EndYear))
+            nonAggressionEndYearTextBox.ForeColor = (flag && nonAggression.IsDirty(Treaty.ItemId.EndYear))
                 ? Color.Red
                 : SystemColors.WindowText;
-            nonAggressionEndMonthTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.EndMonth))
+            nonAggressionEndMonthTextBox.ForeColor = (flag && nonAggression.IsDirty(Treaty.ItemId.EndMonth))
                 ? Color.Red
                 : SystemColors.WindowText;
-            nonAggressionEndDayTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.EndDay))
+            nonAggressionEndDayTextBox.ForeColor = (flag && nonAggression.IsDirty(Treaty.ItemId.EndDay))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -5350,10 +5603,10 @@ namespace HoI2Editor.Forms
             nonAggressionTypeTextBox.Text = flag ? IntHelper.ToString(nonAggression.Id.Type) : "";
             nonAggressionIdTextBox.Text = flag ? IntHelper.ToString(nonAggression.Id.Id) : "";
 
-            nonAggressionTypeTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.Type))
+            nonAggressionTypeTextBox.ForeColor = (flag && nonAggression.IsDirty(Treaty.ItemId.Type))
                 ? Color.Red
                 : SystemColors.WindowText;
-            nonAggressionIdTextBox.ForeColor = (flag && nonAggression.IsDirty(TreatyItemId.Id))
+            nonAggressionIdTextBox.ForeColor = (flag && nonAggression.IsDirty(Treaty.ItemId.Id))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -5377,13 +5630,13 @@ namespace HoI2Editor.Forms
             peaceStartMonthTextBox.Text = flag ? IntHelper.ToString(peace.StartDate.Month) : "";
             peaceStartDayTextBox.Text = flag ? IntHelper.ToString(peace.StartDate.Day) : "";
 
-            peaceStartYearTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.StartYear))
+            peaceStartYearTextBox.ForeColor = (flag && peace.IsDirty(Treaty.ItemId.StartYear))
                 ? Color.Red
                 : SystemColors.WindowText;
-            peaceStartMonthTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.StartMonth))
+            peaceStartMonthTextBox.ForeColor = (flag && peace.IsDirty(Treaty.ItemId.StartMonth))
                 ? Color.Red
                 : SystemColors.WindowText;
-            peaceStartDayTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.StartDay))
+            peaceStartDayTextBox.ForeColor = (flag && peace.IsDirty(Treaty.ItemId.StartDay))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -5397,13 +5650,13 @@ namespace HoI2Editor.Forms
             peaceEndMonthTextBox.Text = flag ? IntHelper.ToString(peace.EndDate.Month) : "";
             peaceEndDayTextBox.Text = flag ? IntHelper.ToString(peace.EndDate.Day) : "";
 
-            peaceEndYearTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.EndYear))
+            peaceEndYearTextBox.ForeColor = (flag && peace.IsDirty(Treaty.ItemId.EndYear))
                 ? Color.Red
                 : SystemColors.WindowText;
-            peaceEndMonthTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.EndMonth))
+            peaceEndMonthTextBox.ForeColor = (flag && peace.IsDirty(Treaty.ItemId.EndMonth))
                 ? Color.Red
                 : SystemColors.WindowText;
-            peaceEndDayTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.EndDay))
+            peaceEndDayTextBox.ForeColor = (flag && peace.IsDirty(Treaty.ItemId.EndDay))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -5416,10 +5669,10 @@ namespace HoI2Editor.Forms
             peaceTypeTextBox.Text = flag ? IntHelper.ToString(peace.Id.Type) : "";
             peaceIdTextBox.Text = flag ? IntHelper.ToString(peace.Id.Id) : "";
 
-            peaceTypeTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.Type))
+            peaceTypeTextBox.ForeColor = (flag && peace.IsDirty(Treaty.ItemId.Type))
                 ? Color.Red
                 : SystemColors.WindowText;
-            peaceIdTextBox.ForeColor = (flag && peace.IsDirty(TreatyItemId.Id))
+            peaceIdTextBox.ForeColor = (flag && peace.IsDirty(Treaty.ItemId.Id))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -5477,7 +5730,7 @@ namespace HoI2Editor.Forms
             relation.Value = val;
 
             // 編集済みフラグを設定する
-            relation.SetDirty(RelationItemId.Value);
+            relation.SetDirty(Relation.ItemId.Value);
             settings.SetDirty();
             Scenarios.SetDirty();
 
@@ -5541,7 +5794,7 @@ namespace HoI2Editor.Forms
             settings.Master = val ? target : Country.None;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Master);
+            settings.SetDirty(CountrySettings.ItemId.Master);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -5601,7 +5854,7 @@ namespace HoI2Editor.Forms
             settings.Control = val ? target : Country.None;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Control);
+            settings.SetDirty(CountrySettings.ItemId.Control);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -5657,7 +5910,7 @@ namespace HoI2Editor.Forms
             relation.Access = val;
 
             // 編集済みフラグを設定する
-            relation.SetDirty(RelationItemId.Access);
+            relation.SetDirty(Relation.ItemId.Access);
             settings.SetDirty();
             Scenarios.SetDirty();
 
@@ -5717,10 +5970,10 @@ namespace HoI2Editor.Forms
             relation.Guaranteed = val ? new GameDate() : null;
 
             // 編集済みフラグを設定する
-            relation.SetDirty(RelationItemId.Guaranteed);
-            relation.SetDirty(RelationItemId.GuaranteedYear);
-            relation.SetDirty(RelationItemId.GuaranteedMonth);
-            relation.SetDirty(RelationItemId.GuaranteedDay);
+            relation.SetDirty(Relation.ItemId.Guaranteed);
+            relation.SetDirty(Relation.ItemId.GuaranteedYear);
+            relation.SetDirty(Relation.ItemId.GuaranteedMonth);
+            relation.SetDirty(Relation.ItemId.GuaranteedDay);
             settings.SetDirty();
             Scenarios.SetDirty();
 
@@ -5796,8 +6049,8 @@ namespace HoI2Editor.Forms
                 relation.Guaranteed = new GameDate();
 
                 // 編集済みフラグを設定する
-                relation.SetDirty(RelationItemId.GuaranteedMonth);
-                relation.SetDirty(RelationItemId.GuaranteedDay);
+                relation.SetDirty(Relation.ItemId.GuaranteedMonth);
+                relation.SetDirty(Relation.ItemId.GuaranteedDay);
 
                 // 編集項目を更新する
                 guaranteeMonthTextBox.Text = IntHelper.ToString(relation.Guaranteed.Month);
@@ -5812,7 +6065,7 @@ namespace HoI2Editor.Forms
             relation.Guaranteed.Year = val;
 
             // 編集済みフラグを設定する
-            relation.SetDirty(RelationItemId.GuaranteedYear);
+            relation.SetDirty(Relation.ItemId.GuaranteedYear);
             settings.SetDirty();
             Scenarios.SetDirty();
 
@@ -5872,8 +6125,8 @@ namespace HoI2Editor.Forms
                 relation.Guaranteed = new GameDate();
 
                 // 編集済みフラグを設定する
-                relation.SetDirty(RelationItemId.GuaranteedYear);
-                relation.SetDirty(RelationItemId.GuaranteedDay);
+                relation.SetDirty(Relation.ItemId.GuaranteedYear);
+                relation.SetDirty(Relation.ItemId.GuaranteedDay);
 
                 // 編集項目を更新する
                 guaranteeYearTextBox.Text = IntHelper.ToString(relation.Guaranteed.Year);
@@ -5888,7 +6141,7 @@ namespace HoI2Editor.Forms
             relation.Guaranteed.Month = val;
 
             // 編集済みフラグを設定する
-            relation.SetDirty(RelationItemId.GuaranteedMonth);
+            relation.SetDirty(Relation.ItemId.GuaranteedMonth);
             settings.SetDirty();
             Scenarios.SetDirty();
 
@@ -5948,8 +6201,8 @@ namespace HoI2Editor.Forms
                 relation.Guaranteed = new GameDate();
 
                 // 編集済みフラグを設定する
-                relation.SetDirty(RelationItemId.GuaranteedYear);
-                relation.SetDirty(RelationItemId.GuaranteedMonth);
+                relation.SetDirty(Relation.ItemId.GuaranteedYear);
+                relation.SetDirty(Relation.ItemId.GuaranteedMonth);
 
                 // 編集項目を更新する
                 guaranteeYearTextBox.Text = IntHelper.ToString(relation.Guaranteed.Year);
@@ -5964,7 +6217,7 @@ namespace HoI2Editor.Forms
             relation.Guaranteed.Day = val;
 
             // 編集済みフラグを設定する
-            relation.SetDirty(RelationItemId.GuaranteedDay);
+            relation.SetDirty(Relation.ItemId.GuaranteedDay);
             settings.SetDirty();
             Scenarios.SetDirty();
 
@@ -6026,14 +6279,14 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            nonAggression.SetDirty(TreatyItemId.StartYear);
-            nonAggression.SetDirty(TreatyItemId.StartMonth);
-            nonAggression.SetDirty(TreatyItemId.StartDay);
-            nonAggression.SetDirty(TreatyItemId.EndYear);
-            nonAggression.SetDirty(TreatyItemId.EndMonth);
-            nonAggression.SetDirty(TreatyItemId.EndDay);
-            nonAggression.SetDirty(TreatyItemId.Type);
-            nonAggression.SetDirty(TreatyItemId.Id);
+            nonAggression.SetDirty(Treaty.ItemId.StartYear);
+            nonAggression.SetDirty(Treaty.ItemId.StartMonth);
+            nonAggression.SetDirty(Treaty.ItemId.StartDay);
+            nonAggression.SetDirty(Treaty.ItemId.EndYear);
+            nonAggression.SetDirty(Treaty.ItemId.EndMonth);
+            nonAggression.SetDirty(Treaty.ItemId.EndDay);
+            nonAggression.SetDirty(Treaty.ItemId.Type);
+            nonAggression.SetDirty(Treaty.ItemId.Id);
             nonAggression.SetDirty();
             Scenarios.SetDirty();
 
@@ -6124,8 +6377,8 @@ namespace HoI2Editor.Forms
                 nonAggression.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                nonAggression.SetDirty(TreatyItemId.StartMonth);
-                nonAggression.SetDirty(TreatyItemId.StartDay);
+                nonAggression.SetDirty(Treaty.ItemId.StartMonth);
+                nonAggression.SetDirty(Treaty.ItemId.StartDay);
 
                 // 編集項目を更新する
                 nonAggressionStartMonthTextBox.Text = IntHelper.ToString(nonAggression.StartDate.Month);
@@ -6140,7 +6393,7 @@ namespace HoI2Editor.Forms
             nonAggression.StartDate.Year = val;
 
             // 編集済みフラグを設定する
-            nonAggression.SetDirty(TreatyItemId.StartYear);
+            nonAggression.SetDirty(Treaty.ItemId.StartYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -6193,8 +6446,8 @@ namespace HoI2Editor.Forms
                 nonAggression.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                nonAggression.SetDirty(TreatyItemId.StartYear);
-                nonAggression.SetDirty(TreatyItemId.StartDay);
+                nonAggression.SetDirty(Treaty.ItemId.StartYear);
+                nonAggression.SetDirty(Treaty.ItemId.StartDay);
 
                 // 編集項目を更新する
                 nonAggressionStartYearTextBox.Text = IntHelper.ToString(nonAggression.StartDate.Year);
@@ -6209,7 +6462,7 @@ namespace HoI2Editor.Forms
             nonAggression.StartDate.Month = val;
 
             // 編集済みフラグを設定する
-            nonAggression.SetDirty(TreatyItemId.StartMonth);
+            nonAggression.SetDirty(Treaty.ItemId.StartMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -6262,8 +6515,8 @@ namespace HoI2Editor.Forms
                 nonAggression.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                nonAggression.SetDirty(TreatyItemId.StartYear);
-                nonAggression.SetDirty(TreatyItemId.StartMonth);
+                nonAggression.SetDirty(Treaty.ItemId.StartYear);
+                nonAggression.SetDirty(Treaty.ItemId.StartMonth);
 
                 // 編集項目を更新する
                 nonAggressionStartYearTextBox.Text = IntHelper.ToString(nonAggression.StartDate.Year);
@@ -6278,7 +6531,7 @@ namespace HoI2Editor.Forms
             nonAggression.StartDate.Day = val;
 
             // 編集済みフラグを設定する
-            nonAggression.SetDirty(TreatyItemId.StartDay);
+            nonAggression.SetDirty(Treaty.ItemId.StartDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -6331,8 +6584,8 @@ namespace HoI2Editor.Forms
                 nonAggression.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                nonAggression.SetDirty(TreatyItemId.EndMonth);
-                nonAggression.SetDirty(TreatyItemId.EndDay);
+                nonAggression.SetDirty(Treaty.ItemId.EndMonth);
+                nonAggression.SetDirty(Treaty.ItemId.EndDay);
 
                 // 編集項目を更新する
                 nonAggressionEndMonthTextBox.Text = IntHelper.ToString(nonAggression.EndDate.Month);
@@ -6347,7 +6600,7 @@ namespace HoI2Editor.Forms
             nonAggression.EndDate.Year = val;
 
             // 編集済みフラグを設定する
-            nonAggression.SetDirty(TreatyItemId.EndYear);
+            nonAggression.SetDirty(Treaty.ItemId.EndYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -6400,8 +6653,8 @@ namespace HoI2Editor.Forms
                 nonAggression.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                nonAggression.SetDirty(TreatyItemId.EndYear);
-                nonAggression.SetDirty(TreatyItemId.EndDay);
+                nonAggression.SetDirty(Treaty.ItemId.EndYear);
+                nonAggression.SetDirty(Treaty.ItemId.EndDay);
 
                 // 編集項目を更新する
                 nonAggressionEndYearTextBox.Text = IntHelper.ToString(nonAggression.EndDate.Year);
@@ -6416,7 +6669,7 @@ namespace HoI2Editor.Forms
             nonAggression.EndDate.Month = val;
 
             // 編集済みフラグを設定する
-            nonAggression.SetDirty(TreatyItemId.EndMonth);
+            nonAggression.SetDirty(Treaty.ItemId.EndMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -6469,8 +6722,8 @@ namespace HoI2Editor.Forms
                 nonAggression.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                nonAggression.SetDirty(TreatyItemId.EndYear);
-                nonAggression.SetDirty(TreatyItemId.EndMonth);
+                nonAggression.SetDirty(Treaty.ItemId.EndYear);
+                nonAggression.SetDirty(Treaty.ItemId.EndMonth);
 
                 // 編集項目を更新する
                 nonAggressionEndYearTextBox.Text = IntHelper.ToString(nonAggression.EndDate.Year);
@@ -6485,7 +6738,7 @@ namespace HoI2Editor.Forms
             nonAggression.EndDate.Day = val;
 
             // 編集済みフラグを設定する
-            nonAggression.SetDirty(TreatyItemId.EndDay);
+            nonAggression.SetDirty(Treaty.ItemId.EndDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -6557,7 +6810,7 @@ namespace HoI2Editor.Forms
                 nonAggression.Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, 1);
 
                 // 編集済みフラグを設定する
-                nonAggression.SetDirty(TreatyItemId.Id);
+                nonAggression.SetDirty(Treaty.ItemId.Id);
 
                 // 編集項目を更新する
                 nonAggressionIdTextBox.Text = IntHelper.ToString(nonAggression.Id.Id);
@@ -6567,7 +6820,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            nonAggression.SetDirty(TreatyItemId.Type);
+            nonAggression.SetDirty(Treaty.ItemId.Type);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -6638,7 +6891,7 @@ namespace HoI2Editor.Forms
                 nonAggression.Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, val);
 
                 // 編集済みフラグを設定する
-                nonAggression.SetDirty(TreatyItemId.Type);
+                nonAggression.SetDirty(Treaty.ItemId.Type);
 
                 // 編集項目を更新する
                 nonAggressionTypeTextBox.Text = IntHelper.ToString(nonAggression.Id.Type);
@@ -6648,7 +6901,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            nonAggression.SetDirty(TreatyItemId.Id);
+            nonAggression.SetDirty(Treaty.ItemId.Id);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -6709,14 +6962,14 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            peace.SetDirty(TreatyItemId.StartYear);
-            peace.SetDirty(TreatyItemId.StartMonth);
-            peace.SetDirty(TreatyItemId.StartDay);
-            peace.SetDirty(TreatyItemId.EndYear);
-            peace.SetDirty(TreatyItemId.EndMonth);
-            peace.SetDirty(TreatyItemId.EndDay);
-            peace.SetDirty(TreatyItemId.Type);
-            peace.SetDirty(TreatyItemId.Id);
+            peace.SetDirty(Treaty.ItemId.StartYear);
+            peace.SetDirty(Treaty.ItemId.StartMonth);
+            peace.SetDirty(Treaty.ItemId.StartDay);
+            peace.SetDirty(Treaty.ItemId.EndYear);
+            peace.SetDirty(Treaty.ItemId.EndMonth);
+            peace.SetDirty(Treaty.ItemId.EndDay);
+            peace.SetDirty(Treaty.ItemId.Type);
+            peace.SetDirty(Treaty.ItemId.Id);
             peace.SetDirty();
             Scenarios.SetDirty();
 
@@ -6807,8 +7060,8 @@ namespace HoI2Editor.Forms
                 peace.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                peace.SetDirty(TreatyItemId.StartMonth);
-                peace.SetDirty(TreatyItemId.StartDay);
+                peace.SetDirty(Treaty.ItemId.StartMonth);
+                peace.SetDirty(Treaty.ItemId.StartDay);
 
                 // 編集項目を更新する
                 peaceStartMonthTextBox.Text = IntHelper.ToString(peace.StartDate.Month);
@@ -6823,7 +7076,7 @@ namespace HoI2Editor.Forms
             peace.StartDate.Year = val;
 
             // 編集済みフラグを設定する
-            peace.SetDirty(TreatyItemId.StartYear);
+            peace.SetDirty(Treaty.ItemId.StartYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -6876,8 +7129,8 @@ namespace HoI2Editor.Forms
                 peace.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                peace.SetDirty(TreatyItemId.StartYear);
-                peace.SetDirty(TreatyItemId.StartDay);
+                peace.SetDirty(Treaty.ItemId.StartYear);
+                peace.SetDirty(Treaty.ItemId.StartDay);
 
                 // 編集項目を更新する
                 peaceStartYearTextBox.Text = IntHelper.ToString(peace.StartDate.Year);
@@ -6892,7 +7145,7 @@ namespace HoI2Editor.Forms
             peace.StartDate.Month = val;
 
             // 編集済みフラグを設定する
-            peace.SetDirty(TreatyItemId.StartMonth);
+            peace.SetDirty(Treaty.ItemId.StartMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -6945,8 +7198,8 @@ namespace HoI2Editor.Forms
                 peace.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                peace.SetDirty(TreatyItemId.StartYear);
-                peace.SetDirty(TreatyItemId.StartMonth);
+                peace.SetDirty(Treaty.ItemId.StartYear);
+                peace.SetDirty(Treaty.ItemId.StartMonth);
 
                 // 編集項目を更新する
                 peaceStartYearTextBox.Text = IntHelper.ToString(peace.StartDate.Year);
@@ -6961,7 +7214,7 @@ namespace HoI2Editor.Forms
             peace.StartDate.Day = val;
 
             // 編集済みフラグを設定する
-            peace.SetDirty(TreatyItemId.StartDay);
+            peace.SetDirty(Treaty.ItemId.StartDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -7014,8 +7267,8 @@ namespace HoI2Editor.Forms
                 peace.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                peace.SetDirty(TreatyItemId.EndMonth);
-                peace.SetDirty(TreatyItemId.EndDay);
+                peace.SetDirty(Treaty.ItemId.EndMonth);
+                peace.SetDirty(Treaty.ItemId.EndDay);
 
                 // 編集項目を更新する
                 peaceEndMonthTextBox.Text = IntHelper.ToString(peace.EndDate.Month);
@@ -7030,7 +7283,7 @@ namespace HoI2Editor.Forms
             peace.EndDate.Year = val;
 
             // 編集済みフラグを設定する
-            peace.SetDirty(TreatyItemId.EndYear);
+            peace.SetDirty(Treaty.ItemId.EndYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -7083,8 +7336,8 @@ namespace HoI2Editor.Forms
                 peace.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                peace.SetDirty(TreatyItemId.EndYear);
-                peace.SetDirty(TreatyItemId.EndDay);
+                peace.SetDirty(Treaty.ItemId.EndYear);
+                peace.SetDirty(Treaty.ItemId.EndDay);
 
                 // 編集項目を更新する
                 peaceEndYearTextBox.Text = IntHelper.ToString(peace.EndDate.Year);
@@ -7099,7 +7352,7 @@ namespace HoI2Editor.Forms
             peace.EndDate.Month = val;
 
             // 編集済みフラグを設定する
-            peace.SetDirty(TreatyItemId.EndMonth);
+            peace.SetDirty(Treaty.ItemId.EndMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -7152,8 +7405,8 @@ namespace HoI2Editor.Forms
                 peace.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                peace.SetDirty(TreatyItemId.EndYear);
-                peace.SetDirty(TreatyItemId.EndMonth);
+                peace.SetDirty(Treaty.ItemId.EndYear);
+                peace.SetDirty(Treaty.ItemId.EndMonth);
 
                 // 編集項目を更新する
                 peaceEndYearTextBox.Text = IntHelper.ToString(peace.EndDate.Year);
@@ -7168,7 +7421,7 @@ namespace HoI2Editor.Forms
             peace.EndDate.Day = val;
 
             // 編集済みフラグを設定する
-            peace.SetDirty(TreatyItemId.EndDay);
+            peace.SetDirty(Treaty.ItemId.EndDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -7240,7 +7493,7 @@ namespace HoI2Editor.Forms
                 peace.Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, 1);
 
                 // 編集済みフラグを設定する
-                peace.SetDirty(TreatyItemId.Id);
+                peace.SetDirty(Treaty.ItemId.Id);
 
                 // 編集項目を更新する
                 peaceIdTextBox.Text = IntHelper.ToString(peace.Id.Id);
@@ -7250,7 +7503,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            peace.SetDirty(TreatyItemId.Type);
+            peace.SetDirty(Treaty.ItemId.Type);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -7321,7 +7574,7 @@ namespace HoI2Editor.Forms
                 peace.Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, val);
 
                 // 編集済みフラグを設定する
-                peace.SetDirty(TreatyItemId.Type);
+                peace.SetDirty(Treaty.ItemId.Type);
 
                 // 編集項目を更新する
                 peaceTypeTextBox.Text = IntHelper.ToString(peace.Id.Type);
@@ -7331,7 +7584,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            peace.SetDirty(TreatyItemId.Id);
+            peace.SetDirty(Treaty.ItemId.Id);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -7353,7 +7606,7 @@ namespace HoI2Editor.Forms
 
             bool flag = (spy != null);
             spyNumNumericUpDown.Value = flag ? spy.Spies : 0;
-            spyNumNumericUpDown.ForeColor = (flag && spy.IsDirty(SpySettingsItemId.Spies))
+            spyNumNumericUpDown.ForeColor = (flag && spy.IsDirty(SpySettings.ItemId.Spies))
                 ? Color.Red
                 : SystemColors.WindowText;
         }
@@ -7405,7 +7658,7 @@ namespace HoI2Editor.Forms
             spy.Spies = val;
 
             // 編集済みフラグを設定する
-            spy.SetDirty(SpySettingsItemId.Spies);
+            spy.SetDirty(SpySettings.ItemId.Spies);
             settings.SetDirty();
             Scenarios.SetDirty();
 
@@ -7543,13 +7796,13 @@ namespace HoI2Editor.Forms
             tradeStartMonthTextBox.Text = flag ? IntHelper.ToString(trade.StartDate.Month) : "";
             tradeStartDayTextBox.Text = flag ? IntHelper.ToString(trade.StartDate.Day) : "";
 
-            tradeStartYearTextBox.ForeColor = trade.IsDirty(TreatyItemId.StartYear)
+            tradeStartYearTextBox.ForeColor = trade.IsDirty(Treaty.ItemId.StartYear)
                 ? Color.Red
                 : SystemColors.WindowText;
-            tradeStartMonthTextBox.ForeColor = trade.IsDirty(TreatyItemId.StartMonth)
+            tradeStartMonthTextBox.ForeColor = trade.IsDirty(Treaty.ItemId.StartMonth)
                 ? Color.Red
                 : SystemColors.WindowText;
-            tradeStartDayTextBox.ForeColor = trade.IsDirty(TreatyItemId.StartDay) ? Color.Red : SystemColors.WindowText;
+            tradeStartDayTextBox.ForeColor = trade.IsDirty(Treaty.ItemId.StartDay) ? Color.Red : SystemColors.WindowText;
 
             // 終了日時
             flag = (trade.EndDate != null);
@@ -7557,21 +7810,21 @@ namespace HoI2Editor.Forms
             tradeEndMonthTextBox.Text = flag ? IntHelper.ToString(trade.EndDate.Month) : "";
             tradeEndDayTextBox.Text = flag ? IntHelper.ToString(trade.EndDate.Day) : "";
 
-            tradeEndYearTextBox.ForeColor = trade.IsDirty(TreatyItemId.EndYear) ? Color.Red : SystemColors.WindowText;
-            tradeEndMonthTextBox.ForeColor = trade.IsDirty(TreatyItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
-            tradeEndDayTextBox.ForeColor = trade.IsDirty(TreatyItemId.EndDay) ? Color.Red : SystemColors.WindowText;
+            tradeEndYearTextBox.ForeColor = trade.IsDirty(Treaty.ItemId.EndYear) ? Color.Red : SystemColors.WindowText;
+            tradeEndMonthTextBox.ForeColor = trade.IsDirty(Treaty.ItemId.EndMonth) ? Color.Red : SystemColors.WindowText;
+            tradeEndDayTextBox.ForeColor = trade.IsDirty(Treaty.ItemId.EndDay) ? Color.Red : SystemColors.WindowText;
 
             // ID
             flag = (trade.Id != null);
             tradeTypeTextBox.Text = flag ? IntHelper.ToString(trade.Id.Type) : "";
             tradeIdTextBox.Text = flag ? IntHelper.ToString(trade.Id.Id) : "";
 
-            tradeTypeTextBox.ForeColor = trade.IsDirty(TreatyItemId.Type) ? Color.Red : SystemColors.WindowText;
-            tradeIdTextBox.ForeColor = trade.IsDirty(TreatyItemId.Id) ? Color.Red : SystemColors.WindowText;
+            tradeTypeTextBox.ForeColor = trade.IsDirty(Treaty.ItemId.Type) ? Color.Red : SystemColors.WindowText;
+            tradeIdTextBox.ForeColor = trade.IsDirty(Treaty.ItemId.Id) ? Color.Red : SystemColors.WindowText;
 
             // キャンセルを許可
             tradeCancelCheckBox.Checked = trade.Cancel;
-            tradeCancelCheckBox.ForeColor = trade.IsDirty(TreatyItemId.Cancel) ? Color.Red : SystemColors.WindowText;
+            tradeCancelCheckBox.ForeColor = trade.IsDirty(Treaty.ItemId.Cancel) ? Color.Red : SystemColors.WindowText;
 
             // 貿易国家コンボボックス
             if (Countries.Tags.Contains(trade.Country1))
@@ -7601,22 +7854,26 @@ namespace HoI2Editor.Forms
             tradeMoneyTextBox1.Text = (trade.Money < 0) ? DoubleHelper.ToString(-trade.Money) : "";
             tradeMoneyTextBox2.Text = (trade.Money > 0) ? DoubleHelper.ToString(trade.Money) : "";
 
-            tradeEnergyTextBox1.ForeColor = trade.IsDirty(TreatyItemId.Energy) ? Color.Red : SystemColors.WindowText;
-            tradeEnergyTextBox2.ForeColor = trade.IsDirty(TreatyItemId.Energy) ? Color.Red : SystemColors.WindowText;
-            tradeMetalTextBox1.ForeColor = trade.IsDirty(TreatyItemId.Metal) ? Color.Red : SystemColors.WindowText;
-            tradeMetalTextBox2.ForeColor = trade.IsDirty(TreatyItemId.Metal) ? Color.Red : SystemColors.WindowText;
-            tradeRareMaterialsTextBox1.ForeColor = trade.IsDirty(TreatyItemId.RareMaterials)
+            tradeEnergyTextBox1.ForeColor = trade.IsDirty(Treaty.ItemId.Energy) ? Color.Red : SystemColors.WindowText;
+            tradeEnergyTextBox2.ForeColor = trade.IsDirty(Treaty.ItemId.Energy) ? Color.Red : SystemColors.WindowText;
+            tradeMetalTextBox1.ForeColor = trade.IsDirty(Treaty.ItemId.Metal) ? Color.Red : SystemColors.WindowText;
+            tradeMetalTextBox2.ForeColor = trade.IsDirty(Treaty.ItemId.Metal) ? Color.Red : SystemColors.WindowText;
+            tradeRareMaterialsTextBox1.ForeColor = trade.IsDirty(Treaty.ItemId.RareMaterials)
                 ? Color.Red
                 : SystemColors.WindowText;
-            tradeRareMaterialsTextBox2.ForeColor = trade.IsDirty(TreatyItemId.RareMaterials)
+            tradeRareMaterialsTextBox2.ForeColor = trade.IsDirty(Treaty.ItemId.RareMaterials)
                 ? Color.Red
                 : SystemColors.WindowText;
-            tradeOilTextBox1.ForeColor = trade.IsDirty(TreatyItemId.Oil) ? Color.Red : SystemColors.WindowText;
-            tradeOilTextBox2.ForeColor = trade.IsDirty(TreatyItemId.Oil) ? Color.Red : SystemColors.WindowText;
-            tradeSuppliesTextBox1.ForeColor = trade.IsDirty(TreatyItemId.Supplies) ? Color.Red : SystemColors.WindowText;
-            tradeSuppliesTextBox2.ForeColor = trade.IsDirty(TreatyItemId.Supplies) ? Color.Red : SystemColors.WindowText;
-            tradeMoneyTextBox1.ForeColor = trade.IsDirty(TreatyItemId.Money) ? Color.Red : SystemColors.WindowText;
-            tradeMoneyTextBox2.ForeColor = trade.IsDirty(TreatyItemId.Money) ? Color.Red : SystemColors.WindowText;
+            tradeOilTextBox1.ForeColor = trade.IsDirty(Treaty.ItemId.Oil) ? Color.Red : SystemColors.WindowText;
+            tradeOilTextBox2.ForeColor = trade.IsDirty(Treaty.ItemId.Oil) ? Color.Red : SystemColors.WindowText;
+            tradeSuppliesTextBox1.ForeColor = trade.IsDirty(Treaty.ItemId.Supplies)
+                ? Color.Red
+                : SystemColors.WindowText;
+            tradeSuppliesTextBox2.ForeColor = trade.IsDirty(Treaty.ItemId.Supplies)
+                ? Color.Red
+                : SystemColors.WindowText;
+            tradeMoneyTextBox1.ForeColor = trade.IsDirty(Treaty.ItemId.Money) ? Color.Red : SystemColors.WindowText;
+            tradeMoneyTextBox2.ForeColor = trade.IsDirty(Treaty.ItemId.Money) ? Color.Red : SystemColors.WindowText;
 
             // 編集項目を有効化する
             tradeInfoGroupBox.Enabled = true;
@@ -7729,15 +7986,15 @@ namespace HoI2Editor.Forms
             tradeListView.Items.Add(item);
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.StartYear);
-            trade.SetDirty(TreatyItemId.StartMonth);
-            trade.SetDirty(TreatyItemId.StartDay);
-            trade.SetDirty(TreatyItemId.EndYear);
-            trade.SetDirty(TreatyItemId.EndMonth);
-            trade.SetDirty(TreatyItemId.EndDay);
-            trade.SetDirty(TreatyItemId.Type);
-            trade.SetDirty(TreatyItemId.Id);
-            trade.SetDirty(TreatyItemId.Cancel);
+            trade.SetDirty(Treaty.ItemId.StartYear);
+            trade.SetDirty(Treaty.ItemId.StartMonth);
+            trade.SetDirty(Treaty.ItemId.StartDay);
+            trade.SetDirty(Treaty.ItemId.EndYear);
+            trade.SetDirty(Treaty.ItemId.EndMonth);
+            trade.SetDirty(Treaty.ItemId.EndDay);
+            trade.SetDirty(Treaty.ItemId.Type);
+            trade.SetDirty(Treaty.ItemId.Id);
+            trade.SetDirty(Treaty.ItemId.Cancel);
             Scenarios.SetDirty();
 
             // 追加した項目を選択する
@@ -7799,7 +8056,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="trade">貿易情報</param>
         /// <returns>貿易リストビューの項目</returns>
-        private ListViewItem CreateTradeListViewItem(Treaty trade)
+        private static ListViewItem CreateTradeListViewItem(Treaty trade)
         {
             ListViewItem item = new ListViewItem
             {
@@ -7891,8 +8148,8 @@ namespace HoI2Editor.Forms
                 trade.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                trade.SetDirty(TreatyItemId.StartMonth);
-                trade.SetDirty(TreatyItemId.StartDay);
+                trade.SetDirty(Treaty.ItemId.StartMonth);
+                trade.SetDirty(Treaty.ItemId.StartDay);
 
                 // 編集項目を更新する
                 tradeStartMonthTextBox.Text = IntHelper.ToString(trade.StartDate.Month);
@@ -7907,7 +8164,7 @@ namespace HoI2Editor.Forms
             trade.StartDate.Year = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.StartYear);
+            trade.SetDirty(Treaty.ItemId.StartYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -7951,8 +8208,8 @@ namespace HoI2Editor.Forms
                 trade.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                trade.SetDirty(TreatyItemId.StartYear);
-                trade.SetDirty(TreatyItemId.StartDay);
+                trade.SetDirty(Treaty.ItemId.StartYear);
+                trade.SetDirty(Treaty.ItemId.StartDay);
 
                 // 編集項目を更新する
                 tradeStartYearTextBox.Text = IntHelper.ToString(trade.StartDate.Year);
@@ -7967,7 +8224,7 @@ namespace HoI2Editor.Forms
             trade.StartDate.Month = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.StartMonth);
+            trade.SetDirty(Treaty.ItemId.StartMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -8011,8 +8268,8 @@ namespace HoI2Editor.Forms
                 trade.StartDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                trade.SetDirty(TreatyItemId.StartYear);
-                trade.SetDirty(TreatyItemId.StartMonth);
+                trade.SetDirty(Treaty.ItemId.StartYear);
+                trade.SetDirty(Treaty.ItemId.StartMonth);
 
                 // 編集項目を更新する
                 tradeStartYearTextBox.Text = IntHelper.ToString(trade.StartDate.Year);
@@ -8027,7 +8284,7 @@ namespace HoI2Editor.Forms
             trade.StartDate.Day = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.StartDay);
+            trade.SetDirty(Treaty.ItemId.StartDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -8071,8 +8328,8 @@ namespace HoI2Editor.Forms
                 trade.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                trade.SetDirty(TreatyItemId.EndMonth);
-                trade.SetDirty(TreatyItemId.EndDay);
+                trade.SetDirty(Treaty.ItemId.EndMonth);
+                trade.SetDirty(Treaty.ItemId.EndDay);
 
                 // 編集項目を更新する
                 tradeEndMonthTextBox.Text = IntHelper.ToString(trade.EndDate.Month);
@@ -8087,7 +8344,7 @@ namespace HoI2Editor.Forms
             trade.EndDate.Year = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.EndYear);
+            trade.SetDirty(Treaty.ItemId.EndYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -8131,8 +8388,8 @@ namespace HoI2Editor.Forms
                 trade.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                trade.SetDirty(TreatyItemId.EndYear);
-                trade.SetDirty(TreatyItemId.EndDay);
+                trade.SetDirty(Treaty.ItemId.EndYear);
+                trade.SetDirty(Treaty.ItemId.EndDay);
 
                 // 編集項目を更新する
                 tradeEndYearTextBox.Text = IntHelper.ToString(trade.EndDate.Year);
@@ -8147,7 +8404,7 @@ namespace HoI2Editor.Forms
             trade.EndDate.Month = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.EndMonth);
+            trade.SetDirty(Treaty.ItemId.EndMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -8191,8 +8448,8 @@ namespace HoI2Editor.Forms
                 trade.EndDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                trade.SetDirty(TreatyItemId.EndYear);
-                trade.SetDirty(TreatyItemId.EndMonth);
+                trade.SetDirty(Treaty.ItemId.EndYear);
+                trade.SetDirty(Treaty.ItemId.EndMonth);
 
                 // 編集項目を更新する
                 tradeEndYearTextBox.Text = IntHelper.ToString(trade.EndDate.Year);
@@ -8207,7 +8464,7 @@ namespace HoI2Editor.Forms
             trade.EndDate.Day = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.EndDay);
+            trade.SetDirty(Treaty.ItemId.EndDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -8270,7 +8527,7 @@ namespace HoI2Editor.Forms
                 trade.Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, 1);
 
                 // 編集済みフラグを設定する
-                trade.SetDirty(TreatyItemId.Id);
+                trade.SetDirty(Treaty.ItemId.Id);
 
                 // 編集項目を更新する
                 tradeIdTextBox.Text = IntHelper.ToString(trade.Id.Id);
@@ -8280,7 +8537,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Type);
+            trade.SetDirty(Treaty.ItemId.Type);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -8343,7 +8600,7 @@ namespace HoI2Editor.Forms
                 trade.Id = Scenarios.GetNewTypeId(Scenarios.DefaultTreatyType, val);
 
                 // 編集済みフラグを設定する
-                trade.SetDirty(TreatyItemId.Type);
+                trade.SetDirty(Treaty.ItemId.Type);
 
                 // 編集項目を更新する
                 tradeTypeTextBox.Text = IntHelper.ToString(trade.Id.Type);
@@ -8353,7 +8610,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Id);
+            trade.SetDirty(Treaty.ItemId.Id);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -8388,7 +8645,7 @@ namespace HoI2Editor.Forms
             trade.Cancel = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Cancel);
+            trade.SetDirty(Treaty.ItemId.Cancel);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -8424,7 +8681,7 @@ namespace HoI2Editor.Forms
             Treaty trade = GetSelectedTrade();
             if (trade != null)
             {
-                bool dirty = ((Countries.Tags[e.Index] == trade.Country1) && trade.IsDirty(TreatyItemId.Country1));
+                bool dirty = ((Countries.Tags[e.Index] == trade.Country1) && trade.IsDirty(Treaty.ItemId.Country1));
                 Brush brush = new SolidBrush(dirty ? Color.Red : comboBox.ForeColor);
                 string s = comboBox.Items[e.Index].ToString();
                 e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
@@ -8460,7 +8717,7 @@ namespace HoI2Editor.Forms
             Treaty trade = GetSelectedTrade();
             if (trade != null)
             {
-                bool dirty = ((Countries.Tags[e.Index] == trade.Country2) && trade.IsDirty(TreatyItemId.Country2));
+                bool dirty = ((Countries.Tags[e.Index] == trade.Country2) && trade.IsDirty(Treaty.ItemId.Country2));
                 Brush brush = new SolidBrush(dirty ? Color.Red : comboBox.ForeColor);
                 string s = comboBox.Items[e.Index].ToString();
                 e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
@@ -8503,7 +8760,7 @@ namespace HoI2Editor.Forms
             trade.Country1 = country;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Country1);
+            trade.SetDirty(Treaty.ItemId.Country1);
             Scenarios.SetDirty();
 
             // 貿易リストビューの項目を更新する
@@ -8545,7 +8802,7 @@ namespace HoI2Editor.Forms
             trade.Country2 = country;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Country2);
+            trade.SetDirty(Treaty.ItemId.Country2);
             Scenarios.SetDirty();
 
             // 貿易リストビューの項目を更新する
@@ -8582,14 +8839,14 @@ namespace HoI2Editor.Forms
             trade.Money = -trade.Money;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Country1);
-            trade.SetDirty(TreatyItemId.Country2);
-            trade.SetDirty(TreatyItemId.Energy);
-            trade.SetDirty(TreatyItemId.Metal);
-            trade.SetDirty(TreatyItemId.RareMaterials);
-            trade.SetDirty(TreatyItemId.Oil);
-            trade.SetDirty(TreatyItemId.Supplies);
-            trade.SetDirty(TreatyItemId.Money);
+            trade.SetDirty(Treaty.ItemId.Country1);
+            trade.SetDirty(Treaty.ItemId.Country2);
+            trade.SetDirty(Treaty.ItemId.Energy);
+            trade.SetDirty(Treaty.ItemId.Metal);
+            trade.SetDirty(Treaty.ItemId.RareMaterials);
+            trade.SetDirty(Treaty.ItemId.Oil);
+            trade.SetDirty(Treaty.ItemId.Supplies);
+            trade.SetDirty(Treaty.ItemId.Money);
             Scenarios.SetDirty();
 
             // 貿易リストビューの項目を更新する
@@ -8637,7 +8894,7 @@ namespace HoI2Editor.Forms
             trade.Energy = -val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Energy);
+            trade.SetDirty(Treaty.ItemId.Energy);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -8687,7 +8944,7 @@ namespace HoI2Editor.Forms
             trade.Energy = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Energy);
+            trade.SetDirty(Treaty.ItemId.Energy);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -8737,7 +8994,7 @@ namespace HoI2Editor.Forms
             trade.Metal = -val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Metal);
+            trade.SetDirty(Treaty.ItemId.Metal);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -8787,7 +9044,7 @@ namespace HoI2Editor.Forms
             trade.Metal = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Metal);
+            trade.SetDirty(Treaty.ItemId.Metal);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -8839,7 +9096,7 @@ namespace HoI2Editor.Forms
             trade.RareMaterials = -val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.RareMaterials);
+            trade.SetDirty(Treaty.ItemId.RareMaterials);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -8895,7 +9152,7 @@ namespace HoI2Editor.Forms
             trade.RareMaterials = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.RareMaterials);
+            trade.SetDirty(Treaty.ItemId.RareMaterials);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -8949,7 +9206,7 @@ namespace HoI2Editor.Forms
             trade.Oil = -val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Oil);
+            trade.SetDirty(Treaty.ItemId.Oil);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -8999,7 +9256,7 @@ namespace HoI2Editor.Forms
             trade.Oil = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Oil);
+            trade.SetDirty(Treaty.ItemId.Oil);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -9049,7 +9306,7 @@ namespace HoI2Editor.Forms
             trade.Supplies = -val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Supplies);
+            trade.SetDirty(Treaty.ItemId.Supplies);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -9099,7 +9356,7 @@ namespace HoI2Editor.Forms
             trade.Supplies = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Supplies);
+            trade.SetDirty(Treaty.ItemId.Supplies);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -9149,7 +9406,7 @@ namespace HoI2Editor.Forms
             trade.Money = -val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Money);
+            trade.SetDirty(Treaty.ItemId.Money);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -9199,7 +9456,7 @@ namespace HoI2Editor.Forms
             trade.Money = val;
 
             // 編集済みフラグを設定する
-            trade.SetDirty(TreatyItemId.Money);
+            trade.SetDirty(Treaty.ItemId.Money);
             Scenarios.SetDirty();
 
             // 編集項目を更新する
@@ -9482,7 +9739,7 @@ namespace HoI2Editor.Forms
                 Game.WorldTextFileName);
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Name);
+            settings.SetDirty(CountrySettings.ItemId.Name);
             Scenarios.SetDirty();
 
             // 国家リストボックスの項目を更新する
@@ -9535,7 +9792,7 @@ namespace HoI2Editor.Forms
             settings.FlagExt = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.FlagExt);
+            settings.SetDirty(CountrySettings.ItemId.FlagExt);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -9565,7 +9822,7 @@ namespace HoI2Editor.Forms
                 CountrySettings settings = Scenarios.GetCountrySettings(country);
                 Brush brush = ((settings != null) &&
                                (Countries.Tags[e.Index - 1] == settings.RegularId) &&
-                               settings.IsDirty(CountrySettingsItemId.RegularId))
+                               settings.IsDirty(CountrySettings.ItemId.RegularId))
                     ? new SolidBrush(Color.Red)
                     : new SolidBrush(SystemColors.WindowText);
                 string s = regularIdComboBox.Items[e.Index].ToString();
@@ -9622,7 +9879,7 @@ namespace HoI2Editor.Forms
             settings.RegularId = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.RegularId);
+            settings.SetDirty(CountrySettings.ItemId.RegularId);
             Scenarios.SetDirty();
 
             // 兄弟国コンボボックスの項目色を変更するために描画更新する
@@ -9679,7 +9936,7 @@ namespace HoI2Editor.Forms
             settings.Belligerence = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Belligerence);
+            settings.SetDirty(CountrySettings.ItemId.Belligerence);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -9736,7 +9993,7 @@ namespace HoI2Editor.Forms
             settings.Dissent = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Dissent);
+            settings.SetDirty(CountrySettings.ItemId.Dissent);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -9793,7 +10050,7 @@ namespace HoI2Editor.Forms
             settings.ExtraTc = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ExtraTc);
+            settings.SetDirty(CountrySettings.ItemId.ExtraTc);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -9850,7 +10107,7 @@ namespace HoI2Editor.Forms
             settings.Nuke = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Nuke);
+            settings.SetDirty(CountrySettings.ItemId.Nuke);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -9909,8 +10166,8 @@ namespace HoI2Editor.Forms
                 settings.NukeDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.NukeMonth);
-                settings.SetDirty(CountrySettingsItemId.NukeDay);
+                settings.SetDirty(CountrySettings.ItemId.NukeMonth);
+                settings.SetDirty(CountrySettings.ItemId.NukeDay);
 
                 // 編集項目を更新する
                 nukeMonthTextBox.Text = IntHelper.ToString(settings.NukeDate.Month);
@@ -9925,7 +10182,7 @@ namespace HoI2Editor.Forms
             settings.NukeDate.Year = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.NukeYear);
+            settings.SetDirty(CountrySettings.ItemId.NukeYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -9984,8 +10241,8 @@ namespace HoI2Editor.Forms
                 settings.NukeDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.NukeYear);
-                settings.SetDirty(CountrySettingsItemId.NukeDay);
+                settings.SetDirty(CountrySettings.ItemId.NukeYear);
+                settings.SetDirty(CountrySettings.ItemId.NukeDay);
 
                 // 編集項目を更新する
                 nukeYearTextBox.Text = IntHelper.ToString(settings.NukeDate.Year);
@@ -10000,7 +10257,7 @@ namespace HoI2Editor.Forms
             settings.NukeDate.Month = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.NukeMonth);
+            settings.SetDirty(CountrySettings.ItemId.NukeMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10059,8 +10316,8 @@ namespace HoI2Editor.Forms
                 settings.NukeDate = new GameDate();
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.NukeYear);
-                settings.SetDirty(CountrySettingsItemId.NukeMonth);
+                settings.SetDirty(CountrySettings.ItemId.NukeYear);
+                settings.SetDirty(CountrySettings.ItemId.NukeMonth);
 
                 // 編集項目を更新する
                 nukeYearTextBox.Text = IntHelper.ToString(settings.NukeDate.Year);
@@ -10075,7 +10332,7 @@ namespace HoI2Editor.Forms
             settings.NukeDate.Day = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.NukeDay);
+            settings.SetDirty(CountrySettings.ItemId.NukeDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10136,7 +10393,7 @@ namespace HoI2Editor.Forms
             settings.GroundDefEff = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.GroundDefEff);
+            settings.SetDirty(CountrySettings.ItemId.GroundDefEff);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10195,7 +10452,7 @@ namespace HoI2Editor.Forms
             settings.PeacetimeIcModifier = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.PeacetimeIcModifier);
+            settings.SetDirty(CountrySettings.ItemId.PeacetimeIcModifier);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10254,7 +10511,7 @@ namespace HoI2Editor.Forms
             settings.WartimeIcModifier = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.WartimeIcModifier);
+            settings.SetDirty(CountrySettings.ItemId.WartimeIcModifier);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10313,7 +10570,7 @@ namespace HoI2Editor.Forms
             settings.IndustrialModifier = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.IndustrialModifier);
+            settings.SetDirty(CountrySettings.ItemId.IndustrialModifier);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10372,7 +10629,7 @@ namespace HoI2Editor.Forms
             settings.RelativeManpower = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.RelativeManpower);
+            settings.SetDirty(CountrySettings.ItemId.RelativeManpower);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10432,7 +10689,7 @@ namespace HoI2Editor.Forms
             settings.Energy = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Energy);
+            settings.SetDirty(CountrySettings.ItemId.Energy);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10488,7 +10745,7 @@ namespace HoI2Editor.Forms
             settings.Metal = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Metal);
+            settings.SetDirty(CountrySettings.ItemId.Metal);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10547,7 +10804,7 @@ namespace HoI2Editor.Forms
             settings.RareMaterials = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.RareMaterials);
+            settings.SetDirty(CountrySettings.ItemId.RareMaterials);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10603,7 +10860,7 @@ namespace HoI2Editor.Forms
             settings.Oil = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Oil);
+            settings.SetDirty(CountrySettings.ItemId.Oil);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10660,7 +10917,7 @@ namespace HoI2Editor.Forms
             settings.Supplies = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Supplies);
+            settings.SetDirty(CountrySettings.ItemId.Supplies);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10716,7 +10973,7 @@ namespace HoI2Editor.Forms
             settings.Money = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Money);
+            settings.SetDirty(CountrySettings.ItemId.Money);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10772,7 +11029,7 @@ namespace HoI2Editor.Forms
             settings.Transports = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Transports);
+            settings.SetDirty(CountrySettings.ItemId.Transports);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10828,7 +11085,7 @@ namespace HoI2Editor.Forms
             settings.Escorts = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Escorts);
+            settings.SetDirty(CountrySettings.ItemId.Escorts);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10885,7 +11142,7 @@ namespace HoI2Editor.Forms
             settings.Manpower = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Manpower);
+            settings.SetDirty(CountrySettings.ItemId.Manpower);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -10948,7 +11205,7 @@ namespace HoI2Editor.Forms
             settings.Offmap.Energy = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.OffmapEnergy);
+            settings.SetDirty(CountrySettings.ItemId.OffmapEnergy);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11011,7 +11268,7 @@ namespace HoI2Editor.Forms
             settings.Offmap.Metal = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.OffmapMetal);
+            settings.SetDirty(CountrySettings.ItemId.OffmapMetal);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11077,7 +11334,7 @@ namespace HoI2Editor.Forms
             settings.Offmap.RareMaterials = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.OffmapRareMaterials);
+            settings.SetDirty(CountrySettings.ItemId.OffmapRareMaterials);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11140,7 +11397,7 @@ namespace HoI2Editor.Forms
             settings.Offmap.Oil = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.OffmapOil);
+            settings.SetDirty(CountrySettings.ItemId.OffmapOil);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11203,7 +11460,7 @@ namespace HoI2Editor.Forms
             settings.Offmap.Supplies = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.OffmapSupplies);
+            settings.SetDirty(CountrySettings.ItemId.OffmapSupplies);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11266,7 +11523,7 @@ namespace HoI2Editor.Forms
             settings.Offmap.Money = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.OffmapMoney);
+            settings.SetDirty(CountrySettings.ItemId.OffmapMoney);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11329,7 +11586,7 @@ namespace HoI2Editor.Forms
             settings.Offmap.Transports = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.OffmapTransports);
+            settings.SetDirty(CountrySettings.ItemId.OffmapTransports);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11392,7 +11649,7 @@ namespace HoI2Editor.Forms
             settings.Offmap.Escorts = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.OffmapEscorts);
+            settings.SetDirty(CountrySettings.ItemId.OffmapEscorts);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11455,7 +11712,7 @@ namespace HoI2Editor.Forms
             settings.Offmap.Manpower = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.OffmapManpower);
+            settings.SetDirty(CountrySettings.ItemId.OffmapManpower);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11518,7 +11775,7 @@ namespace HoI2Editor.Forms
             settings.Offmap.Ic = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.OffmapIc);
+            settings.SetDirty(CountrySettings.ItemId.OffmapIc);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11571,7 +11828,7 @@ namespace HoI2Editor.Forms
             settings.AiFileName = aiFileNameTextBox.Text;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.AiFileName);
+            settings.SetDirty(CountrySettings.ItemId.AiFileName);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -11838,13 +12095,13 @@ namespace HoI2Editor.Forms
             sliderMonthTextBox.Text = flag ? IntHelper.ToString(settings.Policy.Date.Month) : "";
             sliderDayTextBox.Text = flag ? IntHelper.ToString(settings.Policy.Date.Day) : "";
 
-            sliderYearTextBox.ForeColor = (flag && settings.IsDirty(CountrySettingsItemId.SliderYear))
+            sliderYearTextBox.ForeColor = (flag && settings.IsDirty(CountrySettings.ItemId.SliderYear))
                 ? Color.Red
                 : SystemColors.WindowText;
-            sliderMonthTextBox.ForeColor = (flag && settings.IsDirty(CountrySettingsItemId.SliderMonth))
+            sliderMonthTextBox.ForeColor = (flag && settings.IsDirty(CountrySettings.ItemId.SliderMonth))
                 ? Color.Red
                 : SystemColors.WindowText;
-            sliderDayTextBox.ForeColor = (flag && settings.IsDirty(CountrySettingsItemId.SliderDay))
+            sliderDayTextBox.ForeColor = (flag && settings.IsDirty(CountrySettings.ItemId.SliderDay))
                 ? Color.Red
                 : SystemColors.WindowText;
 
@@ -12006,8 +12263,8 @@ namespace HoI2Editor.Forms
                 settings.Policy.Date = new GameDate();
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.SliderMonth);
-                settings.SetDirty(CountrySettingsItemId.SliderDay);
+                settings.SetDirty(CountrySettings.ItemId.SliderMonth);
+                settings.SetDirty(CountrySettings.ItemId.SliderDay);
 
                 // 編集項目を更新する
                 sliderMonthTextBox.Text = IntHelper.ToString(settings.Policy.Date.Month);
@@ -12022,7 +12279,7 @@ namespace HoI2Editor.Forms
             settings.Policy.Date.Year = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.SliderYear);
+            settings.SetDirty(CountrySettings.ItemId.SliderYear);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -12097,8 +12354,8 @@ namespace HoI2Editor.Forms
                 settings.Policy.Date = new GameDate();
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.SliderYear);
-                settings.SetDirty(CountrySettingsItemId.SliderDay);
+                settings.SetDirty(CountrySettings.ItemId.SliderYear);
+                settings.SetDirty(CountrySettings.ItemId.SliderDay);
 
                 // 編集項目を更新する
                 sliderYearTextBox.Text = IntHelper.ToString(settings.Policy.Date.Year);
@@ -12113,7 +12370,7 @@ namespace HoI2Editor.Forms
             settings.Policy.Date.Month = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.SliderMonth);
+            settings.SetDirty(CountrySettings.ItemId.SliderMonth);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -12188,8 +12445,8 @@ namespace HoI2Editor.Forms
                 settings.Policy.Date = new GameDate();
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.SliderYear);
-                settings.SetDirty(CountrySettingsItemId.SliderMonth);
+                settings.SetDirty(CountrySettings.ItemId.SliderYear);
+                settings.SetDirty(CountrySettings.ItemId.SliderMonth);
 
                 // 編集項目を更新する
                 sliderYearTextBox.Text = IntHelper.ToString(settings.Policy.Date.Year);
@@ -12204,7 +12461,7 @@ namespace HoI2Editor.Forms
             settings.Policy.Date.Day = val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.SliderDay);
+            settings.SetDirty(CountrySettings.ItemId.SliderDay);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -12266,7 +12523,7 @@ namespace HoI2Editor.Forms
             settings.Policy.Democratic = 11 - val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Democratic);
+            settings.SetDirty(CountrySettings.ItemId.Democratic);
             Scenarios.SetDirty();
         }
 
@@ -12326,7 +12583,7 @@ namespace HoI2Editor.Forms
             settings.Policy.PoliticalLeft = 11 - val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.PoliticalLeft);
+            settings.SetDirty(CountrySettings.ItemId.PoliticalLeft);
             Scenarios.SetDirty();
         }
 
@@ -12385,7 +12642,7 @@ namespace HoI2Editor.Forms
             settings.Policy.Freedom = 11 - val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Freedom);
+            settings.SetDirty(CountrySettings.ItemId.Freedom);
             Scenarios.SetDirty();
         }
 
@@ -12444,7 +12701,7 @@ namespace HoI2Editor.Forms
             settings.Policy.FreeMarket = 11 - val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.FreeMarket);
+            settings.SetDirty(CountrySettings.ItemId.FreeMarket);
             Scenarios.SetDirty();
         }
 
@@ -12504,7 +12761,7 @@ namespace HoI2Editor.Forms
             settings.Policy.ProfessionalArmy = 11 - val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ProfessionalArmy);
+            settings.SetDirty(CountrySettings.ItemId.ProfessionalArmy);
             Scenarios.SetDirty();
         }
 
@@ -12564,7 +12821,7 @@ namespace HoI2Editor.Forms
             settings.Policy.DefenseLobby = 11 - val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.DefenseLobby);
+            settings.SetDirty(CountrySettings.ItemId.DefenseLobby);
             Scenarios.SetDirty();
         }
 
@@ -12624,7 +12881,7 @@ namespace HoI2Editor.Forms
             settings.Policy.Interventionism = 11 - val;
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.Interventionism);
+            settings.SetDirty(CountrySettings.ItemId.Interventionism);
             Scenarios.SetDirty();
         }
 
@@ -12832,7 +13089,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             Brush brush = ((settings != null) && (settings.HeadOfState != null) &&
                            (_headOfStateList[e.Index].Id == settings.HeadOfState.Id) &&
-                           settings.IsDirty(CountrySettingsItemId.HeadOfStateId))
+                           settings.IsDirty(CountrySettings.ItemId.HeadOfStateId))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = headOfStateComboBox.Items[e.Index].ToString();
@@ -12864,7 +13121,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             Brush brush = ((settings != null) && (settings.HeadOfGovernment != null) &&
                            (_headOfGovernmentList[e.Index].Id == settings.HeadOfGovernment.Id) &&
-                           settings.IsDirty(CountrySettingsItemId.HeadOfGovernmentId))
+                           settings.IsDirty(CountrySettings.ItemId.HeadOfGovernmentId))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = headOfGovernmentComboBox.Items[e.Index].ToString();
@@ -12896,7 +13153,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             Brush brush = ((settings != null) && (settings.ForeignMinister != null) &&
                            (_foreignMinisterList[e.Index].Id == settings.ForeignMinister.Id) &&
-                           settings.IsDirty(CountrySettingsItemId.ForeignMinisterId))
+                           settings.IsDirty(CountrySettings.ItemId.ForeignMinisterId))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = foreignMinisterComboBox.Items[e.Index].ToString();
@@ -12928,7 +13185,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             Brush brush = ((settings != null) && (settings.ArmamentMinister != null) &&
                            (_armamentMinisterList[e.Index].Id == settings.ArmamentMinister.Id) &&
-                           settings.IsDirty(CountrySettingsItemId.ArmamentMinisterId))
+                           settings.IsDirty(CountrySettings.ItemId.ArmamentMinisterId))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = armamentMinisterComboBox.Items[e.Index].ToString();
@@ -12960,7 +13217,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             Brush brush = ((settings != null) && (settings.MinisterOfSecurity != null) &&
                            (_ministerOfSecurityList[e.Index].Id == settings.MinisterOfSecurity.Id) &&
-                           settings.IsDirty(CountrySettingsItemId.MinisterOfSecurityId))
+                           settings.IsDirty(CountrySettings.ItemId.MinisterOfSecurityId))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = ministerOfSecurityComboBox.Items[e.Index].ToString();
@@ -12992,7 +13249,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             Brush brush = ((settings != null) && (settings.MinisterOfIntelligence != null) &&
                            (_ministerOfIntelligenceList[e.Index].Id == settings.MinisterOfIntelligence.Id) &&
-                           settings.IsDirty(CountrySettingsItemId.MinisterOfIntelligenceId))
+                           settings.IsDirty(CountrySettings.ItemId.MinisterOfIntelligenceId))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = ministerOfIntelligenceComboBox.Items[e.Index].ToString();
@@ -13024,7 +13281,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             Brush brush = ((settings != null) && (settings.ChiefOfStaff != null) &&
                            (_chiefOfStaffList[e.Index].Id == settings.ChiefOfStaff.Id) &&
-                           settings.IsDirty(CountrySettingsItemId.ChiefOfStaffId))
+                           settings.IsDirty(CountrySettings.ItemId.ChiefOfStaffId))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = chiefOfStaffComboBox.Items[e.Index].ToString();
@@ -13056,7 +13313,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             Brush brush = ((settings != null) && (settings.ChiefOfArmy != null) &&
                            (_chiefOfArmyList[e.Index].Id == settings.ChiefOfArmy.Id) &&
-                           settings.IsDirty(CountrySettingsItemId.ChiefOfArmyId))
+                           settings.IsDirty(CountrySettings.ItemId.ChiefOfArmyId))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = chiefOfArmyComboBox.Items[e.Index].ToString();
@@ -13088,7 +13345,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             Brush brush = ((settings != null) && (settings.ChiefOfNavy != null) &&
                            (_chiefOfNavyList[e.Index].Id == settings.ChiefOfNavy.Id) &&
-                           settings.IsDirty(CountrySettingsItemId.ChiefOfNavyId))
+                           settings.IsDirty(CountrySettings.ItemId.ChiefOfNavyId))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = chiefOfNavyComboBox.Items[e.Index].ToString();
@@ -13120,7 +13377,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             Brush brush = ((settings != null) && (settings.ChiefOfAir != null) &&
                            (_chiefOfAirList[e.Index].Id == settings.ChiefOfAir.Id) &&
-                           settings.IsDirty(CountrySettingsItemId.ChiefOfAirId))
+                           settings.IsDirty(CountrySettings.ItemId.ChiefOfAirId))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = chiefOfAirComboBox.Items[e.Index].ToString();
@@ -13192,7 +13449,7 @@ namespace HoI2Editor.Forms
                 settings.HeadOfState = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.HeadOfStateType);
+                settings.SetDirty(CountrySettings.ItemId.HeadOfStateType);
 
                 // 編集項目を更新する
                 headOfStateTypeTextBox.Text = IntHelper.ToString(type);
@@ -13202,7 +13459,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.HeadOfStateId);
+            settings.SetDirty(CountrySettings.ItemId.HeadOfStateId);
             Scenarios.SetDirty();
 
             // 項目色を変更するために描画更新する
@@ -13278,7 +13535,7 @@ namespace HoI2Editor.Forms
                 settings.HeadOfGovernment = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+                settings.SetDirty(CountrySettings.ItemId.HeadOfGovernmentType);
 
                 // 編集項目を更新する
                 headOfGovernmentTypeTextBox.Text = IntHelper.ToString(type);
@@ -13288,7 +13545,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentId);
+            settings.SetDirty(CountrySettings.ItemId.HeadOfGovernmentId);
             Scenarios.SetDirty();
 
             // 項目色を変更するために描画更新する
@@ -13364,7 +13621,7 @@ namespace HoI2Editor.Forms
                 settings.ForeignMinister = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ForeignMinisterType);
+                settings.SetDirty(CountrySettings.ItemId.ForeignMinisterType);
 
                 // 編集項目を更新する
                 foreignMinisterTypeTextBox.Text = IntHelper.ToString(type);
@@ -13374,7 +13631,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ForeignMinisterId);
+            settings.SetDirty(CountrySettings.ItemId.ForeignMinisterId);
             Scenarios.SetDirty();
 
             // 項目色を変更するために描画更新する
@@ -13450,7 +13707,7 @@ namespace HoI2Editor.Forms
                 settings.ArmamentMinister = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ArmamentMinisterType);
+                settings.SetDirty(CountrySettings.ItemId.ArmamentMinisterType);
 
                 // 編集項目を更新する
                 armamentMinisterTypeTextBox.Text = IntHelper.ToString(type);
@@ -13460,7 +13717,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ArmamentMinisterId);
+            settings.SetDirty(CountrySettings.ItemId.ArmamentMinisterId);
             Scenarios.SetDirty();
 
             // 項目色を変更するために描画更新する
@@ -13536,7 +13793,7 @@ namespace HoI2Editor.Forms
                 settings.MinisterOfSecurity = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.MinisterOfSecurityType);
+                settings.SetDirty(CountrySettings.ItemId.MinisterOfSecurityType);
 
                 // 編集項目を更新する
                 ministerOfSecurityTypeTextBox.Text = IntHelper.ToString(type);
@@ -13546,7 +13803,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.MinisterOfSecurityId);
+            settings.SetDirty(CountrySettings.ItemId.MinisterOfSecurityId);
             Scenarios.SetDirty();
 
             // 項目色を変更するために描画更新する
@@ -13622,7 +13879,7 @@ namespace HoI2Editor.Forms
                 settings.MinisterOfIntelligence = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.MinisterOfIntelligenceType);
+                settings.SetDirty(CountrySettings.ItemId.MinisterOfIntelligenceType);
 
                 // 編集項目を更新する
                 ministerOfIntelligenceTypeTextBox.Text = IntHelper.ToString(type);
@@ -13632,7 +13889,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.MinisterOfIntelligenceId);
+            settings.SetDirty(CountrySettings.ItemId.MinisterOfIntelligenceId);
             Scenarios.SetDirty();
 
             // 項目色を変更するために描画更新する
@@ -13708,7 +13965,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfStaff = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfStaffType);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfStaffType);
 
                 // 編集項目を更新する
                 chiefOfStaffTypeTextBox.Text = IntHelper.ToString(type);
@@ -13718,7 +13975,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfStaffId);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfStaffId);
             Scenarios.SetDirty();
 
             // 項目色を変更するために描画更新する
@@ -13792,7 +14049,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfArmy = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfArmyType);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfArmyType);
 
                 // 編集項目を更新する
                 chiefOfArmyTypeTextBox.Text = IntHelper.ToString(type);
@@ -13802,7 +14059,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfArmyId);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfArmyId);
             Scenarios.SetDirty();
 
             // 項目色を変更するために描画更新する
@@ -13876,7 +14133,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfNavy = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfNavyType);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfNavyType);
 
                 // 編集項目を更新する
                 chiefOfNavyTypeTextBox.Text = IntHelper.ToString(type);
@@ -13886,7 +14143,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfNavyId);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfNavyId);
             Scenarios.SetDirty();
 
             // 項目色を変更するために描画更新する
@@ -13960,7 +14217,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfAir = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfAirType);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfAirType);
 
                 // 編集項目を更新する
                 chiefOfAirTypeTextBox.Text = IntHelper.ToString(type);
@@ -13970,7 +14227,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfAirId);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfAirId);
             Scenarios.SetDirty();
 
             // 項目色を変更するために描画更新する
@@ -14051,7 +14308,7 @@ namespace HoI2Editor.Forms
                 settings.HeadOfState = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.HeadOfStateId);
+                settings.SetDirty(CountrySettings.ItemId.HeadOfStateId);
 
                 // 編集項目を更新する
                 headOfStateIdTextBox.Text = IntHelper.ToString(settings.HeadOfState.Id);
@@ -14061,7 +14318,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.HeadOfStateType);
+            settings.SetDirty(CountrySettings.ItemId.HeadOfStateType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -14145,7 +14402,7 @@ namespace HoI2Editor.Forms
                 settings.HeadOfState = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.HeadOfStateType);
+                settings.SetDirty(CountrySettings.ItemId.HeadOfStateType);
 
                 // 編集項目を更新する
                 headOfStateTypeTextBox.Text = IntHelper.ToString(type);
@@ -14155,7 +14412,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.HeadOfStateId);
+            settings.SetDirty(CountrySettings.ItemId.HeadOfStateId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -14234,7 +14491,7 @@ namespace HoI2Editor.Forms
                 settings.HeadOfGovernment = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentId);
+                settings.SetDirty(CountrySettings.ItemId.HeadOfGovernmentId);
 
                 // 編集項目を更新する
                 headOfGovernmentIdTextBox.Text = IntHelper.ToString(settings.HeadOfGovernment.Id);
@@ -14244,7 +14501,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+            settings.SetDirty(CountrySettings.ItemId.HeadOfGovernmentType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -14327,7 +14584,7 @@ namespace HoI2Editor.Forms
                 settings.HeadOfGovernment = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentType);
+                settings.SetDirty(CountrySettings.ItemId.HeadOfGovernmentType);
 
                 // 編集項目を更新する
                 headOfGovernmentTypeTextBox.Text = IntHelper.ToString(type);
@@ -14337,7 +14594,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.HeadOfGovernmentId);
+            settings.SetDirty(CountrySettings.ItemId.HeadOfGovernmentId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -14416,7 +14673,7 @@ namespace HoI2Editor.Forms
                 settings.ForeignMinister = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ForeignMinisterId);
+                settings.SetDirty(CountrySettings.ItemId.ForeignMinisterId);
 
                 // 編集項目を更新する
                 foreignMinisterIdTextBox.Text = IntHelper.ToString(settings.ForeignMinister.Id);
@@ -14426,7 +14683,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ForeignMinisterType);
+            settings.SetDirty(CountrySettings.ItemId.ForeignMinisterType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -14509,7 +14766,7 @@ namespace HoI2Editor.Forms
                 settings.ForeignMinister = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ForeignMinisterType);
+                settings.SetDirty(CountrySettings.ItemId.ForeignMinisterType);
 
                 // 編集項目を更新する
                 foreignMinisterTypeTextBox.Text = IntHelper.ToString(type);
@@ -14519,7 +14776,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ForeignMinisterId);
+            settings.SetDirty(CountrySettings.ItemId.ForeignMinisterId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -14598,7 +14855,7 @@ namespace HoI2Editor.Forms
                 settings.ArmamentMinister = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ArmamentMinisterId);
+                settings.SetDirty(CountrySettings.ItemId.ArmamentMinisterId);
 
                 // 編集項目を更新する
                 armamentMinisterIdTextBox.Text = IntHelper.ToString(settings.ArmamentMinister.Id);
@@ -14608,7 +14865,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ArmamentMinisterType);
+            settings.SetDirty(CountrySettings.ItemId.ArmamentMinisterType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -14691,7 +14948,7 @@ namespace HoI2Editor.Forms
                 settings.ArmamentMinister = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ArmamentMinisterType);
+                settings.SetDirty(CountrySettings.ItemId.ArmamentMinisterType);
 
                 // 編集項目を更新する
                 armamentMinisterTypeTextBox.Text = IntHelper.ToString(type);
@@ -14701,7 +14958,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ArmamentMinisterId);
+            settings.SetDirty(CountrySettings.ItemId.ArmamentMinisterId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -14780,7 +15037,7 @@ namespace HoI2Editor.Forms
                 settings.MinisterOfSecurity = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.MinisterOfSecurityId);
+                settings.SetDirty(CountrySettings.ItemId.MinisterOfSecurityId);
 
                 // 編集項目を更新する
                 ministerOfSecurityIdTextBox.Text = IntHelper.ToString(settings.MinisterOfSecurity.Id);
@@ -14790,7 +15047,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.MinisterOfSecurityType);
+            settings.SetDirty(CountrySettings.ItemId.MinisterOfSecurityType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -14873,7 +15130,7 @@ namespace HoI2Editor.Forms
                 settings.MinisterOfSecurity = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.MinisterOfSecurityType);
+                settings.SetDirty(CountrySettings.ItemId.MinisterOfSecurityType);
 
                 // 編集項目を更新する
                 ministerOfSecurityTypeTextBox.Text = IntHelper.ToString(type);
@@ -14883,7 +15140,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.MinisterOfSecurityId);
+            settings.SetDirty(CountrySettings.ItemId.MinisterOfSecurityId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -14964,7 +15221,7 @@ namespace HoI2Editor.Forms
                 settings.MinisterOfIntelligence = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.MinisterOfIntelligenceId);
+                settings.SetDirty(CountrySettings.ItemId.MinisterOfIntelligenceId);
 
                 // 編集項目を更新する
                 ministerOfIntelligenceIdTextBox.Text = IntHelper.ToString(settings.MinisterOfIntelligence.Id);
@@ -14974,7 +15231,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.MinisterOfIntelligenceType);
+            settings.SetDirty(CountrySettings.ItemId.MinisterOfIntelligenceType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -15058,7 +15315,7 @@ namespace HoI2Editor.Forms
                 settings.MinisterOfIntelligence = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.MinisterOfIntelligenceType);
+                settings.SetDirty(CountrySettings.ItemId.MinisterOfIntelligenceType);
 
                 // 編集項目を更新する
                 ministerOfIntelligenceTypeTextBox.Text = IntHelper.ToString(type);
@@ -15068,7 +15325,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.MinisterOfIntelligenceId);
+            settings.SetDirty(CountrySettings.ItemId.MinisterOfIntelligenceId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -15147,7 +15404,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfStaff = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfStaffId);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfStaffId);
 
                 // 編集項目を更新する
                 chiefOfStaffIdTextBox.Text = IntHelper.ToString(settings.ChiefOfStaff.Id);
@@ -15157,7 +15414,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfStaffType);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfStaffType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -15240,7 +15497,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfStaff = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfStaffType);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfStaffType);
 
                 // 編集項目を更新する
                 chiefOfStaffTypeTextBox.Text = IntHelper.ToString(type);
@@ -15250,7 +15507,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfStaffId);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfStaffId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -15329,7 +15586,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfArmy = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfArmyId);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfArmyId);
 
                 // 編集項目を更新する
                 chiefOfArmyIdTextBox.Text = IntHelper.ToString(settings.ChiefOfArmy.Id);
@@ -15339,7 +15596,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfArmyType);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfArmyType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -15422,7 +15679,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfArmy = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfArmyType);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfArmyType);
 
                 // 編集項目を更新する
                 chiefOfArmyTypeTextBox.Text = IntHelper.ToString(type);
@@ -15432,7 +15689,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfArmyId);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfArmyId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -15511,7 +15768,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfNavy = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfNavyId);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfNavyId);
 
                 // 編集項目を更新する
                 chiefOfNavyIdTextBox.Text = IntHelper.ToString(settings.ChiefOfNavy.Id);
@@ -15521,7 +15778,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfNavyType);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfNavyType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -15604,7 +15861,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfNavy = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfNavyType);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfNavyType);
 
                 // 編集項目を更新する
                 chiefOfNavyTypeTextBox.Text = IntHelper.ToString(type);
@@ -15614,7 +15871,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfNavyId);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfNavyId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -15693,7 +15950,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfAir = Scenarios.GetNewTypeId(val, 1);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfAirId);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfAirId);
 
                 // 編集項目を更新する
                 chiefOfAirIdTextBox.Text = IntHelper.ToString(settings.ChiefOfAir.Id);
@@ -15703,7 +15960,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfAirType);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfAirType);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -15786,7 +16043,7 @@ namespace HoI2Editor.Forms
                 settings.ChiefOfAir = Scenarios.GetNewTypeId(type, val);
 
                 // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettingsItemId.ChiefOfAirType);
+                settings.SetDirty(CountrySettings.ItemId.ChiefOfAirType);
 
                 // 編集項目を更新する
                 chiefOfAirTypeTextBox.Text = IntHelper.ToString(type);
@@ -15796,7 +16053,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettingsItemId.ChiefOfAirId);
+            settings.SetDirty(CountrySettings.ItemId.ChiefOfAirId);
             Scenarios.SetDirty();
 
             // 文字色を変更する
@@ -16439,18 +16696,441 @@ namespace HoI2Editor.Forms
 
         #region プロヴィンスタブ
 
+        #region プロヴィンスタブ - 共通
+
         /// <summary>
-        ///     プロヴィンスタブの編集項目を初期化する
+        ///     プロヴィンスタブを初期化する
         /// </summary>
         private void InitProvinceTab()
         {
-            // マップフィルターラジオボタン
+            InitMapFilterGroupBox();
+            InitProvinceCountryGroupBox();
+            InitProvinceInfoGroupBox();
+            InitProvinceResourceGroupBox();
+            InitProvinceBuildingGroupBox();
+        }
+
+        /// <summary>
+        ///     プロヴィンスタブの表示を更新する
+        /// </summary>
+        private void UpdateProvinceTab()
+        {
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Province])
+            {
+                return;
+            }
+
+            // プロヴィンスリストを更新する
+            UpdateProvinceList();
+
+            // 国家フィルターを更新する
+            UpdateProvinceCountryFilter();
+
+            // プロヴィンスリストを有効化する
+            EnableProvinceList();
+
+            // 国家フィルターコンボボックスを有効化する
+            provinceCountryFilterLabel.Enabled = true;
+            provinceCountryFilterComboBox.Enabled = true;
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Province] = true;
+        }
+
+        /// <summary>
+        ///     プロヴィンス名を取得する
+        /// </summary>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        /// <returns>プロヴィンス名</returns>
+        private static string GetProvinceName(Province province, ProvinceSettings settings)
+        {
+            if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
+            {
+                return Config.GetText(settings.Name);
+            }
+            return province.GetName();
+        }
+
+        /// <summary>
+        ///     プロヴィンス名を設定する
+        /// </summary>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        /// <param name="s">プロヴィンス名</param>
+        private static void SetProvinceName(Province province, ProvinceSettings settings, string s)
+        {
+            if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
+            {
+                Config.SetText(settings.Name, s, Game.ScenarioTextFileName);
+            }
+            province.SetName(s);
+        }
+
+        /// <summary>
+        ///     プロヴィンスタブのフォーム読み込み時の処理
+        /// </summary>
+        private void OnProvinceTabPageFormLoad()
+        {
+            // プロヴィンスタブを初期化する
+            InitProvinceTab();
+        }
+
+        /// <summary>
+        ///     プロヴィンスタブのファイル読み込み時の処理
+        /// </summary>
+        private void OnProvinceTabPageFileLoad()
+        {
+            // プロヴィンスタブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Province)
+            {
+                return;
+            }
+
+            // プロヴィンスデータの読み込み完了まで待機する
+            WaitLoadingProvinces();
+
+            // 初回遷移時には表示を更新する
+            UpdateProvinceTab();
+        }
+
+        /// <summary>
+        ///     プロヴィンスタブ選択時の処理
+        /// </summary>
+        private void OnProvinceTabPageSelected()
+        {
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // プロヴィンスデータの読み込み完了まで待機する
+            WaitLoadingProvinces();
+
+            // 初回遷移時には表示を更新する
+            UpdateProvinceTab();
+        }
+
+        #endregion
+
+        #region プロヴィンスタブ - プロヴィンスリスト
+
+        /// <summary>
+        ///     プロヴィンスリストを有効化する
+        /// </summary>
+        private void EnableProvinceList()
+        {
+            provinceListView.Enabled = true;
+        }
+
+        /// <summary>
+        ///     プロヴィンスリストを更新する
+        /// </summary>
+        private void UpdateProvinceList()
+        {
+            // プロヴィンスリストビューを更新する
+            provinceListView.BeginUpdate();
+            provinceListView.Items.Clear();
+            foreach (Province province in Provinces.Items)
+            {
+                switch (province.Terrain)
+                {
+                    case TerrainId.Plains:
+                    case TerrainId.Forest:
+                    case TerrainId.Mountain:
+                    case TerrainId.Desert:
+                    case TerrainId.Marsh:
+                    case TerrainId.Hills:
+                    case TerrainId.Jungle:
+                    case TerrainId.Urban:
+                        provinceListView.Items.Add(CreateProvinceListItem(province));
+                        break;
+                }
+            }
+            provinceListView.EndUpdate();
+        }
+
+        /// <summary>
+        ///     プロヴィンスリストビューの項目を作成する
+        /// </summary>
+        /// <param name="province">プロヴィンスデータ</param>
+        /// <returns>プロヴィンスリストビューの項目</returns>
+        private static ListViewItem CreateProvinceListItem(Province province)
+        {
+            ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
+
+            ListViewItem item = new ListViewItem { Text = IntHelper.ToString(province.Id), Tag = province };
+            item.SubItems.Add(GetProvinceName(province, settings));
+            item.SubItems.Add("");
+            item.SubItems.Add("");
+            item.SubItems.Add("");
+            item.SubItems.Add("");
+            item.SubItems.Add("");
+
+            return item;
+        }
+
+        /// <summary>
+        ///     プロヴィンスリストビューの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ編集項目を無効化する
+            Province province = GetSelectedProvince();
+            if (province == null)
+            {
+                // 編集項目を無効化する
+                DisableProvinceCountryItems();
+                DisableProvinceInfoItems();
+                DisableProvinceResourceItems();
+                DisableProvinceBuildingItems();
+
+                // 編集項目の表示をクリアする
+                ClearProvinceCountryItems();
+                ClearProvinceInfoItems();
+                ClearProvinceResourceItems();
+                ClearProvinceBuildingItems();
+                return;
+            }
+
+            ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
+            Country country = GetProvinceCountryFilter();
+            CountrySettings countrySettings = Scenarios.GetCountrySettings(country);
+
+            // 編集項目の表示を更新する
+            UpdateProvinceCountryItems(province, countrySettings);
+            UpdateProvinceInfoItems(province, settings);
+            UpdateProvinceResourceItems(settings);
+            UpdateProvinceBuildingItems(settings);
+
+            // 編集項目を有効化する
+            EnableProvinceCountryItems();
+            EnableProvinceInfoItems();
+            EnableProvinceResourceItems();
+            EnableProvinceBuildingItems();
+        }
+
+        /// <summary>
+        ///     選択中のプロヴィンスを取得する
+        /// </summary>
+        /// <returns></returns>
+        private Province GetSelectedProvince()
+        {
+            if (provinceListView.SelectedIndices.Count == 0)
+            {
+                return null;
+            }
+            return provinceListView.SelectedItems[0].Tag as Province;
+        }
+
+        #endregion
+
+        #region プロヴィンスタブ - マップフィルター
+
+        /// <summary>
+        ///     マップフィルターグループボックスを初期化する
+        /// </summary>
+        private void InitMapFilterGroupBox()
+        {
             mapFilterNoneRadioButton.Tag = MapFilterMode.None;
             mapFilterCoreRadioButton.Tag = MapFilterMode.Core;
             mapFilterOwnedRadioButton.Tag = MapFilterMode.Owned;
             mapFilterControlledRadioButton.Tag = MapFilterMode.Controlled;
             mapFilterClaimedRadioButton.Tag = MapFilterMode.Claimed;
+        }
 
+        #endregion
+
+        #region プロヴィンスタブ - 国家フィルター
+
+        /// <summary>
+        ///     国家フィルターコンボボックスを更新する
+        /// </summary>
+        private void UpdateProvinceCountryFilter()
+        {
+            provinceCountryFilterComboBox.BeginUpdate();
+            provinceCountryFilterComboBox.Items.Clear();
+            provinceCountryFilterComboBox.Items.Add("");
+            foreach (Country country in Countries.Tags)
+            {
+                provinceCountryFilterComboBox.Items.Add(GetCountryTagName(country));
+            }
+            provinceCountryFilterComboBox.EndUpdate();
+        }
+
+        /// <summary>
+        ///     国家フィルターを取得する
+        /// </summary>
+        /// <returns>国家フィルター</returns>
+        private Country GetProvinceCountryFilter()
+        {
+            if (provinceCountryFilterComboBox.SelectedIndex <= 0)
+            {
+                return Country.None;
+            }
+            return Countries.Tags[provinceCountryFilterComboBox.SelectedIndex - 1];
+        }
+
+        #endregion
+
+        #region プロヴィンスタブ - 国家情報
+
+        /// <summary>
+        ///     プロヴィンス国家グループボックスを初期化する
+        /// </summary>
+        private void InitProvinceCountryGroupBox()
+        {
+            capitalCheckBox.Tag = ItemId.CountryCapital;
+            coreProvinceCheckBox.Tag = ItemId.CountryCoreProvinces;
+            ownedProvinceCheckBox.Tag = ItemId.CountryOwnedProvinces;
+            controlledProvinceCheckBox.Tag = ItemId.CountryControlledProvinces;
+            claimedProvinceCheckBox.Tag = ItemId.CountryClaimedProvinces;
+        }
+
+        /// <summary>
+        ///     プロヴィンス国家グループボックスの編集項目を有効化する
+        /// </summary>
+        private void EnableProvinceCountryItems()
+        {
+            provinceCountryGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     プロヴィンス国家グループボックスの編集項目を無効化する
+        /// </summary>
+        private void DisableProvinceCountryItems()
+        {
+            provinceCountryGroupBox.Enabled = false;
+        }
+
+        /// <summary>
+        ///     プロヴィンス国家グループボックスの編集項目の表示を更新する
+        /// </summary>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        private void UpdateProvinceCountryItems(Province province, CountrySettings settings)
+        {
+            UpdateItemValue(capitalCheckBox, province, settings);
+            UpdateItemValue(coreProvinceCheckBox, province, settings);
+            UpdateItemValue(ownedProvinceCheckBox, province, settings);
+            UpdateItemValue(controlledProvinceCheckBox, province, settings);
+            UpdateItemValue(claimedProvinceCheckBox, province, settings);
+        }
+
+        /// <summary>
+        ///     プロヴィンス国家グループボックスの編集項目の表示をクリアする
+        /// </summary>
+        private void ClearProvinceCountryItems()
+        {
+            capitalCheckBox.Checked = false;
+            coreProvinceCheckBox.Checked = false;
+            ownedProvinceCheckBox.Checked = false;
+            controlledProvinceCheckBox.Checked = false;
+            claimedProvinceCheckBox.Checked = false;
+        }
+
+        #endregion
+
+        #region プロヴィンスタブ - プロヴィンス情報
+
+        /// <summary>
+        ///     プロヴィンス情報グループボックスを初期化する
+        /// </summary>
+        private void InitProvinceInfoGroupBox()
+        {
+            provinceIdTextBox.Tag = ItemId.ProvinceId;
+            provinceNameTextBox.Tag = ItemId.ProvinceName;
+            vpTextBox.Tag = ItemId.ProvinceVp;
+            revoltRiskTextBox.Tag = ItemId.ProvinceRevoltRisk;
+        }
+
+        /// <summary>
+        ///     プロヴィンス情報グループボックスの編集項目を有効化する
+        /// </summary>
+        private void EnableProvinceInfoItems()
+        {
+            provinceInfoGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     プロヴィンス情報グループボックスの編集項目を無効化する
+        /// </summary>
+        private void DisableProvinceInfoItems()
+        {
+            provinceInfoGroupBox.Enabled = false;
+        }
+
+        /// <summary>
+        ///     プロヴィンス情報グループボックスの編集項目の表示を更新する
+        /// </summary>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private void UpdateProvinceInfoItems(Province province, ProvinceSettings settings)
+        {
+            UpdateItemValue(provinceIdTextBox, province);
+            UpdateItemValue(provinceNameTextBox, province, settings);
+            UpdateItemValue(vpTextBox, settings);
+            UpdateItemValue(revoltRiskTextBox, settings);
+        }
+
+        /// <summary>
+        ///     プロヴィンス情報グループボックスの編集項目の表示をクリアする
+        /// </summary>
+        private void ClearProvinceInfoItems()
+        {
+            provinceIdTextBox.Text = "";
+            provinceNameTextBox.Text = "";
+            vpTextBox.Text = "";
+            revoltRiskTextBox.Text = "";
+        }
+
+        /// <summary>
+        ///     プロヴィンスIDテキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceIdTextBoxValidated(object sender, EventArgs e)
+        {
+            Province province = GetSelectedProvince();
+
+            Control control = sender as Control;
+            if (control == null)
+            {
+                return;
+            }
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(control.Text, out val))
+            {
+                if (province != null)
+                {
+                    control.Text = IntHelper.ToString(province.Id);
+                }
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == province.Id)
+            {
+            }
+
+            // TODO: プロヴィンスリストビューの選択項目を変更する
+        }
+
+        #endregion
+
+        #region プロヴィンスタブ - 資源情報
+
+        /// <summary>
+        ///     プロヴィンス資源グループボックスを初期化する
+        /// </summary>
+        private void InitProvinceResourceGroupBox()
+        {
             // 資源名ラベル
             provinceManpowerLabel.Text = Config.GetText(TextId.ResourceManpower);
             provinceEnergyLabel.Text = Config.GetText(TextId.ResourceEnergy);
@@ -16458,7 +17138,246 @@ namespace HoI2Editor.Forms
             provinceRareMaterialsLabel.Text = Config.GetText(TextId.ResourceRareMaterials);
             provinceOilLabel.Text = Config.GetText(TextId.ResourceOil);
             provinceSuppliesLabel.Text = Config.GetText(TextId.ResourceSupplies);
+
+            // 編集項目
+            manpowerCurrentTextBox.Tag = ItemId.ProvinceManpowerCurrent;
+            manpowerMaxTextBox.Tag = ItemId.ProvinceManpowerMax;
+            energyPoolTextBox.Tag = ItemId.ProvinceEnergyPool;
+            energyCurrentTextBox.Tag = ItemId.ProvinceEnergyCurrent;
+            energyMaxTextBox.Tag = ItemId.ProvinceEnergyMax;
+            metalPoolTextBox.Tag = ItemId.ProvinceMetalPool;
+            metalCurrentTextBox.Tag = ItemId.ProvinceMetalCurrent;
+            metalMaxTextBox.Tag = ItemId.ProvinceMetalMax;
+            rareMaterialsPoolTextBox.Tag = ItemId.ProvinceRareMaterialsPool;
+            rareMaterialsCurrentTextBox.Tag = ItemId.ProvinceRareMaterialsCurrent;
+            rareMaterialsMaxTextBox.Tag = ItemId.ProvinceRareMaterialsMax;
+            oilPoolTextBox.Tag = ItemId.ProvinceOilPool;
+            oilCurrentTextBox.Tag = ItemId.ProvinceOilCurrent;
+            oilMaxTextBox.Tag = ItemId.ProvinceOilMax;
+            suppliesPoolTextBox.Tag = ItemId.ProvinceSupplyPool;
         }
+
+        /// <summary>
+        ///     プロヴィンス資源グループボックスの編集項目を有効化する
+        /// </summary>
+        private void EnableProvinceResourceItems()
+        {
+            provinceResourceGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     プロヴィンス資源グループボックスの編集項目を無効化する
+        /// </summary>
+        private void DisableProvinceResourceItems()
+        {
+            provinceResourceGroupBox.Enabled = false;
+        }
+
+        /// <summary>
+        ///     プロヴィンス資源グループボックスの編集項目の表示を更新する
+        /// </summary>
+        /// <param name="settings">プロヴィンス設定</param>
+        private void UpdateProvinceResourceItems(ProvinceSettings settings)
+        {
+            UpdateItemValue(manpowerCurrentTextBox, settings);
+            UpdateItemValue(manpowerMaxTextBox, settings);
+            UpdateItemValue(energyPoolTextBox, settings);
+            UpdateItemValue(energyCurrentTextBox, settings);
+            UpdateItemValue(energyMaxTextBox, settings);
+            UpdateItemValue(metalPoolTextBox, settings);
+            UpdateItemValue(metalCurrentTextBox, settings);
+            UpdateItemValue(metalMaxTextBox, settings);
+            UpdateItemValue(rareMaterialsPoolTextBox, settings);
+            UpdateItemValue(rareMaterialsCurrentTextBox, settings);
+            UpdateItemValue(rareMaterialsMaxTextBox, settings);
+            UpdateItemValue(oilPoolTextBox, settings);
+            UpdateItemValue(oilCurrentTextBox, settings);
+            UpdateItemValue(oilMaxTextBox, settings);
+            UpdateItemValue(suppliesPoolTextBox, settings);
+        }
+
+        /// <summary>
+        ///     プロヴィンス資源グループボックスの編集項目の表示をクリアする
+        /// </summary>
+        private void ClearProvinceResourceItems()
+        {
+            manpowerCurrentTextBox.Text = "";
+            manpowerMaxTextBox.Text = "";
+            energyPoolTextBox.Text = "";
+            energyCurrentTextBox.Text = "";
+            energyMaxTextBox.Text = "";
+            metalPoolTextBox.Text = "";
+            metalCurrentTextBox.Text = "";
+            metalMaxTextBox.Text = "";
+            rareMaterialsPoolTextBox.Text = "";
+            rareMaterialsCurrentTextBox.Text = "";
+            rareMaterialsMaxTextBox.Text = "";
+            oilPoolTextBox.Text = "";
+            oilCurrentTextBox.Text = "";
+            oilMaxTextBox.Text = "";
+            suppliesPoolTextBox.Text = "";
+        }
+
+        #endregion
+
+        #region プロヴィンスタブ - 建物情報
+
+        /// <summary>
+        ///     プロヴィンス建物グループボックスを初期化する
+        /// </summary>
+        private void InitProvinceBuildingGroupBox()
+        {
+            icCurrentTextBox.Tag = ItemId.ProvinceIcCurrent;
+            icMaxTextBox.Tag = ItemId.ProvinceIcMax;
+            icRelativeTextBox.Tag = ItemId.ProvinceIcRelative;
+            infrastructureCurrentTextBox.Tag = ItemId.ProvinceInfrastructureCurrent;
+            infrastructureMaxTextBox.Tag = ItemId.ProvinceInfrastructureMax;
+            infrastructureRelativeTextBox.Tag = ItemId.ProvinceInfrastructureRelative;
+            landFortCurrentTextBox.Tag = ItemId.ProvinceLandFortCurrent;
+            landFortMaxTextBox.Tag = ItemId.ProvinceLandFortMax;
+            landFortRelativeTextBox.Tag = ItemId.ProvinceLandFortRelative;
+            coastalFortCurrentTextBox.Tag = ItemId.ProvinceCoastalFortCurrent;
+            coastalFortMaxTextBox.Tag = ItemId.ProvinceCoastalFortMax;
+            coastalFortRelativeTextBox.Tag = ItemId.ProvinceCoastalFortRelative;
+            antiAirCurrentTextBox.Tag = ItemId.ProvinceAntiAirCurrent;
+            antiAirMaxTextBox.Tag = ItemId.ProvinceAntiAirMax;
+            antiAirRelativeTextBox.Tag = ItemId.ProvinceAntiAirRelative;
+            airBaseCurrentTextBox.Tag = ItemId.ProvinceAirBaseCurrent;
+            airBaseMaxTextBox.Tag = ItemId.ProvinceAirBaseMax;
+            airBaseRelativeTextBox.Tag = ItemId.ProvinceAirBaseRelative;
+            navalBaseCurrentTextBox.Tag = ItemId.ProvinceNavalBaseCurrent;
+            navalBaseMaxTextBox.Tag = ItemId.ProvinceNavalBaseMax;
+            navalBaseRelativeTextBox.Tag = ItemId.ProvinceNavalBaseRelative;
+            radarStationCurrentTextBox.Tag = ItemId.ProvinceRadarStationCurrent;
+            radarStationMaxTextBox.Tag = ItemId.ProvinceRadarStationMax;
+            radarStationRelativeTextBox.Tag = ItemId.ProvinceRadarStationRelative;
+            nuclearReactorCurrentTextBox.Tag = ItemId.ProvinceNuclearReactorCurrent;
+            nuclearReactorMaxTextBox.Tag = ItemId.ProvinceNuclearReactorMax;
+            nuclearReactorRelativeTextBox.Tag = ItemId.ProvinceNuclearReactorRelative;
+            rocketTestCurrentTextBox.Tag = ItemId.ProvinceRocketTestCurrent;
+            rocketTestMaxTextBox.Tag = ItemId.ProvinceRocketTestMax;
+            rocketTestRelativeTextBox.Tag = ItemId.ProvinceRocketTestRelative;
+            syntheticOilCurrentTextBox.Tag = ItemId.ProvinceSyntheticOilCurrent;
+            syntheticOilMaxTextBox.Tag = ItemId.ProvinceSyntheticOilMax;
+            syntheticOilRelativeTextBox.Tag = ItemId.ProvinceSyntheticOilRelative;
+            syntheticRaresCurrentTextBox.Tag = ItemId.ProvinceSyntheticRaresCurrent;
+            syntheticRaresMaxTextBox.Tag = ItemId.ProvinceSyntheticRaresMax;
+            syntheticRaresRelativeTextBox.Tag = ItemId.ProvinceSyntheticRaresRelative;
+            nuclearPowerCurrentTextBox.Tag = ItemId.ProvinceNuclearPowerCurrent;
+            nuclearPowerMaxTextBox.Tag = ItemId.ProvinceNuclearPowerMax;
+            nuclearPowerRelativeTextBox.Tag = ItemId.ProvinceNuclearPowerRelative;
+        }
+
+        /// <summary>
+        ///     プロヴィンス建物グループボックスの編集項目を有効化する
+        /// </summary>
+        private void EnableProvinceBuildingItems()
+        {
+            provinceBuildingGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     プロヴィンス建物グループボックスの編集項目を無効化する
+        /// </summary>
+        private void DisableProvinceBuildingItems()
+        {
+            provinceBuildingGroupBox.Enabled = false;
+        }
+
+        /// <summary>
+        ///     プロヴィンス建物グループボックスの編集項目の表示を更新する
+        /// </summary>
+        /// <param name="settings">プロヴィンス設定</param>
+        private void UpdateProvinceBuildingItems(ProvinceSettings settings)
+        {
+            UpdateItemValue(icCurrentTextBox, settings);
+            UpdateItemValue(icMaxTextBox, settings);
+            UpdateItemValue(icRelativeTextBox, settings);
+            UpdateItemValue(infrastructureCurrentTextBox, settings);
+            UpdateItemValue(infrastructureMaxTextBox, settings);
+            UpdateItemValue(infrastructureRelativeTextBox, settings);
+            UpdateItemValue(landFortCurrentTextBox, settings);
+            UpdateItemValue(landFortMaxTextBox, settings);
+            UpdateItemValue(landFortRelativeTextBox, settings);
+            UpdateItemValue(coastalFortCurrentTextBox, settings);
+            UpdateItemValue(coastalFortMaxTextBox, settings);
+            UpdateItemValue(coastalFortRelativeTextBox, settings);
+            UpdateItemValue(antiAirCurrentTextBox, settings);
+            UpdateItemValue(antiAirMaxTextBox, settings);
+            UpdateItemValue(antiAirRelativeTextBox, settings);
+            UpdateItemValue(airBaseCurrentTextBox, settings);
+            UpdateItemValue(airBaseMaxTextBox, settings);
+            UpdateItemValue(airBaseRelativeTextBox, settings);
+            UpdateItemValue(navalBaseCurrentTextBox, settings);
+            UpdateItemValue(navalBaseMaxTextBox, settings);
+            UpdateItemValue(navalBaseRelativeTextBox, settings);
+            UpdateItemValue(radarStationCurrentTextBox, settings);
+            UpdateItemValue(radarStationMaxTextBox, settings);
+            UpdateItemValue(radarStationRelativeTextBox, settings);
+            UpdateItemValue(nuclearReactorCurrentTextBox, settings);
+            UpdateItemValue(nuclearReactorMaxTextBox, settings);
+            UpdateItemValue(nuclearReactorRelativeTextBox, settings);
+            UpdateItemValue(rocketTestCurrentTextBox, settings);
+            UpdateItemValue(rocketTestMaxTextBox, settings);
+            UpdateItemValue(rocketTestRelativeTextBox, settings);
+            UpdateItemValue(syntheticOilCurrentTextBox, settings);
+            UpdateItemValue(syntheticOilMaxTextBox, settings);
+            UpdateItemValue(syntheticOilRelativeTextBox, settings);
+            UpdateItemValue(syntheticRaresCurrentTextBox, settings);
+            UpdateItemValue(syntheticRaresMaxTextBox, settings);
+            UpdateItemValue(syntheticRaresRelativeTextBox, settings);
+            UpdateItemValue(nuclearPowerCurrentTextBox, settings);
+            UpdateItemValue(nuclearPowerMaxTextBox, settings);
+            UpdateItemValue(nuclearPowerRelativeTextBox, settings);
+        }
+
+        /// <summary>
+        ///     プロヴィンス建物グループボックスの編集項目の表示をクリアする
+        /// </summary>
+        private void ClearProvinceBuildingItems()
+        {
+            icCurrentTextBox.Text = "";
+            icMaxTextBox.Text = "";
+            icRelativeTextBox.Text = "";
+            infrastructureCurrentTextBox.Text = "";
+            infrastructureMaxTextBox.Text = "";
+            infrastructureRelativeTextBox.Text = "";
+            landFortCurrentTextBox.Text = "";
+            landFortMaxTextBox.Text = "";
+            landFortRelativeTextBox.Text = "";
+            coastalFortCurrentTextBox.Text = "";
+            coastalFortMaxTextBox.Text = "";
+            coastalFortRelativeTextBox.Text = "";
+            antiAirCurrentTextBox.Text = "";
+            antiAirMaxTextBox.Text = "";
+            antiAirRelativeTextBox.Text = "";
+            airBaseCurrentTextBox.Text = "";
+            airBaseMaxTextBox.Text = "";
+            airBaseRelativeTextBox.Text = "";
+            navalBaseCurrentTextBox.Text = "";
+            navalBaseMaxTextBox.Text = "";
+            navalBaseRelativeTextBox.Text = "";
+            radarStationCurrentTextBox.Text = "";
+            radarStationMaxTextBox.Text = "";
+            radarStationRelativeTextBox.Text = "";
+            nuclearReactorCurrentTextBox.Text = "";
+            nuclearReactorMaxTextBox.Text = "";
+            nuclearReactorRelativeTextBox.Text = "";
+            rocketTestCurrentTextBox.Text = "";
+            rocketTestMaxTextBox.Text = "";
+            rocketTestRelativeTextBox.Text = "";
+            syntheticOilCurrentTextBox.Text = "";
+            syntheticOilMaxTextBox.Text = "";
+            syntheticOilRelativeTextBox.Text = "";
+            syntheticRaresCurrentTextBox.Text = "";
+            syntheticRaresMaxTextBox.Text = "";
+            syntheticRaresRelativeTextBox.Text = "";
+            nuclearPowerCurrentTextBox.Text = "";
+            nuclearPowerMaxTextBox.Text = "";
+            nuclearPowerRelativeTextBox.Text = "";
+        }
+
+        #endregion
 
         /// <summary>
         ///     マップフィルターラジオボタンのチェック状態変更時の処理
@@ -16495,569 +17414,1532 @@ namespace HoI2Editor.Forms
             _mapFilterMode = mode;
         }
 
+        #endregion
+
+        #region 編集項目
+
+        #region 編集項目 - 国家
+
         /// <summary>
-        ///     プロヴィンス設定テキストボックスの文字列変更時の処理
+        ///     編集項目の表示を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        private static void UpdateItemValue(CheckBox control, Province province, CountrySettings settings)
+        {
+            if (settings == null)
+            {
+                control.Checked = false;
+                return;
+            }
+
+            ItemId itemId = (ItemId) control.Tag;
+            switch (itemId)
+            {
+                case ItemId.CountryCapital:
+                    control.Checked = (settings.Capital == province.Id);
+                    break;
+
+                case ItemId.CountryCoreProvinces:
+                    control.Checked = settings.NationalProvinces.Contains(province.Id);
+                    break;
+
+                case ItemId.CountryOwnedProvinces:
+                    control.Checked = settings.OwnedProvinces.Contains(province.Id);
+                    break;
+
+                case ItemId.CountryControlledProvinces:
+                    control.Checked = settings.ControlledProvinces.Contains(province.Id);
+                    break;
+
+                case ItemId.CountryClaimedProvinces:
+                    control.Checked = settings.ClaimedProvinces.Contains(province.Id);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        /// <returns>編集項目の値</returns>
+        private static object GetItemValue(ItemId itemId, Province province, CountrySettings settings)
+        {
+            if (settings == null)
+            {
+                return false;
+            }
+
+            switch (itemId)
+            {
+                case ItemId.CountryCapital:
+                    return (settings.Capital == province.Id);
+
+                case ItemId.CountryCoreProvinces:
+                    return settings.NationalProvinces.Contains(province.Id);
+
+                case ItemId.CountryOwnedProvinces:
+                    return settings.OwnedProvinces.Contains(province.Id);
+
+                case ItemId.CountryControlledProvinces:
+                    return settings.ControlledProvinces.Contains(province.Id);
+
+                case ItemId.CountryClaimedProvinces:
+                    return settings.ClaimedProvinces.Contains(province.Id);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///     編集項目の値を設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        private static void SetItemValue(ItemId itemId, object val, Province province, CountrySettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.CountryCapital:
+                    settings.Capital = province.Id;
+                    break;
+
+                case ItemId.CountryCoreProvinces:
+                    if ((bool) val)
+                    {
+                        settings.NationalProvinces.Add(province.Id);
+                    }
+                    else
+                    {
+                        settings.NationalProvinces.Remove(province.Id);
+                    }
+                    break;
+
+                case ItemId.CountryOwnedProvinces:
+                    if ((bool) val)
+                    {
+                        settings.OwnedProvinces.Add(province.Id);
+                    }
+                    else
+                    {
+                        settings.OwnedProvinces.Remove(province.Id);
+                    }
+                    break;
+
+                case ItemId.CountryControlledProvinces:
+                    if ((bool) val)
+                    {
+                        settings.ControlledProvinces.Add(province.Id);
+                    }
+                    else
+                    {
+                        settings.ControlledProvinces.Remove(province.Id);
+                    }
+                    break;
+
+                case ItemId.CountryClaimedProvinces:
+                    if ((bool) val)
+                    {
+                        settings.ClaimedProvinces.Add(province.Id);
+                    }
+                    else
+                    {
+                        settings.ClaimedProvinces.Remove(province.Id);
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        private void SetItemDirty(ItemId itemId, Province province, CountrySettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.CountryCapital:
+                    settings.SetDirty((CountrySettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    Scenarios.SetDirty();
+                    break;
+
+                case ItemId.CountryCoreProvinces:
+                    settings.SetDirtyCoreProvinces(province.Id);
+                    Scenarios.SetDirty();
+                    break;
+
+                case ItemId.CountryOwnedProvinces:
+                    settings.SetDirtyOwnedProvinces(province.Id);
+                    Scenarios.SetDirty();
+                    break;
+
+                case ItemId.CountryControlledProvinces:
+                    settings.SetDirtyControlledProvinces(province.Id);
+                    Scenarios.SetDirty();
+                    break;
+
+                case ItemId.CountryClaimedProvinces:
+                    settings.SetDirtyClaimedProvinces(province.Id);
+                    Scenarios.SetDirty();
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値変更時のログを出力する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        private void OutputItemValueChangedLog(ItemId itemId, object val, Province province, CountrySettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.CountryCapital:
+                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", _itemStrings[(int) itemId], settings.Capital,
+                        province.Id, Countries.Strings[(int) settings.Country]);
+                    break;
+
+                case ItemId.CountryCoreProvinces:
+                case ItemId.CountryOwnedProvinces:
+                case ItemId.CountryControlledProvinces:
+                case ItemId.CountryClaimedProvinces:
+                    Log.Info("[Scenario] {0}: {1}{2} ({3})", _itemStrings[(int) itemId], (bool) val ? '+' : '-',
+                        ObjectHelper.ToString(province.Id), Countries.Strings[(int) settings.Country]);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     チェックボックスのチェック状態変更時の処理の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnProvinceIntTextBoxValidated(object sender, EventArgs e)
+        private void OnProvinceCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            if (provinceListView.SelectedItems.Count > 0)
+            Province province = GetSelectedProvince();
+            if (province == null)
             {
                 return;
             }
-            int provinceId = (int) provinceListView.SelectedItems[0].Tag;
-            ProvinceSettings province = _provinces.ContainsKey(provinceId) ? _provinces[provinceId] : null;
+            Country country = GetProvinceCountryFilter();
+            if (country == Country.None)
+            {
+                return;
+            }
 
-            TextBox textBox = sender as TextBox;
-            if (textBox == null)
+            CheckBox control = sender as CheckBox;
+            if (control == null)
             {
                 return;
             }
-            ProvinceSettings.ItemId itemId = (ProvinceSettings.ItemId) textBox.Tag;
+            ItemId itemId = (ItemId) control.Tag;
 
-            // 変更後の文字列を数値に変換できなければ値を戻す
-            int val;
-            if (!IntHelper.TryParse(textBox.Text, out val))
-            {
-                textBox.Text = (province != null) ? ObjectHelper.ToString(GetProvinceValue(province, itemId)) : "";
-                return;
-            }
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
 
             // 初期値から変更されていなければ何もしない
-            if ((province == null) && (val == 0))
+            bool val = control.Checked;
+            if ((settings == null) && !val)
             {
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if ((province != null) && (val == (int) GetProvinceValue(province, itemId)))
+            if ((settings != null) && (val == (bool) GetItemValue(itemId, province, settings)))
             {
                 return;
             }
 
-            string s = _provinceItemStrings[(int) itemId];
-            if (province != null)
-            {
-                Log.Info("[Scenario] province {0}: {1} -> {2} ({3})", s,
-                    ObjectHelper.ToString(GetProvinceValue(province, itemId)), val, province.Id);
-            }
-            else
-            {
-                Log.Info("[Scenario] province {0}: -> {1}", s, val);
-            }
+            OutputItemValueChangedLog(itemId, val, province, settings);
 
-            if (province == null)
+            if (settings == null)
             {
-                province = new ProvinceSettings { Id = provinceId };
-                _provinces[provinceId] = province;
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
             }
 
             // 値を更新する
-            SetProvinceValue(province, itemId, val);
+            SetItemValue(itemId, val, province, settings);
 
             // 編集済みフラグを設定する
-            province.SetDirty(itemId);
-            Scenarios.SetDirty();
+            SetItemDirty(itemId, province, settings);
 
             // 文字色を変更する
-            textBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     プロヴィンス設定テキストボックスの文字列変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnProvinceDoubleTextBoxValidated(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            if (provinceListView.SelectedItems.Count > 0)
-            {
-                return;
-            }
-            int provinceId = (int) provinceListView.SelectedItems[0].Tag;
-            ProvinceSettings province = _provinces.ContainsKey(provinceId) ? _provinces[provinceId] : null;
-
-            TextBox textBox = sender as TextBox;
-            if (textBox == null)
-            {
-                return;
-            }
-            ProvinceSettings.ItemId itemId = (ProvinceSettings.ItemId) textBox.Tag;
-
-            // 変更後の文字列を数値に変換できなければ値を戻す
-            double val;
-            if (!DoubleHelper.TryParse(textBox.Text, out val))
-            {
-                textBox.Text = (province != null)
-                    ? ObjectHelper.ToString(GetProvinceValue(province, itemId))
-                    : "";
-                return;
-            }
-
-            // 初期値から変更されていなければ何もしない
-            if ((province == null) && DoubleHelper.IsZero(val))
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            if ((province != null) && DoubleHelper.IsEqual(val, (double) GetProvinceValue(province, itemId)))
-            {
-                return;
-            }
-
-            string s = _provinceItemStrings[(int) itemId];
-            if (province != null)
-            {
-                Log.Info("[Scenario] {0}: {1} -> {2} ({3})", s,
-                    ObjectHelper.ToString(GetProvinceValue(province, itemId)), val, province.Id);
-            }
-            else
-            {
-                Log.Info("[Scenario] {0}: -> {1}", s, val);
-            }
-
-            if (province == null)
-            {
-                province = new ProvinceSettings { Id = provinceId };
-                _provinces[provinceId] = province;
-            }
-
-            // 値を更新する
-            SetProvinceValue(province, itemId, val);
-
-            // 編集済みフラグを設定する
-            province.SetDirty(itemId);
-            Scenarios.SetDirty();
-
-            // 文字色を変更する
-            textBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     プロヴィンス設定の項目値を取得する
-        /// </summary>
-        /// <param name="province">プロヴィンス設定</param>
-        /// <param name="id">項目ID</param>
-        /// <returns>項目値</returns>
-        private static object GetProvinceValue(ProvinceSettings province, ProvinceSettings.ItemId id)
-        {
-            switch (id)
-            {
-                case ProvinceSettings.ItemId.Ic:
-                    return province.Ic.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxIc:
-                    return province.Ic.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeIc:
-                    return province.Ic.Size;
-
-                case ProvinceSettings.ItemId.Infrastructure:
-                    return province.Infrastructure.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxInfrastructure:
-                    return province.Infrastructure.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeInfrastructure:
-                    return province.Infrastructure.Size;
-
-                case ProvinceSettings.ItemId.LandFort:
-                    return province.LandFort.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxLandFort:
-                    return province.LandFort.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeLandFort:
-                    return province.LandFort.Size;
-
-                case ProvinceSettings.ItemId.CoastalFort:
-                    return province.CoastalFort.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxCoastalFort:
-                    return province.CoastalFort.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeCoastalFort:
-                    return province.CoastalFort.Size;
-
-                case ProvinceSettings.ItemId.AntiAir:
-                    return province.AntiAir.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxAntiAir:
-                    return province.AntiAir.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeAntiAir:
-                    return province.AntiAir.Size;
-
-                case ProvinceSettings.ItemId.AirBase:
-                    return province.AirBase.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxAirBase:
-                    return province.AirBase.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeAirBase:
-                    return province.AirBase.Size;
-
-                case ProvinceSettings.ItemId.NavalBase:
-                    return province.NavalBase.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxNavalBase:
-                    return province.NavalBase.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeNavalBase:
-                    return province.NavalBase.Size;
-
-                case ProvinceSettings.ItemId.RadarStation:
-                    return province.RadarStation.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxRadarStation:
-                    return province.RadarStation.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeRadarStation:
-                    return province.RadarStation.Size;
-
-                case ProvinceSettings.ItemId.NuclearReactor:
-                    return province.NuclearReactor.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxNuclearReactor:
-                    return province.NuclearReactor.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeNuclearReactor:
-                    return province.NuclearReactor.Size;
-
-                case ProvinceSettings.ItemId.RocketTest:
-                    return province.RocketTest.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxRocketTest:
-                    return province.RocketTest.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeRocketTest:
-                    return province.RocketTest.Size;
-
-                case ProvinceSettings.ItemId.SyntheticOil:
-                    return province.SyntheticOil.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxSyntheticOil:
-                    return province.SyntheticOil.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeSyntheticOil:
-                    return province.SyntheticOil.Size;
-
-                case ProvinceSettings.ItemId.SyntheticRares:
-                    return province.SyntheticRares.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxSyntheticRares:
-                    return province.SyntheticRares.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeSyntheticRares:
-                    return province.SyntheticRares.Size;
-
-                case ProvinceSettings.ItemId.NuclearPower:
-                    return province.NuclearPower.CurrentSize;
-
-                case ProvinceSettings.ItemId.MaxNuclearPower:
-                    return province.NuclearPower.MaxSize;
-
-                case ProvinceSettings.ItemId.RelativeNuclearPower:
-                    return province.NuclearPower.Size;
-
-                case ProvinceSettings.ItemId.SupplyPool:
-                    return province.SupplyPool;
-
-                case ProvinceSettings.ItemId.OilPool:
-                    return province.OilPool;
-
-                case ProvinceSettings.ItemId.EnergyPool:
-                    return province.EnergyPool;
-
-                case ProvinceSettings.ItemId.MetalPool:
-                    return province.MetalPool;
-
-                case ProvinceSettings.ItemId.RareMaterialsPool:
-                    return province.RareMaterialsPool;
-
-                case ProvinceSettings.ItemId.Energy:
-                    return province.Energy;
-
-                case ProvinceSettings.ItemId.MaxEnergy:
-                    return province.MaxEnergy;
-
-                case ProvinceSettings.ItemId.Metal:
-                    return province.Metal;
-
-                case ProvinceSettings.ItemId.MaxMetal:
-                    return province.MaxMetal;
-
-                case ProvinceSettings.ItemId.RareMaterials:
-                    return province.RareMaterials;
-
-                case ProvinceSettings.ItemId.MaxRareMaterials:
-                    return province.MaxRareMaterials;
-
-                case ProvinceSettings.ItemId.Oil:
-                    return province.Oil;
-
-                case ProvinceSettings.ItemId.MaxOil:
-                    return province.MaxOil;
-
-                case ProvinceSettings.ItemId.Manpower:
-                    return province.Manpower;
-
-                case ProvinceSettings.ItemId.MaxManpower:
-                    return province.MaxManpower;
-
-                case ProvinceSettings.ItemId.Vp:
-                    return province.Vp;
-
-                case ProvinceSettings.ItemId.RevoltRisk:
-                    return province.RevoltRisk;
-            }
-
-            return 0;
-        }
-
-        /// <summary>
-        ///     プロヴィンス設定の項目値を設定する
-        /// </summary>
-        /// <param name="province">プロヴィンス設定</param>
-        /// <param name="id">項目ID</param>
-        /// <param name="val">項目値</param>
-        private static void SetProvinceValue(ProvinceSettings province, ProvinceSettings.ItemId id, object val)
-        {
-            switch (id)
-            {
-                case ProvinceSettings.ItemId.Ic:
-                    province.Ic.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxIc:
-                    province.Ic.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeIc:
-                    province.Ic.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.Infrastructure:
-                    province.Infrastructure.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxInfrastructure:
-                    province.Infrastructure.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeInfrastructure:
-                    province.Infrastructure.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.LandFort:
-                    province.LandFort.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxLandFort:
-                    province.LandFort.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeLandFort:
-                    province.LandFort.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.CoastalFort:
-                    province.CoastalFort.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxCoastalFort:
-                    province.CoastalFort.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeCoastalFort:
-                    province.CoastalFort.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.AntiAir:
-                    province.AntiAir.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxAntiAir:
-                    province.AntiAir.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeAntiAir:
-                    province.AntiAir.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.AirBase:
-                    province.AirBase.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxAirBase:
-                    province.AirBase.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeAirBase:
-                    province.AirBase.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.NavalBase:
-                    province.NavalBase.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxNavalBase:
-                    province.NavalBase.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeNavalBase:
-                    province.NavalBase.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RadarStation:
-                    province.RadarStation.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxRadarStation:
-                    province.RadarStation.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeRadarStation:
-                    province.RadarStation.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.NuclearReactor:
-                    province.NuclearReactor.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxNuclearReactor:
-                    province.NuclearReactor.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeNuclearReactor:
-                    province.NuclearReactor.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RocketTest:
-                    province.RocketTest.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxRocketTest:
-                    province.RocketTest.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeRocketTest:
-                    province.RocketTest.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.SyntheticOil:
-                    province.SyntheticOil.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxSyntheticOil:
-                    province.SyntheticOil.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeSyntheticOil:
-                    province.SyntheticOil.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.SyntheticRares:
-                    province.SyntheticRares.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxSyntheticRares:
-                    province.SyntheticRares.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeSyntheticRares:
-                    province.SyntheticRares.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.NuclearPower:
-                    province.NuclearPower.CurrentSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxNuclearPower:
-                    province.NuclearPower.MaxSize = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RelativeNuclearPower:
-                    province.NuclearPower.Size = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.SupplyPool:
-                    province.SupplyPool = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.OilPool:
-                    province.OilPool = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.EnergyPool:
-                    province.EnergyPool = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MetalPool:
-                    province.MetalPool = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RareMaterialsPool:
-                    province.RareMaterialsPool = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.Energy:
-                    province.Energy = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxEnergy:
-                    province.MaxEnergy = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.Metal:
-                    province.Metal = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxMetal:
-                    province.MaxMetal = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RareMaterials:
-                    province.RareMaterials = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxRareMaterials:
-                    province.MaxRareMaterials = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.Oil:
-                    province.Oil = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxOil:
-                    province.MaxOil = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.Manpower:
-                    province.Manpower = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.MaxManpower:
-                    province.MaxManpower = (double) val;
-                    break;
-
-                case ProvinceSettings.ItemId.Vp:
-                    province.Vp = (int) val;
-                    break;
-
-                case ProvinceSettings.ItemId.RevoltRisk:
-                    province.RevoltRisk = (double) val;
-                    break;
-            }
+            control.ForeColor = Color.Red;
         }
 
         #endregion
 
-        #region 汎用
+        #region 編集項目 - プロヴィンス
+
+        /// <summary>
+        ///     編集項目の表示を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="province">プロヴィンス</param>
+        private static void UpdateItemValue(Control control, Province province)
+        {
+            ItemId itemId = (ItemId) control.Tag;
+            switch (itemId)
+            {
+                case ItemId.ProvinceId:
+                    control.Text = ObjectHelper.ToString((int) GetItemValue(itemId, province));
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の表示を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void UpdateItemValue(Control control, ProvinceSettings settings)
+        {
+            ItemId itemId = (ItemId) control.Tag;
+            switch (itemId)
+            {
+                case ItemId.ProvinceVp:
+                case ItemId.ProvinceRevoltRisk:
+                case ItemId.ProvinceManpowerCurrent:
+                case ItemId.ProvinceManpowerMax:
+                case ItemId.ProvinceEnergyPool:
+                case ItemId.ProvinceEnergyCurrent:
+                case ItemId.ProvinceEnergyMax:
+                case ItemId.ProvinceMetalPool:
+                case ItemId.ProvinceMetalCurrent:
+                case ItemId.ProvinceMetalMax:
+                case ItemId.ProvinceRareMaterialsPool:
+                case ItemId.ProvinceRareMaterialsCurrent:
+                case ItemId.ProvinceRareMaterialsMax:
+                case ItemId.ProvinceOilPool:
+                case ItemId.ProvinceOilCurrent:
+                case ItemId.ProvinceOilMax:
+                case ItemId.ProvinceSupplyPool:
+                case ItemId.ProvinceIcCurrent:
+                case ItemId.ProvinceIcMax:
+                case ItemId.ProvinceIcRelative:
+                case ItemId.ProvinceInfrastructureCurrent:
+                case ItemId.ProvinceInfrastructureMax:
+                case ItemId.ProvinceInfrastructureRelative:
+                case ItemId.ProvinceLandFortCurrent:
+                case ItemId.ProvinceLandFortMax:
+                case ItemId.ProvinceLandFortRelative:
+                case ItemId.ProvinceCoastalFortCurrent:
+                case ItemId.ProvinceCoastalFortMax:
+                case ItemId.ProvinceCoastalFortRelative:
+                case ItemId.ProvinceAntiAirCurrent:
+                case ItemId.ProvinceAntiAirMax:
+                case ItemId.ProvinceAntiAirRelative:
+                case ItemId.ProvinceAirBaseCurrent:
+                case ItemId.ProvinceAirBaseMax:
+                case ItemId.ProvinceAirBaseRelative:
+                case ItemId.ProvinceNavalBaseCurrent:
+                case ItemId.ProvinceNavalBaseMax:
+                case ItemId.ProvinceNavalBaseRelative:
+                case ItemId.ProvinceRadarStationCurrent:
+                case ItemId.ProvinceRadarStationMax:
+                case ItemId.ProvinceRadarStationRelative:
+                case ItemId.ProvinceNuclearReactorCurrent:
+                case ItemId.ProvinceNuclearReactorMax:
+                case ItemId.ProvinceNuclearReactorRelative:
+                case ItemId.ProvinceRocketTestCurrent:
+                case ItemId.ProvinceRocketTestMax:
+                case ItemId.ProvinceRocketTestRelative:
+                case ItemId.ProvinceSyntheticOilCurrent:
+                case ItemId.ProvinceSyntheticOilMax:
+                case ItemId.ProvinceSyntheticOilRelative:
+                case ItemId.ProvinceSyntheticRaresCurrent:
+                case ItemId.ProvinceSyntheticRaresMax:
+                case ItemId.ProvinceSyntheticRaresRelative:
+                case ItemId.ProvinceNuclearPowerCurrent:
+                case ItemId.ProvinceNuclearPowerMax:
+                case ItemId.ProvinceNuclearPowerRelative:
+                    control.Text = ObjectHelper.ToString(GetItemValue(itemId, settings));
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の表示を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void UpdateItemValue(Control control, Province province, ProvinceSettings settings)
+        {
+            ItemId itemId = (ItemId) control.Tag;
+            switch (itemId)
+            {
+                case ItemId.ProvinceName:
+                    control.Text = GetItemValue(itemId, province, settings) as string;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <returns>編集項目の値</returns>
+        private static object GetItemValue(ItemId itemId, Province province)
+        {
+            switch (itemId)
+            {
+                case ItemId.ProvinceId:
+                    return province.Id;
+            }
+            return null;
+        }
+
+        /// <summary>
+        ///     編集項目の値を取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        /// <returns>編集項目の値</returns>
+        private static object GetItemValue(ItemId itemId, ProvinceSettings settings)
+        {
+            if (settings == null)
+            {
+                return null;
+            }
+
+            switch (itemId)
+            {
+                case ItemId.ProvinceVp:
+                    return settings.Vp;
+
+                case ItemId.ProvinceRevoltRisk:
+                    return settings.RevoltRisk;
+
+                case ItemId.ProvinceManpowerCurrent:
+                    return settings.Manpower;
+
+                case ItemId.ProvinceManpowerMax:
+                    return settings.MaxManpower;
+
+                case ItemId.ProvinceEnergyPool:
+                    return settings.EnergyPool;
+
+                case ItemId.ProvinceEnergyCurrent:
+                    return settings.Energy;
+
+                case ItemId.ProvinceEnergyMax:
+                    return settings.MaxEnergy;
+
+                case ItemId.ProvinceMetalPool:
+                    return settings.MetalPool;
+
+                case ItemId.ProvinceMetalCurrent:
+                    return settings.Metal;
+
+                case ItemId.ProvinceMetalMax:
+                    return settings.MaxMetal;
+
+                case ItemId.ProvinceRareMaterialsPool:
+                    return settings.RareMaterialsPool;
+
+                case ItemId.ProvinceRareMaterialsCurrent:
+                    return settings.RareMaterials;
+
+                case ItemId.ProvinceRareMaterialsMax:
+                    return settings.MaxRareMaterials;
+
+                case ItemId.ProvinceOilPool:
+                    return settings.OilPool;
+
+                case ItemId.ProvinceOilCurrent:
+                    return settings.Oil;
+
+                case ItemId.ProvinceOilMax:
+                    return settings.MaxOil;
+
+                case ItemId.ProvinceSupplyPool:
+                    return settings.SupplyPool;
+
+                case ItemId.ProvinceIcCurrent:
+                    if (settings.Ic == null)
+                    {
+                        return null;
+                    }
+                    return settings.Ic.CurrentSize;
+
+                case ItemId.ProvinceIcMax:
+                    if (settings.Ic == null)
+                    {
+                        return null;
+                    }
+                    return settings.Ic.MaxSize;
+
+                case ItemId.ProvinceIcRelative:
+                    if (settings.Ic == null)
+                    {
+                        return null;
+                    }
+                    return settings.Ic.Size;
+
+                case ItemId.ProvinceInfrastructureCurrent:
+                    if (settings.Infrastructure == null)
+                    {
+                        return null;
+                    }
+                    return settings.Infrastructure.CurrentSize;
+
+                case ItemId.ProvinceInfrastructureMax:
+                    if (settings.Infrastructure == null)
+                    {
+                        return null;
+                    }
+                    return settings.Infrastructure.MaxSize;
+
+                case ItemId.ProvinceInfrastructureRelative:
+                    if (settings.Infrastructure == null)
+                    {
+                        return null;
+                    }
+                    return settings.Infrastructure.Size;
+
+                case ItemId.ProvinceLandFortCurrent:
+                    if (settings.LandFort == null)
+                    {
+                        return null;
+                    }
+                    return settings.LandFort.CurrentSize;
+
+                case ItemId.ProvinceLandFortMax:
+                    if (settings.LandFort == null)
+                    {
+                        return null;
+                    }
+                    return settings.LandFort.MaxSize;
+
+                case ItemId.ProvinceLandFortRelative:
+                    if (settings.LandFort == null)
+                    {
+                        return null;
+                    }
+                    return settings.LandFort.Size;
+
+                case ItemId.ProvinceCoastalFortCurrent:
+                    if (settings.CoastalFort == null)
+                    {
+                        return null;
+                    }
+                    return settings.CoastalFort.CurrentSize;
+
+                case ItemId.ProvinceCoastalFortMax:
+                    if (settings.CoastalFort == null)
+                    {
+                        return null;
+                    }
+                    return settings.CoastalFort.MaxSize;
+
+                case ItemId.ProvinceCoastalFortRelative:
+                    if (settings.CoastalFort == null)
+                    {
+                        return null;
+                    }
+                    return settings.CoastalFort.Size;
+
+                case ItemId.ProvinceAntiAirCurrent:
+                    if (settings.AntiAir == null)
+                    {
+                        return null;
+                    }
+                    return settings.AntiAir.CurrentSize;
+
+                case ItemId.ProvinceAntiAirMax:
+                    if (settings.AntiAir == null)
+                    {
+                        return null;
+                    }
+                    return settings.AntiAir.MaxSize;
+
+                case ItemId.ProvinceAntiAirRelative:
+                    if (settings.AntiAir == null)
+                    {
+                        return null;
+                    }
+                    return settings.AntiAir.Size;
+
+                case ItemId.ProvinceAirBaseCurrent:
+                    if (settings.AirBase == null)
+                    {
+                        return null;
+                    }
+                    return settings.AirBase.CurrentSize;
+
+                case ItemId.ProvinceAirBaseMax:
+                    if (settings.AirBase == null)
+                    {
+                        return null;
+                    }
+                    return settings.AirBase.MaxSize;
+
+                case ItemId.ProvinceAirBaseRelative:
+                    if (settings.AirBase == null)
+                    {
+                        return null;
+                    }
+                    return settings.AirBase.Size;
+
+                case ItemId.ProvinceNavalBaseCurrent:
+                    if (settings.NavalBase == null)
+                    {
+                        return null;
+                    }
+                    return settings.NavalBase.CurrentSize;
+
+                case ItemId.ProvinceNavalBaseMax:
+                    if (settings.NavalBase == null)
+                    {
+                        return null;
+                    }
+                    return settings.NavalBase.MaxSize;
+
+                case ItemId.ProvinceNavalBaseRelative:
+                    if (settings.NavalBase == null)
+                    {
+                        return null;
+                    }
+                    return settings.NavalBase.Size;
+
+                case ItemId.ProvinceRadarStationCurrent:
+                    if (settings.RadarStation == null)
+                    {
+                        return null;
+                    }
+                    return settings.RadarStation.CurrentSize;
+
+                case ItemId.ProvinceRadarStationMax:
+                    if (settings.RadarStation == null)
+                    {
+                        return null;
+                    }
+                    return settings.RadarStation.MaxSize;
+
+                case ItemId.ProvinceRadarStationRelative:
+                    if (settings.RadarStation == null)
+                    {
+                        return null;
+                    }
+                    return settings.RadarStation.Size;
+
+                case ItemId.ProvinceNuclearReactorCurrent:
+                    if (settings.NuclearReactor == null)
+                    {
+                        return null;
+                    }
+                    return settings.NuclearReactor.CurrentSize;
+
+                case ItemId.ProvinceNuclearReactorMax:
+                    if (settings.NuclearReactor == null)
+                    {
+                        return null;
+                    }
+                    return settings.NuclearReactor.MaxSize;
+
+                case ItemId.ProvinceNuclearReactorRelative:
+                    if (settings.NuclearReactor == null)
+                    {
+                        return null;
+                    }
+                    return settings.NuclearReactor.Size;
+
+                case ItemId.ProvinceRocketTestCurrent:
+                    if (settings.RocketTest == null)
+                    {
+                        return null;
+                    }
+                    return settings.RocketTest.CurrentSize;
+
+                case ItemId.ProvinceRocketTestMax:
+                    if (settings.RocketTest == null)
+                    {
+                        return null;
+                    }
+                    return settings.RocketTest.MaxSize;
+
+                case ItemId.ProvinceRocketTestRelative:
+                    if (settings.RocketTest == null)
+                    {
+                        return null;
+                    }
+                    return settings.RocketTest.Size;
+
+                case ItemId.ProvinceSyntheticOilCurrent:
+                    if (settings.SyntheticOil == null)
+                    {
+                        return null;
+                    }
+                    return settings.SyntheticOil.CurrentSize;
+
+                case ItemId.ProvinceSyntheticOilMax:
+                    if (settings.SyntheticOil == null)
+                    {
+                        return null;
+                    }
+                    return settings.SyntheticOil.MaxSize;
+
+                case ItemId.ProvinceSyntheticOilRelative:
+                    if (settings.SyntheticOil == null)
+                    {
+                        return null;
+                    }
+                    return settings.SyntheticOil.Size;
+
+                case ItemId.ProvinceSyntheticRaresCurrent:
+                    if (settings.SyntheticRares == null)
+                    {
+                        return null;
+                    }
+                    return settings.SyntheticRares.CurrentSize;
+
+                case ItemId.ProvinceSyntheticRaresMax:
+                    if (settings.SyntheticRares == null)
+                    {
+                        return null;
+                    }
+                    return settings.SyntheticRares.MaxSize;
+
+                case ItemId.ProvinceSyntheticRaresRelative:
+                    if (settings.SyntheticRares == null)
+                    {
+                        return null;
+                    }
+                    return settings.SyntheticRares.Size;
+
+                case ItemId.ProvinceNuclearPowerCurrent:
+                    if (settings.NuclearPower == null)
+                    {
+                        return null;
+                    }
+                    return settings.NuclearPower.CurrentSize;
+
+                case ItemId.ProvinceNuclearPowerMax:
+                    if (settings.NuclearPower == null)
+                    {
+                        return null;
+                    }
+                    return settings.NuclearPower.MaxSize;
+
+                case ItemId.ProvinceNuclearPowerRelative:
+                    if (settings.NuclearPower == null)
+                    {
+                        return null;
+                    }
+                    return settings.NuclearPower.Size;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///     編集項目の値を取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        /// <returns>編集項目の値</returns>
+        private static object GetItemValue(ItemId itemId, Province province, ProvinceSettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.ProvinceName:
+                    return GetProvinceName(province, settings);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///     編集項目の値を設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void SetItemValue(ItemId itemId, object val, ProvinceSettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.ProvinceVp:
+                    settings.Vp = (int) val;
+                    break;
+
+                case ItemId.ProvinceRevoltRisk:
+                    settings.RevoltRisk = (double) val;
+                    break;
+
+                case ItemId.ProvinceManpowerCurrent:
+                    settings.Manpower = (double) val;
+                    break;
+
+                case ItemId.ProvinceManpowerMax:
+                    settings.MaxManpower = (double) val;
+                    break;
+
+                case ItemId.ProvinceEnergyPool:
+                    settings.EnergyPool = (double) val;
+                    break;
+
+                case ItemId.ProvinceEnergyCurrent:
+                    settings.Energy = (double) val;
+                    break;
+
+                case ItemId.ProvinceEnergyMax:
+                    settings.MaxEnergy = (double) val;
+                    break;
+
+                case ItemId.ProvinceMetalPool:
+                    settings.MetalPool = (double) val;
+                    break;
+
+                case ItemId.ProvinceMetalCurrent:
+                    settings.Metal = (double) val;
+                    break;
+
+                case ItemId.ProvinceMetalMax:
+                    settings.MaxMetal = (double) val;
+                    break;
+
+                case ItemId.ProvinceRareMaterialsPool:
+                    settings.RareMaterialsPool = (double) val;
+                    break;
+
+                case ItemId.ProvinceRareMaterialsCurrent:
+                    settings.RareMaterials = (double) val;
+                    break;
+
+                case ItemId.ProvinceRareMaterialsMax:
+                    settings.MaxRareMaterials = (double) val;
+                    break;
+
+                case ItemId.ProvinceOilPool:
+                    settings.OilPool = (double) val;
+                    break;
+
+                case ItemId.ProvinceOilCurrent:
+                    settings.Oil = (double) val;
+                    break;
+
+                case ItemId.ProvinceOilMax:
+                    settings.MaxOil = (double) val;
+                    break;
+
+                case ItemId.ProvinceSupplyPool:
+                    settings.SupplyPool = (double) val;
+                    break;
+
+                case ItemId.ProvinceIcCurrent:
+                    if (settings.Ic == null)
+                    {
+                        settings.Ic = new BuildingSize();
+                    }
+                    settings.Ic.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceIcMax:
+                    if (settings.Ic == null)
+                    {
+                        settings.Ic = new BuildingSize();
+                    }
+                    settings.Ic.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceIcRelative:
+                    if (settings.Ic == null)
+                    {
+                        settings.Ic = new BuildingSize();
+                    }
+                    settings.Ic.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceInfrastructureCurrent:
+                    if (settings.Infrastructure == null)
+                    {
+                        settings.Infrastructure = new BuildingSize();
+                    }
+                    settings.Infrastructure.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceInfrastructureMax:
+                    if (settings.Infrastructure == null)
+                    {
+                        settings.Infrastructure = new BuildingSize();
+                    }
+                    settings.Infrastructure.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceInfrastructureRelative:
+                    if (settings.Infrastructure == null)
+                    {
+                        settings.Infrastructure = new BuildingSize();
+                    }
+                    settings.Infrastructure.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceLandFortCurrent:
+                    if (settings.LandFort == null)
+                    {
+                        settings.LandFort = new BuildingSize();
+                    }
+                    settings.LandFort.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceLandFortMax:
+                    if (settings.LandFort == null)
+                    {
+                        settings.LandFort = new BuildingSize();
+                    }
+                    settings.LandFort.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceLandFortRelative:
+                    if (settings.LandFort == null)
+                    {
+                        settings.LandFort = new BuildingSize();
+                    }
+                    settings.LandFort.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceCoastalFortCurrent:
+                    if (settings.CoastalFort == null)
+                    {
+                        settings.CoastalFort = new BuildingSize();
+                    }
+                    settings.CoastalFort.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceCoastalFortMax:
+                    if (settings.CoastalFort == null)
+                    {
+                        settings.CoastalFort = new BuildingSize();
+                    }
+                    settings.CoastalFort.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceCoastalFortRelative:
+                    if (settings.CoastalFort == null)
+                    {
+                        settings.CoastalFort = new BuildingSize();
+                    }
+                    settings.CoastalFort.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceAntiAirCurrent:
+                    if (settings.AntiAir == null)
+                    {
+                        settings.AntiAir = new BuildingSize();
+                    }
+                    settings.AntiAir.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceAntiAirMax:
+                    if (settings.AntiAir == null)
+                    {
+                        settings.AntiAir = new BuildingSize();
+                    }
+                    settings.AntiAir.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceAntiAirRelative:
+                    if (settings.AntiAir == null)
+                    {
+                        settings.AntiAir = new BuildingSize();
+                    }
+                    settings.AntiAir.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceAirBaseCurrent:
+                    if (settings.AirBase == null)
+                    {
+                        settings.AirBase = new BuildingSize();
+                    }
+                    settings.AirBase.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceAirBaseMax:
+                    if (settings.AirBase == null)
+                    {
+                        settings.AirBase = new BuildingSize();
+                    }
+                    settings.AirBase.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceAirBaseRelative:
+                    if (settings.AirBase == null)
+                    {
+                        settings.AirBase = new BuildingSize();
+                    }
+                    settings.AirBase.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceNavalBaseCurrent:
+                    if (settings.NavalBase == null)
+                    {
+                        settings.NavalBase = new BuildingSize();
+                    }
+                    settings.NavalBase.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceNavalBaseMax:
+                    if (settings.NavalBase == null)
+                    {
+                        settings.NavalBase = new BuildingSize();
+                    }
+                    settings.NavalBase.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceNavalBaseRelative:
+                    if (settings.NavalBase == null)
+                    {
+                        settings.NavalBase = new BuildingSize();
+                    }
+                    settings.NavalBase.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceRadarStationCurrent:
+                    if (settings.RadarStation == null)
+                    {
+                        settings.RadarStation = new BuildingSize();
+                    }
+                    settings.RadarStation.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceRadarStationMax:
+                    if (settings.RadarStation == null)
+                    {
+                        settings.RadarStation = new BuildingSize();
+                    }
+                    settings.RadarStation.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceRadarStationRelative:
+                    if (settings.RadarStation == null)
+                    {
+                        settings.RadarStation = new BuildingSize();
+                    }
+                    settings.RadarStation.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceNuclearReactorCurrent:
+                    if (settings.NuclearReactor == null)
+                    {
+                        settings.NuclearReactor = new BuildingSize();
+                    }
+                    settings.NuclearReactor.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceNuclearReactorMax:
+                    if (settings.NuclearReactor == null)
+                    {
+                        settings.NuclearReactor = new BuildingSize();
+                    }
+                    settings.NuclearReactor.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceNuclearReactorRelative:
+                    if (settings.NuclearReactor == null)
+                    {
+                        settings.NuclearReactor = new BuildingSize();
+                    }
+                    settings.NuclearReactor.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceRocketTestCurrent:
+                    if (settings.RocketTest == null)
+                    {
+                        settings.RocketTest = new BuildingSize();
+                    }
+                    settings.RocketTest.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceRocketTestMax:
+                    if (settings.RocketTest == null)
+                    {
+                        settings.RocketTest = new BuildingSize();
+                    }
+                    settings.RocketTest.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceRocketTestRelative:
+                    if (settings.RocketTest == null)
+                    {
+                        settings.RocketTest = new BuildingSize();
+                    }
+                    settings.RocketTest.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceSyntheticOilCurrent:
+                    if (settings.SyntheticOil == null)
+                    {
+                        settings.SyntheticOil = new BuildingSize();
+                    }
+                    settings.SyntheticOil.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceSyntheticOilMax:
+                    if (settings.SyntheticOil == null)
+                    {
+                        settings.SyntheticOil = new BuildingSize();
+                    }
+                    settings.SyntheticOil.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceSyntheticOilRelative:
+                    if (settings.SyntheticOil == null)
+                    {
+                        settings.SyntheticOil = new BuildingSize();
+                    }
+                    settings.SyntheticOil.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceSyntheticRaresCurrent:
+                    if (settings.SyntheticRares == null)
+                    {
+                        settings.SyntheticRares = new BuildingSize();
+                    }
+                    settings.SyntheticRares.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceSyntheticRaresMax:
+                    if (settings.SyntheticRares == null)
+                    {
+                        settings.SyntheticRares = new BuildingSize();
+                    }
+                    settings.SyntheticRares.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceSyntheticRaresRelative:
+                    if (settings.SyntheticRares == null)
+                    {
+                        settings.SyntheticRares = new BuildingSize();
+                    }
+                    settings.SyntheticRares.Size = (double) val;
+                    break;
+
+                case ItemId.ProvinceNuclearPowerCurrent:
+                    if (settings.NuclearPower == null)
+                    {
+                        settings.NuclearPower = new BuildingSize();
+                    }
+                    settings.NuclearPower.CurrentSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceNuclearPowerMax:
+                    if (settings.NuclearPower == null)
+                    {
+                        settings.NuclearPower = new BuildingSize();
+                    }
+                    settings.NuclearPower.MaxSize = (double) val;
+                    break;
+
+                case ItemId.ProvinceNuclearPowerRelative:
+                    if (settings.NuclearPower == null)
+                    {
+                        settings.NuclearPower = new BuildingSize();
+                    }
+                    settings.NuclearPower.Size = (double) val;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void SetItemValue(ItemId itemId, object val, Province province, ProvinceSettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.ProvinceName:
+                    SetProvinceName(province, settings, val as string);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void SetItemDirty(ItemId itemId, Province province, ProvinceSettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.ProvinceName:
+                    if (!string.IsNullOrEmpty(settings.Name))
+                    {
+                        settings.SetDirty(ProvinceSettings.ItemId.Name);
+                    }
+                    else
+                    {
+                        province.SetDirty(ProvinceItemId.Name);
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private void SetItemDirty(ItemId itemId, ProvinceSettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.ProvinceName:
+                    settings.SetDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    break;
+
+                case ItemId.ProvinceVp:
+                case ItemId.ProvinceRevoltRisk:
+                case ItemId.ProvinceManpowerCurrent:
+                case ItemId.ProvinceManpowerMax:
+                case ItemId.ProvinceEnergyPool:
+                case ItemId.ProvinceEnergyCurrent:
+                case ItemId.ProvinceEnergyMax:
+                case ItemId.ProvinceMetalPool:
+                case ItemId.ProvinceMetalCurrent:
+                case ItemId.ProvinceMetalMax:
+                case ItemId.ProvinceRareMaterialsPool:
+                case ItemId.ProvinceRareMaterialsCurrent:
+                case ItemId.ProvinceRareMaterialsMax:
+                case ItemId.ProvinceOilPool:
+                case ItemId.ProvinceOilCurrent:
+                case ItemId.ProvinceOilMax:
+                case ItemId.ProvinceSupplyPool:
+                case ItemId.ProvinceIcCurrent:
+                case ItemId.ProvinceIcMax:
+                case ItemId.ProvinceIcRelative:
+                case ItemId.ProvinceInfrastructureCurrent:
+                case ItemId.ProvinceInfrastructureMax:
+                case ItemId.ProvinceInfrastructureRelative:
+                case ItemId.ProvinceLandFortCurrent:
+                case ItemId.ProvinceLandFortMax:
+                case ItemId.ProvinceLandFortRelative:
+                case ItemId.ProvinceCoastalFortCurrent:
+                case ItemId.ProvinceCoastalFortMax:
+                case ItemId.ProvinceCoastalFortRelative:
+                case ItemId.ProvinceAntiAirCurrent:
+                case ItemId.ProvinceAntiAirMax:
+                case ItemId.ProvinceAntiAirRelative:
+                case ItemId.ProvinceAirBaseCurrent:
+                case ItemId.ProvinceAirBaseMax:
+                case ItemId.ProvinceAirBaseRelative:
+                case ItemId.ProvinceNavalBaseCurrent:
+                case ItemId.ProvinceNavalBaseMax:
+                case ItemId.ProvinceNavalBaseRelative:
+                case ItemId.ProvinceRadarStationCurrent:
+                case ItemId.ProvinceRadarStationMax:
+                case ItemId.ProvinceRadarStationRelative:
+                case ItemId.ProvinceNuclearReactorCurrent:
+                case ItemId.ProvinceNuclearReactorMax:
+                case ItemId.ProvinceNuclearReactorRelative:
+                case ItemId.ProvinceRocketTestCurrent:
+                case ItemId.ProvinceRocketTestMax:
+                case ItemId.ProvinceRocketTestRelative:
+                case ItemId.ProvinceSyntheticOilCurrent:
+                case ItemId.ProvinceSyntheticOilMax:
+                case ItemId.ProvinceSyntheticOilRelative:
+                case ItemId.ProvinceSyntheticRaresCurrent:
+                case ItemId.ProvinceSyntheticRaresMax:
+                case ItemId.ProvinceSyntheticRaresRelative:
+                case ItemId.ProvinceNuclearPowerCurrent:
+                case ItemId.ProvinceNuclearPowerMax:
+                case ItemId.ProvinceNuclearPowerRelative:
+                    settings.SetDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    Scenarios.SetDirty();
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値変更時のログを出力する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private void OutputItemValueChangedLog(ItemId itemId, object val, Province province, ProvinceSettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.ProvinceName:
+                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", _itemStrings[(int) itemId],
+                        GetProvinceName(province, settings), val, province.Id);
+                    break;
+
+                case ItemId.ProvinceVp:
+                case ItemId.ProvinceRevoltRisk:
+                case ItemId.ProvinceManpowerCurrent:
+                case ItemId.ProvinceManpowerMax:
+                case ItemId.ProvinceEnergyPool:
+                case ItemId.ProvinceEnergyCurrent:
+                case ItemId.ProvinceEnergyMax:
+                case ItemId.ProvinceMetalPool:
+                case ItemId.ProvinceMetalCurrent:
+                case ItemId.ProvinceMetalMax:
+                case ItemId.ProvinceRareMaterialsPool:
+                case ItemId.ProvinceRareMaterialsCurrent:
+                case ItemId.ProvinceRareMaterialsMax:
+                case ItemId.ProvinceOilPool:
+                case ItemId.ProvinceOilCurrent:
+                case ItemId.ProvinceOilMax:
+                case ItemId.ProvinceSupplyPool:
+                case ItemId.ProvinceIcCurrent:
+                case ItemId.ProvinceIcMax:
+                case ItemId.ProvinceIcRelative:
+                case ItemId.ProvinceInfrastructureCurrent:
+                case ItemId.ProvinceInfrastructureMax:
+                case ItemId.ProvinceInfrastructureRelative:
+                case ItemId.ProvinceLandFortCurrent:
+                case ItemId.ProvinceLandFortMax:
+                case ItemId.ProvinceLandFortRelative:
+                case ItemId.ProvinceCoastalFortCurrent:
+                case ItemId.ProvinceCoastalFortMax:
+                case ItemId.ProvinceCoastalFortRelative:
+                case ItemId.ProvinceAntiAirCurrent:
+                case ItemId.ProvinceAntiAirMax:
+                case ItemId.ProvinceAntiAirRelative:
+                case ItemId.ProvinceAirBaseCurrent:
+                case ItemId.ProvinceAirBaseMax:
+                case ItemId.ProvinceAirBaseRelative:
+                case ItemId.ProvinceNavalBaseCurrent:
+                case ItemId.ProvinceNavalBaseMax:
+                case ItemId.ProvinceNavalBaseRelative:
+                case ItemId.ProvinceRadarStationCurrent:
+                case ItemId.ProvinceRadarStationMax:
+                case ItemId.ProvinceRadarStationRelative:
+                case ItemId.ProvinceNuclearReactorCurrent:
+                case ItemId.ProvinceNuclearReactorMax:
+                case ItemId.ProvinceNuclearReactorRelative:
+                case ItemId.ProvinceRocketTestCurrent:
+                case ItemId.ProvinceRocketTestMax:
+                case ItemId.ProvinceRocketTestRelative:
+                case ItemId.ProvinceSyntheticOilCurrent:
+                case ItemId.ProvinceSyntheticOilMax:
+                case ItemId.ProvinceSyntheticOilRelative:
+                case ItemId.ProvinceSyntheticRaresCurrent:
+                case ItemId.ProvinceSyntheticRaresMax:
+                case ItemId.ProvinceSyntheticRaresRelative:
+                case ItemId.ProvinceNuclearPowerCurrent:
+                case ItemId.ProvinceNuclearPowerMax:
+                case ItemId.ProvinceNuclearPowerRelative:
+                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", _itemStrings[(int) itemId],
+                        ObjectHelper.ToString(GetItemValue(itemId, settings)), ObjectHelper.ToString(val), province.Id);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceIntItemTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Province province = GetSelectedProvince();
+            if (province == null)
+            {
+                return;
+            }
+
+            Control control = sender as Control;
+            if (control == null)
+            {
+                return;
+            }
+            ItemId itemId = (ItemId) control.Tag;
+
+            ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(control.Text, out val))
+            {
+                UpdateItemValue(control, settings);
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && (val == (int) GetItemValue(itemId, settings)))
+            {
+                return;
+            }
+
+            OutputItemValueChangedLog(itemId, val, province, settings);
+
+            if (settings == null)
+            {
+                settings = new ProvinceSettings { Id = province.Id };
+                Scenarios.AddProvinceSettings(settings);
+            }
+
+            // 値を更新する
+            SetItemValue(itemId, val, settings);
+
+            // 編集済みフラグを設定する
+            SetItemDirty(itemId, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceDoubleItemTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Province province = GetSelectedProvince();
+            if (province == null)
+            {
+                return;
+            }
+
+            Control control = sender as Control;
+            if (control == null)
+            {
+                return;
+            }
+            ItemId itemId = (ItemId) control.Tag;
+
+            ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(control.Text, out val))
+            {
+                UpdateItemValue(control, settings);
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((settings != null) && DoubleHelper.IsEqual(val, (double) GetItemValue(itemId, settings)))
+            {
+                return;
+            }
+
+            OutputItemValueChangedLog(itemId, val, province, settings);
+
+            if (settings == null)
+            {
+                settings = new ProvinceSettings { Id = province.Id };
+                Scenarios.AddProvinceSettings(settings);
+            }
+
+            // 値を更新する
+            SetItemValue(itemId, val, settings);
+
+            // 編集済みフラグを設定する
+            SetItemDirty(itemId, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     テキストボックスの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceStringItemTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Province province = GetSelectedProvince();
+            if (province == null)
+            {
+                return;
+            }
+
+            Control control = sender as Control;
+            if (control == null)
+            {
+                return;
+            }
+            ItemId itemId = (ItemId) control.Tag;
+
+            ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
+
+            // 初期値から変更されていなければ何もしない
+            string val = control.Text;
+            if ((settings == null) && string.IsNullOrEmpty(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val.Equals(GetItemValue(itemId, province, settings)))
+            {
+                return;
+            }
+
+            OutputItemValueChangedLog(itemId, val, province, settings);
+
+            // 値を更新する
+            SetItemValue(itemId, val, province, settings);
+
+            // 編集済みフラグを設定する
+            SetItemDirty(itemId, province, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 共通処理
+
+        #region 共通処理 - 国家
+
+        /// <summary>
+        ///     国タグと国名の文字列を取得する
+        /// </summary>
+        /// <param name="country">国家</param>
+        /// <returns>国タグと国名の文字列</returns>
+        private static string GetCountryTagName(Country country)
+        {
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            return string.Format("{0} {1}", Countries.Strings[(int) country],
+                ((settings != null) && !string.IsNullOrEmpty(settings.Name))
+                    ? Config.GetText(settings.Name)
+                    : Countries.GetName(country));
+        }
+
+        #endregion
 
         /// <summary>
         ///     国家リストボックスの項目描画処理
@@ -17111,15 +18993,16 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            if (id > 0 && id < 10000)
+            if (id > 0 && id < Provinces.Items.Count)
             {
-                Map map = Maps.Data[(int) MapLevel.Level1];
-                Bitmap bitmap = provinceMapPictureBox.Image as Bitmap;
+                Map map = Maps.Data[(int) MapLevel.Level2];
                 if (_prevId != 0)
                 {
-                    map.ResetProvinceMask(bitmap, _prevId);
+                    Maps.SetColorIndex(_prevId, 0);
+                    map.UpdateProvince(_prevId);
                 }
-                map.SetProvinceMask(bitmap, id);
+                Maps.SetColorIndex(id, 2);
+                map.UpdateProvince(id);
                 provinceMapPictureBox.Refresh();
 
                 _prevId = id;
