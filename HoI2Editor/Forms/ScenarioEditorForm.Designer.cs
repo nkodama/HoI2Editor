@@ -48,15 +48,15 @@
             System.Windows.Forms.Label provinceNameLabel;
             System.Windows.Forms.Label provinceVpLabel;
             System.Windows.Forms.Label provinceRevoltRiskLabel;
-            System.Windows.Forms.Label provinceIdLabel;
             System.Windows.Forms.Label resourceMaxLabel;
             System.Windows.Forms.Label resourceCurrentLabel;
             System.Windows.Forms.Label resourcePoolLabel;
+            this.provinceIdLabel = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
             this.provinceTabPage = new System.Windows.Forms.TabPage();
-            this.testProvinceIdTextBox = new System.Windows.Forms.TextBox();
+            this.provinceIdTextBox = new System.Windows.Forms.TextBox();
             this.provinceCountryFilterLabel = new System.Windows.Forms.Label();
             this.provinceCountryFilterComboBox = new System.Windows.Forms.ComboBox();
             this.provinceCountryGroupBox = new System.Windows.Forms.GroupBox();
@@ -73,7 +73,6 @@
             this.mapFilterNoneRadioButton = new System.Windows.Forms.RadioButton();
             this.provinceInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.revoltRiskTextBox = new System.Windows.Forms.TextBox();
-            this.provinceIdTextBox = new System.Windows.Forms.TextBox();
             this.vpTextBox = new System.Windows.Forms.TextBox();
             this.provinceNameTextBox = new System.Windows.Forms.TextBox();
             this.provinceResourceGroupBox = new System.Windows.Forms.GroupBox();
@@ -525,7 +524,6 @@
             provinceNameLabel = new System.Windows.Forms.Label();
             provinceVpLabel = new System.Windows.Forms.Label();
             provinceRevoltRiskLabel = new System.Windows.Forms.Label();
-            provinceIdLabel = new System.Windows.Forms.Label();
             resourceMaxLabel = new System.Windows.Forms.Label();
             resourceCurrentLabel = new System.Windows.Forms.Label();
             resourcePoolLabel = new System.Windows.Forms.Label();
@@ -673,11 +671,6 @@
             resources.ApplyResources(provinceRevoltRiskLabel, "provinceRevoltRiskLabel");
             provinceRevoltRiskLabel.Name = "provinceRevoltRiskLabel";
             // 
-            // provinceIdLabel
-            // 
-            resources.ApplyResources(provinceIdLabel, "provinceIdLabel");
-            provinceIdLabel.Name = "provinceIdLabel";
-            // 
             // resourceMaxLabel
             // 
             resources.ApplyResources(resourceMaxLabel, "resourceMaxLabel");
@@ -692,6 +685,11 @@
             // 
             resources.ApplyResources(resourcePoolLabel, "resourcePoolLabel");
             resourcePoolLabel.Name = "resourcePoolLabel";
+            // 
+            // provinceIdLabel
+            // 
+            resources.ApplyResources(this.provinceIdLabel, "provinceIdLabel");
+            this.provinceIdLabel.Name = "provinceIdLabel";
             // 
             // closeButton
             // 
@@ -717,12 +715,13 @@
             // provinceTabPage
             // 
             this.provinceTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.provinceTabPage.Controls.Add(this.testProvinceIdTextBox);
+            this.provinceTabPage.Controls.Add(this.provinceIdTextBox);
             this.provinceTabPage.Controls.Add(this.provinceCountryFilterLabel);
             this.provinceTabPage.Controls.Add(this.provinceCountryFilterComboBox);
             this.provinceTabPage.Controls.Add(this.provinceCountryGroupBox);
             this.provinceTabPage.Controls.Add(this.mapFilterGroupBox);
             this.provinceTabPage.Controls.Add(this.provinceInfoGroupBox);
+            this.provinceTabPage.Controls.Add(this.provinceIdLabel);
             this.provinceTabPage.Controls.Add(this.provinceResourceGroupBox);
             this.provinceTabPage.Controls.Add(this.provinceBuildingGroupBox);
             this.provinceTabPage.Controls.Add(this.provinceMapPanel);
@@ -730,11 +729,11 @@
             resources.ApplyResources(this.provinceTabPage, "provinceTabPage");
             this.provinceTabPage.Name = "provinceTabPage";
             // 
-            // testProvinceIdTextBox
+            // provinceIdTextBox
             // 
-            resources.ApplyResources(this.testProvinceIdTextBox, "testProvinceIdTextBox");
-            this.testProvinceIdTextBox.Name = "testProvinceIdTextBox";
-            this.testProvinceIdTextBox.Validated += new System.EventHandler(this.OnTextBox1Validated);
+            resources.ApplyResources(this.provinceIdTextBox, "provinceIdTextBox");
+            this.provinceIdTextBox.Name = "provinceIdTextBox";
+            this.provinceIdTextBox.Validated += new System.EventHandler(this.OnProvinceIdTextBoxValidated);
             // 
             // provinceCountryFilterLabel
             // 
@@ -746,6 +745,7 @@
             resources.ApplyResources(this.provinceCountryFilterComboBox, "provinceCountryFilterComboBox");
             this.provinceCountryFilterComboBox.FormattingEnabled = true;
             this.provinceCountryFilterComboBox.Name = "provinceCountryFilterComboBox";
+            this.provinceCountryFilterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnProvinceCountryFilterComboBoxSelectedIndexChanged);
             // 
             // provinceCountryGroupBox
             // 
@@ -763,6 +763,7 @@
             resources.ApplyResources(this.claimedProvinceCheckBox, "claimedProvinceCheckBox");
             this.claimedProvinceCheckBox.Name = "claimedProvinceCheckBox";
             this.claimedProvinceCheckBox.UseVisualStyleBackColor = true;
+            this.claimedProvinceCheckBox.CheckedChanged += new System.EventHandler(this.OnProvinceCheckBoxCheckedChanged);
             // 
             // capitalCheckBox
             // 
@@ -776,18 +777,21 @@
             resources.ApplyResources(this.controlledProvinceCheckBox, "controlledProvinceCheckBox");
             this.controlledProvinceCheckBox.Name = "controlledProvinceCheckBox";
             this.controlledProvinceCheckBox.UseVisualStyleBackColor = true;
+            this.controlledProvinceCheckBox.CheckedChanged += new System.EventHandler(this.OnProvinceCheckBoxCheckedChanged);
             // 
             // coreProvinceCheckBox
             // 
             resources.ApplyResources(this.coreProvinceCheckBox, "coreProvinceCheckBox");
             this.coreProvinceCheckBox.Name = "coreProvinceCheckBox";
             this.coreProvinceCheckBox.UseVisualStyleBackColor = true;
+            this.coreProvinceCheckBox.CheckedChanged += new System.EventHandler(this.OnProvinceCheckBoxCheckedChanged);
             // 
             // ownedProvinceCheckBox
             // 
             resources.ApplyResources(this.ownedProvinceCheckBox, "ownedProvinceCheckBox");
             this.ownedProvinceCheckBox.Name = "ownedProvinceCheckBox";
             this.ownedProvinceCheckBox.UseVisualStyleBackColor = true;
+            this.ownedProvinceCheckBox.CheckedChanged += new System.EventHandler(this.OnProvinceCheckBoxCheckedChanged);
             // 
             // mapFilterGroupBox
             // 
@@ -805,24 +809,28 @@
             resources.ApplyResources(this.mapFilterClaimedRadioButton, "mapFilterClaimedRadioButton");
             this.mapFilterClaimedRadioButton.Name = "mapFilterClaimedRadioButton";
             this.mapFilterClaimedRadioButton.UseVisualStyleBackColor = true;
+            this.mapFilterClaimedRadioButton.CheckedChanged += new System.EventHandler(this.OnMapFilterRadioButtonCheckedChanged);
             // 
             // mapFilterControlledRadioButton
             // 
             resources.ApplyResources(this.mapFilterControlledRadioButton, "mapFilterControlledRadioButton");
             this.mapFilterControlledRadioButton.Name = "mapFilterControlledRadioButton";
             this.mapFilterControlledRadioButton.UseVisualStyleBackColor = true;
+            this.mapFilterControlledRadioButton.CheckedChanged += new System.EventHandler(this.OnMapFilterRadioButtonCheckedChanged);
             // 
             // mapFilterOwnedRadioButton
             // 
             resources.ApplyResources(this.mapFilterOwnedRadioButton, "mapFilterOwnedRadioButton");
             this.mapFilterOwnedRadioButton.Name = "mapFilterOwnedRadioButton";
             this.mapFilterOwnedRadioButton.UseVisualStyleBackColor = true;
+            this.mapFilterOwnedRadioButton.CheckedChanged += new System.EventHandler(this.OnMapFilterRadioButtonCheckedChanged);
             // 
             // mapFilterCoreRadioButton
             // 
             resources.ApplyResources(this.mapFilterCoreRadioButton, "mapFilterCoreRadioButton");
             this.mapFilterCoreRadioButton.Name = "mapFilterCoreRadioButton";
             this.mapFilterCoreRadioButton.UseVisualStyleBackColor = true;
+            this.mapFilterCoreRadioButton.CheckedChanged += new System.EventHandler(this.OnMapFilterRadioButtonCheckedChanged);
             // 
             // mapFilterNoneRadioButton
             // 
@@ -831,18 +839,16 @@
             this.mapFilterNoneRadioButton.Name = "mapFilterNoneRadioButton";
             this.mapFilterNoneRadioButton.TabStop = true;
             this.mapFilterNoneRadioButton.UseVisualStyleBackColor = true;
-            this.mapFilterNoneRadioButton.CheckedChanged += new System.EventHandler(this.OnMapFilterNoneRadioButtonCheckedChanged);
+            this.mapFilterNoneRadioButton.CheckedChanged += new System.EventHandler(this.OnMapFilterRadioButtonCheckedChanged);
             // 
             // provinceInfoGroupBox
             // 
             this.provinceInfoGroupBox.Controls.Add(this.revoltRiskTextBox);
-            this.provinceInfoGroupBox.Controls.Add(this.provinceIdTextBox);
             this.provinceInfoGroupBox.Controls.Add(provinceNameLabel);
             this.provinceInfoGroupBox.Controls.Add(this.vpTextBox);
             this.provinceInfoGroupBox.Controls.Add(this.provinceNameTextBox);
             this.provinceInfoGroupBox.Controls.Add(provinceVpLabel);
             this.provinceInfoGroupBox.Controls.Add(provinceRevoltRiskLabel);
-            this.provinceInfoGroupBox.Controls.Add(provinceIdLabel);
             resources.ApplyResources(this.provinceInfoGroupBox, "provinceInfoGroupBox");
             this.provinceInfoGroupBox.Name = "provinceInfoGroupBox";
             this.provinceInfoGroupBox.TabStop = false;
@@ -852,12 +858,6 @@
             resources.ApplyResources(this.revoltRiskTextBox, "revoltRiskTextBox");
             this.revoltRiskTextBox.Name = "revoltRiskTextBox";
             this.revoltRiskTextBox.Validated += new System.EventHandler(this.OnProvinceDoubleItemTextBoxValidated);
-            // 
-            // provinceIdTextBox
-            // 
-            resources.ApplyResources(this.provinceIdTextBox, "provinceIdTextBox");
-            this.provinceIdTextBox.Name = "provinceIdTextBox";
-            this.provinceIdTextBox.Validated += new System.EventHandler(this.OnProvinceIdTextBoxValidated);
             // 
             // vpTextBox
             // 
@@ -4087,7 +4087,6 @@
         private System.Windows.Forms.TabPage provinceTabPage;
         private System.Windows.Forms.Panel provinceMapPanel;
         private System.Windows.Forms.PictureBox provinceMapPictureBox;
-        private System.Windows.Forms.TextBox testProvinceIdTextBox;
         private System.Windows.Forms.TabPage technologyTabPage;
         private System.Windows.Forms.TabPage governmentTabPage;
         private System.Windows.Forms.TabPage countryTabPage;
@@ -4535,6 +4534,7 @@
         private System.Windows.Forms.ColumnHeader claimedProvinceColumnHeader;
         private System.Windows.Forms.GroupBox provinceBuildingGroupBox;
         private System.Windows.Forms.Label provinceCountryFilterLabel;
+        private System.Windows.Forms.Label provinceIdLabel;
 
     }
 }

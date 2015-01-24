@@ -70,6 +70,16 @@ namespace HoI2Editor.Models
             new Dictionary<int, ProvinceSettings>();
 
         /// <summary>
+        ///     プロヴィンスIDとプロヴィンス保有国の対応付け
+        /// </summary>
+        private static readonly Dictionary<int, Country> OwnedCountries = new Dictionary<int, Country>();
+
+        /// <summary>
+        ///     プロヴィンスIDとプロヴィンス支配国の対応付け
+        /// </summary>
+        private static readonly Dictionary<int, Country> ControlledCountries = new Dictionary<int, Country>();
+
+        /// <summary>
         ///     使用済みのtypeとidの組
         /// </summary>
         private static Dictionary<int, HashSet<int>> _usedTypeIds;
@@ -248,6 +258,9 @@ namespace HoI2Editor.Models
 
             // 使用済みのtypeとidの組を初期化する
             InitTypeIds();
+
+            // プロヴィンス情報を初期化する
+            InitProvinces();
         }
 
         #endregion
@@ -351,10 +364,10 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 国家関係
+        #region 国家
 
         /// <summary>
-        ///     国家関係を初期化する
+        ///     国家情報を初期化する
         /// </summary>
         private static void InitDiplomacy()
         {
@@ -626,17 +639,48 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region プロヴィンス設定
+        #region プロヴィンス
 
         /// <summary>
-        ///     プロヴィンステーブルを初期化する
+        ///     プロヴィンス情報を初期化する
         /// </summary>
-        public static void InitProvinceTable()
+        private static void InitProvinces()
         {
+            // プロヴィンスIDとプロヴィンス設定の対応付け
             ProvinceTable.Clear();
             foreach (ProvinceSettings settings in Data.Provinces)
             {
                 ProvinceTable[settings.Id] = settings;
+            }
+
+            // プロヴィンスIDとプロヴィンス保有国の対応付け
+            OwnedCountries.Clear();
+            foreach (CountrySettings settings in Data.Countries)
+            {
+                foreach (int id in settings.OwnedProvinces)
+                {
+                    if (OwnedCountries.ContainsKey(id))
+                    {
+                        Log.Warning("[Scenario] duplicated owned province: {0} <{1}> <{2}>", id,
+                            Countries.Strings[(int) settings.Country], Countries.Strings[(int) OwnedCountries[id]]);
+                    }
+                    OwnedCountries[id] = settings.Country;
+                }
+            }
+
+            // プロヴィンスIDとプロヴィンス支配国の対応付け
+            ControlledCountries.Clear();
+            foreach (CountrySettings settings in Data.Countries)
+            {
+                foreach (int id in settings.ControlledProvinces)
+                {
+                    if (ControlledCountries.ContainsKey(id))
+                    {
+                        Log.Warning("[Scenario] duplicated controlled province: {0} <{1}> <{2}>", id,
+                            Countries.Strings[(int) settings.Country], Countries.Strings[(int) ControlledCountries[id]]);
+                    }
+                    ControlledCountries[id] = settings.Country;
+                }
             }
         }
 
@@ -661,6 +705,142 @@ namespace HoI2Editor.Models
         public static void AddProvinceSettings(ProvinceSettings settings)
         {
             ProvinceTable[settings.Id] = settings;
+        }
+
+        /// <summary>
+        ///     中核プロヴィンスを追加する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <param name="settings">国家設定</param>
+        public static void AddCoreProvince(int id, CountrySettings settings)
+        {
+            // 中核プロヴィンスを追加する
+            if (!settings.NationalProvinces.Contains(id))
+            {
+                settings.NationalProvinces.Add(id);
+            }
+        }
+
+        /// <summary>
+        ///     中核プロヴィンスを削除する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <param name="settings">国家設定</param>
+        public static void RemoveCoreProvince(int id, CountrySettings settings)
+        {
+            // 中核プロヴィンスを削除する
+            if (settings.NationalProvinces.Contains(id))
+            {
+                settings.NationalProvinces.Remove(id);
+            }
+        }
+
+        /// <summary>
+        ///     保有プロヴィンスを追加する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <param name="settings">国家設定</param>
+        public static void AddOwnedProvince(int id, CountrySettings settings)
+        {
+            // 保有プロヴィンスを追加する
+            if (!settings.OwnedProvinces.Contains(id))
+            {
+                settings.OwnedProvinces.Add(id);
+            }
+
+            // 元の保有国の保有プロヴィンスを削除する
+            if (OwnedCountries.ContainsKey(id))
+            {
+                GetCountrySettings(OwnedCountries[id]).OwnedProvinces.Remove(id);
+            }
+
+            // プロヴィンスIDとプロヴィンス保有国の対応付けを更新する
+            OwnedCountries[id] = settings.Country;
+        }
+
+        /// <summary>
+        ///     保有プロヴィンスを削除する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <param name="settings">国家設定</param>
+        public static void RemoveOwnedProvince(int id, CountrySettings settings)
+        {
+            // 保有プロヴィンスを削除する
+            if (settings.OwnedProvinces.Contains(id))
+            {
+                settings.OwnedProvinces.Remove(id);
+            }
+
+            // プロヴィンスIDとプロヴィンス保有国の対応付けを削除する
+            OwnedCountries.Remove(id);
+        }
+
+        /// <summary>
+        ///     支配プロヴィンスを追加する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <param name="settings">国家設定</param>
+        public static void AddControlledProvince(int id, CountrySettings settings)
+        {
+            // 支配プロヴィンスを追加する
+            if (!settings.ControlledProvinces.Contains(id))
+            {
+                settings.ControlledProvinces.Add(id);
+            }
+
+            // 元の支配国の支配プロヴィンスを削除する
+            if (ControlledCountries.ContainsKey(id))
+            {
+                GetCountrySettings(ControlledCountries[id]).ControlledProvinces.Remove(id);
+            }
+
+            // プロヴィンスIDとプロヴィンス支配国の対応付けを更新する
+            ControlledCountries[id] = settings.Country;
+        }
+
+        /// <summary>
+        ///     支配プロヴィンスを削除する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <param name="settings">国家設定</param>
+        public static void RemoveControlledProvince(int id, CountrySettings settings)
+        {
+            // 支配プロヴィンスを削除する
+            if (settings.ControlledProvinces.Contains(id))
+            {
+                settings.ControlledProvinces.Remove(id);
+            }
+
+            // プロヴィンスIDとプロヴィンス支配国の対応付けを削除する
+            ControlledCountries.Remove(id);
+        }
+
+        /// <summary>
+        ///     領有権主張プロヴィンスを追加する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <param name="settings">国家設定</param>
+        public static void AddClaimedProvince(int id, CountrySettings settings)
+        {
+            // 領有権主張プロヴィンスを追加する
+            if (!settings.ClaimedProvinces.Contains(id))
+            {
+                settings.ClaimedProvinces.Add(id);
+            }
+        }
+
+        /// <summary>
+        ///     領有権主張プロヴィンスを削除する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <param name="settings">国家設定</param>
+        public static void RemoveClaimedProvince(int id, CountrySettings settings)
+        {
+            // 領有権主張プロヴィンスを削除する
+            if (settings.ClaimedProvinces.Contains(id))
+            {
+                settings.ClaimedProvinces.Remove(id);
+            }
         }
 
         #endregion

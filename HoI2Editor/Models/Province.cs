@@ -289,6 +289,70 @@ namespace HoI2Editor.Models
         /// </summary>
         public int FillCoordX6 { get; set; }
 
+        /// <summary>
+        ///     陸地プロヴィンスかどうか
+        /// </summary>
+        public bool IsLand
+        {
+            get
+            {
+                switch (Terrain)
+                {
+                    case TerrainId.Plains:
+                    case TerrainId.Forest:
+                    case TerrainId.Mountain:
+                    case TerrainId.Desert:
+                    case TerrainId.Marsh:
+                    case TerrainId.Hills:
+                    case TerrainId.Jungle:
+                    case TerrainId.Urban:
+                    case TerrainId.Clear:
+                        return true;
+
+                    default:
+                        return false;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     海洋プロヴィンスかどうか
+        /// </summary>
+        public bool IsSea
+        {
+            get
+            {
+                switch (Terrain)
+                {
+                    case TerrainId.Ocean:
+                    case TerrainId.River:
+                        return true;
+
+                    default:
+                        return false;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     無効プロヴィンスかどうか
+        /// </summary>
+        public bool IsInvalid
+        {
+            get
+            {
+                switch (Terrain)
+                {
+                    case TerrainId.TerraIncognito:
+                    case TerrainId.Unknown:
+                        return true;
+
+                    default:
+                        return false;
+                }
+            }
+        }
+
         #endregion
 
         #region 内部フィールド

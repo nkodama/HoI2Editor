@@ -24,6 +24,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public MapLevel Level { get; private set; }
 
+        /// <summary>
+        ///     プロヴィンスIDの配列
+        /// </summary>
+        public MapProvinceIds ProvinceIds;
+
         #endregion
 
         #region 内部フィールド
@@ -42,11 +47,6 @@ namespace HoI2Editor.Models
         ///     マップ画素の配列
         /// </summary>
         private MapPixels _pixels;
-
-        /// <summary>
-        ///     プロヴィンスIDの配列
-        /// </summary>
-        private MapProvinceIds _ids;
 
         /// <summary>
         ///     マップブロックの配列
@@ -1032,7 +1032,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private void ExtractIds()
         {
-            _ids = new MapProvinceIds(_blockWidth * MapBlock.Width, _blockHeight * MapBlock.Height);
+            ProvinceIds = new MapProvinceIds(_blockWidth * MapBlock.Width, _blockHeight * MapBlock.Height);
             _provs = new ushort[Maps.MaxProvinces];
 
             for (int i = 0; i < _blocks.Height; i++)
@@ -1073,11 +1073,11 @@ namespace HoI2Editor.Models
         /// <param name="node">対象ノード</param>
         private void FillNode(MapTreeNode node)
         {
-            int pos = _base + node.Y * _ids.Width + node.X;
-            ushort[] ids = _ids.Data;
+            int pos = _base + node.Y * ProvinceIds.Width + node.X;
+            ushort[] ids = ProvinceIds.Data;
             ushort id = _provs[node.No];
             int width = 1 << node.Level;
-            int step = _ids.Width - width + 1;
+            int step = ProvinceIds.Width - width + 1;
             switch (node.Level)
             {
                 case 0:
@@ -1390,7 +1390,7 @@ namespace HoI2Editor.Models
             {
                 for (int j = 0; j < width; j++)
                 {
-                    if (_ids[pos] == id)
+                    if (ProvinceIds[pos] == id)
                     {
                         ptr[pos] = (byte) ((ptr[pos] & scale) | mask);
                     }

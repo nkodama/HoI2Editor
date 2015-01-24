@@ -38,6 +38,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public static byte[] ColorMasks { get; private set; }
 
+        /// <summary>
+        ///     読み込み済みフラグ
+        /// </summary>
+        public static bool[] IsLoaded;
+
         #endregion
 
         #region 公開定数
@@ -72,6 +77,7 @@ namespace HoI2Editor.Models
         {
             Data = new Map[Enum.GetNames(typeof (MapLevel)).Length];
             ColorMasks = new byte[MaxProvinces];
+            IsLoaded = new bool[Enum.GetNames(typeof (MapLevel)).Length];
 
             InitColorPalette();
         }
@@ -106,6 +112,8 @@ namespace HoI2Editor.Models
             {
                 LoadColorScales();
             }
+
+            IsLoaded[(int) level] = true;
 
             sw.Stop();
             Log.Verbose("[Map] Load: {0} {1}ms", map.Level, sw.ElapsedMilliseconds);
@@ -194,8 +202,6 @@ namespace HoI2Editor.Models
                     }
                     Color[] colorScale = GetColorScale(colors);
                     ColorScales.Add(name, colorScale);
-
-                    Log.Info("Color: {0} R:{1} G:{2} B:{3}", name, colorScale[0].R, colorScale[1].G, colorScale[2].B);
                 }
             }
         }
@@ -287,6 +293,16 @@ namespace HoI2Editor.Models
         #endregion
 
         #region カラースケール
+
+        /// <summary>
+        ///     プロヴィンスのカラーインデックスを取得する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <returns>カラーインデックス</returns>
+        public static int GetColorIndex(ushort id)
+        {
+            return ColorMasks[id] >> 6;
+        }
 
         /// <summary>
         ///     プロヴィンスのカラーインデックスを設定する

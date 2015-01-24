@@ -148,9 +148,9 @@ namespace HoI2Editor.Forms
         private MapPanelController _mapPanelController;
 
         /// <summary>
-        ///     マップ表示のフィルターモード
+        ///     陸地プロヴィンスリスト
         /// </summary>
-        private MapFilterMode _mapFilterMode;
+        private readonly List<Province> _landProvinces = new List<Province>();
 
         #endregion
 
@@ -178,8 +178,6 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        private ushort _prevId;
-
         #endregion
 
         #region 内部定数
@@ -197,18 +195,6 @@ namespace HoI2Editor.Forms
             Government, // 政府
             Technology, // 技術
             Province // プロヴィンス
-        }
-
-        /// <summary>
-        ///     マップ表示のフィルターモード
-        /// </summary>
-        private enum MapFilterMode
-        {
-            None,
-            Core,
-            Owned,
-            Controlled,
-            Claimed
         }
 
         /// <summary>
@@ -323,7 +309,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     編集項目の編集済みフラグ
         /// </summary>
-        private readonly object[] _itemDirtyFlags =
+        private static readonly object[] _itemDirtyFlags =
         {
             CountrySettings.ItemId.Capital,
             null,
@@ -393,7 +379,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     編集項目の文字列
         /// </summary>
-        private readonly string[] _itemStrings =
+        private static readonly string[] _itemStrings =
         {
             "capital",
             "core provinces",
@@ -484,14 +470,12 @@ namespace HoI2Editor.Forms
         /// </summary>
         public void OnFileLoaded()
         {
-            // 国家関係を初期化する
+            // シナリオ関連情報を初期化する
             Scenarios.Init();
-
-            // プロヴィンステーブルを初期化する
-            Scenarios.InitProvinceTable();
 
             // 編集項目を更新する
             UpdateEditableItems();
+            OnProvinceTabPageFileLoad();
         }
 
         /// <summary>
@@ -537,7 +521,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMinisterWorkerDoWork(object sender, DoWorkEventArgs e)
+        private static void OnMinisterWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             // 閣僚データを読み込む
             Ministers.Load();
@@ -592,7 +576,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechWorkerDoWork(object sender, DoWorkEventArgs e)
+        private static void OnTechWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             // 技術定義ファイルを読み込む
             Techs.Load();
@@ -681,21 +665,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void LoadMaps()
         {
-            BackgroundWorker worker = new BackgroundWorker();
-            worker.DoWork += OnMapWorkerDoWork;
-            worker.RunWorkerCompleted += OnMapWorkerRunWorkerCompleted;
-            worker.RunWorkerAsync();
-        }
-
-        /// <summary>
-        ///     マップの読み込み完了まで待機する
-        /// </summary>
-        private void WaitLoadingMaps()
-        {
-            while (_mapWorker.IsBusy)
-            {
-                Application.DoEvents();
-            }
+            _mapWorker.DoWork += OnMapWorkerDoWork;
+            _mapWorker.RunWorkerCompleted += OnMapWorkerRunWorkerCompleted;
+            _mapWorker.RunWorkerAsync();
         }
 
         /// <summary>
@@ -703,10 +675,8 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMapWorkerDoWork(object sender, DoWorkEventArgs e)
+        private static void OnMapWorkerDoWork(object sender, DoWorkEventArgs e)
         {
-            Provinces.Load();
-
             Maps.Load(MapLevel.Level2);
 
             Log.Info("[Scenario] Load level-2 map");
@@ -729,8 +699,18 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            _mapPanelController = new MapPanelController(provinceMapPictureBox);
-            _mapPanelController.ShowMapImage();
+            // マップパネルを初期化する
+            InitMapPanel();
+
+            // マップフィルターを有効化する
+            EnableMapFilterGroupBox();
+
+            // 選択プロヴィンスが表示されるようにスクロールする
+            Province province = GetSelectedProvince();
+            if (province != null)
+            {
+                _mapPanelController.ScrollToProvince(province.Id);
+            }
         }
 
         #endregion
@@ -757,6 +737,9 @@ namespace HoI2Editor.Forms
             _techTreePanel.ItemMouseClick += OnTechTreeItemMouseClick;
             _techTreePanel.QueryItemStatus += OnQueryTechTreeItemStatus;
             technologyTabPage.Controls.Add(_techTreePanel);
+
+            // マップパネル
+            _mapPanelController = new MapPanelController(provinceMapPanel, provinceMapPictureBox);
         }
 
         /// <summary>
@@ -772,7 +755,6 @@ namespace HoI2Editor.Forms
             //InitGovernmentTab();
             //InitTechTab();
             //InitProvinceTab();
-            OnProvinceTabPageFormLoad();
         }
 
         /// <summary>
@@ -788,7 +770,6 @@ namespace HoI2Editor.Forms
             UpdateGovernmentTab();
             UpdateTechTab();
             //UpdateProvinceTab();
-            OnProvinceTabPageFileLoad();
         }
 
         /// <summary>
@@ -816,8 +797,6 @@ namespace HoI2Editor.Forms
             // 文字列定義ファイルを読み込む
             Config.Load();
 
-            Provinces.Load();
-
             // マップを遅延読み込みする
             LoadMaps();
 
@@ -828,10 +807,11 @@ namespace HoI2Editor.Forms
             LoadTechs();
 
             // プロヴィンスデータを遅延読み込みする
-            //LoadProvinces();
+            LoadProvinces();
 
             // 表示項目を初期化する
             InitEditableItems();
+            OnProvinceTabPageFormLoad();
 
             // シナリオファイル読み込み済みなら編集項目を更新する
             if (Scenarios.IsLoaded())
@@ -2767,7 +2747,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     同盟タブの編集項目を初期化する
         /// </summary>
-        private void InitAllianceTab()
+        private static void InitAllianceTab()
         {
             // 何もしない
         }
@@ -16704,6 +16684,7 @@ namespace HoI2Editor.Forms
         private void InitProvinceTab()
         {
             InitMapFilterGroupBox();
+            InitProvinceIdTextBox();
             InitProvinceCountryGroupBox();
             InitProvinceInfoGroupBox();
             InitProvinceResourceGroupBox();
@@ -16721,8 +16702,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // プロヴィンスリストを更新する
-            UpdateProvinceList();
+            // プロヴィンスリストを初期化する
+            InitProvinceList();
 
             // 国家フィルターを更新する
             UpdateProvinceCountryFilter();
@@ -16730,9 +16711,11 @@ namespace HoI2Editor.Forms
             // プロヴィンスリストを有効化する
             EnableProvinceList();
 
-            // 国家フィルターコンボボックスを有効化する
-            provinceCountryFilterLabel.Enabled = true;
-            provinceCountryFilterComboBox.Enabled = true;
+            // 国家フィルターを有効化する
+            EnableProvinceCountryFilter();
+
+            // IDテキストボックスを有効化する
+            EnableProvinceIdTextBox();
 
             // 初期化済みフラグをセットする
             _tabPageInitialized[(int) TabPageNo.Province] = true;
@@ -16815,7 +16798,82 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region プロヴィンスタブ - マップパネル
+
+        /// <summary>
+        ///     マップパネルを初期化する
+        /// </summary>
+        private void InitMapPanel()
+        {
+            _mapPanelController.ProvinceMouseClick += OnMapPanelMouseClick;
+            _mapPanelController.Show();
+        }
+
+        /// <summary>
+        ///     マップパネルのマウスクリック時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMapPanelMouseClick(object sender, MapPanelController.ProvinceEventArgs e)
+        {
+            // 左クリック以外では何もしない
+            if (e.MouseEvent.Button != MouseButtons.Left)
+            {
+                return;
+            }
+
+            // 選択中のプロヴィンスIDを更新する
+            provinceIdTextBox.Text = IntHelper.ToString(e.Id);
+
+            // プロヴィンスを選択する
+            SelectProvince(e.Id);
+
+            Country country = GetProvinceCountryFilter();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            switch (_mapPanelController.FilterMode)
+            {
+                case MapPanelController.MapFilterMode.Core:
+                    coreProvinceCheckBox.Checked = !coreProvinceCheckBox.Checked;
+                    break;
+
+                case MapPanelController.MapFilterMode.Owned:
+                    ownedProvinceCheckBox.Checked = !ownedProvinceCheckBox.Checked;
+                    break;
+
+                case MapPanelController.MapFilterMode.Controlled:
+                    controlledProvinceCheckBox.Checked = !controlledProvinceCheckBox.Checked;
+                    break;
+
+                case MapPanelController.MapFilterMode.Claimed:
+                    claimedProvinceCheckBox.Checked = !claimedProvinceCheckBox.Checked;
+                    break;
+            }
+        }
+
+        #endregion
+
         #region プロヴィンスタブ - プロヴィンスリスト
+
+        /// <summary>
+        ///     プロヴィンスリストを初期化する
+        /// </summary>
+        private void InitProvinceList()
+        {
+            // プロヴィンスリストビューを更新する
+            _landProvinces.Clear();
+            provinceListView.BeginUpdate();
+            provinceListView.Items.Clear();
+            foreach (Province province in Provinces.Items.Where(province => province.IsLand && (province.Id > 0)))
+            {
+                _landProvinces.Add(province);
+                provinceListView.Items.Add(CreateProvinceListItem(province));
+            }
+            provinceListView.EndUpdate();
+        }
 
         /// <summary>
         ///     プロヴィンスリストを有効化する
@@ -16830,23 +16888,36 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateProvinceList()
         {
+            Country country = GetProvinceCountryFilter();
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
             // プロヴィンスリストビューを更新する
             provinceListView.BeginUpdate();
-            provinceListView.Items.Clear();
-            foreach (Province province in Provinces.Items)
+            if (settings != null)
             {
-                switch (province.Terrain)
+                foreach (ListViewItem item in provinceListView.Items)
                 {
-                    case TerrainId.Plains:
-                    case TerrainId.Forest:
-                    case TerrainId.Mountain:
-                    case TerrainId.Desert:
-                    case TerrainId.Marsh:
-                    case TerrainId.Hills:
-                    case TerrainId.Jungle:
-                    case TerrainId.Urban:
-                        provinceListView.Items.Add(CreateProvinceListItem(province));
-                        break;
+                    Province province = item.Tag as Province;
+                    if (province == null)
+                    {
+                        continue;
+                    }
+                    item.SubItems[2].Text = (province.Id == settings.Capital) ? Resources.Yes : "";
+                    item.SubItems[3].Text = settings.NationalProvinces.Contains(province.Id) ? Resources.Yes : "";
+                    item.SubItems[4].Text = settings.OwnedProvinces.Contains(province.Id) ? Resources.Yes : "";
+                    item.SubItems[5].Text = settings.ControlledProvinces.Contains(province.Id) ? Resources.Yes : "";
+                    item.SubItems[6].Text = settings.ClaimedProvinces.Contains(province.Id) ? Resources.Yes : "";
+                }
+            }
+            else
+            {
+                foreach (ListViewItem item in provinceListView.Items)
+                {
+                    item.SubItems[2].Text = "";
+                    item.SubItems[3].Text = "";
+                    item.SubItems[4].Text = "";
+                    item.SubItems[5].Text = "";
+                    item.SubItems[6].Text = "";
                 }
             }
             provinceListView.EndUpdate();
@@ -16870,6 +16941,19 @@ namespace HoI2Editor.Forms
             item.SubItems.Add("");
 
             return item;
+        }
+
+        /// <summary>
+        ///     選択中のプロヴィンスを取得する
+        /// </summary>
+        /// <returns></returns>
+        private Province GetSelectedProvince()
+        {
+            if (provinceListView.SelectedIndices.Count == 0)
+            {
+                return null;
+            }
+            return provinceListView.SelectedItems[0].Tag as Province;
         }
 
         /// <summary>
@@ -16908,23 +16992,16 @@ namespace HoI2Editor.Forms
             UpdateProvinceBuildingItems(settings);
 
             // 編集項目を有効化する
-            EnableProvinceCountryItems();
+            if (country != Country.None)
+            {
+                EnableProvinceCountryItems();
+            }
             EnableProvinceInfoItems();
             EnableProvinceResourceItems();
             EnableProvinceBuildingItems();
-        }
 
-        /// <summary>
-        ///     選択中のプロヴィンスを取得する
-        /// </summary>
-        /// <returns></returns>
-        private Province GetSelectedProvince()
-        {
-            if (provinceListView.SelectedIndices.Count == 0)
-            {
-                return null;
-            }
-            return provinceListView.SelectedItems[0].Tag as Province;
+            // マップをスクロールさせる
+            _mapPanelController.ScrollToProvince(province.Id);
         }
 
         #endregion
@@ -16932,15 +17009,46 @@ namespace HoI2Editor.Forms
         #region プロヴィンスタブ - マップフィルター
 
         /// <summary>
-        ///     マップフィルターグループボックスを初期化する
+        ///     マップフィルターを初期化する
         /// </summary>
         private void InitMapFilterGroupBox()
         {
-            mapFilterNoneRadioButton.Tag = MapFilterMode.None;
-            mapFilterCoreRadioButton.Tag = MapFilterMode.Core;
-            mapFilterOwnedRadioButton.Tag = MapFilterMode.Owned;
-            mapFilterControlledRadioButton.Tag = MapFilterMode.Controlled;
-            mapFilterClaimedRadioButton.Tag = MapFilterMode.Claimed;
+            mapFilterNoneRadioButton.Tag = MapPanelController.MapFilterMode.None;
+            mapFilterCoreRadioButton.Tag = MapPanelController.MapFilterMode.Core;
+            mapFilterOwnedRadioButton.Tag = MapPanelController.MapFilterMode.Owned;
+            mapFilterControlledRadioButton.Tag = MapPanelController.MapFilterMode.Controlled;
+            mapFilterClaimedRadioButton.Tag = MapPanelController.MapFilterMode.Claimed;
+        }
+
+        /// <summary>
+        ///     マップフィルターを有効化する
+        /// </summary>
+        private void EnableMapFilterGroupBox()
+        {
+            mapFilterGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     マップフィルターラジオボタンのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMapFilterRadioButtonCheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (radioButton == null)
+            {
+                return;
+            }
+
+            // チェックなしの時には他の項目にチェックがついているので処理しない
+            if (!radioButton.Checked)
+            {
+                return;
+            }
+
+            // フィルターモードを更新する
+            _mapPanelController.FilterMode = (MapPanelController.MapFilterMode) radioButton.Tag;
         }
 
         #endregion
@@ -16948,7 +17056,16 @@ namespace HoI2Editor.Forms
         #region プロヴィンスタブ - 国家フィルター
 
         /// <summary>
-        ///     国家フィルターコンボボックスを更新する
+        ///     国家フィルターを有効化する
+        /// </summary>
+        private void EnableProvinceCountryFilter()
+        {
+            provinceCountryFilterLabel.Enabled = true;
+            provinceCountryFilterComboBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     国家フィルターを更新する
         /// </summary>
         private void UpdateProvinceCountryFilter()
         {
@@ -16973,6 +17090,103 @@ namespace HoI2Editor.Forms
                 return Country.None;
             }
             return Countries.Tags[provinceCountryFilterComboBox.SelectedIndex - 1];
+        }
+
+        /// <summary>
+        ///     国家フィルターの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceCountryFilterComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // プロヴィンスリストを更新する
+            UpdateProvinceList();
+
+            // マップフィルターを更新する
+            Country country = GetProvinceCountryFilter();
+            _mapPanelController.SelectedCountry = country;
+
+            // プロヴィンス国家グループボックスの編集項目の表示を更新する
+            Province province = GetSelectedProvince();
+            if ((country != Country.None) && (province != null))
+            {
+                CountrySettings settings = Scenarios.GetCountrySettings(country);
+                UpdateProvinceCountryItems(province, settings);
+                EnableProvinceCountryItems();
+            }
+            else
+            {
+                DisableProvinceCountryItems();
+                ClearProvinceCountryItems();
+            }
+        }
+
+        #endregion
+
+        #region プロヴィンスタブ - IDテキストボックス
+
+        /// <summary>
+        ///     プロヴィンスIDテキストボックスを初期化する
+        /// </summary>
+        private void InitProvinceIdTextBox()
+        {
+            provinceIdTextBox.Tag = ItemId.ProvinceId;
+        }
+
+        /// <summary>
+        ///     プロヴィンスIDテキストボックスを有効化する
+        /// </summary>
+        private void EnableProvinceIdTextBox()
+        {
+            provinceIdLabel.Enabled = true;
+            provinceIdTextBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     プロヴィンスIDテキストボックスのID変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceIdTextBoxValidated(object sender, EventArgs e)
+        {
+            Province province = GetSelectedProvince();
+
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(provinceIdTextBox.Text, out val))
+            {
+                if (province != null)
+                {
+                    provinceIdTextBox.Text = IntHelper.ToString(province.Id);
+                }
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val == province.Id)
+            {
+                return;
+            }
+
+            // プロヴィンスを選択する
+            SelectProvince(val);
+        }
+
+        /// <summary>
+        ///     プロヴィンスを選択する
+        /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        private void SelectProvince(int id)
+        {
+            // プロヴィンスリストビューの選択項目を変更する
+            int index = _landProvinces.FindIndex(p => p.Id == id);
+            if (index >= 0)
+            {
+                ListViewItem item = provinceListView.Items[index];
+                item.Focused = true;
+                item.Selected = true;
+                item.EnsureVisible();
+            }
         }
 
         #endregion
@@ -17019,6 +17233,12 @@ namespace HoI2Editor.Forms
             UpdateItemValue(ownedProvinceCheckBox, province, settings);
             UpdateItemValue(controlledProvinceCheckBox, province, settings);
             UpdateItemValue(claimedProvinceCheckBox, province, settings);
+
+            UpdateItemColor(capitalCheckBox, province, settings);
+            UpdateItemColor(coreProvinceCheckBox, province, settings);
+            UpdateItemColor(ownedProvinceCheckBox, province, settings);
+            UpdateItemColor(controlledProvinceCheckBox, province, settings);
+            UpdateItemColor(claimedProvinceCheckBox, province, settings);
         }
 
         /// <summary>
@@ -17042,7 +17262,6 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitProvinceInfoGroupBox()
         {
-            provinceIdTextBox.Tag = ItemId.ProvinceId;
             provinceNameTextBox.Tag = ItemId.ProvinceName;
             vpTextBox.Tag = ItemId.ProvinceVp;
             revoltRiskTextBox.Tag = ItemId.ProvinceRevoltRisk;
@@ -17075,6 +17294,10 @@ namespace HoI2Editor.Forms
             UpdateItemValue(provinceNameTextBox, province, settings);
             UpdateItemValue(vpTextBox, settings);
             UpdateItemValue(revoltRiskTextBox, settings);
+
+            UpdateItemColor(provinceNameTextBox, province, settings);
+            UpdateItemColor(vpTextBox, settings);
+            UpdateItemColor(revoltRiskTextBox, settings);
         }
 
         /// <summary>
@@ -17086,40 +17309,6 @@ namespace HoI2Editor.Forms
             provinceNameTextBox.Text = "";
             vpTextBox.Text = "";
             revoltRiskTextBox.Text = "";
-        }
-
-        /// <summary>
-        ///     プロヴィンスIDテキストボックスのフォーカス移動後の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnProvinceIdTextBoxValidated(object sender, EventArgs e)
-        {
-            Province province = GetSelectedProvince();
-
-            Control control = sender as Control;
-            if (control == null)
-            {
-                return;
-            }
-
-            // 変更後の文字列を数値に変換できなければ値を戻す
-            int val;
-            if (!IntHelper.TryParse(control.Text, out val))
-            {
-                if (province != null)
-                {
-                    control.Text = IntHelper.ToString(province.Id);
-                }
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            if (val == province.Id)
-            {
-            }
-
-            // TODO: プロヴィンスリストビューの選択項目を変更する
         }
 
         #endregion
@@ -17194,6 +17383,22 @@ namespace HoI2Editor.Forms
             UpdateItemValue(oilCurrentTextBox, settings);
             UpdateItemValue(oilMaxTextBox, settings);
             UpdateItemValue(suppliesPoolTextBox, settings);
+
+            UpdateItemColor(manpowerCurrentTextBox, settings);
+            UpdateItemColor(manpowerMaxTextBox, settings);
+            UpdateItemColor(energyPoolTextBox, settings);
+            UpdateItemColor(energyCurrentTextBox, settings);
+            UpdateItemColor(energyMaxTextBox, settings);
+            UpdateItemColor(metalPoolTextBox, settings);
+            UpdateItemColor(metalCurrentTextBox, settings);
+            UpdateItemColor(metalMaxTextBox, settings);
+            UpdateItemColor(rareMaterialsPoolTextBox, settings);
+            UpdateItemColor(rareMaterialsCurrentTextBox, settings);
+            UpdateItemColor(rareMaterialsMaxTextBox, settings);
+            UpdateItemColor(oilPoolTextBox, settings);
+            UpdateItemColor(oilCurrentTextBox, settings);
+            UpdateItemColor(oilMaxTextBox, settings);
+            UpdateItemColor(suppliesPoolTextBox, settings);
         }
 
         /// <summary>
@@ -17329,6 +17534,46 @@ namespace HoI2Editor.Forms
             UpdateItemValue(nuclearPowerCurrentTextBox, settings);
             UpdateItemValue(nuclearPowerMaxTextBox, settings);
             UpdateItemValue(nuclearPowerRelativeTextBox, settings);
+
+            UpdateItemColor(icCurrentTextBox, settings);
+            UpdateItemColor(icMaxTextBox, settings);
+            UpdateItemColor(icRelativeTextBox, settings);
+            UpdateItemColor(infrastructureCurrentTextBox, settings);
+            UpdateItemColor(infrastructureMaxTextBox, settings);
+            UpdateItemColor(infrastructureRelativeTextBox, settings);
+            UpdateItemColor(landFortCurrentTextBox, settings);
+            UpdateItemColor(landFortMaxTextBox, settings);
+            UpdateItemColor(landFortRelativeTextBox, settings);
+            UpdateItemColor(coastalFortCurrentTextBox, settings);
+            UpdateItemColor(coastalFortMaxTextBox, settings);
+            UpdateItemColor(coastalFortRelativeTextBox, settings);
+            UpdateItemColor(antiAirCurrentTextBox, settings);
+            UpdateItemColor(antiAirMaxTextBox, settings);
+            UpdateItemColor(antiAirRelativeTextBox, settings);
+            UpdateItemColor(airBaseCurrentTextBox, settings);
+            UpdateItemColor(airBaseMaxTextBox, settings);
+            UpdateItemColor(airBaseRelativeTextBox, settings);
+            UpdateItemColor(navalBaseCurrentTextBox, settings);
+            UpdateItemColor(navalBaseMaxTextBox, settings);
+            UpdateItemColor(navalBaseRelativeTextBox, settings);
+            UpdateItemColor(radarStationCurrentTextBox, settings);
+            UpdateItemColor(radarStationMaxTextBox, settings);
+            UpdateItemColor(radarStationRelativeTextBox, settings);
+            UpdateItemColor(nuclearReactorCurrentTextBox, settings);
+            UpdateItemColor(nuclearReactorMaxTextBox, settings);
+            UpdateItemColor(nuclearReactorRelativeTextBox, settings);
+            UpdateItemColor(rocketTestCurrentTextBox, settings);
+            UpdateItemColor(rocketTestMaxTextBox, settings);
+            UpdateItemColor(rocketTestRelativeTextBox, settings);
+            UpdateItemColor(syntheticOilCurrentTextBox, settings);
+            UpdateItemColor(syntheticOilMaxTextBox, settings);
+            UpdateItemColor(syntheticOilRelativeTextBox, settings);
+            UpdateItemColor(syntheticRaresCurrentTextBox, settings);
+            UpdateItemColor(syntheticRaresMaxTextBox, settings);
+            UpdateItemColor(syntheticRaresRelativeTextBox, settings);
+            UpdateItemColor(nuclearPowerCurrentTextBox, settings);
+            UpdateItemColor(nuclearPowerMaxTextBox, settings);
+            UpdateItemColor(nuclearPowerRelativeTextBox, settings);
         }
 
         /// <summary>
@@ -17379,41 +17624,6 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        /// <summary>
-        ///     マップフィルターラジオボタンのチェック状態変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMapFilterNoneRadioButtonCheckedChanged(object sender, EventArgs e)
-        {
-            RadioButton radioButton = sender as RadioButton;
-            if (radioButton == null)
-            {
-                return;
-            }
-
-            // チェックなしの時には他の項目にチェックがついているので処理しない
-            if (!radioButton.Checked)
-            {
-                return;
-            }
-
-            // マップの表示を更新する
-            UpdateMap((MapFilterMode) radioButton.Tag);
-        }
-
-        /// <summary>
-        ///     マップの表示を更新する
-        /// </summary>
-        /// <param name="mode">変更後のフィルターモード</param>
-        private void UpdateMap(MapFilterMode mode)
-        {
-            // TODO: フィルターモードごとにマップの表示を更新する
-            // 高速化のため、前のモードを考慮して必要な箇所だけ更新する
-
-            _mapFilterMode = mode;
-        }
-
         #endregion
 
         #region 編集項目
@@ -17439,6 +17649,7 @@ namespace HoI2Editor.Forms
             {
                 case ItemId.CountryCapital:
                     control.Checked = (settings.Capital == province.Id);
+                    control.Enabled = !control.Checked;
                     break;
 
                 case ItemId.CountryCoreProvinces:
@@ -17455,8 +17666,27 @@ namespace HoI2Editor.Forms
 
                 case ItemId.CountryClaimedProvinces:
                     control.Checked = settings.ClaimedProvinces.Contains(province.Id);
+                    control.Enabled = (Game.Type == GameType.DarkestHour);
                     break;
             }
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        private static void UpdateItemColor(CheckBox control, Province province, CountrySettings settings)
+        {
+            if (settings == null)
+            {
+                control.ForeColor = SystemColors.WindowText;
+                return;
+            }
+
+            ItemId itemId = (ItemId) control.Tag;
+            control.ForeColor = IsItemDirty(itemId, province, settings) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -17470,7 +17700,7 @@ namespace HoI2Editor.Forms
         {
             if (settings == null)
             {
-                return false;
+                return null;
             }
 
             switch (itemId)
@@ -17501,7 +17731,7 @@ namespace HoI2Editor.Forms
         /// <param name="val">編集項目の値</param>
         /// <param name="province">プロヴィンス</param>
         /// <param name="settings">国家設定</param>
-        private static void SetItemValue(ItemId itemId, object val, Province province, CountrySettings settings)
+        private void SetItemValue(ItemId itemId, object val, Province province, CountrySettings settings)
         {
             switch (itemId)
             {
@@ -17512,47 +17742,102 @@ namespace HoI2Editor.Forms
                 case ItemId.CountryCoreProvinces:
                     if ((bool) val)
                     {
-                        settings.NationalProvinces.Add(province.Id);
+                        Scenarios.AddCoreProvince(province.Id, settings);
                     }
                     else
                     {
-                        settings.NationalProvinces.Remove(province.Id);
+                        Scenarios.RemoveCoreProvince(province.Id, settings);
+                    }
+                    // プロヴィンスの強調表示を更新する
+                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Core)
+                    {
+                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
                     }
                     break;
 
                 case ItemId.CountryOwnedProvinces:
                     if ((bool) val)
                     {
-                        settings.OwnedProvinces.Add(province.Id);
+                        Scenarios.AddOwnedProvince(province.Id, settings);
                     }
                     else
                     {
-                        settings.OwnedProvinces.Remove(province.Id);
+                        Scenarios.RemoveOwnedProvince(province.Id, settings);
+                    }
+                    // プロヴィンスの強調表示を更新する
+                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Owned)
+                    {
+                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
                     }
                     break;
 
                 case ItemId.CountryControlledProvinces:
                     if ((bool) val)
                     {
-                        settings.ControlledProvinces.Add(province.Id);
+                        Scenarios.AddControlledProvince(province.Id, settings);
                     }
                     else
                     {
-                        settings.ControlledProvinces.Remove(province.Id);
+                        Scenarios.RemoveControlledProvince(province.Id, settings);
+                    }
+                    // プロヴィンスの強調表示を更新する
+                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Controlled)
+                    {
+                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
                     }
                     break;
 
                 case ItemId.CountryClaimedProvinces:
                     if ((bool) val)
                     {
-                        settings.ClaimedProvinces.Add(province.Id);
+                        Scenarios.AddClaimedProvince(province.Id, settings);
                     }
                     else
                     {
-                        settings.ClaimedProvinces.Remove(province.Id);
+                        Scenarios.RemoveClaimedProvince(province.Id, settings);
+                    }
+                    // プロヴィンスの強調表示を更新する
+                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Claimed)
+                    {
+                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
                     }
                     break;
             }
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        /// <returns>編集済みフラグ</returns>
+        private static bool IsItemDirty(ItemId itemId, Province province, CountrySettings settings)
+        {
+            if (settings == null)
+            {
+                return false;
+            }
+
+            switch (itemId)
+            {
+                case ItemId.CountryCapital:
+                    return settings.IsDirty((CountrySettings.ItemId) _itemDirtyFlags[(int) itemId]);
+
+                case ItemId.CountryCoreProvinces:
+                    return settings.IsDirtyCoreProvinces(province.Id);
+
+                case ItemId.CountryOwnedProvinces:
+                    return settings.IsDirtyOwnedProvinces(province.Id);
+
+                case ItemId.CountryControlledProvinces:
+                    return settings.IsDirtyControlledProvinces(province.Id);
+
+                case ItemId.CountryClaimedProvinces:
+                    return settings.IsDirtyClaimedProvinces(province.Id);
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -17561,7 +17846,7 @@ namespace HoI2Editor.Forms
         /// <param name="itemId">項目ID</param>
         /// <param name="province">プロヴィンス</param>
         /// <param name="settings">国家設定</param>
-        private void SetItemDirty(ItemId itemId, Province province, CountrySettings settings)
+        private static void SetItemDirty(ItemId itemId, Province province, CountrySettings settings)
         {
             switch (itemId)
             {
@@ -17593,13 +17878,107 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     関連項目を更新する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        private void UpdateRelatedItems(ItemId itemId, object val, Province province, CountrySettings settings)
+        {
+            int index;
+            switch (itemId)
+            {
+                case ItemId.CountryCapital:
+                    // チェックを入れた後はチェックボックスを無効化する
+                    if ((bool) val)
+                    {
+                        capitalCheckBox.Enabled = false;
+                    }
+                    // プロヴィンスリストビューの表示を更新する
+                    index = _landProvinces.FindIndex(prev => prev.Id == settings.Capital);
+                    if (index >= 0)
+                    {
+                        provinceListView.Items[index].SubItems[2].Text = "";
+                    }
+                    index = _landProvinces.IndexOf(province);
+                    if (index >= 0)
+                    {
+                        provinceListView.Items[index].SubItems[2].Text = Resources.Yes;
+                    }
+                    break;
+
+                case ItemId.CountryCoreProvinces:
+                    // プロヴィンスリストビューの表示を更新する
+                    index = _landProvinces.IndexOf(province);
+                    if (index >= 0)
+                    {
+                        provinceListView.Items[index].SubItems[3].Text = (bool) val ? Resources.Yes : "";
+                    }
+
+                    // プロヴィンスの強調表示を更新する
+                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Core)
+                    {
+                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
+                    }
+                    break;
+
+                case ItemId.CountryOwnedProvinces:
+                    // プロヴィンスリストビューの表示を更新する
+                    index = _landProvinces.IndexOf(province);
+                    if (index >= 0)
+                    {
+                        provinceListView.Items[index].SubItems[4].Text = (bool) val ? Resources.Yes : "";
+                    }
+
+                    // プロヴィンスの強調表示を更新する
+                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Owned)
+                    {
+                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
+                    }
+                    break;
+
+                case ItemId.CountryControlledProvinces:
+                    // プロヴィンスリストビューの表示を更新する
+                    index = _landProvinces.IndexOf(province);
+                    if (index >= 0)
+                    {
+                        provinceListView.Items[index].SubItems[5].Text = (bool) val ? Resources.Yes : "";
+                    }
+
+                    // プロヴィンスの強調表示を更新する
+                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Controlled)
+                    {
+                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
+                    }
+                    break;
+
+                case ItemId.CountryClaimedProvinces:
+                    // プロヴィンスリストビューの表示を更新する
+                    index = _landProvinces.IndexOf(province);
+                    if (index >= 0)
+                    {
+                        provinceListView.Items[index].SubItems[6].Text = (bool) val ? Resources.Yes : "";
+                    }
+
+                    // プロヴィンスの強調表示を更新する
+                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Claimed)
+                    {
+                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     編集項目の値変更時のログを出力する
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
         /// <param name="province">プロヴィンス</param>
         /// <param name="settings">国家設定</param>
-        private void OutputItemValueChangedLog(ItemId itemId, object val, Province province, CountrySettings settings)
+        private static void OutputItemValueChangedLog(ItemId itemId, object val, Province province,
+            CountrySettings settings)
         {
             switch (itemId)
             {
@@ -17654,18 +18033,22 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            if ((settings != null) && (val == (bool) GetItemValue(itemId, province, settings)))
+            object prev = GetItemValue(itemId, province, settings);
+            if ((prev != null) && (val == (bool) prev))
             {
                 return;
             }
-
-            OutputItemValueChangedLog(itemId, val, province, settings);
 
             if (settings == null)
             {
                 settings = new CountrySettings { Country = country };
                 Scenarios.SetCountrySettings(settings);
             }
+
+            OutputItemValueChangedLog(itemId, val, province, settings);
+
+            // 関連項目を更新する
+            UpdateRelatedItems(itemId, val, province, settings);
 
             // 値を更新する
             SetItemValue(itemId, val, province, settings);
@@ -17783,6 +18166,29 @@ namespace HoI2Editor.Forms
                     control.Text = GetItemValue(itemId, province, settings) as string;
                     break;
             }
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void UpdateItemColor(Control control, ProvinceSettings settings)
+        {
+            ItemId itemId = (ItemId) control.Tag;
+            control.ForeColor = IsItemDirty(itemId, settings) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void UpdateItemColor(Control control, Province province, ProvinceSettings settings)
+        {
+            ItemId itemId = (ItemId) control.Tag;
+            control.ForeColor = IsItemDirty(itemId, province, settings) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -18572,6 +18978,41 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     編集項目の編集済みフラグを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        /// <returns>編集済みフラグ</returns>
+        private static bool IsItemDirty(ItemId itemId, Province province, ProvinceSettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.ProvinceName:
+                    return ((settings != null) && !string.IsNullOrEmpty(settings.Name))
+                        ? settings.IsDirty(ProvinceSettings.ItemId.Name)
+                        : province.IsDirty(ProvinceItemId.Name);
+            }
+            return false;
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        /// <returns>編集済みフラグ</returns>
+        private static bool IsItemDirty(ItemId itemId, ProvinceSettings settings)
+        {
+            if (settings == null)
+            {
+                return false;
+            }
+
+            return settings.IsDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
+        }
+
+        /// <summary>
         ///     編集項目の編集済みフラグを設定する
         /// </summary>
         /// <param name="itemId">項目ID</param>
@@ -18582,7 +19023,7 @@ namespace HoI2Editor.Forms
             switch (itemId)
             {
                 case ItemId.ProvinceName:
-                    if (!string.IsNullOrEmpty(settings.Name))
+                    if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
                     {
                         settings.SetDirty(ProvinceSettings.ItemId.Name);
                     }
@@ -18599,14 +19040,10 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="settings">プロヴィンス設定</param>
-        private void SetItemDirty(ItemId itemId, ProvinceSettings settings)
+        private static void SetItemDirty(ItemId itemId, ProvinceSettings settings)
         {
             switch (itemId)
             {
-                case ItemId.ProvinceName:
-                    settings.SetDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
-                    break;
-
                 case ItemId.ProvinceVp:
                 case ItemId.ProvinceRevoltRisk:
                 case ItemId.ProvinceManpowerCurrent:
@@ -18676,7 +19113,8 @@ namespace HoI2Editor.Forms
         /// <param name="val">編集項目の値</param>
         /// <param name="province">プロヴィンス</param>
         /// <param name="settings">プロヴィンス設定</param>
-        private void OutputItemValueChangedLog(ItemId itemId, object val, Province province, ProvinceSettings settings)
+        private static void OutputItemValueChangedLog(ItemId itemId, object val, Province province,
+            ProvinceSettings settings)
         {
             switch (itemId)
             {
@@ -18785,18 +19223,19 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            if ((settings != null) && (val == (int) GetItemValue(itemId, settings)))
+            object prev = GetItemValue(itemId, settings);
+            if ((prev != null) && (val == (int) prev))
             {
                 return;
             }
-
-            OutputItemValueChangedLog(itemId, val, province, settings);
 
             if (settings == null)
             {
                 settings = new ProvinceSettings { Id = province.Id };
                 Scenarios.AddProvinceSettings(settings);
             }
+
+            OutputItemValueChangedLog(itemId, val, province, settings);
 
             // 値を更新する
             SetItemValue(itemId, val, settings);
@@ -18846,18 +19285,19 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            if ((settings != null) && DoubleHelper.IsEqual(val, (double) GetItemValue(itemId, settings)))
+            object prev = GetItemValue(itemId, settings);
+            if ((prev != null) && DoubleHelper.IsEqual(val, (double) prev))
             {
                 return;
             }
-
-            OutputItemValueChangedLog(itemId, val, province, settings);
 
             if (settings == null)
             {
                 settings = new ProvinceSettings { Id = province.Id };
                 Scenarios.AddProvinceSettings(settings);
             }
+
+            OutputItemValueChangedLog(itemId, val, province, settings);
 
             // 値を更新する
             SetItemValue(itemId, val, settings);
@@ -18939,8 +19379,6 @@ namespace HoI2Editor.Forms
                     : Countries.GetName(country));
         }
 
-        #endregion
-
         /// <summary>
         ///     国家リストボックスの項目描画処理
         /// </summary>
@@ -18986,27 +19424,6 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        private void OnTextBox1Validated(object sender, EventArgs e)
-        {
-            ushort id;
-            if (!ushort.TryParse(testProvinceIdTextBox.Text, out id))
-            {
-                return;
-            }
-            if (id > 0 && id < Provinces.Items.Count)
-            {
-                Map map = Maps.Data[(int) MapLevel.Level2];
-                if (_prevId != 0)
-                {
-                    Maps.SetColorIndex(_prevId, 0);
-                    map.UpdateProvince(_prevId);
-                }
-                Maps.SetColorIndex(id, 2);
-                map.UpdateProvince(id);
-                provinceMapPictureBox.Refresh();
-
-                _prevId = id;
-            }
-        }
+        #endregion
     }
 }

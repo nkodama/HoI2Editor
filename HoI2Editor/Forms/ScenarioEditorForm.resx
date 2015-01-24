@@ -553,7 +553,7 @@
     <value>True</value>
   </data>
   <data name="buildingCurrentLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>106, 19</value>
+    <value>107, 19</value>
   </data>
   <data name="buildingCurrentLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 12</value>
@@ -586,7 +586,7 @@
     <value>NoControl</value>
   </data>
   <data name="buildingMaxLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>155, 19</value>
+    <value>160, 19</value>
   </data>
   <data name="buildingMaxLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 12</value>
@@ -619,7 +619,7 @@
     <value>NoControl</value>
   </data>
   <data name="buildingRelativeLabel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 19</value>
+    <value>196, 19</value>
   </data>
   <data name="buildingRelativeLabel1.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -652,7 +652,7 @@
     <value>NoControl</value>
   </data>
   <data name="provinceNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 46</value>
+    <value>10, 25</value>
   </data>
   <data name="provinceNameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>34, 12</value>
@@ -673,7 +673,7 @@
     <value>provinceInfoGroupBox</value>
   </data>
   <data name="&gt;&gt;provinceNameLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <metadata name="provinceVpLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -685,7 +685,7 @@
     <value>NoControl</value>
   </data>
   <data name="provinceVpLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 71</value>
+    <value>10, 50</value>
   </data>
   <data name="provinceVpLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 12</value>
@@ -706,7 +706,7 @@
     <value>provinceInfoGroupBox</value>
   </data>
   <data name="&gt;&gt;provinceVpLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <metadata name="provinceRevoltRiskLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -718,7 +718,7 @@
     <value>NoControl</value>
   </data>
   <data name="provinceRevoltRiskLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 71</value>
+    <value>10, 75</value>
   </data>
   <data name="provinceRevoltRiskLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 12</value>
@@ -739,37 +739,7 @@
     <value>provinceInfoGroupBox</value>
   </data>
   <data name="&gt;&gt;provinceRevoltRiskLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <metadata name="provinceIdLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="provinceIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="provinceIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 21</value>
-  </data>
-  <data name="provinceIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="provinceIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>71</value>
-  </data>
-  <data name="provinceIdLabel.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;provinceIdLabel.Name" xml:space="preserve">
-    <value>provinceIdLabel</value>
-  </data>
-  <data name="&gt;&gt;provinceIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;provinceIdLabel.Parent" xml:space="preserve">
-    <value>provinceInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;provinceIdLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>5</value>
   </data>
   <metadata name="resourceMaxLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -781,7 +751,7 @@
     <value>NoControl</value>
   </data>
   <data name="resourceMaxLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 15</value>
+    <value>197, 15</value>
   </data>
   <data name="resourceMaxLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>26, 12</value>
@@ -814,7 +784,7 @@
     <value>NoControl</value>
   </data>
   <data name="resourceCurrentLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 15</value>
+    <value>144, 15</value>
   </data>
   <data name="resourceCurrentLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>43, 12</value>
@@ -844,7 +814,7 @@
     <value>True</value>
   </data>
   <data name="resourcePoolLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 15</value>
+    <value>104, 15</value>
   </data>
   <data name="resourcePoolLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>27, 12</value>
@@ -866,6 +836,33 @@
   </data>
   <data name="&gt;&gt;resourcePoolLabel.ZOrder" xml:space="preserve">
     <value>18</value>
+  </data>
+  <data name="provinceIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="provinceIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>303, 64</value>
+  </data>
+  <data name="provinceIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="provinceIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>71</value>
+  </data>
+  <data name="provinceIdLabel.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="&gt;&gt;provinceIdLabel.Name" xml:space="preserve">
+    <value>provinceIdLabel</value>
+  </data>
+  <data name="&gt;&gt;provinceIdLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;provinceIdLabel.Parent" xml:space="preserve">
+    <value>provinceTabPage</value>
+  </data>
+  <data name="&gt;&gt;provinceIdLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="closeButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
@@ -957,25 +954,28 @@
   <data name="&gt;&gt;reloadButton.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="testProvinceIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>373, 60</value>
+  <data name="provinceIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>329, 61</value>
   </data>
-  <data name="testProvinceIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 19</value>
+  <data name="provinceIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 19</value>
   </data>
-  <data name="testProvinceIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="provinceIdTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>72</value>
   </data>
-  <data name="&gt;&gt;testProvinceIdTextBox.Name" xml:space="preserve">
-    <value>testProvinceIdTextBox</value>
+  <data name="provinceIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;testProvinceIdTextBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;provinceIdTextBox.Name" xml:space="preserve">
+    <value>provinceIdTextBox</value>
+  </data>
+  <data name="&gt;&gt;provinceIdTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;testProvinceIdTextBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;provinceIdTextBox.Parent" xml:space="preserve">
     <value>provinceTabPage</value>
   </data>
-  <data name="&gt;&gt;testProvinceIdTextBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;provinceIdTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="provinceCountryFilterLabel.AutoSize" type="System.Boolean, mscorlib">
@@ -1012,7 +1012,7 @@
     <value>False</value>
   </data>
   <data name="provinceCountryFilterComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>78, 60</value>
+    <value>72, 61</value>
   </data>
   <data name="provinceCountryFilterComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 20</value>
@@ -1210,7 +1210,7 @@
     <value>NoControl</value>
   </data>
   <data name="mapFilterClaimedRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>315, 18</value>
+    <value>270, 18</value>
   </data>
   <data name="mapFilterClaimedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 16</value>
@@ -1240,7 +1240,7 @@
     <value>NoControl</value>
   </data>
   <data name="mapFilterControlledRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>235, 18</value>
+    <value>187, 18</value>
   </data>
   <data name="mapFilterControlledRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 16</value>
@@ -1270,7 +1270,7 @@
     <value>NoControl</value>
   </data>
   <data name="mapFilterOwnedRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>160, 18</value>
+    <value>122, 18</value>
   </data>
   <data name="mapFilterOwnedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 16</value>
@@ -1300,7 +1300,7 @@
     <value>NoControl</value>
   </data>
   <data name="mapFilterCoreRadioButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 18</value>
+    <value>67, 18</value>
   </data>
   <data name="mapFilterCoreRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 16</value>
@@ -1378,7 +1378,7 @@
     <value>4</value>
   </data>
   <data name="revoltRiskTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>191, 68</value>
+    <value>192, 72</value>
   </data>
   <data name="revoltRiskTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 19</value>
@@ -1401,32 +1401,8 @@
   <data name="&gt;&gt;revoltRiskTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="provinceIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 18</value>
-  </data>
-  <data name="provinceIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 19</value>
-  </data>
-  <data name="provinceIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>72</value>
-  </data>
-  <data name="provinceIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;provinceIdTextBox.Name" xml:space="preserve">
-    <value>provinceIdTextBox</value>
-  </data>
-  <data name="&gt;&gt;provinceIdTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;provinceIdTextBox.Parent" xml:space="preserve">
-    <value>provinceInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;provinceIdTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="vpTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 68</value>
+    <value>192, 47</value>
   </data>
   <data name="vpTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 19</value>
@@ -1447,13 +1423,13 @@
     <value>provinceInfoGroupBox</value>
   </data>
   <data name="&gt;&gt;vpTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="provinceNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>74, 43</value>
+    <value>72, 22</value>
   </data>
   <data name="provinceNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 19</value>
+    <value>160, 19</value>
   </data>
   <data name="provinceNameTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>74</value>
@@ -1468,7 +1444,7 @@
     <value>provinceInfoGroupBox</value>
   </data>
   <data name="&gt;&gt;provinceNameTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="provinceInfoGroupBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1477,13 +1453,13 @@
     <value>465, 250</value>
   </data>
   <data name="provinceInfoGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>244, 97</value>
+    <value>244, 101</value>
   </data>
   <data name="provinceInfoGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>66</value>
   </data>
   <data name="provinceInfoGroupBox.Text" xml:space="preserve">
-    <value>Infomation</value>
+    <value>Province Infomation</value>
   </data>
   <data name="&gt;&gt;provinceInfoGroupBox.Name" xml:space="preserve">
     <value>provinceInfoGroupBox</value>
@@ -2062,7 +2038,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;provinceResourceGroupBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="nuclearPowerRelativeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 334</value>
@@ -3025,7 +3001,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;provinceBuildingGroupBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="provinceMapPanel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3076,7 +3052,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;provinceMapPanel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="provinceIdColumnHeader.Text" xml:space="preserve">
     <value>ID</value>
@@ -3142,7 +3118,7 @@
     <value>provinceTabPage</value>
   </data>
   <data name="&gt;&gt;provinceListView.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="provinceTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
