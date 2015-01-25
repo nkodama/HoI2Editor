@@ -5,12 +5,12 @@ using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Utilities;
 
-namespace HoI2Editor.Controls
+namespace HoI2Editor.Controller
 {
     /// <summary>
-    ///     技術ツリーパネル
+    ///     技術ツリーパネルのコントローラクラス
     /// </summary>
-    public partial class TechTreePanel : UserControl
+    public class TechTreePanelController
     {
         #region 公開プロパティ
 
@@ -32,6 +32,11 @@ namespace HoI2Editor.Controls
         #endregion
 
         #region 内部フィールド
+
+        /// <summary>
+        ///     技術ツリーパネルのピクチャーボックス
+        /// </summary>
+        private readonly PictureBox _pictureBox;
 
         /// <summary>
         ///     技術ラベルの幅
@@ -102,6 +107,11 @@ namespace HoI2Editor.Controls
         ///     イベントラベルの描画領域
         /// </summary>
         private static Region _eventLabelRegion;
+
+        /// <summary>
+        ///     ラベル画像の読み込み済みフラグ
+        /// </summary>
+        private static bool _labelInitialized;
 
         /// <summary>
         ///     ドラッグアンドドロップの開始位置
@@ -202,46 +212,41 @@ namespace HoI2Editor.Controls
         #region 初期化
 
         /// <summary>
-        ///     静的コンストラクタ
-        /// </summary>
-        static TechTreePanel()
-        {
-            // ラベル画像を初期化する
-            InitLabelBitmap();
-        }
-
-        /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public TechTreePanel()
+        /// <param name="pictureBox">技術ツリーピクチャーボックス</param>
+        public TechTreePanelController(PictureBox pictureBox)
         {
-            InitializeComponent();
+            _pictureBox = pictureBox;
 
-            // コントロールを初期化する
-            InitControl();
+            // ラベル画像を初期化する
+            InitLabelBitmap();
+
+            // イベントハンドラを初期化する
+            InitEventHandler();
+
+            // 技術ツリーピクチャーボックスへのドラッグアンドドロップを許可する
+            // 設計時プロパティに存在しないので初期化時に設定する
+            _pictureBox.AllowDrop = true;
         }
 
         /// <summary>
-        ///     コントロールを初期化する
+        ///     イベントハンドラを初期化する
         /// </summary>
-        private void InitControl()
+        private void InitEventHandler()
         {
-            // 技術ツリーピクチャーボックスへのドラッグアンドドロップを許可する
-            // プロパティに存在しないので初期化時に設定する
-            techTreePictureBox.AllowDrop = true;
-
-            // 技術ツリーピクチャーボックスを子コントロールに追加する
-            Controls.Add(techTreePictureBox);
+            _pictureBox.DragOver += OnPictureBoxDragOver;
+            _pictureBox.DragDrop += OnPictureBoxDragDrop;
         }
 
         #endregion
 
-        #region コントロール
+        #region 技術ツリー操作
 
         /// <summary>
         ///     技術ツリーを更新する
         /// </summary>
-        public void UpdateTechTree()
+        public void Update()
         {
             // 技術ツリー画像を更新する
             UpdateTechTreeImage();
@@ -282,8 +287,8 @@ namespace HoI2Editor.Controls
             g.Dispose();
             original.Dispose();
 
-            Image prev = techTreePictureBox.Image;
-            techTreePictureBox.Image = bitmap;
+            Image prev = _pictureBox.Image;
+            _pictureBox.Image = bitmap;
             if (prev != null)
             {
                 prev.Dispose();
@@ -295,8 +300,8 @@ namespace HoI2Editor.Controls
         /// </summary>
         private void ClearTechTreeImage()
         {
-            Image prev = techTreePictureBox.Image;
-            techTreePictureBox.Image = null;
+            Image prev = _pictureBox.Image;
+            _pictureBox.Image = null;
             if (prev != null)
             {
                 prev.Dispose();
@@ -312,7 +317,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         private void UpdateTechTreeItems()
         {
-            techTreePictureBox.Controls.Clear();
+            _pictureBox.Controls.Clear();
             foreach (ITechItem item in Techs.Groups[(int) Category].Items)
             {
                 AddTechTreeItem(item);
@@ -324,7 +329,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         private void ClearTechTreeItems()
         {
-            techTreePictureBox.Controls.Clear();
+            _pictureBox.Controls.Clear();
         }
 
         /// <summary>
@@ -397,15 +402,15 @@ namespace HoI2Editor.Controls
                 label.Image = _techLabelBitmap;
             }
 
-            label.Click += OnTechTreeLabelClick;
-            label.MouseClick += OnTechTreeLabelMouseClick;
-            label.MouseDown += OnTechTreeLabelMouseDown;
-            label.MouseUp += OnTechTreeLabelMouseUp;
-            label.MouseMove += OnTechTreeLabelMouseMove;
-            label.GiveFeedback += OnTechTreeLabelGiveFeedback;
+            label.Click += OnItemLabelClick;
+            label.MouseClick += OnItemLabelMouseClick;
+            label.MouseDown += OnItemLabelMouseDown;
+            label.MouseUp += OnItemLabelMouseUp;
+            label.MouseMove += OnItemLabelMouseMove;
+            label.GiveFeedback += OnItemLabelGiveFeedback;
             label.Paint += OnTechItemPaint;
 
-            techTreePictureBox.Controls.Add(label);
+            _pictureBox.Controls.Add(label);
         }
 
         /// <summary>
@@ -423,15 +428,15 @@ namespace HoI2Editor.Controls
             };
             label.Size = Graphics.FromHwnd(label.Handle).MeasureString(item.ToString(), label.Font).ToSize();
 
-            label.Click += OnTechTreeLabelClick;
-            label.MouseClick += OnTechTreeLabelMouseClick;
-            label.MouseDown += OnTechTreeLabelMouseDown;
-            label.MouseUp += OnTechTreeLabelMouseUp;
-            label.MouseMove += OnTechTreeLabelMouseMove;
-            label.GiveFeedback += OnTechTreeLabelGiveFeedback;
+            label.Click += OnItemLabelClick;
+            label.MouseClick += OnItemLabelMouseClick;
+            label.MouseDown += OnItemLabelMouseDown;
+            label.MouseUp += OnItemLabelMouseUp;
+            label.MouseMove += OnItemLabelMouseMove;
+            label.GiveFeedback += OnItemLabelGiveFeedback;
             label.Paint += OnTechLabelPaint;
 
-            techTreePictureBox.Controls.Add(label);
+            _pictureBox.Controls.Add(label);
         }
 
         /// <summary>
@@ -462,14 +467,14 @@ namespace HoI2Editor.Controls
                 label.Image = _doneEventLabelBitmap;
             }
 
-            label.Click += OnTechTreeLabelClick;
-            label.MouseClick += OnTechTreeLabelMouseClick;
-            label.MouseDown += OnTechTreeLabelMouseDown;
-            label.MouseUp += OnTechTreeLabelMouseUp;
-            label.MouseMove += OnTechTreeLabelMouseMove;
-            label.GiveFeedback += OnTechTreeLabelGiveFeedback;
+            label.Click += OnItemLabelClick;
+            label.MouseClick += OnItemLabelMouseClick;
+            label.MouseDown += OnItemLabelMouseDown;
+            label.MouseUp += OnItemLabelMouseUp;
+            label.MouseMove += OnItemLabelMouseMove;
+            label.GiveFeedback += OnItemLabelGiveFeedback;
 
-            techTreePictureBox.Controls.Add(label);
+            _pictureBox.Controls.Add(label);
         }
 
         /// <summary>
@@ -478,7 +483,7 @@ namespace HoI2Editor.Controls
         /// <param name="item">削除対象の項目</param>
         public void RemoveTechTreeItem(ITechItem item)
         {
-            ControlCollection labels = techTreePictureBox.Controls;
+            Control.ControlCollection labels = _pictureBox.Controls;
             foreach (Label label in labels)
             {
                 TechLabelInfo info = label.Tag as TechLabelInfo;
@@ -489,7 +494,7 @@ namespace HoI2Editor.Controls
 
                 if (info.Item == item)
                 {
-                    techTreePictureBox.Controls.Remove(label);
+                    _pictureBox.Controls.Remove(label);
                 }
             }
         }
@@ -501,7 +506,7 @@ namespace HoI2Editor.Controls
         /// <param name="position">削除対象の位置</param>
         public void RemoveTechTreeItem(ITechItem item, TechPosition position)
         {
-            ControlCollection labels = techTreePictureBox.Controls;
+            Control.ControlCollection labels = _pictureBox.Controls;
             foreach (Label label in labels)
             {
                 TechLabelInfo info = label.Tag as TechLabelInfo;
@@ -512,7 +517,7 @@ namespace HoI2Editor.Controls
 
                 if (info.Item == item && info.Position == position)
                 {
-                    techTreePictureBox.Controls.Remove(label);
+                    _pictureBox.Controls.Remove(label);
                 }
             }
         }
@@ -524,7 +529,7 @@ namespace HoI2Editor.Controls
         public void UpdateTechTreeItem(ITechItem item)
         {
             bool flag = ApplyItemStatus && (QueryItemStatus != null);
-            ControlCollection labels = techTreePictureBox.Controls;
+            Control.ControlCollection labels = _pictureBox.Controls;
             foreach (Label label in labels)
             {
                 TechLabelInfo info = label.Tag as TechLabelInfo;
@@ -654,7 +659,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechTreeLabelClick(object sender, EventArgs e)
+        private void OnItemLabelClick(object sender, EventArgs e)
         {
             // イベントハンドラを呼び出す
             if (ItemClick != null)
@@ -680,7 +685,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechTreeLabelMouseClick(object sender, MouseEventArgs e)
+        private void OnItemLabelMouseClick(object sender, MouseEventArgs e)
         {
             // イベントハンドラを呼び出す
             if (ItemMouseClick != null)
@@ -706,7 +711,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechTreeLabelMouseDown(object sender, MouseEventArgs e)
+        private void OnItemLabelMouseDown(object sender, MouseEventArgs e)
         {
             // ドラッグアンドドロップが無効ならば何もしない
             if (!AllowDragDrop)
@@ -743,7 +748,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechTreeLabelMouseUp(object sender, MouseEventArgs e)
+        private void OnItemLabelMouseUp(object sender, MouseEventArgs e)
         {
             // ドラッグアンドドロップが無効ならば何もしない
             if (!AllowDragDrop)
@@ -761,7 +766,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechTreeLabelMouseMove(object sender, MouseEventArgs e)
+        private void OnItemLabelMouseMove(object sender, MouseEventArgs e)
         {
             // ドラッグアンドドロップが無効ならば何もしない
             if (!AllowDragDrop)
@@ -831,7 +836,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechTreeLabelGiveFeedback(object sender, GiveFeedbackEventArgs e)
+        private void OnItemLabelGiveFeedback(object sender, GiveFeedbackEventArgs e)
         {
             // ドラッグアンドドロップが無効ならば何もしない
             if (!AllowDragDrop)
@@ -856,7 +861,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTreePictureBoxDragOver(object sender, DragEventArgs e)
+        private void OnPictureBoxDragOver(object sender, DragEventArgs e)
         {
             // ドラッグアンドドロップが無効ならば何もしない
             if (!AllowDragDrop)
@@ -879,8 +884,8 @@ namespace HoI2Editor.Controls
             }
 
             // 技術ツリー画像の範囲外ならばドロップを禁止する
-            Rectangle dragRect = new Rectangle(0, 0, techTreePictureBox.Image.Width, techTreePictureBox.Image.Height);
-            Point p = techTreePictureBox.PointToClient(new Point(e.X, e.Y));
+            Rectangle dragRect = new Rectangle(0, 0, _pictureBox.Image.Width, _pictureBox.Image.Height);
+            Point p = _pictureBox.PointToClient(new Point(e.X, e.Y));
             Rectangle r = new Rectangle(label.Left + p.X - _dragPoint.X, label.Top + p.Y - _dragPoint.Y, label.Width,
                 label.Height);
             e.Effect = dragRect.Contains(r) ? DragDropEffects.Move : DragDropEffects.None;
@@ -891,7 +896,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTreePictureBoxDragDrop(object sender, DragEventArgs e)
+        private void OnPictureBoxDragDrop(object sender, DragEventArgs e)
         {
             // ドラッグアンドドロップが無効ならば何もしない
             if (!AllowDragDrop)
@@ -913,7 +918,7 @@ namespace HoI2Editor.Controls
 
             // 技術ツリー上のドロップ座標を計算する
             Point p = new Point(e.X, e.Y);
-            p = techTreePictureBox.PointToClient(p);
+            p = _pictureBox.PointToClient(p);
             p.X = label.Left + p.X - _dragPoint.X;
             p.Y = label.Top + p.Y - _dragPoint.Y;
 
@@ -941,6 +946,12 @@ namespace HoI2Editor.Controls
         /// </summary>
         private static void InitLabelBitmap()
         {
+            // 既に初期化済みならば何もしない
+            if (_labelInitialized)
+            {
+                return;
+            }
+
             // 技術ラベル
             Bitmap bitmap = new Bitmap(Game.GetReadFileName(Game.TechLabelPathName));
             _techLabelWidth = DeviceCaps.GetScaledWidth(TechLabelWidthBase);
@@ -1057,6 +1068,9 @@ namespace HoI2Editor.Controls
                     }
                 }
             }
+
+            // 初期化済みフラグを設定する
+            _labelInitialized = true;
         }
 
         #endregion

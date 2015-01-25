@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Controller;
-using HoI2Editor.Controls;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
@@ -134,9 +133,9 @@ namespace HoI2Editor.Forms
         #region 技術ツリー
 
         /// <summary>
-        ///     技術ツリーパネル
+        ///     技術ツリーパネルのコントローラ
         /// </summary>
-        private TechTreePanel _techTreePanel;
+        private TechTreePanelController _techTreePanelController;
 
         #endregion
 
@@ -309,7 +308,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     編集項目の編集済みフラグ
         /// </summary>
-        private static readonly object[] _itemDirtyFlags =
+        private static readonly object[] ItemDirtyFlags =
         {
             CountrySettings.ItemId.Capital,
             null,
@@ -379,7 +378,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     編集項目の文字列
         /// </summary>
-        private static readonly string[] _itemStrings =
+        private static readonly string[] ItemStrings =
         {
             "capital",
             "core provinces",
@@ -727,16 +726,9 @@ namespace HoI2Editor.Forms
             Size = HoI2Editor.Settings.ScenarioEditor.Size;
 
             // 技術ツリーパネル
-            _techTreePanel = new TechTreePanel
-            {
-                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
-                Location = new Point(404, 12),
-                Size = new Size(560, 535),
-                ApplyItemStatus = true
-            };
-            _techTreePanel.ItemMouseClick += OnTechTreeItemMouseClick;
-            _techTreePanel.QueryItemStatus += OnQueryTechTreeItemStatus;
-            technologyTabPage.Controls.Add(_techTreePanel);
+            _techTreePanelController = new TechTreePanelController(techTreePictureBox) { ApplyItemStatus = true };
+            _techTreePanelController.ItemMouseClick += OnTechTreeItemMouseClick;
+            _techTreePanelController.QueryItemStatus += OnQueryTechTreeItemStatus;
 
             // マップパネル
             _mapPanelController = new MapPanelController(provinceMapPanel, provinceMapPictureBox);
@@ -16106,7 +16098,7 @@ namespace HoI2Editor.Forms
             inventionsListView.Enabled = false;
 
             // 技術ツリーをクリアする
-            _techTreePanel.Clear();
+            _techTreePanelController.Clear();
 
             // 編集項目をクリアする
             ownedTechsListView.Items.Clear();
@@ -16195,8 +16187,8 @@ namespace HoI2Editor.Forms
             inventionsListView.ItemChecked += OnInveitionsListViewItemChecked;
 
             // 技術ツリーを更新する
-            _techTreePanel.Category = grp.Category;
-            _techTreePanel.UpdateTechTree();
+            _techTreePanelController.Category = grp.Category;
+            _techTreePanelController.Update();
 
             // 編集項目を有効化する
             ownedTechsLabel.Enabled = true;
@@ -16337,7 +16329,7 @@ namespace HoI2Editor.Forms
             e.Item.ForeColor = Color.Red;
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanel.UpdateTechTreeItem(item);
+            _techTreePanelController.UpdateTechTreeItem(item);
         }
 
         /// <summary>
@@ -16394,7 +16386,7 @@ namespace HoI2Editor.Forms
             e.Item.ForeColor = Color.Red;
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanel.UpdateTechTreeItem(item);
+            _techTreePanelController.UpdateTechTreeItem(item);
         }
 
         /// <summary>
@@ -16451,7 +16443,7 @@ namespace HoI2Editor.Forms
             e.Item.ForeColor = Color.Red;
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanel.UpdateTechTreeItem(ev);
+            _techTreePanelController.UpdateTechTreeItem(ev);
         }
 
         #endregion
@@ -16463,7 +16455,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechTreeItemMouseClick(object sender, TechTreePanel.ItemMouseEventArgs e)
+        private void OnTechTreeItemMouseClick(object sender, TechTreePanelController.ItemMouseEventArgs e)
         {
             // 選択中の国家がなければ何もしない
             Country country = GetSelectedTechCountry();
@@ -16532,7 +16524,7 @@ namespace HoI2Editor.Forms
             Scenarios.SetDirty();
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanel.UpdateTechTreeItem(item);
+            _techTreePanelController.UpdateTechTreeItem(item);
 
             // 保有技術リストビューの表示を更新する
             int index = _techs.IndexOf(item);
@@ -16577,7 +16569,7 @@ namespace HoI2Editor.Forms
             Scenarios.SetDirty();
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanel.UpdateTechTreeItem(item);
+            _techTreePanelController.UpdateTechTreeItem(item);
 
             // 保有技術リストビューの表示を更新する
             int index = _techs.IndexOf(item);
@@ -16622,7 +16614,7 @@ namespace HoI2Editor.Forms
             Scenarios.SetDirty();
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanel.UpdateTechTreeItem(item);
+            _techTreePanelController.UpdateTechTreeItem(item);
 
             // 保有技術リストビューの表示を更新する
             int index = _inventions.IndexOf(item);
@@ -16640,7 +16632,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnQueryTechTreeItemStatus(object sender, TechTreePanel.QueryItemStatusEventArgs e)
+        private void OnQueryTechTreeItemStatus(object sender, TechTreePanelController.QueryItemStatusEventArgs e)
         {
             // 選択中の国家がなければ何もしない
             Country country = GetSelectedTechCountry();
@@ -17831,7 +17823,7 @@ namespace HoI2Editor.Forms
             switch (itemId)
             {
                 case ItemId.CountryCapital:
-                    return settings.IsDirty((CountrySettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    return settings.IsDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
 
                 case ItemId.CountryCoreProvinces:
                     return settings.IsDirtyCoreProvinces(province.Id);
@@ -17860,7 +17852,7 @@ namespace HoI2Editor.Forms
             switch (itemId)
             {
                 case ItemId.CountryCapital:
-                    settings.SetDirty((CountrySettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
                     Scenarios.SetDirty();
                     break;
 
@@ -18004,7 +17996,7 @@ namespace HoI2Editor.Forms
             switch (itemId)
             {
                 case ItemId.CountryCapital:
-                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", _itemStrings[(int) itemId], settings.Capital,
+                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId], settings.Capital,
                         province.Id, Countries.Strings[(int) settings.Country]);
                     break;
 
@@ -18012,7 +18004,7 @@ namespace HoI2Editor.Forms
                 case ItemId.CountryOwnedProvinces:
                 case ItemId.CountryControlledProvinces:
                 case ItemId.CountryClaimedProvinces:
-                    Log.Info("[Scenario] {0}: {1}{2} ({3})", _itemStrings[(int) itemId], (bool) val ? '+' : '-',
+                    Log.Info("[Scenario] {0}: {1}{2} ({3})", ItemStrings[(int) itemId], (bool) val ? '+' : '-',
                         ObjectHelper.ToString(province.Id), Countries.Strings[(int) settings.Country]);
                     break;
             }
@@ -19033,7 +19025,7 @@ namespace HoI2Editor.Forms
                 return false;
             }
 
-            return settings.IsDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
+            return settings.IsDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
         }
 
         /// <summary>
@@ -19081,7 +19073,7 @@ namespace HoI2Editor.Forms
             switch (itemId)
             {
                 case ItemId.ProvinceVp:
-                    settings.SetDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    settings.SetDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
                     if (Scenarios.Data.IsVpProvinceSettings)
                     {
                         Scenarios.Data.SetDirtyVpInc();
@@ -19105,7 +19097,7 @@ namespace HoI2Editor.Forms
                 case ItemId.ProvinceSyntheticOilRelative:
                 case ItemId.ProvinceSyntheticRaresRelative:
                 case ItemId.ProvinceNuclearPowerRelative:
-                    settings.SetDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    settings.SetDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
                     if (Scenarios.Data.IsBaseDodProvinceSettings)
                     {
                         Scenarios.Data.SetDirtyBasesDodInc();
@@ -19168,7 +19160,7 @@ namespace HoI2Editor.Forms
                 case ItemId.ProvinceSyntheticRaresMax:
                 case ItemId.ProvinceNuclearPowerCurrent:
                 case ItemId.ProvinceNuclearPowerMax:
-                    settings.SetDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    settings.SetDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
                     if (Scenarios.Data.IsBaseProvinceSettings)
                     {
                         Scenarios.Data.SetDirtyBasesInc();
@@ -19623,7 +19615,7 @@ namespace HoI2Editor.Forms
             switch (itemId)
             {
                 case ItemId.ProvinceName:
-                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", _itemStrings[(int) itemId],
+                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
                         GetProvinceName(province, settings), val, province.Id);
                     break;
             }
@@ -19695,7 +19687,7 @@ namespace HoI2Editor.Forms
                 case ItemId.ProvinceNuclearPowerCurrent:
                 case ItemId.ProvinceNuclearPowerMax:
                 case ItemId.ProvinceNuclearPowerRelative:
-                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", _itemStrings[(int) itemId],
+                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
                         ObjectHelper.ToString(GetItemValue(itemId, settings)), ObjectHelper.ToString(val), settings.Id);
                     break;
             }

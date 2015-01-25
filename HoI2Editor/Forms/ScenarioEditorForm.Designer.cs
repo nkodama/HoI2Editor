@@ -505,6 +505,8 @@
             this.scenarioRadioButton = new System.Windows.Forms.RadioButton();
             this.scenarioListBox = new System.Windows.Forms.ListBox();
             this.scenarioTabControl = new System.Windows.Forms.TabControl();
+            this.techTreePanel = new System.Windows.Forms.Panel();
+            this.techTreePictureBox = new System.Windows.Forms.PictureBox();
             provinceIcLabel = new System.Windows.Forms.Label();
             provinceInfrastructureLabel = new System.Windows.Forms.Label();
             provinceLandFortLabel = new System.Windows.Forms.Label();
@@ -574,6 +576,8 @@
             this.folderGroupBox.SuspendLayout();
             this.typeGroupBox.SuspendLayout();
             this.scenarioTabControl.SuspendLayout();
+            this.techTreePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // provinceIcLabel
@@ -1380,6 +1384,7 @@
             // technologyTabPage
             // 
             this.technologyTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.technologyTabPage.Controls.Add(this.techTreePanel);
             this.technologyTabPage.Controls.Add(this.inventionsListView);
             this.technologyTabPage.Controls.Add(this.blueprintsListView);
             this.technologyTabPage.Controls.Add(this.ownedTechsListView);
@@ -3987,6 +3992,18 @@
             this.scenarioTabControl.SelectedIndex = 0;
             this.scenarioTabControl.SelectedIndexChanged += new System.EventHandler(this.OnScenarioTabControlSelectedIndexChanged);
             // 
+            // techTreePanel
+            // 
+            resources.ApplyResources(this.techTreePanel, "techTreePanel");
+            this.techTreePanel.Controls.Add(this.techTreePictureBox);
+            this.techTreePanel.Name = "techTreePanel";
+            // 
+            // techTreePictureBox
+            // 
+            resources.ApplyResources(this.techTreePictureBox, "techTreePictureBox");
+            this.techTreePictureBox.Name = "techTreePictureBox";
+            this.techTreePictureBox.TabStop = false;
+            // 
             // ScenarioEditorForm
             // 
             resources.ApplyResources(this, "$this");
@@ -4076,6 +4093,9 @@
             this.typeGroupBox.ResumeLayout(false);
             this.typeGroupBox.PerformLayout();
             this.scenarioTabControl.ResumeLayout(false);
+            this.techTreePanel.ResumeLayout(false);
+            this.techTreePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4536,6 +4556,8 @@
         private System.Windows.Forms.GroupBox provinceBuildingGroupBox;
         private System.Windows.Forms.Label provinceCountryFilterLabel;
         private System.Windows.Forms.Label provinceIdLabel;
+        private System.Windows.Forms.Panel techTreePanel;
+        private System.Windows.Forms.PictureBox techTreePictureBox;
 
     }
 }
