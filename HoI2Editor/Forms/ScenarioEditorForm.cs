@@ -16748,7 +16748,10 @@ namespace HoI2Editor.Forms
             {
                 Config.SetText(settings.Name, s, Game.ScenarioTextFileName);
             }
-            province.SetName(s);
+            else
+            {
+                province.SetName(s);
+            }
         }
 
         /// <summary>
@@ -16818,6 +16821,12 @@ namespace HoI2Editor.Forms
         {
             // 左クリック以外では何もしない
             if (e.MouseEvent.Button != MouseButtons.Left)
+            {
+                return;
+            }
+
+            // 陸地プロヴィンスでなければ何もしない
+            if (_landProvinces.FindIndex(province => province.Id == e.Id) < 0)
             {
                 return;
             }
@@ -17878,15 +17887,14 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     関連項目を更新する
+        ///     項目値変更前の処理
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
         /// <param name="province">プロヴィンス</param>
         /// <param name="settings">国家設定</param>
-        private void UpdateRelatedItems(ItemId itemId, object val, Province province, CountrySettings settings)
+        private void PreItemChanged(ItemId itemId, object val, Province province, CountrySettings settings)
         {
-            int index;
             switch (itemId)
             {
                 case ItemId.CountryCapital:
@@ -17896,7 +17904,7 @@ namespace HoI2Editor.Forms
                         capitalCheckBox.Enabled = false;
                     }
                     // プロヴィンスリストビューの表示を更新する
-                    index = _landProvinces.FindIndex(prev => prev.Id == settings.Capital);
+                    int index = _landProvinces.FindIndex(prev => prev.Id == settings.Capital);
                     if (index >= 0)
                     {
                         provinceListView.Items[index].SubItems[2].Text = "";
@@ -17907,7 +17915,20 @@ namespace HoI2Editor.Forms
                         provinceListView.Items[index].SubItems[2].Text = Resources.Yes;
                     }
                     break;
+            }
+        }
 
+        /// <summary>
+        ///     項目値変更後の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        private void PostItemChanged(ItemId itemId, object val, Province province)
+        {
+            int index;
+            switch (itemId)
+            {
                 case ItemId.CountryCoreProvinces:
                     // プロヴィンスリストビューの表示を更新する
                     index = _landProvinces.IndexOf(province);
@@ -18047,8 +18068,8 @@ namespace HoI2Editor.Forms
 
             OutputItemValueChangedLog(itemId, val, province, settings);
 
-            // 関連項目を更新する
-            UpdateRelatedItems(itemId, val, province, settings);
+            // 項目値変更前の処理
+            PreItemChanged(itemId, val, province, settings);
 
             // 値を更新する
             SetItemValue(itemId, val, province, settings);
@@ -18058,6 +18079,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            PostItemChanged(itemId, val, province);
         }
 
         #endregion
@@ -19026,6 +19050,18 @@ namespace HoI2Editor.Forms
                     if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
                     {
                         settings.SetDirty(ProvinceSettings.ItemId.Name);
+                        if (Scenarios.Data.IsBaseProvinceSettings)
+                        {
+                            Scenarios.Data.SetDirtyBasesInc();
+                        }
+                        else if (Scenarios.Data.IsCountryProvinceSettings)
+                        {
+                            Scenarios.Data.SetDirtyCountryInc();
+                        }
+                        else
+                        {
+                            Scenarios.Data.SetDirty();
+                        }
                     }
                     else
                     {
@@ -19045,7 +19081,50 @@ namespace HoI2Editor.Forms
             switch (itemId)
             {
                 case ItemId.ProvinceVp:
+                    settings.SetDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    if (Scenarios.Data.IsVpProvinceSettings)
+                    {
+                        Scenarios.Data.SetDirtyVpInc();
+                    }
+                    else
+                    {
+                        Scenarios.Data.SetDirty();
+                    }
+                    Scenarios.SetDirty();
+                    break;
+
                 case ItemId.ProvinceRevoltRisk:
+                case ItemId.ProvinceIcRelative:
+                case ItemId.ProvinceInfrastructureRelative:
+                case ItemId.ProvinceCoastalFortRelative:
+                case ItemId.ProvinceAntiAirRelative:
+                case ItemId.ProvinceAirBaseRelative:
+                case ItemId.ProvinceNavalBaseRelative:
+                case ItemId.ProvinceRadarStationRelative:
+                case ItemId.ProvinceRocketTestRelative:
+                case ItemId.ProvinceSyntheticOilRelative:
+                case ItemId.ProvinceSyntheticRaresRelative:
+                case ItemId.ProvinceNuclearPowerRelative:
+                    settings.SetDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    if (Scenarios.Data.IsBaseDodProvinceSettings)
+                    {
+                        Scenarios.Data.SetDirtyBasesDodInc();
+                    }
+                    else if (Scenarios.Data.IsBaseProvinceSettings)
+                    {
+                        Scenarios.Data.SetDirtyBasesInc();
+                    }
+                    else if (Scenarios.Data.IsCountryProvinceSettings)
+                    {
+                        Scenarios.Data.SetDirtyCountryInc();
+                    }
+                    else
+                    {
+                        Scenarios.Data.SetDirty();
+                    }
+                    Scenarios.SetDirty();
+                    break;
+
                 case ItemId.ProvinceManpowerCurrent:
                 case ItemId.ProvinceManpowerMax:
                 case ItemId.ProvinceEnergyPool:
@@ -19063,46 +19142,471 @@ namespace HoI2Editor.Forms
                 case ItemId.ProvinceSupplyPool:
                 case ItemId.ProvinceIcCurrent:
                 case ItemId.ProvinceIcMax:
-                case ItemId.ProvinceIcRelative:
                 case ItemId.ProvinceInfrastructureCurrent:
                 case ItemId.ProvinceInfrastructureMax:
-                case ItemId.ProvinceInfrastructureRelative:
                 case ItemId.ProvinceLandFortCurrent:
                 case ItemId.ProvinceLandFortMax:
                 case ItemId.ProvinceLandFortRelative:
                 case ItemId.ProvinceCoastalFortCurrent:
                 case ItemId.ProvinceCoastalFortMax:
-                case ItemId.ProvinceCoastalFortRelative:
                 case ItemId.ProvinceAntiAirCurrent:
                 case ItemId.ProvinceAntiAirMax:
-                case ItemId.ProvinceAntiAirRelative:
                 case ItemId.ProvinceAirBaseCurrent:
                 case ItemId.ProvinceAirBaseMax:
-                case ItemId.ProvinceAirBaseRelative:
                 case ItemId.ProvinceNavalBaseCurrent:
                 case ItemId.ProvinceNavalBaseMax:
-                case ItemId.ProvinceNavalBaseRelative:
                 case ItemId.ProvinceRadarStationCurrent:
                 case ItemId.ProvinceRadarStationMax:
-                case ItemId.ProvinceRadarStationRelative:
                 case ItemId.ProvinceNuclearReactorCurrent:
                 case ItemId.ProvinceNuclearReactorMax:
                 case ItemId.ProvinceNuclearReactorRelative:
                 case ItemId.ProvinceRocketTestCurrent:
                 case ItemId.ProvinceRocketTestMax:
-                case ItemId.ProvinceRocketTestRelative:
                 case ItemId.ProvinceSyntheticOilCurrent:
                 case ItemId.ProvinceSyntheticOilMax:
-                case ItemId.ProvinceSyntheticOilRelative:
                 case ItemId.ProvinceSyntheticRaresCurrent:
                 case ItemId.ProvinceSyntheticRaresMax:
-                case ItemId.ProvinceSyntheticRaresRelative:
                 case ItemId.ProvinceNuclearPowerCurrent:
                 case ItemId.ProvinceNuclearPowerMax:
-                case ItemId.ProvinceNuclearPowerRelative:
                     settings.SetDirty((ProvinceSettings.ItemId) _itemDirtyFlags[(int) itemId]);
+                    if (Scenarios.Data.IsBaseProvinceSettings)
+                    {
+                        Scenarios.Data.SetDirtyBasesInc();
+                    }
+                    else if (Scenarios.Data.IsCountryProvinceSettings)
+                    {
+                        Scenarios.Data.SetDirtyCountryInc();
+                    }
+                    else
+                    {
+                        Scenarios.Data.SetDirty();
+                    }
                     Scenarios.SetDirty();
                     break;
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private void PostItemChanged(ItemId itemId, object val, ProvinceSettings settings)
+        {
+            switch (itemId)
+            {
+                case ItemId.ProvinceManpowerCurrent:
+                    PostItemChangedResourceCurrent(manpowerMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceManpowerMax:
+                    PostItemChangedResourceMax(manpowerCurrentTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceEnergyCurrent:
+                    PostItemChangedResourceCurrent(energyMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceEnergyMax:
+                    PostItemChangedResourceMax(energyCurrentTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceMetalCurrent:
+                    PostItemChangedResourceCurrent(metalMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceMetalMax:
+                    PostItemChangedResourceMax(metalCurrentTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceRareMaterialsCurrent:
+                    PostItemChangedResourceCurrent(rareMaterialsMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceRareMaterialsMax:
+                    PostItemChangedResourceMax(rareMaterialsCurrentTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceOilCurrent:
+                    PostItemChangedResourceCurrent(oilMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceOilMax:
+                    PostItemChangedResourceMax(oilCurrentTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceIcCurrent:
+                    PostItemChangedBuildingCurrent(icMaxTextBox, icRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceIcMax:
+                    PostItemChangedBuildingMax(icCurrentTextBox, icRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceIcRelative:
+                    PostItemChangedBuildingRelative(icCurrentTextBox, icMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceInfrastructureCurrent:
+                    PostItemChangedBuildingCurrent(infrastructureMaxTextBox, infrastructureRelativeTextBox, val,
+                        settings);
+                    break;
+
+                case ItemId.ProvinceInfrastructureMax:
+                    PostItemChangedBuildingMax(infrastructureCurrentTextBox, infrastructureRelativeTextBox, val,
+                        settings);
+                    break;
+
+                case ItemId.ProvinceInfrastructureRelative:
+                    PostItemChangedBuildingRelative(infrastructureCurrentTextBox, infrastructureMaxTextBox, val,
+                        settings);
+                    break;
+
+                case ItemId.ProvinceLandFortCurrent:
+                    PostItemChangedBuildingCurrent(landFortMaxTextBox, landFortRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceLandFortMax:
+                    PostItemChangedBuildingMax(landFortCurrentTextBox, landFortRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceLandFortRelative:
+                    PostItemChangedBuildingRelative(landFortCurrentTextBox, landFortMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceCoastalFortCurrent:
+                    PostItemChangedBuildingCurrent(coastalFortMaxTextBox, coastalFortRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceCoastalFortMax:
+                    PostItemChangedBuildingMax(coastalFortCurrentTextBox, coastalFortRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceCoastalFortRelative:
+                    PostItemChangedBuildingRelative(coastalFortCurrentTextBox, coastalFortMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceAntiAirCurrent:
+                    PostItemChangedBuildingCurrent(antiAirMaxTextBox, antiAirRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceAntiAirMax:
+                    PostItemChangedBuildingMax(antiAirCurrentTextBox, antiAirRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceAntiAirRelative:
+                    PostItemChangedBuildingRelative(antiAirCurrentTextBox, antiAirMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceAirBaseCurrent:
+                    PostItemChangedBuildingCurrent(airBaseMaxTextBox, airBaseRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceAirBaseMax:
+                    PostItemChangedBuildingMax(airBaseCurrentTextBox, airBaseRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceAirBaseRelative:
+                    PostItemChangedBuildingRelative(airBaseCurrentTextBox, airBaseMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceNavalBaseCurrent:
+                    PostItemChangedBuildingCurrent(navalBaseMaxTextBox, navalBaseRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceNavalBaseMax:
+                    PostItemChangedBuildingMax(navalBaseCurrentTextBox, navalBaseRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceNavalBaseRelative:
+                    PostItemChangedBuildingRelative(navalBaseCurrentTextBox, navalBaseMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceRadarStationCurrent:
+                    PostItemChangedBuildingCurrent(radarStationMaxTextBox, radarStationRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceRadarStationMax:
+                    PostItemChangedBuildingMax(radarStationCurrentTextBox, radarStationRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceRadarStationRelative:
+                    PostItemChangedBuildingRelative(radarStationCurrentTextBox, radarStationMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceNuclearReactorCurrent:
+                    PostItemChangedBuildingCurrent(nuclearReactorMaxTextBox, nuclearReactorRelativeTextBox, val,
+                        settings);
+                    break;
+
+                case ItemId.ProvinceNuclearReactorMax:
+                    PostItemChangedBuildingMax(nuclearReactorCurrentTextBox, nuclearReactorRelativeTextBox, val,
+                        settings);
+                    break;
+
+                case ItemId.ProvinceNuclearReactorRelative:
+                    PostItemChangedBuildingRelative(nuclearReactorCurrentTextBox, nuclearReactorMaxTextBox, val,
+                        settings);
+                    break;
+
+                case ItemId.ProvinceRocketTestCurrent:
+                    PostItemChangedBuildingCurrent(rocketTestMaxTextBox, rocketTestRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceRocketTestMax:
+                    PostItemChangedBuildingMax(rocketTestCurrentTextBox, rocketTestRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceRocketTestRelative:
+                    PostItemChangedBuildingRelative(rocketTestCurrentTextBox, rocketTestMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceSyntheticOilCurrent:
+                    PostItemChangedBuildingCurrent(syntheticOilMaxTextBox, syntheticOilRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceSyntheticOilMax:
+                    PostItemChangedBuildingMax(syntheticOilCurrentTextBox, syntheticOilRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceSyntheticOilRelative:
+                    PostItemChangedBuildingRelative(syntheticOilCurrentTextBox, syntheticOilMaxTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceSyntheticRaresCurrent:
+                    PostItemChangedBuildingCurrent(syntheticRaresMaxTextBox, syntheticRaresRelativeTextBox, val,
+                        settings);
+                    break;
+
+                case ItemId.ProvinceSyntheticRaresMax:
+                    PostItemChangedBuildingMax(syntheticRaresCurrentTextBox, syntheticRaresRelativeTextBox, val,
+                        settings);
+                    break;
+
+                case ItemId.ProvinceSyntheticRaresRelative:
+                    PostItemChangedBuildingRelative(syntheticRaresCurrentTextBox, syntheticRaresMaxTextBox, val,
+                        settings);
+                    break;
+
+                case ItemId.ProvinceNuclearPowerCurrent:
+                    PostItemChangedBuildingCurrent(nuclearPowerMaxTextBox, nuclearPowerRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceNuclearPowerMax:
+                    PostItemChangedBuildingMax(nuclearPowerCurrentTextBox, nuclearPowerRelativeTextBox, val, settings);
+                    break;
+
+                case ItemId.ProvinceNuclearPowerRelative:
+                    PostItemChangedBuildingRelative(nuclearPowerCurrentTextBox, nuclearPowerMaxTextBox, val, settings);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 資源現在値
+        /// </summary>
+        /// <param name="control">最大値のコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void PostItemChangedResourceCurrent(Control control, object val, ProvinceSettings settings)
+        {
+            // 現在値が最大値以下ならば何もしない
+            ItemId itemId = (ItemId) control.Tag;
+            double max = (double) GetItemValue(itemId, settings);
+            if (DoubleHelper.IsLessOrEqual((double) val, max))
+            {
+                return;
+            }
+
+            OutputItemValueChangedLog(itemId, val, settings);
+
+            // 最大値を現在値で更新する
+            SetItemValue(itemId, val, settings);
+
+            // 編集済みフラグを設定する
+            SetItemDirty(itemId, settings);
+
+            // 編集項目の値を更新する
+            control.Text = DoubleHelper.ToString((double) val);
+
+            // 編集項目の色を更新する
+            control.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 資源最大値
+        /// </summary>
+        /// <param name="control">現在値のコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void PostItemChangedResourceMax(Control control, object val, ProvinceSettings settings)
+        {
+            // 最大値が現在値以上ならば何もしない
+            ItemId itemId = (ItemId) control.Tag;
+            double current = (double) GetItemValue(itemId, settings);
+            if (DoubleHelper.IsGreaterOrEqual((double) val, current))
+            {
+                return;
+            }
+
+            OutputItemValueChangedLog(itemId, val, settings);
+
+            // 現在値を最大値で更新する
+            SetItemValue(itemId, val, settings);
+
+            // 編集済みフラグを設定する
+            SetItemDirty(itemId, settings);
+
+            // 編集項目の値を更新する
+            control.Text = DoubleHelper.ToString((double) val);
+
+            // 編集項目の色を更新する
+            control.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 建物現在値
+        /// </summary>
+        /// <param name="control1">最大値のコントロール1</param>
+        /// <param name="control2">相対値のコントロール2</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void PostItemChangedBuildingCurrent(Control control1, Control control2, object val,
+            ProvinceSettings settings)
+        {
+            // 相対値が0でなければクリアする
+            ItemId itemId2 = (ItemId) control2.Tag;
+            double relative = (double) GetItemValue(itemId2, settings);
+            if (!DoubleHelper.IsZero(relative))
+            {
+                OutputItemValueChangedLog(itemId2, val, settings);
+
+                // 相対値を0に設定する
+                SetItemValue(itemId2, (double) 0, settings);
+
+                // 編集済みフラグを設定する
+                SetItemDirty(itemId2, settings);
+
+                // 編集項目の値をクリアする
+                control2.Text = "";
+            }
+
+            // 現在値が最大値以下ならば何もしない
+            ItemId itemId1 = (ItemId) control1.Tag;
+            double max = (double) GetItemValue(itemId1, settings);
+            if (DoubleHelper.IsLessOrEqual((double) val, max))
+            {
+                return;
+            }
+
+            OutputItemValueChangedLog(itemId1, val, settings);
+
+            // 最大値を現在値で更新する
+            SetItemValue(itemId1, val, settings);
+
+            // 編集済みフラグを設定する
+            SetItemDirty(itemId1, settings);
+
+            // 編集項目の値を更新する
+            control1.Text = DoubleHelper.ToString((double) val);
+
+            // 編集項目の色を更新する
+            control1.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 建物最大値
+        /// </summary>
+        /// <param name="control1">現在値のコントロール1</param>
+        /// <param name="control2">相対値のコントロール2</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void PostItemChangedBuildingMax(Control control1, Control control2, object val,
+            ProvinceSettings settings)
+        {
+            // 相対値が0でなければクリアする
+            ItemId itemId2 = (ItemId) control2.Tag;
+            double relative = (double) GetItemValue(itemId2, settings);
+            if (!DoubleHelper.IsZero(relative))
+            {
+                OutputItemValueChangedLog(itemId2, val, settings);
+
+                // 相対値を0に設定する
+                SetItemValue(itemId2, (double) 0, settings);
+
+                // 編集済みフラグを設定する
+                SetItemDirty(itemId2, settings);
+
+                // 編集項目の値をクリアする
+                control2.Text = "";
+            }
+
+            // 最大値が現在値以上ならば何もしない
+            ItemId itemId1 = (ItemId) control1.Tag;
+            double current = (double) GetItemValue(itemId1, settings);
+            if (DoubleHelper.IsGreaterOrEqual((double) val, current))
+            {
+                return;
+            }
+
+            OutputItemValueChangedLog(itemId1, val, settings);
+
+            // 現在値を最大値で更新する
+            SetItemValue(itemId1, val, settings);
+
+            // 編集済みフラグを設定する
+            SetItemDirty(itemId1, settings);
+
+            // 編集項目の値を更新する
+            control1.Text = DoubleHelper.ToString((double) val);
+
+            // 編集項目の色を更新する
+            control1.ForeColor = Color.Red;
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 建物相対値
+        /// </summary>
+        /// <param name="control1">現在値のコントロール1</param>
+        /// <param name="control2">最大値のコントロール2</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void PostItemChangedBuildingRelative(Control control1, Control control2, object val,
+            ProvinceSettings settings)
+        {
+            // 現在値が0でなければクリアする
+            ItemId itemId1 = (ItemId) control1.Tag;
+            double current = (double) GetItemValue(itemId1, settings);
+            if (!DoubleHelper.IsZero(current))
+            {
+                OutputItemValueChangedLog(itemId1, val, settings);
+
+                // 現在値を0に設定する
+                SetItemValue(itemId1, (double) 0, settings);
+
+                // 編集済みフラグを設定する
+                SetItemDirty(itemId1, settings);
+
+                // 編集項目の値をクリアする
+                control1.Text = "";
+            }
+
+            // 最大値が0でなければクリアする
+            ItemId itemId2 = (ItemId) control2.Tag;
+            double max = (double) GetItemValue(itemId2, settings);
+            if (!DoubleHelper.IsZero(max))
+            {
+                OutputItemValueChangedLog(itemId2, val, settings);
+
+                // 最大値を0に設定する
+                SetItemValue(itemId2, (double) 0, settings);
+
+                // 編集済みフラグを設定する
+                SetItemDirty(itemId2, settings);
+
+                // 編集項目の値をクリアする
+                control2.Text = "";
             }
         }
 
@@ -19122,7 +19626,19 @@ namespace HoI2Editor.Forms
                     Log.Info("[Scenario] {0}: {1} -> {2} ({3})", _itemStrings[(int) itemId],
                         GetProvinceName(province, settings), val, province.Id);
                     break;
+            }
+        }
 
+        /// <summary>
+        ///     編集項目の値変更時のログを出力する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        private static void OutputItemValueChangedLog(ItemId itemId, object val, ProvinceSettings settings)
+        {
+            switch (itemId)
+            {
                 case ItemId.ProvinceVp:
                 case ItemId.ProvinceRevoltRisk:
                 case ItemId.ProvinceManpowerCurrent:
@@ -19180,7 +19696,7 @@ namespace HoI2Editor.Forms
                 case ItemId.ProvinceNuclearPowerMax:
                 case ItemId.ProvinceNuclearPowerRelative:
                     Log.Info("[Scenario] {0}: {1} -> {2} ({3})", _itemStrings[(int) itemId],
-                        ObjectHelper.ToString(GetItemValue(itemId, settings)), ObjectHelper.ToString(val), province.Id);
+                        ObjectHelper.ToString(GetItemValue(itemId, settings)), ObjectHelper.ToString(val), settings.Id);
                     break;
             }
         }
@@ -19235,7 +19751,7 @@ namespace HoI2Editor.Forms
                 Scenarios.AddProvinceSettings(settings);
             }
 
-            OutputItemValueChangedLog(itemId, val, province, settings);
+            OutputItemValueChangedLog(itemId, val, settings);
 
             // 値を更新する
             SetItemValue(itemId, val, settings);
@@ -19245,6 +19761,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            PostItemChanged(itemId, val, settings);
         }
 
         /// <summary>
@@ -19297,7 +19816,7 @@ namespace HoI2Editor.Forms
                 Scenarios.AddProvinceSettings(settings);
             }
 
-            OutputItemValueChangedLog(itemId, val, province, settings);
+            OutputItemValueChangedLog(itemId, val, settings);
 
             // 値を更新する
             SetItemValue(itemId, val, settings);
@@ -19307,6 +19826,9 @@ namespace HoI2Editor.Forms
 
             // 文字色を変更する
             control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            PostItemChanged(itemId, val, settings);
         }
 
         /// <summary>

@@ -79,6 +79,11 @@ namespace HoI2Editor.Controller
         /// </summary>
         private Country _country;
 
+        /// <summary>
+        ///     ドラッグアンドドロップの開始位置
+        /// </summary>
+        private static Point _dragPoint = Point.Empty;
+
         #endregion
 
         #region 公開定数
@@ -189,8 +194,8 @@ namespace HoI2Editor.Controller
             // ピクチャーボックスに画像を設定する
             _pictureBox.Image = map.Image;
 
-            // マウスクリックイベントハンドラを登録する
-            _pictureBox.MouseClick += OnPictureBoxMouseClick;
+            // イベントハンドラを初期化する
+            InitEventHandler();
         }
 
         /// <summary>
@@ -221,8 +226,8 @@ namespace HoI2Editor.Controller
             int provTop = rect.Top >> 1;
             int provWidth = rect.Width >> 1;
             int provHeight = rect.Height >> 1;
-            int panelX = _panel.HorizontalScroll.Value;
-            int panelY = _panel.VerticalScroll.Value;
+            int panelX = _panel.HorizontalScroll.Value - SystemInformation.VerticalScrollBarWidth;
+            int panelY = _panel.VerticalScroll.Value - SystemInformation.HorizontalScrollBarHeight;
             int panelWidth = _panel.Width;
             int panelHeight = _panel.Height;
 
@@ -362,22 +367,158 @@ namespace HoI2Editor.Controller
         #region マウスイベントハンドラ
 
         /// <summary>
-        ///     ピクチャーボックスのマウスクリック時の処理
+        ///     イベントハンドラを初期化する
+        /// </summary>
+        private void InitEventHandler()
+        {
+            _pictureBox.MouseClick += OnPictureBoxMouseClick;
+            _pictureBox.MouseDown += OnPictureBoxMouseDown;
+            _pictureBox.MouseUp += OnPictureBoxMouseUp;
+            _pictureBox.MouseMove += OnPictureBoxMouseMove;
+            _pictureBox.GiveFeedback += OnPictureBoxGiveFeedback;
+            _panel.DragEnter += OnPanelDragEnter;
+            _panel.DragDrop += OnPanelDragDrop;
+        }
+
+        /// <summary>
+        ///     マウスクリック時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnPictureBoxMouseClick(object sender, MouseEventArgs e)
         {
-            Log.Info("Click: ({0},{1})", e.X, e.Y);
-            Log.Info("Scroll: ({0},{1})", _panel.HorizontalScroll.Value, _panel.VerticalScroll.Value);
-            Log.Info("PictureBox: ({0},{1})", _pictureBox.Width, _pictureBox.Height);
-
             Map map = Maps.Data[(int) Level];
             ushort id = map.ProvinceIds[e.X, e.Y];
             if (ProvinceMouseClick != null)
             {
                 ProvinceMouseClick(sender, new ProvinceEventArgs(id, e));
             }
+        }
+
+        /// <summary>
+        ///     右マウスダウン時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPictureBoxMouseDown(object sender, MouseEventArgs e)
+        {
+            // 左ボタンダウンでなければドラッグ状態を解除する
+            if (e.Button != MouseButtons.Right)
+            {
+                _dragPoint = Point.Empty;
+                Cursor.Current = Cursors.Default;
+                return;
+            }
+
+            // ドラッグ開始位置を設定する
+            _dragPoint = new Point(e.X - _panel.HorizontalScroll.Value, e.Y - _panel.VerticalScroll.Value);
+        }
+
+        /// <summary>
+        ///     マウスアップ時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnPictureBoxMouseUp(object sender, MouseEventArgs e)
+        {
+            // ドラッグ状態を解除する
+            _dragPoint = Point.Empty;
+            Cursor.Current = Cursors.Default;
+        }
+
+        /// <summary>
+        ///     マウス移動時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPictureBoxMouseMove(object sender, MouseEventArgs e)
+        {
+            // ドラッグ中でなければ何もしない
+            if (_dragPoint == Point.Empty)
+            {
+                return;
+            }
+
+            // ドラッグ判定サイズを超えていなければ何もしない
+            Size dragSize = SystemInformation.DragSize;
+            Rectangle dragRect = new Rectangle(_dragPoint.X - dragSize.Width / 2, _dragPoint.Y - dragSize.Height / 2,
+                dragSize.Width, dragSize.Height);
+            if (dragRect.Contains(e.X, e.Y))
+            {
+                return;
+            }
+
+            // ドラッグアンドドロップを開始する
+            _pictureBox.DoDragDrop(sender, DragDropEffects.Move);
+
+            // ドラッグ状態を解除する
+            _dragPoint = Point.Empty;
+        }
+
+        /// <summary>
+        ///     ドラッグ中のカーソル更新処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnPictureBoxGiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
+            if ((e.Effect & DragDropEffects.Scroll) != 0)
+            {
+                e.UseDefaultCursors = false;
+                Cursor.Current = Cursors.SizeAll;
+            }
+            else
+            {
+                e.UseDefaultCursors = true;
+            }
+        }
+
+        /// <summary>
+        ///     ドラッグ開始時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnPanelDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(typeof (PictureBox)))
+            {
+                e.Effect = DragDropEffects.Scroll;
+            }
+        }
+
+        /// <summary>
+        ///     ドロップした時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPanelDragDrop(object sender, DragEventArgs e)
+        {
+            // マップをスクロールさせる
+            Point point = _panel.PointToClient(new Point(e.X, e.Y));
+            int panelWidth = _panel.Width - SystemInformation.VerticalScrollBarWidth;
+            int panelHeight = _panel.Height - SystemInformation.HorizontalScrollBarHeight;
+            int mapWidth = _pictureBox.Width;
+            int mapHeight = _pictureBox.Height;
+            int x = _panel.HorizontalScroll.Value + _dragPoint.X - point.X;
+            if (x < 0)
+            {
+                x = 0;
+            }
+            else if (x + panelWidth > mapWidth)
+            {
+                x = mapWidth - panelWidth;
+            }
+            int y = _panel.VerticalScroll.Value + _dragPoint.Y - point.Y;
+            if (y < 0)
+            {
+                y = 0;
+            }
+            else if (y + panelHeight > mapHeight)
+            {
+                y = mapHeight - panelHeight;
+            }
+            _panel.HorizontalScroll.Value = x;
+            _panel.VerticalScroll.Value = y;
         }
 
         #endregion

@@ -19,7 +19,7 @@ namespace HoI2Editor.Utilities
         public static bool IsEqual(double val1, double val2)
         {
             // 小数点以下6桁まで考慮する
-            return Math.Abs(val1 - val2) <= 0.0000005;
+            return Math.Abs(val1 - val2) < 0.0000005;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace HoI2Editor.Utilities
         /// <returns>数値が等しければtrueを返す</returns>
         public static bool IsEqual0(double val1, double val2)
         {
-            return Math.Abs(val1 - val2) <= 0.5;
+            return Math.Abs(val1 - val2) < 0.5;
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace HoI2Editor.Utilities
         /// <returns>数値が等しければtrueを返す</returns>
         public static bool IsEqual1(double val1, double val2)
         {
-            return Math.Abs(val1 - val2) <= 0.05;
+            return Math.Abs(val1 - val2) < 0.05;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace HoI2Editor.Utilities
         /// <returns>数値が等しければtrueを返す</returns>
         public static bool IsEqual2(double val1, double val2)
         {
-            return Math.Abs(val1 - val2) <= 0.005;
+            return Math.Abs(val1 - val2) < 0.005;
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace HoI2Editor.Utilities
         /// <returns>数値が等しければtrueを返す</returns>
         public static bool IsEqual3(double val1, double val2)
         {
-            return Math.Abs(val1 - val2) <= 0.0005;
+            return Math.Abs(val1 - val2) < 0.0005;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace HoI2Editor.Utilities
         /// <returns>数値が等しければtrueを返す</returns>
         public static bool IsEqual4(double val1, double val2)
         {
-            return Math.Abs(val1 - val2) <= 0.00005;
+            return Math.Abs(val1 - val2) < 0.00005;
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace HoI2Editor.Utilities
         /// <returns>数値が等しければtrueを返す</returns>
         public static bool IsEqual5(double val1, double val2)
         {
-            return Math.Abs(val1 - val2) <= 0.000005;
+            return Math.Abs(val1 - val2) < 0.000005;
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace HoI2Editor.Utilities
         /// <returns>数値が等しければtrueを返す</returns>
         public static bool IsEqual6(double val1, double val2)
         {
-            return Math.Abs(val1 - val2) <= 0.0000005;
+            return Math.Abs(val1 - val2) < 0.0000005;
         }
 
         /// <summary>
@@ -106,7 +106,29 @@ namespace HoI2Editor.Utilities
         /// <returns>数値が0に等しければtrueを返す</returns>
         public static bool IsZero(double val)
         {
-            return Math.Abs(val) <= 0.0000005;
+            return Math.Abs(val) < 0.0000005;
+        }
+
+        /// <summary>
+        ///     数値が指定値以下であるかを判定する
+        /// </summary>
+        /// <param name="val1">数値1</param>
+        /// <param name="val2">数値2</param>
+        /// <returns>数値1が数値2以下であればtrueを返す</returns>
+        public static bool IsLessOrEqual(double val1, double val2)
+        {
+            return (val1 - val2) < 0.0000005;
+        }
+
+        /// <summary>
+        ///     数値が指定値以上であるかを判定する
+        /// </summary>
+        /// <param name="val1">数値1</param>
+        /// <param name="val2">数値2</param>
+        /// <returns>数値1が数値2以上であればtrueを返す</returns>
+        public static bool IsGreaterOrEqual(double val1, double val2)
+        {
+            return (val1 - val2) > -0.0000005;
         }
 
         #endregion

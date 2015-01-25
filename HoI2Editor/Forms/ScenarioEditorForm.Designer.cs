@@ -1318,6 +1318,7 @@
             // 
             // provinceMapPanel
             // 
+            this.provinceMapPanel.AllowDrop = true;
             resources.ApplyResources(this.provinceMapPanel, "provinceMapPanel");
             this.provinceMapPanel.Controls.Add(this.provinceMapPictureBox);
             this.provinceMapPanel.Name = "provinceMapPanel";

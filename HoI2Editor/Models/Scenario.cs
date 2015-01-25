@@ -124,6 +124,26 @@ namespace HoI2Editor.Models
         /// </summary>
         private readonly HashSet<Country> _dirtySelectableCountries = new HashSet<Country>();
 
+        /// <summary>
+        ///     国別incの編集済みフラグ
+        /// </summary>
+        private bool _dirtyCountryInc;
+
+        /// <summary>
+        ///     bases.incの編集済みフラグ
+        /// </summary>
+        private bool _dirtyBasesInc;
+
+        /// <summary>
+        ///     bases_DOD.incの編集済みフラグ
+        /// </summary>
+        private bool _dirtyBasesDodInc;
+
+        /// <summary>
+        ///     vp.incの編集済みフラグ
+        /// </summary>
+        private bool _dirtyVpInc;
+
         #endregion
 
         #region 公開定数
@@ -382,6 +402,74 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     国別incが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyCountryInc()
+        {
+            return _dirtyCountryInc;
+        }
+
+        /// <summary>
+        ///     国別incの編集済みフラグを設定する
+        /// </summary>
+        public void SetDirtyCountryInc()
+        {
+            _dirtyCountryInc = true;
+        }
+
+        /// <summary>
+        ///     bases.incが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyBasesInc()
+        {
+            return _dirtyBasesInc;
+        }
+
+        /// <summary>
+        ///     bases.incの編集済みフラグを設定する
+        /// </summary>
+        public void SetDirtyBasesInc()
+        {
+            _dirtyBasesInc = true;
+        }
+
+        /// <summary>
+        ///     bases_DOD.incが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyBasesDodInc()
+        {
+            return _dirtyBasesDodInc;
+        }
+
+        /// <summary>
+        ///     bases_DOD.incの編集済みフラグを設定する
+        /// </summary>
+        public void SetDirtyBasesDodInc()
+        {
+            _dirtyBasesDodInc = true;
+        }
+
+        /// <summary>
+        ///     vp.incが編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirtyVpInc()
+        {
+            return _dirtyVpInc;
+        }
+
+        /// <summary>
+        ///     vp.incの編集済みフラグを設定する
+        /// </summary>
+        public void SetDirtyVpInc()
+        {
+            _dirtyVpInc = true;
+        }
+
+        /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
         public void ResetDirtyAll()
@@ -444,6 +532,11 @@ namespace HoI2Editor.Models
                     settings.ResetDirtyAll();
                 }
             }
+
+            _dirtyCountryInc = false;
+            _dirtyBasesInc = false;
+            _dirtyBasesDodInc = false;
+            _dirtyVpInc = false;
 
             _dirtyFlag = false;
         }
