@@ -131,6 +131,16 @@ namespace HoI2Editor.Utilities
             return (val1 - val2) > -0.0000005;
         }
 
+        /// <summary>
+        ///     数値が負であるかを判定する
+        /// </summary>
+        /// <param name="val">数値</param>
+        /// <returns>数値が負であればtrueを返す</returns>
+        public static bool IsNegative(double val)
+        {
+            return val < -0.0000005;
+        }
+
         #endregion
 
         #region 文字列変換

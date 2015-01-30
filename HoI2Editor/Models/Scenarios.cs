@@ -1053,6 +1053,66 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     新規typeを取得する
+        /// </summary>
+        /// <param name="startType">探索開始type</param>
+        /// <returns>新規type</returns>
+        public static int GetNewType(int startType)
+        {
+            int type = startType;
+            while (!_usedTypeIds.ContainsKey(type))
+            {
+                type++;
+            }
+            return type;
+        }
+
+        /// <summary>
+        ///     新規idを取得する
+        /// </summary>
+        /// <param name="type">type</param>
+        /// <param name="startId">探索開始id</param>
+        /// <returns>新規id</returns>
+        public static int GetNewId(int type, int startId)
+        {
+            int id = startId;
+            if (!_usedTypeIds.ContainsKey(type))
+            {
+                return id;
+            }
+            HashSet<int> ids = _usedTypeIds[type];
+            while (ids.Contains(id))
+            {
+                id++;
+            }
+            return id;
+        }
+
+        /// <summary>
+        ///     typeを設定する
+        /// </summary>
+        /// <param name="typeId">typeとidの組</param>
+        /// <param name="type">typeの値</param>
+        public static void SetType(TypeId typeId, int type)
+        {
+            RemoveTypeId(typeId);
+            typeId.Type = type;
+            AddTypeId(typeId);
+        }
+
+        /// <summary>
+        ///     idを設定する
+        /// </summary>
+        /// <param name="typeId">typeとidの組</param>
+        /// <param name="id">idの値</param>
+        public static void SetId(TypeId typeId, int id)
+        {
+            RemoveTypeId(typeId);
+            typeId.Id = id;
+            AddTypeId(typeId);
+        }
+
+        /// <summary>
         ///     新規idを取得する
         /// </summary>
         /// <param name="type">type</param>

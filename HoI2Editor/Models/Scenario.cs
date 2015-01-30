@@ -2985,6 +2985,24 @@ namespace HoI2Editor.Models
         public int Interventionism { get; set; }
 
         #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public CountryPolicy()
+        {
+            Democratic = 5;
+            PoliticalLeft = 5;
+            Freedom = 5;
+            FreeMarket = 5;
+            ProfessionalArmy = 5;
+            DefenseLobby = 5;
+            Interventionism = 5;
+        }
+
+        #endregion
     }
 
     /// <summary>

@@ -31,6 +31,40 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 公開定数
+
+        /// <summary>
+        ///     年の最小値
+        /// </summary>
+        public const int MinYear = 0;
+
+        /// <summary>
+        ///     年の最大値
+        /// </summary>
+        public const int MaxYear = 9999;
+
+        /// <summary>
+        ///     月の最小値
+        /// </summary>
+        public const int MinMonth = 1;
+
+        /// <summary>
+        ///     月の最大値
+        /// </summary>
+        public const int MaxMonth = 12;
+
+        /// <summary>
+        ///     日の最小値
+        /// </summary>
+        public const int MinDay = 1;
+
+        /// <summary>
+        ///     日の最大値
+        /// </summary>
+        public const int MaxDay = 30;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>

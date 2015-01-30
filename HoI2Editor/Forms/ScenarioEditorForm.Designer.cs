@@ -51,6 +51,17 @@
             System.Windows.Forms.Label resourceMaxLabel;
             System.Windows.Forms.Label resourceCurrentLabel;
             System.Windows.Forms.Label resourcePoolLabel;
+            System.Windows.Forms.TabPage technologyTabPage;
+            this.techTreePanel = new System.Windows.Forms.Panel();
+            this.techTreePictureBox = new System.Windows.Forms.PictureBox();
+            this.inventionsListView = new System.Windows.Forms.ListView();
+            this.blueprintsListView = new System.Windows.Forms.ListView();
+            this.ownedTechsListView = new System.Windows.Forms.ListView();
+            this.ownedTechsLabel = new System.Windows.Forms.Label();
+            this.techCategoryListBox = new System.Windows.Forms.ListBox();
+            this.blueprintsLabel = new System.Windows.Forms.Label();
+            this.inventionsLabel = new System.Windows.Forms.Label();
+            this.techCountryListBox = new System.Windows.Forms.ListBox();
             this.provinceIdLabel = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -147,15 +158,6 @@
             this.ownedColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.controlledProvinceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.claimedProvinceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.technologyTabPage = new System.Windows.Forms.TabPage();
-            this.inventionsListView = new System.Windows.Forms.ListView();
-            this.blueprintsListView = new System.Windows.Forms.ListView();
-            this.ownedTechsListView = new System.Windows.Forms.ListView();
-            this.ownedTechsLabel = new System.Windows.Forms.Label();
-            this.techCategoryListBox = new System.Windows.Forms.ListBox();
-            this.blueprintsLabel = new System.Windows.Forms.Label();
-            this.inventionsLabel = new System.Windows.Forms.Label();
-            this.techCountryListBox = new System.Windows.Forms.ListBox();
             this.governmentTabPage = new System.Windows.Forms.TabPage();
             this.cabinetGroupBox = new System.Windows.Forms.GroupBox();
             this.chiefOfAirIdTextBox = new System.Windows.Forms.TextBox();
@@ -505,8 +507,6 @@
             this.scenarioRadioButton = new System.Windows.Forms.RadioButton();
             this.scenarioListBox = new System.Windows.Forms.ListBox();
             this.scenarioTabControl = new System.Windows.Forms.TabControl();
-            this.techTreePanel = new System.Windows.Forms.Panel();
-            this.techTreePictureBox = new System.Windows.Forms.PictureBox();
             provinceIcLabel = new System.Windows.Forms.Label();
             provinceInfrastructureLabel = new System.Windows.Forms.Label();
             provinceLandFortLabel = new System.Windows.Forms.Label();
@@ -529,6 +529,10 @@
             resourceMaxLabel = new System.Windows.Forms.Label();
             resourceCurrentLabel = new System.Windows.Forms.Label();
             resourcePoolLabel = new System.Windows.Forms.Label();
+            technologyTabPage = new System.Windows.Forms.TabPage();
+            technologyTabPage.SuspendLayout();
+            this.techTreePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).BeginInit();
             this.provinceTabPage.SuspendLayout();
             this.provinceCountryGroupBox.SuspendLayout();
             this.mapFilterGroupBox.SuspendLayout();
@@ -537,7 +541,6 @@
             this.provinceBuildingGroupBox.SuspendLayout();
             this.provinceMapPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.provinceMapPictureBox)).BeginInit();
-            this.technologyTabPage.SuspendLayout();
             this.governmentTabPage.SuspendLayout();
             this.cabinetGroupBox.SuspendLayout();
             this.politicalSliderGroupBox.SuspendLayout();
@@ -576,8 +579,6 @@
             this.folderGroupBox.SuspendLayout();
             this.typeGroupBox.SuspendLayout();
             this.scenarioTabControl.SuspendLayout();
-            this.techTreePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // provinceIcLabel
@@ -689,6 +690,91 @@
             // 
             resources.ApplyResources(resourcePoolLabel, "resourcePoolLabel");
             resourcePoolLabel.Name = "resourcePoolLabel";
+            // 
+            // technologyTabPage
+            // 
+            technologyTabPage.BackColor = System.Drawing.SystemColors.Control;
+            technologyTabPage.Controls.Add(this.techTreePanel);
+            technologyTabPage.Controls.Add(this.inventionsListView);
+            technologyTabPage.Controls.Add(this.blueprintsListView);
+            technologyTabPage.Controls.Add(this.ownedTechsListView);
+            technologyTabPage.Controls.Add(this.ownedTechsLabel);
+            technologyTabPage.Controls.Add(this.techCategoryListBox);
+            technologyTabPage.Controls.Add(this.blueprintsLabel);
+            technologyTabPage.Controls.Add(this.inventionsLabel);
+            technologyTabPage.Controls.Add(this.techCountryListBox);
+            resources.ApplyResources(technologyTabPage, "technologyTabPage");
+            technologyTabPage.Name = "technologyTabPage";
+            // 
+            // techTreePanel
+            // 
+            resources.ApplyResources(this.techTreePanel, "techTreePanel");
+            this.techTreePanel.Controls.Add(this.techTreePictureBox);
+            this.techTreePanel.Name = "techTreePanel";
+            // 
+            // techTreePictureBox
+            // 
+            resources.ApplyResources(this.techTreePictureBox, "techTreePictureBox");
+            this.techTreePictureBox.Name = "techTreePictureBox";
+            this.techTreePictureBox.TabStop = false;
+            // 
+            // inventionsListView
+            // 
+            this.inventionsListView.CheckBoxes = true;
+            resources.ApplyResources(this.inventionsListView, "inventionsListView");
+            this.inventionsListView.MultiSelect = false;
+            this.inventionsListView.Name = "inventionsListView";
+            this.inventionsListView.UseCompatibleStateImageBehavior = false;
+            this.inventionsListView.View = System.Windows.Forms.View.List;
+            // 
+            // blueprintsListView
+            // 
+            this.blueprintsListView.CheckBoxes = true;
+            resources.ApplyResources(this.blueprintsListView, "blueprintsListView");
+            this.blueprintsListView.MultiSelect = false;
+            this.blueprintsListView.Name = "blueprintsListView";
+            this.blueprintsListView.UseCompatibleStateImageBehavior = false;
+            this.blueprintsListView.View = System.Windows.Forms.View.List;
+            // 
+            // ownedTechsListView
+            // 
+            this.ownedTechsListView.CheckBoxes = true;
+            resources.ApplyResources(this.ownedTechsListView, "ownedTechsListView");
+            this.ownedTechsListView.MultiSelect = false;
+            this.ownedTechsListView.Name = "ownedTechsListView";
+            this.ownedTechsListView.UseCompatibleStateImageBehavior = false;
+            this.ownedTechsListView.View = System.Windows.Forms.View.List;
+            // 
+            // ownedTechsLabel
+            // 
+            resources.ApplyResources(this.ownedTechsLabel, "ownedTechsLabel");
+            this.ownedTechsLabel.Name = "ownedTechsLabel";
+            // 
+            // techCategoryListBox
+            // 
+            resources.ApplyResources(this.techCategoryListBox, "techCategoryListBox");
+            this.techCategoryListBox.FormattingEnabled = true;
+            this.techCategoryListBox.Name = "techCategoryListBox";
+            this.techCategoryListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechCategoryListBoxSelectedIndexChanged);
+            // 
+            // blueprintsLabel
+            // 
+            resources.ApplyResources(this.blueprintsLabel, "blueprintsLabel");
+            this.blueprintsLabel.Name = "blueprintsLabel";
+            // 
+            // inventionsLabel
+            // 
+            resources.ApplyResources(this.inventionsLabel, "inventionsLabel");
+            this.inventionsLabel.Name = "inventionsLabel";
+            // 
+            // techCountryListBox
+            // 
+            this.techCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            resources.ApplyResources(this.techCountryListBox, "techCountryListBox");
+            this.techCountryListBox.FormattingEnabled = true;
+            this.techCountryListBox.Name = "techCountryListBox";
+            this.techCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
+            this.techCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechCountryListBoxSelectedIndexChanged);
             // 
             // provinceIdLabel
             // 
@@ -1381,79 +1467,6 @@
             // 
             resources.ApplyResources(this.claimedProvinceColumnHeader, "claimedProvinceColumnHeader");
             // 
-            // technologyTabPage
-            // 
-            this.technologyTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.technologyTabPage.Controls.Add(this.techTreePanel);
-            this.technologyTabPage.Controls.Add(this.inventionsListView);
-            this.technologyTabPage.Controls.Add(this.blueprintsListView);
-            this.technologyTabPage.Controls.Add(this.ownedTechsListView);
-            this.technologyTabPage.Controls.Add(this.ownedTechsLabel);
-            this.technologyTabPage.Controls.Add(this.techCategoryListBox);
-            this.technologyTabPage.Controls.Add(this.blueprintsLabel);
-            this.technologyTabPage.Controls.Add(this.inventionsLabel);
-            this.technologyTabPage.Controls.Add(this.techCountryListBox);
-            resources.ApplyResources(this.technologyTabPage, "technologyTabPage");
-            this.technologyTabPage.Name = "technologyTabPage";
-            // 
-            // inventionsListView
-            // 
-            this.inventionsListView.CheckBoxes = true;
-            resources.ApplyResources(this.inventionsListView, "inventionsListView");
-            this.inventionsListView.MultiSelect = false;
-            this.inventionsListView.Name = "inventionsListView";
-            this.inventionsListView.UseCompatibleStateImageBehavior = false;
-            this.inventionsListView.View = System.Windows.Forms.View.List;
-            // 
-            // blueprintsListView
-            // 
-            this.blueprintsListView.CheckBoxes = true;
-            resources.ApplyResources(this.blueprintsListView, "blueprintsListView");
-            this.blueprintsListView.MultiSelect = false;
-            this.blueprintsListView.Name = "blueprintsListView";
-            this.blueprintsListView.UseCompatibleStateImageBehavior = false;
-            this.blueprintsListView.View = System.Windows.Forms.View.List;
-            // 
-            // ownedTechsListView
-            // 
-            this.ownedTechsListView.CheckBoxes = true;
-            resources.ApplyResources(this.ownedTechsListView, "ownedTechsListView");
-            this.ownedTechsListView.MultiSelect = false;
-            this.ownedTechsListView.Name = "ownedTechsListView";
-            this.ownedTechsListView.UseCompatibleStateImageBehavior = false;
-            this.ownedTechsListView.View = System.Windows.Forms.View.List;
-            // 
-            // ownedTechsLabel
-            // 
-            resources.ApplyResources(this.ownedTechsLabel, "ownedTechsLabel");
-            this.ownedTechsLabel.Name = "ownedTechsLabel";
-            // 
-            // techCategoryListBox
-            // 
-            resources.ApplyResources(this.techCategoryListBox, "techCategoryListBox");
-            this.techCategoryListBox.FormattingEnabled = true;
-            this.techCategoryListBox.Name = "techCategoryListBox";
-            this.techCategoryListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechCategoryListBoxSelectedIndexChanged);
-            // 
-            // blueprintsLabel
-            // 
-            resources.ApplyResources(this.blueprintsLabel, "blueprintsLabel");
-            this.blueprintsLabel.Name = "blueprintsLabel";
-            // 
-            // inventionsLabel
-            // 
-            resources.ApplyResources(this.inventionsLabel, "inventionsLabel");
-            this.inventionsLabel.Name = "inventionsLabel";
-            // 
-            // techCountryListBox
-            // 
-            this.techCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            resources.ApplyResources(this.techCountryListBox, "techCountryListBox");
-            this.techCountryListBox.FormattingEnabled = true;
-            this.techCountryListBox.Name = "techCountryListBox";
-            this.techCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
-            this.techCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechCountryListBoxSelectedIndexChanged);
-            // 
             // governmentTabPage
             // 
             this.governmentTabPage.BackColor = System.Drawing.SystemColors.Control;
@@ -1513,13 +1526,13 @@
             // 
             resources.ApplyResources(this.chiefOfAirIdTextBox, "chiefOfAirIdTextBox");
             this.chiefOfAirIdTextBox.Name = "chiefOfAirIdTextBox";
-            this.chiefOfAirIdTextBox.Validated += new System.EventHandler(this.OnChiefOfAirIdTextBoxValidated);
+            this.chiefOfAirIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfAirTypeTextBox
             // 
             resources.ApplyResources(this.chiefOfAirTypeTextBox, "chiefOfAirTypeTextBox");
             this.chiefOfAirTypeTextBox.Name = "chiefOfAirTypeTextBox";
-            this.chiefOfAirTypeTextBox.Validated += new System.EventHandler(this.OnChiefOfAirTypeTextBoxValidated);
+            this.chiefOfAirTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfAirComboBox
             // 
@@ -1528,7 +1541,7 @@
             this.chiefOfAirComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.chiefOfAirComboBox, "chiefOfAirComboBox");
             this.chiefOfAirComboBox.Name = "chiefOfAirComboBox";
-            this.chiefOfAirComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnChiefOfAirComboBoxDrawItem);
+            this.chiefOfAirComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
             this.chiefOfAirComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfAirComboBoxSelectedIndexChanged);
             // 
             // chiefOfAirLabel
@@ -1540,13 +1553,13 @@
             // 
             resources.ApplyResources(this.chiefOfNavyIdTextBox, "chiefOfNavyIdTextBox");
             this.chiefOfNavyIdTextBox.Name = "chiefOfNavyIdTextBox";
-            this.chiefOfNavyIdTextBox.Validated += new System.EventHandler(this.OnChiefOfNavyIdTextBoxValidated);
+            this.chiefOfNavyIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfNavyTypeTextBox
             // 
             resources.ApplyResources(this.chiefOfNavyTypeTextBox, "chiefOfNavyTypeTextBox");
             this.chiefOfNavyTypeTextBox.Name = "chiefOfNavyTypeTextBox";
-            this.chiefOfNavyTypeTextBox.Validated += new System.EventHandler(this.OnChiefOfNavyTypeTextBoxValidated);
+            this.chiefOfNavyTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfNavyComboBox
             // 
@@ -1555,7 +1568,7 @@
             this.chiefOfNavyComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.chiefOfNavyComboBox, "chiefOfNavyComboBox");
             this.chiefOfNavyComboBox.Name = "chiefOfNavyComboBox";
-            this.chiefOfNavyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnChiefOfNavyComboBoxDrawItem);
+            this.chiefOfNavyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
             this.chiefOfNavyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfNavyComboBoxSelectedIndexChanged);
             // 
             // chiefOfNavyLabel
@@ -1567,13 +1580,13 @@
             // 
             resources.ApplyResources(this.chiefOfArmyIdTextBox, "chiefOfArmyIdTextBox");
             this.chiefOfArmyIdTextBox.Name = "chiefOfArmyIdTextBox";
-            this.chiefOfArmyIdTextBox.Validated += new System.EventHandler(this.OnChiefOfArmyIdTextBoxValidated);
+            this.chiefOfArmyIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfArmyTypeTextBox
             // 
             resources.ApplyResources(this.chiefOfArmyTypeTextBox, "chiefOfArmyTypeTextBox");
             this.chiefOfArmyTypeTextBox.Name = "chiefOfArmyTypeTextBox";
-            this.chiefOfArmyTypeTextBox.Validated += new System.EventHandler(this.OnChiefOfArmyTypeTextBoxValidated);
+            this.chiefOfArmyTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfArmyComboBox
             // 
@@ -1582,7 +1595,7 @@
             this.chiefOfArmyComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.chiefOfArmyComboBox, "chiefOfArmyComboBox");
             this.chiefOfArmyComboBox.Name = "chiefOfArmyComboBox";
-            this.chiefOfArmyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnChiefOfArmyComboBoxDrawItem);
+            this.chiefOfArmyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
             this.chiefOfArmyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfArmyComboBoxSelectedIndexChanged);
             // 
             // chiefOfArmyLabel
@@ -1594,13 +1607,13 @@
             // 
             resources.ApplyResources(this.chiefOfStaffIdTextBox, "chiefOfStaffIdTextBox");
             this.chiefOfStaffIdTextBox.Name = "chiefOfStaffIdTextBox";
-            this.chiefOfStaffIdTextBox.Validated += new System.EventHandler(this.OnChiefOfStaffIdTextBoxValidated);
+            this.chiefOfStaffIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfStaffTypeTextBox
             // 
             resources.ApplyResources(this.chiefOfStaffTypeTextBox, "chiefOfStaffTypeTextBox");
             this.chiefOfStaffTypeTextBox.Name = "chiefOfStaffTypeTextBox";
-            this.chiefOfStaffTypeTextBox.Validated += new System.EventHandler(this.OnChiefOfStaffTypeTextBoxValidated);
+            this.chiefOfStaffTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfStaffComboBox
             // 
@@ -1609,7 +1622,7 @@
             this.chiefOfStaffComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.chiefOfStaffComboBox, "chiefOfStaffComboBox");
             this.chiefOfStaffComboBox.Name = "chiefOfStaffComboBox";
-            this.chiefOfStaffComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnChiefOfStaffComboBoxDrawItem);
+            this.chiefOfStaffComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
             this.chiefOfStaffComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfStaffComboBoxSelectedIndexChanged);
             // 
             // chiefOfStaffLabel
@@ -1621,13 +1634,13 @@
             // 
             resources.ApplyResources(this.ministerOfIntelligenceIdTextBox, "ministerOfIntelligenceIdTextBox");
             this.ministerOfIntelligenceIdTextBox.Name = "ministerOfIntelligenceIdTextBox";
-            this.ministerOfIntelligenceIdTextBox.Validated += new System.EventHandler(this.OnMinisterOfIntelligenceIdTextBoxValidated);
+            this.ministerOfIntelligenceIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // ministerOfIntelligenceTypeTextBox
             // 
             resources.ApplyResources(this.ministerOfIntelligenceTypeTextBox, "ministerOfIntelligenceTypeTextBox");
             this.ministerOfIntelligenceTypeTextBox.Name = "ministerOfIntelligenceTypeTextBox";
-            this.ministerOfIntelligenceTypeTextBox.Validated += new System.EventHandler(this.OnMinisterOfIntelligenceTypeTextBoxValidated);
+            this.ministerOfIntelligenceTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // ministerOfIntelligenceComboBox
             // 
@@ -1636,7 +1649,7 @@
             this.ministerOfIntelligenceComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.ministerOfIntelligenceComboBox, "ministerOfIntelligenceComboBox");
             this.ministerOfIntelligenceComboBox.Name = "ministerOfIntelligenceComboBox";
-            this.ministerOfIntelligenceComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnMinisterOfIntelligenceComboBoxDrawItem);
+            this.ministerOfIntelligenceComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
             this.ministerOfIntelligenceComboBox.SelectedIndexChanged += new System.EventHandler(this.OnMinisterOfIntelligenceComboBoxSelectedIndexChanged);
             // 
             // ministerOfIntelligenceLabel
@@ -1648,13 +1661,13 @@
             // 
             resources.ApplyResources(this.ministerOfSecurityIdTextBox, "ministerOfSecurityIdTextBox");
             this.ministerOfSecurityIdTextBox.Name = "ministerOfSecurityIdTextBox";
-            this.ministerOfSecurityIdTextBox.Validated += new System.EventHandler(this.OnMinisterOfSecurityIdTextBoxValidated);
+            this.ministerOfSecurityIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // ministerOfSecurityTypeTextBox
             // 
             resources.ApplyResources(this.ministerOfSecurityTypeTextBox, "ministerOfSecurityTypeTextBox");
             this.ministerOfSecurityTypeTextBox.Name = "ministerOfSecurityTypeTextBox";
-            this.ministerOfSecurityTypeTextBox.Validated += new System.EventHandler(this.OnMinisterOfSecurityTypeTextBoxValidated);
+            this.ministerOfSecurityTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // ministerOfSecurityComboBox
             // 
@@ -1663,7 +1676,7 @@
             this.ministerOfSecurityComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.ministerOfSecurityComboBox, "ministerOfSecurityComboBox");
             this.ministerOfSecurityComboBox.Name = "ministerOfSecurityComboBox";
-            this.ministerOfSecurityComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnMinisterOfSecurityComboBoxDrawItem);
+            this.ministerOfSecurityComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
             this.ministerOfSecurityComboBox.SelectedIndexChanged += new System.EventHandler(this.OnMinisterOfSecurityComboBoxSelectedIndexChanged);
             // 
             // ministerOfSecurityLabel
@@ -1675,13 +1688,13 @@
             // 
             resources.ApplyResources(this.armamentMinisterIdTextBox, "armamentMinisterIdTextBox");
             this.armamentMinisterIdTextBox.Name = "armamentMinisterIdTextBox";
-            this.armamentMinisterIdTextBox.Validated += new System.EventHandler(this.OnArmamentMinisterIdTextBoxValidated);
+            this.armamentMinisterIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // armamentMinisterTypeTextBox
             // 
             resources.ApplyResources(this.armamentMinisterTypeTextBox, "armamentMinisterTypeTextBox");
             this.armamentMinisterTypeTextBox.Name = "armamentMinisterTypeTextBox";
-            this.armamentMinisterTypeTextBox.Validated += new System.EventHandler(this.OnArmamentMinisterTypeTextBoxValidated);
+            this.armamentMinisterTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // armamentMinisterComboBox
             // 
@@ -1690,7 +1703,7 @@
             this.armamentMinisterComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.armamentMinisterComboBox, "armamentMinisterComboBox");
             this.armamentMinisterComboBox.Name = "armamentMinisterComboBox";
-            this.armamentMinisterComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnArmamentMinisterComboBoxDrawItem);
+            this.armamentMinisterComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
             this.armamentMinisterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnArmamentMinisterComboBoxSelectedIndexChanged);
             // 
             // armamentMinisterLabel
@@ -1702,13 +1715,13 @@
             // 
             resources.ApplyResources(this.foreignMinisterIdTextBox, "foreignMinisterIdTextBox");
             this.foreignMinisterIdTextBox.Name = "foreignMinisterIdTextBox";
-            this.foreignMinisterIdTextBox.Validated += new System.EventHandler(this.OnForeignMinisterIdTextBoxValidated);
+            this.foreignMinisterIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // foreignMinisterTypeTextBox
             // 
             resources.ApplyResources(this.foreignMinisterTypeTextBox, "foreignMinisterTypeTextBox");
             this.foreignMinisterTypeTextBox.Name = "foreignMinisterTypeTextBox";
-            this.foreignMinisterTypeTextBox.Validated += new System.EventHandler(this.OnForeignMinisterTypeTextBoxValidated);
+            this.foreignMinisterTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // foreignMinisterComboBox
             // 
@@ -1717,7 +1730,7 @@
             this.foreignMinisterComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.foreignMinisterComboBox, "foreignMinisterComboBox");
             this.foreignMinisterComboBox.Name = "foreignMinisterComboBox";
-            this.foreignMinisterComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnForeignMinisterComboBoxDrawItem);
+            this.foreignMinisterComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
             this.foreignMinisterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnForeignMinisterComboBoxSelectedIndexChanged);
             // 
             // foreignMinisterlabel
@@ -1729,13 +1742,13 @@
             // 
             resources.ApplyResources(this.headOfGovernmentIdTextBox, "headOfGovernmentIdTextBox");
             this.headOfGovernmentIdTextBox.Name = "headOfGovernmentIdTextBox";
-            this.headOfGovernmentIdTextBox.Validated += new System.EventHandler(this.OnHeadOfGovernmentIdTextBoxValidated);
+            this.headOfGovernmentIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // headOfGovernmentTypeTextBox
             // 
             resources.ApplyResources(this.headOfGovernmentTypeTextBox, "headOfGovernmentTypeTextBox");
             this.headOfGovernmentTypeTextBox.Name = "headOfGovernmentTypeTextBox";
-            this.headOfGovernmentTypeTextBox.Validated += new System.EventHandler(this.OnHeadOfGovernmentTypeTextBoxValidated);
+            this.headOfGovernmentTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // headOfGovernmentComboBox
             // 
@@ -1744,7 +1757,7 @@
             this.headOfGovernmentComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.headOfGovernmentComboBox, "headOfGovernmentComboBox");
             this.headOfGovernmentComboBox.Name = "headOfGovernmentComboBox";
-            this.headOfGovernmentComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnHeadOfGovernmentComboBoxDrawItem);
+            this.headOfGovernmentComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
             this.headOfGovernmentComboBox.SelectedIndexChanged += new System.EventHandler(this.OnHeadOfGovernmentComboBoxSelectedIndexChanged);
             // 
             // headOfGovernmentLabel
@@ -1756,13 +1769,13 @@
             // 
             resources.ApplyResources(this.headOfStateIdTextBox, "headOfStateIdTextBox");
             this.headOfStateIdTextBox.Name = "headOfStateIdTextBox";
-            this.headOfStateIdTextBox.Validated += new System.EventHandler(this.OnHeadOfStateIdTextBoxValidated);
+            this.headOfStateIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // headOfStateTypeTextBox
             // 
             resources.ApplyResources(this.headOfStateTypeTextBox, "headOfStateTypeTextBox");
             this.headOfStateTypeTextBox.Name = "headOfStateTypeTextBox";
-            this.headOfStateTypeTextBox.Validated += new System.EventHandler(this.OnHeadOfStateTypeTextBoxValidated);
+            this.headOfStateTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // headOfStateComboBox
             // 
@@ -1772,7 +1785,7 @@
             resources.ApplyResources(this.headOfStateComboBox, "headOfStateComboBox");
             this.headOfStateComboBox.Name = "headOfStateComboBox";
             this.headOfStateComboBox.Tag = "";
-            this.headOfStateComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnHeadOfStateComboBoxDrawItem);
+            this.headOfStateComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
             this.headOfStateComboBox.SelectedIndexChanged += new System.EventHandler(this.OnHeadOfStateComboBoxSelectedIndexChanged);
             // 
             // headOfStateLabel
@@ -1962,19 +1975,19 @@
             // 
             resources.ApplyResources(this.sliderDayTextBox, "sliderDayTextBox");
             this.sliderDayTextBox.Name = "sliderDayTextBox";
-            this.sliderDayTextBox.Validated += new System.EventHandler(this.OnSliderDayTextBoxValidated);
+            this.sliderDayTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // sliderMonthTextBox
             // 
             resources.ApplyResources(this.sliderMonthTextBox, "sliderMonthTextBox");
             this.sliderMonthTextBox.Name = "sliderMonthTextBox";
-            this.sliderMonthTextBox.Validated += new System.EventHandler(this.OnSliderMonthTextBoxValidated);
+            this.sliderMonthTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // sliderYearTextBox
             // 
             resources.ApplyResources(this.sliderYearTextBox, "sliderYearTextBox");
             this.sliderYearTextBox.Name = "sliderYearTextBox";
-            this.sliderYearTextBox.Validated += new System.EventHandler(this.OnSliderYearTextBoxValidated);
+            this.sliderYearTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // countryTabPage
             // 
@@ -3986,23 +3999,11 @@
             this.scenarioTabControl.Controls.Add(this.tradeTabPage);
             this.scenarioTabControl.Controls.Add(this.countryTabPage);
             this.scenarioTabControl.Controls.Add(this.governmentTabPage);
-            this.scenarioTabControl.Controls.Add(this.technologyTabPage);
+            this.scenarioTabControl.Controls.Add(technologyTabPage);
             this.scenarioTabControl.Controls.Add(this.provinceTabPage);
             this.scenarioTabControl.Name = "scenarioTabControl";
             this.scenarioTabControl.SelectedIndex = 0;
             this.scenarioTabControl.SelectedIndexChanged += new System.EventHandler(this.OnScenarioTabControlSelectedIndexChanged);
-            // 
-            // techTreePanel
-            // 
-            resources.ApplyResources(this.techTreePanel, "techTreePanel");
-            this.techTreePanel.Controls.Add(this.techTreePictureBox);
-            this.techTreePanel.Name = "techTreePanel";
-            // 
-            // techTreePictureBox
-            // 
-            resources.ApplyResources(this.techTreePictureBox, "techTreePictureBox");
-            this.techTreePictureBox.Name = "techTreePictureBox";
-            this.techTreePictureBox.TabStop = false;
             // 
             // ScenarioEditorForm
             // 
@@ -4018,6 +4019,11 @@
             this.Load += new System.EventHandler(this.OnFormLoad);
             this.Move += new System.EventHandler(this.OnFormMove);
             this.Resize += new System.EventHandler(this.OnFormResize);
+            technologyTabPage.ResumeLayout(false);
+            technologyTabPage.PerformLayout();
+            this.techTreePanel.ResumeLayout(false);
+            this.techTreePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).EndInit();
             this.provinceTabPage.ResumeLayout(false);
             this.provinceTabPage.PerformLayout();
             this.provinceCountryGroupBox.ResumeLayout(false);
@@ -4033,8 +4039,6 @@
             this.provinceMapPanel.ResumeLayout(false);
             this.provinceMapPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.provinceMapPictureBox)).EndInit();
-            this.technologyTabPage.ResumeLayout(false);
-            this.technologyTabPage.PerformLayout();
             this.governmentTabPage.ResumeLayout(false);
             this.cabinetGroupBox.ResumeLayout(false);
             this.cabinetGroupBox.PerformLayout();
@@ -4093,9 +4097,6 @@
             this.typeGroupBox.ResumeLayout(false);
             this.typeGroupBox.PerformLayout();
             this.scenarioTabControl.ResumeLayout(false);
-            this.techTreePanel.ResumeLayout(false);
-            this.techTreePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -4108,7 +4109,6 @@
         private System.Windows.Forms.TabPage provinceTabPage;
         private System.Windows.Forms.Panel provinceMapPanel;
         private System.Windows.Forms.PictureBox provinceMapPictureBox;
-        private System.Windows.Forms.TabPage technologyTabPage;
         private System.Windows.Forms.TabPage governmentTabPage;
         private System.Windows.Forms.TabPage countryTabPage;
         private System.Windows.Forms.GroupBox countryInfoGroupBox;
@@ -4458,11 +4458,8 @@
         private System.Windows.Forms.TextBox headOfStateTypeTextBox;
         private System.Windows.Forms.ComboBox headOfStateComboBox;
         private System.Windows.Forms.Label headOfStateLabel;
-        private System.Windows.Forms.Label blueprintsLabel;
-        private System.Windows.Forms.Label ownedTechsLabel;
         private System.Windows.Forms.ListBox techCategoryListBox;
         private System.Windows.Forms.ListBox techCountryListBox;
-        private System.Windows.Forms.Label inventionsLabel;
         private System.Windows.Forms.ListView ownedTechsListView;
         private System.Windows.Forms.ListView inventionsListView;
         private System.Windows.Forms.ListView blueprintsListView;
@@ -4558,6 +4555,9 @@
         private System.Windows.Forms.Label provinceIdLabel;
         private System.Windows.Forms.Panel techTreePanel;
         private System.Windows.Forms.PictureBox techTreePictureBox;
+        private System.Windows.Forms.Label ownedTechsLabel;
+        private System.Windows.Forms.Label blueprintsLabel;
+        private System.Windows.Forms.Label inventionsLabel;
 
     }
 }
