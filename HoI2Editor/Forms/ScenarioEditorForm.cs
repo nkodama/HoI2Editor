@@ -23,6 +23,11 @@ namespace HoI2Editor.Forms
         #region 共通
 
         /// <summary>
+        ///     シナリオエディタのコントローラ
+        /// </summary>
+        private ScenarioEditorController _controller;
+
+        /// <summary>
         ///     タブページ番号
         /// </summary>
         private TabPageNo _tabPageNo;
@@ -31,6 +36,12 @@ namespace HoI2Editor.Forms
         ///     タブページの初期化フラグ
         /// </summary>
         private readonly bool[] _tabPageInitialized = new bool[Enum.GetValues(typeof (TabPageNo)).Length];
+
+        /// <summary>
+        ///     編集項目IDとコントロールの関連付け
+        /// </summary>
+        private readonly Dictionary<ScenarioEditorItemId, Control> _itemControls =
+            new Dictionary<ScenarioEditorItemId, Control>();
 
         #endregion
 
@@ -62,60 +73,6 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 閣僚候補リスト
-
-        /// <summary>
-        ///     国家元首リスト
-        /// </summary>
-        private List<Minister> _headOfStateList;
-
-        /// <summary>
-        ///     政府首班リスト
-        /// </summary>
-        private List<Minister> _headOfGovernmentList;
-
-        /// <summary>
-        ///     外務大臣リスト
-        /// </summary>
-        private List<Minister> _foreignMinisterList;
-
-        /// <summary>
-        ///     軍需大臣リスト
-        /// </summary>
-        private List<Minister> _armamentMinisterList;
-
-        /// <summary>
-        ///     内務大臣リスト
-        /// </summary>
-        private List<Minister> _ministerOfSecurityList;
-
-        /// <summary>
-        ///     情報大臣リスト
-        /// </summary>
-        private List<Minister> _ministerOfIntelligenceList;
-
-        /// <summary>
-        ///     統合参謀総長リスト
-        /// </summary>
-        private List<Minister> _chiefOfStaffList;
-
-        /// <summary>
-        ///     陸軍総司令官リスト
-        /// </summary>
-        private List<Minister> _chiefOfArmyList;
-
-        /// <summary>
-        ///     海軍総司令官リスト
-        /// </summary>
-        private List<Minister> _chiefOfNavyList;
-
-        /// <summary>
-        ///     空軍総司令官リスト
-        /// </summary>
-        private List<Minister> _chiefOfAirList;
-
-        #endregion
-
         #region 技術リスト
 
         /// <summary>
@@ -130,7 +87,7 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region 技術ツリー
+        #region 技術ツリーパネル
 
         /// <summary>
         ///     技術ツリーパネルのコントローラ
@@ -139,17 +96,12 @@ namespace HoI2Editor.Forms
 
         #endregion
 
-        #region プロヴィンス
+        #region マップパネル
 
         /// <summary>
         ///     マップパネルのコントローラ
         /// </summary>
         private MapPanelController _mapPanelController;
-
-        /// <summary>
-        ///     陸地プロヴィンスリスト
-        /// </summary>
-        private readonly List<Province> _landProvinces = new List<Province>();
 
         #endregion
 
@@ -235,336 +187,6 @@ namespace HoI2Editor.Forms
             TextId.OptionGameSpeed7
         };
 
-        /// <summary>
-        ///     シナリオエディタの項目ID
-        /// </summary>
-        private enum ItemId
-        {
-            SliderYear,
-            SliderMonth,
-            SliderDay,
-            SliderDemocratic,
-            SliderPoliticalLeft,
-            SliderFreedom,
-            SliderFreeMarket,
-            SliderProfessionalArmy,
-            SliderDefenseLobby,
-            SliderInterventionism,
-            CabinetHeadOfState,
-            CabinetHeadOfStateType,
-            CabinetHeadOfStateId,
-            CabinetHeadOfGovernment,
-            CabinetHeadOfGovernmentType,
-            CabinetHeadOfGovernmentId,
-            CabinetForeignMinister,
-            CabinetForeignMinisterType,
-            CabinetForeignMinisterId,
-            CabinetArmamentMinister,
-            CabinetArmamentMinisterType,
-            CabinetArmamentMinisterId,
-            CabinetMinisterOfSecurity,
-            CabinetMinisterOfSecurityType,
-            CabinetMinisterOfSecurityId,
-            CabinetMinisterOfIntelligence,
-            CabinetMinisterOfIntelligenceType,
-            CabinetMinisterOfIntelligenceId,
-            CabinetChiefOfStaff,
-            CabinetChiefOfStaffType,
-            CabinetChiefOfStaffId,
-            CabinetChiefOfArmy,
-            CabinetChiefOfArmyType,
-            CabinetChiefOfArmyId,
-            CabinetChiefOfNavy,
-            CabinetChiefOfNavyType,
-            CabinetChiefOfNavyId,
-            CabinetChiefOfAir,
-            CabinetChiefOfAirType,
-            CabinetChiefOfAirId,
-            CountryCapital,
-            CountryCoreProvinces,
-            CountryOwnedProvinces,
-            CountryControlledProvinces,
-            CountryClaimedProvinces,
-            ProvinceId,
-            ProvinceName,
-            ProvinceVp,
-            ProvinceRevoltRisk,
-            ProvinceManpowerCurrent,
-            ProvinceManpowerMax,
-            ProvinceEnergyPool,
-            ProvinceEnergyCurrent,
-            ProvinceEnergyMax,
-            ProvinceMetalPool,
-            ProvinceMetalCurrent,
-            ProvinceMetalMax,
-            ProvinceRareMaterialsPool,
-            ProvinceRareMaterialsCurrent,
-            ProvinceRareMaterialsMax,
-            ProvinceOilPool,
-            ProvinceOilCurrent,
-            ProvinceOilMax,
-            ProvinceSupplyPool,
-            ProvinceIcCurrent,
-            ProvinceIcMax,
-            ProvinceIcRelative,
-            ProvinceInfrastructureCurrent,
-            ProvinceInfrastructureMax,
-            ProvinceInfrastructureRelative,
-            ProvinceLandFortCurrent,
-            ProvinceLandFortMax,
-            ProvinceLandFortRelative,
-            ProvinceCoastalFortCurrent,
-            ProvinceCoastalFortMax,
-            ProvinceCoastalFortRelative,
-            ProvinceAntiAirCurrent,
-            ProvinceAntiAirMax,
-            ProvinceAntiAirRelative,
-            ProvinceAirBaseCurrent,
-            ProvinceAirBaseMax,
-            ProvinceAirBaseRelative,
-            ProvinceNavalBaseCurrent,
-            ProvinceNavalBaseMax,
-            ProvinceNavalBaseRelative,
-            ProvinceRadarStationCurrent,
-            ProvinceRadarStationMax,
-            ProvinceRadarStationRelative,
-            ProvinceNuclearReactorCurrent,
-            ProvinceNuclearReactorMax,
-            ProvinceNuclearReactorRelative,
-            ProvinceRocketTestCurrent,
-            ProvinceRocketTestMax,
-            ProvinceRocketTestRelative,
-            ProvinceSyntheticOilCurrent,
-            ProvinceSyntheticOilMax,
-            ProvinceSyntheticOilRelative,
-            ProvinceSyntheticRaresCurrent,
-            ProvinceSyntheticRaresMax,
-            ProvinceSyntheticRaresRelative,
-            ProvinceNuclearPowerCurrent,
-            ProvinceNuclearPowerMax,
-            ProvinceNuclearPowerRelative
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグ
-        /// </summary>
-        private static readonly object[] ItemDirtyFlags =
-        {
-            CountrySettings.ItemId.SliderYear,
-            CountrySettings.ItemId.SliderMonth,
-            CountrySettings.ItemId.SliderDay,
-            CountrySettings.ItemId.Democratic,
-            CountrySettings.ItemId.PoliticalLeft,
-            CountrySettings.ItemId.Freedom,
-            CountrySettings.ItemId.FreeMarket,
-            CountrySettings.ItemId.ProfessionalArmy,
-            CountrySettings.ItemId.DefenseLobby,
-            CountrySettings.ItemId.Interventionism,
-            CountrySettings.ItemId.HeadOfStateId,
-            CountrySettings.ItemId.HeadOfStateType,
-            CountrySettings.ItemId.HeadOfStateId,
-            CountrySettings.ItemId.HeadOfGovernmentId,
-            CountrySettings.ItemId.HeadOfGovernmentType,
-            CountrySettings.ItemId.HeadOfGovernmentId,
-            CountrySettings.ItemId.ForeignMinisterId,
-            CountrySettings.ItemId.ForeignMinisterType,
-            CountrySettings.ItemId.ForeignMinisterId,
-            CountrySettings.ItemId.ArmamentMinisterId,
-            CountrySettings.ItemId.ArmamentMinisterType,
-            CountrySettings.ItemId.ArmamentMinisterId,
-            CountrySettings.ItemId.MinisterOfSecurityId,
-            CountrySettings.ItemId.MinisterOfSecurityType,
-            CountrySettings.ItemId.MinisterOfSecurityId,
-            CountrySettings.ItemId.MinisterOfIntelligenceId,
-            CountrySettings.ItemId.MinisterOfIntelligenceType,
-            CountrySettings.ItemId.MinisterOfIntelligenceId,
-            CountrySettings.ItemId.ChiefOfStaffId,
-            CountrySettings.ItemId.ChiefOfStaffType,
-            CountrySettings.ItemId.ChiefOfStaffId,
-            CountrySettings.ItemId.ChiefOfArmyId,
-            CountrySettings.ItemId.ChiefOfArmyType,
-            CountrySettings.ItemId.ChiefOfArmyId,
-            CountrySettings.ItemId.ChiefOfNavyId,
-            CountrySettings.ItemId.ChiefOfNavyType,
-            CountrySettings.ItemId.ChiefOfNavyId,
-            CountrySettings.ItemId.ChiefOfAirId,
-            CountrySettings.ItemId.ChiefOfAirType,
-            CountrySettings.ItemId.ChiefOfAirId,
-            CountrySettings.ItemId.Capital,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            ProvinceSettings.ItemId.Vp,
-            ProvinceSettings.ItemId.RevoltRisk,
-            ProvinceSettings.ItemId.Manpower,
-            ProvinceSettings.ItemId.MaxManpower,
-            ProvinceSettings.ItemId.EnergyPool,
-            ProvinceSettings.ItemId.Energy,
-            ProvinceSettings.ItemId.MaxEnergy,
-            ProvinceSettings.ItemId.MetalPool,
-            ProvinceSettings.ItemId.Metal,
-            ProvinceSettings.ItemId.MaxMetal,
-            ProvinceSettings.ItemId.RareMaterialsPool,
-            ProvinceSettings.ItemId.RareMaterials,
-            ProvinceSettings.ItemId.MaxRareMaterials,
-            ProvinceSettings.ItemId.OilPool,
-            ProvinceSettings.ItemId.Oil,
-            ProvinceSettings.ItemId.MaxOil,
-            ProvinceSettings.ItemId.SupplyPool,
-            ProvinceSettings.ItemId.Ic,
-            ProvinceSettings.ItemId.MaxIc,
-            ProvinceSettings.ItemId.RelativeIc,
-            ProvinceSettings.ItemId.Infrastructure,
-            ProvinceSettings.ItemId.MaxInfrastructure,
-            ProvinceSettings.ItemId.RelativeInfrastructure,
-            ProvinceSettings.ItemId.LandFort,
-            ProvinceSettings.ItemId.MaxLandFort,
-            ProvinceSettings.ItemId.RelativeLandFort,
-            ProvinceSettings.ItemId.CoastalFort,
-            ProvinceSettings.ItemId.MaxCoastalFort,
-            ProvinceSettings.ItemId.RelativeCoastalFort,
-            ProvinceSettings.ItemId.AntiAir,
-            ProvinceSettings.ItemId.MaxAntiAir,
-            ProvinceSettings.ItemId.RelativeAntiAir,
-            ProvinceSettings.ItemId.AirBase,
-            ProvinceSettings.ItemId.MaxAirBase,
-            ProvinceSettings.ItemId.RelativeAirBase,
-            ProvinceSettings.ItemId.NavalBase,
-            ProvinceSettings.ItemId.MaxNavalBase,
-            ProvinceSettings.ItemId.RelativeNavalBase,
-            ProvinceSettings.ItemId.RadarStation,
-            ProvinceSettings.ItemId.MaxRadarStation,
-            ProvinceSettings.ItemId.RelativeRadarStation,
-            ProvinceSettings.ItemId.NuclearReactor,
-            ProvinceSettings.ItemId.MaxNuclearReactor,
-            ProvinceSettings.ItemId.RelativeNuclearReactor,
-            ProvinceSettings.ItemId.RocketTest,
-            ProvinceSettings.ItemId.MaxRocketTest,
-            ProvinceSettings.ItemId.RelativeRocketTest,
-            ProvinceSettings.ItemId.SyntheticOil,
-            ProvinceSettings.ItemId.MaxSyntheticOil,
-            ProvinceSettings.ItemId.RelativeSyntheticOil,
-            ProvinceSettings.ItemId.SyntheticRares,
-            ProvinceSettings.ItemId.MaxSyntheticRares,
-            ProvinceSettings.ItemId.RelativeSyntheticRares,
-            ProvinceSettings.ItemId.NuclearPower,
-            ProvinceSettings.ItemId.MaxNuclearPower,
-            ProvinceSettings.ItemId.RelativeNuclearPower
-        };
-
-        /// <summary>
-        ///     編集項目の文字列
-        /// </summary>
-        private static readonly string[] ItemStrings =
-        {
-            "slideryear",
-            "slidermonth",
-            "sliderday",
-            "democratic",
-            "political left",
-            "freedom",
-            "free market",
-            "professional army",
-            "defense lobby",
-            "interventionism",
-            "head of state id",
-            "head of state type",
-            "head of state id",
-            "head of government id",
-            "head of government type",
-            "head of government id",
-            "foreign minister id",
-            "foreign minister type",
-            "foreign minister id",
-            "armament minister id",
-            "armament minister type",
-            "armament minister id",
-            "minister of security id",
-            "minister of security type",
-            "minister of security id",
-            "minister of intelligence id",
-            "minister of intelligence type",
-            "minister of intelligence id",
-            "chief of staff id",
-            "chief of staff type",
-            "chief of staff id",
-            "chief of army id",
-            "chief of army type",
-            "chief of army id",
-            "chief of navy id",
-            "chief of navy type",
-            "chief of navy id",
-            "chief of air id",
-            "chief of air type",
-            "chief of air id",
-            "capital",
-            "coreprovinces",
-            "ownedprovinces",
-            "controlledprovinces",
-            "claimedprovinces",
-            "provinceid",
-            "provincename",
-            "provincevp",
-            "provincerevoltrisk",
-            "provincemanpower",
-            "provincemaxmanpower",
-            "provinceenergypool",
-            "provinceenergy",
-            "provincemaxenergy",
-            "provincemetalpool",
-            "provincemetal",
-            "provincemaxmetal",
-            "provincerarematerialspool",
-            "provincerarematerials",
-            "provincemaxrarematerials",
-            "provinceoilpool",
-            "provinceoil",
-            "provincemaxoil",
-            "provincesupplypool",
-            "provinceic",
-            "provincemaxic",
-            "provincerelativeic",
-            "provinceinfrastructure",
-            "provincemaxinfrastructure",
-            "provincerelativeinfrastructure",
-            "provincelandfort",
-            "provincemaxlandfort",
-            "provincerelativelandfort",
-            "provincecoastalfort",
-            "provincemaxcoastalfort",
-            "provincerelativecoastalfort",
-            "provinceantiair",
-            "provincemaxantiair",
-            "provincerelativeantiair",
-            "provinceairbase",
-            "provincemaxairbase",
-            "provincerelativeairbase",
-            "provincenavalbase",
-            "provincemaxnavalbase",
-            "provincerelativenavalbase",
-            "provinceradarstation",
-            "provincemaxradarstation",
-            "provincerelativeradarstation",
-            "provincenuclearreactor",
-            "provincemaxnuclearreactor",
-            "provincerelativenuclearreactor",
-            "provincerockettest",
-            "provincemaxrockettest",
-            "provincerelativerockettest",
-            "provincesyntheticoil",
-            "provincemaxsyntheticoil",
-            "provincerelativesyntheticoil",
-            "provincesyntheticrares",
-            "provincemaxsyntheticrares",
-            "provincerelativesyntheticrares",
-            "provincenuclearpower",
-            "provincemaxnuclearpower",
-            "provincerelativenuclearpower"
-        };
-
         #endregion
 
         #region 初期化
@@ -595,6 +217,7 @@ namespace HoI2Editor.Forms
             // 編集項目を更新する
             UpdateEditableItems();
             OnGovernmentTabPageFileLoad();
+            OnTechTabPageFileLoad();
             OnProvinceTabPageFileLoad();
         }
 
@@ -621,7 +244,6 @@ namespace HoI2Editor.Forms
         private void LoadMinisters()
         {
             _ministerWorker.DoWork += OnMinisterWorkerDoWork;
-            _ministerWorker.RunWorkerCompleted += OnMinisterWorkerRunWorkerCompleted;
             _ministerWorker.RunWorkerAsync();
         }
 
@@ -650,33 +272,11 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     閣僚データ読み込み完了時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMinisterWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Error != null)
-            {
-                return;
-            }
-
-            if (e.Cancelled)
-            {
-                return;
-            }
-
-            // 政府タブの編集項目を初期化する
-            InitGovernmentTab();
-        }
-
-        /// <summary>
         ///     技術データを遅延読み込みする
         /// </summary>
         private void LoadTechs()
         {
             _techWorker.DoWork += OnTechWorkerDoWork;
-            _techWorker.RunWorkerCompleted += OnTechWorkerRunWorkerCompleted;
             _techWorker.RunWorkerAsync();
         }
 
@@ -705,33 +305,11 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     技術データ読み込み完了時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTechWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Error != null)
-            {
-                return;
-            }
-
-            if (e.Cancelled)
-            {
-                return;
-            }
-
-            // 技術タブの編集項目を初期化する
-            InitTechTab();
-        }
-
-        /// <summary>
         ///     プロヴィンスデータを遅延読み込みする
         /// </summary>
         private void LoadProvinces()
         {
             _provinceWorker.DoWork += OnProvinceWorkerDoWork;
-            _provinceWorker.RunWorkerCompleted += OnProvinceWorkerRunWorkerCompleted;
             _provinceWorker.RunWorkerAsync();
         }
 
@@ -757,27 +335,6 @@ namespace HoI2Editor.Forms
             Provinces.Load();
 
             Log.Info("[Scenario] Load provinces");
-        }
-
-        /// <summary>
-        ///     プロヴィンスデータ読み込み完了時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnProvinceWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            if (e.Error != null)
-            {
-                return;
-            }
-
-            if (e.Cancelled)
-            {
-                return;
-            }
-
-            // プロヴィンスタブの編集項目を初期化する
-            InitProvinceTab();
         }
 
         /// <summary>
@@ -853,6 +410,9 @@ namespace HoI2Editor.Forms
 
             // マップパネル
             _mapPanelController = new MapPanelController(provinceMapPanel, provinceMapPictureBox);
+
+            // コントローラ
+            _controller = new ScenarioEditorController(this, _mapPanelController);
         }
 
         /// <summary>
@@ -865,7 +425,6 @@ namespace HoI2Editor.Forms
             InitRelationTab();
             InitTradeTab();
             InitCountryTab();
-            //InitTechTab();
         }
 
         /// <summary>
@@ -878,7 +437,6 @@ namespace HoI2Editor.Forms
             UpdateRelationTab();
             UpdateTradeTab();
             UpdateCountryTab();
-            UpdateTechTab();
         }
 
         /// <summary>
@@ -921,6 +479,7 @@ namespace HoI2Editor.Forms
             // 表示項目を初期化する
             InitEditableItems();
             OnGovernmentTabPageFormLoad();
+            OnTechTabPageFormLoad();
             OnProvinceTabPageFormLoad();
 
             // シナリオファイル読み込み済みなら編集項目を更新する
@@ -12008,85 +11567,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     政府タブの編集項目を無効化する
-        /// </summary>
-        private void DisableGovernmentItems()
-        {
-            // 編集項目を無効化する
-            politicalSliderGroupBox.Enabled = false;
-            cabinetGroupBox.Enabled = false;
-
-            // 編集項目をクリアする
-            sliderYearTextBox.Text = "";
-            sliderMonthTextBox.Text = "";
-            sliderDayTextBox.Text = "";
-
-            democraticTrackBar.Value = 6;
-            politicalLeftTrackBar.Value = 6;
-            freedomTrackBar.Value = 6;
-            freeMarketTrackBar.Value = 6;
-            professionalArmyTrackBar.Value = 6;
-            defenseLobbyTrackBar.Value = 6;
-            interventionismTrackBar.Value = 6;
-
-            headOfStateComboBox.SelectedIndex = -1;
-            headOfGovernmentComboBox.SelectedIndex = -1;
-            foreignMinisterComboBox.SelectedIndex = -1;
-            armamentMinisterComboBox.SelectedIndex = -1;
-            ministerOfSecurityComboBox.SelectedIndex = -1;
-            ministerOfIntelligenceComboBox.SelectedIndex = -1;
-            chiefOfStaffComboBox.SelectedIndex = -1;
-            chiefOfArmyComboBox.SelectedIndex = -1;
-            chiefOfNavyComboBox.SelectedIndex = -1;
-            chiefOfAirComboBox.SelectedIndex = -1;
-
-            headOfStateTypeTextBox.Text = "";
-            headOfStateIdTextBox.Text = "";
-            headOfGovernmentTypeTextBox.Text = "";
-            headOfGovernmentIdTextBox.Text = "";
-            foreignMinisterTypeTextBox.Text = "";
-            foreignMinisterIdTextBox.Text = "";
-            armamentMinisterTypeTextBox.Text = "";
-            armamentMinisterIdTextBox.Text = "";
-            ministerOfSecurityTypeTextBox.Text = "";
-            ministerOfSecurityIdTextBox.Text = "";
-            ministerOfIntelligenceTypeTextBox.Text = "";
-            ministerOfIntelligenceIdTextBox.Text = "";
-            chiefOfStaffTypeTextBox.Text = "";
-            chiefOfStaffIdTextBox.Text = "";
-            chiefOfArmyTypeTextBox.Text = "";
-            chiefOfArmyIdTextBox.Text = "";
-            chiefOfNavyTypeTextBox.Text = "";
-            chiefOfNavyIdTextBox.Text = "";
-            chiefOfAirTypeTextBox.Text = "";
-            chiefOfAirIdTextBox.Text = "";
-        }
-
-        /// <summary>
-        ///     政府タブの編集項目を更新する
-        /// </summary>
-        private void UpdateGovernmentItems()
-        {
-            // 選択中の国家がなければ何もしない
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 編集項目を更新する
-            UpdatePoliticalSliderItems(settings);
-            UpdateCabinetItems(settings);
-
-            // 編集項目を有効化する
-            EnablePoliticalSliderItems();
-            cabinetGroupBox.Enabled = true;
-        }
-
-        /// <summary>
-        /// 政府タブのフォーム読み込み時の処理
+        ///     政府タブのフォーム読み込み時の処理
         /// </summary>
         private void OnGovernmentTabPageFormLoad()
         {
@@ -12095,7 +11576,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 政府タブのファイル読み込み時の処理
+        ///     政府タブのファイル読み込み時の処理
         /// </summary>
         private void OnGovernmentTabPageFileLoad()
         {
@@ -12135,7 +11616,7 @@ namespace HoI2Editor.Forms
         #region 政府タブ - 国家
 
         /// <summary>
-        /// 国家リストボックスを有効化する
+        ///     国家リストボックスを有効化する
         /// </summary>
         private void EnableGovernmentCountryListBox()
         {
@@ -12152,12 +11633,28 @@ namespace HoI2Editor.Forms
             // 選択項目がなければ編集項目を無効化する
             if (governmentCountryListBox.SelectedIndex < 0)
             {
-                DisableGovernmentItems();
+                // 編集項目を無効化する
+                DisablePoliticalSliderItems();
+                DisableCabinetItems();
+
+                // 編集項目をクリアする
+                ClearPoliticalSliderItems();
+                ClearCabinetItems();
                 return;
             }
 
+            Country country = GetSelectedGovernmentCountry();
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            ScenarioHeader header = Scenarios.Data.Header;
+            int year = (header.StartDate != null) ? header.StartDate.Year : header.StartYear;
+
             // 編集項目を更新する
-            UpdateGovernmentItems();
+            UpdatePoliticalSliderItems(settings);
+            UpdateCabinetItems(country, settings, year);
+
+            // 編集項目を有効化する
+            EnablePoliticalSliderItems();
+            EnableCabinetItems();
         }
 
         /// <summary>
@@ -12182,13 +11679,29 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitPoliticalSliderItems()
         {
-            democraticTrackBar.Tag = ItemId.SliderDemocratic;
-            politicalLeftTrackBar.Tag = ItemId.SliderPoliticalLeft;
-            freedomTrackBar.Tag = ItemId.SliderFreedom;
-            freeMarketTrackBar.Tag = ItemId.SliderFreeMarket;
-            professionalArmyTrackBar.Tag = ItemId.SliderProfessionalArmy;
-            defenseLobbyTrackBar.Tag = ItemId.SliderDefenseLobby;
-            interventionismTrackBar.Tag = ItemId.SliderInterventionism;
+            _itemControls.Add(ScenarioEditorItemId.SliderYear, sliderYearTextBox);
+            _itemControls.Add(ScenarioEditorItemId.SliderMonth, sliderMonthTextBox);
+            _itemControls.Add(ScenarioEditorItemId.SliderDay, sliderDayTextBox);
+
+            _itemControls.Add(ScenarioEditorItemId.SliderDemocratic, democraticTrackBar);
+            _itemControls.Add(ScenarioEditorItemId.SliderPoliticalLeft, politicalLeftTrackBar);
+            _itemControls.Add(ScenarioEditorItemId.SliderFreedom, freedomTrackBar);
+            _itemControls.Add(ScenarioEditorItemId.SliderFreeMarket, freeMarketTrackBar);
+            _itemControls.Add(ScenarioEditorItemId.SliderProfessionalArmy, professionalArmyTrackBar);
+            _itemControls.Add(ScenarioEditorItemId.SliderDefenseLobby, defenseLobbyTrackBar);
+            _itemControls.Add(ScenarioEditorItemId.SliderInterventionism, interventionismTrackBar);
+
+            sliderYearTextBox.Tag = ScenarioEditorItemId.SliderYear;
+            sliderMonthTextBox.Tag = ScenarioEditorItemId.SliderMonth;
+            sliderDayTextBox.Tag = ScenarioEditorItemId.SliderDay;
+
+            democraticTrackBar.Tag = ScenarioEditorItemId.SliderDemocratic;
+            politicalLeftTrackBar.Tag = ScenarioEditorItemId.SliderPoliticalLeft;
+            freedomTrackBar.Tag = ScenarioEditorItemId.SliderFreedom;
+            freeMarketTrackBar.Tag = ScenarioEditorItemId.SliderFreeMarket;
+            professionalArmyTrackBar.Tag = ScenarioEditorItemId.SliderProfessionalArmy;
+            defenseLobbyTrackBar.Tag = ScenarioEditorItemId.SliderDefenseLobby;
+            interventionismTrackBar.Tag = ScenarioEditorItemId.SliderInterventionism;
 
             democraticLabel.Text = Config.GetText(TextId.SliderDemocratic);
             authoritarianLabel.Text = Config.GetText(TextId.SliderAuthoritarian);
@@ -12234,532 +11747,44 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     政策スライダーの編集項目を更新する
+        ///     政策スライダーの編集項目の表示を更新する
         /// </summary>
         /// <param name="settings">国家設定</param>
         private void UpdatePoliticalSliderItems(CountrySettings settings)
         {
-            UpdateItemValue(sliderYearTextBox, settings);
-            bool flag = ((settings != null) && (settings.Policy != null) && (settings.Policy.Date != null));
-            sliderYearTextBox.Text = flag ? IntHelper.ToString(settings.Policy.Date.Year) : "";
-            sliderMonthTextBox.Text = flag ? IntHelper.ToString(settings.Policy.Date.Month) : "";
-            sliderDayTextBox.Text = flag ? IntHelper.ToString(settings.Policy.Date.Day) : "";
+            _controller.UpdateItemValue(sliderYearTextBox, settings);
+            _controller.UpdateItemValue(sliderMonthTextBox, settings);
+            _controller.UpdateItemValue(sliderDayTextBox, settings);
 
-            sliderYearTextBox.ForeColor = (flag && settings.IsDirty(CountrySettings.ItemId.SliderYear))
-                ? Color.Red
-                : SystemColors.WindowText;
-            sliderMonthTextBox.ForeColor = (flag && settings.IsDirty(CountrySettings.ItemId.SliderMonth))
-                ? Color.Red
-                : SystemColors.WindowText;
-            sliderDayTextBox.ForeColor = (flag && settings.IsDirty(CountrySettings.ItemId.SliderDay))
-                ? Color.Red
-                : SystemColors.WindowText;
+            _controller.UpdateItemColor(sliderYearTextBox, settings);
+            _controller.UpdateItemColor(sliderMonthTextBox, settings);
+            _controller.UpdateItemColor(sliderDayTextBox, settings);
 
-            if ((settings == null) || (settings.Policy == null))
-            {
-                democraticTrackBar.Value = 6;
-                politicalLeftTrackBar.Value = 6;
-                freedomTrackBar.Value = 6;
-                freeMarketTrackBar.Value = 6;
-                professionalArmyTrackBar.Value = 6;
-                defenseLobbyTrackBar.Value = 6;
-                interventionismTrackBar.Value = 6;
-                return;
-            }
-
-            int val = settings.Policy.Democratic;
-            if (val < 1)
-            {
-                val = 1;
-            }
-            else if (val > 10)
-            {
-                val = 10;
-            }
-            democraticTrackBar.Value = 11 - val;
-
-            val = settings.Policy.PoliticalLeft;
-            if (val < 1)
-            {
-                val = 1;
-            }
-            else if (val > 10)
-            {
-                val = 10;
-            }
-            politicalLeftTrackBar.Value = 11 - val;
-
-            val = settings.Policy.Freedom;
-            if (val < 1)
-            {
-                val = 1;
-            }
-            else if (val > 10)
-            {
-                val = 10;
-            }
-            freedomTrackBar.Value = 11 - val;
-
-            val = settings.Policy.FreeMarket;
-            if (val < 1)
-            {
-                val = 1;
-            }
-            else if (val > 10)
-            {
-                val = 10;
-            }
-            freeMarketTrackBar.Value = 11 - val;
-
-            val = settings.Policy.ProfessionalArmy;
-            if (val < 1)
-            {
-                val = 1;
-            }
-            else if (val > 10)
-            {
-                val = 10;
-            }
-            professionalArmyTrackBar.Value = 11 - val;
-
-            val = settings.Policy.DefenseLobby;
-            if (val < 1)
-            {
-                val = 1;
-            }
-            else if (val > 10)
-            {
-                val = 10;
-            }
-            defenseLobbyTrackBar.Value = 11 - val;
-
-            val = settings.Policy.Interventionism;
-            if (val < 1)
-            {
-                val = 1;
-            }
-            else if (val > 10)
-            {
-                val = 10;
-            }
-            interventionismTrackBar.Value = 11 - val;
+            _controller.UpdateItemValue(democraticTrackBar, settings);
+            _controller.UpdateItemValue(politicalLeftTrackBar, settings);
+            _controller.UpdateItemValue(freedomTrackBar, settings);
+            _controller.UpdateItemValue(freeMarketTrackBar, settings);
+            _controller.UpdateItemValue(professionalArmyTrackBar, settings);
+            _controller.UpdateItemValue(defenseLobbyTrackBar, settings);
+            _controller.UpdateItemValue(interventionismTrackBar, settings);
         }
 
         /// <summary>
-        ///     民主的 - 独裁的スライドバーの値変更時の処理
+        ///     政策スライダーの編集項目の表示をクリアする
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnDemocraticTrackBarScroll(object sender, EventArgs e)
+        private void ClearPoliticalSliderItems()
         {
-            // 選択項目がなければ何もしない
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
+            sliderYearTextBox.Text = "";
+            sliderMonthTextBox.Text = "";
+            sliderDayTextBox.Text = "";
 
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 初期値から変更されていなければ何もしない
-            int val = democraticTrackBar.Value;
-            if (((settings == null) || (settings.Policy == null)) && (val == 6))
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.Democratic))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] democratic: {0} -> {1} ({2})",
-                ((settings != null) && (settings.Policy != null)) ? IntHelper.ToString(settings.Policy.Democratic) : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-            if (settings.Policy == null)
-            {
-                settings.Policy = new CountryPolicy
-                {
-                    PoliticalLeft = 5,
-                    Freedom = 5,
-                    FreeMarket = 5,
-                    ProfessionalArmy = 5,
-                    DefenseLobby = 5,
-                    Interventionism = 5
-                };
-            }
-
-            // 値を更新する
-            settings.Policy.Democratic = 11 - val;
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.Democratic);
-            Scenarios.SetDirty();
-        }
-
-        /// <summary>
-        ///     政治的左派 - 政治的右派スライドバーの値変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnPoliticalLeftTrackBarScroll(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 初期値から変更されていなければ何もしない
-            int val = politicalLeftTrackBar.Value;
-            if (((settings == null) || (settings.Policy == null)) && (val == 6))
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.PoliticalLeft))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] political left: {0} -> {1} ({2})",
-                ((settings != null) && (settings.Policy != null))
-                    ? IntHelper.ToString(settings.Policy.PoliticalLeft)
-                    : "", val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-            if (settings.Policy == null)
-            {
-                settings.Policy = new CountryPolicy
-                {
-                    Democratic = 5,
-                    Freedom = 5,
-                    FreeMarket = 5,
-                    ProfessionalArmy = 5,
-                    DefenseLobby = 5,
-                    Interventionism = 5
-                };
-            }
-
-            // 値を更新する
-            settings.Policy.PoliticalLeft = 11 - val;
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.PoliticalLeft);
-            Scenarios.SetDirty();
-        }
-
-        /// <summary>
-        ///     開放社会 - 閉鎖社会スライドバーの値変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnFreedomTrackBarScroll(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 初期値から変更されていなければ何もしない
-            int val = freedomTrackBar.Value;
-            if (((settings == null) || (settings.Policy == null)) && (val == 6))
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.Freedom))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] freedom: {0} -> {1} ({2})",
-                ((settings != null) && (settings.Policy != null)) ? IntHelper.ToString(settings.Policy.Freedom) : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-            if (settings.Policy == null)
-            {
-                settings.Policy = new CountryPolicy
-                {
-                    Democratic = 5,
-                    PoliticalLeft = 5,
-                    FreeMarket = 5,
-                    ProfessionalArmy = 5,
-                    DefenseLobby = 5,
-                    Interventionism = 5
-                };
-            }
-
-            // 値を更新する
-            settings.Policy.Freedom = 11 - val;
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.Freedom);
-            Scenarios.SetDirty();
-        }
-
-        /// <summary>
-        ///     自由経済 - 中央計画経済スライドバーの値変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnFreeMarketTrackBarScroll(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 初期値から変更されていなければ何もしない
-            int val = freeMarketTrackBar.Value;
-            if (((settings == null) || (settings.Policy == null)) && (val == 6))
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.FreeMarket))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] free market: {0} -> {1} ({2})",
-                ((settings != null) && (settings.Policy != null)) ? IntHelper.ToString(settings.Policy.FreeMarket) : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-            if (settings.Policy == null)
-            {
-                settings.Policy = new CountryPolicy
-                {
-                    Democratic = 5,
-                    PoliticalLeft = 5,
-                    Freedom = 5,
-                    ProfessionalArmy = 5,
-                    DefenseLobby = 5,
-                    Interventionism = 5
-                };
-            }
-
-            // 値を更新する
-            settings.Policy.FreeMarket = 11 - val;
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.FreeMarket);
-            Scenarios.SetDirty();
-        }
-
-        /// <summary>
-        ///     常備軍 - 徴兵軍スライドバーの値変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnProfessionalArmyTrackBarScroll(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 初期値から変更されていなければ何もしない
-            int val = professionalArmyTrackBar.Value;
-            if (((settings == null) || (settings.Policy == null)) && (val == 6))
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.ProfessionalArmy))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] professional army: {0} -> {1} ({2})",
-                ((settings != null) && (settings.Policy != null))
-                    ? IntHelper.ToString(settings.Policy.ProfessionalArmy)
-                    : "", val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-            if (settings.Policy == null)
-            {
-                settings.Policy = new CountryPolicy
-                {
-                    Democratic = 5,
-                    PoliticalLeft = 5,
-                    Freedom = 5,
-                    FreeMarket = 5,
-                    DefenseLobby = 5,
-                    Interventionism = 5
-                };
-            }
-
-            // 値を更新する
-            settings.Policy.ProfessionalArmy = 11 - val;
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.ProfessionalArmy);
-            Scenarios.SetDirty();
-        }
-
-        /// <summary>
-        ///     タカ派 - ハト派スライドバーの値変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnDefenseLobbyTrackBarScroll(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 初期値から変更されていなければ何もしない
-            int val = defenseLobbyTrackBar.Value;
-            if (((settings == null) || (settings.Policy == null)) && (val == 6))
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.DefenseLobby))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] defense lobby: {0} -> {1} ({2})",
-                ((settings != null) && (settings.Policy != null))
-                    ? IntHelper.ToString(settings.Policy.DefenseLobby)
-                    : "", val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-            if (settings.Policy == null)
-            {
-                settings.Policy = new CountryPolicy
-                {
-                    Democratic = 5,
-                    PoliticalLeft = 5,
-                    Freedom = 5,
-                    FreeMarket = 5,
-                    ProfessionalArmy = 5,
-                    Interventionism = 5
-                };
-            }
-
-            // 値を更新する
-            settings.Policy.DefenseLobby = 11 - val;
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.DefenseLobby);
-            Scenarios.SetDirty();
-        }
-
-        /// <summary>
-        ///     介入主義 - 孤立主義スライドバーの値変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnIntervensionismTrackBarScroll(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 初期値から変更されていなければ何もしない
-            int val = interventionismTrackBar.Value;
-            if (((settings == null) || (settings.Policy == null)) && (val == 6))
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            if ((settings != null) && (settings.Policy != null) && (val == settings.Policy.Interventionism))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] interventionism: {0} -> {1} ({2})",
-                ((settings != null) && (settings.Policy != null))
-                    ? IntHelper.ToString(settings.Policy.Interventionism)
-                    : "", val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-            if (settings.Policy == null)
-            {
-                settings.Policy = new CountryPolicy
-                {
-                    Democratic = 5,
-                    PoliticalLeft = 5,
-                    Freedom = 5,
-                    FreeMarket = 5,
-                    ProfessionalArmy = 5,
-                    DefenseLobby = 5
-                };
-            }
-
-            // 値を更新する
-            settings.Policy.Interventionism = 11 - val;
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.Interventionism);
-            Scenarios.SetDirty();
+            democraticTrackBar.Value = 6;
+            politicalLeftTrackBar.Value = 6;
+            freedomTrackBar.Value = 6;
+            freeMarketTrackBar.Value = 6;
+            professionalArmyTrackBar.Value = 6;
+            defenseLobbyTrackBar.Value = 6;
+            interventionismTrackBar.Value = 6;
         }
 
         #endregion
@@ -12771,36 +11796,67 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitCabinetItems()
         {
-            headOfStateComboBox.Tag = ItemId.CabinetHeadOfStateId;
-            headOfStateTypeTextBox.Tag = ItemId.CabinetHeadOfStateType;
-            headOfStateIdTextBox.Tag = ItemId.CabinetHeadOfStateId;
-            headOfGovernmentComboBox.Tag = ItemId.CabinetHeadOfGovernmentId;
-            headOfGovernmentTypeTextBox.Tag = ItemId.CabinetHeadOfGovernmentType;
-            headOfGovernmentIdTextBox.Tag = ItemId.CabinetHeadOfGovernmentId;
-            foreignMinisterComboBox.Tag = ItemId.CabinetForeignMinisterId;
-            foreignMinisterTypeTextBox.Tag = ItemId.CabinetForeignMinisterType;
-            foreignMinisterIdTextBox.Tag = ItemId.CabinetForeignMinisterId;
-            armamentMinisterComboBox.Tag = ItemId.CabinetArmamentMinisterId;
-            armamentMinisterTypeTextBox.Tag = ItemId.CabinetArmamentMinisterType;
-            armamentMinisterIdTextBox.Tag = ItemId.CabinetArmamentMinisterId;
-            ministerOfSecurityComboBox.Tag = ItemId.CabinetMinisterOfSecurityId;
-            ministerOfSecurityTypeTextBox.Tag = ItemId.CabinetMinisterOfSecurityType;
-            ministerOfSecurityIdTextBox.Tag = ItemId.CabinetMinisterOfSecurityId;
-            ministerOfIntelligenceComboBox.Tag = ItemId.CabinetMinisterOfIntelligenceId;
-            ministerOfIntelligenceTypeTextBox.Tag = ItemId.CabinetMinisterOfIntelligenceType;
-            ministerOfIntelligenceIdTextBox.Tag = ItemId.CabinetMinisterOfIntelligenceId;
-            chiefOfStaffComboBox.Tag = ItemId.CabinetChiefOfStaffId;
-            chiefOfStaffTypeTextBox.Tag = ItemId.CabinetChiefOfStaffType;
-            chiefOfStaffIdTextBox.Tag = ItemId.CabinetChiefOfStaffId;
-            chiefOfArmyComboBox.Tag = ItemId.CabinetChiefOfArmyId;
-            chiefOfArmyTypeTextBox.Tag = ItemId.CabinetChiefOfArmyType;
-            chiefOfArmyIdTextBox.Tag = ItemId.CabinetChiefOfArmyId;
-            chiefOfNavyComboBox.Tag = ItemId.CabinetChiefOfNavyId;
-            chiefOfNavyTypeTextBox.Tag = ItemId.CabinetChiefOfNavyType;
-            chiefOfNavyIdTextBox.Tag = ItemId.CabinetChiefOfNavyId;
-            chiefOfAirComboBox.Tag = ItemId.CabinetChiefOfAirId;
-            chiefOfAirTypeTextBox.Tag = ItemId.CabinetChiefOfAirType;
-            chiefOfAirIdTextBox.Tag = ItemId.CabinetChiefOfAirId;
+            _itemControls.Add(ScenarioEditorItemId.CabinetHeadOfState, headOfStateComboBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetHeadOfStateType, headOfStateTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetHeadOfStateId, headOfStateIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetHeadOfGovernment, headOfGovernmentComboBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetHeadOfGovernmentType, headOfGovernmentTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetHeadOfGovernmentId, headOfGovernmentIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetForeignMinister, foreignMinisterComboBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetForeignMinisterType, foreignMinisterTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetForeignMinisterId, foreignMinisterIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetArmamentMinister, armamentMinisterComboBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetArmamentMinisterType, armamentMinisterTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetArmamentMinisterId, armamentMinisterIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetMinisterOfSecurity, ministerOfSecurityComboBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetMinisterOfSecurityType, ministerOfSecurityTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetMinisterOfSecurityId, ministerOfSecurityIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetMinisterOfIntelligence, ministerOfIntelligenceComboBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetMinisterOfIntelligenceType, ministerOfIntelligenceTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetMinisterOfIntelligenceId, ministerOfIntelligenceIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfStaff, chiefOfStaffComboBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfStaffType, chiefOfStaffTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfStaffId, chiefOfStaffIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfArmy, chiefOfArmyComboBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfArmyType, chiefOfArmyTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfArmyId, chiefOfArmyIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfNavy, chiefOfNavyComboBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfNavyType, chiefOfNavyTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfNavyId, chiefOfNavyIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfAir, chiefOfAirComboBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfAirType, chiefOfAirTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.CabinetChiefOfAirId, chiefOfAirIdTextBox);
+
+            headOfStateComboBox.Tag = ScenarioEditorItemId.CabinetHeadOfState;
+            headOfStateTypeTextBox.Tag = ScenarioEditorItemId.CabinetHeadOfStateType;
+            headOfStateIdTextBox.Tag = ScenarioEditorItemId.CabinetHeadOfStateId;
+            headOfGovernmentComboBox.Tag = ScenarioEditorItemId.CabinetHeadOfGovernment;
+            headOfGovernmentTypeTextBox.Tag = ScenarioEditorItemId.CabinetHeadOfGovernmentType;
+            headOfGovernmentIdTextBox.Tag = ScenarioEditorItemId.CabinetHeadOfGovernmentId;
+            foreignMinisterComboBox.Tag = ScenarioEditorItemId.CabinetForeignMinister;
+            foreignMinisterTypeTextBox.Tag = ScenarioEditorItemId.CabinetForeignMinisterType;
+            foreignMinisterIdTextBox.Tag = ScenarioEditorItemId.CabinetForeignMinisterId;
+            armamentMinisterComboBox.Tag = ScenarioEditorItemId.CabinetArmamentMinister;
+            armamentMinisterTypeTextBox.Tag = ScenarioEditorItemId.CabinetArmamentMinisterType;
+            armamentMinisterIdTextBox.Tag = ScenarioEditorItemId.CabinetArmamentMinisterId;
+            ministerOfSecurityComboBox.Tag = ScenarioEditorItemId.CabinetMinisterOfSecurity;
+            ministerOfSecurityTypeTextBox.Tag = ScenarioEditorItemId.CabinetMinisterOfSecurityType;
+            ministerOfSecurityIdTextBox.Tag = ScenarioEditorItemId.CabinetMinisterOfSecurityId;
+            ministerOfIntelligenceComboBox.Tag = ScenarioEditorItemId.CabinetMinisterOfIntelligence;
+            ministerOfIntelligenceTypeTextBox.Tag = ScenarioEditorItemId.CabinetMinisterOfIntelligenceType;
+            ministerOfIntelligenceIdTextBox.Tag = ScenarioEditorItemId.CabinetMinisterOfIntelligenceId;
+            chiefOfStaffComboBox.Tag = ScenarioEditorItemId.CabinetChiefOfStaff;
+            chiefOfStaffTypeTextBox.Tag = ScenarioEditorItemId.CabinetChiefOfStaffType;
+            chiefOfStaffIdTextBox.Tag = ScenarioEditorItemId.CabinetChiefOfStaffId;
+            chiefOfArmyComboBox.Tag = ScenarioEditorItemId.CabinetChiefOfArmy;
+            chiefOfArmyTypeTextBox.Tag = ScenarioEditorItemId.CabinetChiefOfArmyType;
+            chiefOfArmyIdTextBox.Tag = ScenarioEditorItemId.CabinetChiefOfArmyId;
+            chiefOfNavyComboBox.Tag = ScenarioEditorItemId.CabinetChiefOfNavy;
+            chiefOfNavyTypeTextBox.Tag = ScenarioEditorItemId.CabinetChiefOfNavyType;
+            chiefOfNavyIdTextBox.Tag = ScenarioEditorItemId.CabinetChiefOfNavyId;
+            chiefOfAirComboBox.Tag = ScenarioEditorItemId.CabinetChiefOfAir;
+            chiefOfAirTypeTextBox.Tag = ScenarioEditorItemId.CabinetChiefOfAirType;
+            chiefOfAirIdTextBox.Tag = ScenarioEditorItemId.CabinetChiefOfAirId;
 
             headOfStateLabel.Text = Config.GetText(TextId.MinisterHeadOfState);
             headOfGovernmentLabel.Text = Config.GetText(TextId.MinisterHeadOfGovernment);
@@ -12815,80 +11871,255 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     閣僚の編集項目を更新する
+        ///     閣僚の編集項目を有効化する
         /// </summary>
-        /// <param name="settings"></param>
-        private void UpdateCabinetItems(CountrySettings settings)
+        private void EnableCabinetItems()
         {
-            ScenarioHeader header = Scenarios.Data.Header;
-            int year = (header.StartDate != null) ? header.StartDate.Year : header.StartYear;
+            cabinetGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     閣僚の編集項目を無効化する
+        /// </summary>
+        private void DisableCabinetItems()
+        {
+            cabinetGroupBox.Enabled = false;
+        }
+
+        /// <summary>
+        ///     閣僚の編集項目の表示を更新する
+        /// </summary>
+        /// <param name="country">選択国</param>
+        /// <param name="settings">国家設定</param>
+        /// <param name="year">対象年次</param>
+        private void UpdateCabinetItems(Country country, CountrySettings settings, int year)
+        {
+            // 閣僚候補リストを更新する
+            _controller.UpdateMinisterList(country, year);
+
+            // 閣僚コンボボックスの表示を更新する
+            _controller.UpdateItemValue(headOfStateComboBox, settings);
+            _controller.UpdateItemValue(headOfGovernmentComboBox, settings);
+            _controller.UpdateItemValue(foreignMinisterComboBox, settings);
+            _controller.UpdateItemValue(armamentMinisterComboBox, settings);
+            _controller.UpdateItemValue(ministerOfSecurityComboBox, settings);
+            _controller.UpdateItemValue(ministerOfIntelligenceComboBox, settings);
+            _controller.UpdateItemValue(chiefOfStaffComboBox, settings);
+            _controller.UpdateItemValue(chiefOfArmyComboBox, settings);
+            _controller.UpdateItemValue(chiefOfNavyComboBox, settings);
+            _controller.UpdateItemValue(chiefOfAirComboBox, settings);
+
+            // 閣僚type/idテキストボックスの表示を更新する
+            _controller.UpdateItemValue(headOfStateTypeTextBox, settings);
+            _controller.UpdateItemValue(headOfStateIdTextBox, settings);
+            _controller.UpdateItemValue(headOfGovernmentTypeTextBox, settings);
+            _controller.UpdateItemValue(headOfGovernmentIdTextBox, settings);
+            _controller.UpdateItemValue(foreignMinisterTypeTextBox, settings);
+            _controller.UpdateItemValue(foreignMinisterIdTextBox, settings);
+            _controller.UpdateItemValue(armamentMinisterTypeTextBox, settings);
+            _controller.UpdateItemValue(armamentMinisterIdTextBox, settings);
+            _controller.UpdateItemValue(ministerOfSecurityTypeTextBox, settings);
+            _controller.UpdateItemValue(ministerOfSecurityIdTextBox, settings);
+            _controller.UpdateItemValue(ministerOfIntelligenceTypeTextBox, settings);
+            _controller.UpdateItemValue(ministerOfIntelligenceIdTextBox, settings);
+            _controller.UpdateItemValue(chiefOfStaffTypeTextBox, settings);
+            _controller.UpdateItemValue(chiefOfStaffIdTextBox, settings);
+            _controller.UpdateItemValue(chiefOfArmyTypeTextBox, settings);
+            _controller.UpdateItemValue(chiefOfArmyIdTextBox, settings);
+            _controller.UpdateItemValue(chiefOfNavyTypeTextBox, settings);
+            _controller.UpdateItemValue(chiefOfNavyIdTextBox, settings);
+            _controller.UpdateItemValue(chiefOfAirTypeTextBox, settings);
+            _controller.UpdateItemValue(chiefOfAirIdTextBox, settings);
+
+            // 閣僚type/idテキストボックスの色を更新する
+            _controller.UpdateItemColor(headOfStateTypeTextBox, settings);
+            _controller.UpdateItemColor(headOfStateIdTextBox, settings);
+            _controller.UpdateItemColor(headOfGovernmentTypeTextBox, settings);
+            _controller.UpdateItemColor(headOfGovernmentIdTextBox, settings);
+            _controller.UpdateItemColor(foreignMinisterTypeTextBox, settings);
+            _controller.UpdateItemColor(foreignMinisterIdTextBox, settings);
+            _controller.UpdateItemColor(armamentMinisterTypeTextBox, settings);
+            _controller.UpdateItemColor(armamentMinisterIdTextBox, settings);
+            _controller.UpdateItemColor(ministerOfSecurityTypeTextBox, settings);
+            _controller.UpdateItemColor(ministerOfSecurityIdTextBox, settings);
+            _controller.UpdateItemColor(ministerOfIntelligenceTypeTextBox, settings);
+            _controller.UpdateItemColor(ministerOfIntelligenceIdTextBox, settings);
+            _controller.UpdateItemColor(chiefOfStaffTypeTextBox, settings);
+            _controller.UpdateItemColor(chiefOfStaffIdTextBox, settings);
+            _controller.UpdateItemColor(chiefOfArmyTypeTextBox, settings);
+            _controller.UpdateItemColor(chiefOfArmyIdTextBox, settings);
+            _controller.UpdateItemColor(chiefOfNavyTypeTextBox, settings);
+            _controller.UpdateItemColor(chiefOfNavyIdTextBox, settings);
+            _controller.UpdateItemColor(chiefOfAirTypeTextBox, settings);
+            _controller.UpdateItemColor(chiefOfAirIdTextBox, settings);
+        }
+
+        /// <summary>
+        ///     閣僚の編集項目の表示をクリアする
+        /// </summary>
+        private void ClearCabinetItems()
+        {
+            headOfStateComboBox.SelectedIndex = -1;
+            headOfGovernmentComboBox.SelectedIndex = -1;
+            foreignMinisterComboBox.SelectedIndex = -1;
+            armamentMinisterComboBox.SelectedIndex = -1;
+            ministerOfSecurityComboBox.SelectedIndex = -1;
+            ministerOfIntelligenceComboBox.SelectedIndex = -1;
+            chiefOfStaffComboBox.SelectedIndex = -1;
+            chiefOfArmyComboBox.SelectedIndex = -1;
+            chiefOfNavyComboBox.SelectedIndex = -1;
+            chiefOfAirComboBox.SelectedIndex = -1;
+
+            headOfStateTypeTextBox.Text = "";
+            headOfStateIdTextBox.Text = "";
+            headOfGovernmentTypeTextBox.Text = "";
+            headOfGovernmentIdTextBox.Text = "";
+            foreignMinisterTypeTextBox.Text = "";
+            foreignMinisterIdTextBox.Text = "";
+            armamentMinisterTypeTextBox.Text = "";
+            armamentMinisterIdTextBox.Text = "";
+            ministerOfSecurityTypeTextBox.Text = "";
+            ministerOfSecurityIdTextBox.Text = "";
+            ministerOfIntelligenceTypeTextBox.Text = "";
+            ministerOfIntelligenceIdTextBox.Text = "";
+            chiefOfStaffTypeTextBox.Text = "";
+            chiefOfStaffIdTextBox.Text = "";
+            chiefOfArmyTypeTextBox.Text = "";
+            chiefOfArmyIdTextBox.Text = "";
+            chiefOfNavyTypeTextBox.Text = "";
+            chiefOfNavyIdTextBox.Text = "";
+            chiefOfAirTypeTextBox.Text = "";
+            chiefOfAirIdTextBox.Text = "";
+        }
+
+        #endregion
+
+        #region 政府タブ - 編集項目
+
+        /// <summary>
+        ///     テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnGovernmentIntItemTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択中の国家がなければ何もしない
             Country country = GetSelectedGovernmentCountry();
-            List<Minister> ministers = Misc.EnableRetirementYearMinisters
-                ? Ministers.Items.Where(
-                    minister => (minister.Country == country) &&
-                                (year >= minister.StartYear) &&
-                                (year < minister.EndYear) &&
-                                (year < minister.RetirementYear)).ToList()
-                : Ministers.Items.Where(
-                    minister => (minister.Country == country) &&
-                                (year >= minister.StartYear) &&
-                                (year < minister.EndYear)).ToList();
+            if (country == Country.None)
+            {
+                return;
+            }
 
-            _headOfStateList = ministers.Where(minister => minister.Position == MinisterPosition.HeadOfState).ToList();
-            UpdateItemValue(headOfStateComboBox, settings, _headOfStateList);
-            UpdateItemValue(headOfStateTypeTextBox, settings);
-            UpdateItemValue(headOfStateIdTextBox, settings);
+            TextBox control = sender as TextBox;
+            if (control == null)
+            {
+                return;
+            }
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
 
-            _headOfGovernmentList =
-                ministers.Where(minister => minister.Position == MinisterPosition.HeadOfGovernment).ToList();
-            UpdateItemValue(headOfGovernmentComboBox, settings, _headOfGovernmentList);
-            UpdateItemValue(headOfGovernmentTypeTextBox, settings);
-            UpdateItemValue(headOfGovernmentIdTextBox, settings);
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
 
-            _foreignMinisterList =
-                ministers.Where(minister => minister.Position == MinisterPosition.ForeignMinister).ToList();
-            UpdateItemValue(foreignMinisterComboBox, settings, _foreignMinisterList);
-            UpdateItemValue(foreignMinisterTypeTextBox, settings);
-            UpdateItemValue(foreignMinisterIdTextBox, settings);
+            // 変更後の文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(control.Text, out val))
+            {
+                _controller.UpdateItemValue(control, settings);
+                return;
+            }
 
-            _armamentMinisterList =
-                ministers.Where(minister => minister.Position == MinisterPosition.MinisterOfArmament).ToList();
-            UpdateItemValue(armamentMinisterComboBox, settings, _armamentMinisterList);
-            UpdateItemValue(armamentMinisterTypeTextBox, settings);
-            UpdateItemValue(armamentMinisterIdTextBox, settings);
+            // 初期値から変更されていなければ何もしない
+            if ((settings == null) && (val == 0))
+            {
+                return;
+            }
 
-            _ministerOfSecurityList =
-                ministers.Where(minister => minister.Position == MinisterPosition.MinisterOfSecurity).ToList();
-            UpdateItemValue(ministerOfSecurityComboBox, settings, _ministerOfSecurityList);
-            UpdateItemValue(ministerOfSecurityTypeTextBox, settings);
-            UpdateItemValue(ministerOfSecurityIdTextBox, settings);
+            // 値に変化がなければ何もしない
+            object prev = _controller.GetItemValue(itemId, settings);
+            if ((prev != null) && (val == (int) prev))
+            {
+                return;
+            }
 
-            _ministerOfIntelligenceList =
-                ministers.Where(minister => minister.Position == MinisterPosition.HeadOfMilitaryIntelligence).ToList();
-            UpdateItemValue(ministerOfIntelligenceComboBox, settings, _ministerOfIntelligenceList);
-            UpdateItemValue(ministerOfIntelligenceTypeTextBox, settings);
-            UpdateItemValue(ministerOfIntelligenceIdTextBox, settings);
+            // 無効な値ならば値を戻す
+            if (!_controller.IsItemValueValid(itemId, val, settings))
+            {
+                _controller.UpdateItemValue(control, settings);
+                return;
+            }
 
-            _chiefOfStaffList = ministers.Where(minister => minister.Position == MinisterPosition.ChiefOfStaff).ToList();
-            UpdateItemValue(chiefOfStaffComboBox, settings, _chiefOfStaffList);
-            UpdateItemValue(chiefOfStaffTypeTextBox, settings);
-            UpdateItemValue(chiefOfStaffIdTextBox, settings);
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+            }
 
-            _chiefOfArmyList = ministers.Where(minister => minister.Position == MinisterPosition.ChiefOfArmy).ToList();
-            UpdateItemValue(chiefOfArmyComboBox, settings, _chiefOfArmyList);
-            UpdateItemValue(chiefOfArmyTypeTextBox, settings);
-            UpdateItemValue(chiefOfArmyIdTextBox, settings);
+            _controller.OutputItemValueChangedLog(itemId, val, settings);
 
-            _chiefOfNavyList = ministers.Where(minister => minister.Position == MinisterPosition.ChiefOfNavy).ToList();
-            UpdateItemValue(chiefOfNavyComboBox, settings, _chiefOfNavyList);
-            UpdateItemValue(chiefOfNavyTypeTextBox, settings);
-            UpdateItemValue(chiefOfNavyIdTextBox, settings);
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, val, settings);
 
-            _chiefOfAirList =
-                ministers.Where(minister => minister.Position == MinisterPosition.ChiefOfAirForce).ToList();
-            UpdateItemValue(chiefOfAirComboBox, settings, _chiefOfAirList);
-            UpdateItemValue(chiefOfAirTypeTextBox, settings);
-            UpdateItemValue(chiefOfAirIdTextBox, settings);
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, settings);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, val, settings);
+        }
+
+        /// <summary>
+        ///     政策スライダースライドバーの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnPoliticalSliderTrackBarScroll(object sender, EventArgs e)
+        {
+            // 選択中の国家がなければ何もしない
+            Country country = GetSelectedGovernmentCountry();
+            if (country == Country.None)
+            {
+                return;
+            }
+
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+
+            TrackBar control = (TrackBar) sender;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+
+            // 初期値から変更されていなければ何もしない
+            int val = 11 - control.Value;
+            object prev = _controller.GetItemValue(itemId, settings);
+            if ((prev == null) && (val == 5))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((prev != null) && (val == (int) prev))
+            {
+                return;
+            }
+
+            if (settings == null)
+            {
+                settings = new CountrySettings { Country = country };
+                Scenarios.SetCountrySettings(settings);
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, settings);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, val, settings);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, settings);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, settings);
         }
 
         /// <summary>
@@ -12916,11 +12147,11 @@ namespace HoI2Editor.Forms
             // 項目の文字列を描画する
             Country country = GetSelectedGovernmentCountry();
             CountrySettings settings = Scenarios.GetCountrySettings(country);
-            ItemId itemId = (ItemId) control.Tag;
-            object val = GetItemValue(itemId, settings);
-            object sel = GetListItemValue(itemId, e.Index);
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            object val = _controller.GetItemValue(itemId, settings);
+            object sel = _controller.GetListItemValue(itemId, e.Index);
             Brush brush = ((val != null) && (sel != null) && ((int) val == (int) sel) &&
-                           IsItemDirty(itemId, settings))
+                           _controller.IsItemDirty(itemId, settings))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = control.Items[e.Index].ToString();
@@ -12946,6 +12177,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 選択中の国家がなければ何もしない
             Country country = GetSelectedGovernmentCountry();
             if (country == Country.None)
             {
@@ -12953,17 +12185,17 @@ namespace HoI2Editor.Forms
             }
             CountrySettings settings = Scenarios.GetCountrySettings(country);
 
-            ItemId itemId = (ItemId) control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
 
             // 初期値から変更されていなければ何もしない
-            object val = GetListItemValue(itemId, index);
+            object val = _controller.GetListItemValue(itemId, index);
             if (val == null)
             {
                 return;
             }
 
             // 値に変化がなければ何もしない
-            object prev = GetItemValue(itemId, settings);
+            object prev = _controller.GetItemValue(itemId, settings);
             if ((prev != null) && ((int) val == (int) prev))
             {
                 return;
@@ -12975,953 +12207,22 @@ namespace HoI2Editor.Forms
                 Scenarios.SetCountrySettings(settings);
             }
 
-            OutputItemValueChangedLog(itemId, val, settings);
+            _controller.OutputItemValueChangedLog(itemId, val, settings);
 
             // 項目値変更前の処理
-            PreItemChanged(itemId, val, settings);
+            _controller.PreItemChanged(itemId, val, settings);
 
             // 値を更新する
-            SetItemValue(itemId, val, settings);
+            _controller.SetItemValue(itemId, val, settings);
 
             // 編集済みフラグを設定する
-            SetItemDirty(itemId, settings);
+            _controller.SetItemDirty(itemId, settings);
 
             // 文字色を変更する
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            PostItemChanged(itemId, val, settings);
-        }
-
-        /// <summary>
-        ///     国家元首コンボボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnHeadOfStateComboBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            int index = headOfStateComboBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 値に変化がなければ何もしない
-            int val = _headOfStateList[index].Id;
-            if ((settings != null) && (settings.HeadOfState != null) &&
-                (val == settings.HeadOfState.Id))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] head of state id: {0} -> {1} ({2})",
-                (settings != null) && (settings.HeadOfState != null) ? IntHelper.ToString(settings.HeadOfState.Id) : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            if (settings.HeadOfState != null)
-            {
-                // 変更前のtypeとidの組を削除する
-                Scenarios.RemoveTypeId(settings.HeadOfState);
-
-                // 値を更新する
-                settings.HeadOfState.Id = val;
-
-                // 変更後のtypeとidの組を登録する
-                Scenarios.AddTypeId(settings.HeadOfState);
-            }
-            else
-            {
-                // 値を更新する
-                int type = 1;
-                while (Scenarios.ExistsTypeId(type, val))
-                {
-                    type++;
-                }
-                settings.HeadOfState = Scenarios.GetNewTypeId(type, val);
-
-                // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettings.ItemId.HeadOfStateType);
-
-                // 編集項目を更新する
-                headOfStateTypeTextBox.Text = IntHelper.ToString(type);
-
-                // 文字色を変更する
-                headOfStateTypeTextBox.ForeColor = Color.Red;
-            }
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.HeadOfStateId);
-            Scenarios.SetDirty();
-
-            // 項目色を変更するために描画更新する
-            headOfStateComboBox.Refresh();
-
-            // テキストボックスの表示を変更する
-            headOfStateIdTextBox.Text = IntHelper.ToString(settings.HeadOfState.Id);
-
-            // 文字色を変更する
-            headOfStateIdTextBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     政府首班コンボボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnHeadOfGovernmentComboBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            int index = headOfGovernmentComboBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 値に変化がなければ何もしない
-            int val = _headOfGovernmentList[index].Id;
-            if ((settings != null) && (settings.HeadOfGovernment != null) &&
-                (val == settings.HeadOfGovernment.Id))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] head of government id: {0} -> {1} ({2})",
-                (settings != null) && (settings.HeadOfGovernment != null)
-                    ? IntHelper.ToString(settings.HeadOfGovernment.Id)
-                    : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            if (settings.HeadOfGovernment != null)
-            {
-                // 変更前のtypeとidの組を削除する
-                Scenarios.RemoveTypeId(settings.HeadOfGovernment);
-
-                // 値を更新する
-                settings.HeadOfGovernment.Id = val;
-
-                // 変更後のtypeとidの組を登録する
-                Scenarios.AddTypeId(settings.HeadOfGovernment);
-            }
-            else
-            {
-                // 値を更新する
-                int type = (settings.HeadOfGovernment != null) ? settings.HeadOfGovernment.Type : 1;
-                while (Scenarios.ExistsTypeId(type, val))
-                {
-                    type++;
-                }
-                settings.HeadOfGovernment = Scenarios.GetNewTypeId(type, val);
-
-                // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettings.ItemId.HeadOfGovernmentType);
-
-                // 編集項目を更新する
-                headOfGovernmentTypeTextBox.Text = IntHelper.ToString(type);
-
-                // 文字色を変更する
-                headOfGovernmentTypeTextBox.ForeColor = Color.Red;
-            }
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.HeadOfGovernmentId);
-            Scenarios.SetDirty();
-
-            // 項目色を変更するために描画更新する
-            headOfGovernmentComboBox.Refresh();
-
-            // テキストボックスの表示を変更する
-            headOfGovernmentIdTextBox.Text = IntHelper.ToString(settings.HeadOfGovernment.Id);
-
-            // 文字色を変更する
-            headOfGovernmentIdTextBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     外務大臣コンボボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnForeignMinisterComboBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            int index = foreignMinisterComboBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 値に変化がなければ何もしない
-            int val = _foreignMinisterList[index].Id;
-            if ((settings != null) && (settings.ForeignMinister != null) &&
-                (val == settings.ForeignMinister.Id))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] foreign minister id: {0} -> {1} ({2})",
-                (settings != null) && (settings.ForeignMinister != null)
-                    ? IntHelper.ToString(settings.ForeignMinister.Id)
-                    : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            if (settings.ForeignMinister != null)
-            {
-                // 変更前のtypeとidの組を削除する
-                Scenarios.RemoveTypeId(settings.ForeignMinister);
-
-                // 値を更新する
-                settings.ForeignMinister.Id = val;
-
-                // 変更後のtypeとidの組を登録する
-                Scenarios.AddTypeId(settings.ForeignMinister);
-            }
-            else
-            {
-                // 値を更新する
-                int type = (settings.ForeignMinister != null) ? settings.ForeignMinister.Type : 1;
-                while (Scenarios.ExistsTypeId(type, val))
-                {
-                    type++;
-                }
-                settings.ForeignMinister = Scenarios.GetNewTypeId(type, val);
-
-                // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettings.ItemId.ForeignMinisterType);
-
-                // 編集項目を更新する
-                foreignMinisterTypeTextBox.Text = IntHelper.ToString(type);
-
-                // 文字色を変更する
-                foreignMinisterTypeTextBox.ForeColor = Color.Red;
-            }
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.ForeignMinisterId);
-            Scenarios.SetDirty();
-
-            // 項目色を変更するために描画更新する
-            foreignMinisterComboBox.Refresh();
-
-            // テキストボックスの表示を変更する
-            foreignMinisterIdTextBox.Text = IntHelper.ToString(settings.ForeignMinister.Id);
-
-            // 文字色を変更する
-            foreignMinisterIdTextBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     軍需大臣コンボボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnArmamentMinisterComboBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            int index = armamentMinisterComboBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 値に変化がなければ何もしない
-            int val = _armamentMinisterList[index].Id;
-            if ((settings != null) && (settings.ArmamentMinister != null) &&
-                (val == settings.ArmamentMinister.Id))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] armament minister id: {0} -> {1} ({2})",
-                (settings != null) && (settings.ArmamentMinister != null)
-                    ? IntHelper.ToString(settings.ArmamentMinister.Id)
-                    : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            if (settings.ArmamentMinister != null)
-            {
-                // 変更前のtypeとidの組を削除する
-                Scenarios.RemoveTypeId(settings.ArmamentMinister);
-
-                // 値を更新する
-                settings.ArmamentMinister.Id = val;
-
-                // 変更後のtypeとidの組を登録する
-                Scenarios.AddTypeId(settings.ArmamentMinister);
-            }
-            else
-            {
-                // 値を更新する
-                int type = (settings.ArmamentMinister != null) ? settings.ArmamentMinister.Type : 1;
-                while (Scenarios.ExistsTypeId(type, val))
-                {
-                    type++;
-                }
-                settings.ArmamentMinister = Scenarios.GetNewTypeId(type, val);
-
-                // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettings.ItemId.ArmamentMinisterType);
-
-                // 編集項目を更新する
-                armamentMinisterTypeTextBox.Text = IntHelper.ToString(type);
-
-                // 文字色を変更する
-                armamentMinisterTypeTextBox.ForeColor = Color.Red;
-            }
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.ArmamentMinisterId);
-            Scenarios.SetDirty();
-
-            // 項目色を変更するために描画更新する
-            armamentMinisterComboBox.Refresh();
-
-            // テキストボックスの表示を変更する
-            armamentMinisterIdTextBox.Text = IntHelper.ToString(settings.ArmamentMinister.Id);
-
-            // 文字色を変更する
-            armamentMinisterIdTextBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     内務大臣コンボボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMinisterOfSecurityComboBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            int index = ministerOfSecurityComboBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 値に変化がなければ何もしない
-            int val = _ministerOfSecurityList[index].Id;
-            if ((settings != null) && (settings.MinisterOfSecurity != null) &&
-                (val == settings.MinisterOfSecurity.Id))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] minister of security id: {0} -> {1} ({2})",
-                (settings != null) && (settings.MinisterOfSecurity != null)
-                    ? IntHelper.ToString(settings.MinisterOfSecurity.Id)
-                    : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            if (settings.MinisterOfSecurity != null)
-            {
-                // 変更前のtypeとidの組を削除する
-                Scenarios.RemoveTypeId(settings.MinisterOfSecurity);
-
-                // 値を更新する
-                settings.MinisterOfSecurity.Id = val;
-
-                // 変更後のtypeとidの組を登録する
-                Scenarios.AddTypeId(settings.MinisterOfSecurity);
-            }
-            else
-            {
-                // 値を更新する
-                int type = (settings.MinisterOfSecurity != null) ? settings.MinisterOfSecurity.Type : 1;
-                while (Scenarios.ExistsTypeId(type, val))
-                {
-                    type++;
-                }
-                settings.MinisterOfSecurity = Scenarios.GetNewTypeId(type, val);
-
-                // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettings.ItemId.MinisterOfSecurityType);
-
-                // 編集項目を更新する
-                ministerOfSecurityTypeTextBox.Text = IntHelper.ToString(type);
-
-                // 文字色を変更する
-                ministerOfSecurityTypeTextBox.ForeColor = Color.Red;
-            }
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.MinisterOfSecurityId);
-            Scenarios.SetDirty();
-
-            // 項目色を変更するために描画更新する
-            ministerOfSecurityComboBox.Refresh();
-
-            // テキストボックスの表示を変更する
-            ministerOfSecurityIdTextBox.Text = IntHelper.ToString(settings.MinisterOfSecurity.Id);
-
-            // 文字色を変更する
-            ministerOfSecurityIdTextBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     情報大臣コンボボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMinisterOfIntelligenceComboBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            int index = ministerOfIntelligenceComboBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 値に変化がなければ何もしない
-            int val = _ministerOfIntelligenceList[index].Id;
-            if ((settings != null) && (settings.MinisterOfIntelligence != null) &&
-                (val == settings.MinisterOfIntelligence.Id))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] minister of intelligence id: {0} -> {1} ({2})",
-                (settings != null) && (settings.MinisterOfIntelligence != null)
-                    ? IntHelper.ToString(settings.MinisterOfIntelligence.Id)
-                    : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            if (settings.MinisterOfIntelligence != null)
-            {
-                // 変更前のtypeとidの組を削除する
-                Scenarios.RemoveTypeId(settings.MinisterOfIntelligence);
-
-                // 値を更新する
-                settings.MinisterOfIntelligence.Id = val;
-
-                // 変更後のtypeとidの組を登録する
-                Scenarios.AddTypeId(settings.MinisterOfIntelligence);
-            }
-            else
-            {
-                // 値を更新する
-                int type = (settings.MinisterOfIntelligence != null) ? settings.MinisterOfIntelligence.Type : 1;
-                while (Scenarios.ExistsTypeId(type, val))
-                {
-                    type++;
-                }
-                settings.MinisterOfIntelligence = Scenarios.GetNewTypeId(type, val);
-
-                // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettings.ItemId.MinisterOfIntelligenceType);
-
-                // 編集項目を更新する
-                ministerOfIntelligenceTypeTextBox.Text = IntHelper.ToString(type);
-
-                // 文字色を変更する
-                ministerOfIntelligenceTypeTextBox.ForeColor = Color.Red;
-            }
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.MinisterOfIntelligenceId);
-            Scenarios.SetDirty();
-
-            // 項目色を変更するために描画更新する
-            ministerOfIntelligenceComboBox.Refresh();
-
-            // テキストボックスの表示を変更する
-            ministerOfIntelligenceIdTextBox.Text = IntHelper.ToString(settings.MinisterOfIntelligence.Id);
-
-            // 文字色を変更する
-            ministerOfIntelligenceIdTextBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     統合参謀総長コンボボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnChiefOfStaffComboBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            int index = chiefOfStaffComboBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 値に変化がなければ何もしない
-            int val = _chiefOfStaffList[index].Id;
-            if ((settings != null) && (settings.ChiefOfStaff != null) &&
-                (val == settings.ChiefOfStaff.Id))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] chief of staff id: {0} -> {1} ({2})",
-                (settings != null) && (settings.ChiefOfStaff != null)
-                    ? IntHelper.ToString(settings.ChiefOfStaff.Id)
-                    : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            if (settings.ChiefOfStaff != null)
-            {
-                // 変更前のtypeとidの組を削除する
-                Scenarios.RemoveTypeId(settings.ChiefOfStaff);
-
-                // 値を更新する
-                settings.ChiefOfStaff.Id = val;
-
-                // 変更後のtypeとidの組を登録する
-                Scenarios.AddTypeId(settings.ChiefOfStaff);
-            }
-            else
-            {
-                // 値を更新する
-                int type = (settings.ChiefOfStaff != null) ? settings.ChiefOfStaff.Type : 1;
-                while (Scenarios.ExistsTypeId(type, val))
-                {
-                    type++;
-                }
-                settings.ChiefOfStaff = Scenarios.GetNewTypeId(type, val);
-
-                // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettings.ItemId.ChiefOfStaffType);
-
-                // 編集項目を更新する
-                chiefOfStaffTypeTextBox.Text = IntHelper.ToString(type);
-
-                // 文字色を変更する
-                chiefOfStaffTypeTextBox.ForeColor = Color.Red;
-            }
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.ChiefOfStaffId);
-            Scenarios.SetDirty();
-
-            // 項目色を変更するために描画更新する
-            chiefOfStaffComboBox.Refresh();
-
-            // テキストボックスの表示を変更する
-            chiefOfStaffIdTextBox.Text = IntHelper.ToString(settings.ChiefOfStaff.Id);
-
-            // 文字色を変更する
-            chiefOfStaffIdTextBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     陸軍総司令官コンボボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnChiefOfArmyComboBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            int index = chiefOfArmyComboBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 値に変化がなければ何もしない
-            int val = _chiefOfArmyList[index].Id;
-            if ((settings != null) && (settings.ChiefOfArmy != null) &&
-                (val == settings.ChiefOfArmy.Id))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] chief of army id: {0} -> {1} ({2})",
-                (settings != null) && (settings.ChiefOfArmy != null) ? IntHelper.ToString(settings.ChiefOfArmy.Id) : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            if (settings.ChiefOfArmy != null)
-            {
-                // 変更前のtypeとidの組を削除する
-                Scenarios.RemoveTypeId(settings.ChiefOfArmy);
-
-                // 値を更新する
-                settings.ChiefOfArmy.Id = val;
-
-                // 変更後のtypeとidの組を登録する
-                Scenarios.AddTypeId(settings.ChiefOfArmy);
-            }
-            else
-            {
-                // 値を更新する
-                int type = (settings.ChiefOfArmy != null) ? settings.ChiefOfArmy.Type : 1;
-                while (Scenarios.ExistsTypeId(type, val))
-                {
-                    type++;
-                }
-                settings.ChiefOfArmy = Scenarios.GetNewTypeId(type, val);
-
-                // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettings.ItemId.ChiefOfArmyType);
-
-                // 編集項目を更新する
-                chiefOfArmyTypeTextBox.Text = IntHelper.ToString(type);
-
-                // 文字色を変更する
-                chiefOfArmyTypeTextBox.ForeColor = Color.Red;
-            }
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.ChiefOfArmyId);
-            Scenarios.SetDirty();
-
-            // 項目色を変更するために描画更新する
-            chiefOfArmyComboBox.Refresh();
-
-            // テキストボックスの表示を変更する
-            chiefOfArmyIdTextBox.Text = IntHelper.ToString(settings.ChiefOfArmy.Id);
-
-            // 文字色を変更する
-            chiefOfArmyIdTextBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     海軍総司令官コンボボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnChiefOfNavyComboBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            int index = chiefOfNavyComboBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 値に変化がなければ何もしない
-            int val = _chiefOfNavyList[index].Id;
-            if ((settings != null) && (settings.ChiefOfNavy != null) &&
-                (val == settings.ChiefOfNavy.Id))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] chief of navy id: {0} -> {1} ({2})",
-                (settings != null) && (settings.ChiefOfNavy != null) ? IntHelper.ToString(settings.ChiefOfNavy.Id) : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            if (settings.ChiefOfNavy != null)
-            {
-                // 変更前のtypeとidの組を削除する
-                Scenarios.RemoveTypeId(settings.ChiefOfNavy);
-
-                // 値を更新する
-                settings.ChiefOfNavy.Id = val;
-
-                // 変更後のtypeとidの組を登録する
-                Scenarios.AddTypeId(settings.ChiefOfNavy);
-            }
-            else
-            {
-                // 値を更新する
-                int type = (settings.ChiefOfNavy != null) ? settings.ChiefOfNavy.Type : 1;
-                while (Scenarios.ExistsTypeId(type, val))
-                {
-                    type++;
-                }
-                settings.ChiefOfNavy = Scenarios.GetNewTypeId(type, val);
-
-                // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettings.ItemId.ChiefOfNavyType);
-
-                // 編集項目を更新する
-                chiefOfNavyTypeTextBox.Text = IntHelper.ToString(type);
-
-                // 文字色を変更する
-                chiefOfNavyTypeTextBox.ForeColor = Color.Red;
-            }
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.ChiefOfNavyId);
-            Scenarios.SetDirty();
-
-            // 項目色を変更するために描画更新する
-            chiefOfNavyComboBox.Refresh();
-
-            // テキストボックスの表示を変更する
-            chiefOfNavyIdTextBox.Text = IntHelper.ToString(settings.ChiefOfNavy.Id);
-
-            // 文字色を変更する
-            chiefOfNavyIdTextBox.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     空軍総司令官コンボボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnChiefOfAirComboBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            int index = chiefOfAirComboBox.SelectedIndex;
-            if (index < 0)
-            {
-                return;
-            }
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 値に変化がなければ何もしない
-            int val = _chiefOfAirList[index].Id;
-            if ((settings != null) && (settings.ChiefOfAir != null) &&
-                (val == settings.ChiefOfAir.Id))
-            {
-                return;
-            }
-
-            Log.Info("[Scenario] chief of air id: {0} -> {1} ({2})",
-                (settings != null) && (settings.ChiefOfAir != null) ? IntHelper.ToString(settings.ChiefOfAir.Id) : "",
-                val, Countries.Strings[(int) country]);
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            if (settings.ChiefOfAir != null)
-            {
-                // 変更前のtypeとidの組を削除する
-                Scenarios.RemoveTypeId(settings.ChiefOfAir);
-
-                // 値を更新する
-                settings.ChiefOfAir.Id = val;
-
-                // 変更後のtypeとidの組を登録する
-                Scenarios.AddTypeId(settings.ChiefOfAir);
-            }
-            else
-            {
-                // 値を更新する
-                int type = (settings.ChiefOfAir != null) ? settings.ChiefOfAir.Type : 1;
-                while (Scenarios.ExistsTypeId(type, val))
-                {
-                    type++;
-                }
-                settings.ChiefOfAir = Scenarios.GetNewTypeId(type, val);
-
-                // 編集済みフラグを設定する
-                settings.SetDirty(CountrySettings.ItemId.ChiefOfAirType);
-
-                // 編集項目を更新する
-                chiefOfAirTypeTextBox.Text = IntHelper.ToString(type);
-
-                // 文字色を変更する
-                chiefOfAirTypeTextBox.ForeColor = Color.Red;
-            }
-
-            // 編集済みフラグを設定する
-            settings.SetDirty(CountrySettings.ItemId.ChiefOfAirId);
-            Scenarios.SetDirty();
-
-            // 項目色を変更するために描画更新する
-            chiefOfAirComboBox.Refresh();
-
-            // テキストボックスの表示を変更する
-            chiefOfAirIdTextBox.Text = IntHelper.ToString(settings.ChiefOfAir.Id);
-
-            // 文字色を変更する
-            chiefOfAirIdTextBox.ForeColor = Color.Red;
-        }
-
-        #endregion
-
-        #region 政府タブ - 編集項目
-
-        /// <summary>
-        ///     テキストボックスのフォーカス移動後の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnGovernmentIntItemTextBoxValidated(object sender, EventArgs e)
-        {
-            // 選択項目がなければ何もしない
-            Country country = GetSelectedGovernmentCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
-            TextBox control = sender as TextBox;
-            if (control == null)
-            {
-                return;
-            }
-            ItemId itemId = (ItemId) control.Tag;
-
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // 変更後の文字列を数値に変換できなければ値を戻す
-            int val;
-            if (!IntHelper.TryParse(control.Text, out val))
-            {
-                UpdateItemValue(control, settings);
-                return;
-            }
-
-            // 初期値から変更されていなければ何もしない
-            if ((settings == null) && (val == 0))
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            object prev = GetItemValue(itemId, settings);
-            if ((prev != null) && (val == (int) prev))
-            {
-                return;
-            }
-
-            // 無効な値ならば値を戻す
-            if (!IsItemValueValid(itemId, val, settings))
-            {
-                UpdateItemValue(control, settings);
-                return;
-            }
-
-            if (settings == null)
-            {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
-            }
-
-            OutputItemValueChangedLog(itemId, val, settings);
-
-            // 項目値変更前の処理
-            PreItemChanged(itemId, val, settings);
-
-            // 値を更新する
-            SetItemValue(itemId, val, settings);
-
-            // 編集済みフラグを設定する
-            SetItemDirty(itemId, settings);
-
-            // 文字色を変更する
-            control.ForeColor = Color.Red;
-
-            // 項目値変更後の処理
-            PostItemChanged(itemId, val, settings);
+            _controller.PostItemChanged(itemId, val, settings);
         }
 
         #endregion
@@ -13933,11 +12234,91 @@ namespace HoI2Editor.Forms
         #region 技術タブ - 共通
 
         /// <summary>
-        ///     技術タブの編集項目を初期化する
+        ///     技術タブを初期化する
         /// </summary>
         private void InitTechTab()
         {
-            // 技術カテゴリリスト
+            _itemControls.Add(ScenarioEditorItemId.TechOwned, ownedTechsListView);
+            _itemControls.Add(ScenarioEditorItemId.TechBlueprints, blueprintsListView);
+            _itemControls.Add(ScenarioEditorItemId.TechInventions, inventionsListView);
+
+            ownedTechsListView.Tag = ScenarioEditorItemId.TechOwned;
+            blueprintsListView.Tag = ScenarioEditorItemId.TechBlueprints;
+            inventionsListView.Tag = ScenarioEditorItemId.TechInventions;
+        }
+
+        /// <summary>
+        ///     技術タブを更新する
+        /// </summary>
+        private void UpdateTechTab()
+        {
+            // 技術カテゴリリストボックスを初期化する
+            InitTechCategoryListBox();
+
+            // 技術カテゴリリストボックスを有効化する
+            EnableTechCategoryListBox();
+
+            // 国家リストボックスを更新する
+            UpdateCountryListBox(techCountryListBox);
+
+            // 国家リストボックスを有効化する
+            EnableTechCountryListBox();
+        }
+
+        /// <summary>
+        ///     技術タブのフォーム読み込み時の処理
+        /// </summary>
+        private void OnTechTabPageFormLoad()
+        {
+            // 技術タブを初期化する
+            InitTechTab();
+        }
+
+        /// <summary>
+        ///     技術タブのファイル読み込み時の処理
+        /// </summary>
+        private void OnTechTabPageFileLoad()
+        {
+            // 政府タブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Technology)
+            {
+                return;
+            }
+
+            // 技術データの読み込み完了まで待機する
+            WaitLoadingTechs();
+
+            // 初回遷移時には表示を更新する
+            UpdateTechTab();
+        }
+
+        /// <summary>
+        ///     技術タブ選択時の処理
+        /// </summary>
+        private void OnTechTabPageSelected()
+        {
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // 技術データの読み込み完了まで待機する
+            WaitLoadingMinisters();
+
+            // 初回遷移時には表示を更新する
+            UpdateTechTab();
+        }
+
+        #endregion
+
+        #region 技術タブ - 技術カテゴリ
+
+        /// <summary>
+        ///     技術カテゴリリストボックスを初期化する
+        /// </summary>
+        private void InitTechCategoryListBox()
+        {
             techCategoryListBox.BeginUpdate();
             techCategoryListBox.Items.Clear();
             foreach (TechGroup grp in Techs.Groups)
@@ -13946,30 +12327,120 @@ namespace HoI2Editor.Forms
             }
             techCategoryListBox.SelectedIndex = 0;
             techCategoryListBox.EndUpdate();
-
-            // 国家リストボックス
-            techCountryListBox.BeginUpdate();
-            techCountryListBox.Items.Clear();
-            foreach (Country country in Countries.Tags)
-            {
-                techCountryListBox.Items.Add(Countries.GetTagName(country));
-            }
-            techCountryListBox.EndUpdate();
         }
 
         /// <summary>
-        ///     技術タブの編集項目を更新する
+        ///     技術カテゴリリストボックスを有効化する
         /// </summary>
-        private void UpdateTechTab()
+        private void EnableTechCategoryListBox()
         {
-            // 編集項目を無効化する
-            DisableTechItems();
-
-            // 技術カテゴリリストボックスを有効化する
             techCategoryListBox.Enabled = true;
+        }
 
-            // 国家リストボックスを有効化する
+        /// <summary>
+        ///     技術カテゴリリストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechCategoryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択中の国家がなければ編集項目を無効化する
+            Country country = GetSelectedTechCountry();
+            if (country == Country.None)
+            {
+                // 編集項目を無効化する
+                DisableTechItems();
+
+                // 編集項目をクリアする
+                ClearTechItems();
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateTechItems();
+
+            // 編集項目を有効化する
+            EnableTechItems();
+        }
+
+        /// <summary>
+        ///     選択中の技術グループを取得する
+        /// </summary>
+        /// <returns>選択中の技術グループ</returns>
+        private TechGroup GetSelectedTechGroup()
+        {
+            if (techCategoryListBox.SelectedIndex < 0)
+            {
+                return null;
+            }
+            return Techs.Groups[techCategoryListBox.SelectedIndex];
+        }
+
+        #endregion
+
+        #region 技術タブ - 国家
+
+        /// <summary>
+        ///     国家リストボックスを有効化する
+        /// </summary>
+        private void EnableTechCountryListBox()
+        {
             techCountryListBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     国家リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ編集項目を無効化する
+            if (techCountryListBox.SelectedIndex < 0)
+            {
+                // 編集項目を無効化する
+                DisableTechItems();
+
+                // 編集項目をクリアする
+                ClearTechItems();
+                return;
+            }
+
+            // 編集項目を更新する
+            UpdateTechItems();
+
+            // 編集項目を有効化する
+            EnableTechItems();
+        }
+
+        /// <summary>
+        ///     選択中の国家を取得する
+        /// </summary>
+        /// <returns>選択中の国家</returns>
+        private Country GetSelectedTechCountry()
+        {
+            if (techCountryListBox.SelectedIndex < 0)
+            {
+                return Country.None;
+            }
+            return Countries.Tags[techCountryListBox.SelectedIndex];
+        }
+
+        #endregion
+
+        #region 技術タブ - 編集項目
+
+        /// <summary>
+        ///     技術の編集項目を有効化する
+        /// </summary>
+        private void EnableTechItems()
+        {
+            ownedTechsLabel.Enabled = true;
+            ownedTechsListView.Enabled = true;
+            blueprintsLabel.Enabled = true;
+            blueprintsListView.Enabled = true;
+            inventionsLabel.Enabled = true;
+            inventionsListView.Enabled = true;
         }
 
         /// <summary>
@@ -13977,14 +12448,44 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void DisableTechItems()
         {
-            // 編集項目を無効化する
             ownedTechsLabel.Enabled = false;
             ownedTechsListView.Enabled = false;
             blueprintsLabel.Enabled = false;
             blueprintsListView.Enabled = false;
             inventionsLabel.Enabled = false;
             inventionsListView.Enabled = false;
+        }
 
+        /// <summary>
+        ///     技術の編集項目の表示を更新する
+        /// </summary>
+        private void UpdateTechItems()
+        {
+            Country country = GetSelectedTechCountry();
+            CountrySettings settings = Scenarios.GetCountrySettings(country);
+            TechGroup grp = GetSelectedTechGroup();
+
+            // 保有技術リスト
+            _techs = grp.Items.OfType<TechItem>().ToList();
+            UpdateOwnedTechList(settings);
+
+            // 青写真リスト
+            UpdateBlueprintList(settings);
+
+            // 発明イベントリスト
+            _inventions = Techs.Groups.SelectMany(g => g.Items.OfType<TechEvent>()).ToList();
+            UpdateInventionList(settings);
+
+            // 技術ツリーを更新する
+            _techTreePanelController.Category = grp.Category;
+            _techTreePanelController.Update();
+        }
+
+        /// <summary>
+        ///     技術の編集項目の表示をクリアする
+        /// </summary>
+        private void ClearTechItems()
+        {
             // 技術ツリーをクリアする
             _techTreePanelController.Clear();
 
@@ -13995,22 +12496,14 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     技術の編集項目を更新する
+        ///     保有技術リストの表示を更新する
         /// </summary>
-        private void UpdateTechItems()
+        /// <param name="settings">国家設定</param>
+        private void UpdateOwnedTechList(CountrySettings settings)
         {
-            Country country = GetSelectedTechCountry();
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-            TechGroup grp = GetSelectedTechGroup();
-
-            // 保有技術リスト/青写真リスト
-            _techs = grp.Items.OfType<TechItem>().ToList();
             ownedTechsListView.ItemChecked -= OnOwnedTechsListViewItemChecked;
-            blueprintsListView.ItemChecked -= OnBlueprintsListViewItemChecked;
             ownedTechsListView.BeginUpdate();
-            blueprintsListView.BeginUpdate();
             ownedTechsListView.Items.Clear();
-            blueprintsListView.Items.Clear();
             if (settings != null)
             {
                 foreach (TechItem item in _techs)
@@ -14023,6 +12516,34 @@ namespace HoI2Editor.Forms
                         ForeColor = settings.IsDirtyOwnedTech(item.Id) ? Color.Red : ownedTechsListView.ForeColor,
                         Tag = item
                     });
+                }
+            }
+            else
+            {
+                foreach (TechItem item in _techs)
+                {
+                    string name = item.ToString();
+                    ownedTechsListView.Items.Add(new ListViewItem { Text = name, Tag = item });
+                }
+            }
+            ownedTechsListView.EndUpdate();
+            ownedTechsListView.ItemChecked += OnOwnedTechsListViewItemChecked;
+        }
+
+        /// <summary>
+        ///     青写真リストの表示を更新する
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        private void UpdateBlueprintList(CountrySettings settings)
+        {
+            blueprintsListView.ItemChecked -= OnBlueprintsListViewItemChecked;
+            blueprintsListView.BeginUpdate();
+            blueprintsListView.Items.Clear();
+            if (settings != null)
+            {
+                foreach (TechItem item in _techs)
+                {
+                    string name = item.ToString();
                     blueprintsListView.Items.Add(new ListViewItem
                     {
                         Text = name,
@@ -14037,17 +12558,19 @@ namespace HoI2Editor.Forms
                 foreach (TechItem item in _techs)
                 {
                     string name = item.ToString();
-                    ownedTechsListView.Items.Add(new ListViewItem { Text = name, Tag = item });
                     blueprintsListView.Items.Add(new ListViewItem { Text = name, Tag = item });
                 }
             }
-            ownedTechsListView.EndUpdate();
             blueprintsListView.EndUpdate();
-            ownedTechsListView.ItemChecked += OnOwnedTechsListViewItemChecked;
             blueprintsListView.ItemChecked += OnBlueprintsListViewItemChecked;
+        }
 
-            // 発明イベントリスト
-            _inventions = Techs.Groups.SelectMany(g => g.Items.OfType<TechEvent>()).ToList();
+        /// <summary>
+        ///     発明イベントリストの表示を更新する
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        private void UpdateInventionList(CountrySettings settings)
+        {
             inventionsListView.ItemChecked -= OnInveitionsListViewItemChecked;
             inventionsListView.BeginUpdate();
             inventionsListView.Items.Clear();
@@ -14073,95 +12596,7 @@ namespace HoI2Editor.Forms
             }
             inventionsListView.EndUpdate();
             inventionsListView.ItemChecked += OnInveitionsListViewItemChecked;
-
-            // 技術ツリーを更新する
-            _techTreePanelController.Category = grp.Category;
-            _techTreePanelController.Update();
-
-            // 編集項目を有効化する
-            ownedTechsLabel.Enabled = true;
-            ownedTechsListView.Enabled = true;
-            blueprintsLabel.Enabled = true;
-            blueprintsListView.Enabled = true;
-            inventionsLabel.Enabled = true;
-            inventionsListView.Enabled = true;
         }
-
-        /// <summary>
-        ///     技術タブ選択時の処理
-        /// </summary>
-        private void OnTechTabPageSelected()
-        {
-            // 技術データの読み込み完了まで待機する
-            WaitLoadingTechs();
-        }
-
-        /// <summary>
-        ///     技術カテゴリリストボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTechCategoryListBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択中の国家がなければ編集項目を無効化する
-            Country country = GetSelectedTechCountry();
-            if (country == Country.None)
-            {
-                DisableTechItems();
-                return;
-            }
-
-            // 編集項目を更新する
-            UpdateTechItems();
-        }
-
-        /// <summary>
-        ///     国家リストボックスの選択項目変更時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTechCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
-        {
-            // 選択項目がなければ編集項目を無効化する
-            if (techCountryListBox.SelectedIndex < 0)
-            {
-                DisableTechItems();
-                return;
-            }
-
-            // 編集項目を更新する
-            UpdateTechItems();
-        }
-
-        /// <summary>
-        ///     選択中の技術グループを取得する
-        /// </summary>
-        /// <returns>選択中の技術グループ</returns>
-        private TechGroup GetSelectedTechGroup()
-        {
-            if (techCategoryListBox.SelectedIndex < 0)
-            {
-                return null;
-            }
-            return Techs.Groups[techCategoryListBox.SelectedIndex];
-        }
-
-        /// <summary>
-        ///     選択中の国家を取得する
-        /// </summary>
-        /// <returns>選択中の国家</returns>
-        private Country GetSelectedTechCountry()
-        {
-            if (techCountryListBox.SelectedIndex < 0)
-            {
-                return Country.None;
-            }
-            return Countries.Tags[techCountryListBox.SelectedIndex];
-        }
-
-        #endregion
-
-        #region 技術タブ - 編集項目
 
         /// <summary>
         ///     保有技術リストビューのチェック状態変更時の処理
@@ -14583,7 +13018,7 @@ namespace HoI2Editor.Forms
             }
 
             // プロヴィンスリストを初期化する
-            InitProvinceList();
+            _controller.InitProvinceList(provinceListView);
 
             // 国家フィルターを更新する
             UpdateProvinceCountryFilter();
@@ -14599,39 +13034,6 @@ namespace HoI2Editor.Forms
 
             // 初期化済みフラグをセットする
             _tabPageInitialized[(int) TabPageNo.Province] = true;
-        }
-
-        /// <summary>
-        ///     プロヴィンス名を取得する
-        /// </summary>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        /// <returns>プロヴィンス名</returns>
-        private static string GetProvinceName(Province province, ProvinceSettings settings)
-        {
-            if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
-            {
-                return Config.GetText(settings.Name);
-            }
-            return province.GetName();
-        }
-
-        /// <summary>
-        ///     プロヴィンス名を設定する
-        /// </summary>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        /// <param name="s">プロヴィンス名</param>
-        private static void SetProvinceName(Province province, ProvinceSettings settings, string s)
-        {
-            if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
-            {
-                Config.SetText(settings.Name, s, Game.ScenarioTextFileName);
-            }
-            else
-            {
-                province.SetName(s);
-            }
         }
 
         /// <summary>
@@ -14706,7 +13108,7 @@ namespace HoI2Editor.Forms
             }
 
             // 陸地プロヴィンスでなければ何もしない
-            if (_landProvinces.FindIndex(province => province.Id == e.Id) < 0)
+            if (_controller.GetLandProvinceIndex(e.Id) < 0)
             {
                 return;
             }
@@ -14825,11 +13227,12 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnProvinceCountryFilterComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            Country country = GetSelectedProvinceCountry();
+
             // プロヴィンスリストを更新する
-            UpdateProvinceList();
+            _controller.UpdateProvinceList(provinceListView, country);
 
             // マップフィルターを更新する
-            Country country = GetSelectedProvinceCountry();
             _mapPanelController.SelectedCountry = country;
 
             // プロヴィンス国家グループボックスの編集項目の表示を更新する
@@ -14869,7 +13272,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitProvinceIdTextBox()
         {
-            provinceIdTextBox.Tag = ItemId.ProvinceId;
+            _itemControls.Add(ScenarioEditorItemId.ProvinceId, provinceIdTextBox);
+
+            provinceIdTextBox.Tag = ScenarioEditorItemId.ProvinceId;
         }
 
         /// <summary>
@@ -14918,7 +13323,7 @@ namespace HoI2Editor.Forms
         private void SelectProvince(int id)
         {
             // プロヴィンスリストビューの選択項目を変更する
-            int index = _landProvinces.FindIndex(p => p.Id == id);
+            int index = _controller.GetLandProvinceIndex(id);
             if (index >= 0)
             {
                 ListViewItem item = provinceListView.Items[index];
@@ -14933,23 +13338,6 @@ namespace HoI2Editor.Forms
         #region プロヴィンスタブ - プロヴィンスリスト
 
         /// <summary>
-        ///     プロヴィンスリストを初期化する
-        /// </summary>
-        private void InitProvinceList()
-        {
-            // プロヴィンスリストビューを更新する
-            _landProvinces.Clear();
-            provinceListView.BeginUpdate();
-            provinceListView.Items.Clear();
-            foreach (Province province in Provinces.Items.Where(province => province.IsLand && (province.Id > 0)))
-            {
-                _landProvinces.Add(province);
-                provinceListView.Items.Add(CreateProvinceListItem(province));
-            }
-            provinceListView.EndUpdate();
-        }
-
-        /// <summary>
         ///     プロヴィンスリストを有効化する
         /// </summary>
         private void EnableProvinceList()
@@ -14958,63 +13346,23 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     プロヴィンスリストを更新する
+        ///     プロヴィンスリストビューの項目を追加する
         /// </summary>
-        private void UpdateProvinceList()
+        /// <param name="item">追加する項目</param>
+        public void AddProvinceListItem(ListViewItem item)
         {
-            Country country = GetSelectedProvinceCountry();
-            CountrySettings settings = Scenarios.GetCountrySettings(country);
-
-            // プロヴィンスリストビューを更新する
-            provinceListView.BeginUpdate();
-            if (settings != null)
-            {
-                foreach (ListViewItem item in provinceListView.Items)
-                {
-                    Province province = item.Tag as Province;
-                    if (province == null)
-                    {
-                        continue;
-                    }
-                    item.SubItems[2].Text = (province.Id == settings.Capital) ? Resources.Yes : "";
-                    item.SubItems[3].Text = settings.NationalProvinces.Contains(province.Id) ? Resources.Yes : "";
-                    item.SubItems[4].Text = settings.OwnedProvinces.Contains(province.Id) ? Resources.Yes : "";
-                    item.SubItems[5].Text = settings.ControlledProvinces.Contains(province.Id) ? Resources.Yes : "";
-                    item.SubItems[6].Text = settings.ClaimedProvinces.Contains(province.Id) ? Resources.Yes : "";
-                }
-            }
-            else
-            {
-                foreach (ListViewItem item in provinceListView.Items)
-                {
-                    item.SubItems[2].Text = "";
-                    item.SubItems[3].Text = "";
-                    item.SubItems[4].Text = "";
-                    item.SubItems[5].Text = "";
-                    item.SubItems[6].Text = "";
-                }
-            }
-            provinceListView.EndUpdate();
+            provinceListView.Items.Add(item);
         }
 
         /// <summary>
-        ///     プロヴィンスリストビューの項目を作成する
+        ///     プロヴィンスリストビューの項目文字列を設定する
         /// </summary>
-        /// <param name="province">プロヴィンスデータ</param>
-        /// <returns>プロヴィンスリストビューの項目</returns>
-        private static ListViewItem CreateProvinceListItem(Province province)
+        /// <param name="index">プロヴィンスリストビューのインデックス</param>
+        /// <param name="no">項目番号</param>
+        /// <param name="s">文字列</param>
+        public void SetProvinceListItemText(int index, int no, string s)
         {
-            ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
-
-            ListViewItem item = new ListViewItem { Text = IntHelper.ToString(province.Id), Tag = province };
-            item.SubItems.Add(GetProvinceName(province, settings));
-            item.SubItems.Add("");
-            item.SubItems.Add("");
-            item.SubItems.Add("");
-            item.SubItems.Add("");
-            item.SubItems.Add("");
-
-            return item;
+            provinceListView.Items[index].SubItems[no].Text = s;
         }
 
         /// <summary>
@@ -15087,11 +13435,17 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitProvinceCountryItems()
         {
-            capitalCheckBox.Tag = ItemId.CountryCapital;
-            coreProvinceCheckBox.Tag = ItemId.CountryCoreProvinces;
-            ownedProvinceCheckBox.Tag = ItemId.CountryOwnedProvinces;
-            controlledProvinceCheckBox.Tag = ItemId.CountryControlledProvinces;
-            claimedProvinceCheckBox.Tag = ItemId.CountryClaimedProvinces;
+            _itemControls.Add(ScenarioEditorItemId.CountryCapital, capitalCheckBox);
+            _itemControls.Add(ScenarioEditorItemId.CountryCoreProvinces, coreProvinceCheckBox);
+            _itemControls.Add(ScenarioEditorItemId.CountryOwnedProvinces, ownedProvinceCheckBox);
+            _itemControls.Add(ScenarioEditorItemId.CountryControlledProvinces, controlledProvinceCheckBox);
+            _itemControls.Add(ScenarioEditorItemId.CountryClaimedProvinces, claimedProvinceCheckBox);
+
+            capitalCheckBox.Tag = ScenarioEditorItemId.CountryCapital;
+            coreProvinceCheckBox.Tag = ScenarioEditorItemId.CountryCoreProvinces;
+            ownedProvinceCheckBox.Tag = ScenarioEditorItemId.CountryOwnedProvinces;
+            controlledProvinceCheckBox.Tag = ScenarioEditorItemId.CountryControlledProvinces;
+            claimedProvinceCheckBox.Tag = ScenarioEditorItemId.CountryClaimedProvinces;
         }
 
         /// <summary>
@@ -15117,17 +13471,17 @@ namespace HoI2Editor.Forms
         /// <param name="settings">国家設定</param>
         private void UpdateProvinceCountryItems(Province province, CountrySettings settings)
         {
-            UpdateItemValue(capitalCheckBox, province, settings);
-            UpdateItemValue(coreProvinceCheckBox, province, settings);
-            UpdateItemValue(ownedProvinceCheckBox, province, settings);
-            UpdateItemValue(controlledProvinceCheckBox, province, settings);
-            UpdateItemValue(claimedProvinceCheckBox, province, settings);
+            _controller.UpdateItemValue(capitalCheckBox, province, settings);
+            _controller.UpdateItemValue(coreProvinceCheckBox, province, settings);
+            _controller.UpdateItemValue(ownedProvinceCheckBox, province, settings);
+            _controller.UpdateItemValue(controlledProvinceCheckBox, province, settings);
+            _controller.UpdateItemValue(claimedProvinceCheckBox, province, settings);
 
-            UpdateItemColor(capitalCheckBox, province, settings);
-            UpdateItemColor(coreProvinceCheckBox, province, settings);
-            UpdateItemColor(ownedProvinceCheckBox, province, settings);
-            UpdateItemColor(controlledProvinceCheckBox, province, settings);
-            UpdateItemColor(claimedProvinceCheckBox, province, settings);
+            _controller.UpdateItemColor(capitalCheckBox, province, settings);
+            _controller.UpdateItemColor(coreProvinceCheckBox, province, settings);
+            _controller.UpdateItemColor(ownedProvinceCheckBox, province, settings);
+            _controller.UpdateItemColor(controlledProvinceCheckBox, province, settings);
+            _controller.UpdateItemColor(claimedProvinceCheckBox, province, settings);
         }
 
         /// <summary>
@@ -15151,9 +13505,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitProvinceInfoItems()
         {
-            provinceNameTextBox.Tag = ItemId.ProvinceName;
-            vpTextBox.Tag = ItemId.ProvinceVp;
-            revoltRiskTextBox.Tag = ItemId.ProvinceRevoltRisk;
+            _itemControls.Add(ScenarioEditorItemId.ProvinceName, provinceNameTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceVp, vpTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceRevoltRisk, revoltRiskTextBox);
+
+            provinceNameTextBox.Tag = ScenarioEditorItemId.ProvinceName;
+            vpTextBox.Tag = ScenarioEditorItemId.ProvinceVp;
+            revoltRiskTextBox.Tag = ScenarioEditorItemId.ProvinceRevoltRisk;
         }
 
         /// <summary>
@@ -15179,14 +13537,14 @@ namespace HoI2Editor.Forms
         /// <param name="settings">プロヴィンス設定</param>
         private void UpdateProvinceInfoItems(Province province, ProvinceSettings settings)
         {
-            UpdateItemValue(provinceIdTextBox, province);
-            UpdateItemValue(provinceNameTextBox, province, settings);
-            UpdateItemValue(vpTextBox, settings);
-            UpdateItemValue(revoltRiskTextBox, settings);
+            _controller.UpdateItemValue(provinceIdTextBox, province);
+            _controller.UpdateItemValue(provinceNameTextBox, province, settings);
+            _controller.UpdateItemValue(vpTextBox, settings);
+            _controller.UpdateItemValue(revoltRiskTextBox, settings);
 
-            UpdateItemColor(provinceNameTextBox, province, settings);
-            UpdateItemColor(vpTextBox, settings);
-            UpdateItemColor(revoltRiskTextBox, settings);
+            _controller.UpdateItemColor(provinceNameTextBox, province, settings);
+            _controller.UpdateItemColor(vpTextBox, settings);
+            _controller.UpdateItemColor(revoltRiskTextBox, settings);
         }
 
         /// <summary>
@@ -15218,21 +13576,37 @@ namespace HoI2Editor.Forms
             provinceSuppliesLabel.Text = Config.GetText(TextId.ResourceSupplies);
 
             // 編集項目
-            manpowerCurrentTextBox.Tag = ItemId.ProvinceManpowerCurrent;
-            manpowerMaxTextBox.Tag = ItemId.ProvinceManpowerMax;
-            energyPoolTextBox.Tag = ItemId.ProvinceEnergyPool;
-            energyCurrentTextBox.Tag = ItemId.ProvinceEnergyCurrent;
-            energyMaxTextBox.Tag = ItemId.ProvinceEnergyMax;
-            metalPoolTextBox.Tag = ItemId.ProvinceMetalPool;
-            metalCurrentTextBox.Tag = ItemId.ProvinceMetalCurrent;
-            metalMaxTextBox.Tag = ItemId.ProvinceMetalMax;
-            rareMaterialsPoolTextBox.Tag = ItemId.ProvinceRareMaterialsPool;
-            rareMaterialsCurrentTextBox.Tag = ItemId.ProvinceRareMaterialsCurrent;
-            rareMaterialsMaxTextBox.Tag = ItemId.ProvinceRareMaterialsMax;
-            oilPoolTextBox.Tag = ItemId.ProvinceOilPool;
-            oilCurrentTextBox.Tag = ItemId.ProvinceOilCurrent;
-            oilMaxTextBox.Tag = ItemId.ProvinceOilMax;
-            suppliesPoolTextBox.Tag = ItemId.ProvinceSupplyPool;
+            _itemControls.Add(ScenarioEditorItemId.ProvinceManpowerCurrent, manpowerCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceManpowerMax, manpowerMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceEnergyPool, energyPoolTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceEnergyCurrent, energyCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceEnergyMax, energyMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceMetalPool, metalPoolTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceMetalCurrent, metalCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceMetalMax, metalMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceRareMaterialsPool, rareMaterialsPoolTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceRareMaterialsCurrent, rareMaterialsCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceRareMaterialsMax, rareMaterialsMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceOilPool, oilPoolTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceOilCurrent, oilCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceOilMax, oilMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceSupplyPool, suppliesPoolTextBox);
+
+            manpowerCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceManpowerCurrent;
+            manpowerMaxTextBox.Tag = ScenarioEditorItemId.ProvinceManpowerMax;
+            energyPoolTextBox.Tag = ScenarioEditorItemId.ProvinceEnergyPool;
+            energyCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceEnergyCurrent;
+            energyMaxTextBox.Tag = ScenarioEditorItemId.ProvinceEnergyMax;
+            metalPoolTextBox.Tag = ScenarioEditorItemId.ProvinceMetalPool;
+            metalCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceMetalCurrent;
+            metalMaxTextBox.Tag = ScenarioEditorItemId.ProvinceMetalMax;
+            rareMaterialsPoolTextBox.Tag = ScenarioEditorItemId.ProvinceRareMaterialsPool;
+            rareMaterialsCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceRareMaterialsCurrent;
+            rareMaterialsMaxTextBox.Tag = ScenarioEditorItemId.ProvinceRareMaterialsMax;
+            oilPoolTextBox.Tag = ScenarioEditorItemId.ProvinceOilPool;
+            oilCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceOilCurrent;
+            oilMaxTextBox.Tag = ScenarioEditorItemId.ProvinceOilMax;
+            suppliesPoolTextBox.Tag = ScenarioEditorItemId.ProvinceSupplyPool;
         }
 
         /// <summary>
@@ -15257,37 +13631,37 @@ namespace HoI2Editor.Forms
         /// <param name="settings">プロヴィンス設定</param>
         private void UpdateProvinceResourceItems(ProvinceSettings settings)
         {
-            UpdateItemValue(manpowerCurrentTextBox, settings);
-            UpdateItemValue(manpowerMaxTextBox, settings);
-            UpdateItemValue(energyPoolTextBox, settings);
-            UpdateItemValue(energyCurrentTextBox, settings);
-            UpdateItemValue(energyMaxTextBox, settings);
-            UpdateItemValue(metalPoolTextBox, settings);
-            UpdateItemValue(metalCurrentTextBox, settings);
-            UpdateItemValue(metalMaxTextBox, settings);
-            UpdateItemValue(rareMaterialsPoolTextBox, settings);
-            UpdateItemValue(rareMaterialsCurrentTextBox, settings);
-            UpdateItemValue(rareMaterialsMaxTextBox, settings);
-            UpdateItemValue(oilPoolTextBox, settings);
-            UpdateItemValue(oilCurrentTextBox, settings);
-            UpdateItemValue(oilMaxTextBox, settings);
-            UpdateItemValue(suppliesPoolTextBox, settings);
+            _controller.UpdateItemValue(manpowerCurrentTextBox, settings);
+            _controller.UpdateItemValue(manpowerMaxTextBox, settings);
+            _controller.UpdateItemValue(energyPoolTextBox, settings);
+            _controller.UpdateItemValue(energyCurrentTextBox, settings);
+            _controller.UpdateItemValue(energyMaxTextBox, settings);
+            _controller.UpdateItemValue(metalPoolTextBox, settings);
+            _controller.UpdateItemValue(metalCurrentTextBox, settings);
+            _controller.UpdateItemValue(metalMaxTextBox, settings);
+            _controller.UpdateItemValue(rareMaterialsPoolTextBox, settings);
+            _controller.UpdateItemValue(rareMaterialsCurrentTextBox, settings);
+            _controller.UpdateItemValue(rareMaterialsMaxTextBox, settings);
+            _controller.UpdateItemValue(oilPoolTextBox, settings);
+            _controller.UpdateItemValue(oilCurrentTextBox, settings);
+            _controller.UpdateItemValue(oilMaxTextBox, settings);
+            _controller.UpdateItemValue(suppliesPoolTextBox, settings);
 
-            UpdateItemColor(manpowerCurrentTextBox, settings);
-            UpdateItemColor(manpowerMaxTextBox, settings);
-            UpdateItemColor(energyPoolTextBox, settings);
-            UpdateItemColor(energyCurrentTextBox, settings);
-            UpdateItemColor(energyMaxTextBox, settings);
-            UpdateItemColor(metalPoolTextBox, settings);
-            UpdateItemColor(metalCurrentTextBox, settings);
-            UpdateItemColor(metalMaxTextBox, settings);
-            UpdateItemColor(rareMaterialsPoolTextBox, settings);
-            UpdateItemColor(rareMaterialsCurrentTextBox, settings);
-            UpdateItemColor(rareMaterialsMaxTextBox, settings);
-            UpdateItemColor(oilPoolTextBox, settings);
-            UpdateItemColor(oilCurrentTextBox, settings);
-            UpdateItemColor(oilMaxTextBox, settings);
-            UpdateItemColor(suppliesPoolTextBox, settings);
+            _controller.UpdateItemColor(manpowerCurrentTextBox, settings);
+            _controller.UpdateItemColor(manpowerMaxTextBox, settings);
+            _controller.UpdateItemColor(energyPoolTextBox, settings);
+            _controller.UpdateItemColor(energyCurrentTextBox, settings);
+            _controller.UpdateItemColor(energyMaxTextBox, settings);
+            _controller.UpdateItemColor(metalPoolTextBox, settings);
+            _controller.UpdateItemColor(metalCurrentTextBox, settings);
+            _controller.UpdateItemColor(metalMaxTextBox, settings);
+            _controller.UpdateItemColor(rareMaterialsPoolTextBox, settings);
+            _controller.UpdateItemColor(rareMaterialsCurrentTextBox, settings);
+            _controller.UpdateItemColor(rareMaterialsMaxTextBox, settings);
+            _controller.UpdateItemColor(oilPoolTextBox, settings);
+            _controller.UpdateItemColor(oilCurrentTextBox, settings);
+            _controller.UpdateItemColor(oilMaxTextBox, settings);
+            _controller.UpdateItemColor(suppliesPoolTextBox, settings);
         }
 
         /// <summary>
@@ -15321,45 +13695,85 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitProvinceBuildingItems()
         {
-            icCurrentTextBox.Tag = ItemId.ProvinceIcCurrent;
-            icMaxTextBox.Tag = ItemId.ProvinceIcMax;
-            icRelativeTextBox.Tag = ItemId.ProvinceIcRelative;
-            infrastructureCurrentTextBox.Tag = ItemId.ProvinceInfrastructureCurrent;
-            infrastructureMaxTextBox.Tag = ItemId.ProvinceInfrastructureMax;
-            infrastructureRelativeTextBox.Tag = ItemId.ProvinceInfrastructureRelative;
-            landFortCurrentTextBox.Tag = ItemId.ProvinceLandFortCurrent;
-            landFortMaxTextBox.Tag = ItemId.ProvinceLandFortMax;
-            landFortRelativeTextBox.Tag = ItemId.ProvinceLandFortRelative;
-            coastalFortCurrentTextBox.Tag = ItemId.ProvinceCoastalFortCurrent;
-            coastalFortMaxTextBox.Tag = ItemId.ProvinceCoastalFortMax;
-            coastalFortRelativeTextBox.Tag = ItemId.ProvinceCoastalFortRelative;
-            antiAirCurrentTextBox.Tag = ItemId.ProvinceAntiAirCurrent;
-            antiAirMaxTextBox.Tag = ItemId.ProvinceAntiAirMax;
-            antiAirRelativeTextBox.Tag = ItemId.ProvinceAntiAirRelative;
-            airBaseCurrentTextBox.Tag = ItemId.ProvinceAirBaseCurrent;
-            airBaseMaxTextBox.Tag = ItemId.ProvinceAirBaseMax;
-            airBaseRelativeTextBox.Tag = ItemId.ProvinceAirBaseRelative;
-            navalBaseCurrentTextBox.Tag = ItemId.ProvinceNavalBaseCurrent;
-            navalBaseMaxTextBox.Tag = ItemId.ProvinceNavalBaseMax;
-            navalBaseRelativeTextBox.Tag = ItemId.ProvinceNavalBaseRelative;
-            radarStationCurrentTextBox.Tag = ItemId.ProvinceRadarStationCurrent;
-            radarStationMaxTextBox.Tag = ItemId.ProvinceRadarStationMax;
-            radarStationRelativeTextBox.Tag = ItemId.ProvinceRadarStationRelative;
-            nuclearReactorCurrentTextBox.Tag = ItemId.ProvinceNuclearReactorCurrent;
-            nuclearReactorMaxTextBox.Tag = ItemId.ProvinceNuclearReactorMax;
-            nuclearReactorRelativeTextBox.Tag = ItemId.ProvinceNuclearReactorRelative;
-            rocketTestCurrentTextBox.Tag = ItemId.ProvinceRocketTestCurrent;
-            rocketTestMaxTextBox.Tag = ItemId.ProvinceRocketTestMax;
-            rocketTestRelativeTextBox.Tag = ItemId.ProvinceRocketTestRelative;
-            syntheticOilCurrentTextBox.Tag = ItemId.ProvinceSyntheticOilCurrent;
-            syntheticOilMaxTextBox.Tag = ItemId.ProvinceSyntheticOilMax;
-            syntheticOilRelativeTextBox.Tag = ItemId.ProvinceSyntheticOilRelative;
-            syntheticRaresCurrentTextBox.Tag = ItemId.ProvinceSyntheticRaresCurrent;
-            syntheticRaresMaxTextBox.Tag = ItemId.ProvinceSyntheticRaresMax;
-            syntheticRaresRelativeTextBox.Tag = ItemId.ProvinceSyntheticRaresRelative;
-            nuclearPowerCurrentTextBox.Tag = ItemId.ProvinceNuclearPowerCurrent;
-            nuclearPowerMaxTextBox.Tag = ItemId.ProvinceNuclearPowerMax;
-            nuclearPowerRelativeTextBox.Tag = ItemId.ProvinceNuclearPowerRelative;
+            _itemControls.Add(ScenarioEditorItemId.ProvinceIcCurrent, icCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceIcMax, icMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceIcRelative, icRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceInfrastructureCurrent, infrastructureCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceInfrastructureMax, infrastructureMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceInfrastructureRelative, infrastructureRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceLandFortCurrent, landFortCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceLandFortMax, landFortMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceLandFortRelative, landFortRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceCoastalFortCurrent, coastalFortCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceCoastalFortMax, coastalFortMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceCoastalFortRelative, coastalFortRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceAntiAirCurrent, antiAirCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceAntiAirMax, antiAirMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceAntiAirRelative, antiAirRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceAirBaseCurrent, airBaseCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceAirBaseMax, airBaseMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceAirBaseRelative, airBaseRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNavalBaseCurrent, navalBaseCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNavalBaseMax, navalBaseMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNavalBaseRelative, navalBaseRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceRadarStationCurrent, radarStationCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceRadarStationMax, radarStationMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceRadarStationRelative, radarStationRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNuclearReactorCurrent, nuclearReactorCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNuclearReactorMax, nuclearReactorMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNuclearReactorRelative, nuclearReactorRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceRocketTestCurrent, rocketTestCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceRocketTestMax, rocketTestMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceRocketTestRelative, rocketTestRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceSyntheticOilCurrent, syntheticOilCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceSyntheticOilMax, syntheticOilMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceSyntheticOilRelative, syntheticOilRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceSyntheticRaresCurrent, syntheticRaresCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceSyntheticRaresMax, syntheticRaresMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceSyntheticRaresRelative, syntheticRaresRelativeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNuclearPowerCurrent, nuclearPowerCurrentTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNuclearPowerMax, nuclearPowerMaxTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNuclearPowerRelative, nuclearPowerRelativeTextBox);
+
+            icCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceIcCurrent;
+            icMaxTextBox.Tag = ScenarioEditorItemId.ProvinceIcMax;
+            icRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceIcRelative;
+            infrastructureCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceInfrastructureCurrent;
+            infrastructureMaxTextBox.Tag = ScenarioEditorItemId.ProvinceInfrastructureMax;
+            infrastructureRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceInfrastructureRelative;
+            landFortCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceLandFortCurrent;
+            landFortMaxTextBox.Tag = ScenarioEditorItemId.ProvinceLandFortMax;
+            landFortRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceLandFortRelative;
+            coastalFortCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceCoastalFortCurrent;
+            coastalFortMaxTextBox.Tag = ScenarioEditorItemId.ProvinceCoastalFortMax;
+            coastalFortRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceCoastalFortRelative;
+            antiAirCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceAntiAirCurrent;
+            antiAirMaxTextBox.Tag = ScenarioEditorItemId.ProvinceAntiAirMax;
+            antiAirRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceAntiAirRelative;
+            airBaseCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceAirBaseCurrent;
+            airBaseMaxTextBox.Tag = ScenarioEditorItemId.ProvinceAirBaseMax;
+            airBaseRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceAirBaseRelative;
+            navalBaseCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceNavalBaseCurrent;
+            navalBaseMaxTextBox.Tag = ScenarioEditorItemId.ProvinceNavalBaseMax;
+            navalBaseRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceNavalBaseRelative;
+            radarStationCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceRadarStationCurrent;
+            radarStationMaxTextBox.Tag = ScenarioEditorItemId.ProvinceRadarStationMax;
+            radarStationRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceRadarStationRelative;
+            nuclearReactorCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceNuclearReactorCurrent;
+            nuclearReactorMaxTextBox.Tag = ScenarioEditorItemId.ProvinceNuclearReactorMax;
+            nuclearReactorRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceNuclearReactorRelative;
+            rocketTestCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceRocketTestCurrent;
+            rocketTestMaxTextBox.Tag = ScenarioEditorItemId.ProvinceRocketTestMax;
+            rocketTestRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceRocketTestRelative;
+            syntheticOilCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceSyntheticOilCurrent;
+            syntheticOilMaxTextBox.Tag = ScenarioEditorItemId.ProvinceSyntheticOilMax;
+            syntheticOilRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceSyntheticOilRelative;
+            syntheticRaresCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceSyntheticRaresCurrent;
+            syntheticRaresMaxTextBox.Tag = ScenarioEditorItemId.ProvinceSyntheticRaresMax;
+            syntheticRaresRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceSyntheticRaresRelative;
+            nuclearPowerCurrentTextBox.Tag = ScenarioEditorItemId.ProvinceNuclearPowerCurrent;
+            nuclearPowerMaxTextBox.Tag = ScenarioEditorItemId.ProvinceNuclearPowerMax;
+            nuclearPowerRelativeTextBox.Tag = ScenarioEditorItemId.ProvinceNuclearPowerRelative;
         }
 
         /// <summary>
@@ -15384,85 +13798,85 @@ namespace HoI2Editor.Forms
         /// <param name="settings">プロヴィンス設定</param>
         private void UpdateProvinceBuildingItems(ProvinceSettings settings)
         {
-            UpdateItemValue(icCurrentTextBox, settings);
-            UpdateItemValue(icMaxTextBox, settings);
-            UpdateItemValue(icRelativeTextBox, settings);
-            UpdateItemValue(infrastructureCurrentTextBox, settings);
-            UpdateItemValue(infrastructureMaxTextBox, settings);
-            UpdateItemValue(infrastructureRelativeTextBox, settings);
-            UpdateItemValue(landFortCurrentTextBox, settings);
-            UpdateItemValue(landFortMaxTextBox, settings);
-            UpdateItemValue(landFortRelativeTextBox, settings);
-            UpdateItemValue(coastalFortCurrentTextBox, settings);
-            UpdateItemValue(coastalFortMaxTextBox, settings);
-            UpdateItemValue(coastalFortRelativeTextBox, settings);
-            UpdateItemValue(antiAirCurrentTextBox, settings);
-            UpdateItemValue(antiAirMaxTextBox, settings);
-            UpdateItemValue(antiAirRelativeTextBox, settings);
-            UpdateItemValue(airBaseCurrentTextBox, settings);
-            UpdateItemValue(airBaseMaxTextBox, settings);
-            UpdateItemValue(airBaseRelativeTextBox, settings);
-            UpdateItemValue(navalBaseCurrentTextBox, settings);
-            UpdateItemValue(navalBaseMaxTextBox, settings);
-            UpdateItemValue(navalBaseRelativeTextBox, settings);
-            UpdateItemValue(radarStationCurrentTextBox, settings);
-            UpdateItemValue(radarStationMaxTextBox, settings);
-            UpdateItemValue(radarStationRelativeTextBox, settings);
-            UpdateItemValue(nuclearReactorCurrentTextBox, settings);
-            UpdateItemValue(nuclearReactorMaxTextBox, settings);
-            UpdateItemValue(nuclearReactorRelativeTextBox, settings);
-            UpdateItemValue(rocketTestCurrentTextBox, settings);
-            UpdateItemValue(rocketTestMaxTextBox, settings);
-            UpdateItemValue(rocketTestRelativeTextBox, settings);
-            UpdateItemValue(syntheticOilCurrentTextBox, settings);
-            UpdateItemValue(syntheticOilMaxTextBox, settings);
-            UpdateItemValue(syntheticOilRelativeTextBox, settings);
-            UpdateItemValue(syntheticRaresCurrentTextBox, settings);
-            UpdateItemValue(syntheticRaresMaxTextBox, settings);
-            UpdateItemValue(syntheticRaresRelativeTextBox, settings);
-            UpdateItemValue(nuclearPowerCurrentTextBox, settings);
-            UpdateItemValue(nuclearPowerMaxTextBox, settings);
-            UpdateItemValue(nuclearPowerRelativeTextBox, settings);
+            _controller.UpdateItemValue(icCurrentTextBox, settings);
+            _controller.UpdateItemValue(icMaxTextBox, settings);
+            _controller.UpdateItemValue(icRelativeTextBox, settings);
+            _controller.UpdateItemValue(infrastructureCurrentTextBox, settings);
+            _controller.UpdateItemValue(infrastructureMaxTextBox, settings);
+            _controller.UpdateItemValue(infrastructureRelativeTextBox, settings);
+            _controller.UpdateItemValue(landFortCurrentTextBox, settings);
+            _controller.UpdateItemValue(landFortMaxTextBox, settings);
+            _controller.UpdateItemValue(landFortRelativeTextBox, settings);
+            _controller.UpdateItemValue(coastalFortCurrentTextBox, settings);
+            _controller.UpdateItemValue(coastalFortMaxTextBox, settings);
+            _controller.UpdateItemValue(coastalFortRelativeTextBox, settings);
+            _controller.UpdateItemValue(antiAirCurrentTextBox, settings);
+            _controller.UpdateItemValue(antiAirMaxTextBox, settings);
+            _controller.UpdateItemValue(antiAirRelativeTextBox, settings);
+            _controller.UpdateItemValue(airBaseCurrentTextBox, settings);
+            _controller.UpdateItemValue(airBaseMaxTextBox, settings);
+            _controller.UpdateItemValue(airBaseRelativeTextBox, settings);
+            _controller.UpdateItemValue(navalBaseCurrentTextBox, settings);
+            _controller.UpdateItemValue(navalBaseMaxTextBox, settings);
+            _controller.UpdateItemValue(navalBaseRelativeTextBox, settings);
+            _controller.UpdateItemValue(radarStationCurrentTextBox, settings);
+            _controller.UpdateItemValue(radarStationMaxTextBox, settings);
+            _controller.UpdateItemValue(radarStationRelativeTextBox, settings);
+            _controller.UpdateItemValue(nuclearReactorCurrentTextBox, settings);
+            _controller.UpdateItemValue(nuclearReactorMaxTextBox, settings);
+            _controller.UpdateItemValue(nuclearReactorRelativeTextBox, settings);
+            _controller.UpdateItemValue(rocketTestCurrentTextBox, settings);
+            _controller.UpdateItemValue(rocketTestMaxTextBox, settings);
+            _controller.UpdateItemValue(rocketTestRelativeTextBox, settings);
+            _controller.UpdateItemValue(syntheticOilCurrentTextBox, settings);
+            _controller.UpdateItemValue(syntheticOilMaxTextBox, settings);
+            _controller.UpdateItemValue(syntheticOilRelativeTextBox, settings);
+            _controller.UpdateItemValue(syntheticRaresCurrentTextBox, settings);
+            _controller.UpdateItemValue(syntheticRaresMaxTextBox, settings);
+            _controller.UpdateItemValue(syntheticRaresRelativeTextBox, settings);
+            _controller.UpdateItemValue(nuclearPowerCurrentTextBox, settings);
+            _controller.UpdateItemValue(nuclearPowerMaxTextBox, settings);
+            _controller.UpdateItemValue(nuclearPowerRelativeTextBox, settings);
 
-            UpdateItemColor(icCurrentTextBox, settings);
-            UpdateItemColor(icMaxTextBox, settings);
-            UpdateItemColor(icRelativeTextBox, settings);
-            UpdateItemColor(infrastructureCurrentTextBox, settings);
-            UpdateItemColor(infrastructureMaxTextBox, settings);
-            UpdateItemColor(infrastructureRelativeTextBox, settings);
-            UpdateItemColor(landFortCurrentTextBox, settings);
-            UpdateItemColor(landFortMaxTextBox, settings);
-            UpdateItemColor(landFortRelativeTextBox, settings);
-            UpdateItemColor(coastalFortCurrentTextBox, settings);
-            UpdateItemColor(coastalFortMaxTextBox, settings);
-            UpdateItemColor(coastalFortRelativeTextBox, settings);
-            UpdateItemColor(antiAirCurrentTextBox, settings);
-            UpdateItemColor(antiAirMaxTextBox, settings);
-            UpdateItemColor(antiAirRelativeTextBox, settings);
-            UpdateItemColor(airBaseCurrentTextBox, settings);
-            UpdateItemColor(airBaseMaxTextBox, settings);
-            UpdateItemColor(airBaseRelativeTextBox, settings);
-            UpdateItemColor(navalBaseCurrentTextBox, settings);
-            UpdateItemColor(navalBaseMaxTextBox, settings);
-            UpdateItemColor(navalBaseRelativeTextBox, settings);
-            UpdateItemColor(radarStationCurrentTextBox, settings);
-            UpdateItemColor(radarStationMaxTextBox, settings);
-            UpdateItemColor(radarStationRelativeTextBox, settings);
-            UpdateItemColor(nuclearReactorCurrentTextBox, settings);
-            UpdateItemColor(nuclearReactorMaxTextBox, settings);
-            UpdateItemColor(nuclearReactorRelativeTextBox, settings);
-            UpdateItemColor(rocketTestCurrentTextBox, settings);
-            UpdateItemColor(rocketTestMaxTextBox, settings);
-            UpdateItemColor(rocketTestRelativeTextBox, settings);
-            UpdateItemColor(syntheticOilCurrentTextBox, settings);
-            UpdateItemColor(syntheticOilMaxTextBox, settings);
-            UpdateItemColor(syntheticOilRelativeTextBox, settings);
-            UpdateItemColor(syntheticRaresCurrentTextBox, settings);
-            UpdateItemColor(syntheticRaresMaxTextBox, settings);
-            UpdateItemColor(syntheticRaresRelativeTextBox, settings);
-            UpdateItemColor(nuclearPowerCurrentTextBox, settings);
-            UpdateItemColor(nuclearPowerMaxTextBox, settings);
-            UpdateItemColor(nuclearPowerRelativeTextBox, settings);
+            _controller.UpdateItemColor(icCurrentTextBox, settings);
+            _controller.UpdateItemColor(icMaxTextBox, settings);
+            _controller.UpdateItemColor(icRelativeTextBox, settings);
+            _controller.UpdateItemColor(infrastructureCurrentTextBox, settings);
+            _controller.UpdateItemColor(infrastructureMaxTextBox, settings);
+            _controller.UpdateItemColor(infrastructureRelativeTextBox, settings);
+            _controller.UpdateItemColor(landFortCurrentTextBox, settings);
+            _controller.UpdateItemColor(landFortMaxTextBox, settings);
+            _controller.UpdateItemColor(landFortRelativeTextBox, settings);
+            _controller.UpdateItemColor(coastalFortCurrentTextBox, settings);
+            _controller.UpdateItemColor(coastalFortMaxTextBox, settings);
+            _controller.UpdateItemColor(coastalFortRelativeTextBox, settings);
+            _controller.UpdateItemColor(antiAirCurrentTextBox, settings);
+            _controller.UpdateItemColor(antiAirMaxTextBox, settings);
+            _controller.UpdateItemColor(antiAirRelativeTextBox, settings);
+            _controller.UpdateItemColor(airBaseCurrentTextBox, settings);
+            _controller.UpdateItemColor(airBaseMaxTextBox, settings);
+            _controller.UpdateItemColor(airBaseRelativeTextBox, settings);
+            _controller.UpdateItemColor(navalBaseCurrentTextBox, settings);
+            _controller.UpdateItemColor(navalBaseMaxTextBox, settings);
+            _controller.UpdateItemColor(navalBaseRelativeTextBox, settings);
+            _controller.UpdateItemColor(radarStationCurrentTextBox, settings);
+            _controller.UpdateItemColor(radarStationMaxTextBox, settings);
+            _controller.UpdateItemColor(radarStationRelativeTextBox, settings);
+            _controller.UpdateItemColor(nuclearReactorCurrentTextBox, settings);
+            _controller.UpdateItemColor(nuclearReactorMaxTextBox, settings);
+            _controller.UpdateItemColor(nuclearReactorRelativeTextBox, settings);
+            _controller.UpdateItemColor(rocketTestCurrentTextBox, settings);
+            _controller.UpdateItemColor(rocketTestMaxTextBox, settings);
+            _controller.UpdateItemColor(rocketTestRelativeTextBox, settings);
+            _controller.UpdateItemColor(syntheticOilCurrentTextBox, settings);
+            _controller.UpdateItemColor(syntheticOilMaxTextBox, settings);
+            _controller.UpdateItemColor(syntheticOilRelativeTextBox, settings);
+            _controller.UpdateItemColor(syntheticRaresCurrentTextBox, settings);
+            _controller.UpdateItemColor(syntheticRaresMaxTextBox, settings);
+            _controller.UpdateItemColor(syntheticRaresRelativeTextBox, settings);
+            _controller.UpdateItemColor(nuclearPowerCurrentTextBox, settings);
+            _controller.UpdateItemColor(nuclearPowerMaxTextBox, settings);
+            _controller.UpdateItemColor(nuclearPowerRelativeTextBox, settings);
         }
 
         /// <summary>
@@ -15534,7 +13948,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            ItemId itemId = (ItemId) control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
 
             ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
 
@@ -15542,7 +13956,7 @@ namespace HoI2Editor.Forms
             int val;
             if (!IntHelper.TryParse(control.Text, out val))
             {
-                UpdateItemValue(control, settings);
+                _controller.UpdateItemValue(control, settings);
                 return;
             }
 
@@ -15553,7 +13967,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            object prev = GetItemValue(itemId, settings);
+            object prev = _controller.GetItemValue(itemId, settings);
             if ((prev != null) && (val == (int) prev))
             {
                 return;
@@ -15565,19 +13979,19 @@ namespace HoI2Editor.Forms
                 Scenarios.AddProvinceSettings(settings);
             }
 
-            OutputItemValueChangedLog(itemId, val, settings);
+            _controller.OutputItemValueChangedLog(itemId, val, settings);
 
             // 値を更新する
-            SetItemValue(itemId, val, settings);
+            _controller.SetItemValue(itemId, val, settings);
 
             // 編集済みフラグを設定する
-            SetItemDirty(itemId, settings);
+            _controller.SetItemDirty(itemId, settings);
 
             // 文字色を変更する
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            PostItemChanged(itemId, val, settings);
+            _controller.PostItemChanged(itemId, val, settings);
         }
 
         /// <summary>
@@ -15599,7 +14013,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            ItemId itemId = (ItemId) control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
 
             ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
 
@@ -15607,7 +14021,7 @@ namespace HoI2Editor.Forms
             double val;
             if (!DoubleHelper.TryParse(control.Text, out val))
             {
-                UpdateItemValue(control, settings);
+                _controller.UpdateItemValue(control, settings);
                 return;
             }
 
@@ -15618,7 +14032,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            object prev = GetItemValue(itemId, settings);
+            object prev = _controller.GetItemValue(itemId, settings);
             if ((prev != null) && DoubleHelper.IsEqual(val, (double) prev))
             {
                 return;
@@ -15630,22 +14044,22 @@ namespace HoI2Editor.Forms
                 Scenarios.AddProvinceSettings(settings);
             }
 
-            OutputItemValueChangedLog(itemId, val, settings);
+            _controller.OutputItemValueChangedLog(itemId, val, settings);
 
             // 項目値変更前の処理
-            PreItemChanged(itemId, settings);
+            _controller.PreItemChanged(itemId, settings);
 
             // 値を更新する
-            SetItemValue(itemId, val, settings);
+            _controller.SetItemValue(itemId, val, settings);
 
             // 編集済みフラグを設定する
-            SetItemDirty(itemId, settings);
+            _controller.SetItemDirty(itemId, settings);
 
             // 文字色を変更する
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            PostItemChanged(itemId, val, settings);
+            _controller.PostItemChanged(itemId, val, settings);
         }
 
         /// <summary>
@@ -15667,7 +14081,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            ItemId itemId = (ItemId) control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
 
             ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
 
@@ -15679,18 +14093,18 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            if (val.Equals(GetItemValue(itemId, province, settings)))
+            if (val.Equals(_controller.GetItemValue(itemId, province, settings)))
             {
                 return;
             }
 
-            OutputItemValueChangedLog(itemId, val, province, settings);
+            _controller.OutputItemValueChangedLog(itemId, val, province, settings);
 
             // 値を更新する
-            SetItemValue(itemId, val, province, settings);
+            _controller.SetItemValue(itemId, val, province, settings);
 
             // 編集済みフラグを設定する
-            SetItemDirty(itemId, province, settings);
+            _controller.SetItemDirty(itemId, province, settings);
 
             // 文字色を変更する
             control.ForeColor = Color.Red;
@@ -15720,7 +14134,7 @@ namespace HoI2Editor.Forms
             {
                 return;
             }
-            ItemId itemId = (ItemId) control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
 
             CountrySettings settings = Scenarios.GetCountrySettings(country);
 
@@ -15732,7 +14146,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            object prev = GetItemValue(itemId, province, settings);
+            object prev = _controller.GetItemValue(itemId, province, settings);
             if ((prev != null) && (val == (bool) prev))
             {
                 return;
@@ -15744,3111 +14158,31 @@ namespace HoI2Editor.Forms
                 Scenarios.SetCountrySettings(settings);
             }
 
-            OutputItemValueChangedLog(itemId, val, province, settings);
+            _controller.OutputItemValueChangedLog(itemId, val, province, settings);
 
             // 項目値変更前の処理
-            PreItemChanged(itemId, val, province, settings);
+            _controller.PreItemChanged(itemId, val, province, settings);
 
             // 値を更新する
-            SetItemValue(itemId, val, province, settings);
+            _controller.SetItemValue(itemId, val, province, settings);
 
             // 編集済みフラグを設定する
-            SetItemDirty(itemId, province, settings);
+            _controller.SetItemDirty(itemId, province, settings);
 
             // 文字色を変更する
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            PostItemChanged(itemId, val, province);
+            _controller.PostItemChanged(itemId, val, province);
         }
 
         #endregion
 
         #endregion
 
-        #region 編集項目
+        #region 共通
 
-        #region 編集項目 - 項目値更新
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="settings">国家設定</param>
-        private static void UpdateItemValue(TextBox control, CountrySettings settings)
-        {
-            ItemId itemId = (ItemId) control.Tag;
-            control.Text = ObjectHelper.ToString(GetItemValue(itemId, settings));
-        }
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="settings">国家設定</param>
-        /// <param name="ministers">閣僚候補リスト</param>
-        private void UpdateItemValue(ComboBox control, CountrySettings settings, List<Minister> ministers)
-        {
-            control.BeginUpdate();
-            control.Items.Clear();
-            foreach (Minister minister in ministers)
-            {
-                control.Items.Add(minister.Name);
-            }
-            ItemId itemId = (ItemId) control.Tag;
-            object val = GetItemValue(itemId, settings);
-            control.SelectedIndex = _headOfStateList.FindIndex(minister => minister.Id == (int) val);
-        }
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="settings">国家設定</param>
-        private static void UpdateItemValue(TrackBar control, CountrySettings settings)
-        {
-            ItemId itemId = (ItemId) control.Tag;
-            int val = 11 - (int) GetItemValue(itemId, settings);
-            if (val < 1)
-            {
-                val = 1;
-            }
-            else if (val > 10)
-            {
-                val = 10;
-            }
-            control.Value = val;
-        }
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">国家設定</param>
-        private static void UpdateItemValue(CheckBox control, Province province, CountrySettings settings)
-        {
-            if (settings == null)
-            {
-                control.Checked = false;
-                return;
-            }
-
-            ItemId itemId = (ItemId) control.Tag;
-            switch (itemId)
-            {
-                case ItemId.CountryCapital:
-                    control.Checked = (settings.Capital == province.Id);
-                    control.Enabled = !control.Checked;
-                    break;
-
-                case ItemId.CountryCoreProvinces:
-                    control.Checked = settings.NationalProvinces.Contains(province.Id);
-                    break;
-
-                case ItemId.CountryOwnedProvinces:
-                    control.Checked = settings.OwnedProvinces.Contains(province.Id);
-                    break;
-
-                case ItemId.CountryControlledProvinces:
-                    control.Checked = settings.ControlledProvinces.Contains(province.Id);
-                    break;
-
-                case ItemId.CountryClaimedProvinces:
-                    control.Checked = settings.ClaimedProvinces.Contains(province.Id);
-                    control.Enabled = (Game.Type == GameType.DarkestHour);
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="province">プロヴィンス</param>
-        private static void UpdateItemValue(TextBox control, Province province)
-        {
-            ItemId itemId = (ItemId) control.Tag;
-            control.Text = ObjectHelper.ToString(GetItemValue(itemId, province));
-        }
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void UpdateItemValue(TextBox control, ProvinceSettings settings)
-        {
-            ItemId itemId = (ItemId) control.Tag;
-            control.Text = ObjectHelper.ToString(GetItemValue(itemId, settings));
-        }
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void UpdateItemValue(TextBox control, Province province, ProvinceSettings settings)
-        {
-            ItemId itemId = (ItemId) control.Tag;
-            control.Text = ObjectHelper.ToString(GetItemValue(itemId, province, settings));
-        }
-
-        #endregion
-
-        #region 編集項目 - 項目色更新
-
-        /// <summary>
-        ///     編集項目の色を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="settings">国家設定</param>
-        private static void UpdateItemColor(TextBox control, CountrySettings settings)
-        {
-            if (settings == null)
-            {
-                control.ForeColor = SystemColors.WindowText;
-                return;
-            }
-
-            ItemId itemId = (ItemId) control.Tag;
-            control.ForeColor = IsItemDirty(itemId, settings) ? Color.Red : SystemColors.WindowText;
-        }
-
-        /// <summary>
-        ///     編集項目の色を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">国家設定</param>
-        private static void UpdateItemColor(CheckBox control, Province province, CountrySettings settings)
-        {
-            if (settings == null)
-            {
-                control.ForeColor = SystemColors.WindowText;
-                return;
-            }
-
-            ItemId itemId = (ItemId) control.Tag;
-            control.ForeColor = IsItemDirty(itemId, province, settings) ? Color.Red : SystemColors.WindowText;
-        }
-
-        /// <summary>
-        ///     編集項目の色を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void UpdateItemColor(TextBox control, ProvinceSettings settings)
-        {
-            ItemId itemId = (ItemId) control.Tag;
-            control.ForeColor = IsItemDirty(itemId, settings) ? Color.Red : SystemColors.WindowText;
-        }
-
-        /// <summary>
-        ///     編集項目の色を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void UpdateItemColor(TextBox control, Province province, ProvinceSettings settings)
-        {
-            ItemId itemId = (ItemId) control.Tag;
-            control.ForeColor = IsItemDirty(itemId, province, settings) ? Color.Red : SystemColors.WindowText;
-        }
-
-        #endregion
-
-        #region 編集項目 - 項目値取得
-
-        /// <summary>
-        ///     編集項目の値を取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="settings">国家設定</param>
-        /// <returns>編集項目の値</returns>
-        private static object GetItemValue(ItemId itemId, CountrySettings settings)
-        {
-            if (settings == null)
-            {
-                return null;
-            }
-
-            switch (itemId)
-            {
-                case ItemId.SliderYear:
-                    if ((settings.Policy == null) || (settings.Policy.Date == null))
-                    {
-                        return null;
-                    }
-                    return settings.Policy.Date.Year;
-
-                case ItemId.SliderMonth:
-                    if ((settings.Policy == null) || (settings.Policy.Date == null))
-                    {
-                        return null;
-                    }
-                    return settings.Policy.Date.Month;
-
-                case ItemId.SliderDay:
-                    if ((settings.Policy == null) || (settings.Policy.Date == null))
-                    {
-                        return null;
-                    }
-                    return settings.Policy.Date.Day;
-
-                case ItemId.SliderDemocratic:
-                    if (settings.Policy == null)
-                    {
-                        return null;
-                    }
-                    return settings.Policy.Democratic;
-
-                case ItemId.SliderPoliticalLeft:
-                    if (settings.Policy == null)
-                    {
-                        return null;
-                    }
-                    return settings.Policy.PoliticalLeft;
-
-                case ItemId.SliderFreedom:
-                    if (settings.Policy == null)
-                    {
-                        return null;
-                    }
-                    return settings.Policy.Freedom;
-
-                case ItemId.SliderFreeMarket:
-                    if (settings.Policy == null)
-                    {
-                        return null;
-                    }
-                    return settings.Policy.FreeMarket;
-
-                case ItemId.SliderProfessionalArmy:
-                    if (settings.Policy == null)
-                    {
-                        return null;
-                    }
-                    return settings.Policy.ProfessionalArmy;
-
-                case ItemId.SliderDefenseLobby:
-                    if (settings.Policy == null)
-                    {
-                        return null;
-                    }
-                    return settings.Policy.DefenseLobby;
-
-                case ItemId.SliderInterventionism:
-                    if (settings.Policy == null)
-                    {
-                        return null;
-                    }
-                    return settings.Policy.Interventionism;
-
-                case ItemId.CabinetHeadOfState:
-                case ItemId.CabinetHeadOfStateId:
-                    if (settings.HeadOfState == null)
-                    {
-                        return null;
-                    }
-                    return settings.HeadOfState.Id;
-
-                case ItemId.CabinetHeadOfStateType:
-                    if (settings.HeadOfState == null)
-                    {
-                        return null;
-                    }
-                    return settings.HeadOfState.Type;
-
-                case ItemId.CabinetHeadOfGovernment:
-                case ItemId.CabinetHeadOfGovernmentId:
-                    if (settings.HeadOfGovernment == null)
-                    {
-                        return null;
-                    }
-                    return settings.HeadOfGovernment.Id;
-
-                case ItemId.CabinetHeadOfGovernmentType:
-                    if (settings.HeadOfGovernment == null)
-                    {
-                        return null;
-                    }
-                    return settings.HeadOfGovernment.Type;
-
-                case ItemId.CabinetForeignMinister:
-                case ItemId.CabinetForeignMinisterId:
-                    if (settings.ForeignMinister == null)
-                    {
-                        return null;
-                    }
-                    return settings.ForeignMinister.Id;
-
-                case ItemId.CabinetForeignMinisterType:
-                    if (settings.ForeignMinister == null)
-                    {
-                        return null;
-                    }
-                    return settings.ForeignMinister.Type;
-
-                case ItemId.CabinetArmamentMinister:
-                case ItemId.CabinetArmamentMinisterId:
-                    if (settings.ArmamentMinister == null)
-                    {
-                        return null;
-                    }
-                    return settings.ArmamentMinister.Id;
-
-                case ItemId.CabinetArmamentMinisterType:
-                    if (settings.ArmamentMinister == null)
-                    {
-                        return null;
-                    }
-                    return settings.ArmamentMinister.Type;
-
-                case ItemId.CabinetMinisterOfSecurity:
-                case ItemId.CabinetMinisterOfSecurityId:
-                    if (settings.MinisterOfSecurity == null)
-                    {
-                        return null;
-                    }
-                    return settings.MinisterOfSecurity.Id;
-
-                case ItemId.CabinetMinisterOfSecurityType:
-                    if (settings.MinisterOfSecurity == null)
-                    {
-                        return null;
-                    }
-                    return settings.MinisterOfSecurity.Type;
-
-                case ItemId.CabinetMinisterOfIntelligence:
-                case ItemId.CabinetMinisterOfIntelligenceId:
-                    if (settings.MinisterOfIntelligence == null)
-                    {
-                        return null;
-                    }
-                    return settings.MinisterOfIntelligence.Id;
-
-                case ItemId.CabinetMinisterOfIntelligenceType:
-                    if (settings.MinisterOfIntelligence == null)
-                    {
-                        return null;
-                    }
-                    return settings.MinisterOfIntelligence.Type;
-
-                case ItemId.CabinetChiefOfStaff:
-                case ItemId.CabinetChiefOfStaffId:
-                    if (settings.ChiefOfStaff == null)
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfStaff.Id;
-
-                case ItemId.CabinetChiefOfStaffType:
-                    if (settings.ChiefOfStaff == null)
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfStaff.Type;
-
-                case ItemId.CabinetChiefOfArmy:
-                case ItemId.CabinetChiefOfArmyId:
-                    if (settings.ChiefOfArmy == null)
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfArmy.Id;
-
-                case ItemId.CabinetChiefOfArmyType:
-                    if (settings.ChiefOfArmy == null)
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfArmy.Type;
-
-                case ItemId.CabinetChiefOfNavy:
-                case ItemId.CabinetChiefOfNavyId:
-                    if (settings.ChiefOfNavy == null)
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfNavy.Id;
-
-                case ItemId.CabinetChiefOfNavyType:
-                    if (settings.ChiefOfNavy == null)
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfNavy.Type;
-
-                case ItemId.CabinetChiefOfAir:
-                case ItemId.CabinetChiefOfAirId:
-                    if (settings.ChiefOfAir == null)
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfAir.Id;
-
-                case ItemId.CabinetChiefOfAirType:
-                    if (settings.ChiefOfAir == null)
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfAir.Type;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        ///     編集項目の値を取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">国家設定</param>
-        /// <returns>編集項目の値</returns>
-        private static object GetItemValue(ItemId itemId, Province province, CountrySettings settings)
-        {
-            if (settings == null)
-            {
-                return null;
-            }
-
-            switch (itemId)
-            {
-                case ItemId.CountryCapital:
-                    return (settings.Capital == province.Id);
-
-                case ItemId.CountryCoreProvinces:
-                    return settings.NationalProvinces.Contains(province.Id);
-
-                case ItemId.CountryOwnedProvinces:
-                    return settings.OwnedProvinces.Contains(province.Id);
-
-                case ItemId.CountryControlledProvinces:
-                    return settings.ControlledProvinces.Contains(province.Id);
-
-                case ItemId.CountryClaimedProvinces:
-                    return settings.ClaimedProvinces.Contains(province.Id);
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        ///     編集項目の値を取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <returns>編集項目の値</returns>
-        private static object GetItemValue(ItemId itemId, Province province)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceId:
-                    return province.Id;
-            }
-            return null;
-        }
-
-        /// <summary>
-        ///     編集項目の値を取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        /// <returns>編集項目の値</returns>
-        private static object GetItemValue(ItemId itemId, ProvinceSettings settings)
-        {
-            if (settings == null)
-            {
-                return null;
-            }
-
-            switch (itemId)
-            {
-                case ItemId.ProvinceVp:
-                    return settings.Vp;
-
-                case ItemId.ProvinceRevoltRisk:
-                    return settings.RevoltRisk;
-
-                case ItemId.ProvinceManpowerCurrent:
-                    return settings.Manpower;
-
-                case ItemId.ProvinceManpowerMax:
-                    return settings.MaxManpower;
-
-                case ItemId.ProvinceEnergyPool:
-                    return settings.EnergyPool;
-
-                case ItemId.ProvinceEnergyCurrent:
-                    return settings.Energy;
-
-                case ItemId.ProvinceEnergyMax:
-                    return settings.MaxEnergy;
-
-                case ItemId.ProvinceMetalPool:
-                    return settings.MetalPool;
-
-                case ItemId.ProvinceMetalCurrent:
-                    return settings.Metal;
-
-                case ItemId.ProvinceMetalMax:
-                    return settings.MaxMetal;
-
-                case ItemId.ProvinceRareMaterialsPool:
-                    return settings.RareMaterialsPool;
-
-                case ItemId.ProvinceRareMaterialsCurrent:
-                    return settings.RareMaterials;
-
-                case ItemId.ProvinceRareMaterialsMax:
-                    return settings.MaxRareMaterials;
-
-                case ItemId.ProvinceOilPool:
-                    return settings.OilPool;
-
-                case ItemId.ProvinceOilCurrent:
-                    return settings.Oil;
-
-                case ItemId.ProvinceOilMax:
-                    return settings.MaxOil;
-
-                case ItemId.ProvinceSupplyPool:
-                    return settings.SupplyPool;
-
-                case ItemId.ProvinceIcCurrent:
-                    if (settings.Ic == null)
-                    {
-                        return null;
-                    }
-                    return settings.Ic.CurrentSize;
-
-                case ItemId.ProvinceIcMax:
-                    if (settings.Ic == null)
-                    {
-                        return null;
-                    }
-                    return settings.Ic.MaxSize;
-
-                case ItemId.ProvinceIcRelative:
-                    if (settings.Ic == null)
-                    {
-                        return null;
-                    }
-                    return settings.Ic.Size;
-
-                case ItemId.ProvinceInfrastructureCurrent:
-                    if (settings.Infrastructure == null)
-                    {
-                        return null;
-                    }
-                    return settings.Infrastructure.CurrentSize;
-
-                case ItemId.ProvinceInfrastructureMax:
-                    if (settings.Infrastructure == null)
-                    {
-                        return null;
-                    }
-                    return settings.Infrastructure.MaxSize;
-
-                case ItemId.ProvinceInfrastructureRelative:
-                    if (settings.Infrastructure == null)
-                    {
-                        return null;
-                    }
-                    return settings.Infrastructure.Size;
-
-                case ItemId.ProvinceLandFortCurrent:
-                    if (settings.LandFort == null)
-                    {
-                        return null;
-                    }
-                    return settings.LandFort.CurrentSize;
-
-                case ItemId.ProvinceLandFortMax:
-                    if (settings.LandFort == null)
-                    {
-                        return null;
-                    }
-                    return settings.LandFort.MaxSize;
-
-                case ItemId.ProvinceLandFortRelative:
-                    if (settings.LandFort == null)
-                    {
-                        return null;
-                    }
-                    return settings.LandFort.Size;
-
-                case ItemId.ProvinceCoastalFortCurrent:
-                    if (settings.CoastalFort == null)
-                    {
-                        return null;
-                    }
-                    return settings.CoastalFort.CurrentSize;
-
-                case ItemId.ProvinceCoastalFortMax:
-                    if (settings.CoastalFort == null)
-                    {
-                        return null;
-                    }
-                    return settings.CoastalFort.MaxSize;
-
-                case ItemId.ProvinceCoastalFortRelative:
-                    if (settings.CoastalFort == null)
-                    {
-                        return null;
-                    }
-                    return settings.CoastalFort.Size;
-
-                case ItemId.ProvinceAntiAirCurrent:
-                    if (settings.AntiAir == null)
-                    {
-                        return null;
-                    }
-                    return settings.AntiAir.CurrentSize;
-
-                case ItemId.ProvinceAntiAirMax:
-                    if (settings.AntiAir == null)
-                    {
-                        return null;
-                    }
-                    return settings.AntiAir.MaxSize;
-
-                case ItemId.ProvinceAntiAirRelative:
-                    if (settings.AntiAir == null)
-                    {
-                        return null;
-                    }
-                    return settings.AntiAir.Size;
-
-                case ItemId.ProvinceAirBaseCurrent:
-                    if (settings.AirBase == null)
-                    {
-                        return null;
-                    }
-                    return settings.AirBase.CurrentSize;
-
-                case ItemId.ProvinceAirBaseMax:
-                    if (settings.AirBase == null)
-                    {
-                        return null;
-                    }
-                    return settings.AirBase.MaxSize;
-
-                case ItemId.ProvinceAirBaseRelative:
-                    if (settings.AirBase == null)
-                    {
-                        return null;
-                    }
-                    return settings.AirBase.Size;
-
-                case ItemId.ProvinceNavalBaseCurrent:
-                    if (settings.NavalBase == null)
-                    {
-                        return null;
-                    }
-                    return settings.NavalBase.CurrentSize;
-
-                case ItemId.ProvinceNavalBaseMax:
-                    if (settings.NavalBase == null)
-                    {
-                        return null;
-                    }
-                    return settings.NavalBase.MaxSize;
-
-                case ItemId.ProvinceNavalBaseRelative:
-                    if (settings.NavalBase == null)
-                    {
-                        return null;
-                    }
-                    return settings.NavalBase.Size;
-
-                case ItemId.ProvinceRadarStationCurrent:
-                    if (settings.RadarStation == null)
-                    {
-                        return null;
-                    }
-                    return settings.RadarStation.CurrentSize;
-
-                case ItemId.ProvinceRadarStationMax:
-                    if (settings.RadarStation == null)
-                    {
-                        return null;
-                    }
-                    return settings.RadarStation.MaxSize;
-
-                case ItemId.ProvinceRadarStationRelative:
-                    if (settings.RadarStation == null)
-                    {
-                        return null;
-                    }
-                    return settings.RadarStation.Size;
-
-                case ItemId.ProvinceNuclearReactorCurrent:
-                    if (settings.NuclearReactor == null)
-                    {
-                        return null;
-                    }
-                    return settings.NuclearReactor.CurrentSize;
-
-                case ItemId.ProvinceNuclearReactorMax:
-                    if (settings.NuclearReactor == null)
-                    {
-                        return null;
-                    }
-                    return settings.NuclearReactor.MaxSize;
-
-                case ItemId.ProvinceNuclearReactorRelative:
-                    if (settings.NuclearReactor == null)
-                    {
-                        return null;
-                    }
-                    return settings.NuclearReactor.Size;
-
-                case ItemId.ProvinceRocketTestCurrent:
-                    if (settings.RocketTest == null)
-                    {
-                        return null;
-                    }
-                    return settings.RocketTest.CurrentSize;
-
-                case ItemId.ProvinceRocketTestMax:
-                    if (settings.RocketTest == null)
-                    {
-                        return null;
-                    }
-                    return settings.RocketTest.MaxSize;
-
-                case ItemId.ProvinceRocketTestRelative:
-                    if (settings.RocketTest == null)
-                    {
-                        return null;
-                    }
-                    return settings.RocketTest.Size;
-
-                case ItemId.ProvinceSyntheticOilCurrent:
-                    if (settings.SyntheticOil == null)
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticOil.CurrentSize;
-
-                case ItemId.ProvinceSyntheticOilMax:
-                    if (settings.SyntheticOil == null)
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticOil.MaxSize;
-
-                case ItemId.ProvinceSyntheticOilRelative:
-                    if (settings.SyntheticOil == null)
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticOil.Size;
-
-                case ItemId.ProvinceSyntheticRaresCurrent:
-                    if (settings.SyntheticRares == null)
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticRares.CurrentSize;
-
-                case ItemId.ProvinceSyntheticRaresMax:
-                    if (settings.SyntheticRares == null)
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticRares.MaxSize;
-
-                case ItemId.ProvinceSyntheticRaresRelative:
-                    if (settings.SyntheticRares == null)
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticRares.Size;
-
-                case ItemId.ProvinceNuclearPowerCurrent:
-                    if (settings.NuclearPower == null)
-                    {
-                        return null;
-                    }
-                    return settings.NuclearPower.CurrentSize;
-
-                case ItemId.ProvinceNuclearPowerMax:
-                    if (settings.NuclearPower == null)
-                    {
-                        return null;
-                    }
-                    return settings.NuclearPower.MaxSize;
-
-                case ItemId.ProvinceNuclearPowerRelative:
-                    if (settings.NuclearPower == null)
-                    {
-                        return null;
-                    }
-                    return settings.NuclearPower.Size;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        ///     編集項目の値を取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        /// <returns>編集項目の値</returns>
-        private static object GetItemValue(ItemId itemId, Province province, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceName:
-                    return GetProvinceName(province, settings);
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        ///     リスト項目の値を取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="index">リストのインデックス</param>
-        /// <returns>リスト項目の値</returns>
-        private object GetListItemValue(ItemId itemId, int index)
-        {
-            if (index < 0)
-            {
-                return null;
-            }
-
-            switch (itemId)
-            {
-                case ItemId.CabinetHeadOfStateId:
-                    return _headOfStateList[index];
-
-                case ItemId.CabinetHeadOfGovernmentId:
-                    return _headOfGovernmentList[index];
-
-                case ItemId.CabinetForeignMinisterId:
-                    return _foreignMinisterList[index];
-
-                case ItemId.CabinetArmamentMinisterId:
-                    return _armamentMinisterList[index];
-
-                case ItemId.CabinetMinisterOfSecurityId:
-                    return _ministerOfSecurityList[index];
-
-                case ItemId.CabinetMinisterOfIntelligenceId:
-                    return _ministerOfIntelligenceList[index];
-
-                case ItemId.CabinetChiefOfStaffId:
-                    return _chiefOfStaffList[index];
-
-                case ItemId.CabinetChiefOfArmyId:
-                    return _chiefOfArmyList[index];
-
-                case ItemId.CabinetChiefOfNavyId:
-                    return _chiefOfNavyList[index];
-
-                case ItemId.CabinetChiefOfAirId:
-                    return _chiefOfAirList[index];
-            }
-
-            return null;
-        }
-
-        #endregion
-
-        #region 編集項目 - 項目値設定
-
-        /// <summary>
-        ///     編集項目の値を設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">国家設定</param>
-        private static void SetItemValue(ItemId itemId, object val, CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.SliderYear:
-                    settings.Policy.Date.Year = (int) val;
-                    break;
-
-                case ItemId.SliderMonth:
-                    settings.Policy.Date.Month = (int) val;
-                    break;
-
-                case ItemId.SliderDay:
-                    settings.Policy.Date.Day = (int) val;
-                    break;
-
-                case ItemId.SliderDemocratic:
-                    settings.Policy.Democratic = (int) val;
-                    break;
-
-                case ItemId.SliderPoliticalLeft:
-                    settings.Policy.PoliticalLeft = (int) val;
-                    break;
-
-                case ItemId.SliderFreedom:
-                    settings.Policy.Freedom = (int) val;
-                    break;
-
-                case ItemId.SliderFreeMarket:
-                    settings.Policy.FreeMarket = (int) val;
-                    break;
-
-                case ItemId.SliderProfessionalArmy:
-                    settings.Policy.ProfessionalArmy = (int) val;
-                    break;
-
-                case ItemId.SliderDefenseLobby:
-                    settings.Policy.DefenseLobby = (int) val;
-                    break;
-
-                case ItemId.SliderInterventionism:
-                    settings.Policy.Interventionism = (int) val;
-                    break;
-
-                case ItemId.CabinetHeadOfState:
-                case ItemId.CabinetHeadOfStateId:
-                    Scenarios.SetId(settings.HeadOfState, (int) val);
-                    break;
-
-                case ItemId.CabinetHeadOfStateType:
-                    Scenarios.SetType(settings.HeadOfState, (int) val);
-                    break;
-
-                case ItemId.CabinetHeadOfGovernment:
-                case ItemId.CabinetHeadOfGovernmentId:
-                    Scenarios.SetId(settings.HeadOfGovernment, (int) val);
-                    break;
-
-                case ItemId.CabinetHeadOfGovernmentType:
-                    Scenarios.SetType(settings.HeadOfGovernment, (int) val);
-                    break;
-
-                case ItemId.CabinetForeignMinister:
-                case ItemId.CabinetForeignMinisterId:
-                    Scenarios.SetId(settings.ForeignMinister, (int) val);
-                    break;
-
-                case ItemId.CabinetForeignMinisterType:
-                    Scenarios.SetType(settings.ForeignMinister, (int) val);
-                    break;
-
-                case ItemId.CabinetArmamentMinister:
-                case ItemId.CabinetArmamentMinisterId:
-                    Scenarios.SetId(settings.ArmamentMinister, (int) val);
-                    break;
-
-                case ItemId.CabinetArmamentMinisterType:
-                    Scenarios.SetType(settings.ArmamentMinister, (int) val);
-                    break;
-
-                case ItemId.CabinetMinisterOfSecurity:
-                case ItemId.CabinetMinisterOfSecurityId:
-                    Scenarios.SetId(settings.MinisterOfSecurity, (int) val);
-                    break;
-
-                case ItemId.CabinetMinisterOfSecurityType:
-                    Scenarios.SetType(settings.MinisterOfSecurity, (int) val);
-                    break;
-
-                case ItemId.CabinetMinisterOfIntelligence:
-                case ItemId.CabinetMinisterOfIntelligenceId:
-                    Scenarios.SetId(settings.MinisterOfIntelligence, (int) val);
-                    break;
-
-                case ItemId.CabinetMinisterOfIntelligenceType:
-                    Scenarios.SetType(settings.MinisterOfIntelligence, (int) val);
-                    break;
-
-                case ItemId.CabinetChiefOfStaff:
-                case ItemId.CabinetChiefOfStaffId:
-                    Scenarios.SetId(settings.ChiefOfStaff, (int) val);
-                    break;
-
-                case ItemId.CabinetChiefOfStaffType:
-                    Scenarios.SetType(settings.ChiefOfStaff, (int) val);
-                    break;
-
-                case ItemId.CabinetChiefOfArmy:
-                case ItemId.CabinetChiefOfArmyId:
-                    Scenarios.SetId(settings.ChiefOfArmy, (int) val);
-                    break;
-
-                case ItemId.CabinetChiefOfArmyType:
-                    Scenarios.SetType(settings.ChiefOfArmy, (int) val);
-                    break;
-
-                case ItemId.CabinetChiefOfNavy:
-                case ItemId.CabinetChiefOfNavyId:
-                    Scenarios.SetId(settings.ChiefOfNavy, (int) val);
-                    break;
-
-                case ItemId.CabinetChiefOfNavyType:
-                    Scenarios.SetType(settings.ChiefOfNavy, (int) val);
-                    break;
-
-                case ItemId.CabinetChiefOfAir:
-                case ItemId.CabinetChiefOfAirId:
-                    Scenarios.SetId(settings.ChiefOfAir, (int) val);
-                    break;
-
-                case ItemId.CabinetChiefOfAirType:
-                    Scenarios.SetType(settings.ChiefOfAir, (int) val);
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の値を設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">国家設定</param>
-        private void SetItemValue(ItemId itemId, object val, Province province, CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.CountryCapital:
-                    settings.Capital = province.Id;
-                    break;
-
-                case ItemId.CountryCoreProvinces:
-                    if ((bool) val)
-                    {
-                        Scenarios.AddCoreProvince(province.Id, settings);
-                    }
-                    else
-                    {
-                        Scenarios.RemoveCoreProvince(province.Id, settings);
-                    }
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Core)
-                    {
-                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-                    }
-                    break;
-
-                case ItemId.CountryOwnedProvinces:
-                    if ((bool) val)
-                    {
-                        Scenarios.AddOwnedProvince(province.Id, settings);
-                    }
-                    else
-                    {
-                        Scenarios.RemoveOwnedProvince(province.Id, settings);
-                    }
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Owned)
-                    {
-                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-                    }
-                    break;
-
-                case ItemId.CountryControlledProvinces:
-                    if ((bool) val)
-                    {
-                        Scenarios.AddControlledProvince(province.Id, settings);
-                    }
-                    else
-                    {
-                        Scenarios.RemoveControlledProvince(province.Id, settings);
-                    }
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Controlled)
-                    {
-                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-                    }
-                    break;
-
-                case ItemId.CountryClaimedProvinces:
-                    if ((bool) val)
-                    {
-                        Scenarios.AddClaimedProvince(province.Id, settings);
-                    }
-                    else
-                    {
-                        Scenarios.RemoveClaimedProvince(province.Id, settings);
-                    }
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Claimed)
-                    {
-                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-                    }
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の値を設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void SetItemValue(ItemId itemId, object val, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceVp:
-                    settings.Vp = (int) val;
-                    break;
-
-                case ItemId.ProvinceRevoltRisk:
-                    settings.RevoltRisk = (double) val;
-                    break;
-
-                case ItemId.ProvinceManpowerCurrent:
-                    settings.Manpower = (double) val;
-                    break;
-
-                case ItemId.ProvinceManpowerMax:
-                    settings.MaxManpower = (double) val;
-                    break;
-
-                case ItemId.ProvinceEnergyPool:
-                    settings.EnergyPool = (double) val;
-                    break;
-
-                case ItemId.ProvinceEnergyCurrent:
-                    settings.Energy = (double) val;
-                    break;
-
-                case ItemId.ProvinceEnergyMax:
-                    settings.MaxEnergy = (double) val;
-                    break;
-
-                case ItemId.ProvinceMetalPool:
-                    settings.MetalPool = (double) val;
-                    break;
-
-                case ItemId.ProvinceMetalCurrent:
-                    settings.Metal = (double) val;
-                    break;
-
-                case ItemId.ProvinceMetalMax:
-                    settings.MaxMetal = (double) val;
-                    break;
-
-                case ItemId.ProvinceRareMaterialsPool:
-                    settings.RareMaterialsPool = (double) val;
-                    break;
-
-                case ItemId.ProvinceRareMaterialsCurrent:
-                    settings.RareMaterials = (double) val;
-                    break;
-
-                case ItemId.ProvinceRareMaterialsMax:
-                    settings.MaxRareMaterials = (double) val;
-                    break;
-
-                case ItemId.ProvinceOilPool:
-                    settings.OilPool = (double) val;
-                    break;
-
-                case ItemId.ProvinceOilCurrent:
-                    settings.Oil = (double) val;
-                    break;
-
-                case ItemId.ProvinceOilMax:
-                    settings.MaxOil = (double) val;
-                    break;
-
-                case ItemId.ProvinceSupplyPool:
-                    settings.SupplyPool = (double) val;
-                    break;
-
-                case ItemId.ProvinceIcCurrent:
-                    settings.Ic.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceIcMax:
-                    settings.Ic.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceIcRelative:
-                    settings.Ic.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceInfrastructureCurrent:
-                    settings.Infrastructure.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceInfrastructureMax:
-                    settings.Infrastructure.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceInfrastructureRelative:
-                    settings.Infrastructure.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceLandFortCurrent:
-                    settings.LandFort.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceLandFortMax:
-                    settings.LandFort.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceLandFortRelative:
-                    settings.LandFort.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceCoastalFortCurrent:
-                    settings.CoastalFort.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceCoastalFortMax:
-                    settings.CoastalFort.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceCoastalFortRelative:
-                    settings.CoastalFort.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceAntiAirCurrent:
-                    settings.AntiAir.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceAntiAirMax:
-                    settings.AntiAir.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceAntiAirRelative:
-                    settings.AntiAir.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceAirBaseCurrent:
-                    settings.AirBase.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceAirBaseMax:
-                    settings.AirBase.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceAirBaseRelative:
-                    settings.AirBase.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceNavalBaseCurrent:
-                    settings.NavalBase.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceNavalBaseMax:
-                    settings.NavalBase.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceNavalBaseRelative:
-                    settings.NavalBase.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceRadarStationCurrent:
-                    settings.RadarStation.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceRadarStationMax:
-                    settings.RadarStation.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceRadarStationRelative:
-                    settings.RadarStation.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceNuclearReactorCurrent:
-                    settings.NuclearReactor.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceNuclearReactorMax:
-                    settings.NuclearReactor.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceNuclearReactorRelative:
-                    settings.NuclearReactor.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceRocketTestCurrent:
-                    settings.RocketTest.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceRocketTestMax:
-                    settings.RocketTest.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceRocketTestRelative:
-                    settings.RocketTest.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceSyntheticOilCurrent:
-                    settings.SyntheticOil.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceSyntheticOilMax:
-                    settings.SyntheticOil.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceSyntheticOilRelative:
-                    settings.SyntheticOil.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceSyntheticRaresCurrent:
-                    settings.SyntheticRares.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceSyntheticRaresMax:
-                    settings.SyntheticRares.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceSyntheticRaresRelative:
-                    settings.SyntheticRares.Size = (double) val;
-                    break;
-
-                case ItemId.ProvinceNuclearPowerCurrent:
-                    settings.NuclearPower.CurrentSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceNuclearPowerMax:
-                    settings.NuclearPower.MaxSize = (double) val;
-                    break;
-
-                case ItemId.ProvinceNuclearPowerRelative:
-                    settings.NuclearPower.Size = (double) val;
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の値を設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void SetItemValue(ItemId itemId, object val, Province province, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceName:
-                    SetProvinceName(province, settings, val as string);
-                    break;
-            }
-        }
-
-        #endregion
-
-        #region 編集項目 - 有効判定
-
-        /// <summary>
-        ///     編集項目の値が有効かどうかを判定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <returns>編集項目の値が有効でなければfalseを返す</returns>
-        private static bool IsItemValueValid(ItemId itemId, object val)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceVp:
-                    if ((int) val < 0)
-                    {
-                        return true;
-                    }
-                    break;
-
-                case ItemId.ProvinceRevoltRisk:
-                case ItemId.ProvinceManpowerCurrent:
-                case ItemId.ProvinceManpowerMax:
-                case ItemId.ProvinceEnergyPool:
-                case ItemId.ProvinceEnergyCurrent:
-                case ItemId.ProvinceEnergyMax:
-                case ItemId.ProvinceMetalPool:
-                case ItemId.ProvinceMetalCurrent:
-                case ItemId.ProvinceMetalMax:
-                case ItemId.ProvinceRareMaterialsPool:
-                case ItemId.ProvinceRareMaterialsCurrent:
-                case ItemId.ProvinceRareMaterialsMax:
-                case ItemId.ProvinceOilPool:
-                case ItemId.ProvinceOilCurrent:
-                case ItemId.ProvinceOilMax:
-                case ItemId.ProvinceSupplyPool:
-                case ItemId.ProvinceIcCurrent:
-                case ItemId.ProvinceIcMax:
-                case ItemId.ProvinceInfrastructureCurrent:
-                case ItemId.ProvinceInfrastructureMax:
-                    if (DoubleHelper.IsNegative((double) val))
-                    {
-                        return true;
-                    }
-                    break;
-
-                case ItemId.ProvinceLandFortCurrent:
-                case ItemId.ProvinceLandFortMax:
-                case ItemId.ProvinceCoastalFortCurrent:
-                case ItemId.ProvinceCoastalFortMax:
-                case ItemId.ProvinceAntiAirCurrent:
-                case ItemId.ProvinceAntiAirMax:
-                case ItemId.ProvinceAirBaseCurrent:
-                case ItemId.ProvinceAirBaseMax:
-                case ItemId.ProvinceNavalBaseCurrent:
-                case ItemId.ProvinceNavalBaseMax:
-                case ItemId.ProvinceRadarStationCurrent:
-                case ItemId.ProvinceRadarStationMax:
-                case ItemId.ProvinceNuclearReactorCurrent:
-                case ItemId.ProvinceNuclearReactorMax:
-                case ItemId.ProvinceRocketTestCurrent:
-                case ItemId.ProvinceRocketTestMax:
-                case ItemId.ProvinceSyntheticOilCurrent:
-                case ItemId.ProvinceSyntheticOilMax:
-                case ItemId.ProvinceSyntheticRaresCurrent:
-                case ItemId.ProvinceSyntheticRaresMax:
-                case ItemId.ProvinceNuclearPowerCurrent:
-                case ItemId.ProvinceNuclearPowerMax:
-                    if (DoubleHelper.IsNegative((double) val) || DoubleHelper.IsGreaterOrEqual((double) val, 10))
-                    {
-                        return true;
-                    }
-                    break;
-            }
-
-            return true;
-        }
-
-        /// <summary>
-        ///     編集項目の値が有効かどうかを判定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">国家設定</param>
-        /// <returns>編集項目の値が有効でなければfalseを返す</returns>
-        private static bool IsItemValueValid(ItemId itemId, object val, CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.SliderYear:
-                    if (((int) val < GameDate.MinYear) || ((int) val > GameDate.MaxYear))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.SliderMonth:
-                    if (((int) val < GameDate.MinMonth) || ((int) val > GameDate.MaxMonth))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.SliderDay:
-                    if (((int) val < GameDate.MinDay) || ((int) val > GameDate.MaxDay))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.SliderDemocratic:
-                case ItemId.SliderPoliticalLeft:
-                case ItemId.SliderFreedom:
-                case ItemId.SliderFreeMarket:
-                case ItemId.SliderProfessionalArmy:
-                case ItemId.SliderDefenseLobby:
-                case ItemId.SliderInterventionism:
-                    if (((int) val < 1) || ((int) val > 10))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetHeadOfStateType:
-                    if ((settings != null) && (settings.HeadOfState != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.HeadOfState.Id))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetHeadOfStateId:
-                    if ((settings != null) && (settings.HeadOfState != null) &&
-                        Scenarios.ExistsTypeId(settings.HeadOfState.Type, (int) val))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetHeadOfGovernmentType:
-                    if ((settings != null) && (settings.HeadOfGovernment != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.HeadOfGovernment.Id))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetHeadOfGovernmentId:
-                    if ((settings != null) && (settings.HeadOfGovernment != null) &&
-                        Scenarios.ExistsTypeId(settings.HeadOfGovernment.Type, (int) val))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetForeignMinisterType:
-                    if ((settings != null) && (settings.ForeignMinister != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.ForeignMinister.Id))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetForeignMinisterId:
-                    if ((settings != null) && (settings.ForeignMinister != null) &&
-                        Scenarios.ExistsTypeId(settings.ForeignMinister.Type, (int) val))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetArmamentMinisterType:
-                    if ((settings != null) && (settings.ArmamentMinister != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.ArmamentMinister.Id))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetArmamentMinisterId:
-                    if ((settings != null) && (settings.ArmamentMinister != null) &&
-                        Scenarios.ExistsTypeId(settings.ArmamentMinister.Type, (int) val))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetMinisterOfSecurityType:
-                    if ((settings != null) && (settings.MinisterOfSecurity != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.MinisterOfSecurity.Id))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetMinisterOfSecurityId:
-                    if ((settings != null) && (settings.MinisterOfSecurity != null) &&
-                        Scenarios.ExistsTypeId(settings.MinisterOfSecurity.Type, (int) val))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetMinisterOfIntelligenceType:
-                    if ((settings != null) && (settings.MinisterOfIntelligence != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.MinisterOfIntelligence.Id))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetMinisterOfIntelligenceId:
-                    if ((settings != null) && (settings.MinisterOfIntelligence != null) &&
-                        Scenarios.ExistsTypeId(settings.MinisterOfIntelligence.Type, (int) val))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfStaffType:
-                    if ((settings != null) && (settings.ChiefOfStaff != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.ChiefOfStaff.Id))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfStaffId:
-                    if ((settings != null) && (settings.ChiefOfStaff != null) &&
-                        Scenarios.ExistsTypeId(settings.ChiefOfStaff.Type, (int) val))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfArmyType:
-                    if ((settings != null) && (settings.ChiefOfArmy != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.ChiefOfArmy.Id))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfArmyId:
-                    if ((settings != null) && (settings.ChiefOfArmy != null) &&
-                        Scenarios.ExistsTypeId(settings.ChiefOfArmy.Type, (int) val))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfNavyType:
-                    if ((settings != null) && (settings.ChiefOfNavy != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.ChiefOfNavy.Id))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfNavyId:
-                    if ((settings != null) && (settings.ChiefOfNavy != null) &&
-                        Scenarios.ExistsTypeId(settings.ChiefOfNavy.Type, (int) val))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfAirType:
-                    if ((settings != null) && (settings.ChiefOfAir != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.ChiefOfAir.Id))
-                    {
-                        return false;
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfAirId:
-                    if ((settings != null) && (settings.ChiefOfAir != null) &&
-                        Scenarios.ExistsTypeId(settings.ChiefOfAir.Type, (int) val))
-                    {
-                        return false;
-                    }
-                    break;
-            }
-
-            return true;
-        }
-
-        #endregion
-
-        #region 編集項目 - 編集済みフラグ取得
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="settings">国家設定</param>
-        /// <returns>編集済みフラグ</returns>
-        private static bool IsItemDirty(ItemId itemId, CountrySettings settings)
-        {
-            return (settings != null) && settings.IsDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">国家設定</param>
-        /// <returns>編集済みフラグ</returns>
-        private static bool IsItemDirty(ItemId itemId, Province province, CountrySettings settings)
-        {
-            if (settings == null)
-            {
-                return false;
-            }
-
-            switch (itemId)
-            {
-                case ItemId.CountryCapital:
-                    return settings.IsDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
-
-                case ItemId.CountryCoreProvinces:
-                    return settings.IsDirtyCoreProvinces(province.Id);
-
-                case ItemId.CountryOwnedProvinces:
-                    return settings.IsDirtyOwnedProvinces(province.Id);
-
-                case ItemId.CountryControlledProvinces:
-                    return settings.IsDirtyControlledProvinces(province.Id);
-
-                case ItemId.CountryClaimedProvinces:
-                    return settings.IsDirtyClaimedProvinces(province.Id);
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        /// <returns>編集済みフラグ</returns>
-        private static bool IsItemDirty(ItemId itemId, Province province, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceName:
-                    return ((settings != null) && !string.IsNullOrEmpty(settings.Name))
-                        ? settings.IsDirty(ProvinceSettings.ItemId.Name)
-                        : province.IsDirty(ProvinceItemId.Name);
-            }
-            return false;
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        /// <returns>編集済みフラグ</returns>
-        private static bool IsItemDirty(ItemId itemId, ProvinceSettings settings)
-        {
-            return (settings != null) && settings.IsDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
-        }
-
-        #endregion
-
-        #region 編集項目 - 編集済みフラグ設定
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="settings">国家設定</param>
-        private static void SetItemDirty(ItemId itemId, CountrySettings settings)
-        {
-            settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
-            Scenarios.SetDirty();
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">国家設定</param>
-        private static void SetItemDirty(ItemId itemId, Province province, CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.CountryCapital:
-                    settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
-                    Scenarios.SetDirty();
-                    break;
-
-                case ItemId.CountryCoreProvinces:
-                    settings.SetDirtyCoreProvinces(province.Id);
-                    Scenarios.SetDirty();
-                    break;
-
-                case ItemId.CountryOwnedProvinces:
-                    settings.SetDirtyOwnedProvinces(province.Id);
-                    Scenarios.SetDirty();
-                    break;
-
-                case ItemId.CountryControlledProvinces:
-                    settings.SetDirtyControlledProvinces(province.Id);
-                    Scenarios.SetDirty();
-                    break;
-
-                case ItemId.CountryClaimedProvinces:
-                    settings.SetDirtyClaimedProvinces(province.Id);
-                    Scenarios.SetDirty();
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void SetItemDirty(ItemId itemId, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceVp:
-                    settings.SetDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
-                    if (Scenarios.Data.IsVpProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyVpInc();
-                    }
-                    else
-                    {
-                        Scenarios.Data.SetDirty();
-                    }
-                    Scenarios.SetDirty();
-                    break;
-
-                case ItemId.ProvinceRevoltRisk:
-                case ItemId.ProvinceIcRelative:
-                case ItemId.ProvinceInfrastructureRelative:
-                case ItemId.ProvinceCoastalFortRelative:
-                case ItemId.ProvinceAntiAirRelative:
-                case ItemId.ProvinceAirBaseRelative:
-                case ItemId.ProvinceNavalBaseRelative:
-                case ItemId.ProvinceRadarStationRelative:
-                case ItemId.ProvinceRocketTestRelative:
-                case ItemId.ProvinceSyntheticOilRelative:
-                case ItemId.ProvinceSyntheticRaresRelative:
-                case ItemId.ProvinceNuclearPowerRelative:
-                    settings.SetDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
-                    if (Scenarios.Data.IsBaseDodProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyBasesDodInc();
-                    }
-                    else if (Scenarios.Data.IsBaseProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyBasesInc();
-                    }
-                    else if (Scenarios.Data.IsCountryProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyCountryInc();
-                    }
-                    else
-                    {
-                        Scenarios.Data.SetDirty();
-                    }
-                    Scenarios.SetDirty();
-                    break;
-
-                case ItemId.ProvinceManpowerCurrent:
-                case ItemId.ProvinceManpowerMax:
-                case ItemId.ProvinceEnergyPool:
-                case ItemId.ProvinceEnergyCurrent:
-                case ItemId.ProvinceEnergyMax:
-                case ItemId.ProvinceMetalPool:
-                case ItemId.ProvinceMetalCurrent:
-                case ItemId.ProvinceMetalMax:
-                case ItemId.ProvinceRareMaterialsPool:
-                case ItemId.ProvinceRareMaterialsCurrent:
-                case ItemId.ProvinceRareMaterialsMax:
-                case ItemId.ProvinceOilPool:
-                case ItemId.ProvinceOilCurrent:
-                case ItemId.ProvinceOilMax:
-                case ItemId.ProvinceSupplyPool:
-                case ItemId.ProvinceIcCurrent:
-                case ItemId.ProvinceIcMax:
-                case ItemId.ProvinceInfrastructureCurrent:
-                case ItemId.ProvinceInfrastructureMax:
-                case ItemId.ProvinceLandFortCurrent:
-                case ItemId.ProvinceLandFortMax:
-                case ItemId.ProvinceLandFortRelative:
-                case ItemId.ProvinceCoastalFortCurrent:
-                case ItemId.ProvinceCoastalFortMax:
-                case ItemId.ProvinceAntiAirCurrent:
-                case ItemId.ProvinceAntiAirMax:
-                case ItemId.ProvinceAirBaseCurrent:
-                case ItemId.ProvinceAirBaseMax:
-                case ItemId.ProvinceNavalBaseCurrent:
-                case ItemId.ProvinceNavalBaseMax:
-                case ItemId.ProvinceRadarStationCurrent:
-                case ItemId.ProvinceRadarStationMax:
-                case ItemId.ProvinceNuclearReactorCurrent:
-                case ItemId.ProvinceNuclearReactorMax:
-                case ItemId.ProvinceNuclearReactorRelative:
-                case ItemId.ProvinceRocketTestCurrent:
-                case ItemId.ProvinceRocketTestMax:
-                case ItemId.ProvinceSyntheticOilCurrent:
-                case ItemId.ProvinceSyntheticOilMax:
-                case ItemId.ProvinceSyntheticRaresCurrent:
-                case ItemId.ProvinceSyntheticRaresMax:
-                case ItemId.ProvinceNuclearPowerCurrent:
-                case ItemId.ProvinceNuclearPowerMax:
-                    settings.SetDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
-                    if (Scenarios.Data.IsBaseProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyBasesInc();
-                    }
-                    else if (Scenarios.Data.IsCountryProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyCountryInc();
-                    }
-                    else
-                    {
-                        Scenarios.Data.SetDirty();
-                    }
-                    Scenarios.SetDirty();
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void SetItemDirty(ItemId itemId, Province province, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceName:
-                    if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
-                    {
-                        settings.SetDirty(ProvinceSettings.ItemId.Name);
-                        if (Scenarios.Data.IsBaseProvinceSettings)
-                        {
-                            Scenarios.Data.SetDirtyBasesInc();
-                        }
-                        else if (Scenarios.Data.IsCountryProvinceSettings)
-                        {
-                            Scenarios.Data.SetDirtyCountryInc();
-                        }
-                        else
-                        {
-                            Scenarios.Data.SetDirty();
-                        }
-                    }
-                    else
-                    {
-                        province.SetDirty(ProvinceItemId.Name);
-                    }
-                    break;
-            }
-        }
-
-        #endregion
-
-        #region 編集項目 - 変更前処理
-
-        /// <summary>
-        ///     項目値変更前の処理
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">国家設定</param>
-        private void PreItemChanged(ItemId itemId, object val, CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.SliderYear:
-                    PreItemChangedSliderDate(sliderMonthTextBox, sliderDayTextBox, settings);
-                    break;
-
-                case ItemId.SliderMonth:
-                    PreItemChangedSliderDate(sliderYearTextBox, sliderDayTextBox, settings);
-                    break;
-
-                case ItemId.SliderDay:
-                    PreItemChangedSliderDate(sliderYearTextBox, sliderMonthTextBox, settings);
-                    break;
-
-                case ItemId.SliderDemocratic:
-                case ItemId.SliderPoliticalLeft:
-                case ItemId.SliderFreedom:
-                case ItemId.SliderFreeMarket:
-                case ItemId.SliderProfessionalArmy:
-                case ItemId.SliderDefenseLobby:
-                case ItemId.SliderInterventionism:
-                    if (settings.Policy == null)
-                    {
-                        settings.Policy = new CountryPolicy();
-                    }
-                    break;
-
-                case ItemId.CabinetHeadOfState:
-                case ItemId.CabinetHeadOfStateId:
-                    if (settings.HeadOfState == null)
-                    {
-                        settings.HeadOfState = PreItemChangedCabinetId(headOfStateTypeTextBox, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetHeadOfStateType:
-                    if (settings.HeadOfState == null)
-                    {
-                        settings.HeadOfState = PreItemChangedCabinetType(headOfStateIdTextBox, val, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetHeadOfGovernment:
-                case ItemId.CabinetHeadOfGovernmentId:
-                    if (settings.HeadOfGovernment == null)
-                    {
-                        settings.HeadOfGovernment = PreItemChangedCabinetId(headOfGovernmentTypeTextBox, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetHeadOfGovernmentType:
-                    if (settings.HeadOfGovernment == null)
-                    {
-                        settings.HeadOfGovernment = PreItemChangedCabinetType(headOfGovernmentIdTextBox, val, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetForeignMinister:
-                case ItemId.CabinetForeignMinisterId:
-                    if (settings.ForeignMinister == null)
-                    {
-                        settings.ForeignMinister = PreItemChangedCabinetId(foreignMinisterTypeTextBox, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetForeignMinisterType:
-                    if (settings.ForeignMinister == null)
-                    {
-                        settings.ForeignMinister = PreItemChangedCabinetType(foreignMinisterIdTextBox, val, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetArmamentMinister:
-                case ItemId.CabinetArmamentMinisterId:
-                    if (settings.ArmamentMinister == null)
-                    {
-                        settings.ArmamentMinister = PreItemChangedCabinetId(armamentMinisterTypeTextBox, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetArmamentMinisterType:
-                    if (settings.ArmamentMinister == null)
-                    {
-                        settings.ArmamentMinister = PreItemChangedCabinetType(armamentMinisterIdTextBox, val, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetMinisterOfSecurity:
-                case ItemId.CabinetMinisterOfSecurityId:
-                    if (settings.MinisterOfSecurity == null)
-                    {
-                        settings.MinisterOfSecurity = PreItemChangedCabinetId(ministerOfSecurityTypeTextBox, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetMinisterOfSecurityType:
-                    if (settings.MinisterOfSecurity == null)
-                    {
-                        settings.MinisterOfSecurity = PreItemChangedCabinetType(ministerOfSecurityIdTextBox, val,
-                            settings);
-                    }
-                    break;
-
-                case ItemId.CabinetMinisterOfIntelligence:
-                case ItemId.CabinetMinisterOfIntelligenceId:
-                    if (settings.MinisterOfIntelligence == null)
-                    {
-                        settings.MinisterOfIntelligence = PreItemChangedCabinetId(ministerOfIntelligenceTypeTextBox,
-                            settings);
-                    }
-                    break;
-
-                case ItemId.CabinetMinisterOfIntelligenceType:
-                    if (settings.MinisterOfIntelligence == null)
-                    {
-                        settings.MinisterOfIntelligence = PreItemChangedCabinetType(ministerOfIntelligenceIdTextBox, val,
-                            settings);
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfStaff:
-                case ItemId.CabinetChiefOfStaffId:
-                    if (settings.ChiefOfStaff == null)
-                    {
-                        settings.ChiefOfStaff = PreItemChangedCabinetId(chiefOfStaffTypeTextBox, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfStaffType:
-                    if (settings.ChiefOfStaff == null)
-                    {
-                        settings.ChiefOfStaff = PreItemChangedCabinetType(chiefOfStaffIdTextBox, val, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfArmy:
-                case ItemId.CabinetChiefOfArmyId:
-                    if (settings.ChiefOfArmy == null)
-                    {
-                        settings.ChiefOfArmy = PreItemChangedCabinetId(chiefOfArmyTypeTextBox, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfArmyType:
-                    if (settings.ChiefOfArmy == null)
-                    {
-                        settings.ChiefOfArmy = PreItemChangedCabinetType(chiefOfArmyIdTextBox, val, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfNavy:
-                case ItemId.CabinetChiefOfNavyId:
-                    if (settings.ChiefOfNavy == null)
-                    {
-                        settings.ChiefOfNavy = PreItemChangedCabinetId(chiefOfNavyTypeTextBox, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfNavyType:
-                    if (settings.ChiefOfNavy == null)
-                    {
-                        settings.ChiefOfNavy = PreItemChangedCabinetType(chiefOfNavyIdTextBox, val, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfAir:
-                case ItemId.CabinetChiefOfAirId:
-                    if (settings.ChiefOfAir == null)
-                    {
-                        settings.ChiefOfAir = PreItemChangedCabinetId(chiefOfAirTypeTextBox, settings);
-                    }
-                    break;
-
-                case ItemId.CabinetChiefOfAirType:
-                    if (settings.ChiefOfAir == null)
-                    {
-                        settings.ChiefOfAir = PreItemChangedCabinetType(chiefOfAirIdTextBox, val, settings);
-                    }
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     項目値変更前の処理
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">国家設定</param>
-        private void PreItemChanged(ItemId itemId, object val, Province province, CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.CountryCapital:
-                    // チェックを入れた後はチェックボックスを無効化する
-                    if ((bool) val)
-                    {
-                        capitalCheckBox.Enabled = false;
-                    }
-                    // プロヴィンスリストビューの表示を更新する
-                    int index = _landProvinces.FindIndex(prev => prev.Id == settings.Capital);
-                    if (index >= 0)
-                    {
-                        provinceListView.Items[index].SubItems[2].Text = "";
-                    }
-                    index = _landProvinces.IndexOf(province);
-                    if (index >= 0)
-                    {
-                        provinceListView.Items[index].SubItems[2].Text = Resources.Yes;
-                    }
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     項目変更前の処理
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void PreItemChanged(ItemId itemId, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceIcCurrent:
-                case ItemId.ProvinceIcMax:
-                case ItemId.ProvinceIcRelative:
-                    if (settings.Ic == null)
-                    {
-                        settings.Ic = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceInfrastructureCurrent:
-                case ItemId.ProvinceInfrastructureMax:
-                case ItemId.ProvinceInfrastructureRelative:
-                    if (settings.Infrastructure == null)
-                    {
-                        settings.Infrastructure = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceLandFortCurrent:
-                case ItemId.ProvinceLandFortMax:
-                case ItemId.ProvinceLandFortRelative:
-                    if (settings.LandFort == null)
-                    {
-                        settings.LandFort = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceCoastalFortCurrent:
-                case ItemId.ProvinceCoastalFortMax:
-                case ItemId.ProvinceCoastalFortRelative:
-                    if (settings.CoastalFort == null)
-                    {
-                        settings.CoastalFort = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceAntiAirCurrent:
-                case ItemId.ProvinceAntiAirMax:
-                case ItemId.ProvinceAntiAirRelative:
-                    if (settings.AntiAir == null)
-                    {
-                        settings.AntiAir = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceAirBaseCurrent:
-                case ItemId.ProvinceAirBaseMax:
-                case ItemId.ProvinceAirBaseRelative:
-                    if (settings.AirBase == null)
-                    {
-                        settings.AirBase = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceNavalBaseCurrent:
-                case ItemId.ProvinceNavalBaseMax:
-                case ItemId.ProvinceNavalBaseRelative:
-                    if (settings.NavalBase == null)
-                    {
-                        settings.NavalBase = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceRadarStationCurrent:
-                case ItemId.ProvinceRadarStationMax:
-                case ItemId.ProvinceRadarStationRelative:
-                    if (settings.RadarStation == null)
-                    {
-                        settings.RadarStation = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceNuclearReactorCurrent:
-                case ItemId.ProvinceNuclearReactorMax:
-                case ItemId.ProvinceNuclearReactorRelative:
-                    if (settings.NuclearReactor == null)
-                    {
-                        settings.NuclearReactor = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceRocketTestCurrent:
-                case ItemId.ProvinceRocketTestMax:
-                case ItemId.ProvinceRocketTestRelative:
-                    if (settings.RocketTest == null)
-                    {
-                        settings.RocketTest = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceSyntheticOilCurrent:
-                case ItemId.ProvinceSyntheticOilMax:
-                case ItemId.ProvinceSyntheticOilRelative:
-                    if (settings.SyntheticOil == null)
-                    {
-                        settings.SyntheticOil = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceSyntheticRaresCurrent:
-                case ItemId.ProvinceSyntheticRaresMax:
-                case ItemId.ProvinceSyntheticRaresRelative:
-                    if (settings.SyntheticRares == null)
-                    {
-                        settings.SyntheticRares = new BuildingSize();
-                    }
-                    break;
-
-                case ItemId.ProvinceNuclearPowerCurrent:
-                case ItemId.ProvinceNuclearPowerMax:
-                case ItemId.ProvinceNuclearPowerRelative:
-                    if (settings.NuclearPower == null)
-                    {
-                        settings.NuclearPower = new BuildingSize();
-                    }
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     項目変更前の処理 - スライダー移動日時
-        /// </summary>
-        /// <param name="control1">連動するコントロール1</param>
-        /// <param name="control2">連動するコントロール2</param>
-        /// <param name="settings">国家設定</param>
-        private static void PreItemChangedSliderDate(TextBox control1, TextBox control2, CountrySettings settings)
-        {
-            if (settings.Policy == null)
-            {
-                settings.Policy = new CountryPolicy();
-            }
-            if (settings.Policy.Date == null)
-            {
-                settings.Policy.Date = new GameDate();
-
-                // 編集済みフラグを設定する
-                ItemId itemId1 = (ItemId) control1.Tag;
-                ItemId itemId2 = (ItemId) control2.Tag;
-                settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId1]);
-                settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId2]);
-
-                // 編集項目の値を更新する
-                UpdateItemValue(control1, settings);
-                UpdateItemValue(control2, settings);
-
-                // 編集項目の色を更新する
-                UpdateItemColor(control1, settings);
-                UpdateItemColor(control2, settings);
-            }
-        }
-
-        /// <summary>
-        ///     項目変更前の処理 - 閣僚type
-        /// </summary>
-        /// <param name="control">idのコントロール</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">国家設定</param>
-        /// <returns>typeとidの組</returns>
-        private static TypeId PreItemChangedCabinetType(TextBox control, object val, CountrySettings settings)
-        {
-            // 新規idを設定する
-            TypeId typeId = new TypeId { Id = Scenarios.GetNewId((int) val, 1) };
-
-            // 編集済みフラグを設定する
-            ItemId itemId = (ItemId) control.Tag;
-            settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
-
-            // 編集項目の値を更新する
-            UpdateItemValue(control, settings);
-
-            // 編集項目の色を更新する
-            UpdateItemColor(control, settings);
-
-            return typeId;
-        }
-
-        /// <summary>
-        ///     項目変更前の処理 - 閣僚id
-        /// </summary>
-        /// <param name="control">typeのコントロール</param>
-        /// <param name="settings">国家設定</param>
-        /// <returns>typeとidの組</returns>
-        private static TypeId PreItemChangedCabinetId(TextBox control, CountrySettings settings)
-        {
-            TypeId typeId = new TypeId
-            {
-                Type = Scenarios.GetNewType((settings.HeadOfState != null) ? settings.HeadOfState.Type : 1)
-            };
-
-            // 編集済みフラグを設定する
-            ItemId itemId = (ItemId) control.Tag;
-            settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
-
-            // 編集項目の値を更新する
-            UpdateItemValue(control, settings);
-
-            // 編集項目の色を更新する
-            UpdateItemColor(control, settings);
-
-            return typeId;
-        }
-
-        #endregion
-
-        #region 編集項目 - 変更後処理
-
-        /// <summary>
-        ///     項目値変更後の処理
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">国家設定</param>
-        private void PostItemChanged(ItemId itemId, object val, CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.CabinetHeadOfState:
-                    PostItemChangedCabinet(headOfStateIdTextBox, settings);
-                    break;
-
-                case ItemId.CabinetHeadOfStateId:
-                    PostItemChangedCabinetId(headOfStateComboBox, val, _headOfStateList);
-                    break;
-
-                case ItemId.CabinetHeadOfGovernment:
-                    PostItemChangedCabinet(headOfGovernmentIdTextBox, settings);
-                    break;
-
-                case ItemId.CabinetHeadOfGovernmentId:
-                    PostItemChangedCabinetId(headOfGovernmentComboBox, val, _headOfGovernmentList);
-                    break;
-
-                case ItemId.CabinetForeignMinister:
-                    PostItemChangedCabinet(foreignMinisterIdTextBox, settings);
-                    break;
-
-                case ItemId.CabinetForeignMinisterId:
-                    PostItemChangedCabinetId(foreignMinisterComboBox, val, _foreignMinisterList);
-                    break;
-
-                case ItemId.CabinetArmamentMinister:
-                    PostItemChangedCabinet(armamentMinisterIdTextBox, settings);
-                    break;
-
-                case ItemId.CabinetArmamentMinisterId:
-                    PostItemChangedCabinetId(armamentMinisterComboBox, val, _armamentMinisterList);
-                    break;
-
-                case ItemId.CabinetMinisterOfSecurity:
-                    PostItemChangedCabinet(ministerOfSecurityIdTextBox, settings);
-                    break;
-
-                case ItemId.CabinetMinisterOfSecurityId:
-                    PostItemChangedCabinetId(ministerOfSecurityComboBox, val, _ministerOfSecurityList);
-                    break;
-
-                case ItemId.CabinetMinisterOfIntelligence:
-                    PostItemChangedCabinet(ministerOfIntelligenceIdTextBox, settings);
-                    break;
-
-                case ItemId.CabinetMinisterOfIntelligenceId:
-                    PostItemChangedCabinetId(ministerOfIntelligenceComboBox, val, _ministerOfIntelligenceList);
-                    break;
-
-                case ItemId.CabinetChiefOfStaff:
-                    PostItemChangedCabinet(chiefOfStaffIdTextBox, settings);
-                    break;
-
-                case ItemId.CabinetChiefOfStaffId:
-                    PostItemChangedCabinetId(chiefOfStaffComboBox, val, _chiefOfStaffList);
-                    break;
-
-                case ItemId.CabinetChiefOfArmy:
-                    PostItemChangedCabinet(chiefOfArmyIdTextBox, settings);
-                    break;
-
-                case ItemId.CabinetChiefOfArmyId:
-                    PostItemChangedCabinetId(chiefOfArmyComboBox, val, _chiefOfArmyList);
-                    break;
-
-                case ItemId.CabinetChiefOfNavy:
-                    PostItemChangedCabinet(chiefOfNavyIdTextBox, settings);
-                    break;
-
-                case ItemId.CabinetChiefOfNavyId:
-                    PostItemChangedCabinetId(chiefOfNavyComboBox, val, _chiefOfNavyList);
-                    break;
-
-                case ItemId.CabinetChiefOfAir:
-                    PostItemChangedCabinet(chiefOfAirIdTextBox, settings);
-                    break;
-
-                case ItemId.CabinetChiefOfAirId:
-                    PostItemChangedCabinetId(chiefOfAirComboBox, val, _chiefOfAirList);
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     項目値変更後の処理
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="province">プロヴィンス</param>
-        private void PostItemChanged(ItemId itemId, object val, Province province)
-        {
-            int index;
-            switch (itemId)
-            {
-                case ItemId.CountryCoreProvinces:
-                    // プロヴィンスリストビューの表示を更新する
-                    index = _landProvinces.IndexOf(province);
-                    if (index >= 0)
-                    {
-                        provinceListView.Items[index].SubItems[3].Text = (bool)val ? Resources.Yes : "";
-                    }
-
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Core)
-                    {
-                        _mapPanelController.UpdateProvince((ushort)province.Id, (bool)val);
-                    }
-                    break;
-
-                case ItemId.CountryOwnedProvinces:
-                    // プロヴィンスリストビューの表示を更新する
-                    index = _landProvinces.IndexOf(province);
-                    if (index >= 0)
-                    {
-                        provinceListView.Items[index].SubItems[4].Text = (bool)val ? Resources.Yes : "";
-                    }
-
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Owned)
-                    {
-                        _mapPanelController.UpdateProvince((ushort)province.Id, (bool)val);
-                    }
-                    break;
-
-                case ItemId.CountryControlledProvinces:
-                    // プロヴィンスリストビューの表示を更新する
-                    index = _landProvinces.IndexOf(province);
-                    if (index >= 0)
-                    {
-                        provinceListView.Items[index].SubItems[5].Text = (bool)val ? Resources.Yes : "";
-                    }
-
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Controlled)
-                    {
-                        _mapPanelController.UpdateProvince((ushort)province.Id, (bool)val);
-                    }
-                    break;
-
-                case ItemId.CountryClaimedProvinces:
-                    // プロヴィンスリストビューの表示を更新する
-                    index = _landProvinces.IndexOf(province);
-                    if (index >= 0)
-                    {
-                        provinceListView.Items[index].SubItems[6].Text = (bool)val ? Resources.Yes : "";
-                    }
-
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Claimed)
-                    {
-                        _mapPanelController.UpdateProvince((ushort)province.Id, (bool)val);
-                    }
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     項目値変更後の処理
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private void PostItemChanged(ItemId itemId, object val, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceManpowerCurrent:
-                    PostItemChangedResourceCurrent(manpowerMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceManpowerMax:
-                    PostItemChangedResourceMax(manpowerCurrentTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceEnergyCurrent:
-                    PostItemChangedResourceCurrent(energyMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceEnergyMax:
-                    PostItemChangedResourceMax(energyCurrentTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceMetalCurrent:
-                    PostItemChangedResourceCurrent(metalMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceMetalMax:
-                    PostItemChangedResourceMax(metalCurrentTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceRareMaterialsCurrent:
-                    PostItemChangedResourceCurrent(rareMaterialsMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceRareMaterialsMax:
-                    PostItemChangedResourceMax(rareMaterialsCurrentTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceOilCurrent:
-                    PostItemChangedResourceCurrent(oilMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceOilMax:
-                    PostItemChangedResourceMax(oilCurrentTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceIcCurrent:
-                    PostItemChangedBuildingCurrent(icMaxTextBox, icRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceIcMax:
-                    PostItemChangedBuildingMax(icCurrentTextBox, icRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceIcRelative:
-                    PostItemChangedBuildingRelative(icCurrentTextBox, icMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceInfrastructureCurrent:
-                    PostItemChangedBuildingCurrent(infrastructureMaxTextBox, infrastructureRelativeTextBox, val,
-                        settings);
-                    break;
-
-                case ItemId.ProvinceInfrastructureMax:
-                    PostItemChangedBuildingMax(infrastructureCurrentTextBox, infrastructureRelativeTextBox, val,
-                        settings);
-                    break;
-
-                case ItemId.ProvinceInfrastructureRelative:
-                    PostItemChangedBuildingRelative(infrastructureCurrentTextBox, infrastructureMaxTextBox, val,
-                        settings);
-                    break;
-
-                case ItemId.ProvinceLandFortCurrent:
-                    PostItemChangedBuildingCurrent(landFortMaxTextBox, landFortRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceLandFortMax:
-                    PostItemChangedBuildingMax(landFortCurrentTextBox, landFortRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceLandFortRelative:
-                    PostItemChangedBuildingRelative(landFortCurrentTextBox, landFortMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceCoastalFortCurrent:
-                    PostItemChangedBuildingCurrent(coastalFortMaxTextBox, coastalFortRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceCoastalFortMax:
-                    PostItemChangedBuildingMax(coastalFortCurrentTextBox, coastalFortRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceCoastalFortRelative:
-                    PostItemChangedBuildingRelative(coastalFortCurrentTextBox, coastalFortMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceAntiAirCurrent:
-                    PostItemChangedBuildingCurrent(antiAirMaxTextBox, antiAirRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceAntiAirMax:
-                    PostItemChangedBuildingMax(antiAirCurrentTextBox, antiAirRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceAntiAirRelative:
-                    PostItemChangedBuildingRelative(antiAirCurrentTextBox, antiAirMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceAirBaseCurrent:
-                    PostItemChangedBuildingCurrent(airBaseMaxTextBox, airBaseRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceAirBaseMax:
-                    PostItemChangedBuildingMax(airBaseCurrentTextBox, airBaseRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceAirBaseRelative:
-                    PostItemChangedBuildingRelative(airBaseCurrentTextBox, airBaseMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceNavalBaseCurrent:
-                    PostItemChangedBuildingCurrent(navalBaseMaxTextBox, navalBaseRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceNavalBaseMax:
-                    PostItemChangedBuildingMax(navalBaseCurrentTextBox, navalBaseRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceNavalBaseRelative:
-                    PostItemChangedBuildingRelative(navalBaseCurrentTextBox, navalBaseMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceRadarStationCurrent:
-                    PostItemChangedBuildingCurrent(radarStationMaxTextBox, radarStationRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceRadarStationMax:
-                    PostItemChangedBuildingMax(radarStationCurrentTextBox, radarStationRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceRadarStationRelative:
-                    PostItemChangedBuildingRelative(radarStationCurrentTextBox, radarStationMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceNuclearReactorCurrent:
-                    PostItemChangedBuildingCurrent(nuclearReactorMaxTextBox, nuclearReactorRelativeTextBox, val,
-                        settings);
-                    break;
-
-                case ItemId.ProvinceNuclearReactorMax:
-                    PostItemChangedBuildingMax(nuclearReactorCurrentTextBox, nuclearReactorRelativeTextBox, val,
-                        settings);
-                    break;
-
-                case ItemId.ProvinceNuclearReactorRelative:
-                    PostItemChangedBuildingRelative(nuclearReactorCurrentTextBox, nuclearReactorMaxTextBox, val,
-                        settings);
-                    break;
-
-                case ItemId.ProvinceRocketTestCurrent:
-                    PostItemChangedBuildingCurrent(rocketTestMaxTextBox, rocketTestRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceRocketTestMax:
-                    PostItemChangedBuildingMax(rocketTestCurrentTextBox, rocketTestRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceRocketTestRelative:
-                    PostItemChangedBuildingRelative(rocketTestCurrentTextBox, rocketTestMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceSyntheticOilCurrent:
-                    PostItemChangedBuildingCurrent(syntheticOilMaxTextBox, syntheticOilRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceSyntheticOilMax:
-                    PostItemChangedBuildingMax(syntheticOilCurrentTextBox, syntheticOilRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceSyntheticOilRelative:
-                    PostItemChangedBuildingRelative(syntheticOilCurrentTextBox, syntheticOilMaxTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceSyntheticRaresCurrent:
-                    PostItemChangedBuildingCurrent(syntheticRaresMaxTextBox, syntheticRaresRelativeTextBox, val,
-                        settings);
-                    break;
-
-                case ItemId.ProvinceSyntheticRaresMax:
-                    PostItemChangedBuildingMax(syntheticRaresCurrentTextBox, syntheticRaresRelativeTextBox, val,
-                        settings);
-                    break;
-
-                case ItemId.ProvinceSyntheticRaresRelative:
-                    PostItemChangedBuildingRelative(syntheticRaresCurrentTextBox, syntheticRaresMaxTextBox, val,
-                        settings);
-                    break;
-
-                case ItemId.ProvinceNuclearPowerCurrent:
-                    PostItemChangedBuildingCurrent(nuclearPowerMaxTextBox, nuclearPowerRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceNuclearPowerMax:
-                    PostItemChangedBuildingMax(nuclearPowerCurrentTextBox, nuclearPowerRelativeTextBox, val, settings);
-                    break;
-
-                case ItemId.ProvinceNuclearPowerRelative:
-                    PostItemChangedBuildingRelative(nuclearPowerCurrentTextBox, nuclearPowerMaxTextBox, val, settings);
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     項目値変更後の処理 - 閣僚
-        /// </summary>
-        /// <param name="control">閣僚idのコントロール</param>
-        /// <param name="settings">国家設定</param>
-        private static void PostItemChangedCabinet(TextBox control, CountrySettings settings)
-        {
-            // 項目の値を更新する
-            UpdateItemValue(control, settings);
-
-            // 項目の色を更新する
-            UpdateItemColor(control, settings);
-        }
-
-        /// <summary>
-        ///     項目変更後の処理 - 閣僚id
-        /// </summary>
-        /// <param name="control">閣僚コンボボックス</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="ministers">閣僚候補リスト</param>
-        private static void PostItemChangedCabinetId(ComboBox control, object val, List<Minister> ministers)
-        {
-            // コンボボックスの選択項目を変更する
-            control.SelectedIndex = ministers.FindIndex(minister => minister.Id == (int)val);
-        }
-
-        /// <summary>
-        ///     項目値変更後の処理 - 資源現在値
-        /// </summary>
-        /// <param name="control">最大値のコントロール</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void PostItemChangedResourceCurrent(Control control, object val, ProvinceSettings settings)
-        {
-            // 現在値が最大値以下ならば何もしない
-            ItemId itemId = (ItemId)control.Tag;
-            double max = (double)GetItemValue(itemId, settings);
-            if (DoubleHelper.IsLessOrEqual((double)val, max))
-            {
-                return;
-            }
-
-            OutputItemValueChangedLog(itemId, val, settings);
-
-            // 最大値を現在値で更新する
-            SetItemValue(itemId, val, settings);
-
-            // 編集済みフラグを設定する
-            SetItemDirty(itemId, settings);
-
-            // 編集項目の値を更新する
-            control.Text = DoubleHelper.ToString((double)val);
-
-            // 編集項目の色を更新する
-            control.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     項目値変更後の処理 - 資源最大値
-        /// </summary>
-        /// <param name="control">現在値のコントロール</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void PostItemChangedResourceMax(Control control, object val, ProvinceSettings settings)
-        {
-            // 最大値が現在値以上ならば何もしない
-            ItemId itemId = (ItemId)control.Tag;
-            double current = (double)GetItemValue(itemId, settings);
-            if (DoubleHelper.IsGreaterOrEqual((double)val, current))
-            {
-                return;
-            }
-
-            OutputItemValueChangedLog(itemId, val, settings);
-
-            // 現在値を最大値で更新する
-            SetItemValue(itemId, val, settings);
-
-            // 編集済みフラグを設定する
-            SetItemDirty(itemId, settings);
-
-            // 編集項目の値を更新する
-            control.Text = DoubleHelper.ToString((double)val);
-
-            // 編集項目の色を更新する
-            control.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     項目値変更後の処理 - 建物現在値
-        /// </summary>
-        /// <param name="control1">最大値のコントロール1</param>
-        /// <param name="control2">相対値のコントロール2</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void PostItemChangedBuildingCurrent(Control control1, Control control2, object val,
-            ProvinceSettings settings)
-        {
-            // 相対値が0でなければクリアする
-            ItemId itemId2 = (ItemId)control2.Tag;
-            double relative = (double)GetItemValue(itemId2, settings);
-            if (!DoubleHelper.IsZero(relative))
-            {
-                OutputItemValueChangedLog(itemId2, val, settings);
-
-                // 相対値を0に設定する
-                SetItemValue(itemId2, (double)0, settings);
-
-                // 編集済みフラグを設定する
-                SetItemDirty(itemId2, settings);
-
-                // 編集項目の値をクリアする
-                control2.Text = "";
-            }
-
-            // 現在値が最大値以下ならば何もしない
-            ItemId itemId1 = (ItemId)control1.Tag;
-            double max = (double)GetItemValue(itemId1, settings);
-            if (DoubleHelper.IsLessOrEqual((double)val, max))
-            {
-                return;
-            }
-
-            OutputItemValueChangedLog(itemId1, val, settings);
-
-            // 最大値を現在値で更新する
-            SetItemValue(itemId1, val, settings);
-
-            // 編集済みフラグを設定する
-            SetItemDirty(itemId1, settings);
-
-            // 編集項目の値を更新する
-            control1.Text = DoubleHelper.ToString((double)val);
-
-            // 編集項目の色を更新する
-            control1.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     項目値変更後の処理 - 建物最大値
-        /// </summary>
-        /// <param name="control1">現在値のコントロール1</param>
-        /// <param name="control2">相対値のコントロール2</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void PostItemChangedBuildingMax(Control control1, Control control2, object val,
-            ProvinceSettings settings)
-        {
-            // 相対値が0でなければクリアする
-            ItemId itemId2 = (ItemId)control2.Tag;
-            double relative = (double)GetItemValue(itemId2, settings);
-            if (!DoubleHelper.IsZero(relative))
-            {
-                OutputItemValueChangedLog(itemId2, val, settings);
-
-                // 相対値を0に設定する
-                SetItemValue(itemId2, (double)0, settings);
-
-                // 編集済みフラグを設定する
-                SetItemDirty(itemId2, settings);
-
-                // 編集項目の値をクリアする
-                control2.Text = "";
-            }
-
-            // 最大値が現在値以上ならば何もしない
-            ItemId itemId1 = (ItemId)control1.Tag;
-            double current = (double)GetItemValue(itemId1, settings);
-            if (DoubleHelper.IsGreaterOrEqual((double)val, current))
-            {
-                return;
-            }
-
-            OutputItemValueChangedLog(itemId1, val, settings);
-
-            // 現在値を最大値で更新する
-            SetItemValue(itemId1, val, settings);
-
-            // 編集済みフラグを設定する
-            SetItemDirty(itemId1, settings);
-
-            // 編集項目の値を更新する
-            control1.Text = DoubleHelper.ToString((double)val);
-
-            // 編集項目の色を更新する
-            control1.ForeColor = Color.Red;
-        }
-
-        /// <summary>
-        ///     項目値変更後の処理 - 建物相対値
-        /// </summary>
-        /// <param name="control1">現在値のコントロール1</param>
-        /// <param name="control2">最大値のコントロール2</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void PostItemChangedBuildingRelative(Control control1, Control control2, object val,
-            ProvinceSettings settings)
-        {
-            // 現在値が0でなければクリアする
-            ItemId itemId1 = (ItemId)control1.Tag;
-            double current = (double)GetItemValue(itemId1, settings);
-            if (!DoubleHelper.IsZero(current))
-            {
-                OutputItemValueChangedLog(itemId1, val, settings);
-
-                // 現在値を0に設定する
-                SetItemValue(itemId1, (double)0, settings);
-
-                // 編集済みフラグを設定する
-                SetItemDirty(itemId1, settings);
-
-                // 編集項目の値をクリアする
-                control1.Text = "";
-            }
-
-            // 最大値が0でなければクリアする
-            ItemId itemId2 = (ItemId)control2.Tag;
-            double max = (double)GetItemValue(itemId2, settings);
-            if (!DoubleHelper.IsZero(max))
-            {
-                OutputItemValueChangedLog(itemId2, val, settings);
-
-                // 最大値を0に設定する
-                SetItemValue(itemId2, (double)0, settings);
-
-                // 編集済みフラグを設定する
-                SetItemDirty(itemId2, settings);
-
-                // 編集項目の値をクリアする
-                control2.Text = "";
-            }
-        }
-
-        #endregion
-
-        #region 編集項目 - ログ出力
-
-        /// <summary>
-        ///     編集項目の値変更時のログを出力する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">国家設定</param>
-        private static void OutputItemValueChangedLog(ItemId itemId, object val, CountrySettings settings)
-        {
-            Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int)itemId],
-                ObjectHelper.ToString(GetItemValue(itemId, settings)), ObjectHelper.ToString(val),
-                Countries.Strings[(int)settings.Country]);
-        }
-
-        /// <summary>
-        ///     編集項目の値変更時のログを出力する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">国家設定</param>
-        private static void OutputItemValueChangedLog(ItemId itemId, object val, Province province,
-            CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.CountryCapital:
-                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int)itemId], settings.Capital,
-                        province.Id, Countries.Strings[(int)settings.Country]);
-                    break;
-
-                case ItemId.CountryCoreProvinces:
-                case ItemId.CountryOwnedProvinces:
-                case ItemId.CountryControlledProvinces:
-                case ItemId.CountryClaimedProvinces:
-                    Log.Info("[Scenario] {0}: {1}{2} ({3})", ItemStrings[(int)itemId], (bool)val ? '+' : '-',
-                        ObjectHelper.ToString(province.Id), Countries.Strings[(int)settings.Country]);
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の値変更時のログを出力する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void OutputItemValueChangedLog(ItemId itemId, object val, Province province,
-            ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ItemId.ProvinceName:
-                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int)itemId],
-                        GetProvinceName(province, settings), val, province.Id);
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の値変更時のログを出力する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        private static void OutputItemValueChangedLog(ItemId itemId, object val, ProvinceSettings settings)
-        {
-            Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int)itemId],
-                ObjectHelper.ToString(GetItemValue(itemId, settings)), ObjectHelper.ToString(val), settings.Id);
-        }
-
-        #endregion
-
-        #endregion
-
-        #region 共通処理
-
-        #region 共通処理 - 国家
+        #region 共通 - 国家
 
         /// <summary>
         ///     国タグと国名の文字列を取得する
@@ -18920,6 +14254,20 @@ namespace HoI2Editor.Forms
 
             // フォーカスを描画する
             e.DrawFocusRectangle();
+        }
+
+        #endregion
+
+        #region 共通 - 編集項目
+
+        /// <summary>
+        ///     編集項目IDに関連付けられたコントロールを取得する
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <returns></returns>
+        public Control GetItemControl(ScenarioEditorItemId itemId)
+        {
+            return _itemControls.ContainsKey(itemId) ? _itemControls[itemId] : null;
         }
 
         #endregion

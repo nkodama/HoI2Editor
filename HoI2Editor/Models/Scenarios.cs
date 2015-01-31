@@ -642,6 +642,39 @@ namespace HoI2Editor.Models
         #region プロヴィンス
 
         /// <summary>
+        ///     プロヴィンス名を取得する
+        /// </summary>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        /// <returns>プロヴィンス名</returns>
+        public static string GetProvinceName(Province province, ProvinceSettings settings)
+        {
+            if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
+            {
+                return Config.GetText(settings.Name);
+            }
+            return province.GetName();
+        }
+
+        /// <summary>
+        ///     プロヴィンス名を設定する
+        /// </summary>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        /// <param name="s">プロヴィンス名</param>
+        public static void SetProvinceName(Province province, ProvinceSettings settings, string s)
+        {
+            if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
+            {
+                Config.SetText(settings.Name, s, Game.ScenarioTextFileName);
+            }
+            else
+            {
+                province.SetName(s);
+            }
+        }
+
+        /// <summary>
         ///     プロヴィンス情報を初期化する
         /// </summary>
         private static void InitProvinces()

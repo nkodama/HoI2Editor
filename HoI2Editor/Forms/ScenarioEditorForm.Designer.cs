@@ -1542,7 +1542,7 @@
             resources.ApplyResources(this.chiefOfAirComboBox, "chiefOfAirComboBox");
             this.chiefOfAirComboBox.Name = "chiefOfAirComboBox";
             this.chiefOfAirComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
-            this.chiefOfAirComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfAirComboBoxSelectedIndexChanged);
+            this.chiefOfAirComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // chiefOfAirLabel
             // 
@@ -1569,7 +1569,7 @@
             resources.ApplyResources(this.chiefOfNavyComboBox, "chiefOfNavyComboBox");
             this.chiefOfNavyComboBox.Name = "chiefOfNavyComboBox";
             this.chiefOfNavyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
-            this.chiefOfNavyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfNavyComboBoxSelectedIndexChanged);
+            this.chiefOfNavyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // chiefOfNavyLabel
             // 
@@ -1596,7 +1596,7 @@
             resources.ApplyResources(this.chiefOfArmyComboBox, "chiefOfArmyComboBox");
             this.chiefOfArmyComboBox.Name = "chiefOfArmyComboBox";
             this.chiefOfArmyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
-            this.chiefOfArmyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfArmyComboBoxSelectedIndexChanged);
+            this.chiefOfArmyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // chiefOfArmyLabel
             // 
@@ -1623,7 +1623,7 @@
             resources.ApplyResources(this.chiefOfStaffComboBox, "chiefOfStaffComboBox");
             this.chiefOfStaffComboBox.Name = "chiefOfStaffComboBox";
             this.chiefOfStaffComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
-            this.chiefOfStaffComboBox.SelectedIndexChanged += new System.EventHandler(this.OnChiefOfStaffComboBoxSelectedIndexChanged);
+            this.chiefOfStaffComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // chiefOfStaffLabel
             // 
@@ -1650,7 +1650,7 @@
             resources.ApplyResources(this.ministerOfIntelligenceComboBox, "ministerOfIntelligenceComboBox");
             this.ministerOfIntelligenceComboBox.Name = "ministerOfIntelligenceComboBox";
             this.ministerOfIntelligenceComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
-            this.ministerOfIntelligenceComboBox.SelectedIndexChanged += new System.EventHandler(this.OnMinisterOfIntelligenceComboBoxSelectedIndexChanged);
+            this.ministerOfIntelligenceComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // ministerOfIntelligenceLabel
             // 
@@ -1677,7 +1677,7 @@
             resources.ApplyResources(this.ministerOfSecurityComboBox, "ministerOfSecurityComboBox");
             this.ministerOfSecurityComboBox.Name = "ministerOfSecurityComboBox";
             this.ministerOfSecurityComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
-            this.ministerOfSecurityComboBox.SelectedIndexChanged += new System.EventHandler(this.OnMinisterOfSecurityComboBoxSelectedIndexChanged);
+            this.ministerOfSecurityComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // ministerOfSecurityLabel
             // 
@@ -1704,7 +1704,7 @@
             resources.ApplyResources(this.armamentMinisterComboBox, "armamentMinisterComboBox");
             this.armamentMinisterComboBox.Name = "armamentMinisterComboBox";
             this.armamentMinisterComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
-            this.armamentMinisterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnArmamentMinisterComboBoxSelectedIndexChanged);
+            this.armamentMinisterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // armamentMinisterLabel
             // 
@@ -1731,7 +1731,7 @@
             resources.ApplyResources(this.foreignMinisterComboBox, "foreignMinisterComboBox");
             this.foreignMinisterComboBox.Name = "foreignMinisterComboBox";
             this.foreignMinisterComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
-            this.foreignMinisterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnForeignMinisterComboBoxSelectedIndexChanged);
+            this.foreignMinisterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // foreignMinisterlabel
             // 
@@ -1758,7 +1758,7 @@
             resources.ApplyResources(this.headOfGovernmentComboBox, "headOfGovernmentComboBox");
             this.headOfGovernmentComboBox.Name = "headOfGovernmentComboBox";
             this.headOfGovernmentComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
-            this.headOfGovernmentComboBox.SelectedIndexChanged += new System.EventHandler(this.OnHeadOfGovernmentComboBoxSelectedIndexChanged);
+            this.headOfGovernmentComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // headOfGovernmentLabel
             // 
@@ -1786,7 +1786,7 @@
             this.headOfStateComboBox.Name = "headOfStateComboBox";
             this.headOfStateComboBox.Tag = "";
             this.headOfStateComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
-            this.headOfStateComboBox.SelectedIndexChanged += new System.EventHandler(this.OnHeadOfStateComboBoxSelectedIndexChanged);
+            this.headOfStateComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // headOfStateLabel
             // 
@@ -1845,7 +1845,7 @@
             this.interventionismTrackBar.Minimum = 1;
             this.interventionismTrackBar.Name = "interventionismTrackBar";
             this.interventionismTrackBar.Value = 6;
-            this.interventionismTrackBar.Scroll += new System.EventHandler(this.OnIntervensionismTrackBarScroll);
+            this.interventionismTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // isolationismLabel
             // 
@@ -1864,7 +1864,7 @@
             this.defenseLobbyTrackBar.Minimum = 1;
             this.defenseLobbyTrackBar.Name = "defenseLobbyTrackBar";
             this.defenseLobbyTrackBar.Value = 6;
-            this.defenseLobbyTrackBar.Scroll += new System.EventHandler(this.OnDefenseLobbyTrackBarScroll);
+            this.defenseLobbyTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // doveLobbyLabel
             // 
@@ -1883,7 +1883,7 @@
             this.professionalArmyTrackBar.Minimum = 1;
             this.professionalArmyTrackBar.Name = "professionalArmyTrackBar";
             this.professionalArmyTrackBar.Value = 6;
-            this.professionalArmyTrackBar.Scroll += new System.EventHandler(this.OnProfessionalArmyTrackBarScroll);
+            this.professionalArmyTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // draftedArmyLabel
             // 
@@ -1902,7 +1902,7 @@
             this.freeMarketTrackBar.Minimum = 1;
             this.freeMarketTrackBar.Name = "freeMarketTrackBar";
             this.freeMarketTrackBar.Value = 6;
-            this.freeMarketTrackBar.Scroll += new System.EventHandler(this.OnFreeMarketTrackBarScroll);
+            this.freeMarketTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // centralPlanningLabel
             // 
@@ -1921,7 +1921,7 @@
             this.freedomTrackBar.Minimum = 1;
             this.freedomTrackBar.Name = "freedomTrackBar";
             this.freedomTrackBar.Value = 6;
-            this.freedomTrackBar.Scroll += new System.EventHandler(this.OnFreedomTrackBarScroll);
+            this.freedomTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // closedSocietyLabel
             // 
@@ -1940,7 +1940,7 @@
             this.politicalLeftTrackBar.Minimum = 1;
             this.politicalLeftTrackBar.Name = "politicalLeftTrackBar";
             this.politicalLeftTrackBar.Value = 6;
-            this.politicalLeftTrackBar.Scroll += new System.EventHandler(this.OnPoliticalLeftTrackBarScroll);
+            this.politicalLeftTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // politicalRightLabel
             // 
@@ -1959,7 +1959,7 @@
             this.democraticTrackBar.Minimum = 1;
             this.democraticTrackBar.Name = "democraticTrackBar";
             this.democraticTrackBar.Value = 6;
-            this.democraticTrackBar.Scroll += new System.EventHandler(this.OnDemocraticTrackBarScroll);
+            this.democraticTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // authoritarianLabel
             // 

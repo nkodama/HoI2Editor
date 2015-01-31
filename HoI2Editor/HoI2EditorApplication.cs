@@ -19,8 +19,8 @@ namespace HoI2Editor
         {
             try
             {
-                Application.ThreadException += OnThreadException;
-                Thread.GetDomain().UnhandledException += OnUnhandledException;
+                //Application.ThreadException += OnThreadException;
+                //Thread.GetDomain().UnhandledException += OnUnhandledException;
 
                 HoI2Editor.InitVersion();
                 HoI2Editor.LoadSettings();
