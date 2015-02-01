@@ -1101,6 +1101,22 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     新規typeを取得する
+        /// </summary>
+        /// <param name="startType">探索開始type</param>
+        /// <param name="id">id</param>
+        /// <returns>新規type</returns>
+        public static int GetNewType(int startType, int id)
+        {
+            int type = startType;
+            while (ExistsTypeId(type, id))
+            {
+                type++;
+            }
+            return type;
+        }
+
+        /// <summary>
         ///     新規idを取得する
         /// </summary>
         /// <param name="type">type</param>

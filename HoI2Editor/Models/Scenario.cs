@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Models
@@ -1891,6 +1892,46 @@ namespace HoI2Editor.Models
         public Treaty()
         {
             Cancel = true;
+        }
+
+        #endregion
+
+        #region 文字列操作
+
+        /// <summary>
+        ///     貿易内容の文字列を取得する
+        /// </summary>
+        /// <returns>貿易内容の文字列</returns>
+        public string GetTradeString()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (!DoubleHelper.IsZero(Energy))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceEnergy), DoubleHelper.ToString1(Energy));
+            }
+            if (!DoubleHelper.IsZero(Metal))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceMetal), DoubleHelper.ToString1(Metal));
+            }
+            if (!DoubleHelper.IsZero(RareMaterials))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceRareMaterials),
+                    DoubleHelper.ToString1(RareMaterials));
+            }
+            if (!DoubleHelper.IsZero(Oil))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceOil), DoubleHelper.ToString1(Oil));
+            }
+            if (!DoubleHelper.IsZero(Supplies))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceSupplies), DoubleHelper.ToString1(Supplies));
+            }
+            if (!DoubleHelper.IsZero(Money))
+            {
+                sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceMoney), DoubleHelper.ToString1(Money));
+            }
+            int len = sb.Length;
+            return (len > 0) ? sb.ToString(0, len - 2) : "";
         }
 
         #endregion

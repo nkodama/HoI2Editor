@@ -132,6 +132,16 @@ namespace HoI2Editor.Utilities
         }
 
         /// <summary>
+        ///     数値が正であるかを判定する
+        /// </summary>
+        /// <param name="val">数値</param>
+        /// <returns>数値が正であればtrueを返す</returns>
+        public static bool IsPositive(double val)
+        {
+            return val > 0.0000005;
+        }
+
+        /// <summary>
         ///     数値が負であるかを判定する
         /// </summary>
         /// <param name="val">数値</param>

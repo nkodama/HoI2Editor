@@ -52,6 +52,25 @@
             System.Windows.Forms.Label resourceCurrentLabel;
             System.Windows.Forms.Label resourcePoolLabel;
             System.Windows.Forms.TabPage technologyTabPage;
+            System.Windows.Forms.Label peacetimeIcModifierLabel;
+            System.Windows.Forms.Label wartimeIcModifierLabel;
+            System.Windows.Forms.Label groundDefEffLabel;
+            System.Windows.Forms.Label relativeManpowerLabel;
+            System.Windows.Forms.Label industrialModifierLabel;
+            System.Windows.Forms.Label aiFileLabel;
+            System.Windows.Forms.Label countryOffmapLabel;
+            System.Windows.Forms.Label countryStockpileLabel;
+            System.Windows.Forms.Label nukeDateLabel;
+            System.Windows.Forms.Label dissentLabel;
+            System.Windows.Forms.Label flagExtLabel;
+            System.Windows.Forms.Label nukeLabel;
+            System.Windows.Forms.Label extraTcLabel;
+            System.Windows.Forms.Label belligerenceLabel;
+            System.Windows.Forms.Label regularIdLabel;
+            System.Windows.Forms.Label countryNameLabel;
+            System.Windows.Forms.Label tradeStartDateLabel;
+            System.Windows.Forms.Label tradeEndDateLabel;
+            System.Windows.Forms.Label tradeIdLabel;
             this.techTreePanel = new System.Windows.Forms.Panel();
             this.techTreePictureBox = new System.Windows.Forms.PictureBox();
             this.inventionsListView = new System.Windows.Forms.ListView();
@@ -230,17 +249,11 @@
             this.countryTabPage = new System.Windows.Forms.TabPage();
             this.countryModifierGroupBox = new System.Windows.Forms.GroupBox();
             this.groundDefEffTextBox = new System.Windows.Forms.TextBox();
-            this.peacetimeIcModifierLabel = new System.Windows.Forms.Label();
             this.peacetimeIcModifierTextBox = new System.Windows.Forms.TextBox();
-            this.wartimeIcModifierLabel = new System.Windows.Forms.Label();
-            this.groundDefEffLabel = new System.Windows.Forms.Label();
-            this.relativeManpowerLabel = new System.Windows.Forms.Label();
             this.relativeManpowerTextBox = new System.Windows.Forms.TextBox();
             this.wartimeIcModifierTextBox = new System.Windows.Forms.TextBox();
-            this.industrialModifierLabel = new System.Windows.Forms.Label();
             this.industrialModifierTextBox = new System.Windows.Forms.TextBox();
             this.aiGroupBox = new System.Windows.Forms.GroupBox();
-            this.aiFileLabel = new System.Windows.Forms.Label();
             this.aiFileBrowseButton = new System.Windows.Forms.Button();
             this.aiFileNameTextBox = new System.Windows.Forms.TextBox();
             this.countryListBox = new System.Windows.Forms.ListBox();
@@ -256,9 +269,7 @@
             this.offmapRareMaterialsTextBox = new System.Windows.Forms.TextBox();
             this.offmapMetalTextBox = new System.Windows.Forms.TextBox();
             this.offmapEnergyTextBox = new System.Windows.Forms.TextBox();
-            this.countryOffmapLabel = new System.Windows.Forms.Label();
             this.countryManpowerTextBox = new System.Windows.Forms.TextBox();
-            this.countryStockpileLabel = new System.Windows.Forms.Label();
             this.countryManpowerLabel = new System.Windows.Forms.Label();
             this.countryEscortsTextBox = new System.Windows.Forms.TextBox();
             this.countryEscortsLabel = new System.Windows.Forms.Label();
@@ -279,24 +290,16 @@
             this.countryInfoGroupBox = new System.Windows.Forms.GroupBox();
             this.nukeDayTextBox = new System.Windows.Forms.TextBox();
             this.nukeMonthTextBox = new System.Windows.Forms.TextBox();
-            this.nukeDateLabel = new System.Windows.Forms.Label();
             this.nukeYearTextBox = new System.Windows.Forms.TextBox();
             this.dissentTextBox = new System.Windows.Forms.TextBox();
-            this.dissentLabel = new System.Windows.Forms.Label();
             this.flagExtTextBox = new System.Windows.Forms.TextBox();
-            this.flagExtLabel = new System.Windows.Forms.Label();
             this.nukeTextBox = new System.Windows.Forms.TextBox();
-            this.nukeLabel = new System.Windows.Forms.Label();
             this.extraTcTextBox = new System.Windows.Forms.TextBox();
-            this.extraTcLabel = new System.Windows.Forms.Label();
             this.belligerenceTextBox = new System.Windows.Forms.TextBox();
-            this.belligerenceLabel = new System.Windows.Forms.Label();
             this.regularIdComboBox = new System.Windows.Forms.ComboBox();
-            this.regularIdLabel = new System.Windows.Forms.Label();
             this.countryNameTextBox = new System.Windows.Forms.TextBox();
-            this.countryNameLabel = new System.Windows.Forms.Label();
             this.tradeTabPage = new System.Windows.Forms.TabPage();
-            this.tradeDealGroupBox = new System.Windows.Forms.GroupBox();
+            this.tradeDealsGroupBox = new System.Windows.Forms.GroupBox();
             this.tradeCountryComboBox1 = new System.Windows.Forms.ComboBox();
             this.tradeRareMaterialsTextBox1 = new System.Windows.Forms.TextBox();
             this.tradeRareMaterialsTextBox2 = new System.Windows.Forms.TextBox();
@@ -319,12 +322,9 @@
             this.tradeEnergyLabel = new System.Windows.Forms.Label();
             this.tradeSuppliesTextBox2 = new System.Windows.Forms.TextBox();
             this.tradeInfoGroupBox = new System.Windows.Forms.GroupBox();
-            this.tradeStartDateLabel = new System.Windows.Forms.Label();
             this.tradeIdTextBox = new System.Windows.Forms.TextBox();
-            this.tradeEndDateLabel = new System.Windows.Forms.Label();
             this.tradeTypeTextBox = new System.Windows.Forms.TextBox();
             this.tradeStartYearTextBox = new System.Windows.Forms.TextBox();
-            this.tradeIdLabel = new System.Windows.Forms.Label();
             this.tradeStartMonthTextBox = new System.Windows.Forms.TextBox();
             this.tradeCancelCheckBox = new System.Windows.Forms.CheckBox();
             this.tradeEndDayTextBox = new System.Windows.Forms.TextBox();
@@ -530,6 +530,25 @@
             resourceCurrentLabel = new System.Windows.Forms.Label();
             resourcePoolLabel = new System.Windows.Forms.Label();
             technologyTabPage = new System.Windows.Forms.TabPage();
+            peacetimeIcModifierLabel = new System.Windows.Forms.Label();
+            wartimeIcModifierLabel = new System.Windows.Forms.Label();
+            groundDefEffLabel = new System.Windows.Forms.Label();
+            relativeManpowerLabel = new System.Windows.Forms.Label();
+            industrialModifierLabel = new System.Windows.Forms.Label();
+            aiFileLabel = new System.Windows.Forms.Label();
+            countryOffmapLabel = new System.Windows.Forms.Label();
+            countryStockpileLabel = new System.Windows.Forms.Label();
+            nukeDateLabel = new System.Windows.Forms.Label();
+            dissentLabel = new System.Windows.Forms.Label();
+            flagExtLabel = new System.Windows.Forms.Label();
+            nukeLabel = new System.Windows.Forms.Label();
+            extraTcLabel = new System.Windows.Forms.Label();
+            belligerenceLabel = new System.Windows.Forms.Label();
+            regularIdLabel = new System.Windows.Forms.Label();
+            countryNameLabel = new System.Windows.Forms.Label();
+            tradeStartDateLabel = new System.Windows.Forms.Label();
+            tradeEndDateLabel = new System.Windows.Forms.Label();
+            tradeIdLabel = new System.Windows.Forms.Label();
             technologyTabPage.SuspendLayout();
             this.techTreePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).BeginInit();
@@ -557,7 +576,7 @@
             this.countryResourceGroupBox.SuspendLayout();
             this.countryInfoGroupBox.SuspendLayout();
             this.tradeTabPage.SuspendLayout();
-            this.tradeDealGroupBox.SuspendLayout();
+            this.tradeDealsGroupBox.SuspendLayout();
             this.tradeInfoGroupBox.SuspendLayout();
             this.relationTabPage.SuspendLayout();
             this.intelligenceGroupBox.SuspendLayout();
@@ -775,6 +794,101 @@
             this.techCountryListBox.Name = "techCountryListBox";
             this.techCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.techCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechCountryListBoxSelectedIndexChanged);
+            // 
+            // peacetimeIcModifierLabel
+            // 
+            resources.ApplyResources(peacetimeIcModifierLabel, "peacetimeIcModifierLabel");
+            peacetimeIcModifierLabel.Name = "peacetimeIcModifierLabel";
+            // 
+            // wartimeIcModifierLabel
+            // 
+            resources.ApplyResources(wartimeIcModifierLabel, "wartimeIcModifierLabel");
+            wartimeIcModifierLabel.Name = "wartimeIcModifierLabel";
+            // 
+            // groundDefEffLabel
+            // 
+            resources.ApplyResources(groundDefEffLabel, "groundDefEffLabel");
+            groundDefEffLabel.Name = "groundDefEffLabel";
+            // 
+            // relativeManpowerLabel
+            // 
+            resources.ApplyResources(relativeManpowerLabel, "relativeManpowerLabel");
+            relativeManpowerLabel.Name = "relativeManpowerLabel";
+            // 
+            // industrialModifierLabel
+            // 
+            resources.ApplyResources(industrialModifierLabel, "industrialModifierLabel");
+            industrialModifierLabel.Name = "industrialModifierLabel";
+            // 
+            // aiFileLabel
+            // 
+            resources.ApplyResources(aiFileLabel, "aiFileLabel");
+            aiFileLabel.Name = "aiFileLabel";
+            // 
+            // countryOffmapLabel
+            // 
+            resources.ApplyResources(countryOffmapLabel, "countryOffmapLabel");
+            countryOffmapLabel.Name = "countryOffmapLabel";
+            // 
+            // countryStockpileLabel
+            // 
+            resources.ApplyResources(countryStockpileLabel, "countryStockpileLabel");
+            countryStockpileLabel.Name = "countryStockpileLabel";
+            // 
+            // nukeDateLabel
+            // 
+            resources.ApplyResources(nukeDateLabel, "nukeDateLabel");
+            nukeDateLabel.Name = "nukeDateLabel";
+            // 
+            // dissentLabel
+            // 
+            resources.ApplyResources(dissentLabel, "dissentLabel");
+            dissentLabel.Name = "dissentLabel";
+            // 
+            // flagExtLabel
+            // 
+            resources.ApplyResources(flagExtLabel, "flagExtLabel");
+            flagExtLabel.Name = "flagExtLabel";
+            // 
+            // nukeLabel
+            // 
+            resources.ApplyResources(nukeLabel, "nukeLabel");
+            nukeLabel.Name = "nukeLabel";
+            // 
+            // extraTcLabel
+            // 
+            resources.ApplyResources(extraTcLabel, "extraTcLabel");
+            extraTcLabel.Name = "extraTcLabel";
+            // 
+            // belligerenceLabel
+            // 
+            resources.ApplyResources(belligerenceLabel, "belligerenceLabel");
+            belligerenceLabel.Name = "belligerenceLabel";
+            // 
+            // regularIdLabel
+            // 
+            resources.ApplyResources(regularIdLabel, "regularIdLabel");
+            regularIdLabel.Name = "regularIdLabel";
+            // 
+            // countryNameLabel
+            // 
+            resources.ApplyResources(countryNameLabel, "countryNameLabel");
+            countryNameLabel.Name = "countryNameLabel";
+            // 
+            // tradeStartDateLabel
+            // 
+            resources.ApplyResources(tradeStartDateLabel, "tradeStartDateLabel");
+            tradeStartDateLabel.Name = "tradeStartDateLabel";
+            // 
+            // tradeEndDateLabel
+            // 
+            resources.ApplyResources(tradeEndDateLabel, "tradeEndDateLabel");
+            tradeEndDateLabel.Name = "tradeEndDateLabel";
+            // 
+            // tradeIdLabel
+            // 
+            resources.ApplyResources(tradeIdLabel, "tradeIdLabel");
+            tradeIdLabel.Name = "tradeIdLabel";
             // 
             // provinceIdLabel
             // 
@@ -2003,14 +2117,14 @@
             // countryModifierGroupBox
             // 
             this.countryModifierGroupBox.Controls.Add(this.groundDefEffTextBox);
-            this.countryModifierGroupBox.Controls.Add(this.peacetimeIcModifierLabel);
+            this.countryModifierGroupBox.Controls.Add(peacetimeIcModifierLabel);
             this.countryModifierGroupBox.Controls.Add(this.peacetimeIcModifierTextBox);
-            this.countryModifierGroupBox.Controls.Add(this.wartimeIcModifierLabel);
-            this.countryModifierGroupBox.Controls.Add(this.groundDefEffLabel);
-            this.countryModifierGroupBox.Controls.Add(this.relativeManpowerLabel);
+            this.countryModifierGroupBox.Controls.Add(wartimeIcModifierLabel);
+            this.countryModifierGroupBox.Controls.Add(groundDefEffLabel);
+            this.countryModifierGroupBox.Controls.Add(relativeManpowerLabel);
             this.countryModifierGroupBox.Controls.Add(this.relativeManpowerTextBox);
             this.countryModifierGroupBox.Controls.Add(this.wartimeIcModifierTextBox);
-            this.countryModifierGroupBox.Controls.Add(this.industrialModifierLabel);
+            this.countryModifierGroupBox.Controls.Add(industrialModifierLabel);
             this.countryModifierGroupBox.Controls.Add(this.industrialModifierTextBox);
             resources.ApplyResources(this.countryModifierGroupBox, "countryModifierGroupBox");
             this.countryModifierGroupBox.Name = "countryModifierGroupBox";
@@ -2020,70 +2134,40 @@
             // 
             resources.ApplyResources(this.groundDefEffTextBox, "groundDefEffTextBox");
             this.groundDefEffTextBox.Name = "groundDefEffTextBox";
-            this.groundDefEffTextBox.Validated += new System.EventHandler(this.OnGroundDefEffTextBoxValidated);
-            // 
-            // peacetimeIcModifierLabel
-            // 
-            resources.ApplyResources(this.peacetimeIcModifierLabel, "peacetimeIcModifierLabel");
-            this.peacetimeIcModifierLabel.Name = "peacetimeIcModifierLabel";
+            this.groundDefEffTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // peacetimeIcModifierTextBox
             // 
             resources.ApplyResources(this.peacetimeIcModifierTextBox, "peacetimeIcModifierTextBox");
             this.peacetimeIcModifierTextBox.Name = "peacetimeIcModifierTextBox";
-            this.peacetimeIcModifierTextBox.Validated += new System.EventHandler(this.OnPeacetimeIcModifierTextBoxValidated);
-            // 
-            // wartimeIcModifierLabel
-            // 
-            resources.ApplyResources(this.wartimeIcModifierLabel, "wartimeIcModifierLabel");
-            this.wartimeIcModifierLabel.Name = "wartimeIcModifierLabel";
-            // 
-            // groundDefEffLabel
-            // 
-            resources.ApplyResources(this.groundDefEffLabel, "groundDefEffLabel");
-            this.groundDefEffLabel.Name = "groundDefEffLabel";
-            // 
-            // relativeManpowerLabel
-            // 
-            resources.ApplyResources(this.relativeManpowerLabel, "relativeManpowerLabel");
-            this.relativeManpowerLabel.Name = "relativeManpowerLabel";
+            this.peacetimeIcModifierTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // relativeManpowerTextBox
             // 
             resources.ApplyResources(this.relativeManpowerTextBox, "relativeManpowerTextBox");
             this.relativeManpowerTextBox.Name = "relativeManpowerTextBox";
-            this.relativeManpowerTextBox.Validated += new System.EventHandler(this.OnRelativeManpowerTextBoxValidated);
+            this.relativeManpowerTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // wartimeIcModifierTextBox
             // 
             resources.ApplyResources(this.wartimeIcModifierTextBox, "wartimeIcModifierTextBox");
             this.wartimeIcModifierTextBox.Name = "wartimeIcModifierTextBox";
-            this.wartimeIcModifierTextBox.Validated += new System.EventHandler(this.OnWartimeIcModifierTextBoxValidated);
-            // 
-            // industrialModifierLabel
-            // 
-            resources.ApplyResources(this.industrialModifierLabel, "industrialModifierLabel");
-            this.industrialModifierLabel.Name = "industrialModifierLabel";
+            this.wartimeIcModifierTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // industrialModifierTextBox
             // 
             resources.ApplyResources(this.industrialModifierTextBox, "industrialModifierTextBox");
             this.industrialModifierTextBox.Name = "industrialModifierTextBox";
-            this.industrialModifierTextBox.Validated += new System.EventHandler(this.OnIndustrialModifierTextBoxValidated);
+            this.industrialModifierTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // aiGroupBox
             // 
-            this.aiGroupBox.Controls.Add(this.aiFileLabel);
+            this.aiGroupBox.Controls.Add(aiFileLabel);
             this.aiGroupBox.Controls.Add(this.aiFileBrowseButton);
             this.aiGroupBox.Controls.Add(this.aiFileNameTextBox);
             resources.ApplyResources(this.aiGroupBox, "aiGroupBox");
             this.aiGroupBox.Name = "aiGroupBox";
             this.aiGroupBox.TabStop = false;
-            // 
-            // aiFileLabel
-            // 
-            resources.ApplyResources(this.aiFileLabel, "aiFileLabel");
-            this.aiFileLabel.Name = "aiFileLabel";
             // 
             // aiFileBrowseButton
             // 
@@ -2096,7 +2180,7 @@
             // 
             resources.ApplyResources(this.aiFileNameTextBox, "aiFileNameTextBox");
             this.aiFileNameTextBox.Name = "aiFileNameTextBox";
-            this.aiFileNameTextBox.TextChanged += new System.EventHandler(this.OnAiFileNameTextBoxTextChanged);
+            this.aiFileNameTextBox.TextChanged += new System.EventHandler(this.OnCountryStringItemTextBoxTextChanged);
             // 
             // countryListBox
             // 
@@ -2120,9 +2204,9 @@
             this.countryResourceGroupBox.Controls.Add(this.offmapRareMaterialsTextBox);
             this.countryResourceGroupBox.Controls.Add(this.offmapMetalTextBox);
             this.countryResourceGroupBox.Controls.Add(this.offmapEnergyTextBox);
-            this.countryResourceGroupBox.Controls.Add(this.countryOffmapLabel);
+            this.countryResourceGroupBox.Controls.Add(countryOffmapLabel);
             this.countryResourceGroupBox.Controls.Add(this.countryManpowerTextBox);
-            this.countryResourceGroupBox.Controls.Add(this.countryStockpileLabel);
+            this.countryResourceGroupBox.Controls.Add(countryStockpileLabel);
             this.countryResourceGroupBox.Controls.Add(this.countryManpowerLabel);
             this.countryResourceGroupBox.Controls.Add(this.countryEscortsTextBox);
             this.countryResourceGroupBox.Controls.Add(this.countryEscortsLabel);
@@ -2148,7 +2232,7 @@
             // 
             resources.ApplyResources(this.offmapIcTextBox, "offmapIcTextBox");
             this.offmapIcTextBox.Name = "offmapIcTextBox";
-            this.offmapIcTextBox.Validated += new System.EventHandler(this.OnOffmapIcTextBoxValidated);
+            this.offmapIcTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryIcLabel
             // 
@@ -2159,71 +2243,61 @@
             // 
             resources.ApplyResources(this.offmapManpowerTextBox, "offmapManpowerTextBox");
             this.offmapManpowerTextBox.Name = "offmapManpowerTextBox";
-            this.offmapManpowerTextBox.Validated += new System.EventHandler(this.OnOffmapManpowerTextBoxValidated);
+            this.offmapManpowerTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapEscortsTextBox
             // 
             resources.ApplyResources(this.offmapEscortsTextBox, "offmapEscortsTextBox");
             this.offmapEscortsTextBox.Name = "offmapEscortsTextBox";
-            this.offmapEscortsTextBox.Validated += new System.EventHandler(this.OnOffmapEscortsTextBoxValidated);
+            this.offmapEscortsTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // offmapTransportsTextBox
             // 
             resources.ApplyResources(this.offmapTransportsTextBox, "offmapTransportsTextBox");
             this.offmapTransportsTextBox.Name = "offmapTransportsTextBox";
-            this.offmapTransportsTextBox.Validated += new System.EventHandler(this.OnOffmapTransportsTextBoxValidated);
+            this.offmapTransportsTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // offmapMoneyTextBox
             // 
             resources.ApplyResources(this.offmapMoneyTextBox, "offmapMoneyTextBox");
             this.offmapMoneyTextBox.Name = "offmapMoneyTextBox";
-            this.offmapMoneyTextBox.Validated += new System.EventHandler(this.OnOffmapMoneyTextBoxValidated);
+            this.offmapMoneyTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapSuppliesTextBox
             // 
             resources.ApplyResources(this.offmapSuppliesTextBox, "offmapSuppliesTextBox");
             this.offmapSuppliesTextBox.Name = "offmapSuppliesTextBox";
-            this.offmapSuppliesTextBox.Validated += new System.EventHandler(this.OnOffmapSuppliesTextBoxValidated);
+            this.offmapSuppliesTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapOilTextBox
             // 
             resources.ApplyResources(this.offmapOilTextBox, "offmapOilTextBox");
             this.offmapOilTextBox.Name = "offmapOilTextBox";
-            this.offmapOilTextBox.Validated += new System.EventHandler(this.OnOffmapOilTextBoxValidated);
+            this.offmapOilTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapRareMaterialsTextBox
             // 
             resources.ApplyResources(this.offmapRareMaterialsTextBox, "offmapRareMaterialsTextBox");
             this.offmapRareMaterialsTextBox.Name = "offmapRareMaterialsTextBox";
-            this.offmapRareMaterialsTextBox.Validated += new System.EventHandler(this.OnOffmapRareMaterialsTextBoxValidated);
+            this.offmapRareMaterialsTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapMetalTextBox
             // 
             resources.ApplyResources(this.offmapMetalTextBox, "offmapMetalTextBox");
             this.offmapMetalTextBox.Name = "offmapMetalTextBox";
-            this.offmapMetalTextBox.Validated += new System.EventHandler(this.OnOffmapMetalTextBoxValidated);
+            this.offmapMetalTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapEnergyTextBox
             // 
             resources.ApplyResources(this.offmapEnergyTextBox, "offmapEnergyTextBox");
             this.offmapEnergyTextBox.Name = "offmapEnergyTextBox";
-            this.offmapEnergyTextBox.Validated += new System.EventHandler(this.OnOffmapEnergyTextBoxValidated);
-            // 
-            // countryOffmapLabel
-            // 
-            resources.ApplyResources(this.countryOffmapLabel, "countryOffmapLabel");
-            this.countryOffmapLabel.Name = "countryOffmapLabel";
+            this.offmapEnergyTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryManpowerTextBox
             // 
             resources.ApplyResources(this.countryManpowerTextBox, "countryManpowerTextBox");
             this.countryManpowerTextBox.Name = "countryManpowerTextBox";
-            this.countryManpowerTextBox.Validated += new System.EventHandler(this.OnCountryManpowerTextBoxValidated);
-            // 
-            // countryStockpileLabel
-            // 
-            resources.ApplyResources(this.countryStockpileLabel, "countryStockpileLabel");
-            this.countryStockpileLabel.Name = "countryStockpileLabel";
+            this.countryManpowerTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryManpowerLabel
             // 
@@ -2234,7 +2308,7 @@
             // 
             resources.ApplyResources(this.countryEscortsTextBox, "countryEscortsTextBox");
             this.countryEscortsTextBox.Name = "countryEscortsTextBox";
-            this.countryEscortsTextBox.Validated += new System.EventHandler(this.OnCountryEscortsTextBoxValidated);
+            this.countryEscortsTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // countryEscortsLabel
             // 
@@ -2245,7 +2319,7 @@
             // 
             resources.ApplyResources(this.countryTransportsTextBox, "countryTransportsTextBox");
             this.countryTransportsTextBox.Name = "countryTransportsTextBox";
-            this.countryTransportsTextBox.Validated += new System.EventHandler(this.OnCountryTransportsTextBoxValidated);
+            this.countryTransportsTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // countryTransportsLabel
             // 
@@ -2256,7 +2330,7 @@
             // 
             resources.ApplyResources(this.countryMoneyTextBox, "countryMoneyTextBox");
             this.countryMoneyTextBox.Name = "countryMoneyTextBox";
-            this.countryMoneyTextBox.Validated += new System.EventHandler(this.OnCountryMoneyTextBoxValidated);
+            this.countryMoneyTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryMoneyLabel
             // 
@@ -2267,7 +2341,7 @@
             // 
             resources.ApplyResources(this.countrySuppliesTextBox, "countrySuppliesTextBox");
             this.countrySuppliesTextBox.Name = "countrySuppliesTextBox";
-            this.countrySuppliesTextBox.Validated += new System.EventHandler(this.OnCountrySuppliesTextBoxValidated);
+            this.countrySuppliesTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countrySuppliesLabel
             // 
@@ -2278,7 +2352,7 @@
             // 
             resources.ApplyResources(this.countryOilTextBox, "countryOilTextBox");
             this.countryOilTextBox.Name = "countryOilTextBox";
-            this.countryOilTextBox.Validated += new System.EventHandler(this.OnCountryOilTextBoxValidated);
+            this.countryOilTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryOilLabel
             // 
@@ -2289,7 +2363,7 @@
             // 
             resources.ApplyResources(this.countryRareMaterialsTextBox, "countryRareMaterialsTextBox");
             this.countryRareMaterialsTextBox.Name = "countryRareMaterialsTextBox";
-            this.countryRareMaterialsTextBox.Validated += new System.EventHandler(this.OnCountryRareMaterialsTextBoxValidated);
+            this.countryRareMaterialsTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryRareMaterialsLabel
             // 
@@ -2300,7 +2374,7 @@
             // 
             resources.ApplyResources(this.countryMetalTextBox, "countryMetalTextBox");
             this.countryMetalTextBox.Name = "countryMetalTextBox";
-            this.countryMetalTextBox.Validated += new System.EventHandler(this.OnCountryMetalTextBoxValidated);
+            this.countryMetalTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryMetalLabel
             // 
@@ -2311,7 +2385,7 @@
             // 
             resources.ApplyResources(this.countryEnergyTextBox, "countryEnergyTextBox");
             this.countryEnergyTextBox.Name = "countryEnergyTextBox";
-            this.countryEnergyTextBox.Validated += new System.EventHandler(this.OnCountryEnergyTextBoxValidated);
+            this.countryEnergyTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryEnergyLabel
             // 
@@ -2322,22 +2396,22 @@
             // 
             this.countryInfoGroupBox.Controls.Add(this.nukeDayTextBox);
             this.countryInfoGroupBox.Controls.Add(this.nukeMonthTextBox);
-            this.countryInfoGroupBox.Controls.Add(this.nukeDateLabel);
+            this.countryInfoGroupBox.Controls.Add(nukeDateLabel);
             this.countryInfoGroupBox.Controls.Add(this.nukeYearTextBox);
             this.countryInfoGroupBox.Controls.Add(this.dissentTextBox);
-            this.countryInfoGroupBox.Controls.Add(this.dissentLabel);
+            this.countryInfoGroupBox.Controls.Add(dissentLabel);
             this.countryInfoGroupBox.Controls.Add(this.flagExtTextBox);
-            this.countryInfoGroupBox.Controls.Add(this.flagExtLabel);
+            this.countryInfoGroupBox.Controls.Add(flagExtLabel);
             this.countryInfoGroupBox.Controls.Add(this.nukeTextBox);
-            this.countryInfoGroupBox.Controls.Add(this.nukeLabel);
+            this.countryInfoGroupBox.Controls.Add(nukeLabel);
             this.countryInfoGroupBox.Controls.Add(this.extraTcTextBox);
-            this.countryInfoGroupBox.Controls.Add(this.extraTcLabel);
+            this.countryInfoGroupBox.Controls.Add(extraTcLabel);
             this.countryInfoGroupBox.Controls.Add(this.belligerenceTextBox);
-            this.countryInfoGroupBox.Controls.Add(this.belligerenceLabel);
+            this.countryInfoGroupBox.Controls.Add(belligerenceLabel);
             this.countryInfoGroupBox.Controls.Add(this.regularIdComboBox);
-            this.countryInfoGroupBox.Controls.Add(this.regularIdLabel);
+            this.countryInfoGroupBox.Controls.Add(regularIdLabel);
             this.countryInfoGroupBox.Controls.Add(this.countryNameTextBox);
-            this.countryInfoGroupBox.Controls.Add(this.countryNameLabel);
+            this.countryInfoGroupBox.Controls.Add(countryNameLabel);
             resources.ApplyResources(this.countryInfoGroupBox, "countryInfoGroupBox");
             this.countryInfoGroupBox.Name = "countryInfoGroupBox";
             this.countryInfoGroupBox.TabStop = false;
@@ -2346,79 +2420,49 @@
             // 
             resources.ApplyResources(this.nukeDayTextBox, "nukeDayTextBox");
             this.nukeDayTextBox.Name = "nukeDayTextBox";
-            this.nukeDayTextBox.Validated += new System.EventHandler(this.OnNukeDayTextBoxValidated);
+            this.nukeDayTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // nukeMonthTextBox
             // 
             resources.ApplyResources(this.nukeMonthTextBox, "nukeMonthTextBox");
             this.nukeMonthTextBox.Name = "nukeMonthTextBox";
-            this.nukeMonthTextBox.Validated += new System.EventHandler(this.OnNukeMonthTextBoxValidated);
-            // 
-            // nukeDateLabel
-            // 
-            resources.ApplyResources(this.nukeDateLabel, "nukeDateLabel");
-            this.nukeDateLabel.Name = "nukeDateLabel";
+            this.nukeMonthTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // nukeYearTextBox
             // 
             resources.ApplyResources(this.nukeYearTextBox, "nukeYearTextBox");
             this.nukeYearTextBox.Name = "nukeYearTextBox";
-            this.nukeYearTextBox.Validated += new System.EventHandler(this.OnNukeYearTextBoxValidated);
+            this.nukeYearTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // dissentTextBox
             // 
             resources.ApplyResources(this.dissentTextBox, "dissentTextBox");
             this.dissentTextBox.Name = "dissentTextBox";
-            this.dissentTextBox.Validated += new System.EventHandler(this.OnDissentTextBoxValidated);
-            // 
-            // dissentLabel
-            // 
-            resources.ApplyResources(this.dissentLabel, "dissentLabel");
-            this.dissentLabel.Name = "dissentLabel";
+            this.dissentTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // flagExtTextBox
             // 
             resources.ApplyResources(this.flagExtTextBox, "flagExtTextBox");
             this.flagExtTextBox.Name = "flagExtTextBox";
-            this.flagExtTextBox.TextChanged += new System.EventHandler(this.OnFlagExtTextBoxTextChanged);
-            // 
-            // flagExtLabel
-            // 
-            resources.ApplyResources(this.flagExtLabel, "flagExtLabel");
-            this.flagExtLabel.Name = "flagExtLabel";
+            this.flagExtTextBox.TextChanged += new System.EventHandler(this.OnCountryStringItemTextBoxTextChanged);
             // 
             // nukeTextBox
             // 
             resources.ApplyResources(this.nukeTextBox, "nukeTextBox");
             this.nukeTextBox.Name = "nukeTextBox";
-            this.nukeTextBox.Validated += new System.EventHandler(this.OnNukeTextBoxValidated);
-            // 
-            // nukeLabel
-            // 
-            resources.ApplyResources(this.nukeLabel, "nukeLabel");
-            this.nukeLabel.Name = "nukeLabel";
+            this.nukeTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // extraTcTextBox
             // 
             resources.ApplyResources(this.extraTcTextBox, "extraTcTextBox");
             this.extraTcTextBox.Name = "extraTcTextBox";
-            this.extraTcTextBox.Validated += new System.EventHandler(this.OnExtraTcTextBoxValidated);
-            // 
-            // extraTcLabel
-            // 
-            resources.ApplyResources(this.extraTcLabel, "extraTcLabel");
-            this.extraTcLabel.Name = "extraTcLabel";
+            this.extraTcTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // belligerenceTextBox
             // 
             resources.ApplyResources(this.belligerenceTextBox, "belligerenceTextBox");
             this.belligerenceTextBox.Name = "belligerenceTextBox";
-            this.belligerenceTextBox.Validated += new System.EventHandler(this.OnBelligerenceTextBoxValidated);
-            // 
-            // belligerenceLabel
-            // 
-            resources.ApplyResources(this.belligerenceLabel, "belligerenceLabel");
-            this.belligerenceLabel.Name = "belligerenceLabel";
+            this.belligerenceTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // regularIdComboBox
             // 
@@ -2427,29 +2471,19 @@
             resources.ApplyResources(this.regularIdComboBox, "regularIdComboBox");
             this.regularIdComboBox.FormattingEnabled = true;
             this.regularIdComboBox.Name = "regularIdComboBox";
-            this.regularIdComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnRegularIdComboBoxDrawItem);
-            this.regularIdComboBox.SelectedIndexChanged += new System.EventHandler(this.OnRegularIdComboBoxSelectedIndexChanged);
-            // 
-            // regularIdLabel
-            // 
-            resources.ApplyResources(this.regularIdLabel, "regularIdLabel");
-            this.regularIdLabel.Name = "regularIdLabel";
+            this.regularIdComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryItemComboBoxDrawItem);
+            this.regularIdComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryItemComboBoxSelectedIndexChanged);
             // 
             // countryNameTextBox
             // 
             resources.ApplyResources(this.countryNameTextBox, "countryNameTextBox");
             this.countryNameTextBox.Name = "countryNameTextBox";
-            this.countryNameTextBox.TextChanged += new System.EventHandler(this.OnCountryNameTextBoxTextChanged);
-            // 
-            // countryNameLabel
-            // 
-            resources.ApplyResources(this.countryNameLabel, "countryNameLabel");
-            this.countryNameLabel.Name = "countryNameLabel";
+            this.countryNameTextBox.TextChanged += new System.EventHandler(this.OnCountryNameItemTextBoxTextChanged);
             // 
             // tradeTabPage
             // 
             this.tradeTabPage.BackColor = System.Drawing.SystemColors.Control;
-            this.tradeTabPage.Controls.Add(this.tradeDealGroupBox);
+            this.tradeTabPage.Controls.Add(this.tradeDealsGroupBox);
             this.tradeTabPage.Controls.Add(this.tradeInfoGroupBox);
             this.tradeTabPage.Controls.Add(this.tradeListView);
             this.tradeTabPage.Controls.Add(this.tradeDownButton);
@@ -2459,32 +2493,32 @@
             resources.ApplyResources(this.tradeTabPage, "tradeTabPage");
             this.tradeTabPage.Name = "tradeTabPage";
             // 
-            // tradeDealGroupBox
+            // tradeDealsGroupBox
             // 
-            this.tradeDealGroupBox.Controls.Add(this.tradeCountryComboBox1);
-            this.tradeDealGroupBox.Controls.Add(this.tradeRareMaterialsTextBox1);
-            this.tradeDealGroupBox.Controls.Add(this.tradeRareMaterialsTextBox2);
-            this.tradeDealGroupBox.Controls.Add(this.tradeRareMaterialsLabel);
-            this.tradeDealGroupBox.Controls.Add(this.tradeOilLabel);
-            this.tradeDealGroupBox.Controls.Add(this.tradeMetalTextBox2);
-            this.tradeDealGroupBox.Controls.Add(this.tradeOilTextBox1);
-            this.tradeDealGroupBox.Controls.Add(this.tradeMetalTextBox1);
-            this.tradeDealGroupBox.Controls.Add(this.tradeSwapButton);
-            this.tradeDealGroupBox.Controls.Add(this.tradeOilTextBox2);
-            this.tradeDealGroupBox.Controls.Add(this.tradeMoneyTextBox2);
-            this.tradeDealGroupBox.Controls.Add(this.tradeMetalLabel);
-            this.tradeDealGroupBox.Controls.Add(this.tradeSuppliesLabel);
-            this.tradeDealGroupBox.Controls.Add(this.tradeMoneyTextBox1);
-            this.tradeDealGroupBox.Controls.Add(this.tradeEnergyTextBox2);
-            this.tradeDealGroupBox.Controls.Add(this.tradeCountryComboBox2);
-            this.tradeDealGroupBox.Controls.Add(this.tradeSuppliesTextBox1);
-            this.tradeDealGroupBox.Controls.Add(this.tradeMoneyLabel);
-            this.tradeDealGroupBox.Controls.Add(this.tradeEnergyTextBox1);
-            this.tradeDealGroupBox.Controls.Add(this.tradeEnergyLabel);
-            this.tradeDealGroupBox.Controls.Add(this.tradeSuppliesTextBox2);
-            resources.ApplyResources(this.tradeDealGroupBox, "tradeDealGroupBox");
-            this.tradeDealGroupBox.Name = "tradeDealGroupBox";
-            this.tradeDealGroupBox.TabStop = false;
+            this.tradeDealsGroupBox.Controls.Add(this.tradeCountryComboBox1);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeRareMaterialsTextBox1);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeRareMaterialsTextBox2);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeRareMaterialsLabel);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeOilLabel);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeMetalTextBox2);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeOilTextBox1);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeMetalTextBox1);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeSwapButton);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeOilTextBox2);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeMoneyTextBox2);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeMetalLabel);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeSuppliesLabel);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeMoneyTextBox1);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeEnergyTextBox2);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeCountryComboBox2);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeSuppliesTextBox1);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeMoneyLabel);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeEnergyTextBox1);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeEnergyLabel);
+            this.tradeDealsGroupBox.Controls.Add(this.tradeSuppliesTextBox2);
+            resources.ApplyResources(this.tradeDealsGroupBox, "tradeDealsGroupBox");
+            this.tradeDealsGroupBox.Name = "tradeDealsGroupBox";
+            this.tradeDealsGroupBox.TabStop = false;
             // 
             // tradeCountryComboBox1
             // 
@@ -2493,20 +2527,20 @@
             resources.ApplyResources(this.tradeCountryComboBox1, "tradeCountryComboBox1");
             this.tradeCountryComboBox1.FormattingEnabled = true;
             this.tradeCountryComboBox1.Name = "tradeCountryComboBox1";
-            this.tradeCountryComboBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTradeCountryComboBox1DrawItem);
-            this.tradeCountryComboBox1.SelectedIndexChanged += new System.EventHandler(this.OnTradeCountryComboBox1SelectedIndexChanged);
+            this.tradeCountryComboBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTradeCountryItemComboBoxDrawItem);
+            this.tradeCountryComboBox1.SelectedIndexChanged += new System.EventHandler(this.OnTradeCountryItemComboBoxSelectedIndexChanged);
             // 
             // tradeRareMaterialsTextBox1
             // 
             resources.ApplyResources(this.tradeRareMaterialsTextBox1, "tradeRareMaterialsTextBox1");
             this.tradeRareMaterialsTextBox1.Name = "tradeRareMaterialsTextBox1";
-            this.tradeRareMaterialsTextBox1.Validated += new System.EventHandler(this.OnTradeRareMaterialsTextBox1Validated);
+            this.tradeRareMaterialsTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeRareMaterialsTextBox2
             // 
             resources.ApplyResources(this.tradeRareMaterialsTextBox2, "tradeRareMaterialsTextBox2");
             this.tradeRareMaterialsTextBox2.Name = "tradeRareMaterialsTextBox2";
-            this.tradeRareMaterialsTextBox2.Validated += new System.EventHandler(this.OnTradeRareMaterialsTextBox2Validated);
+            this.tradeRareMaterialsTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeRareMaterialsLabel
             // 
@@ -2522,19 +2556,19 @@
             // 
             resources.ApplyResources(this.tradeMetalTextBox2, "tradeMetalTextBox2");
             this.tradeMetalTextBox2.Name = "tradeMetalTextBox2";
-            this.tradeMetalTextBox2.Validated += new System.EventHandler(this.OnTradeMetalTextBox2Validated);
+            this.tradeMetalTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeOilTextBox1
             // 
             resources.ApplyResources(this.tradeOilTextBox1, "tradeOilTextBox1");
             this.tradeOilTextBox1.Name = "tradeOilTextBox1";
-            this.tradeOilTextBox1.Validated += new System.EventHandler(this.OnTradeOilTextBox1Validated);
+            this.tradeOilTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeMetalTextBox1
             // 
             resources.ApplyResources(this.tradeMetalTextBox1, "tradeMetalTextBox1");
             this.tradeMetalTextBox1.Name = "tradeMetalTextBox1";
-            this.tradeMetalTextBox1.Validated += new System.EventHandler(this.OnTradeMetalTextBox1Validated);
+            this.tradeMetalTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeSwapButton
             // 
@@ -2547,13 +2581,13 @@
             // 
             resources.ApplyResources(this.tradeOilTextBox2, "tradeOilTextBox2");
             this.tradeOilTextBox2.Name = "tradeOilTextBox2";
-            this.tradeOilTextBox2.Validated += new System.EventHandler(this.OnTradeOilTextBox2Validated);
+            this.tradeOilTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeMoneyTextBox2
             // 
             resources.ApplyResources(this.tradeMoneyTextBox2, "tradeMoneyTextBox2");
             this.tradeMoneyTextBox2.Name = "tradeMoneyTextBox2";
-            this.tradeMoneyTextBox2.Validated += new System.EventHandler(this.OnTradeMoneyTextBox2Validated);
+            this.tradeMoneyTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeMetalLabel
             // 
@@ -2569,13 +2603,13 @@
             // 
             resources.ApplyResources(this.tradeMoneyTextBox1, "tradeMoneyTextBox1");
             this.tradeMoneyTextBox1.Name = "tradeMoneyTextBox1";
-            this.tradeMoneyTextBox1.Validated += new System.EventHandler(this.OnTradeMoneyTextBox1Validated);
+            this.tradeMoneyTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeEnergyTextBox2
             // 
             resources.ApplyResources(this.tradeEnergyTextBox2, "tradeEnergyTextBox2");
             this.tradeEnergyTextBox2.Name = "tradeEnergyTextBox2";
-            this.tradeEnergyTextBox2.Validated += new System.EventHandler(this.OnTradeEnergyTextBox2Validated);
+            this.tradeEnergyTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeCountryComboBox2
             // 
@@ -2584,14 +2618,14 @@
             resources.ApplyResources(this.tradeCountryComboBox2, "tradeCountryComboBox2");
             this.tradeCountryComboBox2.FormattingEnabled = true;
             this.tradeCountryComboBox2.Name = "tradeCountryComboBox2";
-            this.tradeCountryComboBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTradeCountryComboBox2DrawItem);
-            this.tradeCountryComboBox2.SelectedIndexChanged += new System.EventHandler(this.OnTradeCountryComboBox2SelectedIndexChanged);
+            this.tradeCountryComboBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTradeCountryItemComboBoxDrawItem);
+            this.tradeCountryComboBox2.SelectedIndexChanged += new System.EventHandler(this.OnTradeCountryItemComboBoxSelectedIndexChanged);
             // 
             // tradeSuppliesTextBox1
             // 
             resources.ApplyResources(this.tradeSuppliesTextBox1, "tradeSuppliesTextBox1");
             this.tradeSuppliesTextBox1.Name = "tradeSuppliesTextBox1";
-            this.tradeSuppliesTextBox1.Validated += new System.EventHandler(this.OnTradeSuppliesTextBox1Validated);
+            this.tradeSuppliesTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeMoneyLabel
             // 
@@ -2602,7 +2636,7 @@
             // 
             resources.ApplyResources(this.tradeEnergyTextBox1, "tradeEnergyTextBox1");
             this.tradeEnergyTextBox1.Name = "tradeEnergyTextBox1";
-            this.tradeEnergyTextBox1.Validated += new System.EventHandler(this.OnTradeEnergyTextBox1Validated);
+            this.tradeEnergyTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeEnergyLabel
             // 
@@ -2613,16 +2647,16 @@
             // 
             resources.ApplyResources(this.tradeSuppliesTextBox2, "tradeSuppliesTextBox2");
             this.tradeSuppliesTextBox2.Name = "tradeSuppliesTextBox2";
-            this.tradeSuppliesTextBox2.Validated += new System.EventHandler(this.OnTradeSuppliesTextBox2Validated);
+            this.tradeSuppliesTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeInfoGroupBox
             // 
-            this.tradeInfoGroupBox.Controls.Add(this.tradeStartDateLabel);
+            this.tradeInfoGroupBox.Controls.Add(tradeStartDateLabel);
             this.tradeInfoGroupBox.Controls.Add(this.tradeIdTextBox);
-            this.tradeInfoGroupBox.Controls.Add(this.tradeEndDateLabel);
+            this.tradeInfoGroupBox.Controls.Add(tradeEndDateLabel);
             this.tradeInfoGroupBox.Controls.Add(this.tradeTypeTextBox);
             this.tradeInfoGroupBox.Controls.Add(this.tradeStartYearTextBox);
-            this.tradeInfoGroupBox.Controls.Add(this.tradeIdLabel);
+            this.tradeInfoGroupBox.Controls.Add(tradeIdLabel);
             this.tradeInfoGroupBox.Controls.Add(this.tradeStartMonthTextBox);
             this.tradeInfoGroupBox.Controls.Add(this.tradeCancelCheckBox);
             this.tradeInfoGroupBox.Controls.Add(this.tradeEndDayTextBox);
@@ -2633,75 +2667,60 @@
             this.tradeInfoGroupBox.Name = "tradeInfoGroupBox";
             this.tradeInfoGroupBox.TabStop = false;
             // 
-            // tradeStartDateLabel
-            // 
-            resources.ApplyResources(this.tradeStartDateLabel, "tradeStartDateLabel");
-            this.tradeStartDateLabel.Name = "tradeStartDateLabel";
-            // 
             // tradeIdTextBox
             // 
             resources.ApplyResources(this.tradeIdTextBox, "tradeIdTextBox");
             this.tradeIdTextBox.Name = "tradeIdTextBox";
-            this.tradeIdTextBox.Validated += new System.EventHandler(this.OnTradeIdTextBoxValidated);
-            // 
-            // tradeEndDateLabel
-            // 
-            resources.ApplyResources(this.tradeEndDateLabel, "tradeEndDateLabel");
-            this.tradeEndDateLabel.Name = "tradeEndDateLabel";
+            this.tradeIdTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeTypeTextBox
             // 
             resources.ApplyResources(this.tradeTypeTextBox, "tradeTypeTextBox");
             this.tradeTypeTextBox.Name = "tradeTypeTextBox";
-            this.tradeTypeTextBox.Validated += new System.EventHandler(this.OnTradeTypeTextBoxValidated);
+            this.tradeTypeTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeStartYearTextBox
             // 
             resources.ApplyResources(this.tradeStartYearTextBox, "tradeStartYearTextBox");
             this.tradeStartYearTextBox.Name = "tradeStartYearTextBox";
-            this.tradeStartYearTextBox.Validated += new System.EventHandler(this.OnTradeStartYearTextBoxValidated);
-            // 
-            // tradeIdLabel
-            // 
-            resources.ApplyResources(this.tradeIdLabel, "tradeIdLabel");
-            this.tradeIdLabel.Name = "tradeIdLabel";
+            this.tradeStartYearTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeStartMonthTextBox
             // 
             resources.ApplyResources(this.tradeStartMonthTextBox, "tradeStartMonthTextBox");
             this.tradeStartMonthTextBox.Name = "tradeStartMonthTextBox";
-            this.tradeStartMonthTextBox.Validated += new System.EventHandler(this.OnTradeStartMonthTextBoxValidated);
+            this.tradeStartMonthTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeCancelCheckBox
             // 
             resources.ApplyResources(this.tradeCancelCheckBox, "tradeCancelCheckBox");
             this.tradeCancelCheckBox.Name = "tradeCancelCheckBox";
             this.tradeCancelCheckBox.UseVisualStyleBackColor = true;
-            this.tradeCancelCheckBox.CheckedChanged += new System.EventHandler(this.OnTradeCancelCheckBoxCheckedChanged);
+            this.tradeCancelCheckBox.CheckedChanged += new System.EventHandler(this.OnTradeItemCheckBoxCheckedChanged);
             // 
             // tradeEndDayTextBox
             // 
             resources.ApplyResources(this.tradeEndDayTextBox, "tradeEndDayTextBox");
             this.tradeEndDayTextBox.Name = "tradeEndDayTextBox";
-            this.tradeEndDayTextBox.Validated += new System.EventHandler(this.OnTradeEndDayTextBoxValidated);
+            this.tradeEndDayTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeStartDayTextBox
             // 
             resources.ApplyResources(this.tradeStartDayTextBox, "tradeStartDayTextBox");
             this.tradeStartDayTextBox.Name = "tradeStartDayTextBox";
-            this.tradeStartDayTextBox.Validated += new System.EventHandler(this.OnTradeStartDayTextBoxValidated);
+            this.tradeStartDayTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeEndMonthTextBox
             // 
             resources.ApplyResources(this.tradeEndMonthTextBox, "tradeEndMonthTextBox");
             this.tradeEndMonthTextBox.Name = "tradeEndMonthTextBox";
-            this.tradeEndMonthTextBox.Validated += new System.EventHandler(this.OnTradeEndMonthTextBoxValidated);
+            this.tradeEndMonthTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeEndYearTextBox
             // 
             resources.ApplyResources(this.tradeEndYearTextBox, "tradeEndYearTextBox");
             this.tradeEndYearTextBox.Name = "tradeEndYearTextBox";
-            this.tradeEndYearTextBox.Validated += new System.EventHandler(this.OnTradeEndYearTextBoxValidated);
+            this.tradeEndYearTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeListView
             // 
@@ -4061,8 +4080,8 @@
             this.countryInfoGroupBox.ResumeLayout(false);
             this.countryInfoGroupBox.PerformLayout();
             this.tradeTabPage.ResumeLayout(false);
-            this.tradeDealGroupBox.ResumeLayout(false);
-            this.tradeDealGroupBox.PerformLayout();
+            this.tradeDealsGroupBox.ResumeLayout(false);
+            this.tradeDealsGroupBox.PerformLayout();
             this.tradeInfoGroupBox.ResumeLayout(false);
             this.tradeInfoGroupBox.PerformLayout();
             this.relationTabPage.ResumeLayout(false);
@@ -4113,13 +4132,10 @@
         private System.Windows.Forms.TabPage countryTabPage;
         private System.Windows.Forms.GroupBox countryInfoGroupBox;
         private System.Windows.Forms.TextBox flagExtTextBox;
-        private System.Windows.Forms.Label flagExtLabel;
         private System.Windows.Forms.TextBox aiFileNameTextBox;
-        private System.Windows.Forms.Label aiFileLabel;
         private System.Windows.Forms.TextBox countryNameTextBox;
-        private System.Windows.Forms.Label countryNameLabel;
         private System.Windows.Forms.TabPage tradeTabPage;
-        private System.Windows.Forms.GroupBox tradeDealGroupBox;
+        private System.Windows.Forms.GroupBox tradeDealsGroupBox;
         private System.Windows.Forms.ComboBox tradeCountryComboBox1;
         private System.Windows.Forms.TextBox tradeRareMaterialsTextBox1;
         private System.Windows.Forms.TextBox tradeRareMaterialsTextBox2;
@@ -4135,19 +4151,15 @@
         private System.Windows.Forms.Label tradeSuppliesLabel;
         private System.Windows.Forms.TextBox tradeMoneyTextBox1;
         private System.Windows.Forms.TextBox tradeEnergyTextBox2;
-        private System.Windows.Forms.ComboBox tradeCountryComboBox2;
         private System.Windows.Forms.TextBox tradeSuppliesTextBox1;
         private System.Windows.Forms.Label tradeMoneyLabel;
         private System.Windows.Forms.TextBox tradeEnergyTextBox1;
         private System.Windows.Forms.Label tradeEnergyLabel;
         private System.Windows.Forms.TextBox tradeSuppliesTextBox2;
         private System.Windows.Forms.GroupBox tradeInfoGroupBox;
-        private System.Windows.Forms.Label tradeStartDateLabel;
         private System.Windows.Forms.TextBox tradeIdTextBox;
-        private System.Windows.Forms.Label tradeEndDateLabel;
         private System.Windows.Forms.TextBox tradeTypeTextBox;
         private System.Windows.Forms.TextBox tradeStartYearTextBox;
-        private System.Windows.Forms.Label tradeIdLabel;
         private System.Windows.Forms.TextBox tradeStartMonthTextBox;
         private System.Windows.Forms.CheckBox tradeCancelCheckBox;
         private System.Windows.Forms.TextBox tradeEndDayTextBox;
@@ -4330,25 +4342,16 @@
         private System.Windows.Forms.TextBox warAttackerTypeTextBox;
         private System.Windows.Forms.Button warDefenderLeaderButton;
         private System.Windows.Forms.Button warAttackerLeaderButton;
-        private System.Windows.Forms.Label regularIdLabel;
         private System.Windows.Forms.ComboBox regularIdComboBox;
         private System.Windows.Forms.TextBox belligerenceTextBox;
-        private System.Windows.Forms.Label belligerenceLabel;
         private System.Windows.Forms.TextBox extraTcTextBox;
-        private System.Windows.Forms.Label extraTcLabel;
         private System.Windows.Forms.TextBox dissentTextBox;
-        private System.Windows.Forms.Label dissentLabel;
         private System.Windows.Forms.TextBox peacetimeIcModifierTextBox;
-        private System.Windows.Forms.Label peacetimeIcModifierLabel;
         private System.Windows.Forms.TextBox industrialModifierTextBox;
-        private System.Windows.Forms.Label industrialModifierLabel;
         private System.Windows.Forms.TextBox wartimeIcModifierTextBox;
-        private System.Windows.Forms.Label wartimeIcModifierLabel;
         private System.Windows.Forms.TextBox groundDefEffTextBox;
-        private System.Windows.Forms.Label groundDefEffLabel;
         private System.Windows.Forms.GroupBox countryResourceGroupBox;
         private System.Windows.Forms.TextBox relativeManpowerTextBox;
-        private System.Windows.Forms.Label relativeManpowerLabel;
         private System.Windows.Forms.TextBox countryManpowerTextBox;
         private System.Windows.Forms.Label countryManpowerLabel;
         private System.Windows.Forms.TextBox countryEnergyTextBox;
@@ -4363,13 +4366,11 @@
         private System.Windows.Forms.Label countryRareMaterialsLabel;
         private System.Windows.Forms.TextBox countryMetalTextBox;
         private System.Windows.Forms.Label countryMetalLabel;
-        private System.Windows.Forms.Label countryStockpileLabel;
         private System.Windows.Forms.TextBox countryEscortsTextBox;
         private System.Windows.Forms.Label countryEscortsLabel;
         private System.Windows.Forms.TextBox countryTransportsTextBox;
         private System.Windows.Forms.Label countryTransportsLabel;
         private System.Windows.Forms.TextBox nukeTextBox;
-        private System.Windows.Forms.Label nukeLabel;
         private System.Windows.Forms.TextBox offmapIcTextBox;
         private System.Windows.Forms.Label countryIcLabel;
         private System.Windows.Forms.TextBox offmapManpowerTextBox;
@@ -4381,11 +4382,9 @@
         private System.Windows.Forms.TextBox offmapRareMaterialsTextBox;
         private System.Windows.Forms.TextBox offmapMetalTextBox;
         private System.Windows.Forms.TextBox offmapEnergyTextBox;
-        private System.Windows.Forms.Label countryOffmapLabel;
         private System.Windows.Forms.TextBox nukeDayTextBox;
         private System.Windows.Forms.TextBox nukeMonthTextBox;
         private System.Windows.Forms.TextBox nukeYearTextBox;
-        private System.Windows.Forms.Label nukeDateLabel;
         private System.Windows.Forms.GroupBox aiGroupBox;
         private System.Windows.Forms.Button aiFileBrowseButton;
         private System.Windows.Forms.ListBox countryListBox;
@@ -4558,6 +4557,7 @@
         private System.Windows.Forms.Label ownedTechsLabel;
         private System.Windows.Forms.Label blueprintsLabel;
         private System.Windows.Forms.Label inventionsLabel;
+        private System.Windows.Forms.ComboBox tradeCountryComboBox2;
 
     }
 }

@@ -132,7 +132,7 @@
     <value>16, 12</value>
   </data>
   <data name="provinceIcLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>75</value>
+    <value>3</value>
   </data>
   <data name="provinceIcLabel.Text" xml:space="preserve">
     <value>IC</value>
@@ -166,7 +166,7 @@
     <value>74, 12</value>
   </data>
   <data name="provinceInfrastructureLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>76</value>
+    <value>7</value>
   </data>
   <data name="provinceInfrastructureLabel.Text" xml:space="preserve">
     <value>Infrastructure</value>
@@ -199,7 +199,7 @@
     <value>54, 12</value>
   </data>
   <data name="provinceLandFortLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>77</value>
+    <value>11</value>
   </data>
   <data name="provinceLandFortLabel.Text" xml:space="preserve">
     <value>Land Fort</value>
@@ -232,7 +232,7 @@
     <value>69, 12</value>
   </data>
   <data name="provinceCoastalFortLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>78</value>
+    <value>15</value>
   </data>
   <data name="provinceCoastalFortLabel.Text" xml:space="preserve">
     <value>Coastal Fort</value>
@@ -265,7 +265,7 @@
     <value>64, 12</value>
   </data>
   <data name="provinceNavalBaseLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>81</value>
+    <value>27</value>
   </data>
   <data name="provinceNavalBaseLabel.Text" xml:space="preserve">
     <value>Naval Base</value>
@@ -298,7 +298,7 @@
     <value>50, 12</value>
   </data>
   <data name="provinceAirBaseLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>80</value>
+    <value>23</value>
   </data>
   <data name="provinceAirBaseLabel.Text" xml:space="preserve">
     <value>Air Base</value>
@@ -331,7 +331,7 @@
     <value>45, 12</value>
   </data>
   <data name="provinceAntiAirLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>79</value>
+    <value>19</value>
   </data>
   <data name="provinceAntiAirLabel.Text" xml:space="preserve">
     <value>Anti Air</value>
@@ -364,7 +364,7 @@
     <value>88, 12</value>
   </data>
   <data name="provinceNuclearReactorLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>84</value>
+    <value>35</value>
   </data>
   <data name="provinceNuclearReactorLabel.Text" xml:space="preserve">
     <value>Nuclear Reactor</value>
@@ -397,7 +397,7 @@
     <value>68, 12</value>
   </data>
   <data name="provinceRocketTestLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>83</value>
+    <value>39</value>
   </data>
   <data name="provinceRocketTestLabel.Text" xml:space="preserve">
     <value>Rocket Test</value>
@@ -430,7 +430,7 @@
     <value>75, 12</value>
   </data>
   <data name="provinceRadarStationLbel.TabIndex" type="System.Int32, mscorlib">
-    <value>82</value>
+    <value>31</value>
   </data>
   <data name="provinceRadarStationLbel.Text" xml:space="preserve">
     <value>Radar Station</value>
@@ -463,7 +463,7 @@
     <value>71, 12</value>
   </data>
   <data name="provinceSyntheticOilLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>86</value>
+    <value>43</value>
   </data>
   <data name="provinceSyntheticOilLabel.Text" xml:space="preserve">
     <value>Synthetic Oil</value>
@@ -496,7 +496,7 @@
     <value>87, 12</value>
   </data>
   <data name="provinceSyntheticRaresLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>85</value>
+    <value>47</value>
   </data>
   <data name="provinceSyntheticRaresLabel.Text" xml:space="preserve">
     <value>Synthetic Rares</value>
@@ -529,7 +529,7 @@
     <value>79, 12</value>
   </data>
   <data name="provinceNuclearPowerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>87</value>
+    <value>51</value>
   </data>
   <data name="provinceNuclearPowerLabel.Text" xml:space="preserve">
     <value>Nuclear Power</value>
@@ -559,7 +559,7 @@
     <value>43, 12</value>
   </data>
   <data name="buildingCurrentLabel1.TabIndex" type="System.Int32, mscorlib">
-    <value>88</value>
+    <value>0</value>
   </data>
   <data name="buildingCurrentLabel1.Text" xml:space="preserve">
     <value>Current</value>
@@ -592,7 +592,7 @@
     <value>26, 12</value>
   </data>
   <data name="buildingMaxLabel1.TabIndex" type="System.Int32, mscorlib">
-    <value>89</value>
+    <value>1</value>
   </data>
   <data name="buildingMaxLabel1.Text" xml:space="preserve">
     <value>Max</value>
@@ -625,7 +625,7 @@
     <value>47, 12</value>
   </data>
   <data name="buildingRelativeLabel1.TabIndex" type="System.Int32, mscorlib">
-    <value>90</value>
+    <value>2</value>
   </data>
   <data name="buildingRelativeLabel1.Text" xml:space="preserve">
     <value>Relative</value>
@@ -658,7 +658,7 @@
     <value>34, 12</value>
   </data>
   <data name="provinceNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>73</value>
+    <value>0</value>
   </data>
   <data name="provinceNameLabel.Text" xml:space="preserve">
     <value>Name</value>
@@ -691,7 +691,7 @@
     <value>20, 12</value>
   </data>
   <data name="provinceVpLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>94</value>
+    <value>2</value>
   </data>
   <data name="provinceVpLabel.Text" xml:space="preserve">
     <value>VP</value>
@@ -724,7 +724,7 @@
     <value>61, 12</value>
   </data>
   <data name="provinceRevoltRiskLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>95</value>
+    <value>4</value>
   </data>
   <data name="provinceRevoltRiskLabel.Text" xml:space="preserve">
     <value>RevoltRisk</value>
@@ -757,7 +757,7 @@
     <value>26, 12</value>
   </data>
   <data name="resourceMaxLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>96</value>
+    <value>2</value>
   </data>
   <data name="resourceMaxLabel.Text" xml:space="preserve">
     <value>Max</value>
@@ -790,7 +790,7 @@
     <value>43, 12</value>
   </data>
   <data name="resourceCurrentLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>95</value>
+    <value>1</value>
   </data>
   <data name="resourceCurrentLabel.Text" xml:space="preserve">
     <value>Current</value>
@@ -820,7 +820,7 @@
     <value>27, 12</value>
   </data>
   <data name="resourcePoolLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>94</value>
+    <value>0</value>
   </data>
   <data name="resourcePoolLabel.Text" xml:space="preserve">
     <value>Pool</value>
@@ -874,7 +874,7 @@
     <value>560, 535</value>
   </data>
   <data name="techTreePanel.TabIndex" type="System.Int32, mscorlib">
-    <value>72</value>
+    <value>8</value>
   </data>
   <data name="&gt;&gt;techTreePanel.Name" xml:space="preserve">
     <value>techTreePanel</value>
@@ -898,7 +898,7 @@
     <value>250, 91</value>
   </data>
   <data name="inventionsListView.TabIndex" type="System.Int32, mscorlib">
-    <value>71</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;inventionsListView.Name" xml:space="preserve">
     <value>inventionsListView</value>
@@ -922,7 +922,7 @@
     <value>250, 161</value>
   </data>
   <data name="blueprintsListView.TabIndex" type="System.Int32, mscorlib">
-    <value>70</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;blueprintsListView.Name" xml:space="preserve">
     <value>blueprintsListView</value>
@@ -946,7 +946,7 @@
     <value>250, 217</value>
   </data>
   <data name="ownedTechsListView.TabIndex" type="System.Int32, mscorlib">
-    <value>69</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;ownedTechsListView.Name" xml:space="preserve">
     <value>ownedTechsListView</value>
@@ -973,7 +973,7 @@
     <value>74, 12</value>
   </data>
   <data name="ownedTechsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>63</value>
+    <value>2</value>
   </data>
   <data name="ownedTechsLabel.Text" xml:space="preserve">
     <value>Owned Techs</value>
@@ -1003,7 +1003,7 @@
     <value>120, 112</value>
   </data>
   <data name="techCategoryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;techCategoryListBox.Name" xml:space="preserve">
     <value>techCategoryListBox</value>
@@ -1033,7 +1033,7 @@
     <value>57, 12</value>
   </data>
   <data name="blueprintsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>64</value>
+    <value>4</value>
   </data>
   <data name="blueprintsLabel.Text" xml:space="preserve">
     <value>Blueprints</value>
@@ -1066,7 +1066,7 @@
     <value>57, 12</value>
   </data>
   <data name="inventionsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>65</value>
+    <value>6</value>
   </data>
   <data name="inventionsLabel.Text" xml:space="preserve">
     <value>Inventions</value>
@@ -1096,7 +1096,7 @@
     <value>120, 394</value>
   </data>
   <data name="techCountryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;techCountryListBox.Name" xml:space="preserve">
     <value>techCountryListBox</value>
@@ -1137,6 +1137,621 @@
   <data name="&gt;&gt;technologyTabPage.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <metadata name="peacetimeIcModifierLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="peacetimeIcModifierLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="peacetimeIcModifierLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 46</value>
+  </data>
+  <data name="peacetimeIcModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 12</value>
+  </data>
+  <data name="peacetimeIcModifierLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="peacetimeIcModifierLabel.Text" xml:space="preserve">
+    <value>Peacetime IC Modifer</value>
+  </data>
+  <data name="&gt;&gt;peacetimeIcModifierLabel.Name" xml:space="preserve">
+    <value>peacetimeIcModifierLabel</value>
+  </data>
+  <data name="&gt;&gt;peacetimeIcModifierLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;peacetimeIcModifierLabel.Parent" xml:space="preserve">
+    <value>countryModifierGroupBox</value>
+  </data>
+  <data name="&gt;&gt;peacetimeIcModifierLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="wartimeIcModifierLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="wartimeIcModifierLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="wartimeIcModifierLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="wartimeIcModifierLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 71</value>
+  </data>
+  <data name="wartimeIcModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 12</value>
+  </data>
+  <data name="wartimeIcModifierLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="wartimeIcModifierLabel.Text" xml:space="preserve">
+    <value>Wartime IC Modifer</value>
+  </data>
+  <data name="&gt;&gt;wartimeIcModifierLabel.Name" xml:space="preserve">
+    <value>wartimeIcModifierLabel</value>
+  </data>
+  <data name="&gt;&gt;wartimeIcModifierLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;wartimeIcModifierLabel.Parent" xml:space="preserve">
+    <value>countryModifierGroupBox</value>
+  </data>
+  <data name="&gt;&gt;wartimeIcModifierLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="groundDefEffLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="groundDefEffLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groundDefEffLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="groundDefEffLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 21</value>
+  </data>
+  <data name="groundDefEffLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 12</value>
+  </data>
+  <data name="groundDefEffLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groundDefEffLabel.Text" xml:space="preserve">
+    <value>Ground Def Eff</value>
+  </data>
+  <data name="&gt;&gt;groundDefEffLabel.Name" xml:space="preserve">
+    <value>groundDefEffLabel</value>
+  </data>
+  <data name="&gt;&gt;groundDefEffLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groundDefEffLabel.Parent" xml:space="preserve">
+    <value>countryModifierGroupBox</value>
+  </data>
+  <data name="&gt;&gt;groundDefEffLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="relativeManpowerLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="relativeManpowerLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="relativeManpowerLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="relativeManpowerLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 121</value>
+  </data>
+  <data name="relativeManpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 12</value>
+  </data>
+  <data name="relativeManpowerLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="relativeManpowerLabel.Text" xml:space="preserve">
+    <value>Relative Manpower</value>
+  </data>
+  <data name="&gt;&gt;relativeManpowerLabel.Name" xml:space="preserve">
+    <value>relativeManpowerLabel</value>
+  </data>
+  <data name="&gt;&gt;relativeManpowerLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;relativeManpowerLabel.Parent" xml:space="preserve">
+    <value>countryModifierGroupBox</value>
+  </data>
+  <data name="&gt;&gt;relativeManpowerLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="industrialModifierLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="industrialModifierLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="industrialModifierLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="industrialModifierLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 96</value>
+  </data>
+  <data name="industrialModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 12</value>
+  </data>
+  <data name="industrialModifierLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="industrialModifierLabel.Text" xml:space="preserve">
+    <value>Industrial Modifer</value>
+  </data>
+  <data name="&gt;&gt;industrialModifierLabel.Name" xml:space="preserve">
+    <value>industrialModifierLabel</value>
+  </data>
+  <data name="&gt;&gt;industrialModifierLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;industrialModifierLabel.Parent" xml:space="preserve">
+    <value>countryModifierGroupBox</value>
+  </data>
+  <data name="&gt;&gt;industrialModifierLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <metadata name="aiFileLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="aiFileLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="aiFileLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="aiFileLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 21</value>
+  </data>
+  <data name="aiFileLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 12</value>
+  </data>
+  <data name="aiFileLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="aiFileLabel.Text" xml:space="preserve">
+    <value>AI File</value>
+  </data>
+  <data name="&gt;&gt;aiFileLabel.Name" xml:space="preserve">
+    <value>aiFileLabel</value>
+  </data>
+  <data name="&gt;&gt;aiFileLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;aiFileLabel.Parent" xml:space="preserve">
+    <value>aiGroupBox</value>
+  </data>
+  <data name="&gt;&gt;aiFileLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="countryOffmapLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="countryOffmapLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="countryOffmapLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="countryOffmapLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>184, 18</value>
+  </data>
+  <data name="countryOffmapLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 12</value>
+  </data>
+  <data name="countryOffmapLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="countryOffmapLabel.Text" xml:space="preserve">
+    <value>Offmap</value>
+  </data>
+  <data name="&gt;&gt;countryOffmapLabel.Name" xml:space="preserve">
+    <value>countryOffmapLabel</value>
+  </data>
+  <data name="&gt;&gt;countryOffmapLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;countryOffmapLabel.Parent" xml:space="preserve">
+    <value>countryResourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;countryOffmapLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <metadata name="countryStockpileLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="countryStockpileLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="countryStockpileLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>124, 18</value>
+  </data>
+  <data name="countryStockpileLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 12</value>
+  </data>
+  <data name="countryStockpileLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="countryStockpileLabel.Text" xml:space="preserve">
+    <value>Stockpile</value>
+  </data>
+  <data name="&gt;&gt;countryStockpileLabel.Name" xml:space="preserve">
+    <value>countryStockpileLabel</value>
+  </data>
+  <data name="&gt;&gt;countryStockpileLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;countryStockpileLabel.Parent" xml:space="preserve">
+    <value>countryResourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;countryStockpileLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <metadata name="nukeDateLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="nukeDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="nukeDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="nukeDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 198</value>
+  </data>
+  <data name="nukeDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="nukeDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="nukeDateLabel.Text" xml:space="preserve">
+    <value>Nuke Date</value>
+  </data>
+  <data name="&gt;&gt;nukeDateLabel.Name" xml:space="preserve">
+    <value>nukeDateLabel</value>
+  </data>
+  <data name="&gt;&gt;nukeDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nukeDateLabel.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;nukeDateLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="dissentLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="dissentLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="dissentLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="dissentLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 123</value>
+  </data>
+  <data name="dissentLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 12</value>
+  </data>
+  <data name="dissentLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="dissentLabel.Text" xml:space="preserve">
+    <value>Dissent</value>
+  </data>
+  <data name="&gt;&gt;dissentLabel.Name" xml:space="preserve">
+    <value>dissentLabel</value>
+  </data>
+  <data name="&gt;&gt;dissentLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dissentLabel.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;dissentLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="flagExtLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="flagExtLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="flagExtLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="flagExtLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 45</value>
+  </data>
+  <data name="flagExtLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 12</value>
+  </data>
+  <data name="flagExtLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="flagExtLabel.Text" xml:space="preserve">
+    <value>Flag Extension</value>
+  </data>
+  <data name="&gt;&gt;flagExtLabel.Name" xml:space="preserve">
+    <value>flagExtLabel</value>
+  </data>
+  <data name="&gt;&gt;flagExtLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;flagExtLabel.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;flagExtLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <metadata name="nukeLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="nukeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="nukeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 173</value>
+  </data>
+  <data name="nukeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 12</value>
+  </data>
+  <data name="nukeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="nukeLabel.Text" xml:space="preserve">
+    <value>Nuke</value>
+  </data>
+  <data name="&gt;&gt;nukeLabel.Name" xml:space="preserve">
+    <value>nukeLabel</value>
+  </data>
+  <data name="&gt;&gt;nukeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nukeLabel.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;nukeLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <metadata name="extraTcLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="extraTcLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="extraTcLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="extraTcLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 148</value>
+  </data>
+  <data name="extraTcLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 12</value>
+  </data>
+  <data name="extraTcLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="extraTcLabel.Text" xml:space="preserve">
+    <value>Extra TC</value>
+  </data>
+  <data name="&gt;&gt;extraTcLabel.Name" xml:space="preserve">
+    <value>extraTcLabel</value>
+  </data>
+  <data name="&gt;&gt;extraTcLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;extraTcLabel.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;extraTcLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <metadata name="belligerenceLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="belligerenceLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="belligerenceLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="belligerenceLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 98</value>
+  </data>
+  <data name="belligerenceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 12</value>
+  </data>
+  <data name="belligerenceLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="belligerenceLabel.Text" xml:space="preserve">
+    <value>Belligerence</value>
+  </data>
+  <data name="&gt;&gt;belligerenceLabel.Name" xml:space="preserve">
+    <value>belligerenceLabel</value>
+  </data>
+  <data name="&gt;&gt;belligerenceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;belligerenceLabel.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;belligerenceLabel.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <metadata name="regularIdLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="regularIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="regularIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 72</value>
+  </data>
+  <data name="regularIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="regularIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="regularIdLabel.Text" xml:space="preserve">
+    <value>Regular ID</value>
+  </data>
+  <data name="&gt;&gt;regularIdLabel.Name" xml:space="preserve">
+    <value>regularIdLabel</value>
+  </data>
+  <data name="&gt;&gt;regularIdLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;regularIdLabel.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;regularIdLabel.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <metadata name="countryNameLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="countryNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="countryNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="countryNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 21</value>
+  </data>
+  <data name="countryNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="countryNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="countryNameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;countryNameLabel.Name" xml:space="preserve">
+    <value>countryNameLabel</value>
+  </data>
+  <data name="&gt;&gt;countryNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;countryNameLabel.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;countryNameLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <metadata name="tradeStartDateLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="tradeStartDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeStartDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tradeStartDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 19</value>
+  </data>
+  <data name="tradeStartDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 12</value>
+  </data>
+  <data name="tradeStartDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tradeStartDateLabel.Text" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDateLabel.Name" xml:space="preserve">
+    <value>tradeStartDateLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDateLabel.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDateLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="tradeEndDateLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="tradeEndDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeEndDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tradeEndDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 44</value>
+  </data>
+  <data name="tradeEndDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 12</value>
+  </data>
+  <data name="tradeEndDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tradeEndDateLabel.Text" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDateLabel.Name" xml:space="preserve">
+    <value>tradeEndDateLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDateLabel.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDateLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="tradeIdLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="tradeIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tradeIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 69</value>
+  </data>
+  <data name="tradeIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="tradeIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="tradeIdLabel.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="&gt;&gt;tradeIdLabel.Name" xml:space="preserve">
+    <value>tradeIdLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeIdLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeIdLabel.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeIdLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
   <data name="provinceIdLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -1147,7 +1762,7 @@
     <value>16, 12</value>
   </data>
   <data name="provinceIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>71</value>
+    <value>3</value>
   </data>
   <data name="provinceIdLabel.Text" xml:space="preserve">
     <value>ID</value>
@@ -1177,7 +1792,7 @@
     <value>75, 23</value>
   </data>
   <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>3</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Close</value>
@@ -1207,7 +1822,7 @@
     <value>75, 23</value>
   </data>
   <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>2</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Save</value>
@@ -1237,7 +1852,7 @@
     <value>75, 23</value>
   </data>
   <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>1</value>
   </data>
   <data name="reloadButton.Text" xml:space="preserve">
     <value>Reload</value>
@@ -1261,7 +1876,7 @@
     <value>100, 19</value>
   </data>
   <data name="provinceIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>72</value>
+    <value>4</value>
   </data>
   <data name="provinceIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1291,7 +1906,7 @@
     <value>45, 12</value>
   </data>
   <data name="provinceCountryFilterLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>70</value>
+    <value>1</value>
   </data>
   <data name="provinceCountryFilterLabel.Text" xml:space="preserve">
     <value>Country</value>
@@ -1318,7 +1933,7 @@
     <value>160, 20</value>
   </data>
   <data name="provinceCountryFilterComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>69</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;provinceCountryFilterComboBox.Name" xml:space="preserve">
     <value>provinceCountryFilterComboBox</value>
@@ -1345,7 +1960,7 @@
     <value>65, 16</value>
   </data>
   <data name="claimedProvinceCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>67</value>
+    <value>4</value>
   </data>
   <data name="claimedProvinceCheckBox.Text" xml:space="preserve">
     <value>Claimed</value>
@@ -1375,7 +1990,7 @@
     <value>60, 16</value>
   </data>
   <data name="capitalCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>68</value>
+    <value>0</value>
   </data>
   <data name="capitalCheckBox.Text" xml:space="preserve">
     <value>Capital</value>
@@ -1405,7 +2020,7 @@
     <value>76, 16</value>
   </data>
   <data name="controlledProvinceCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
+    <value>3</value>
   </data>
   <data name="controlledProvinceCheckBox.Text" xml:space="preserve">
     <value>Controlled</value>
@@ -1432,7 +2047,7 @@
     <value>48, 16</value>
   </data>
   <data name="coreProvinceCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>64</value>
+    <value>1</value>
   </data>
   <data name="coreProvinceCheckBox.Text" xml:space="preserve">
     <value>Core</value>
@@ -1459,7 +2074,7 @@
     <value>58, 16</value>
   </data>
   <data name="ownedProvinceCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>65</value>
+    <value>2</value>
   </data>
   <data name="ownedProvinceCheckBox.Text" xml:space="preserve">
     <value>Owned</value>
@@ -1486,7 +2101,7 @@
     <value>244, 67</value>
   </data>
   <data name="provinceCountryGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>70</value>
+    <value>7</value>
   </data>
   <data name="provinceCountryGroupBox.Text" xml:space="preserve">
     <value>Country</value>
@@ -1660,7 +2275,7 @@
     <value>450, 44</value>
   </data>
   <data name="mapFilterGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>62</value>
+    <value>0</value>
   </data>
   <data name="mapFilterGroupBox.Text" xml:space="preserve">
     <value>Filter</value>
@@ -1684,7 +2299,7 @@
     <value>40, 19</value>
   </data>
   <data name="revoltRiskTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>138</value>
+    <value>5</value>
   </data>
   <data name="revoltRiskTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1708,7 +2323,7 @@
     <value>40, 19</value>
   </data>
   <data name="vpTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>137</value>
+    <value>3</value>
   </data>
   <data name="vpTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1732,7 +2347,7 @@
     <value>160, 19</value>
   </data>
   <data name="provinceNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>74</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;provinceNameTextBox.Name" xml:space="preserve">
     <value>provinceNameTextBox</value>
@@ -1756,7 +2371,7 @@
     <value>244, 101</value>
   </data>
   <data name="provinceInfoGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>66</value>
+    <value>8</value>
   </data>
   <data name="provinceInfoGroupBox.Text" xml:space="preserve">
     <value>Province Infomation</value>
@@ -1780,7 +2395,7 @@
     <value>40, 19</value>
   </data>
   <data name="manpowerCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>147</value>
+    <value>4</value>
   </data>
   <data name="manpowerCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1804,7 +2419,7 @@
     <value>40, 19</value>
   </data>
   <data name="suppliesPoolTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>145</value>
+    <value>23</value>
   </data>
   <data name="suppliesPoolTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1828,7 +2443,7 @@
     <value>40, 19</value>
   </data>
   <data name="oilMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>144</value>
+    <value>21</value>
   </data>
   <data name="oilMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1852,7 +2467,7 @@
     <value>40, 19</value>
   </data>
   <data name="manpowerMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>146</value>
+    <value>5</value>
   </data>
   <data name="manpowerMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1876,7 +2491,7 @@
     <value>40, 19</value>
   </data>
   <data name="oilCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>143</value>
+    <value>20</value>
   </data>
   <data name="oilCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1900,7 +2515,7 @@
     <value>40, 19</value>
   </data>
   <data name="oilPoolTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>142</value>
+    <value>19</value>
   </data>
   <data name="oilPoolTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1924,7 +2539,7 @@
     <value>40, 19</value>
   </data>
   <data name="rareMaterialsMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>141</value>
+    <value>17</value>
   </data>
   <data name="rareMaterialsMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1948,7 +2563,7 @@
     <value>40, 19</value>
   </data>
   <data name="rareMaterialsCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>140</value>
+    <value>16</value>
   </data>
   <data name="rareMaterialsCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1972,7 +2587,7 @@
     <value>40, 19</value>
   </data>
   <data name="rareMaterialsPoolTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>139</value>
+    <value>15</value>
   </data>
   <data name="rareMaterialsPoolTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1996,7 +2611,7 @@
     <value>40, 19</value>
   </data>
   <data name="metalMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>138</value>
+    <value>13</value>
   </data>
   <data name="metalMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2020,7 +2635,7 @@
     <value>40, 19</value>
   </data>
   <data name="metalCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>137</value>
+    <value>12</value>
   </data>
   <data name="metalCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2044,7 +2659,7 @@
     <value>40, 19</value>
   </data>
   <data name="metalPoolTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>136</value>
+    <value>11</value>
   </data>
   <data name="metalPoolTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2068,7 +2683,7 @@
     <value>40, 19</value>
   </data>
   <data name="energyMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>135</value>
+    <value>9</value>
   </data>
   <data name="energyMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2092,7 +2707,7 @@
     <value>40, 19</value>
   </data>
   <data name="energyCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>134</value>
+    <value>8</value>
   </data>
   <data name="energyCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2122,7 +2737,7 @@
     <value>48, 12</value>
   </data>
   <data name="provinceSuppliesLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>88</value>
+    <value>22</value>
   </data>
   <data name="provinceSuppliesLabel.Text" xml:space="preserve">
     <value>Supplies</value>
@@ -2146,7 +2761,7 @@
     <value>40, 19</value>
   </data>
   <data name="energyPoolTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>133</value>
+    <value>7</value>
   </data>
   <data name="energyPoolTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2176,7 +2791,7 @@
     <value>40, 12</value>
   </data>
   <data name="provinceEnergyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>89</value>
+    <value>6</value>
   </data>
   <data name="provinceEnergyLabel.Text" xml:space="preserve">
     <value>Energy</value>
@@ -2206,7 +2821,7 @@
     <value>19, 12</value>
   </data>
   <data name="provinceOilLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>90</value>
+    <value>18</value>
   </data>
   <data name="provinceOilLabel.Text" xml:space="preserve">
     <value>Oil</value>
@@ -2236,7 +2851,7 @@
     <value>33, 12</value>
   </data>
   <data name="provinceMetalLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>92</value>
+    <value>10</value>
   </data>
   <data name="provinceMetalLabel.Text" xml:space="preserve">
     <value>Metal</value>
@@ -2266,7 +2881,7 @@
     <value>80, 12</value>
   </data>
   <data name="provinceRareMaterialsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>91</value>
+    <value>14</value>
   </data>
   <data name="provinceRareMaterialsLabel.Text" xml:space="preserve">
     <value>Rare Materials</value>
@@ -2296,7 +2911,7 @@
     <value>56, 12</value>
   </data>
   <data name="provinceManpowerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>93</value>
+    <value>3</value>
   </data>
   <data name="provinceManpowerLabel.Text" xml:space="preserve">
     <value>Manpower</value>
@@ -2323,7 +2938,7 @@
     <value>244, 192</value>
   </data>
   <data name="provinceResourceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>65</value>
+    <value>9</value>
   </data>
   <data name="provinceResourceGroupBox.Text" xml:space="preserve">
     <value>Resource</value>
@@ -2347,7 +2962,7 @@
     <value>40, 19</value>
   </data>
   <data name="nuclearPowerRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>132</value>
+    <value>54</value>
   </data>
   <data name="nuclearPowerRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2371,7 +2986,7 @@
     <value>40, 19</value>
   </data>
   <data name="nuclearPowerMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>131</value>
+    <value>53</value>
   </data>
   <data name="nuclearPowerMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2395,7 +3010,7 @@
     <value>40, 19</value>
   </data>
   <data name="nuclearPowerCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>130</value>
+    <value>52</value>
   </data>
   <data name="nuclearPowerCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2419,7 +3034,7 @@
     <value>40, 19</value>
   </data>
   <data name="syntheticRaresRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>129</value>
+    <value>50</value>
   </data>
   <data name="syntheticRaresRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2443,7 +3058,7 @@
     <value>40, 19</value>
   </data>
   <data name="syntheticRaresMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>128</value>
+    <value>49</value>
   </data>
   <data name="syntheticRaresMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2467,7 +3082,7 @@
     <value>40, 19</value>
   </data>
   <data name="syntheticRaresCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>127</value>
+    <value>48</value>
   </data>
   <data name="syntheticRaresCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2491,7 +3106,7 @@
     <value>40, 19</value>
   </data>
   <data name="syntheticOilRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>126</value>
+    <value>46</value>
   </data>
   <data name="syntheticOilRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2515,7 +3130,7 @@
     <value>40, 19</value>
   </data>
   <data name="syntheticOilMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>125</value>
+    <value>45</value>
   </data>
   <data name="syntheticOilMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2539,7 +3154,7 @@
     <value>40, 19</value>
   </data>
   <data name="syntheticOilCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>124</value>
+    <value>44</value>
   </data>
   <data name="syntheticOilCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2563,7 +3178,7 @@
     <value>40, 19</value>
   </data>
   <data name="rocketTestRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>120</value>
+    <value>42</value>
   </data>
   <data name="rocketTestRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2587,7 +3202,7 @@
     <value>40, 19</value>
   </data>
   <data name="rocketTestMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>119</value>
+    <value>41</value>
   </data>
   <data name="rocketTestMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2611,7 +3226,7 @@
     <value>40, 19</value>
   </data>
   <data name="rocketTestCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>118</value>
+    <value>40</value>
   </data>
   <data name="rocketTestCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2635,7 +3250,7 @@
     <value>40, 19</value>
   </data>
   <data name="infrastructureRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>117</value>
+    <value>10</value>
   </data>
   <data name="infrastructureRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2659,7 +3274,7 @@
     <value>40, 19</value>
   </data>
   <data name="infrastructureMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>116</value>
+    <value>9</value>
   </data>
   <data name="infrastructureMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2683,7 +3298,7 @@
     <value>40, 19</value>
   </data>
   <data name="infrastructureCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>115</value>
+    <value>8</value>
   </data>
   <data name="infrastructureCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2707,7 +3322,7 @@
     <value>40, 19</value>
   </data>
   <data name="icRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>114</value>
+    <value>6</value>
   </data>
   <data name="icRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2731,7 +3346,7 @@
     <value>40, 19</value>
   </data>
   <data name="icMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>113</value>
+    <value>5</value>
   </data>
   <data name="icMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2755,7 +3370,7 @@
     <value>40, 19</value>
   </data>
   <data name="icCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>112</value>
+    <value>4</value>
   </data>
   <data name="icCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2779,7 +3394,7 @@
     <value>40, 19</value>
   </data>
   <data name="nuclearReactorRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>111</value>
+    <value>38</value>
   </data>
   <data name="nuclearReactorRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2803,7 +3418,7 @@
     <value>40, 19</value>
   </data>
   <data name="nuclearReactorMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>110</value>
+    <value>37</value>
   </data>
   <data name="nuclearReactorMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2827,7 +3442,7 @@
     <value>40, 19</value>
   </data>
   <data name="nuclearReactorCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>109</value>
+    <value>36</value>
   </data>
   <data name="nuclearReactorCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2851,7 +3466,7 @@
     <value>40, 19</value>
   </data>
   <data name="radarStationRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>108</value>
+    <value>34</value>
   </data>
   <data name="radarStationRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2875,7 +3490,7 @@
     <value>40, 19</value>
   </data>
   <data name="radarStationMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>107</value>
+    <value>33</value>
   </data>
   <data name="radarStationMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2899,7 +3514,7 @@
     <value>40, 19</value>
   </data>
   <data name="radarStationCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>106</value>
+    <value>32</value>
   </data>
   <data name="radarStationCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2923,7 +3538,7 @@
     <value>40, 19</value>
   </data>
   <data name="navalBaseRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>105</value>
+    <value>30</value>
   </data>
   <data name="navalBaseRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2947,7 +3562,7 @@
     <value>40, 19</value>
   </data>
   <data name="navalBaseMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>104</value>
+    <value>29</value>
   </data>
   <data name="navalBaseMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2971,7 +3586,7 @@
     <value>40, 19</value>
   </data>
   <data name="navalBaseCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>103</value>
+    <value>28</value>
   </data>
   <data name="navalBaseCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2995,7 +3610,7 @@
     <value>40, 19</value>
   </data>
   <data name="airBaseRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>102</value>
+    <value>26</value>
   </data>
   <data name="airBaseRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3019,7 +3634,7 @@
     <value>40, 19</value>
   </data>
   <data name="airBaseMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>101</value>
+    <value>25</value>
   </data>
   <data name="airBaseMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3043,7 +3658,7 @@
     <value>40, 19</value>
   </data>
   <data name="airBaseCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>100</value>
+    <value>24</value>
   </data>
   <data name="airBaseCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3067,7 +3682,7 @@
     <value>40, 19</value>
   </data>
   <data name="antiAirRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>99</value>
+    <value>22</value>
   </data>
   <data name="antiAirRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3091,7 +3706,7 @@
     <value>40, 19</value>
   </data>
   <data name="antiAirMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>98</value>
+    <value>21</value>
   </data>
   <data name="antiAirMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3115,7 +3730,7 @@
     <value>40, 19</value>
   </data>
   <data name="antiAirCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>97</value>
+    <value>20</value>
   </data>
   <data name="antiAirCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3139,7 +3754,7 @@
     <value>40, 19</value>
   </data>
   <data name="coastalFortRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>96</value>
+    <value>18</value>
   </data>
   <data name="coastalFortRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3163,7 +3778,7 @@
     <value>40, 19</value>
   </data>
   <data name="coastalFortMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>95</value>
+    <value>17</value>
   </data>
   <data name="coastalFortMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3187,7 +3802,7 @@
     <value>40, 19</value>
   </data>
   <data name="coastalFortCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>94</value>
+    <value>16</value>
   </data>
   <data name="coastalFortCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3211,7 +3826,7 @@
     <value>40, 19</value>
   </data>
   <data name="landFortRelativeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>93</value>
+    <value>14</value>
   </data>
   <data name="landFortRelativeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3235,7 +3850,7 @@
     <value>40, 19</value>
   </data>
   <data name="landFortMaxTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>92</value>
+    <value>13</value>
   </data>
   <data name="landFortMaxTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3259,7 +3874,7 @@
     <value>40, 19</value>
   </data>
   <data name="landFortCurrentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>91</value>
+    <value>12</value>
   </data>
   <data name="landFortCurrentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -3286,7 +3901,7 @@
     <value>251, 372</value>
   </data>
   <data name="provinceBuildingGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>64</value>
+    <value>10</value>
   </data>
   <data name="provinceBuildingGroupBox.Text" xml:space="preserve">
     <value>Building</value>
@@ -3340,7 +3955,7 @@
     <value>450, 463</value>
   </data>
   <data name="provinceMapPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;provinceMapPanel.Name" xml:space="preserve">
     <value>provinceMapPanel</value>
@@ -3406,7 +4021,7 @@
     <value>501, 157</value>
   </data>
   <data name="provinceListView.TabIndex" type="System.Int32, mscorlib">
-    <value>63</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;provinceListView.Name" xml:space="preserve">
     <value>provinceListView</value>
@@ -4444,7 +5059,7 @@
     <value>351, 452</value>
   </data>
   <data name="cabinetGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>57</value>
+    <value>2</value>
   </data>
   <data name="cabinetGroupBox.Text" xml:space="preserve">
     <value>Cabinet</value>
@@ -4474,7 +5089,7 @@
     <value>120, 511</value>
   </data>
   <data name="governmentCountryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;governmentCountryListBox.Name" xml:space="preserve">
     <value>governmentCountryListBox</value>
@@ -4498,7 +5113,7 @@
     <value>62, 12</value>
   </data>
   <data name="sliderDateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
+    <value>0</value>
   </data>
   <data name="sliderDateLabel.Text" xml:space="preserve">
     <value>Slider Date</value>
@@ -4525,7 +5140,7 @@
     <value>200, 45</value>
   </data>
   <data name="interventionismTrackBar.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
+    <value>24</value>
   </data>
   <data name="&gt;&gt;interventionismTrackBar.Name" xml:space="preserve">
     <value>interventionismTrackBar</value>
@@ -4552,7 +5167,7 @@
     <value>66, 12</value>
   </data>
   <data name="isolationismLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>57</value>
+    <value>23</value>
   </data>
   <data name="isolationismLabel.Text" xml:space="preserve">
     <value>Isolationism</value>
@@ -4582,7 +5197,7 @@
     <value>83, 12</value>
   </data>
   <data name="interventionismLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
+    <value>22</value>
   </data>
   <data name="interventionismLabel.Text" xml:space="preserve">
     <value>Interventionism</value>
@@ -4609,7 +5224,7 @@
     <value>200, 45</value>
   </data>
   <data name="defenseLobbyTrackBar.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
+    <value>21</value>
   </data>
   <data name="&gt;&gt;defenseLobbyTrackBar.Name" xml:space="preserve">
     <value>defenseLobbyTrackBar</value>
@@ -4636,7 +5251,7 @@
     <value>65, 12</value>
   </data>
   <data name="doveLobbyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
+    <value>20</value>
   </data>
   <data name="doveLobbyLabel.Text" xml:space="preserve">
     <value>Dove Lobby</value>
@@ -4666,7 +5281,7 @@
     <value>67, 12</value>
   </data>
   <data name="hawkLobbyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
+    <value>19</value>
   </data>
   <data name="hawkLobbyLabel.Text" xml:space="preserve">
     <value>Hawk Lobby</value>
@@ -4693,7 +5308,7 @@
     <value>200, 45</value>
   </data>
   <data name="professionalArmyTrackBar.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
+    <value>18</value>
   </data>
   <data name="&gt;&gt;professionalArmyTrackBar.Name" xml:space="preserve">
     <value>professionalArmyTrackBar</value>
@@ -4720,7 +5335,7 @@
     <value>74, 12</value>
   </data>
   <data name="draftedArmyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
+    <value>17</value>
   </data>
   <data name="draftedArmyLabel.Text" xml:space="preserve">
     <value>Drafted Army</value>
@@ -4750,7 +5365,7 @@
     <value>80, 12</value>
   </data>
   <data name="standingArmyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>16</value>
   </data>
   <data name="standingArmyLabel.Text" xml:space="preserve">
     <value>Standing Army</value>
@@ -4777,7 +5392,7 @@
     <value>200, 45</value>
   </data>
   <data name="freeMarketTrackBar.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;freeMarketTrackBar.Name" xml:space="preserve">
     <value>freeMarketTrackBar</value>
@@ -4804,7 +5419,7 @@
     <value>89, 12</value>
   </data>
   <data name="centralPlanningLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
+    <value>14</value>
   </data>
   <data name="centralPlanningLabel.Text" xml:space="preserve">
     <value>Central Planning</value>
@@ -4834,7 +5449,7 @@
     <value>67, 12</value>
   </data>
   <data name="freeMarketLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
+    <value>13</value>
   </data>
   <data name="freeMarketLabel.Text" xml:space="preserve">
     <value>Free Market</value>
@@ -4861,7 +5476,7 @@
     <value>200, 45</value>
   </data>
   <data name="freedomTrackBar.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;freedomTrackBar.Name" xml:space="preserve">
     <value>freedomTrackBar</value>
@@ -4888,7 +5503,7 @@
     <value>82, 12</value>
   </data>
   <data name="closedSocietyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>11</value>
   </data>
   <data name="closedSocietyLabel.Text" xml:space="preserve">
     <value>Closed Society</value>
@@ -4918,7 +5533,7 @@
     <value>73, 12</value>
   </data>
   <data name="openSocietyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+    <value>10</value>
   </data>
   <data name="openSocietyLabel.Text" xml:space="preserve">
     <value>Open Society</value>
@@ -4945,7 +5560,7 @@
     <value>200, 45</value>
   </data>
   <data name="politicalLeftTrackBar.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;politicalLeftTrackBar.Name" xml:space="preserve">
     <value>politicalLeftTrackBar</value>
@@ -4972,7 +5587,7 @@
     <value>77, 12</value>
   </data>
   <data name="politicalRightLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+    <value>8</value>
   </data>
   <data name="politicalRightLabel.Text" xml:space="preserve">
     <value>Political Right</value>
@@ -5002,7 +5617,7 @@
     <value>70, 12</value>
   </data>
   <data name="politicalLeftLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
+    <value>7</value>
   </data>
   <data name="politicalLeftLabel.Text" xml:space="preserve">
     <value>Political Left</value>
@@ -5029,7 +5644,7 @@
     <value>200, 45</value>
   </data>
   <data name="democraticTrackBar.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;democraticTrackBar.Name" xml:space="preserve">
     <value>democraticTrackBar</value>
@@ -5056,7 +5671,7 @@
     <value>71, 12</value>
   </data>
   <data name="authoritarianLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+    <value>5</value>
   </data>
   <data name="authoritarianLabel.Text" xml:space="preserve">
     <value>Authoritarian</value>
@@ -5086,7 +5701,7 @@
     <value>63, 12</value>
   </data>
   <data name="democraticLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>4</value>
   </data>
   <data name="democraticLabel.Text" xml:space="preserve">
     <value>Democratic</value>
@@ -5110,7 +5725,7 @@
     <value>50, 19</value>
   </data>
   <data name="sliderDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>3</value>
   </data>
   <data name="sliderDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5134,7 +5749,7 @@
     <value>50, 19</value>
   </data>
   <data name="sliderMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>2</value>
   </data>
   <data name="sliderMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5158,7 +5773,7 @@
     <value>50, 19</value>
   </data>
   <data name="sliderYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+    <value>1</value>
   </data>
   <data name="sliderYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5185,7 +5800,7 @@
     <value>228, 511</value>
   </data>
   <data name="politicalSliderGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
+    <value>1</value>
   </data>
   <data name="politicalSliderGroupBox.Text" xml:space="preserve">
     <value>Political Slider</value>
@@ -5236,7 +5851,7 @@
     <value>50, 19</value>
   </data>
   <data name="groundDefEffTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>1</value>
   </data>
   <data name="groundDefEffTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5253,33 +5868,6 @@
   <data name="&gt;&gt;groundDefEffTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="peacetimeIcModifierLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="peacetimeIcModifierLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 46</value>
-  </data>
-  <data name="peacetimeIcModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 12</value>
-  </data>
-  <data name="peacetimeIcModifierLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="peacetimeIcModifierLabel.Text" xml:space="preserve">
-    <value>Peacetime IC Modifer</value>
-  </data>
-  <data name="&gt;&gt;peacetimeIcModifierLabel.Name" xml:space="preserve">
-    <value>peacetimeIcModifierLabel</value>
-  </data>
-  <data name="&gt;&gt;peacetimeIcModifierLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;peacetimeIcModifierLabel.Parent" xml:space="preserve">
-    <value>countryModifierGroupBox</value>
-  </data>
-  <data name="&gt;&gt;peacetimeIcModifierLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="peacetimeIcModifierTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 43</value>
   </data>
@@ -5287,7 +5875,7 @@
     <value>50, 19</value>
   </data>
   <data name="peacetimeIcModifierTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>3</value>
   </data>
   <data name="peacetimeIcModifierTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5304,96 +5892,6 @@
   <data name="&gt;&gt;peacetimeIcModifierTextBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="wartimeIcModifierLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="wartimeIcModifierLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="wartimeIcModifierLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 71</value>
-  </data>
-  <data name="wartimeIcModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 12</value>
-  </data>
-  <data name="wartimeIcModifierLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="wartimeIcModifierLabel.Text" xml:space="preserve">
-    <value>Wartime IC Modifer</value>
-  </data>
-  <data name="&gt;&gt;wartimeIcModifierLabel.Name" xml:space="preserve">
-    <value>wartimeIcModifierLabel</value>
-  </data>
-  <data name="&gt;&gt;wartimeIcModifierLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;wartimeIcModifierLabel.Parent" xml:space="preserve">
-    <value>countryModifierGroupBox</value>
-  </data>
-  <data name="&gt;&gt;wartimeIcModifierLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="groundDefEffLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="groundDefEffLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="groundDefEffLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 21</value>
-  </data>
-  <data name="groundDefEffLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 12</value>
-  </data>
-  <data name="groundDefEffLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="groundDefEffLabel.Text" xml:space="preserve">
-    <value>Ground Def Eff</value>
-  </data>
-  <data name="&gt;&gt;groundDefEffLabel.Name" xml:space="preserve">
-    <value>groundDefEffLabel</value>
-  </data>
-  <data name="&gt;&gt;groundDefEffLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groundDefEffLabel.Parent" xml:space="preserve">
-    <value>countryModifierGroupBox</value>
-  </data>
-  <data name="&gt;&gt;groundDefEffLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="relativeManpowerLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="relativeManpowerLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="relativeManpowerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 121</value>
-  </data>
-  <data name="relativeManpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>102, 12</value>
-  </data>
-  <data name="relativeManpowerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="relativeManpowerLabel.Text" xml:space="preserve">
-    <value>Relative Manpower</value>
-  </data>
-  <data name="&gt;&gt;relativeManpowerLabel.Name" xml:space="preserve">
-    <value>relativeManpowerLabel</value>
-  </data>
-  <data name="&gt;&gt;relativeManpowerLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;relativeManpowerLabel.Parent" xml:space="preserve">
-    <value>countryModifierGroupBox</value>
-  </data>
-  <data name="&gt;&gt;relativeManpowerLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="relativeManpowerTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 118</value>
   </data>
@@ -5401,7 +5899,7 @@
     <value>50, 19</value>
   </data>
   <data name="relativeManpowerTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+    <value>9</value>
   </data>
   <data name="relativeManpowerTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5425,7 +5923,7 @@
     <value>50, 19</value>
   </data>
   <data name="wartimeIcModifierTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>5</value>
   </data>
   <data name="wartimeIcModifierTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5442,36 +5940,6 @@
   <data name="&gt;&gt;wartimeIcModifierTextBox.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="industrialModifierLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="industrialModifierLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="industrialModifierLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 96</value>
-  </data>
-  <data name="industrialModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 12</value>
-  </data>
-  <data name="industrialModifierLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="industrialModifierLabel.Text" xml:space="preserve">
-    <value>Industrial Modifer</value>
-  </data>
-  <data name="&gt;&gt;industrialModifierLabel.Name" xml:space="preserve">
-    <value>industrialModifierLabel</value>
-  </data>
-  <data name="&gt;&gt;industrialModifierLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;industrialModifierLabel.Parent" xml:space="preserve">
-    <value>countryModifierGroupBox</value>
-  </data>
-  <data name="&gt;&gt;industrialModifierLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="industrialModifierTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 93</value>
   </data>
@@ -5479,7 +5947,7 @@
     <value>50, 19</value>
   </data>
   <data name="industrialModifierTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>7</value>
   </data>
   <data name="industrialModifierTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5506,7 +5974,7 @@
     <value>239, 150</value>
   </data>
   <data name="countryModifierGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>2</value>
   </data>
   <data name="countryModifierGroupBox.Text" xml:space="preserve">
     <value>Modifier</value>
@@ -5523,36 +5991,6 @@
   <data name="&gt;&gt;countryModifierGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="aiFileLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="aiFileLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="aiFileLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 21</value>
-  </data>
-  <data name="aiFileLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 12</value>
-  </data>
-  <data name="aiFileLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="aiFileLabel.Text" xml:space="preserve">
-    <value>AI File</value>
-  </data>
-  <data name="&gt;&gt;aiFileLabel.Name" xml:space="preserve">
-    <value>aiFileLabel</value>
-  </data>
-  <data name="&gt;&gt;aiFileLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;aiFileLabel.Parent" xml:space="preserve">
-    <value>aiGroupBox</value>
-  </data>
-  <data name="&gt;&gt;aiFileLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="aiFileBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>161, 43</value>
   </data>
@@ -5560,7 +5998,7 @@
     <value>75, 23</value>
   </data>
   <data name="aiFileBrowseButton.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>2</value>
   </data>
   <data name="aiFileBrowseButton.Text" xml:space="preserve">
     <value>Browse</value>
@@ -5584,7 +6022,7 @@
     <value>120, 19</value>
   </data>
   <data name="aiFileNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;aiFileNameTextBox.Name" xml:space="preserve">
     <value>aiFileNameTextBox</value>
@@ -5608,7 +6046,7 @@
     <value>254, 79</value>
   </data>
   <data name="aiGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
+    <value>4</value>
   </data>
   <data name="aiGroupBox.Text" xml:space="preserve">
     <value>AI</value>
@@ -5638,7 +6076,7 @@
     <value>120, 511</value>
   </data>
   <data name="countryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;countryListBox.Name" xml:space="preserve">
     <value>countryListBox</value>
@@ -5659,7 +6097,7 @@
     <value>50, 19</value>
   </data>
   <data name="offmapIcTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
+    <value>30</value>
   </data>
   <data name="offmapIcTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5689,7 +6127,7 @@
     <value>16, 12</value>
   </data>
   <data name="countryIcLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
+    <value>29</value>
   </data>
   <data name="countryIcLabel.Text" xml:space="preserve">
     <value>IC</value>
@@ -5713,7 +6151,7 @@
     <value>50, 19</value>
   </data>
   <data name="offmapManpowerTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
+    <value>28</value>
   </data>
   <data name="offmapManpowerTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5737,7 +6175,7 @@
     <value>50, 19</value>
   </data>
   <data name="offmapEscortsTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>57</value>
+    <value>25</value>
   </data>
   <data name="offmapEscortsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5761,7 +6199,7 @@
     <value>50, 19</value>
   </data>
   <data name="offmapTransportsTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
+    <value>22</value>
   </data>
   <data name="offmapTransportsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5785,7 +6223,7 @@
     <value>50, 19</value>
   </data>
   <data name="offmapMoneyTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
+    <value>19</value>
   </data>
   <data name="offmapMoneyTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5809,7 +6247,7 @@
     <value>50, 19</value>
   </data>
   <data name="offmapSuppliesTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
+    <value>16</value>
   </data>
   <data name="offmapSuppliesTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5833,7 +6271,7 @@
     <value>50, 19</value>
   </data>
   <data name="offmapOilTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
+    <value>13</value>
   </data>
   <data name="offmapOilTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5857,7 +6295,7 @@
     <value>50, 19</value>
   </data>
   <data name="offmapRareMaterialsTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
+    <value>10</value>
   </data>
   <data name="offmapRareMaterialsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5881,7 +6319,7 @@
     <value>50, 19</value>
   </data>
   <data name="offmapMetalTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
+    <value>7</value>
   </data>
   <data name="offmapMetalTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5905,7 +6343,7 @@
     <value>50, 19</value>
   </data>
   <data name="offmapEnergyTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>4</value>
   </data>
   <data name="offmapEnergyTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5922,36 +6360,6 @@
   <data name="&gt;&gt;offmapEnergyTextBox.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="countryOffmapLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="countryOffmapLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="countryOffmapLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 18</value>
-  </data>
-  <data name="countryOffmapLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 12</value>
-  </data>
-  <data name="countryOffmapLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
-  </data>
-  <data name="countryOffmapLabel.Text" xml:space="preserve">
-    <value>Offmap</value>
-  </data>
-  <data name="&gt;&gt;countryOffmapLabel.Name" xml:space="preserve">
-    <value>countryOffmapLabel</value>
-  </data>
-  <data name="&gt;&gt;countryOffmapLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;countryOffmapLabel.Parent" xml:space="preserve">
-    <value>countryResourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;countryOffmapLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
   <data name="countryManpowerTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 233</value>
   </data>
@@ -5959,7 +6367,7 @@
     <value>50, 19</value>
   </data>
   <data name="countryManpowerTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>27</value>
   </data>
   <data name="countryManpowerTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -5976,33 +6384,6 @@
   <data name="&gt;&gt;countryManpowerTextBox.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="countryStockpileLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="countryStockpileLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>124, 18</value>
-  </data>
-  <data name="countryStockpileLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 12</value>
-  </data>
-  <data name="countryStockpileLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="countryStockpileLabel.Text" xml:space="preserve">
-    <value>Stockpile</value>
-  </data>
-  <data name="&gt;&gt;countryStockpileLabel.Name" xml:space="preserve">
-    <value>countryStockpileLabel</value>
-  </data>
-  <data name="&gt;&gt;countryStockpileLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;countryStockpileLabel.Parent" xml:space="preserve">
-    <value>countryResourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;countryStockpileLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
   <data name="countryManpowerLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -6016,7 +6397,7 @@
     <value>56, 12</value>
   </data>
   <data name="countryManpowerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+    <value>26</value>
   </data>
   <data name="countryManpowerLabel.Text" xml:space="preserve">
     <value>Manpower</value>
@@ -6040,7 +6421,7 @@
     <value>50, 19</value>
   </data>
   <data name="countryEscortsTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
+    <value>24</value>
   </data>
   <data name="countryEscortsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6070,7 +6451,7 @@
     <value>86, 12</value>
   </data>
   <data name="countryEscortsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>23</value>
   </data>
   <data name="countryEscortsLabel.Text" xml:space="preserve">
     <value>Convoy Escorts</value>
@@ -6094,7 +6475,7 @@
     <value>50, 19</value>
   </data>
   <data name="countryTransportsTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+    <value>21</value>
   </data>
   <data name="countryTransportsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6124,7 +6505,7 @@
     <value>102, 12</value>
   </data>
   <data name="countryTransportsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>20</value>
   </data>
   <data name="countryTransportsLabel.Text" xml:space="preserve">
     <value>Convoy Transports</value>
@@ -6148,7 +6529,7 @@
     <value>50, 19</value>
   </data>
   <data name="countryMoneyTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+    <value>18</value>
   </data>
   <data name="countryMoneyTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6178,7 +6559,7 @@
     <value>38, 12</value>
   </data>
   <data name="countryMoneyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>41</value>
+    <value>17</value>
   </data>
   <data name="countryMoneyLabel.Text" xml:space="preserve">
     <value>Money</value>
@@ -6202,7 +6583,7 @@
     <value>50, 19</value>
   </data>
   <data name="countrySuppliesTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>15</value>
   </data>
   <data name="countrySuppliesTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6232,7 +6613,7 @@
     <value>48, 12</value>
   </data>
   <data name="countrySuppliesLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+    <value>14</value>
   </data>
   <data name="countrySuppliesLabel.Text" xml:space="preserve">
     <value>Supplies</value>
@@ -6256,7 +6637,7 @@
     <value>50, 19</value>
   </data>
   <data name="countryOilTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>12</value>
   </data>
   <data name="countryOilTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6286,7 +6667,7 @@
     <value>19, 12</value>
   </data>
   <data name="countryOilLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>11</value>
   </data>
   <data name="countryOilLabel.Text" xml:space="preserve">
     <value>Oil</value>
@@ -6310,7 +6691,7 @@
     <value>50, 19</value>
   </data>
   <data name="countryRareMaterialsTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>9</value>
   </data>
   <data name="countryRareMaterialsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6340,7 +6721,7 @@
     <value>80, 12</value>
   </data>
   <data name="countryRareMaterialsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+    <value>8</value>
   </data>
   <data name="countryRareMaterialsLabel.Text" xml:space="preserve">
     <value>Rare Materials</value>
@@ -6364,7 +6745,7 @@
     <value>50, 19</value>
   </data>
   <data name="countryMetalTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>6</value>
   </data>
   <data name="countryMetalTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6394,7 +6775,7 @@
     <value>33, 12</value>
   </data>
   <data name="countryMetalLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+    <value>5</value>
   </data>
   <data name="countryMetalLabel.Text" xml:space="preserve">
     <value>Metal</value>
@@ -6418,7 +6799,7 @@
     <value>50, 19</value>
   </data>
   <data name="countryEnergyTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+    <value>3</value>
   </data>
   <data name="countryEnergyTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6448,7 +6829,7 @@
     <value>40, 12</value>
   </data>
   <data name="countryEnergyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
+    <value>2</value>
   </data>
   <data name="countryEnergyLabel.Text" xml:space="preserve">
     <value>Energy</value>
@@ -6475,7 +6856,7 @@
     <value>254, 291</value>
   </data>
   <data name="countryResourceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="countryResourceGroupBox.Text" xml:space="preserve">
     <value>Resource</value>
@@ -6499,7 +6880,7 @@
     <value>50, 19</value>
   </data>
   <data name="nukeDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>17</value>
   </data>
   <data name="nukeDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6523,7 +6904,7 @@
     <value>50, 19</value>
   </data>
   <data name="nukeMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+    <value>16</value>
   </data>
   <data name="nukeMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6540,36 +6921,6 @@
   <data name="&gt;&gt;nukeMonthTextBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="nukeDateLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="nukeDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="nukeDateLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 198</value>
-  </data>
-  <data name="nukeDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 12</value>
-  </data>
-  <data name="nukeDateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
-  </data>
-  <data name="nukeDateLabel.Text" xml:space="preserve">
-    <value>Nuke Date</value>
-  </data>
-  <data name="&gt;&gt;nukeDateLabel.Name" xml:space="preserve">
-    <value>nukeDateLabel</value>
-  </data>
-  <data name="&gt;&gt;nukeDateLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nukeDateLabel.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;nukeDateLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="nukeYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 213</value>
   </data>
@@ -6577,7 +6928,7 @@
     <value>50, 19</value>
   </data>
   <data name="nukeYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+    <value>15</value>
   </data>
   <data name="nukeYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6601,7 +6952,7 @@
     <value>50, 19</value>
   </data>
   <data name="dissentTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>9</value>
   </data>
   <data name="dissentTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6618,36 +6969,6 @@
   <data name="&gt;&gt;dissentTextBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="dissentLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="dissentLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="dissentLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 123</value>
-  </data>
-  <data name="dissentLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 12</value>
-  </data>
-  <data name="dissentLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="dissentLabel.Text" xml:space="preserve">
-    <value>Dissent</value>
-  </data>
-  <data name="&gt;&gt;dissentLabel.Name" xml:space="preserve">
-    <value>dissentLabel</value>
-  </data>
-  <data name="&gt;&gt;dissentLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dissentLabel.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;dissentLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="flagExtTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>102, 42</value>
   </data>
@@ -6655,7 +6976,7 @@
     <value>120, 19</value>
   </data>
   <data name="flagExtTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;flagExtTextBox.Name" xml:space="preserve">
     <value>flagExtTextBox</value>
@@ -6669,36 +6990,6 @@
   <data name="&gt;&gt;flagExtTextBox.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="flagExtLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="flagExtLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="flagExtLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 45</value>
-  </data>
-  <data name="flagExtLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 12</value>
-  </data>
-  <data name="flagExtLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="flagExtLabel.Text" xml:space="preserve">
-    <value>Flag Extension</value>
-  </data>
-  <data name="&gt;&gt;flagExtLabel.Name" xml:space="preserve">
-    <value>flagExtLabel</value>
-  </data>
-  <data name="&gt;&gt;flagExtLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;flagExtLabel.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;flagExtLabel.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="nukeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 170</value>
   </data>
@@ -6706,7 +6997,7 @@
     <value>50, 19</value>
   </data>
   <data name="nukeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>13</value>
   </data>
   <data name="nukeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6723,33 +7014,6 @@
   <data name="&gt;&gt;nukeTextBox.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="nukeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="nukeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 199</value>
-  </data>
-  <data name="nukeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 12</value>
-  </data>
-  <data name="nukeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="nukeLabel.Text" xml:space="preserve">
-    <value>Nuke</value>
-  </data>
-  <data name="&gt;&gt;nukeLabel.Name" xml:space="preserve">
-    <value>nukeLabel</value>
-  </data>
-  <data name="&gt;&gt;nukeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nukeLabel.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;nukeLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
   <data name="extraTcTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 145</value>
   </data>
@@ -6757,7 +7021,7 @@
     <value>50, 19</value>
   </data>
   <data name="extraTcTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>11</value>
   </data>
   <data name="extraTcTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6774,36 +7038,6 @@
   <data name="&gt;&gt;extraTcTextBox.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="extraTcLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="extraTcLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="extraTcLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 148</value>
-  </data>
-  <data name="extraTcLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 12</value>
-  </data>
-  <data name="extraTcLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="extraTcLabel.Text" xml:space="preserve">
-    <value>Extra TC</value>
-  </data>
-  <data name="&gt;&gt;extraTcLabel.Name" xml:space="preserve">
-    <value>extraTcLabel</value>
-  </data>
-  <data name="&gt;&gt;extraTcLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;extraTcLabel.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;extraTcLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
   <data name="belligerenceTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 95</value>
   </data>
@@ -6811,7 +7045,7 @@
     <value>50, 19</value>
   </data>
   <data name="belligerenceTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>7</value>
   </data>
   <data name="belligerenceTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -6828,36 +7062,6 @@
   <data name="&gt;&gt;belligerenceTextBox.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="belligerenceLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="belligerenceLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="belligerenceLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 98</value>
-  </data>
-  <data name="belligerenceLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 12</value>
-  </data>
-  <data name="belligerenceLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="belligerenceLabel.Text" xml:space="preserve">
-    <value>Belligerence</value>
-  </data>
-  <data name="&gt;&gt;belligerenceLabel.Name" xml:space="preserve">
-    <value>belligerenceLabel</value>
-  </data>
-  <data name="&gt;&gt;belligerenceLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;belligerenceLabel.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;belligerenceLabel.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
   <data name="regularIdComboBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 9pt</value>
   </data>
@@ -6868,7 +7072,7 @@
     <value>120, 22</value>
   </data>
   <data name="regularIdComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;regularIdComboBox.Name" xml:space="preserve">
     <value>regularIdComboBox</value>
@@ -6881,33 +7085,6 @@
   </data>
   <data name="&gt;&gt;regularIdComboBox.ZOrder" xml:space="preserve">
     <value>14</value>
-  </data>
-  <data name="regularIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="regularIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 72</value>
-  </data>
-  <data name="regularIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 12</value>
-  </data>
-  <data name="regularIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="regularIdLabel.Text" xml:space="preserve">
-    <value>Regular ID</value>
-  </data>
-  <data name="&gt;&gt;regularIdLabel.Name" xml:space="preserve">
-    <value>regularIdLabel</value>
-  </data>
-  <data name="&gt;&gt;regularIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;regularIdLabel.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;regularIdLabel.ZOrder" xml:space="preserve">
-    <value>15</value>
   </data>
   <data name="countryNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>102, 17</value>
@@ -6930,36 +7107,6 @@
   <data name="&gt;&gt;countryNameTextBox.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
-  <data name="countryNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="countryNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="countryNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 21</value>
-  </data>
-  <data name="countryNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
-  </data>
-  <data name="countryNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="countryNameLabel.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="&gt;&gt;countryNameLabel.Name" xml:space="preserve">
-    <value>countryNameLabel</value>
-  </data>
-  <data name="&gt;&gt;countryNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;countryNameLabel.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;countryNameLabel.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
   <data name="countryInfoGroupBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -6970,7 +7117,7 @@
     <value>239, 248</value>
   </data>
   <data name="countryInfoGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="countryInfoGroupBox.Text" xml:space="preserve">
     <value>Country Information</value>
@@ -7024,7 +7171,7 @@
     <value>120, 22</value>
   </data>
   <data name="tradeCountryComboBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>142</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;tradeCountryComboBox1.Name" xml:space="preserve">
     <value>tradeCountryComboBox1</value>
@@ -7033,7 +7180,7 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeCountryComboBox1.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeCountryComboBox1.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -7045,7 +7192,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeRareMaterialsTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>151</value>
+    <value>9</value>
   </data>
   <data name="tradeRareMaterialsTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7057,7 +7204,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeRareMaterialsTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeRareMaterialsTextBox1.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -7069,7 +7216,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeRareMaterialsTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>152</value>
+    <value>11</value>
   </data>
   <data name="tradeRareMaterialsTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7081,7 +7228,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeRareMaterialsTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeRareMaterialsTextBox2.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -7099,7 +7246,7 @@
     <value>80, 12</value>
   </data>
   <data name="tradeRareMaterialsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>150</value>
+    <value>10</value>
   </data>
   <data name="tradeRareMaterialsLabel.Text" xml:space="preserve">
     <value>Rare Materials</value>
@@ -7111,7 +7258,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeRareMaterialsLabel.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeRareMaterialsLabel.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -7129,7 +7276,7 @@
     <value>19, 12</value>
   </data>
   <data name="tradeOilLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>153</value>
+    <value>13</value>
   </data>
   <data name="tradeOilLabel.Text" xml:space="preserve">
     <value>Oil</value>
@@ -7141,7 +7288,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeOilLabel.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeOilLabel.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -7153,7 +7300,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeMetalTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>149</value>
+    <value>8</value>
   </data>
   <data name="tradeMetalTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7165,7 +7312,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeMetalTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMetalTextBox2.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -7177,7 +7324,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeOilTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>154</value>
+    <value>12</value>
   </data>
   <data name="tradeOilTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7189,7 +7336,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeOilTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeOilTextBox1.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -7201,7 +7348,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeMetalTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>148</value>
+    <value>6</value>
   </data>
   <data name="tradeMetalTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7213,7 +7360,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeMetalTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMetalTextBox1.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -7228,7 +7375,7 @@
     <value>45, 23</value>
   </data>
   <data name="tradeSwapButton.TabIndex" type="System.Int32, mscorlib">
-    <value>162</value>
+    <value>1</value>
   </data>
   <data name="tradeSwapButton.Text" xml:space="preserve">
     <value>&lt;-&gt;</value>
@@ -7240,7 +7387,7 @@
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeSwapButton.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeSwapButton.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -7252,7 +7399,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeOilTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>155</value>
+    <value>14</value>
   </data>
   <data name="tradeOilTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7264,7 +7411,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeOilTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeOilTextBox2.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -7276,7 +7423,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeMoneyTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>161</value>
+    <value>20</value>
   </data>
   <data name="tradeMoneyTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7288,7 +7435,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeMoneyTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMoneyTextBox2.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -7306,7 +7453,7 @@
     <value>33, 12</value>
   </data>
   <data name="tradeMetalLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>147</value>
+    <value>7</value>
   </data>
   <data name="tradeMetalLabel.Text" xml:space="preserve">
     <value>Metal</value>
@@ -7318,7 +7465,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeMetalLabel.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMetalLabel.ZOrder" xml:space="preserve">
     <value>11</value>
@@ -7336,7 +7483,7 @@
     <value>48, 12</value>
   </data>
   <data name="tradeSuppliesLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>156</value>
+    <value>16</value>
   </data>
   <data name="tradeSuppliesLabel.Text" xml:space="preserve">
     <value>Supplies</value>
@@ -7348,7 +7495,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeSuppliesLabel.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeSuppliesLabel.ZOrder" xml:space="preserve">
     <value>12</value>
@@ -7360,7 +7507,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeMoneyTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>160</value>
+    <value>18</value>
   </data>
   <data name="tradeMoneyTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7372,7 +7519,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeMoneyTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMoneyTextBox1.ZOrder" xml:space="preserve">
     <value>13</value>
@@ -7384,7 +7531,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeEnergyTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>146</value>
+    <value>5</value>
   </data>
   <data name="tradeEnergyTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7396,7 +7543,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeEnergyTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeEnergyTextBox2.ZOrder" xml:space="preserve">
     <value>14</value>
@@ -7411,7 +7558,7 @@
     <value>120, 22</value>
   </data>
   <data name="tradeCountryComboBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>143</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;tradeCountryComboBox2.Name" xml:space="preserve">
     <value>tradeCountryComboBox2</value>
@@ -7420,7 +7567,7 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeCountryComboBox2.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeCountryComboBox2.ZOrder" xml:space="preserve">
     <value>15</value>
@@ -7432,7 +7579,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeSuppliesTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>157</value>
+    <value>15</value>
   </data>
   <data name="tradeSuppliesTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7444,7 +7591,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeSuppliesTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeSuppliesTextBox1.ZOrder" xml:space="preserve">
     <value>16</value>
@@ -7462,7 +7609,7 @@
     <value>38, 12</value>
   </data>
   <data name="tradeMoneyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>159</value>
+    <value>19</value>
   </data>
   <data name="tradeMoneyLabel.Text" xml:space="preserve">
     <value>Money</value>
@@ -7474,7 +7621,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeMoneyLabel.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeMoneyLabel.ZOrder" xml:space="preserve">
     <value>17</value>
@@ -7486,7 +7633,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeEnergyTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>145</value>
+    <value>3</value>
   </data>
   <data name="tradeEnergyTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7498,7 +7645,7 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeEnergyTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeEnergyTextBox1.ZOrder" xml:space="preserve">
     <value>18</value>
@@ -7516,7 +7663,7 @@
     <value>40, 12</value>
   </data>
   <data name="tradeEnergyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>144</value>
+    <value>4</value>
   </data>
   <data name="tradeEnergyLabel.Text" xml:space="preserve">
     <value>Energy</value>
@@ -7528,7 +7675,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeEnergyLabel.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeEnergyLabel.ZOrder" xml:space="preserve">
     <value>19</value>
@@ -7540,7 +7687,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeSuppliesTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>158</value>
+    <value>17</value>
   </data>
   <data name="tradeSuppliesTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7552,63 +7699,33 @@
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeSuppliesTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeSuppliesTextBox2.ZOrder" xml:space="preserve">
     <value>20</value>
   </data>
-  <data name="tradeDealGroupBox.Enabled" type="System.Boolean, mscorlib">
+  <data name="tradeDealsGroupBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="tradeDealGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="tradeDealsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>292, 201</value>
   </data>
-  <data name="tradeDealGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tradeDealsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>346, 213</value>
   </data>
-  <data name="tradeDealGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>174</value>
+  <data name="tradeDealsGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
-  <data name="&gt;&gt;tradeDealGroupBox.Name" xml:space="preserve">
-    <value>tradeDealGroupBox</value>
+  <data name="&gt;&gt;tradeDealsGroupBox.Name" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
   </data>
-  <data name="&gt;&gt;tradeDealGroupBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;tradeDealsGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tradeDealGroupBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;tradeDealsGroupBox.Parent" xml:space="preserve">
     <value>tradeTabPage</value>
   </data>
-  <data name="&gt;&gt;tradeDealGroupBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tradeStartDateLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeStartDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeStartDateLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 19</value>
-  </data>
-  <data name="tradeStartDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 12</value>
-  </data>
-  <data name="tradeStartDateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>140</value>
-  </data>
-  <data name="tradeStartDateLabel.Text" xml:space="preserve">
-    <value>Start Date</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDateLabel.Name" xml:space="preserve">
-    <value>tradeStartDateLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDateLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDateLabel.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDateLabel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tradeDealsGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="tradeIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
@@ -7618,7 +7735,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>172</value>
+    <value>10</value>
   </data>
   <data name="tradeIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7635,36 +7752,6 @@
   <data name="&gt;&gt;tradeIdTextBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="tradeEndDateLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeEndDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeEndDateLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 44</value>
-  </data>
-  <data name="tradeEndDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 12</value>
-  </data>
-  <data name="tradeEndDateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>141</value>
-  </data>
-  <data name="tradeEndDateLabel.Text" xml:space="preserve">
-    <value>End Date</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDateLabel.Name" xml:space="preserve">
-    <value>tradeEndDateLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDateLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDateLabel.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDateLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="tradeTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>82, 66</value>
   </data>
@@ -7672,7 +7759,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>171</value>
+    <value>9</value>
   </data>
   <data name="tradeTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7696,7 +7783,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeStartYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>164</value>
+    <value>1</value>
   </data>
   <data name="tradeStartYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7713,36 +7800,6 @@
   <data name="&gt;&gt;tradeStartYearTextBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="tradeIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 69</value>
-  </data>
-  <data name="tradeIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="tradeIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>170</value>
-  </data>
-  <data name="tradeIdLabel.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;tradeIdLabel.Name" xml:space="preserve">
-    <value>tradeIdLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeIdLabel.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeIdLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="tradeStartMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>138, 16</value>
   </data>
@@ -7750,7 +7807,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeStartMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>165</value>
+    <value>2</value>
   </data>
   <data name="tradeStartMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7780,7 +7837,7 @@
     <value>91, 16</value>
   </data>
   <data name="tradeCancelCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>163</value>
+    <value>11</value>
   </data>
   <data name="tradeCancelCheckBox.Text" xml:space="preserve">
     <value>Allow Cancel</value>
@@ -7804,7 +7861,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeEndDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>169</value>
+    <value>7</value>
   </data>
   <data name="tradeEndDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7828,7 +7885,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeStartDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>166</value>
+    <value>3</value>
   </data>
   <data name="tradeStartDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7852,7 +7909,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeEndMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>168</value>
+    <value>6</value>
   </data>
   <data name="tradeEndMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7876,7 +7933,7 @@
     <value>50, 19</value>
   </data>
   <data name="tradeEndYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>167</value>
+    <value>5</value>
   </data>
   <data name="tradeEndYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -7903,7 +7960,7 @@
     <value>261, 120</value>
   </data>
   <data name="tradeInfoGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>173</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;tradeInfoGroupBox.Name" xml:space="preserve">
     <value>tradeInfoGroupBox</value>
@@ -7945,7 +8002,7 @@
     <value>621, 142</value>
   </data>
   <data name="tradeListView.TabIndex" type="System.Int32, mscorlib">
-    <value>135</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;tradeListView.Name" xml:space="preserve">
     <value>tradeListView</value>
@@ -7972,7 +8029,7 @@
     <value>75, 23</value>
   </data>
   <data name="tradeDownButton.TabIndex" type="System.Int32, mscorlib">
-    <value>137</value>
+    <value>2</value>
   </data>
   <data name="tradeDownButton.Text" xml:space="preserve">
     <value>Down</value>
@@ -8002,7 +8059,7 @@
     <value>75, 23</value>
   </data>
   <data name="tradeNewButton.TabIndex" type="System.Int32, mscorlib">
-    <value>138</value>
+    <value>3</value>
   </data>
   <data name="tradeNewButton.Text" xml:space="preserve">
     <value>New</value>
@@ -8032,7 +8089,7 @@
     <value>75, 23</value>
   </data>
   <data name="tradeRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>139</value>
+    <value>4</value>
   </data>
   <data name="tradeRemoveButton.Text" xml:space="preserve">
     <value>Remove</value>
@@ -8062,7 +8119,7 @@
     <value>75, 23</value>
   </data>
   <data name="tradeUpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>136</value>
+    <value>1</value>
   </data>
   <data name="tradeUpButton.Text" xml:space="preserve">
     <value>Up</value>
@@ -8170,7 +8227,7 @@
     <value>207, 52</value>
   </data>
   <data name="intelligenceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>136</value>
+    <value>3</value>
   </data>
   <data name="intelligenceGroupBox.Text" xml:space="preserve">
     <value>Intelligence</value>
@@ -8200,7 +8257,7 @@
     <value>76, 16</value>
   </data>
   <data name="guaranteeCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>109</value>
+    <value>0</value>
   </data>
   <data name="guaranteeCheckBox.Text" xml:space="preserve">
     <value>Guarantee</value>
@@ -8224,7 +8281,7 @@
     <value>50, 19</value>
   </data>
   <data name="guaranteeYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>110</value>
+    <value>2</value>
   </data>
   <data name="guaranteeYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8248,7 +8305,7 @@
     <value>50, 19</value>
   </data>
   <data name="guaranteeMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>111</value>
+    <value>3</value>
   </data>
   <data name="guaranteeMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8278,7 +8335,7 @@
     <value>52, 12</value>
   </data>
   <data name="guaranteeEndLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>119</value>
+    <value>1</value>
   </data>
   <data name="guaranteeEndLabel.Text" xml:space="preserve">
     <value>End Date</value>
@@ -8302,7 +8359,7 @@
     <value>50, 19</value>
   </data>
   <data name="guaranteeDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>112</value>
+    <value>4</value>
   </data>
   <data name="guaranteeDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8326,7 +8383,7 @@
     <value>280, 70</value>
   </data>
   <data name="guaranteeGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>136</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;guaranteeGroupBox.Name" xml:space="preserve">
     <value>guaranteeGroupBox</value>
@@ -8347,7 +8404,7 @@
     <value>50, 19</value>
   </data>
   <data name="peaceIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>128</value>
+    <value>11</value>
   </data>
   <data name="peaceIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8371,7 +8428,7 @@
     <value>50, 19</value>
   </data>
   <data name="peaceTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>126</value>
+    <value>10</value>
   </data>
   <data name="peaceTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8395,7 +8452,7 @@
     <value>50, 19</value>
   </data>
   <data name="peaceEndDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>132</value>
+    <value>8</value>
   </data>
   <data name="peaceEndDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8425,7 +8482,7 @@
     <value>52, 12</value>
   </data>
   <data name="peaceEndLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>133</value>
+    <value>5</value>
   </data>
   <data name="peaceEndLabel.Text" xml:space="preserve">
     <value>End Date</value>
@@ -8449,7 +8506,7 @@
     <value>50, 19</value>
   </data>
   <data name="peaceEndMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>131</value>
+    <value>7</value>
   </data>
   <data name="peaceEndMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8479,7 +8536,7 @@
     <value>16, 12</value>
   </data>
   <data name="peaceIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>125</value>
+    <value>9</value>
   </data>
   <data name="peaceIdLabel.Text" xml:space="preserve">
     <value>ID</value>
@@ -8503,7 +8560,7 @@
     <value>50, 19</value>
   </data>
   <data name="peaceEndYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>130</value>
+    <value>6</value>
   </data>
   <data name="peaceEndYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8533,7 +8590,7 @@
     <value>58, 12</value>
   </data>
   <data name="peaceStartLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>129</value>
+    <value>1</value>
   </data>
   <data name="peaceStartLabel.Text" xml:space="preserve">
     <value>Start Date</value>
@@ -8557,7 +8614,7 @@
     <value>50, 19</value>
   </data>
   <data name="peaceStartYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>126</value>
+    <value>2</value>
   </data>
   <data name="peaceStartYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8581,7 +8638,7 @@
     <value>50, 19</value>
   </data>
   <data name="peaceStartDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>128</value>
+    <value>4</value>
   </data>
   <data name="peaceStartDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8611,7 +8668,7 @@
     <value>55, 16</value>
   </data>
   <data name="peaceCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>125</value>
+    <value>0</value>
   </data>
   <data name="peaceCheckBox.Text" xml:space="preserve">
     <value>Peace</value>
@@ -8635,7 +8692,7 @@
     <value>50, 19</value>
   </data>
   <data name="peaceStartMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>127</value>
+    <value>3</value>
   </data>
   <data name="peaceStartMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8659,7 +8716,7 @@
     <value>280, 121</value>
   </data>
   <data name="peaceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>135</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;peaceGroupBox.Name" xml:space="preserve">
     <value>peaceGroupBox</value>
@@ -8680,7 +8737,7 @@
     <value>70, 19</value>
   </data>
   <data name="relationValueNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>134</value>
+    <value>1</value>
   </data>
   <data name="relationValueNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8704,7 +8761,7 @@
     <value>50, 19</value>
   </data>
   <data name="nonAggressionIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>128</value>
+    <value>11</value>
   </data>
   <data name="nonAggressionIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8728,7 +8785,7 @@
     <value>50, 19</value>
   </data>
   <data name="nonAggressionTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>126</value>
+    <value>10</value>
   </data>
   <data name="nonAggressionTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8758,7 +8815,7 @@
     <value>16, 12</value>
   </data>
   <data name="nonAggressionIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>125</value>
+    <value>9</value>
   </data>
   <data name="nonAggressionIdLabel.Text" xml:space="preserve">
     <value>ID</value>
@@ -8788,7 +8845,7 @@
     <value>105, 16</value>
   </data>
   <data name="nonAggressionCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>115</value>
+    <value>0</value>
   </data>
   <data name="nonAggressionCheckBox.Text" xml:space="preserve">
     <value>Non Aggression</value>
@@ -8812,7 +8869,7 @@
     <value>50, 19</value>
   </data>
   <data name="nonAggressionStartMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>117</value>
+    <value>3</value>
   </data>
   <data name="nonAggressionStartMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8836,7 +8893,7 @@
     <value>50, 19</value>
   </data>
   <data name="nonAggressionStartYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>116</value>
+    <value>2</value>
   </data>
   <data name="nonAggressionStartYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8860,7 +8917,7 @@
     <value>50, 19</value>
   </data>
   <data name="nonAggressionStartDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>118</value>
+    <value>4</value>
   </data>
   <data name="nonAggressionStartDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8890,7 +8947,7 @@
     <value>58, 12</value>
   </data>
   <data name="nonAggressionStartLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>120</value>
+    <value>1</value>
   </data>
   <data name="nonAggressionStartLabel.Text" xml:space="preserve">
     <value>Start Date</value>
@@ -8914,7 +8971,7 @@
     <value>50, 19</value>
   </data>
   <data name="nonAggressionEndYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>121</value>
+    <value>6</value>
   </data>
   <data name="nonAggressionEndYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8938,7 +8995,7 @@
     <value>50, 19</value>
   </data>
   <data name="nonAggressionEndMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>122</value>
+    <value>7</value>
   </data>
   <data name="nonAggressionEndMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8962,7 +9019,7 @@
     <value>50, 19</value>
   </data>
   <data name="nonAggressionEndDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>123</value>
+    <value>8</value>
   </data>
   <data name="nonAggressionEndDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -8992,7 +9049,7 @@
     <value>52, 12</value>
   </data>
   <data name="nonAggressionEndLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>124</value>
+    <value>5</value>
   </data>
   <data name="nonAggressionEndLabel.Text" xml:space="preserve">
     <value>End Date</value>
@@ -9016,7 +9073,7 @@
     <value>280, 121</value>
   </data>
   <data name="nonAggressionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>134</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;nonAggressionGroupBox.Name" xml:space="preserve">
     <value>nonAggressionGroupBox</value>
@@ -9043,7 +9100,7 @@
     <value>80, 12</value>
   </data>
   <data name="relationValueLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>133</value>
+    <value>0</value>
   </data>
   <data name="relationValueLabel.Text" xml:space="preserve">
     <value>Relation Value</value>
@@ -9073,7 +9130,7 @@
     <value>104, 16</value>
   </data>
   <data name="accessCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>106</value>
+    <value>4</value>
   </data>
   <data name="accessCheckBox.Text" xml:space="preserve">
     <value>Military Access</value>
@@ -9103,7 +9160,7 @@
     <value>59, 16</value>
   </data>
   <data name="masterCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>113</value>
+    <value>2</value>
   </data>
   <data name="masterCheckBox.Text" xml:space="preserve">
     <value>Master</value>
@@ -9133,7 +9190,7 @@
     <value>103, 16</value>
   </data>
   <data name="controlCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>114</value>
+    <value>3</value>
   </data>
   <data name="controlCheckBox.Text" xml:space="preserve">
     <value>Military Control</value>
@@ -9160,7 +9217,7 @@
     <value>602, 288</value>
   </data>
   <data name="diplomacyGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>135</value>
+    <value>2</value>
   </data>
   <data name="diplomacyGroupBox.Text" xml:space="preserve">
     <value>Diplomacy</value>
@@ -9265,7 +9322,7 @@
     <value>688, 220</value>
   </data>
   <data name="relationListView.TabIndex" type="System.Int32, mscorlib">
-    <value>128</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;relationListView.Name" xml:space="preserve">
     <value>relationListView</value>
@@ -9295,7 +9352,7 @@
     <value>120, 214</value>
   </data>
   <data name="relationCountryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>127</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;relationCountryListBox.Name" xml:space="preserve">
     <value>relationCountryListBox</value>
@@ -9349,7 +9406,7 @@
     <value>100, 23</value>
   </data>
   <data name="warDefenderLeaderButton.TabIndex" type="System.Int32, mscorlib">
-    <value>135</value>
+    <value>29</value>
   </data>
   <data name="warDefenderLeaderButton.Text" xml:space="preserve">
     <value>Set Leader</value>
@@ -9376,7 +9433,7 @@
     <value>100, 23</value>
   </data>
   <data name="warAttackerLeaderButton.TabIndex" type="System.Int32, mscorlib">
-    <value>124</value>
+    <value>18</value>
   </data>
   <data name="warAttackerLeaderButton.Text" xml:space="preserve">
     <value>Set Leader</value>
@@ -9406,7 +9463,7 @@
     <value>16, 12</value>
   </data>
   <data name="warDefenderIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>134</value>
+    <value>30</value>
   </data>
   <data name="warDefenderIdLabel.Text" xml:space="preserve">
     <value>ID</value>
@@ -9436,7 +9493,7 @@
     <value>16, 12</value>
   </data>
   <data name="warAttackerIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>133</value>
+    <value>19</value>
   </data>
   <data name="warAttackerIdLabel.Text" xml:space="preserve">
     <value>ID</value>
@@ -9460,7 +9517,7 @@
     <value>50, 19</value>
   </data>
   <data name="warDefenderIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>132</value>
+    <value>32</value>
   </data>
   <data name="warDefenderIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9484,7 +9541,7 @@
     <value>50, 19</value>
   </data>
   <data name="warDefenderTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>131</value>
+    <value>31</value>
   </data>
   <data name="warDefenderTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9508,7 +9565,7 @@
     <value>50, 19</value>
   </data>
   <data name="warAttackerIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>129</value>
+    <value>21</value>
   </data>
   <data name="warAttackerIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9532,7 +9589,7 @@
     <value>50, 19</value>
   </data>
   <data name="warAttackerTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>128</value>
+    <value>20</value>
   </data>
   <data name="warAttackerTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9556,7 +9613,7 @@
     <value>50, 19</value>
   </data>
   <data name="warIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>126</value>
+    <value>15</value>
   </data>
   <data name="warIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9580,7 +9637,7 @@
     <value>50, 19</value>
   </data>
   <data name="warTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>125</value>
+    <value>14</value>
   </data>
   <data name="warTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9604,7 +9661,7 @@
     <value>50, 19</value>
   </data>
   <data name="warEndMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>124</value>
+    <value>11</value>
   </data>
   <data name="warEndMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9634,7 +9691,7 @@
     <value>16, 12</value>
   </data>
   <data name="warIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>124</value>
+    <value>13</value>
   </data>
   <data name="warIdLabel.Text" xml:space="preserve">
     <value>ID</value>
@@ -9658,7 +9715,7 @@
     <value>50, 19</value>
   </data>
   <data name="warEndYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>123</value>
+    <value>10</value>
   </data>
   <data name="warEndYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9682,7 +9739,7 @@
     <value>50, 19</value>
   </data>
   <data name="warEndDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>125</value>
+    <value>12</value>
   </data>
   <data name="warEndDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9712,7 +9769,7 @@
     <value>52, 12</value>
   </data>
   <data name="warEndDateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>122</value>
+    <value>9</value>
   </data>
   <data name="warEndDateLabel.Text" xml:space="preserve">
     <value>End Date</value>
@@ -9736,7 +9793,7 @@
     <value>50, 19</value>
   </data>
   <data name="warStartMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>120</value>
+    <value>7</value>
   </data>
   <data name="warStartMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9760,7 +9817,7 @@
     <value>50, 19</value>
   </data>
   <data name="warStartYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>119</value>
+    <value>6</value>
   </data>
   <data name="warStartYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9784,7 +9841,7 @@
     <value>50, 19</value>
   </data>
   <data name="warStartDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>121</value>
+    <value>8</value>
   </data>
   <data name="warStartDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -9811,7 +9868,7 @@
     <value>58, 12</value>
   </data>
   <data name="warStartDateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>61</value>
+    <value>5</value>
   </data>
   <data name="warStartDateLabel.Text" xml:space="preserve">
     <value>Start Date</value>
@@ -9841,7 +9898,7 @@
     <value>51, 12</value>
   </data>
   <data name="warDefenderLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
+    <value>27</value>
   </data>
   <data name="warDefenderLabel.Text" xml:space="preserve">
     <value>Defender</value>
@@ -9877,7 +9934,7 @@
     <value>532, 142</value>
   </data>
   <data name="warListView.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;warListView.Name" xml:space="preserve">
     <value>warListView</value>
@@ -9901,7 +9958,7 @@
     <value>75, 23</value>
   </data>
   <data name="warNewButton.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>3</value>
   </data>
   <data name="warNewButton.Text" xml:space="preserve">
     <value>New</value>
@@ -9928,7 +9985,7 @@
     <value>45, 23</value>
   </data>
   <data name="warAttackerRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>53</value>
+    <value>23</value>
   </data>
   <data name="warAttackerRemoveButton.Text" xml:space="preserve">
     <value>-&gt;</value>
@@ -9955,7 +10012,7 @@
     <value>75, 23</value>
   </data>
   <data name="warUpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
+    <value>1</value>
   </data>
   <data name="warUpButton.Text" xml:space="preserve">
     <value>Up</value>
@@ -9982,7 +10039,7 @@
     <value>120, 186</value>
   </data>
   <data name="warAttackerListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
+    <value>17</value>
   </data>
   <data name="&gt;&gt;warAttackerListBox.Name" xml:space="preserve">
     <value>warAttackerListBox</value>
@@ -10006,7 +10063,7 @@
     <value>45, 23</value>
   </data>
   <data name="warDefenderRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
+    <value>26</value>
   </data>
   <data name="warDefenderRemoveButton.Text" xml:space="preserve">
     <value>&lt;-</value>
@@ -10036,7 +10093,7 @@
     <value>49, 12</value>
   </data>
   <data name="warAttackerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
+    <value>16</value>
   </data>
   <data name="warAttackerLabel.Text" xml:space="preserve">
     <value>Attacker</value>
@@ -10063,7 +10120,7 @@
     <value>120, 186</value>
   </data>
   <data name="warDefenderListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
+    <value>28</value>
   </data>
   <data name="&gt;&gt;warDefenderListBox.Name" xml:space="preserve">
     <value>warDefenderListBox</value>
@@ -10087,7 +10144,7 @@
     <value>75, 23</value>
   </data>
   <data name="warDownButton.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
+    <value>2</value>
   </data>
   <data name="warDownButton.Text" xml:space="preserve">
     <value>Down</value>
@@ -10114,7 +10171,7 @@
     <value>120, 186</value>
   </data>
   <data name="warCountryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>57</value>
+    <value>24</value>
   </data>
   <data name="&gt;&gt;warCountryListBox.Name" xml:space="preserve">
     <value>warCountryListBox</value>
@@ -10138,7 +10195,7 @@
     <value>45, 23</value>
   </data>
   <data name="warAttackerAddButton.TabIndex" type="System.Int32, mscorlib">
-    <value>52</value>
+    <value>22</value>
   </data>
   <data name="warAttackerAddButton.Text" xml:space="preserve">
     <value>&lt;-</value>
@@ -10165,7 +10222,7 @@
     <value>45, 23</value>
   </data>
   <data name="warDefenderAddButton.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
+    <value>25</value>
   </data>
   <data name="warDefenderAddButton.Text" xml:space="preserve">
     <value>-&gt;</value>
@@ -10192,7 +10249,7 @@
     <value>75, 23</value>
   </data>
   <data name="warRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
+    <value>4</value>
   </data>
   <data name="warRemoveButton.Text" xml:space="preserve">
     <value>Remove</value>
@@ -10219,7 +10276,7 @@
     <value>565, 536</value>
   </data>
   <data name="warGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>61</value>
+    <value>1</value>
   </data>
   <data name="warGroupBox.Text" xml:space="preserve">
     <value>War</value>
@@ -10243,7 +10300,7 @@
     <value>50, 19</value>
   </data>
   <data name="allianceIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>123</value>
+    <value>9</value>
   </data>
   <data name="allianceIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -10267,7 +10324,7 @@
     <value>50, 19</value>
   </data>
   <data name="allianceTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>122</value>
+    <value>8</value>
   </data>
   <data name="allianceTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -10297,7 +10354,7 @@
     <value>16, 12</value>
   </data>
   <data name="allianceIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>121</value>
+    <value>7</value>
   </data>
   <data name="allianceIdLabel.Text" xml:space="preserve">
     <value>ID</value>
@@ -10321,7 +10378,7 @@
     <value>120, 19</value>
   </data>
   <data name="allianceNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;allianceNameTextBox.Name" xml:space="preserve">
     <value>allianceNameTextBox</value>
@@ -10345,7 +10402,7 @@
     <value>34, 12</value>
   </data>
   <data name="allianceNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+    <value>5</value>
   </data>
   <data name="allianceNameLabel.Text" xml:space="preserve">
     <value>Name</value>
@@ -10408,7 +10465,7 @@
     <value>60, 12</value>
   </data>
   <data name="allianceParticipantLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+    <value>10</value>
   </data>
   <data name="allianceParticipantLabel.Text" xml:space="preserve">
     <value>Participant</value>
@@ -10435,7 +10492,7 @@
     <value>100, 23</value>
   </data>
   <data name="allianceLeaderButton.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>12</value>
   </data>
   <data name="allianceLeaderButton.Text" xml:space="preserve">
     <value>Set Leader</value>
@@ -10462,7 +10519,7 @@
     <value>120, 186</value>
   </data>
   <data name="allianceParticipantListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;allianceParticipantListBox.Name" xml:space="preserve">
     <value>allianceParticipantListBox</value>
@@ -10486,7 +10543,7 @@
     <value>75, 23</value>
   </data>
   <data name="allianceUpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="allianceUpButton.Text" xml:space="preserve">
     <value>Up</value>
@@ -10513,7 +10570,7 @@
     <value>45, 23</value>
   </data>
   <data name="allianceParticipantAddButton.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>13</value>
   </data>
   <data name="allianceParticipantAddButton.Text" xml:space="preserve">
     <value>&lt;-</value>
@@ -10540,7 +10597,7 @@
     <value>120, 186</value>
   </data>
   <data name="allianceCountryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;allianceCountryListBox.Name" xml:space="preserve">
     <value>allianceCountryListBox</value>
@@ -10564,7 +10621,7 @@
     <value>75, 23</value>
   </data>
   <data name="allianceRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>4</value>
   </data>
   <data name="allianceRemoveButton.Text" xml:space="preserve">
     <value>Remove</value>
@@ -10591,7 +10648,7 @@
     <value>75, 23</value>
   </data>
   <data name="allianceNewButton.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>3</value>
   </data>
   <data name="allianceNewButton.Text" xml:space="preserve">
     <value>New</value>
@@ -10618,7 +10675,7 @@
     <value>45, 23</value>
   </data>
   <data name="allianceParticipantRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>14</value>
   </data>
   <data name="allianceParticipantRemoveButton.Text" xml:space="preserve">
     <value>-&gt;</value>
@@ -10645,7 +10702,7 @@
     <value>75, 23</value>
   </data>
   <data name="allianceDownButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="allianceDownButton.Text" xml:space="preserve">
     <value>Down</value>
@@ -10672,7 +10729,7 @@
     <value>349, 536</value>
   </data>
   <data name="allianceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+    <value>0</value>
   </data>
   <data name="allianceGroupBox.Text" xml:space="preserve">
     <value>Alliance</value>
@@ -10729,7 +10786,7 @@
     <value>69, 12</value>
   </data>
   <data name="gameSpeedLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>9</value>
   </data>
   <data name="gameSpeedLabel.Text" xml:space="preserve">
     <value>Game Speed</value>
@@ -10759,7 +10816,7 @@
     <value>52, 12</value>
   </data>
   <data name="difficultyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>7</value>
   </data>
   <data name="difficultyLabel.Text" xml:space="preserve">
     <value>Difficulty</value>
@@ -10789,7 +10846,7 @@
     <value>77, 12</value>
   </data>
   <data name="aiAggressiveLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>5</value>
   </data>
   <data name="aiAggressiveLabel.Text" xml:space="preserve">
     <value>AI Aggressive</value>
@@ -10813,7 +10870,7 @@
     <value>121, 20</value>
   </data>
   <data name="gameSpeedComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;gameSpeedComboBox.Name" xml:space="preserve">
     <value>gameSpeedComboBox</value>
@@ -10882,7 +10939,7 @@
     <value>114, 16</value>
   </data>
   <data name="allowTechnologyCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="allowTechnologyCheckBox.Text" xml:space="preserve">
     <value>Allow Technology</value>
@@ -10912,7 +10969,7 @@
     <value>110, 16</value>
   </data>
   <data name="allowProductionCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="allowProductionCheckBox.Text" xml:space="preserve">
     <value>Allow Production</value>
@@ -10942,7 +10999,7 @@
     <value>109, 16</value>
   </data>
   <data name="allowDiplomacyCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="allowDiplomacyCheckBox.Text" xml:space="preserve">
     <value>Allow Diplomacy</value>
@@ -10972,7 +11029,7 @@
     <value>133, 16</value>
   </data>
   <data name="freeCountryCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="freeCountryCheckBox.Text" xml:space="preserve">
     <value>Allow other countries</value>
@@ -11002,7 +11059,7 @@
     <value>102, 16</value>
   </data>
   <data name="battleScenarioCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="battleScenarioCheckBox.Text" xml:space="preserve">
     <value>Battle scenario</value>
@@ -11029,7 +11086,7 @@
     <value>309, 233</value>
   </data>
   <data name="optionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>5</value>
   </data>
   <data name="optionGroupBox.Text" xml:space="preserve">
     <value>Option</value>
@@ -11059,7 +11116,7 @@
     <value>45, 23</value>
   </data>
   <data name="selectableRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
+    <value>9</value>
   </data>
   <data name="selectableRemoveButton.Text" xml:space="preserve">
     <value>-&gt;</value>
@@ -11089,7 +11146,7 @@
     <value>45, 23</value>
   </data>
   <data name="selectableAddButton.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
+    <value>8</value>
   </data>
   <data name="selectableAddButton.Text" xml:space="preserve">
     <value>&lt;-</value>
@@ -11116,7 +11173,7 @@
     <value>120, 199</value>
   </data>
   <data name="unselectableListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;unselectableListBox.Name" xml:space="preserve">
     <value>unselectableListBox</value>
@@ -11140,7 +11197,7 @@
     <value>120, 199</value>
   </data>
   <data name="selectableListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>46</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;selectableListBox.Name" xml:space="preserve">
     <value>selectableListBox</value>
@@ -11191,7 +11248,7 @@
     <value>75, 23</value>
   </data>
   <data name="propagandaBrowseButton.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>13</value>
   </data>
   <data name="propagandaBrowseButton.Text" xml:space="preserve">
     <value>Browse</value>
@@ -11218,7 +11275,7 @@
     <value>160, 19</value>
   </data>
   <data name="propagandaTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;propagandaTextBox.Name" xml:space="preserve">
     <value>propagandaTextBox</value>
@@ -11248,7 +11305,7 @@
     <value>98, 12</value>
   </data>
   <data name="propagandaLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>45</value>
+    <value>11</value>
   </data>
   <data name="propagandaLabel.Text" xml:space="preserve">
     <value>Propaganda Image</value>
@@ -11281,7 +11338,7 @@
     <value>204, 259</value>
   </data>
   <data name="countryDescTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;countryDescTextBox.Name" xml:space="preserve">
     <value>countryDescTextBox</value>
@@ -11311,7 +11368,7 @@
     <value>63, 12</value>
   </data>
   <data name="countryDescLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>14</value>
   </data>
   <data name="countryDescLabel.Text" xml:space="preserve">
     <value>Description</value>
@@ -11341,7 +11398,7 @@
     <value>45, 23</value>
   </data>
   <data name="majorAddButton.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>4</value>
   </data>
   <data name="majorAddButton.Text" xml:space="preserve">
     <value>&lt;-</value>
@@ -11371,7 +11428,7 @@
     <value>45, 23</value>
   </data>
   <data name="majorRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>5</value>
   </data>
   <data name="majorRemoveButton.Text" xml:space="preserve">
     <value>-&gt;</value>
@@ -11398,7 +11455,7 @@
     <value>120, 173</value>
   </data>
   <data name="majorListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;majorListBox.Name" xml:space="preserve">
     <value>majorListBox</value>
@@ -11425,7 +11482,7 @@
     <value>86, 12</value>
   </data>
   <data name="majorLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>0</value>
   </data>
   <data name="majorLabel.Text" xml:space="preserve">
     <value>Major Countries</value>
@@ -11455,7 +11512,7 @@
     <value>111, 12</value>
   </data>
   <data name="selectableLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>6</value>
   </data>
   <data name="selectableLabel.Text" xml:space="preserve">
     <value>Selectable Countries</value>
@@ -11485,7 +11542,7 @@
     <value>65, 23</value>
   </data>
   <data name="majorUpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>2</value>
   </data>
   <data name="majorUpButton.Text" xml:space="preserve">
     <value>Up</value>
@@ -11515,7 +11572,7 @@
     <value>65, 23</value>
   </data>
   <data name="majorDownButton.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>3</value>
   </data>
   <data name="majorDownButton.Text" xml:space="preserve">
     <value>Down</value>
@@ -11542,7 +11599,7 @@
     <value>505, 531</value>
   </data>
   <data name="countrySelectionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+    <value>6</value>
   </data>
   <data name="countrySelectionGroupBox.Text" xml:space="preserve">
     <value>Country Selection</value>
@@ -11569,7 +11626,7 @@
     <value>75, 23</value>
   </data>
   <data name="includeFolderBrowseButton.TabIndex" type="System.Int32, mscorlib">
-    <value>44</value>
+    <value>15</value>
   </data>
   <data name="includeFolderBrowseButton.Text" xml:space="preserve">
     <value>Browse</value>
@@ -11593,7 +11650,7 @@
     <value>180, 19</value>
   </data>
   <data name="includeFolderTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;includeFolderTextBox.Name" xml:space="preserve">
     <value>includeFolderTextBox</value>
@@ -11620,7 +11677,7 @@
     <value>77, 12</value>
   </data>
   <data name="includeFolderLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
+    <value>13</value>
   </data>
   <data name="includeFolderLabel.Text" xml:space="preserve">
     <value>Include Folder</value>
@@ -11650,7 +11707,7 @@
     <value>34, 12</value>
   </data>
   <data name="scenarioNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>0</value>
   </data>
   <data name="scenarioNameLabel.Text" xml:space="preserve">
     <value>Name</value>
@@ -11674,7 +11731,7 @@
     <value>180, 19</value>
   </data>
   <data name="scenarioNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;scenarioNameTextBox.Name" xml:space="preserve">
     <value>scenarioNameTextBox</value>
@@ -11725,7 +11782,7 @@
     <value>67, 12</value>
   </data>
   <data name="panelImageLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>2</value>
   </data>
   <data name="panelImageLabel.Text" xml:space="preserve">
     <value>Panel Image</value>
@@ -11749,7 +11806,7 @@
     <value>180, 19</value>
   </data>
   <data name="panelImageTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;panelImageTextBox.Name" xml:space="preserve">
     <value>panelImageTextBox</value>
@@ -11773,7 +11830,7 @@
     <value>75, 23</value>
   </data>
   <data name="panelImageBrowseButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="panelImageBrowseButton.Text" xml:space="preserve">
     <value>Browse</value>
@@ -11803,7 +11860,7 @@
     <value>58, 12</value>
   </data>
   <data name="startDateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>5</value>
   </data>
   <data name="startDateLabel.Text" xml:space="preserve">
     <value>Start Date</value>
@@ -11827,7 +11884,7 @@
     <value>50, 19</value>
   </data>
   <data name="startYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>6</value>
   </data>
   <data name="startYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -11851,7 +11908,7 @@
     <value>50, 19</value>
   </data>
   <data name="startMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>7</value>
   </data>
   <data name="startMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -11875,7 +11932,7 @@
     <value>50, 19</value>
   </data>
   <data name="startDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>8</value>
   </data>
   <data name="startDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -11905,7 +11962,7 @@
     <value>52, 12</value>
   </data>
   <data name="endDateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>9</value>
   </data>
   <data name="endDateLabel.Text" xml:space="preserve">
     <value>End Date</value>
@@ -11929,7 +11986,7 @@
     <value>50, 19</value>
   </data>
   <data name="endYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>10</value>
   </data>
   <data name="endYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -11953,7 +12010,7 @@
     <value>50, 19</value>
   </data>
   <data name="endMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>11</value>
   </data>
   <data name="endMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -11977,7 +12034,7 @@
     <value>50, 19</value>
   </data>
   <data name="endDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>12</value>
   </data>
   <data name="endDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -12004,7 +12061,7 @@
     <value>309, 292</value>
   </data>
   <data name="infoGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
+    <value>4</value>
   </data>
   <data name="infoGroupBox.Text" xml:space="preserve">
     <value>Information</value>
@@ -12031,7 +12088,7 @@
     <value>75, 23</value>
   </data>
   <data name="loadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>1</value>
   </data>
   <data name="loadButton.Text" xml:space="preserve">
     <value>Load</value>
@@ -12145,7 +12202,7 @@
     <value>120, 85</value>
   </data>
   <data name="folderGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;folderGroupBox.Name" xml:space="preserve">
     <value>folderGroupBox</value>
@@ -12229,7 +12286,7 @@
     <value>120, 65</value>
   </data>
   <data name="typeGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;typeGroupBox.Name" xml:space="preserve">
     <value>typeGroupBox</value>
@@ -12304,7 +12361,7 @@
     <value>984, 585</value>
   </data>
   <data name="scenarioTabControl.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;scenarioTabControl.Name" xml:space="preserve">
     <value>scenarioTabControl</value>

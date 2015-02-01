@@ -17,6 +17,8 @@ namespace HoI2Editor.Controller
     {
         #region 内部フィールド
 
+        #region 共通
+
         /// <summary>
         ///     シナリオエディタのフォーム
         /// </summary>
@@ -26,6 +28,8 @@ namespace HoI2Editor.Controller
         ///     マップパネルのコントローラ
         /// </summary>
         private readonly MapPanelController _mapPanelController;
+
+        #endregion
 
         #region 閣僚候補リスト
 
@@ -99,6 +103,64 @@ namespace HoI2Editor.Controller
         /// </summary>
         private static readonly object[] ItemDirtyFlags =
         {
+            Treaty.ItemId.StartYear,
+            Treaty.ItemId.StartMonth,
+            Treaty.ItemId.StartDay,
+            Treaty.ItemId.EndYear,
+            Treaty.ItemId.EndMonth,
+            Treaty.ItemId.EndDay,
+            Treaty.ItemId.Type,
+            Treaty.ItemId.Id,
+            Treaty.ItemId.Cancel,
+            Treaty.ItemId.Country1,
+            Treaty.ItemId.Country2,
+            Treaty.ItemId.Energy,
+            Treaty.ItemId.Energy,
+            Treaty.ItemId.Metal,
+            Treaty.ItemId.Metal,
+            Treaty.ItemId.RareMaterials,
+            Treaty.ItemId.RareMaterials,
+            Treaty.ItemId.Oil,
+            Treaty.ItemId.Oil,
+            Treaty.ItemId.Supplies,
+            Treaty.ItemId.Supplies,
+            Treaty.ItemId.Money,
+            Treaty.ItemId.Money,
+            CountrySettings.ItemId.Name,
+            CountrySettings.ItemId.FlagExt,
+            CountrySettings.ItemId.RegularId,
+            CountrySettings.ItemId.Belligerence,
+            CountrySettings.ItemId.Dissent,
+            CountrySettings.ItemId.ExtraTc,
+            CountrySettings.ItemId.Nuke,
+            CountrySettings.ItemId.NukeYear,
+            CountrySettings.ItemId.NukeMonth,
+            CountrySettings.ItemId.NukeDay,
+            CountrySettings.ItemId.GroundDefEff,
+            CountrySettings.ItemId.PeacetimeIcModifier,
+            CountrySettings.ItemId.WartimeIcModifier,
+            CountrySettings.ItemId.IndustrialModifier,
+            CountrySettings.ItemId.RelativeManpower,
+            CountrySettings.ItemId.Energy,
+            CountrySettings.ItemId.Metal,
+            CountrySettings.ItemId.RareMaterials,
+            CountrySettings.ItemId.Oil,
+            CountrySettings.ItemId.Supplies,
+            CountrySettings.ItemId.Money,
+            CountrySettings.ItemId.Transports,
+            CountrySettings.ItemId.Escorts,
+            CountrySettings.ItemId.Manpower,
+            CountrySettings.ItemId.OffmapEnergy,
+            CountrySettings.ItemId.OffmapMetal,
+            CountrySettings.ItemId.OffmapRareMaterials,
+            CountrySettings.ItemId.OffmapOil,
+            CountrySettings.ItemId.OffmapSupplies,
+            CountrySettings.ItemId.OffmapMoney,
+            CountrySettings.ItemId.OffmapTransports,
+            CountrySettings.ItemId.OffmapEscorts,
+            CountrySettings.ItemId.OffmapManpower,
+            CountrySettings.ItemId.OffmapIc,
+            CountrySettings.ItemId.AiFileName,
             CountrySettings.ItemId.SliderYear,
             CountrySettings.ItemId.SliderMonth,
             CountrySettings.ItemId.SliderDay,
@@ -139,9 +201,6 @@ namespace HoI2Editor.Controller
             CountrySettings.ItemId.ChiefOfAirId,
             CountrySettings.ItemId.ChiefOfAirType,
             CountrySettings.ItemId.ChiefOfAirId,
-            null,
-            null,
-            null,
             CountrySettings.ItemId.Capital,
             null,
             null,
@@ -212,9 +271,67 @@ namespace HoI2Editor.Controller
         /// </summary>
         private static readonly string[] ItemStrings =
         {
-            "slideryear",
-            "slidermonth",
-            "sliderday",
+            "trade start year",
+            "trade start month",
+            "trade start day",
+            "trade end year",
+            "trade end month",
+            "trade end day",
+            "trade type",
+            "trade id",
+            "trade cancel",
+            "trade country1",
+            "trade country2",
+            "trade energy",
+            "trade energy",
+            "trade metal",
+            "trade metal",
+            "trade rare materials",
+            "trade rare materials",
+            "trade oil",
+            "trade oil",
+            "trade supplies",
+            "trade supplies",
+            "trade money",
+            "trade money",
+            "country name",
+            "country flag ext",
+            "country regular id",
+            "country belligerence",
+            "country dissent",
+            "country extra tc",
+            "country nuke",
+            "country nuke year",
+            "country nuke month",
+            "country nuke day",
+            "country ground def eff",
+            "country peacetime ic modifier",
+            "country wartime ic modifier",
+            "country industrial modifier",
+            "country relative manpower",
+            "country energy",
+            "country metal",
+            "country rare materials",
+            "country oil",
+            "country supplies",
+            "country money",
+            "country transports",
+            "country escorts",
+            "country manpower",
+            "country offmap energy",
+            "country offmap metal",
+            "country offmap rare materials",
+            "country offmap oil",
+            "country offmap supplies",
+            "country offmap money",
+            "country offmap transports",
+            "country offmap escorts",
+            "country offmap manpower",
+            "country offmap ic",
+            "country ai file",
+            "slider year",
+            "slider month",
+            "slider day",
             "democratic",
             "political left",
             "freedom",
@@ -252,72 +369,69 @@ namespace HoI2Editor.Controller
             "chief of air id",
             "chief of air type",
             "chief of air id",
-            "owned techs",
-            "blueprints",
-            "inventions",
             "capital",
-            "coreprovinces",
-            "ownedprovinces",
-            "controlledprovinces",
-            "claimedprovinces",
-            "provinceid",
-            "provincename",
-            "provincevp",
-            "provincerevoltrisk",
-            "provincemanpower",
-            "provincemaxmanpower",
-            "provinceenergypool",
-            "provinceenergy",
-            "provincemaxenergy",
-            "provincemetalpool",
-            "provincemetal",
-            "provincemaxmetal",
-            "provincerarematerialspool",
-            "provincerarematerials",
-            "provincemaxrarematerials",
-            "provinceoilpool",
-            "provinceoil",
-            "provincemaxoil",
-            "provincesupplypool",
-            "provinceic",
-            "provincemaxic",
-            "provincerelativeic",
-            "provinceinfrastructure",
-            "provincemaxinfrastructure",
-            "provincerelativeinfrastructure",
-            "provincelandfort",
-            "provincemaxlandfort",
-            "provincerelativelandfort",
-            "provincecoastalfort",
-            "provincemaxcoastalfort",
-            "provincerelativecoastalfort",
-            "provinceantiair",
-            "provincemaxantiair",
-            "provincerelativeantiair",
-            "provinceairbase",
-            "provincemaxairbase",
-            "provincerelativeairbase",
-            "provincenavalbase",
-            "provincemaxnavalbase",
-            "provincerelativenavalbase",
-            "provinceradarstation",
-            "provincemaxradarstation",
-            "provincerelativeradarstation",
-            "provincenuclearreactor",
-            "provincemaxnuclearreactor",
-            "provincerelativenuclearreactor",
-            "provincerockettest",
-            "provincemaxrockettest",
-            "provincerelativerockettest",
-            "provincesyntheticoil",
-            "provincemaxsyntheticoil",
-            "provincerelativesyntheticoil",
-            "provincesyntheticrares",
-            "provincemaxsyntheticrares",
-            "provincerelativesyntheticrares",
-            "provincenuclearpower",
-            "provincemaxnuclearpower",
-            "provincerelativenuclearpower"
+            "core provinces",
+            "owned provinces",
+            "controlled provinces",
+            "claimed provinces",
+            "province id",
+            "province name",
+            "province vp",
+            "province revolt risk",
+            "province manpower",
+            "province max manpower",
+            "province energy pool",
+            "province energy",
+            "province max energy",
+            "province metal pool",
+            "province metal",
+            "province max metal",
+            "province rare materials pool",
+            "province rare materials",
+            "province max rare materials",
+            "province oil pool",
+            "province oil",
+            "province max oil",
+            "province supply pool",
+            "province ic",
+            "province max ic",
+            "province relative ic",
+            "province infrastructure",
+            "province max infrastructure",
+            "province relative infrastructure",
+            "province land fort",
+            "province max land fort",
+            "province relative land fort",
+            "province coastal fort",
+            "province max coastal fort",
+            "province relative coastal fort",
+            "province anti air",
+            "province max anti air",
+            "province relative anti air",
+            "province air base",
+            "province max air base",
+            "province relative air base",
+            "province naval base",
+            "province max naval base",
+            "province relative naval base",
+            "province radar station",
+            "province max radar station",
+            "province relative radar station",
+            "province nuclear reactor",
+            "province max nuclear reactor",
+            "province relative nuclear reactor",
+            "province rocket test",
+            "province max rocket test",
+            "province relative rocket test",
+            "province synthetic oil",
+            "province max synthetic oil",
+            "province relative synthetic oil",
+            "province synthetic rares",
+            "province max synthetic rares",
+            "province relative synthetic rares",
+            "province nuclear power",
+            "province max nuclear power",
+            "province relative nuclear power"
         };
 
         #endregion
@@ -377,10 +491,6 @@ namespace HoI2Editor.Controller
 
         #endregion
 
-        #region 技術リスト
-
-        #endregion
-
         #region 陸地プロヴィンスリスト
 
         /// <summary>
@@ -414,11 +524,7 @@ namespace HoI2Editor.Controller
             {
                 foreach (ListViewItem item in control.Items)
                 {
-                    Province province = item.Tag as Province;
-                    if (province == null)
-                    {
-                        continue;
-                    }
+                    Province province = (Province) item.Tag;
                     item.SubItems[2].Text = (province.Id == settings.Capital) ? Resources.Yes : "";
                     item.SubItems[3].Text = settings.NationalProvinces.Contains(province.Id) ? Resources.Yes : "";
                     item.SubItems[4].Text = settings.OwnedProvinces.Contains(province.Id) ? Resources.Yes : "";
@@ -480,6 +586,60 @@ namespace HoI2Editor.Controller
         ///     編集項目の値を更新する
         /// </summary>
         /// <param name="control">コントロール</param>
+        /// <param name="treaty">協定</param>
+        public void UpdateItemValue(TextBox control, Treaty treaty)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            object val = GetItemValue(itemId, treaty);
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.TradeEnergy1:
+                case ScenarioEditorItemId.TradeEnergy2:
+                case ScenarioEditorItemId.TradeMetal1:
+                case ScenarioEditorItemId.TradeMetal2:
+                case ScenarioEditorItemId.TradeRareMaterials1:
+                case ScenarioEditorItemId.TradeRareMaterials2:
+                case ScenarioEditorItemId.TradeOil1:
+                case ScenarioEditorItemId.TradeOil2:
+                case ScenarioEditorItemId.TradeSupplies1:
+                case ScenarioEditorItemId.TradeSupplies2:
+                case ScenarioEditorItemId.TradeMoney1:
+                case ScenarioEditorItemId.TradeMoney2:
+                    control.Text = DoubleHelper.IsPositive((double) val) ? DoubleHelper.ToString((double) val) : "";
+                    break;
+
+                default:
+                    control.Text = ObjectHelper.ToString(val);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="treaty">協定</param>
+        public void UpdateItemValue(ComboBox control, Treaty treaty)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.SelectedIndex = Array.IndexOf(Countries.Tags, (Country) GetItemValue(itemId, treaty));
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="treaty">協定</param>
+        public void UpdateItemValue(CheckBox control, Treaty treaty)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.Checked = (bool) GetItemValue(itemId, treaty);
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
         /// <param name="settings">国家設定</param>
         public void UpdateItemValue(TextBox control, CountrySettings settings)
         {
@@ -495,19 +655,37 @@ namespace HoI2Editor.Controller
         public void UpdateItemValue(ComboBox control, CountrySettings settings)
         {
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            List<Minister> ministers = (List<Minister>) GetListItems(itemId);
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.CountryRegularId:
+                    Country country = (Country) (GetItemValue(itemId, settings) ?? Country.None);
+                    control.SelectedIndex = Array.IndexOf(Countries.Tags, country) + 1;
+                    break;
 
-            control.BeginUpdate();
-            control.Items.Clear();
-            foreach (Minister minister in ministers)
-            {
-                control.Items.Add(minister.Name);
-            }
-            control.EndUpdate();
-            object val = GetItemValue(itemId, settings);
-            if (val != null)
-            {
-                control.SelectedIndex = ministers.FindIndex(minister => minister.Id == (int) val);
+                case ScenarioEditorItemId.CabinetHeadOfState:
+                case ScenarioEditorItemId.CabinetHeadOfGovernment:
+                case ScenarioEditorItemId.CabinetForeignMinister:
+                case ScenarioEditorItemId.CabinetArmamentMinister:
+                case ScenarioEditorItemId.CabinetMinisterOfSecurity:
+                case ScenarioEditorItemId.CabinetMinisterOfIntelligence:
+                case ScenarioEditorItemId.CabinetChiefOfStaff:
+                case ScenarioEditorItemId.CabinetChiefOfArmy:
+                case ScenarioEditorItemId.CabinetChiefOfNavy:
+                case ScenarioEditorItemId.CabinetChiefOfAir:
+                    List<Minister> ministers = (List<Minister>) GetListItems(itemId);
+                    control.BeginUpdate();
+                    control.Items.Clear();
+                    foreach (Minister minister in ministers)
+                    {
+                        control.Items.Add(minister.Name);
+                    }
+                    control.EndUpdate();
+                    object val = GetItemValue(itemId, settings);
+                    if (val != null)
+                    {
+                        control.SelectedIndex = ministers.FindIndex(minister => minister.Id == (int) val);
+                    }
+                    break;
             }
         }
 
@@ -535,6 +713,18 @@ namespace HoI2Editor.Controller
                 val = 10;
             }
             control.Value = 11 - (int) val;
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="country">選択国</param>
+        /// <param name="settings">国家設定</param>
+        public void UpdateItemValue(TextBox control, Country country, CountrySettings settings)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.Text = (string) GetItemValue(itemId, country, settings);
         }
 
         /// <summary>
@@ -620,17 +810,45 @@ namespace HoI2Editor.Controller
         ///     編集項目の色を更新する
         /// </summary>
         /// <param name="control">コントロール</param>
+        /// <param name="treaty">協定</param>
+        public void UpdateItemColor(TextBox control, Treaty treaty)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.ForeColor = IsItemDirty(itemId, treaty) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="treaty">協定</param>
+        public void UpdateItemColor(CheckBox control, Treaty treaty)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.ForeColor = IsItemDirty(itemId, treaty) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
         /// <param name="settings">国家設定</param>
         public void UpdateItemColor(TextBox control, CountrySettings settings)
         {
-            if (settings == null)
-            {
-                control.ForeColor = SystemColors.WindowText;
-                return;
-            }
-
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             control.ForeColor = IsItemDirty(itemId, settings) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="country">選択国</param>
+        /// <param name="settings">国家設定</param>
+        public void UpdateItemColor(TextBox control, Country country, CountrySettings settings)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.ForeColor = IsItemDirty(itemId, country, settings) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -641,12 +859,6 @@ namespace HoI2Editor.Controller
         /// <param name="settings">国家設定</param>
         public void UpdateItemColor(CheckBox control, Province province, CountrySettings settings)
         {
-            if (settings == null)
-            {
-                control.ForeColor = SystemColors.WindowText;
-                return;
-            }
-
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             control.ForeColor = IsItemDirty(itemId, province, settings) ? Color.Red : SystemColors.WindowText;
         }
@@ -682,6 +894,121 @@ namespace HoI2Editor.Controller
         ///     編集項目の値を取得する
         /// </summary>
         /// <param name="itemId">項目ID</param>
+        /// <param name="treaty">協定</param>
+        /// <returns>編集項目の値</returns>
+        public object GetItemValue(ScenarioEditorItemId itemId, Treaty treaty)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.TradeStartYear:
+                    if (treaty.StartDate == null)
+                    {
+                        return null;
+                    }
+                    return treaty.StartDate.Year;
+
+                case ScenarioEditorItemId.TradeStartMonth:
+                    if (treaty.StartDate == null)
+                    {
+                        return null;
+                    }
+                    return treaty.StartDate.Month;
+
+                case ScenarioEditorItemId.TradeStartDay:
+                    if (treaty.StartDate == null)
+                    {
+                        return null;
+                    }
+                    return treaty.StartDate.Day;
+
+                case ScenarioEditorItemId.TradeEndYear:
+                    if (treaty.EndDate == null)
+                    {
+                        return null;
+                    }
+                    return treaty.EndDate.Year;
+
+                case ScenarioEditorItemId.TradeEndMonth:
+                    if (treaty.EndDate == null)
+                    {
+                        return null;
+                    }
+                    return treaty.EndDate.Month;
+
+                case ScenarioEditorItemId.TradeEndDay:
+                    if (treaty.EndDate == null)
+                    {
+                        return null;
+                    }
+                    return treaty.EndDate.Day;
+
+                case ScenarioEditorItemId.TradeType:
+                    if (treaty.Id == null)
+                    {
+                        return null;
+                    }
+                    return treaty.Id.Type;
+
+                case ScenarioEditorItemId.TradeId:
+                    if (treaty.Id == null)
+                    {
+                        return null;
+                    }
+                    return treaty.Id.Id;
+
+                case ScenarioEditorItemId.TradeCancel:
+                    return treaty.Cancel;
+
+                case ScenarioEditorItemId.TradeCountry1:
+                    return treaty.Country1;
+
+                case ScenarioEditorItemId.TradeCountry2:
+                    return treaty.Country2;
+
+                case ScenarioEditorItemId.TradeEnergy1:
+                    return -treaty.Energy;
+
+                case ScenarioEditorItemId.TradeEnergy2:
+                    return treaty.Energy;
+
+                case ScenarioEditorItemId.TradeMetal1:
+                    return -treaty.Metal;
+
+                case ScenarioEditorItemId.TradeMetal2:
+                    return treaty.Metal;
+
+                case ScenarioEditorItemId.TradeRareMaterials1:
+                    return -treaty.RareMaterials;
+
+                case ScenarioEditorItemId.TradeRareMaterials2:
+                    return treaty.RareMaterials;
+
+                case ScenarioEditorItemId.TradeOil1:
+                    return -treaty.Oil;
+
+                case ScenarioEditorItemId.TradeOil2:
+                    return treaty.Oil;
+
+                case ScenarioEditorItemId.TradeSupplies1:
+                    return -treaty.Supplies;
+
+                case ScenarioEditorItemId.TradeSupplies2:
+                    return treaty.Supplies;
+
+                case ScenarioEditorItemId.TradeMoney1:
+                    return -treaty.Money;
+
+                case ScenarioEditorItemId.TradeMoney2:
+                    return treaty.Money;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///     編集項目の値を取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
         /// <param name="settings">国家設定</param>
         /// <returns>編集項目の値</returns>
         public object GetItemValue(ScenarioEditorItemId itemId, CountrySettings settings)
@@ -693,6 +1020,160 @@ namespace HoI2Editor.Controller
 
             switch (itemId)
             {
+                case ScenarioEditorItemId.CountryFlagExt:
+                    return settings.FlagExt;
+
+                case ScenarioEditorItemId.CountryRegularId:
+                    return settings.RegularId;
+
+                case ScenarioEditorItemId.CountryBelligerence:
+                    return settings.Belligerence;
+
+                case ScenarioEditorItemId.CountryDissent:
+                    return settings.Dissent;
+
+                case ScenarioEditorItemId.CountryExtraTc:
+                    return settings.ExtraTc;
+
+                case ScenarioEditorItemId.CountryNuke:
+                    return settings.Nuke;
+
+                case ScenarioEditorItemId.CountryNukeYear:
+                    if (settings.NukeDate == null)
+                    {
+                        return null;
+                    }
+                    return settings.NukeDate.Year;
+
+                case ScenarioEditorItemId.CountryNukeMonth:
+                    if (settings.NukeDate == null)
+                    {
+                        return null;
+                    }
+                    return settings.NukeDate.Month;
+
+                case ScenarioEditorItemId.CountryNukeDay:
+                    if (settings.NukeDate == null)
+                    {
+                        return null;
+                    }
+                    return settings.NukeDate.Day;
+
+                case ScenarioEditorItemId.CountryGroundDefEff:
+                    return settings.GroundDefEff;
+
+                case ScenarioEditorItemId.CountryPeacetimeIcModifier:
+                    return settings.PeacetimeIcModifier;
+
+                case ScenarioEditorItemId.CountryWartimeIcModifier:
+                    return settings.WartimeIcModifier;
+
+                case ScenarioEditorItemId.CountryIndustrialModifier:
+                    return settings.IndustrialModifier;
+
+                case ScenarioEditorItemId.CountryRelativeManpower:
+                    return settings.RelativeManpower;
+
+                case ScenarioEditorItemId.CountryEnergy:
+                    return settings.Energy;
+
+                case ScenarioEditorItemId.CountryMetal:
+                    return settings.Metal;
+
+                case ScenarioEditorItemId.CountryRareMaterials:
+                    return settings.RareMaterials;
+
+                case ScenarioEditorItemId.CountryOil:
+                    return settings.Oil;
+
+                case ScenarioEditorItemId.CountrySupplies:
+                    return settings.Supplies;
+
+                case ScenarioEditorItemId.CountryMoney:
+                    return settings.Money;
+
+                case ScenarioEditorItemId.CountryTransports:
+                    return settings.Transports;
+
+                case ScenarioEditorItemId.CountryEscorts:
+                    return settings.Escorts;
+
+                case ScenarioEditorItemId.CountryManpower:
+                    return settings.Manpower;
+
+                case ScenarioEditorItemId.CountryOffmapEnergy:
+                    if (settings.Offmap == null)
+                    {
+                        return null;
+                    }
+                    return settings.Offmap.Energy;
+
+                case ScenarioEditorItemId.CountryOffmapMetal:
+                    if (settings.Offmap == null)
+                    {
+                        return null;
+                    }
+                    return settings.Offmap.Metal;
+
+                case ScenarioEditorItemId.CountryOffmapRareMaterials:
+                    if (settings.Offmap == null)
+                    {
+                        return null;
+                    }
+                    return settings.Offmap.RareMaterials;
+
+                case ScenarioEditorItemId.CountryOffmapOil:
+                    if (settings.Offmap == null)
+                    {
+                        return null;
+                    }
+                    return settings.Offmap.Oil;
+
+                case ScenarioEditorItemId.CountryOffmapSupplies:
+                    if (settings.Offmap == null)
+                    {
+                        return null;
+                    }
+                    return settings.Offmap.Supplies;
+
+                case ScenarioEditorItemId.CountryOffmapMoney:
+                    if (settings.Offmap == null)
+                    {
+                        return null;
+                    }
+                    return settings.Offmap.Money;
+
+                case ScenarioEditorItemId.CountryOffmapTransports:
+                    if (settings.Offmap == null)
+                    {
+                        return null;
+                    }
+                    return settings.Offmap.Transports;
+
+                case ScenarioEditorItemId.CountryOffmapEscorts:
+                    if (settings.Offmap == null)
+                    {
+                        return null;
+                    }
+                    return settings.Offmap.Escorts;
+
+                case ScenarioEditorItemId.CountryOffmapManpower:
+                    if (settings.Offmap == null)
+                    {
+                        return null;
+                    }
+                    return settings.Offmap.Manpower;
+
+                case ScenarioEditorItemId.CountryOffmapIc:
+                    if (settings.Offmap == null)
+                    {
+                        return null;
+                    }
+                    return settings.Offmap.Ic;
+
+                case ScenarioEditorItemId.CountryAiFileName:
+                    return settings.AiFileName;
+
                 case ScenarioEditorItemId.SliderYear:
                     if ((settings.Policy == null) || (settings.Policy.Date == null))
                     {
@@ -912,6 +1393,26 @@ namespace HoI2Editor.Controller
                         return null;
                     }
                     return settings.ChiefOfAir.Type;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///     編集項目の値を取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="country">選択国</param>
+        /// <param name="settings">国家設定</param>
+        /// <returns>編集項目の値</returns>
+        public object GetItemValue(ScenarioEditorItemId itemId, Country country, CountrySettings settings)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.CountryName:
+                    return ((settings != null) && !string.IsNullOrEmpty(settings.Name))
+                        ? Config.GetText(settings.Name)
+                        : Countries.GetName(country);
             }
 
             return null;
@@ -1387,6 +1888,13 @@ namespace HoI2Editor.Controller
 
             switch (itemId)
             {
+                case ScenarioEditorItemId.TradeCountry1:
+                case ScenarioEditorItemId.TradeCountry2:
+                    return Countries.Tags[index];
+
+                case ScenarioEditorItemId.CountryRegularId:
+                    return (index > 0) ? Countries.Tags[index - 1] : Country.None;
+
                 case ScenarioEditorItemId.CabinetHeadOfState:
                 case ScenarioEditorItemId.CabinetHeadOfGovernment:
                 case ScenarioEditorItemId.CabinetForeignMinister:
@@ -1412,11 +1920,251 @@ namespace HoI2Editor.Controller
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
+        /// <param name="treaty">協定</param>
+        public void SetItemValue(ScenarioEditorItemId itemId, object val, Treaty treaty)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.TradeStartYear:
+                    treaty.StartDate.Year = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeStartMonth:
+                    treaty.StartDate.Month = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeStartDay:
+                    treaty.StartDate.Day = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeEndYear:
+                    treaty.EndDate.Year = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeEndMonth:
+                    treaty.EndDate.Month = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeEndDay:
+                    treaty.EndDate.Day = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeType:
+                    Scenarios.SetType(treaty.Id, (int) val);
+                    break;
+
+                case ScenarioEditorItemId.TradeId:
+                    Scenarios.SetId(treaty.Id, (int) val);
+                    break;
+
+                case ScenarioEditorItemId.TradeCancel:
+                    treaty.Cancel = (bool) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeCountry1:
+                    treaty.Country1 = (Country) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeCountry2:
+                    treaty.Country2 = (Country) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeEnergy1:
+                    treaty.Energy = -(double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeEnergy2:
+                    treaty.Energy = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeMetal1:
+                    treaty.Metal = -(double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeMetal2:
+                    treaty.Metal = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeRareMaterials1:
+                    treaty.RareMaterials = -(double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeRareMaterials2:
+                    treaty.RareMaterials = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeOil1:
+                    treaty.Oil = -(double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeOil2:
+                    treaty.Oil = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeSupplies1:
+                    treaty.Supplies = -(double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeSupplies2:
+                    treaty.Supplies = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeMoney1:
+                    treaty.Money = -(double) val;
+                    break;
+
+                case ScenarioEditorItemId.TradeMoney2:
+                    treaty.Money = (double) val;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
         /// <param name="settings">国家設定</param>
         public void SetItemValue(ScenarioEditorItemId itemId, object val, CountrySettings settings)
         {
             switch (itemId)
             {
+                case ScenarioEditorItemId.CountryFlagExt:
+                    settings.FlagExt = (string) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryRegularId:
+                    settings.RegularId = (Country) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryBelligerence:
+                    settings.Belligerence = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryDissent:
+                    settings.Dissent = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryExtraTc:
+                    settings.ExtraTc = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryNuke:
+                    settings.Nuke = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryNukeYear:
+                    settings.NukeDate.Year = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryNukeMonth:
+                    settings.NukeDate.Month = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryNukeDay:
+                    settings.NukeDate.Day = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryGroundDefEff:
+                    settings.GroundDefEff = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryPeacetimeIcModifier:
+                    settings.PeacetimeIcModifier = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryWartimeIcModifier:
+                    settings.WartimeIcModifier = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryIndustrialModifier:
+                    settings.IndustrialModifier = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryRelativeManpower:
+                    settings.RelativeManpower = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryEnergy:
+                    settings.Energy = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryMetal:
+                    settings.Metal = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryRareMaterials:
+                    settings.RareMaterials = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOil:
+                    settings.Oil = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountrySupplies:
+                    settings.Supplies = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryMoney:
+                    settings.Money = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryTransports:
+                    settings.Transports = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryEscorts:
+                    settings.Escorts = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryManpower:
+                    settings.Manpower = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapEnergy:
+                    settings.Offmap.Energy = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapMetal:
+                    settings.Offmap.Metal = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapRareMaterials:
+                    settings.Offmap.RareMaterials = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapOil:
+                    settings.Offmap.Oil = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapSupplies:
+                    settings.Offmap.Supplies = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapMoney:
+                    settings.Offmap.Money = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapTransports:
+                    settings.Offmap.Transports = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapEscorts:
+                    settings.Offmap.Escorts = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapManpower:
+                    settings.Offmap.Manpower = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapIc:
+                    settings.Offmap.Ic = (double) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryAiFileName:
+                    settings.AiFileName = (string) val;
+                    break;
+
                 case ScenarioEditorItemId.SliderYear:
                     settings.Policy.Date.Year = (int) val;
                     break;
@@ -1545,6 +2293,25 @@ namespace HoI2Editor.Controller
 
                 case ScenarioEditorItemId.CabinetChiefOfAirType:
                     Scenarios.SetType(settings.ChiefOfAir, (int) val);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="country">選択国</param>
+        /// <param name="settings">国家設定</param>
+        public void SetItemValue(ScenarioEditorItemId itemId, object val, Country country, CountrySettings settings)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.CountryName:
+                    Config.SetText(((settings != null) && !string.IsNullOrEmpty(settings.Name))
+                        ? settings.Name
+                        : Countries.Strings[(int) country], (string) val, Game.WorldTextFileName);
                     break;
             }
         }
@@ -1858,7 +2625,7 @@ namespace HoI2Editor.Controller
             switch (itemId)
             {
                 case ScenarioEditorItemId.ProvinceName:
-                    Scenarios.SetProvinceName(province, settings, val as string);
+                    Scenarios.SetProvinceName(province, settings, (string) val);
                     break;
             }
         }
@@ -1877,13 +2644,28 @@ namespace HoI2Editor.Controller
         {
             switch (itemId)
             {
+                case ScenarioEditorItemId.CountryBelligerence:
+                case ScenarioEditorItemId.CountryNuke:
+                case ScenarioEditorItemId.CountryTransports:
+                case ScenarioEditorItemId.CountryEscorts:
                 case ScenarioEditorItemId.ProvinceVp:
                     if ((int) val < 0)
                     {
-                        return true;
+                        return false;
                     }
                     break;
 
+                case ScenarioEditorItemId.CountryDissent:
+                case ScenarioEditorItemId.CountryPeacetimeIcModifier:
+                case ScenarioEditorItemId.CountryWartimeIcModifier:
+                case ScenarioEditorItemId.CountryIndustrialModifier:
+                case ScenarioEditorItemId.CountryEnergy:
+                case ScenarioEditorItemId.CountryMetal:
+                case ScenarioEditorItemId.CountryRareMaterials:
+                case ScenarioEditorItemId.CountryOil:
+                case ScenarioEditorItemId.CountrySupplies:
+                case ScenarioEditorItemId.CountryMoney:
+                case ScenarioEditorItemId.CountryManpower:
                 case ScenarioEditorItemId.ProvinceRevoltRisk:
                 case ScenarioEditorItemId.ProvinceManpowerCurrent:
                 case ScenarioEditorItemId.ProvinceManpowerMax:
@@ -1906,7 +2688,28 @@ namespace HoI2Editor.Controller
                 case ScenarioEditorItemId.ProvinceInfrastructureMax:
                     if (DoubleHelper.IsNegative((double) val))
                     {
-                        return true;
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.CountryNukeYear:
+                    if (((int) val < GameDate.MinYear) || ((int) val > GameDate.MaxYear))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.CountryNukeMonth:
+                    if (((int) val < GameDate.MinMonth) || ((int) val > GameDate.MaxMonth))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.CountryNukeDay:
+                    if (((int) val < GameDate.MinDay) || ((int) val > GameDate.MaxDay))
+                    {
+                        return false;
                     }
                     break;
 
@@ -1934,7 +2737,60 @@ namespace HoI2Editor.Controller
                 case ScenarioEditorItemId.ProvinceNuclearPowerMax:
                     if (DoubleHelper.IsNegative((double) val) || DoubleHelper.IsGreaterOrEqual((double) val, 10))
                     {
-                        return true;
+                        return false;
+                    }
+                    break;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///     編集項目の値が有効かどうかを判定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="treaty">協定</param>
+        /// <returns>編集項目の値が有効でなければfalseを返す</returns>
+        public bool IsItemValueValid(ScenarioEditorItemId itemId, object val, Treaty treaty)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.TradeStartYear:
+                case ScenarioEditorItemId.TradeEndYear:
+                    if (((int) val < GameDate.MinYear) || ((int) val > GameDate.MaxYear))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.TradeStartMonth:
+                case ScenarioEditorItemId.TradeEndMonth:
+                    if (((int) val < GameDate.MinMonth) || ((int) val > GameDate.MaxMonth))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.TradeStartDay:
+                case ScenarioEditorItemId.TradeEndDay:
+                    if (((int) val < GameDate.MinDay) || ((int) val > GameDate.MaxDay))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.TradeType:
+                    if ((treaty.Id != null) && Scenarios.ExistsTypeId((int) val, treaty.Id.Id))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.TradeId:
+                    if ((treaty.Id != null) && Scenarios.ExistsTypeId(treaty.Id.Type, (int) val))
+                    {
+                        return false;
                     }
                     break;
             }
@@ -2159,11 +3015,41 @@ namespace HoI2Editor.Controller
         ///     編集項目の編集済みフラグを取得する
         /// </summary>
         /// <param name="itemId">項目ID</param>
+        /// <param name="treaty">協定</param>
+        /// <returns>編集済みフラグ</returns>
+        public bool IsItemDirty(ScenarioEditorItemId itemId, Treaty treaty)
+        {
+            return treaty.IsDirty((Treaty.ItemId) ItemDirtyFlags[(int) itemId]);
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
         /// <param name="settings">国家設定</param>
         /// <returns>編集済みフラグ</returns>
         public bool IsItemDirty(ScenarioEditorItemId itemId, CountrySettings settings)
         {
             return (settings != null) && settings.IsDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="country">選択国</param>
+        /// <param name="settings">国家設定</param>
+        /// <returns>編集済みフラグ</returns>
+        public bool IsItemDirty(ScenarioEditorItemId itemId, Country country, CountrySettings settings)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.CountryName:
+                    return ((settings != null) && !String.IsNullOrEmpty(settings.Name)) &&
+                           settings.IsDirty(CountrySettings.ItemId.Name);
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -2217,6 +3103,7 @@ namespace HoI2Editor.Controller
                         ? settings.IsDirty(ProvinceSettings.ItemId.Name)
                         : province.IsDirty(ProvinceItemId.Name);
             }
+
             return false;
         }
 
@@ -2239,11 +3126,42 @@ namespace HoI2Editor.Controller
         ///     編集項目の編集済みフラグを設定する
         /// </summary>
         /// <param name="itemId">項目ID</param>
+        /// <param name="treaty">協定</param>
+        public void SetItemDirty(ScenarioEditorItemId itemId, Treaty treaty)
+        {
+            treaty.SetDirty((Treaty.ItemId) ItemDirtyFlags[(int) itemId]);
+            Scenarios.Data.SetDirty();
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
         /// <param name="settings">国家設定</param>
         public void SetItemDirty(ScenarioEditorItemId itemId, CountrySettings settings)
         {
             settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
             Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="country">選択国</param>
+        /// <param name="settings">国家設定</param>
+        public void SetItemDirty(ScenarioEditorItemId itemId, Country country, CountrySettings settings)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.CountryName:
+                    if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
+                    {
+                        settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
+                    }
+                    break;
+            }
         }
 
         /// <summary>
@@ -2442,11 +3360,102 @@ namespace HoI2Editor.Controller
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
+        /// <param name="treaty">協定</param>
+        public void PreItemChanged(ScenarioEditorItemId itemId, object val, Treaty treaty)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.TradeStartYear:
+                    PreItemChangedTreatyStartDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeStartMonth),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeStartDay), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeStartMonth:
+                    PreItemChangedTreatyStartDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeStartYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeStartDay), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeStartDay:
+                    PreItemChangedTreatyStartDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeStartYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeStartMonth), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeEndYear:
+                    PreItemChangedTreatyEndDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeEndMonth),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeEndDay), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeEndMonth:
+                    PreItemChangedTreatyEndDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeEndYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeEndDay), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeEndDay:
+                    PreItemChangedTreatyEndDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeEndYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeEndMonth), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeType:
+                    if (treaty.Id == null)
+                    {
+                        treaty.Id = new TypeId();
+                        PreItemChangedTreatyType((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeId), val,
+                            treaty);
+                    }
+                    break;
+
+                case ScenarioEditorItemId.TradeId:
+                    if (treaty.Id == null)
+                    {
+                        treaty.Id = new TypeId();
+                        PreItemChangedTreatyId((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeType), val,
+                            treaty);
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更前の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
         /// <param name="settings">国家設定</param>
         public void PreItemChanged(ScenarioEditorItemId itemId, object val, CountrySettings settings)
         {
             switch (itemId)
             {
+                case ScenarioEditorItemId.CountryNukeYear:
+                    PreItemChangedNukeDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.CountryNukeMonth),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.CountryNukeDay), settings);
+                    break;
+
+                case ScenarioEditorItemId.CountryNukeMonth:
+                    PreItemChangedNukeDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.CountryNukeYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.CountryNukeDay), settings);
+                    break;
+
+                case ScenarioEditorItemId.CountryNukeDay:
+                    PreItemChangedNukeDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.CountryNukeYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.CountryNukeMonth), settings);
+                    break;
+
+                case ScenarioEditorItemId.CountryOffmapEnergy:
+                case ScenarioEditorItemId.CountryOffmapMetal:
+                case ScenarioEditorItemId.CountryOffmapRareMaterials:
+                case ScenarioEditorItemId.CountryOffmapOil:
+                case ScenarioEditorItemId.CountryOffmapSupplies:
+                case ScenarioEditorItemId.CountryOffmapMoney:
+                case ScenarioEditorItemId.CountryOffmapTransports:
+                case ScenarioEditorItemId.CountryOffmapEscorts:
+                case ScenarioEditorItemId.CountryOffmapManpower:
+                case ScenarioEditorItemId.CountryOffmapIc:
+                    if (settings.Offmap == null)
+                    {
+                        settings.Offmap = new ResourceSettings();
+                    }
+                    break;
+
                 case ScenarioEditorItemId.SliderYear:
                     PreItemChangedSliderDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.SliderMonth),
                         (TextBox) _form.GetItemControl(ScenarioEditorItemId.SliderDay), settings);
@@ -2848,6 +3857,133 @@ namespace HoI2Editor.Controller
         }
 
         /// <summary>
+        ///     項目変更前の処理 - 協定開始日時
+        /// </summary>
+        /// <param name="control1">連動するコントロール1</param>
+        /// <param name="control2">連動するコントロール2</param>
+        /// <param name="treaty">協定</param>
+        private void PreItemChangedTreatyStartDate(TextBox control1, TextBox control2, Treaty treaty)
+        {
+            if (treaty.StartDate == null)
+            {
+                treaty.StartDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                ScenarioEditorItemId itemId1 = (ScenarioEditorItemId) control1.Tag;
+                SetItemDirty(itemId1, treaty);
+                ScenarioEditorItemId itemId2 = (ScenarioEditorItemId) control2.Tag;
+                SetItemDirty(itemId2, treaty);
+
+                // 編集項目の値を更新する
+                UpdateItemValue(control1, treaty);
+                UpdateItemValue(control2, treaty);
+
+                // 編集項目の色を更新する
+                UpdateItemColor(control1, treaty);
+                UpdateItemColor(control2, treaty);
+            }
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 協定終了日時
+        /// </summary>
+        /// <param name="control1">連動するコントロール1</param>
+        /// <param name="control2">連動するコントロール2</param>
+        /// <param name="treaty">協定</param>
+        private void PreItemChangedTreatyEndDate(TextBox control1, TextBox control2, Treaty treaty)
+        {
+            if (treaty.EndDate == null)
+            {
+                treaty.EndDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                ScenarioEditorItemId itemId1 = (ScenarioEditorItemId) control1.Tag;
+                SetItemDirty(itemId1, treaty);
+                ScenarioEditorItemId itemId2 = (ScenarioEditorItemId) control2.Tag;
+                SetItemDirty(itemId2, treaty);
+
+                // 編集項目の値を更新する
+                UpdateItemValue(control1, treaty);
+                UpdateItemValue(control2, treaty);
+
+                // 編集項目の色を更新する
+                UpdateItemColor(control1, treaty);
+                UpdateItemColor(control2, treaty);
+            }
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 協定type
+        /// </summary>
+        /// <param name="control">idのコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="treaty">協定</param>
+        private void PreItemChangedTreatyType(TextBox control, object val, Treaty treaty)
+        {
+            // 新規idを設定する
+            treaty.Id.Id = Scenarios.GetNewId((int) val, 1);
+
+            // 編集済みフラグを設定する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            SetItemDirty(itemId, treaty);
+
+            // 編集項目の値を更新する
+            UpdateItemValue(control, treaty);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(control, treaty);
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 協定id
+        /// </summary>
+        /// <param name="control">typeのコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="treaty">協定</param>
+        private void PreItemChangedTreatyId(TextBox control, object val, Treaty treaty)
+        {
+            treaty.Id.Type = Scenarios.GetNewType(Scenarios.DefaultTreatyType, (int) val);
+
+            // 編集済みフラグを設定する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            SetItemDirty(itemId, treaty);
+
+            // 編集項目の値を更新する
+            UpdateItemValue(control, treaty);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(control, treaty);
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 核兵器生産日時
+        /// </summary>
+        /// <param name="control1">連動するコントロール1</param>
+        /// <param name="control2">連動するコントロール2</param>
+        /// <param name="settings">国家設定</param>
+        private void PreItemChangedNukeDate(TextBox control1, TextBox control2, CountrySettings settings)
+        {
+            if (settings.NukeDate == null)
+            {
+                settings.NukeDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                ScenarioEditorItemId itemId1 = (ScenarioEditorItemId) control1.Tag;
+                SetItemDirty(itemId1, settings);
+                ScenarioEditorItemId itemId2 = (ScenarioEditorItemId) control2.Tag;
+                SetItemDirty(itemId2, settings);
+
+                // 編集項目の値を更新する
+                UpdateItemValue(control1, settings);
+                UpdateItemValue(control2, settings);
+
+                // 編集項目の色を更新する
+                UpdateItemColor(control1, settings);
+                UpdateItemColor(control2, settings);
+            }
+        }
+
+        /// <summary>
         ///     項目変更前の処理 - スライダー移動日時
         /// </summary>
         /// <param name="control1">連動するコントロール1</param>
@@ -2926,6 +4062,86 @@ namespace HoI2Editor.Controller
         #endregion
 
         #region 編集項目 - 変更後処理
+
+        /// <summary>
+        ///     項目値変更後の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="treaty">協定</param>
+        public void PostItemChanged(ScenarioEditorItemId itemId, object val, Treaty treaty)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.TradeCountry1:
+                    _form.SetTradeListItemText(0, Countries.GetName((Country) val));
+                    break;
+
+                case ScenarioEditorItemId.TradeCountry2:
+                    _form.SetTradeListItemText(1, Countries.GetName((Country) val));
+                    break;
+
+                case ScenarioEditorItemId.TradeEnergy1:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeEnergy1),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeEnergy2), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeEnergy2:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeEnergy2),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeEnergy1), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeMetal1:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeMetal1),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeMetal2), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeMetal2:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeMetal2),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeMetal1), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeRareMaterials1:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeRareMaterials1),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeRareMaterials2), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeRareMaterials2:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeRareMaterials2),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeRareMaterials1), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeOil1:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeOil1),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeOil2), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeOil2:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeOil2),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeOil1), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeSupplies1:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeSupplies1),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeSupplies2), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeSupplies2:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeSupplies2),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeSupplies1), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeMoney1:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeMoney1),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeMoney2), treaty);
+                    break;
+
+                case ScenarioEditorItemId.TradeMoney2:
+                    PostItemChangedTradeDeals((TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeMoney2),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.TradeMoney1), treaty);
+                    break;
+            }
+        }
 
         /// <summary>
         ///     項目値変更後の処理
@@ -3418,6 +4634,25 @@ namespace HoI2Editor.Controller
         }
 
         /// <summary>
+        ///     項目値変更後の処理 - 貿易量
+        /// </summary>
+        /// <param name="control1">変更対象のコントロール</param>
+        /// <param name="control2">連動するコントロール</param>
+        /// <param name="treaty">協定</param>
+        private void PostItemChangedTradeDeals(TextBox control1, TextBox control2, Treaty treaty)
+        {
+            // 項目の値を更新する
+            UpdateItemValue(control1, treaty);
+            UpdateItemValue(control2, treaty);
+
+            // 項目の色を更新する
+            UpdateItemColor(control2, treaty);
+
+            // 貿易リストビューの項目を更新する
+            _form.SetTradeListItemText(2, treaty.GetTradeString());
+        }
+
+        /// <summary>
         ///     項目値変更後の処理 - 閣僚
         /// </summary>
         /// <param name="control">閣僚idのコントロール</param>
@@ -3659,11 +4894,65 @@ namespace HoI2Editor.Controller
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
+        /// <param name="treaty">協定</param>
+        public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, Treaty treaty)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.TradeCountry1:
+                case ScenarioEditorItemId.TradeCountry2:
+                    Log.Info("[Scenario] {0}: {1} -> {2}", ItemStrings[(int) itemId],
+                        Countries.Strings[(int) GetItemValue(itemId, treaty)], Countries.Strings[(int) val]);
+                    break;
+
+                case ScenarioEditorItemId.TradeCancel:
+                    Log.Info("[Scenario] {0}: {1} -> {2}", ItemStrings[(int) itemId], BoolHelper.ToYesNo(treaty.Cancel),
+                        BoolHelper.ToYesNo((bool) val));
+                    break;
+
+                default:
+                    Log.Info("[Scenario] {0}: {1} -> {2}", ItemStrings[(int) itemId],
+                        ObjectHelper.ToString(GetItemValue(itemId, treaty)), ObjectHelper.ToString(val));
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値変更時のログを出力する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
         /// <param name="settings">国家設定</param>
         public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, CountrySettings settings)
         {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.CountryRegularId:
+                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
+                        Countries.Strings[(int) GetItemValue(itemId, settings)], Countries.Strings[(int) val],
+                        Countries.Strings[(int) settings.Country]);
+                    break;
+
+                default:
+                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
+                        ObjectHelper.ToString(GetItemValue(itemId, settings)), ObjectHelper.ToString(val),
+                        Countries.Strings[(int) settings.Country]);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値変更時のログを出力する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="country">選択国</param>
+        /// <param name="settings">国家設定</param>
+        public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, Country country,
+            CountrySettings settings)
+        {
             Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
-                ObjectHelper.ToString(GetItemValue(itemId, settings)), ObjectHelper.ToString(val),
+                ObjectHelper.ToString(GetItemValue(itemId, country, settings)), ObjectHelper.ToString(val),
                 Countries.Strings[(int) settings.Country]);
         }
 
@@ -3735,6 +5024,64 @@ namespace HoI2Editor.Controller
     /// </summary>
     public enum ScenarioEditorItemId
     {
+        TradeStartYear,
+        TradeStartMonth,
+        TradeStartDay,
+        TradeEndYear,
+        TradeEndMonth,
+        TradeEndDay,
+        TradeType,
+        TradeId,
+        TradeCancel,
+        TradeCountry1,
+        TradeCountry2,
+        TradeEnergy1,
+        TradeEnergy2,
+        TradeMetal1,
+        TradeMetal2,
+        TradeRareMaterials1,
+        TradeRareMaterials2,
+        TradeOil1,
+        TradeOil2,
+        TradeSupplies1,
+        TradeSupplies2,
+        TradeMoney1,
+        TradeMoney2,
+        CountryName,
+        CountryFlagExt,
+        CountryRegularId,
+        CountryBelligerence,
+        CountryDissent,
+        CountryExtraTc,
+        CountryNuke,
+        CountryNukeYear,
+        CountryNukeMonth,
+        CountryNukeDay,
+        CountryGroundDefEff,
+        CountryPeacetimeIcModifier,
+        CountryWartimeIcModifier,
+        CountryIndustrialModifier,
+        CountryRelativeManpower,
+        CountryEnergy,
+        CountryMetal,
+        CountryRareMaterials,
+        CountryOil,
+        CountrySupplies,
+        CountryMoney,
+        CountryTransports,
+        CountryEscorts,
+        CountryManpower,
+        CountryOffmapEnergy,
+        CountryOffmapMetal,
+        CountryOffmapRareMaterials,
+        CountryOffmapOil,
+        CountryOffmapSupplies,
+        CountryOffmapMoney,
+        CountryOffmapTransports,
+        CountryOffmapEscorts,
+        CountryOffmapManpower,
+        CountryOffmapIc,
+        CountryAiFileName,
         SliderYear,
         SliderMonth,
         SliderDay,
@@ -3775,9 +5122,6 @@ namespace HoI2Editor.Controller
         CabinetChiefOfAir,
         CabinetChiefOfAirType,
         CabinetChiefOfAirId,
-        TechOwned,
-        TechBlueprints,
-        TechInventions,
         CountryCapital,
         CountryCoreProvinces,
         CountryOwnedProvinces,
