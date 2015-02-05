@@ -1193,8 +1193,7 @@ namespace HoI2Editor.Forms
             positionComboBox.BeginUpdate();
             positionComboBox.Items.Clear();
             width = positionComboBox.Width;
-            foreach (
-                string s in Ministers.PositionNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
+            foreach (string s in Ministers.PositionNames.Where(id => id != TextId.Empty).Select(Config.GetText))
             {
                 positionComboBox.Items.Add(s);
                 width = Math.Max(width, (int) g.MeasureString(s, positionComboBox.Font).Width + margin);
@@ -1214,8 +1213,7 @@ namespace HoI2Editor.Forms
             ideologyComboBox.BeginUpdate();
             ideologyComboBox.Items.Clear();
             width = ideologyComboBox.Width;
-            foreach (
-                string s in Ministers.IdeologyNames.Where(name => !string.IsNullOrEmpty(name)).Select(Config.GetText))
+            foreach (string s in Ministers.IdeologyNames.Where(id => id != TextId.Empty).Select(Config.GetText))
             {
                 ideologyComboBox.Items.Add(s);
                 width = Math.Max(width, (int) g.MeasureString(s, ideologyComboBox.Font).Width + margin);

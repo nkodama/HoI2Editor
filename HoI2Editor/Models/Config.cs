@@ -191,9 +191,20 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly string[] KeyStrings =
         {
+            "",
             "EYR_AXIS",
             "EYR_ALLIES",
             "EYR_COM",
+            "CATEGORY_NATIONAL_SOCIALIST",
+            "CATEGORY_FASCIST",
+            "CATEGORY_PATERNAL_AUTOCRAT",
+            "CATEGORY_SOCIAL_CONSERVATIVE",
+            "CATEGORY_MARKET_LIBERAL",
+            "CATEGORY_SOCIAL_LIBERAL",
+            "CATEGORY_SOCIAL_DEMOCRAT",
+            "CATEGORY_LEFT_WING_RADICAL",
+            "CATEGORY_LENINIST",
+            "CATEGORY_STALINIST",
             "HOIG_HEAD_OF_STATE",
             "HOIG_HEAD_OF_GOVERNMENT",
             "HOIG_FOREIGN_MINISTER",
@@ -1419,9 +1430,20 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum TextId
     {
+        Empty, // 空文字列
         AllianceAxis, // 枢軸国
         AllianceAllies, // 連合国
         AllianceComintern, // 共産国
+        IdeologyNationalSocialist, // 国家社会主義者
+        IdeologyFascist, // ファシスト
+        IdeologyPaternalAutocrat, // 権威主義者
+        IdeologySocialConservative, // 社会保守派
+        IdeologyMarketLiberal, // 自由経済派
+        IdeologySocialLiberal, // 社会自由派
+        IdeologySocialDemocrat, // 社会民主派
+        IdeologyLeftWingRadical, // 急進的左翼
+        IdeologyLeninist, // レーニン主義者
+        IdeologyStalinist, // スターリン主義者
         MinisterHeadOfState, // 国家元首
         MinisterHeadOfGovernment, // 政府首班
         MinisterForeignMinister, // 外務大臣

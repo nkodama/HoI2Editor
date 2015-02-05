@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="b">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToYesNo(bool b)
+        public static string ToString(bool b)
         {
             return b ? "yes" : "no";
         }

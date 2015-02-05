@@ -2147,8 +2147,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Unit] default production type: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.DefaultType),
-                BoolHelper.ToYesNo(defaultTypeCheckBox.Checked), unit);
+            Log.Info("[Unit] default production type: {0} -> {1} ({2})", BoolHelper.ToString(unit.DefaultType),
+                BoolHelper.ToString(defaultTypeCheckBox.Checked), unit);
 
             // 値を更新する
             unit.DefaultType = defaultTypeCheckBox.Checked;
@@ -2340,8 +2340,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Unit] productable: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Productable),
-                BoolHelper.ToYesNo(productableCheckBox.Checked), unit);
+            Log.Info("[Unit] productable: {0} -> {1} ({2})", BoolHelper.ToString(unit.Productable),
+                BoolHelper.ToString(productableCheckBox.Checked), unit);
 
             // 値を更新する
             unit.Productable = productableCheckBox.Checked;
@@ -2373,8 +2373,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Unit] detachable: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Detachable),
-                BoolHelper.ToYesNo(detachableCheckBox.Checked), unit);
+            Log.Info("[Unit] detachable: {0} -> {1} ({2})", BoolHelper.ToString(unit.Detachable),
+                BoolHelper.ToString(detachableCheckBox.Checked), unit);
 
             // 値を更新する
             unit.Detachable = detachableCheckBox.Checked;
@@ -2406,8 +2406,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Unit] cag: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Cag),
-                BoolHelper.ToYesNo(cagCheckBox.Checked), unit);
+            Log.Info("[Unit] cag: {0} -> {1} ({2})", BoolHelper.ToString(unit.Cag),
+                BoolHelper.ToString(cagCheckBox.Checked), unit);
 
             // 値を更新する
             unit.Cag = cagCheckBox.Checked;
@@ -2439,8 +2439,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Unit] escort: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Escort),
-                BoolHelper.ToYesNo(escortCheckBox.Checked), unit);
+            Log.Info("[Unit] escort: {0} -> {1} ({2})", BoolHelper.ToString(unit.Escort),
+                BoolHelper.ToString(escortCheckBox.Checked), unit);
 
             // 値を更新する
             unit.Escort = escortCheckBox.Checked;
@@ -2472,8 +2472,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Unit] engineer: {0} -> {1} ({2})", BoolHelper.ToYesNo(unit.Engineer),
-                BoolHelper.ToYesNo(engineerCheckBox.Checked), unit);
+            Log.Info("[Unit] engineer: {0} -> {1} ({2})", BoolHelper.ToString(unit.Engineer),
+                BoolHelper.ToString(engineerCheckBox.Checked), unit);
 
             // 値を更新する
             unit.Engineer = engineerCheckBox.Checked;
@@ -5049,8 +5049,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Unit] upgrade time boost: {0} -> {1} ({2})", BoolHelper.ToYesNo(model.UpgradeTimeBoost),
-                BoolHelper.ToYesNo(upgradeTimeBoostCheckBox.Checked), unit.GetModelName(index));
+            Log.Info("[Unit] upgrade time boost: {0} -> {1} ({2})", BoolHelper.ToString(model.UpgradeTimeBoost),
+                BoolHelper.ToString(upgradeTimeBoostCheckBox.Checked), unit.GetModelName(index));
 
             // 値を更新する
             model.UpgradeTimeBoost = upgradeTimeBoostCheckBox.Checked;
@@ -5097,8 +5097,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Unit] auto upgrade: {0} -> {1} ({2})", BoolHelper.ToYesNo(model.AutoUpgrade),
-                BoolHelper.ToYesNo(autoUpgradeCheckBox.Checked), unit.GetModelName(index));
+            Log.Info("[Unit] auto upgrade: {0} -> {1} ({2})", BoolHelper.ToString(model.AutoUpgrade),
+                BoolHelper.ToString(autoUpgradeCheckBox.Checked), unit.GetModelName(index));
 
             // 値を更新する
             model.AutoUpgrade = autoUpgradeCheckBox.Checked;

@@ -843,6 +843,9 @@
   <data name="techTreePanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="techTreePanel.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="techTreePictureBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -1751,6 +1754,72 @@
   </data>
   <data name="&gt;&gt;tradeIdLabel.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <metadata name="relationValueLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="relationValueLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="relationValueLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="relationValueLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 20</value>
+  </data>
+  <data name="relationValueLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 12</value>
+  </data>
+  <data name="relationValueLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="relationValueLabel.Text" xml:space="preserve">
+    <value>Relation Value</value>
+  </data>
+  <data name="&gt;&gt;relationValueLabel.Name" xml:space="preserve">
+    <value>relationValueLabel</value>
+  </data>
+  <data name="&gt;&gt;relationValueLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;relationValueLabel.Parent" xml:space="preserve">
+    <value>relationGroupBox</value>
+  </data>
+  <data name="&gt;&gt;relationValueLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="spyNumLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="spyNumLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="spyNumLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="spyNumLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 23</value>
+  </data>
+  <data name="spyNumLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 12</value>
+  </data>
+  <data name="spyNumLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="spyNumLabel.Text" xml:space="preserve">
+    <value>Number of Spies</value>
+  </data>
+  <data name="&gt;&gt;spyNumLabel.Name" xml:space="preserve">
+    <value>spyNumLabel</value>
+  </data>
+  <data name="&gt;&gt;spyNumLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;spyNumLabel.Parent" xml:space="preserve">
+    <value>intelligenceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;spyNumLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="provinceIdLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -8163,240 +8232,6 @@
   <data name="&gt;&gt;tradeTabPage.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="spyNumNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 21</value>
-  </data>
-  <data name="spyNumNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 19</value>
-  </data>
-  <data name="spyNumNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="spyNumNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;spyNumNumericUpDown.Name" xml:space="preserve">
-    <value>spyNumNumericUpDown</value>
-  </data>
-  <data name="&gt;&gt;spyNumNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;spyNumNumericUpDown.Parent" xml:space="preserve">
-    <value>intelligenceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;spyNumNumericUpDown.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="spyNumLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="spyNumLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="spyNumLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 23</value>
-  </data>
-  <data name="spyNumLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>90, 12</value>
-  </data>
-  <data name="spyNumLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="spyNumLabel.Text" xml:space="preserve">
-    <value>Number of Spies</value>
-  </data>
-  <data name="&gt;&gt;spyNumLabel.Name" xml:space="preserve">
-    <value>spyNumLabel</value>
-  </data>
-  <data name="&gt;&gt;spyNumLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;spyNumLabel.Parent" xml:space="preserve">
-    <value>intelligenceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;spyNumLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="intelligenceGroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="intelligenceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>631, 248</value>
-  </data>
-  <data name="intelligenceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 52</value>
-  </data>
-  <data name="intelligenceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="intelligenceGroupBox.Text" xml:space="preserve">
-    <value>Intelligence</value>
-  </data>
-  <data name="&gt;&gt;intelligenceGroupBox.Name" xml:space="preserve">
-    <value>intelligenceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;intelligenceGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;intelligenceGroupBox.Parent" xml:space="preserve">
-    <value>relationTabPage</value>
-  </data>
-  <data name="&gt;&gt;intelligenceGroupBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="guaranteeCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="guaranteeCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="guaranteeCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 18</value>
-  </data>
-  <data name="guaranteeCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 16</value>
-  </data>
-  <data name="guaranteeCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="guaranteeCheckBox.Text" xml:space="preserve">
-    <value>Guarantee</value>
-  </data>
-  <data name="&gt;&gt;guaranteeCheckBox.Name" xml:space="preserve">
-    <value>guaranteeCheckBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;guaranteeCheckBox.Parent" xml:space="preserve">
-    <value>guaranteeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="guaranteeYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>103, 40</value>
-  </data>
-  <data name="guaranteeYearTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="guaranteeYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="guaranteeYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;guaranteeYearTextBox.Name" xml:space="preserve">
-    <value>guaranteeYearTextBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeYearTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;guaranteeYearTextBox.Parent" xml:space="preserve">
-    <value>guaranteeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeYearTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="guaranteeMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>159, 40</value>
-  </data>
-  <data name="guaranteeMonthTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="guaranteeMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="guaranteeMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;guaranteeMonthTextBox.Name" xml:space="preserve">
-    <value>guaranteeMonthTextBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeMonthTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;guaranteeMonthTextBox.Parent" xml:space="preserve">
-    <value>guaranteeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeMonthTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="guaranteeEndLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="guaranteeEndLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="guaranteeEndLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>39, 43</value>
-  </data>
-  <data name="guaranteeEndLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 12</value>
-  </data>
-  <data name="guaranteeEndLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="guaranteeEndLabel.Text" xml:space="preserve">
-    <value>End Date</value>
-  </data>
-  <data name="&gt;&gt;guaranteeEndLabel.Name" xml:space="preserve">
-    <value>guaranteeEndLabel</value>
-  </data>
-  <data name="&gt;&gt;guaranteeEndLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;guaranteeEndLabel.Parent" xml:space="preserve">
-    <value>guaranteeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeEndLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="guaranteeDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>215, 40</value>
-  </data>
-  <data name="guaranteeDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="guaranteeDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="guaranteeDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;guaranteeDayTextBox.Name" xml:space="preserve">
-    <value>guaranteeDayTextBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeDayTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;guaranteeDayTextBox.Parent" xml:space="preserve">
-    <value>guaranteeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeDayTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="guaranteeGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 115</value>
-  </data>
-  <data name="guaranteeGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>280, 70</value>
-  </data>
-  <data name="guaranteeGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;guaranteeGroupBox.Name" xml:space="preserve">
-    <value>guaranteeGroupBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;guaranteeGroupBox.Parent" xml:space="preserve">
-    <value>diplomacyGroupBox</value>
-  </data>
-  <data name="&gt;&gt;guaranteeGroupBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="peaceIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>159, 90</value>
   </data>
@@ -8709,14 +8544,17 @@
   <data name="&gt;&gt;peaceStartMonthTextBox.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="peaceGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="peaceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 145</value>
+    <value>304, 379</value>
   </data>
   <data name="peaceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 121</value>
   </data>
   <data name="peaceGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;peaceGroupBox.Name" xml:space="preserve">
     <value>peaceGroupBox</value>
@@ -8725,34 +8563,166 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;peaceGroupBox.Parent" xml:space="preserve">
-    <value>diplomacyGroupBox</value>
+    <value>relationTabPage</value>
   </data>
   <data name="&gt;&gt;peaceGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
-  <data name="relationValueNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 21</value>
+  <data name="guaranteedCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="relationValueNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 19</value>
+  <data name="guaranteedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="relationValueNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="guaranteedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 18</value>
   </data>
-  <data name="relationValueNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+  <data name="guaranteedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 16</value>
+  </data>
+  <data name="guaranteedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="guaranteedCheckBox.Text" xml:space="preserve">
+    <value>Guaranteed</value>
+  </data>
+  <data name="&gt;&gt;guaranteedCheckBox.Name" xml:space="preserve">
+    <value>guaranteedCheckBox</value>
+  </data>
+  <data name="&gt;&gt;guaranteedCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;guaranteedCheckBox.Parent" xml:space="preserve">
+    <value>guaranteedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;guaranteedCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="guaranteedYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>103, 40</value>
+  </data>
+  <data name="guaranteedYearTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="guaranteedYearTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="guaranteedYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;relationValueNumericUpDown.Name" xml:space="preserve">
-    <value>relationValueNumericUpDown</value>
+  <data name="&gt;&gt;guaranteedYearTextBox.Name" xml:space="preserve">
+    <value>guaranteedYearTextBox</value>
   </data>
-  <data name="&gt;&gt;relationValueNumericUpDown.Type" xml:space="preserve">
-    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;guaranteedYearTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;relationValueNumericUpDown.Parent" xml:space="preserve">
-    <value>diplomacyGroupBox</value>
+  <data name="&gt;&gt;guaranteedYearTextBox.Parent" xml:space="preserve">
+    <value>guaranteedGroupBox</value>
   </data>
-  <data name="&gt;&gt;relationValueNumericUpDown.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;guaranteedYearTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="guaranteedMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>159, 40</value>
+  </data>
+  <data name="guaranteedMonthTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="guaranteedMonthTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="guaranteedMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;guaranteedMonthTextBox.Name" xml:space="preserve">
+    <value>guaranteedMonthTextBox</value>
+  </data>
+  <data name="&gt;&gt;guaranteedMonthTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;guaranteedMonthTextBox.Parent" xml:space="preserve">
+    <value>guaranteedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;guaranteedMonthTextBox.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="guaranteedEndLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="guaranteedEndLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="guaranteedEndLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 43</value>
+  </data>
+  <data name="guaranteedEndLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 12</value>
+  </data>
+  <data name="guaranteedEndLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="guaranteedEndLabel.Text" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="&gt;&gt;guaranteedEndLabel.Name" xml:space="preserve">
+    <value>guaranteedEndLabel</value>
+  </data>
+  <data name="&gt;&gt;guaranteedEndLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;guaranteedEndLabel.Parent" xml:space="preserve">
+    <value>guaranteedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;guaranteedEndLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="guaranteedDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 40</value>
+  </data>
+  <data name="guaranteedDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="guaranteedDayTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="guaranteedDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;guaranteedDayTextBox.Name" xml:space="preserve">
+    <value>guaranteedDayTextBox</value>
+  </data>
+  <data name="&gt;&gt;guaranteedDayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;guaranteedDayTextBox.Parent" xml:space="preserve">
+    <value>guaranteedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;guaranteedDayTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="guaranteedGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="guaranteedGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 379</value>
+  </data>
+  <data name="guaranteedGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>280, 70</value>
+  </data>
+  <data name="guaranteedGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;guaranteedGroupBox.Name" xml:space="preserve">
+    <value>guaranteedGroupBox</value>
+  </data>
+  <data name="&gt;&gt;guaranteedGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;guaranteedGroupBox.Parent" xml:space="preserve">
+    <value>relationTabPage</value>
+  </data>
+  <data name="&gt;&gt;guaranteedGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="nonAggressionIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>159, 90</value>
@@ -9066,14 +9036,17 @@
   <data name="&gt;&gt;nonAggressionEndLabel.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
+  <data name="nonAggressionGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="nonAggressionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>306, 18</value>
+    <value>304, 252</value>
   </data>
   <data name="nonAggressionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>280, 121</value>
   </data>
   <data name="nonAggressionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;nonAggressionGroupBox.Name" xml:space="preserve">
     <value>nonAggressionGroupBox</value>
@@ -9082,100 +9055,34 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;nonAggressionGroupBox.Parent" xml:space="preserve">
-    <value>diplomacyGroupBox</value>
+    <value>relationTabPage</value>
   </data>
   <data name="&gt;&gt;nonAggressionGroupBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="relationValueLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="relationValueLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="relationValueLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 23</value>
-  </data>
-  <data name="relationValueLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 12</value>
-  </data>
-  <data name="relationValueLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="relationValueLabel.Text" xml:space="preserve">
-    <value>Relation Value</value>
-  </data>
-  <data name="&gt;&gt;relationValueLabel.Name" xml:space="preserve">
-    <value>relationValueLabel</value>
-  </data>
-  <data name="&gt;&gt;relationValueLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;relationValueLabel.Parent" xml:space="preserve">
-    <value>diplomacyGroupBox</value>
-  </data>
-  <data name="&gt;&gt;relationValueLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="accessCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="accessCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="accessCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 93</value>
-  </data>
-  <data name="accessCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 16</value>
-  </data>
-  <data name="accessCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="accessCheckBox.Text" xml:space="preserve">
-    <value>Military Access</value>
-  </data>
-  <data name="&gt;&gt;accessCheckBox.Name" xml:space="preserve">
-    <value>accessCheckBox</value>
-  </data>
-  <data name="&gt;&gt;accessCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;accessCheckBox.Parent" xml:space="preserve">
-    <value>diplomacyGroupBox</value>
-  </data>
-  <data name="&gt;&gt;accessCheckBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="masterCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="masterCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="masterCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 49</value>
-  </data>
-  <data name="masterCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 16</value>
-  </data>
-  <data name="masterCheckBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="masterCheckBox.Text" xml:space="preserve">
-    <value>Master</value>
+  <data name="relationValueTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>103, 17</value>
   </data>
-  <data name="&gt;&gt;masterCheckBox.Name" xml:space="preserve">
-    <value>masterCheckBox</value>
+  <data name="relationValueTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
   </data>
-  <data name="&gt;&gt;masterCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="relationValueTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;masterCheckBox.Parent" xml:space="preserve">
-    <value>diplomacyGroupBox</value>
+  <data name="relationValueTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;masterCheckBox.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;relationValueTextBox.Name" xml:space="preserve">
+    <value>relationValueTextBox</value>
+  </data>
+  <data name="&gt;&gt;relationValueTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;relationValueTextBox.Parent" xml:space="preserve">
+    <value>relationGroupBox</value>
+  </data>
+  <data name="&gt;&gt;relationValueTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="controlCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9184,7 +9091,7 @@
     <value>NoControl</value>
   </data>
   <data name="controlCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 71</value>
+    <value>16, 68</value>
   </data>
   <data name="controlCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 16</value>
@@ -9202,37 +9109,142 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;controlCheckBox.Parent" xml:space="preserve">
-    <value>diplomacyGroupBox</value>
+    <value>relationGroupBox</value>
   </data>
   <data name="&gt;&gt;controlCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="diplomacyGroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="diplomacyGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 248</value>
-  </data>
-  <data name="diplomacyGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>602, 288</value>
-  </data>
-  <data name="diplomacyGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="diplomacyGroupBox.Text" xml:space="preserve">
-    <value>Diplomacy</value>
+  <data name="masterCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;diplomacyGroupBox.Name" xml:space="preserve">
-    <value>diplomacyGroupBox</value>
+  <data name="masterCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;diplomacyGroupBox.Type" xml:space="preserve">
+  <data name="masterCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 46</value>
+  </data>
+  <data name="masterCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 16</value>
+  </data>
+  <data name="masterCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="masterCheckBox.Text" xml:space="preserve">
+    <value>Master</value>
+  </data>
+  <data name="&gt;&gt;masterCheckBox.Name" xml:space="preserve">
+    <value>masterCheckBox</value>
+  </data>
+  <data name="&gt;&gt;masterCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;masterCheckBox.Parent" xml:space="preserve">
+    <value>relationGroupBox</value>
+  </data>
+  <data name="&gt;&gt;masterCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="accessCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="accessCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="accessCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 90</value>
+  </data>
+  <data name="accessCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 16</value>
+  </data>
+  <data name="accessCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="accessCheckBox.Text" xml:space="preserve">
+    <value>Military Access</value>
+  </data>
+  <data name="&gt;&gt;accessCheckBox.Name" xml:space="preserve">
+    <value>accessCheckBox</value>
+  </data>
+  <data name="&gt;&gt;accessCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;accessCheckBox.Parent" xml:space="preserve">
+    <value>relationGroupBox</value>
+  </data>
+  <data name="&gt;&gt;accessCheckBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="relationGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="relationGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 252</value>
+  </data>
+  <data name="relationGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 117</value>
+  </data>
+  <data name="relationGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;relationGroupBox.Name" xml:space="preserve">
+    <value>relationGroupBox</value>
+  </data>
+  <data name="&gt;&gt;relationGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;diplomacyGroupBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;relationGroupBox.Parent" xml:space="preserve">
     <value>relationTabPage</value>
   </data>
-  <data name="&gt;&gt;diplomacyGroupBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;relationGroupBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="spyNumNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 21</value>
+  </data>
+  <data name="spyNumNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 19</value>
+  </data>
+  <data name="spyNumNumericUpDown.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="spyNumNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;spyNumNumericUpDown.Name" xml:space="preserve">
+    <value>spyNumNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;spyNumNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;spyNumNumericUpDown.Parent" xml:space="preserve">
+    <value>intelligenceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;spyNumNumericUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="intelligenceGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="intelligenceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>594, 252</value>
+  </data>
+  <data name="intelligenceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>207, 52</value>
+  </data>
+  <data name="intelligenceGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;intelligenceGroupBox.Name" xml:space="preserve">
+    <value>intelligenceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;intelligenceGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;intelligenceGroupBox.Parent" xml:space="preserve">
+    <value>relationTabPage</value>
+  </data>
+  <data name="&gt;&gt;intelligenceGroupBox.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="relationCountryColumnHeader.Text" xml:space="preserve">
     <value>Country</value>
@@ -9334,7 +9346,7 @@
     <value>relationTabPage</value>
   </data>
   <data name="&gt;&gt;relationListView.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="relationCountryListBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -9364,7 +9376,7 @@
     <value>relationTabPage</value>
   </data>
   <data name="&gt;&gt;relationCountryListBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="relationTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>

@@ -101,37 +101,37 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚地位名
         /// </summary>
-        public static readonly string[] PositionNames =
+        public static readonly TextId[] PositionNames =
         {
-            "",
-            "HOIG_HEAD_OF_STATE",
-            "HOIG_HEAD_OF_GOVERNMENT",
-            "HOIG_FOREIGN_MINISTER",
-            "HOIG_ARMAMENT_MINISTER",
-            "HOIG_MINISTER_OF_SECURITY",
-            "HOIG_MINISTER_OF_INTELLIGENCE",
-            "HOIG_CHIEF_OF_STAFF",
-            "HOIG_CHIEF_OF_ARMY",
-            "HOIG_CHIEF_OF_NAVY",
-            "HOIG_CHIEF_OF_AIR"
+            TextId.Empty,
+            TextId.MinisterHeadOfState,
+            TextId.MinisterHeadOfGovernment,
+            TextId.MinisterForeignMinister,
+            TextId.MinisterArmamentMinister,
+            TextId.MinisterMinisterOfSecurity,
+            TextId.MinisterMinisterOfIntelligence,
+            TextId.MinisterChiefOfStaff,
+            TextId.MinisterChiefOfArmy,
+            TextId.MinisterChiefOfNavy,
+            TextId.MinisterChiefOfAir
         };
 
         /// <summary>
         ///     イデオロギー名
         /// </summary>
-        public static readonly string[] IdeologyNames =
+        public static readonly TextId[] IdeologyNames =
         {
-            "",
-            "CATEGORY_NATIONAL_SOCIALIST",
-            "CATEGORY_FASCIST",
-            "CATEGORY_PATERNAL_AUTOCRAT",
-            "CATEGORY_SOCIAL_CONSERVATIVE",
-            "CATEGORY_MARKET_LIBERAL",
-            "CATEGORY_SOCIAL_LIBERAL",
-            "CATEGORY_SOCIAL_DEMOCRAT",
-            "CATEGORY_LEFT_WING_RADICAL",
-            "CATEGORY_LENINIST",
-            "CATEGORY_STALINIST"
+            TextId.Empty,
+            TextId.IdeologyNationalSocialist,
+            TextId.IdeologyFascist,
+            TextId.IdeologyPaternalAutocrat,
+            TextId.IdeologySocialConservative,
+            TextId.IdeologyMarketLiberal,
+            TextId.IdeologySocialLiberal,
+            TextId.IdeologySocialDemocrat,
+            TextId.IdeologyLeftWingRadical,
+            TextId.IdeologyLeninist,
+            TextId.IdeologyStalinist
         };
 
         #endregion
@@ -610,11 +610,6 @@ namespace HoI2Editor.Models
                 { "static defense doctrine", "static defence doctrine" },
                 { "vertical envelopement doctrine", "vertical envelopment doctrine" }
             };
-
-        /// <summary>
-        ///     CSVファイルの区切り文字
-        /// </summary>
-        private static readonly char[] CsvSeparator = { ';' };
 
         /// <summary>
         ///     閣僚特性(HoI2)

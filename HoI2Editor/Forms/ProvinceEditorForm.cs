@@ -2153,8 +2153,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Province] beach: {0} -> {1} ({2}: {3})", BoolHelper.ToYesNo(province.Beaches),
-                BoolHelper.ToYesNo(flag), province.Id, province.GetName());
+            Log.Info("[Province] beach: {0} -> {1} ({2}: {3})", BoolHelper.ToString(province.Beaches),
+                BoolHelper.ToString(flag), province.Id, province.GetName());
 
             // 値を更新する
             province.Beaches = flag;
@@ -2296,8 +2296,8 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Log.Info("[Province] port allowed: {0} -> {1} ({2}: {3})", BoolHelper.ToYesNo(province.PortAllowed),
-                BoolHelper.ToYesNo(flag), province.Id, province.GetName());
+            Log.Info("[Province] port allowed: {0} -> {1} ({2}: {3})", BoolHelper.ToString(province.PortAllowed),
+                BoolHelper.ToString(flag), province.Id, province.GetName());
 
             // 値を更新する
             province.PortAllowed = flag;

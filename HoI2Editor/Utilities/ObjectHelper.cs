@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using HoI2Editor.Models;
 
 namespace HoI2Editor.Utilities
 {
@@ -25,6 +26,14 @@ namespace HoI2Editor.Utilities
             if (o is int)
             {
                 return ((int) o).ToString(CultureInfo.InvariantCulture);
+            }
+            if (o is bool)
+            {
+                return ((bool) o) ? "yes" : "no";
+            }
+            if (o is Country)
+            {
+                return Countries.Strings[(int) (Country) o];
             }
             return o.ToString();
         }
