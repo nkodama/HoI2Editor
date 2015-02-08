@@ -39,29 +39,40 @@ namespace HoI2Editor.Models
         private static bool _dirtyFlag;
 
         /// <summary>
+        ///     国タグと主要国設定の対応付け
+        /// </summary>
+        private static readonly Dictionary<Country, MajorCountrySettings> MajorTable =
+            new Dictionary<Country, MajorCountrySettings>();
+
+        /// <summary>
         ///     国タグと国家設定の対応付け
         /// </summary>
-        private static Dictionary<Country, CountrySettings> _countries;
+        private static readonly Dictionary<Country, CountrySettings> CountryTable =
+            new Dictionary<Country, CountrySettings>();
 
         /// <summary>
         ///     国タグと国家関係の対応付け
         /// </summary>
-        private static Dictionary<Country, Dictionary<Country, Relation>> _relations;
+        private static readonly Dictionary<Country, Dictionary<Country, Relation>> RelationTable =
+            new Dictionary<Country, Dictionary<Country, Relation>>();
 
         /// <summary>
         ///     国タグと不可侵条約の対応付け
         /// </summary>
-        private static Dictionary<Country, Dictionary<Country, Treaty>> _nonAggressions;
+        private static readonly Dictionary<Country, Dictionary<Country, Treaty>> NonAggressionTable =
+            new Dictionary<Country, Dictionary<Country, Treaty>>();
 
         /// <summary>
         ///     国タグと講和条約の対応付け
         /// </summary>
-        private static Dictionary<Country, Dictionary<Country, Treaty>> _peaces;
+        private static readonly Dictionary<Country, Dictionary<Country, Treaty>> PeaceTable =
+            new Dictionary<Country, Dictionary<Country, Treaty>>();
 
         /// <summary>
         ///     国タグと諜報設定の対応付け
         /// </summary>
-        private static Dictionary<Country, Dictionary<Country, SpySettings>> _spies;
+        private static readonly Dictionary<Country, Dictionary<Country, SpySettings>> SpyTable =
+            new Dictionary<Country, Dictionary<Country, SpySettings>>();
 
         /// <summary>
         ///     プロヴィンスIDとプロヴィンス設定の対応付け
@@ -253,8 +264,17 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Init()
         {
-            // 国家関係を初期化する
-            InitDiplomacy();
+            // 主要国設定を初期化する
+            InitMajorCountries();
+
+            // 国家情報を初期化する
+            InitCountries();
+
+            // 不可侵条約を初期化する
+            InitNonAggressions();
+
+            // 講和条約を初期化する
+            InitPeaces();
 
             // 使用済みのtypeとidの組を初期化する
             InitTypeIds();
@@ -367,68 +387,118 @@ namespace HoI2Editor.Models
         #region 国家
 
         /// <summary>
+        ///     主要国設定を初期化する
+        /// </summary>
+        private static void InitMajorCountries()
+        {
+            MajorTable.Clear();
+            foreach (MajorCountrySettings major in Data.Header.MajorCountries)
+            {
+                MajorTable.Add(major.Country, major);
+            }
+        }
+
+        /// <summary>
         ///     国家情報を初期化する
         /// </summary>
-        private static void InitDiplomacy()
+        private static void InitCountries()
         {
-            Scenario scenario = Data;
-            ScenarioGlobalData data = scenario.GlobalData;
-
-            _countries = new Dictionary<Country, CountrySettings>();
-            _relations = new Dictionary<Country, Dictionary<Country, Relation>>();
-            _spies = new Dictionary<Country, Dictionary<Country, SpySettings>>();
-            foreach (CountrySettings settings in scenario.Countries)
+            CountryTable.Clear();
+            RelationTable.Clear();
+            SpyTable.Clear();
+            foreach (CountrySettings settings in Data.Countries)
             {
                 Country country = settings.Country;
 
                 // 国タグと国家設定の対応付け
-                _countries.Add(country, settings);
+                CountryTable.Add(country, settings);
 
                 // 国タグと国家関係の対応付け
-                _relations.Add(country, new Dictionary<Country, Relation>());
+                RelationTable.Add(country, new Dictionary<Country, Relation>());
                 foreach (Relation relation in settings.Relations)
                 {
-                    _relations[country][relation.Country] = relation;
+                    RelationTable[country][relation.Country] = relation;
                 }
 
                 // 国タグと諜報設定の対応付け
-                _spies.Add(country, new Dictionary<Country, SpySettings>());
+                SpyTable.Add(country, new Dictionary<Country, SpySettings>());
                 foreach (SpySettings spy in settings.Intelligence)
                 {
-                    _spies[country][spy.Country] = spy;
+                    SpyTable[country][spy.Country] = spy;
                 }
             }
+        }
 
-            // 国タグと不可侵条約の対応付け
-            _nonAggressions = new Dictionary<Country, Dictionary<Country, Treaty>>();
-            foreach (Treaty nonAggression in data.NonAggressions)
+        /// <summary>
+        ///     不可侵条約を初期化する
+        /// </summary>
+        private static void InitNonAggressions()
+        {
+            NonAggressionTable.Clear();
+            foreach (Treaty nonAggression in Data.GlobalData.NonAggressions)
             {
-                if (!_nonAggressions.ContainsKey(nonAggression.Country1))
+                if (!NonAggressionTable.ContainsKey(nonAggression.Country1))
                 {
-                    _nonAggressions.Add(nonAggression.Country1, new Dictionary<Country, Treaty>());
+                    NonAggressionTable.Add(nonAggression.Country1, new Dictionary<Country, Treaty>());
                 }
-                _nonAggressions[nonAggression.Country1][nonAggression.Country2] = nonAggression;
-                if (!_nonAggressions.ContainsKey(nonAggression.Country2))
+                NonAggressionTable[nonAggression.Country1][nonAggression.Country2] = nonAggression;
+                if (!NonAggressionTable.ContainsKey(nonAggression.Country2))
                 {
-                    _nonAggressions.Add(nonAggression.Country2, new Dictionary<Country, Treaty>());
+                    NonAggressionTable.Add(nonAggression.Country2, new Dictionary<Country, Treaty>());
                 }
-                _nonAggressions[nonAggression.Country2][nonAggression.Country1] = nonAggression;
+                NonAggressionTable[nonAggression.Country2][nonAggression.Country1] = nonAggression;
             }
+        }
 
-            // 国タグと講和条約の対応付け
-            _peaces = new Dictionary<Country, Dictionary<Country, Treaty>>();
-            foreach (Treaty peace in data.Peaces)
+        /// <summary>
+        ///     講和条約を初期化する
+        /// </summary>
+        private static void InitPeaces()
+        {
+            PeaceTable.Clear();
+            foreach (Treaty peace in Data.GlobalData.Peaces)
             {
-                if (!_peaces.ContainsKey(peace.Country1))
+                if (!PeaceTable.ContainsKey(peace.Country1))
                 {
-                    _peaces.Add(peace.Country1, new Dictionary<Country, Treaty>());
+                    PeaceTable.Add(peace.Country1, new Dictionary<Country, Treaty>());
                 }
-                _peaces[peace.Country1][peace.Country2] = peace;
-                if (!_peaces.ContainsKey(peace.Country2))
+                PeaceTable[peace.Country1][peace.Country2] = peace;
+                if (!PeaceTable.ContainsKey(peace.Country2))
                 {
-                    _peaces.Add(peace.Country2, new Dictionary<Country, Treaty>());
+                    PeaceTable.Add(peace.Country2, new Dictionary<Country, Treaty>());
                 }
-                _peaces[peace.Country2][peace.Country1] = peace;
+                PeaceTable[peace.Country2][peace.Country1] = peace;
+            }
+        }
+
+        /// <summary>
+        ///     主要国設定を取得する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        /// <returns>主要国設定</returns>
+        public static MajorCountrySettings GetMajorCountrySettings(Country country)
+        {
+            return MajorTable.ContainsKey(country) ? MajorTable[country] : null;
+        }
+
+        /// <summary>
+        ///     主要国設定を設定する
+        /// </summary>
+        /// <param name="major">主要国設定</param>
+        public static void SetMajorCountrySettings(MajorCountrySettings major)
+        {
+            MajorTable[major.Country] = major;
+        }
+
+        /// <summary>
+        ///     主要国設定を削除する
+        /// </summary>
+        /// <param name="major">主要国設定</param>
+        public static void RemoveMajorCountrySettings(MajorCountrySettings major)
+        {
+            if (MajorTable.ContainsKey(major.Country))
+            {
+                MajorTable.Remove(major.Country);
             }
         }
 
@@ -439,15 +509,7 @@ namespace HoI2Editor.Models
         /// <returns>国家設定</returns>
         public static CountrySettings GetCountrySettings(Country country)
         {
-            if (_countries == null)
-            {
-                return null;
-            }
-            if (!_countries.ContainsKey(country))
-            {
-                return null;
-            }
-            return _countries[country];
+            return CountryTable.ContainsKey(country) ? CountryTable[country] : null;
         }
 
         /// <summary>
@@ -456,8 +518,7 @@ namespace HoI2Editor.Models
         /// <param name="settings">国家設定</param>
         public static void SetCountrySettings(CountrySettings settings)
         {
-            Country country = settings.Country;
-            _countries[country] = settings;
+            CountryTable[settings.Country] = settings;
         }
 
         /// <summary>
@@ -468,15 +529,9 @@ namespace HoI2Editor.Models
         /// <returns>国家関係</returns>
         public static Relation GetCountryRelation(Country country1, Country country2)
         {
-            if (!_relations.ContainsKey(country1))
-            {
-                return null;
-            }
-            if (!_relations[country1].ContainsKey(country2))
-            {
-                return null;
-            }
-            return _relations[country1][country2];
+            return (RelationTable.ContainsKey(country1) && RelationTable[country1].ContainsKey(country2))
+                ? RelationTable[country1][country2]
+                : null;
         }
 
         /// <summary>
@@ -486,12 +541,11 @@ namespace HoI2Editor.Models
         /// <param name="relation">国家関係</param>
         public static void SetCountryRelation(Country country, Relation relation)
         {
-            Country target = relation.Country;
-            if (!_relations.ContainsKey(country))
+            if (!RelationTable.ContainsKey(country))
             {
-                _relations.Add(country, new Dictionary<Country, Relation>());
+                RelationTable.Add(country, new Dictionary<Country, Relation>());
             }
-            _relations[country][target] = relation;
+            RelationTable[country][relation.Country] = relation;
         }
 
         /// <summary>
@@ -502,50 +556,46 @@ namespace HoI2Editor.Models
         /// <returns>不可侵条約</returns>
         public static Treaty GetNonAggression(Country country1, Country country2)
         {
-            if (!_nonAggressions.ContainsKey(country1))
-            {
-                return null;
-            }
-            if (!_nonAggressions[country1].ContainsKey(country2))
-            {
-                return null;
-            }
-            return _nonAggressions[country1][country2];
+            return (NonAggressionTable.ContainsKey(country1) && NonAggressionTable[country1].ContainsKey(country2))
+                ? NonAggressionTable[country1][country2]
+                : null;
         }
 
         /// <summary>
         ///     不可侵条約を設定する
         /// </summary>
-        /// <param name="nonAggression">不可侵条約</param>
-        public static void SetNonAggression(Treaty nonAggression)
+        /// <param name="treaty">不可侵条約</param>
+        public static void SetNonAggression(Treaty treaty)
         {
-            if (!_nonAggressions.ContainsKey(nonAggression.Country1))
+            if (!NonAggressionTable.ContainsKey(treaty.Country1))
             {
-                _nonAggressions.Add(nonAggression.Country1, new Dictionary<Country, Treaty>());
+                NonAggressionTable.Add(treaty.Country1, new Dictionary<Country, Treaty>());
             }
-            _nonAggressions[nonAggression.Country1][nonAggression.Country2] = nonAggression;
-            if (!_nonAggressions.ContainsKey(nonAggression.Country2))
+            NonAggressionTable[treaty.Country1][treaty.Country2] = treaty;
+
+            if (!NonAggressionTable.ContainsKey(treaty.Country2))
             {
-                _nonAggressions.Add(nonAggression.Country2, new Dictionary<Country, Treaty>());
+                NonAggressionTable.Add(treaty.Country2, new Dictionary<Country, Treaty>());
             }
-            _nonAggressions[nonAggression.Country2][nonAggression.Country1] = nonAggression;
+            NonAggressionTable[treaty.Country2][treaty.Country1] = treaty;
         }
 
         /// <summary>
         ///     不可侵条約を削除する
         /// </summary>
-        /// <param name="nonAggression">不可侵条約</param>
-        public static void RemoveNonAggression(Treaty nonAggression)
+        /// <param name="treaty">不可侵条約</param>
+        public static void RemoveNonAggression(Treaty treaty)
         {
-            if (_nonAggressions.ContainsKey(nonAggression.Country1) &&
-                _nonAggressions[nonAggression.Country1].ContainsKey(nonAggression.Country2))
+            if (NonAggressionTable.ContainsKey(treaty.Country1) &&
+                NonAggressionTable[treaty.Country1].ContainsKey(treaty.Country2))
             {
-                _nonAggressions[nonAggression.Country1].Remove(nonAggression.Country2);
+                NonAggressionTable[treaty.Country1].Remove(treaty.Country2);
             }
-            if (_nonAggressions.ContainsKey(nonAggression.Country2) &&
-                _nonAggressions[nonAggression.Country2].ContainsKey(nonAggression.Country1))
+
+            if (NonAggressionTable.ContainsKey(treaty.Country2) &&
+                NonAggressionTable[treaty.Country2].ContainsKey(treaty.Country1))
             {
-                _nonAggressions[nonAggression.Country2].Remove(nonAggression.Country1);
+                NonAggressionTable[treaty.Country2].Remove(treaty.Country1);
             }
         }
 
@@ -557,15 +607,9 @@ namespace HoI2Editor.Models
         /// <returns>講和条約</returns>
         public static Treaty GetPeace(Country country1, Country country2)
         {
-            if (!_peaces.ContainsKey(country1))
-            {
-                return null;
-            }
-            if (!_peaces[country1].ContainsKey(country2))
-            {
-                return null;
-            }
-            return _peaces[country1][country2];
+            return (PeaceTable.ContainsKey(country1) && PeaceTable[country1].ContainsKey(country2))
+                ? PeaceTable[country1][country2]
+                : null;
         }
 
         /// <summary>
@@ -574,16 +618,17 @@ namespace HoI2Editor.Models
         /// <param name="peace">講和条約</param>
         public static void SetPeace(Treaty peace)
         {
-            if (!_peaces.ContainsKey(peace.Country1))
+            if (!PeaceTable.ContainsKey(peace.Country1))
             {
-                _peaces.Add(peace.Country1, new Dictionary<Country, Treaty>());
+                PeaceTable.Add(peace.Country1, new Dictionary<Country, Treaty>());
             }
-            _peaces[peace.Country1][peace.Country2] = peace;
-            if (!_peaces.ContainsKey(peace.Country2))
+            PeaceTable[peace.Country1][peace.Country2] = peace;
+
+            if (!PeaceTable.ContainsKey(peace.Country2))
             {
-                _peaces.Add(peace.Country2, new Dictionary<Country, Treaty>());
+                PeaceTable.Add(peace.Country2, new Dictionary<Country, Treaty>());
             }
-            _peaces[peace.Country2][peace.Country1] = peace;
+            PeaceTable[peace.Country2][peace.Country1] = peace;
         }
 
         /// <summary>
@@ -592,15 +637,16 @@ namespace HoI2Editor.Models
         /// <param name="peace">講和条約</param>
         public static void RemovePeace(Treaty peace)
         {
-            if (_peaces.ContainsKey(peace.Country1) &&
-                _peaces[peace.Country1].ContainsKey(peace.Country2))
+            if (PeaceTable.ContainsKey(peace.Country1) &&
+                PeaceTable[peace.Country1].ContainsKey(peace.Country2))
             {
-                _peaces[peace.Country1].Remove(peace.Country2);
+                PeaceTable[peace.Country1].Remove(peace.Country2);
             }
-            if (_peaces.ContainsKey(peace.Country2) &&
-                _peaces[peace.Country2].ContainsKey(peace.Country1))
+
+            if (PeaceTable.ContainsKey(peace.Country2) &&
+                PeaceTable[peace.Country2].ContainsKey(peace.Country1))
             {
-                _peaces[peace.Country2].Remove(peace.Country1);
+                PeaceTable[peace.Country2].Remove(peace.Country1);
             }
         }
 
@@ -612,15 +658,9 @@ namespace HoI2Editor.Models
         /// <returns>諜報設定</returns>
         public static SpySettings GetCountryIntelligence(Country country1, Country country2)
         {
-            if (!_spies.ContainsKey(country1))
-            {
-                return null;
-            }
-            if (!_spies[country1].ContainsKey(country2))
-            {
-                return null;
-            }
-            return _spies[country1][country2];
+            return (SpyTable.ContainsKey(country1) && SpyTable[country1].ContainsKey(country2))
+                ? SpyTable[country1][country2]
+                : null;
         }
 
         /// <summary>
@@ -630,11 +670,46 @@ namespace HoI2Editor.Models
         /// <param name="spy">諜報設定</param>
         public static void SetCountryIntelligence(Country country, SpySettings spy)
         {
-            if (!_spies.ContainsKey(country))
+            if (!SpyTable.ContainsKey(country))
             {
-                _spies.Add(country, new Dictionary<Country, SpySettings>());
+                SpyTable.Add(country, new Dictionary<Country, SpySettings>());
             }
-            _spies[country][spy.Country] = spy;
+            SpyTable[country][spy.Country] = spy;
+        }
+
+        /// <summary>
+        ///     国タグと国名の文字列を取得する
+        /// </summary>
+        /// <param name="country">国家</param>
+        /// <returns>国タグと国名の文字列</returns>
+        public static string GetCountryTagName(Country country)
+        {
+            return String.Format("{0} {1}", Countries.Strings[(int) country], GetCountryName(country));
+        }
+
+        /// <summary>
+        ///     国名文字列を取得する
+        /// </summary>
+        /// <param name="country">国家</param>
+        /// <returns>国名文字列</returns>
+        public static string GetCountryName(Country country)
+        {
+            // 主要国設定の国名
+            MajorCountrySettings major = GetMajorCountrySettings(country);
+            if (major != null && !String.IsNullOrEmpty(major.Name))
+            {
+                return Config.GetText(major.Name);
+            }
+
+            // 国家設定の国名
+            CountrySettings settings = GetCountrySettings(country);
+            if (settings != null && !String.IsNullOrEmpty(settings.Name))
+            {
+                return Config.GetText(settings.Name);
+            }
+
+            // 標準の国名
+            return Countries.GetName(country);
         }
 
         #endregion

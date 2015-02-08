@@ -103,6 +103,44 @@ namespace HoI2Editor.Controller
         /// </summary>
         private static readonly object[] ItemDirtyFlags =
         {
+            Scenario.ItemId.Name,
+            Scenario.ItemId.PanelName,
+            Scenario.ItemId.StartYear,
+            Scenario.ItemId.StartMonth,
+            Scenario.ItemId.StartDay,
+            Scenario.ItemId.EndYear,
+            Scenario.ItemId.EndMonth,
+            Scenario.ItemId.EndDay,
+            Scenario.ItemId.IncludeFolder,
+            Scenario.ItemId.BattleScenario,
+            Scenario.ItemId.FreeSelection,
+            Scenario.ItemId.AllowDiplomacy,
+            Scenario.ItemId.AllowProduction,
+            Scenario.ItemId.AllowTechnology,
+            Scenario.ItemId.AiAggressive,
+            Scenario.ItemId.Difficulty,
+            Scenario.ItemId.GameSpeed,
+            MajorCountrySettings.ItemId.NameKey,
+            MajorCountrySettings.ItemId.NameString,
+            MajorCountrySettings.ItemId.FlagExt,
+            MajorCountrySettings.ItemId.DescKey,
+            MajorCountrySettings.ItemId.DescString,
+            MajorCountrySettings.ItemId.PictureName,
+            Alliance.ItemId.Name,
+            Alliance.ItemId.Type,
+            Alliance.ItemId.Id,
+            War.ItemId.StartYear,
+            War.ItemId.StartMonth,
+            War.ItemId.StartDay,
+            War.ItemId.EndYear,
+            War.ItemId.EndMonth,
+            War.ItemId.EndDay,
+            War.ItemId.Type,
+            War.ItemId.Id,
+            War.ItemId.AttackerType,
+            War.ItemId.AttackerId,
+            War.ItemId.DefenderType,
+            War.ItemId.DefenderId,
             Relation.ItemId.Value,
             CountrySettings.ItemId.Master,
             CountrySettings.ItemId.Control,
@@ -153,7 +191,8 @@ namespace HoI2Editor.Controller
             Treaty.ItemId.Supplies,
             Treaty.ItemId.Money,
             Treaty.ItemId.Money,
-            CountrySettings.ItemId.Name,
+            CountrySettings.ItemId.NameKey,
+            CountrySettings.ItemId.NameString,
             CountrySettings.ItemId.FlagExt,
             CountrySettings.ItemId.RegularId,
             CountrySettings.ItemId.Belligerence,
@@ -298,6 +337,44 @@ namespace HoI2Editor.Controller
         /// </summary>
         private static readonly string[] ItemStrings =
         {
+            "scenario name",
+            "panel name",
+            "scenario start year",
+            "scenario start month",
+            "scenario start day",
+            "scenario end year",
+            "scenario end month",
+            "scenario end day",
+            "include folder",
+            "battle scenario",
+            "free selection",
+            "allow diplomacy",
+            "allow production",
+            "allow technology",
+            "ai aggressive",
+            "difficulty",
+            "game speed",
+            "major country name key",
+            "major country name string",
+            "major flag ext",
+            "country desc key",
+            "country desc string",
+            "propaganda image",
+            "alliance name",
+            "alliance type",
+            "alliance id",
+            "war start year",
+            "war start month",
+            "war start day",
+            "war end year",
+            "war end month",
+            "war end day",
+            "war type",
+            "war id",
+            "war attacker type",
+            "war attacker id",
+            "war defender type",
+            "war defender id",
             "relation value",
             "country master",
             "country control",
@@ -348,7 +425,8 @@ namespace HoI2Editor.Controller
             "trade supplies",
             "trade money",
             "trade money",
-            "country name",
+            "country name key",
+            "country name string",
             "country flag ext",
             "country regular id",
             "country belligerence",
@@ -586,6 +664,81 @@ namespace HoI2Editor.Controller
         ///     編集項目の値を更新する
         /// </summary>
         /// <param name="control">コントロール</param>
+        public void UpdateItemValue(TextBox control)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.Text = ObjectHelper.ToString(GetItemValue(itemId));
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        public void UpdateItemValue(ComboBox control)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.SelectedIndex = (int) GetItemValue(itemId);
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        public void UpdateItemValue(CheckBox control)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.Checked = (bool) GetItemValue(itemId);
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="major">主要国設定</param>
+        public void UpdateItemValue(TextBox control, MajorCountrySettings major)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.Text = ObjectHelper.ToString(GetItemValue(itemId, major));
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.MajorCountryNameString:
+                    // 主要国設定の国名定義がなければ編集不可
+                    control.ReadOnly = String.IsNullOrEmpty(major.Name);
+                    break;
+
+                case ScenarioEditorItemId.MajorCountryDescString:
+                    // 主要国設定の説明文定義がなければ編集不可
+                    control.ReadOnly = String.IsNullOrEmpty(major.Desc);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="alliance">同盟</param>
+        public void UpdateItemValue(TextBox control, Alliance alliance)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.Text = ObjectHelper.ToString(GetItemValue(itemId, alliance));
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="war">戦争</param>
+        public void UpdateItemValue(TextBox control, War war)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.Text = ObjectHelper.ToString(GetItemValue(itemId, war));
+        }
+
+        /// <summary>
+        ///     編集項目の値を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
         /// <param name="relation">国家関係</param>
         public void UpdateItemValue(TextBox control, Relation relation)
         {
@@ -758,6 +911,13 @@ namespace HoI2Editor.Controller
         {
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             control.Text = (string) GetItemValue(itemId, country, settings);
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.CountryNameString:
+                    // 国家設定の国名定義がなければ編集不可
+                    control.ReadOnly = (settings == null) || String.IsNullOrEmpty(settings.Name);
+                    break;
+            }
         }
 
         /// <summary>
@@ -855,6 +1015,49 @@ namespace HoI2Editor.Controller
         ///     編集項目の色を更新する
         /// </summary>
         /// <param name="control">コントロール</param>
+        public void UpdateItemColor(Control control)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.ForeColor = IsItemDirty(itemId) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="major">主要国設定</param>
+        public void UpdateItemColor(Control control, MajorCountrySettings major)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.ForeColor = IsItemDirty(itemId, major) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="alliance">同盟</param>
+        public void UpdateItemColor(Control control, Alliance alliance)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.ForeColor = IsItemDirty(itemId, alliance) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
+        /// <param name="war">戦争</param>
+        public void UpdateItemColor(Control control, War war)
+        {
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            control.ForeColor = IsItemDirty(itemId, war) ? Color.Red : SystemColors.WindowText;
+        }
+
+        /// <summary>
+        ///     編集項目の色を更新する
+        /// </summary>
+        /// <param name="control">コントロール</param>
         /// <param name="relation">国家関係</param>
         public void UpdateItemColor(Control control, Relation relation)
         {
@@ -904,7 +1107,7 @@ namespace HoI2Editor.Controller
         public void UpdateItemColor(Control control, Country country, CountrySettings settings)
         {
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.ForeColor = IsItemDirty(itemId, country, settings) ? Color.Red : SystemColors.WindowText;
+            control.ForeColor = IsItemDirty(itemId, settings) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -945,6 +1148,301 @@ namespace HoI2Editor.Controller
         #endregion
 
         #region 編集項目 - 項目値取得
+
+        /// <summary>
+        ///     編集項目の値を取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <returns>編集項目の値</returns>
+        public object GetItemValue(ScenarioEditorItemId itemId)
+        {
+            Scenario scenario = Scenarios.Data;
+
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.ScenarioName:
+                    return Config.GetText(scenario.Name);
+
+                case ScenarioEditorItemId.ScenarioPanelName:
+                    return scenario.PanelName;
+
+                case ScenarioEditorItemId.ScenarioStartYear:
+                    if (scenario.GlobalData.StartDate == null)
+                    {
+                        return null;
+                    }
+                    return scenario.GlobalData.StartDate.Year;
+
+                case ScenarioEditorItemId.ScenarioStartMonth:
+                    if (scenario.GlobalData.StartDate == null)
+                    {
+                        return null;
+                    }
+                    return scenario.GlobalData.StartDate.Month;
+
+                case ScenarioEditorItemId.ScenarioStartDay:
+                    if (scenario.GlobalData.StartDate == null)
+                    {
+                        return null;
+                    }
+                    return scenario.GlobalData.StartDate.Day;
+
+                case ScenarioEditorItemId.ScenarioEndYear:
+                    if (scenario.GlobalData.EndDate == null)
+                    {
+                        return null;
+                    }
+                    return scenario.GlobalData.EndDate.Year;
+
+                case ScenarioEditorItemId.ScenarioEndMonth:
+                    if (scenario.GlobalData.EndDate == null)
+                    {
+                        return null;
+                    }
+                    return scenario.GlobalData.EndDate.Month;
+
+                case ScenarioEditorItemId.ScenarioEndDay:
+                    if (scenario.GlobalData.EndDate == null)
+                    {
+                        return null;
+                    }
+                    return scenario.GlobalData.EndDate.Day;
+
+                case ScenarioEditorItemId.ScenarioIncludeFolder:
+                    return scenario.IncludeFolder;
+
+                case ScenarioEditorItemId.ScenarioBattleScenario:
+                    return scenario.Header.IsBattleScenario;
+
+                case ScenarioEditorItemId.ScenarioFreeSelection:
+                    return scenario.Header.IsFreeSelection;
+
+                case ScenarioEditorItemId.ScenarioAllowDiplomacy:
+                    return (scenario.GlobalData.Rules == null) || scenario.GlobalData.Rules.AllowDiplomacy;
+
+                case ScenarioEditorItemId.ScenarioAllowProduction:
+                    return (scenario.GlobalData.Rules == null) || scenario.GlobalData.Rules.AllowProduction;
+
+                case ScenarioEditorItemId.ScenarioAllowTechnology:
+                    return (scenario.GlobalData.Rules == null) || scenario.GlobalData.Rules.AllowTechnology;
+
+                case ScenarioEditorItemId.ScenarioAiAggressive:
+                    return scenario.Header.AiAggressive;
+
+                case ScenarioEditorItemId.ScenarioDifficulty:
+                    return scenario.Header.Difficulty;
+
+                case ScenarioEditorItemId.ScenarioGameSpeed:
+                    return scenario.Header.GameSpeed;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///     編集項目の値を取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="major">主要国設定</param>
+        /// <returns>編集項目の値</returns>
+        public object GetItemValue(ScenarioEditorItemId itemId, MajorCountrySettings major)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.MajorCountryNameKey:
+                    return major.Name;
+
+                case ScenarioEditorItemId.MajorCountryNameString:
+                    if (!String.IsNullOrEmpty(major.Name))
+                    {
+                        return Config.GetText(major.Name);
+                    }
+                    CountrySettings settings = Scenarios.GetCountrySettings(major.Country);
+                    if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
+                    {
+                        return Config.GetText(settings.Name);
+                    }
+                    return Countries.GetName(major.Country);
+
+                case ScenarioEditorItemId.MajorFlagExt:
+                    return major.FlagExt;
+
+                case ScenarioEditorItemId.MajorCountryDescKey:
+                    return major.Desc;
+
+                case ScenarioEditorItemId.MajorCountryDescString:
+                    if (!String.IsNullOrEmpty(major.Desc))
+                    {
+                        return Config.GetText(major.Desc);
+                    }
+                    int year = (Scenarios.Data.GlobalData.StartDate != null)
+                        ? Scenarios.Data.GlobalData.StartDate.Year
+                        : (Scenarios.Data.Header.StartDate != null)
+                            ? Scenarios.Data.Header.StartDate.Year
+                            : Scenarios.Data.Header.StartYear;
+                    // 年数の下2桁のみ使用する
+                    year = year % 100;
+                    // 年数別の説明があれば使用する
+                    string key = String.Format("{0}_{1}_DESC", major.Country, year);
+                    if (Config.ExistsKey(key))
+                    {
+                        return Config.GetText(key);
+                    }
+                    key = String.Format("{0}_DESC", major.Country);
+                    return Config.GetText(key);
+
+                case ScenarioEditorItemId.MajorPropaganada:
+                    return major.PictureName;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///     編集項目の値を取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="alliance">同盟</param>
+        /// <returns>編集項目の値</returns>
+        public object GetItemValue(ScenarioEditorItemId itemId, Alliance alliance)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.AllianceName:
+                    if (!String.IsNullOrEmpty(alliance.Name))
+                    {
+                        return Config.GetText("ALLIANCE_" + alliance.Name);
+                    }
+                    ScenarioGlobalData data = Scenarios.Data.GlobalData;
+                    if (alliance == data.Axis)
+                    {
+                        return Config.GetText(TextId.AllianceAxis);
+                    }
+                    if (alliance == data.Allies)
+                    {
+                        return Config.GetText(TextId.AllianceAllies);
+                    }
+                    if (alliance == data.Comintern)
+                    {
+                        return Config.GetText(TextId.AllianceComintern);
+                    }
+                    return "";
+
+                case ScenarioEditorItemId.AllianceType:
+                    if (alliance.Id == null)
+                    {
+                        return null;
+                    }
+                    return alliance.Id.Type;
+
+                case ScenarioEditorItemId.AllianceId:
+                    if (alliance.Id == null)
+                    {
+                        return null;
+                    }
+                    return alliance.Id.Id;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///     編集項目の値を取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="war">戦争</param>
+        /// <returns>編集項目の値</returns>
+        public object GetItemValue(ScenarioEditorItemId itemId, War war)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.WarStartYear:
+                    if (war.StartDate == null)
+                    {
+                        return null;
+                    }
+                    return war.StartDate.Year;
+
+                case ScenarioEditorItemId.WarStartMonth:
+                    if (war.StartDate == null)
+                    {
+                        return null;
+                    }
+                    return war.StartDate.Month;
+
+                case ScenarioEditorItemId.WarStartDay:
+                    if (war.StartDate == null)
+                    {
+                        return null;
+                    }
+                    return war.StartDate.Day;
+
+                case ScenarioEditorItemId.WarEndYear:
+                    if (war.EndDate == null)
+                    {
+                        return null;
+                    }
+                    return war.EndDate.Year;
+
+                case ScenarioEditorItemId.WarEndMonth:
+                    if (war.EndDate == null)
+                    {
+                        return null;
+                    }
+                    return war.EndDate.Month;
+
+                case ScenarioEditorItemId.WarEndDay:
+                    if (war.EndDate == null)
+                    {
+                        return null;
+                    }
+                    return war.EndDate.Day;
+
+                case ScenarioEditorItemId.WarType:
+                    if (war.Id == null)
+                    {
+                        return null;
+                    }
+                    return war.Id.Type;
+
+                case ScenarioEditorItemId.WarId:
+                    if (war.Id == null)
+                    {
+                        return null;
+                    }
+                    return war.Id.Id;
+
+                case ScenarioEditorItemId.WarAttackerType:
+                    if ((war.Attackers == null) || (war.Attackers.Id == null))
+                    {
+                        return null;
+                    }
+                    return war.Attackers.Id.Type;
+
+                case ScenarioEditorItemId.WarAttackerId:
+                    if (war.Id == null)
+                    {
+                        return null;
+                    }
+                    return war.Attackers.Id.Id;
+
+                case ScenarioEditorItemId.WarDefenderType:
+                    if ((war.Defenders == null) || (war.Defenders.Id == null))
+                    {
+                        return null;
+                    }
+                    return war.Defenders.Id.Type;
+
+                case ScenarioEditorItemId.WarDefenderId:
+                    if (war.Id == null)
+                    {
+                        return null;
+                    }
+                    return war.Defenders.Id.Id;
+            }
+
+            return null;
+        }
 
         /// <summary>
         ///     編集項目の値を取得する
@@ -1161,6 +1659,9 @@ namespace HoI2Editor.Controller
 
                 case ScenarioEditorItemId.DiplomacyMilitaryControl:
                     return (settings != null) ? settings.Control : Country.None;
+
+                case ScenarioEditorItemId.CountryNameKey:
+                    return (settings != null) ? settings.Name : "";
 
                 case ScenarioEditorItemId.CountryFlagExt:
                     return (settings != null) ? settings.FlagExt : "";
@@ -1485,10 +1986,12 @@ namespace HoI2Editor.Controller
         {
             switch (itemId)
             {
-                case ScenarioEditorItemId.CountryName:
-                    return ((settings != null) && !string.IsNullOrEmpty(settings.Name))
-                        ? Config.GetText(settings.Name)
-                        : Countries.GetName(country);
+                case ScenarioEditorItemId.CountryNameString:
+                    if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
+                    {
+                        return Config.GetText(settings.Name);
+                    }
+                    return Scenarios.GetCountryName(country);
             }
 
             return null;
@@ -1990,6 +2493,262 @@ namespace HoI2Editor.Controller
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
+        public void SetItemValue(ScenarioEditorItemId itemId, object val)
+        {
+            Scenario scenario = Scenarios.Data;
+
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.ScenarioName:
+                    Config.SetText(scenario.Name, (string) val, Game.ScenarioTextFileName);
+                    break;
+
+                case ScenarioEditorItemId.ScenarioPanelName:
+                    scenario.PanelName = (string) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioStartYear:
+                    scenario.GlobalData.StartDate.Year = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioStartMonth:
+                    scenario.GlobalData.StartDate.Month = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioStartDay:
+                    scenario.GlobalData.StartDate.Day = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioEndYear:
+                    scenario.GlobalData.EndDate.Year = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioEndMonth:
+                    scenario.GlobalData.EndDate.Month = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioEndDay:
+                    scenario.GlobalData.EndDate.Day = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioIncludeFolder:
+                    scenario.IncludeFolder = (string) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioBattleScenario:
+                    scenario.Header.IsBattleScenario = (bool) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioFreeSelection:
+                    scenario.Header.IsFreeSelection = (bool) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioAllowDiplomacy:
+                    scenario.GlobalData.Rules.AllowDiplomacy = (bool) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioAllowProduction:
+                    scenario.GlobalData.Rules.AllowProduction = (bool) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioAllowTechnology:
+                    scenario.GlobalData.Rules.AllowTechnology = (bool) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioAiAggressive:
+                    scenario.Header.AiAggressive = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioDifficulty:
+                    scenario.Header.Difficulty = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.ScenarioGameSpeed:
+                    scenario.Header.GameSpeed = (int) val;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="major">主要国設定</param>
+        /// <param name="val">編集項目の値</param>
+        public void SetItemValue(ScenarioEditorItemId itemId, object val, MajorCountrySettings major)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.MajorCountryNameKey:
+                    major.Name = (string) val;
+                    break;
+
+                case ScenarioEditorItemId.MajorCountryNameString:
+                    // 主要国設定の国名
+                    if (!String.IsNullOrEmpty(major.Name))
+                    {
+                        Config.SetText(major.Name, (string) val, Game.WorldTextFileName);
+                        break;
+                    }
+                    // 国家設定の国名
+                    CountrySettings settings = Scenarios.GetCountrySettings(major.Country);
+                    if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
+                    {
+                        Config.SetText(settings.Name, (string) val, Game.WorldTextFileName);
+                        break;
+                    }
+                    // 標準の国名
+                    Config.SetText(Countries.Strings[(int) major.Country], (string) val, Game.WorldTextFileName);
+                    break;
+
+                case ScenarioEditorItemId.MajorFlagExt:
+                    major.FlagExt = (string) val;
+                    break;
+
+                case ScenarioEditorItemId.MajorCountryDescKey:
+                    major.Desc = (string) val;
+                    break;
+
+                case ScenarioEditorItemId.MajorCountryDescString:
+                    // 主要国設定の説明文
+                    if (!String.IsNullOrEmpty(major.Desc))
+                    {
+                        Config.SetText(major.Desc, (string) val, Game.ScenarioTextFileName);
+                        break;
+                    }
+                    int year = (Scenarios.Data.GlobalData.StartDate != null)
+                        ? Scenarios.Data.GlobalData.StartDate.Year
+                        : (Scenarios.Data.Header.StartDate != null)
+                            ? Scenarios.Data.Header.StartDate.Year
+                            : Scenarios.Data.Header.StartYear;
+                    // 年数の下2桁のみ使用する
+                    year = year % 100;
+                    // 年数別の説明文
+                    string key = String.Format("{0}_{1}_DESC", major.Country, year);
+                    if (Config.ExistsKey(key))
+                    {
+                        Config.SetText(key, (string) val, Game.ScenarioTextFileName);
+                        break;
+                    }
+                    // 標準の説明文
+                    key = String.Format("{0}_DESC", major.Country);
+                    Config.SetText(key, (string) val, Game.ScenarioTextFileName);
+                    break;
+
+                case ScenarioEditorItemId.MajorPropaganada:
+                    major.PictureName = (string) val;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="alliance">同盟</param>
+        public void SetItemValue(ScenarioEditorItemId itemId, object val, Alliance alliance)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.AllianceName:
+                    if (!String.IsNullOrEmpty(alliance.Name))
+                    {
+                        Config.SetText("ALLIANCE_" + alliance.Name, (string) val, Game.ScenarioTextFileName);
+                    }
+                    else
+                    {
+                        ScenarioGlobalData data = Scenarios.Data.GlobalData;
+                        if (alliance == data.Axis)
+                        {
+                            Config.SetText(TextId.AllianceAxis, (string) val, Game.ScenarioTextFileName);
+                        }
+                        else if (alliance == data.Allies)
+                        {
+                            Config.SetText(TextId.AllianceAllies, (string) val, Game.ScenarioTextFileName);
+                        }
+                        else if (alliance == data.Comintern)
+                        {
+                            Config.SetText(TextId.AllianceComintern, (string) val, Game.ScenarioTextFileName);
+                        }
+                    }
+                    break;
+
+                case ScenarioEditorItemId.AllianceType:
+                    alliance.Id.Type = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.AllianceId:
+                    alliance.Id.Id = (int) val;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">戦争</param>
+        public void SetItemValue(ScenarioEditorItemId itemId, object val, War war)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.WarStartYear:
+                    war.StartDate.Year = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarStartMonth:
+                    war.StartDate.Month = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarStartDay:
+                    war.StartDate.Day = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarEndYear:
+                    war.EndDate.Year = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarEndMonth:
+                    war.EndDate.Month = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarEndDay:
+                    war.EndDate.Day = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarType:
+                    war.Id.Type = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarId:
+                    war.Id.Id = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarAttackerType:
+                    war.Attackers.Id.Type = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarAttackerId:
+                    war.Attackers.Id.Id = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarDefenderType:
+                    war.Defenders.Id.Type = (int) val;
+                    break;
+
+                case ScenarioEditorItemId.WarDefenderId:
+                    war.Defenders.Id.Id = (int) val;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     編集項目の値を設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
         /// <param name="relation">国家関係</param>
         public void SetItemValue(ScenarioEditorItemId itemId, object val, Relation relation)
         {
@@ -2173,6 +2932,14 @@ namespace HoI2Editor.Controller
 
                 case ScenarioEditorItemId.DiplomacyMilitaryControl:
                     settings.Control = (Country) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryNameKey:
+                    settings.Name = (string) val;
+                    break;
+
+                case ScenarioEditorItemId.CountryNameString:
+                    Config.SetText(settings.Name, (string) val, Game.WorldTextFileName);
                     break;
 
                 case ScenarioEditorItemId.CountryFlagExt:
@@ -2439,25 +3206,6 @@ namespace HoI2Editor.Controller
 
                 case ScenarioEditorItemId.CabinetChiefOfAirType:
                     Scenarios.SetType(settings.ChiefOfAir, (int) val);
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の値を設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="country">選択国</param>
-        /// <param name="settings">国家設定</param>
-        public void SetItemValue(ScenarioEditorItemId itemId, object val, Country country, CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.CountryName:
-                    Config.SetText(((settings != null) && !string.IsNullOrEmpty(settings.Name))
-                        ? settings.Name
-                        : Countries.Strings[(int) country], (string) val, Game.WorldTextFileName);
                     break;
             }
         }
@@ -2846,6 +3594,8 @@ namespace HoI2Editor.Controller
                     }
                     break;
 
+                case ScenarioEditorItemId.ScenarioStartYear:
+                case ScenarioEditorItemId.ScenarioEndYear:
                 case ScenarioEditorItemId.DiplomacyGuaranteedEndYear:
                 case ScenarioEditorItemId.CountryNukeYear:
                     if (((int) val < GameDate.MinYear) || ((int) val > GameDate.MaxYear))
@@ -2854,6 +3604,8 @@ namespace HoI2Editor.Controller
                     }
                     break;
 
+                case ScenarioEditorItemId.ScenarioStartMonth:
+                case ScenarioEditorItemId.ScenarioEndMonth:
                 case ScenarioEditorItemId.DiplomacyGuaranteedEndMonth:
                 case ScenarioEditorItemId.CountryNukeMonth:
                     if (((int) val < GameDate.MinMonth) || ((int) val > GameDate.MaxMonth))
@@ -2862,6 +3614,8 @@ namespace HoI2Editor.Controller
                     }
                     break;
 
+                case ScenarioEditorItemId.ScenarioStartDay:
+                case ScenarioEditorItemId.ScenarioEndDay:
                 case ScenarioEditorItemId.DiplomacyGuaranteedEndDay:
                 case ScenarioEditorItemId.CountryNukeDay:
                     if (((int) val < GameDate.MinDay) || ((int) val > GameDate.MaxDay))
@@ -2893,6 +3647,119 @@ namespace HoI2Editor.Controller
                 case ScenarioEditorItemId.ProvinceNuclearPowerCurrent:
                 case ScenarioEditorItemId.ProvinceNuclearPowerMax:
                     if (DoubleHelper.IsNegative((double) val) || DoubleHelper.IsGreaterOrEqual((double) val, 10))
+                    {
+                        return false;
+                    }
+                    break;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///     編集項目の値が有効かどうかを判定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="alliance">同盟</param>
+        /// <returns>編集項目の値が有効でなければfalseを返す</returns>
+        public bool IsItemValueValid(ScenarioEditorItemId itemId, object val, Alliance alliance)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.AllianceType:
+                    if ((alliance.Id != null) && Scenarios.ExistsTypeId((int) val, alliance.Id.Id))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.AllianceId:
+                    if ((alliance.Id != null) && Scenarios.ExistsTypeId(alliance.Id.Type, (int) val))
+                    {
+                        return false;
+                    }
+                    break;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///     編集項目の値が有効かどうかを判定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">戦争</param>
+        /// <returns>編集項目の値が有効でなければfalseを返す</returns>
+        public bool IsItemValueValid(ScenarioEditorItemId itemId, object val, War war)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.WarStartYear:
+                case ScenarioEditorItemId.WarEndYear:
+                    if (((int) val < GameDate.MinYear) || ((int) val > GameDate.MaxYear))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarStartMonth:
+                case ScenarioEditorItemId.WarEndMonth:
+                    if (((int) val < GameDate.MinMonth) || ((int) val > GameDate.MaxMonth))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarStartDay:
+                case ScenarioEditorItemId.WarEndDay:
+                    if (((int) val < GameDate.MinDay) || ((int) val > GameDate.MaxDay))
+                    {
+                        return false;
+                    }
+                    break;
+                case ScenarioEditorItemId.WarType:
+                    if ((war.Id != null) && Scenarios.ExistsTypeId((int) val, war.Id.Id))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarId:
+                    if ((war.Id != null) && Scenarios.ExistsTypeId(war.Id.Type, (int) val))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarAttackerType:
+                    if ((war.Attackers != null) && (war.Attackers.Id != null) &&
+                        Scenarios.ExistsTypeId((int) val, war.Attackers.Id.Id))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarAttackerId:
+                    if ((war.Attackers != null) && (war.Attackers.Id != null) &&
+                        Scenarios.ExistsTypeId(war.Attackers.Id.Type, (int) val))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarDefenderType:
+                    if ((war.Defenders != null) && (war.Defenders.Id != null) &&
+                        Scenarios.ExistsTypeId((int) val, war.Defenders.Id.Id))
+                    {
+                        return false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarDefenderId:
+                    if ((war.Defenders != null) && (war.Defenders.Id != null) &&
+                        Scenarios.ExistsTypeId(war.Defenders.Id.Type, (int) val))
                     {
                         return false;
                     }
@@ -2996,7 +3863,7 @@ namespace HoI2Editor.Controller
                     }
                     break;
 
-                case ScenarioEditorItemId.SliderDay:
+                case ScenarioEditorItemId.ScenarioEndDay:
                     if (((int) val < GameDate.MinDay) || ((int) val > GameDate.MaxDay))
                     {
                         return false;
@@ -3188,6 +4055,49 @@ namespace HoI2Editor.Controller
         ///     編集項目の編集済みフラグを取得する
         /// </summary>
         /// <param name="itemId">項目ID</param>
+        /// <returns>編集済みフラグ</returns>
+        public bool IsItemDirty(ScenarioEditorItemId itemId)
+        {
+            return Scenarios.Data.IsDirty((Scenario.ItemId) ItemDirtyFlags[(int) itemId]);
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="major">主要国設定</param>
+        /// <returns>編集済みフラグ</returns>
+        public bool IsItemDirty(ScenarioEditorItemId itemId, MajorCountrySettings major)
+        {
+            return major.IsDirty((MajorCountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="alliance">同盟</param>
+        /// <returns>編集済みフラグ</returns>
+        public bool IsItemDirty(ScenarioEditorItemId itemId, Alliance alliance)
+        {
+            return alliance.IsDirty((Alliance.ItemId) ItemDirtyFlags[(int) itemId]);
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="war">戦争</param>
+        /// <returns>編集済みフラグ</returns>
+        public bool IsItemDirty(ScenarioEditorItemId itemId, War war)
+        {
+            return war.IsDirty((War.ItemId) ItemDirtyFlags[(int) itemId]);
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを取得する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
         /// <param name="relation">国家関係</param>
         /// <returns>編集済みフラグ</returns>
         public bool IsItemDirty(ScenarioEditorItemId itemId, Relation relation)
@@ -3234,25 +4144,6 @@ namespace HoI2Editor.Controller
         public bool IsItemDirty(ScenarioEditorItemId itemId, CountrySettings settings)
         {
             return (settings != null) && settings.IsDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="country">選択国</param>
-        /// <param name="settings">国家設定</param>
-        /// <returns>編集済みフラグ</returns>
-        public bool IsItemDirty(ScenarioEditorItemId itemId, Country country, CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.CountryName:
-                    return ((settings != null) && !String.IsNullOrEmpty(settings.Name)) &&
-                           settings.IsDirty(CountrySettings.ItemId.Name);
-            }
-
-            return false;
         }
 
         /// <summary>
@@ -3329,6 +4220,52 @@ namespace HoI2Editor.Controller
         ///     編集項目の編集済みフラグを設定する
         /// </summary>
         /// <param name="itemId">項目ID</param>
+        public void SetItemDirty(ScenarioEditorItemId itemId)
+        {
+            Scenarios.Data.SetDirty((Scenario.ItemId) ItemDirtyFlags[(int) itemId]);
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="major">主要国設定</param>
+        public void SetItemDirty(ScenarioEditorItemId itemId, MajorCountrySettings major)
+        {
+            major.SetDirty((MajorCountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
+            Scenarios.Data.SetDirty();
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="alliance">同盟</param>
+        public void SetItemDirty(ScenarioEditorItemId itemId, Alliance alliance)
+        {
+            alliance.SetDirty((Alliance.ItemId) ItemDirtyFlags[(int) itemId]);
+            Scenarios.Data.SetDirty();
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="war">戦争</param>
+        public void SetItemDirty(ScenarioEditorItemId itemId, War war)
+        {
+            war.SetDirty((War.ItemId) ItemDirtyFlags[(int) itemId]);
+            Scenarios.Data.SetDirty();
+            Scenarios.SetDirty();
+        }
+
+        /// <summary>
+        ///     編集項目の編集済みフラグを設定する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
         /// <param name="relation">国家関係</param>
         /// <param name="settings">国家設定</param>
         public void SetItemDirty(ScenarioEditorItemId itemId, Relation relation, CountrySettings settings)
@@ -3393,25 +4330,6 @@ namespace HoI2Editor.Controller
         {
             settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
             Scenarios.SetDirty();
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="country">選択国</param>
-        /// <param name="settings">国家設定</param>
-        public void SetItemDirty(ScenarioEditorItemId itemId, Country country, CountrySettings settings)
-        {
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.CountryName:
-                    if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
-                    {
-                        settings.SetDirty((CountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
-                    }
-                    break;
-            }
         }
 
         /// <summary>
@@ -3604,6 +4522,197 @@ namespace HoI2Editor.Controller
         #endregion
 
         #region 編集項目 - 変更前処理
+
+        /// <summary>
+        ///     項目値変更前の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        public void PreItemChanged(ScenarioEditorItemId itemId, object val)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.ScenarioStartYear:
+                    PreItemChangedScenarioStartDate(
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartMonth),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartDay));
+                    break;
+
+                case ScenarioEditorItemId.ScenarioStartMonth:
+                    PreItemChangedScenarioStartDate(
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartDay));
+                    break;
+
+                case ScenarioEditorItemId.ScenarioStartDay:
+                    PreItemChangedScenarioStartDate(
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartMonth));
+                    break;
+
+                case ScenarioEditorItemId.ScenarioEndYear:
+                    PreItemChangedScenarioEndDate(
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndMonth),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndDay));
+                    break;
+
+                case ScenarioEditorItemId.ScenarioEndMonth:
+                    PreItemChangedScenarioEndDate(
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndDay));
+                    break;
+
+                case ScenarioEditorItemId.ScenarioEndDay:
+                    PreItemChangedScenarioEndDate(
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndMonth));
+                    break;
+
+                case ScenarioEditorItemId.ScenarioAllowDiplomacy:
+                case ScenarioEditorItemId.ScenarioAllowProduction:
+                case ScenarioEditorItemId.ScenarioAllowTechnology:
+                    if (Scenarios.Data.GlobalData.Rules == null)
+                    {
+                        Scenarios.Data.GlobalData.Rules = new ScenarioRules();
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更前の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="major">主要国設定</param>
+        public void PreItemChanged(ScenarioEditorItemId itemId, object val, MajorCountrySettings major)
+        {
+            // 何もしない
+        }
+
+        /// <summary>
+        ///     項目値変更前の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="alliance">同盟</param>
+        public void PreItemChanged(ScenarioEditorItemId itemId, object val, Alliance alliance)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.AllianceType:
+                    if (alliance.Id == null)
+                    {
+                        alliance.Id = new TypeId();
+                        PreItemChangedAllianceType(
+                            (TextBox) _form.GetItemControl(ScenarioEditorItemId.AllianceId), val, alliance);
+                    }
+                    break;
+
+                case ScenarioEditorItemId.AllianceId:
+                    if (alliance.Id == null)
+                    {
+                        alliance.Id = new TypeId();
+                        PreItemChangedAllianceId(
+                            (TextBox) _form.GetItemControl(ScenarioEditorItemId.AllianceType), val, alliance);
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更前の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">同盟</param>
+        public void PreItemChanged(ScenarioEditorItemId itemId, object val, War war)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.WarStartYear:
+                    PreItemChangedWarStartDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.WarStartMonth),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.WarStartDay), war);
+                    break;
+
+                case ScenarioEditorItemId.WarStartMonth:
+                    PreItemChangedWarStartDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.WarStartYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.WarStartDay), war);
+                    break;
+
+                case ScenarioEditorItemId.WarStartDay:
+                    PreItemChangedWarStartDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.WarStartYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.WarStartMonth), war);
+                    break;
+
+                case ScenarioEditorItemId.WarEndYear:
+                    PreItemChangedWarEndDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.WarEndMonth),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.WarEndDay), war);
+                    break;
+
+                case ScenarioEditorItemId.WarEndMonth:
+                    PreItemChangedWarEndDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.WarEndYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.WarEndDay), war);
+                    break;
+
+                case ScenarioEditorItemId.WarEndDay:
+                    PreItemChangedWarEndDate((TextBox) _form.GetItemControl(ScenarioEditorItemId.WarEndYear),
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.WarEndMonth), war);
+                    break;
+
+                case ScenarioEditorItemId.WarType:
+                    if (war.Id == null)
+                    {
+                        war.Id = new TypeId();
+                        PreItemChangedWarType((TextBox) _form.GetItemControl(ScenarioEditorItemId.WarId), val, war);
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarId:
+                    if (war.Id == null)
+                    {
+                        war.Id = new TypeId();
+                        PreItemChangedWarId((TextBox) _form.GetItemControl(ScenarioEditorItemId.WarType), val, war);
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarAttackerType:
+                    if (war.Attackers.Id == null)
+                    {
+                        war.Attackers.Id = new TypeId();
+                        PreItemChangedWarAttackerType(
+                            (TextBox) _form.GetItemControl(ScenarioEditorItemId.WarAttackerId), val, war);
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarAttackerId:
+                    if (war.Attackers.Id == null)
+                    {
+                        war.Attackers.Id = new TypeId();
+                        PreItemChangedWarAttackerId(
+                            (TextBox) _form.GetItemControl(ScenarioEditorItemId.WarAttackerType), val, war);
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarDefenderType:
+                    if (war.Defenders.Id == null)
+                    {
+                        war.Defenders.Id = new TypeId();
+                        PreItemChangedWarDefenderType(
+                            (TextBox) _form.GetItemControl(ScenarioEditorItemId.WarDefenderId), val, war);
+                    }
+                    break;
+
+                case ScenarioEditorItemId.WarDefenderId:
+                    if (war.Defenders.Id == null)
+                    {
+                        war.Defenders.Id = new TypeId();
+                        PreItemChangedWarDefenderId(
+                            (TextBox) _form.GetItemControl(ScenarioEditorItemId.WarDefenderType), val, war);
+                    }
+                    break;
+            }
+        }
 
         /// <summary>
         ///     項目値変更前の処理
@@ -4245,6 +5354,288 @@ namespace HoI2Editor.Controller
         }
 
         /// <summary>
+        ///     項目変更前の処理 - シナリオ開始日時
+        /// </summary>
+        /// <param name="control1">連動するコントロール1</param>
+        /// <param name="control2">連動するコントロール2</param>
+        private void PreItemChangedScenarioStartDate(TextBox control1, TextBox control2)
+        {
+            if (Scenarios.Data.GlobalData.StartDate == null)
+            {
+                Scenarios.Data.GlobalData.StartDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                ScenarioEditorItemId itemId1 = (ScenarioEditorItemId) control1.Tag;
+                SetItemDirty(itemId1);
+                ScenarioEditorItemId itemId2 = (ScenarioEditorItemId) control2.Tag;
+                SetItemDirty(itemId2);
+
+                // 編集項目の値を更新する
+                UpdateItemValue(control1);
+                UpdateItemValue(control2);
+
+                // 編集項目の色を更新する
+                UpdateItemColor(control1);
+                UpdateItemColor(control2);
+            }
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - シナリオ終了日時
+        /// </summary>
+        /// <param name="control1">連動するコントロール1</param>
+        /// <param name="control2">連動するコントロール2</param>
+        private void PreItemChangedScenarioEndDate(TextBox control1, TextBox control2)
+        {
+            if (Scenarios.Data.GlobalData.EndDate == null)
+            {
+                Scenarios.Data.GlobalData.EndDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                ScenarioEditorItemId itemId1 = (ScenarioEditorItemId) control1.Tag;
+                SetItemDirty(itemId1);
+                ScenarioEditorItemId itemId2 = (ScenarioEditorItemId) control2.Tag;
+                SetItemDirty(itemId2);
+
+                // 編集項目の値を更新する
+                UpdateItemValue(control1);
+                UpdateItemValue(control2);
+
+                // 編集項目の色を更新する
+                UpdateItemColor(control1);
+                UpdateItemColor(control2);
+            }
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 同盟type
+        /// </summary>
+        /// <param name="control">idのコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="alliance">同盟</param>
+        private void PreItemChangedAllianceType(TextBox control, object val, Alliance alliance)
+        {
+            // 新規idを設定する
+            alliance.Id.Id = Scenarios.GetNewId((int) val, 1);
+
+            // 編集済みフラグを設定する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            SetItemDirty(itemId, alliance);
+
+            // 編集項目の値を更新する
+            UpdateItemValue(control, alliance);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(control, alliance);
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 同盟id
+        /// </summary>
+        /// <param name="control">typeのコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="alliance">同盟</param>
+        private void PreItemChangedAllianceId(TextBox control, object val, Alliance alliance)
+        {
+            alliance.Id.Type = Scenarios.GetNewType(Scenarios.DefaultAllianceType, (int) val);
+
+            // 編集済みフラグを設定する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            SetItemDirty(itemId, alliance);
+
+            // 編集項目の値を更新する
+            UpdateItemValue(control, alliance);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(control, alliance);
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 戦争開始日時
+        /// </summary>
+        /// <param name="control1">連動するコントロール1</param>
+        /// <param name="control2">連動するコントロール2</param>
+        /// <param name="war">戦争</param>
+        private void PreItemChangedWarStartDate(TextBox control1, TextBox control2, War war)
+        {
+            if (war.StartDate == null)
+            {
+                war.StartDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                ScenarioEditorItemId itemId1 = (ScenarioEditorItemId) control1.Tag;
+                SetItemDirty(itemId1, war);
+                ScenarioEditorItemId itemId2 = (ScenarioEditorItemId) control2.Tag;
+                SetItemDirty(itemId2, war);
+
+                // 編集項目の値を更新する
+                UpdateItemValue(control1, war);
+                UpdateItemValue(control2, war);
+
+                // 編集項目の色を更新する
+                UpdateItemColor(control1, war);
+                UpdateItemColor(control2, war);
+            }
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 戦争終了日時
+        /// </summary>
+        /// <param name="control1">連動するコントロール1</param>
+        /// <param name="control2">連動するコントロール2</param>
+        /// <param name="war">戦争</param>
+        private void PreItemChangedWarEndDate(TextBox control1, TextBox control2, War war)
+        {
+            if (war.EndDate == null)
+            {
+                war.EndDate = new GameDate();
+
+                // 編集済みフラグを設定する
+                ScenarioEditorItemId itemId1 = (ScenarioEditorItemId) control1.Tag;
+                SetItemDirty(itemId1, war);
+                ScenarioEditorItemId itemId2 = (ScenarioEditorItemId) control2.Tag;
+                SetItemDirty(itemId2, war);
+
+                // 編集項目の値を更新する
+                UpdateItemValue(control1, war);
+                UpdateItemValue(control2, war);
+
+                // 編集項目の色を更新する
+                UpdateItemColor(control1, war);
+                UpdateItemColor(control2, war);
+            }
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 戦争type
+        /// </summary>
+        /// <param name="control">idのコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">戦争</param>
+        private void PreItemChangedWarType(TextBox control, object val, War war)
+        {
+            // 新規idを設定する
+            war.Id.Id = Scenarios.GetNewId((int) val, 1);
+
+            // 編集済みフラグを設定する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            SetItemDirty(itemId, war);
+
+            // 編集項目の値を更新する
+            UpdateItemValue(control, war);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(control, war);
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 戦争id
+        /// </summary>
+        /// <param name="control">typeのコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">戦争</param>
+        private void PreItemChangedWarId(TextBox control, object val, War war)
+        {
+            war.Id.Type = Scenarios.GetNewType(Scenarios.DefaultWarType, (int) val);
+
+            // 編集済みフラグを設定する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            SetItemDirty(itemId, war);
+
+            // 編集項目の値を更新する
+            UpdateItemValue(control, war);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(control, war);
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 戦争攻撃側type
+        /// </summary>
+        /// <param name="control">idのコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">戦争</param>
+        private void PreItemChangedWarAttackerType(TextBox control, object val, War war)
+        {
+            // 新規idを設定する
+            war.Attackers.Id.Id = Scenarios.GetNewId((int) val, 1);
+
+            // 編集済みフラグを設定する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            SetItemDirty(itemId, war);
+
+            // 編集項目の値を更新する
+            UpdateItemValue(control, war);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(control, war);
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 戦争攻撃側id
+        /// </summary>
+        /// <param name="control">typeのコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">戦争</param>
+        private void PreItemChangedWarAttackerId(TextBox control, object val, War war)
+        {
+            war.Attackers.Id.Type = Scenarios.GetNewType(Scenarios.DefaultWarType, (int) val);
+
+            // 編集済みフラグを設定する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            SetItemDirty(itemId, war);
+
+            // 編集項目の値を更新する
+            UpdateItemValue(control, war);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(control, war);
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 戦争防御側type
+        /// </summary>
+        /// <param name="control">idのコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">戦争</param>
+        private void PreItemChangedWarDefenderType(TextBox control, object val, War war)
+        {
+            // 新規idを設定する
+            war.Defenders.Id.Id = Scenarios.GetNewId((int) val, 1);
+
+            // 編集済みフラグを設定する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            SetItemDirty(itemId, war);
+
+            // 編集項目の値を更新する
+            UpdateItemValue(control, war);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(control, war);
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 戦争防御側id
+        /// </summary>
+        /// <param name="control">typeのコントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">戦争</param>
+        private void PreItemChangedWarDefenderId(TextBox control, object val, War war)
+        {
+            war.Defenders.Id.Type = Scenarios.GetNewType(Scenarios.DefaultWarType, (int) val);
+
+            // 編集済みフラグを設定する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            SetItemDirty(itemId, war);
+
+            // 編集項目の値を更新する
+            UpdateItemValue(control, war);
+
+            // 編集項目の色を更新する
+            UpdateItemColor(control, war);
+        }
+
+        /// <summary>
         ///     項目変更前の処理 - 宗主国/統帥権取得国
         /// </summary>
         /// <param name="val">編集項目の値</param>
@@ -4476,6 +5867,77 @@ namespace HoI2Editor.Controller
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
+        public void PostItemChanged(ScenarioEditorItemId itemId, object val)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.ScenarioPanelName:
+                    _form.UpdatePanelImage((string) val);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="major">主要国設定</param>
+        public void PostItemChanged(ScenarioEditorItemId itemId, object val, MajorCountrySettings major)
+        {
+            TextBox control;
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.MajorCountryNameKey:
+                    control = (TextBox) _form.GetItemControl(ScenarioEditorItemId.MajorCountryNameString);
+                    UpdateItemValue(control, major);
+                    UpdateItemColor(control, major);
+                    break;
+
+                case ScenarioEditorItemId.MajorCountryDescKey:
+                    control = (TextBox) _form.GetItemControl(ScenarioEditorItemId.MajorCountryDescString);
+                    UpdateItemValue(control, major);
+                    UpdateItemColor(control, major);
+                    break;
+
+                case ScenarioEditorItemId.MajorPropaganada:
+                    _form.UpdatePropagandaImage(major.Country, (string) val);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="alliance">同盟</param>
+        public void PostItemChanged(ScenarioEditorItemId itemId, object val, Alliance alliance)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.AllianceName:
+                    _form.SetAllianceListItemText(0, (string) val);
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">戦争</param>
+        public void PostItemChanged(ScenarioEditorItemId itemId, object val, War war)
+        {
+            // 何もしない
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
         /// <param name="relation">国家関係</param>
         public void PostItemChanged(ScenarioEditorItemId itemId, object val, Relation relation)
         {
@@ -4641,6 +6103,12 @@ namespace HoI2Editor.Controller
         {
             switch (itemId)
             {
+                case ScenarioEditorItemId.CountryNameKey:
+                    TextBox control = (TextBox) _form.GetItemControl(ScenarioEditorItemId.CountryNameString);
+                    UpdateItemValue(control, settings.Country, settings);
+                    UpdateItemColor(control, settings);
+                    break;
+
                 case ScenarioEditorItemId.CabinetHeadOfState:
                     PostItemChangedCabinet((TextBox) _form.GetItemControl(ScenarioEditorItemId.CabinetHeadOfStateId),
                         settings);
@@ -5472,6 +6940,56 @@ namespace HoI2Editor.Controller
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
+        public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val)
+        {
+            Log.Info("[Scenario] {0}: {1} -> {2}", ItemStrings[(int) itemId],
+                ObjectHelper.ToString(GetItemValue(itemId)), ObjectHelper.ToString(val));
+        }
+
+        /// <summary>
+        ///     編集項目の値変更時のログを出力する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="major">主要国設定</param>
+        public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, MajorCountrySettings major)
+        {
+            Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
+                ObjectHelper.ToString(GetItemValue(itemId, major)), ObjectHelper.ToString(val),
+                Countries.Strings[(int) major.Country]);
+        }
+
+        /// <summary>
+        ///     編集項目の値変更時のログを出力する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="alliance">同盟</param>
+        /// <param name="index">同盟リストのインデックス</param>
+        public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, Alliance alliance, int index)
+        {
+            Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
+                ObjectHelper.ToString(GetItemValue(itemId, alliance)), ObjectHelper.ToString(val), index);
+        }
+
+        /// <summary>
+        ///     編集項目の値変更時のログを出力する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="war">戦争</param>
+        /// <param name="index">戦争リストのインデックス</param>
+        public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, War war, int index)
+        {
+            Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
+                ObjectHelper.ToString(GetItemValue(itemId, war)), ObjectHelper.ToString(val), index);
+        }
+
+        /// <summary>
+        ///     編集項目の値変更時のログを出力する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
         /// <param name="country">選択国</param>
         /// <param name="relation">国家関係</param>
         public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, Country country,
@@ -5519,21 +7037,6 @@ namespace HoI2Editor.Controller
         {
             Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
                 ObjectHelper.ToString(GetItemValue(itemId, settings)), ObjectHelper.ToString(val),
-                Countries.Strings[(int) settings.Country]);
-        }
-
-        /// <summary>
-        ///     編集項目の値変更時のログを出力する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="country">選択国</param>
-        /// <param name="settings">国家設定</param>
-        public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, Country country,
-            CountrySettings settings)
-        {
-            Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
-                ObjectHelper.ToString(GetItemValue(itemId, country, settings)), ObjectHelper.ToString(val),
                 Countries.Strings[(int) settings.Country]);
         }
 
@@ -5605,6 +7108,44 @@ namespace HoI2Editor.Controller
     /// </summary>
     public enum ScenarioEditorItemId
     {
+        ScenarioName,
+        ScenarioPanelName,
+        ScenarioStartYear,
+        ScenarioStartMonth,
+        ScenarioStartDay,
+        ScenarioEndYear,
+        ScenarioEndMonth,
+        ScenarioEndDay,
+        ScenarioIncludeFolder,
+        ScenarioBattleScenario,
+        ScenarioFreeSelection,
+        ScenarioAllowDiplomacy,
+        ScenarioAllowProduction,
+        ScenarioAllowTechnology,
+        ScenarioAiAggressive,
+        ScenarioDifficulty,
+        ScenarioGameSpeed,
+        MajorCountryNameKey,
+        MajorCountryNameString,
+        MajorFlagExt,
+        MajorCountryDescKey,
+        MajorCountryDescString,
+        MajorPropaganada,
+        AllianceName,
+        AllianceType,
+        AllianceId,
+        WarStartYear,
+        WarStartMonth,
+        WarStartDay,
+        WarEndYear,
+        WarEndMonth,
+        WarEndDay,
+        WarType,
+        WarId,
+        WarAttackerType,
+        WarAttackerId,
+        WarDefenderType,
+        WarDefenderId,
         DiplomacyRelationValue,
         DiplomacyMaster,
         DiplomacyMilitaryControl,
@@ -5655,7 +7196,8 @@ namespace HoI2Editor.Controller
         TradeSupplies2,
         TradeMoney1,
         TradeMoney2,
-        CountryName,
+        CountryNameKey,
+        CountryNameString,
         CountryFlagExt,
         CountryRegularId,
         CountryBelligerence,

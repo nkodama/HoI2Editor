@@ -534,7 +534,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // ショートシナリオ
-                    header.IsCombatScenario = (bool) b;
+                    header.IsBattleScenario = (bool) b;
                     continue;
                 }
 

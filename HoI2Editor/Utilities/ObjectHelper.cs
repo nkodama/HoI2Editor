@@ -60,15 +60,7 @@ namespace HoI2Editor.Utilities
         /// <returns>nullまたは空文字列ならばtrueを返す</returns>
         public static bool IsNullOrEmpty(object o)
         {
-            if (o == null)
-            {
-                return true;
-            }
-            if ((o is string) && string.IsNullOrEmpty(o as string))
-            {
-                return true;
-            }
-            return false;
+            return string.IsNullOrEmpty(o as string);
         }
     }
 }

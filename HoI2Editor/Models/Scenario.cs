@@ -584,7 +584,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ショートシナリオ
         /// </summary>
-        public bool IsCombatScenario { get; set; }
+        public bool IsBattleScenario { get; set; }
 
         /// <summary>
         ///     選択可能国家
@@ -680,6 +680,16 @@ namespace HoI2Editor.Models
         public Country Country { get; set; }
 
         /// <summary>
+        ///     国名定義
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     国旗の拡張子
+        /// </summary>
+        public string FlagExt { get; set; }
+
+        /// <summary>
         ///     説明文
         /// </summary>
         public string Desc { get; set; }
@@ -712,7 +722,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public enum ItemId
         {
-            Desc, // 説明文
+            NameKey, // 国名定義
+            NameString, // 国名文字列
+            FlagExt, // 国旗の接尾辞
+            DescKey, // 説明文定義
+            DescString, // 説明文文字列
             PictureName, // プロパガンダ画像名
             Bottom // 右端に配置
         }
@@ -2499,7 +2513,8 @@ namespace HoI2Editor.Models
         /// </summary>
         public enum ItemId
         {
-            Name, // 国名
+            NameKey, // 国名定義
+            NameString, // 国名文字列
             FlagExt, // 国旗の接尾辞
             RegularId, // 兄弟国
             IntrinsicGovType, // 独立可能政体

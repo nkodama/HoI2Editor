@@ -794,7 +794,7 @@
   <data name="warDownButton.Text" xml:space="preserve">
     <value>下へ</value>
   </data>
-  <data name="warCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="warFreeCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="warRemoveButton.Text" xml:space="preserve">
@@ -830,7 +830,7 @@
   <data name="allianceUpButton.Text" xml:space="preserve">
     <value>上へ</value>
   </data>
-  <data name="allianceCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="allianceFreeCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="allianceRemoveButton.Text" xml:space="preserve">
@@ -896,8 +896,20 @@
   <data name="battleScenarioCheckBox.Text" xml:space="preserve">
     <value>ショートシナリオ</value>
   </data>
-  <data name="optionGroupBox.Text" xml:space="preserve">
+  <data name="scenarioOptionGroupBox.Text" xml:space="preserve">
     <value>オプション</value>
+  </data>
+  <data name="majorFlagExtLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="majorFlagExtLabel.Text" xml:space="preserve">
+    <value>国旗接尾辞</value>
+  </data>
+  <data name="majorCountryNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="majorCountryNameLabel.Text" xml:space="preserve">
+    <value>国名</value>
   </data>
   <data name="unselectableListBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
@@ -980,7 +992,7 @@
   <data name="endDateLabel.Text" xml:space="preserve">
     <value>終了日時</value>
   </data>
-  <data name="infoGroupBox.Text" xml:space="preserve">
+  <data name="scenarioInfoGroupBox.Text" xml:space="preserve">
     <value>シナリオ情報</value>
   </data>
   <data name="loadButton.Text" xml:space="preserve">
