@@ -273,7 +273,8 @@ namespace HoI2Editor.Controller
             null,
             null,
             null,
-            null,
+            ProvinceSettings.ItemId.NameKey,
+            ProvinceSettings.ItemId.NameString,
             ProvinceSettings.ItemId.Vp,
             ProvinceSettings.ItemId.RevoltRisk,
             ProvinceSettings.ItemId.Manpower,
@@ -507,7 +508,8 @@ namespace HoI2Editor.Controller
             "controlled provinces",
             "claimed provinces",
             "province id",
-            "province name",
+            "province name key",
+            "province name string",
             "province vp",
             "province revolt risk",
             "province manpower",
@@ -815,11 +817,11 @@ namespace HoI2Editor.Controller
         ///     編集項目の値を更新する
         /// </summary>
         /// <param name="control">コントロール</param>
-        /// <param name="settings">諜報設定</param>
-        public void UpdateItemValue(NumericUpDown control, SpySettings settings)
+        /// <param name="spy">諜報設定</param>
+        public void UpdateItemValue(NumericUpDown control, SpySettings spy)
         {
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.Value = (int) GetItemValue(itemId, settings);
+            control.Value = (int) GetItemValue(itemId, spy);
         }
 
         /// <summary>
@@ -1001,10 +1003,17 @@ namespace HoI2Editor.Controller
         /// <param name="control">コントロール</param>
         /// <param name="province">プロヴィンス</param>
         /// <param name="settings">プロヴィンス設定</param>
-        public void UpdateItemValue(Control control, Province province, ProvinceSettings settings)
+        public void UpdateItemValue(TextBox control, Province province, ProvinceSettings settings)
         {
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             control.Text = ObjectHelper.ToString(GetItemValue(itemId, province, settings));
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.ProvinceNameString:
+                    // プロヴィンス設定のプロヴィンス名定義がなければ編集不可
+                    control.ReadOnly = (settings == null) || string.IsNullOrEmpty(settings.Name);
+                    break;
+            }
         }
 
         #endregion
@@ -1080,11 +1089,11 @@ namespace HoI2Editor.Controller
         ///     編集項目の色を更新する
         /// </summary>
         /// <param name="control">コントロール</param>
-        /// <param name="settings">諜報設定</param>
-        public void UpdateItemColor(Control control, SpySettings settings)
+        /// <param name="spy">諜報設定</param>
+        public void UpdateItemColor(Control control, SpySettings spy)
         {
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.ForeColor = IsItemDirty(itemId, settings) ? Color.Red : SystemColors.WindowText;
+            control.ForeColor = IsItemDirty(itemId, spy) ? Color.Red : SystemColors.WindowText;
         }
 
         /// <summary>
@@ -1131,18 +1140,6 @@ namespace HoI2Editor.Controller
         {
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             control.ForeColor = IsItemDirty(itemId, settings) ? Color.Red : SystemColors.WindowText;
-        }
-
-        /// <summary>
-        ///     編集項目の色を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        public void UpdateItemColor(Control control, Province province, ProvinceSettings settings)
-        {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.ForeColor = IsItemDirty(itemId, province, settings) ? Color.Red : SystemColors.WindowText;
         }
 
         #endregion
@@ -1253,16 +1250,7 @@ namespace HoI2Editor.Controller
                     return major.Name;
 
                 case ScenarioEditorItemId.MajorCountryNameString:
-                    if (!String.IsNullOrEmpty(major.Name))
-                    {
-                        return Config.GetText(major.Name);
-                    }
-                    CountrySettings settings = Scenarios.GetCountrySettings(major.Country);
-                    if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
-                    {
-                        return Config.GetText(settings.Name);
-                    }
-                    return Countries.GetName(major.Country);
+                    return Scenarios.GetCountryName(major.Country);
 
                 case ScenarioEditorItemId.MajorFlagExt:
                     return major.FlagExt;
@@ -1631,14 +1619,14 @@ namespace HoI2Editor.Controller
         ///     編集項目の値を取得する
         /// </summary>
         /// <param name="itemId">項目ID</param>
-        /// <param name="settings">諜報設定</param>
+        /// <param name="spy">諜報設定</param>
         /// <returns>編集項目の値</returns>
-        public object GetItemValue(ScenarioEditorItemId itemId, SpySettings settings)
+        public object GetItemValue(ScenarioEditorItemId itemId, SpySettings spy)
         {
             switch (itemId)
             {
                 case ScenarioEditorItemId.IntelligenceSpies:
-                    return (settings != null) ? settings.Spies : 0;
+                    return (spy != null) ? spy.Spies : 0;
             }
 
             return null;
@@ -1989,7 +1977,7 @@ namespace HoI2Editor.Controller
                 case ScenarioEditorItemId.CountryNameString:
                     if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
                     {
-                        return Config.GetText(settings.Name);
+                        return Config.ExistsKey(settings.Name) ? Config.GetText(settings.Name) : "";
                     }
                     return Scenarios.GetCountryName(country);
             }
@@ -2397,7 +2385,10 @@ namespace HoI2Editor.Controller
         {
             switch (itemId)
             {
-                case ScenarioEditorItemId.ProvinceName:
+                case ScenarioEditorItemId.ProvinceNameKey:
+                    return ((settings != null) && !string.IsNullOrEmpty(settings.Name)) ? settings.Name : "";
+
+                case ScenarioEditorItemId.ProvinceNameString:
                     return Scenarios.GetProvinceName(province, settings);
             }
 
@@ -2905,13 +2896,13 @@ namespace HoI2Editor.Controller
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
-        /// <param name="settings">諜報設定</param>
-        public void SetItemValue(ScenarioEditorItemId itemId, object val, SpySettings settings)
+        /// <param name="spy">諜報設定</param>
+        public void SetItemValue(ScenarioEditorItemId itemId, object val, SpySettings spy)
         {
             switch (itemId)
             {
                 case ScenarioEditorItemId.IntelligenceSpies:
-                    settings.Spies = (int) val;
+                    spy.Spies = (int) val;
                     break;
             }
         }
@@ -3281,6 +3272,14 @@ namespace HoI2Editor.Controller
         {
             switch (itemId)
             {
+                case ScenarioEditorItemId.ProvinceNameKey:
+                    settings.Name = (string) val;
+                    break;
+
+                case ScenarioEditorItemId.ProvinceNameString:
+                    Config.SetText(settings.Name, (string) val, Game.ProvinceTextFileName);
+                    break;
+
                 case ScenarioEditorItemId.ProvinceVp:
                     settings.Vp = (int) val;
                     break;
@@ -3507,26 +3506,9 @@ namespace HoI2Editor.Controller
             }
         }
 
-        /// <summary>
-        ///     編集項目の値を設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        public void SetItemValue(ScenarioEditorItemId itemId, object val, Province province, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.ProvinceName:
-                    Scenarios.SetProvinceName(province, settings, (string) val);
-                    break;
-            }
-        }
-
         #endregion
 
-        #region 編集項目 - 有効判定
+        #region 編集項目 - 有効値判定
 
         /// <summary>
         ///     編集項目の値が有効かどうかを判定する
@@ -4128,11 +4110,11 @@ namespace HoI2Editor.Controller
         ///     編集項目の編集済みフラグを取得する
         /// </summary>
         /// <param name="itemId">項目ID</param>
-        /// <param name="settings">諜報設定</param>
+        /// <param name="spy">諜報設定</param>
         /// <returns>編集済みフラグ</returns>
-        public bool IsItemDirty(ScenarioEditorItemId itemId, SpySettings settings)
+        public bool IsItemDirty(ScenarioEditorItemId itemId, SpySettings spy)
         {
-            return (settings != null) && settings.IsDirty((SpySettings.ItemId) ItemDirtyFlags[(int) itemId]);
+            return (spy != null) && spy.IsDirty((SpySettings.ItemId) ItemDirtyFlags[(int) itemId]);
         }
 
         /// <summary>
@@ -4176,26 +4158,6 @@ namespace HoI2Editor.Controller
 
                 case ScenarioEditorItemId.CountryClaimedProvinces:
                     return settings.IsDirtyClaimedProvinces(province.Id);
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        /// <returns>編集済みフラグ</returns>
-        public bool IsItemDirty(ScenarioEditorItemId itemId, Province province, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.ProvinceName:
-                    return ((settings != null) && !String.IsNullOrEmpty(settings.Name))
-                        ? settings.IsDirty(ProvinceSettings.ItemId.Name)
-                        : province.IsDirty(ProvinceItemId.Name);
             }
 
             return false;
@@ -4376,10 +4338,26 @@ namespace HoI2Editor.Controller
         /// <param name="settings">プロヴィンス設定</param>
         public void SetItemDirty(ScenarioEditorItemId itemId, ProvinceSettings settings)
         {
+            settings.SetDirty((ProvinceSettings.ItemId)ItemDirtyFlags[(int)itemId]);
             switch (itemId)
             {
+                case ScenarioEditorItemId.ProvinceNameKey:
+                    if (Scenarios.Data.IsBaseProvinceSettings)
+                    {
+                        Scenarios.Data.SetDirtyBasesInc();
+                    }
+                    else if (Scenarios.Data.IsCountryProvinceSettings)
+                    {
+                        Scenarios.Data.SetDirtyCountryInc();
+                    }
+                    else
+                    {
+                        Scenarios.Data.SetDirty();
+                    }
+                    Scenarios.SetDirty();
+                    break;
+
                 case ScenarioEditorItemId.ProvinceVp:
-                    settings.SetDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
                     if (Scenarios.Data.IsVpProvinceSettings)
                     {
                         Scenarios.Data.SetDirtyVpInc();
@@ -4403,7 +4381,6 @@ namespace HoI2Editor.Controller
                 case ScenarioEditorItemId.ProvinceSyntheticOilRelative:
                 case ScenarioEditorItemId.ProvinceSyntheticRaresRelative:
                 case ScenarioEditorItemId.ProvinceNuclearPowerRelative:
-                    settings.SetDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
                     if (Scenarios.Data.IsBaseDodProvinceSettings)
                     {
                         Scenarios.Data.SetDirtyBasesDodInc();
@@ -4466,7 +4443,6 @@ namespace HoI2Editor.Controller
                 case ScenarioEditorItemId.ProvinceSyntheticRaresMax:
                 case ScenarioEditorItemId.ProvinceNuclearPowerCurrent:
                 case ScenarioEditorItemId.ProvinceNuclearPowerMax:
-                    settings.SetDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
                     if (Scenarios.Data.IsBaseProvinceSettings)
                     {
                         Scenarios.Data.SetDirtyBasesInc();
@@ -4480,41 +4456,6 @@ namespace HoI2Editor.Controller
                         Scenarios.Data.SetDirty();
                     }
                     Scenarios.SetDirty();
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="province">プロヴィンス</param>
-        /// <param name="settings">プロヴィンス設定</param>
-        public void SetItemDirty(ScenarioEditorItemId itemId, Province province, ProvinceSettings settings)
-        {
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.ProvinceName:
-                    if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
-                    {
-                        settings.SetDirty(ProvinceSettings.ItemId.Name);
-                        if (Scenarios.Data.IsBaseProvinceSettings)
-                        {
-                            Scenarios.Data.SetDirtyBasesInc();
-                        }
-                        else if (Scenarios.Data.IsCountryProvinceSettings)
-                        {
-                            Scenarios.Data.SetDirtyCountryInc();
-                        }
-                        else
-                        {
-                            Scenarios.Data.SetDirty();
-                        }
-                    }
-                    else
-                    {
-                        province.SetDirty(ProvinceItemId.Name);
-                    }
                     break;
             }
         }
@@ -6590,6 +6531,25 @@ namespace HoI2Editor.Controller
         }
 
         /// <summary>
+        ///     項目値変更後の処理
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">プロヴィンス設定</param>
+        public void PostItemChanged(ScenarioEditorItemId itemId, object val, Province province, ProvinceSettings settings)
+        {
+            switch (itemId)
+            {
+                case ScenarioEditorItemId.ProvinceNameKey:
+                    TextBox control = (TextBox)_form.GetItemControl(ScenarioEditorItemId.ProvinceNameString);
+                    UpdateItemValue(control, province, settings);
+                    UpdateItemColor(control, settings);
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     項目値変更後の処理 - 独立保障
         /// </summary>
         /// <param name="control1">コントロール1</param>
@@ -7079,9 +7039,10 @@ namespace HoI2Editor.Controller
         {
             switch (itemId)
             {
-                case ScenarioEditorItemId.ProvinceName:
-                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
-                        Scenarios.GetProvinceName(province, settings), val, province.Id);
+                case ScenarioEditorItemId.ProvinceNameKey:
+                case ScenarioEditorItemId.ProvinceNameString:
+                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int)itemId],
+                        GetItemValue(itemId, province, settings), val, province.Id);
                     break;
             }
         }
@@ -7278,7 +7239,8 @@ namespace HoI2Editor.Controller
         CountryControlledProvinces,
         CountryClaimedProvinces,
         ProvinceId,
-        ProvinceName,
+        ProvinceNameKey,
+        ProvinceNameString,
         ProvinceVp,
         ProvinceRevoltRisk,
         ProvinceManpowerCurrent,

@@ -210,6 +210,7 @@
     <Compile Include="Utilities\ObjectHelper.cs" />
     <Compile Include="Utilities\PathHelper.cs" />
     <Compile Include="Writers\MiscWriter.cs" />
+    <Compile Include="Writers\ScenarioWriter.cs" />
     <Compile Include="Writers\TechWriter.cs" />
     <Compile Include="Writers\UnitWriter.cs" />
     <EmbeddedResource Include="Dialogs\LeaderBatchDialog.ja.resx">

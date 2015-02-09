@@ -19,6 +19,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public static Scenario Data { get; private set; }
 
+        /// <summary>
+        /// シナリオの種類
+        /// </summary>
+        public static ScenarioType Type { get; private set; }
+
         #endregion
 
         #region 内部フィールド
@@ -146,6 +151,16 @@ namespace HoI2Editor.Models
             "october",
             "november",
             "december"
+        };
+
+        /// <summary>
+        /// 外交協定文字列
+        /// </summary>
+        public static readonly string[] TreatyStrings =
+        {
+            "non_aggression",
+            "peace",
+            "trade"
         };
 
         /// <summary>
@@ -365,6 +380,9 @@ namespace HoI2Editor.Models
             // 編集済みフラグを全て解除する
             ResetDirtyAll();
 
+            // シナリオの種類を設定する
+            SetScenarioType();
+
             // 読み込み済みフラグを設定する
             _loaded = true;
         }
@@ -380,6 +398,42 @@ namespace HoI2Editor.Models
         public static bool Save()
         {
             return true;
+        }
+
+        #endregion
+
+        #region シナリオの種類
+
+        /// <summary>
+        /// シナリオの種類を設定する
+        /// </summary>
+        public static void SetScenarioType()
+        {
+            if (Data.Header.IsBattleScenario)
+            {
+                Type = ScenarioType.BattleScenario;
+                return;
+            }
+
+            if (Data.IsSaveGame)
+            {
+                Type = ScenarioType.SaveGame;
+                return;
+            }
+
+            if (Game.Type != GameType.DarkestHour)
+            {
+                Type = ScenarioType.HoI2;
+                return;
+            }
+
+            if (Data.IsBaseDodProvinceSettings)
+            {
+                Type = ScenarioType.Full33;
+                return;
+            }
+
+            Type = ScenarioType.DarkestHour;
         }
 
         #endregion
@@ -698,14 +752,14 @@ namespace HoI2Editor.Models
             MajorCountrySettings major = GetMajorCountrySettings(country);
             if (major != null && !String.IsNullOrEmpty(major.Name))
             {
-                return Config.GetText(major.Name);
+                return Config.ExistsKey(major.Name) ? Config.GetText(major.Name) : "";
             }
 
             // 国家設定の国名
             CountrySettings settings = GetCountrySettings(country);
             if (settings != null && !String.IsNullOrEmpty(settings.Name))
             {
-                return Config.GetText(settings.Name);
+                return Config.ExistsKey(settings.Name) ? Config.GetText(settings.Name) : "";
             }
 
             // 標準の国名
@@ -726,7 +780,7 @@ namespace HoI2Editor.Models
         {
             if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
             {
-                return Config.GetText(settings.Name);
+                return Config.ExistsKey(settings.Name) ? Config.GetText(settings.Name) : "";
             }
             return province.GetName();
         }
@@ -1288,5 +1342,17 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+    }
+
+    /// <summary>
+    /// シナリオの種類
+    /// </summary>
+    public enum ScenarioType
+    {
+        HoI2, // HoI2/AoD
+        DarkestHour, // DH (Full想定)
+        Full33, // DH Full 33年シナリオ (bases_DOD.incあり)
+        BattleScenario, // ショートシナリオ
+        SaveGame // 保存ゲーム
     }
 }

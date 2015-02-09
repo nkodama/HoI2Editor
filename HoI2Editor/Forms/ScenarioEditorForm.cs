@@ -893,6 +893,8 @@ namespace HoI2Editor.Forms
             _controller.UpdateItemColor(endMonthTextBox);
             _controller.UpdateItemColor(endDayTextBox);
             _controller.UpdateItemColor(includeFolderTextBox);
+
+            UpdatePanelImage(Scenarios.Data.PanelName);
         }
 
         /// <summary>
@@ -4603,11 +4605,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     諜報情報の編集項目を更新する
         /// </summary>
-        private void UpdateIntelligenceItems(SpySettings settings)
+        /// <param name="spy">諜報設定</param>
+        private void UpdateIntelligenceItems(SpySettings spy)
         {
-            _controller.UpdateItemValue(spyNumNumericUpDown, settings);
+            _controller.UpdateItemValue(spyNumNumericUpDown, spy);
 
-            _controller.UpdateItemColor(spyNumNumericUpDown, settings);
+            _controller.UpdateItemColor(spyNumNumericUpDown, spy);
         }
 
         /// <summary>
@@ -8949,8 +8952,14 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 初期値から変更されていなければ何もしない
+            if ((province == null) && (val == 0))
+            {
+                return;
+            }
+
             // 値に変化がなければ何もしない
-            if (val == province.Id)
+            if ((province != null) && (val == province.Id))
             {
                 return;
             }
@@ -9209,11 +9218,13 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitProvinceInfoItems()
         {
-            _itemControls.Add(ScenarioEditorItemId.ProvinceName, provinceNameTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNameKey, provinceNameKeyTextBox);
+            _itemControls.Add(ScenarioEditorItemId.ProvinceNameString, provinceNameStringTextBox);
             _itemControls.Add(ScenarioEditorItemId.ProvinceVp, vpTextBox);
             _itemControls.Add(ScenarioEditorItemId.ProvinceRevoltRisk, revoltRiskTextBox);
 
-            provinceNameTextBox.Tag = ScenarioEditorItemId.ProvinceName;
+            provinceNameKeyTextBox.Tag = ScenarioEditorItemId.ProvinceNameKey;
+            provinceNameStringTextBox.Tag = ScenarioEditorItemId.ProvinceNameString;
             vpTextBox.Tag = ScenarioEditorItemId.ProvinceVp;
             revoltRiskTextBox.Tag = ScenarioEditorItemId.ProvinceRevoltRisk;
         }
@@ -9226,11 +9237,13 @@ namespace HoI2Editor.Forms
         private void UpdateProvinceInfoItems(Province province, ProvinceSettings settings)
         {
             _controller.UpdateItemValue(provinceIdTextBox, province);
-            _controller.UpdateItemValue(provinceNameTextBox, province, settings);
+            _controller.UpdateItemValue(provinceNameKeyTextBox, province, settings);
+            _controller.UpdateItemValue(provinceNameStringTextBox, province, settings);
             _controller.UpdateItemValue(vpTextBox, settings);
             _controller.UpdateItemValue(revoltRiskTextBox, settings);
 
-            _controller.UpdateItemColor(provinceNameTextBox, province, settings);
+            _controller.UpdateItemColor(provinceNameKeyTextBox, settings);
+            _controller.UpdateItemColor(provinceNameStringTextBox, settings);
             _controller.UpdateItemColor(vpTextBox, settings);
             _controller.UpdateItemColor(revoltRiskTextBox, settings);
         }
@@ -9241,7 +9254,8 @@ namespace HoI2Editor.Forms
         private void ClearProvinceInfoItems()
         {
             provinceIdTextBox.Text = "";
-            provinceNameTextBox.Text = "";
+            provinceNameKeyTextBox.Text = "";
+            provinceNameStringTextBox.Text = "";
             vpTextBox.Text = "";
             revoltRiskTextBox.Text = "";
         }
@@ -9790,28 +9804,41 @@ namespace HoI2Editor.Forms
             ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
 
             // 初期値から変更されていなければ何もしない
+            object prev = _controller.GetItemValue(itemId, province, settings);
             string val = control.Text;
-            if ((settings == null) && string.IsNullOrEmpty(val))
+            if ((prev == null) && string.IsNullOrEmpty(val))
             {
                 return;
             }
 
             // 値に変化がなければ何もしない
-            if (val.Equals(_controller.GetItemValue(itemId, province, settings)))
+            if (val.Equals(prev))
             {
                 return;
             }
 
+            if (settings == null)
+            {
+                settings = new ProvinceSettings { Id = province.Id };
+                Scenarios.AddProvinceSettings(settings);
+            }
+
             _controller.OutputItemValueChangedLog(itemId, val, province, settings);
 
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, settings);
+
             // 値を更新する
-            _controller.SetItemValue(itemId, val, province, settings);
+            _controller.SetItemValue(itemId, val, settings);
 
             // 編集済みフラグを設定する
-            _controller.SetItemDirty(itemId, province, settings);
+            _controller.SetItemDirty(itemId, settings);
 
             // 文字色を変更する
             control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, val, province, settings);
         }
 
         /// <summary>

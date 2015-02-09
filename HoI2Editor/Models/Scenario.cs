@@ -1291,7 +1291,8 @@ namespace HoI2Editor.Models
         /// </summary>
         public enum ItemId
         {
-            Name, // プロヴィンス名
+            NameKey, // プロヴィンス名キー
+            NameString, // プロヴィンス名文字列
             Ic, // IC
             MaxIc, // 最大IC
             RelativeIc, // 相対IC
@@ -2098,7 +2099,6 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum TreatyType
     {
-        None,
         NonAggression, // 不可侵条約
         Peace, // 休戦協定
         Trade // 貿易

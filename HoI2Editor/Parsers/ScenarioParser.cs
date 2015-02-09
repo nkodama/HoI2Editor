@@ -605,16 +605,16 @@ namespace HoI2Editor.Parsers
                     Country tag = Countries.StringMap[tagName];
                     if (Countries.Tags.Contains(tag))
                     {
-                        MajorCountrySettings country = ParseMajorCountry(lexer);
-                        if (country == null)
+                        MajorCountrySettings major = ParseMajorCountry(lexer);
+                        if (major == null)
                         {
                             Log.InvalidSection(LogCategory, tagName);
                             continue;
                         }
 
                         // 主要国設定
-                        country.Country = tag;
-                        header.MajorCountries.Add(country);
+                        major.Country = tag;
+                        header.MajorCountries.Add(major);
                         continue;
                     }
                 }
@@ -650,7 +650,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            MajorCountrySettings country = new MajorCountrySettings();
+            MajorCountrySettings major = new MajorCountrySettings();
             while (true)
             {
                 token = lexer.GetToken();
@@ -693,7 +693,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 説明文
-                    country.Desc = s;
+                    major.Desc = s;
                     continue;
                 }
 
@@ -708,7 +708,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // プロパガンダ画像名
-                    country.PictureName = s;
+                    major.PictureName = s;
                     continue;
                 }
 
@@ -723,8 +723,41 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 右端に配置
-                    country.Bottom = (bool) b;
+                    major.Bottom = (bool) b;
                     continue;
+                }
+
+                if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 104))
+                {
+                    // name
+                    if (keyword.Equals("name"))
+                    {
+                        string s = ParseStringOrIdentifier(lexer);
+                        if (string.IsNullOrEmpty(s))
+                        {
+                            Log.InvalidClause(LogCategory, "name");
+                            continue;
+                        }
+
+                        // 国名
+                        major.Name = s;
+                        continue;
+                    }
+
+                    // flag_ext
+                    if (keyword.Equals("flag_ext"))
+                    {
+                        string s = ParseStringOrIdentifier(lexer);
+                        if (string.IsNullOrEmpty(s))
+                        {
+                            Log.InvalidClause(LogCategory, "flag_ext");
+                            continue;
+                        }
+
+                        // 国旗接尾辞
+                        major.FlagExt = s;
+                        continue;
+                    }
                 }
 
                 // 無効なトークン
@@ -732,7 +765,7 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return country;
+            return major;
         }
 
         #endregion
@@ -4902,7 +4935,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            SpySettings spyInfo = new SpySettings();
+            SpySettings spy = new SpySettings();
             while (true)
             {
                 token = lexer.GetToken();
@@ -4945,7 +4978,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 国タグ
-                    spyInfo.Country = (Country) tag;
+                    spy.Country = (Country) tag;
                     continue;
                 }
 
@@ -4960,7 +4993,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // スパイの数
-                    spyInfo.Spies = (int) n;
+                    spy.Spies = (int) n;
                     continue;
                 }
 
@@ -4969,7 +5002,7 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return spyInfo;
+            return spy;
         }
 
         /// <summary>
