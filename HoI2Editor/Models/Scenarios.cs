@@ -20,7 +20,7 @@ namespace HoI2Editor.Models
         public static Scenario Data { get; private set; }
 
         /// <summary>
-        /// シナリオの種類
+        ///     シナリオの種類
         /// </summary>
         public static ScenarioType Type { get; private set; }
 
@@ -154,7 +154,7 @@ namespace HoI2Editor.Models
         };
 
         /// <summary>
-        /// 外交協定文字列
+        ///     外交協定文字列
         /// </summary>
         public static readonly string[] TreatyStrings =
         {
@@ -405,7 +405,7 @@ namespace HoI2Editor.Models
         #region シナリオの種類
 
         /// <summary>
-        /// シナリオの種類を設定する
+        ///     シナリオの種類を設定する
         /// </summary>
         public static void SetScenarioType()
         {
@@ -1345,7 +1345,7 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    /// シナリオの種類
+    ///     シナリオの種類
     /// </summary>
     public enum ScenarioType
     {

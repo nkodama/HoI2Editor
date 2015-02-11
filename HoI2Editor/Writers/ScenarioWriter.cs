@@ -13,7 +13,7 @@ namespace HoI2Editor.Writers
         #region シナリオデータ
 
         /// <summary>
-        /// シナリオデータをファイルへ書き込む
+        ///     シナリオデータをファイルへ書き込む
         /// </summary>
         /// <param name="scenario">シナリオデータ</param>
         /// <param name="fileName">ファイル名</param>
@@ -43,7 +43,7 @@ namespace HoI2Editor.Writers
         #region シナリオヘッダ
 
         /// <summary>
-        /// シナリオヘッダを書き出す
+        ///     シナリオヘッダを書き出す
         /// </summary>
         /// <param name="header">シナリオヘッダ</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -67,13 +67,13 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 主要国設定を書き出す
+        ///     主要国設定を書き出す
         /// </summary>
         /// <param name="major">主要国設定</param>
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteMajorCountry(MajorCountrySettings major, TextWriter writer)
         {
-            writer.Write("  {0}        = {{", Countries.Strings[(int)major.Country]);
+            writer.Write("  {0}        = {{", Countries.Strings[(int) major.Country]);
             if (!string.IsNullOrEmpty(major.Desc))
             {
                 writer.Write(" desc = \"{0}\"", major.Desc);
@@ -102,7 +102,7 @@ namespace HoI2Editor.Writers
         #region シナリオグローバルデータ
 
         /// <summary>
-        /// シナリオグローバルデータを書き出す
+        ///     シナリオグローバルデータを書き出す
         /// </summary>
         /// <param name="data">シナリオグローバルデータ</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -158,7 +158,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 同盟情報を書き出す
+        ///     同盟情報を書き出す
         /// </summary>
         /// <param name="alliance">同盟情報</param>
         /// <param name="type">同盟の種類</param>
@@ -180,7 +180,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 戦争情報を書き出す
+        ///     戦争情報を書き出す
         /// </summary>
         /// <param name="war">戦争情報</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -234,7 +234,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 外交協定情報を書き出す
+        ///     外交協定情報を書き出す
         /// </summary>
         /// <param name="treaty">外交協定情報</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -299,7 +299,7 @@ namespace HoI2Editor.Writers
         #region プロヴィンス設定
 
         /// <summary>
-        /// プロヴィンス設定をbases.incに書き込む
+        ///     プロヴィンス設定をbases.incに書き込む
         /// </summary>
         /// <param name="provinces">プロヴィンス設定のリスト</param>
         /// <param name="fileName">ファイル名</param>
@@ -326,7 +326,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// プロヴィンス設定をbases_DOD.incに書き込む
+        ///     プロヴィンス設定をbases_DOD.incに書き込む
         /// </summary>
         /// <param name="provinces">プロヴィンス設定のリスト</param>
         /// <param name="fileName">ファイル名</param>
@@ -359,7 +359,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// プロヴィンス設定をvp.incに書き込む
+        ///     プロヴィンス設定をvp.incに書き込む
         /// </summary>
         /// <param name="provinces">プロヴィンス設定のリスト</param>
         /// <param name="fileName">ファイル名</param>
@@ -385,7 +385,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// プロヴィンス設定をbases.incに書き込む (HoI2/AoD)
+        ///     プロヴィンス設定をbases.incに書き込む (HoI2/AoD)
         /// </summary>
         /// <param name="provinces">プロヴィンス設定のリスト</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -417,7 +417,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// プロヴィンス設定をbases.incに書き込む (DH)
+        ///     プロヴィンス設定をbases.incに書き込む (DH)
         /// </summary>
         /// <param name="provinces">プロヴィンス設定のリスト</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -498,7 +498,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// プロヴィンス設定をvp.incに書き込む (HoI2/AoD)
+        ///     プロヴィンス設定をvp.incに書き込む (HoI2/AoD)
         /// </summary>
         /// <param name="provinces">プロヴィンス設定のリスト</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -518,7 +518,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// プロヴィンス設定をvp.incに書き込む (DH)
+        ///     プロヴィンス設定をvp.incに書き込む (DH)
         /// </summary>
         /// <param name="provinces">プロヴィンス設定のリスト</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -538,7 +538,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// プロヴィンス設定を国別incに書き込む (国別inc)
+        ///     プロヴィンス設定を国別incに書き込む (国別inc)
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -558,7 +558,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 単一行のプロヴィンス設定を書き出す
+        ///     単一行のプロヴィンス設定を書き出す
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -582,7 +582,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 複数行のプロヴィンス設定を書き出す
+        ///     複数行のプロヴィンス設定を書き出す
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -607,7 +607,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// プロヴィンス設定が単一行で記載できるかどうかを返す
+        ///     プロヴィンス設定が単一行で記載できるかどうかを返す
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <returns>単一行で記載できればtrueを返す</returns>
@@ -634,7 +634,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// bases.incに保存するデータが存在するかどうかを返す (DH)
+        ///     bases.incに保存するデータが存在するかどうかを返す (DH)
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <returns>bases.incに保存するデータが存在すればtrueを返す</returns>
@@ -692,7 +692,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// bases_DOD.incに保存するデータが存在するかどうかを返す
+        ///     bases_DOD.incに保存するデータが存在するかどうかを返す
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <returns>bases_DOD.incに保存するデータが存在すればtrueを返す</returns>
@@ -712,7 +712,7 @@ namespace HoI2Editor.Writers
         #region 国家設定
 
         /// <summary>
-        /// 国家設定をファイルへ書き込む
+        ///     国家設定をファイルへ書き込む
         /// </summary>
         /// <param name="settings">国家設定</param>
         /// <param name="scenario">シナリオデータ</param>
@@ -726,11 +726,11 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("# Country definition for {0} #", Countries.Strings[(int) settings.Country]);
                 writer.WriteLine("##############################");
                 writer.WriteLine();
-                WriteCountryProvinces(settings, scenario.Provinces, writer);
-                writer.WriteLine("{{ tag                    = {0}", Countries.Strings[(int)settings.Country]);
+                WriteCountryProvinces(settings.ControlledProvinces, scenario.Provinces, writer);
+                writer.WriteLine("{{ tag                    = {0}", Countries.Strings[(int) settings.Country]);
                 if (settings.Master != Country.None)
                 {
-                    writer.WriteLine("  puppet                 = {0}", Countries.Strings[(int)settings.Master]);
+                    writer.WriteLine("  puppet                 = {0}", Countries.Strings[(int) settings.Master]);
                 }
                 if (settings.Control != Country.None)
                 {
@@ -763,13 +763,12 @@ namespace HoI2Editor.Writers
                 writer.WriteLine(" }");
                 if (settings.Relations.Count > 0)
                 {
-                    
                 }
             }
         }
 
         /// <summary>
-        /// 支配プロヴィンス設定のリストを書き出す
+        ///     支配プロヴィンス設定のリストを書き出す
         /// </summary>
         /// <param name="controlled">支配プロヴィンスのIDリスト</param>
         /// <param name="provinces">プロヴィンス設定のリスト</param>
@@ -785,7 +784,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 政策スライダーを書き出す
+        ///     政策スライダーを書き出す
         /// </summary>
         /// <param name="policy">政策スライダー</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -810,7 +809,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 外交設定を書き出す
+        ///     外交設定を書き出す
         /// </summary>
         /// <param name="relations">国家関係リスト</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -834,7 +833,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 国家関係を書き出す
+        ///     国家関係を書き出す
         /// </summary>
         /// <param name="relation"></param>
         /// <param name="writer"></param>
@@ -842,7 +841,7 @@ namespace HoI2Editor.Writers
         {
             if (relation.Guaranteed == null)
             {
-                writer.Write("relation = {{ tag = {0} value = {1}", Countries.Strings[(int)relation.Country],
+                writer.Write("relation = {{ tag = {0} value = {1}", Countries.Strings[(int) relation.Country],
                     ObjectHelper.ToString(relation.Value));
                 if (relation.Access)
                 {
@@ -856,7 +855,7 @@ namespace HoI2Editor.Writers
         #region 汎用
 
         /// <summary>
-        /// 国家リストを書き出す
+        ///     国家リストを書き出す
         /// </summary>
         /// <param name="countries">国家リスト</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -869,7 +868,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// IDリストを書き出す
+        ///     IDリストを書き出す
         /// </summary>
         /// <param name="ids">IDリスト</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -882,7 +881,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 建物のサイズを書き出す
+        ///     建物のサイズを書き出す
         /// </summary>
         /// <param name="type">建物の種類</param>
         /// <param name="building">建物のサイズ</param>
@@ -895,7 +894,7 @@ namespace HoI2Editor.Writers
                 return;
             }
 
-            writer.Write(" {0} = ", Scenarios.BuildingStrings[(int)type]);
+            writer.Write(" {0} = ", Scenarios.BuildingStrings[(int) type]);
             if (DoubleHelper.IsZero(building.Size))
             {
                 writer.Write("{{ size = {0} current_size = {1} }}",
@@ -908,7 +907,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// 日時を書き出す
+        ///     日時を書き出す
         /// </summary>
         /// <param name="date">日時</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -927,7 +926,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        /// typeとidの組を書き出す
+        ///     typeとidの組を書き出す
         /// </summary>
         /// <param name="id">typeとidの組</param>
         /// <param name="writer">ファイル書き込み用</param>

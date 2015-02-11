@@ -4338,7 +4338,7 @@ namespace HoI2Editor.Controller
         /// <param name="settings">プロヴィンス設定</param>
         public void SetItemDirty(ScenarioEditorItemId itemId, ProvinceSettings settings)
         {
-            settings.SetDirty((ProvinceSettings.ItemId)ItemDirtyFlags[(int)itemId]);
+            settings.SetDirty((ProvinceSettings.ItemId) ItemDirtyFlags[(int) itemId]);
             switch (itemId)
             {
                 case ScenarioEditorItemId.ProvinceNameKey:
@@ -6537,12 +6537,13 @@ namespace HoI2Editor.Controller
         /// <param name="val">編集項目の値</param>
         /// <param name="province">プロヴィンス</param>
         /// <param name="settings">プロヴィンス設定</param>
-        public void PostItemChanged(ScenarioEditorItemId itemId, object val, Province province, ProvinceSettings settings)
+        public void PostItemChanged(ScenarioEditorItemId itemId, object val, Province province,
+            ProvinceSettings settings)
         {
             switch (itemId)
             {
                 case ScenarioEditorItemId.ProvinceNameKey:
-                    TextBox control = (TextBox)_form.GetItemControl(ScenarioEditorItemId.ProvinceNameString);
+                    TextBox control = (TextBox) _form.GetItemControl(ScenarioEditorItemId.ProvinceNameString);
                     UpdateItemValue(control, province, settings);
                     UpdateItemColor(control, settings);
                     break;
@@ -7041,7 +7042,7 @@ namespace HoI2Editor.Controller
             {
                 case ScenarioEditorItemId.ProvinceNameKey:
                 case ScenarioEditorItemId.ProvinceNameString:
-                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int)itemId],
+                    Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
                         GetItemValue(itemId, province, settings), val, province.Id);
                     break;
             }
