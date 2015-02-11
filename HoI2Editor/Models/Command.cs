@@ -347,7 +347,8 @@ namespace HoI2Editor.Models
             "softness",
             "toughness",
             "plain_attack",
-            "plain_defense"
+            "plain_defense",
+            "remove_units"
         };
 
         #endregion
@@ -766,7 +767,9 @@ namespace HoI2Editor.Models
         Softness,
         Toughness,
         PlainAttack,
-        PlainDefense
+        PlainDefense,
+        // DH1.04で追加
+        RemoveUnits,
     }
 
     /// <summary>

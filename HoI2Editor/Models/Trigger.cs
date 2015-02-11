@@ -161,7 +161,8 @@ namespace HoI2Editor.Models
             "intelligence",
             "area",
             "region",
-            "research_mod"
+            "research_mod",
+            "alliance_leader"
         };
 
         /// <summary>
@@ -300,7 +301,8 @@ namespace HoI2Editor.Models
             TriggerParamType.Intelligence, // intelligence
             TriggerParamType.Area, // area
             TriggerParamType.Region, // region
-            TriggerParamType.ResearchMod // research_mod
+            TriggerParamType.ResearchMod, // research_mod
+            TriggerParamType.Int // alliance_leader
         };
 
         #endregion
@@ -475,7 +477,8 @@ namespace HoI2Editor.Models
         Intelligence,
         Area,
         Region,
-        ResearchMod
+        ResearchMod,
+        AllianceLeader
     }
 
     /// <summary>
