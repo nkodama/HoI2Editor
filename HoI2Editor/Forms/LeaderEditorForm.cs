@@ -1964,7 +1964,7 @@ namespace HoI2Editor.Forms
             rankYearNumericUpDown3.Enabled = true;
             rankYearNumericUpDown4.Enabled = true;
             pictureNameTextBox.Enabled = true;
-            pictureNameReferButton.Enabled = true;
+            pictureNameBrowseButton.Enabled = true;
             traitsGroupBox.Enabled = true;
 
             // 無効化時にクリアした文字列を再設定する
@@ -2036,7 +2036,7 @@ namespace HoI2Editor.Forms
             rankYearNumericUpDown3.Enabled = false;
             rankYearNumericUpDown4.Enabled = false;
             pictureNameTextBox.Enabled = false;
-            pictureNameReferButton.Enabled = false;
+            pictureNameBrowseButton.Enabled = false;
             traitsGroupBox.Enabled = false;
 
             cloneButton.Enabled = false;

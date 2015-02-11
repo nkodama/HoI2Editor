@@ -67,7 +67,7 @@
             this.positionLabel = new System.Windows.Forms.Label();
             this.pictureNameLabel = new System.Windows.Forms.Label();
             this.pictureNameTextBox = new System.Windows.Forms.TextBox();
-            this.pictureNameReferButton = new System.Windows.Forms.Button();
+            this.pictureNameBrowseButton = new System.Windows.Forms.Button();
             this.ministerPictureBox = new System.Windows.Forms.PictureBox();
             this.reloadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -359,12 +359,12 @@
             this.pictureNameTextBox.Name = "pictureNameTextBox";
             this.pictureNameTextBox.TextChanged += new System.EventHandler(this.OnPictureNameTextBoxTextChanged);
             // 
-            // pictureNameReferButton
+            // pictureNameBrowseButton
             // 
-            resources.ApplyResources(this.pictureNameReferButton, "pictureNameReferButton");
-            this.pictureNameReferButton.Name = "pictureNameReferButton";
-            this.pictureNameReferButton.UseVisualStyleBackColor = true;
-            this.pictureNameReferButton.Click += new System.EventHandler(this.OnPictureNameReferButtonClick);
+            resources.ApplyResources(this.pictureNameBrowseButton, "pictureNameBrowseButton");
+            this.pictureNameBrowseButton.Name = "pictureNameBrowseButton";
+            this.pictureNameBrowseButton.UseVisualStyleBackColor = true;
+            this.pictureNameBrowseButton.Click += new System.EventHandler(this.OnPictureNameReferButtonClick);
             // 
             // ministerPictureBox
             // 
@@ -432,7 +432,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.ministerPictureBox);
-            this.Controls.Add(this.pictureNameReferButton);
+            this.Controls.Add(this.pictureNameBrowseButton);
             this.Controls.Add(this.pictureNameTextBox);
             this.Controls.Add(this.pictureNameLabel);
             this.Controls.Add(this.loyaltyComboBox);
@@ -518,7 +518,7 @@
         private System.Windows.Forms.Label positionLabel;
         private System.Windows.Forms.Label pictureNameLabel;
         private System.Windows.Forms.TextBox pictureNameTextBox;
-        private System.Windows.Forms.Button pictureNameReferButton;
+        private System.Windows.Forms.Button pictureNameBrowseButton;
         private System.Windows.Forms.PictureBox ministerPictureBox;
         private System.Windows.Forms.Button reloadButton;
         private System.Windows.Forms.Button saveButton;

@@ -33,7 +33,7 @@
             this.saveButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
             this.teamPictureBox = new System.Windows.Forms.PictureBox();
-            this.pictureNameReferButton = new System.Windows.Forms.Button();
+            this.pictureNameBrowseButton = new System.Windows.Forms.Button();
             this.pictureNameTextBox = new System.Windows.Forms.TextBox();
             this.pictureNameLabel = new System.Windows.Forms.Label();
             this.endYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -111,12 +111,12 @@
             this.teamPictureBox.Name = "teamPictureBox";
             this.teamPictureBox.TabStop = false;
             // 
-            // pictureNameReferButton
+            // pictureNameBrowseButton
             // 
-            resources.ApplyResources(this.pictureNameReferButton, "pictureNameReferButton");
-            this.pictureNameReferButton.Name = "pictureNameReferButton";
-            this.pictureNameReferButton.UseVisualStyleBackColor = true;
-            this.pictureNameReferButton.Click += new System.EventHandler(this.OnPictureNameReferButtonClick);
+            resources.ApplyResources(this.pictureNameBrowseButton, "pictureNameBrowseButton");
+            this.pictureNameBrowseButton.Name = "pictureNameBrowseButton";
+            this.pictureNameBrowseButton.UseVisualStyleBackColor = true;
+            this.pictureNameBrowseButton.Click += new System.EventHandler(this.OnPictureNameReferButtonClick);
             // 
             // pictureNameTextBox
             // 
@@ -462,7 +462,7 @@
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
             this.Controls.Add(this.teamPictureBox);
-            this.Controls.Add(this.pictureNameReferButton);
+            this.Controls.Add(this.pictureNameBrowseButton);
             this.Controls.Add(this.pictureNameTextBox);
             this.Controls.Add(this.pictureNameLabel);
             this.Controls.Add(this.endYearNumericUpDown);
@@ -508,7 +508,7 @@
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button reloadButton;
         private System.Windows.Forms.PictureBox teamPictureBox;
-        private System.Windows.Forms.Button pictureNameReferButton;
+        private System.Windows.Forms.Button pictureNameBrowseButton;
         private System.Windows.Forms.TextBox pictureNameTextBox;
         private System.Windows.Forms.Label pictureNameLabel;
         private System.Windows.Forms.NumericUpDown endYearNumericUpDown;

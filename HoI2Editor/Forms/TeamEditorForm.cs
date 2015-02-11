@@ -1504,7 +1504,7 @@ namespace HoI2Editor.Forms
             startYearNumericUpDown.Enabled = true;
             endYearNumericUpDown.Enabled = true;
             pictureNameTextBox.Enabled = true;
-            pictureNameReferButton.Enabled = true;
+            pictureNameBrowseButton.Enabled = true;
             for (int i = 0; i < MaxEditableSpecialities; i++)
             {
                 _specialityComboBoxes[i].Enabled = true;
@@ -1542,7 +1542,7 @@ namespace HoI2Editor.Forms
             startYearNumericUpDown.Enabled = false;
             endYearNumericUpDown.Enabled = false;
             pictureNameTextBox.Enabled = false;
-            pictureNameReferButton.Enabled = false;
+            pictureNameBrowseButton.Enabled = false;
             for (int i = 0; i < MaxEditableSpecialities; i++)
             {
                 _specialityComboBoxes[i].Enabled = false;

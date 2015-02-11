@@ -228,31 +228,31 @@
   <data name="&gt;&gt;teamPictureBox.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="pictureNameReferButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="pictureNameBrowseButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="pictureNameReferButton.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="pictureNameBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>465, 419</value>
   </data>
-  <data name="pictureNameReferButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="pictureNameBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
-  <data name="pictureNameReferButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="pictureNameBrowseButton.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
-  <data name="pictureNameReferButton.Text" xml:space="preserve">
+  <data name="pictureNameBrowseButton.Text" xml:space="preserve">
     <value>Browse</value>
   </data>
-  <data name="&gt;&gt;pictureNameReferButton.Name" xml:space="preserve">
-    <value>pictureNameReferButton</value>
+  <data name="&gt;&gt;pictureNameBrowseButton.Name" xml:space="preserve">
+    <value>pictureNameBrowseButton</value>
   </data>
-  <data name="&gt;&gt;pictureNameReferButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;pictureNameBrowseButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;pictureNameReferButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pictureNameBrowseButton.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;pictureNameReferButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;pictureNameBrowseButton.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <data name="pictureNameTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">

@@ -1351,7 +1351,7 @@ namespace HoI2Editor.Forms
             ideologyComboBox.Enabled = true;
             loyaltyComboBox.Enabled = true;
             pictureNameTextBox.Enabled = true;
-            pictureNameReferButton.Enabled = true;
+            pictureNameBrowseButton.Enabled = true;
 
             // 無効化時にクリアした文字列を再設定する
             idNumericUpDown.Text = IntHelper.ToString((int) idNumericUpDown.Value);
@@ -1398,7 +1398,7 @@ namespace HoI2Editor.Forms
             ideologyComboBox.Enabled = false;
             loyaltyComboBox.Enabled = false;
             pictureNameTextBox.Enabled = false;
-            pictureNameReferButton.Enabled = false;
+            pictureNameBrowseButton.Enabled = false;
 
             cloneButton.Enabled = false;
             removeButton.Enabled = false;
