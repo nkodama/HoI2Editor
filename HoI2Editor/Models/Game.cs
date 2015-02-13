@@ -478,6 +478,21 @@ namespace HoI2Editor.Models
         /// </summary>
         public const string RandomLeadersPathName = "db\\randomleaders.csv";
 
+        /// <summary>
+        ///     基地定義ファイル名
+        /// </summary>
+        public const string BasesIncFileName = "bases.inc";
+
+        /// <summary>
+        ///     基地定義ファイル名 (DH Full 33年シナリオ)
+        /// </summary>
+        public const string BasesIncDodFileName = "bases_DOD.inc";
+
+        /// <summary>
+        ///     VP定義ファイル名
+        /// </summary>
+        public const string VpIncFileName = "vp.inc";
+
         #endregion
 
         #region 内部定数

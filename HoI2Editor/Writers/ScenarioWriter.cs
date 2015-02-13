@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,6 +7,9 @@ using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Writers
 {
+    /// <summary>
+    ///     シナリオデータのファイル書き込みを担当するクラス
+    /// </summary>
     public static class ScenarioWriter
     {
         #region シナリオデータ
@@ -301,103 +303,52 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     プロヴィンス設定をbases.incに書き込む
         /// </summary>
-        /// <param name="provinces">プロヴィンス設定のリスト</param>
+        /// <param name="scenario">シナリオデータ</param>
         /// <param name="fileName">ファイル名</param>
-        public static void WriteBasesInc(List<ProvinceSettings> provinces, string fileName)
+        public static void WriteBasesInc(Scenario scenario, string fileName)
         {
             // bases.incに保存しないならば何もしない
-            if (Scenarios.Type == ScenarioType.BattleScenario ||
-                Scenarios.Type == ScenarioType.SaveGame)
+            if (!scenario.IsBaseProvinceSettings)
             {
                 return;
             }
 
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                if (Scenarios.Type == ScenarioType.HoI2)
+                if (Game.Type == GameType.DarkestHour && !scenario.IsCountryProvinceSettings)
                 {
-                    WriteBasesIncHoI2(provinces, writer);
+                    // DH Full
+                    WriteBasesIncDhFull(scenario, writer);
                 }
                 else
                 {
-                    WriteBasesIncDh(provinces, writer);
+                    // HoI2/AoD/DH None
+                    WriteBasesIncHoI2(scenario, writer);
                 }
             }
         }
 
         /// <summary>
-        ///     プロヴィンス設定をbases_DOD.incに書き込む
+        ///     プロヴィンス設定をbases.incに書き込む (HoI2/AoD/DH None)
         /// </summary>
-        /// <param name="provinces">プロヴィンス設定のリスト</param>
-        /// <param name="fileName">ファイル名</param>
-        public static void WriteBasesDodInc(List<ProvinceSettings> provinces, string fileName)
-        {
-            // bases_DOD.incに保存しないならば何もしない
-            if (Scenarios.Type != ScenarioType.Full33)
-            {
-                return;
-            }
-
-            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
-            {
-                foreach (ProvinceSettings settings in provinces.Where(ExistsDataBasesDodInc))
-                {
-                    writer.Write(" province = {{ id = {0}", settings.Id);
-                    if (settings.Ic != null)
-                    {
-                        writer.Write(" ");
-                        WriteBuilding(BuildingType.Ic, settings.Ic, writer);
-                    }
-                    if (settings.Infrastructure != null)
-                    {
-                        writer.Write(" ");
-                        WriteBuilding(BuildingType.Infrastructure, settings.Infrastructure, writer);
-                    }
-                    writer.WriteLine(" } ");
-                }
-            }
-        }
-
-        /// <summary>
-        ///     プロヴィンス設定をvp.incに書き込む
-        /// </summary>
-        /// <param name="provinces">プロヴィンス設定のリスト</param>
-        /// <param name="fileName">ファイル名</param>
-        public static void WriteVpInc(List<ProvinceSettings> provinces, string fileName)
-        {
-            // vp.incに保存しないならば何もしない
-            if (Scenarios.Type == ScenarioType.SaveGame)
-            {
-                return;
-            }
-
-            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
-            {
-                if (Scenarios.Type == ScenarioType.HoI2)
-                {
-                    WriteVpIncHoI2(provinces, writer);
-                }
-                else
-                {
-                    WriteVpIncDh(provinces, writer);
-                }
-            }
-        }
-
-        /// <summary>
-        ///     プロヴィンス設定をbases.incに書き込む (HoI2/AoD)
-        /// </summary>
-        /// <param name="provinces">プロヴィンス設定のリスト</param>
+        /// <param name="scenario">シナリオデータ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteBasesIncHoI2(List<ProvinceSettings> provinces, TextWriter writer)
+        private static void WriteBasesIncHoI2(Scenario scenario, TextWriter writer)
         {
             writer.WriteLine("#naval");
             writer.WriteLine();
-            foreach (ProvinceSettings settings in provinces.Where(settings => settings.NavalBase != null))
+            foreach (ProvinceSettings settings in scenario.Provinces.Where(settings => settings.NavalBase != null))
             {
-                writer.Write("province = {{ id =\t{0}\t", settings.Id);
-                WriteBuilding(BuildingType.NavalBase, settings.NavalBase, writer);
-                writer.WriteLine(" }");
+                writer.Write("province = {{ id =\t{0}\tnaval_base = ", settings.Id);
+                if (settings.NavalBase.MaxSize > 0)
+                {
+                    writer.WriteLine("{{ size =\t{0}\tcurrent_size = \t{1}\t}} }}", settings.NavalBase.MaxSize,
+                        settings.NavalBase.CurrentSize);
+                }
+                else
+                {
+                    writer.WriteLine("{0} }}", settings.NavalBase.Size);
+                }
             }
             writer.WriteLine();
             writer.WriteLine();
@@ -407,90 +358,169 @@ namespace HoI2Editor.Writers
             writer.WriteLine("###airbases");
             writer.WriteLine();
             writer.WriteLine();
-            foreach (ProvinceSettings settings in provinces.Where(settings => settings.AirBase != null))
+            foreach (ProvinceSettings settings in scenario.Provinces.Where(settings => settings.AirBase != null))
             {
-                writer.Write("province = {{ id =\t{0}\t", settings.Id);
-                WriteBuilding(BuildingType.AirBase, settings.AirBase, writer);
-                writer.WriteLine(" }");
+                writer.Write("province = {{ id =\t{0}\tair_base = ", settings.Id);
+                if (settings.AirBase.MaxSize > 0)
+                {
+                    writer.WriteLine("{{ size =\t{0}\tcurrent_size = \t{1}\t}} }}", settings.AirBase.MaxSize,
+                        settings.AirBase.CurrentSize);
+                }
+                else
+                {
+                    writer.WriteLine("{0} }}", settings.AirBase.Size);
+                }
             }
             writer.WriteLine();
         }
 
         /// <summary>
-        ///     プロヴィンス設定をbases.incに書き込む (DH)
+        ///     プロヴィンス設定をbases.incに書き込む (DH Full)
         /// </summary>
-        /// <param name="provinces">プロヴィンス設定のリスト</param>
+        /// <param name="scenario">シナリオデータ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteBasesIncDh(IEnumerable<ProvinceSettings> provinces, TextWriter writer)
+        private static void WriteBasesIncDhFull(Scenario scenario, TextWriter writer)
         {
-            foreach (ProvinceSettings settings in provinces.Where(ExistsDataBasesIncDh))
+            foreach (ProvinceSettings settings in scenario.Provinces.Where(p => ExistsBasesIncDataDhFull(p, scenario)))
             {
-                Province province = Provinces.Items.Find(p => p.Id == settings.Id);
+                Province province = Provinces.Items[settings.Id];
                 writer.Write(" province = {{ id = {0}   #  {1} - {2} - {3}", settings.Id,
                     Scenarios.GetProvinceName(province, settings), Provinces.GetAreaName(province.Area),
                     Provinces.GetRegionName(province.Region));
-                if (Scenarios.Type != ScenarioType.Full33)
+                if (!scenario.IsBaseDodProvinceSettings)
                 {
                     if (settings.Ic != null)
                     {
-                        writer.Write("   ");
-                        WriteBuilding(BuildingType.Ic, settings.Ic, writer);
+                        writer.Write("   ic = ");
+                        WriteBuilding(settings.Ic, writer);
                         writer.WriteLine(" ");
                     }
                     if (settings.Infrastructure != null)
                     {
-                        writer.Write("   ");
-                        WriteBuilding(BuildingType.Infrastructure, settings.Infrastructure, writer);
+                        writer.Write("   infra = ");
+                        WriteBuilding(settings.Infrastructure, writer);
                         writer.WriteLine(" ");
                     }
                 }
                 if (settings.LandFort != null)
                 {
-                    writer.Write("   ");
-                    WriteBuilding(BuildingType.LandFort, settings.LandFort, writer);
+                    writer.Write("   landfort = ");
+                    WriteBuilding(settings.LandFort, writer);
                     writer.WriteLine(" ");
                 }
                 if (settings.CoastalFort != null)
                 {
-                    writer.Write("   ");
-                    WriteBuilding(BuildingType.CoastalFort, settings.CoastalFort, writer);
+                    writer.Write("   coastalfort = ");
+                    WriteBuilding(settings.CoastalFort, writer);
                     writer.WriteLine(" ");
                 }
                 if (settings.AntiAir != null)
                 {
-                    writer.Write("   ");
-                    WriteBuilding(BuildingType.AntiAir, settings.AntiAir, writer);
+                    writer.Write("   anti_air = ");
+                    WriteBuilding(settings.AntiAir, writer);
                     writer.WriteLine(" ");
                 }
                 if (settings.AirBase != null)
                 {
-                    writer.Write("   ");
-                    WriteBuilding(BuildingType.AirBase, settings.AirBase, writer);
+                    writer.Write("   air_base = ");
+                    WriteBuilding(settings.AirBase, writer);
                     writer.WriteLine(" ");
                 }
                 if (settings.NavalBase != null)
                 {
-                    writer.Write("   ");
-                    WriteBuilding(BuildingType.NavalBase, settings.NavalBase, writer);
+                    writer.Write("   naval_base = ");
+                    WriteBuilding(settings.NavalBase, writer);
                     writer.WriteLine(" ");
                 }
                 if (settings.RadarStation != null)
                 {
-                    writer.Write("   ");
-                    WriteBuilding(BuildingType.RadarStation, settings.RadarStation, writer);
+                    writer.Write("   radar_station = ");
+                    WriteBuilding(settings.RadarStation, writer);
                     writer.WriteLine(" ");
                 }
                 if (settings.NuclearReactor != null)
                 {
-                    writer.Write("   ");
-                    WriteBuilding(BuildingType.NuclearReactor, settings.NuclearReactor, writer);
+                    writer.Write("   nuclear_reactor = ");
+                    WriteBuilding(settings.NuclearReactor, writer);
                     writer.WriteLine(" ");
                 }
                 if (settings.RocketTest != null)
                 {
-                    writer.Write("   ");
-                    WriteBuilding(BuildingType.RocketTest, settings.RocketTest, writer);
+                    writer.Write("   rocket_test = ");
+                    WriteBuilding(settings.RocketTest, writer);
                     writer.WriteLine(" ");
+                }
+                if (settings.SupplyPool > 0)
+                {
+                    writer.WriteLine("   supplypool = {0} ", DoubleHelper.ToString(settings.SupplyPool));
+                }
+                if (settings.OilPool > 0)
+                {
+                    writer.WriteLine("   oilpool = {0} ", DoubleHelper.ToString(settings.OilPool));
+                }
+                if (settings.EnergyPool > 0)
+                {
+                    writer.WriteLine("   energypool = {0} ", DoubleHelper.ToString(settings.EnergyPool));
+                }
+                if (settings.MetalPool > 0)
+                {
+                    writer.WriteLine("   metalpool = {0} ", DoubleHelper.ToString(settings.MetalPool));
+                }
+                if (settings.RareMaterialsPool > 0)
+                {
+                    writer.WriteLine("   rarematerialspool = {0} ", DoubleHelper.ToString(settings.RareMaterialsPool));
+                }
+                if (settings.Energy > 0)
+                {
+                    writer.WriteLine("   energy = {0} ", DoubleHelper.ToString(settings.Energy));
+                }
+                if (settings.MaxEnergy > 0)
+                {
+                    writer.WriteLine("   max_energy = {0} ", DoubleHelper.ToString(settings.MaxEnergy));
+                }
+                if (settings.Metal > 0)
+                {
+                    writer.WriteLine("   metal = {0} ", DoubleHelper.ToString(settings.Metal));
+                }
+                if (settings.MaxMetal > 0)
+                {
+                    writer.WriteLine("   max_metal = {0} ", DoubleHelper.ToString(settings.MaxMetal));
+                }
+                if (settings.RareMaterials > 0)
+                {
+                    writer.WriteLine("   rare_materials = {0} ", DoubleHelper.ToString(settings.RareMaterials));
+                }
+                if (settings.MaxRareMaterials > 0)
+                {
+                    writer.WriteLine("   max_rare_materials = {0} ", DoubleHelper.ToString(settings.MaxRareMaterials));
+                }
+                if (settings.Oil > 0)
+                {
+                    writer.WriteLine("   oil = {0} ", DoubleHelper.ToString(settings.Oil));
+                }
+                if (settings.MaxOil > 0)
+                {
+                    writer.WriteLine("   max_oil = {0} ", DoubleHelper.ToString(settings.MaxOil));
+                }
+                if (settings.Manpower > 0)
+                {
+                    writer.WriteLine("   manpower = {0} ", DoubleHelper.ToString(settings.Manpower));
+                }
+                if (settings.MaxManpower > 0)
+                {
+                    writer.WriteLine("   max_manpower = {0} ", DoubleHelper.ToString(settings.MaxManpower));
+                }
+                if (settings.RevoltRisk > 0)
+                {
+                    writer.WriteLine("   province_revoltrisk = {0} ", DoubleHelper.ToString(settings.RevoltRisk));
+                }
+                if (!string.IsNullOrEmpty(settings.Name))
+                {
+                    writer.WriteLine("   name = {0} ", settings.Name);
+                }
+                if (settings.Weather != WeatherType.None)
+                {
+                    writer.WriteLine("   weather = {0}", Scenarios.WeatherStrings[(int) settings.Weather]);
                 }
                 writer.WriteLine(" } ");
                 writer.WriteLine(" ");
@@ -498,111 +528,404 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        ///     プロヴィンス設定をvp.incに書き込む (HoI2/AoD)
+        ///     プロヴィンス設定をbases_DOD.incに書き込む
         /// </summary>
-        /// <param name="provinces">プロヴィンス設定のリスト</param>
+        /// <param name="scenario">シナリオデータ</param>
+        /// <param name="fileName">ファイル名</param>
+        public static void WriteBasesDodInc(Scenario scenario, string fileName)
+        {
+            // bases_DOD.incに保存しないならば何もしない
+            if (!scenario.IsBaseDodProvinceSettings)
+            {
+                return;
+            }
+
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            {
+                foreach (ProvinceSettings settings in scenario.Provinces.Where(ExistsBasesDodIncData))
+                {
+                    writer.Write(" province = {{ id = {0}", settings.Id);
+                    if (settings.Ic != null)
+                    {
+                        writer.Write(" ic = ");
+                        WriteBuilding(settings.Ic, writer);
+                    }
+                    if (settings.Infrastructure != null)
+                    {
+                        writer.Write(" infra = ");
+                        WriteBuilding(settings.Infrastructure, writer);
+                    }
+                    writer.WriteLine(" } ");
+                }
+            }
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定をvp.incに書き込む
+        /// </summary>
+        /// <param name="scenario">シナリオデータ</param>
+        /// <param name="fileName">ファイル名</param>
+        public static void WriteVpInc(Scenario scenario, string fileName)
+        {
+            // vp.incに保存しないならば何もしない
+            if (!scenario.IsVpProvinceSettings)
+            {
+                return;
+            }
+
+            using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
+            {
+                if (Game.Type == GameType.DarkestHour && !scenario.IsCountryProvinceSettings)
+                {
+                    // DH Full
+                    WriteVpIncDhFull(scenario, writer);
+                }
+                else
+                {
+                    // HoI2/AoD/DH None
+                    WriteVpIncHoI2(scenario, writer);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定をvp.incに書き込む (HoI2/AoD/DH None)
+        /// </summary>
+        /// <param name="scenario">シナリオデータ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteVpIncHoI2(IEnumerable<ProvinceSettings> provinces, TextWriter writer)
+        private static void WriteVpIncHoI2(Scenario scenario, TextWriter writer)
         {
             writer.WriteLine();
             writer.WriteLine("###############################");
             writer.WriteLine("# Victory points distribution #");
             writer.WriteLine("###############################");
             writer.WriteLine();
-            foreach (ProvinceSettings settings in provinces.Where(settings => settings.Vp != 0))
+            foreach (ProvinceSettings settings in scenario.Provinces.Where(settings => settings.Vp != 0))
             {
-                Province province = Provinces.Items.Find(p => p.Id == settings.Id);
+                Province province = Provinces.Items[settings.Id];
                 writer.WriteLine("province = {{ id = {0} points = {1} }} # {2}", settings.Id, settings.Vp,
                     Scenarios.GetProvinceName(province, settings));
             }
         }
 
         /// <summary>
-        ///     プロヴィンス設定をvp.incに書き込む (DH)
+        ///     プロヴィンス設定をvp.incに書き込む (DH Full)
         /// </summary>
-        /// <param name="provinces">プロヴィンス設定のリスト</param>
+        /// <param name="scenario">シナリオデータ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteVpIncDh(IEnumerable<ProvinceSettings> provinces, TextWriter writer)
+        private static void WriteVpIncDhFull(Scenario scenario, TextWriter writer)
         {
-            foreach (ProvinceSettings settings in provinces.Where(settings => settings.Vp != 0))
+            foreach (ProvinceSettings settings in scenario.Provinces.Where(settings => settings.Vp != 0))
             {
                 writer.WriteLine(" ");
-                writer.WriteLine("###############################");
-                writer.WriteLine("# Victory points distribution #");
-                writer.WriteLine("###############################");
+                writer.WriteLine(" ###############################");
+                writer.WriteLine(" # Victory points distribution #");
+                writer.WriteLine(" ###############################");
                 writer.WriteLine("  ");
-                Province province = Provinces.Items.Find(p => p.Id == settings.Id);
-                writer.Write(" province = {{  id = {0} points = {1} }} # {2} ", settings.Id, settings.Vp,
+                Province province = Provinces.Items[settings.Id];
+                writer.Write(" province = {{  id = {0} points = {1}  }} # {2} ", settings.Id, settings.Vp,
                     Scenarios.GetProvinceName(province, settings));
             }
         }
 
         /// <summary>
-        ///     プロヴィンス設定を国別incに書き込む (国別inc)
+        ///     プロヴィンス設定のリストを国別incに書き込む
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="scenario">シナリオデータ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteCountryProvinces(CountrySettings settings, Scenario scenario,
+            TextWriter writer)
+        {
+            writer.WriteLine();
+            writer.WriteLine("##############################");
+            writer.WriteLine("# Country definition for {0} #", Countries.Strings[(int) settings.Country]);
+            writer.WriteLine("##############################");
+            writer.WriteLine();
+            foreach (ProvinceSettings ps in scenario.Provinces.Where(p => settings.ControlledProvinces.Contains(p.Id)))
+            {
+                WriteCountryProvince(ps, scenario, writer);
+            }
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定を国別incに書き込む
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
+        /// <param name="scenario">シナリオデータ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteCountryProvince(ProvinceSettings settings, TextWriter writer)
+        private static void WriteCountryProvince(ProvinceSettings settings, Scenario scenario, TextWriter writer)
         {
-            Province province = Provinces.Items.Find(p => p.Id == settings.Id);
-            if (IsSingleLineProvince(settings))
+            if (IsProvinceSingleLine(settings))
             {
-                WriteSingleLineProvince(settings, writer);
-                writer.WriteLine(" # {0}", Scenarios.GetProvinceName(province, settings));
+                WriteCountryProvinceSingleLine(settings, scenario, writer);
             }
             else
             {
-                writer.WriteLine("province =");
-                writer.WriteLine("{{ id         = {0}", settings.Id);
+                WriteCountryProvinceMultiLine(settings, scenario, writer);
             }
         }
 
         /// <summary>
-        ///     単一行のプロヴィンス設定を書き出す
+        ///     単一行のプロヴィンス設定を国別incに書き込む
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
+        /// <param name="scenario">シナリオデータ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteSingleLineProvince(ProvinceSettings settings, TextWriter writer)
+        private static void WriteCountryProvinceSingleLine(ProvinceSettings settings, Scenario scenario,
+            TextWriter writer)
         {
             writer.Write("province = {{ id = {0}", settings.Id);
-            WriteBuilding(BuildingType.Ic, settings.Ic, writer);
-            WriteBuilding(BuildingType.Infrastructure, settings.Infrastructure, writer);
-            WriteBuilding(BuildingType.LandFort, settings.LandFort, writer);
-            WriteBuilding(BuildingType.CoastalFort, settings.CoastalFort, writer);
-            WriteBuilding(BuildingType.AntiAir, settings.AntiAir, writer);
-            WriteBuilding(BuildingType.AirBase, settings.AirBase, writer);
-            WriteBuilding(BuildingType.NavalBase, settings.NavalBase, writer);
-            WriteBuilding(BuildingType.RadarStation, settings.RadarStation, writer);
-            WriteBuilding(BuildingType.NuclearReactor, settings.NuclearReactor, writer);
-            WriteBuilding(BuildingType.RocketTest, settings.RocketTest, writer);
-            WriteBuilding(BuildingType.SyntheticOil, settings.SyntheticOil, writer);
-            WriteBuilding(BuildingType.SyntheticRares, settings.SyntheticRares, writer);
-            WriteBuilding(BuildingType.NuclearPower, settings.NuclearPower, writer);
-            writer.Write(" }");
+            if (settings.Ic != null)
+            {
+                writer.Write(" ic = ");
+                WriteBuilding(settings.Ic, writer);
+            }
+            if (settings.Infrastructure != null)
+            {
+                writer.Write(" infra = ");
+                WriteBuilding(settings.Infrastructure, writer);
+            }
+            if (settings.LandFort != null)
+            {
+                writer.Write(" landfort = ");
+                WriteBuilding(settings.LandFort, writer);
+            }
+            if (settings.CoastalFort != null)
+            {
+                writer.Write(" coastalfort = ");
+                WriteBuilding(settings.CoastalFort, writer);
+            }
+            if (settings.AntiAir != null)
+            {
+                writer.Write(" anti_air = ");
+                WriteBuilding(settings.AntiAir, writer);
+            }
+            if (!scenario.IsBaseProvinceSettings)
+            {
+                if (settings.AirBase != null)
+                {
+                    writer.Write(" air_base = ");
+                    WriteBuilding(settings.AirBase, writer);
+                }
+                if (settings.NavalBase != null)
+                {
+                    writer.Write(" naval_base = ");
+                    WriteBuilding(settings.NavalBase, writer);
+                }
+            }
+            if (settings.RadarStation != null)
+            {
+                writer.Write(" radar_station = ");
+                WriteBuilding(settings.RadarStation, writer);
+            }
+            if (settings.NuclearReactor != null)
+            {
+                writer.Write(" nuclear_reactor = ");
+                WriteBuilding(settings.NuclearReactor, writer);
+            }
+            if (settings.RocketTest != null)
+            {
+                writer.Write(" rocket_test = ");
+                WriteBuilding(settings.RocketTest, writer);
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                if (settings.SyntheticOil != null)
+                {
+                    writer.Write(" synthetic_oil = ");
+                    WriteBuilding(settings.SyntheticOil, writer);
+                }
+                if (settings.SyntheticRares != null)
+                {
+                    writer.Write(" synthetic_rares = ");
+                    WriteBuilding(settings.SyntheticRares, writer);
+                }
+                if (settings.NuclearPower != null)
+                {
+                    writer.Write(" nuclear_power = ");
+                    WriteBuilding(settings.NuclearPower, writer);
+                }
+            }
+            if (settings.SupplyPool > 0)
+            {
+                writer.Write(" supplypool = {0}", ObjectHelper.ToString(settings.SupplyPool));
+            }
+            if (settings.OilPool > 0)
+            {
+                writer.Write(" oilpool = {0}", ObjectHelper.ToString(settings.OilPool));
+            }
+            Province province = Provinces.Items[settings.Id];
+            writer.WriteLine(" }} # {0}", Scenarios.GetProvinceName(province, settings));
         }
 
         /// <summary>
-        ///     複数行のプロヴィンス設定を書き出す
+        ///     複数行のプロヴィンス設定を国別incに書き込む
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
+        /// <param name="scenario">シナリオデータ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WritMultiLineProvince(ProvinceSettings settings, TextWriter writer)
+        private static void WriteCountryProvinceMultiLine(ProvinceSettings settings, Scenario scenario,
+            TextWriter writer)
         {
             writer.WriteLine("province =");
             writer.WriteLine("{{ id         = {0}", settings.Id);
-            WriteBuilding(BuildingType.Ic, settings.Ic, writer);
-            WriteBuilding(BuildingType.Infrastructure, settings.Infrastructure, writer);
-            WriteBuilding(BuildingType.LandFort, settings.LandFort, writer);
-            WriteBuilding(BuildingType.CoastalFort, settings.CoastalFort, writer);
-            WriteBuilding(BuildingType.AntiAir, settings.AntiAir, writer);
-            WriteBuilding(BuildingType.AirBase, settings.AirBase, writer);
-            WriteBuilding(BuildingType.NavalBase, settings.NavalBase, writer);
-            WriteBuilding(BuildingType.RadarStation, settings.RadarStation, writer);
-            WriteBuilding(BuildingType.NuclearReactor, settings.NuclearReactor, writer);
-            WriteBuilding(BuildingType.RocketTest, settings.RocketTest, writer);
-            WriteBuilding(BuildingType.SyntheticOil, settings.SyntheticOil, writer);
-            WriteBuilding(BuildingType.SyntheticRares, settings.SyntheticRares, writer);
-            WriteBuilding(BuildingType.NuclearPower, settings.NuclearPower, writer);
+            if (settings.Ic != null)
+            {
+                writer.Write("  ic         = ");
+                WriteBuilding(settings.Ic, writer);
+                writer.WriteLine();
+            }
+            if (settings.Infrastructure != null)
+            {
+                writer.Write("  infra      = ");
+                WriteBuilding(settings.Infrastructure, writer);
+                writer.WriteLine();
+            }
+            if (settings.LandFort != null)
+            {
+                writer.Write("  landfort   = ");
+                WriteBuilding(settings.LandFort, writer);
+                writer.WriteLine();
+            }
+            if (settings.CoastalFort != null)
+            {
+                writer.Write("  coastalfort = ");
+                WriteBuilding(settings.CoastalFort, writer);
+                writer.WriteLine();
+            }
+            if (settings.AntiAir != null)
+            {
+                writer.Write("  anti_air   = ");
+                WriteBuilding(settings.AntiAir, writer);
+                writer.WriteLine();
+            }
+            if (!scenario.IsBaseProvinceSettings)
+            {
+                if (settings.AirBase != null)
+                {
+                    writer.Write("  air_base   = ");
+                    WriteBuilding(settings.AirBase, writer);
+                    writer.WriteLine();
+                }
+                if (settings.NavalBase != null)
+                {
+                    writer.Write("  naval_base = ");
+                    WriteBuilding(settings.NavalBase, writer);
+                    writer.WriteLine();
+                }
+            }
+            if (settings.RadarStation != null)
+            {
+                writer.Write(" radar_station = ");
+                WriteBuilding(settings.RadarStation, writer);
+                writer.WriteLine();
+            }
+            if (settings.NuclearReactor != null)
+            {
+                writer.Write("  nuclear_reactor = ");
+                WriteBuilding(settings.NuclearReactor, writer);
+                writer.WriteLine();
+            }
+            if (settings.RocketTest != null)
+            {
+                writer.Write("  rocket_test = ");
+                WriteBuilding(settings.RocketTest, writer);
+                writer.WriteLine();
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                if (settings.SyntheticOil != null)
+                {
+                    writer.Write("  synthetic_oil = ");
+                    WriteBuilding(settings.SyntheticOil, writer);
+                    writer.WriteLine();
+                }
+                if (settings.SyntheticRares != null)
+                {
+                    writer.Write("  synthetic_rares = ");
+                    WriteBuilding(settings.SyntheticRares, writer);
+                    writer.WriteLine();
+                }
+                if (settings.NuclearPower != null)
+                {
+                    writer.Write("  nuclear_power = ");
+                    WriteBuilding(settings.NuclearPower, writer);
+                    writer.WriteLine();
+                }
+            }
+            if (settings.SupplyPool > 0)
+            {
+                writer.WriteLine("  supplypool = {0}", ObjectHelper.ToString(settings.SupplyPool));
+            }
+            if (settings.OilPool > 0)
+            {
+                writer.WriteLine("  oilpool    = {0}", ObjectHelper.ToString(settings.OilPool));
+            }
+            if (settings.EnergyPool > 0)
+            {
+                writer.WriteLine("  energypool = {0}", ObjectHelper.ToString(settings.EnergyPool));
+            }
+            if (settings.MetalPool > 0)
+            {
+                writer.WriteLine("  metalpool  = {0}", ObjectHelper.ToString(settings.MetalPool));
+            }
+            if (settings.RareMaterialsPool > 0)
+            {
+                writer.WriteLine("  rarematerialspool = {0}", ObjectHelper.ToString(settings.RareMaterialsPool));
+            }
+            if (settings.Energy > 0)
+            {
+                writer.WriteLine("  energy     = {0}", ObjectHelper.ToString(settings.Energy));
+            }
+            if (settings.MaxEnergy > 0)
+            {
+                writer.WriteLine("  max_energy = {0}", ObjectHelper.ToString(settings.MaxEnergy));
+            }
+            if (settings.Metal > 0)
+            {
+                writer.WriteLine("  metal      = {0}", ObjectHelper.ToString(settings.Metal));
+            }
+            if (settings.MaxMetal > 0)
+            {
+                writer.WriteLine("  max_metal  = {0}", ObjectHelper.ToString(settings.MaxMetal));
+            }
+            if (settings.RareMaterials > 0)
+            {
+                writer.WriteLine("  rare_materials = {0}", ObjectHelper.ToString(settings.RareMaterials));
+            }
+            if (settings.MaxRareMaterials > 0)
+            {
+                writer.WriteLine("  max_rare_materials = {0}", ObjectHelper.ToString(settings.MaxRareMaterials));
+            }
+            if (settings.Oil > 0)
+            {
+                writer.WriteLine("  oil        = {0}", ObjectHelper.ToString(settings.Oil));
+            }
+            if (settings.MaxOil > 0)
+            {
+                writer.WriteLine("  max_oil    = {0}", ObjectHelper.ToString(settings.MaxOil));
+            }
+            if (settings.Manpower > 0)
+            {
+                writer.WriteLine("  manpower   = {0}", ObjectHelper.ToString(settings.Manpower));
+            }
+            if (settings.MaxManpower > 0)
+            {
+                writer.WriteLine("  max_manpower = {0}", ObjectHelper.ToString(settings.MaxManpower));
+            }
+            if (settings.RevoltRisk > 0)
+            {
+                writer.WriteLine("  province_revoltrisk = {0}", ObjectHelper.ToString(settings.RevoltRisk));
+            }
+            if (!string.IsNullOrEmpty(settings.Name))
+            {
+                writer.WriteLine("  name       = {0} ", settings.Name);
+            }
+            if (settings.Weather != WeatherType.None)
+            {
+                writer.WriteLine("  weather    = {0}", Scenarios.WeatherStrings[(int) settings.Weather]);
+            }
             writer.Write(" }");
         }
 
@@ -611,7 +934,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <returns>単一行で記載できればtrueを返す</returns>
-        private static bool IsSingleLineProvince(ProvinceSettings settings)
+        private static bool IsProvinceSingleLine(ProvinceSettings settings)
         {
             if ((settings.Ic != null && settings.Ic.MaxSize > 0) ||
                 (settings.Infrastructure != null && settings.Infrastructure.MaxSize > 0) ||
@@ -630,17 +953,46 @@ namespace HoI2Editor.Writers
                 return false;
             }
 
+            if (settings.EnergyPool > 0 ||
+                settings.MetalPool > 0 ||
+                settings.RareMaterialsPool > 0 ||
+                settings.Energy > 0 ||
+                settings.MaxEnergy > 0 ||
+                settings.Metal > 0 ||
+                settings.MaxMetal > 0 ||
+                settings.RareMaterials > 0 ||
+                settings.MaxRareMaterials > 0 ||
+                settings.Oil > 0 ||
+                settings.MaxOil > 0 ||
+                settings.Manpower > 0 ||
+                settings.MaxManpower > 0 ||
+                settings.RevoltRisk > 0)
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(settings.Name))
+            {
+                return false;
+            }
+
+            if (settings.Weather != WeatherType.None)
+            {
+                return false;
+            }
+
             return true;
         }
 
         /// <summary>
-        ///     bases.incに保存するデータが存在するかどうかを返す (DH)
+        ///     bases.incに保存するデータが存在するかどうかを返す (DH Full)
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
+        /// <param name="scenario">シナリオデータ</param>
         /// <returns>bases.incに保存するデータが存在すればtrueを返す</returns>
-        private static bool ExistsDataBasesIncDh(ProvinceSettings settings)
+        private static bool ExistsBasesIncDataDhFull(ProvinceSettings settings, Scenario scenario)
         {
-            if (Scenarios.Type != ScenarioType.Full33)
+            if (!scenario.IsBaseDodProvinceSettings)
             {
                 if (settings.Ic != null || settings.Infrastructure != null)
                 {
@@ -648,42 +1000,47 @@ namespace HoI2Editor.Writers
                 }
             }
 
-            if ((settings.LandFort != null) ||
-                (settings.CoastalFort != null) ||
-                (settings.AntiAir != null) ||
-                (settings.AirBase != null) ||
-                (settings.NavalBase != null) ||
-                (settings.RadarStation != null) ||
-                (settings.NuclearReactor != null) ||
-                (settings.RocketTest != null) ||
-                (settings.SyntheticOil != null) ||
-                (settings.SyntheticRares != null) ||
-                (settings.NuclearPower != null))
+            if (settings.LandFort != null ||
+                settings.CoastalFort != null ||
+                settings.AntiAir != null ||
+                settings.AirBase != null ||
+                settings.NavalBase != null ||
+                settings.RadarStation != null ||
+                settings.NuclearReactor != null ||
+                settings.RocketTest != null ||
+                settings.SyntheticOil != null ||
+                settings.SyntheticRares != null ||
+                settings.NuclearPower != null)
             {
                 return true;
             }
 
-            if (!DoubleHelper.IsZero(settings.RevoltRisk) ||
-                !DoubleHelper.IsZero(settings.Manpower) ||
-                !DoubleHelper.IsZero(settings.MaxManpower) ||
-                !DoubleHelper.IsZero(settings.EnergyPool) ||
-                !DoubleHelper.IsZero(settings.Energy) ||
-                !DoubleHelper.IsZero(settings.MaxEnergy) ||
-                !DoubleHelper.IsZero(settings.MetalPool) ||
-                !DoubleHelper.IsZero(settings.Metal) ||
-                !DoubleHelper.IsZero(settings.MaxMetal) ||
-                !DoubleHelper.IsZero(settings.RareMaterialsPool) ||
-                !DoubleHelper.IsZero(settings.RareMaterials) ||
-                !DoubleHelper.IsZero(settings.MaxRareMaterials) ||
-                !DoubleHelper.IsZero(settings.OilPool) ||
-                !DoubleHelper.IsZero(settings.Oil) ||
-                !DoubleHelper.IsZero(settings.MaxOil) ||
-                !DoubleHelper.IsZero(settings.SupplyPool))
+            if (settings.RevoltRisk > 0 ||
+                settings.Manpower > 0 ||
+                settings.MaxManpower > 0 ||
+                settings.EnergyPool > 0 ||
+                settings.Energy > 0 ||
+                settings.MaxEnergy > 0 ||
+                settings.MetalPool > 0 ||
+                settings.Metal > 0 ||
+                settings.MaxMetal > 0 ||
+                settings.RareMaterialsPool > 0 ||
+                settings.RareMaterials > 0 ||
+                settings.MaxRareMaterials > 0 ||
+                settings.OilPool > 0 ||
+                settings.Oil > 0 ||
+                settings.MaxOil > 0 ||
+                settings.SupplyPool > 0)
             {
                 return true;
             }
 
             if (!string.IsNullOrEmpty(settings.Name))
+            {
+                return true;
+            }
+
+            if (settings.Weather != WeatherType.None)
             {
                 return true;
             }
@@ -696,15 +1053,9 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <returns>bases_DOD.incに保存するデータが存在すればtrueを返す</returns>
-        private static bool ExistsDataBasesDodInc(ProvinceSettings settings)
+        private static bool ExistsBasesDodIncData(ProvinceSettings settings)
         {
-            if (settings.Ic != null ||
-                settings.Infrastructure != null)
-            {
-                return true;
-            }
-
-            return false;
+            return (settings.Ic != null) || (settings.Infrastructure != null);
         }
 
         #endregion
@@ -721,12 +1072,12 @@ namespace HoI2Editor.Writers
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
+                WriteCountryProvinces(settings, scenario, writer);
                 writer.WriteLine();
-                writer.WriteLine("##############################");
-                writer.WriteLine("# Country definition for {0} #", Countries.Strings[(int) settings.Country]);
-                writer.WriteLine("##############################");
+                writer.WriteLine("#####################");
+                writer.WriteLine("# Country main data #");
+                writer.WriteLine("#####################");
                 writer.WriteLine();
-                WriteCountryProvinces(settings.ControlledProvinces, scenario.Provinces, writer);
                 writer.WriteLine("{{ tag                    = {0}", Countries.Strings[(int) settings.Country]);
                 if (settings.Master != Country.None)
                 {
@@ -736,60 +1087,52 @@ namespace HoI2Editor.Writers
                 {
                     writer.WriteLine("  control                = {0}", Countries.Strings[(int) settings.Control]);
                 }
-                writer.WriteLine("  # Resource Reserves");
-                writer.WriteLine("  energy                 = {0}", ObjectHelper.ToString(settings.Energy));
-                writer.WriteLine("  metal                  = {0}", ObjectHelper.ToString(settings.Metal));
-                writer.WriteLine("  rare_materials         = {0}", ObjectHelper.ToString(settings.RareMaterials));
-                writer.WriteLine("  oil                    = {0}", ObjectHelper.ToString(settings.Oil));
-                writer.WriteLine("  supplies               = {0}", ObjectHelper.ToString(settings.Supplies));
-                writer.WriteLine("  money                  = {0}", ObjectHelper.ToString(settings.Money));
-                writer.WriteLine("  manpower               = {0}", ObjectHelper.ToString(settings.Manpower));
-                writer.WriteLine("  capital                = {0}", settings.Capital);
-                if (settings.Policy != null)
-                {
-                    WritePolicy(settings.Policy, writer);
-                }
-                writer.Write("  nationalprovinces      = {");
-                WriteIdList(settings.NationalProvinces, writer);
-                writer.WriteLine(" }");
-                writer.Write("  ownedprovinces         = {");
-                WriteIdList(settings.OwnedProvinces, writer);
-                writer.WriteLine(" }");
-                writer.Write("  controlledprovinces    = {");
-                WriteIdList(settings.ControlledProvinces, writer);
-                writer.WriteLine(" }");
-                writer.Write("  techapps               = {");
-                WriteIdList(settings.TechApps, writer);
-                writer.WriteLine(" }");
-                if (settings.Relations.Count > 0)
-                {
-                }
+                WriteCountryResources(settings, writer);
+                WriteCountryPolicy(settings, writer);
+                WriteCabinet(settings, writer);
+                WriteCountryTerritories(settings, writer);
+                WriteTechApps(settings, writer);
+                WriteBlueprints(settings, writer);
+                WriteDiplomacy(settings, writer);
+                WriteSpyInfos(settings, writer);
+                WriteLandUnits(settings, writer);
+                WriteNavalUnits(settings, writer);
+                WriteAirUnits(settings, writer);
+                WriteDivisionDevelopments(settings, writer);
+                writer.WriteLine("}");
             }
         }
 
         /// <summary>
-        ///     支配プロヴィンス設定のリストを書き出す
+        ///     資源設定を書き出す
         /// </summary>
-        /// <param name="controlled">支配プロヴィンスのIDリスト</param>
-        /// <param name="provinces">プロヴィンス設定のリスト</param>
+        /// <param name="settings">国家設定</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteCountryProvinces(ICollection<int> controlled, IEnumerable<ProvinceSettings> provinces,
-            TextWriter writer)
+        private static void WriteCountryResources(CountrySettings settings, TextWriter writer)
         {
-            foreach (ProvinceSettings settings in provinces.Where(p => controlled.Contains(p.Id)))
-            {
-                WriteCountryProvince(settings, writer);
-            }
-            throw new NotImplementedException();
+            writer.WriteLine("  # Resource Reserves");
+            writer.WriteLine("  energy                 = {0}", ObjectHelper.ToString(settings.Energy));
+            writer.WriteLine("  metal                  = {0}", ObjectHelper.ToString(settings.Metal));
+            writer.WriteLine("  rare_materials         = {0}", ObjectHelper.ToString(settings.RareMaterials));
+            writer.WriteLine("  oil                    = {0}", ObjectHelper.ToString(settings.Oil));
+            writer.WriteLine("  supplies               = {0}", ObjectHelper.ToString(settings.Supplies));
+            writer.WriteLine("  money                  = {0}", ObjectHelper.ToString(settings.Money));
+            writer.WriteLine("  manpower               = {0}", ObjectHelper.ToString(settings.Manpower));
+            writer.WriteLine("  capital                = {0}", settings.Capital);
         }
 
         /// <summary>
         ///     政策スライダーを書き出す
         /// </summary>
-        /// <param name="policy">政策スライダー</param>
+        /// <param name="settings">国家設定</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WritePolicy(CountryPolicy policy, TextWriter writer)
+        private static void WriteCountryPolicy(CountrySettings settings, TextWriter writer)
         {
+            CountryPolicy policy = settings.Policy;
+            if (policy == null)
+            {
+                return;
+            }
             writer.WriteLine("  policy =");
             writer.Write("  {");
             if (policy.Date != null)
@@ -809,15 +1152,140 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
+        ///     閣僚リストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteCabinet(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.HeadOfState != null)
+            {
+                writer.Write("  headofstate            = ");
+                WriteTypeId(settings.HeadOfState, writer);
+                writer.WriteLine();
+            }
+            if (settings.HeadOfGovernment != null)
+            {
+                writer.Write("  headofgovernment       = ");
+                WriteTypeId(settings.HeadOfGovernment, writer);
+                writer.WriteLine();
+            }
+            if (settings.ForeignMinister != null)
+            {
+                writer.Write("  foreignminister        = ");
+                WriteTypeId(settings.ForeignMinister, writer);
+                writer.WriteLine();
+            }
+            if (settings.ArmamentMinister != null)
+            {
+                writer.Write("  armamentminister       = ");
+                WriteTypeId(settings.ArmamentMinister, writer);
+                writer.WriteLine();
+            }
+            if (settings.MinisterOfSecurity != null)
+            {
+                writer.Write("  ministerofsecurity     = ");
+                WriteTypeId(settings.MinisterOfSecurity, writer);
+                writer.WriteLine();
+            }
+            if (settings.MinisterOfIntelligence != null)
+            {
+                writer.Write("  ministerofintelligence = ");
+                WriteTypeId(settings.MinisterOfIntelligence, writer);
+                writer.WriteLine();
+            }
+            if (settings.ChiefOfStaff != null)
+            {
+                writer.Write("  chiefofstaff           = ");
+                WriteTypeId(settings.ChiefOfStaff, writer);
+                writer.WriteLine();
+            }
+            if (settings.ChiefOfArmy != null)
+            {
+                writer.Write("  chiefofarmy            = ");
+                WriteTypeId(settings.ChiefOfArmy, writer);
+                writer.WriteLine();
+            }
+            if (settings.ChiefOfNavy != null)
+            {
+                writer.Write("  chiefofnavy            = ");
+                WriteTypeId(settings.ChiefOfNavy, writer);
+                writer.WriteLine();
+            }
+            if (settings.ChiefOfAir != null)
+            {
+                writer.Write("  chiefofair             = ");
+                WriteTypeId(settings.ChiefOfAir, writer);
+                writer.WriteLine();
+            }
+        }
+
+        /// <summary>
+        ///     領土設定を書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteCountryTerritories(CountrySettings settings, TextWriter writer)
+        {
+            writer.Write("  nationalprovinces      = {");
+            WriteIdList(settings.NationalProvinces, writer);
+            writer.WriteLine(" }");
+            writer.Write("  ownedprovinces         = {");
+            WriteIdList(settings.OwnedProvinces, writer);
+            writer.WriteLine(" }");
+            writer.Write("  controlledprovinces    = {");
+            WriteIdList(settings.ControlledProvinces, writer);
+            writer.WriteLine(" }");
+            if (settings.ClaimedProvinces.Count > 0)
+            {
+                writer.Write("  claimedprovinces       = {");
+                WriteIdList(settings.ClaimedProvinces, writer);
+                writer.WriteLine(" }");
+            }
+        }
+
+        /// <summary>
+        ///     保有技術リストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteTechApps(CountrySettings settings, TextWriter writer)
+        {
+            writer.Write("  techapps               = {");
+            WriteIdList(settings.TechApps, writer);
+            writer.WriteLine(" }");
+        }
+
+        /// <summary>
+        ///     青写真設定を書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteBlueprints(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.BluePrints.Count == 0)
+            {
+                return;
+            }
+            writer.Write("  blueprints             = {");
+            WriteIdList(settings.BluePrints, writer);
+            writer.WriteLine(" }");
+        }
+
+        /// <summary>
         ///     外交設定を書き出す
         /// </summary>
-        /// <param name="relations">国家関係リスト</param>
+        /// <param name="settings">国家設定</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteDiplomacy(List<Relation> relations, TextWriter writer)
+        private static void WriteDiplomacy(CountrySettings settings, TextWriter writer)
         {
+            if (settings.Relations.Count == 0)
+            {
+                return;
+            }
             writer.WriteLine("  diplomacy =");
             bool first = true;
-            foreach (Relation relation in relations)
+            foreach (Relation relation in settings.Relations)
             {
                 if (first)
                 {
@@ -835,8 +1303,8 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     国家関係を書き出す
         /// </summary>
-        /// <param name="relation"></param>
-        /// <param name="writer"></param>
+        /// <param name="relation">国家関係</param>
+        /// <param name="writer">ファイル書き込み用</param>
         private static void WriteRelation(Relation relation, TextWriter writer)
         {
             if (relation.Guaranteed == null)
@@ -847,6 +1315,596 @@ namespace HoI2Editor.Writers
                 {
                     writer.Write(" access = yes");
                 }
+                writer.WriteLine(" }");
+            }
+            else
+            {
+                writer.WriteLine("relation =");
+                writer.WriteLine("    {{ tag        = {0}", Countries.Strings[(int) relation.Country]);
+                writer.WriteLine("      value      = {0}", ObjectHelper.ToString(relation.Value));
+                if (relation.Access)
+                {
+                    writer.WriteLine("      access     = yes");
+                }
+                writer.Write("      guaranteed = ");
+                WriteDate(relation.Guaranteed, writer);
+                writer.WriteLine();
+                writer.WriteLine("    }");
+            }
+        }
+
+        /// <summary>
+        ///     諜報設定リストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteSpyInfos(CountrySettings settings, TextWriter writer)
+        {
+            foreach (SpySettings spy in settings.Intelligence)
+            {
+                writer.WriteLine("  SpyInfo                = {{ country = \"{0}\" NumberOfSpies = {1} }}",
+                    Countries.Strings[(int) spy.Country], spy.Spies);
+            }
+        }
+
+        #endregion
+
+        #region ユニット
+
+        /// <summary>
+        ///     陸軍ユニットリストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteLandUnits(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.LandUnits.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine("\t### {0} Land OOB ###", Countries.GetName(settings.Country));
+            foreach (LandUnit unit in settings.LandUnits)
+            {
+                WriteLandUnit(unit, writer);
+            }
+        }
+
+        /// <summary>
+        ///     海軍ユニットリストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteNavalUnits(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.NavalUnits.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine("\t### {0} Navy OOB ###", Countries.GetName(settings.Country));
+            foreach (NavalUnit unit in settings.NavalUnits)
+            {
+                WriteNavalUnit(unit, writer);
+            }
+        }
+
+        /// <summary>
+        ///     空軍ユニットリストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteAirUnits(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.AirUnits.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine("\t### {0} Air OOB ###", Countries.GetName(settings.Country));
+            foreach (AirUnit unit in settings.AirUnits)
+            {
+                WriteAirUnit(unit, writer);
+            }
+        }
+
+        /// <summary>
+        ///     陸軍ユニットを書き出す
+        /// </summary>
+        /// <param name="unit">ユニット</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteLandUnit(LandUnit unit, TextWriter writer)
+        {
+            writer.WriteLine("  landunit =");
+            writer.Write("  {");
+            if (unit.Id != null)
+            {
+                writer.Write(" id       = ");
+                WriteTypeId(unit.Id, writer);
+            }
+            writer.WriteLine();
+            if (!string.IsNullOrEmpty(unit.Name))
+            {
+                writer.WriteLine("    name     = \"{0}\"", unit.Name);
+            }
+            if (unit.Control != Country.None)
+            {
+                writer.WriteLine("    countrol = {0}", Countries.Strings[(int) unit.Control]);
+            }
+            if (unit.Leader > 0)
+            {
+                writer.WriteLine("    leader   = {0}", unit.Leader);
+            }
+            if (unit.Location > 0)
+            {
+                writer.WriteLine("    location = {0}", unit.Location);
+            }
+            foreach (LandDivision division in unit.Divisions)
+            {
+                WriteLandDivision(division, writer);
+            }
+            if (unit.DigIn > 0)
+            {
+                writer.WriteLine("    dig_in   = {0}", DoubleHelper.ToString3(unit.DigIn));
+            }
+        }
+
+        /// <summary>
+        ///     海軍ユニットを書き出す
+        /// </summary>
+        /// <param name="unit">ユニット</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteNavalUnit(NavalUnit unit, TextWriter writer)
+        {
+            writer.WriteLine("  navalunit =");
+            writer.Write("  {");
+            if (unit.Id != null)
+            {
+                writer.Write(" id       = ");
+                WriteTypeId(unit.Id, writer);
+            }
+            writer.WriteLine();
+            if (!string.IsNullOrEmpty(unit.Name))
+            {
+                writer.WriteLine("    name     = \"{0}\"", unit.Name);
+            }
+            if (unit.Control != Country.None)
+            {
+                writer.WriteLine("    countrol = {0}", Countries.Strings[(int) unit.Control]);
+            }
+            if (unit.Leader > 0)
+            {
+                writer.WriteLine("    leader   = {0}", unit.Leader);
+            }
+            if (unit.Location > 0)
+            {
+                writer.WriteLine("    location = {0}", unit.Location);
+            }
+            if (unit.Base > 0)
+            {
+                writer.WriteLine("    base     = {0}", unit.Base);
+            }
+            foreach (NavalDivision division in unit.Divisions)
+            {
+                WriteNavalDivision(division, writer);
+            }
+        }
+
+        /// <summary>
+        ///     空軍ユニットを書き出す
+        /// </summary>
+        /// <param name="unit">ユニット</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteAirUnit(AirUnit unit, TextWriter writer)
+        {
+            writer.WriteLine("  airunit =");
+            writer.Write("  {");
+            if (unit.Id != null)
+            {
+                writer.Write(" id       = ");
+                WriteTypeId(unit.Id, writer);
+            }
+            writer.WriteLine();
+            if (!string.IsNullOrEmpty(unit.Name))
+            {
+                writer.WriteLine("    name     = \"{0}\"", unit.Name);
+            }
+            if (unit.Control != Country.None)
+            {
+                writer.WriteLine("    countrol = {0}", Countries.Strings[(int) unit.Control]);
+            }
+            if (unit.Leader > 0)
+            {
+                writer.WriteLine("    leader   = {0}", unit.Leader);
+            }
+            if (unit.Location > 0)
+            {
+                writer.WriteLine("    location = {0}", unit.Location);
+            }
+            if (unit.Base > 0)
+            {
+                writer.WriteLine("    base     = {0}", unit.Base);
+            }
+            foreach (AirDivision division in unit.Divisions)
+            {
+                WriteAirDivision(division, writer);
+            }
+        }
+
+        #endregion
+
+        #region 師団
+
+        /// <summary>
+        ///     陸軍師団を書き出す
+        /// </summary>
+        /// <param name="division">師団</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteLandDivision(LandDivision division, TextWriter writer)
+        {
+            writer.WriteLine("  division =");
+            writer.Write("    {");
+            if (division.Id != null)
+            {
+                writer.Write("id       = ");
+                WriteTypeId(division.Id, writer);
+            }
+            writer.WriteLine();
+            if (!string.IsNullOrEmpty(division.Name))
+            {
+                writer.WriteLine("      name     = \"{0}\"", division.Name);
+            }
+            if (division.MaxStrength > 0)
+            {
+                writer.WriteLine("      max_strength = {0}", division.MaxStrength);
+            }
+            if (division.Strength > 0)
+            {
+                writer.WriteLine("      strength = {0}", division.Strength);
+            }
+            if (division.Organisation > 0)
+            {
+                writer.WriteLine("      organisation = {0}", division.Organisation);
+            }
+            if (division.Morale > 0)
+            {
+                writer.WriteLine("      morale   = {0}", division.Morale);
+            }
+            if (division.Experience > 0)
+            {
+                writer.WriteLine("      experience = {0}", division.Experience);
+            }
+            writer.WriteLine("      type     = {0}", Units.Strings[(int) division.Type]);
+            writer.WriteLine("      model    = {0}", division.Model);
+            if (division.Extra >= UnitType.None)
+            {
+                writer.WriteLine("      extra    = {0}", division.Extra);
+            }
+            if (division.Extra1 >= UnitType.None)
+            {
+                writer.WriteLine("      extra1   = {0}", division.Extra1);
+            }
+            if (division.Extra2 >= UnitType.None)
+            {
+                writer.WriteLine("      extra2   = {0}", division.Extra2);
+            }
+            if (division.Extra3 >= UnitType.None)
+            {
+                writer.WriteLine("      extra3   = {0}", division.Extra3);
+            }
+            if (division.Extra4 >= UnitType.None)
+            {
+                writer.WriteLine("      extra4   = {0}", division.Extra4);
+            }
+            if (division.Extra5 >= UnitType.None)
+            {
+                writer.WriteLine("      extra5   = {0}", division.Extra5);
+            }
+            if (division.Extra >= UnitType.None && division.BrigadeModel > 0)
+            {
+                writer.WriteLine("      brigade_model = {0}", division.BrigadeModel);
+            }
+            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 > 0)
+            {
+                writer.WriteLine("      brigade_model1 = {0}", division.BrigadeModel1);
+            }
+            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 > 0)
+            {
+                writer.WriteLine("      brigade_model2 = {0}", division.BrigadeModel2);
+            }
+            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 > 0)
+            {
+                writer.WriteLine("      brigade_model3 = {0}", division.BrigadeModel3);
+            }
+            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 > 0)
+            {
+                writer.WriteLine("      brigade_model4 = {0}", division.BrigadeModel4);
+            }
+            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 > 0)
+            {
+                writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
+            }
+        }
+
+        /// <summary>
+        ///     海軍師団を書き出す
+        /// </summary>
+        /// <param name="division">師団</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteNavalDivision(NavalDivision division, TextWriter writer)
+        {
+            writer.WriteLine("  division =");
+            writer.Write("    {");
+            if (division.Id != null)
+            {
+                writer.Write("id       = ");
+                WriteTypeId(division.Id, writer);
+            }
+            writer.WriteLine();
+            if (!string.IsNullOrEmpty(division.Name))
+            {
+                writer.WriteLine("      name     = \"{0}\"", division.Name);
+            }
+            if (division.MaxStrength > 0)
+            {
+                writer.WriteLine("      max_strength = {0}", division.MaxStrength);
+            }
+            if (division.Strength > 0)
+            {
+                writer.WriteLine("      strength = {0}", division.Strength);
+            }
+            if (division.Organisation > 0)
+            {
+                writer.WriteLine("      organisation = {0}", division.Organisation);
+            }
+            if (division.Morale > 0)
+            {
+                writer.WriteLine("      morale   = {0}", division.Morale);
+            }
+            if (division.Experience > 0)
+            {
+                writer.WriteLine("      experience = {0}", division.Experience);
+            }
+            writer.WriteLine("      type     = {0}", Units.Strings[(int) division.Type]);
+            writer.WriteLine("      model    = {0}", division.Model);
+            if (division.Extra >= UnitType.None)
+            {
+                writer.WriteLine("      extra    = {0}", division.Extra);
+            }
+            if (division.Extra1 >= UnitType.None)
+            {
+                writer.WriteLine("      extra1   = {0}", division.Extra1);
+            }
+            if (division.Extra2 >= UnitType.None)
+            {
+                writer.WriteLine("      extra2   = {0}", division.Extra2);
+            }
+            if (division.Extra3 >= UnitType.None)
+            {
+                writer.WriteLine("      extra3   = {0}", division.Extra3);
+            }
+            if (division.Extra4 >= UnitType.None)
+            {
+                writer.WriteLine("      extra4   = {0}", division.Extra4);
+            }
+            if (division.Extra5 >= UnitType.None)
+            {
+                writer.WriteLine("      extra5   = {0}", division.Extra5);
+            }
+            if (division.Extra >= UnitType.None && division.BrigadeModel > 0)
+            {
+                writer.WriteLine("      brigade_model = {0}", division.BrigadeModel);
+            }
+            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 > 0)
+            {
+                writer.WriteLine("      brigade_model1 = {0}", division.BrigadeModel1);
+            }
+            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 > 0)
+            {
+                writer.WriteLine("      brigade_model2 = {0}", division.BrigadeModel2);
+            }
+            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 > 0)
+            {
+                writer.WriteLine("      brigade_model3 = {0}", division.BrigadeModel3);
+            }
+            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 > 0)
+            {
+                writer.WriteLine("      brigade_model4 = {0}", division.BrigadeModel4);
+            }
+            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 > 0)
+            {
+                writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
+            }
+        }
+
+        /// <summary>
+        ///     空軍師団を書き出す
+        /// </summary>
+        /// <param name="division">師団</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteAirDivision(AirDivision division, TextWriter writer)
+        {
+            writer.WriteLine("  division =");
+            writer.Write("    {");
+            if (division.Id != null)
+            {
+                writer.Write("id       = ");
+                WriteTypeId(division.Id, writer);
+            }
+            writer.WriteLine();
+            if (!string.IsNullOrEmpty(division.Name))
+            {
+                writer.WriteLine("      name     = \"{0}\"", division.Name);
+            }
+            if (division.MaxStrength > 0)
+            {
+                writer.WriteLine("      max_strength = {0}", division.MaxStrength);
+            }
+            if (division.Strength > 0)
+            {
+                writer.WriteLine("      strength = {0}", division.Strength);
+            }
+            if (division.Organisation > 0)
+            {
+                writer.WriteLine("      organisation = {0}", division.Organisation);
+            }
+            if (division.Morale > 0)
+            {
+                writer.WriteLine("      morale   = {0}", division.Morale);
+            }
+            if (division.Experience > 0)
+            {
+                writer.WriteLine("      experience = {0}", division.Experience);
+            }
+            writer.WriteLine("      type     = {0}", Units.Strings[(int) division.Type]);
+            writer.WriteLine("      model    = {0}", division.Model);
+            if (division.Extra >= UnitType.None)
+            {
+                writer.WriteLine("      extra    = {0}", division.Extra);
+            }
+            if (division.Extra1 >= UnitType.None)
+            {
+                writer.WriteLine("      extra1   = {0}", division.Extra1);
+            }
+            if (division.Extra2 >= UnitType.None)
+            {
+                writer.WriteLine("      extra2   = {0}", division.Extra2);
+            }
+            if (division.Extra3 >= UnitType.None)
+            {
+                writer.WriteLine("      extra3   = {0}", division.Extra3);
+            }
+            if (division.Extra4 >= UnitType.None)
+            {
+                writer.WriteLine("      extra4   = {0}", division.Extra4);
+            }
+            if (division.Extra5 >= UnitType.None)
+            {
+                writer.WriteLine("      extra5   = {0}", division.Extra5);
+            }
+            if (division.Extra >= UnitType.None && division.BrigadeModel > 0)
+            {
+                writer.WriteLine("      brigade_model = {0}", division.BrigadeModel);
+            }
+            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 > 0)
+            {
+                writer.WriteLine("      brigade_model1 = {0}", division.BrigadeModel1);
+            }
+            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 > 0)
+            {
+                writer.WriteLine("      brigade_model2 = {0}", division.BrigadeModel2);
+            }
+            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 > 0)
+            {
+                writer.WriteLine("      brigade_model3 = {0}", division.BrigadeModel3);
+            }
+            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 > 0)
+            {
+                writer.WriteLine("      brigade_model4 = {0}", division.BrigadeModel4);
+            }
+            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 > 0)
+            {
+                writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
+            }
+        }
+
+        /// <summary>
+        ///     生産中師団リストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteDivisionDevelopments(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.DivisionDevelopments.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine("  # ### Under division_development ###");
+            foreach (DivisionDevelopment division in settings.DivisionDevelopments)
+            {
+                WriteDivisionDevelopment(division, writer);
+            }
+        }
+
+        /// <summary>
+        ///     生産中師団を書き出す
+        /// </summary>
+        /// <param name="division">師団</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteDivisionDevelopment(DivisionDevelopment division, TextWriter writer)
+        {
+            writer.WriteLine("  division_development =");
+            writer.Write("    {");
+            if (division.Id != null)
+            {
+                writer.Write("id       = ");
+                WriteTypeId(division.Id, writer);
+            }
+            writer.WriteLine();
+            if (!string.IsNullOrEmpty(division.Name))
+            {
+                writer.WriteLine("      name     = \"{0}\"", division.Name);
+            }
+            writer.WriteLine("      type     = {0}", Units.Strings[(int) division.Type]);
+            writer.WriteLine("      model    = {0}", division.Model);
+            if (division.Cost > 0)
+            {
+                writer.WriteLine("      cost     = {0}", division.Model);
+            }
+            if (division.Manpower > 0)
+            {
+                writer.WriteLine("      manpower = {0}", division.Manpower);
+            }
+            if (division.Date != null)
+            {
+                writer.Write("      date     = ");
+                WriteDate(division.Date, writer);
+                writer.WriteLine();
+            }
+            if (division.Extra >= UnitType.None)
+            {
+                writer.WriteLine("      extra    = {0}", division.Extra);
+            }
+            if (division.Extra1 >= UnitType.None)
+            {
+                writer.WriteLine("      extra1   = {0}", division.Extra1);
+            }
+            if (division.Extra2 >= UnitType.None)
+            {
+                writer.WriteLine("      extra2   = {0}", division.Extra2);
+            }
+            if (division.Extra3 >= UnitType.None)
+            {
+                writer.WriteLine("      extra3   = {0}", division.Extra3);
+            }
+            if (division.Extra4 >= UnitType.None)
+            {
+                writer.WriteLine("      extra4   = {0}", division.Extra4);
+            }
+            if (division.Extra5 >= UnitType.None)
+            {
+                writer.WriteLine("      extra5   = {0}", division.Extra5);
+            }
+            if (division.Extra >= UnitType.None && division.BrigadeModel > 0)
+            {
+                writer.WriteLine("      brigade_model = {0}", division.BrigadeModel);
+            }
+            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 > 0)
+            {
+                writer.WriteLine("      brigade_model1 = {0}", division.BrigadeModel1);
+            }
+            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 > 0)
+            {
+                writer.WriteLine("      brigade_model2 = {0}", division.BrigadeModel2);
+            }
+            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 > 0)
+            {
+                writer.WriteLine("      brigade_model3 = {0}", division.BrigadeModel3);
+            }
+            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 > 0)
+            {
+                writer.WriteLine("      brigade_model4 = {0}", division.BrigadeModel4);
+            }
+            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 > 0)
+            {
+                writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
             }
         }
 
@@ -883,26 +1941,18 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     建物のサイズを書き出す
         /// </summary>
-        /// <param name="type">建物の種類</param>
         /// <param name="building">建物のサイズ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteBuilding(BuildingType type, BuildingSize building, TextWriter writer)
+        private static void WriteBuilding(BuildingSize building, TextWriter writer)
         {
-            // サイズ指定がなければ何もしない
-            if (building == null)
-            {
-                return;
-            }
-
-            writer.Write(" {0} = ", Scenarios.BuildingStrings[(int) type]);
             if (DoubleHelper.IsZero(building.Size))
             {
-                writer.Write("{{ size = {0} current_size = {1} }}",
-                    building.MaxSize, building.CurrentSize);
+                writer.Write("{{ size = {0} current_size = {1} }}", ObjectHelper.ToString(building.MaxSize),
+                    ObjectHelper.ToString(building.CurrentSize));
             }
             else
             {
-                writer.Write("{0}", building.Size);
+                writer.Write(ObjectHelper.ToString(building.Size));
             }
         }
 

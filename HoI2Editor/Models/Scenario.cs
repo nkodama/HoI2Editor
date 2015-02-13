@@ -526,12 +526,9 @@ namespace HoI2Editor.Models
                 }
             }
 
-            if (Countries != null)
+            foreach (CountrySettings settings in Countries)
             {
-                foreach (CountrySettings settings in Countries)
-                {
-                    settings.ResetDirtyAll();
-                }
+                settings.ResetDirtyAll();
             }
 
             _dirtyCountryInc = false;
@@ -2114,6 +2111,11 @@ namespace HoI2Editor.Models
     public class CountrySettings
     {
         #region 公開プロパティ
+
+        /// <summary>
+        ///     ファイル名
+        /// </summary>
+        public string FileName { get; set; }
 
         /// <summary>
         ///     国タグ

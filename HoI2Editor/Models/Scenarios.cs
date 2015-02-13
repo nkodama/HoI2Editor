@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
+using HoI2Editor.Writers;
 
 namespace HoI2Editor.Models
 {
@@ -18,11 +20,6 @@ namespace HoI2Editor.Models
         ///     シナリオデータ
         /// </summary>
         public static Scenario Data { get; private set; }
-
-        /// <summary>
-        ///     シナリオの種類
-        /// </summary>
-        public static ScenarioType Type { get; private set; }
 
         #endregion
 
@@ -203,10 +200,10 @@ namespace HoI2Editor.Models
         {
             "",
             "ic",
-            "infrastructure",
-            "coastal_fort",
-            "land_fort",
-            "flak",
+            "infra",
+            "coastalfort",
+            "landfort",
+            "anti_air",
             "air_base",
             "naval_base",
             "radar_station",
@@ -320,7 +317,7 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     ユニット定義ファイル群を再読み込みする
+        ///     シナリオファイル群を再読み込みする
         /// </summary>
         public static void Reload()
         {
@@ -380,9 +377,6 @@ namespace HoI2Editor.Models
             // 編集済みフラグを全て解除する
             ResetDirtyAll();
 
-            // シナリオの種類を設定する
-            SetScenarioType();
-
             // 読み込み済みフラグを設定する
             _loaded = true;
         }
@@ -392,48 +386,176 @@ namespace HoI2Editor.Models
         #region ファイル書き込み
 
         /// <summary>
-        ///     ユニット定義ファイル群を保存する
+        ///     シナリオファイル群を保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
         public static bool Save()
         {
+            // bases_DOD.inc
+            if ((Data.IsDirtyBasesInc() || Data.IsDirtyBasesDodInc()) && !SaveBasesDodIncFile())
+            {
+                return false;
+            }
+
+            // bases.inc
+            if ((Data.IsDirtyBasesInc() || Data.IsDirtyBasesDodInc()) && !SaveBasesIncFile())
+            {
+                return false;
+            }
+
+            // vp.inc
+            if (Data.IsDirtyVpInc() && !SaveVpIncFile())
+            {
+                return false;
+            }
+
+            // 国別inc
+            if (Data.IsDirtyCountryInc())
+            {
+                if (Data.Countries.Any(settings => !SaveCountryFiles(settings)))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (Data.Countries.Where(settings => settings.IsDirty()).Any(settings => !SaveCountryFiles(settings)))
+                {
+                    return false;
+                }
+            }
+
+            // シナリオファイル
+            if (Data.IsDirty() && !SaveScenarioFile())
+            {
+                return false;
+            }
+
+            // 編集済みフラグを解除する
+            ResetDirtyAll();
+
             return true;
         }
 
-        #endregion
+        /// <summary>
+        ///     シナリオファイルを保存する
+        /// </summary>
+        /// <returns>保存に成功すればtrueを返す</returns>
+        private static bool SaveScenarioFile()
+        {
+            try
+            {
+                // シナリオファイルを保存する
+                Log.Info("[Scenario] Save: {0}", Path.GetFileName(_fileName));
+                ScenarioWriter.Write(Data, _fileName);
+            }
+            catch (Exception)
+            {
+                Log.Error("[Scenario] Write error: {0}", _fileName);
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, _fileName), Resources.EditorScenario,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
-        #region シナリオの種類
+            return true;
+        }
 
         /// <summary>
-        ///     シナリオの種類を設定する
+        ///     基地定義ファイルを保存する
         /// </summary>
-        public static void SetScenarioType()
+        /// <returns>保存に成功すればtrueを返す</returns>
+        private static bool SaveBasesIncFile()
         {
-            if (Data.Header.IsBattleScenario)
+            string fileName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder),
+                Game.BasesIncFileName);
+            try
             {
-                Type = ScenarioType.BattleScenario;
-                return;
+                Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
+                ScenarioWriter.WriteBasesInc(Data, fileName);
+            }
+            catch (Exception)
+            {
+                Log.Error("[Scenario] Write error: {0}", fileName);
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
-            if (Data.IsSaveGame)
+            return true;
+        }
+
+        /// <summary>
+        ///     基地定義ファイルを保存する (DH Full 33年シナリオ)
+        /// </summary>
+        /// <returns>保存に成功すればtrueを返す</returns>
+        private static bool SaveBasesDodIncFile()
+        {
+            string fileName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder),
+                Game.BasesIncDodFileName);
+            try
             {
-                Type = ScenarioType.SaveGame;
-                return;
+                Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
+                ScenarioWriter.WriteBasesDodInc(Data, fileName);
+            }
+            catch (Exception)
+            {
+                Log.Error("[Scenario] Write error: {0}", fileName);
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
-            if (Game.Type != GameType.DarkestHour)
+            return true;
+        }
+
+        /// <summary>
+        ///     VP定義ファイルを保存する
+        /// </summary>
+        /// <returns>保存に成功すればtrueを返す</returns>
+        private static bool SaveVpIncFile()
+        {
+            string fileName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder),
+                Game.VpIncFileName);
+            try
             {
-                Type = ScenarioType.HoI2;
-                return;
+                Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
+                ScenarioWriter.WriteVpInc(Data, fileName);
+            }
+            catch (Exception)
+            {
+                Log.Error("[Scenario] Write error: {0}", fileName);
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
-            if (Data.IsBaseDodProvinceSettings)
+            return true;
+        }
+
+        /// <summary>
+        ///     国別incファイルを保存する
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        private static bool SaveCountryFiles(CountrySettings settings)
+        {
+            string fileName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder),
+                string.IsNullOrEmpty(settings.FileName)
+                    ? string.Format("{0}.inc", Countries.Strings[(int) settings.Country].ToLower())
+                    : settings.FileName);
+            try
             {
-                Type = ScenarioType.Full33;
-                return;
+                Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
+                ScenarioWriter.WriteCountrySettings(settings, Data, fileName);
+            }
+            catch (Exception)
+            {
+                Log.Error("[Scenario] Write error: {0}", fileName);
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
 
-            Type = ScenarioType.DarkestHour;
+            return true;
         }
 
         #endregion
@@ -1338,21 +1460,11 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void ResetDirtyAll()
         {
+            Data.ResetDirtyAll();
+
             _dirtyFlag = false;
         }
 
         #endregion
-    }
-
-    /// <summary>
-    ///     シナリオの種類
-    /// </summary>
-    public enum ScenarioType
-    {
-        HoI2, // HoI2/AoD
-        DarkestHour, // DH (Full想定)
-        Full33, // DH Full 33年シナリオ (bases_DOD.incあり)
-        BattleScenario, // ショートシナリオ
-        SaveGame // 保存ゲーム
     }
 }

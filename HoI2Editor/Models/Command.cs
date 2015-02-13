@@ -769,7 +769,7 @@ namespace HoI2Editor.Models
         PlainAttack,
         PlainDefense,
         // DH1.04で追加
-        RemoveUnits,
+        RemoveUnits
     }
 
     /// <summary>
