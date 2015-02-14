@@ -1,5 +1,15 @@
 Alternative HoI2 Editor Changelog
 
+- 15 Feb 2015; Ver 0.42
+
+Supported DH 1.04.
+Added a scenario editor (EXPERIMENTAL)
+Fixed a bug that branches are double registered on reloading units.
+Fixed a bug that some editable items are not updated when the unit branch is switched.
+Fixed a bug that some editable items are not updated when unit names are changed from the default value.
+Fixed a bug that unnecessary string keys are assigned when new divisions or brigades are modified.
+Fixed a bug that when a tech label is moved with drag and drop, its position is not changed red.
+
 - 27 May 2014; Ver 0.41
 
 Division's branch can be changed on DH 1.03.
