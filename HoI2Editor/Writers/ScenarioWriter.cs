@@ -57,6 +57,25 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("  startdate  = {{ year = {0} }}", header.StartDate.Year);
             }
+            else
+            {
+                if (header.StartYear > 0)
+                {
+                    writer.WriteLine("  startyear  = {0}", header.StartYear);
+                }
+                if (header.EndYear > 0)
+                {
+                    writer.WriteLine("  endyear    = {0}", header.EndYear);
+                }
+                if (!header.IsFreeSelection)
+                {
+                    writer.WriteLine("  free       = no");
+                }
+                if (header.IsBattleScenario)
+                {
+                    writer.WriteLine("  combat     = yes");
+                }
+            }
             writer.Write("  selectable = {");
             WriteCountryList(header.SelectableCountries, writer);
             writer.WriteLine("   ");
