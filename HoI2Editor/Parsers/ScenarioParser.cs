@@ -270,29 +270,29 @@ namespace HoI2Editor.Parsers
                         }
 
                         // プロヴィンス設定
+                        Scenarios.AddProvinceSettings(province);
                         switch (GetScenarioFileKind())
                         {
                             case ScenarioFileKind.BasesInc: // bases.inc
-                                scenario.AddProvinceSettings(province);
                                 scenario.IsBaseProvinceSettings = true;
                                 break;
 
                             case ScenarioFileKind.BasesDodInc: // bases_DOD.inc
-                                scenario.AddProvinceSettings(province);
                                 scenario.IsBaseDodProvinceSettings = true;
                                 break;
 
+                            case ScenarioFileKind.DepotsInc: // depots.inc
+                                scenario.IsDepotsProvinceSettings = true;
+                                break;
+
                             case ScenarioFileKind.VpInc: // vp.inc
-                                scenario.AddProvinceSettings(province);
                                 scenario.IsVpProvinceSettings = true;
                                 break;
 
                             case ScenarioFileKind.Top: // シナリオ.eug
-                                scenario.AddProvinceSettings(province);
                                 break;
 
                             default:
-                                scenario.AddProvinceSettings(province);
                                 scenario.IsCountryProvinceSettings = true;
                                 break;
                         }
@@ -9934,6 +9934,7 @@ namespace HoI2Editor.Parsers
             Top, // 最上位のファイル
             BasesInc, // bases.inc
             BasesDodInc, // bases_DOD.inc
+            DepotsInc, // depots.inc
             VpInc // vp.inc
         }
 
@@ -9972,6 +9973,12 @@ namespace HoI2Editor.Parsers
             if (name.Equals("bases_dod.inc"))
             {
                 return ScenarioFileKind.BasesDodInc;
+            }
+
+            // depots.inc
+            if (name.Equals("depots.inc"))
+            {
+                return ScenarioFileKind.DepotsInc;
             }
 
             // vp.inc

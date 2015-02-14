@@ -447,9 +447,6 @@
   <data name="&gt;&gt;provinceRadarStationLbel.ZOrder" xml:space="preserve">
     <value>49</value>
   </data>
-  <metadata name="provinceSyntheticOilLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <data name="provinceSyntheticOilLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -480,9 +477,6 @@
   <data name="&gt;&gt;provinceSyntheticOilLabel.ZOrder" xml:space="preserve">
     <value>52</value>
   </data>
-  <metadata name="provinceSyntheticRaresLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <data name="provinceSyntheticRaresLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -513,9 +507,6 @@
   <data name="&gt;&gt;provinceSyntheticRaresLabel.ZOrder" xml:space="preserve">
     <value>54</value>
   </data>
-  <metadata name="provinceNuclearPowerLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
   <data name="provinceNuclearPowerLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>

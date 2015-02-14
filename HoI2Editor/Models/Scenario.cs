@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using HoI2Editor.Utilities;
 
@@ -97,6 +96,11 @@ namespace HoI2Editor.Models
         public bool IsBaseDodProvinceSettings { get; set; }
 
         /// <summary>
+        ///     depots.incにプロヴィンス設定を定義するかどうか
+        /// </summary>
+        public bool IsDepotsProvinceSettings { get; set; }
+
+        /// <summary>
         ///     vp.incにプロヴィンス設定を定義するかどうか
         /// </summary>
         public bool IsVpProvinceSettings { get; set; }
@@ -126,19 +130,9 @@ namespace HoI2Editor.Models
         private readonly HashSet<Country> _dirtySelectableCountries = new HashSet<Country>();
 
         /// <summary>
-        ///     国別incの編集済みフラグ
+        ///     プロヴィンス設定の編集済みフラグ
         /// </summary>
-        private bool _dirtyCountryInc;
-
-        /// <summary>
-        ///     bases.incの編集済みフラグ
-        /// </summary>
-        private bool _dirtyBasesInc;
-
-        /// <summary>
-        ///     bases_DOD.incの編集済みフラグ
-        /// </summary>
-        private bool _dirtyBasesDodInc;
+        private bool _dirtyProvinces;
 
         /// <summary>
         ///     vp.incの編集済みフラグ
@@ -188,157 +182,6 @@ namespace HoI2Editor.Models
             IncludeFiles = new List<string>();
             Provinces = new List<ProvinceSettings>();
             Countries = new List<CountrySettings>();
-        }
-
-        #endregion
-
-        #region プロヴィンス設定操作
-
-        /// <summary>
-        ///     プロヴィンス設定を追加する
-        /// </summary>
-        /// <param name="settings">プロヴィンス設定</param>
-        public void AddProvinceSettings(ProvinceSettings settings)
-        {
-            foreach (ProvinceSettings primary in Provinces.Where(primary => primary.Id == settings.Id))
-            {
-                MergeProvinceSettings(primary, settings);
-                return;
-            }
-            Provinces.Add(settings);
-        }
-
-        /// <summary>
-        ///     プロヴィンス設定をマージする
-        /// </summary>
-        /// <param name="primary">プロヴィンス設定1</param>
-        /// <param name="secondary">プロヴィンス設定2</param>
-        private static void MergeProvinceSettings(ProvinceSettings primary, ProvinceSettings secondary)
-        {
-            if (!string.IsNullOrEmpty(secondary.Name))
-            {
-                primary.Name = secondary.Name;
-            }
-            if (secondary.Ic != null)
-            {
-                primary.Ic = secondary.Ic;
-            }
-            if (secondary.Infrastructure != null)
-            {
-                primary.Infrastructure = secondary.Infrastructure;
-            }
-            if (secondary.LandFort != null)
-            {
-                primary.LandFort = secondary.LandFort;
-            }
-            if (secondary.CoastalFort != null)
-            {
-                primary.CoastalFort = secondary.CoastalFort;
-            }
-            if (secondary.AntiAir != null)
-            {
-                primary.AntiAir = secondary.AntiAir;
-            }
-            if (secondary.AirBase != null)
-            {
-                primary.AirBase = secondary.AirBase;
-            }
-            if (secondary.NavalBase != null)
-            {
-                primary.NavalBase = secondary.NavalBase;
-            }
-            if (secondary.RadarStation != null)
-            {
-                primary.RadarStation = secondary.RadarStation;
-            }
-            if (secondary.NuclearReactor != null)
-            {
-                primary.NuclearReactor = secondary.NuclearReactor;
-            }
-            if (secondary.RocketTest != null)
-            {
-                primary.RocketTest = secondary.RocketTest;
-            }
-            if (secondary.SyntheticOil != null)
-            {
-                primary.SyntheticOil = secondary.SyntheticOil;
-            }
-            if (secondary.SyntheticRares != null)
-            {
-                primary.SyntheticRares = secondary.SyntheticRares;
-            }
-            if (secondary.NuclearPower != null)
-            {
-                primary.NuclearPower = secondary.NuclearPower;
-            }
-            if (!DoubleHelper.IsZero(secondary.Manpower))
-            {
-                primary.Manpower = secondary.Manpower;
-            }
-            if (!DoubleHelper.IsZero(secondary.MaxManpower))
-            {
-                primary.MaxManpower = secondary.MaxManpower;
-            }
-            if (!DoubleHelper.IsZero(secondary.EnergyPool))
-            {
-                primary.EnergyPool = secondary.EnergyPool;
-            }
-            if (!DoubleHelper.IsZero(secondary.Energy))
-            {
-                primary.Energy = secondary.Energy;
-            }
-            if (!DoubleHelper.IsZero(secondary.MaxEnergy))
-            {
-                primary.MaxEnergy = secondary.MaxEnergy;
-            }
-            if (!DoubleHelper.IsZero(secondary.MetalPool))
-            {
-                primary.MetalPool = secondary.MetalPool;
-            }
-            if (!DoubleHelper.IsZero(secondary.Metal))
-            {
-                primary.Metal = secondary.Metal;
-            }
-            if (!DoubleHelper.IsZero(secondary.MaxMetal))
-            {
-                primary.MaxMetal = secondary.MaxMetal;
-            }
-            if (!DoubleHelper.IsZero(secondary.RareMaterialsPool))
-            {
-                primary.RareMaterialsPool = secondary.RareMaterialsPool;
-            }
-            if (!DoubleHelper.IsZero(secondary.RareMaterials))
-            {
-                primary.RareMaterials = secondary.RareMaterials;
-            }
-            if (!DoubleHelper.IsZero(secondary.MaxRareMaterials))
-            {
-                primary.MaxRareMaterials = secondary.MaxRareMaterials;
-            }
-            if (!DoubleHelper.IsZero(secondary.OilPool))
-            {
-                primary.OilPool = secondary.OilPool;
-            }
-            if (!DoubleHelper.IsZero(secondary.Oil))
-            {
-                primary.Oil = secondary.Oil;
-            }
-            if (!DoubleHelper.IsZero(secondary.MaxOil))
-            {
-                primary.MaxOil = secondary.MaxOil;
-            }
-            if (!DoubleHelper.IsZero(secondary.SupplyPool))
-            {
-                primary.SupplyPool = secondary.SupplyPool;
-            }
-            if (secondary.Vp != 0)
-            {
-                primary.Vp = secondary.Vp;
-            }
-            if (!DoubleHelper.IsZero(secondary.RevoltRisk))
-            {
-                primary.RevoltRisk = secondary.RevoltRisk;
-            }
         }
 
         #endregion
@@ -403,54 +246,20 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     国別incが編集済みかどうかを取得する
+        ///     プロヴィンスデータが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirtyCountryInc()
+        public bool IsDirtyProvinces()
         {
-            return _dirtyCountryInc;
+            return _dirtyProvinces;
         }
 
         /// <summary>
-        ///     国別incの編集済みフラグを設定する
+        ///     プロヴィンスデータの編集済みフラグを設定する
         /// </summary>
-        public void SetDirtyCountryInc()
+        public void SetDirtyProvinces()
         {
-            _dirtyCountryInc = true;
-        }
-
-        /// <summary>
-        ///     bases.incが編集済みかどうかを取得する
-        /// </summary>
-        /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirtyBasesInc()
-        {
-            return _dirtyBasesInc;
-        }
-
-        /// <summary>
-        ///     bases.incの編集済みフラグを設定する
-        /// </summary>
-        public void SetDirtyBasesInc()
-        {
-            _dirtyBasesInc = true;
-        }
-
-        /// <summary>
-        ///     bases_DOD.incが編集済みかどうかを取得する
-        /// </summary>
-        /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirtyBasesDodInc()
-        {
-            return _dirtyBasesDodInc;
-        }
-
-        /// <summary>
-        ///     bases_DOD.incの編集済みフラグを設定する
-        /// </summary>
-        public void SetDirtyBasesDodInc()
-        {
-            _dirtyBasesDodInc = true;
+            _dirtyProvinces = true;
         }
 
         /// <summary>
@@ -531,9 +340,7 @@ namespace HoI2Editor.Models
                 settings.ResetDirtyAll();
             }
 
-            _dirtyCountryInc = false;
-            _dirtyBasesInc = false;
-            _dirtyBasesDodInc = false;
+            _dirtyProvinces = false;
             _dirtyVpInc = false;
 
             _dirtyFlag = false;

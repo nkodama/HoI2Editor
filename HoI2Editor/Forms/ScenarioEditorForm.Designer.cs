@@ -39,9 +39,6 @@
             System.Windows.Forms.Label provinceNuclearReactorLabel;
             System.Windows.Forms.Label provinceRocketTestLabel;
             System.Windows.Forms.Label provinceRadarStationLbel;
-            System.Windows.Forms.Label provinceSyntheticOilLabel;
-            System.Windows.Forms.Label provinceSyntheticRaresLabel;
-            System.Windows.Forms.Label provinceNuclearPowerLabel;
             System.Windows.Forms.Label buildingCurrentLabel1;
             System.Windows.Forms.Label buildingMaxLabel1;
             System.Windows.Forms.Label buildingRelativeLabel1;
@@ -73,6 +70,9 @@
             System.Windows.Forms.Label tradeIdLabel;
             System.Windows.Forms.Label relationValueLabel;
             System.Windows.Forms.Label spyNumLabel;
+            this.provinceSyntheticOilLabel = new System.Windows.Forms.Label();
+            this.provinceSyntheticRaresLabel = new System.Windows.Forms.Label();
+            this.provinceNuclearPowerLabel = new System.Windows.Forms.Label();
             this.techTreePanel = new System.Windows.Forms.Panel();
             this.techTreePictureBox = new System.Windows.Forms.PictureBox();
             this.inventionsListView = new System.Windows.Forms.ListView();
@@ -525,9 +525,6 @@
             provinceNuclearReactorLabel = new System.Windows.Forms.Label();
             provinceRocketTestLabel = new System.Windows.Forms.Label();
             provinceRadarStationLbel = new System.Windows.Forms.Label();
-            provinceSyntheticOilLabel = new System.Windows.Forms.Label();
-            provinceSyntheticRaresLabel = new System.Windows.Forms.Label();
-            provinceNuclearPowerLabel = new System.Windows.Forms.Label();
             buildingCurrentLabel1 = new System.Windows.Forms.Label();
             buildingMaxLabel1 = new System.Windows.Forms.Label();
             buildingRelativeLabel1 = new System.Windows.Forms.Label();
@@ -661,18 +658,18 @@
             // 
             // provinceSyntheticOilLabel
             // 
-            resources.ApplyResources(provinceSyntheticOilLabel, "provinceSyntheticOilLabel");
-            provinceSyntheticOilLabel.Name = "provinceSyntheticOilLabel";
+            resources.ApplyResources(this.provinceSyntheticOilLabel, "provinceSyntheticOilLabel");
+            this.provinceSyntheticOilLabel.Name = "provinceSyntheticOilLabel";
             // 
             // provinceSyntheticRaresLabel
             // 
-            resources.ApplyResources(provinceSyntheticRaresLabel, "provinceSyntheticRaresLabel");
-            provinceSyntheticRaresLabel.Name = "provinceSyntheticRaresLabel";
+            resources.ApplyResources(this.provinceSyntheticRaresLabel, "provinceSyntheticRaresLabel");
+            this.provinceSyntheticRaresLabel.Name = "provinceSyntheticRaresLabel";
             // 
             // provinceNuclearPowerLabel
             // 
-            resources.ApplyResources(provinceNuclearPowerLabel, "provinceNuclearPowerLabel");
-            provinceNuclearPowerLabel.Name = "provinceNuclearPowerLabel";
+            resources.ApplyResources(this.provinceNuclearPowerLabel, "provinceNuclearPowerLabel");
+            this.provinceNuclearPowerLabel.Name = "provinceNuclearPowerLabel";
             // 
             // buildingCurrentLabel1
             // 
@@ -1303,11 +1300,11 @@
             this.provinceBuildingGroupBox.Controls.Add(provinceAirBaseLabel);
             this.provinceBuildingGroupBox.Controls.Add(provinceNavalBaseLabel);
             this.provinceBuildingGroupBox.Controls.Add(provinceRadarStationLbel);
-            this.provinceBuildingGroupBox.Controls.Add(provinceNuclearPowerLabel);
+            this.provinceBuildingGroupBox.Controls.Add(this.provinceNuclearPowerLabel);
             this.provinceBuildingGroupBox.Controls.Add(provinceRocketTestLabel);
-            this.provinceBuildingGroupBox.Controls.Add(provinceSyntheticOilLabel);
+            this.provinceBuildingGroupBox.Controls.Add(this.provinceSyntheticOilLabel);
             this.provinceBuildingGroupBox.Controls.Add(provinceNuclearReactorLabel);
-            this.provinceBuildingGroupBox.Controls.Add(provinceSyntheticRaresLabel);
+            this.provinceBuildingGroupBox.Controls.Add(this.provinceSyntheticRaresLabel);
             resources.ApplyResources(this.provinceBuildingGroupBox, "provinceBuildingGroupBox");
             this.provinceBuildingGroupBox.Name = "provinceBuildingGroupBox";
             this.provinceBuildingGroupBox.TabStop = false;
@@ -4616,6 +4613,9 @@
         private System.Windows.Forms.TextBox countryDescKeyTextBox;
         private System.Windows.Forms.TextBox countryNameStringTextBox;
         private System.Windows.Forms.TextBox provinceNameStringTextBox;
+        private System.Windows.Forms.Label provinceSyntheticOilLabel;
+        private System.Windows.Forms.Label provinceSyntheticRaresLabel;
+        private System.Windows.Forms.Label provinceNuclearPowerLabel;
 
     }
 }

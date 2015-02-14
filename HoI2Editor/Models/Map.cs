@@ -225,7 +225,7 @@ namespace HoI2Editor.Models
         ///     マップブロックのオフセット位置を読み込む
         /// </summary>
         /// <param name="count">マップブロック数</param>
-        private void LoadOffsets(int count)
+        private static void LoadOffsets(int count)
         {
             _offsets = new uint[count + 1];
 
@@ -242,7 +242,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップブロックを読み込む
         /// </summary>
-        private MapBlock LoadBlock()
+        private static MapBlock LoadBlock()
         {
             MapBlock block = new MapBlock();
 
@@ -258,7 +258,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンスIDリストを読み込む
         /// </summary>
         /// <param name="block">対象マップブロック</param>
-        private void LoadProvinceIds(MapBlock block)
+        private static void LoadProvinceIds(MapBlock block)
         {
             ushort[] ids = new ushort[MaxBlockProvinces];
             int no = 0;
@@ -279,7 +279,7 @@ namespace HoI2Editor.Models
         ///     マップツリーを読み込む
         /// </summary>
         /// <param name="block">対象マップブロック</param>
-        private void LoadMapTree(MapBlock block)
+        private static void LoadMapTree(MapBlock block)
         {
             MapTreeNode[] stack = _stack;
             int sp = 0;
@@ -365,7 +365,7 @@ namespace HoI2Editor.Models
         ///     ツリーノードごとのプロヴィンスIDを読み込む
         /// </summary>
         /// <param name="block">対象マップブロック</param>
-        private void LoadNodeIds(MapBlock block)
+        private static void LoadNodeIds(MapBlock block)
         {
             int count = block.NodeCount;
             byte[] ids = new byte[count + 7];
@@ -452,7 +452,7 @@ namespace HoI2Editor.Models
         ///     ノードごとのカラーインデックスを読み込む
         /// </summary>
         /// <param name="block">対象マップブロック</param>
-        private void LoadNodeColors(MapBlock block)
+        private static void LoadNodeColors(MapBlock block)
         {
             int count = block.NodeCount;
             byte[] colors = new byte[count + 3];
@@ -610,7 +610,7 @@ namespace HoI2Editor.Models
         ///     右下端の領域外ピクセルを準備する
         /// </summary>
         /// <param name="node">対象ノード</param>
-        private void PrepareBottomRight(MapTreeNode node)
+        private static void PrepareBottomRight(MapTreeNode node)
         {
             _pics[MapBlock.Height * (MapBlock.Width + 1) + MapBlock.Width] = (byte) (_block.NodeColors[node.No] << 2);
         }
@@ -619,7 +619,7 @@ namespace HoI2Editor.Models
         ///     右端の領域外ピクセルを準備する
         /// </summary>
         /// <param name="node">対象ノード</param>
-        private void PrepareRight(MapTreeNode node)
+        private static void PrepareRight(MapTreeNode node)
         {
             int pos = node.Y * (MapBlock.Width + 1) + MapBlock.Width;
             if (node.Level == 0)
@@ -644,7 +644,7 @@ namespace HoI2Editor.Models
         ///     下端の領域外ピクセルを準備する
         /// </summary>
         /// <param name="node">対象ノード</param>
-        private void PrepareBottom(MapTreeNode node)
+        private static void PrepareBottom(MapTreeNode node)
         {
             int pos = MapBlock.Height * (MapBlock.Width + 1) + node.X;
             if (node.Level == 0)
@@ -668,7 +668,7 @@ namespace HoI2Editor.Models
         ///     ノードを展開用バッファに描画する
         /// </summary>
         /// <param name="node">対象ノード</param>
-        private void DrawNodeBuffer(MapTreeNode node)
+        private static void DrawNodeBuffer(MapTreeNode node)
         {
             int pos = node.Y * (MapBlock.Width + 1) + node.X;
             if (node.Level == 0)
@@ -1202,7 +1202,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="node">開始ノード</param>
         /// <param name="callback">葉ノードで呼び出す処理</param>
-        private void VisitTree(MapTreeNode node, VisitorCallback callback)
+        private static void VisitTree(MapTreeNode node, VisitorCallback callback)
         {
             Stack<MapTreeNode> stack = new Stack<MapTreeNode>();
             while (true)
@@ -1231,7 +1231,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="node">開始ノード</param>
         /// <param name="callback">葉ノードで呼び出す処理</param>
-        private void VisitTreeBottom(MapTreeNode node, VisitorCallback callback)
+        private static void VisitTreeBottom(MapTreeNode node, VisitorCallback callback)
         {
             Stack<MapTreeNode> stack = new Stack<MapTreeNode>();
             while (true)
@@ -1258,7 +1258,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="node">開始ノード</param>
         /// <param name="callback">葉ノードで呼び出す処理</param>
-        private void VisitTreeLeft(MapTreeNode node, VisitorCallback callback)
+        private static void VisitTreeLeft(MapTreeNode node, VisitorCallback callback)
         {
             Stack<MapTreeNode> stack = new Stack<MapTreeNode>();
             while (true)
@@ -1285,7 +1285,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="node">開始ノード</param>
         /// <param name="callback">葉ノードで呼び出す処理</param>
-        private void VisitTreeBottomLeft(MapTreeNode node, VisitorCallback callback)
+        private static void VisitTreeBottomLeft(MapTreeNode node, VisitorCallback callback)
         {
             while (node.BottomLeftChild != null)
             {

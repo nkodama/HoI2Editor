@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 using HoI2Editor.Writers;
 
 namespace HoI2Editor.Models
@@ -391,42 +392,56 @@ namespace HoI2Editor.Models
         /// <returns>保存に失敗すればfalseを返す</returns>
         public static bool Save()
         {
-            // bases_DOD.inc
-            if ((Data.IsDirtyBasesInc() || Data.IsDirtyBasesDodInc()) && !SaveBasesDodIncFile())
-            {
-                return false;
-            }
+            // プロヴィンス設定をID順にソートする
+            SortProvinceSettings();
 
-            // bases.inc
-            if ((Data.IsDirtyBasesInc() || Data.IsDirtyBasesDodInc()) && !SaveBasesIncFile())
+            Scenario scenario = Data;
+            if (scenario.IsDirtyProvinces())
             {
-                return false;
+                // bases.inc
+                if (scenario.IsBaseProvinceSettings && !SaveBasesIncFile())
+                {
+                    return false;
+                }
+
+                // bases_DOD.inc
+                if (scenario.IsBaseDodProvinceSettings && !SaveBasesDodIncFile())
+                {
+                    return false;
+                }
+
+                // depots.inc
+                if (scenario.IsDepotsProvinceSettings && !SaveDepotsIncFile())
+                {
+                    return false;
+                }
             }
 
             // vp.inc
-            if (Data.IsDirtyVpInc() && !SaveVpIncFile())
+            if (scenario.IsVpProvinceSettings && scenario.IsDirtyVpInc() && !SaveVpIncFile())
             {
                 return false;
             }
 
             // 国別inc
-            if (Data.IsDirtyCountryInc())
+            if (scenario.IsDirtyProvinces())
             {
-                if (Data.Countries.Any(settings => !SaveCountryFiles(settings)))
+                if (scenario.Countries.Any(settings => !SaveCountryFiles(settings)))
                 {
                     return false;
                 }
             }
             else
             {
-                if (Data.Countries.Where(settings => settings.IsDirty()).Any(settings => !SaveCountryFiles(settings)))
+                if (scenario.Countries.Where(settings => settings.IsDirty())
+                    .Any(settings => !SaveCountryFiles(settings)))
                 {
                     return false;
                 }
             }
 
             // シナリオファイル
-            if (Data.IsDirty() && !SaveScenarioFile())
+            if (scenario.IsDirty() && !SaveScenarioFile())
             {
                 return false;
             }
@@ -443,16 +458,29 @@ namespace HoI2Editor.Models
         /// <returns>保存に成功すればtrueを返す</returns>
         private static bool SaveScenarioFile()
         {
+            if (string.IsNullOrEmpty(_fileName))
+            {
+                return false;
+            }
+
+            // シナリオフォルダが存在しなければ作成する
+            string folderName = Game.GetWriteFileName(Game.ScenarioPathName);
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            string fileName = Path.Combine(folderName, Path.GetFileName(_fileName));
             try
             {
                 // シナリオファイルを保存する
-                Log.Info("[Scenario] Save: {0}", Path.GetFileName(_fileName));
-                ScenarioWriter.Write(Data, _fileName);
+                Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
+                ScenarioWriter.Write(Data, fileName);
             }
             catch (Exception)
             {
-                Log.Error("[Scenario] Write error: {0}", _fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, _fileName), Resources.EditorScenario,
+                Log.Error("[Scenario] Write error: {0}", fileName);
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -466,8 +494,14 @@ namespace HoI2Editor.Models
         /// <returns>保存に成功すればtrueを返す</returns>
         private static bool SaveBasesIncFile()
         {
-            string fileName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder),
-                Game.BasesIncFileName);
+            // シナリオインクルードフォルダが存在しなければ作成する
+            string folderName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder));
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            string fileName = Path.Combine(folderName, Game.BasesIncFileName);
             try
             {
                 Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
@@ -490,12 +524,48 @@ namespace HoI2Editor.Models
         /// <returns>保存に成功すればtrueを返す</returns>
         private static bool SaveBasesDodIncFile()
         {
-            string fileName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder),
-                Game.BasesIncDodFileName);
+            // シナリオインクルードフォルダが存在しなければ作成する
+            string folderName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder));
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            string fileName = Path.Combine(folderName, Game.BasesIncDodFileName);
             try
             {
                 Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
                 ScenarioWriter.WriteBasesDodInc(Data, fileName);
+            }
+            catch (Exception)
+            {
+                Log.Error("[Scenario] Write error: {0}", fileName);
+                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        ///     資源備蓄定義ファイルを保存する
+        /// </summary>
+        /// <returns>保存に成功すればtrueを返す</returns>
+        private static bool SaveDepotsIncFile()
+        {
+            // シナリオインクルードフォルダが存在しなければ作成する
+            string folderName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder));
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            string fileName = Path.Combine(folderName, Game.DepotsIncFileName);
+            try
+            {
+                Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
+                ScenarioWriter.WriteDepotsInc(Data, fileName);
             }
             catch (Exception)
             {
@@ -514,8 +584,14 @@ namespace HoI2Editor.Models
         /// <returns>保存に成功すればtrueを返す</returns>
         private static bool SaveVpIncFile()
         {
-            string fileName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder),
-                Game.VpIncFileName);
+            // シナリオインクルードフォルダが存在しなければ作成する
+            string folderName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder));
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            string fileName = Path.Combine(folderName, Game.VpIncFileName);
             try
             {
                 Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
@@ -538,10 +614,16 @@ namespace HoI2Editor.Models
         /// <param name="settings">国家設定</param>
         private static bool SaveCountryFiles(CountrySettings settings)
         {
-            string fileName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder),
-                string.IsNullOrEmpty(settings.FileName)
-                    ? string.Format("{0}.inc", Countries.Strings[(int) settings.Country].ToLower())
-                    : settings.FileName);
+            // シナリオインクルードフォルダが存在しなければ作成する
+            string folderName = Game.GetWriteFileName(Path.Combine(Game.ScenarioPathName, Data.IncludeFolder));
+            if (!Directory.Exists(folderName))
+            {
+                Directory.CreateDirectory(folderName);
+            }
+
+            string fileName = Path.Combine(folderName, string.IsNullOrEmpty(settings.FileName)
+                ? string.Format("{0}.inc", Countries.Strings[(int) settings.Country].ToLower())
+                : settings.FileName);
             try
             {
                 Log.Info("[Scenario] Save: {0}", Path.GetFileName(fileName));
@@ -895,6 +977,22 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンス名を取得する
         /// </summary>
+        /// <param name="id">プロヴィンスID</param>
+        /// <returns>プロヴィンス名</returns>
+        public static string GetProvinceName(int id)
+        {
+            Province province = Provinces.Items[id];
+            ProvinceSettings settings = GetProvinceSettings(id);
+            if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
+            {
+                return Config.ExistsKey(settings.Name) ? Config.GetText(settings.Name) : "";
+            }
+            return province.GetName();
+        }
+
+        /// <summary>
+        ///     プロヴィンス名を取得する
+        /// </summary>
         /// <param name="province">プロヴィンス</param>
         /// <param name="settings">プロヴィンス設定</param>
         /// <returns>プロヴィンス名</returns>
@@ -988,7 +1086,157 @@ namespace HoI2Editor.Models
         /// <param name="settings">プロヴィンス設定</param>
         public static void AddProvinceSettings(ProvinceSettings settings)
         {
-            ProvinceTable[settings.Id] = settings;
+            ProvinceSettings prev = Data.Provinces.Find(ps => ps.Id == settings.Id);
+            if (prev == null)
+            {
+                Data.Provinces.Add(settings);
+                ProvinceTable[settings.Id] = settings;
+            }
+            else
+            {
+                MergeProvinceSettings(prev, settings);
+            }
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定をマージする
+        /// </summary>
+        /// <param name="prev">プロヴィンス設定1</param>
+        /// <param name="settings">プロヴィンス設定2</param>
+        private static void MergeProvinceSettings(ProvinceSettings prev, ProvinceSettings settings)
+        {
+            if (!string.IsNullOrEmpty(settings.Name))
+            {
+                prev.Name = settings.Name;
+            }
+            if (settings.Ic != null)
+            {
+                prev.Ic = settings.Ic;
+            }
+            if (settings.Infrastructure != null)
+            {
+                prev.Infrastructure = settings.Infrastructure;
+            }
+            if (settings.LandFort != null)
+            {
+                prev.LandFort = settings.LandFort;
+            }
+            if (settings.CoastalFort != null)
+            {
+                prev.CoastalFort = settings.CoastalFort;
+            }
+            if (settings.AntiAir != null)
+            {
+                prev.AntiAir = settings.AntiAir;
+            }
+            if (settings.AirBase != null)
+            {
+                prev.AirBase = settings.AirBase;
+            }
+            if (settings.NavalBase != null)
+            {
+                prev.NavalBase = settings.NavalBase;
+            }
+            if (settings.RadarStation != null)
+            {
+                prev.RadarStation = settings.RadarStation;
+            }
+            if (settings.NuclearReactor != null)
+            {
+                prev.NuclearReactor = settings.NuclearReactor;
+            }
+            if (settings.RocketTest != null)
+            {
+                prev.RocketTest = settings.RocketTest;
+            }
+            if (settings.SyntheticOil != null)
+            {
+                prev.SyntheticOil = settings.SyntheticOil;
+            }
+            if (settings.SyntheticRares != null)
+            {
+                prev.SyntheticRares = settings.SyntheticRares;
+            }
+            if (settings.NuclearPower != null)
+            {
+                prev.NuclearPower = settings.NuclearPower;
+            }
+            if (!DoubleHelper.IsZero(settings.Manpower))
+            {
+                prev.Manpower = settings.Manpower;
+            }
+            if (!DoubleHelper.IsZero(settings.MaxManpower))
+            {
+                prev.MaxManpower = settings.MaxManpower;
+            }
+            if (!DoubleHelper.IsZero(settings.EnergyPool))
+            {
+                prev.EnergyPool = settings.EnergyPool;
+            }
+            if (!DoubleHelper.IsZero(settings.Energy))
+            {
+                prev.Energy = settings.Energy;
+            }
+            if (!DoubleHelper.IsZero(settings.MaxEnergy))
+            {
+                prev.MaxEnergy = settings.MaxEnergy;
+            }
+            if (!DoubleHelper.IsZero(settings.MetalPool))
+            {
+                prev.MetalPool = settings.MetalPool;
+            }
+            if (!DoubleHelper.IsZero(settings.Metal))
+            {
+                prev.Metal = settings.Metal;
+            }
+            if (!DoubleHelper.IsZero(settings.MaxMetal))
+            {
+                prev.MaxMetal = settings.MaxMetal;
+            }
+            if (!DoubleHelper.IsZero(settings.RareMaterialsPool))
+            {
+                prev.RareMaterialsPool = settings.RareMaterialsPool;
+            }
+            if (!DoubleHelper.IsZero(settings.RareMaterials))
+            {
+                prev.RareMaterials = settings.RareMaterials;
+            }
+            if (!DoubleHelper.IsZero(settings.MaxRareMaterials))
+            {
+                prev.MaxRareMaterials = settings.MaxRareMaterials;
+            }
+            if (!DoubleHelper.IsZero(settings.OilPool))
+            {
+                prev.OilPool = settings.OilPool;
+            }
+            if (!DoubleHelper.IsZero(settings.Oil))
+            {
+                prev.Oil = settings.Oil;
+            }
+            if (!DoubleHelper.IsZero(settings.MaxOil))
+            {
+                prev.MaxOil = settings.MaxOil;
+            }
+            if (!DoubleHelper.IsZero(settings.SupplyPool))
+            {
+                prev.SupplyPool = settings.SupplyPool;
+            }
+            if (settings.Vp != 0)
+            {
+                prev.Vp = settings.Vp;
+            }
+            if (!DoubleHelper.IsZero(settings.RevoltRisk))
+            {
+                prev.RevoltRisk = settings.RevoltRisk;
+            }
+        }
+
+        /// <summary>
+        ///     プロヴィンス設定をID順にソートする
+        /// </summary>
+        private static void SortProvinceSettings()
+        {
+            Data.Provinces.Sort((x, y) => x.Id - y.Id);
         }
 
         /// <summary>

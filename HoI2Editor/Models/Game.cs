@@ -489,6 +489,11 @@ namespace HoI2Editor.Models
         public const string BasesIncDodFileName = "bases_DOD.inc";
 
         /// <summary>
+        ///     資源備蓄定義ファイル名
+        /// </summary>
+        public const string DepotsIncFileName = "depots.inc";
+
+        /// <summary>
         ///     VP定義ファイル名
         /// </summary>
         public const string VpIncFileName = "vp.inc";
@@ -883,6 +888,15 @@ namespace HoI2Editor.Models
         #endregion
 
         #region ゲームの種類/バージョン
+
+        /// <summary>
+        ///     DH Fullかどうかを取得する
+        /// </summary>
+        /// <returns>DH Fullならばtrueを返す</returns>
+        public static bool IsDhFull()
+        {
+            return (Type == GameType.DarkestHour) && (Misc.MapNumber > 0);
+        }
 
         /// <summary>
         ///     ゲームの種類を自動判別する

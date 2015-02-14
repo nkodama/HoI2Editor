@@ -9633,6 +9633,20 @@ namespace HoI2Editor.Forms
         private void EnableProvinceBuildingItems()
         {
             provinceBuildingGroupBox.Enabled = true;
+
+            bool flag = (Game.Type == GameType.ArsenalOfDemocracy);
+            provinceSyntheticOilLabel.Enabled = flag;
+            syntheticOilCurrentTextBox.Enabled = flag;
+            syntheticOilMaxTextBox.Enabled = flag;
+            syntheticOilRelativeTextBox.Enabled = flag;
+            provinceSyntheticRaresLabel.Enabled = flag;
+            syntheticRaresCurrentTextBox.Enabled = flag;
+            syntheticRaresMaxTextBox.Enabled = flag;
+            syntheticRaresRelativeTextBox.Enabled = flag;
+            provinceNuclearPowerLabel.Enabled = flag;
+            nuclearPowerCurrentTextBox.Enabled = flag;
+            nuclearPowerMaxTextBox.Enabled = flag;
+            nuclearPowerRelativeTextBox.Enabled = flag;
         }
 
         /// <summary>

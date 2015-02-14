@@ -4321,6 +4321,7 @@ namespace HoI2Editor.Controller
 
                 case ScenarioEditorItemId.CountryControlledProvinces:
                     settings.SetDirtyControlledProvinces(province.Id);
+                    Scenarios.Data.SetDirtyProvinces();
                     Scenarios.SetDirty();
                     break;
 
@@ -4342,13 +4343,88 @@ namespace HoI2Editor.Controller
             switch (itemId)
             {
                 case ScenarioEditorItemId.ProvinceNameKey:
-                    if (Scenarios.Data.IsBaseProvinceSettings)
+                case ScenarioEditorItemId.ProvinceManpowerCurrent:
+                case ScenarioEditorItemId.ProvinceManpowerMax:
+                case ScenarioEditorItemId.ProvinceEnergyCurrent:
+                case ScenarioEditorItemId.ProvinceEnergyMax:
+                case ScenarioEditorItemId.ProvinceMetalCurrent:
+                case ScenarioEditorItemId.ProvinceMetalMax:
+                case ScenarioEditorItemId.ProvinceRareMaterialsCurrent:
+                case ScenarioEditorItemId.ProvinceRareMaterialsMax:
+                case ScenarioEditorItemId.ProvinceOilCurrent:
+                case ScenarioEditorItemId.ProvinceOilMax:
+                    if (Scenarios.Data.IsBaseProvinceSettings || Scenarios.Data.IsCountryProvinceSettings)
                     {
-                        Scenarios.Data.SetDirtyBasesInc();
+                        Scenarios.Data.SetDirtyProvinces();
                     }
-                    else if (Scenarios.Data.IsCountryProvinceSettings)
+                    else
                     {
-                        Scenarios.Data.SetDirtyCountryInc();
+                        Scenarios.Data.SetDirty();
+                    }
+                    Scenarios.SetDirty();
+                    break;
+
+                case ScenarioEditorItemId.ProvinceEnergyPool:
+                case ScenarioEditorItemId.ProvinceMetalPool:
+                case ScenarioEditorItemId.ProvinceRareMaterialsPool:
+                case ScenarioEditorItemId.ProvinceOilPool:
+                case ScenarioEditorItemId.ProvinceSupplyPool:
+                    if (Scenarios.Data.IsDepotsProvinceSettings || Scenarios.Data.IsBaseProvinceSettings ||
+                        Scenarios.Data.IsCountryProvinceSettings)
+                    {
+                        Scenarios.Data.SetDirtyProvinces();
+                    }
+                    else
+                    {
+                        Scenarios.Data.SetDirty();
+                    }
+                    Scenarios.SetDirty();
+                    break;
+
+                case ScenarioEditorItemId.ProvinceIcCurrent:
+                case ScenarioEditorItemId.ProvinceIcMax:
+                case ScenarioEditorItemId.ProvinceIcRelative:
+                case ScenarioEditorItemId.ProvinceInfrastructureCurrent:
+                case ScenarioEditorItemId.ProvinceInfrastructureMax:
+                case ScenarioEditorItemId.ProvinceInfrastructureRelative:
+                case ScenarioEditorItemId.ProvinceLandFortCurrent:
+                case ScenarioEditorItemId.ProvinceLandFortMax:
+                case ScenarioEditorItemId.ProvinceLandFortRelative:
+                case ScenarioEditorItemId.ProvinceCoastalFortCurrent:
+                case ScenarioEditorItemId.ProvinceCoastalFortMax:
+                case ScenarioEditorItemId.ProvinceCoastalFortRelative:
+                case ScenarioEditorItemId.ProvinceAntiAirCurrent:
+                case ScenarioEditorItemId.ProvinceAntiAirMax:
+                case ScenarioEditorItemId.ProvinceAntiAirRelative:
+                case ScenarioEditorItemId.ProvinceAirBaseCurrent:
+                case ScenarioEditorItemId.ProvinceAirBaseMax:
+                case ScenarioEditorItemId.ProvinceAirBaseRelative:
+                case ScenarioEditorItemId.ProvinceNavalBaseCurrent:
+                case ScenarioEditorItemId.ProvinceNavalBaseMax:
+                case ScenarioEditorItemId.ProvinceNavalBaseRelative:
+                case ScenarioEditorItemId.ProvinceRadarStationCurrent:
+                case ScenarioEditorItemId.ProvinceRadarStationMax:
+                case ScenarioEditorItemId.ProvinceRadarStationRelative:
+                case ScenarioEditorItemId.ProvinceNuclearReactorCurrent:
+                case ScenarioEditorItemId.ProvinceNuclearReactorMax:
+                case ScenarioEditorItemId.ProvinceNuclearReactorRelative:
+                case ScenarioEditorItemId.ProvinceRocketTestCurrent:
+                case ScenarioEditorItemId.ProvinceRocketTestMax:
+                case ScenarioEditorItemId.ProvinceRocketTestRelative:
+                case ScenarioEditorItemId.ProvinceSyntheticOilCurrent:
+                case ScenarioEditorItemId.ProvinceSyntheticOilMax:
+                case ScenarioEditorItemId.ProvinceSyntheticOilRelative:
+                case ScenarioEditorItemId.ProvinceSyntheticRaresCurrent:
+                case ScenarioEditorItemId.ProvinceSyntheticRaresMax:
+                case ScenarioEditorItemId.ProvinceSyntheticRaresRelative:
+                case ScenarioEditorItemId.ProvinceNuclearPowerCurrent:
+                case ScenarioEditorItemId.ProvinceNuclearPowerMax:
+                case ScenarioEditorItemId.ProvinceNuclearPowerRelative:
+                case ScenarioEditorItemId.ProvinceRevoltRisk:
+                    if (Scenarios.Data.IsBaseDodProvinceSettings || Scenarios.Data.IsBaseProvinceSettings ||
+                        Scenarios.Data.IsCountryProvinceSettings)
+                    {
+                        Scenarios.Data.SetDirtyProvinces();
                     }
                     else
                     {
@@ -4361,95 +4437,6 @@ namespace HoI2Editor.Controller
                     if (Scenarios.Data.IsVpProvinceSettings)
                     {
                         Scenarios.Data.SetDirtyVpInc();
-                    }
-                    else
-                    {
-                        Scenarios.Data.SetDirty();
-                    }
-                    Scenarios.SetDirty();
-                    break;
-
-                case ScenarioEditorItemId.ProvinceRevoltRisk:
-                case ScenarioEditorItemId.ProvinceIcRelative:
-                case ScenarioEditorItemId.ProvinceInfrastructureRelative:
-                case ScenarioEditorItemId.ProvinceCoastalFortRelative:
-                case ScenarioEditorItemId.ProvinceAntiAirRelative:
-                case ScenarioEditorItemId.ProvinceAirBaseRelative:
-                case ScenarioEditorItemId.ProvinceNavalBaseRelative:
-                case ScenarioEditorItemId.ProvinceRadarStationRelative:
-                case ScenarioEditorItemId.ProvinceRocketTestRelative:
-                case ScenarioEditorItemId.ProvinceSyntheticOilRelative:
-                case ScenarioEditorItemId.ProvinceSyntheticRaresRelative:
-                case ScenarioEditorItemId.ProvinceNuclearPowerRelative:
-                    if (Scenarios.Data.IsBaseDodProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyBasesDodInc();
-                    }
-                    else if (Scenarios.Data.IsBaseProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyBasesInc();
-                    }
-                    else if (Scenarios.Data.IsCountryProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyCountryInc();
-                    }
-                    else
-                    {
-                        Scenarios.Data.SetDirty();
-                    }
-                    Scenarios.SetDirty();
-                    break;
-
-                case ScenarioEditorItemId.ProvinceManpowerCurrent:
-                case ScenarioEditorItemId.ProvinceManpowerMax:
-                case ScenarioEditorItemId.ProvinceEnergyPool:
-                case ScenarioEditorItemId.ProvinceEnergyCurrent:
-                case ScenarioEditorItemId.ProvinceEnergyMax:
-                case ScenarioEditorItemId.ProvinceMetalPool:
-                case ScenarioEditorItemId.ProvinceMetalCurrent:
-                case ScenarioEditorItemId.ProvinceMetalMax:
-                case ScenarioEditorItemId.ProvinceRareMaterialsPool:
-                case ScenarioEditorItemId.ProvinceRareMaterialsCurrent:
-                case ScenarioEditorItemId.ProvinceRareMaterialsMax:
-                case ScenarioEditorItemId.ProvinceOilPool:
-                case ScenarioEditorItemId.ProvinceOilCurrent:
-                case ScenarioEditorItemId.ProvinceOilMax:
-                case ScenarioEditorItemId.ProvinceSupplyPool:
-                case ScenarioEditorItemId.ProvinceIcCurrent:
-                case ScenarioEditorItemId.ProvinceIcMax:
-                case ScenarioEditorItemId.ProvinceInfrastructureCurrent:
-                case ScenarioEditorItemId.ProvinceInfrastructureMax:
-                case ScenarioEditorItemId.ProvinceLandFortCurrent:
-                case ScenarioEditorItemId.ProvinceLandFortMax:
-                case ScenarioEditorItemId.ProvinceLandFortRelative:
-                case ScenarioEditorItemId.ProvinceCoastalFortCurrent:
-                case ScenarioEditorItemId.ProvinceCoastalFortMax:
-                case ScenarioEditorItemId.ProvinceAntiAirCurrent:
-                case ScenarioEditorItemId.ProvinceAntiAirMax:
-                case ScenarioEditorItemId.ProvinceAirBaseCurrent:
-                case ScenarioEditorItemId.ProvinceAirBaseMax:
-                case ScenarioEditorItemId.ProvinceNavalBaseCurrent:
-                case ScenarioEditorItemId.ProvinceNavalBaseMax:
-                case ScenarioEditorItemId.ProvinceRadarStationCurrent:
-                case ScenarioEditorItemId.ProvinceRadarStationMax:
-                case ScenarioEditorItemId.ProvinceNuclearReactorCurrent:
-                case ScenarioEditorItemId.ProvinceNuclearReactorMax:
-                case ScenarioEditorItemId.ProvinceNuclearReactorRelative:
-                case ScenarioEditorItemId.ProvinceRocketTestCurrent:
-                case ScenarioEditorItemId.ProvinceRocketTestMax:
-                case ScenarioEditorItemId.ProvinceSyntheticOilCurrent:
-                case ScenarioEditorItemId.ProvinceSyntheticOilMax:
-                case ScenarioEditorItemId.ProvinceSyntheticRaresCurrent:
-                case ScenarioEditorItemId.ProvinceSyntheticRaresMax:
-                case ScenarioEditorItemId.ProvinceNuclearPowerCurrent:
-                case ScenarioEditorItemId.ProvinceNuclearPowerMax:
-                    if (Scenarios.Data.IsBaseProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyBasesInc();
-                    }
-                    else if (Scenarios.Data.IsCountryProvinceSettings)
-                    {
-                        Scenarios.Data.SetDirtyCountryInc();
                     }
                     else
                     {
