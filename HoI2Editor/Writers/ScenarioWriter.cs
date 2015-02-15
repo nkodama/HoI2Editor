@@ -654,6 +654,10 @@ namespace HoI2Editor.Writers
         private static bool WriteCountryProvinces(CountrySettings settings, Scenario scenario,
             TextWriter writer)
         {
+            if (!scenario.IsCountryProvinceSettings)
+            {
+                return false;
+            }
             bool exists = false;
             foreach (ProvinceSettings ps in scenario.Provinces.Where(p => settings.ControlledProvinces.Contains(p.Id)))
             {
@@ -942,7 +946,7 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("  weather = {0}", Scenarios.WeatherStrings[(int) settings.Weather]);
             }
-            writer.Write("}");
+            writer.WriteLine("}");
         }
 
         /// <summary>
@@ -1118,7 +1122,7 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("# Country definition for {0} #", Countries.Strings[(int) settings.Country]);
                 writer.WriteLine("##############################");
                 writer.WriteLine();
-                if (Game.IsDhFull() || WriteCountryProvinces(settings, scenario, writer))
+                if (WriteCountryProvinces(settings, scenario, writer) || Game.IsDhFull())
                 {
                     writer.WriteLine();
                     writer.WriteLine("#####################");
