@@ -1129,7 +1129,7 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("country = {");
                 WriteCountryInfo(settings, writer);
                 WriteCountryResources(settings, writer);
-                WriteCountryConvoys(settings, writer);
+                WriteOffmapResources(settings, writer);
                 writer.WriteLine();
                 WriteCountryPolicy(settings, writer);
                 WriteCabinet(settings, writer);
@@ -1236,23 +1236,70 @@ namespace HoI2Editor.Writers
             writer.WriteLine("  oil            = {0}", ObjectHelper.ToString(settings.Oil));
             writer.WriteLine("  supplies       = {0}", ObjectHelper.ToString(settings.Supplies));
             writer.WriteLine("  money          = {0}", ObjectHelper.ToString(settings.Money));
-        }
-
-        /// <summary>
-        ///     輸送船団設定を書き出す
-        /// </summary>
-        /// <param name="settings">国家設定</param>
-        /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteCountryConvoys(CountrySettings settings, TextWriter writer)
-        {
-            if (settings.Transports > 0)
+            if (settings.Transports != 0)
             {
                 writer.WriteLine("  transports     = {0}", settings.Transports);
             }
-            if (settings.Escorts > 0)
+            if (settings.Escorts != 0)
             {
                 writer.WriteLine("  escorts        = {0}", settings.Escorts);
             }
+        }
+
+        /// <summary>
+        ///     マップ外資源設定を書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteOffmapResources(CountrySettings settings, TextWriter writer)
+        {
+            ResourceSettings offmap = settings.Offmap;
+            if (offmap == null)
+            {
+                return;
+            }
+            writer.WriteLine("  free = {");
+            if (!DoubleHelper.IsZero(offmap.Ic))
+            {
+                writer.WriteLine("    ic             = {0}", ObjectHelper.ToString(offmap.Ic));
+            }
+            if (!DoubleHelper.IsZero(offmap.Manpower))
+            {
+                writer.WriteLine("    manpower       = {0}", ObjectHelper.ToString(offmap.Manpower));
+            }
+            if (!DoubleHelper.IsZero(offmap.Energy))
+            {
+                writer.WriteLine("    energy         = {0}", ObjectHelper.ToString(offmap.Energy));
+            }
+            if (!DoubleHelper.IsZero(offmap.Metal))
+            {
+                writer.WriteLine("    metal          = {0}", ObjectHelper.ToString(offmap.Metal));
+            }
+            if (!DoubleHelper.IsZero(offmap.RareMaterials))
+            {
+                writer.WriteLine("    rare_materials = {0}", ObjectHelper.ToString(offmap.RareMaterials));
+            }
+            if (!DoubleHelper.IsZero(offmap.Oil))
+            {
+                writer.WriteLine("    oil            = {0}", ObjectHelper.ToString(offmap.Oil));
+            }
+            if (!DoubleHelper.IsZero(offmap.Supplies))
+            {
+                writer.WriteLine("    supplies       = {0}", ObjectHelper.ToString(offmap.Supplies));
+            }
+            if (!DoubleHelper.IsZero(offmap.Money))
+            {
+                writer.WriteLine("    money          = {0}", ObjectHelper.ToString(offmap.Money));
+            }
+            if (offmap.Transports != 0)
+            {
+                writer.WriteLine("    transports     = {0}", offmap.Transports);
+            }
+            if (offmap.Escorts != 0)
+            {
+                writer.WriteLine("    escorts        = {0}", offmap.Escorts);
+            }
+            writer.WriteLine("  }");
         }
 
         /// <summary>
