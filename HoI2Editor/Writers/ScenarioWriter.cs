@@ -1430,6 +1430,7 @@ namespace HoI2Editor.Writers
                 WriteCountryDormantLeaders(settings, writer);
                 WriteCountryDormantMinisters(settings, writer);
                 WriteCountryDormantTeams(settings, writer);
+                WriteStealLeaders(settings, writer);
                 writer.WriteLine();
                 WriteLandUnits(settings, writer);
                 WriteNavalUnits(settings, writer);
@@ -1868,6 +1869,24 @@ namespace HoI2Editor.Writers
             writer.Write("  dormant_teams          = {");
             WriteIdList(settings.DormantTeams, writer);
             writer.WriteLine(" }");
+        }
+
+        /// <summary>
+        ///     抽出指揮官リストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteStealLeaders(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.StealLeaders.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine();
+            foreach (int id in settings.StealLeaders)
+            {
+                writer.WriteLine("  steal_leader = {0}", id);
+            }
         }
 
         #endregion
