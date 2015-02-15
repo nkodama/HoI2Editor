@@ -1724,10 +1724,10 @@ namespace HoI2Editor.Controller
                     return (settings != null) ? settings.Money : (double) 0;
 
                 case ScenarioEditorItemId.CountryTransports:
-                    return (settings != null) ? settings.Transports : (double) 0;
+                    return (settings != null) ? settings.Transports : 0;
 
                 case ScenarioEditorItemId.CountryEscorts:
-                    return (settings != null) ? settings.Escorts : (double) 0;
+                    return (settings != null) ? settings.Escorts : 0;
 
                 case ScenarioEditorItemId.CountryManpower:
                     return (settings != null) ? settings.Manpower : (double) 0;
@@ -1753,10 +1753,10 @@ namespace HoI2Editor.Controller
                     return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Money : (double) 0;
 
                 case ScenarioEditorItemId.CountryOffmapTransports:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Transports : (double) 0;
+                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Transports : 0;
 
                 case ScenarioEditorItemId.CountryOffmapEscorts:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Escorts : (double) 0;
+                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Escorts : 0;
 
                 case ScenarioEditorItemId.CountryOffmapManpower:
                     return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Manpower : (double) 0;
@@ -6959,6 +6959,20 @@ namespace HoI2Editor.Controller
             Log.Info("[Scenario] {0}: {1} -> {2} ({3}:{4})", ItemStrings[(int) itemId],
                 ObjectHelper.ToString(GetItemValue(itemId, treaty)), ObjectHelper.ToString(val),
                 Countries.Strings[(int) treaty.Country1], Countries.Strings[(int) treaty.Country2]);
+        }
+
+        /// <summary>
+        ///     編集項目の値変更時のログを出力する
+        /// </summary>
+        /// <param name="itemId">項目ID</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="prev">変更前の値</param>
+        /// <param name="treaty">協定</param>
+        public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, object prev, Treaty treaty)
+        {
+            Log.Info("[Scenario] {0}: {1} -> {2} ({3}:{4})", ItemStrings[(int) itemId],
+                ObjectHelper.ToString(prev), ObjectHelper.ToString(val), Countries.Strings[(int) treaty.Country1],
+                Countries.Strings[(int) treaty.Country2]);
         }
 
         /// <summary>

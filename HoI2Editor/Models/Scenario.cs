@@ -340,6 +340,11 @@ namespace HoI2Editor.Models
                 settings.ResetDirtyAll();
             }
 
+            foreach (ProvinceSettings settings in Provinces)
+            {
+                settings.ResetDirtyAll();
+            }
+
             _dirtyProvinces = false;
             _dirtyVpInc = false;
 

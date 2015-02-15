@@ -229,7 +229,14 @@ namespace HoI2Editor.Forms
         /// </summary>
         public void OnFileSaved()
         {
-            // 編集済みフラグがクリアされるため表示を更新する
+            // 各タブページの初期化済み状態をクリアする
+            foreach (TabPageNo page in Enum.GetValues(typeof (TabPageNo)))
+            {
+                _tabPageInitialized[(int) page] = false;
+            }
+
+            // 強制的に選択タブの表示を更新する
+            OnScenarioTabControlSelectedIndexChanged(null, null);
         }
 
         /// <summary>
@@ -667,7 +674,7 @@ namespace HoI2Editor.Forms
             EnableMainItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Relation] = true;
+            _tabPageInitialized[(int) TabPageNo.Main] = true;
         }
 
         /// <summary>
@@ -1028,6 +1035,19 @@ namespace HoI2Editor.Forms
             _controller.UpdateItemValue(aiAggressiveComboBox);
             _controller.UpdateItemValue(difficultyComboBox);
             _controller.UpdateItemValue(gameSpeedComboBox);
+
+            _controller.UpdateItemColor(battleScenarioCheckBox);
+            _controller.UpdateItemColor(freeCountryCheckBox);
+            _controller.UpdateItemColor(allowDiplomacyCheckBox);
+            _controller.UpdateItemColor(allowProductionCheckBox);
+            _controller.UpdateItemColor(allowTechnologyCheckBox);
+            _controller.UpdateItemColor(aiAggressiveComboBox);
+            _controller.UpdateItemColor(difficultyComboBox);
+            _controller.UpdateItemColor(gameSpeedComboBox);
+
+            aiAggressiveComboBox.Refresh();
+            difficultyComboBox.Refresh();
+            gameSpeedComboBox.Refresh();
         }
 
         #endregion
@@ -1067,6 +1087,15 @@ namespace HoI2Editor.Forms
                 unselectableListBox.Items.Add(Countries.GetTagName(country));
             }
             unselectableListBox.EndUpdate();
+
+            // 主要国の操作ボタンを無効化する
+            DisableMajorButtons();
+
+            // 編集項目を無効化する
+            DisableSelectableItems();
+
+            // 編集項目をクリアする
+            ClearSelectableItems();
         }
 
         /// <summary>
@@ -1098,12 +1127,14 @@ namespace HoI2Editor.Forms
             _controller.UpdateItemValue(majorCountryNameKeyTextBox, major);
             _controller.UpdateItemValue(majorCountryNameStringTextBox, major);
             _controller.UpdateItemValue(majorFlagExtTextBox, major);
+            _controller.UpdateItemValue(countryDescKeyTextBox, major);
             _controller.UpdateItemValue(countryDescStringTextBox, major);
             _controller.UpdateItemValue(propagandaTextBox, major);
 
             _controller.UpdateItemColor(majorCountryNameKeyTextBox, major);
             _controller.UpdateItemColor(majorCountryNameStringTextBox, major);
             _controller.UpdateItemColor(majorFlagExtTextBox, major);
+            _controller.UpdateItemColor(countryDescKeyTextBox, major);
             _controller.UpdateItemColor(countryDescStringTextBox, major);
             _controller.UpdateItemColor(propagandaTextBox, major);
 
@@ -1118,6 +1149,7 @@ namespace HoI2Editor.Forms
             majorCountryNameKeyTextBox.Text = "";
             majorCountryNameStringTextBox.Text = "";
             majorFlagExtTextBox.Text = "";
+            countryDescKeyTextBox.Text = "";
             countryDescStringTextBox.Text = "";
             propagandaTextBox.Text = "";
             Image prev = propagandaPictureBox.Image;
@@ -2238,6 +2270,18 @@ namespace HoI2Editor.Forms
             }
 
             allianceListView.EndUpdate();
+
+            // 同盟操作ボタンを無効化する
+            DisableAllianceItemButtons();
+
+            // 同盟参加国操作ボタンを無効化する
+            DisableAllianceParticipantButtons();
+
+            // 編集項目を無効化する
+            DisableAllianceItems();
+
+            // 編集項目をクリアする
+            ClearAllianceItems();
         }
 
         /// <summary>
@@ -2260,11 +2304,6 @@ namespace HoI2Editor.Forms
             allianceUpButton.Enabled = (index > 3);
             allianceDownButton.Enabled = ((index < count - 1) && (index >= 3));
             allianceRemoveButton.Enabled = (index >= 3);
-
-            // 参加国操作ボタンを無効化する
-            allianceParticipantAddButton.Enabled = false;
-            allianceParticipantRemoveButton.Enabled = false;
-            allianceLeaderButton.Enabled = false;
         }
 
         /// <summary>
@@ -2970,6 +3009,18 @@ namespace HoI2Editor.Forms
                 warListView.Items.Add(item);
             }
             warListView.EndUpdate();
+
+            // 戦争操作ボタンを無効化する
+            DisableWarItemButtons();
+
+            // 戦争参加国操作ボタンを無効化する
+            DisableWarParticipantButtons();
+
+            // 編集項目を無効化する
+            DisableWarItems();
+
+            // 編集項目をクリアする
+            ClearWarItems();
         }
 
         /// <summary>
@@ -3969,6 +4020,23 @@ namespace HoI2Editor.Forms
 
             // 選択国リストを有効化する
             EnableRelationCountryList();
+
+            // 国家関係リストをクリアする
+            ClearRelationList();
+
+            // 編集項目を無効化する
+            DisableRelationItems();
+            DisableGuaranteedItems();
+            DisableNonAggressionItems();
+            DisablePeaceItems();
+            DisableIntelligenceItems();
+
+            // 編集項目をクリアする
+            ClearRelationItems();
+            ClearGuaranteedItems();
+            ClearNonAggressionItems();
+            ClearPeaceItems();
+            ClearIntelligenceItems();
 
             // 国家関係リストを有効化する
             EnableRelationList();
@@ -5094,7 +5162,7 @@ namespace HoI2Editor.Forms
                 Scenarios.RemoveNonAggression(treaty);
             }
 
-            _controller.OutputItemValueChangedLog(itemId, val, treaty);
+            _controller.OutputItemValueChangedLog(itemId, val, !val, treaty);
 
             // 編集済みフラグを設定する
             _controller.SetItemDirty(itemId, treaty);
@@ -5103,7 +5171,7 @@ namespace HoI2Editor.Forms
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, val, treaty);
+            _controller.PostItemChanged(itemId, val, val ? treaty : null);
         }
 
         /// <summary>
@@ -5222,8 +5290,6 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            _controller.OutputItemValueChangedLog(itemId, val, treaty);
-
             // 項目値変更前の処理
             _controller.PreItemChanged(itemId, val, treaty);
 
@@ -5248,6 +5314,8 @@ namespace HoI2Editor.Forms
                 Scenarios.RemovePeace(treaty);
             }
 
+            _controller.OutputItemValueChangedLog(itemId, val, !val, treaty);
+
             // 編集済みフラグを設定する
             _controller.SetItemDirty(itemId, treaty);
 
@@ -5255,7 +5323,7 @@ namespace HoI2Editor.Forms
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, val, treaty);
+            _controller.PostItemChanged(itemId, val, val ? treaty : null);
         }
 
         /// <summary>
@@ -5439,6 +5507,15 @@ namespace HoI2Editor.Forms
                 tradeListView.Items.Add(CreateTradeListViewItem(treaty));
             }
             tradeListView.EndUpdate();
+
+            // 編集項目を無効化する
+            DisableTradeInfoItems();
+            DisableTradeDealsItems();
+            DisableTradeButtons();
+
+            // 編集項目をクリアする
+            ClearTradeInfoItems();
+            ClearTradeDealsItems();
         }
 
         /// <summary>
@@ -6269,6 +6346,18 @@ namespace HoI2Editor.Forms
             // 国家リストボックスを有効化する
             EnableCountryListBox();
 
+            // 編集項目を無効化する
+            DisableCountryInfoItems();
+            DisableCountryModifierItems();
+            DisableCountryResourceItems();
+            DisableCountryAiItems();
+
+            // 編集項目をクリアする
+            ClearCountryInfoItems();
+            ClearCountryModifierItems();
+            ClearCountryResourceItems();
+            ClearCountryAiItems();
+
             // 初期化済みフラグをセットする
             _tabPageInitialized[(int) TabPageNo.Country] = true;
         }
@@ -6446,6 +6535,7 @@ namespace HoI2Editor.Forms
         private void ClearCountryInfoItems()
         {
             countryNameKeyTextBox.Text = "";
+            countryNameStringTextBox.Text = "";
             flagExtTextBox.Text = "";
             regularIdComboBox.SelectedIndex = -1;
             belligerenceTextBox.Text = "";
@@ -7202,6 +7292,14 @@ namespace HoI2Editor.Forms
             // 国家リストボックスを有効化する
             EnableGovernmentCountryListBox();
 
+            // 編集項目を無効化する
+            DisablePoliticalSliderItems();
+            DisableCabinetItems();
+
+            // 編集項目をクリアする
+            ClearPoliticalSliderItems();
+            ClearCabinetItems();
+
             // 初期化済みフラグをセットする
             _tabPageInitialized[(int) TabPageNo.Government] = true;
         }
@@ -7903,6 +8001,12 @@ namespace HoI2Editor.Forms
 
             // 国家リストボックスを有効化する
             EnableTechCountryListBox();
+
+            // 編集項目を無効化する
+            DisableTechItems();
+
+            // 編集項目をクリアする
+            ClearTechItems();
 
             // 初期化済みフラグをセットする
             _tabPageInitialized[(int) TabPageNo.Technology] = true;
@@ -8677,6 +8781,18 @@ namespace HoI2Editor.Forms
 
             // IDテキストボックスを有効化する
             EnableProvinceIdTextBox();
+
+            // 編集項目を無効化する
+            DisableProvinceCountryItems();
+            DisableProvinceInfoItems();
+            DisableProvinceResourceItems();
+            DisableProvinceBuildingItems();
+
+            // 編集項目の表示をクリアする
+            ClearProvinceCountryItems();
+            ClearProvinceInfoItems();
+            ClearProvinceResourceItems();
+            ClearProvinceBuildingItems();
 
             // 初期化済みフラグをセットする
             _tabPageInitialized[(int) TabPageNo.Province] = true;
