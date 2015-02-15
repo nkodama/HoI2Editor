@@ -173,7 +173,7 @@ namespace HoI2Editor.Models
                     {
                         continue;
                     }
-                    string name = tokens[0].ToLower();
+                    string name = tokens[0].ToLower().Trim('\"');
                     reader.ReadLine();
                     int[][] colors = new int[4][];
                     line = reader.ReadLine();
