@@ -2402,11 +2402,11 @@ namespace HoI2Editor.Writers
             }
             if (division.Extra1 >= UnitType.None)
             {
-                writer.WriteLine("    extra1        = {0}", Units.Strings[(int)division.Extra1]);
+                writer.WriteLine("    extra1        = {0}", Units.Strings[(int) division.Extra1]);
             }
             if (division.Extra2 >= UnitType.None)
             {
-                writer.WriteLine("    extra2        = {0}", Units.Strings[(int)division.Extra2]);
+                writer.WriteLine("    extra2        = {0}", Units.Strings[(int) division.Extra2]);
             }
             if (division.Extra3 >= UnitType.None)
             {
@@ -2414,11 +2414,11 @@ namespace HoI2Editor.Writers
             }
             if (division.Extra4 >= UnitType.None)
             {
-                writer.WriteLine("    extra4        = {0}", Units.Strings[(int)division.Extra4]);
+                writer.WriteLine("    extra4        = {0}", Units.Strings[(int) division.Extra4]);
             }
             if (division.Extra5 >= UnitType.None)
             {
-                writer.WriteLine("    extra5        = {0}", Units.Strings[(int)division.Extra5]);
+                writer.WriteLine("    extra5        = {0}", Units.Strings[(int) division.Extra5]);
             }
             if (division.Extra >= UnitType.None && division.BrigadeModel >= 0)
             {
