@@ -29,6 +29,7 @@ namespace HoI2Editor.Writers
                 WriteHeader(scenario.Header, writer);
                 writer.WriteLine();
                 WriteGlobalData(scenario.GlobalData, writer);
+                WriteMap(scenario.Map, writer);
                 writer.WriteLine();
                 writer.WriteLine("# ###################");
                 foreach (string name in scenario.EventFiles)
@@ -161,22 +162,72 @@ namespace HoI2Editor.Writers
         private static void WriteGlobalData(ScenarioGlobalData data, TextWriter writer)
         {
             writer.WriteLine("globaldata = {");
-            if (data.StartDate != null)
-            {
-                writer.Write("  startdate = ");
-                WriteDate(data.StartDate, writer);
-                writer.WriteLine();
-            }
+            WriteRules(data.Rules, writer);
+            WriteScenarioStartDate(data.StartDate, writer);
             WriteAlliances(data, writer);
             WriteWars(data, writer);
             WriteTreaties(data, writer);
-            if (data.EndDate != null)
-            {
-                writer.Write("  enddate   = ");
-                WriteDate(data.EndDate, writer);
-                writer.WriteLine();
-            }
+            WriteScenarioEndDate(data.EndDate, writer);
             writer.WriteLine("}");
+        }
+
+        /// <summary>
+        ///     シナリオ開始日を書き出す
+        /// </summary>
+        /// <param name="date">シナリオ開始日</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteScenarioStartDate(GameDate date, TextWriter writer)
+        {
+            if (date == null)
+            {
+                return;
+            }
+            writer.Write("  startdate = ");
+            WriteDate(date, writer);
+            writer.WriteLine();
+        }
+
+        /// <summary>
+        ///     シナリオ終了日を書き出す
+        /// </summary>
+        /// <param name="date">シナリオ終了日</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteScenarioEndDate(GameDate date, TextWriter writer)
+        {
+            if (date == null)
+            {
+                return;
+            }
+            writer.Write("  enddate   = ");
+            WriteDate(date, writer);
+            writer.WriteLine();
+        }
+
+        /// <summary>
+        ///     ルール設定を書き出す
+        /// </summary>
+        /// <param name="rules">ルール設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteRules(ScenarioRules rules, TextWriter writer)
+        {
+            if (rules == null)
+            {
+                return;
+            }
+            writer.WriteLine("  rules = {");
+            if (!rules.AllowDiplomacy)
+            {
+                writer.WriteLine("    diplomacy = no");
+            }
+            if (!rules.AllowProduction)
+            {
+                writer.WriteLine("    production = no");
+            }
+            if (!rules.AllowTechnology)
+            {
+                writer.WriteLine("    technology = no");
+            }
+            writer.WriteLine("  }");
         }
 
         /// <summary>
@@ -372,6 +423,48 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("    cancel         = no");
             }
             writer.WriteLine("  }");
+        }
+
+        #endregion
+
+        #region マップ
+
+        /// <summary>
+        ///     マップ設定を書き出す
+        /// </summary>
+        /// <param name="map">マップ設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteMap(MapSettings map, TextWriter writer)
+        {
+            if (map == null)
+            {
+                return;
+            }
+            writer.WriteLine();
+            writer.WriteLine("map = {");
+            writer.WriteLine("  {0} = all", map.All ? "yes" : "no");
+            writer.WriteLine();
+            foreach (int id in map.Yes)
+            {
+                writer.WriteLine("  yes = {0}", id);
+            }
+            foreach (int id in map.No)
+            {
+                writer.WriteLine("  no = {0}", id);
+            }
+            if (map.Top != null || map.Bottom != null)
+            {
+                writer.WriteLine();
+            }
+            if (map.Top != null)
+            {
+                writer.WriteLine("  top = {{ x = {0} y = {1} }}", map.Top.X, map.Top.Y);
+            }
+            if (map.Bottom != null)
+            {
+                writer.WriteLine("  bottom = {{ x = {0} y = {1} }}", map.Bottom.X, map.Bottom.Y);
+            }
+            writer.WriteLine("}");
         }
 
         #endregion
