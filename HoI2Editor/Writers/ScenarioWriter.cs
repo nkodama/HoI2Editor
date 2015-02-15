@@ -25,8 +25,11 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("name       = \"{0}\"", scenario.Name);
                 writer.WriteLine("panel      = \"{0}\"", scenario.PanelName);
+                writer.WriteLine();
                 WriteHeader(scenario.Header, writer);
+                writer.WriteLine();
                 WriteGlobalData(scenario.GlobalData, writer);
+                writer.WriteLine();
                 writer.WriteLine("# ###################");
                 foreach (string name in scenario.EventFiles)
                 {
@@ -52,7 +55,10 @@ namespace HoI2Editor.Writers
         private static void WriteHeader(ScenarioHeader header, TextWriter writer)
         {
             writer.WriteLine("header = {");
-            writer.WriteLine("  name       = \"{0}\"", header.Name);
+            if (!string.IsNullOrEmpty(header.Name))
+            {
+                writer.WriteLine("  name       = \"{0}\"", header.Name);
+            }
             if (header.StartDate != null)
             {
                 writer.WriteLine("  startdate  = {{ year = {0} }}", header.StartDate.Year);
@@ -67,23 +73,49 @@ namespace HoI2Editor.Writers
                 {
                     writer.WriteLine("  endyear    = {0}", header.EndYear);
                 }
-                if (!header.IsFreeSelection)
-                {
-                    writer.WriteLine("  free       = no");
-                }
-                if (header.IsBattleScenario)
-                {
-                    writer.WriteLine("  combat     = yes");
-                }
             }
+            if (!header.IsFreeSelection)
+            {
+                writer.WriteLine("  free       = no");
+            }
+            if (header.IsBattleScenario)
+            {
+                writer.WriteLine("  combat     = yes");
+            }
+            WriteSelectableCountries(header, writer);
+            WriteMajorCountries(header, writer);
+            writer.WriteLine("}");
+        }
+
+        /// <summary>
+        ///     選択可能国リストを書き出す
+        /// </summary>
+        /// <param name="header">シナリオヘッダ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteSelectableCountries(ScenarioHeader header, TextWriter writer)
+        {
+            if (header.SelectableCountries.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine();
             writer.Write("  selectable = {");
             WriteCountryList(header.SelectableCountries, writer);
             writer.WriteLine(" }");
+        }
+
+        /// <summary>
+        ///     主要国設定リストを書き出す
+        /// </summary>
+        /// <param name="header">シナリオヘッダ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteMajorCountries(ScenarioHeader header, TextWriter writer)
+        {
+            writer.WriteLine();
             foreach (MajorCountrySettings major in header.MajorCountries)
             {
                 WriteMajorCountry(major, writer);
             }
-            writer.WriteLine("}");
         }
 
         /// <summary>
