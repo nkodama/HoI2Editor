@@ -164,10 +164,13 @@ namespace HoI2Editor.Writers
             writer.WriteLine("globaldata = {");
             WriteRules(data.Rules, writer);
             WriteScenarioStartDate(data.StartDate, writer);
+            WriteScenarioEndDate(data.EndDate, writer);
             WriteAlliances(data, writer);
             WriteWars(data, writer);
             WriteTreaties(data, writer);
-            WriteScenarioEndDate(data.EndDate, writer);
+            WriteScenarioDormantLeaders(data, writer);
+            WriteScenarioDormantMinisters(data, writer);
+            WriteScenarioDormantTeams(data, writer);
             writer.WriteLine("}");
         }
 
@@ -210,10 +213,12 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteRules(ScenarioRules rules, TextWriter writer)
         {
-            if (rules == null)
+            // 禁止項目がなければセクションを書き出さない
+            if (rules.AllowDiplomacy && rules.AllowProduction && rules.AllowTechnology)
             {
                 return;
             }
+
             writer.WriteLine("  rules = {");
             if (!rules.AllowDiplomacy)
             {
@@ -237,6 +242,7 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteAlliances(ScenarioGlobalData data, TextWriter writer)
         {
+            writer.WriteLine();
             if (data.Axis != null)
             {
                 WriteAlliance(data.Axis, "axis", writer);
@@ -262,6 +268,12 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteWars(ScenarioGlobalData data, TextWriter writer)
         {
+            if (data.Wars.Count == 0)
+            {
+                return;
+            }
+
+            writer.WriteLine();
             foreach (War war in data.Wars)
             {
                 WriteWar(war, writer);
@@ -275,17 +287,34 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteTreaties(ScenarioGlobalData data, TextWriter writer)
         {
-            foreach (Treaty treaty in data.NonAggressions)
+            // 不可侵条約
+            if (data.NonAggressions.Count > 0)
             {
-                WriteTreaty(treaty, writer);
+                writer.WriteLine();
+                foreach (Treaty treaty in data.NonAggressions)
+                {
+                    WriteTreaty(treaty, writer);
+                }
             }
-            foreach (Treaty treaty in data.Peaces)
+
+            // 講和条約
+            if (data.Peaces.Count > 0)
             {
-                WriteTreaty(treaty, writer);
+                writer.WriteLine();
+                foreach (Treaty treaty in data.Peaces)
+                {
+                    WriteTreaty(treaty, writer);
+                }
             }
-            foreach (Treaty treaty in data.Trades)
+
+            // 貿易
+            if (data.Trades.Count > 0)
             {
-                WriteTreaty(treaty, writer);
+                writer.WriteLine();
+                foreach (Treaty treaty in data.Trades)
+                {
+                    WriteTreaty(treaty, writer);
+                }
             }
         }
 
@@ -423,6 +452,70 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("    cancel         = no");
             }
             writer.WriteLine("  }");
+        }
+
+        /// <summary>
+        ///     休止指揮官リストを書き出す (シナリオグローバルデータ)
+        /// </summary>
+        /// <param name="data">シナリオグローバルデータ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteScenarioDormantLeaders(ScenarioGlobalData data, TextWriter writer)
+        {
+            if (data.DormantLeadersAll)
+            {
+                writer.WriteLine();
+                writer.WriteLine("  dormant_leaders   = yes");
+                return;
+            }
+
+            // 休止指揮官がない場合は何も書き出さない
+            if (data.DormantLeaders.Count == 0)
+            {
+                return;
+            }
+
+            writer.WriteLine();
+            writer.Write("  dormant_leaders   = {");
+            WriteIdList(data.DormantLeaders, writer);
+            writer.WriteLine(" }");
+        }
+
+        /// <summary>
+        ///     休止閣僚リストを書き出す (シナリオグローバルデータ)
+        /// </summary>
+        /// <param name="data">シナリオグローバルデータ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteScenarioDormantMinisters(ScenarioGlobalData data, TextWriter writer)
+        {
+            // 休止閣僚がない場合は何も書き出さない
+            if (data.DormantMinisters.Count == 0)
+            {
+                return;
+            }
+
+            writer.WriteLine();
+            writer.Write("  dormant_ministers = {");
+            WriteIdList(data.DormantMinisters, writer);
+            writer.WriteLine(" }");
+        }
+
+        /// <summary>
+        ///     休止研究機関リストを書き出す (シナリオグローバルデータ)
+        /// </summary>
+        /// <param name="data">シナリオグローバルデータ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteScenarioDormantTeams(ScenarioGlobalData data, TextWriter writer)
+        {
+            // 休止研究機関がない場合は何も書き出さない
+            if (data.DormantTeams.Count == 0)
+            {
+                return;
+            }
+
+            writer.WriteLine();
+            writer.Write("  dormant_teams     = {");
+            WriteIdList(data.DormantTeams, writer);
+            writer.WriteLine(" }");
         }
 
         #endregion
@@ -1271,6 +1364,9 @@ namespace HoI2Editor.Writers
                 WriteDiplomacy(settings, writer);
                 writer.WriteLine();
                 WriteSpyInfos(settings, writer);
+                WriteCountryDormantLeaders(settings, writer);
+                WriteCountryDormantMinisters(settings, writer);
+                WriteCountryDormantTeams(settings, writer);
                 writer.WriteLine();
                 WriteLandUnits(settings, writer);
                 WriteNavalUnits(settings, writer);
@@ -1658,6 +1754,57 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine();
             }
+        }
+
+        /// <summary>
+        ///     休止指揮官リストを書き出す (国家設定)
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteCountryDormantLeaders(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.DormantLeaders.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine();
+            writer.Write("  dormant_leaders        = {");
+            WriteIdList(settings.DormantLeaders, writer);
+            writer.WriteLine(" }");
+        }
+
+        /// <summary>
+        ///     休止閣僚リストを書き出す (国家設定)
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteCountryDormantMinisters(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.DormantMinisters.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine();
+            writer.Write("  dormant_ministers      = {");
+            WriteIdList(settings.DormantMinisters, writer);
+            writer.WriteLine(" }");
+        }
+
+        /// <summary>
+        ///     休止研究機関リストを書き出す (国家設定)
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteCountryDormantTeams(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.DormantTeams.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine();
+            writer.Write("  dormant_teams          = {");
+            WriteIdList(settings.DormantTeams, writer);
+            writer.WriteLine(" }");
         }
 
         #endregion
