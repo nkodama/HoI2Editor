@@ -1976,7 +1976,7 @@ namespace HoI2Editor.Writers
             writer.WriteLine("  navalunit = {");
             if (unit.Id != null)
             {
-                writer.Write(" 	  id       = ");
+                writer.Write("    id       = ");
                 WriteTypeId(unit.Id, writer);
                 writer.WriteLine();
             }
@@ -2017,7 +2017,7 @@ namespace HoI2Editor.Writers
             writer.WriteLine("  airunit = { ");
             if (unit.Id != null)
             {
-                writer.Write(" 	  id       = ");
+                writer.Write("    id       = ");
                 WriteTypeId(unit.Id, writer);
                 writer.WriteLine();
             }
