@@ -51,8 +51,8 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteHeader(ScenarioHeader header, TextWriter writer)
         {
-            writer.WriteLine("header =");
-            writer.WriteLine("{{ name       = \"{0}\"", header.Name);
+            writer.WriteLine("header = {");
+            writer.WriteLine("  name       = \"{0}\"", header.Name);
             if (header.StartDate != null)
             {
                 writer.WriteLine("  startdate  = {{ year = {0} }}", header.StartDate.Year);
@@ -78,8 +78,7 @@ namespace HoI2Editor.Writers
             }
             writer.Write("  selectable = {");
             WriteCountryList(header.SelectableCountries, writer);
-            writer.WriteLine("   ");
-            writer.WriteLine("               }");
+            writer.WriteLine(" }");
             foreach (MajorCountrySettings major in header.MajorCountries)
             {
                 WriteMajorCountry(major, writer);
@@ -129,14 +128,13 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteGlobalData(ScenarioGlobalData data, TextWriter writer)
         {
-            writer.WriteLine("globaldata =");
-            writer.Write("{");
+            writer.WriteLine("globaldata = {");
             if (data.StartDate != null)
             {
-                writer.Write(" startdate = ");
+                writer.Write("  startdate = ");
                 WriteDate(data.StartDate, writer);
+                writer.WriteLine();
             }
-            writer.WriteLine();
             WriteAlliances(data, writer);
             WriteWars(data, writer);
             WriteTreaties(data, writer);
@@ -216,14 +214,13 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteAlliance(Alliance alliance, string type, TextWriter writer)
         {
-            writer.WriteLine("  {0} =", type);
-            writer.Write("  {");
+            writer.WriteLine("  {0} = {{", type);
             if (alliance.Id != null)
             {
-                writer.Write(" id        = ");
+                writer.Write("    id          = ");
                 WriteTypeId(alliance.Id, writer);
+                writer.WriteLine();
             }
-            writer.WriteLine();
             writer.Write("    participant = {");
             WriteCountryList(alliance.Participant, writer);
             writer.WriteLine(" }");
@@ -241,46 +238,43 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteWar(War war, TextWriter writer)
         {
-            writer.WriteLine("  war =");
-            writer.Write("  {");
+            writer.WriteLine("  war = {");
             if (war.Id != null)
             {
-                writer.Write(" id        = ");
+                writer.Write("    id          = ");
                 WriteTypeId(war.Id, writer);
+                writer.WriteLine();
             }
-            writer.WriteLine();
             if (war.StartDate != null)
             {
-                writer.Write("    date      = ");
+                writer.Write("    date        = ");
                 WriteDate(war.StartDate, writer);
                 writer.WriteLine();
             }
             if (war.EndDate != null)
             {
-                writer.Write("    enddate   = ");
+                writer.Write("    enddate     = ");
                 WriteDate(war.EndDate, writer);
                 writer.WriteLine();
             }
-            writer.WriteLine("    attackers =");
-            writer.Write("    {");
+            writer.WriteLine("    attackers   = {");
             if (war.Attackers.Id != null)
             {
-                writer.Write(" id          = ");
+                writer.Write("      id          = ");
                 WriteTypeId(war.Attackers.Id, writer);
+                writer.WriteLine();
             }
-            writer.WriteLine();
             writer.Write("      participant = {");
             WriteCountryList(war.Attackers.Participant, writer);
             writer.WriteLine(" }");
             writer.WriteLine("    }");
-            writer.WriteLine("    defenders =");
-            writer.Write("    {");
+            writer.WriteLine("    defenders   = {");
             if (war.Defenders.Id != null)
             {
-                writer.Write(" id          = ");
+                writer.Write("      id          = ");
                 WriteTypeId(war.Defenders.Id, writer);
+                writer.WriteLine();
             }
-            writer.WriteLine();
             writer.Write("      participant = {");
             WriteCountryList(war.Defenders.Participant, writer);
             writer.WriteLine(" }");
@@ -295,26 +289,25 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteTreaty(Treaty treaty, TextWriter writer)
         {
-            writer.WriteLine("  treaty =");
-            writer.Write("  {");
+            writer.WriteLine("  treaty = {");
             if (treaty.Id != null)
             {
-                writer.Write(" id        = ");
+                writer.Write("    id             = ");
                 WriteTypeId(treaty.Id, writer);
+                writer.WriteLine();
             }
-            writer.WriteLine();
-            writer.WriteLine("    type       = {0}", Scenarios.TreatyStrings[(int) treaty.Type]);
-            writer.WriteLine("    country    = \"{0}\"", treaty.Country1);
-            writer.WriteLine("    country    = \"{0}\"", treaty.Country2);
+            writer.WriteLine("    type           = {0}", Scenarios.TreatyStrings[(int) treaty.Type]);
+            writer.WriteLine("    country        = \"{0}\"", treaty.Country1);
+            writer.WriteLine("    country        = \"{0}\"", treaty.Country2);
             if (treaty.StartDate != null)
             {
-                writer.Write("    startdate  = ");
+                writer.Write("    startdate      = ");
                 WriteDate(treaty.StartDate, writer);
                 writer.WriteLine();
             }
             if (treaty.EndDate != null)
             {
-                writer.Write("    expirydate = ");
+                writer.Write("    expirydate     = ");
                 WriteDate(treaty.EndDate, writer);
                 writer.WriteLine();
             }
@@ -410,8 +403,8 @@ namespace HoI2Editor.Writers
             foreach (ProvinceSettings settings in scenario.Provinces.Where(p => ExistsBasesIncDataDhFull(p, scenario)))
             {
                 Province province = Provinces.Items[settings.Id];
-                writer.WriteLine("province = {{ id = {0} # {1}", settings.Id,
-                    Scenarios.GetProvinceName(province, settings));
+                writer.WriteLine("province = {");
+                writer.WriteLine("  id = {0} # {1}", settings.Id, Scenarios.GetProvinceName(province, settings));
                 if (!scenario.IsBaseDodProvinceSettings)
                 {
                     if (settings.Ic != null)
@@ -566,6 +559,7 @@ namespace HoI2Editor.Writers
             {
                 foreach (ProvinceSettings settings in scenario.Provinces.Where(ExistsBasesDodIncData))
                 {
+                    Province province = Provinces.Items[settings.Id];
                     writer.Write("province = {{ id = {0}", settings.Id);
                     if (settings.Ic != null)
                     {
@@ -577,7 +571,6 @@ namespace HoI2Editor.Writers
                         writer.Write(" infra = ");
                         WriteBuilding(settings.Infrastructure, writer);
                     }
-                    Province province = Provinces.Items[settings.Id];
                     writer.WriteLine(" }} # {0}", Scenarios.GetProvinceName(province, settings));
                 }
             }
@@ -595,8 +588,8 @@ namespace HoI2Editor.Writers
                 foreach (ProvinceSettings settings in scenario.Provinces.Where(ExistsDepotsIncData))
                 {
                     Province province = Provinces.Items[settings.Id];
-                    writer.WriteLine("province = {{ id = {0} # {1}", settings.Id,
-                        Scenarios.GetProvinceName(province, settings));
+                    writer.WriteLine("province = {");
+                    writer.WriteLine("  id = {0} # {1}", settings.Id, Scenarios.GetProvinceName(province, settings));
                     if (settings.SupplyPool > 0)
                     {
                         writer.WriteLine("  supplypool = {0}", DoubleHelper.ToString(settings.SupplyPool));
@@ -1166,52 +1159,52 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteCountryInfo(CountrySettings settings, TextWriter writer)
         {
-            writer.WriteLine("  tag             = {0}", Countries.Strings[(int) settings.Country]);
+            writer.WriteLine("  tag            = {0}", Countries.Strings[(int) settings.Country]);
             if (settings.RegularId != Country.None)
             {
-                writer.WriteLine("  regular_id      = {0}", Countries.Strings[(int) settings.RegularId]);
+                writer.WriteLine("  regular_id     = {0}", Countries.Strings[(int) settings.RegularId]);
             }
             if (settings.Master != Country.None)
             {
-                writer.WriteLine("  puppet          = {0}", Countries.Strings[(int) settings.Master]);
+                writer.WriteLine("  puppet         = {0}", Countries.Strings[(int) settings.Master]);
             }
             if (settings.Control != Country.None)
             {
-                writer.WriteLine("  control         = {0}", Countries.Strings[(int) settings.Control]);
+                writer.WriteLine("  control        = {0}", Countries.Strings[(int) settings.Control]);
             }
-            writer.WriteLine("  capital         = {0} # {1}", settings.Capital,
+            writer.WriteLine("  capital        = {0} # {1}", settings.Capital,
                 Scenarios.GetProvinceName(settings.Capital));
             if (!string.IsNullOrEmpty(settings.Name))
             {
-                writer.WriteLine("  name            = {0}", settings.Name);
+                writer.WriteLine("  name           = {0}", settings.Name);
             }
             if (!string.IsNullOrEmpty(settings.FlagExt))
             {
-                writer.WriteLine("  flag_ext        = {0}", settings.FlagExt);
+                writer.WriteLine("  flag_ext       = {0}", settings.FlagExt);
             }
             if (!string.IsNullOrEmpty(settings.AiFileName))
             {
-                writer.WriteLine("  ai              = \"{0}\"", settings.AiFileName);
+                writer.WriteLine("  ai             = \"{0}\"", settings.AiFileName);
             }
             if (settings.AiSettings != null)
             {
-                writer.Write("  ai_settings     = { flags = ");
+                writer.Write("  ai_settings    = { flags = ");
                 WriteAiSettings(settings, writer);
                 writer.WriteLine(" }");
             }
             if (settings.Belligerence > 0)
             {
-                writer.WriteLine("  belligerence    = {0}", settings.Belligerence);
+                writer.WriteLine("  belligerence   = {0}", settings.Belligerence);
             }
             if (settings.Dissent > 0)
             {
-                writer.WriteLine("  dissent         = {0}", DoubleHelper.ToString(settings.Dissent));
+                writer.WriteLine("  dissent        = {0}", DoubleHelper.ToString(settings.Dissent));
             }
             if (settings.ExtraTc > 0)
             {
-                writer.WriteLine("  extra_tc        = {0}", DoubleHelper.ToString(settings.ExtraTc));
+                writer.WriteLine("  extra_tc       = {0}", DoubleHelper.ToString(settings.ExtraTc));
             }
-            writer.WriteLine("  manpower        = {0}", ObjectHelper.ToString(settings.Manpower));
+            writer.WriteLine("  manpower       = {0}", ObjectHelper.ToString(settings.Manpower));
         }
 
         /// <summary>
@@ -1237,12 +1230,12 @@ namespace HoI2Editor.Writers
         private static void WriteCountryResources(CountrySettings settings, TextWriter writer)
         {
             writer.WriteLine("  # Resource Reserves");
-            writer.WriteLine("  energy                 = {0}", ObjectHelper.ToString(settings.Energy));
-            writer.WriteLine("  metal                  = {0}", ObjectHelper.ToString(settings.Metal));
-            writer.WriteLine("  rare_materials         = {0}", ObjectHelper.ToString(settings.RareMaterials));
-            writer.WriteLine("  oil                    = {0}", ObjectHelper.ToString(settings.Oil));
-            writer.WriteLine("  supplies               = {0}", ObjectHelper.ToString(settings.Supplies));
-            writer.WriteLine("  money                  = {0}", ObjectHelper.ToString(settings.Money));
+            writer.WriteLine("  energy         = {0}", ObjectHelper.ToString(settings.Energy));
+            writer.WriteLine("  metal          = {0}", ObjectHelper.ToString(settings.Metal));
+            writer.WriteLine("  rare_materials = {0}", ObjectHelper.ToString(settings.RareMaterials));
+            writer.WriteLine("  oil            = {0}", ObjectHelper.ToString(settings.Oil));
+            writer.WriteLine("  supplies       = {0}", ObjectHelper.ToString(settings.Supplies));
+            writer.WriteLine("  money          = {0}", ObjectHelper.ToString(settings.Money));
         }
 
         /// <summary>
@@ -1254,11 +1247,11 @@ namespace HoI2Editor.Writers
         {
             if (settings.Transports > 0)
             {
-                writer.WriteLine("  transports             = {0}", settings.Transports);
+                writer.WriteLine("  transports     = {0}", settings.Transports);
             }
             if (settings.Escorts > 0)
             {
-                writer.WriteLine("  escorts                = {0}", settings.Escorts);
+                writer.WriteLine("  escorts        = {0}", settings.Escorts);
             }
         }
 
@@ -1329,19 +1322,9 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
-            writer.WriteLine("  diplomacy =");
-            bool first = true;
+            writer.WriteLine("  diplomacy = {");
             foreach (Relation relation in settings.Relations)
             {
-                if (first)
-                {
-                    writer.Write("  { ");
-                    first = false;
-                }
-                else
-                {
-                    writer.Write("    ");
-                }
                 WriteRelation(relation, writer);
             }
             writer.WriteLine("  }");
@@ -1356,7 +1339,7 @@ namespace HoI2Editor.Writers
         {
             if (relation.Guaranteed == null)
             {
-                writer.Write("relation = {{ tag = {0} value = {1}", Countries.Strings[(int) relation.Country],
+                writer.Write("    relation = {{ tag = {0} value = {1}", Countries.Strings[(int) relation.Country],
                     ObjectHelper.ToString(relation.Value));
                 if (relation.Access)
                 {
@@ -1366,8 +1349,8 @@ namespace HoI2Editor.Writers
             }
             else
             {
-                writer.WriteLine("relation =");
-                writer.WriteLine("    {{ tag        = {0}", Countries.Strings[(int) relation.Country]);
+                writer.WriteLine("    relation = {");
+                writer.WriteLine("      tag        = {0}", Countries.Strings[(int) relation.Country]);
                 writer.WriteLine("      value      = {0}", ObjectHelper.ToString(relation.Value));
                 if (relation.Access)
                 {
@@ -1406,11 +1389,10 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
-            writer.WriteLine("  policy =");
-            writer.Write("  {");
+            writer.WriteLine("  policy = {");
             if (policy.Date != null)
             {
-                writer.Write(" date              = ");
+                writer.Write("    date              = ");
                 WriteDate(policy.Date, writer);
                 writer.WriteLine();
             }
