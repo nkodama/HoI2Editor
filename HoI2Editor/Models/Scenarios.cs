@@ -392,6 +392,12 @@ namespace HoI2Editor.Models
         /// <returns>保存に失敗すればfalseを返す</returns>
         public static bool Save()
         {
+            // 読み込み前ならば何もしない
+            if (!_loaded)
+            {
+                return true;
+            }
+
             // プロヴィンス設定をID順にソートする
             SortProvinceSettings();
 

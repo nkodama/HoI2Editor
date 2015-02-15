@@ -210,6 +210,12 @@ namespace HoI2Editor.Forms
         /// </summary>
         public void OnFileLoaded()
         {
+            // 読み込み前ならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
             // シナリオ関連情報を初期化する
             Scenarios.Init();
 
