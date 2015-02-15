@@ -2068,7 +2068,10 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("      name           = \"{0}\"", division.Name);
             }
             writer.WriteLine("      type           = {0}", Units.Strings[(int) division.Type]);
-            writer.WriteLine("      model          = {0}", division.Model);
+            if (division.Model >= 0)
+            {
+                writer.WriteLine("      model          = {0}", division.Model);
+            }
             if (division.Strength > 0)
             {
                 writer.WriteLine("      strength       = {0}", division.Strength);
@@ -2113,27 +2116,27 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("      extra5         = {0}", Units.Strings[(int) division.Extra5]);
             }
-            if (division.Extra >= UnitType.None && division.BrigadeModel > 0)
+            if (division.Extra >= UnitType.None && division.BrigadeModel >= 0)
             {
                 writer.WriteLine("      brigade_model  = {0}", division.BrigadeModel);
             }
-            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 > 0)
+            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 >= 0)
             {
                 writer.WriteLine("      brigade_model1 = {0}", division.BrigadeModel1);
             }
-            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 > 0)
+            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 >= 0)
             {
                 writer.WriteLine("      brigade_model2 = {0}", division.BrigadeModel2);
             }
-            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 > 0)
+            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 >= 0)
             {
                 writer.WriteLine("      brigade_model3 = {0}", division.BrigadeModel3);
             }
-            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 > 0)
+            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 >= 0)
             {
                 writer.WriteLine("      brigade_model4 = {0}", division.BrigadeModel4);
             }
-            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 > 0)
+            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 >= 0)
             {
                 writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
             }
@@ -2156,7 +2159,10 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("      name           = \"{0}\"", division.Name);
             }
             writer.WriteLine("      type           = {0}", Units.Strings[(int) division.Type]);
-            writer.WriteLine("      model          = {0}", division.Model);
+            if (division.Model >= 0)
+            {
+                writer.WriteLine("      model          = {0}", division.Model);
+            }
             if (division.Strength > 0)
             {
                 writer.WriteLine("      strength       = {0}", division.Strength);
@@ -2201,27 +2207,27 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("      extra5         = {0}", Units.Strings[(int) division.Extra5]);
             }
-            if (division.Extra >= UnitType.None && division.BrigadeModel > 0)
+            if (division.Extra >= UnitType.None && division.BrigadeModel >= 0)
             {
                 writer.WriteLine("      brigade_model  = {0}", division.BrigadeModel);
             }
-            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 > 0)
+            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 >= 0)
             {
                 writer.WriteLine("      brigade_model1 = {0}", division.BrigadeModel1);
             }
-            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 > 0)
+            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 >= 0)
             {
                 writer.WriteLine("      brigade_model2 = {0}", division.BrigadeModel2);
             }
-            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 > 0)
+            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 >= 0)
             {
                 writer.WriteLine("      brigade_model3 = {0}", division.BrigadeModel3);
             }
-            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 > 0)
+            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 >= 0)
             {
                 writer.WriteLine("      brigade_model4 = {0}", division.BrigadeModel4);
             }
-            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 > 0)
+            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 >= 0)
             {
                 writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
             }
@@ -2244,7 +2250,10 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("      name           = \"{0}\"", division.Name);
             }
             writer.WriteLine("      type           = {0}", Units.Strings[(int) division.Type]);
-            writer.WriteLine("      model          = {0}", division.Model);
+            if (division.Model >= 0)
+            {
+                writer.WriteLine("      model          = {0}", division.Model);
+            }
             if (division.Strength > 0)
             {
                 writer.WriteLine("      strength       = {0}", division.Strength);
@@ -2289,27 +2298,27 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("      extra5         = {0}", Units.Strings[(int) division.Extra5]);
             }
-            if (division.Extra >= UnitType.None && division.BrigadeModel > 0)
+            if (division.Extra >= UnitType.None && division.BrigadeModel >= 0)
             {
                 writer.WriteLine("      brigade_model  = {0}", division.BrigadeModel);
             }
-            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 > 0)
+            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 >= 0)
             {
                 writer.WriteLine("      brigade_model1 = {0}", division.BrigadeModel1);
             }
-            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 > 0)
+            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 >= 0)
             {
                 writer.WriteLine("      brigade_model2 = {0}", division.BrigadeModel2);
             }
-            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 > 0)
+            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 >= 0)
             {
                 writer.WriteLine("      brigade_model3 = {0}", division.BrigadeModel3);
             }
-            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 > 0)
+            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 >= 0)
             {
                 writer.WriteLine("      brigade_model4 = {0}", division.BrigadeModel4);
             }
-            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 > 0)
+            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 >= 0)
             {
                 writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
             }
@@ -2350,7 +2359,10 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("    name          = \"{0}\"", division.Name);
             }
             writer.WriteLine("    type          = {0}", Units.Strings[(int) division.Type]);
-            writer.WriteLine("    model         = {0}", division.Model);
+            if (division.Model >= 0)
+            {
+                writer.WriteLine("    model         = {0}", division.Model);
+            }
             if (division.Cost > 0)
             {
                 writer.WriteLine("    cost          = {0}", DoubleHelper.ToString(division.Cost));
@@ -2367,49 +2379,49 @@ namespace HoI2Editor.Writers
             }
             if (division.Extra >= UnitType.None)
             {
-                writer.WriteLine("    extra         = {0}", division.Extra);
+                writer.WriteLine("    extra         = {0}", Units.Strings[(int) division.Extra]);
             }
             if (division.Extra1 >= UnitType.None)
             {
-                writer.WriteLine("    extra1        = {0}", division.Extra1);
+                writer.WriteLine("    extra1        = {0}", Units.Strings[(int)division.Extra1]);
             }
             if (division.Extra2 >= UnitType.None)
             {
-                writer.WriteLine("    extra2        = {0}", division.Extra2);
+                writer.WriteLine("    extra2        = {0}", Units.Strings[(int)division.Extra2]);
             }
             if (division.Extra3 >= UnitType.None)
             {
-                writer.WriteLine("    extra3        = {0}", division.Extra3);
+                writer.WriteLine("    extra3        = {0}", Units.Strings[(int) division.Extra3]);
             }
             if (division.Extra4 >= UnitType.None)
             {
-                writer.WriteLine("    extra4        = {0}", division.Extra4);
+                writer.WriteLine("    extra4        = {0}", Units.Strings[(int)division.Extra4]);
             }
             if (division.Extra5 >= UnitType.None)
             {
-                writer.WriteLine("    extra5        = {0}", division.Extra5);
+                writer.WriteLine("    extra5        = {0}", Units.Strings[(int)division.Extra5]);
             }
-            if (division.Extra >= UnitType.None && division.BrigadeModel > 0)
+            if (division.Extra >= UnitType.None && division.BrigadeModel >= 0)
             {
                 writer.WriteLine("    brigade_model = {0}", division.BrigadeModel);
             }
-            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 > 0)
+            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 >= 0)
             {
                 writer.WriteLine("    brigade_model1 = {0}", division.BrigadeModel1);
             }
-            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 > 0)
+            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 >= 0)
             {
                 writer.WriteLine("    brigade_model2 = {0}", division.BrigadeModel2);
             }
-            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 > 0)
+            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 >= 0)
             {
                 writer.WriteLine("    brigade_model3 = {0}", division.BrigadeModel3);
             }
-            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 > 0)
+            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 >= 0)
             {
                 writer.WriteLine("    brigade_model4 = {0}", division.BrigadeModel4);
             }
-            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 > 0)
+            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 >= 0)
             {
                 writer.WriteLine("    brigade_model5 = {0}", division.BrigadeModel5);
             }
@@ -2456,7 +2468,10 @@ namespace HoI2Editor.Writers
                 writer.Write(" name = \"{0}\" ", division.Name);
             }
             writer.Write(" type = {0}", Units.Strings[(int) division.Type]);
-            writer.Write(" model = {0}", division.Model);
+            if (division.Model >= 0)
+            {
+                writer.Write(" model = {0}", division.Model);
+            }
             if (division.Strength > 0)
             {
                 writer.Write(" strength = {0}", division.Strength);
@@ -2501,27 +2516,27 @@ namespace HoI2Editor.Writers
             {
                 writer.Write(" extra5 = {0}", Units.Strings[(int) division.Extra5]);
             }
-            if (division.Extra >= UnitType.None && division.BrigadeModel > 0)
+            if (division.Extra >= UnitType.None && division.BrigadeModel >= 0)
             {
                 writer.Write(" brigade_model = {0}", division.BrigadeModel);
             }
-            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 > 0)
+            if (division.Extra1 >= UnitType.None && division.BrigadeModel1 >= 0)
             {
                 writer.Write(" brigade_model1 = {0}", division.BrigadeModel1);
             }
-            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 > 0)
+            if (division.Extra2 >= UnitType.None && division.BrigadeModel2 >= 0)
             {
                 writer.Write(" brigade_model2 = {0}", division.BrigadeModel2);
             }
-            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 > 0)
+            if (division.Extra3 >= UnitType.None && division.BrigadeModel3 >= 0)
             {
                 writer.Write(" brigade_model3 = {0}", division.BrigadeModel3);
             }
-            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 > 0)
+            if (division.Extra4 >= UnitType.None && division.BrigadeModel4 >= 0)
             {
                 writer.Write(" brigade_model4 = {0}", division.BrigadeModel4);
             }
-            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 > 0)
+            if (division.Extra5 >= UnitType.None && division.BrigadeModel5 >= 0)
             {
                 writer.Write(" brigade_model5 = {0}", division.BrigadeModel5);
             }

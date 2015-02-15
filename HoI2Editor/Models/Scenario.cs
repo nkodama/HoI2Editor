@@ -3334,6 +3334,11 @@ namespace HoI2Editor.Models
         {
             Model = UndefinedModelNo;
             BrigadeModel = UndefinedModelNo;
+            BrigadeModel1 = UndefinedModelNo;
+            BrigadeModel2 = UndefinedModelNo;
+            BrigadeModel3 = UndefinedModelNo;
+            BrigadeModel4 = UndefinedModelNo;
+            BrigadeModel5 = UndefinedModelNo;
         }
 
         #endregion
@@ -3698,6 +3703,11 @@ namespace HoI2Editor.Models
         {
             Model = UndefinedModelNo;
             BrigadeModel = UndefinedModelNo;
+            BrigadeModel1 = UndefinedModelNo;
+            BrigadeModel2 = UndefinedModelNo;
+            BrigadeModel3 = UndefinedModelNo;
+            BrigadeModel4 = UndefinedModelNo;
+            BrigadeModel5 = UndefinedModelNo;
         }
 
         #endregion
@@ -3870,6 +3880,11 @@ namespace HoI2Editor.Models
         {
             Model = UndefinedModelNo;
             BrigadeModel = UndefinedModelNo;
+            BrigadeModel1 = UndefinedModelNo;
+            BrigadeModel2 = UndefinedModelNo;
+            BrigadeModel3 = UndefinedModelNo;
+            BrigadeModel4 = UndefinedModelNo;
+            BrigadeModel5 = UndefinedModelNo;
         }
 
         #endregion
