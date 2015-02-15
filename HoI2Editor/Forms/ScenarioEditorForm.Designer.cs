@@ -70,9 +70,6 @@
             System.Windows.Forms.Label tradeIdLabel;
             System.Windows.Forms.Label relationValueLabel;
             System.Windows.Forms.Label spyNumLabel;
-            this.provinceSyntheticOilLabel = new System.Windows.Forms.Label();
-            this.provinceSyntheticRaresLabel = new System.Windows.Forms.Label();
-            this.provinceNuclearPowerLabel = new System.Windows.Forms.Label();
             this.techTreePanel = new System.Windows.Forms.Panel();
             this.techTreePictureBox = new System.Windows.Forms.PictureBox();
             this.inventionsListView = new System.Windows.Forms.ListView();
@@ -83,6 +80,9 @@
             this.blueprintsLabel = new System.Windows.Forms.Label();
             this.inventionsLabel = new System.Windows.Forms.Label();
             this.techCountryListBox = new System.Windows.Forms.ListBox();
+            this.provinceSyntheticOilLabel = new System.Windows.Forms.Label();
+            this.provinceSyntheticRaresLabel = new System.Windows.Forms.Label();
+            this.provinceNuclearPowerLabel = new System.Windows.Forms.Label();
             this.provinceIdLabel = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
@@ -656,21 +656,6 @@
             resources.ApplyResources(provinceRadarStationLbel, "provinceRadarStationLbel");
             provinceRadarStationLbel.Name = "provinceRadarStationLbel";
             // 
-            // provinceSyntheticOilLabel
-            // 
-            resources.ApplyResources(this.provinceSyntheticOilLabel, "provinceSyntheticOilLabel");
-            this.provinceSyntheticOilLabel.Name = "provinceSyntheticOilLabel";
-            // 
-            // provinceSyntheticRaresLabel
-            // 
-            resources.ApplyResources(this.provinceSyntheticRaresLabel, "provinceSyntheticRaresLabel");
-            this.provinceSyntheticRaresLabel.Name = "provinceSyntheticRaresLabel";
-            // 
-            // provinceNuclearPowerLabel
-            // 
-            resources.ApplyResources(this.provinceNuclearPowerLabel, "provinceNuclearPowerLabel");
-            this.provinceNuclearPowerLabel.Name = "provinceNuclearPowerLabel";
-            // 
             // buildingCurrentLabel1
             // 
             resources.ApplyResources(buildingCurrentLabel1, "buildingCurrentLabel1");
@@ -905,6 +890,21 @@
             // 
             resources.ApplyResources(spyNumLabel, "spyNumLabel");
             spyNumLabel.Name = "spyNumLabel";
+            // 
+            // provinceSyntheticOilLabel
+            // 
+            resources.ApplyResources(this.provinceSyntheticOilLabel, "provinceSyntheticOilLabel");
+            this.provinceSyntheticOilLabel.Name = "provinceSyntheticOilLabel";
+            // 
+            // provinceSyntheticRaresLabel
+            // 
+            resources.ApplyResources(this.provinceSyntheticRaresLabel, "provinceSyntheticRaresLabel");
+            this.provinceSyntheticRaresLabel.Name = "provinceSyntheticRaresLabel";
+            // 
+            // provinceNuclearPowerLabel
+            // 
+            resources.ApplyResources(this.provinceNuclearPowerLabel, "provinceNuclearPowerLabel");
+            this.provinceNuclearPowerLabel.Name = "provinceNuclearPowerLabel";
             // 
             // provinceIdLabel
             // 

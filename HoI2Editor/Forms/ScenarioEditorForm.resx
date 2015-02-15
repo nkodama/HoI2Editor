@@ -447,96 +447,6 @@
   <data name="&gt;&gt;provinceRadarStationLbel.ZOrder" xml:space="preserve">
     <value>49</value>
   </data>
-  <data name="provinceSyntheticOilLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="provinceSyntheticOilLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="provinceSyntheticOilLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 287</value>
-  </data>
-  <data name="provinceSyntheticOilLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 12</value>
-  </data>
-  <data name="provinceSyntheticOilLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>43</value>
-  </data>
-  <data name="provinceSyntheticOilLabel.Text" xml:space="preserve">
-    <value>Synthetic Oil</value>
-  </data>
-  <data name="&gt;&gt;provinceSyntheticOilLabel.Name" xml:space="preserve">
-    <value>provinceSyntheticOilLabel</value>
-  </data>
-  <data name="&gt;&gt;provinceSyntheticOilLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;provinceSyntheticOilLabel.Parent" xml:space="preserve">
-    <value>provinceBuildingGroupBox</value>
-  </data>
-  <data name="&gt;&gt;provinceSyntheticOilLabel.ZOrder" xml:space="preserve">
-    <value>52</value>
-  </data>
-  <data name="provinceSyntheticRaresLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="provinceSyntheticRaresLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="provinceSyntheticRaresLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 312</value>
-  </data>
-  <data name="provinceSyntheticRaresLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>87, 12</value>
-  </data>
-  <data name="provinceSyntheticRaresLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>47</value>
-  </data>
-  <data name="provinceSyntheticRaresLabel.Text" xml:space="preserve">
-    <value>Synthetic Rares</value>
-  </data>
-  <data name="&gt;&gt;provinceSyntheticRaresLabel.Name" xml:space="preserve">
-    <value>provinceSyntheticRaresLabel</value>
-  </data>
-  <data name="&gt;&gt;provinceSyntheticRaresLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;provinceSyntheticRaresLabel.Parent" xml:space="preserve">
-    <value>provinceBuildingGroupBox</value>
-  </data>
-  <data name="&gt;&gt;provinceSyntheticRaresLabel.ZOrder" xml:space="preserve">
-    <value>54</value>
-  </data>
-  <data name="provinceNuclearPowerLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="provinceNuclearPowerLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="provinceNuclearPowerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 337</value>
-  </data>
-  <data name="provinceNuclearPowerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 12</value>
-  </data>
-  <data name="provinceNuclearPowerLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="provinceNuclearPowerLabel.Text" xml:space="preserve">
-    <value>Nuclear Power</value>
-  </data>
-  <data name="&gt;&gt;provinceNuclearPowerLabel.Name" xml:space="preserve">
-    <value>provinceNuclearPowerLabel</value>
-  </data>
-  <data name="&gt;&gt;provinceNuclearPowerLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;provinceNuclearPowerLabel.Parent" xml:space="preserve">
-    <value>provinceBuildingGroupBox</value>
-  </data>
-  <data name="&gt;&gt;provinceNuclearPowerLabel.ZOrder" xml:space="preserve">
-    <value>50</value>
-  </data>
   <metadata name="buildingCurrentLabel1.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
@@ -682,7 +592,7 @@
     <value>20, 12</value>
   </data>
   <data name="provinceVpLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="provinceVpLabel.Text" xml:space="preserve">
     <value>VP</value>
@@ -715,7 +625,7 @@
     <value>61, 12</value>
   </data>
   <data name="provinceRevoltRiskLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="provinceRevoltRiskLabel.Text" xml:space="preserve">
     <value>RevoltRisk</value>
@@ -1812,6 +1722,96 @@
   <data name="&gt;&gt;spyNumLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="provinceSyntheticOilLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="provinceSyntheticOilLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="provinceSyntheticOilLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 287</value>
+  </data>
+  <data name="provinceSyntheticOilLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 12</value>
+  </data>
+  <data name="provinceSyntheticOilLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="provinceSyntheticOilLabel.Text" xml:space="preserve">
+    <value>Synthetic Oil</value>
+  </data>
+  <data name="&gt;&gt;provinceSyntheticOilLabel.Name" xml:space="preserve">
+    <value>provinceSyntheticOilLabel</value>
+  </data>
+  <data name="&gt;&gt;provinceSyntheticOilLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;provinceSyntheticOilLabel.Parent" xml:space="preserve">
+    <value>provinceBuildingGroupBox</value>
+  </data>
+  <data name="&gt;&gt;provinceSyntheticOilLabel.ZOrder" xml:space="preserve">
+    <value>52</value>
+  </data>
+  <data name="provinceSyntheticRaresLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="provinceSyntheticRaresLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="provinceSyntheticRaresLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 312</value>
+  </data>
+  <data name="provinceSyntheticRaresLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>87, 12</value>
+  </data>
+  <data name="provinceSyntheticRaresLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="provinceSyntheticRaresLabel.Text" xml:space="preserve">
+    <value>Synthetic Rares</value>
+  </data>
+  <data name="&gt;&gt;provinceSyntheticRaresLabel.Name" xml:space="preserve">
+    <value>provinceSyntheticRaresLabel</value>
+  </data>
+  <data name="&gt;&gt;provinceSyntheticRaresLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;provinceSyntheticRaresLabel.Parent" xml:space="preserve">
+    <value>provinceBuildingGroupBox</value>
+  </data>
+  <data name="&gt;&gt;provinceSyntheticRaresLabel.ZOrder" xml:space="preserve">
+    <value>54</value>
+  </data>
+  <data name="provinceNuclearPowerLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="provinceNuclearPowerLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="provinceNuclearPowerLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 337</value>
+  </data>
+  <data name="provinceNuclearPowerLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 12</value>
+  </data>
+  <data name="provinceNuclearPowerLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
+  </data>
+  <data name="provinceNuclearPowerLabel.Text" xml:space="preserve">
+    <value>Nuclear Power</value>
+  </data>
+  <data name="&gt;&gt;provinceNuclearPowerLabel.Name" xml:space="preserve">
+    <value>provinceNuclearPowerLabel</value>
+  </data>
+  <data name="&gt;&gt;provinceNuclearPowerLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;provinceNuclearPowerLabel.Parent" xml:space="preserve">
+    <value>provinceBuildingGroupBox</value>
+  </data>
+  <data name="&gt;&gt;provinceNuclearPowerLabel.ZOrder" xml:space="preserve">
+    <value>50</value>
+  </data>
   <data name="provinceIdLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2359,7 +2359,7 @@
     <value>150, 19</value>
   </data>
   <data name="provinceNameStringTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;provinceNameStringTextBox.Name" xml:space="preserve">
     <value>provinceNameStringTextBox</value>
@@ -2380,7 +2380,7 @@
     <value>40, 19</value>
   </data>
   <data name="revoltRiskTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="revoltRiskTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -2404,7 +2404,7 @@
     <value>40, 19</value>
   </data>
   <data name="vpTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="vpTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
