@@ -2,8 +2,8 @@ Alternative HoI2 Editor Changelog
 
 - 15 Feb 2015; Ver 0.42
 
-Supported DH 1.04.
-Added a scenario editor (EXPERIMENTAL)
+Supported DH 1.04 features.
+Added a scenario editor. (EXPERIMENTAL)
 Fixed a bug that branches are double registered on reloading units.
 Fixed a bug that some editable items are not updated when the unit branch is switched.
 Fixed a bug that some editable items are not updated when unit names are changed from the default value.
