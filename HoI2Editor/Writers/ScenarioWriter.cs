@@ -877,7 +877,8 @@ namespace HoI2Editor.Writers
                 return false;
             }
             bool exists = false;
-            foreach (ProvinceSettings ps in scenario.Provinces.Where(p => settings.ControlledProvinces.Contains(p.Id)))
+            foreach (ProvinceSettings ps in scenario.Provinces.Where(
+                p => settings.ControlledProvinces.Contains(p.Id) && ExistsBasesIncDataDhFull(p, scenario)))
             {
                 WriteCountryProvince(ps, scenario, writer);
                 exists = true;
@@ -1223,7 +1224,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        ///     bases.incに保存するデータが存在するかどうかを返す (DH Full)
+        ///     bases.incに保存するプロヴィンスデータが存在するかどうかを返す (DH Full)
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <param name="scenario">シナリオデータ</param>
@@ -1294,7 +1295,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        ///     bases_DOD.incに保存するデータが存在するかどうかを返す
+        ///     bases_DOD.incに保存するプロヴィンスデータが存在するかどうかを返す
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <returns>bases_DOD.incに保存するデータが存在すればtrueを返す</returns>
@@ -1304,7 +1305,7 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        ///     depots.incに保存するデータが存在するかどうかを返す
+        ///     depots.incに保存するプロヴィンスデータが存在するかどうかを返す
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
         /// <returns>depots.incに保存するデータが存在すればtrueを返す</returns>
@@ -1317,6 +1318,68 @@ namespace HoI2Editor.Writers
                 settings.SupplyPool > 0)
             {
                 return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///     国別incに保存するプロヴィンスデータが存在するかどうかを返す
+        /// </summary>
+        /// <param name="settings">プロヴィンス設定</param>
+        /// <param name="scenario">シナリオデータ</param>
+        /// <returns>bases.incに保存するデータが存在すればtrueを返す</returns>
+        private static bool ExistsCountryIncData(ProvinceSettings settings, Scenario scenario)
+        {
+            if (!scenario.IsBaseDodProvinceSettings)
+            {
+                if (settings.Ic != null || settings.Infrastructure != null)
+                {
+                    return true;
+                }
+            }
+
+            if (!scenario.IsBaseProvinceSettings)
+            {
+                if (settings.LandFort != null ||
+                    settings.CoastalFort != null ||
+                    settings.AntiAir != null ||
+                    settings.AirBase != null ||
+                    settings.NavalBase != null ||
+                    settings.RadarStation != null ||
+                    settings.NuclearReactor != null ||
+                    settings.RocketTest != null ||
+                    settings.SyntheticOil != null ||
+                    settings.SyntheticRares != null ||
+                    settings.NuclearPower != null ||
+                    settings.RevoltRisk > 0 ||
+                    settings.Manpower > 0 ||
+                    settings.MaxManpower > 0 ||
+                    settings.Energy > 0 ||
+                    settings.MaxEnergy > 0 ||
+                    settings.Metal > 0 ||
+                    settings.MaxMetal > 0 ||
+                    settings.RareMaterials > 0 ||
+                    settings.MaxRareMaterials > 0 ||
+                    settings.Oil > 0 ||
+                    settings.MaxOil > 0 ||
+                    !string.IsNullOrEmpty(settings.Name) ||
+                    settings.Weather != WeatherType.None)
+                {
+                    return true;
+                }
+            }
+
+            if (!scenario.IsBaseProvinceSettings && !scenario.IsDepotsProvinceSettings)
+            {
+                if (settings.SupplyPool > 0 ||
+                    settings.OilPool > 0 ||
+                    settings.EnergyPool > 0 ||
+                    settings.MetalPool > 0 ||
+                    settings.RareMaterialsPool > 0)
+                {
+                    return true;
+                }
             }
 
             return false;
