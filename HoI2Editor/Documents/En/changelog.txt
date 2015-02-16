@@ -2,6 +2,7 @@ Alternative HoI2 Editor Changelog
 
 - 17 Feb 2015; Ver 0.43
 
+Supported scenario switching and reloading.
 Fixed a bug that the scenario editor crashes when saving or reloading without loading any scenarios.
 Fixed a bug that the scenario editor crashes when closing the window and reopening it.
 
