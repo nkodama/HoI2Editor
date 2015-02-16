@@ -124,31 +124,7 @@ namespace HoI2Editor.Models
                 return;
             }
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
-
-            Map map = new Map(level);
-
-            // マップデータを読み込む
-            map.Load();
-            Data[(int) level] = map;
-
-            // プロヴィンス境界定義ファイルを読み込む
-            if (BoundBoxes == null)
-            {
-                LoadBoundBox();
-            }
-
-            // カラースケールテーブルを読み込む
-            if (ColorScales == null)
-            {
-                LoadColorScales();
-            }
-
-            sw.Stop();
-            Log.Info("[Map] Load: {0} {1}ms", map.Level, sw.ElapsedMilliseconds);
-
-            IsLoaded[(int) level] = true;
+            LoadFiles(level);
         }
 
         /// <summary>
@@ -208,7 +184,40 @@ namespace HoI2Editor.Models
             MapLevel level = (MapLevel) e.Argument;
             e.Result = level;
 
-            Load(level);
+            LoadFiles(level);
+        }
+
+        /// <summary>
+        ///     マップファイル群を読み込む
+        /// </summary>
+        /// <param name="level">マップレベル</param>
+        private static void LoadFiles(MapLevel level)
+        {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            Map map = new Map(level);
+
+            // マップデータを読み込む
+            map.Load();
+            Data[(int) level] = map;
+
+            // プロヴィンス境界定義ファイルを読み込む
+            if (BoundBoxes == null)
+            {
+                LoadBoundBox();
+            }
+
+            // カラースケールテーブルを読み込む
+            if (ColorScales == null)
+            {
+                LoadColorScales();
+            }
+
+            sw.Stop();
+            Log.Info("[Map] Load: {0} {1}ms", map.Level, sw.ElapsedMilliseconds);
+
+            IsLoaded[(int) level] = true;
         }
 
         /// <summary>
