@@ -219,6 +219,12 @@ namespace HoI2Editor.Forms
             // シナリオ関連情報を初期化する
             Scenarios.Init();
 
+            // 各タブページの初期化済み状態をクリアする
+            foreach (TabPageNo page in Enum.GetValues(typeof (TabPageNo)))
+            {
+                _tabPageInitialized[(int) page] = false;
+            }
+
             // 編集項目を更新する
             OnMainTabPageFileLoad();
             OnAllianceTabPageFileLoad();
@@ -811,6 +817,21 @@ namespace HoI2Editor.Forms
             if (scenarioListBox.SelectedIndex < 0)
             {
                 return;
+            }
+
+            // 編集済みならば保存するかを問い合わせる
+            if (HoI2Editor.IsDirty())
+            {
+                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question);
+                switch (result)
+                {
+                    case DialogResult.Cancel:
+                        return;
+                    case DialogResult.Yes:
+                        HoI2Editor.Save();
+                        break;
+                }
             }
 
             string fileName = scenarioListBox.Items[scenarioListBox.SelectedIndex].ToString();

@@ -338,8 +338,8 @@ namespace HoI2Editor.Models
         /// </summary>
         public static void Load(string fileName)
         {
-            // 読み込み済みならば戻る
-            if (_loaded)
+            // 読み込み済みのファイル名と一致すれば何もしない
+            if (_loaded && fileName.Equals(_fileName))
             {
                 return;
             }
@@ -354,12 +354,6 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void LoadFiles()
         {
-            // 読み込み済みならば戻る
-            if (_loaded)
-            {
-                return;
-            }
-
             // シナリオファイルを解釈する
             Log.Verbose("[Scenario] Load: {0}", Path.GetFileName(_fileName));
             try
