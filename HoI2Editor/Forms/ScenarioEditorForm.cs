@@ -360,33 +360,11 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     マップを遅延読み込みする
-        /// </summary>
-        private void DelayLoadMaps()
-        {
-            _mapWorker.DoWork += OnMapWorkerDoWork;
-            _mapWorker.RunWorkerCompleted += OnMapWorkerRunWorkerCompleted;
-            _mapWorker.RunWorkerAsync();
-        }
-
-        /// <summary>
-        ///     マップを読み込む
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnMapWorkerDoWork(object sender, DoWorkEventArgs e)
-        {
-            Maps.Load(MapLevel.Level2);
-
-            Log.Info("[Scenario] Load level-2 map");
-        }
-
-        /// <summary>
         ///     マップ読み込み完了時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMapWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void OnMapFileLoad(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Error != null)
             {
@@ -463,7 +441,7 @@ namespace HoI2Editor.Forms
             Config.Load();
 
             // マップを遅延読み込みする
-            DelayLoadMaps();
+            Maps.LoadAsync(MapLevel.Level2, OnMapFileLoad);
 
             // 閣僚データを遅延読込する
             DelayLoadMinisters();

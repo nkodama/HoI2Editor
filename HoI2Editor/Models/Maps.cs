@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 
 namespace HoI2Editor.Models
 {
@@ -45,6 +47,16 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部フィールド
+
+        /// <summary>
+        ///     遅延読み込み用
+        /// </summary>
+        private static readonly BackgroundWorker[] Workers =
+            new BackgroundWorker[Enum.GetValues(typeof (MapLevel)).Length];
+
+        #endregion
+
         #region 公開定数
 
         /// <summary>
@@ -75,9 +87,16 @@ namespace HoI2Editor.Models
         /// </summary>
         static Maps()
         {
-            Data = new Map[Enum.GetNames(typeof (MapLevel)).Length];
+            int maxLevel = Enum.GetValues(typeof (MapLevel)).Length;
+
+            Data = new Map[maxLevel];
             ColorMasks = new byte[MaxProvinces];
-            IsLoaded = new bool[Enum.GetNames(typeof (MapLevel)).Length];
+
+            IsLoaded = new bool[maxLevel];
+            for (int i = 0; i < maxLevel; i++)
+            {
+                Workers[i] = new BackgroundWorker();
+            }
 
             InitColorPalette();
         }
@@ -92,6 +111,19 @@ namespace HoI2Editor.Models
         /// <param name="level">マップレベル</param>
         public static void Load(MapLevel level)
         {
+            // 既に読み込み済みならば何もしない
+            if (IsLoaded[(int) level])
+            {
+                return;
+            }
+
+            // 読み込み途中ならば完了を待つ
+            if (Workers[(int) level].IsBusy)
+            {
+                WaitLoading(level);
+                return;
+            }
+
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
@@ -113,10 +145,70 @@ namespace HoI2Editor.Models
                 LoadColorScales();
             }
 
-            IsLoaded[(int) level] = true;
-
             sw.Stop();
-            Log.Verbose("[Map] Load: {0} {1}ms", map.Level, sw.ElapsedMilliseconds);
+            Log.Info("[Map] Load: {0} {1}ms", map.Level, sw.ElapsedMilliseconds);
+
+            IsLoaded[(int) level] = true;
+        }
+
+        /// <summary>
+        ///     マップファイルを遅延読み込みする
+        /// </summary>
+        /// <param name="level">マップレベル</param>
+        /// <param name="handler">読み込み完了イベントハンドラ</param>
+        public static void LoadAsync(MapLevel level, RunWorkerCompletedEventHandler handler)
+        {
+            // 既に読み込み済みならば完了イベントハンドラを呼び出す
+            if (IsLoaded[(int) level])
+            {
+                handler(null, new RunWorkerCompletedEventArgs(level, null, false));
+                return;
+            }
+
+            // 読み込み完了イベントハンドラを登録する
+            BackgroundWorker worker = Workers[(int) level];
+            worker.RunWorkerCompleted += handler;
+
+            // 読み込み途中ならば戻る
+            if (worker.IsBusy)
+            {
+                return;
+            }
+
+            // ここで読み込み済みならば既に完了イベントハンドラを呼び出しているので何もせずに戻る
+            if (IsLoaded[(int) level])
+            {
+                return;
+            }
+
+            // 遅延読み込みを開始する
+            worker.DoWork += MapWorkerDoWork;
+            worker.RunWorkerAsync(level);
+        }
+
+        /// <summary>
+        ///     マップ読み込み完了まで待機する
+        /// </summary>
+        /// <param name="level">マップレベル</param>
+        private static void WaitLoading(MapLevel level)
+        {
+            while (Workers[(int) level].IsBusy)
+            {
+                Application.DoEvents();
+            }
+        }
+
+        /// <summary>
+        ///     マップ遅延読み込み処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void MapWorkerDoWork(object sender, DoWorkEventArgs e)
+        {
+            MapLevel level = (MapLevel) e.Argument;
+            e.Result = level;
+
+            Load(level);
         }
 
         /// <summary>
