@@ -137,7 +137,7 @@ namespace HoI2Editor.Parsers
                         UnitUpgrade upgrade = ParseUpgrade(lexer);
                         if (upgrade == null)
                         {
-                            Log.InvalidSection(LogCategory, "upgrade");
+                            Log.InvalidSection(LogCategory, "upgrade", lexer);
                             continue;
                         }
 
@@ -152,7 +152,7 @@ namespace HoI2Editor.Parsers
                         UnitModel model = ParseModel(lexer);
                         if (model == null)
                         {
-                            Log.InvalidSection(LogCategory, "model");
+                            Log.InvalidSection(LogCategory, "model", lexer);
                             continue;
                         }
 
@@ -1694,7 +1694,7 @@ namespace HoI2Editor.Parsers
                             IEnumerable<UnitEquipment> equipments = ParseEquipment(lexer);
                             if (equipments == null)
                             {
-                                Log.InvalidSection(LogCategory, "equipment");
+                                Log.InvalidSection(LogCategory, "equipment", lexer);
                                 continue;
                             }
 
@@ -2001,7 +2001,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseEyr(lexer))
                         {
-                            Log.InvalidSection(LogCategory, "eyr");
+                            Log.InvalidSection(LogCategory, "eyr", lexer);
                             Log.Warning("[Unit] Parse failed: eyr section");
                             // 実装したらcontinueを追加すること
                             // continue;
@@ -2093,7 +2093,7 @@ namespace HoI2Editor.Parsers
                     // ユニット種類
                     if (!ParseUnitClass(lexer, units[(int) type]))
                     {
-                        Log.InvalidSection(LogCategory, keyword);
+                        Log.InvalidSection(LogCategory, keyword, lexer);
                     }
                 }
             }

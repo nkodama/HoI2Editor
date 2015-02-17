@@ -65,7 +65,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Economy, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "economy");
+                            Log.InvalidSection(LogCategory, "economy", lexer);
                         }
                         continue;
                     }
@@ -75,7 +75,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Intelligence, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "intelligence");
+                            Log.InvalidSection(LogCategory, "intelligence", lexer);
                         }
                         continue;
                     }
@@ -85,7 +85,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Diplomacy, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "diplomacy");
+                            Log.InvalidSection(LogCategory, "diplomacy", lexer);
                         }
                         continue;
                     }
@@ -95,7 +95,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Combat, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "combat");
+                            Log.InvalidSection(LogCategory, "combat", lexer);
                         }
                         continue;
                     }
@@ -105,7 +105,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Mission, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "mission");
+                            Log.InvalidSection(LogCategory, "mission", lexer);
                         }
                         continue;
                     }
@@ -115,7 +115,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Country, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "country");
+                            Log.InvalidSection(LogCategory, "country", lexer);
                         }
                         continue;
                     }
@@ -125,7 +125,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Research, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "research");
+                            Log.InvalidSection(LogCategory, "research", lexer);
                         }
                         continue;
                     }
@@ -135,7 +135,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Trade, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "trade");
+                            Log.InvalidSection(LogCategory, "trade", lexer);
                         }
                         continue;
                     }
@@ -145,7 +145,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Ai, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "ai");
+                            Log.InvalidSection(LogCategory, "ai", lexer);
                         }
                         continue;
                     }
@@ -155,7 +155,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Mod, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "mod");
+                            Log.InvalidSection(LogCategory, "mod", lexer);
                         }
                         continue;
                     }
@@ -165,7 +165,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseSection(MiscSectionId.Map, type, lexer))
                         {
-                            Log.InvalidSection(LogCategory, "map");
+                            Log.InvalidSection(LogCategory, "map", lexer);
                         }
                         continue;
                     }

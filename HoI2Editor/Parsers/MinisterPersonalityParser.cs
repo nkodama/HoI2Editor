@@ -74,7 +74,7 @@ namespace HoI2Editor.Parsers
                     MinisterPersonalityInfo info = ParseMinister(lexer);
                     if (info == null)
                     {
-                        Log.InvalidSection(LogCategory, "minister");
+                        Log.InvalidSection(LogCategory, "minister", lexer);
                     }
 
                     // 閣僚特性リストへ登録

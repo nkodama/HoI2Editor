@@ -81,7 +81,7 @@ namespace HoI2Editor.Parsers
                     {
                         if (!ParseMinisterModifiers(lexer))
                         {
-                            Log.InvalidSection(LogCategory, "minister_modifiers");
+                            Log.InvalidSection(LogCategory, "minister_modifiers", lexer);
                         }
                         continue;
                     }
@@ -195,7 +195,7 @@ namespace HoI2Editor.Parsers
                 MinisterPersonalityInfo info = ParseMinisterPersonality(lexer);
                 if (info == null)
                 {
-                    Log.InvalidSection(LogCategory, "personality");
+                    Log.InvalidSection(LogCategory, "personality", lexer);
                     continue;
                 }
 
@@ -374,7 +374,7 @@ namespace HoI2Editor.Parsers
                 {
                     if (!ParseMinisterPersonalityModifier(lexer))
                     {
-                        Log.InvalidSection(LogCategory, "modifier");
+                        Log.InvalidSection(LogCategory, "modifier", lexer);
                     }
                     continue;
                 }

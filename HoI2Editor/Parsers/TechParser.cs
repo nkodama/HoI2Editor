@@ -49,7 +49,7 @@ namespace HoI2Editor.Parsers
                     TechGroup group = ParseTechnology(lexer);
                     if (group == null)
                     {
-                        Log.InvalidSection(LogCategory, "technology");
+                        Log.InvalidSection(LogCategory, "technology", lexer);
                     }
                     return group;
                 }
@@ -238,7 +238,7 @@ namespace HoI2Editor.Parsers
                     TechLabel label = ParseLabel(lexer);
                     if (label == null)
                     {
-                        Log.InvalidSection(LogCategory, "label");
+                        Log.InvalidSection(LogCategory, "label", lexer);
                         continue;
                     }
 
@@ -253,7 +253,7 @@ namespace HoI2Editor.Parsers
                     TechEvent ev = ParseEvent(lexer);
                     if (ev == null)
                     {
-                        Log.InvalidSection(LogCategory, "event");
+                        Log.InvalidSection(LogCategory, "event", lexer);
                         continue;
                     }
 
@@ -268,7 +268,7 @@ namespace HoI2Editor.Parsers
                     TechItem application = ParseApplication(lexer);
                     if (application == null)
                     {
-                        Log.InvalidSection(LogCategory, "application");
+                        Log.InvalidSection(LogCategory, "application", lexer);
                         continue;
                     }
 
@@ -427,7 +427,7 @@ namespace HoI2Editor.Parsers
                     TechPosition position = ParsePosition(lexer);
                     if (position == null)
                     {
-                        Log.InvalidSection(LogCategory, "position");
+                        Log.InvalidSection(LogCategory, "position", lexer);
                         continue;
                     }
 
@@ -494,7 +494,7 @@ namespace HoI2Editor.Parsers
                     TechComponent component = ParseComponent(lexer);
                     if (component == null)
                     {
-                        Log.InvalidSection(LogCategory, "component");
+                        Log.InvalidSection(LogCategory, "component", lexer);
                         continue;
                     }
 
@@ -509,7 +509,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> ids = ParseRequired(lexer);
                     if (ids == null)
                     {
-                        Log.InvalidSection(LogCategory, "required");
+                        Log.InvalidSection(LogCategory, "required", lexer);
                         continue;
                     }
 
@@ -528,7 +528,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> ids = ParseRequired(lexer);
                     if (ids == null)
                     {
-                        Log.InvalidSection(LogCategory, "or_required");
+                        Log.InvalidSection(LogCategory, "or_required", lexer);
                         continue;
                     }
 
@@ -547,7 +547,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<Command> commands = ParseEffects(lexer);
                     if (commands == null)
                     {
-                        Log.InvalidSection(LogCategory, "effects");
+                        Log.InvalidSection(LogCategory, "effects", lexer);
                         continue;
                     }
 
@@ -651,7 +651,7 @@ namespace HoI2Editor.Parsers
                     TechPosition position = ParsePosition(lexer);
                     if (position == null)
                     {
-                        Log.InvalidSection(LogCategory, "position");
+                        Log.InvalidSection(LogCategory, "position", lexer);
                         continue;
                     }
 
@@ -755,7 +755,7 @@ namespace HoI2Editor.Parsers
                     TechPosition position = ParsePosition(lexer);
                     if (position == null)
                     {
-                        Log.InvalidSection(LogCategory, "position");
+                        Log.InvalidSection(LogCategory, "position", lexer);
                         continue;
                     }
 
@@ -771,7 +771,7 @@ namespace HoI2Editor.Parsers
                     token = lexer.GetToken();
                     if (token.Type != TokenType.Equal)
                     {
-                        Log.InvalidSection(LogCategory, "technology");
+                        Log.InvalidSection(LogCategory, "technology", lexer);
                         lexer.SkipLine();
                         continue;
                     }
@@ -1256,7 +1256,7 @@ namespace HoI2Editor.Parsers
                     Command command = CommandParser.Parse(lexer);
                     if (command == null)
                     {
-                        Log.InvalidSection(LogCategory, "command");
+                        Log.InvalidSection(LogCategory, "command", lexer);
                         continue;
                     }
                     if (command.Type == CommandType.None)

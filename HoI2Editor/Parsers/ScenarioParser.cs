@@ -81,7 +81,7 @@ namespace HoI2Editor.Parsers
                         string s = ParseString(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
-                            Log.InvalidClause(LogCategory, "name");
+                            Log.InvalidClause(LogCategory, "name", lexer);
                             continue;
                         }
 
@@ -96,7 +96,7 @@ namespace HoI2Editor.Parsers
                         string s = ParseString(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
-                            Log.InvalidClause(LogCategory, "panel");
+                            Log.InvalidClause(LogCategory, "panel", lexer);
                             continue;
                         }
 
@@ -111,7 +111,7 @@ namespace HoI2Editor.Parsers
                         ScenarioHeader header = ParseHeader(lexer);
                         if (header == null)
                         {
-                            Log.InvalidSection(LogCategory, "header");
+                            Log.InvalidSection(LogCategory, "header", lexer);
                             continue;
                         }
 
@@ -126,7 +126,7 @@ namespace HoI2Editor.Parsers
                         ScenarioGlobalData data = ParseGlobalData(lexer);
                         if (data == null)
                         {
-                            Log.InvalidSection(LogCategory, "globaldata");
+                            Log.InvalidSection(LogCategory, "globaldata", lexer);
                             continue;
                         }
 
@@ -141,7 +141,7 @@ namespace HoI2Editor.Parsers
                         IEnumerable<int> list = ParseIdList(lexer);
                         if (list == null)
                         {
-                            Log.InvalidSection(LogCategory, "history");
+                            Log.InvalidSection(LogCategory, "history", lexer);
                             continue;
                         }
 
@@ -156,7 +156,7 @@ namespace HoI2Editor.Parsers
                         IEnumerable<int> list = ParseIdList(lexer);
                         if (list == null)
                         {
-                            Log.InvalidSection(LogCategory, "sleepevent");
+                            Log.InvalidSection(LogCategory, "sleepevent", lexer);
                             continue;
                         }
 
@@ -182,7 +182,7 @@ namespace HoI2Editor.Parsers
                         Dictionary<int, GameDate> dates = ParseSaveDate(lexer, startDate);
                         if (dates == null)
                         {
-                            Log.InvalidSection(LogCategory, "save_date");
+                            Log.InvalidSection(LogCategory, "save_date", lexer);
                             continue;
                         }
 
@@ -197,7 +197,7 @@ namespace HoI2Editor.Parsers
                         MapSettings map = ParseMap(lexer);
                         if (map == null)
                         {
-                            Log.InvalidSection(LogCategory, "map");
+                            Log.InvalidSection(LogCategory, "map", lexer);
                             continue;
                         }
 
@@ -212,7 +212,7 @@ namespace HoI2Editor.Parsers
                         string s = ParseString(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
-                            Log.InvalidClause(LogCategory, "event");
+                            Log.InvalidClause(LogCategory, "event", lexer);
                             continue;
                         }
 
@@ -230,7 +230,7 @@ namespace HoI2Editor.Parsers
                         string s = ParseString(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
-                            Log.InvalidClause(LogCategory, "include");
+                            Log.InvalidClause(LogCategory, "include", lexer);
                             continue;
                         }
 
@@ -265,7 +265,7 @@ namespace HoI2Editor.Parsers
                         ProvinceSettings province = ParseProvince(lexer);
                         if (province == null)
                         {
-                            Log.InvalidSection(LogCategory, "province");
+                            Log.InvalidSection(LogCategory, "province", lexer);
                             continue;
                         }
 
@@ -305,7 +305,7 @@ namespace HoI2Editor.Parsers
                         CountrySettings country = ParseCountry(lexer);
                         if (country == null)
                         {
-                            Log.InvalidSection(LogCategory, "country");
+                            Log.InvalidSection(LogCategory, "country", lexer);
                             continue;
                         }
 
@@ -380,7 +380,7 @@ namespace HoI2Editor.Parsers
                 int? n = ParseInt(lexer);
                 if (!n.HasValue)
                 {
-                    Log.InvalidClause(LogCategory, IntHelper.ToString(id));
+                    Log.InvalidClause(LogCategory, IntHelper.ToString(id), lexer);
                     continue;
                 }
 
@@ -457,7 +457,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "name");
+                        Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
                     }
 
@@ -472,7 +472,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "startdate");
+                        Log.InvalidSection(LogCategory, "startdate", lexer);
                         continue;
                     }
 
@@ -487,7 +487,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "startyear");
+                        Log.InvalidClause(LogCategory, "startyear", lexer);
                         continue;
                     }
 
@@ -502,7 +502,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "endyear");
+                        Log.InvalidClause(LogCategory, "endyear", lexer);
                         continue;
                     }
 
@@ -517,7 +517,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "free");
+                        Log.InvalidClause(LogCategory, "free", lexer);
                         continue;
                     }
 
@@ -532,7 +532,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "combat");
+                        Log.InvalidClause(LogCategory, "combat", lexer);
                         continue;
                     }
 
@@ -547,7 +547,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<Country> list = ParseCountryList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "selectable");
+                        Log.InvalidSection(LogCategory, "selectable", lexer);
                         continue;
                     }
 
@@ -562,7 +562,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "set_ai_aggresive");
+                        Log.InvalidClause(LogCategory, "set_ai_aggresive", lexer);
                         continue;
                     }
 
@@ -577,7 +577,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "set_difficulty");
+                        Log.InvalidClause(LogCategory, "set_difficulty", lexer);
                         continue;
                     }
 
@@ -592,7 +592,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "set_gamespeed");
+                        Log.InvalidClause(LogCategory, "set_gamespeed", lexer);
                         continue;
                     }
 
@@ -611,7 +611,7 @@ namespace HoI2Editor.Parsers
                         MajorCountrySettings major = ParseMajorCountry(lexer);
                         if (major == null)
                         {
-                            Log.InvalidSection(LogCategory, tagName);
+                            Log.InvalidSection(LogCategory, tagName, lexer);
                             continue;
                         }
 
@@ -691,7 +691,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseStringOrIdentifier(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "desc");
+                        Log.InvalidClause(LogCategory, "desc", lexer);
                         continue;
                     }
 
@@ -706,7 +706,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "picture");
+                        Log.InvalidClause(LogCategory, "picture", lexer);
                         continue;
                     }
 
@@ -721,7 +721,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "bottom");
+                        Log.InvalidClause(LogCategory, "bottom", lexer);
                         continue;
                     }
 
@@ -738,7 +738,7 @@ namespace HoI2Editor.Parsers
                         string s = ParseStringOrIdentifier(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
-                            Log.InvalidClause(LogCategory, "name");
+                            Log.InvalidClause(LogCategory, "name", lexer);
                             continue;
                         }
 
@@ -753,7 +753,7 @@ namespace HoI2Editor.Parsers
                         string s = ParseStringOrIdentifier(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
-                            Log.InvalidClause(LogCategory, "flag_ext");
+                            Log.InvalidClause(LogCategory, "flag_ext", lexer);
                             continue;
                         }
 
@@ -836,7 +836,7 @@ namespace HoI2Editor.Parsers
                     ScenarioRules rules = ParseRules(lexer);
                     if (rules == null)
                     {
-                        Log.InvalidSection(LogCategory, "rules");
+                        Log.InvalidSection(LogCategory, "rules", lexer);
                         continue;
                     }
 
@@ -851,7 +851,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "startdate");
+                        Log.InvalidSection(LogCategory, "startdate", lexer);
                         continue;
                     }
 
@@ -866,7 +866,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "enddate");
+                        Log.InvalidSection(LogCategory, "enddate", lexer);
                         continue;
                     }
 
@@ -881,7 +881,7 @@ namespace HoI2Editor.Parsers
                     Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.InvalidSection(LogCategory, "axis");
+                        Log.InvalidSection(LogCategory, "axis", lexer);
                         continue;
                     }
 
@@ -896,7 +896,7 @@ namespace HoI2Editor.Parsers
                     Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.InvalidSection(LogCategory, "allies");
+                        Log.InvalidSection(LogCategory, "allies", lexer);
                         continue;
                     }
 
@@ -911,7 +911,7 @@ namespace HoI2Editor.Parsers
                     Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.InvalidSection(LogCategory, "comintern");
+                        Log.InvalidSection(LogCategory, "comintern", lexer);
                         continue;
                     }
 
@@ -926,7 +926,7 @@ namespace HoI2Editor.Parsers
                     Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.InvalidSection(LogCategory, "alliance");
+                        Log.InvalidSection(LogCategory, "alliance", lexer);
                         continue;
                     }
 
@@ -941,7 +941,7 @@ namespace HoI2Editor.Parsers
                     War war = ParseWar(lexer);
                     if (war == null)
                     {
-                        Log.InvalidSection(LogCategory, "war");
+                        Log.InvalidSection(LogCategory, "war", lexer);
                         continue;
                     }
 
@@ -956,7 +956,7 @@ namespace HoI2Editor.Parsers
                     Treaty treaty = ParseTreaty(lexer);
                     if (treaty == null)
                     {
-                        Log.InvalidSection(LogCategory, "treaty");
+                        Log.InvalidSection(LogCategory, "treaty", lexer);
                         continue;
                     }
 
@@ -1065,7 +1065,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "dormant_ministers");
+                        Log.InvalidSection(LogCategory, "dormant_ministers", lexer);
                         continue;
                     }
 
@@ -1080,7 +1080,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "dormant_teams");
+                        Log.InvalidSection(LogCategory, "dormant_teams", lexer);
                         continue;
                     }
 
@@ -1095,7 +1095,7 @@ namespace HoI2Editor.Parsers
                     Weather weather = ParseWeather(lexer);
                     if (weather == null)
                     {
-                        Log.InvalidSection(LogCategory, "weather");
+                        Log.InvalidSection(LogCategory, "weather", lexer);
                         continue;
                     }
 
@@ -1173,7 +1173,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "diplomacy");
+                        Log.InvalidClause(LogCategory, "diplomacy", lexer);
                         continue;
                     }
 
@@ -1188,7 +1188,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "production");
+                        Log.InvalidClause(LogCategory, "production", lexer);
                         continue;
                     }
 
@@ -1203,7 +1203,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "technology");
+                        Log.InvalidClause(LogCategory, "technology", lexer);
                         continue;
                     }
 
@@ -1285,7 +1285,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "static");
+                        Log.InvalidClause(LogCategory, "static", lexer);
                         continue;
                     }
 
@@ -1300,7 +1300,7 @@ namespace HoI2Editor.Parsers
                     WeatherPattern pattern = ParseWeatherPattern(lexer);
                     if (pattern == null)
                     {
-                        Log.InvalidSection(LogCategory, "pattern");
+                        Log.InvalidSection(LogCategory, "pattern", lexer);
                         continue;
                     }
 
@@ -1378,7 +1378,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -1393,7 +1393,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "provinces");
+                        Log.InvalidSection(LogCategory, "provinces", lexer);
                         continue;
                     }
 
@@ -1408,7 +1408,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "centre");
+                        Log.InvalidClause(LogCategory, "centre", lexer);
                         continue;
                     }
 
@@ -1423,7 +1423,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "speed");
+                        Log.InvalidClause(LogCategory, "speed", lexer);
                         continue;
                     }
 
@@ -1438,7 +1438,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "heading");
+                        Log.InvalidClause(LogCategory, "heading", lexer);
                         continue;
                     }
 
@@ -1604,7 +1604,7 @@ namespace HoI2Editor.Parsers
                     MapPoint point = ParsePoint(lexer);
                     if (point == null)
                     {
-                        Log.InvalidSection(LogCategory, "top");
+                        Log.InvalidSection(LogCategory, "top", lexer);
                         continue;
                     }
 
@@ -1619,7 +1619,7 @@ namespace HoI2Editor.Parsers
                     MapPoint point = ParsePoint(lexer);
                     if (point == null)
                     {
-                        Log.InvalidSection(LogCategory, "bottom");
+                        Log.InvalidSection(LogCategory, "bottom", lexer);
                         continue;
                     }
 
@@ -1697,7 +1697,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "x");
+                        Log.InvalidClause(LogCategory, "x", lexer);
                         continue;
                     }
 
@@ -1712,7 +1712,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "y");
+                        Log.InvalidClause(LogCategory, "y", lexer);
                         continue;
                     }
 
@@ -1794,7 +1794,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "id");
+                        Log.InvalidClause(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -1809,7 +1809,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "ic");
+                        Log.InvalidSection(LogCategory, "ic", lexer);
                         continue;
                     }
 
@@ -1824,7 +1824,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "infra");
+                        Log.InvalidSection(LogCategory, "infra", lexer);
                         continue;
                     }
 
@@ -1839,7 +1839,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "landfort");
+                        Log.InvalidSection(LogCategory, "landfort", lexer);
                         continue;
                     }
 
@@ -1854,7 +1854,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "coastalfort");
+                        Log.InvalidSection(LogCategory, "coastalfort", lexer);
                         continue;
                     }
 
@@ -1869,7 +1869,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "anti_air");
+                        Log.InvalidSection(LogCategory, "anti_air", lexer);
                         continue;
                     }
 
@@ -1884,7 +1884,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "air_base");
+                        Log.InvalidSection(LogCategory, "air_base", lexer);
                         continue;
                     }
 
@@ -1899,7 +1899,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "naval_base");
+                        Log.InvalidSection(LogCategory, "naval_base", lexer);
                         continue;
                     }
 
@@ -1914,7 +1914,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "radar_station");
+                        Log.InvalidSection(LogCategory, "radar_station", lexer);
                         continue;
                     }
 
@@ -1929,7 +1929,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "nuclear_reactor");
+                        Log.InvalidSection(LogCategory, "nuclear_reactor", lexer);
                         continue;
                     }
 
@@ -1944,7 +1944,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "rocket_test");
+                        Log.InvalidSection(LogCategory, "rocket_test", lexer);
                         continue;
                     }
 
@@ -1959,7 +1959,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "synthetic_oil");
+                        Log.InvalidSection(LogCategory, "synthetic_oil", lexer);
                         continue;
                     }
 
@@ -1974,7 +1974,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "synthetic_rares");
+                        Log.InvalidSection(LogCategory, "synthetic_rares", lexer);
                         continue;
                     }
 
@@ -1989,7 +1989,7 @@ namespace HoI2Editor.Parsers
                     BuildingSize size = ParseSize(lexer);
                     if (size == null)
                     {
-                        Log.InvalidSection(LogCategory, "nuclear_power");
+                        Log.InvalidSection(LogCategory, "nuclear_power", lexer);
                         continue;
                     }
 
@@ -2004,7 +2004,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "supplypool");
+                        Log.InvalidClause(LogCategory, "supplypool", lexer);
                         continue;
                     }
 
@@ -2019,7 +2019,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "oilpool");
+                        Log.InvalidClause(LogCategory, "oilpool", lexer);
                         continue;
                     }
 
@@ -2034,7 +2034,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "energypool");
+                        Log.InvalidClause(LogCategory, "energypool", lexer);
                         continue;
                     }
 
@@ -2049,7 +2049,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "metalpool");
+                        Log.InvalidClause(LogCategory, "metalpool", lexer);
                         continue;
                     }
 
@@ -2064,7 +2064,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "rarematerialspool");
+                        Log.InvalidClause(LogCategory, "rarematerialspool", lexer);
                         continue;
                     }
 
@@ -2079,7 +2079,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "energy");
+                        Log.InvalidClause(LogCategory, "energy", lexer);
                         continue;
                     }
 
@@ -2094,7 +2094,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "max_energy");
+                        Log.InvalidClause(LogCategory, "max_energy", lexer);
                         continue;
                     }
 
@@ -2109,7 +2109,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "metal");
+                        Log.InvalidClause(LogCategory, "metal", lexer);
                         continue;
                     }
 
@@ -2124,7 +2124,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "max_metal");
+                        Log.InvalidClause(LogCategory, "max_metal", lexer);
                         continue;
                     }
 
@@ -2139,7 +2139,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "rare_materials");
+                        Log.InvalidClause(LogCategory, "rare_materials", lexer);
                         continue;
                     }
 
@@ -2154,7 +2154,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "max_rare_materials");
+                        Log.InvalidClause(LogCategory, "max_rare_materials", lexer);
                         continue;
                     }
 
@@ -2169,7 +2169,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "oil");
+                        Log.InvalidClause(LogCategory, "oil", lexer);
                         continue;
                     }
 
@@ -2184,7 +2184,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "max_oil");
+                        Log.InvalidClause(LogCategory, "max_oil", lexer);
                         continue;
                     }
 
@@ -2199,7 +2199,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "manpower");
+                        Log.InvalidClause(LogCategory, "manpower", lexer);
                         continue;
                     }
 
@@ -2214,7 +2214,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "max_manpower");
+                        Log.InvalidClause(LogCategory, "max_manpower", lexer);
                         continue;
                     }
 
@@ -2229,7 +2229,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "points");
+                        Log.InvalidClause(LogCategory, "points", lexer);
                         continue;
                     }
 
@@ -2244,7 +2244,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "province_revoltrisk");
+                        Log.InvalidClause(LogCategory, "province_revoltrisk", lexer);
                         continue;
                     }
 
@@ -2282,7 +2282,7 @@ namespace HoI2Editor.Parsers
                         string s = ParseStringOrIdentifier(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
-                            Log.InvalidClause(LogCategory, "name");
+                            Log.InvalidClause(LogCategory, "name", lexer);
                             continue;
                         }
 
@@ -2371,7 +2371,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "size");
+                        Log.InvalidClause(LogCategory, "size", lexer);
                         continue;
                     }
 
@@ -2392,7 +2392,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "current_size");
+                        Log.InvalidClause(LogCategory, "current_size", lexer);
                         continue;
                     }
 
@@ -2476,7 +2476,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -2530,7 +2530,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "location");
+                        Log.InvalidClause(LogCategory, "location", lexer);
                         continue;
                     }
 
@@ -2545,7 +2545,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "cost");
+                        Log.InvalidClause(LogCategory, "cost", lexer);
                         continue;
                     }
 
@@ -2560,7 +2560,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "manpower");
+                        Log.InvalidClause(LogCategory, "manpower", lexer);
                         continue;
                     }
 
@@ -2575,7 +2575,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "date");
+                        Log.InvalidSection(LogCategory, "date", lexer);
                         continue;
                     }
 
@@ -2590,7 +2590,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "progress");
+                        Log.InvalidClause(LogCategory, "progress", lexer);
                         continue;
                     }
 
@@ -2605,7 +2605,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "total_progress");
+                        Log.InvalidClause(LogCategory, "total_progress", lexer);
                         continue;
                     }
 
@@ -2620,7 +2620,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "gearing_bonus");
+                        Log.InvalidClause(LogCategory, "gearing_bonus", lexer);
                         continue;
                     }
 
@@ -2635,7 +2635,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "size");
+                        Log.InvalidClause(LogCategory, "size", lexer);
                         continue;
                     }
 
@@ -2650,7 +2650,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "done");
+                        Log.InvalidClause(LogCategory, "done", lexer);
                         continue;
                     }
 
@@ -2665,7 +2665,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "days");
+                        Log.InvalidClause(LogCategory, "days", lexer);
                         continue;
                     }
 
@@ -2680,7 +2680,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "days");
+                        Log.InvalidClause(LogCategory, "days", lexer);
                         continue;
                     }
 
@@ -2762,7 +2762,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -2777,7 +2777,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<Country> list = ParseCountryList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "participant");
+                        Log.InvalidSection(LogCategory, "participant", lexer);
                         continue;
                     }
 
@@ -2794,7 +2794,7 @@ namespace HoI2Editor.Parsers
                         string s = ParseString(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
-                            Log.InvalidClause(LogCategory, "name");
+                            Log.InvalidClause(LogCategory, "name", lexer);
                             continue;
                         }
 
@@ -2873,7 +2873,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -2888,7 +2888,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "date");
+                        Log.InvalidSection(LogCategory, "date", lexer);
                         continue;
                     }
 
@@ -2903,7 +2903,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "enddate");
+                        Log.InvalidSection(LogCategory, "enddate", lexer);
                         continue;
                     }
 
@@ -2918,7 +2918,7 @@ namespace HoI2Editor.Parsers
                     Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.InvalidSection(LogCategory, "attackers");
+                        Log.InvalidSection(LogCategory, "attackers", lexer);
                         continue;
                     }
 
@@ -2933,7 +2933,7 @@ namespace HoI2Editor.Parsers
                     Alliance alliance = ParseAlliance(lexer);
                     if (alliance == null)
                     {
-                        Log.InvalidSection(LogCategory, "defenders");
+                        Log.InvalidSection(LogCategory, "defenders", lexer);
                         continue;
                     }
 
@@ -3011,7 +3011,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -3026,7 +3026,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseIdentifier(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "type");
+                        Log.InvalidClause(LogCategory, "type", lexer);
                         continue;
                     }
                     s = s.ToLower();
@@ -3063,7 +3063,7 @@ namespace HoI2Editor.Parsers
                     Country? tag = ParseTag(lexer);
                     if (!tag.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "country");
+                        Log.InvalidClause(LogCategory, "country", lexer);
                         continue;
                     }
 
@@ -3085,7 +3085,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "startdate");
+                        Log.InvalidSection(LogCategory, "startdate", lexer);
                         continue;
                     }
 
@@ -3100,7 +3100,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "expirydate");
+                        Log.InvalidSection(LogCategory, "expirydate", lexer);
                         continue;
                     }
 
@@ -3115,7 +3115,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "money");
+                        Log.InvalidClause(LogCategory, "money", lexer);
                         continue;
                     }
 
@@ -3130,7 +3130,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "supplies");
+                        Log.InvalidClause(LogCategory, "supplies", lexer);
                         continue;
                     }
 
@@ -3145,7 +3145,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "energy");
+                        Log.InvalidClause(LogCategory, "energy", lexer);
                         continue;
                     }
 
@@ -3160,7 +3160,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "metal");
+                        Log.InvalidClause(LogCategory, "metal", lexer);
                         continue;
                     }
 
@@ -3175,7 +3175,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "rare_materials");
+                        Log.InvalidClause(LogCategory, "rare_materials", lexer);
                         continue;
                     }
 
@@ -3190,7 +3190,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "oil");
+                        Log.InvalidClause(LogCategory, "oil", lexer);
                         continue;
                     }
 
@@ -3205,7 +3205,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "cancel");
+                        Log.InvalidClause(LogCategory, "cancel", lexer);
                         continue;
                     }
 
@@ -3283,7 +3283,7 @@ namespace HoI2Editor.Parsers
                     Relation relation = ParseRelation(lexer);
                     if (relation == null)
                     {
-                        Log.InvalidSection(LogCategory, "relation");
+                        Log.InvalidSection(LogCategory, "relation", lexer);
                         continue;
                     }
 
@@ -3361,7 +3361,7 @@ namespace HoI2Editor.Parsers
                     Country? tag = ParseTag(lexer);
                     if (!tag.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "tag");
+                        Log.InvalidClause(LogCategory, "tag", lexer);
                         continue;
                     }
 
@@ -3376,7 +3376,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "value");
+                        Log.InvalidClause(LogCategory, "value", lexer);
                         continue;
                     }
 
@@ -3391,7 +3391,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "access");
+                        Log.InvalidClause(LogCategory, "access", lexer);
                         continue;
                     }
 
@@ -3406,7 +3406,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "guaranteed");
+                        Log.InvalidSection(LogCategory, "guaranteed", lexer);
                         continue;
                     }
 
@@ -3488,7 +3488,7 @@ namespace HoI2Editor.Parsers
                     Country? tag = ParseTag(lexer);
                     if (tag == null)
                     {
-                        Log.InvalidClause(LogCategory, "tag");
+                        Log.InvalidClause(LogCategory, "tag", lexer);
                         continue;
                     }
 
@@ -3503,7 +3503,7 @@ namespace HoI2Editor.Parsers
                     Country? tag = ParseTag(lexer);
                     if (tag == null)
                     {
-                        Log.InvalidClause(LogCategory, "regular_id");
+                        Log.InvalidClause(LogCategory, "regular_id", lexer);
                         continue;
                     }
 
@@ -3539,7 +3539,7 @@ namespace HoI2Editor.Parsers
                     Country? tag = ParseTag(lexer);
                     if (tag == null)
                     {
-                        Log.InvalidClause(LogCategory, "puppet");
+                        Log.InvalidClause(LogCategory, "puppet", lexer);
                         continue;
                     }
 
@@ -3554,7 +3554,7 @@ namespace HoI2Editor.Parsers
                     Country? tag = ParseTag(lexer);
                     if (tag == null)
                     {
-                        Log.InvalidClause(LogCategory, "control");
+                        Log.InvalidClause(LogCategory, "control", lexer);
                         continue;
                     }
 
@@ -3569,7 +3569,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "belligerence");
+                        Log.InvalidClause(LogCategory, "belligerence", lexer);
                         continue;
                     }
 
@@ -3584,7 +3584,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "extra_tc");
+                        Log.InvalidClause(LogCategory, "extra_tc", lexer);
                         continue;
                     }
 
@@ -3599,7 +3599,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "dissent");
+                        Log.InvalidClause(LogCategory, "dissent", lexer);
                         continue;
                     }
 
@@ -3614,7 +3614,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "capital");
+                        Log.InvalidClause(LogCategory, "capital", lexer);
                         continue;
                     }
 
@@ -3629,7 +3629,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "peacetime_ic_mod");
+                        Log.InvalidClause(LogCategory, "peacetime_ic_mod", lexer);
                         continue;
                     }
 
@@ -3644,7 +3644,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "wartime_ic_mod");
+                        Log.InvalidClause(LogCategory, "wartime_ic_mod", lexer);
                         continue;
                     }
 
@@ -3659,7 +3659,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "industrial_modifier");
+                        Log.InvalidClause(LogCategory, "industrial_modifier", lexer);
                         continue;
                     }
 
@@ -3674,7 +3674,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "ground_def_eff");
+                        Log.InvalidClause(LogCategory, "ground_def_eff", lexer);
                         continue;
                     }
 
@@ -3689,7 +3689,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "ai");
+                        Log.InvalidClause(LogCategory, "ai", lexer);
                         continue;
                     }
 
@@ -3704,7 +3704,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "manpower");
+                        Log.InvalidClause(LogCategory, "manpower", lexer);
                         continue;
                     }
 
@@ -3719,7 +3719,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "relative_manpower");
+                        Log.InvalidClause(LogCategory, "relative_manpower", lexer);
                         continue;
                     }
 
@@ -3734,7 +3734,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "energy");
+                        Log.InvalidClause(LogCategory, "energy", lexer);
                         continue;
                     }
 
@@ -3749,7 +3749,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "metal");
+                        Log.InvalidClause(LogCategory, "metal", lexer);
                         continue;
                     }
 
@@ -3764,7 +3764,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "rare_materials");
+                        Log.InvalidClause(LogCategory, "rare_materials", lexer);
                         continue;
                     }
 
@@ -3779,7 +3779,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "oil");
+                        Log.InvalidClause(LogCategory, "oil", lexer);
                         continue;
                     }
 
@@ -3794,7 +3794,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "supplies");
+                        Log.InvalidClause(LogCategory, "supplies", lexer);
                         continue;
                     }
 
@@ -3809,7 +3809,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "money");
+                        Log.InvalidClause(LogCategory, "money", lexer);
                         continue;
                     }
 
@@ -3824,7 +3824,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "transports");
+                        Log.InvalidClause(LogCategory, "transports", lexer);
                         continue;
                     }
 
@@ -3839,7 +3839,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "escorts");
+                        Log.InvalidClause(LogCategory, "escorts", lexer);
                         continue;
                     }
 
@@ -3854,7 +3854,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "nuke");
+                        Log.InvalidClause(LogCategory, "nuke", lexer);
                         continue;
                     }
 
@@ -3869,7 +3869,7 @@ namespace HoI2Editor.Parsers
                     ResourceSettings free = ParseFree(lexer);
                     if (free == null)
                     {
-                        Log.InvalidSection(LogCategory, "free");
+                        Log.InvalidSection(LogCategory, "free", lexer);
                         continue;
                     }
 
@@ -3884,7 +3884,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "consumer");
+                        Log.InvalidClause(LogCategory, "consumer", lexer);
                         continue;
                     }
 
@@ -3899,7 +3899,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "supply");
+                        Log.InvalidClause(LogCategory, "supply", lexer);
                         continue;
                     }
 
@@ -3914,7 +3914,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "production");
+                        Log.InvalidClause(LogCategory, "production", lexer);
                         continue;
                     }
 
@@ -3929,7 +3929,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "reinforcement");
+                        Log.InvalidClause(LogCategory, "reinforcement", lexer);
                         continue;
                     }
 
@@ -3944,7 +3944,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<Relation> list = ParseDiplomacy(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "diplomacy");
+                        Log.InvalidSection(LogCategory, "diplomacy", lexer);
                         continue;
                     }
 
@@ -3959,7 +3959,7 @@ namespace HoI2Editor.Parsers
                     SpySettings spy = ParseSpyInfo(lexer);
                     if (spy == null)
                     {
-                        Log.InvalidSection(LogCategory, "spyinfo");
+                        Log.InvalidSection(LogCategory, "spyinfo", lexer);
                         continue;
                     }
 
@@ -3974,7 +3974,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "nationalprovinces");
+                        Log.InvalidSection(LogCategory, "nationalprovinces", lexer);
                         continue;
                     }
 
@@ -3989,7 +3989,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "ownedprovinces");
+                        Log.InvalidSection(LogCategory, "ownedprovinces", lexer);
                         continue;
                     }
 
@@ -4004,7 +4004,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "controlledprovinces");
+                        Log.InvalidSection(LogCategory, "controlledprovinces", lexer);
                         continue;
                     }
 
@@ -4019,7 +4019,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "techapps");
+                        Log.InvalidSection(LogCategory, "techapps", lexer);
                         continue;
                     }
 
@@ -4034,7 +4034,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "blueprints");
+                        Log.InvalidSection(LogCategory, "blueprints", lexer);
                         continue;
                     }
 
@@ -4049,7 +4049,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "inventions");
+                        Log.InvalidSection(LogCategory, "inventions", lexer);
                         continue;
                     }
 
@@ -4064,7 +4064,7 @@ namespace HoI2Editor.Parsers
                     CountryPolicy policy = ParsePolicy(lexer);
                     if (policy == null)
                     {
-                        Log.InvalidSection(LogCategory, "policy");
+                        Log.InvalidSection(LogCategory, "policy", lexer);
                         continue;
                     }
 
@@ -4079,7 +4079,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "nukedate");
+                        Log.InvalidSection(LogCategory, "nukedate", lexer);
                         continue;
                     }
 
@@ -4094,7 +4094,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "headofstate");
+                        Log.InvalidSection(LogCategory, "headofstate", lexer);
                         continue;
                     }
 
@@ -4109,7 +4109,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "headofgovernment");
+                        Log.InvalidSection(LogCategory, "headofgovernment", lexer);
                         continue;
                     }
 
@@ -4124,7 +4124,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "foreignminister");
+                        Log.InvalidSection(LogCategory, "foreignminister", lexer);
                         continue;
                     }
 
@@ -4139,7 +4139,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "armamentminister");
+                        Log.InvalidSection(LogCategory, "armamentminister", lexer);
                         continue;
                     }
 
@@ -4154,7 +4154,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "ministerofsecurity");
+                        Log.InvalidSection(LogCategory, "ministerofsecurity", lexer);
                         continue;
                     }
 
@@ -4169,7 +4169,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "ministerofintelligence");
+                        Log.InvalidSection(LogCategory, "ministerofintelligence", lexer);
                         continue;
                     }
 
@@ -4184,7 +4184,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "chiefofstaff");
+                        Log.InvalidSection(LogCategory, "chiefofstaff", lexer);
                         continue;
                     }
 
@@ -4199,7 +4199,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "chiefofarmy");
+                        Log.InvalidSection(LogCategory, "chiefofarmy", lexer);
                         continue;
                     }
 
@@ -4214,7 +4214,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "chiefofnavy");
+                        Log.InvalidSection(LogCategory, "chiefofnavy", lexer);
                         continue;
                     }
 
@@ -4229,7 +4229,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "chiefofair");
+                        Log.InvalidSection(LogCategory, "chiefofair", lexer);
                         continue;
                     }
 
@@ -4244,7 +4244,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "dormant_leaders");
+                        Log.InvalidSection(LogCategory, "dormant_leaders", lexer);
                         continue;
                     }
 
@@ -4259,7 +4259,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "dormant_ministers");
+                        Log.InvalidSection(LogCategory, "dormant_ministers", lexer);
                         continue;
                     }
 
@@ -4274,7 +4274,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "dormant_teams");
+                        Log.InvalidSection(LogCategory, "dormant_teams", lexer);
                         continue;
                     }
 
@@ -4289,7 +4289,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "steal_leader");
+                        Log.InvalidClause(LogCategory, "steal_leader", lexer);
                         continue;
                     }
 
@@ -4304,7 +4304,7 @@ namespace HoI2Editor.Parsers
                     Convoy convoy = ParseConvoy(lexer);
                     if (convoy == null)
                     {
-                        Log.InvalidSection(LogCategory, "convoy");
+                        Log.InvalidSection(LogCategory, "convoy", lexer);
                         continue;
                     }
 
@@ -4319,7 +4319,7 @@ namespace HoI2Editor.Parsers
                     LandUnit unit = ParseLandUnit(lexer);
                     if (unit == null)
                     {
-                        Log.InvalidSection(LogCategory, "landunit");
+                        Log.InvalidSection(LogCategory, "landunit", lexer);
                         continue;
                     }
 
@@ -4334,7 +4334,7 @@ namespace HoI2Editor.Parsers
                     NavalUnit unit = ParseNavalUnit(lexer);
                     if (unit == null)
                     {
-                        Log.InvalidSection(LogCategory, "navalunit");
+                        Log.InvalidSection(LogCategory, "navalunit", lexer);
                         continue;
                     }
 
@@ -4349,7 +4349,7 @@ namespace HoI2Editor.Parsers
                     AirUnit unit = ParseAirUnit(lexer);
                     if (unit == null)
                     {
-                        Log.InvalidSection(LogCategory, "airunit");
+                        Log.InvalidSection(LogCategory, "airunit", lexer);
                         continue;
                     }
 
@@ -4364,7 +4364,7 @@ namespace HoI2Editor.Parsers
                     DivisionDevelopment division = ParseDivisionDevelopment(lexer);
                     if (division == null)
                     {
-                        Log.InvalidSection(LogCategory, "division_development");
+                        Log.InvalidSection(LogCategory, "division_development", lexer);
                         continue;
                     }
 
@@ -4379,7 +4379,7 @@ namespace HoI2Editor.Parsers
                     ConvoyDevelopment convoy = ParseConvoyDevelopment(lexer);
                     if (convoy == null)
                     {
-                        Log.InvalidSection(LogCategory, "convoy_development");
+                        Log.InvalidSection(LogCategory, "convoy_development", lexer);
                         continue;
                     }
 
@@ -4394,7 +4394,7 @@ namespace HoI2Editor.Parsers
                     BuildingDevelopment building = ParseBuildingDevelopment(lexer);
                     if (building == null)
                     {
-                        Log.InvalidSection(LogCategory, "province_development");
+                        Log.InvalidSection(LogCategory, "province_development", lexer);
                         continue;
                     }
 
@@ -4409,7 +4409,7 @@ namespace HoI2Editor.Parsers
                     LandDivision division = ParseLandDivision(lexer);
                     if (division == null)
                     {
-                        Log.InvalidSection(LogCategory, "landdivision");
+                        Log.InvalidSection(LogCategory, "landdivision", lexer);
                         continue;
                     }
 
@@ -4424,7 +4424,7 @@ namespace HoI2Editor.Parsers
                     NavalDivision division = ParseNavalDivision(lexer);
                     if (division == null)
                     {
-                        Log.InvalidSection(LogCategory, "navaldivision");
+                        Log.InvalidSection(LogCategory, "navaldivision", lexer);
                         continue;
                     }
 
@@ -4439,7 +4439,7 @@ namespace HoI2Editor.Parsers
                     AirDivision division = ParseAirDivision(lexer);
                     if (division == null)
                     {
-                        Log.InvalidSection(LogCategory, "airdivision");
+                        Log.InvalidSection(LogCategory, "airdivision", lexer);
                         continue;
                     }
 
@@ -4456,7 +4456,7 @@ namespace HoI2Editor.Parsers
                         string s = ParseIdentifier(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
-                            Log.InvalidClause(LogCategory, "name");
+                            Log.InvalidClause(LogCategory, "name", lexer);
                             continue;
                         }
 
@@ -4471,7 +4471,7 @@ namespace HoI2Editor.Parsers
                         string s = ParseIdentifier(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
-                            Log.InvalidClause(LogCategory, "flag_ext");
+                            Log.InvalidClause(LogCategory, "flag_ext", lexer);
                             continue;
                         }
 
@@ -4486,7 +4486,7 @@ namespace HoI2Editor.Parsers
                         AiSettings settings = ParseAiSettings(lexer);
                         if (settings == null)
                         {
-                            Log.InvalidSection(LogCategory, "ai_settings");
+                            Log.InvalidSection(LogCategory, "ai_settings", lexer);
                             continue;
                         }
 
@@ -4501,7 +4501,7 @@ namespace HoI2Editor.Parsers
                         IEnumerable<int> list = ParseIdList(lexer);
                         if (list == null)
                         {
-                            Log.InvalidSection(LogCategory, "claimedprovinces");
+                            Log.InvalidSection(LogCategory, "claimedprovinces", lexer);
                             continue;
                         }
 
@@ -4580,7 +4580,7 @@ namespace HoI2Editor.Parsers
                     Dictionary<string, string> flags = ParseAiFlags(lexer);
                     if (flags == null)
                     {
-                        Log.InvalidSection(LogCategory, "flags");
+                        Log.InvalidSection(LogCategory, "flags", lexer);
                         continue;
                     }
 
@@ -4763,7 +4763,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "ic");
+                        Log.InvalidClause(LogCategory, "ic", lexer);
                         continue;
                     }
 
@@ -4778,7 +4778,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "manpower");
+                        Log.InvalidClause(LogCategory, "manpower", lexer);
                         continue;
                     }
 
@@ -4793,7 +4793,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "energy");
+                        Log.InvalidClause(LogCategory, "energy", lexer);
                         continue;
                     }
 
@@ -4808,7 +4808,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "metal");
+                        Log.InvalidClause(LogCategory, "metal", lexer);
                         continue;
                     }
 
@@ -4823,7 +4823,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "rare_materials");
+                        Log.InvalidClause(LogCategory, "rare_materials", lexer);
                         continue;
                     }
 
@@ -4838,7 +4838,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "oil");
+                        Log.InvalidClause(LogCategory, "oil", lexer);
                         continue;
                     }
 
@@ -4853,7 +4853,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "supplies");
+                        Log.InvalidClause(LogCategory, "supplies", lexer);
                         continue;
                     }
 
@@ -4868,7 +4868,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "money");
+                        Log.InvalidClause(LogCategory, "money", lexer);
                         continue;
                     }
 
@@ -4883,7 +4883,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "transport");
+                        Log.InvalidClause(LogCategory, "transport", lexer);
                         continue;
                     }
 
@@ -4898,7 +4898,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "escort");
+                        Log.InvalidClause(LogCategory, "escort", lexer);
                         continue;
                     }
 
@@ -4976,7 +4976,7 @@ namespace HoI2Editor.Parsers
                     Country? tag = ParseTag(lexer);
                     if (!tag.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "country");
+                        Log.InvalidClause(LogCategory, "country", lexer);
                         continue;
                     }
 
@@ -4991,7 +4991,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "numberofspies");
+                        Log.InvalidClause(LogCategory, "numberofspies", lexer);
                         continue;
                     }
 
@@ -5069,7 +5069,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "date");
+                        Log.InvalidSection(LogCategory, "date", lexer);
                         continue;
                     }
 
@@ -5084,7 +5084,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "democratic");
+                        Log.InvalidClause(LogCategory, "democratic", lexer);
                         continue;
                     }
 
@@ -5105,7 +5105,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "political_left");
+                        Log.InvalidClause(LogCategory, "political_left", lexer);
                         continue;
                     }
 
@@ -5126,7 +5126,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "freedom");
+                        Log.InvalidClause(LogCategory, "freedom", lexer);
                         continue;
                     }
 
@@ -5147,7 +5147,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "freedom");
+                        Log.InvalidClause(LogCategory, "freedom", lexer);
                         continue;
                     }
 
@@ -5168,7 +5168,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "professional_army");
+                        Log.InvalidClause(LogCategory, "professional_army", lexer);
                         continue;
                     }
 
@@ -5189,7 +5189,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "defense_lobby");
+                        Log.InvalidClause(LogCategory, "defense_lobby", lexer);
                         continue;
                     }
 
@@ -5210,7 +5210,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "interventionism");
+                        Log.InvalidClause(LogCategory, "interventionism", lexer);
                         continue;
                     }
 
@@ -5298,7 +5298,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -5313,7 +5313,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "name");
+                        Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
                     }
 
@@ -5328,7 +5328,7 @@ namespace HoI2Editor.Parsers
                     Country? tag = ParseTag(lexer);
                     if (!tag.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "control");
+                        Log.InvalidClause(LogCategory, "control", lexer);
                         continue;
                     }
 
@@ -5343,7 +5343,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "leader");
+                        Log.InvalidClause(LogCategory, "leader", lexer);
                         continue;
                     }
 
@@ -5358,7 +5358,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "location");
+                        Log.InvalidClause(LogCategory, "location", lexer);
                         continue;
                     }
 
@@ -5373,7 +5373,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "prevprov");
+                        Log.InvalidClause(LogCategory, "prevprov", lexer);
                         continue;
                     }
 
@@ -5388,7 +5388,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "home");
+                        Log.InvalidClause(LogCategory, "home", lexer);
                         continue;
                     }
 
@@ -5403,7 +5403,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "dig_in");
+                        Log.InvalidClause(LogCategory, "dig_in", lexer);
                         continue;
                     }
 
@@ -5418,7 +5418,7 @@ namespace HoI2Editor.Parsers
                     LandMission mission = ParseLandMission(lexer);
                     if (mission == null)
                     {
-                        Log.InvalidSection(LogCategory, "mission");
+                        Log.InvalidSection(LogCategory, "mission", lexer);
                         continue;
                     }
 
@@ -5433,7 +5433,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "date");
+                        Log.InvalidSection(LogCategory, "date", lexer);
                         continue;
                     }
 
@@ -5448,7 +5448,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "movetime");
+                        Log.InvalidSection(LogCategory, "movetime", lexer);
                         continue;
                     }
 
@@ -5463,7 +5463,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "movement");
+                        Log.InvalidSection(LogCategory, "movement", lexer);
                         continue;
                     }
 
@@ -5478,7 +5478,7 @@ namespace HoI2Editor.Parsers
                     LandDivision division = ParseLandDivision(lexer);
                     if (division == null)
                     {
-                        Log.InvalidSection(LogCategory, "division");
+                        Log.InvalidSection(LogCategory, "division", lexer);
                         continue;
                     }
 
@@ -5493,7 +5493,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "invasion");
+                        Log.InvalidClause(LogCategory, "invasion", lexer);
                         continue;
                     }
 
@@ -5508,7 +5508,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "target");
+                        Log.InvalidClause(LogCategory, "target", lexer);
                         continue;
                     }
 
@@ -5586,7 +5586,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -5601,7 +5601,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "name");
+                        Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
                     }
 
@@ -5616,7 +5616,7 @@ namespace HoI2Editor.Parsers
                     Country? tag = ParseTag(lexer);
                     if (!tag.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "control");
+                        Log.InvalidClause(LogCategory, "control", lexer);
                         continue;
                     }
 
@@ -5631,7 +5631,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "leader");
+                        Log.InvalidClause(LogCategory, "leader", lexer);
                         continue;
                     }
 
@@ -5646,7 +5646,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "location");
+                        Log.InvalidClause(LogCategory, "location", lexer);
                         continue;
                     }
 
@@ -5661,7 +5661,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "prevprov");
+                        Log.InvalidClause(LogCategory, "prevprov", lexer);
                         continue;
                     }
 
@@ -5676,7 +5676,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "home");
+                        Log.InvalidClause(LogCategory, "home", lexer);
                         continue;
                     }
 
@@ -5691,7 +5691,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "base");
+                        Log.InvalidClause(LogCategory, "base", lexer);
                         continue;
                     }
 
@@ -5706,7 +5706,7 @@ namespace HoI2Editor.Parsers
                     NavalMission mission = ParseNavalMission(lexer);
                     if (mission == null)
                     {
-                        Log.InvalidSection(LogCategory, "mission");
+                        Log.InvalidSection(LogCategory, "mission", lexer);
                         continue;
                     }
 
@@ -5721,7 +5721,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "date");
+                        Log.InvalidSection(LogCategory, "date", lexer);
                         continue;
                     }
 
@@ -5736,7 +5736,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "movetime");
+                        Log.InvalidSection(LogCategory, "movetime", lexer);
                         continue;
                     }
 
@@ -5751,7 +5751,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "movement");
+                        Log.InvalidSection(LogCategory, "movement", lexer);
                         continue;
                     }
 
@@ -5766,7 +5766,7 @@ namespace HoI2Editor.Parsers
                     NavalDivision division = ParseNavalDivision(lexer);
                     if (division == null)
                     {
-                        Log.InvalidSection(LogCategory, "division");
+                        Log.InvalidSection(LogCategory, "division", lexer);
                         continue;
                     }
 
@@ -5781,7 +5781,7 @@ namespace HoI2Editor.Parsers
                     LandUnit landUnit = ParseLandUnit(lexer);
                     if (landUnit == null)
                     {
-                        Log.InvalidSection(LogCategory, "landunit");
+                        Log.InvalidSection(LogCategory, "landunit", lexer);
                         continue;
                     }
 
@@ -5859,7 +5859,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -5874,7 +5874,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "name");
+                        Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
                     }
 
@@ -5889,7 +5889,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "leader");
+                        Log.InvalidClause(LogCategory, "leader", lexer);
                         continue;
                     }
 
@@ -5904,7 +5904,7 @@ namespace HoI2Editor.Parsers
                     Country? tag = ParseTag(lexer);
                     if (!tag.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "control");
+                        Log.InvalidClause(LogCategory, "control", lexer);
                         continue;
                     }
 
@@ -5919,7 +5919,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "location");
+                        Log.InvalidClause(LogCategory, "location", lexer);
                         continue;
                     }
 
@@ -5934,7 +5934,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "prevprov");
+                        Log.InvalidClause(LogCategory, "prevprov", lexer);
                         continue;
                     }
 
@@ -5949,7 +5949,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "home");
+                        Log.InvalidClause(LogCategory, "home", lexer);
                         continue;
                     }
 
@@ -5964,7 +5964,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "base");
+                        Log.InvalidClause(LogCategory, "base", lexer);
                         continue;
                     }
 
@@ -5979,7 +5979,7 @@ namespace HoI2Editor.Parsers
                     AirMission mission = ParseAirMission(lexer);
                     if (mission == null)
                     {
-                        Log.InvalidSection(LogCategory, "mission");
+                        Log.InvalidSection(LogCategory, "mission", lexer);
                         continue;
                     }
 
@@ -5994,7 +5994,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "date");
+                        Log.InvalidSection(LogCategory, "date", lexer);
                         continue;
                     }
 
@@ -6009,7 +6009,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "movetime");
+                        Log.InvalidSection(LogCategory, "movetime", lexer);
                         continue;
                     }
 
@@ -6024,7 +6024,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "movement");
+                        Log.InvalidSection(LogCategory, "movement", lexer);
                         continue;
                     }
 
@@ -6039,7 +6039,7 @@ namespace HoI2Editor.Parsers
                     AirDivision division = ParseAirDivision(lexer);
                     if (division == null)
                     {
-                        Log.InvalidSection(LogCategory, "division");
+                        Log.InvalidSection(LogCategory, "division", lexer);
                         continue;
                     }
 
@@ -6054,7 +6054,7 @@ namespace HoI2Editor.Parsers
                     LandUnit landUnit = ParseLandUnit(lexer);
                     if (landUnit == null)
                     {
-                        Log.InvalidSection(LogCategory, "landunit");
+                        Log.InvalidSection(LogCategory, "landunit", lexer);
                         continue;
                     }
 
@@ -6136,7 +6136,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -6151,7 +6151,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "name");
+                        Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
                     }
 
@@ -6163,15 +6163,15 @@ namespace HoI2Editor.Parsers
                 // type
                 if (keyword.Equals("type"))
                 {
-                    UnitType type = ParseDivisionType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseDivisionType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "type");
+                        Log.InvalidClause(LogCategory, "type", lexer);
                         continue;
                     }
 
                     // ユニット種類
-                    division.Type = type;
+                    division.Type = (UnitType) type;
                     continue;
                 }
 
@@ -6181,7 +6181,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "model");
+                        Log.InvalidClause(LogCategory, "model", lexer);
                         continue;
                     }
 
@@ -6193,90 +6193,90 @@ namespace HoI2Editor.Parsers
                 // extra
                 if (keyword.Equals("extra"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra");
+                        Log.InvalidClause(LogCategory, "extra", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra = type;
+                    division.Extra = (UnitType) type;
                     continue;
                 }
 
                 // extra1
                 if (keyword.Equals("extra1"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra1");
+                        Log.InvalidClause(LogCategory, "extra1", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra1 = type;
+                    division.Extra1 = (UnitType) type;
                     continue;
                 }
 
                 // extra2
                 if (keyword.Equals("extra2"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra2");
+                        Log.InvalidClause(LogCategory, "extra2", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra2 = type;
+                    division.Extra2 = (UnitType) type;
                     continue;
                 }
 
                 // extra3
                 if (keyword.Equals("extra3"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra3");
+                        Log.InvalidClause(LogCategory, "extra3", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra3 = type;
+                    division.Extra3 = (UnitType) type;
                     continue;
                 }
 
                 // extra4
                 if (keyword.Equals("extra4"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra4");
+                        Log.InvalidClause(LogCategory, "extra4", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra4 = type;
+                    division.Extra4 = (UnitType) type;
                     continue;
                 }
 
                 // extra5
                 if (keyword.Equals("extra5"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra5");
+                        Log.InvalidClause(LogCategory, "extra5", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra5 = type;
+                    division.Extra5 = (UnitType) type;
                     continue;
                 }
 
@@ -6286,7 +6286,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model");
+                        Log.InvalidClause(LogCategory, "brigade_model", lexer);
                         continue;
                     }
 
@@ -6301,7 +6301,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model1");
+                        Log.InvalidClause(LogCategory, "brigade_model1", lexer);
                         continue;
                     }
 
@@ -6316,7 +6316,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model2");
+                        Log.InvalidClause(LogCategory, "brigade_model2", lexer);
                         continue;
                     }
 
@@ -6331,7 +6331,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model3");
+                        Log.InvalidClause(LogCategory, "brigade_model3", lexer);
                         continue;
                     }
 
@@ -6346,7 +6346,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model4");
+                        Log.InvalidClause(LogCategory, "brigade_model4", lexer);
                         continue;
                     }
 
@@ -6361,7 +6361,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model5");
+                        Log.InvalidClause(LogCategory, "brigade_model5", lexer);
                         continue;
                     }
 
@@ -6376,7 +6376,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "max_strength");
+                        Log.InvalidClause(LogCategory, "max_strength", lexer);
                         continue;
                     }
 
@@ -6391,7 +6391,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "strength");
+                        Log.InvalidClause(LogCategory, "strength", lexer);
                         continue;
                     }
 
@@ -6406,7 +6406,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "organisation");
+                        Log.InvalidClause(LogCategory, "organisation", lexer);
                         continue;
                     }
 
@@ -6421,7 +6421,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "morale");
+                        Log.InvalidClause(LogCategory, "morale", lexer);
                         continue;
                     }
 
@@ -6436,7 +6436,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "experience");
+                        Log.InvalidClause(LogCategory, "experience", lexer);
                         continue;
                     }
 
@@ -6451,7 +6451,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "offensive");
+                        Log.InvalidSection(LogCategory, "offensive", lexer);
                         continue;
                     }
 
@@ -6466,7 +6466,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "dormant");
+                        Log.InvalidClause(LogCategory, "dormant", lexer);
                         continue;
                     }
 
@@ -6481,7 +6481,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "dormant");
+                        Log.InvalidClause(LogCategory, "dormant", lexer);
                         continue;
                     }
 
@@ -6559,7 +6559,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -6574,7 +6574,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "name");
+                        Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
                     }
 
@@ -6586,15 +6586,15 @@ namespace HoI2Editor.Parsers
                 // type
                 if (keyword.Equals("type"))
                 {
-                    UnitType type = ParseDivisionType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseDivisionType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "type");
+                        Log.InvalidClause(LogCategory, "type", lexer);
                         continue;
                     }
 
                     // ユニット種類
-                    division.Type = type;
+                    division.Type = (UnitType) type;
                     continue;
                 }
 
@@ -6604,7 +6604,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "model");
+                        Log.InvalidClause(LogCategory, "model", lexer);
                         continue;
                     }
 
@@ -6619,7 +6619,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "nuke");
+                        Log.InvalidClause(LogCategory, "nuke", lexer);
                         continue;
                     }
 
@@ -6631,90 +6631,90 @@ namespace HoI2Editor.Parsers
                 // extra
                 if (keyword.Equals("extra"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra");
+                        Log.InvalidClause(LogCategory, "extra", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra = type;
+                    division.Extra = (UnitType) type;
                     continue;
                 }
 
                 // extra1
                 if (keyword.Equals("extra1"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra1");
+                        Log.InvalidClause(LogCategory, "extra1", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra1 = type;
+                    division.Extra1 = (UnitType) type;
                     continue;
                 }
 
                 // extra2
                 if (keyword.Equals("extra2"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra2");
+                        Log.InvalidClause(LogCategory, "extra2", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra2 = type;
+                    division.Extra2 = (UnitType) type;
                     continue;
                 }
 
                 // extra3
                 if (keyword.Equals("extra3"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra3");
+                        Log.InvalidClause(LogCategory, "extra3", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra3 = type;
+                    division.Extra3 = (UnitType) type;
                     continue;
                 }
 
                 // extra4
                 if (keyword.Equals("extra4"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra4");
+                        Log.InvalidClause(LogCategory, "extra4", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra4 = type;
+                    division.Extra4 = (UnitType) type;
                     continue;
                 }
 
                 // extra5
                 if (keyword.Equals("extra5"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra5");
+                        Log.InvalidClause(LogCategory, "extra5", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra5 = type;
+                    division.Extra5 = (UnitType) type;
                     continue;
                 }
 
@@ -6724,7 +6724,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model");
+                        Log.InvalidClause(LogCategory, "brigade_model", lexer);
                         continue;
                     }
 
@@ -6739,7 +6739,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model1");
+                        Log.InvalidClause(LogCategory, "brigade_model1", lexer);
                         continue;
                     }
 
@@ -6754,7 +6754,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model2");
+                        Log.InvalidClause(LogCategory, "brigade_model2", lexer);
                         continue;
                     }
 
@@ -6769,7 +6769,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model3");
+                        Log.InvalidClause(LogCategory, "brigade_model3", lexer);
                         continue;
                     }
 
@@ -6784,7 +6784,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model4");
+                        Log.InvalidClause(LogCategory, "brigade_model4", lexer);
                         continue;
                     }
 
@@ -6799,7 +6799,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model5");
+                        Log.InvalidClause(LogCategory, "brigade_model5", lexer);
                         continue;
                     }
 
@@ -6814,7 +6814,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "max_strength");
+                        Log.InvalidClause(LogCategory, "max_strength", lexer);
                         continue;
                     }
 
@@ -6829,7 +6829,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "strength");
+                        Log.InvalidClause(LogCategory, "strength", lexer);
                         continue;
                     }
 
@@ -6844,7 +6844,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "organisation");
+                        Log.InvalidClause(LogCategory, "organisation", lexer);
                         continue;
                     }
 
@@ -6859,7 +6859,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "morale");
+                        Log.InvalidClause(LogCategory, "morale", lexer);
                         continue;
                     }
 
@@ -6874,7 +6874,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "experience");
+                        Log.InvalidClause(LogCategory, "experience", lexer);
                         continue;
                     }
 
@@ -6889,7 +6889,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "maxspeed");
+                        Log.InvalidClause(LogCategory, "maxspeed", lexer);
                         continue;
                     }
 
@@ -6904,7 +6904,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "seadefence");
+                        Log.InvalidClause(LogCategory, "seadefence", lexer);
                         continue;
                     }
 
@@ -6919,7 +6919,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "airdefence");
+                        Log.InvalidClause(LogCategory, "airdefence", lexer);
                         continue;
                     }
 
@@ -6934,7 +6934,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "seaattack");
+                        Log.InvalidClause(LogCategory, "seaattack", lexer);
                         continue;
                     }
 
@@ -6949,7 +6949,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "subattack");
+                        Log.InvalidClause(LogCategory, "subattack", lexer);
                         continue;
                     }
 
@@ -6964,7 +6964,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "convoyattack");
+                        Log.InvalidClause(LogCategory, "convoyattack", lexer);
                         continue;
                     }
 
@@ -6979,7 +6979,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "shorebombardment");
+                        Log.InvalidClause(LogCategory, "shorebombardment", lexer);
                         continue;
                     }
 
@@ -6994,7 +6994,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "airattack");
+                        Log.InvalidClause(LogCategory, "airattack", lexer);
                         continue;
                     }
 
@@ -7009,7 +7009,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "distance");
+                        Log.InvalidClause(LogCategory, "distance", lexer);
                         continue;
                     }
 
@@ -7024,7 +7024,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "visibility");
+                        Log.InvalidClause(LogCategory, "visibility", lexer);
                         continue;
                     }
 
@@ -7039,7 +7039,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "surfacedetectioncapability");
+                        Log.InvalidClause(LogCategory, "surfacedetectioncapability", lexer);
                         continue;
                     }
 
@@ -7054,7 +7054,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "subdetectioncapability");
+                        Log.InvalidClause(LogCategory, "subdetectioncapability", lexer);
                         continue;
                     }
 
@@ -7069,7 +7069,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "airdetectioncapability");
+                        Log.InvalidClause(LogCategory, "airdetectioncapability", lexer);
                         continue;
                     }
 
@@ -7084,7 +7084,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "dormant");
+                        Log.InvalidClause(LogCategory, "dormant", lexer);
                         continue;
                     }
 
@@ -7162,7 +7162,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -7177,7 +7177,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "name");
+                        Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
                     }
 
@@ -7189,15 +7189,15 @@ namespace HoI2Editor.Parsers
                 // type
                 if (keyword.Equals("type"))
                 {
-                    UnitType type = ParseDivisionType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseDivisionType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "type");
+                        Log.InvalidClause(LogCategory, "type", lexer);
                         continue;
                     }
 
                     // ユニット種類
-                    division.Type = type;
+                    division.Type = (UnitType) type;
                     continue;
                 }
 
@@ -7207,7 +7207,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "model");
+                        Log.InvalidClause(LogCategory, "model", lexer);
                         continue;
                     }
 
@@ -7222,7 +7222,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "nuke");
+                        Log.InvalidClause(LogCategory, "nuke", lexer);
                         continue;
                     }
 
@@ -7234,90 +7234,90 @@ namespace HoI2Editor.Parsers
                 // extra
                 if (keyword.Equals("extra"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra");
+                        Log.InvalidClause(LogCategory, "extra", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra = type;
+                    division.Extra = (UnitType) type;
                     continue;
                 }
 
                 // extra1
                 if (keyword.Equals("extra1"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra1");
+                        Log.InvalidClause(LogCategory, "extra1", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra1 = type;
+                    division.Extra1 = (UnitType) type;
                     continue;
                 }
 
                 // extra2
                 if (keyword.Equals("extra2"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra2");
+                        Log.InvalidClause(LogCategory, "extra2", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra2 = type;
+                    division.Extra2 = (UnitType) type;
                     continue;
                 }
 
                 // extra3
                 if (keyword.Equals("extra3"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra3");
+                        Log.InvalidClause(LogCategory, "extra3", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra3 = type;
+                    division.Extra3 = (UnitType) type;
                     continue;
                 }
 
                 // extra4
                 if (keyword.Equals("extra4"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra4");
+                        Log.InvalidClause(LogCategory, "extra4", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra4 = type;
+                    division.Extra4 = (UnitType) type;
                     continue;
                 }
 
                 // extra5
                 if (keyword.Equals("extra5"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra5");
+                        Log.InvalidClause(LogCategory, "extra5", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra5 = type;
+                    division.Extra5 = (UnitType) type;
                     continue;
                 }
 
@@ -7327,7 +7327,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model");
+                        Log.InvalidClause(LogCategory, "brigade_model", lexer);
                         continue;
                     }
 
@@ -7342,7 +7342,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model1");
+                        Log.InvalidClause(LogCategory, "brigade_model1", lexer);
                         continue;
                     }
 
@@ -7357,7 +7357,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model2");
+                        Log.InvalidClause(LogCategory, "brigade_model2", lexer);
                         continue;
                     }
 
@@ -7372,7 +7372,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model3");
+                        Log.InvalidClause(LogCategory, "brigade_model3", lexer);
                         continue;
                     }
 
@@ -7387,7 +7387,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model4");
+                        Log.InvalidClause(LogCategory, "brigade_model4", lexer);
                         continue;
                     }
 
@@ -7402,7 +7402,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model5");
+                        Log.InvalidClause(LogCategory, "brigade_model5", lexer);
                         continue;
                     }
 
@@ -7417,7 +7417,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "max_strength");
+                        Log.InvalidClause(LogCategory, "max_strength", lexer);
                         continue;
                     }
 
@@ -7432,7 +7432,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "strength");
+                        Log.InvalidClause(LogCategory, "strength", lexer);
                         continue;
                     }
 
@@ -7447,7 +7447,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "organisation");
+                        Log.InvalidClause(LogCategory, "organisation", lexer);
                         continue;
                     }
 
@@ -7462,7 +7462,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "morale");
+                        Log.InvalidClause(LogCategory, "morale", lexer);
                         continue;
                     }
 
@@ -7477,7 +7477,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "experience");
+                        Log.InvalidClause(LogCategory, "experience", lexer);
                         continue;
                     }
 
@@ -7492,7 +7492,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "dormant");
+                        Log.InvalidClause(LogCategory, "dormant", lexer);
                         continue;
                     }
 
@@ -7570,7 +7570,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -7585,7 +7585,7 @@ namespace HoI2Editor.Parsers
                     string s = ParseString(lexer);
                     if (string.IsNullOrEmpty(s))
                     {
-                        Log.InvalidClause(LogCategory, "name");
+                        Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
                     }
 
@@ -7600,7 +7600,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "cost");
+                        Log.InvalidClause(LogCategory, "cost", lexer);
                         continue;
                     }
 
@@ -7615,7 +7615,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "manpower");
+                        Log.InvalidClause(LogCategory, "manpower", lexer);
                         continue;
                     }
 
@@ -7630,7 +7630,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "unitcost");
+                        Log.InvalidClause(LogCategory, "unitcost", lexer);
                         continue;
                     }
 
@@ -7645,7 +7645,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "unitcost");
+                        Log.InvalidClause(LogCategory, "unitcost", lexer);
                         continue;
                     }
 
@@ -7660,7 +7660,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "date");
+                        Log.InvalidSection(LogCategory, "date", lexer);
                         continue;
                     }
 
@@ -7675,7 +7675,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "progress");
+                        Log.InvalidClause(LogCategory, "progress", lexer);
                         continue;
                     }
 
@@ -7690,7 +7690,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "total_progress");
+                        Log.InvalidClause(LogCategory, "total_progress", lexer);
                         continue;
                     }
 
@@ -7705,7 +7705,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "gearing_bonus");
+                        Log.InvalidClause(LogCategory, "gearing_bonus", lexer);
                         continue;
                     }
 
@@ -7720,7 +7720,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "size");
+                        Log.InvalidClause(LogCategory, "size", lexer);
                         continue;
                     }
 
@@ -7735,7 +7735,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "done");
+                        Log.InvalidClause(LogCategory, "done", lexer);
                         continue;
                     }
 
@@ -7750,7 +7750,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "days");
+                        Log.InvalidClause(LogCategory, "days", lexer);
                         continue;
                     }
 
@@ -7765,7 +7765,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "days_for_first");
+                        Log.InvalidClause(LogCategory, "days_for_first", lexer);
                         continue;
                     }
 
@@ -7777,15 +7777,15 @@ namespace HoI2Editor.Parsers
                 // type
                 if (keyword.Equals("type"))
                 {
-                    UnitType type = ParseDivisionType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseDivisionType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "type");
+                        Log.InvalidClause(LogCategory, "type", lexer);
                         continue;
                     }
 
                     // ユニット種類
-                    division.Type = type;
+                    division.Type = (UnitType) type;
                     continue;
                 }
 
@@ -7795,7 +7795,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "model");
+                        Log.InvalidClause(LogCategory, "model", lexer);
                         continue;
                     }
 
@@ -7807,90 +7807,90 @@ namespace HoI2Editor.Parsers
                 // extra
                 if (keyword.Equals("extra"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra");
+                        Log.InvalidClause(LogCategory, "extra", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra = type;
+                    division.Extra = (UnitType) type;
                     continue;
                 }
 
                 // extra1
                 if (keyword.Equals("extra1"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra1");
+                        Log.InvalidClause(LogCategory, "extra1", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra1 = type;
+                    division.Extra1 = (UnitType) type;
                     continue;
                 }
 
                 // extra2
                 if (keyword.Equals("extra2"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra2");
+                        Log.InvalidClause(LogCategory, "extra2", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra2 = type;
+                    division.Extra2 = (UnitType) type;
                     continue;
                 }
 
                 // extra3
                 if (keyword.Equals("extra3"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra3");
+                        Log.InvalidClause(LogCategory, "extra3", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra3 = type;
+                    division.Extra3 = (UnitType) type;
                     continue;
                 }
 
                 // extra4
                 if (keyword.Equals("extra4"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra4");
+                        Log.InvalidClause(LogCategory, "extra4", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra4 = type;
+                    division.Extra4 = (UnitType) type;
                     continue;
                 }
 
                 // extra5
                 if (keyword.Equals("extra5"))
                 {
-                    UnitType type = ParseBrigadeType(lexer);
-                    if (type == UnitType.None)
+                    UnitType? type = ParseBrigadeType(lexer);
+                    if (type == null)
                     {
-                        Log.InvalidClause(LogCategory, "extra5");
+                        Log.InvalidClause(LogCategory, "extra5", lexer);
                         continue;
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra5 = type;
+                    division.Extra5 = (UnitType) type;
                     continue;
                 }
 
@@ -7900,7 +7900,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model");
+                        Log.InvalidClause(LogCategory, "brigade_model", lexer);
                         continue;
                     }
 
@@ -7915,7 +7915,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model1");
+                        Log.InvalidClause(LogCategory, "brigade_model1", lexer);
                         continue;
                     }
 
@@ -7930,7 +7930,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model2");
+                        Log.InvalidClause(LogCategory, "brigade_model2", lexer);
                         continue;
                     }
 
@@ -7945,7 +7945,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model3");
+                        Log.InvalidClause(LogCategory, "brigade_model3", lexer);
                         continue;
                     }
 
@@ -7960,7 +7960,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model4");
+                        Log.InvalidClause(LogCategory, "brigade_model4", lexer);
                         continue;
                     }
 
@@ -7975,7 +7975,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "brigade_model5");
+                        Log.InvalidClause(LogCategory, "brigade_model5", lexer);
                         continue;
                     }
 
@@ -8096,7 +8096,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "target");
+                        Log.InvalidClause(LogCategory, "target", lexer);
                         continue;
                     }
 
@@ -8111,7 +8111,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "percentage");
+                        Log.InvalidClause(LogCategory, "percentage", lexer);
                         continue;
                     }
 
@@ -8126,7 +8126,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "night");
+                        Log.InvalidClause(LogCategory, "night", lexer);
                         continue;
                     }
 
@@ -8141,7 +8141,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "day");
+                        Log.InvalidClause(LogCategory, "day", lexer);
                         continue;
                     }
 
@@ -8156,7 +8156,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "startdate");
+                        Log.InvalidSection(LogCategory, "startdate", lexer);
                         continue;
                     }
 
@@ -8171,7 +8171,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "task");
+                        Log.InvalidClause(LogCategory, "task", lexer);
                         continue;
                     }
 
@@ -8186,7 +8186,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "location");
+                        Log.InvalidClause(LogCategory, "location", lexer);
                         continue;
                     }
 
@@ -8303,7 +8303,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "target");
+                        Log.InvalidClause(LogCategory, "target", lexer);
                         continue;
                     }
 
@@ -8318,7 +8318,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "percentage");
+                        Log.InvalidClause(LogCategory, "percentage", lexer);
                         continue;
                     }
 
@@ -8333,7 +8333,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "night");
+                        Log.InvalidClause(LogCategory, "night", lexer);
                         continue;
                     }
 
@@ -8348,7 +8348,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "day");
+                        Log.InvalidClause(LogCategory, "day", lexer);
                         continue;
                     }
 
@@ -8363,7 +8363,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "startdate");
+                        Log.InvalidSection(LogCategory, "startdate", lexer);
                         continue;
                     }
 
@@ -8378,7 +8378,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "enddate");
+                        Log.InvalidSection(LogCategory, "enddate", lexer);
                         continue;
                     }
 
@@ -8393,7 +8393,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "task");
+                        Log.InvalidClause(LogCategory, "task", lexer);
                         continue;
                     }
 
@@ -8408,7 +8408,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "location");
+                        Log.InvalidClause(LogCategory, "location", lexer);
                         continue;
                     }
 
@@ -8525,7 +8525,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "target");
+                        Log.InvalidClause(LogCategory, "target", lexer);
                         continue;
                     }
 
@@ -8540,7 +8540,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "percentage");
+                        Log.InvalidClause(LogCategory, "percentage", lexer);
                         continue;
                     }
 
@@ -8555,7 +8555,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "night");
+                        Log.InvalidClause(LogCategory, "night", lexer);
                         continue;
                     }
 
@@ -8570,7 +8570,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "day");
+                        Log.InvalidClause(LogCategory, "day", lexer);
                         continue;
                     }
 
@@ -8585,7 +8585,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "startdate");
+                        Log.InvalidSection(LogCategory, "startdate", lexer);
                         continue;
                     }
 
@@ -8600,7 +8600,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "enddate");
+                        Log.InvalidSection(LogCategory, "enddate", lexer);
                         continue;
                     }
 
@@ -8615,7 +8615,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "task");
+                        Log.InvalidClause(LogCategory, "task", lexer);
                         continue;
                     }
 
@@ -8630,7 +8630,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "location");
+                        Log.InvalidClause(LogCategory, "location", lexer);
                         continue;
                     }
 
@@ -8712,7 +8712,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -8727,7 +8727,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "trade_id");
+                        Log.InvalidSection(LogCategory, "trade_id", lexer);
                         continue;
                     }
 
@@ -8742,7 +8742,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "istradeconvoy");
+                        Log.InvalidClause(LogCategory, "istradeconvoy", lexer);
                         continue;
                     }
 
@@ -8756,7 +8756,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "transports");
+                        Log.InvalidClause(LogCategory, "transports", lexer);
                         continue;
                     }
 
@@ -8771,7 +8771,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "escorts");
+                        Log.InvalidClause(LogCategory, "escorts", lexer);
                         continue;
                     }
 
@@ -8786,7 +8786,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "energy");
+                        Log.InvalidClause(LogCategory, "energy", lexer);
                         continue;
                     }
 
@@ -8801,7 +8801,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "metal");
+                        Log.InvalidClause(LogCategory, "metal", lexer);
                         continue;
                     }
 
@@ -8816,7 +8816,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "rare_materials");
+                        Log.InvalidClause(LogCategory, "rare_materials", lexer);
                         continue;
                     }
 
@@ -8831,7 +8831,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "rare_materials");
+                        Log.InvalidClause(LogCategory, "rare_materials", lexer);
                         continue;
                     }
 
@@ -8846,7 +8846,7 @@ namespace HoI2Editor.Parsers
                     bool? b = ParseBool(lexer);
                     if (!b.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "rare_materials");
+                        Log.InvalidClause(LogCategory, "rare_materials", lexer);
                         continue;
                     }
 
@@ -8861,7 +8861,7 @@ namespace HoI2Editor.Parsers
                     IEnumerable<int> list = ParseIdList(lexer);
                     if (list == null)
                     {
-                        Log.InvalidSection(LogCategory, "list");
+                        Log.InvalidSection(LogCategory, "list", lexer);
                         continue;
                     }
 
@@ -8939,7 +8939,7 @@ namespace HoI2Editor.Parsers
                     TypeId id = ParseTypeId(lexer);
                     if (id == null)
                     {
-                        Log.InvalidSection(LogCategory, "id");
+                        Log.InvalidSection(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -8998,7 +8998,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "location");
+                        Log.InvalidClause(LogCategory, "location", lexer);
                         continue;
                     }
 
@@ -9013,7 +9013,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "cost");
+                        Log.InvalidClause(LogCategory, "cost", lexer);
                         continue;
                     }
 
@@ -9028,7 +9028,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "manpower");
+                        Log.InvalidClause(LogCategory, "manpower", lexer);
                         continue;
                     }
 
@@ -9043,7 +9043,7 @@ namespace HoI2Editor.Parsers
                     GameDate date = ParseDate(lexer);
                     if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "date");
+                        Log.InvalidSection(LogCategory, "date", lexer);
                         continue;
                     }
 
@@ -9058,7 +9058,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "progress");
+                        Log.InvalidClause(LogCategory, "progress", lexer);
                         continue;
                     }
 
@@ -9073,7 +9073,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "total_progress");
+                        Log.InvalidClause(LogCategory, "total_progress", lexer);
                         continue;
                     }
 
@@ -9088,7 +9088,7 @@ namespace HoI2Editor.Parsers
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "gearing_bonus");
+                        Log.InvalidClause(LogCategory, "gearing_bonus", lexer);
                         continue;
                     }
 
@@ -9103,7 +9103,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "size");
+                        Log.InvalidClause(LogCategory, "size", lexer);
                         continue;
                     }
 
@@ -9118,7 +9118,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "done");
+                        Log.InvalidClause(LogCategory, "done", lexer);
                         continue;
                     }
 
@@ -9133,7 +9133,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "days");
+                        Log.InvalidClause(LogCategory, "days", lexer);
                         continue;
                     }
 
@@ -9148,7 +9148,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "days_for_first");
+                        Log.InvalidClause(LogCategory, "days_for_first", lexer);
                         continue;
                     }
 
@@ -9359,7 +9359,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "year");
+                        Log.InvalidClause(LogCategory, "year", lexer);
                         continue;
                     }
 
@@ -9435,7 +9435,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "day");
+                        Log.InvalidClause(LogCategory, "day", lexer);
                         continue;
                     }
 
@@ -9460,7 +9460,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "day");
+                        Log.InvalidClause(LogCategory, "day", lexer);
                         continue;
                     }
 
@@ -9543,7 +9543,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "type");
+                        Log.InvalidClause(LogCategory, "type", lexer);
                         continue;
                     }
 
@@ -9558,7 +9558,7 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "id");
+                        Log.InvalidClause(LogCategory, "id", lexer);
                         continue;
                     }
 
@@ -9825,8 +9825,8 @@ namespace HoI2Editor.Parsers
         ///     師団のユニット種類を構文解析する
         /// </summary>
         /// <param name="lexer">字句解析器</param>
-        /// <returns>国タグ</returns>
-        private static UnitType ParseDivisionType(TextLexer lexer)
+        /// <returns>ユニット種類</returns>
+        private static UnitType? ParseDivisionType(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -9834,7 +9834,7 @@ namespace HoI2Editor.Parsers
             {
                 Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
-                return UnitType.None;
+                return null;
             }
 
             // 無効なトークン
@@ -9842,13 +9842,13 @@ namespace HoI2Editor.Parsers
             if (token.Type != TokenType.Identifier)
             {
                 Log.InvalidToken(LogCategory, token, lexer);
-                return UnitType.None;
+                return null;
             }
 
             string s = token.Value as string;
             if (string.IsNullOrEmpty(s))
             {
-                return UnitType.None;
+                return null;
             }
             s = s.ToLower();
 
@@ -9856,7 +9856,7 @@ namespace HoI2Editor.Parsers
             if (!Units.StringMap.ContainsKey(s))
             {
                 Log.InvalidToken(LogCategory, token, lexer);
-                return UnitType.None;
+                return null;
             }
 
             // サポート外のユニット種類
@@ -9864,7 +9864,7 @@ namespace HoI2Editor.Parsers
             if (!Units.DivisionTypes.Contains(type))
             {
                 Log.InvalidToken(LogCategory, token, lexer);
-                return UnitType.None;
+                return null;
             }
 
             return type;
@@ -9874,8 +9874,8 @@ namespace HoI2Editor.Parsers
         ///     旅団のユニット種類を構文解析する
         /// </summary>
         /// <param name="lexer">字句解析器</param>
-        /// <returns>国タグ</returns>
-        private static UnitType ParseBrigadeType(TextLexer lexer)
+        /// <returns>ユニット種類</returns>
+        private static UnitType? ParseBrigadeType(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -9883,7 +9883,7 @@ namespace HoI2Editor.Parsers
             {
                 Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();
-                return UnitType.None;
+                return null;
             }
 
             // 無効なトークン
@@ -9891,13 +9891,13 @@ namespace HoI2Editor.Parsers
             if (token.Type != TokenType.Identifier)
             {
                 Log.InvalidToken(LogCategory, token, lexer);
-                return UnitType.None;
+                return null;
             }
 
             string s = token.Value as string;
             if (string.IsNullOrEmpty(s))
             {
-                return UnitType.None;
+                return null;
             }
             s = s.ToLower();
 
@@ -9905,7 +9905,7 @@ namespace HoI2Editor.Parsers
             if (!Units.StringMap.ContainsKey(s))
             {
                 Log.InvalidToken(LogCategory, token, lexer);
-                return UnitType.None;
+                return null;
             }
 
             // サポート外のユニット種類
@@ -9913,7 +9913,7 @@ namespace HoI2Editor.Parsers
             if (!Units.BrigadeTypes.Contains(type))
             {
                 Log.InvalidToken(LogCategory, token, lexer);
-                return UnitType.None;
+                return null;
             }
 
             return type;

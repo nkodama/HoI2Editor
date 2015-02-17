@@ -139,9 +139,10 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="clauseName">クローズ名</param>
-        public static void InvalidClause(string categoryName, string clauseName)
+        /// <param name="lexer">字句解析器</param>
+        public static void InvalidClause(string categoryName, string clauseName, TextLexer lexer)
         {
-            Warning("[{0}] Parse failed: {1} clause", categoryName, clauseName);
+            Warning("[{0}] Parse failed: {1} clause ({2} L{3})", categoryName, clauseName, lexer.FileName, lexer.LineNo);
         }
 
         /// <summary>
@@ -149,9 +150,11 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="sectionName">セクション名</param>
-        public static void InvalidSection(string categoryName, string sectionName)
+        /// <param name="lexer">字句解析器</param>
+        public static void InvalidSection(string categoryName, string sectionName, TextLexer lexer)
         {
-            Warning("[{0}] Parse failed: {1} section", categoryName, sectionName);
+            Warning("[{0}] Parse failed: {1} section ({2} L{3})", categoryName, sectionName, lexer.FileName,
+                lexer.LineNo);
         }
 
         /// <summary>
