@@ -102,6 +102,11 @@ namespace HoI2Editor.Forms
         /// </summary>
         private MapPanelController _mapPanelController;
 
+        /// <summary>
+        /// マップパネルの初期化フラグ
+        /// </summary>
+        private bool _mapPanelInitialized;
+
         #endregion
 
         #region データ遅延読み込み
@@ -120,11 +125,6 @@ namespace HoI2Editor.Forms
         ///     プロヴィンスデータロード用
         /// </summary>
         private readonly BackgroundWorker _provinceWorker = new BackgroundWorker();
-
-        /// <summary>
-        ///     マップデータロード用
-        /// </summary>
-        private readonly BackgroundWorker _mapWorker = new BackgroundWorker();
 
         #endregion
 
@@ -376,18 +376,14 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // マップパネルを初期化する
-            InitMapPanel();
-
-            // マップフィルターを有効化する
-            EnableMapFilter();
-
-            // 選択プロヴィンスが表示されるようにスクロールする
-            Province province = GetSelectedProvince();
-            if (province != null)
+            // プロヴィンスタブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Province)
             {
-                _mapPanelController.ScrollToProvince(province.Id);
+                return;
             }
+
+            // マップパネルを更新する
+            UpdateMapPanel();
         }
 
         #endregion
@@ -8846,6 +8842,9 @@ namespace HoI2Editor.Forms
 
             // 初回遷移時には表示を更新する
             UpdateProvinceTab();
+
+            // 読み込み済みで未初期化ならばマップパネルを更新する
+            UpdateMapPanel();
         }
 
         #endregion
@@ -8853,12 +8852,38 @@ namespace HoI2Editor.Forms
         #region プロヴィンスタブ - マップ
 
         /// <summary>
-        ///     マップパネルを初期化する
+        /// マップパネルを更新する
         /// </summary>
-        private void InitMapPanel()
+        private void UpdateMapPanel()
         {
+            // マップ読み込み前ならば何もしない
+            if (!Maps.IsLoaded[(int) MapLevel.Level2])
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_mapPanelInitialized)
+            {
+                return;
+            }
+
+            // 初期化済みフラグを設定する
+            _mapPanelInitialized = true;
+
+            // マップパネルを有効化する
             _mapPanelController.ProvinceMouseClick += OnMapPanelMouseClick;
             _mapPanelController.Show();
+
+            // マップフィルターを有効化する
+            EnableMapFilter();
+
+            // 選択プロヴィンスが表示されるようにスクロールする
+            Province province = GetSelectedProvince();
+            if (province != null)
+            {
+                _mapPanelController.ScrollToProvince(province.Id);
+            }
         }
 
         /// <summary>
