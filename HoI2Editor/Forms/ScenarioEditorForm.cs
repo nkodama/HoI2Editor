@@ -103,7 +103,7 @@ namespace HoI2Editor.Forms
         private MapPanelController _mapPanelController;
 
         /// <summary>
-        /// マップパネルの初期化フラグ
+        ///     マップパネルの初期化フラグ
         /// </summary>
         private bool _mapPanelInitialized;
 
@@ -4769,8 +4769,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = selected };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(selected);
             }
 
             if (relation == null)
@@ -4854,8 +4853,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = selected };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(selected);
             }
 
             if (relation == null)
@@ -4928,8 +4926,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = selected };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(selected);
             }
 
             if (relation == null)
@@ -5001,8 +4998,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = selected };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(selected);
             }
 
             _controller.OutputItemValueChangedLog(itemId, val, settings);
@@ -5379,8 +5375,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = selected };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(selected);
             }
 
             if (spy == null)
@@ -6949,8 +6944,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             _controller.OutputItemValueChangedLog(itemId, val, settings);
@@ -7024,8 +7018,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             _controller.OutputItemValueChangedLog(itemId, val, settings);
@@ -7085,8 +7078,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             _controller.OutputItemValueChangedLog(itemId, val, settings);
@@ -7243,8 +7235,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             _controller.OutputItemValueChangedLog(itemId, val, settings);
@@ -7788,8 +7779,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             _controller.OutputItemValueChangedLog(itemId, val, settings);
@@ -7845,8 +7835,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             _controller.OutputItemValueChangedLog(itemId, val, settings);
@@ -7942,8 +7931,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             _controller.OutputItemValueChangedLog(itemId, val, settings);
@@ -8378,8 +8366,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             // 値を更新する
@@ -8435,8 +8422,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             // 値を更新する
@@ -8492,8 +8478,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             // 値を更新する
@@ -8576,8 +8561,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             // 値を更新する
@@ -8622,8 +8606,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             if (val)
@@ -8667,8 +8650,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             if (val)
@@ -8852,7 +8834,7 @@ namespace HoI2Editor.Forms
         #region プロヴィンスタブ - マップ
 
         /// <summary>
-        /// マップパネルを更新する
+        ///     マップパネルを更新する
         /// </summary>
         private void UpdateMapPanel()
         {
@@ -10045,8 +10027,7 @@ namespace HoI2Editor.Forms
 
             if (settings == null)
             {
-                settings = new CountrySettings { Country = country };
-                Scenarios.SetCountrySettings(settings);
+                settings = Scenarios.CreateCountrySettings(country);
             }
 
             _controller.OutputItemValueChangedLog(itemId, val, province, settings);

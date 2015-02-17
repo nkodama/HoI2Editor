@@ -771,12 +771,31 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     国家設定を設定する
+        ///     国家設定を作成する
         /// </summary>
-        /// <param name="settings">国家設定</param>
-        public static void SetCountrySettings(CountrySettings settings)
+        /// <param name="country">対象国</param>
+        /// <returns>国家設定</returns>
+        public static CountrySettings CreateCountrySettings(Country country)
         {
-            CountryTable[settings.Country] = settings;
+            CountrySettings settings = new CountrySettings
+            {
+                Country = country,
+                FileName = string.Format("{0}.inc", Countries.Strings[(int) country].ToLower())
+            };
+
+            // 国家設定テーブルに登録する
+            CountryTable[country] = settings;
+
+            // 国家設定リストに追加する
+            Data.Countries.Add(settings);
+
+            // インクルードファイルを追加する
+            Data.IncludeFiles.Add(string.Format("scenarios\\{0}\\{1}", Data.IncludeFolder, settings.FileName));
+
+            // シナリオファイルの編集済みフラグを設定する
+            Data.SetDirty();
+
+            return settings;
         }
 
         /// <summary>
