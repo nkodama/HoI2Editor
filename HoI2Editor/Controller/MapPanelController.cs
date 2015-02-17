@@ -28,9 +28,12 @@ namespace HoI2Editor.Controller
             set
             {
                 // プロヴィンス単位でマップ画像を更新する
-                List<ushort> prev = GetHighlightedProvinces(_mode, _country);
-                List<ushort> next = GetHighlightedProvinces(value, _country);
-                UpdateProvinces(prev, next);
+                if (Maps.IsLoaded[(int) Level])
+                {
+                    List<ushort> prev = GetHighlightedProvinces(_mode, _country);
+                    List<ushort> next = GetHighlightedProvinces(value, _country);
+                    UpdateProvinces(prev, next);
+                }
 
                 // フィルターモードを更新する
                 _mode = value;
@@ -46,9 +49,12 @@ namespace HoI2Editor.Controller
             set
             {
                 // プロヴィンス単位でマップ画像を更新する
-                List<ushort> prev = GetHighlightedProvinces(_mode, _country);
-                List<ushort> next = GetHighlightedProvinces(_mode, value);
-                UpdateProvinces(prev, next);
+                if (Maps.IsLoaded[(int) Level])
+                {
+                    List<ushort> prev = GetHighlightedProvinces(_mode, _country);
+                    List<ushort> next = GetHighlightedProvinces(_mode, value);
+                    UpdateProvinces(prev, next);
+                }
 
                 // 選択国を更新する
                 _country = value;
