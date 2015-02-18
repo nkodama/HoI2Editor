@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
@@ -748,8 +749,9 @@ namespace HoI2Editor.Models
             {
                 Directory.CreateDirectory(folderName);
             }
+            string pathName = Path.Combine(folderName, fileName);
 
-            using (StreamWriter writer = new StreamWriter(fileName))
+            using (StreamWriter writer = new StreamWriter(pathName, false, Encoding.GetEncoding(Game.CodePage)))
             {
                 // 最初のEOF定義で追加文字列を書き込むためのフラグ
                 bool firsteof = true;

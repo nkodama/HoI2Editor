@@ -1,9 +1,10 @@
 Alternative HoI2 Editor Changelog
 
-- 18 Feb 2015; Ver 0.43
+- 19 Feb 2015; Ver 0.43
 
 New country's inc file can be saved.
 Supported scenario switching and reloading.
+Fixed a bug that text files are not saved in the correct places.
 Fixed a bug that the scenario editor crashes when saving or reloading without loading any scenarios.
 Fixed a bug that the scenario editor crashes when closing the window and reopening it.
 Fixed a bug that the scenario editor crashes if a country is selected before the map is loaded.
