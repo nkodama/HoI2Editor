@@ -792,6 +792,9 @@
   <data name="&gt;&gt;techTreePanel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="inventionsListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="inventionsListView.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -816,6 +819,9 @@
   <data name="&gt;&gt;inventionsListView.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="blueprintsListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="blueprintsListView.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -839,6 +845,9 @@
   </data>
   <data name="&gt;&gt;blueprintsListView.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="ownedTechsListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="ownedTechsListView.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -921,6 +930,9 @@
   <data name="&gt;&gt;techCategoryListBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="blueprintsLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="blueprintsLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -954,6 +966,9 @@
   <data name="&gt;&gt;blueprintsLabel.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="inventionsLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="inventionsLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -986,6 +1001,9 @@
   </data>
   <data name="&gt;&gt;inventionsLabel.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="techCountryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="techCountryListBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2007,6 +2025,9 @@
   <data name="&gt;&gt;provinceCountryFilterComboBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="provinceCountryGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
   <data name="claimedProvinceCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2352,6 +2373,9 @@
   <data name="&gt;&gt;mapFilterGroupBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="provinceInfoGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
   <data name="provinceNameStringTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>82, 47</value>
   </data>
@@ -2468,6 +2492,9 @@
   </data>
   <data name="&gt;&gt;provinceInfoGroupBox.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="provinceResourceGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="manpowerCurrentTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>145, 30</value>
@@ -3035,6 +3062,9 @@
   </data>
   <data name="&gt;&gt;provinceResourceGroupBox.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="provinceBuildingGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
   <data name="nuclearPowerRelativeTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 334</value>
@@ -3999,6 +4029,9 @@
   <data name="&gt;&gt;provinceBuildingGroupBox.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <data name="provinceMapPanel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <data name="provinceMapPanel.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4049,6 +4082,9 @@
   </data>
   <data name="&gt;&gt;provinceMapPanel.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="provinceListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
   </data>
   <data name="provinceIdColumnHeader.Text" xml:space="preserve">
     <value>ID</value>
@@ -5157,6 +5193,9 @@
   <data name="&gt;&gt;cabinetGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="governmentCountryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
   <data name="governmentCountryListBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -6143,6 +6182,9 @@
   </data>
   <data name="&gt;&gt;aiGroupBox.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="countryListBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -7263,6 +7305,9 @@
   <data name="&gt;&gt;countryTabPage.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="tradeDealsGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="tradeCountryComboBox1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Courier New, 9pt</value>
   </data>
@@ -7830,6 +7875,9 @@
   <data name="&gt;&gt;tradeDealsGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="tradeInfoGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="tradeIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>138, 66</value>
   </data>
@@ -8076,6 +8124,9 @@
   <data name="&gt;&gt;tradeInfoGroupBox.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="tradeListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
   <data name="tradeCountryColumnHeader1.Text" xml:space="preserve">
     <value>Country1</value>
   </data>
@@ -8118,6 +8169,9 @@
   <data name="&gt;&gt;tradeListView.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="tradeDownButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="tradeDownButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -8147,6 +8201,9 @@
   </data>
   <data name="&gt;&gt;tradeDownButton.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="tradeNewButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="tradeNewButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -8178,6 +8235,9 @@
   <data name="&gt;&gt;tradeNewButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="tradeRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="tradeRemoveButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -8207,6 +8267,9 @@
   </data>
   <data name="&gt;&gt;tradeRemoveButton.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="tradeUpButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="tradeUpButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -8264,6 +8327,9 @@
   </data>
   <data name="&gt;&gt;tradeTabPage.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="peaceGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="peaceIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>159, 90</value>
@@ -8601,6 +8667,9 @@
   <data name="&gt;&gt;peaceGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="guaranteedGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="guaranteedCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -8756,6 +8825,9 @@
   </data>
   <data name="&gt;&gt;guaranteedGroupBox.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="nonAggressionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="nonAggressionIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>159, 90</value>
@@ -9093,6 +9165,9 @@
   <data name="&gt;&gt;nonAggressionGroupBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="relationGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="relationValueTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>103, 17</value>
   </data>
@@ -9231,6 +9306,9 @@
   <data name="&gt;&gt;relationGroupBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="intelligenceGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="spyNumNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
     <value>114, 21</value>
   </data>
@@ -9278,6 +9356,9 @@
   </data>
   <data name="&gt;&gt;intelligenceGroupBox.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="relationListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="relationCountryColumnHeader.Text" xml:space="preserve">
     <value>Country</value>
@@ -9381,6 +9462,9 @@
   <data name="&gt;&gt;relationListView.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="relationCountryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
   <data name="relationCountryListBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -9441,6 +9525,12 @@
   <data name="allianceTabPage.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="warGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="warDefenderLeaderButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="warDefenderLeaderButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -9471,6 +9561,9 @@
   <data name="&gt;&gt;warDefenderLeaderButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="warAttackerLeaderButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="warAttackerLeaderButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -9500,6 +9593,9 @@
   </data>
   <data name="&gt;&gt;warAttackerLeaderButton.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="warDefenderIdLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="warDefenderIdLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -9534,6 +9630,9 @@
   <data name="&gt;&gt;warDefenderIdLabel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="warAttackerIdLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="warAttackerIdLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -9567,6 +9666,9 @@
   <data name="&gt;&gt;warAttackerIdLabel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="warDefenderIdTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="warDefenderIdTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -9593,6 +9695,9 @@
   </data>
   <data name="&gt;&gt;warDefenderIdTextBox.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="warDefenderTypeTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="warDefenderTypeTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -9621,6 +9726,9 @@
   <data name="&gt;&gt;warDefenderTypeTextBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="warAttackerIdTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="warAttackerIdTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -9647,6 +9755,9 @@
   </data>
   <data name="&gt;&gt;warAttackerIdTextBox.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="warAttackerTypeTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="warAttackerTypeTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -10080,6 +10191,9 @@
   <data name="&gt;&gt;warNewButton.ZOrder" xml:space="preserve">
     <value>21</value>
   </data>
+  <data name="warAttackerRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="warAttackerRemoveButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -10140,6 +10254,9 @@
   <data name="&gt;&gt;warUpButton.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
+  <data name="warAttackerListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
   <data name="warAttackerListBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -10166,6 +10283,9 @@
   </data>
   <data name="&gt;&gt;warAttackerListBox.ZOrder" xml:space="preserve">
     <value>24</value>
+  </data>
+  <data name="warDefenderRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="warDefenderRemoveButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -10230,6 +10350,9 @@
   <data name="&gt;&gt;warAttackerLabel.ZOrder" xml:space="preserve">
     <value>26</value>
   </data>
+  <data name="warDefenderListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
   <data name="warDefenderListBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -10287,6 +10410,9 @@
   <data name="&gt;&gt;warDownButton.ZOrder" xml:space="preserve">
     <value>28</value>
   </data>
+  <data name="warFreeCountryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
   <data name="warFreeCountryListBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -10313,6 +10439,9 @@
   </data>
   <data name="&gt;&gt;warFreeCountryListBox.ZOrder" xml:space="preserve">
     <value>29</value>
+  </data>
+  <data name="warAttackerAddButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="warAttackerAddButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -10343,6 +10472,9 @@
   </data>
   <data name="&gt;&gt;warAttackerAddButton.ZOrder" xml:space="preserve">
     <value>30</value>
+  </data>
+  <data name="warDefenderAddButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="warDefenderAddButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -10430,6 +10562,9 @@
   </data>
   <data name="&gt;&gt;warGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="allianceGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="allianceIdTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -10638,6 +10773,9 @@
   <data name="&gt;&gt;allianceParticipantLabel.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="allianceLeaderButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="allianceLeaderButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -10667,6 +10805,9 @@
   </data>
   <data name="&gt;&gt;allianceLeaderButton.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="allianceParticipantListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="allianceParticipantListBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -10725,6 +10866,9 @@
   <data name="&gt;&gt;allianceUpButton.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
+  <data name="allianceParticipantAddButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="allianceParticipantAddButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -10754,6 +10898,9 @@
   </data>
   <data name="&gt;&gt;allianceParticipantAddButton.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="allianceFreeCountryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="allianceFreeCountryListBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -10838,6 +10985,9 @@
   </data>
   <data name="&gt;&gt;allianceNewButton.ZOrder" xml:space="preserve">
     <value>13</value>
+  </data>
+  <data name="allianceParticipantRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="allianceParticipantRemoveButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -10952,6 +11102,9 @@
   </data>
   <data name="&gt;&gt;allianceTabPage.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="scenarioOptionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="gameSpeedLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -11282,6 +11435,9 @@
   </data>
   <data name="&gt;&gt;scenarioOptionGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="countrySelectionGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="countryDescKeyTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -11663,6 +11819,9 @@
   </data>
   <data name="&gt;&gt;propagandaLabel.ZOrder" xml:space="preserve">
     <value>13</value>
+  </data>
+  <data name="countryDescStringTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="countryDescStringTextBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -12420,6 +12579,9 @@
   <data name="&gt;&gt;scenarioInfoGroupBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="loadButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="loadButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -12446,6 +12608,9 @@
   </data>
   <data name="&gt;&gt;loadButton.ZOrder" xml:space="preserve">
     <value>3</value>
+  </data>
+  <data name="folderGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="exportRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -12558,6 +12723,9 @@
   <data name="&gt;&gt;folderGroupBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="typeGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="saveGamesRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -12642,6 +12810,9 @@
   <data name="&gt;&gt;typeGroupBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="scenarioListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
   <data name="scenarioListBox.ItemHeight" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
@@ -12725,6 +12896,9 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>984, 631</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>1000, 670</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Scenario Editor</value>
