@@ -562,7 +562,7 @@ namespace HoI2Editor.Writers
 
         #endregion
 
-        #region プロヴィンス設定
+        #region プロヴィンス
 
         /// <summary>
         ///     プロヴィンス設定をbases.incに書き込む
@@ -1387,6 +1387,90 @@ namespace HoI2Editor.Writers
 
         #endregion
 
+        #region 建物
+
+        /// <summary>
+        ///     生産中建物リストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteBuildingDevelopments(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.BuildingDevelopments.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine();
+            foreach (BuildingDevelopment building in settings.BuildingDevelopments)
+            {
+                WriteBuildingDevelopment(building, writer);
+            }
+        }
+
+        /// <summary>
+        ///     生産中建物を書き出す
+        /// </summary>
+        /// <param name="building">生産中建物</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteBuildingDevelopment(BuildingDevelopment building, TextWriter writer)
+        {
+            writer.WriteLine("  province_development = {");
+            writer.Write("    id                  = ");
+            WriteTypeId(building.Id, writer);
+            writer.WriteLine();
+            if (!string.IsNullOrEmpty(building.Name))
+            {
+                writer.WriteLine("    name                = \"{0}\"", building.Name);
+            }
+            writer.WriteLine("    type                = {0}", Scenarios.BuildingStrings[(int) building.Type]);
+            if (building.Location > 0)
+            {
+                writer.WriteLine("    location            = {0}", building.Location);
+            }
+            if (building.Cost > 0)
+            {
+                writer.WriteLine("    cost                = {0}", DoubleHelper.ToString4(building.Cost));
+            }
+            if (building.Manpower > 0)
+            {
+                writer.WriteLine("    manpower            = {0}", DoubleHelper.ToString4(building.Manpower));
+            }
+            if (building.Date != null)
+            {
+                writer.Write("    date                = ");
+                WriteDate(building.Date, writer);
+                writer.WriteLine();
+            }
+            writer.WriteLine("    progress            = {0}", DoubleHelper.ToString4(building.Progress));
+            writer.WriteLine("    total_progress      = {0}", DoubleHelper.ToString4(building.Progress));
+            if (building.GearingBonus > 0)
+            {
+                writer.WriteLine("    gearing_bonus       = {0}", DoubleHelper.ToString4(building.GearingBonus));
+            }
+            writer.WriteLine("    size                = {0}", building.Size);
+            writer.WriteLine("    done                = {0}", building.Done);
+            if (building.Days > 0)
+            {
+                writer.WriteLine("    days                = {0}", building.Days);
+            }
+            if (building.DaysForFirst > 0)
+            {
+                writer.WriteLine("    days_for_first      = {0}", building.DaysForFirst);
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                if (building.Halted)
+                {
+                    writer.WriteLine("    halted              = yes");
+                }
+                writer.WriteLine("    close_when_finished = {0}", BoolHelper.ToString(building.CloseWhenFinished));
+                writer.WriteLine("    waitingforclosure   = {0}", BoolHelper.ToString(building.WaitingForClosure));
+            }
+            writer.WriteLine("  }");
+        }
+
+        #endregion
+
         #region 国家設定
 
         /// <summary>
@@ -1435,8 +1519,9 @@ namespace HoI2Editor.Writers
                 WriteLandUnits(settings, writer);
                 WriteNavalUnits(settings, writer);
                 WriteAirUnits(settings, writer);
-                WriteDivisionDevelopments(settings, writer);
                 WriteDormantLandDivisions(settings, writer);
+                WriteDivisionDevelopments(settings, writer);
+                WriteBuildingDevelopments(settings, writer);
                 writer.WriteLine("}");
             }
         }

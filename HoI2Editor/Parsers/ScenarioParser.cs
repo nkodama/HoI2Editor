@@ -79,7 +79,7 @@ namespace HoI2Editor.Parsers
                     if (keyword.Equals("name"))
                     {
                         string s = ParseString(lexer);
-                        if (string.IsNullOrEmpty(s))
+                        if (s == null)
                         {
                             Log.InvalidClause(LogCategory, "name", lexer);
                             continue;
@@ -94,7 +94,7 @@ namespace HoI2Editor.Parsers
                     if (keyword.Equals("panel"))
                     {
                         string s = ParseString(lexer);
-                        if (string.IsNullOrEmpty(s))
+                        if (s == null)
                         {
                             Log.InvalidClause(LogCategory, "panel", lexer);
                             continue;
@@ -210,7 +210,7 @@ namespace HoI2Editor.Parsers
                     if (keyword.Equals("event"))
                     {
                         string s = ParseString(lexer);
-                        if (string.IsNullOrEmpty(s))
+                        if (s == null)
                         {
                             Log.InvalidClause(LogCategory, "event", lexer);
                             continue;
@@ -228,7 +228,7 @@ namespace HoI2Editor.Parsers
                     if (keyword.Equals("include"))
                     {
                         string s = ParseString(lexer);
-                        if (string.IsNullOrEmpty(s))
+                        if (s == null)
                         {
                             Log.InvalidClause(LogCategory, "include", lexer);
                             continue;
@@ -455,7 +455,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("name"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
@@ -704,7 +704,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("picture"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "picture", lexer);
                         continue;
@@ -1436,7 +1436,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("heading"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "heading", lexer);
                         continue;
@@ -2485,6 +2485,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // name
+                if (keyword.Equals("name"))
+                {
+                    string s = ParseString(lexer);
+                    if (s == null)
+                    {
+                        Log.InvalidClause(LogCategory, "name", lexer);
+                        continue;
+                    }
+
+                    // 名前
+                    building.Name = s;
+                    continue;
+                }
+
                 // type
                 if (keyword.Equals("type"))
                 {
@@ -2680,12 +2695,57 @@ namespace HoI2Editor.Parsers
                     int? n = ParseInt(lexer);
                     if (!n.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "days", lexer);
+                        Log.InvalidClause(LogCategory, "days_for_first", lexer);
                         continue;
                     }
 
                     // 1単位の完了日数
                     building.DaysForFirst = (int) n;
+                    continue;
+                }
+
+                // halted
+                if (keyword.Equals("halted"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "halted", lexer);
+                        continue;
+                    }
+
+                    // 停止中
+                    building.Halted = (bool) b;
+                    continue;
+                }
+
+                // close_when_finished
+                if (keyword.Equals("close_when_finished"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "close_when_finished", lexer);
+                        continue;
+                    }
+
+                    // 完了時にキューを削除するかどうか
+                    building.CloseWhenFinished = (bool) b;
+                    continue;
+                }
+
+                // waitingforclosure
+                if (keyword.Equals("waitingforclosure"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "waitingforclosure", lexer);
+                        continue;
+                    }
+
+                    // 詳細不明
+                    building.WaitingForClosure = (bool) b;
                     continue;
                 }
 
@@ -2792,7 +2852,7 @@ namespace HoI2Editor.Parsers
                     if (keyword.Equals("name"))
                     {
                         string s = ParseString(lexer);
-                        if (string.IsNullOrEmpty(s))
+                        if (s == null)
                         {
                             Log.InvalidClause(LogCategory, "name", lexer);
                             continue;
@@ -3687,7 +3747,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("ai"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "ai", lexer);
                         continue;
@@ -5311,7 +5371,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("name"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
@@ -5599,7 +5659,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("name"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
@@ -5872,7 +5932,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("name"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
@@ -6149,7 +6209,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("name"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
@@ -6572,7 +6632,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("name"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
@@ -7175,7 +7235,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("name"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "name", lexer);
                         continue;
@@ -7583,7 +7643,7 @@ namespace HoI2Editor.Parsers
                 if (keyword.Equals("name"))
                 {
                     string s = ParseString(lexer);
-                    if (string.IsNullOrEmpty(s))
+                    if (s == null)
                     {
                         Log.InvalidClause(LogCategory, "name", lexer);
                         continue;

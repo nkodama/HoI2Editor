@@ -201,7 +201,7 @@ namespace HoI2Editor.Models
         {
             "",
             "ic",
-            "infra",
+            "infrastructure",
             "coastalfort",
             "landfort",
             "anti_air",
