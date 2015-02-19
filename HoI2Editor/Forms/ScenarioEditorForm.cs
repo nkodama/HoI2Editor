@@ -8906,11 +8906,17 @@ namespace HoI2Editor.Forms
                     break;
 
                 case MapPanelController.MapFilterMode.Owned:
-                    ownedProvinceCheckBox.Checked = !ownedProvinceCheckBox.Checked;
+                    if (ownedProvinceCheckBox.Enabled)
+                    {
+                        ownedProvinceCheckBox.Checked = !ownedProvinceCheckBox.Checked;
+                    }
                     break;
 
                 case MapPanelController.MapFilterMode.Controlled:
-                    controlledProvinceCheckBox.Checked = !controlledProvinceCheckBox.Checked;
+                    if (controlledProvinceCheckBox.Enabled)
+                    {
+                        controlledProvinceCheckBox.Checked = !controlledProvinceCheckBox.Checked;
+                    }
                     break;
 
                 case MapPanelController.MapFilterMode.Claimed:
@@ -10045,7 +10051,7 @@ namespace HoI2Editor.Forms
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, val, province);
+            _controller.PostItemChanged(itemId, val, province, settings);
         }
 
         #endregion

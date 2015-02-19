@@ -962,10 +962,12 @@ namespace HoI2Editor.Controller
 
                 case ScenarioEditorItemId.CountryOwnedProvinces:
                     control.Checked = settings.OwnedProvinces.Contains(province.Id);
+                    control.Enabled = !control.Checked;
                     break;
 
                 case ScenarioEditorItemId.CountryControlledProvinces:
                     control.Checked = settings.ControlledProvinces.Contains(province.Id);
+                    control.Enabled = !control.Checked;
                     break;
 
                 case ScenarioEditorItemId.CountryClaimedProvinces:
@@ -5133,22 +5135,15 @@ namespace HoI2Editor.Controller
             switch (itemId)
             {
                 case ScenarioEditorItemId.CountryCapital:
-                    // チェックを入れた後はチェックボックスを無効化する
-                    if ((bool) val)
-                    {
-                        _form.GetItemControl(itemId).Enabled = false;
-                    }
-                    // プロヴィンスリストビューの表示を更新する
-                    int index = GetLandProvinceIndex(settings.Capital);
-                    if (index >= 0)
-                    {
-                        _form.SetProvinceListItemText(index, 2, "");
-                    }
-                    index = _landProvinces.IndexOf(province);
-                    if (index >= 0)
-                    {
-                        _form.SetProvinceListItemText(index, 2, Resources.Yes);
-                    }
+                    PreItemChangedCapital(_form.GetItemControl(itemId), val, province, settings);
+                    break;
+
+                case ScenarioEditorItemId.CountryOwnedProvinces:
+                    PreItemChangedOwnedProvinces(_form.GetItemControl(itemId), val, province);
+                    break;
+
+                case ScenarioEditorItemId.CountryControlledProvinces:
+                    PreItemChangedControlledProvinces(_form.GetItemControl(itemId), val, province);
                     break;
             }
         }
@@ -5786,6 +5781,94 @@ namespace HoI2Editor.Controller
             UpdateItemColor(control, settings);
         }
 
+        /// <summary>
+        ///     項目変更前の処理 - 首都
+        /// </summary>
+        /// <param name="control">対象コントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        private void PreItemChangedCapital(Control control, object val, Province province, CountrySettings settings)
+        {
+            // チェックを入れた後はチェックボックスを無効化する
+            if ((bool) val)
+            {
+                control.Enabled = false;
+            }
+
+            // プロヴィンスリストビューの表示を更新する
+            int index = GetLandProvinceIndex(settings.Capital);
+            if (index >= 0)
+            {
+                _form.SetProvinceListItemText(index, 2, "");
+            }
+            index = _landProvinces.IndexOf(province);
+            if (index >= 0)
+            {
+                _form.SetProvinceListItemText(index, 2, Resources.Yes);
+            }
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 保有プロヴィンス
+        /// </summary>
+        /// <param name="control">対象コントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        private static void PreItemChangedOwnedProvinces(Control control, object val, Province province)
+        {
+            // チェックを入れた後はチェックボックスを無効化する
+            if ((bool) val)
+            {
+                control.Enabled = false;
+            }
+
+            // 元の保有国を解除する
+            foreach (Country country in Countries.Tags)
+            {
+                CountrySettings settings = Scenarios.GetCountrySettings(country);
+                if (settings == null)
+                {
+                    continue;
+                }
+                if (settings.OwnedProvinces.Contains(province.Id))
+                {
+                    settings.OwnedProvinces.Remove(province.Id);
+                    settings.SetDirtyOwnedProvinces(province.Id);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     項目変更前の処理 - 支配プロヴィンス
+        /// </summary>
+        /// <param name="control">対象コントロール</param>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        private static void PreItemChangedControlledProvinces(Control control, object val, Province province)
+        {
+            // チェックを入れた後はチェックボックスを無効化する
+            if ((bool) val)
+            {
+                control.Enabled = false;
+            }
+
+            // 元の支配国を解除する
+            foreach (Country country in Countries.Tags)
+            {
+                CountrySettings settings = Scenarios.GetCountrySettings(country);
+                if (settings == null)
+                {
+                    continue;
+                }
+                if (settings.ControlledProvinces.Contains(province.Id))
+                {
+                    settings.ControlledProvinces.Remove(province.Id);
+                    settings.SetDirtyControlledProvinces(province.Id);
+                }
+            }
+        }
+
         #endregion
 
         #region 編集項目 - 変更後処理
@@ -6150,69 +6233,25 @@ namespace HoI2Editor.Controller
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
         /// <param name="province">プロヴィンス</param>
-        public void PostItemChanged(ScenarioEditorItemId itemId, object val, Province province)
+        /// <param name="settings">国家設定</param>
+        public void PostItemChanged(ScenarioEditorItemId itemId, object val, Province province, CountrySettings settings)
         {
-            int index;
             switch (itemId)
             {
                 case ScenarioEditorItemId.CountryCoreProvinces:
-                    // プロヴィンスリストビューの表示を更新する
-                    index = GetLandProvinceIndex(province.Id);
-                    if (index >= 0)
-                    {
-                        _form.SetProvinceListItemText(index, 3, (bool) val ? Resources.Yes : "");
-                    }
-
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Core)
-                    {
-                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-                    }
+                    PostItemChangedCoreProvinces(val, province);
                     break;
 
                 case ScenarioEditorItemId.CountryOwnedProvinces:
-                    // プロヴィンスリストビューの表示を更新する
-                    index = GetLandProvinceIndex(province.Id);
-                    if (index >= 0)
-                    {
-                        _form.SetProvinceListItemText(index, 4, (bool) val ? Resources.Yes : "");
-                    }
-
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Owned)
-                    {
-                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-                    }
+                    PostItemChangedOwnedProvinces(val, province, settings);
                     break;
 
                 case ScenarioEditorItemId.CountryControlledProvinces:
-                    // プロヴィンスリストビューの表示を更新する
-                    index = GetLandProvinceIndex(province.Id);
-                    if (index >= 0)
-                    {
-                        _form.SetProvinceListItemText(index, 5, (bool) val ? Resources.Yes : "");
-                    }
-
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Controlled)
-                    {
-                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-                    }
+                    PostItemChangedControlledProvinces(val, province, settings);
                     break;
 
                 case ScenarioEditorItemId.CountryClaimedProvinces:
-                    // プロヴィンスリストビューの表示を更新する
-                    index = GetLandProvinceIndex(province.Id);
-                    if (index >= 0)
-                    {
-                        _form.SetProvinceListItemText(index, 6, (bool) val ? Resources.Yes : "");
-                    }
-
-                    // プロヴィンスの強調表示を更新する
-                    if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Claimed)
-                    {
-                        _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-                    }
+                    PostItemChangedClaimedProvinces(val, province);
                     break;
             }
         }
@@ -6661,7 +6700,7 @@ namespace HoI2Editor.Controller
         }
 
         /// <summary>
-        ///     項目変更後の処理 - 閣僚id
+        ///     項目値変更後の処理 - 閣僚id
         /// </summary>
         /// <param name="control">閣僚コンボボックス</param>
         /// <param name="val">編集項目の値</param>
@@ -6670,6 +6709,118 @@ namespace HoI2Editor.Controller
         {
             // コンボボックスの選択項目を変更する
             control.SelectedIndex = ministers.FindIndex(minister => minister.Id == (int) val);
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 中核プロヴィンス
+        /// </summary>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        private void PostItemChangedCoreProvinces(object val, Province province)
+        {
+            // プロヴィンスリストビューの表示を更新する
+            int index = GetLandProvinceIndex(province.Id);
+            if (index >= 0)
+            {
+                _form.SetProvinceListItemText(index, 3, (bool) val ? Resources.Yes : "");
+            }
+
+            // プロヴィンスの強調表示を更新する
+            if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Core)
+            {
+                _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 保有プロヴィンス
+        /// </summary>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        private void PostItemChangedOwnedProvinces(object val, Province province, CountrySettings settings)
+        {
+            // 変更前の保有国を解除
+            foreach (Country country in Countries.Tags)
+            {
+                CountrySettings cs = Scenarios.GetCountrySettings(country);
+                if (cs == null || cs.Country == settings.Country ||
+                    !cs.OwnedProvinces.Contains(province.Id))
+                {
+                    continue;
+                }
+                cs.OwnedProvinces.Remove(province.Id);
+                cs.SetDirtyOwnedProvinces(province.Id);
+            }
+
+            // プロヴィンスリストビューの表示を更新する
+            int index = GetLandProvinceIndex(province.Id);
+            if (index >= 0)
+            {
+                _form.SetProvinceListItemText(index, 4, (bool) val ? Resources.Yes : "");
+            }
+
+            // プロヴィンスの強調表示を更新する
+            if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Owned)
+            {
+                _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 支配プロヴィンス
+        /// </summary>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        /// <param name="settings">国家設定</param>
+        private void PostItemChangedControlledProvinces(object val, Province province, CountrySettings settings)
+        {
+            // 変更前の支配国を解除
+            foreach (Country country in Countries.Tags)
+            {
+                CountrySettings cs = Scenarios.GetCountrySettings(country);
+                if (cs == null || cs.Country == settings.Country ||
+                    !cs.ControlledProvinces.Contains(province.Id))
+                {
+                    continue;
+                }
+                cs.ControlledProvinces.Remove(province.Id);
+                cs.SetDirtyControlledProvinces(province.Id);
+            }
+
+            // プロヴィンスリストビューの表示を更新する
+            int index = GetLandProvinceIndex(province.Id);
+            if (index >= 0)
+            {
+                _form.SetProvinceListItemText(index, 5, (bool) val ? Resources.Yes : "");
+            }
+
+            // プロヴィンスの強調表示を更新する
+            if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Controlled)
+            {
+                _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
+            }
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 領有権主張プロヴィンス
+        /// </summary>
+        /// <param name="val">編集項目の値</param>
+        /// <param name="province">プロヴィンス</param>
+        private void PostItemChangedClaimedProvinces(object val, Province province)
+        {
+            // プロヴィンスリストビューの表示を更新する
+            int index = GetLandProvinceIndex(province.Id);
+            if (index >= 0)
+            {
+                _form.SetProvinceListItemText(index, 6, (bool) val ? Resources.Yes : "");
+            }
+
+            // プロヴィンスの強調表示を更新する
+            if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Claimed)
+            {
+                _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
+            }
         }
 
         /// <summary>
