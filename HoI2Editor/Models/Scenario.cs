@@ -3826,6 +3826,21 @@ namespace HoI2Editor.Models
         public int DaysForFirst { get; set; }
 
         /// <summary>
+        ///     停止中
+        /// </summary>
+        public bool Halted { get; set; }
+
+        /// <summary>
+        ///     完了時にキューを削除するかどうか
+        /// </summary>
+        public bool CloseWhenFinished { get; set; }
+
+        /// <summary>
+        ///     詳細不明
+        /// </summary>
+        public bool WaitingForClosure { get; set; }
+
+        /// <summary>
         ///     ユニット種類
         /// </summary>
         public UnitType Type { get; set; }
@@ -3913,6 +3928,8 @@ namespace HoI2Editor.Models
         /// </summary>
         public DivisionDevelopment()
         {
+            UnitCost = true;
+            NewModel = true;
             Model = UndefinedModelNo;
             BrigadeModel = UndefinedModelNo;
             BrigadeModel1 = UndefinedModelNo;

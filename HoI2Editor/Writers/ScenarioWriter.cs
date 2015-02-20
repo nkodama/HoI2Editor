@@ -1353,60 +1353,72 @@ namespace HoI2Editor.Writers
         private static void WriteBuildingDevelopment(BuildingDevelopment building, TextWriter writer)
         {
             writer.WriteLine("  province_development = {");
-            writer.Write("    id                  = ");
-            WriteTypeId(building.Id, writer);
-            writer.WriteLine();
+            if (building.Id != null)
+            {
+                writer.Write("    id             = ");
+                WriteTypeId(building.Id, writer);
+                writer.WriteLine();
+            }
             if (building.Name != null)
             {
-                writer.WriteLine("    name                = \"{0}\"", building.Name);
+                writer.WriteLine("    name           = \"{0}\"", building.Name);
             }
             if (building.Progress > 0)
             {
-                writer.WriteLine("    progress            = {0}", DoubleHelper.ToString4(building.Progress));
+                writer.WriteLine("    progress       = {0}", DoubleHelper.ToString4(building.Progress));
             }
             if (building.Location > 0)
             {
-                writer.WriteLine("    location            = {0}", building.Location);
+                writer.WriteLine("    location       = {0}", building.Location);
             }
             if (building.Cost > 0)
             {
-                writer.WriteLine("    cost                = {0}", DoubleHelper.ToString4(building.Cost));
+                writer.WriteLine("    cost           = {0}", DoubleHelper.ToString4(building.Cost));
             }
             if (building.Date != null)
             {
-                writer.Write("    date                = ");
+                writer.Write("    date           = ");
                 WriteDate(building.Date, writer);
                 writer.WriteLine();
             }
             if (building.Manpower > 0)
             {
-                writer.WriteLine("    manpower            = {0}", DoubleHelper.ToString4(building.Manpower));
+                writer.WriteLine("    manpower       = {0}", DoubleHelper.ToString4(building.Manpower));
             }
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
                 if (building.Halted)
                 {
-                    writer.WriteLine("    halted              = yes");
+                    writer.WriteLine("    halted         = yes");
                 }
                 writer.WriteLine("    close_when_finished = {0}", BoolHelper.ToString(building.CloseWhenFinished));
-                writer.WriteLine("    waitingforclosure   = {0}", BoolHelper.ToString(building.WaitingForClosure));
+                writer.WriteLine("    waitingforclosure = {0}", BoolHelper.ToString(building.WaitingForClosure));
             }
-            writer.WriteLine("    total_progress      = {0}", DoubleHelper.ToString4(building.Progress));
-            writer.WriteLine("    size                = {0}", building.Size);
-            writer.WriteLine("    done                = {0}", building.Done);
+            if (building.TotalProgress > 0)
+            {
+                writer.WriteLine("    total_progress = {0}", DoubleHelper.ToString4(building.Progress));
+            }
+            if (building.Size > 0)
+            {
+                writer.WriteLine("    size           = {0}", building.Size);
+            }
+            if (building.Done > 0)
+            {
+                writer.WriteLine("    done           = {0}", building.Done);
+            }
             if (building.Days > 0)
             {
-                writer.WriteLine("    days                = {0}", building.Days);
+                writer.WriteLine("    days           = {0}", building.Days);
             }
             if (building.DaysForFirst > 0)
             {
-                writer.WriteLine("    days_for_first      = {0}", building.DaysForFirst);
+                writer.WriteLine("    days_for_first = {0}", building.DaysForFirst);
             }
             if (building.GearingBonus > 0)
             {
-                writer.WriteLine("    gearing_bonus       = {0}", DoubleHelper.ToString4(building.GearingBonus));
+                writer.WriteLine("    gearing_bonus  = {0}", DoubleHelper.ToString4(building.GearingBonus));
             }
-            writer.WriteLine("    type                = {0}", Scenarios.BuildingStrings[(int) building.Type]);
+            writer.WriteLine("    type           = {0}", Scenarios.BuildingStrings[(int)building.Type]);
             writer.WriteLine("  }");
         }
 
@@ -1456,10 +1468,10 @@ namespace HoI2Editor.Writers
                 WriteLandUnits(settings, writer);
                 WriteNavalUnits(settings, writer);
                 WriteAirUnits(settings, writer);
-                WriteDormantLandDivisions(settings, writer);
                 WriteDivisionDevelopments(settings, writer);
                 WriteBuildingDevelopments(settings, writer);
                 WriteConvoyDevelopments(settings, writer);
+                WriteDormantLandDivisions(settings, writer);
                 writer.WriteLine("}");
             }
         }
@@ -2209,6 +2221,20 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
             }
+            if (division.Offensive != null)
+            {
+                writer.Write("      offensive = ");
+                WriteDate(division.Offensive, writer);
+                writer.WriteLine();
+            }
+            if (division.Dormant)
+            {
+                writer.WriteLine("      dormant        = yes");
+            }
+            if (division.Locked)
+            {
+                writer.WriteLine("      locked         = yes");
+            }
             writer.WriteLine("    }");
         }
 
@@ -2232,6 +2258,10 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("      model          = {0}", division.Model);
             }
+            if (division.Nuke)
+            {
+                writer.WriteLine("      nuke           = yes");
+            }
             if (division.Strength > 0)
             {
                 writer.WriteLine("      strength       = {0}", division.Strength);
@@ -2251,6 +2281,58 @@ namespace HoI2Editor.Writers
             if (division.Experience > 0)
             {
                 writer.WriteLine("      experience     = {0}", division.Experience);
+            }
+            if (division.MaxSpeed > 0)
+            {
+                writer.WriteLine("      maxspeed       = {0}", division.MaxSpeed);
+            }
+            if (division.SeaDefense > 0)
+            {
+                writer.WriteLine("      seadefence     = {0}", division.SeaDefense);
+            }
+            if (division.AirDefence > 0)
+            {
+                writer.WriteLine("      airdefence     = {0}", division.AirDefence);
+            }
+            if (division.SeaAttack > 0)
+            {
+                writer.WriteLine("      seaattack      = {0}", division.SeaAttack);
+            }
+            if (division.SubAttack > 0)
+            {
+                writer.WriteLine("      subattack      = {0}", division.SubAttack);
+            }
+            if (division.ConvoyAttack > 0)
+            {
+                writer.WriteLine("      convoyattack   = {0}", division.ConvoyAttack);
+            }
+            if (division.ShoreBombardment > 0)
+            {
+                writer.WriteLine("      shorebombardment = {0}", division.ShoreBombardment);
+            }
+            if (division.AirAttack > 0)
+            {
+                writer.WriteLine("      airattack      = {0}", division.AirAttack);
+            }
+            if (division.Distance > 0)
+            {
+                writer.WriteLine("      distance       = {0}", division.Distance);
+            }
+            if (division.Visibility > 0)
+            {
+                writer.WriteLine("      visibility     = {0}", division.Visibility);
+            }
+            if (division.SurfaceDetectionCapability > 0)
+            {
+                writer.WriteLine("      surfacedetectioncapability = {0}", division.SurfaceDetectionCapability);
+            }
+            if (division.SubDetectionCapability > 0)
+            {
+                writer.WriteLine("      subdetectioncapability = {0}", division.SubDetectionCapability);
+            }
+            if (division.AirDetectionCapability > 0)
+            {
+                writer.WriteLine("      airdetectioncapability = {0}", division.AirDetectionCapability);
             }
             if (division.Extra >= UnitType.None)
             {
@@ -2299,6 +2381,10 @@ namespace HoI2Editor.Writers
             if (division.Extra5 >= UnitType.None && division.BrigadeModel5 >= 0)
             {
                 writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
+            }
+            if (division.Dormant)
+            {
+                writer.WriteLine("      dormant        = yes");
             }
             writer.WriteLine("    }");
         }
@@ -2323,6 +2409,10 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("      model          = {0}", division.Model);
             }
+            if (division.Nuke)
+            {
+                writer.WriteLine("      nuke           = yes");
+            }
             if (division.Strength > 0)
             {
                 writer.WriteLine("      strength       = {0}", division.Strength);
@@ -2390,6 +2480,10 @@ namespace HoI2Editor.Writers
             if (division.Extra5 >= UnitType.None && division.BrigadeModel5 >= 0)
             {
                 writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
+            }
+            if (division.Dormant)
+            {
+                writer.WriteLine("      dormant        = yes");
             }
             writer.WriteLine("    }");
         }
@@ -2425,54 +2519,95 @@ namespace HoI2Editor.Writers
             writer.WriteLine();
             if (!string.IsNullOrEmpty(division.Name))
             {
-                writer.WriteLine("    name          = \"{0}\"", division.Name);
+                writer.WriteLine("    name           = \"{0}\"", division.Name);
             }
-            writer.WriteLine("    type          = {0}", Units.Strings[(int) division.Type]);
+            writer.WriteLine("    type           = {0}", Units.Strings[(int) division.Type]);
             if (division.Model >= 0)
             {
-                writer.WriteLine("    model         = {0}", division.Model);
+                writer.WriteLine("    model          = {0}", division.Model);
             }
             if (division.Cost > 0)
             {
-                writer.WriteLine("    cost          = {0}", DoubleHelper.ToString(division.Cost));
+                writer.WriteLine("    cost           = {0}", DoubleHelper.ToString(division.Cost));
             }
-            if (division.Manpower > 0)
+            if (!division.UnitCost)
             {
-                writer.WriteLine("    manpower      = {0}", DoubleHelper.ToString(division.Manpower));
+                writer.WriteLine("    unitcost       = no");
+            }
+            if (!division.NewModel)
+            {
+                writer.WriteLine("    newmodel       = no");
             }
             if (division.Date != null)
             {
-                writer.Write("    date          = ");
+                writer.Write("    date           = ");
                 WriteDate(division.Date, writer);
                 writer.WriteLine();
             }
+            if (division.Manpower > 0)
+            {
+                writer.WriteLine("    manpower       = {0}", DoubleHelper.ToString(division.Manpower));
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                if (division.Halted)
+                {
+                    writer.WriteLine("    halted         = yes");
+                }
+                writer.WriteLine("    close_when_finished = {0}", BoolHelper.ToString(division.CloseWhenFinished));
+                writer.WriteLine("    waitingforclosure = {0}", BoolHelper.ToString(division.WaitingForClosure));
+            }
+            if (division.TotalProgress > 0)
+            {
+                writer.WriteLine("    total_progress = {0}", DoubleHelper.ToString4(division.Progress));
+            }
+            if (division.Size > 0)
+            {
+                writer.WriteLine("    size           = {0}", division.Size);
+            }
+            if (division.Done > 0)
+            {
+                writer.WriteLine("    done           = {0}", division.Done);
+            }
+            if (division.Days > 0)
+            {
+                writer.WriteLine("    days           = {0}", division.Days);
+            }
+            if (division.DaysForFirst > 0)
+            {
+                writer.WriteLine("    days_for_first = {0}", division.DaysForFirst);
+            }
+            if (division.GearingBonus > 0)
+            {
+                writer.WriteLine("    gearing_bonus  = {0}", DoubleHelper.ToString4(division.GearingBonus));
+            }
             if (division.Extra >= UnitType.None)
             {
-                writer.WriteLine("    extra         = {0}", Units.Strings[(int) division.Extra]);
+                writer.WriteLine("    extra          = {0}", Units.Strings[(int) division.Extra]);
             }
             if (division.Extra1 >= UnitType.None)
             {
-                writer.WriteLine("    extra1        = {0}", Units.Strings[(int) division.Extra1]);
+                writer.WriteLine("    extra1         = {0}", Units.Strings[(int) division.Extra1]);
             }
             if (division.Extra2 >= UnitType.None)
             {
-                writer.WriteLine("    extra2        = {0}", Units.Strings[(int) division.Extra2]);
+                writer.WriteLine("    extra2         = {0}", Units.Strings[(int) division.Extra2]);
             }
             if (division.Extra3 >= UnitType.None)
             {
-                writer.WriteLine("    extra3        = {0}", Units.Strings[(int) division.Extra3]);
+                writer.WriteLine("    extra3         = {0}", Units.Strings[(int) division.Extra3]);
             }
             if (division.Extra4 >= UnitType.None)
             {
-                writer.WriteLine("    extra4        = {0}", Units.Strings[(int) division.Extra4]);
+                writer.WriteLine("    extra4         = {0}", Units.Strings[(int) division.Extra4]);
             }
             if (division.Extra5 >= UnitType.None)
             {
-                writer.WriteLine("    extra5        = {0}", Units.Strings[(int) division.Extra5]);
+                writer.WriteLine("    extra5         = {0}", Units.Strings[(int) division.Extra5]);
             }
             if (division.Extra >= UnitType.None && division.BrigadeModel >= 0)
             {
-                writer.WriteLine("    brigade_model = {0}", division.BrigadeModel);
+                writer.WriteLine("    brigade_model  = {0}", division.BrigadeModel);
             }
             if (division.Extra1 >= UnitType.None && division.BrigadeModel1 >= 0)
             {
@@ -2646,57 +2781,72 @@ namespace HoI2Editor.Writers
         private static void WriteConvoyDevelopment(ConvoyDevelopment convoy, TextWriter writer)
         {
             writer.WriteLine("  convoy_development = {");
-            writer.Write("    id                  = ");
-            WriteTypeId(convoy.Id, writer);
-            writer.WriteLine();
+            if (convoy.Id != null)
+            {
+                writer.Write("    id             = ");
+                WriteTypeId(convoy.Id, writer);
+                writer.WriteLine();
+            }
             if (convoy.Name != null)
             {
-                writer.WriteLine("    name                = \"{0}\"", convoy.Name);
+                writer.WriteLine("    name           = \"{0}\"", convoy.Name);
             }
-            writer.WriteLine("    progress            = {0}", DoubleHelper.ToString4(convoy.Progress));
+            if (convoy.Progress > 0)
+            {
+                writer.WriteLine("    progress       = {0}", DoubleHelper.ToString4(convoy.Progress));
+            }
             if (convoy.Location > 0)
             {
-                writer.WriteLine("    location            = {0}", convoy.Location);
+                writer.WriteLine("    location       = {0}", convoy.Location);
             }
             if (convoy.Cost > 0)
             {
-                writer.WriteLine("    cost                = {0}", DoubleHelper.ToString4(convoy.Cost));
+                writer.WriteLine("    cost           = {0}", DoubleHelper.ToString4(convoy.Cost));
             }
             if (convoy.Date != null)
             {
-                writer.Write("    date                = ");
+                writer.Write("    date           = ");
                 WriteDate(convoy.Date, writer);
                 writer.WriteLine();
             }
             if (convoy.Manpower > 0)
             {
-                writer.WriteLine("    manpower            = {0}", DoubleHelper.ToString4(convoy.Manpower));
+                writer.WriteLine("    manpower       = {0}", DoubleHelper.ToString4(convoy.Manpower));
             }
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
                 if (convoy.Halted)
                 {
-                    writer.WriteLine("    halted              = yes");
+                    writer.WriteLine("    halted         = yes");
                 }
                 writer.WriteLine("    close_when_finished = {0}", BoolHelper.ToString(convoy.CloseWhenFinished));
-                writer.WriteLine("    waitingforclosure   = {0}", BoolHelper.ToString(convoy.WaitingForClosure));
+                writer.WriteLine("    waitingforclosure = {0}", BoolHelper.ToString(convoy.WaitingForClosure));
             }
-            writer.WriteLine("    total_progress      = {0}", DoubleHelper.ToString4(convoy.Progress));
-            writer.WriteLine("    size                = {0}", convoy.Size);
-            writer.WriteLine("    done                = {0}", convoy.Done);
+            if (convoy.TotalProgress > 0)
+            {
+                writer.WriteLine("    total_progress = {0}", DoubleHelper.ToString4(convoy.Progress));
+            }
+            if (convoy.Size > 0)
+            {
+                writer.WriteLine("    size           = {0}", convoy.Size);
+            }
+            if (convoy.Done > 0)
+            {
+                writer.WriteLine("    done           = {0}", convoy.Done);
+            }
             if (convoy.Days > 0)
             {
-                writer.WriteLine("    days                = {0}", convoy.Days);
+                writer.WriteLine("    days           = {0}", convoy.Days);
             }
             if (convoy.DaysForFirst > 0)
             {
-                writer.WriteLine("    days_for_first      = {0}", convoy.DaysForFirst);
+                writer.WriteLine("    days_for_first = {0}", convoy.DaysForFirst);
             }
             if (convoy.GearingBonus > 0)
             {
-                writer.WriteLine("    gearing_bonus       = {0}", DoubleHelper.ToString4(convoy.GearingBonus));
+                writer.WriteLine("    gearing_bonus  = {0}", DoubleHelper.ToString4(convoy.GearingBonus));
             }
-            writer.WriteLine("    type                = {0}", Scenarios.ConvoyStrings[(int) convoy.Type]);
+            writer.WriteLine("    type           = {0}", Scenarios.ConvoyStrings[(int)convoy.Type]);
             writer.WriteLine("  }");
         }
 
