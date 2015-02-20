@@ -4220,6 +4220,11 @@ namespace HoI2Editor.Models
         public TypeId Id { get; set; }
 
         /// <summary>
+        ///     名前
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         ///     輸送船団の種類
         /// </summary>
         public ConvoyType Type { get; set; }
@@ -4278,6 +4283,21 @@ namespace HoI2Editor.Models
         ///     最初の1単位の完了日数
         /// </summary>
         public int DaysForFirst { get; set; }
+
+        /// <summary>
+        ///     停止中
+        /// </summary>
+        public bool Halted { get; set; }
+
+        /// <summary>
+        ///     完了時にキューを削除するかどうか
+        /// </summary>
+        public bool CloseWhenFinished { get; set; }
+
+        /// <summary>
+        ///     詳細不明
+        /// </summary>
+        public bool WaitingForClosure { get; set; }
 
         #endregion
     }

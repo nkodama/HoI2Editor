@@ -9008,6 +9008,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // name
+                if (keyword.Equals("name"))
+                {
+                    string s = ParseString(lexer);
+                    if (s == null)
+                    {
+                        Log.InvalidClause(LogCategory, "name", lexer);
+                        continue;
+                    }
+
+                    // 名前
+                    convoy.Name = s;
+                    continue;
+                }
+
                 // type
                 if (keyword.Equals("type"))
                 {
@@ -9214,6 +9229,51 @@ namespace HoI2Editor.Parsers
 
                     // 1単位の完了日数
                     convoy.DaysForFirst = (int) n;
+                    continue;
+                }
+
+                // halted
+                if (keyword.Equals("halted"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "halted", lexer);
+                        continue;
+                    }
+
+                    // 停止中
+                    convoy.Halted = (bool) b;
+                    continue;
+                }
+
+                // close_when_finished
+                if (keyword.Equals("close_when_finished"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "close_when_finished", lexer);
+                        continue;
+                    }
+
+                    // 完了時にキューを削除するかどうか
+                    convoy.CloseWhenFinished = (bool) b;
+                    continue;
+                }
+
+                // waitingforclosure
+                if (keyword.Equals("waitingforclosure"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "waitingforclosure", lexer);
+                        continue;
+                    }
+
+                    // 詳細不明
+                    convoy.WaitingForClosure = (bool) b;
                     continue;
                 }
 

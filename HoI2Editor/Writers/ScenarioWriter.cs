@@ -1323,68 +1323,6 @@ namespace HoI2Editor.Writers
             return false;
         }
 
-        /// <summary>
-        ///     国別incに保存するプロヴィンスデータが存在するかどうかを返す
-        /// </summary>
-        /// <param name="settings">プロヴィンス設定</param>
-        /// <param name="scenario">シナリオデータ</param>
-        /// <returns>bases.incに保存するデータが存在すればtrueを返す</returns>
-        private static bool ExistsCountryIncData(ProvinceSettings settings, Scenario scenario)
-        {
-            if (!scenario.IsBaseDodProvinceSettings)
-            {
-                if (settings.Ic != null || settings.Infrastructure != null)
-                {
-                    return true;
-                }
-            }
-
-            if (!scenario.IsBaseProvinceSettings)
-            {
-                if (settings.LandFort != null ||
-                    settings.CoastalFort != null ||
-                    settings.AntiAir != null ||
-                    settings.AirBase != null ||
-                    settings.NavalBase != null ||
-                    settings.RadarStation != null ||
-                    settings.NuclearReactor != null ||
-                    settings.RocketTest != null ||
-                    settings.SyntheticOil != null ||
-                    settings.SyntheticRares != null ||
-                    settings.NuclearPower != null ||
-                    settings.RevoltRisk > 0 ||
-                    settings.Manpower > 0 ||
-                    settings.MaxManpower > 0 ||
-                    settings.Energy > 0 ||
-                    settings.MaxEnergy > 0 ||
-                    settings.Metal > 0 ||
-                    settings.MaxMetal > 0 ||
-                    settings.RareMaterials > 0 ||
-                    settings.MaxRareMaterials > 0 ||
-                    settings.Oil > 0 ||
-                    settings.MaxOil > 0 ||
-                    !string.IsNullOrEmpty(settings.Name) ||
-                    settings.Weather != WeatherType.None)
-                {
-                    return true;
-                }
-            }
-
-            if (!scenario.IsBaseProvinceSettings && !scenario.IsDepotsProvinceSettings)
-            {
-                if (settings.SupplyPool > 0 ||
-                    settings.OilPool > 0 ||
-                    settings.EnergyPool > 0 ||
-                    settings.MetalPool > 0 ||
-                    settings.RareMaterialsPool > 0)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         #endregion
 
         #region 建物
@@ -1418,11 +1356,14 @@ namespace HoI2Editor.Writers
             writer.Write("    id                  = ");
             WriteTypeId(building.Id, writer);
             writer.WriteLine();
-            if (!string.IsNullOrEmpty(building.Name))
+            if (building.Name != null)
             {
                 writer.WriteLine("    name                = \"{0}\"", building.Name);
             }
-            writer.WriteLine("    type                = {0}", Scenarios.BuildingStrings[(int) building.Type]);
+            if (building.Progress > 0)
+            {
+                writer.WriteLine("    progress            = {0}", DoubleHelper.ToString4(building.Progress));
+            }
             if (building.Location > 0)
             {
                 writer.WriteLine("    location            = {0}", building.Location);
@@ -1431,31 +1372,15 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("    cost                = {0}", DoubleHelper.ToString4(building.Cost));
             }
-            if (building.Manpower > 0)
-            {
-                writer.WriteLine("    manpower            = {0}", DoubleHelper.ToString4(building.Manpower));
-            }
             if (building.Date != null)
             {
                 writer.Write("    date                = ");
                 WriteDate(building.Date, writer);
                 writer.WriteLine();
             }
-            writer.WriteLine("    progress            = {0}", DoubleHelper.ToString4(building.Progress));
-            writer.WriteLine("    total_progress      = {0}", DoubleHelper.ToString4(building.Progress));
-            if (building.GearingBonus > 0)
+            if (building.Manpower > 0)
             {
-                writer.WriteLine("    gearing_bonus       = {0}", DoubleHelper.ToString4(building.GearingBonus));
-            }
-            writer.WriteLine("    size                = {0}", building.Size);
-            writer.WriteLine("    done                = {0}", building.Done);
-            if (building.Days > 0)
-            {
-                writer.WriteLine("    days                = {0}", building.Days);
-            }
-            if (building.DaysForFirst > 0)
-            {
-                writer.WriteLine("    days_for_first      = {0}", building.DaysForFirst);
+                writer.WriteLine("    manpower            = {0}", DoubleHelper.ToString4(building.Manpower));
             }
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
@@ -1466,6 +1391,22 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("    close_when_finished = {0}", BoolHelper.ToString(building.CloseWhenFinished));
                 writer.WriteLine("    waitingforclosure   = {0}", BoolHelper.ToString(building.WaitingForClosure));
             }
+            writer.WriteLine("    total_progress      = {0}", DoubleHelper.ToString4(building.Progress));
+            writer.WriteLine("    size                = {0}", building.Size);
+            writer.WriteLine("    done                = {0}", building.Done);
+            if (building.Days > 0)
+            {
+                writer.WriteLine("    days                = {0}", building.Days);
+            }
+            if (building.DaysForFirst > 0)
+            {
+                writer.WriteLine("    days_for_first      = {0}", building.DaysForFirst);
+            }
+            if (building.GearingBonus > 0)
+            {
+                writer.WriteLine("    gearing_bonus       = {0}", DoubleHelper.ToString4(building.GearingBonus));
+            }
+            writer.WriteLine("    type                = {0}", Scenarios.BuildingStrings[(int) building.Type]);
             writer.WriteLine("  }");
         }
 
@@ -1522,6 +1463,7 @@ namespace HoI2Editor.Writers
                 WriteDormantLandDivisions(settings, writer);
                 WriteDivisionDevelopments(settings, writer);
                 WriteBuildingDevelopments(settings, writer);
+                WriteConvoyDevelopments(settings, writer);
                 writer.WriteLine("}");
             }
         }
@@ -2649,6 +2591,90 @@ namespace HoI2Editor.Writers
                 writer.Write(" locked = yes");
             }
             writer.WriteLine(" } ");
+        }
+
+        #endregion
+
+        #region 輸送船団
+
+        /// <summary>
+        ///     生産中輸送船団リストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteConvoyDevelopments(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.ConvoyDevelopments.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine();
+            foreach (ConvoyDevelopment convoy in settings.ConvoyDevelopments)
+            {
+                WriteConvoyDevelopment(convoy, writer);
+            }
+        }
+
+        /// <summary>
+        ///     生産中輸送船団を書き出す
+        /// </summary>
+        /// <param name="convoy">生産中輸送船団</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteConvoyDevelopment(ConvoyDevelopment convoy, TextWriter writer)
+        {
+            writer.WriteLine("  province_development = {");
+            writer.Write("    id                  = ");
+            WriteTypeId(convoy.Id, writer);
+            writer.WriteLine();
+            if (convoy.Name != null)
+            {
+                writer.WriteLine("    name                = \"{0}\"", convoy.Name);
+            }
+            writer.WriteLine("    progress            = {0}", DoubleHelper.ToString4(convoy.Progress));
+            if (convoy.Location > 0)
+            {
+                writer.WriteLine("    location            = {0}", convoy.Location);
+            }
+            if (convoy.Cost > 0)
+            {
+                writer.WriteLine("    cost                = {0}", DoubleHelper.ToString4(convoy.Cost));
+            }
+            if (convoy.Date != null)
+            {
+                writer.Write("    date                = ");
+                WriteDate(convoy.Date, writer);
+                writer.WriteLine();
+            }
+            if (convoy.Manpower > 0)
+            {
+                writer.WriteLine("    manpower            = {0}", DoubleHelper.ToString4(convoy.Manpower));
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                if (convoy.Halted)
+                {
+                    writer.WriteLine("    halted              = yes");
+                }
+                writer.WriteLine("    close_when_finished = {0}", BoolHelper.ToString(convoy.CloseWhenFinished));
+                writer.WriteLine("    waitingforclosure   = {0}", BoolHelper.ToString(convoy.WaitingForClosure));
+            }
+            writer.WriteLine("    total_progress      = {0}", DoubleHelper.ToString4(convoy.Progress));
+            writer.WriteLine("    size                = {0}", convoy.Size);
+            writer.WriteLine("    done                = {0}", convoy.Done);
+            if (convoy.Days > 0)
+            {
+                writer.WriteLine("    days                = {0}", convoy.Days);
+            }
+            if (convoy.DaysForFirst > 0)
+            {
+                writer.WriteLine("    days_for_first      = {0}", convoy.DaysForFirst);
+            }
+            if (convoy.GearingBonus > 0)
+            {
+                writer.WriteLine("    gearing_bonus       = {0}", DoubleHelper.ToString4(convoy.GearingBonus));
+            }
+            writer.WriteLine("    type                = {0}", Scenarios.ConvoyStrings[(int) convoy.Type]);
+            writer.WriteLine("  }");
         }
 
         #endregion

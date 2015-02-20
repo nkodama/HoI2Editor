@@ -268,6 +268,16 @@ namespace HoI2Editor.Models
             "nuke"
         };
 
+        /// <summary>
+        ///     輸送船団文字列
+        /// </summary>
+        public static readonly string[] ConvoyStrings =
+        {
+            "",
+            "transports",
+            "escorts"
+        };
+
         #endregion
 
         #region 初期化
