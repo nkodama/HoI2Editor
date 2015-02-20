@@ -3936,4 +3936,22 @@
   <data name="MiscEnumUseSpeedSetGarrisonStatus1" xml:space="preserve">
     <value>新</value>
   </data>
+  <data name="CheckResultDuplicatedProvinceController" xml:space="preserve">
+    <value>プロヴィンス支配国の重複</value>
+  </data>
+  <data name="CheckResultDuplicatedProvinceOwner" xml:space="preserve">
+    <value>プロヴィンス保有国の重複</value>
+  </data>
+  <data name="CheckResultNoProvinceController" xml:space="preserve">
+    <value>プロヴィンス支配国なし</value>
+  </data>
+  <data name="CheckResultNoProvinceOwner" xml:space="preserve">
+    <value>プロヴィンス保有国なし</value>
+  </data>
+  <data name="CheckMessageDone" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="CheckMessageScenario" xml:space="preserve">
+    <value>シナリオデータのチェック</value>
+  </data>
 </root>

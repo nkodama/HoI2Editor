@@ -532,6 +532,19 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     チェックボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCheckButtonClick(object sender, EventArgs e)
+        {
+            // プロヴィンスデータ読み込み完了まで待つ
+            WaitLoadingProvinces();
+
+            DataChecker.CheckScenario();
+        }
+
+        /// <summary>
         ///     再読み込みボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>

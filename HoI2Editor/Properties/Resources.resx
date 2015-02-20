@@ -3978,4 +3978,22 @@
   <data name="MiscEnumUseSpeedSetGarrisonStatus1" xml:space="preserve">
     <value>New</value>
   </data>
+  <data name="CheckResultDuplicatedProvinceController" xml:space="preserve">
+    <value>Duplicated province controller</value>
+  </data>
+  <data name="CheckResultDuplicatedProvinceOwner" xml:space="preserve">
+    <value>Duplicated province owner</value>
+  </data>
+  <data name="CheckResultNoProvinceController" xml:space="preserve">
+    <value>No province controller</value>
+  </data>
+  <data name="CheckResultNoProvinceOwner" xml:space="preserve">
+    <value>No province owner</value>
+  </data>
+  <data name="CheckMessageDone" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="CheckMessageScenario" xml:space="preserve">
+    <value>Checking scenario</value>
+  </data>
 </root>

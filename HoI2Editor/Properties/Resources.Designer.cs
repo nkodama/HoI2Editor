@@ -241,6 +241,60 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Done に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CheckMessageDone {
+            get {
+                return ResourceManager.GetString("CheckMessageDone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Checking scenario に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CheckMessageScenario {
+            get {
+                return ResourceManager.GetString("CheckMessageScenario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Duplicated province controller に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CheckResultDuplicatedProvinceController {
+            get {
+                return ResourceManager.GetString("CheckResultDuplicatedProvinceController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Duplicated province owner に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CheckResultDuplicatedProvinceOwner {
+            get {
+                return ResourceManager.GetString("CheckResultDuplicatedProvinceOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No province controller に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CheckResultNoProvinceController {
+            get {
+                return ResourceManager.GetString("CheckResultNoProvinceController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   No province owner に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string CheckResultNoProvinceOwner {
+            get {
+                return ResourceManager.GetString("CheckResultNoProvinceOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   The items has been changed. Do you want to save the changes? に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string ConfirmSaveMessage {

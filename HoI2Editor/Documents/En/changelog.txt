@@ -4,12 +4,13 @@ Alternative HoI2 Editor Changelog
 
 New country's inc file can be saved.
 Supported scenario switching and reloading.
+Added province owner/controller checking.
+When a province is owned by a new country, it is released from original owner.
+The map is resized in proportion to the window size.
 Fixed a bug that text files are not saved in the correct places.
 Fixed a bug that the scenario editor crashes when saving or reloading without loading any scenarios.
 Fixed a bug that the scenario editor crashes when closing the window and reopening it.
 Fixed a bug that the scenario editor crashes if a country is selected before the map is loaded.
-The map is resized in proportion to the window size.
-When a province is owned by a new country, it is released from original owner.
 
 - 15 Feb 2015; Ver 0.42
 
