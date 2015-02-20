@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 
-namespace HoI2Editor.Controller
+namespace HoI2Editor.Controllers
 {
     /// <summary>
     ///     マップパネルのコントローラクラス

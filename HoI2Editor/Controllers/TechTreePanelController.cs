@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Utilities;
 
-namespace HoI2Editor.Controller
+namespace HoI2Editor.Controllers
 {
     /// <summary>
     ///     技術ツリーパネルのコントローラクラス

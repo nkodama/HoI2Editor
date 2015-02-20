@@ -45,9 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\MapPanelController.cs" />
-    <Compile Include="Controller\ScenarioEditorController.cs" />
-    <Compile Include="Controller\TechTreePanelController.cs" />
+    <Compile Include="Controllers\MapPanelController.cs" />
+    <Compile Include="Controllers\ScenarioEditorController.cs" />
+    <Compile Include="Controllers\TechTreePanelController.cs" />
     <Compile Include="Dialogs\LeaderBatchDialog.cs">
       <SubType>Form</SubType>
     </Compile>
