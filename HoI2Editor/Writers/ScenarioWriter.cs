@@ -164,13 +164,13 @@ namespace HoI2Editor.Writers
             writer.WriteLine("globaldata = {");
             WriteRules(data.Rules, writer);
             WriteScenarioStartDate(data.StartDate, writer);
-            WriteScenarioEndDate(data.EndDate, writer);
             WriteAlliances(data, writer);
             WriteWars(data, writer);
             WriteTreaties(data, writer);
             WriteScenarioDormantLeaders(data, writer);
             WriteScenarioDormantMinisters(data, writer);
             WriteScenarioDormantTeams(data, writer);
+            WriteScenarioEndDate(data.EndDate, writer);
             writer.WriteLine("}");
         }
 
