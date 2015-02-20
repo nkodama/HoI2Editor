@@ -4298,6 +4298,51 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // nationalidentity
+                if (keyword.Equals("nationalidentity"))
+                {
+                    string s = ParseString(lexer);
+                    if (s == null)
+                    {
+                        Log.InvalidClause(LogCategory, "nationalidentity", lexer);
+                        continue;
+                    }
+
+                    // 国民の意識
+                    country.NationalIdentity = s;
+                    continue;
+                }
+
+                // socialpolicy
+                if (keyword.Equals("socialpolicy"))
+                {
+                    string s = ParseString(lexer);
+                    if (s == null)
+                    {
+                        Log.InvalidClause(LogCategory, "socialpolicy", lexer);
+                        continue;
+                    }
+
+                    // 社会政策
+                    country.SocialPolicy = s;
+                    continue;
+                }
+
+                // nationalculture
+                if (keyword.Equals("nationalculture"))
+                {
+                    string s = ParseString(lexer);
+                    if (s == null)
+                    {
+                        Log.InvalidClause(LogCategory, "nationalculture", lexer);
+                        continue;
+                    }
+
+                    // 国家の文化
+                    country.NationalCulture = s;
+                    continue;
+                }
+
                 // dormant_leaders
                 if (keyword.Equals("dormant_leaders"))
                 {

@@ -2220,6 +2220,21 @@ namespace HoI2Editor.Models
         public TypeId ChiefOfAir { get; set; }
 
         /// <summary>
+        ///     国民の意識
+        /// </summary>
+        public string NationalIdentity { get; set; }
+
+        /// <summary>
+        ///     社会政策
+        /// </summary>
+        public string SocialPolicy { get; set; }
+
+        /// <summary>
+        ///     国家の文化
+        /// </summary>
+        public string NationalCulture { get; set; }
+
+        /// <summary>
         ///     休止指揮官
         /// </summary>
         public List<int> DormantLeaders { get; private set; }

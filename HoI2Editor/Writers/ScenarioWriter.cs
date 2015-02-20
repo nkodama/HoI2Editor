@@ -1440,18 +1440,14 @@ namespace HoI2Editor.Writers
                 WriteCountryInfo(settings, writer);
                 WriteCountryResources(settings, writer);
                 WriteOffmapResources(settings, writer);
-                writer.WriteLine();
-                WriteCountryPolicy(settings, writer);
-                WriteCabinet(settings, writer);
-                writer.WriteLine();
+                WriteDiplomacy(settings, writer);
+                WriteSpyInfos(settings, writer);
                 WriteCountryTerritories(settings, writer);
-                writer.WriteLine();
                 WriteTechApps(settings, writer);
                 WriteBlueprints(settings, writer);
-                writer.WriteLine();
-                WriteDiplomacy(settings, writer);
-                writer.WriteLine();
-                WriteSpyInfos(settings, writer);
+                WriteCountryPolicy(settings, writer);
+                WriteCabinet(settings, writer);
+                WriteIdea(settings, writer);
                 WriteCountryDormantLeaders(settings, writer);
                 WriteCountryDormantMinisters(settings, writer);
                 WriteCountryDormantTeams(settings, writer);
@@ -1619,62 +1615,6 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
-        ///     領土設定を書き出す
-        /// </summary>
-        /// <param name="settings">国家設定</param>
-        /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteCountryTerritories(CountrySettings settings, TextWriter writer)
-        {
-            writer.Write("  nationalprovinces      = {");
-            WriteIdList(settings.NationalProvinces, writer);
-            writer.WriteLine(" }");
-            writer.Write("  ownedprovinces         = {");
-            WriteIdList(settings.OwnedProvinces, writer);
-            writer.WriteLine(" }");
-            writer.Write("  controlledprovinces    = {");
-            WriteIdList(settings.ControlledProvinces, writer);
-            writer.WriteLine(" }");
-            if (settings.ClaimedProvinces.Count > 0)
-            {
-                writer.Write("  claimedprovinces       = {");
-                WriteIdList(settings.ClaimedProvinces, writer);
-                writer.WriteLine(" }");
-            }
-        }
-
-        /// <summary>
-        ///     保有技術リストを書き出す
-        /// </summary>
-        /// <param name="settings">国家設定</param>
-        /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteTechApps(CountrySettings settings, TextWriter writer)
-        {
-            if (settings.TechApps.Count == 0)
-            {
-                return;
-            }
-            writer.Write("  techapps               = {");
-            WriteIdList(settings.TechApps, writer);
-            writer.WriteLine(" }");
-        }
-
-        /// <summary>
-        ///     青写真設定を書き出す
-        /// </summary>
-        /// <param name="settings">国家設定</param>
-        /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteBlueprints(CountrySettings settings, TextWriter writer)
-        {
-            if (settings.BluePrints.Count == 0)
-            {
-                return;
-            }
-            writer.Write("  blueprints             = {");
-            WriteIdList(settings.BluePrints, writer);
-            writer.WriteLine(" }");
-        }
-
-        /// <summary>
         ///     外交設定を書き出す
         /// </summary>
         /// <param name="settings">国家設定</param>
@@ -1738,6 +1678,62 @@ namespace HoI2Editor.Writers
                 writer.WriteLine("  SpyInfo                = {{ country = \"{0}\" NumberOfSpies = {1} }}",
                     Countries.Strings[(int) spy.Country], spy.Spies);
             }
+        }
+
+        /// <summary>
+        ///     領土設定を書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteCountryTerritories(CountrySettings settings, TextWriter writer)
+        {
+            writer.Write("  nationalprovinces      = {");
+            WriteIdList(settings.NationalProvinces, writer);
+            writer.WriteLine(" }");
+            writer.Write("  ownedprovinces         = {");
+            WriteIdList(settings.OwnedProvinces, writer);
+            writer.WriteLine(" }");
+            writer.Write("  controlledprovinces    = {");
+            WriteIdList(settings.ControlledProvinces, writer);
+            writer.WriteLine(" }");
+            if (settings.ClaimedProvinces.Count > 0)
+            {
+                writer.Write("  claimedprovinces       = {");
+                WriteIdList(settings.ClaimedProvinces, writer);
+                writer.WriteLine(" }");
+            }
+        }
+
+        /// <summary>
+        ///     保有技術リストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteTechApps(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.TechApps.Count == 0)
+            {
+                return;
+            }
+            writer.Write("  techapps               = {");
+            WriteIdList(settings.TechApps, writer);
+            writer.WriteLine(" }");
+        }
+
+        /// <summary>
+        ///     青写真設定を書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteBlueprints(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.BluePrints.Count == 0)
+            {
+                return;
+            }
+            writer.Write("  blueprints             = {");
+            WriteIdList(settings.BluePrints, writer);
+            writer.WriteLine(" }");
         }
 
         /// <summary>
@@ -1844,6 +1840,33 @@ namespace HoI2Editor.Writers
             else
             {
                 writer.WriteLine();
+            }
+        }
+
+        /// <summary>
+        ///     国策を書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteIdea(CountrySettings settings, TextWriter writer)
+        {
+            // 国策をサポートするのはAoDのみ
+            if (Game.Type != GameType.ArsenalOfDemocracy)
+            {
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(settings.NationalIdentity))
+            {
+                writer.WriteLine("  nationalidentity       = \"{0}\"", settings.NationalIdentity);
+            }
+            if (!string.IsNullOrEmpty(settings.SocialPolicy))
+            {
+                writer.WriteLine("  socialpolicy           = \"{0}\"", settings.SocialPolicy);
+            }
+            if (!string.IsNullOrEmpty(settings.NationalCulture))
+            {
+                writer.WriteLine("  nationalculture        = \"{0}\"", settings.NationalCulture);
             }
         }
 
@@ -2622,7 +2645,7 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteConvoyDevelopment(ConvoyDevelopment convoy, TextWriter writer)
         {
-            writer.WriteLine("  province_development = {");
+            writer.WriteLine("  convoy_development = {");
             writer.Write("    id                  = ");
             WriteTypeId(convoy.Id, writer);
             writer.WriteLine();
