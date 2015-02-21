@@ -1057,6 +1057,7 @@ namespace HoI2Editor.Parsers
 
                     // 休止指揮官
                     data.DormantLeaders.AddRange(list);
+                    continue;
                 }
 
                 // dormant_ministers
