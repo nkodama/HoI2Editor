@@ -12,6 +12,7 @@ Fixed a bug that text files are not saved in the correct places.
 Fixed a bug that the scenario editor crashes when saving or reloading without loading any scenarios.
 Fixed a bug that the scenario editor crashes when closing the window and reopening it.
 Fixed a bug that the scenario editor crashes if a country is selected before the map is loaded.
+Fixed a bug that province settings are saved into both bases.inc and country-specific.inc.
 
 - 15 Feb 2015; Ver 0.42
 
