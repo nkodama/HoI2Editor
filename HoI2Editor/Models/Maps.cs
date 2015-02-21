@@ -137,13 +137,19 @@ namespace HoI2Editor.Models
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (IsLoaded[(int) level])
             {
-                handler(null, new RunWorkerCompletedEventArgs(level, null, false));
+                if (handler != null)
+                {
+                    handler(null, new RunWorkerCompletedEventArgs(level, null, false));
+                }
                 return;
             }
 
             // 読み込み完了イベントハンドラを登録する
             BackgroundWorker worker = Workers[(int) level];
-            worker.RunWorkerCompleted += handler;
+            if (handler != null)
+            {
+                worker.RunWorkerCompleted += handler;
+            }
 
             // 読み込み途中ならば戻る
             if (worker.IsBusy)
@@ -166,7 +172,7 @@ namespace HoI2Editor.Models
         ///     マップ読み込み完了まで待機する
         /// </summary>
         /// <param name="level">マップレベル</param>
-        private static void WaitLoading(MapLevel level)
+        public static void WaitLoading(MapLevel level)
         {
             while (Workers[(int) level].IsBusy)
             {

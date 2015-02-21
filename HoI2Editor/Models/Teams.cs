@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -39,6 +40,11 @@ namespace HoI2Editor.Models
         ///     読み込み済みフラグ
         /// </summary>
         private static bool _loaded;
+
+        /// <summary>
+        ///     遅延読み込み用
+        /// </summary>
+        private static readonly BackgroundWorker Worker = new BackgroundWorker();
 
         /// <summary>
         ///     編集済みフラグ
@@ -122,6 +128,81 @@ namespace HoI2Editor.Models
                 return;
             }
 
+            // 読み込み途中ならば完了を待つ
+            if (Worker.IsBusy)
+            {
+                WaitLoading();
+                return;
+            }
+
+            LoadFiles();
+        }
+
+        /// <summary>
+        ///     研究機関ファイル群を遅延読み込みする
+        /// </summary>
+        /// <param name="handler">読み込み完了イベントハンドラ</param>
+        public static void LoadAsync(RunWorkerCompletedEventHandler handler)
+        {
+            // 既に読み込み済みならば完了イベントハンドラを呼び出す
+            if (_loaded)
+            {
+                if (handler != null)
+                {
+                    handler(null, new RunWorkerCompletedEventArgs(null, null, false));
+                }
+                return;
+            }
+
+            // 読み込み完了イベントハンドラを登録する
+            if (handler != null)
+            {
+                Worker.RunWorkerCompleted += handler;
+            }
+
+            // 読み込み途中ならば戻る
+            if (Worker.IsBusy)
+            {
+                return;
+            }
+
+            // ここで読み込み済みならば既に完了イベントハンドラを呼び出しているので何もせずに戻る
+            if (_loaded)
+            {
+                return;
+            }
+
+            // 遅延読み込みを開始する
+            Worker.DoWork += OnWorkerDoWork;
+            Worker.RunWorkerAsync();
+        }
+
+        /// <summary>
+        ///     読み込み完了まで待機する
+        /// </summary>
+        public static void WaitLoading()
+        {
+            while (Worker.IsBusy)
+            {
+                Application.DoEvents();
+            }
+        }
+
+        /// <summary>
+        ///     遅延読み込み処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnWorkerDoWork(object sender, DoWorkEventArgs e)
+        {
+            LoadFiles();
+        }
+
+        /// <summary>
+        ///     研究機関ファイル群を読み込む
+        /// </summary>
+        private static void LoadFiles()
+        {
             Items.Clear();
             IdSet.Clear();
             FileNameMap.Clear();

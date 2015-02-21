@@ -19,8 +19,6 @@ namespace HoI2Editor.Forms
     {
         #region 内部フィールド
 
-        #region 共通
-
         /// <summary>
         ///     シナリオエディタのコントローラ
         /// </summary>
@@ -42,10 +40,6 @@ namespace HoI2Editor.Forms
         private readonly Dictionary<ScenarioEditorItemId, Control> _itemControls =
             new Dictionary<ScenarioEditorItemId, Control>();
 
-        #endregion
-
-        #region 選択可能国リスト
-
         /// <summary>
         ///     主要国以外の選択可能国リスト
         /// </summary>
@@ -55,10 +49,6 @@ namespace HoI2Editor.Forms
         ///     選択可能国以外の国家リスト
         /// </summary>
         private List<Country> _selectableFreeCountries;
-
-        #endregion
-
-        #region 同盟国リスト
 
         /// <summary>
         ///     同盟国以外の国家リスト
@@ -70,10 +60,6 @@ namespace HoI2Editor.Forms
         /// </summary>
         private List<Country> _warFreeCountries;
 
-        #endregion
-
-        #region 技術リスト
-
         /// <summary>
         ///     技術項目リスト
         /// </summary>
@@ -84,18 +70,10 @@ namespace HoI2Editor.Forms
         /// </summary>
         private List<TechEvent> _inventions;
 
-        #endregion
-
-        #region 技術ツリーパネル
-
         /// <summary>
         ///     技術ツリーパネルのコントローラ
         /// </summary>
         private TechTreePanelController _techTreePanelController;
-
-        #endregion
-
-        #region マップパネル
 
         /// <summary>
         ///     マップパネルのコントローラ
@@ -106,27 +84,6 @@ namespace HoI2Editor.Forms
         ///     マップパネルの初期化フラグ
         /// </summary>
         private bool _mapPanelInitialized;
-
-        #endregion
-
-        #region データ遅延読み込み
-
-        /// <summary>
-        ///     閣僚データロード用
-        /// </summary>
-        private readonly BackgroundWorker _ministerWorker = new BackgroundWorker();
-
-        /// <summary>
-        ///     技術データロード用
-        /// </summary>
-        private readonly BackgroundWorker _techWorker = new BackgroundWorker();
-
-        /// <summary>
-        ///     プロヴィンスデータロード用
-        /// </summary>
-        private readonly BackgroundWorker _provinceWorker = new BackgroundWorker();
-
-        #endregion
 
         #endregion
 
@@ -261,105 +218,6 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     閣僚データを遅延読み込みする
-        /// </summary>
-        private void DelayLoadMinisters()
-        {
-            _ministerWorker.DoWork += OnMinisterWorkerDoWork;
-            _ministerWorker.RunWorkerAsync();
-        }
-
-        /// <summary>
-        ///     閣僚データの読み込み完了まで待機する
-        /// </summary>
-        private void WaitLoadingMinisters()
-        {
-            while (_ministerWorker.IsBusy)
-            {
-                Application.DoEvents();
-            }
-        }
-
-        /// <summary>
-        ///     閣僚データを読み込む
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnMinisterWorkerDoWork(object sender, DoWorkEventArgs e)
-        {
-            // 閣僚データを読み込む
-            Ministers.Load();
-
-            Log.Info("[Scenario] Load ministers");
-        }
-
-        /// <summary>
-        ///     技術データを遅延読み込みする
-        /// </summary>
-        private void DelayLoadTechs()
-        {
-            _techWorker.DoWork += OnTechWorkerDoWork;
-            _techWorker.RunWorkerAsync();
-        }
-
-        /// <summary>
-        ///     技術データの読み込み完了まで待機する
-        /// </summary>
-        private void WaitLoadingTechs()
-        {
-            while (_techWorker.IsBusy)
-            {
-                Application.DoEvents();
-            }
-        }
-
-        /// <summary>
-        ///     技術データを読み込む
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnTechWorkerDoWork(object sender, DoWorkEventArgs e)
-        {
-            // 技術定義ファイルを読み込む
-            Techs.Load();
-
-            Log.Info("[Scenario] Load techs");
-        }
-
-        /// <summary>
-        ///     プロヴィンスデータを遅延読み込みする
-        /// </summary>
-        private void DelayLoadProvinces()
-        {
-            _provinceWorker.DoWork += OnProvinceWorkerDoWork;
-            _provinceWorker.RunWorkerAsync();
-        }
-
-        /// <summary>
-        ///     プロヴィンスデータの読み込み完了まで待機する
-        /// </summary>
-        private void WaitLoadingProvinces()
-        {
-            while (_provinceWorker.IsBusy)
-            {
-                Application.DoEvents();
-            }
-        }
-
-        /// <summary>
-        ///     プロヴィンスデータを読み込む
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnProvinceWorkerDoWork(object sender, DoWorkEventArgs e)
-        {
-            // プロヴィンス定義ファイルを読み込む
-            Provinces.Load();
-
-            Log.Info("[Scenario] Load provinces");
-        }
-
-        /// <summary>
         ///     マップ読み込み完了時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -440,13 +298,13 @@ namespace HoI2Editor.Forms
             Maps.LoadAsync(MapLevel.Level2, OnMapFileLoad);
 
             // 閣僚データを遅延読込する
-            DelayLoadMinisters();
+            Ministers.LoadAsync(null);
 
             // 技術データを遅延読み込みする
-            DelayLoadTechs();
+            Techs.LoadAsync(null);
 
             // プロヴィンスデータを遅延読み込みする
-            DelayLoadProvinces();
+            Provinces.LoadAsync(null);
 
             // 表示項目を初期化する
             OnMainTabPageFormLoad();
@@ -539,7 +397,7 @@ namespace HoI2Editor.Forms
         private void OnCheckButtonClick(object sender, EventArgs e)
         {
             // プロヴィンスデータ読み込み完了まで待つ
-            WaitLoadingProvinces();
+            Provinces.WaitLoading();
 
             DataChecker.CheckScenario();
         }
@@ -7330,7 +7188,7 @@ namespace HoI2Editor.Forms
             }
 
             // 閣僚データの読み込み完了まで待機する
-            WaitLoadingMinisters();
+            Ministers.WaitLoading();
 
             // 初回遷移時には表示を更新する
             UpdateGovernmentTab();
@@ -7348,7 +7206,7 @@ namespace HoI2Editor.Forms
             }
 
             // 閣僚データの読み込み完了まで待機する
-            WaitLoadingMinisters();
+            Ministers.WaitLoading();
 
             // 初回遷移時には表示を更新する
             UpdateGovernmentTab();
@@ -8035,7 +7893,7 @@ namespace HoI2Editor.Forms
             }
 
             // 技術データの読み込み完了まで待機する
-            WaitLoadingTechs();
+            Techs.WaitLoading();
 
             // 初回遷移時には表示を更新する
             UpdateTechTab();
@@ -8053,7 +7911,7 @@ namespace HoI2Editor.Forms
             }
 
             // 技術データの読み込み完了まで待機する
-            WaitLoadingMinisters();
+            Techs.WaitLoading();
 
             // 初回遷移時には表示を更新する
             UpdateTechTab();
@@ -8815,7 +8673,7 @@ namespace HoI2Editor.Forms
             }
 
             // プロヴィンスデータの読み込み完了まで待機する
-            WaitLoadingProvinces();
+            Provinces.WaitLoading();
 
             // 初回遷移時には表示を更新する
             UpdateProvinceTab();
@@ -8833,7 +8691,7 @@ namespace HoI2Editor.Forms
             }
 
             // プロヴィンスデータの読み込み完了まで待機する
-            WaitLoadingProvinces();
+            Provinces.WaitLoading();
 
             // 初回遷移時には表示を更新する
             UpdateProvinceTab();
