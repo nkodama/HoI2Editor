@@ -8907,33 +8907,41 @@ namespace HoI2Editor.Forms
             SelectProvince(e.Id);
 
             Country country = GetSelectedProvinceCountry();
-            if (country == Country.None)
-            {
-                return;
-            }
-
             switch (_mapPanelController.FilterMode)
             {
+                case MapPanelController.MapFilterMode.None:
+                    Country target = (from settings in Scenarios.Data.Countries
+                        where settings.ControlledProvinces.Contains(e.Id)
+                        select settings.Country).FirstOrDefault();
+                    provinceCountryFilterComboBox.SelectedIndex = Array.IndexOf(Countries.Tags, target) + 1;
+                    break;
+
                 case MapPanelController.MapFilterMode.Core:
-                    coreProvinceCheckBox.Checked = !coreProvinceCheckBox.Checked;
+                    if (country != Country.None)
+                    {
+                        coreProvinceCheckBox.Checked = !coreProvinceCheckBox.Checked;
+                    }
                     break;
 
                 case MapPanelController.MapFilterMode.Owned:
-                    if (ownedProvinceCheckBox.Enabled)
+                    if (country != Country.None && ownedProvinceCheckBox.Enabled)
                     {
                         ownedProvinceCheckBox.Checked = !ownedProvinceCheckBox.Checked;
                     }
                     break;
 
                 case MapPanelController.MapFilterMode.Controlled:
-                    if (controlledProvinceCheckBox.Enabled)
+                    if (country != Country.None && controlledProvinceCheckBox.Enabled)
                     {
                         controlledProvinceCheckBox.Checked = !controlledProvinceCheckBox.Checked;
                     }
                     break;
 
                 case MapPanelController.MapFilterMode.Claimed:
-                    claimedProvinceCheckBox.Checked = !claimedProvinceCheckBox.Checked;
+                    if (country != Country.None)
+                    {
+                        claimedProvinceCheckBox.Checked = !claimedProvinceCheckBox.Checked;
+                    }
                     break;
             }
         }

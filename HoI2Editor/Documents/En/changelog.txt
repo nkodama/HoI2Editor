@@ -7,6 +7,7 @@ Supported scenario switching and reloading.
 Added province owner/controller checking.
 When a province is owned by a new country, it is released from original owner.
 The map is resized in proportion to the window size.
+When a province is clicked with no map filter, its controller country is selected.
 More scenario tags are supported.
 Fixed a bug that text files are not saved in the correct places.
 Fixed a bug that the scenario editor crashes when saving or reloading without loading any scenarios.
