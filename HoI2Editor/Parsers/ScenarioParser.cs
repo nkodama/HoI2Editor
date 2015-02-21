@@ -169,9 +169,9 @@ namespace HoI2Editor.Parsers
                     if (keyword.Equals("save_date"))
                     {
                         GameDate startDate;
-                        // シナリオ開始日時が設定されていなければ1936/1/1とみなす
                         if (scenario.GlobalData == null || scenario.GlobalData.StartDate == null)
                         {
+                            // シナリオ開始日時が設定されていなければ1936/1/1とみなす
                             startDate = new GameDate();
                         }
                         else

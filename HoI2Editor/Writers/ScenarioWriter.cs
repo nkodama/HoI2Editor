@@ -25,22 +25,152 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("name       = \"{0}\"", scenario.Name);
                 writer.WriteLine("panel      = \"{0}\"", scenario.PanelName);
-                writer.WriteLine();
                 WriteHeader(scenario.Header, writer);
-                writer.WriteLine();
                 WriteGlobalData(scenario.GlobalData, writer);
+                WriteHistoryEvents(scenario, writer);
+                WriteSleepEvents(scenario, writer);
+                WriteSaveDates(scenario, writer);
                 WriteMap(scenario.Map, writer);
+                WriteEvents(scenario, writer);
+                WriteIncludes(scenario, writer);
+            }
+        }
+
+        /// <summary>
+        ///     イベント履歴リストを書き出す
+        /// </summary>
+        /// <param name="scenario">シナリオデータ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteHistoryEvents(Scenario scenario, TextWriter writer)
+        {
+            if (scenario.HistoryEvents.Count > 0)
+            {
                 writer.WriteLine();
-                writer.WriteLine("# ###################");
-                foreach (string name in scenario.EventFiles)
-                {
-                    writer.WriteLine("event      = \"{0}\"", name);
-                }
+                writer.Write("history = {");
+                WriteIdList(scenario.HistoryEvents, writer);
+                writer.WriteLine(" }");
+            }
+        }
+
+        /// <summary>
+        ///     休止イベントリストを書き出す
+        /// </summary>
+        /// <param name="scenario">シナリオデータ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteSleepEvents(Scenario scenario, TextWriter writer)
+        {
+            if (scenario.SleepEvents.Count > 0)
+            {
                 writer.WriteLine();
-                foreach (string name in scenario.IncludeFiles)
-                {
-                    writer.WriteLine("include = \"{0}\"", name);
-                }
+                writer.Write("sleepevent = {");
+                WriteIdList(scenario.SleepEvents, writer);
+                writer.WriteLine(" }");
+            }
+        }
+
+        /// <summary>
+        ///     保存日時リストを書き出す
+        /// </summary>
+        /// <param name="scenario">シナリオデータ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteSaveDates(Scenario scenario, TextWriter writer)
+        {
+            if (scenario.SaveDates == null || scenario.SaveDates.Count == 0)
+            {
+                return;
+            }
+
+            GameDate startDate;
+            if (scenario.GlobalData == null || scenario.GlobalData.StartDate == null)
+            {
+                // シナリオ開始日時が設定されていなければ1936/1/1とみなす
+                startDate = new GameDate();
+            }
+            else
+            {
+                startDate = scenario.GlobalData.StartDate;
+            }
+
+            writer.WriteLine();
+            writer.WriteLine("save_date = {");
+            foreach (KeyValuePair<int, GameDate> pair in scenario.SaveDates)
+            {
+                writer.WriteLine("  {0} = {1}", pair.Key, startDate.Difference(pair.Value));
+            }
+            writer.WriteLine("}");
+        }
+
+        /// <summary>
+        ///     マップ設定を書き出す
+        /// </summary>
+        /// <param name="map">マップ設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteMap(MapSettings map, TextWriter writer)
+        {
+            if (map == null)
+            {
+                return;
+            }
+            writer.WriteLine();
+            writer.WriteLine("map = {");
+            writer.WriteLine("  {0} = all", map.All ? "yes" : "no");
+            writer.WriteLine();
+            foreach (int id in map.Yes)
+            {
+                writer.WriteLine("  yes = {0}", id);
+            }
+            foreach (int id in map.No)
+            {
+                writer.WriteLine("  no = {0}", id);
+            }
+            if (map.Top != null || map.Bottom != null)
+            {
+                writer.WriteLine();
+            }
+            if (map.Top != null)
+            {
+                writer.WriteLine("  top = {{ x = {0} y = {1} }}", map.Top.X, map.Top.Y);
+            }
+            if (map.Bottom != null)
+            {
+                writer.WriteLine("  bottom = {{ x = {0} y = {1} }}", map.Bottom.X, map.Bottom.Y);
+            }
+            writer.WriteLine("}");
+        }
+
+        /// <summary>
+        ///     イベントファイルリストを書き出す
+        /// </summary>
+        /// <param name="scenario">シナリオデータ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteEvents(Scenario scenario, TextWriter writer)
+        {
+            if (scenario.EventFiles.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine("# ###################");
+            foreach (string name in scenario.EventFiles)
+            {
+                writer.WriteLine("event      = \"{0}\"", name);
+            }
+        }
+
+        /// <summary>
+        ///     インクルードファイルリストを書き出す
+        /// </summary>
+        /// <param name="scenario">シナリオデータ</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteIncludes(Scenario scenario, TextWriter writer)
+        {
+            if (scenario.IncludeFiles.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine();
+            foreach (string name in scenario.IncludeFiles)
+            {
+                writer.WriteLine("include = \"{0}\"", name);
             }
         }
 
@@ -99,7 +229,6 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
-            writer.WriteLine();
             writer.Write("  selectable = {");
             WriteCountryList(header.SelectableCountries, writer);
             writer.WriteLine(" }");
@@ -112,7 +241,6 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteMajorCountries(ScenarioHeader header, TextWriter writer)
         {
-            writer.WriteLine();
             foreach (MajorCountrySettings major in header.MajorCountries)
             {
                 WriteMajorCountry(major, writer);
@@ -242,7 +370,6 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteAlliances(ScenarioGlobalData data, TextWriter writer)
         {
-            writer.WriteLine();
             if (data.Axis != null)
             {
                 WriteAlliance(data.Axis, "axis", writer);
@@ -272,8 +399,6 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
-
-            writer.WriteLine();
             foreach (War war in data.Wars)
             {
                 WriteWar(war, writer);
@@ -288,33 +413,21 @@ namespace HoI2Editor.Writers
         private static void WriteTreaties(ScenarioGlobalData data, TextWriter writer)
         {
             // 不可侵条約
-            if (data.NonAggressions.Count > 0)
+            foreach (Treaty treaty in data.NonAggressions)
             {
-                writer.WriteLine();
-                foreach (Treaty treaty in data.NonAggressions)
-                {
-                    WriteTreaty(treaty, writer);
-                }
+                WriteTreaty(treaty, writer);
             }
 
             // 講和条約
-            if (data.Peaces.Count > 0)
+            foreach (Treaty treaty in data.Peaces)
             {
-                writer.WriteLine();
-                foreach (Treaty treaty in data.Peaces)
-                {
-                    WriteTreaty(treaty, writer);
-                }
+                WriteTreaty(treaty, writer);
             }
 
             // 貿易
-            if (data.Trades.Count > 0)
+            foreach (Treaty treaty in data.Trades)
             {
-                writer.WriteLine();
-                foreach (Treaty treaty in data.Trades)
-                {
-                    WriteTreaty(treaty, writer);
-                }
+                WriteTreaty(treaty, writer);
             }
         }
 
@@ -463,7 +576,6 @@ namespace HoI2Editor.Writers
         {
             if (data.DormantLeadersAll)
             {
-                writer.WriteLine();
                 writer.WriteLine("  dormant_leaders   = yes");
                 return;
             }
@@ -474,7 +586,6 @@ namespace HoI2Editor.Writers
                 return;
             }
 
-            writer.WriteLine();
             writer.Write("  dormant_leaders   = {");
             WriteIdList(data.DormantLeaders, writer);
             writer.WriteLine(" }");
@@ -493,7 +604,6 @@ namespace HoI2Editor.Writers
                 return;
             }
 
-            writer.WriteLine();
             writer.Write("  dormant_ministers = {");
             WriteIdList(data.DormantMinisters, writer);
             writer.WriteLine(" }");
@@ -512,52 +622,9 @@ namespace HoI2Editor.Writers
                 return;
             }
 
-            writer.WriteLine();
             writer.Write("  dormant_teams     = {");
             WriteIdList(data.DormantTeams, writer);
             writer.WriteLine(" }");
-        }
-
-        #endregion
-
-        #region マップ
-
-        /// <summary>
-        ///     マップ設定を書き出す
-        /// </summary>
-        /// <param name="map">マップ設定</param>
-        /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteMap(MapSettings map, TextWriter writer)
-        {
-            if (map == null)
-            {
-                return;
-            }
-            writer.WriteLine();
-            writer.WriteLine("map = {");
-            writer.WriteLine("  {0} = all", map.All ? "yes" : "no");
-            writer.WriteLine();
-            foreach (int id in map.Yes)
-            {
-                writer.WriteLine("  yes = {0}", id);
-            }
-            foreach (int id in map.No)
-            {
-                writer.WriteLine("  no = {0}", id);
-            }
-            if (map.Top != null || map.Bottom != null)
-            {
-                writer.WriteLine();
-            }
-            if (map.Top != null)
-            {
-                writer.WriteLine("  top = {{ x = {0} y = {1} }}", map.Top.X, map.Top.Y);
-            }
-            if (map.Bottom != null)
-            {
-                writer.WriteLine("  bottom = {{ x = {0} y = {1} }}", map.Bottom.X, map.Bottom.Y);
-            }
-            writer.WriteLine("}");
         }
 
         #endregion
@@ -1418,7 +1485,7 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("    gearing_bonus  = {0}", DoubleHelper.ToString4(building.GearingBonus));
             }
-            writer.WriteLine("    type           = {0}", Scenarios.BuildingStrings[(int)building.Type]);
+            writer.WriteLine("    type           = {0}", Scenarios.BuildingStrings[(int) building.Type]);
             writer.WriteLine("  }");
         }
 
@@ -1436,18 +1503,12 @@ namespace HoI2Editor.Writers
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
-                writer.WriteLine("##############################");
-                writer.WriteLine("# Country definition for {0} #", Countries.Strings[(int) settings.Country]);
-                writer.WriteLine("##############################");
-                writer.WriteLine();
+                WriteCountryHeader(settings, writer);
                 if (WriteCountryProvinces(settings, scenario, writer) || Game.IsDhFull())
                 {
-                    writer.WriteLine();
-                    writer.WriteLine("#####################");
-                    writer.WriteLine("# Country main data #");
-                    writer.WriteLine("#####################");
-                    writer.WriteLine();
+                    WriteMainHeader(writer);
                 }
+                writer.WriteLine();
                 writer.WriteLine("country = {");
                 WriteCountryInfo(settings, writer);
                 WriteCountryResources(settings, writer);
@@ -1457,14 +1518,15 @@ namespace HoI2Editor.Writers
                 WriteCountryTerritories(settings, writer);
                 WriteTechApps(settings, writer);
                 WriteBlueprints(settings, writer);
+                WriteInventions(settings, writer);
                 WriteCountryPolicy(settings, writer);
+                WriteCountryModifiers(settings, writer);
                 WriteCabinet(settings, writer);
                 WriteIdea(settings, writer);
                 WriteCountryDormantLeaders(settings, writer);
                 WriteCountryDormantMinisters(settings, writer);
                 WriteCountryDormantTeams(settings, writer);
                 WriteStealLeaders(settings, writer);
-                writer.WriteLine();
                 WriteLandUnits(settings, writer);
                 WriteNavalUnits(settings, writer);
                 WriteAirUnits(settings, writer);
@@ -1477,58 +1539,95 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
+        ///     国家ヘッダを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteCountryHeader(CountrySettings settings, TextWriter writer)
+        {
+            writer.WriteLine("##############################");
+            writer.WriteLine("# Country definition for {0} #", Countries.Strings[(int) settings.Country]);
+            writer.WriteLine("##############################");
+        }
+
+        /// <summary>
+        ///     メインヘッダを書き出す
+        /// </summary>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteMainHeader(StreamWriter writer)
+        {
+            writer.WriteLine();
+            writer.WriteLine("#####################");
+            writer.WriteLine("# Country main data #");
+            writer.WriteLine("#####################");
+        }
+
+        /// <summary>
         ///     国家情報を書き出す
         /// </summary>
         /// <param name="settings">国家設定</param>
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteCountryInfo(CountrySettings settings, TextWriter writer)
         {
-            writer.WriteLine("  tag            = {0}", Countries.Strings[(int) settings.Country]);
+            writer.WriteLine("  tag                = {0}", Countries.Strings[(int) settings.Country]);
             if (settings.RegularId != Country.None)
             {
-                writer.WriteLine("  regular_id     = {0}", Countries.Strings[(int) settings.RegularId]);
+                writer.WriteLine("  regular_id         = {0}", Countries.Strings[(int) settings.RegularId]);
             }
             if (settings.Master != Country.None)
             {
-                writer.WriteLine("  puppet         = {0}", Countries.Strings[(int) settings.Master]);
+                writer.WriteLine("  puppet             = {0}", Countries.Strings[(int) settings.Master]);
             }
             if (settings.Control != Country.None)
             {
-                writer.WriteLine("  control        = {0}", Countries.Strings[(int) settings.Control]);
+                writer.WriteLine("  control            = {0}", Countries.Strings[(int) settings.Control]);
             }
-            writer.WriteLine("  capital        = {0} # {1}", settings.Capital,
-                Scenarios.GetProvinceName(settings.Capital));
             if (!string.IsNullOrEmpty(settings.Name))
             {
-                writer.WriteLine("  name           = {0}", settings.Name);
+                writer.WriteLine("  name               = {0}", settings.Name);
             }
             if (!string.IsNullOrEmpty(settings.FlagExt))
             {
-                writer.WriteLine("  flag_ext       = {0}", settings.FlagExt);
+                writer.WriteLine("  flag_ext           = {0}", settings.FlagExt);
             }
             if (!string.IsNullOrEmpty(settings.AiFileName))
             {
-                writer.WriteLine("  ai             = \"{0}\"", settings.AiFileName);
+                writer.WriteLine("  ai                 = \"{0}\"", settings.AiFileName);
             }
             if (settings.AiSettings != null)
             {
-                writer.Write("  ai_settings    = { flags = ");
+                writer.Write("  ai_settings        = { flags = ");
                 WriteAiSettings(settings, writer);
                 writer.WriteLine(" }");
             }
+            if (settings.IntrinsicGovType != GovernmentType.None)
+            {
+                writer.WriteLine("  intrinsic_gov_type = {0}",
+                    Scenarios.GovernmentStrings[(int) settings.IntrinsicGovType]);
+            }
             if (settings.Belligerence > 0)
             {
-                writer.WriteLine("  belligerence   = {0}", settings.Belligerence);
+                writer.WriteLine("  belligerence       = {0}", settings.Belligerence);
             }
+            writer.WriteLine("  capital            = {0} # {1}", settings.Capital,
+                Scenarios.GetProvinceName(settings.Capital));
             if (settings.Dissent > 0)
             {
-                writer.WriteLine("  dissent        = {0}", DoubleHelper.ToString(settings.Dissent));
+                writer.WriteLine("  dissent            = {0}", DoubleHelper.ToString(settings.Dissent));
             }
             if (settings.ExtraTc > 0)
             {
-                writer.WriteLine("  extra_tc       = {0}", DoubleHelper.ToString(settings.ExtraTc));
+                writer.WriteLine("  extra_tc           = {0}", DoubleHelper.ToString(settings.ExtraTc));
             }
-            writer.WriteLine("  manpower       = {0}", ObjectHelper.ToString(settings.Manpower));
+            writer.WriteLine("  manpower           = {0}", DoubleHelper.ToString(settings.Manpower));
+            if (!DoubleHelper.IsZero(settings.RelativeManpower))
+            {
+                writer.WriteLine("  relative_manpower  = {0}", DoubleHelper.ToString(settings.RelativeManpower));
+            }
+            if (!DoubleHelper.IsZero(settings.GroundDefEff))
+            {
+                writer.WriteLine("  ground_def_eff     = {0}", DoubleHelper.ToString(settings.GroundDefEff));
+            }
         }
 
         /// <summary>
@@ -1637,6 +1736,7 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
+            writer.WriteLine();
             writer.WriteLine("  diplomacy = {");
             foreach (Relation relation in settings.Relations)
             {
@@ -1699,6 +1799,7 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteCountryTerritories(CountrySettings settings, TextWriter writer)
         {
+            writer.WriteLine();
             writer.Write("  nationalprovinces      = {");
             WriteIdList(settings.NationalProvinces, writer);
             writer.WriteLine(" }");
@@ -1727,13 +1828,14 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
+            writer.WriteLine();
             writer.Write("  techapps               = {");
             WriteIdList(settings.TechApps, writer);
             writer.WriteLine(" }");
         }
 
         /// <summary>
-        ///     青写真設定を書き出す
+        ///     青写真リストを書き出す
         /// </summary>
         /// <param name="settings">国家設定</param>
         /// <param name="writer">ファイル書き込み用</param>
@@ -1749,6 +1851,22 @@ namespace HoI2Editor.Writers
         }
 
         /// <summary>
+        ///     発明イベントリストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteInventions(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.Inventions.Count == 0)
+            {
+                return;
+            }
+            writer.Write("  inventions             = {");
+            WriteIdList(settings.Inventions, writer);
+            writer.WriteLine(" }");
+        }
+
+        /// <summary>
         ///     政策スライダーを書き出す
         /// </summary>
         /// <param name="settings">国家設定</param>
@@ -1760,6 +1878,7 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
+            writer.WriteLine();
             writer.WriteLine("  policy = {");
             if (policy.Date != null)
             {
@@ -1769,12 +1888,33 @@ namespace HoI2Editor.Writers
             }
             writer.WriteLine("    democratic        = {0}", policy.Democratic);
             writer.WriteLine("    political_left    = {0}", policy.PoliticalLeft);
-            writer.WriteLine("    free_market       = {0}", policy.FreeMarket);
             writer.WriteLine("    freedom           = {0}", policy.Freedom);
+            writer.WriteLine("    free_market       = {0}", policy.FreeMarket);
             writer.WriteLine("    professional_army = {0}", policy.ProfessionalArmy);
             writer.WriteLine("    defense_lobby     = {0}", policy.DefenseLobby);
             writer.WriteLine("    interventionism   = {0}", policy.Interventionism);
             writer.WriteLine("  }");
+        }
+
+        /// <summary>
+        ///     国家補正値を書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteCountryModifiers(CountrySettings settings, TextWriter writer)
+        {
+            if (!DoubleHelper.IsZero(settings.PeacetimeIcModifier))
+            {
+                writer.WriteLine("  peacetime_ic_mod       = {0}", DoubleHelper.ToString(settings.PeacetimeIcModifier));
+            }
+            if (!DoubleHelper.IsZero(settings.WartimeIcModifier))
+            {
+                writer.WriteLine("  wartime_ic_mod         = {0}", DoubleHelper.ToString(settings.WartimeIcModifier));
+            }
+            if (!DoubleHelper.IsZero(settings.WartimeIcModifier))
+            {
+                writer.WriteLine("  industrial_modifier    = {0}", DoubleHelper.ToString(settings.WartimeIcModifier));
+            }
         }
 
         /// <summary>
@@ -1893,7 +2033,6 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
-            writer.WriteLine();
             writer.Write("  dormant_leaders        = {");
             WriteIdList(settings.DormantLeaders, writer);
             writer.WriteLine(" }");
@@ -1910,7 +2049,6 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
-            writer.WriteLine();
             writer.Write("  dormant_ministers      = {");
             WriteIdList(settings.DormantMinisters, writer);
             writer.WriteLine(" }");
@@ -1927,7 +2065,6 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
-            writer.WriteLine();
             writer.Write("  dormant_teams          = {");
             WriteIdList(settings.DormantTeams, writer);
             writer.WriteLine(" }");
@@ -1966,6 +2103,7 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
+            writer.WriteLine();
             foreach (LandUnit unit in settings.LandUnits)
             {
                 WriteLandUnit(unit, writer);
@@ -1983,6 +2121,7 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
+            writer.WriteLine();
             foreach (NavalUnit unit in settings.NavalUnits)
             {
                 WriteNavalUnit(unit, writer);
@@ -2000,6 +2139,7 @@ namespace HoI2Editor.Writers
             {
                 return;
             }
+            writer.WriteLine();
             foreach (AirUnit unit in settings.AirUnits)
             {
                 WriteAirUnit(unit, writer);
@@ -2846,7 +2986,7 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("    gearing_bonus  = {0}", DoubleHelper.ToString4(convoy.GearingBonus));
             }
-            writer.WriteLine("    type           = {0}", Scenarios.ConvoyStrings[(int)convoy.Type]);
+            writer.WriteLine("    type           = {0}", Scenarios.ConvoyStrings[(int) convoy.Type]);
             writer.WriteLine("  }");
         }
 
