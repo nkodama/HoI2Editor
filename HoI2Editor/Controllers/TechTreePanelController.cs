@@ -198,6 +198,11 @@ namespace HoI2Editor.Controllers
         public event EventHandler<ItemMouseEventArgs> ItemMouseClick;
 
         /// <summary>
+        ///     項目ラベルマウスダウン時のイベント
+        /// </summary>
+        public event EventHandler<ItemMouseEventArgs> ItemMouseDown;
+
+        /// <summary>
         ///     項目ラベルドラッグアンドドロップ時のイベント
         /// </summary>
         public event EventHandler<ItemDragEventArgs> ItemDragDrop;
@@ -252,7 +257,7 @@ namespace HoI2Editor.Controllers
             UpdateTechTreeImage();
 
             // 項目ラベルを更新する
-            UpdateTechTreeItems();
+            UpdateItems();
         }
 
         /// <summary>
@@ -264,7 +269,7 @@ namespace HoI2Editor.Controllers
             ClearTechTreeImage();
 
             // 項目ラベルをクリアする
-            ClearTechTreeItems();
+            ClearItems();
         }
 
         #endregion
@@ -315,19 +320,19 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     技術ツリーの項目ラベルを更新する
         /// </summary>
-        private void UpdateTechTreeItems()
+        private void UpdateItems()
         {
             _pictureBox.Controls.Clear();
             foreach (ITechItem item in Techs.Groups[(int) Category].Items)
             {
-                AddTechTreeItem(item);
+                AddItem(item);
             }
         }
 
         /// <summary>
         ///     技術ツリーの項目ラベルをクリアする
         /// </summary>
-        private void ClearTechTreeItems()
+        private void ClearItems()
         {
             _pictureBox.Controls.Clear();
         }
@@ -335,12 +340,12 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     技術ツリーに項目ラベル群を追加する
         /// </summary>
-        /// <param name="item"></param>
-        public void AddTechTreeItem(ITechItem item)
+        /// <param name="item">追加対象の項目</param>
+        public void AddItem(ITechItem item)
         {
             foreach (TechPosition position in item.Positions)
             {
-                AddTechTreeItem(item, position);
+                AddItem(item, position);
             }
         }
 
@@ -349,7 +354,7 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="item">追加対象の項目</param>
         /// <param name="position">追加対象の位置</param>
-        public void AddTechTreeItem(ITechItem item, TechPosition position)
+        public void AddItem(ITechItem item, TechPosition position)
         {
             TechItem tech = item as TechItem;
             if (tech != null)
@@ -481,7 +486,7 @@ namespace HoI2Editor.Controllers
         ///     技術ツリーの項目群を削除する
         /// </summary>
         /// <param name="item">削除対象の項目</param>
-        public void RemoveTechTreeItem(ITechItem item)
+        public void RemoveItem(ITechItem item)
         {
             Control.ControlCollection labels = _pictureBox.Controls;
             foreach (Label label in labels)
@@ -504,7 +509,7 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="item">削除対象の項目</param>
         /// <param name="position">削除対象の位置</param>
-        public void RemoveTechTreeItem(ITechItem item, TechPosition position)
+        public void RemoveItem(ITechItem item, TechPosition position)
         {
             Control.ControlCollection labels = _pictureBox.Controls;
             foreach (Label label in labels)
@@ -526,9 +531,8 @@ namespace HoI2Editor.Controllers
         ///     技術ツリーの項目ラベルを更新する
         /// </summary>
         /// <param name="item">更新対象の項目</param>
-        public void UpdateTechTreeItem(ITechItem item)
+        public void UpdateItem(ITechItem item)
         {
-            bool flag = ApplyItemStatus && (QueryItemStatus != null);
             Control.ControlCollection labels = _pictureBox.Controls;
             foreach (Label label in labels)
             {
@@ -543,10 +547,69 @@ namespace HoI2Editor.Controllers
                     continue;
                 }
 
+                // ラベル項目の場合はサイズを再計算する
+                if (item is TechLabel)
+                {
+                    label.Size = Graphics.FromHwnd(label.Handle).MeasureString(item.ToString(), label.Font).ToSize();
+                }
+
                 // 項目ラベルの表示に項目の状態を反映しないならば再描画のみ
-                if (!flag)
+                if (!ApplyItemStatus || (QueryItemStatus == null))
                 {
                     label.Refresh();
+                    continue;
+                }
+
+                if (item is TechItem)
+                {
+                    // ラベル画像を設定する
+                    QueryItemStatusEventArgs e = new QueryItemStatusEventArgs(item);
+                    QueryItemStatus(this, e);
+                    label.Image = e.Done
+                        ? (e.Blueprint ? _blueprintDoneTechLabelBitmap : _doneTechLabelBitmap)
+                        : (e.Blueprint ? _blueprintTechLabelBitmap : _techLabelBitmap);
+                }
+                else if (item is TechEvent)
+                {
+                    // ラベル画像を設定する
+                    QueryItemStatusEventArgs e = new QueryItemStatusEventArgs(item);
+                    QueryItemStatus(this, e);
+                    label.Image = e.Done ? _doneEventLabelBitmap : _eventLabelBitmap;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     技術ツリーの項目を更新する
+        /// </summary>
+        /// <param name="item">更新対象の項目</param>
+        /// <param name="position">更新対象の座標</param>
+        public void UpdateItem(ITechItem item, TechPosition position)
+        {
+            Control.ControlCollection labels = _pictureBox.Controls;
+            foreach (Label label in labels)
+            {
+                TechLabelInfo info = label.Tag as TechLabelInfo;
+                if (info == null)
+                {
+                    continue;
+                }
+
+                if (info.Item != item)
+                {
+                    continue;
+                }
+
+                // ラベルの位置を更新する
+                if (info.Position == position)
+                {
+                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
+                        DeviceCaps.GetScaledHeight(position.Y));
+                }
+
+                // 項目ラベルの表示に項目の状態を反映しないならば座標変更のみ
+                if (!ApplyItemStatus || (QueryItemStatus == null))
+                {
                     continue;
                 }
 
@@ -713,20 +776,6 @@ namespace HoI2Editor.Controllers
         /// <param name="e"></param>
         private void OnItemLabelMouseDown(object sender, MouseEventArgs e)
         {
-            // ドラッグアンドドロップが無効ならば何もしない
-            if (!AllowDragDrop)
-            {
-                return;
-            }
-
-            // 左ボタンダウンでなければドラッグ状態を解除する
-            if (e.Button != MouseButtons.Left)
-            {
-                _dragPoint = Point.Empty;
-                Cursor.Current = Cursors.Default;
-                return;
-            }
-
             Label label = sender as Label;
             if (label == null)
             {
@@ -739,8 +788,26 @@ namespace HoI2Editor.Controllers
                 return;
             }
 
-            // ドラッグ開始位置を設定する
-            _dragPoint = new Point(label.Left + e.X, label.Top + e.Y);
+            // ドラッグアンドドロップの開始準備
+            if (AllowDragDrop)
+            {
+                // 左ボタンダウンでなければドラッグ状態を解除する
+                if (e.Button != MouseButtons.Left)
+                {
+                    _dragPoint = Point.Empty;
+                    Cursor.Current = Cursors.Default;
+                    return;
+                }
+
+                // ドラッグ開始位置を設定する
+                _dragPoint = new Point(label.Left + e.X, label.Top + e.Y);
+            }
+
+            // イベントハンドラを呼び出す
+            if (ItemMouseDown != null)
+            {
+                ItemMouseDown(sender, new ItemMouseEventArgs(info.Item, info.Position, e));
+            }
         }
 
         /// <summary>
@@ -963,7 +1030,6 @@ namespace HoI2Editor.Controllers
                 new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
             g.Dispose();
             Color transparent = _techLabelBitmap.GetPixel(0, 0);
-            _techLabelBitmap.MakeTransparent(transparent);
 
             // 青写真付き技術ラベル
             Bitmap icon = new Bitmap(Game.GetReadFileName(Game.BlueprintIconPathName));
@@ -980,7 +1046,6 @@ namespace HoI2Editor.Controllers
                 new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
             g.Dispose();
             bitmap.Dispose();
-            _blueprintTechLabelBitmap.MakeTransparent(transparent);
 
             // 完了技術ラベル
             bitmap = new Bitmap(Game.GetReadFileName(Game.DoneTechLabelPathName));
@@ -990,7 +1055,6 @@ namespace HoI2Editor.Controllers
             g.DrawImage(bitmap, new Rectangle(0, 0, _techLabelWidth, _techLabelHeight),
                 new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
             g.Dispose();
-            _doneTechLabelBitmap.MakeTransparent(transparent);
 
             // 青写真付き完了技術ラベル
             g = Graphics.FromImage(bitmap);
@@ -1006,7 +1070,6 @@ namespace HoI2Editor.Controllers
                 new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
             g.Dispose();
             bitmap.Dispose();
-            _blueprintDoneTechLabelBitmap.MakeTransparent(transparent);
 
             // 技術ラベルの領域
             _techLabelMask = new Bitmap(_techLabelWidth, _techLabelHeight);
@@ -1027,6 +1090,12 @@ namespace HoI2Editor.Controllers
                 }
             }
 
+            // 技術ラベルの透明色設定
+            _techLabelBitmap.MakeTransparent(transparent);
+            _blueprintTechLabelBitmap.MakeTransparent(transparent);
+            _doneTechLabelBitmap.MakeTransparent(transparent);
+            _blueprintDoneTechLabelBitmap.MakeTransparent(transparent);
+
             // 発明イベントラベル
             bitmap = new Bitmap(Game.GetReadFileName(Game.SecretLabelPathName));
             _eventLabelWidth = DeviceCaps.GetScaledWidth(EventLabelWidthBase);
@@ -1038,7 +1107,6 @@ namespace HoI2Editor.Controllers
                 new Rectangle(EventLabelWidthBase, 0, EventLabelWidthBase, EventLabelHeightBase), GraphicsUnit.Pixel);
             g.Dispose();
             transparent = _eventLabelBitmap.GetPixel(0, 0);
-            _eventLabelBitmap.MakeTransparent(transparent);
 
             // 完了発明イベントラベル
             _doneEventLabelBitmap = new Bitmap(_eventLabelWidth, _eventLabelHeight);
@@ -1048,7 +1116,6 @@ namespace HoI2Editor.Controllers
                 new Rectangle(0, 0, EventLabelWidthBase, EventLabelHeightBase), GraphicsUnit.Pixel);
             g.Dispose();
             bitmap.Dispose();
-            _doneEventLabelBitmap.MakeTransparent(transparent);
 
             // 発明イベントラベルの領域
             _eventLabelMask = new Bitmap(_eventLabelWidth, _eventLabelHeight);
@@ -1068,6 +1135,10 @@ namespace HoI2Editor.Controllers
                     }
                 }
             }
+
+            // 発明イベントラベルの透明色設定
+            _eventLabelBitmap.MakeTransparent(transparent);
+            _doneEventLabelBitmap.MakeTransparent(transparent);
 
             // 初期化済みフラグを設定する
             _labelInitialized = true;

@@ -8258,7 +8258,7 @@ namespace HoI2Editor.Forms
             e.Item.ForeColor = Color.Red;
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanelController.UpdateTechTreeItem(item);
+            _techTreePanelController.UpdateItem(item);
         }
 
         /// <summary>
@@ -8314,7 +8314,7 @@ namespace HoI2Editor.Forms
             e.Item.ForeColor = Color.Red;
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanelController.UpdateTechTreeItem(item);
+            _techTreePanelController.UpdateItem(item);
         }
 
         /// <summary>
@@ -8370,7 +8370,7 @@ namespace HoI2Editor.Forms
             e.Item.ForeColor = Color.Red;
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanelController.UpdateTechTreeItem(ev);
+            _techTreePanelController.UpdateItem(ev);
         }
 
         #endregion
@@ -8450,7 +8450,7 @@ namespace HoI2Editor.Forms
             Scenarios.SetDirty();
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanelController.UpdateTechTreeItem(item);
+            _techTreePanelController.UpdateItem(item);
 
             // 保有技術リストビューの表示を更新する
             int index = _techs.IndexOf(item);
@@ -8494,7 +8494,7 @@ namespace HoI2Editor.Forms
             Scenarios.SetDirty();
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanelController.UpdateTechTreeItem(item);
+            _techTreePanelController.UpdateItem(item);
 
             // 保有技術リストビューの表示を更新する
             int index = _techs.IndexOf(item);
@@ -8538,7 +8538,7 @@ namespace HoI2Editor.Forms
             Scenarios.SetDirty();
 
             // 技術ツリーの項目ラベルを更新する
-            _techTreePanelController.UpdateTechTreeItem(item);
+            _techTreePanelController.UpdateItem(item);
 
             // 保有技術リストビューの表示を更新する
             int index = _inventions.IndexOf(item);

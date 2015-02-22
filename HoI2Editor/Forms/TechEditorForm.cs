@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
@@ -18,64 +18,9 @@ namespace HoI2Editor.Forms
         #region 内部フィールド
 
         /// <summary>
-        ///     技術ラベルの画像
+        ///     技術ツリーパネルのコントローラ
         /// </summary>
-        private static Bitmap _techLabelBitmap;
-
-        /// <summary>
-        ///     イベントラベルの画像
-        /// </summary>
-        private static Bitmap _eventLabelBitmap;
-
-        /// <summary>
-        ///     技術ラベルの描画領域
-        /// </summary>
-        private static Region _techLabelRegion;
-
-        /// <summary>
-        ///     イベントラベルの描画領域
-        /// </summary>
-        private static Region _eventLabelRegion;
-
-        /// <summary>
-        ///     ドラッグアンドドロップの開始位置
-        /// </summary>
-        private static Point _dragPoint = Point.Empty;
-
-        /// <summary>
-        ///     ドラッグ中のカーソル
-        /// </summary>
-        private static Cursor _dragCursor;
-
-        /// <summary>
-        ///     技術ラベルのANDマスク
-        /// </summary>
-        private static Bitmap _techLabelAndMask;
-
-        /// <summary>
-        ///     イベントラベルのANDマスク
-        /// </summary>
-        private static Bitmap _eventLabelAndMask;
-
-        /// <summary>
-        ///     イベントラベルの高さ
-        /// </summary>
-        private int _eventLabelHeight;
-
-        /// <summary>
-        ///     イベントラベルの幅
-        /// </summary>
-        private int _eventLabelWidth;
-
-        /// <summary>
-        ///     技術ラベルの高さ
-        /// </summary>
-        private int _techLabelHeight;
-
-        /// <summary>
-        ///     技術ラベルの幅
-        /// </summary>
-        private int _techLabelWidth;
+        private TechTreePanelController _techTreePanelController;
 
         #endregion
 
@@ -100,46 +45,6 @@ namespace HoI2Editor.Forms
         ///     座標リストビューの列の数
         /// </summary>
         public const int PositionListColumnCount = 2;
-
-        #endregion
-
-        #region 内部定数
-
-        /// <summary>
-        ///     技術ラベルの幅
-        /// </summary>
-        private const int TechLabelWidthBase = 112;
-
-        /// <summary>
-        ///     技術ラベルの高さ
-        /// </summary>
-        private const int TechLabelHeightBase = 16;
-
-        /// <summary>
-        ///     イベントラベルの幅
-        /// </summary>
-        private const int EventLabelWidthBase = 112;
-
-        /// <summary>
-        ///     イベントラベルの高さ
-        /// </summary>
-        private const int EventLabelHeightBase = 24;
-
-        /// <summary>
-        ///     技術ツリー画像ファイル名
-        /// </summary>
-        private static readonly string[] TechTreeFileNames =
-        {
-            "techtree_infantry.bmp",
-            "techtree_armor.bmp",
-            "techtree_naval.bmp",
-            "techtree_aircraft.bmp",
-            "techtree_industry.bmp",
-            "techtree_land_doctrine.bmp",
-            "techtree_secret_weapons.bmp",
-            "techtree_naval_doctrines.bmp",
-            "techtree_air_doctrines.bmp"
-        };
 
         #endregion
 
@@ -256,17 +161,10 @@ namespace HoI2Editor.Forms
             eventXColumnHeader.Width = HoI2Editor.Settings.TechEditor.EventPositionListColumnWidth[0];
             eventYColumnHeader.Width = HoI2Editor.Settings.TechEditor.EventPositionListColumnWidth[1];
 
-            // 技術ツリーのラベル
-            _techLabelWidth = DeviceCaps.GetScaledWidth(TechLabelWidthBase);
-            _techLabelHeight = DeviceCaps.GetScaledHeight(TechLabelHeightBase);
-            _eventLabelWidth = DeviceCaps.GetScaledWidth(EventLabelWidthBase);
-            _eventLabelHeight = DeviceCaps.GetScaledHeight(EventLabelHeightBase);
-            _techLabelRegion = new Region(new Rectangle(0, 0, _techLabelWidth, _techLabelHeight));
-            _eventLabelRegion = new Region(new Rectangle(0, 0, _eventLabelWidth, _eventLabelHeight));
-
-            // 技術ツリーピクチャーボックスへのドラッグアンドドロップを許可する
-            // プロパティに存在しないので初期化時に設定する
-            treePictureBox.AllowDrop = true;
+            // 技術ツリーパネル
+            _techTreePanelController = new TechTreePanelController(treePictureBox) { AllowDragDrop = true };
+            _techTreePanelController.ItemMouseDown += OnTechTreeLabelMouseDown;
+            _techTreePanelController.ItemDragDrop += OnTreePictureBoxDragDrop;
 
             // ウィンドウの位置
             Location = HoI2Editor.Settings.TechEditor.Location;
@@ -304,9 +202,6 @@ namespace HoI2Editor.Forms
 
             // 技術定義ファイルを読み込む
             Techs.Load();
-
-            // ラベル画像を読み込む
-            InitLabelBitmap();
 
             // データ読み込み後の処理
             OnFileLoaded();
@@ -460,8 +355,9 @@ namespace HoI2Editor.Forms
             // 項目リストを更新する
             UpdateItemList();
 
-            // 技術ツリー画像を更新する
-            UpdateTechTreePicture();
+            // 技術ツリーパネルを更新する
+            _techTreePanelController.Category = (TechCategory) categoryListBox.SelectedIndex;
+            _techTreePanelController.Update();
 
             // カテゴリタブの項目を更新する
             UpdateCategoryItems();
@@ -549,7 +445,7 @@ namespace HoI2Editor.Forms
             foreach (ITechItem item in Techs.Groups[categoryListBox.SelectedIndex].Items)
             {
                 techListBox.Items.Add(item);
-                AddTechTreeItems(item);
+                _techTreePanelController.AddItem(item);
             }
 
             techListBox.EndUpdate();
@@ -742,10 +638,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirtyAll();
 
-            if (techListBox.SelectedItem is ITechItem)
+            ITechItem selected = techListBox.SelectedItem as ITechItem;
+            if (selected != null)
             {
-                ITechItem selected = techListBox.SelectedItem as ITechItem;
-
                 // 選択項目の先頭座標を引き継ぐ
                 item.Positions.Add(new TechPosition { X = selected.Positions[0].X, Y = selected.Positions[0].Y });
 
@@ -789,7 +684,7 @@ namespace HoI2Editor.Forms
             }
 
             // 技術ツリーにラベルを追加する
-            AddTechTreeItems(item);
+            _techTreePanelController.AddItem(item);
 
             // 技術項目とIDの対応付けを更新する
             Techs.UpdateTechIdMap();
@@ -824,10 +719,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirtyAll();
 
-            if (techListBox.SelectedItem is ITechItem)
+            ITechItem selected = techListBox.SelectedItem as ITechItem;
+            if (selected != null)
             {
-                ITechItem selected = techListBox.SelectedItem as ITechItem;
-
                 // 選択項目の先頭座標を引き継ぐ
                 item.Positions.Add(new TechPosition { X = selected.Positions[0].X, Y = selected.Positions[0].Y });
 
@@ -850,7 +744,7 @@ namespace HoI2Editor.Forms
             }
 
             // 技術ツリーにラベルを追加する
-            AddTechTreeItems(item);
+            _techTreePanelController.AddItem(item);
 
             Log.Info("[Tech] Added new label");
         }
@@ -871,10 +765,9 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirtyAll();
 
-            if (techListBox.SelectedItem is ITechItem)
+            ITechItem selected = techListBox.SelectedItem as ITechItem;
+            if (selected != null)
             {
-                ITechItem selected = techListBox.SelectedItem as ITechItem;
-
                 // 選択項目の先頭座標を引き継ぐ
                 item.Positions.Add(new TechPosition { X = selected.Positions[0].X, Y = selected.Positions[0].Y });
 
@@ -904,7 +797,7 @@ namespace HoI2Editor.Forms
             }
 
             // 技術ツリーにラベルを追加する
-            AddTechTreeItems(item);
+            _techTreePanelController.AddItem(item);
 
             Log.Info("[Tech] Added new event: {0}", item.Id);
         }
@@ -952,7 +845,7 @@ namespace HoI2Editor.Forms
             InsertTechListItem(item, techListBox.SelectedIndex + 1);
 
             // 技術ツリーにラベルを追加する
-            AddTechTreeItems(item);
+            _techTreePanelController.AddItem(item);
 
             if (item is TechItem)
             {
@@ -996,7 +889,7 @@ namespace HoI2Editor.Forms
             RemoveTechListItem(techListBox.SelectedIndex);
 
             // 技術ツリーからラベルを削除する
-            RemoveTechTreeItems(selected);
+            _techTreePanelController.RemoveItem(selected);
 
             if (selected is TechItem)
             {
@@ -1308,433 +1201,14 @@ namespace HoI2Editor.Forms
         #region 技術ツリー
 
         /// <summary>
-        ///     技術ツリー画像を更新する
-        /// </summary>
-        private void UpdateTechTreePicture()
-        {
-            TechGroup grp = GetSelectedGroup();
-
-            Bitmap original =
-                new Bitmap(Game.GetReadFileName(Game.PicturePathName, TechTreeFileNames[(int) grp.Category]));
-            int width = DeviceCaps.GetScaledWidth(original.Width);
-            int height = DeviceCaps.GetScaledHeight(original.Height);
-            original.MakeTransparent(Color.Lime);
-
-            Bitmap scaled = new Bitmap(width, height);
-            Graphics g = Graphics.FromImage(scaled);
-            g.DrawImage(original, 0, 0, width, height);
-            g.Dispose();
-            original.Dispose();
-
-            Image old = treePictureBox.Image;
-            treePictureBox.Image = scaled;
-            if (old != null)
-            {
-                old.Dispose();
-            }
-        }
-
-        /// <summary>
-        ///     技術ツリーに項目群を追加する
-        /// </summary>
-        /// <param name="item">追加対象の項目</param>
-        private void AddTechTreeItems(ITechItem item)
-        {
-            foreach (TechPosition position in item.Positions)
-            {
-                AddTechTreeItem(item, position);
-            }
-        }
-
-        /// <summary>
-        ///     技術ツリーに項目を追加する
-        /// </summary>
-        /// <param name="item">追加対象の項目</param>
-        /// <param name="position">追加対象の位置</param>
-        private void AddTechTreeItem(ITechItem item, TechPosition position)
-        {
-            Label label = new Label
-            {
-                Location = new Point(DeviceCaps.GetScaledWidth(position.X), DeviceCaps.GetScaledHeight(position.Y)),
-                BackColor = Color.Transparent,
-                Tag = new TechLabelInfo { Item = item, Position = position }
-            };
-
-            if (item is TechItem)
-            {
-                label.Size = new Size(_techLabelWidth, _techLabelHeight);
-                label.Image = _techLabelBitmap;
-                label.Region = _techLabelRegion;
-                label.Paint += OnTechTreeLabelPaint;
-            }
-            else if (item is TechLabel)
-            {
-                TechLabel labelItem = item as TechLabel;
-                label.Size = Graphics.FromHwnd(label.Handle).MeasureString(labelItem.ToString(), label.Font).ToSize();
-                label.Paint += OnTechTreeLabelPaint;
-            }
-            else
-            {
-                label.Size = new Size(_eventLabelWidth, _eventLabelHeight);
-                label.Image = _eventLabelBitmap;
-                label.Region = _eventLabelRegion;
-            }
-
-            label.MouseDown += OnTechTreeLabelMouseDown;
-            label.MouseUp += OnTechTreeLabelMouseUp;
-            label.MouseMove += OnTechTreeLabelMouseMove;
-            label.GiveFeedback += OnTechTreeLabelGiveFeedback;
-
-            treePictureBox.Controls.Add(label);
-        }
-
-        /// <summary>
-        ///     技術ツリーの項目群を削除する
-        /// </summary>
-        /// <param name="item">削除対象の項目</param>
-        private void RemoveTechTreeItems(ITechItem item)
-        {
-            Control.ControlCollection labels = treePictureBox.Controls;
-            foreach (Label label in labels)
-            {
-                TechLabelInfo info = label.Tag as TechLabelInfo;
-                if (info == null)
-                {
-                    continue;
-                }
-                if (info.Item == item)
-                {
-                    treePictureBox.Controls.Remove(label);
-                }
-            }
-        }
-
-        /// <summary>
-        ///     技術ツリーの項目を削除する
-        /// </summary>
-        /// <param name="item">削除対象の項目</param>
-        /// <param name="position">削除対象の位置</param>
-        private void RemoveTechTreeItem(ITechItem item, TechPosition position)
-        {
-            Control.ControlCollection labels = treePictureBox.Controls;
-            foreach (Label label in labels)
-            {
-                TechLabelInfo info = label.Tag as TechLabelInfo;
-                if (info == null)
-                {
-                    continue;
-                }
-                if (info.Item == item && info.Position == position)
-                {
-                    treePictureBox.Controls.Remove(label);
-                }
-            }
-        }
-
-        /// <summary>
-        ///     技術ツリーのラベル描画時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnTechTreeLabelPaint(object sender, PaintEventArgs e)
-        {
-            Label label = sender as Label;
-            if (label == null)
-            {
-                return;
-            }
-
-            TechLabelInfo info = label.Tag as TechLabelInfo;
-            if (info == null)
-            {
-                return;
-            }
-
-            if (info.Item is TechItem)
-            {
-                TechItem item = info.Item as TechItem;
-                string s = item.GetShortName();
-                if (string.IsNullOrEmpty(s))
-                {
-                    return;
-                }
-                Brush brush = new SolidBrush(Color.Black);
-                e.Graphics.DrawString(s, label.Font, brush, 6, 2);
-                brush.Dispose();
-            }
-            else if (info.Item is TechLabel)
-            {
-                TechLabel item = info.Item as TechLabel;
-                string s = item.ToString();
-                if (string.IsNullOrEmpty(s))
-                {
-                    return;
-                }
-
-                // 色指定文字列を解釈する
-                Brush brush;
-                if ((s[0] == '%' || s[0] == 'ｧ' || s[0] == '§') &&
-                    s.Length > 4 &&
-                    s[1] >= '0' && s[1] <= '9' &&
-                    s[2] >= '0' && s[2] <= '9' &&
-                    s[3] >= '0' && s[3] <= '9')
-                {
-                    brush = new SolidBrush(Color.FromArgb((s[3] - '0') << 5, (s[2] - '0') << 5, (s[1] - '0') << 5));
-                    s = s.Substring(4);
-                }
-                else
-                {
-                    brush = new SolidBrush(Color.White);
-                }
-                e.Graphics.DrawString(s, label.Font, brush, -2, 0);
-                brush.Dispose();
-            }
-        }
-
-        /// <summary>
-        ///     ラベル画像を初期化する
-        /// </summary>
-        private void InitLabelBitmap()
-        {
-            // 技術
-            Bitmap original = new Bitmap(Game.GetReadFileName(Game.TechLabelPathName));
-            _techLabelBitmap = new Bitmap(_techLabelWidth, _techLabelHeight);
-            Graphics g = Graphics.FromImage(_techLabelBitmap);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(original, new Rectangle(0, 0, _techLabelWidth, _techLabelHeight),
-                new Rectangle(0, 0, TechLabelWidthBase, TechLabelHeightBase), GraphicsUnit.Pixel);
-            g.Dispose();
-            original.Dispose();
-            _techLabelAndMask = new Bitmap(_techLabelWidth, _techLabelHeight);
-            Color transparent = _techLabelBitmap.GetPixel(0, 0);
-            for (int x = 0; x < _techLabelBitmap.Width; x++)
-            {
-                for (int y = 0; y < _techLabelBitmap.Height; y++)
-                {
-                    if (_techLabelBitmap.GetPixel(x, y) == transparent)
-                    {
-                        _techLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
-                        _techLabelAndMask.SetPixel(x, y, Color.White);
-                    }
-                    else
-                    {
-                        _techLabelAndMask.SetPixel(x, y, Color.Black);
-                    }
-                }
-            }
-            _techLabelBitmap.MakeTransparent(transparent);
-
-            // 技術イベント
-            original = new Bitmap(Game.GetReadFileName(Game.SecretLabelPathName));
-            _eventLabelBitmap = new Bitmap(_eventLabelWidth, _eventLabelHeight);
-            g = Graphics.FromImage(_eventLabelBitmap);
-            g.InterpolationMode = InterpolationMode.NearestNeighbor;
-            g.DrawImage(original, new Rectangle(0, 0, _eventLabelWidth, _eventLabelHeight),
-                new Rectangle(0, 0, EventLabelWidthBase, EventLabelHeightBase), GraphicsUnit.Pixel);
-            g.Dispose();
-            original.Dispose();
-            _eventLabelAndMask = new Bitmap(_eventLabelWidth, _eventLabelHeight);
-            transparent = _eventLabelBitmap.GetPixel(0, 0);
-            for (int x = 0; x < _eventLabelBitmap.Width; x++)
-            {
-                for (int y = 0; y < _eventLabelBitmap.Height; y++)
-                {
-                    if (_eventLabelBitmap.GetPixel(x, y) == transparent)
-                    {
-                        _eventLabelRegion.Exclude(new Rectangle(x, y, 1, 1));
-                        _eventLabelAndMask.SetPixel(x, y, Color.White);
-                    }
-                    else
-                    {
-                        _eventLabelAndMask.SetPixel(x, y, Color.Black);
-                    }
-                }
-            }
-            _eventLabelBitmap.MakeTransparent(transparent);
-        }
-
-        /// <summary>
         ///     技術ツリーラベルのマウスダウン時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechTreeLabelMouseDown(object sender, MouseEventArgs e)
+        private void OnTechTreeLabelMouseDown(object sender, TechTreePanelController.ItemMouseEventArgs e)
         {
-            // 左ボタンダウンでなければドラッグ状態を解除する
-            if (e.Button != MouseButtons.Left)
-            {
-                _dragPoint = Point.Empty;
-                Cursor.Current = Cursors.Default;
-                return;
-            }
-
-            Label label = sender as Label;
-            if (label == null)
-            {
-                return;
-            }
-
-            TechLabelInfo info = label.Tag as TechLabelInfo;
-            if (info == null)
-            {
-                return;
-            }
-
             // 技術項目リストの項目を選択する
-            techListBox.SelectedItem = info.Item;
-
-            // 座標リストビューの項目を選択する
-            for (int i = 0; i < info.Item.Positions.Count; i++)
-            {
-                if (info.Item.Positions[i] == info.Position)
-                {
-                    if (info.Item is TechItem)
-                    {
-                        techPositionListView.Items[i].Focused = true;
-                        techPositionListView.Items[i].Selected = true;
-                        techPositionListView.EnsureVisible(i);
-                    }
-                    else if (info.Item is TechLabel)
-                    {
-                        labelPositionListView.Items[i].Focused = true;
-                        labelPositionListView.Items[i].Selected = true;
-                        labelPositionListView.EnsureVisible(i);
-                    }
-                    else
-                    {
-                        eventPositionListView.Items[i].Focused = true;
-                        eventPositionListView.Items[i].Selected = true;
-                        eventPositionListView.EnsureVisible(i);
-                    }
-                    break;
-                }
-            }
-
-            // ドラッグ開始位置を設定する
-            _dragPoint = new Point(label.Left + e.X, label.Top + e.Y);
-        }
-
-        /// <summary>
-        ///     技術ツリーラベルのマウスアップ時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private static void OnTechTreeLabelMouseUp(object sender, MouseEventArgs e)
-        {
-            // ドラッグ状態を解除する
-            _dragPoint = Point.Empty;
-            Cursor.Current = Cursors.Default;
-        }
-
-        /// <summary>
-        ///     技術ツリーラベルのマウス移動時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTechTreeLabelMouseMove(object sender, MouseEventArgs e)
-        {
-            // ドラッグ中でなければ何もしない
-            if (_dragPoint == Point.Empty)
-            {
-                return;
-            }
-
-            Label label = sender as Label;
-            if (label == null)
-            {
-                return;
-            }
-
-            // ドラッグ判定サイズを超えていなければ何もしない
-            Size dragSize = SystemInformation.DragSize;
-            Rectangle dragRect = new Rectangle(_dragPoint.X - dragSize.Width / 2, _dragPoint.Y - dragSize.Height / 2,
-                dragSize.Width, dragSize.Height);
-            if (dragRect.Contains(label.Left + e.X, label.Top + e.Y))
-            {
-                return;
-            }
-
-            TechLabelInfo info = label.Tag as TechLabelInfo;
-            if (info == null)
-            {
-                return;
-            }
-
-            // カーソル画像を作成する
-            Bitmap bitmap = new Bitmap(label.Width, label.Height);
-            bitmap.MakeTransparent(bitmap.GetPixel(0, 0));
-            label.DrawToBitmap(bitmap, new Rectangle(0, 0, label.Width, label.Height));
-            if (info.Item is TechItem)
-            {
-                _dragCursor = CursorFactory.CreateCursor(bitmap, _techLabelAndMask, _dragPoint.X - label.Left,
-                    _dragPoint.Y - label.Top);
-            }
-            else if (info.Item is TechLabel)
-            {
-                _dragCursor = CursorFactory.CreateCursor(bitmap, _dragPoint.X - label.Left,
-                    _dragPoint.Y - label.Top);
-            }
-            else
-            {
-                _dragCursor = CursorFactory.CreateCursor(bitmap, _eventLabelAndMask, _dragPoint.X - label.Left,
-                    _dragPoint.Y - label.Top);
-            }
-
-            // ドラッグアンドドロップを開始する
-            label.DoDragDrop(sender, DragDropEffects.Move);
-
-            // ドラッグ状態を解除する
-            _dragPoint = Point.Empty;
-            _dragCursor.Dispose();
-
-            bitmap.Dispose();
-        }
-
-        /// <summary>
-        ///     技術ツリーラベルのカーソル更新処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTechTreeLabelGiveFeedback(object sender, GiveFeedbackEventArgs e)
-        {
-            if ((e.Effect & DragDropEffects.Move) != 0)
-            {
-                // カーソル画像を設定する
-                e.UseDefaultCursors = false;
-                Cursor.Current = _dragCursor;
-            }
-            else
-            {
-                e.UseDefaultCursors = true;
-            }
-        }
-
-        /// <summary>
-        ///     技術ツリーピクチャーボックスにドラッグした時の処理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnTreePictureBoxDragOver(object sender, DragEventArgs e)
-        {
-            // ラベルでなければ何もしない
-            if (!e.Data.GetDataPresent(typeof (Label)))
-            {
-                e.Effect = DragDropEffects.None;
-                return;
-            }
-
-            Label label = e.Data.GetData(typeof (Label)) as Label;
-            if (label == null)
-            {
-                return;
-            }
-
-            // 技術ツリー画像の範囲外ならばドロップを禁止する
-            Rectangle dragRect = new Rectangle(0, 0, treePictureBox.Image.Width, treePictureBox.Image.Height);
-            Point p = treePictureBox.PointToClient(new Point(e.X, e.Y));
-            Rectangle r = new Rectangle(label.Left + p.X - _dragPoint.X, label.Top + p.Y - _dragPoint.Y, label.Width,
-                label.Height);
-            e.Effect = dragRect.Contains(r) ? DragDropEffects.Move : DragDropEffects.None;
+            techListBox.SelectedItem = e.Item;
         }
 
         /// <summary>
@@ -1742,95 +1216,48 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTreePictureBoxDragDrop(object sender, DragEventArgs e)
+        private void OnTreePictureBoxDragDrop(object sender, TechTreePanelController.ItemDragEventArgs e)
         {
-            // ラベルでなければ何もしない
-            if (!e.Data.GetDataPresent(typeof (Label)))
-            {
-                return;
-            }
-
-            Label label = e.Data.GetData(typeof (Label)) as Label;
-            if (label == null)
-            {
-                return;
-            }
-
-            // 技術ツリー上のドロップ座標を計算する
-            Point p = new Point(e.X, e.Y);
-            p = treePictureBox.PointToClient(p);
-            p.X = label.Left + p.X - _dragPoint.X;
-            p.Y = label.Top + p.Y - _dragPoint.Y;
-
-            // ラベル情報の座標を更新する
-            TechLabelInfo info = label.Tag as TechLabelInfo;
-            if (info == null)
-            {
-                return;
-            }
-            info.Position.X = DeviceCaps.GetUnscaledWidth(p.X);
-            info.Position.Y = DeviceCaps.GetUnscaledHeight(p.Y);
-
             // 座標リストビューの項目を更新する
-            for (int i = 0; i < info.Item.Positions.Count; i++)
+            for (int i = 0; i < e.Item.Positions.Count; i++)
             {
-                if (info.Item.Positions[i] == info.Position)
+                if (e.Item.Positions[i] == e.Position)
                 {
-                    if (info.Item is TechItem)
+                    if (e.Item is TechItem)
                     {
-                        techPositionListView.Items[i].Text = IntHelper.ToString(info.Position.X);
-                        techPositionListView.Items[i].SubItems[1].Text = IntHelper.ToString(info.Position.Y);
-                        techXNumericUpDown.Value = info.Position.X;
-                        techYNumericUpDown.Value = info.Position.Y;
+                        techPositionListView.Items[i].Text = IntHelper.ToString(e.Position.X);
+                        techPositionListView.Items[i].SubItems[1].Text = IntHelper.ToString(e.Position.Y);
+                        techXNumericUpDown.Value = e.Position.X;
+                        techYNumericUpDown.Value = e.Position.Y;
                         techXNumericUpDown.ForeColor = Color.Red;
                         techYNumericUpDown.ForeColor = Color.Red;
                     }
-                    else if (info.Item is TechLabel)
+                    else if (e.Item is TechLabel)
                     {
-                        labelPositionListView.Items[i].Text = IntHelper.ToString(info.Position.X);
-                        labelPositionListView.Items[i].SubItems[1].Text = IntHelper.ToString(info.Position.Y);
-                        labelXNumericUpDown.Value = info.Position.X;
-                        labelYNumericUpDown.Value = info.Position.Y;
+                        labelPositionListView.Items[i].Text = IntHelper.ToString(e.Position.X);
+                        labelPositionListView.Items[i].SubItems[1].Text = IntHelper.ToString(e.Position.Y);
+                        labelXNumericUpDown.Value = e.Position.X;
+                        labelYNumericUpDown.Value = e.Position.Y;
                         labelXNumericUpDown.ForeColor = Color.Red;
                         labelYNumericUpDown.ForeColor = Color.Red;
                     }
                     else
                     {
-                        eventPositionListView.Items[i].Text = IntHelper.ToString(info.Position.X);
-                        eventPositionListView.Items[i].SubItems[1].Text = IntHelper.ToString(info.Position.Y);
-                        eventXNumericUpDown.Value = info.Position.X;
-                        eventYNumericUpDown.Value = info.Position.Y;
+                        eventPositionListView.Items[i].Text = IntHelper.ToString(e.Position.X);
+                        eventPositionListView.Items[i].SubItems[1].Text = IntHelper.ToString(e.Position.Y);
+                        eventXNumericUpDown.Value = e.Position.X;
+                        eventYNumericUpDown.Value = e.Position.Y;
                         eventXNumericUpDown.ForeColor = Color.Red;
                         eventYNumericUpDown.ForeColor = Color.Red;
                     }
                     break;
                 }
             }
-
-            // ラベルの座標を更新する
-            label.Location = p;
-
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
             grp.SetDirty();
-            info.Item.SetDirty();
-            info.Position.SetDirtyAll();
-        }
-
-        /// <summary>
-        ///     技術ラベルに関連付けられる情報
-        /// </summary>
-        private class TechLabelInfo
-        {
-            /// <summary>
-            ///     技術項目
-            /// </summary>
-            internal ITechItem Item;
-
-            /// <summary>
-            ///     位置
-            /// </summary>
-            internal TechPosition Position;
+            e.Item.SetDirty();
+            e.Position.SetDirtyAll();
         }
 
         #endregion
@@ -2155,14 +1582,7 @@ namespace HoI2Editor.Forms
             Config.SetText(item.ShortName, shortName, Game.TechTextFileName);
 
             // 技術ツリー上のラベル名を更新する
-            foreach (Label label in treePictureBox.Controls)
-            {
-                TechLabelInfo info = label.Tag as TechLabelInfo;
-                if (info != null && info.Item == item)
-                {
-                    label.Refresh();
-                }
-            }
+            _techTreePanelController.UpdateItem(item);
 
             // 編集済みフラグを設定する
             item.SetDirty(TechItemId.ShortName);
@@ -2333,15 +1753,7 @@ namespace HoI2Editor.Forms
             techPositionListView.Items[index].Text = IntHelper.ToString(x);
 
             // ラベルの位置を更新する
-            foreach (Label label in treePictureBox.Controls)
-            {
-                TechLabelInfo info = label.Tag as TechLabelInfo;
-                if (info != null && info.Position == position)
-                {
-                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
-                        DeviceCaps.GetScaledHeight(position.Y));
-                }
-            }
+            _techTreePanelController.UpdateItem(item, position);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -2390,15 +1802,7 @@ namespace HoI2Editor.Forms
             techPositionListView.Items[index].SubItems[1].Text = IntHelper.ToString(y);
 
             // ラベルの位置を更新する
-            foreach (Label label in treePictureBox.Controls)
-            {
-                TechLabelInfo info = label.Tag as TechLabelInfo;
-                if (info != null && info.Position == position)
-                {
-                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
-                        DeviceCaps.GetScaledHeight(position.Y));
-                }
-            }
+            _techTreePanelController.UpdateItem(item, position);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -2450,7 +1854,7 @@ namespace HoI2Editor.Forms
             EnableTechPositionItems();
 
             // 技術ツリーにラベルを追加する
-            AddTechTreeItem(item, position);
+            _techTreePanelController.AddItem(item, position);
         }
 
         /// <summary>
@@ -2506,7 +1910,7 @@ namespace HoI2Editor.Forms
             }
 
             // 技術ツリーからラベルを削除する
-            RemoveTechTreeItem(item, position);
+            _techTreePanelController.RemoveItem(item, position);
         }
 
         /// <summary>
@@ -5526,15 +4930,7 @@ namespace HoI2Editor.Forms
             techListBox.SelectedIndexChanged += OnTechListBoxSelectedIndexChanged;
 
             // 技術ツリー上のラベル名を更新する
-            foreach (Label label in treePictureBox.Controls)
-            {
-                TechLabelInfo info = label.Tag as TechLabelInfo;
-                if (info != null && info.Item == item)
-                {
-                    label.Size = Graphics.FromHwnd(label.Handle).MeasureString(item.ToString(), label.Font).ToSize();
-                    label.Refresh();
-                }
-            }
+            _techTreePanelController.UpdateItem(item);
 
             // 編集済みフラグを設定する
             item.SetDirty(TechItemId.Name);
@@ -5629,15 +5025,7 @@ namespace HoI2Editor.Forms
             labelPositionListView.Items[index].Text = IntHelper.ToString(x);
 
             // 技術ツリー上のラベルを移動する
-            foreach (Label label in treePictureBox.Controls)
-            {
-                TechLabelInfo info = label.Tag as TechLabelInfo;
-                if (info != null && info.Position == position)
-                {
-                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
-                        DeviceCaps.GetScaledHeight(position.Y));
-                }
-            }
+            _techTreePanelController.UpdateItem(item, position);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -5687,15 +5075,7 @@ namespace HoI2Editor.Forms
             labelPositionListView.Items[index].SubItems[1].Text = IntHelper.ToString(y);
 
             // 技術ツリー上のラベルを移動する
-            foreach (Label label in treePictureBox.Controls)
-            {
-                TechLabelInfo info = label.Tag as TechLabelInfo;
-                if (info != null && info.Position == position)
-                {
-                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
-                        DeviceCaps.GetScaledHeight(position.Y));
-                }
-            }
+            _techTreePanelController.UpdateItem(item, position);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -5746,7 +5126,7 @@ namespace HoI2Editor.Forms
             EnableLabelPositionItems();
 
             // 技術ツリーにラベルを追加する
-            AddTechTreeItem(item, position);
+            _techTreePanelController.AddItem(item, position);
         }
 
         /// <summary>
@@ -5802,7 +5182,7 @@ namespace HoI2Editor.Forms
             }
 
             // 技術ツリーからラベルを削除する
-            RemoveTechTreeItem(item, position);
+            _techTreePanelController.RemoveItem(item, position);
         }
 
         #endregion
@@ -6198,15 +5578,7 @@ namespace HoI2Editor.Forms
             eventPositionListView.Items[index].Text = IntHelper.ToString(x);
 
             // 技術ツリー上のラベルを移動する
-            foreach (Label label in treePictureBox.Controls)
-            {
-                TechLabelInfo info = label.Tag as TechLabelInfo;
-                if (info != null && info.Position == position)
-                {
-                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
-                        DeviceCaps.GetScaledHeight(position.Y));
-                }
-            }
+            _techTreePanelController.UpdateItem(item, position);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -6256,15 +5628,7 @@ namespace HoI2Editor.Forms
             eventPositionListView.Items[index].SubItems[1].Text = IntHelper.ToString(y);
 
             // 技術ツリー上のラベルを移動する
-            foreach (Label label in treePictureBox.Controls)
-            {
-                TechLabelInfo info = label.Tag as TechLabelInfo;
-                if (info != null && info.Position == position)
-                {
-                    label.Location = new Point(DeviceCaps.GetScaledWidth(position.X),
-                        DeviceCaps.GetScaledHeight(position.Y));
-                }
-            }
+            _techTreePanelController.UpdateItem(item, position);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -6315,7 +5679,7 @@ namespace HoI2Editor.Forms
             EnableEventPositionItems();
 
             // 技術ツリーにラベルを追加する
-            AddTechTreeItem(item, position);
+            _techTreePanelController.AddItem(item, position);
         }
 
         /// <summary>
@@ -6371,7 +5735,7 @@ namespace HoI2Editor.Forms
             }
 
             // 技術ツリーのラベルを削除する
-            RemoveTechTreeItem(item, position);
+            _techTreePanelController.RemoveItem(item, position);
         }
 
         #endregion
