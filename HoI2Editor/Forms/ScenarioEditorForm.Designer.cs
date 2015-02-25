@@ -515,7 +515,64 @@
             this.scenarioRadioButton = new System.Windows.Forms.RadioButton();
             this.scenarioListBox = new System.Windows.Forms.ListBox();
             this.scenarioTabControl = new System.Windows.Forms.TabControl();
+            this.oobTabPage = new System.Windows.Forms.TabPage();
+            this.divisionGroupBox = new System.Windows.Forms.GroupBox();
+            this.experienceTextBox = new System.Windows.Forms.TextBox();
+            this.experienceLabel = new System.Windows.Forms.Label();
+            this.divisionMoraleTextBox = new System.Windows.Forms.TextBox();
+            this.divisionMoraleLabel = new System.Windows.Forms.Label();
+            this.maxOrganisationTextBox = new System.Windows.Forms.TextBox();
+            this.organisationTextBox = new System.Windows.Forms.TextBox();
+            this.organisationLabel = new System.Windows.Forms.Label();
+            this.maxStrengthTextBox = new System.Windows.Forms.TextBox();
+            this.strengthTextBox = new System.Windows.Forms.TextBox();
+            this.strengthLabel = new System.Windows.Forms.Label();
+            this.brigadeModelComboBox5 = new System.Windows.Forms.ComboBox();
+            this.brigadeTypeComboBox5 = new System.Windows.Forms.ComboBox();
+            this.brigadeModelComboBox4 = new System.Windows.Forms.ComboBox();
+            this.brigadeTypeComboBox4 = new System.Windows.Forms.ComboBox();
+            this.brigadeModelComboBox3 = new System.Windows.Forms.ComboBox();
+            this.brigadeTypeComboBox3 = new System.Windows.Forms.ComboBox();
+            this.brigadeModelComboBox2 = new System.Windows.Forms.ComboBox();
+            this.brigadeTypeComboBox2 = new System.Windows.Forms.ComboBox();
+            this.brigadeModelComboBox1 = new System.Windows.Forms.ComboBox();
+            this.brigadesLabel = new System.Windows.Forms.Label();
+            this.brigadeTypeComboBox1 = new System.Windows.Forms.ComboBox();
+            this.unitModelComboBox = new System.Windows.Forms.ComboBox();
+            this.unitTypeLabel = new System.Windows.Forms.Label();
+            this.unitTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.divisionNameTextBox = new System.Windows.Forms.TextBox();
+            this.divisionNameLabel = new System.Windows.Forms.Label();
+            this.divisionIdTextBox = new System.Windows.Forms.TextBox();
+            this.divisionTypeTextBox = new System.Windows.Forms.TextBox();
+            this.divisionIdLabel = new System.Windows.Forms.Label();
+            this.unitGroupBox = new System.Windows.Forms.GroupBox();
+            this.leaderComboBox = new System.Windows.Forms.ComboBox();
+            this.baseComboBox = new System.Windows.Forms.ComboBox();
+            this.homeComboBox = new System.Windows.Forms.ComboBox();
+            this.locationComboBox = new System.Windows.Forms.ComboBox();
+            this.digInTextBox = new System.Windows.Forms.TextBox();
+            this.digInLabel = new System.Windows.Forms.Label();
+            this.leaderTextBox = new System.Windows.Forms.TextBox();
+            this.leaderLabel = new System.Windows.Forms.Label();
+            this.unitMoraleTextBox = new System.Windows.Forms.TextBox();
+            this.unitMoraleLabel = new System.Windows.Forms.Label();
+            this.baseTextBox = new System.Windows.Forms.TextBox();
+            this.baseLabel = new System.Windows.Forms.Label();
+            this.homeTextBox = new System.Windows.Forms.TextBox();
+            this.homeLabel = new System.Windows.Forms.Label();
+            this.locationTextBox = new System.Windows.Forms.TextBox();
+            this.locationLabel = new System.Windows.Forms.Label();
+            this.unitNameTextBox = new System.Windows.Forms.TextBox();
+            this.unitNameLabel = new System.Windows.Forms.Label();
+            this.unitIdTextBox = new System.Windows.Forms.TextBox();
+            this.unitTypeTextBox = new System.Windows.Forms.TextBox();
+            this.unitIdLabel = new System.Windows.Forms.Label();
+            this.oobTreeView = new System.Windows.Forms.TreeView();
+            this.oobCountryListBox = new System.Windows.Forms.ListBox();
             this.checkButton = new System.Windows.Forms.Button();
+            this.lockedCheckBox = new System.Windows.Forms.CheckBox();
+            this.dormantCheckBox = new System.Windows.Forms.CheckBox();
             provinceIcLabel = new System.Windows.Forms.Label();
             provinceInfrastructureLabel = new System.Windows.Forms.Label();
             provinceLandFortLabel = new System.Windows.Forms.Label();
@@ -605,6 +662,9 @@
             this.folderGroupBox.SuspendLayout();
             this.typeGroupBox.SuspendLayout();
             this.scenarioTabControl.SuspendLayout();
+            this.oobTabPage.SuspendLayout();
+            this.divisionGroupBox.SuspendLayout();
+            this.unitGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // provinceIcLabel
@@ -4071,9 +4131,372 @@
             this.scenarioTabControl.Controls.Add(this.governmentTabPage);
             this.scenarioTabControl.Controls.Add(technologyTabPage);
             this.scenarioTabControl.Controls.Add(this.provinceTabPage);
+            this.scenarioTabControl.Controls.Add(this.oobTabPage);
             this.scenarioTabControl.Name = "scenarioTabControl";
             this.scenarioTabControl.SelectedIndex = 0;
             this.scenarioTabControl.SelectedIndexChanged += new System.EventHandler(this.OnScenarioTabControlSelectedIndexChanged);
+            // 
+            // oobTabPage
+            // 
+            this.oobTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.oobTabPage.Controls.Add(this.divisionGroupBox);
+            this.oobTabPage.Controls.Add(this.unitGroupBox);
+            this.oobTabPage.Controls.Add(this.oobTreeView);
+            this.oobTabPage.Controls.Add(this.oobCountryListBox);
+            resources.ApplyResources(this.oobTabPage, "oobTabPage");
+            this.oobTabPage.Name = "oobTabPage";
+            // 
+            // divisionGroupBox
+            // 
+            this.divisionGroupBox.Controls.Add(this.dormantCheckBox);
+            this.divisionGroupBox.Controls.Add(this.lockedCheckBox);
+            this.divisionGroupBox.Controls.Add(this.experienceTextBox);
+            this.divisionGroupBox.Controls.Add(this.experienceLabel);
+            this.divisionGroupBox.Controls.Add(this.divisionMoraleTextBox);
+            this.divisionGroupBox.Controls.Add(this.divisionMoraleLabel);
+            this.divisionGroupBox.Controls.Add(this.maxOrganisationTextBox);
+            this.divisionGroupBox.Controls.Add(this.organisationTextBox);
+            this.divisionGroupBox.Controls.Add(this.organisationLabel);
+            this.divisionGroupBox.Controls.Add(this.maxStrengthTextBox);
+            this.divisionGroupBox.Controls.Add(this.strengthTextBox);
+            this.divisionGroupBox.Controls.Add(this.strengthLabel);
+            this.divisionGroupBox.Controls.Add(this.brigadeModelComboBox5);
+            this.divisionGroupBox.Controls.Add(this.brigadeTypeComboBox5);
+            this.divisionGroupBox.Controls.Add(this.brigadeModelComboBox4);
+            this.divisionGroupBox.Controls.Add(this.brigadeTypeComboBox4);
+            this.divisionGroupBox.Controls.Add(this.brigadeModelComboBox3);
+            this.divisionGroupBox.Controls.Add(this.brigadeTypeComboBox3);
+            this.divisionGroupBox.Controls.Add(this.brigadeModelComboBox2);
+            this.divisionGroupBox.Controls.Add(this.brigadeTypeComboBox2);
+            this.divisionGroupBox.Controls.Add(this.brigadeModelComboBox1);
+            this.divisionGroupBox.Controls.Add(this.brigadesLabel);
+            this.divisionGroupBox.Controls.Add(this.brigadeTypeComboBox1);
+            this.divisionGroupBox.Controls.Add(this.unitModelComboBox);
+            this.divisionGroupBox.Controls.Add(this.unitTypeLabel);
+            this.divisionGroupBox.Controls.Add(this.unitTypeComboBox);
+            this.divisionGroupBox.Controls.Add(this.divisionNameTextBox);
+            this.divisionGroupBox.Controls.Add(this.divisionNameLabel);
+            this.divisionGroupBox.Controls.Add(this.divisionIdTextBox);
+            this.divisionGroupBox.Controls.Add(this.divisionTypeTextBox);
+            this.divisionGroupBox.Controls.Add(this.divisionIdLabel);
+            resources.ApplyResources(this.divisionGroupBox, "divisionGroupBox");
+            this.divisionGroupBox.Name = "divisionGroupBox";
+            this.divisionGroupBox.TabStop = false;
+            // 
+            // experienceTextBox
+            // 
+            resources.ApplyResources(this.experienceTextBox, "experienceTextBox");
+            this.experienceTextBox.Name = "experienceTextBox";
+            // 
+            // experienceLabel
+            // 
+            resources.ApplyResources(this.experienceLabel, "experienceLabel");
+            this.experienceLabel.Name = "experienceLabel";
+            // 
+            // divisionMoraleTextBox
+            // 
+            resources.ApplyResources(this.divisionMoraleTextBox, "divisionMoraleTextBox");
+            this.divisionMoraleTextBox.Name = "divisionMoraleTextBox";
+            // 
+            // divisionMoraleLabel
+            // 
+            resources.ApplyResources(this.divisionMoraleLabel, "divisionMoraleLabel");
+            this.divisionMoraleLabel.Name = "divisionMoraleLabel";
+            // 
+            // maxOrganisationTextBox
+            // 
+            resources.ApplyResources(this.maxOrganisationTextBox, "maxOrganisationTextBox");
+            this.maxOrganisationTextBox.Name = "maxOrganisationTextBox";
+            // 
+            // organisationTextBox
+            // 
+            resources.ApplyResources(this.organisationTextBox, "organisationTextBox");
+            this.organisationTextBox.Name = "organisationTextBox";
+            // 
+            // organisationLabel
+            // 
+            resources.ApplyResources(this.organisationLabel, "organisationLabel");
+            this.organisationLabel.Name = "organisationLabel";
+            // 
+            // maxStrengthTextBox
+            // 
+            resources.ApplyResources(this.maxStrengthTextBox, "maxStrengthTextBox");
+            this.maxStrengthTextBox.Name = "maxStrengthTextBox";
+            // 
+            // strengthTextBox
+            // 
+            resources.ApplyResources(this.strengthTextBox, "strengthTextBox");
+            this.strengthTextBox.Name = "strengthTextBox";
+            // 
+            // strengthLabel
+            // 
+            resources.ApplyResources(this.strengthLabel, "strengthLabel");
+            this.strengthLabel.Name = "strengthLabel";
+            // 
+            // brigadeModelComboBox5
+            // 
+            this.brigadeModelComboBox5.FormattingEnabled = true;
+            resources.ApplyResources(this.brigadeModelComboBox5, "brigadeModelComboBox5");
+            this.brigadeModelComboBox5.Name = "brigadeModelComboBox5";
+            // 
+            // brigadeTypeComboBox5
+            // 
+            this.brigadeTypeComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.brigadeTypeComboBox5.FormattingEnabled = true;
+            resources.ApplyResources(this.brigadeTypeComboBox5, "brigadeTypeComboBox5");
+            this.brigadeTypeComboBox5.Name = "brigadeTypeComboBox5";
+            // 
+            // brigadeModelComboBox4
+            // 
+            this.brigadeModelComboBox4.FormattingEnabled = true;
+            resources.ApplyResources(this.brigadeModelComboBox4, "brigadeModelComboBox4");
+            this.brigadeModelComboBox4.Name = "brigadeModelComboBox4";
+            // 
+            // brigadeTypeComboBox4
+            // 
+            this.brigadeTypeComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.brigadeTypeComboBox4.FormattingEnabled = true;
+            resources.ApplyResources(this.brigadeTypeComboBox4, "brigadeTypeComboBox4");
+            this.brigadeTypeComboBox4.Name = "brigadeTypeComboBox4";
+            // 
+            // brigadeModelComboBox3
+            // 
+            this.brigadeModelComboBox3.FormattingEnabled = true;
+            resources.ApplyResources(this.brigadeModelComboBox3, "brigadeModelComboBox3");
+            this.brigadeModelComboBox3.Name = "brigadeModelComboBox3";
+            // 
+            // brigadeTypeComboBox3
+            // 
+            this.brigadeTypeComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.brigadeTypeComboBox3.FormattingEnabled = true;
+            resources.ApplyResources(this.brigadeTypeComboBox3, "brigadeTypeComboBox3");
+            this.brigadeTypeComboBox3.Name = "brigadeTypeComboBox3";
+            // 
+            // brigadeModelComboBox2
+            // 
+            this.brigadeModelComboBox2.FormattingEnabled = true;
+            resources.ApplyResources(this.brigadeModelComboBox2, "brigadeModelComboBox2");
+            this.brigadeModelComboBox2.Name = "brigadeModelComboBox2";
+            // 
+            // brigadeTypeComboBox2
+            // 
+            this.brigadeTypeComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.brigadeTypeComboBox2.FormattingEnabled = true;
+            resources.ApplyResources(this.brigadeTypeComboBox2, "brigadeTypeComboBox2");
+            this.brigadeTypeComboBox2.Name = "brigadeTypeComboBox2";
+            // 
+            // brigadeModelComboBox1
+            // 
+            this.brigadeModelComboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.brigadeModelComboBox1, "brigadeModelComboBox1");
+            this.brigadeModelComboBox1.Name = "brigadeModelComboBox1";
+            // 
+            // brigadesLabel
+            // 
+            resources.ApplyResources(this.brigadesLabel, "brigadesLabel");
+            this.brigadesLabel.Name = "brigadesLabel";
+            // 
+            // brigadeTypeComboBox1
+            // 
+            this.brigadeTypeComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.brigadeTypeComboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.brigadeTypeComboBox1, "brigadeTypeComboBox1");
+            this.brigadeTypeComboBox1.Name = "brigadeTypeComboBox1";
+            // 
+            // unitModelComboBox
+            // 
+            this.unitModelComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.unitModelComboBox, "unitModelComboBox");
+            this.unitModelComboBox.Name = "unitModelComboBox";
+            // 
+            // unitTypeLabel
+            // 
+            resources.ApplyResources(this.unitTypeLabel, "unitTypeLabel");
+            this.unitTypeLabel.Name = "unitTypeLabel";
+            // 
+            // unitTypeComboBox
+            // 
+            this.unitTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.unitTypeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.unitTypeComboBox, "unitTypeComboBox");
+            this.unitTypeComboBox.Name = "unitTypeComboBox";
+            // 
+            // divisionNameTextBox
+            // 
+            resources.ApplyResources(this.divisionNameTextBox, "divisionNameTextBox");
+            this.divisionNameTextBox.Name = "divisionNameTextBox";
+            // 
+            // divisionNameLabel
+            // 
+            resources.ApplyResources(this.divisionNameLabel, "divisionNameLabel");
+            this.divisionNameLabel.Name = "divisionNameLabel";
+            // 
+            // divisionIdTextBox
+            // 
+            resources.ApplyResources(this.divisionIdTextBox, "divisionIdTextBox");
+            this.divisionIdTextBox.Name = "divisionIdTextBox";
+            // 
+            // divisionTypeTextBox
+            // 
+            resources.ApplyResources(this.divisionTypeTextBox, "divisionTypeTextBox");
+            this.divisionTypeTextBox.Name = "divisionTypeTextBox";
+            // 
+            // divisionIdLabel
+            // 
+            resources.ApplyResources(this.divisionIdLabel, "divisionIdLabel");
+            this.divisionIdLabel.Name = "divisionIdLabel";
+            // 
+            // unitGroupBox
+            // 
+            this.unitGroupBox.Controls.Add(this.leaderComboBox);
+            this.unitGroupBox.Controls.Add(this.baseComboBox);
+            this.unitGroupBox.Controls.Add(this.homeComboBox);
+            this.unitGroupBox.Controls.Add(this.locationComboBox);
+            this.unitGroupBox.Controls.Add(this.digInTextBox);
+            this.unitGroupBox.Controls.Add(this.digInLabel);
+            this.unitGroupBox.Controls.Add(this.leaderTextBox);
+            this.unitGroupBox.Controls.Add(this.leaderLabel);
+            this.unitGroupBox.Controls.Add(this.unitMoraleTextBox);
+            this.unitGroupBox.Controls.Add(this.unitMoraleLabel);
+            this.unitGroupBox.Controls.Add(this.baseTextBox);
+            this.unitGroupBox.Controls.Add(this.baseLabel);
+            this.unitGroupBox.Controls.Add(this.homeTextBox);
+            this.unitGroupBox.Controls.Add(this.homeLabel);
+            this.unitGroupBox.Controls.Add(this.locationTextBox);
+            this.unitGroupBox.Controls.Add(this.locationLabel);
+            this.unitGroupBox.Controls.Add(this.unitNameTextBox);
+            this.unitGroupBox.Controls.Add(this.unitNameLabel);
+            this.unitGroupBox.Controls.Add(this.unitIdTextBox);
+            this.unitGroupBox.Controls.Add(this.unitTypeTextBox);
+            this.unitGroupBox.Controls.Add(this.unitIdLabel);
+            resources.ApplyResources(this.unitGroupBox, "unitGroupBox");
+            this.unitGroupBox.Name = "unitGroupBox";
+            this.unitGroupBox.TabStop = false;
+            // 
+            // leaderComboBox
+            // 
+            this.leaderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.leaderComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.leaderComboBox, "leaderComboBox");
+            this.leaderComboBox.Name = "leaderComboBox";
+            // 
+            // baseComboBox
+            // 
+            this.baseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.baseComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.baseComboBox, "baseComboBox");
+            this.baseComboBox.Name = "baseComboBox";
+            // 
+            // homeComboBox
+            // 
+            this.homeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.homeComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.homeComboBox, "homeComboBox");
+            this.homeComboBox.Name = "homeComboBox";
+            // 
+            // locationComboBox
+            // 
+            this.locationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.locationComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.locationComboBox, "locationComboBox");
+            this.locationComboBox.Name = "locationComboBox";
+            // 
+            // digInTextBox
+            // 
+            resources.ApplyResources(this.digInTextBox, "digInTextBox");
+            this.digInTextBox.Name = "digInTextBox";
+            // 
+            // digInLabel
+            // 
+            resources.ApplyResources(this.digInLabel, "digInLabel");
+            this.digInLabel.Name = "digInLabel";
+            // 
+            // leaderTextBox
+            // 
+            resources.ApplyResources(this.leaderTextBox, "leaderTextBox");
+            this.leaderTextBox.Name = "leaderTextBox";
+            // 
+            // leaderLabel
+            // 
+            resources.ApplyResources(this.leaderLabel, "leaderLabel");
+            this.leaderLabel.Name = "leaderLabel";
+            // 
+            // unitMoraleTextBox
+            // 
+            resources.ApplyResources(this.unitMoraleTextBox, "unitMoraleTextBox");
+            this.unitMoraleTextBox.Name = "unitMoraleTextBox";
+            // 
+            // unitMoraleLabel
+            // 
+            resources.ApplyResources(this.unitMoraleLabel, "unitMoraleLabel");
+            this.unitMoraleLabel.Name = "unitMoraleLabel";
+            // 
+            // baseTextBox
+            // 
+            resources.ApplyResources(this.baseTextBox, "baseTextBox");
+            this.baseTextBox.Name = "baseTextBox";
+            // 
+            // baseLabel
+            // 
+            resources.ApplyResources(this.baseLabel, "baseLabel");
+            this.baseLabel.Name = "baseLabel";
+            // 
+            // homeTextBox
+            // 
+            resources.ApplyResources(this.homeTextBox, "homeTextBox");
+            this.homeTextBox.Name = "homeTextBox";
+            // 
+            // homeLabel
+            // 
+            resources.ApplyResources(this.homeLabel, "homeLabel");
+            this.homeLabel.Name = "homeLabel";
+            // 
+            // locationTextBox
+            // 
+            resources.ApplyResources(this.locationTextBox, "locationTextBox");
+            this.locationTextBox.Name = "locationTextBox";
+            // 
+            // locationLabel
+            // 
+            resources.ApplyResources(this.locationLabel, "locationLabel");
+            this.locationLabel.Name = "locationLabel";
+            // 
+            // unitNameTextBox
+            // 
+            resources.ApplyResources(this.unitNameTextBox, "unitNameTextBox");
+            this.unitNameTextBox.Name = "unitNameTextBox";
+            // 
+            // unitNameLabel
+            // 
+            resources.ApplyResources(this.unitNameLabel, "unitNameLabel");
+            this.unitNameLabel.Name = "unitNameLabel";
+            // 
+            // unitIdTextBox
+            // 
+            resources.ApplyResources(this.unitIdTextBox, "unitIdTextBox");
+            this.unitIdTextBox.Name = "unitIdTextBox";
+            // 
+            // unitTypeTextBox
+            // 
+            resources.ApplyResources(this.unitTypeTextBox, "unitTypeTextBox");
+            this.unitTypeTextBox.Name = "unitTypeTextBox";
+            // 
+            // unitIdLabel
+            // 
+            resources.ApplyResources(this.unitIdLabel, "unitIdLabel");
+            this.unitIdLabel.Name = "unitIdLabel";
+            // 
+            // oobTreeView
+            // 
+            resources.ApplyResources(this.oobTreeView, "oobTreeView");
+            this.oobTreeView.Name = "oobTreeView";
+            // 
+            // oobCountryListBox
+            // 
+            resources.ApplyResources(this.oobCountryListBox, "oobCountryListBox");
+            this.oobCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.oobCountryListBox.FormattingEnabled = true;
+            this.oobCountryListBox.Name = "oobCountryListBox";
             // 
             // checkButton
             // 
@@ -4081,6 +4504,18 @@
             this.checkButton.Name = "checkButton";
             this.checkButton.UseVisualStyleBackColor = true;
             this.checkButton.Click += new System.EventHandler(this.OnCheckButtonClick);
+            // 
+            // lockedCheckBox
+            // 
+            resources.ApplyResources(this.lockedCheckBox, "lockedCheckBox");
+            this.lockedCheckBox.Name = "lockedCheckBox";
+            this.lockedCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // dormantCheckBox
+            // 
+            resources.ApplyResources(this.dormantCheckBox, "dormantCheckBox");
+            this.dormantCheckBox.Name = "dormantCheckBox";
+            this.dormantCheckBox.UseVisualStyleBackColor = true;
             // 
             // ScenarioEditorForm
             // 
@@ -4174,6 +4609,11 @@
             this.typeGroupBox.ResumeLayout(false);
             this.typeGroupBox.PerformLayout();
             this.scenarioTabControl.ResumeLayout(false);
+            this.oobTabPage.ResumeLayout(false);
+            this.divisionGroupBox.ResumeLayout(false);
+            this.divisionGroupBox.PerformLayout();
+            this.unitGroupBox.ResumeLayout(false);
+            this.unitGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4626,6 +5066,63 @@
         private System.Windows.Forms.Label provinceSyntheticRaresLabel;
         private System.Windows.Forms.Label provinceNuclearPowerLabel;
         private System.Windows.Forms.Button checkButton;
+        private System.Windows.Forms.TabPage oobTabPage;
+        private System.Windows.Forms.GroupBox divisionGroupBox;
+        private System.Windows.Forms.TextBox experienceTextBox;
+        private System.Windows.Forms.Label experienceLabel;
+        private System.Windows.Forms.TextBox divisionMoraleTextBox;
+        private System.Windows.Forms.Label divisionMoraleLabel;
+        private System.Windows.Forms.TextBox maxOrganisationTextBox;
+        private System.Windows.Forms.TextBox organisationTextBox;
+        private System.Windows.Forms.Label organisationLabel;
+        private System.Windows.Forms.TextBox maxStrengthTextBox;
+        private System.Windows.Forms.TextBox strengthTextBox;
+        private System.Windows.Forms.Label strengthLabel;
+        private System.Windows.Forms.ComboBox brigadeModelComboBox5;
+        private System.Windows.Forms.ComboBox brigadeTypeComboBox5;
+        private System.Windows.Forms.ComboBox brigadeModelComboBox4;
+        private System.Windows.Forms.ComboBox brigadeTypeComboBox4;
+        private System.Windows.Forms.ComboBox brigadeModelComboBox3;
+        private System.Windows.Forms.ComboBox brigadeTypeComboBox3;
+        private System.Windows.Forms.ComboBox brigadeModelComboBox2;
+        private System.Windows.Forms.ComboBox brigadeTypeComboBox2;
+        private System.Windows.Forms.ComboBox brigadeModelComboBox1;
+        private System.Windows.Forms.Label brigadesLabel;
+        private System.Windows.Forms.ComboBox brigadeTypeComboBox1;
+        private System.Windows.Forms.ComboBox unitModelComboBox;
+        private System.Windows.Forms.Label unitTypeLabel;
+        private System.Windows.Forms.ComboBox unitTypeComboBox;
+        private System.Windows.Forms.TextBox divisionNameTextBox;
+        private System.Windows.Forms.Label divisionNameLabel;
+        private System.Windows.Forms.TextBox divisionIdTextBox;
+        private System.Windows.Forms.TextBox divisionTypeTextBox;
+        private System.Windows.Forms.Label divisionIdLabel;
+        private System.Windows.Forms.GroupBox unitGroupBox;
+        private System.Windows.Forms.ComboBox leaderComboBox;
+        private System.Windows.Forms.ComboBox baseComboBox;
+        private System.Windows.Forms.ComboBox homeComboBox;
+        private System.Windows.Forms.ComboBox locationComboBox;
+        private System.Windows.Forms.TextBox digInTextBox;
+        private System.Windows.Forms.Label digInLabel;
+        private System.Windows.Forms.TextBox leaderTextBox;
+        private System.Windows.Forms.Label leaderLabel;
+        private System.Windows.Forms.TextBox unitMoraleTextBox;
+        private System.Windows.Forms.Label unitMoraleLabel;
+        private System.Windows.Forms.TextBox baseTextBox;
+        private System.Windows.Forms.Label baseLabel;
+        private System.Windows.Forms.TextBox homeTextBox;
+        private System.Windows.Forms.Label homeLabel;
+        private System.Windows.Forms.TextBox locationTextBox;
+        private System.Windows.Forms.Label locationLabel;
+        private System.Windows.Forms.TextBox unitNameTextBox;
+        private System.Windows.Forms.Label unitNameLabel;
+        private System.Windows.Forms.TextBox unitIdTextBox;
+        private System.Windows.Forms.TextBox unitTypeTextBox;
+        private System.Windows.Forms.Label unitIdLabel;
+        private System.Windows.Forms.TreeView oobTreeView;
+        private System.Windows.Forms.ListBox oobCountryListBox;
+        private System.Windows.Forms.CheckBox dormantCheckBox;
+        private System.Windows.Forms.CheckBox lockedCheckBox;
 
     }
 }

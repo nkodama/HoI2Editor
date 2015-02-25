@@ -2538,17 +2538,17 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("      visibility     = {0}", division.Visibility);
             }
-            if (division.SurfaceDetectionCapability > 0)
+            if (division.SurfaceDetection > 0)
             {
-                writer.WriteLine("      surfacedetectioncapability = {0}", division.SurfaceDetectionCapability);
+                writer.WriteLine("      surfacedetectioncapability = {0}", division.SurfaceDetection);
             }
-            if (division.SubDetectionCapability > 0)
+            if (division.SubDetection > 0)
             {
-                writer.WriteLine("      subdetectioncapability = {0}", division.SubDetectionCapability);
+                writer.WriteLine("      subdetectioncapability = {0}", division.SubDetection);
             }
-            if (division.AirDetectionCapability > 0)
+            if (division.AirDetection > 0)
             {
-                writer.WriteLine("      airdetectioncapability = {0}", division.AirDetectionCapability);
+                writer.WriteLine("      airdetectioncapability = {0}", division.AirDetection);
             }
             if (division.Extra >= UnitType.None)
             {

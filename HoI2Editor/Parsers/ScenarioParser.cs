@@ -5518,6 +5518,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // morale
+                if (keyword.Equals("morale"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "morale", lexer);
+                        continue;
+                    }
+
+                    // 士気
+                    unit.Morale = (double) d;
+                    continue;
+                }
+
                 // mission
                 if (keyword.Equals("mission"))
                 {
@@ -5545,6 +5560,21 @@ namespace HoI2Editor.Parsers
 
                     // 指定日時
                     unit.Date = date;
+                    continue;
+                }
+
+                // development
+                if (keyword.Equals("development"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "development", lexer);
+                        continue;
+                    }
+
+                    // development (詳細不明)
+                    unit.Development = (bool) b;
                     continue;
                 }
 
@@ -5578,18 +5608,18 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                // division
-                if (keyword.Equals("division"))
+                // attack
+                if (keyword.Equals("attack"))
                 {
-                    LandDivision division = ParseLandDivision(lexer);
-                    if (division == null)
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
                     {
-                        Log.InvalidSection(LogCategory, "division", lexer);
+                        Log.InvalidSection(LogCategory, "attack", lexer);
                         continue;
                     }
 
-                    // 師団
-                    unit.Divisions.Add(division);
+                    // 攻撃開始日時
+                    unit.AttackDate = date;
                     continue;
                 }
 
@@ -5620,6 +5650,66 @@ namespace HoI2Editor.Parsers
 
                     // 上陸先
                     unit.Target = (int) n;
+                    continue;
+                }
+
+                // prioritized
+                if (keyword.Equals("prioritized"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "prioritized", lexer);
+                        continue;
+                    }
+
+                    // 優先
+                    unit.Prioritized = (bool) b;
+                    continue;
+                }
+
+                // can_upgrade
+                if (keyword.Equals("can_upgrade"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "can_upgrade", lexer);
+                        continue;
+                    }
+
+                    // 改良可能
+                    unit.CanUpgrade = (bool) b;
+                    continue;
+                }
+
+                // can_reinforce
+                if (keyword.Equals("can_reinforce"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "can_reinforce", lexer);
+                        continue;
+                    }
+
+                    // 補充可能
+                    unit.CanReinforcement = (bool) b;
+                    continue;
+                }
+
+                // division
+                if (keyword.Equals("division"))
+                {
+                    LandDivision division = ParseLandDivision(lexer);
+                    if (division == null)
+                    {
+                        Log.InvalidSection(LogCategory, "division", lexer);
+                        continue;
+                    }
+
+                    // 師団
+                    unit.Divisions.Add(division);
                     continue;
                 }
 
@@ -5806,6 +5896,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // morale
+                if (keyword.Equals("morale"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "morale", lexer);
+                        continue;
+                    }
+
+                    // 士気
+                    unit.Morale = (double) d;
+                    continue;
+                }
+
                 // mission
                 if (keyword.Equals("mission"))
                 {
@@ -5836,6 +5941,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // development
+                if (keyword.Equals("development"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "development", lexer);
+                        continue;
+                    }
+
+                    // development (詳細不明)
+                    unit.Development = (bool) b;
+                    continue;
+                }
+
                 // movetime
                 if (keyword.Equals("movetime"))
                 {
@@ -5863,6 +5983,66 @@ namespace HoI2Editor.Parsers
 
                     // 移動経路
                     unit.Movement.AddRange(list);
+                    continue;
+                }
+
+                // attack
+                if (keyword.Equals("attack"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "attack", lexer);
+                        continue;
+                    }
+
+                    // 攻撃開始日時
+                    unit.AttackDate = date;
+                    continue;
+                }
+
+                // prioritized
+                if (keyword.Equals("prioritized"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "prioritized", lexer);
+                        continue;
+                    }
+
+                    // 優先
+                    unit.Prioritized = (bool) b;
+                    continue;
+                }
+
+                // can_upgrade
+                if (keyword.Equals("can_upgrade"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "can_upgrade", lexer);
+                        continue;
+                    }
+
+                    // 改良可能
+                    unit.CanUpgrade = (bool) b;
+                    continue;
+                }
+
+                // can_reinforce
+                if (keyword.Equals("can_reinforce"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "can_reinforce", lexer);
+                        continue;
+                    }
+
+                    // 補充可能
+                    unit.CanReinforcement = (bool) b;
                     continue;
                 }
 
@@ -6079,6 +6259,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // morale
+                if (keyword.Equals("morale"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "morale", lexer);
+                        continue;
+                    }
+
+                    // 士気
+                    unit.Morale = (double) d;
+                    continue;
+                }
+
                 // mission
                 if (keyword.Equals("mission"))
                 {
@@ -6109,6 +6304,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // development
+                if (keyword.Equals("development"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "development", lexer);
+                        continue;
+                    }
+
+                    // development (詳細不明)
+                    unit.Development = (bool) b;
+                    continue;
+                }
+
                 // movetime
                 if (keyword.Equals("movetime"))
                 {
@@ -6136,6 +6346,66 @@ namespace HoI2Editor.Parsers
 
                     // 移動経路
                     unit.Movement.AddRange(list);
+                    continue;
+                }
+
+                // attack
+                if (keyword.Equals("attack"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "attack", lexer);
+                        continue;
+                    }
+
+                    // 攻撃開始日時
+                    unit.AttackDate = date;
+                    continue;
+                }
+
+                // prioritized
+                if (keyword.Equals("prioritized"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "prioritized", lexer);
+                        continue;
+                    }
+
+                    // 優先
+                    unit.Prioritized = (bool) b;
+                    continue;
+                }
+
+                // can_upgrade
+                if (keyword.Equals("can_upgrade"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "can_upgrade", lexer);
+                        continue;
+                    }
+
+                    // 改良可能
+                    unit.CanUpgrade = (bool) b;
+                    continue;
+                }
+
+                // can_reinforce
+                if (keyword.Equals("can_reinforce"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "can_reinforce", lexer);
+                        continue;
+                    }
+
+                    // 補充可能
+                    unit.CanReinforcement = (bool) b;
                     continue;
                 }
 
@@ -6479,75 +6749,150 @@ namespace HoI2Editor.Parsers
                 // max_strength
                 if (keyword.Equals("max_strength"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "max_strength", lexer);
                         continue;
                     }
 
                     // 最大戦力
-                    division.MaxStrength = (int) n;
+                    division.MaxStrength = (double) d;
                     continue;
                 }
 
                 // strength
                 if (keyword.Equals("strength"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "strength", lexer);
                         continue;
                     }
 
                     // 戦力
-                    division.Strength = (int) n;
+                    division.Strength = (double) d;
+                    continue;
+                }
+
+                // defaultorganisation
+                if (keyword.Equals("defaultorganisation"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "defaultorganisation", lexer);
+                        continue;
+                    }
+
+                    // 最大組織率
+                    division.MaxOrganisation = (double) d;
                     continue;
                 }
 
                 // organisation
                 if (keyword.Equals("organisation"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "organisation", lexer);
                         continue;
                     }
 
-                    // 指揮統制率
-                    division.Organisation = (int) n;
+                    // 組織率
+                    division.Organisation = (double) d;
                     continue;
                 }
 
                 // morale
                 if (keyword.Equals("morale"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "morale", lexer);
                         continue;
                     }
 
                     // 士気
-                    division.Morale = (int) n;
+                    division.Morale = (double) d;
                     continue;
                 }
 
                 // experience
                 if (keyword.Equals("experience"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "experience", lexer);
                         continue;
                     }
 
                     // 経験値
-                    division.Experience = (int) n;
+                    division.Experience = (double) d;
+                    continue;
+                }
+
+                // div_upgr_progress
+                if (keyword.Equals("div_upgr_progress"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "div_upgr_progress", lexer);
+                        continue;
+                    }
+
+                    // 改良進捗率
+                    division.UpgradeProgress = (double) d;
+                    continue;
+                }
+
+                // redep_target
+                if (keyword.Equals("redep_target"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "redep_target", lexer);
+                        continue;
+                    }
+
+                    // 再配置先プロヴィンス
+                    division.RedeployTarget = (int) n;
+                    continue;
+                }
+
+                // redep_unit_name
+                if (keyword.Equals("redep_unit_name"))
+                {
+                    string s = ParseString(lexer);
+                    if (s == null)
+                    {
+                        Log.InvalidClause(LogCategory, "redep_unit_name", lexer);
+                        continue;
+                    }
+
+                    // 再配置先ユニット名
+                    division.RedeployUnitName = s;
+                    continue;
+                }
+
+                // redep_unit_id
+                if (keyword.Equals("redep_unit_id"))
+                {
+                    TypeId id = ParseTypeId(lexer);
+                    if (id == null)
+                    {
+                        Log.InvalidSection(LogCategory, "redep_unit_id", lexer);
+                        continue;
+                    }
+
+                    // 再配置先ユニットID
+                    division.RedeployUnitId = id;
                     continue;
                 }
 
@@ -6566,18 +6911,318 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                // dormant
-                if (keyword.Equals("dormant"))
+                // supplies
+                if (keyword.Equals("supplies"))
                 {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "dormant", lexer);
+                        Log.InvalidClause(LogCategory, "supplies", lexer);
                         continue;
                     }
 
-                    // 休止状態
-                    division.Dormant = (bool) b;
+                    // 物資
+                    division.Supplies = (double) d;
+                    continue;
+                }
+
+                // oil
+                if (keyword.Equals("oil"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "oil", lexer);
+                        continue;
+                    }
+
+                    // 燃料
+                    division.Fuel = (double) d;
+                    continue;
+                }
+
+                // max_supply_stock
+                if (keyword.Equals("max_supply_stock"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "max_supply_stock", lexer);
+                        continue;
+                    }
+
+                    // 最大物資
+                    division.MaxSupplies = (double) d;
+                    continue;
+                }
+
+                // max_oil_stock
+                if (keyword.Equals("max_oil_stock"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "max_oil_stock", lexer);
+                        continue;
+                    }
+
+                    // 最大燃料
+                    division.MaxFuel = (double) d;
+                    continue;
+                }
+
+                // supplyconsumption
+                if (keyword.Equals("supplyconsumption"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "supplyconsumption", lexer);
+                        continue;
+                    }
+
+                    // 物資消費量
+                    division.SupplyConsumption = (double) d;
+                    continue;
+                }
+
+                // fuelconsumption
+                if (keyword.Equals("fuelconsumption"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "fuelconsumption", lexer);
+                        continue;
+                    }
+
+                    // 燃料消費量
+                    division.FuelConsumption = (double) d;
+                    continue;
+                }
+
+                // maxspeed
+                if (keyword.Equals("maxspeed"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "maxspeed", lexer);
+                        continue;
+                    }
+
+                    // 最大速度
+                    division.MaxSpeed = (double) d;
+                    continue;
+                }
+
+                // speed_cap_art
+                if (keyword.Equals("speed_cap_art"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "speed_cap_art", lexer);
+                        continue;
+                    }
+
+                    // 砲兵速度キャップ
+                    division.SpeedCapArt = (double) d;
+                    continue;
+                }
+
+                // speed_cap_eng
+                if (keyword.Equals("speed_cap_eng"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "speed_cap_eng", lexer);
+                        continue;
+                    }
+
+                    // 工兵速度キャップ
+                    division.SpeedCapEng = (double) d;
+                    continue;
+                }
+
+                // speed_cap_aa
+                if (keyword.Equals("speed_cap_aa"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "speed_cap_aa", lexer);
+                        continue;
+                    }
+
+                    // 対空速度キャップ
+                    division.SpeedCapAa = (double) d;
+                    continue;
+                }
+
+                // speed_cap_at
+                if (keyword.Equals("speed_cap_at"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "speed_cap_at", lexer);
+                        continue;
+                    }
+
+                    // 対戦車速度キャップ
+                    division.SpeedCapAt = (double) d;
+                    continue;
+                }
+
+                // transportweight
+                if (keyword.Equals("transportweight"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "transportweight", lexer);
+                        continue;
+                    }
+
+                    // 輸送負荷
+                    division.TransportWeight = (double) d;
+                    continue;
+                }
+
+                // defensiveness
+                if (keyword.Equals("defensiveness"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "defensiveness", lexer);
+                        continue;
+                    }
+
+                    // 防御力
+                    division.Defensiveness = (double) d;
+                    continue;
+                }
+
+                // toughness
+                if (keyword.Equals("toughness"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "toughness", lexer);
+                        continue;
+                    }
+
+                    // 耐久力
+                    division.Toughness = (double) d;
+                    continue;
+                }
+
+                // softness
+                if (keyword.Equals("softness"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "softness", lexer);
+                        continue;
+                    }
+
+                    // 脆弱性
+                    division.Softness = (double) d;
+                    continue;
+                }
+
+                // suppression
+                if (keyword.Equals("suppression"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "suppression", lexer);
+                        continue;
+                    }
+
+                    // 制圧力
+                    division.Suppression = (double) d;
+                    continue;
+                }
+
+                // airdefence
+                if (keyword.Equals("airdefence"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "airdefence", lexer);
+                        continue;
+                    }
+
+                    // 対空防御力
+                    division.AirDefence = (double) d;
+                    continue;
+                }
+
+                // softattack
+                if (keyword.Equals("softattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "softattack", lexer);
+                        continue;
+                    }
+
+                    // 対人攻撃力
+                    division.SoftAttack = (double) d;
+                    continue;
+                }
+
+                // hardattack
+                if (keyword.Equals("hardattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "hardattack", lexer);
+                        continue;
+                    }
+
+                    // 対甲攻撃力
+                    division.HardAttack = (double) d;
+                    continue;
+                }
+
+                // airattack
+                if (keyword.Equals("airattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "airattack", lexer);
+                        continue;
+                    }
+
+                    // 対空攻撃力
+                    division.AirAttack = (double) d;
+                    continue;
+                }
+
+                // artillery_bombardment
+                if (keyword.Equals("artillery_bombardment"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "artillery_bombardment", lexer);
+                        continue;
+                    }
+
+                    // 砲撃能力
+                    division.ArtilleryBombardment = (double) d;
                     continue;
                 }
 
@@ -6593,6 +7238,21 @@ namespace HoI2Editor.Parsers
 
                     // 移動不可
                     division.Locked = (bool) b;
+                    continue;
+                }
+
+                // dormant
+                if (keyword.Equals("dormant"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "dormant", lexer);
+                        continue;
+                    }
+
+                    // 休止状態
+                    division.Dormant = (bool) b;
                     continue;
                 }
 
@@ -6917,75 +7577,195 @@ namespace HoI2Editor.Parsers
                 // max_strength
                 if (keyword.Equals("max_strength"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "max_strength", lexer);
                         continue;
                     }
 
                     // 最大戦力
-                    division.MaxStrength = (int) n;
+                    division.MaxStrength = (double) d;
                     continue;
                 }
 
                 // strength
                 if (keyword.Equals("strength"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "strength", lexer);
                         continue;
                     }
 
                     // 戦力
-                    division.Strength = (int) n;
+                    division.Strength = (double) d;
+                    continue;
+                }
+
+                // defaultorganisation
+                if (keyword.Equals("defaultorganisation"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "defaultorganisation", lexer);
+                        continue;
+                    }
+
+                    // 最大組織率
+                    division.MaxOrganisation = (double) d;
                     continue;
                 }
 
                 // organisation
                 if (keyword.Equals("organisation"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "organisation", lexer);
                         continue;
                     }
 
-                    // 指揮統制率
-                    division.Organisation = (int) n;
+                    // 組織率
+                    division.Organisation = (double) d;
                     continue;
                 }
 
                 // morale
                 if (keyword.Equals("morale"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "morale", lexer);
                         continue;
                     }
 
                     // 士気
-                    division.Morale = (int) n;
+                    division.Morale = (double) d;
                     continue;
                 }
 
                 // experience
                 if (keyword.Equals("experience"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "experience", lexer);
                         continue;
                     }
 
                     // 経験値
-                    division.Experience = (int) n;
+                    division.Experience = (double) d;
+                    continue;
+                }
+
+                // div_upgr_progress
+                if (keyword.Equals("div_upgr_progress"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "div_upgr_progress", lexer);
+                        continue;
+                    }
+
+                    // 改良進捗率
+                    division.UpgradeProgress = (double) d;
+                    continue;
+                }
+
+                // supplies
+                if (keyword.Equals("supplies"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "supplies", lexer);
+                        continue;
+                    }
+
+                    // 物資
+                    division.Supplies = (double) d;
+                    continue;
+                }
+
+                // oil
+                if (keyword.Equals("oil"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "oil", lexer);
+                        continue;
+                    }
+
+                    // 燃料
+                    division.Fuel = (double) d;
+                    continue;
+                }
+
+                // max_supply_stock
+                if (keyword.Equals("max_supply_stock"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "max_supply_stock", lexer);
+                        continue;
+                    }
+
+                    // 最大物資
+                    division.MaxSupplies = (double) d;
+                    continue;
+                }
+
+                // max_oil_stock
+                if (keyword.Equals("max_oil_stock"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "max_oil_stock", lexer);
+                        continue;
+                    }
+
+                    // 最大燃料
+                    division.MaxFuel = (double) d;
+                    continue;
+                }
+
+                // supplyconsumption
+                if (keyword.Equals("supplyconsumption"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "supplyconsumption", lexer);
+                        continue;
+                    }
+
+                    // 物資消費量
+                    division.SupplyConsumption = (double) d;
+                    continue;
+                }
+
+                // fuelconsumption
+                if (keyword.Equals("fuelconsumption"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "fuelconsumption", lexer);
+                        continue;
+                    }
+
+                    // 燃料消費量
+                    division.FuelConsumption = (double) d;
                     continue;
                 }
 
@@ -7001,6 +7781,21 @@ namespace HoI2Editor.Parsers
 
                     // 移動速度
                     division.MaxSpeed = (double) d;
+                    continue;
+                }
+
+                // transportcapability
+                if (keyword.Equals("transportcapability"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "transportcapability", lexer);
+                        continue;
+                    }
+
+                    // 輸送能力
+                    division.TransportCapability = (double) d;
                     continue;
                 }
 
@@ -7089,7 +7884,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    // 湾岸攻撃力
+                    // 沿岸砲撃能力
                     division.ShoreBombardment = (double) d;
                     continue;
                 }
@@ -7109,18 +7904,48 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                // distance
-                if (keyword.Equals("distance"))
+                // surfacedetectioncapability
+                if (keyword.Equals("surfacedetectioncapability"))
                 {
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "distance", lexer);
+                        Log.InvalidClause(LogCategory, "surfacedetectioncapability", lexer);
                         continue;
                     }
 
-                    // 射程距離
-                    division.Distance = (double) d;
+                    // 対艦索敵能力
+                    division.SurfaceDetection = (double) d;
+                    continue;
+                }
+
+                // airdetectioncapability
+                if (keyword.Equals("airdetectioncapability"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "airdetectioncapability", lexer);
+                        continue;
+                    }
+
+                    // 対空索敵能力
+                    division.AirDetection = (double) d;
+                    continue;
+                }
+
+                // subdetectioncapability
+                if (keyword.Equals("subdetectioncapability"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "subdetectioncapability", lexer);
+                        continue;
+                    }
+
+                    // 対潜索敵能力
+                    division.SubDetection = (double) d;
                     continue;
                 }
 
@@ -7139,48 +7964,48 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                // surfacedetectioncapability
-                if (keyword.Equals("surfacedetectioncapability"))
+                // range
+                if (keyword.Equals("range"))
                 {
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "surfacedetectioncapability", lexer);
+                        Log.InvalidClause(LogCategory, "range", lexer);
                         continue;
                     }
 
-                    // 対艦索敵能力
-                    division.SurfaceDetectionCapability = (double) d;
+                    // 航続距離
+                    division.Range = (double) d;
                     continue;
                 }
 
-                // subdetectioncapability
-                if (keyword.Equals("subdetectioncapability"))
+                // distance
+                if (keyword.Equals("distance"))
                 {
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "subdetectioncapability", lexer);
+                        Log.InvalidClause(LogCategory, "distance", lexer);
                         continue;
                     }
 
-                    // 対潜索敵能力
-                    division.SubDetectionCapability = (double) d;
+                    // 射程距離
+                    division.Distance = (double) d;
                     continue;
                 }
 
-                // airdetectioncapability
-                if (keyword.Equals("airdetectioncapability"))
+                // travelled
+                if (keyword.Equals("travelled"))
                 {
                     double? d = ParseDouble(lexer);
                     if (!d.HasValue)
                     {
-                        Log.InvalidClause(LogCategory, "airdetectioncapability", lexer);
+                        Log.InvalidClause(LogCategory, "travelled", lexer);
                         continue;
                     }
 
-                    // 対空索敵能力
-                    division.AirDetectionCapability = (double) d;
+                    // 移動距離
+                    division.Travelled = (double) d;
                     continue;
                 }
 
@@ -7520,75 +8345,375 @@ namespace HoI2Editor.Parsers
                 // max_strength
                 if (keyword.Equals("max_strength"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "max_strength", lexer);
                         continue;
                     }
 
                     // 最大戦力
-                    division.MaxStrength = (int) n;
+                    division.MaxStrength = (double) d;
                     continue;
                 }
 
                 // strength
                 if (keyword.Equals("strength"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "strength", lexer);
                         continue;
                     }
 
                     // 戦力
-                    division.Strength = (int) n;
+                    division.Strength = (double) d;
+                    continue;
+                }
+
+                // defaultorganisation
+                if (keyword.Equals("defaultorganisation"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "defaultorganisation", lexer);
+                        continue;
+                    }
+
+                    // 最大組織率
+                    division.MaxOrganisation = (double) d;
                     continue;
                 }
 
                 // organisation
                 if (keyword.Equals("organisation"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "organisation", lexer);
                         continue;
                     }
 
-                    // 指揮統制率
-                    division.Organisation = (int) n;
+                    // 組織率
+                    division.Organisation = (double) d;
                     continue;
                 }
 
                 // morale
                 if (keyword.Equals("morale"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "morale", lexer);
                         continue;
                     }
 
                     // 士気
-                    division.Morale = (int) n;
+                    division.Morale = (double) d;
                     continue;
                 }
 
                 // experience
                 if (keyword.Equals("experience"))
                 {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
                     {
                         Log.InvalidClause(LogCategory, "experience", lexer);
                         continue;
                     }
 
                     // 経験値
-                    division.Experience = (int) n;
+                    division.Experience = (double) d;
+                    continue;
+                }
+
+                // div_upgr_progress
+                if (keyword.Equals("div_upgr_progress"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "div_upgr_progress", lexer);
+                        continue;
+                    }
+
+                    // 改良進捗率
+                    division.UpgradeProgress = (double) d;
+                    continue;
+                }
+
+                // supplies
+                if (keyword.Equals("supplies"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "supplies", lexer);
+                        continue;
+                    }
+
+                    // 物資
+                    division.Supplies = (double) d;
+                    continue;
+                }
+
+                // oil
+                if (keyword.Equals("oil"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "oil", lexer);
+                        continue;
+                    }
+
+                    // 燃料
+                    division.Fuel = (double) d;
+                    continue;
+                }
+
+                // max_supply_stock
+                if (keyword.Equals("max_supply_stock"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "max_supply_stock", lexer);
+                        continue;
+                    }
+
+                    // 最大物資
+                    division.MaxSupplies = (double) d;
+                    continue;
+                }
+
+                // max_oil_stock
+                if (keyword.Equals("max_oil_stock"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "max_oil_stock", lexer);
+                        continue;
+                    }
+
+                    // 最大燃料
+                    division.MaxFuel = (double) d;
+                    continue;
+                }
+
+                // supplyconsumption
+                if (keyword.Equals("supplyconsumption"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "supplyconsumption", lexer);
+                        continue;
+                    }
+
+                    // 物資消費量
+                    division.SupplyConsumption = (double) d;
+                    continue;
+                }
+
+                // fuelconsumption
+                if (keyword.Equals("fuelconsumption"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "fuelconsumption", lexer);
+                        continue;
+                    }
+
+                    // 燃料消費量
+                    division.FuelConsumption = (double) d;
+                    continue;
+                }
+
+                // maxspeed
+                if (keyword.Equals("maxspeed"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "maxspeed", lexer);
+                        continue;
+                    }
+
+                    // 移動速度
+                    division.MaxSpeed = (double) d;
+                    continue;
+                }
+
+                // transportcapability
+                if (keyword.Equals("transportcapability"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "transportcapability", lexer);
+                        continue;
+                    }
+
+                    // 輸送能力
+                    division.TransportCapability = (double) d;
+                    continue;
+                }
+
+                // surfacedefence
+                if (keyword.Equals("surfacedefence"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "surfacedefence", lexer);
+                        continue;
+                    }
+
+                    // 対地防御力
+                    division.SurfaceDefence = (double) d;
+                    continue;
+                }
+
+                // airdefence
+                if (keyword.Equals("airdefence"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "airdefence", lexer);
+                        continue;
+                    }
+
+                    // 対空防御力
+                    division.AirDefence = (double) d;
+                    continue;
+                }
+
+                // softattack
+                if (keyword.Equals("softattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "softattack", lexer);
+                        continue;
+                    }
+
+                    // 対人攻撃力
+                    division.SoftAttack = (double) d;
+                    continue;
+                }
+
+                // hardattack
+                if (keyword.Equals("hardattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "hardattack", lexer);
+                        continue;
+                    }
+
+                    // 対甲攻撃力
+                    division.HardAttack = (double) d;
+                    continue;
+                }
+
+                // airattack
+                if (keyword.Equals("airattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "airattack", lexer);
+                        continue;
+                    }
+
+                    // 対空攻撃力
+                    division.AirAttack = (double) d;
+                    continue;
+                }
+
+                // strategicattack
+                if (keyword.Equals("strategicattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "strategicattack", lexer);
+                        continue;
+                    }
+
+                    // 戦略爆撃攻撃力
+                    division.StrategicAttack = (double) d;
+                    continue;
+                }
+
+                // navalattack
+                if (keyword.Equals("navalattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "navalattack", lexer);
+                        continue;
+                    }
+
+                    // 空対艦攻撃力
+                    division.NavalAttack = (double) d;
+                    continue;
+                }
+
+                // surfacedetectioncapability
+                if (keyword.Equals("surfacedetectioncapability"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "surfacedetectioncapability", lexer);
+                        continue;
+                    }
+
+                    // 対艦索敵能力
+                    division.SurfaceDetection = (double) d;
+                    continue;
+                }
+
+                // airdetectioncapability
+                if (keyword.Equals("airdetectioncapability"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "airdetectioncapability", lexer);
+                        continue;
+                    }
+
+                    // 対空索敵能力
+                    division.AirDetection = (double) d;
+                    continue;
+                }
+
+                // range
+                if (keyword.Equals("range"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "range", lexer);
+                        continue;
+                    }
+
+                    // 航続距離
+                    division.Range = (double) d;
                     continue;
                 }
 
@@ -7877,6 +9002,51 @@ namespace HoI2Editor.Parsers
 
                     // 1単位の完了日数
                     division.DaysForFirst = (int) n;
+                    continue;
+                }
+
+                // halted
+                if (keyword.Equals("halted"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "halted", lexer);
+                        continue;
+                    }
+
+                    // 停止中
+                    division.Halted = (bool) b;
+                    continue;
+                }
+
+                // close_when_finished
+                if (keyword.Equals("close_when_finished"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "close_when_finished", lexer);
+                        continue;
+                    }
+
+                    // 完了時にキューを削除するかどうか
+                    division.CloseWhenFinished = (bool) b;
+                    continue;
+                }
+
+                // waitingforclosure
+                if (keyword.Equals("waitingforclosure"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "waitingforclosure", lexer);
+                        continue;
+                    }
+
+                    // waitingforclosure (詳細不明)
+                    division.WaitingForClosure = (bool) b;
                     continue;
                 }
 
@@ -9318,7 +10488,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    // 詳細不明
+                    // waitingforclosure (詳細不明)
                     convoy.WaitingForClosure = (bool) b;
                     continue;
                 }

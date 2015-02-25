@@ -2980,6 +2980,11 @@ namespace HoI2Editor.Models
         public double DigIn { get; set; }
 
         /// <summary>
+        ///     士気
+        /// </summary>
+        public double Morale { get; set; }
+
+        /// <summary>
         ///     任務
         /// </summary>
         public LandMission Mission { get; set; }
@@ -2988,6 +2993,11 @@ namespace HoI2Editor.Models
         ///     指定日時
         /// </summary>
         public GameDate Date { get; set; }
+
+        /// <summary>
+        ///     development (詳細不明)
+        /// </summary>
+        public bool Development { get; set; }
 
         /// <summary>
         ///     移動完了日時
@@ -3000,9 +3010,9 @@ namespace HoI2Editor.Models
         public List<int> Movement { get; private set; }
 
         /// <summary>
-        ///     師団
+        ///     攻撃日時
         /// </summary>
-        public List<LandDivision> Divisions { get; private set; }
+        public GameDate AttackDate { get; set; }
 
         /// <summary>
         ///     上陸中
@@ -3013,6 +3023,26 @@ namespace HoI2Editor.Models
         ///     上陸先
         /// </summary>
         public int Target { get; set; }
+
+        /// <summary>
+        ///     優先
+        /// </summary>
+        public bool Prioritized { get; set; }
+
+        /// <summary>
+        ///     改良可能
+        /// </summary>
+        public bool CanUpgrade { get; set; }
+
+        /// <summary>
+        ///     補充可能
+        /// </summary>
+        public bool CanReinforcement { get; set; }
+
+        /// <summary>
+        ///     構成師団
+        /// </summary>
+        public List<LandDivision> Divisions { get; private set; }
 
         #endregion
 
@@ -3078,6 +3108,11 @@ namespace HoI2Editor.Models
         public int Base { get; set; }
 
         /// <summary>
+        ///     士気
+        /// </summary>
+        public double Morale { get; set; }
+
+        /// <summary>
         ///     任務
         /// </summary>
         public NavalMission Mission { get; set; }
@@ -3086,6 +3121,11 @@ namespace HoI2Editor.Models
         ///     指定日時
         /// </summary>
         public GameDate Date { get; set; }
+
+        /// <summary>
+        ///     development (詳細不明)
+        /// </summary>
+        public bool Development { get; set; }
 
         /// <summary>
         ///     移動完了日時
@@ -3098,7 +3138,27 @@ namespace HoI2Editor.Models
         public List<int> Movement { get; private set; }
 
         /// <summary>
-        ///     師団
+        ///     攻撃日時
+        /// </summary>
+        public GameDate AttackDate { get; set; }
+
+        /// <summary>
+        ///     優先
+        /// </summary>
+        public bool Prioritized { get; set; }
+
+        /// <summary>
+        ///     改良可能
+        /// </summary>
+        public bool CanUpgrade { get; set; }
+
+        /// <summary>
+        ///     補充可能
+        /// </summary>
+        public bool CanReinforcement { get; set; }
+
+        /// <summary>
+        ///     構成師団
         /// </summary>
         public List<NavalDivision> Divisions { get; private set; }
 
@@ -3172,6 +3232,11 @@ namespace HoI2Editor.Models
         public int Base { get; set; }
 
         /// <summary>
+        ///     士気
+        /// </summary>
+        public double Morale { get; set; }
+
+        /// <summary>
         ///     任務
         /// </summary>
         public AirMission Mission { get; set; }
@@ -3180,6 +3245,11 @@ namespace HoI2Editor.Models
         ///     指定日時
         /// </summary>
         public GameDate Date { get; set; }
+
+        /// <summary>
+        ///     development (詳細不明)
+        /// </summary>
+        public bool Development { get; set; }
 
         /// <summary>
         ///     移動完了日時
@@ -3192,7 +3262,27 @@ namespace HoI2Editor.Models
         public List<int> Movement { get; private set; }
 
         /// <summary>
-        ///     師団
+        ///     攻撃日時
+        /// </summary>
+        public GameDate AttackDate { get; set; }
+
+        /// <summary>
+        ///     優先
+        /// </summary>
+        public bool Prioritized { get; set; }
+
+        /// <summary>
+        ///     改良可能
+        /// </summary>
+        public bool CanUpgrade { get; set; }
+
+        /// <summary>
+        ///     補充可能
+        /// </summary>
+        public bool CanReinforcement { get; set; }
+
+        /// <summary>
+        ///     構成師団
         /// </summary>
         public List<AirDivision> Divisions { get; private set; }
 
@@ -3312,32 +3402,162 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     最大戦力
         /// </summary>
-        public int MaxStrength { get; set; }
+        public double MaxStrength { get; set; }
 
         /// <summary>
         ///     戦力
         /// </summary>
-        public int Strength { get; set; }
+        public double Strength { get; set; }
 
         /// <summary>
-        ///     指揮統制率
+        ///     最大組織率
         /// </summary>
-        public int Organisation { get; set; }
+        public double MaxOrganisation { get; set; }
+
+        /// <summary>
+        ///     組織率
+        /// </summary>
+        public double Organisation { get; set; }
 
         /// <summary>
         ///     士気
         /// </summary>
-        public int Morale { get; set; }
+        public double Morale { get; set; }
 
         /// <summary>
         ///     経験値
         /// </summary>
-        public int Experience { get; set; }
+        public double Experience { get; set; }
+
+        /// <summary>
+        ///     改良進捗率
+        /// </summary>
+        public double UpgradeProgress { get; set; }
+
+        /// <summary>
+        ///     再配置先プロヴィンス
+        /// </summary>
+        public int RedeployTarget { get; set; }
+
+        /// <summary>
+        ///     再配置先ユニット名
+        /// </summary>
+        public string RedeployUnitName { get; set; }
+
+        /// <summary>
+        ///     再配置先ユニットID
+        /// </summary>
+        public TypeId RedeployUnitId { get; set; }
 
         /// <summary>
         ///     攻勢開始日時
         /// </summary>
         public GameDate Offensive { get; set; }
+
+        /// <summary>
+        ///     物資
+        /// </summary>
+        public double Supplies { get; set; }
+
+        /// <summary>
+        ///     燃料
+        /// </summary>
+        public double Fuel { get; set; }
+
+        /// <summary>
+        ///     最大物資
+        /// </summary>
+        public double MaxSupplies { get; set; }
+
+        /// <summary>
+        ///     最大燃料
+        /// </summary>
+        public double MaxFuel { get; set; }
+
+        /// <summary>
+        ///     物資消費量
+        /// </summary>
+        public double SupplyConsumption { get; set; }
+
+        /// <summary>
+        ///     燃料消費量
+        /// </summary>
+        public double FuelConsumption { get; set; }
+
+        /// <summary>
+        ///     最大速度
+        /// </summary>
+        public double MaxSpeed { get; set; }
+
+        /// <summary>
+        ///     砲兵速度キャップ
+        /// </summary>
+        public double SpeedCapArt { get; set; }
+
+        /// <summary>
+        ///     工兵速度キャップ
+        /// </summary>
+        public double SpeedCapEng { get; set; }
+
+        /// <summary>
+        ///     対空速度キャップ
+        /// </summary>
+        public double SpeedCapAa { get; set; }
+
+        /// <summary>
+        ///     対戦車速度キャップ
+        /// </summary>
+        public double SpeedCapAt { get; set; }
+
+        /// <summary>
+        ///     輸送負荷
+        /// </summary>
+        public double TransportWeight { get; set; }
+
+        /// <summary>
+        ///     防御力
+        /// </summary>
+        public double Defensiveness { get; set; }
+
+        /// <summary>
+        ///     耐久力
+        /// </summary>
+        public double Toughness { get; set; }
+
+        /// <summary>
+        ///     脆弱性
+        /// </summary>
+        public double Softness { get; set; }
+
+        /// <summary>
+        ///     制圧力
+        /// </summary>
+        public double Suppression { get; set; }
+
+        /// <summary>
+        ///     対空防御力
+        /// </summary>
+        public double AirDefence { get; set; }
+
+        /// <summary>
+        ///     対人攻撃力
+        /// </summary>
+        public double SoftAttack { get; set; }
+
+        /// <summary>
+        ///     対甲攻撃力
+        /// </summary>
+        public double HardAttack { get; set; }
+
+        /// <summary>
+        ///     対空攻撃力
+        /// </summary>
+        public double AirAttack { get; set; }
+
+        /// <summary>
+        ///     砲撃能力
+        /// </summary>
+        public double ArtilleryBombardment { get; set; }
 
         /// <summary>
         ///     休止状態
@@ -3474,32 +3694,77 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     最大戦力
         /// </summary>
-        public int MaxStrength { get; set; }
+        public double MaxStrength { get; set; }
 
         /// <summary>
         ///     戦力
         /// </summary>
-        public int Strength { get; set; }
+        public double Strength { get; set; }
 
         /// <summary>
-        ///     指揮統制率
+        ///     最大組織率
         /// </summary>
-        public int Organisation { get; set; }
+        public double MaxOrganisation { get; set; }
+
+        /// <summary>
+        ///     組織率
+        /// </summary>
+        public double Organisation { get; set; }
 
         /// <summary>
         ///     士気
         /// </summary>
-        public int Morale { get; set; }
+        public double Morale { get; set; }
 
         /// <summary>
         ///     経験値
         /// </summary>
-        public int Experience { get; set; }
+        public double Experience { get; set; }
 
         /// <summary>
-        ///     移動速度
+        ///     改良進捗率
+        /// </summary>
+        public double UpgradeProgress { get; set; }
+
+        /// <summary>
+        ///     物資
+        /// </summary>
+        public double Supplies { get; set; }
+
+        /// <summary>
+        ///     燃料
+        /// </summary>
+        public double Fuel { get; set; }
+
+        /// <summary>
+        ///     最大物資
+        /// </summary>
+        public double MaxSupplies { get; set; }
+
+        /// <summary>
+        ///     最大燃料
+        /// </summary>
+        public double MaxFuel { get; set; }
+
+        /// <summary>
+        ///     物資消費量
+        /// </summary>
+        public double SupplyConsumption { get; set; }
+
+        /// <summary>
+        ///     燃料消費量
+        /// </summary>
+        public double FuelConsumption { get; set; }
+
+        /// <summary>
+        ///     最大速度
         /// </summary>
         public double MaxSpeed { get; set; }
+
+        /// <summary>
+        ///     輸送能力
+        /// </summary>
+        public double TransportCapability { get; set; }
 
         /// <summary>
         ///     対艦/対潜防御力
@@ -3537,9 +3802,19 @@ namespace HoI2Editor.Models
         public double AirAttack { get; set; }
 
         /// <summary>
-        ///     射程距離
+        ///     対艦索敵能力
         /// </summary>
-        public double Distance { get; set; }
+        public double SurfaceDetection { get; set; }
+
+        /// <summary>
+        ///     対空索敵能力
+        /// </summary>
+        public double AirDetection { get; set; }
+
+        /// <summary>
+        ///     対潜索敵能力
+        /// </summary>
+        public double SubDetection { get; set; }
 
         /// <summary>
         ///     可視性
@@ -3547,19 +3822,19 @@ namespace HoI2Editor.Models
         public double Visibility { get; set; }
 
         /// <summary>
-        ///     対艦索敵能力
+        ///     航続距離
         /// </summary>
-        public double SurfaceDetectionCapability { get; set; }
+        public double Range { get; set; }
 
         /// <summary>
-        ///     対潜索敵能力
+        ///     射程距離
         /// </summary>
-        public double SubDetectionCapability { get; set; }
+        public double Distance { get; set; }
 
         /// <summary>
-        ///     対空索敵能力
+        ///     移動距離
         /// </summary>
-        public double AirDetectionCapability { get; set; }
+        public double Travelled { get; set; }
 
         /// <summary>
         ///     休止状態
@@ -3691,27 +3966,127 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     最大戦力
         /// </summary>
-        public int MaxStrength { get; set; }
+        public double MaxStrength { get; set; }
 
         /// <summary>
         ///     戦力
         /// </summary>
-        public int Strength { get; set; }
+        public double Strength { get; set; }
 
         /// <summary>
-        ///     指揮統制率
+        ///     最大組織率
         /// </summary>
-        public int Organisation { get; set; }
+        public double MaxOrganisation { get; set; }
+
+        /// <summary>
+        ///     組織率
+        /// </summary>
+        public double Organisation { get; set; }
 
         /// <summary>
         ///     士気
         /// </summary>
-        public int Morale { get; set; }
+        public double Morale { get; set; }
 
         /// <summary>
         ///     経験値
         /// </summary>
-        public int Experience { get; set; }
+        public double Experience { get; set; }
+
+        /// <summary>
+        ///     改良進捗率
+        /// </summary>
+        public double UpgradeProgress { get; set; }
+
+        /// <summary>
+        ///     物資
+        /// </summary>
+        public double Supplies { get; set; }
+
+        /// <summary>
+        ///     燃料
+        /// </summary>
+        public double Fuel { get; set; }
+
+        /// <summary>
+        ///     最大物資
+        /// </summary>
+        public double MaxSupplies { get; set; }
+
+        /// <summary>
+        ///     最大燃料
+        /// </summary>
+        public double MaxFuel { get; set; }
+
+        /// <summary>
+        ///     物資消費量
+        /// </summary>
+        public double SupplyConsumption { get; set; }
+
+        /// <summary>
+        ///     燃料消費量
+        /// </summary>
+        public double FuelConsumption { get; set; }
+
+        /// <summary>
+        ///     最大速度
+        /// </summary>
+        public double MaxSpeed { get; set; }
+
+        /// <summary>
+        ///     輸送能力
+        /// </summary>
+        public double TransportCapability { get; set; }
+
+        /// <summary>
+        ///     対地防御力
+        /// </summary>
+        public double SurfaceDefence { get; set; }
+
+        /// <summary>
+        ///     対空防御力
+        /// </summary>
+        public double AirDefence { get; set; }
+
+        /// <summary>
+        ///     対人攻撃力
+        /// </summary>
+        public double SoftAttack { get; set; }
+
+        /// <summary>
+        ///     対甲攻撃力
+        /// </summary>
+        public double HardAttack { get; set; }
+
+        /// <summary>
+        ///     対空攻撃力
+        /// </summary>
+        public double AirAttack { get; set; }
+
+        /// <summary>
+        ///     戦略爆撃攻撃力
+        /// </summary>
+        public double StrategicAttack { get; set; }
+
+        /// <summary>
+        ///     対艦攻撃力
+        /// </summary>
+        public double NavalAttack { get; set; }
+
+        /// <summary>
+        ///     対艦索敵能力
+        /// </summary>
+        public double SurfaceDetection { get; set; }
+
+        /// <summary>
+        ///     対空索敵能力
+        /// </summary>
+        public double AirDetection { get; set; }
+
+        /// <summary>
+        ///     航続距離
+        /// </summary>
+        public double Range { get; set; }
 
         /// <summary>
         ///     休止状態
@@ -3836,7 +4211,7 @@ namespace HoI2Editor.Models
         public bool CloseWhenFinished { get; set; }
 
         /// <summary>
-        ///     詳細不明
+        ///     waitingforclosure (詳細不明)
         /// </summary>
         public bool WaitingForClosure { get; set; }
 
