@@ -7,7 +7,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニットクラス
     /// </summary>
-    public class Unit
+    public class UnitClass
     {
         #region 公開プロパティ
 
@@ -1429,7 +1429,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public Unit(UnitType type)
+        public UnitClass(UnitType type)
         {
             Type = type;
             Branch = DefaultBranches[(int) type];

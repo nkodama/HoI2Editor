@@ -19,7 +19,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="unit">ユニットデータ</param>
         /// <param name="fileName">ファイル名</param>
-        public static void Write(Unit unit, string fileName)
+        public static void Write(UnitClass unit, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -111,7 +111,7 @@ namespace HoI2Editor.Writers
         /// <param name="unit">ユニットデータ</param>
         /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteModel(UnitModel model, Unit unit, int index, StreamWriter writer)
+        private static void WriteModel(UnitModel model, UnitClass unit, int index, StreamWriter writer)
         {
             writer.WriteLine("# {0} - {1}", index, unit.GetModelName(index));
             writer.WriteLine("model = {");
@@ -550,7 +550,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="units">ユニットクラス一覧</param>
         /// <param name="fileName">ファイル名</param>
-        public static void WriteDivisionTypes(List<Unit> units, string fileName)
+        public static void WriteDivisionTypes(List<UnitClass> units, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -560,7 +560,7 @@ namespace HoI2Editor.Writers
                 // ユニットクラス定義データを順に書き込む
                 foreach (UnitType type in Units.DivisionTypes)
                 {
-                    Unit unit = units[(int) type];
+                    UnitClass unit = units[(int) type];
 
                     // ユーザー定義師団に定義内容がなければ出力しない
                     if ((unit.Type >= UnitType.Division01) && !unit.ExistsEntity() && (unit.Models.Count == 0))
@@ -579,7 +579,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="unit">ユニットクラスデータ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteDivisionType(Unit unit, StreamWriter writer)
+        private static void WriteDivisionType(UnitClass unit, StreamWriter writer)
         {
             writer.WriteLine();
             if (unit.Type < UnitType.ReserveDivision33 || unit.Type > UnitType.ReserveDivision40)
@@ -808,7 +808,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="units">ユニットクラス一覧</param>
         /// <param name="fileName">ファイル名</param>
-        public static void WriteBrigadeTypes(List<Unit> units, string fileName)
+        public static void WriteBrigadeTypes(List<UnitClass> units, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -818,7 +818,7 @@ namespace HoI2Editor.Writers
                 // ユニットクラス定義データを順に書き込む
                 foreach (UnitType type in Units.BrigadeTypes)
                 {
-                    Unit unit = units[(int) type];
+                    UnitClass unit = units[(int) type];
 
                     // ユーザー定義旅団に定義内容がなければ出力しない
                     if ((unit.Type >= UnitType.Brigade01) && !unit.ExistsEntity() && (unit.Models.Count == 0))
@@ -837,7 +837,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="unit">ユニットクラスデータ</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteBrigadeType(Unit unit, StreamWriter writer)
+        private static void WriteBrigadeType(UnitClass unit, StreamWriter writer)
         {
             writer.WriteLine();
             if (unit.Type == UnitType.None)

@@ -26,7 +26,7 @@ namespace HoI2Editor.Parsers
         /// <param name="fileName">ファイル名</param>
         /// <param name="unit">ユニットデータ</param>
         /// <returns>構文解析の成否</returns>
-        public static bool Parse(string fileName, Unit unit)
+        public static bool Parse(string fileName, UnitClass unit)
         {
             using (TextLexer lexer = new TextLexer(fileName, true))
             {
@@ -1967,7 +1967,7 @@ namespace HoI2Editor.Parsers
         /// <param name="fileName">ファイル名</param>
         /// <param name="units">ユニットクラス一覧</param>
         /// <returns>構文解析の成否</returns>
-        public static bool ParseDivisionTypes(string fileName, List<Unit> units)
+        public static bool ParseDivisionTypes(string fileName, List<UnitClass> units)
         {
             using (TextLexer lexer = new TextLexer(fileName, true))
             {
@@ -2044,7 +2044,7 @@ namespace HoI2Editor.Parsers
         /// <param name="fileName">ファイル名</param>
         /// <param name="units">ユニットクラス一覧</param>
         /// <returns>構文解析の成否</returns>
-        public static bool ParseBrigadeTypes(string fileName, List<Unit> units)
+        public static bool ParseBrigadeTypes(string fileName, List<UnitClass> units)
         {
             using (TextLexer lexer = new TextLexer(fileName, true))
             {
@@ -2193,7 +2193,7 @@ namespace HoI2Editor.Parsers
         /// <param name="lexer">字句解析器</param>
         /// <param name="unit">ユニットデータ</param>
         /// <returns>構文解析の成否</returns>
-        private static bool ParseUnitClass(TextLexer lexer, Unit unit)
+        private static bool ParseUnitClass(TextLexer lexer, UnitClass unit)
         {
             // =
             Token token = lexer.GetToken();

@@ -347,7 +347,7 @@ namespace HoI2Editor.Forms
             typeListBox.Items.Clear();
             foreach (UnitType type in Units.UnitTypes)
             {
-                Unit unit = Units.Items[(int) type];
+                UnitClass unit = Units.Items[(int) type];
                 typeListBox.Items.Add(unit);
             }
 
@@ -372,7 +372,7 @@ namespace HoI2Editor.Forms
             int i = 0;
             foreach (UnitType type in Units.UnitTypes)
             {
-                Unit unit = Units.Items[(int) type];
+                UnitClass unit = Units.Items[(int) type];
                 typeListBox.Items[i] = unit;
                 i++;
             }
@@ -452,7 +452,7 @@ namespace HoI2Editor.Forms
             Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // 選択中のユニット名種類がなければ戻る
-            Unit unit = typeListBox.SelectedItem as Unit;
+            UnitClass unit = typeListBox.SelectedItem as UnitClass;
             if (unit == null)
             {
                 return;
@@ -545,7 +545,7 @@ namespace HoI2Editor.Forms
             Country country = Countries.Tags[countryListBox.SelectedIndex];
 
             // 選択中のユニット名種類がなければ戻る
-            Unit unit = typeListBox.SelectedItem as Unit;
+            UnitClass unit = typeListBox.SelectedItem as UnitClass;
             if (unit == null)
             {
                 return;

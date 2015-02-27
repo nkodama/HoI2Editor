@@ -20,7 +20,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット一覧
         /// </summary>
-        public static List<Unit> Items { get; private set; }
+        public static List<UnitClass> Items { get; private set; }
 
         /// <summary>
         ///     ユニット種類文字列とIDの対応付け
@@ -2008,7 +2008,7 @@ namespace HoI2Editor.Models
         static Units()
         {
             // ユニット一覧
-            Items = new List<Unit>();
+            Items = new List<UnitClass>();
 
             // ユニット種類文字列とIDの対応付けを初期化
             StringMap = new Dictionary<string, UnitType>();
@@ -2201,7 +2201,7 @@ namespace HoI2Editor.Models
             // ユニットクラスデータの初期値を設定する
             foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
             {
-                Items.Add(new Unit(type));
+                Items.Add(new UnitClass(type));
             }
 
             // ユニットクラス定義ファイルを読み込む(DH1.03以降)
@@ -2236,7 +2236,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     error = true;
-                    Unit unit = Items[(int) type];
+                    UnitClass unit = Items[(int) type];
                     string fileName =
                         Game.GetReadFileName(
                             unit.Organization == UnitOrganization.Division
@@ -2262,7 +2262,7 @@ namespace HoI2Editor.Models
             _dirtyFlag = false;
 
             // 文字列定義のみ読み込みの場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
-            foreach (Unit unit in Items)
+            foreach (UnitClass unit in Items)
             {
                 unit.ResetDirtyAll();
             }
@@ -2287,7 +2287,7 @@ namespace HoI2Editor.Models
         private static void LoadFile(UnitType type)
         {
             // ユニット定義ファイルを解析する
-            Unit unit = Items[(int) type];
+            UnitClass unit = Items[(int) type];
             string fileName =
                 Game.GetReadFileName(
                     unit.Organization == UnitOrganization.Division ? Game.DivisionPathName : Game.BrigadePathName,
@@ -2392,7 +2392,7 @@ namespace HoI2Editor.Models
 
             // ユニット定義ファイルへ順に保存する
             bool error = false;
-            foreach (Unit unit in Items.Where(unit => unit.IsDirtyFile()))
+            foreach (UnitClass unit in Items.Where(unit => unit.IsDirtyFile()))
             {
                 string folderName = Game.GetWriteFileName((unit.Organization == UnitOrganization.Division)
                     ? Game.DivisionPathName
@@ -2437,7 +2437,7 @@ namespace HoI2Editor.Models
             if (_loaded)
             {
                 // 文字列定義のみ保存の場合、ユニットクラス名などの編集済みフラグがクリアされないためここで全クリアする
-                foreach (Unit unit in Items)
+                foreach (UnitClass unit in Items)
                 {
                     unit.ResetDirtyAll();
                 }
