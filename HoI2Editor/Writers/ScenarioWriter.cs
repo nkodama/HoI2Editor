@@ -2240,17 +2240,75 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("    name     = \"{0}\"", unit.Name);
             }
+            if (unit.Location > 0)
+            {
+                writer.WriteLine("    location = {0}", unit.Location);
+            }
+            if (unit.PrevProv > 0)
+            {
+                writer.WriteLine("    prevprov = {0}", unit.PrevProv);
+            }
+            if (unit.Home > 0)
+            {
+                writer.WriteLine("    home     = {0}", unit.Home);
+            }
+            if (unit.Mission != null)
+            {
+                WriteLandMission(unit.Mission, writer);
+            }
+            if (unit.Date != null)
+            {
+                writer.Write("    date     = ");
+                WriteDate(unit.Date, writer);
+                writer.WriteLine();
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy && !unit.Development)
+            {
+                writer.WriteLine("    development = no");
+            }
+            if (unit.StandGround)
+            {
+                writer.WriteLine("    stand_ground = yes");
+            }
+            if (unit.ScorchGround)
+            {
+                writer.WriteLine("    scorch_ground = yes");
+            }
+            if (unit.Prioritized)
+            {
+                writer.WriteLine("    prioritized = yes");
+            }
+            if (unit.CanUpgrade)
+            {
+                writer.WriteLine("    can_upgrade = no");
+            }
+            if (unit.CanReinforcement)
+            {
+                writer.WriteLine("    can_reinforce = no");
+            }
             if (unit.Control != Country.None)
             {
-                writer.WriteLine("    countrol = {0}", Countries.Strings[(int) unit.Control]);
+                writer.WriteLine("    control  = {0}", Countries.Strings[(int) unit.Control]);
+            }
+            if (unit.Morale > 0)
+            {
+                writer.WriteLine("    morale   = {0}", DoubleHelper.ToString(unit.Morale));
             }
             if (unit.Leader > 0)
             {
                 writer.WriteLine("    leader   = {0}", unit.Leader);
             }
-            if (unit.Location > 0)
+            if (unit.MoveTime != null)
             {
-                writer.WriteLine("    location = {0}", unit.Location);
+                writer.Write("    movetime = ");
+                WriteDate(unit.MoveTime, writer);
+                writer.WriteLine();
+            }
+            if (unit.Movement.Count > 0)
+            {
+                writer.Write("    movement = {");
+                WriteIdList(unit.Movement, writer);
+                writer.WriteLine(" }");
             }
             foreach (LandDivision division in unit.Divisions)
             {
@@ -2259,6 +2317,20 @@ namespace HoI2Editor.Writers
             if (unit.DigIn > 0)
             {
                 writer.WriteLine("    dig_in   = {0}", DoubleHelper.ToString3(unit.DigIn));
+            }
+            if (unit.AttackDate != null)
+            {
+                writer.Write("    attack   = ");
+                WriteDate(unit.AttackDate, writer);
+                writer.WriteLine();
+            }
+            if (unit.Invasion)
+            {
+                writer.WriteLine("    invasion = yes");
+            }
+            if (unit.Target > 0)
+            {
+                writer.WriteLine("    target   = {0}", unit.Target);
             }
             writer.WriteLine("  }");
         }
@@ -2281,25 +2353,89 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("    name     = \"{0}\"", unit.Name);
             }
-            if (unit.Control != Country.None)
-            {
-                writer.WriteLine("    countrol = {0}", Countries.Strings[(int) unit.Control]);
-            }
-            if (unit.Leader > 0)
-            {
-                writer.WriteLine("    leader   = {0}", unit.Leader);
-            }
             if (unit.Location > 0)
             {
                 writer.WriteLine("    location = {0}", unit.Location);
+            }
+            if (unit.PrevProv > 0)
+            {
+                writer.WriteLine("    prevprov = {0}", unit.PrevProv);
+            }
+            if (unit.Home > 0)
+            {
+                writer.WriteLine("    home     = {0}", unit.Home);
             }
             if (unit.Base > 0)
             {
                 writer.WriteLine("    base     = {0}", unit.Base);
             }
+            if (unit.Mission != null)
+            {
+                WriteNavalMission(unit.Mission, writer);
+            }
+            if (unit.Date != null)
+            {
+                writer.Write("    date     = ");
+                WriteDate(unit.Date, writer);
+                writer.WriteLine();
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy && !unit.Development)
+            {
+                writer.WriteLine("    development = no");
+            }
+            if (unit.StandGround)
+            {
+                writer.WriteLine("    stand_ground = yes");
+            }
+            if (unit.Prioritized)
+            {
+                writer.WriteLine("    prioritized = yes");
+            }
+            if (unit.CanUpgrade)
+            {
+                writer.WriteLine("    can_upgrade = no");
+            }
+            if (unit.CanReinforcement)
+            {
+                writer.WriteLine("    can_reinforce = no");
+            }
+            if (unit.Control != Country.None)
+            {
+                writer.WriteLine("    control  = {0}", Countries.Strings[(int) unit.Control]);
+            }
+            if (unit.Morale > 0)
+            {
+                writer.WriteLine("    morale   = {0}", DoubleHelper.ToString(unit.Morale));
+            }
+            if (unit.Leader > 0)
+            {
+                writer.WriteLine("    leader   = {0}", unit.Leader);
+            }
+            if (unit.MoveTime != null)
+            {
+                writer.Write("    movetime = ");
+                WriteDate(unit.MoveTime, writer);
+                writer.WriteLine();
+            }
+            if (unit.Movement.Count > 0)
+            {
+                writer.Write("    movement = {");
+                WriteIdList(unit.Movement, writer);
+                writer.WriteLine(" }");
+            }
             foreach (NavalDivision division in unit.Divisions)
             {
                 WriteNavalDivision(division, writer);
+            }
+            foreach (LandUnit landUnit in unit.LandUnits)
+            {
+                WriteLandUnit(landUnit, writer);
+            }
+            if (unit.AttackDate != null)
+            {
+                writer.Write("    attack   = ");
+                WriteDate(unit.AttackDate, writer);
+                writer.WriteLine();
             }
             writer.WriteLine("  }");
         }
@@ -2322,25 +2458,85 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("    name     = \"{0}\"", unit.Name);
             }
-            if (unit.Control != Country.None)
-            {
-                writer.WriteLine("    countrol = {0}", Countries.Strings[(int) unit.Control]);
-            }
-            if (unit.Leader > 0)
-            {
-                writer.WriteLine("    leader   = {0}", unit.Leader);
-            }
             if (unit.Location > 0)
             {
                 writer.WriteLine("    location = {0}", unit.Location);
+            }
+            if (unit.PrevProv > 0)
+            {
+                writer.WriteLine("    prevprov = {0}", unit.PrevProv);
+            }
+            if (unit.Home > 0)
+            {
+                writer.WriteLine("    home     = {0}", unit.Home);
             }
             if (unit.Base > 0)
             {
                 writer.WriteLine("    base     = {0}", unit.Base);
             }
+            if (unit.Mission != null)
+            {
+                WriteAirMission(unit.Mission, writer);
+            }
+            if (unit.Date != null)
+            {
+                writer.Write("    date     = ");
+                WriteDate(unit.Date, writer);
+                writer.WriteLine();
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy && !unit.Development)
+            {
+                writer.WriteLine("    development = no");
+            }
+            if (unit.Prioritized)
+            {
+                writer.WriteLine("    prioritized = yes");
+            }
+            if (unit.CanUpgrade)
+            {
+                writer.WriteLine("    can_upgrade = no");
+            }
+            if (unit.CanReinforcement)
+            {
+                writer.WriteLine("    can_reinforce = no");
+            }
+            if (unit.Control != Country.None)
+            {
+                writer.WriteLine("    control  = {0}", Countries.Strings[(int) unit.Control]);
+            }
+            if (unit.Morale > 0)
+            {
+                writer.WriteLine("    morale   = {0}", DoubleHelper.ToString(unit.Morale));
+            }
+            if (unit.Leader > 0)
+            {
+                writer.WriteLine("    leader   = {0}", unit.Leader);
+            }
+            if (unit.MoveTime != null)
+            {
+                writer.Write("    movetime = ");
+                WriteDate(unit.MoveTime, writer);
+                writer.WriteLine();
+            }
+            if (unit.Movement.Count > 0)
+            {
+                writer.Write("    movement = {");
+                WriteIdList(unit.Movement, writer);
+                writer.WriteLine(" }");
+            }
             foreach (AirDivision division in unit.Divisions)
             {
                 WriteAirDivision(division, writer);
+            }
+            foreach (LandUnit landUnit in unit.LandUnits)
+            {
+                WriteLandUnit(landUnit, writer);
+            }
+            if (unit.AttackDate != null)
+            {
+                writer.Write("    attack   = ");
+                WriteDate(unit.AttackDate, writer);
+                writer.WriteLine();
             }
             writer.WriteLine("  }");
         }
@@ -2368,26 +2564,6 @@ namespace HoI2Editor.Writers
             if (division.Model >= 0)
             {
                 writer.WriteLine("      model          = {0}", division.Model);
-            }
-            if (division.Strength > 0)
-            {
-                writer.WriteLine("      strength       = {0}", division.Strength);
-            }
-            if (division.MaxStrength > 0)
-            {
-                writer.WriteLine("      max_strength   = {0}", division.MaxStrength);
-            }
-            if (division.Organisation > 0)
-            {
-                writer.WriteLine("      organisation   = {0}", division.Organisation);
-            }
-            if (division.Morale > 0)
-            {
-                writer.WriteLine("      morale         = {0}", division.Morale);
-            }
-            if (division.Experience > 0)
-            {
-                writer.WriteLine("      experience     = {0}", division.Experience);
             }
             if (division.Extra >= UnitType.None)
             {
@@ -2437,11 +2613,138 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
             }
+            if (division.Strength > 0)
+            {
+                writer.WriteLine("      strength       = {0}", DoubleHelper.ToString(division.Strength));
+            }
+            if (division.MaxStrength > 0)
+            {
+                writer.WriteLine("      max_strength   = {0}", DoubleHelper.ToString(division.MaxStrength));
+            }
+            if (division.Organisation > 0)
+            {
+                writer.WriteLine("      organisation   = {0}", DoubleHelper.ToString(division.Organisation));
+            }
+            if (division.Morale > 0)
+            {
+                writer.WriteLine("      morale         = {0}", DoubleHelper.ToString(division.Morale));
+            }
+            if (division.Experience > 0)
+            {
+                writer.WriteLine("      experience     = {0}", DoubleHelper.ToString(division.Experience));
+            }
+            if (division.Organisation > 0)
+            {
+                writer.WriteLine("      defaultorganisation = {0}", DoubleHelper.ToString(division.MaxOrganisation));
+            }
+            if (division.UpgradeProgress > 0)
+            {
+                writer.WriteLine("      div_upgr_progress = {0}", DoubleHelper.ToString(division.Experience));
+            }
+            if (division.RedeployTarget > 0)
+            {
+                writer.WriteLine("      redep_target = {0}", division.RedeployTarget);
+            }
+            if (division.RedeployUnitName != null)
+            {
+                writer.WriteLine("      redep_unit_name = {0}", division.RedeployUnitName);
+            }
+            if (division.RedeployUnitId != null)
+            {
+                writer.Write("      redep_unit_id = ");
+                WriteTypeId(division.Id, writer);
+                writer.WriteLine();
+            }
             if (division.Offensive != null)
             {
                 writer.Write("      offensive = ");
                 WriteDate(division.Offensive, writer);
                 writer.WriteLine();
+            }
+            if (division.Supplies > 0)
+            {
+                writer.WriteLine("      supplies = {0}", DoubleHelper.ToString(division.Supplies));
+            }
+            if (division.Fuel > 0)
+            {
+                writer.WriteLine("      oil = {0}", DoubleHelper.ToString(division.Fuel));
+            }
+            if (division.MaxSupplies > 0)
+            {
+                writer.WriteLine("      max_supply_stock = {0}", DoubleHelper.ToString(division.MaxSupplies));
+            }
+            if (division.MaxFuel > 0)
+            {
+                writer.WriteLine("      max_oil_stock  = {0}", DoubleHelper.ToString(division.MaxFuel));
+            }
+            if (division.MaxSpeed > 0)
+            {
+                writer.WriteLine("      maxspeed = {0}", DoubleHelper.ToString(division.MaxSpeed));
+            }
+            if (division.SupplyConsumption > 0)
+            {
+                writer.WriteLine("      supplyconsumption = {0}", DoubleHelper.ToString(division.SupplyConsumption));
+            }
+            if (division.FuelConsumption > 0)
+            {
+                writer.WriteLine("      fuelconsumption = {0}", DoubleHelper.ToString(division.FuelConsumption));
+            }
+            if (division.Defensiveness > 0)
+            {
+                writer.WriteLine("      defensiveness = {0}", DoubleHelper.ToString(division.Defensiveness));
+            }
+            if (division.Toughness > 0)
+            {
+                writer.WriteLine("      toughness = {0}", DoubleHelper.ToString(division.Toughness));
+            }
+            if (division.Softness > 0)
+            {
+                writer.WriteLine("      softness = {0}", DoubleHelper.ToString(division.Softness));
+            }
+            if (division.Suppression > 0)
+            {
+                writer.WriteLine("      suppression = {0}", DoubleHelper.ToString(division.Suppression));
+            }
+            if (division.AirDefence > 0)
+            {
+                writer.WriteLine("      airdefence = {0}", DoubleHelper.ToString(division.AirDefence));
+            }
+            if (division.SoftAttack > 0)
+            {
+                writer.WriteLine("      softattack = {0}", DoubleHelper.ToString(division.SoftAttack));
+            }
+            if (division.HardAttack > 0)
+            {
+                writer.WriteLine("      hardattack = {0}", DoubleHelper.ToString(division.HardAttack));
+            }
+            if (division.TransportWeight > 0)
+            {
+                writer.WriteLine("      transportweight = {0}", DoubleHelper.ToString(division.TransportWeight));
+            }
+            if (division.AirAttack > 0)
+            {
+                writer.WriteLine("      airattack = {0}", DoubleHelper.ToString(division.AirAttack));
+            }
+            if (division.SpeedCapArt > 0)
+            {
+                writer.WriteLine("      speed_cap_art = {0}", DoubleHelper.ToString(division.SpeedCapArt));
+            }
+            if (division.SpeedCapEng > 0)
+            {
+                writer.WriteLine("      speed_cap_eng = {0}", DoubleHelper.ToString(division.SpeedCapEng));
+            }
+            if (division.SpeedCapAa > 0)
+            {
+                writer.WriteLine("      speed_cap_aa = {0}", DoubleHelper.ToString(division.SpeedCapAa));
+            }
+            if (division.SpeedCapAt > 0)
+            {
+                writer.WriteLine("      speed_cap_at = {0}", DoubleHelper.ToString(division.SpeedCapAt));
+            }
+            if (division.ArtilleryBombardment > 0)
+            {
+                writer.WriteLine("      artillery_bombardment = {0}",
+                    DoubleHelper.ToString(division.ArtilleryBombardment));
             }
             if (division.Dormant)
             {
@@ -2478,78 +2781,6 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("      nuke           = yes");
             }
-            if (division.Strength > 0)
-            {
-                writer.WriteLine("      strength       = {0}", division.Strength);
-            }
-            if (division.MaxStrength > 0)
-            {
-                writer.WriteLine("      max_strength   = {0}", division.MaxStrength);
-            }
-            if (division.Organisation > 0)
-            {
-                writer.WriteLine("      organisation   = {0}", division.Organisation);
-            }
-            if (division.Morale > 0)
-            {
-                writer.WriteLine("      morale         = {0}", division.Morale);
-            }
-            if (division.Experience > 0)
-            {
-                writer.WriteLine("      experience     = {0}", division.Experience);
-            }
-            if (division.MaxSpeed > 0)
-            {
-                writer.WriteLine("      maxspeed       = {0}", division.MaxSpeed);
-            }
-            if (division.SeaDefense > 0)
-            {
-                writer.WriteLine("      seadefence     = {0}", division.SeaDefense);
-            }
-            if (division.AirDefence > 0)
-            {
-                writer.WriteLine("      airdefence     = {0}", division.AirDefence);
-            }
-            if (division.SeaAttack > 0)
-            {
-                writer.WriteLine("      seaattack      = {0}", division.SeaAttack);
-            }
-            if (division.SubAttack > 0)
-            {
-                writer.WriteLine("      subattack      = {0}", division.SubAttack);
-            }
-            if (division.ConvoyAttack > 0)
-            {
-                writer.WriteLine("      convoyattack   = {0}", division.ConvoyAttack);
-            }
-            if (division.ShoreBombardment > 0)
-            {
-                writer.WriteLine("      shorebombardment = {0}", division.ShoreBombardment);
-            }
-            if (division.AirAttack > 0)
-            {
-                writer.WriteLine("      airattack      = {0}", division.AirAttack);
-            }
-            if (division.Distance > 0)
-            {
-                writer.WriteLine("      distance       = {0}", division.Distance);
-            }
-            if (division.Visibility > 0)
-            {
-                writer.WriteLine("      visibility     = {0}", division.Visibility);
-            }
-            if (division.SurfaceDetection > 0)
-            {
-                writer.WriteLine("      surfacedetectioncapability = {0}", division.SurfaceDetection);
-            }
-            if (division.SubDetection > 0)
-            {
-                writer.WriteLine("      subdetectioncapability = {0}", division.SubDetection);
-            }
-            if (division.AirDetection > 0)
-            {
-                writer.WriteLine("      airdetectioncapability = {0}", division.AirDetection);
-            }
             if (division.Extra >= UnitType.None)
             {
                 writer.WriteLine("      extra          = {0}", Units.Strings[(int) division.Extra]);
@@ -2597,6 +2828,123 @@ namespace HoI2Editor.Writers
             if (division.Extra5 >= UnitType.None && division.BrigadeModel5 >= 0)
             {
                 writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
+            }
+            if (division.Strength > 0)
+            {
+                writer.WriteLine("      strength       = {0}", DoubleHelper.ToString(division.Strength));
+            }
+            if (division.MaxStrength > 0)
+            {
+                writer.WriteLine("      max_strength   = {0}", DoubleHelper.ToString(division.MaxStrength));
+            }
+            if (division.Organisation > 0)
+            {
+                writer.WriteLine("      organisation   = {0}", DoubleHelper.ToString(division.Organisation));
+            }
+            if (division.Morale > 0)
+            {
+                writer.WriteLine("      morale         = {0}", DoubleHelper.ToString(division.Morale));
+            }
+            if (division.Experience > 0)
+            {
+                writer.WriteLine("      experience     = {0}", DoubleHelper.ToString(division.Experience));
+            }
+            if (division.Organisation > 0)
+            {
+                writer.WriteLine("      defaultorganisation = {0}", DoubleHelper.ToString(division.MaxOrganisation));
+            }
+            if (division.UpgradeProgress > 0)
+            {
+                writer.WriteLine("      div_upgr_progress = {0}", DoubleHelper.ToString(division.Experience));
+            }
+            if (division.Supplies > 0)
+            {
+                writer.WriteLine("      supplies = {0}", DoubleHelper.ToString(division.Supplies));
+            }
+            if (division.Fuel > 0)
+            {
+                writer.WriteLine("      oil = {0}", DoubleHelper.ToString(division.Fuel));
+            }
+            if (division.MaxSupplies > 0)
+            {
+                writer.WriteLine("      max_supply_stock = {0}", DoubleHelper.ToString(division.MaxSupplies));
+            }
+            if (division.MaxFuel > 0)
+            {
+                writer.WriteLine("      max_oil_stock  = {0}", DoubleHelper.ToString(division.MaxFuel));
+            }
+            if (division.MaxSpeed > 0)
+            {
+                writer.WriteLine("      maxspeed = {0}", DoubleHelper.ToString(division.MaxSpeed));
+            }
+            if (division.SupplyConsumption > 0)
+            {
+                writer.WriteLine("      supplyconsumption = {0}", DoubleHelper.ToString(division.SupplyConsumption));
+            }
+            if (division.FuelConsumption > 0)
+            {
+                writer.WriteLine("      fuelconsumption = {0}", DoubleHelper.ToString(division.FuelConsumption));
+            }
+            if (division.SurfaceDetection > 0)
+            {
+                writer.WriteLine("      surfacedetectioncapability = {0}",
+                    DoubleHelper.ToString(division.SurfaceDetection));
+            }
+            if (division.AirDetection > 0)
+            {
+                writer.WriteLine("      airdetectioncapability = {0}", DoubleHelper.ToString(division.AirDetection));
+            }
+            if (division.SubDetection > 0)
+            {
+                writer.WriteLine("      subdetectioncapability = {0}", DoubleHelper.ToString(division.SubDetection));
+            }
+            if (division.Visibility > 0)
+            {
+                writer.WriteLine("      visibility = {0}", DoubleHelper.ToString(division.Visibility));
+            }
+            if (division.SeaDefense > 0)
+            {
+                writer.WriteLine("      seadefence = {0}", DoubleHelper.ToString(division.SeaDefense));
+            }
+            if (division.AirDefence > 0)
+            {
+                writer.WriteLine("      airdefence = {0}", DoubleHelper.ToString(division.AirDefence));
+            }
+            if (division.SeaAttack > 0)
+            {
+                writer.WriteLine("      seaattack = {0}", DoubleHelper.ToString(division.SeaAttack));
+            }
+            if (division.SubAttack > 0)
+            {
+                writer.WriteLine("      subattack = {0}", DoubleHelper.ToString(division.SubAttack));
+            }
+            if (division.ConvoyAttack > 0)
+            {
+                writer.WriteLine("      convoyattack = {0}", DoubleHelper.ToString(division.ConvoyAttack));
+            }
+            if (division.ShoreBombardment > 0)
+            {
+                writer.WriteLine("      shorebombardment = {0}", DoubleHelper.ToString(division.ShoreBombardment));
+            }
+            if (division.AirAttack > 0)
+            {
+                writer.WriteLine("      airattack = {0}", DoubleHelper.ToString(division.AirAttack));
+            }
+            if (division.TransportCapability > 0)
+            {
+                writer.WriteLine("      transportcapability = {0}", DoubleHelper.ToString(division.TransportCapability));
+            }
+            if (division.Range > 0)
+            {
+                writer.WriteLine("      range = {0}", DoubleHelper.ToString(division.Range));
+            }
+            if (division.Distance > 0)
+            {
+                writer.WriteLine("      distance = {0}", DoubleHelper.ToString(division.Distance));
+            }
+            if (division.Travelled > 0)
+            {
+                writer.WriteLine("      travelled = {0}", DoubleHelper.ToString(division.Travelled));
             }
             if (division.Dormant)
             {
@@ -2629,26 +2977,6 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("      nuke           = yes");
             }
-            if (division.Strength > 0)
-            {
-                writer.WriteLine("      strength       = {0}", division.Strength);
-            }
-            if (division.MaxStrength > 0)
-            {
-                writer.WriteLine("      max_strength   = {0}", division.MaxStrength);
-            }
-            if (division.Organisation > 0)
-            {
-                writer.WriteLine("      organisation   = {0}", division.Organisation);
-            }
-            if (division.Morale > 0)
-            {
-                writer.WriteLine("      morale         = {0}", division.Morale);
-            }
-            if (division.Experience > 0)
-            {
-                writer.WriteLine("      experience     = {0}", division.Experience);
-            }
             if (division.Extra >= UnitType.None)
             {
                 writer.WriteLine("      extra          = {0}", Units.Strings[(int) division.Extra]);
@@ -2696,6 +3024,107 @@ namespace HoI2Editor.Writers
             if (division.Extra5 >= UnitType.None && division.BrigadeModel5 >= 0)
             {
                 writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
+            }
+            if (division.Strength > 0)
+            {
+                writer.WriteLine("      strength       = {0}", DoubleHelper.ToString(division.Strength));
+            }
+            if (division.MaxStrength > 0)
+            {
+                writer.WriteLine("      max_strength   = {0}", DoubleHelper.ToString(division.MaxStrength));
+            }
+            if (division.Organisation > 0)
+            {
+                writer.WriteLine("      organisation   = {0}", DoubleHelper.ToString(division.Organisation));
+            }
+            if (division.Morale > 0)
+            {
+                writer.WriteLine("      morale         = {0}", DoubleHelper.ToString(division.Morale));
+            }
+            if (division.Experience > 0)
+            {
+                writer.WriteLine("      experience     = {0}", DoubleHelper.ToString(division.Experience));
+            }
+            if (division.Organisation > 0)
+            {
+                writer.WriteLine("      defaultorganisation = {0}", DoubleHelper.ToString(division.MaxOrganisation));
+            }
+            if (division.UpgradeProgress > 0)
+            {
+                writer.WriteLine("      div_upgr_progress = {0}", DoubleHelper.ToString(division.Experience));
+            }
+            if (division.Supplies > 0)
+            {
+                writer.WriteLine("      supplies = {0}", DoubleHelper.ToString(division.Supplies));
+            }
+            if (division.Fuel > 0)
+            {
+                writer.WriteLine("      oil = {0}", DoubleHelper.ToString(division.Fuel));
+            }
+            if (division.MaxSupplies > 0)
+            {
+                writer.WriteLine("      max_supply_stock = {0}", DoubleHelper.ToString(division.MaxSupplies));
+            }
+            if (division.MaxFuel > 0)
+            {
+                writer.WriteLine("      max_oil_stock  = {0}", DoubleHelper.ToString(division.MaxFuel));
+            }
+            if (division.MaxSpeed > 0)
+            {
+                writer.WriteLine("      maxspeed = {0}", DoubleHelper.ToString(division.MaxSpeed));
+            }
+            if (division.SupplyConsumption > 0)
+            {
+                writer.WriteLine("      supplyconsumption = {0}", DoubleHelper.ToString(division.SupplyConsumption));
+            }
+            if (division.FuelConsumption > 0)
+            {
+                writer.WriteLine("      fuelconsumption = {0}", DoubleHelper.ToString(division.FuelConsumption));
+            }
+            if (division.SurfaceDetection > 0)
+            {
+                writer.WriteLine("      surfacedetectioncapability = {0}",
+                    DoubleHelper.ToString(division.SurfaceDetection));
+            }
+            if (division.AirDetection > 0)
+            {
+                writer.WriteLine("      airdetectioncapability = {0}", DoubleHelper.ToString(division.AirDetection));
+            }
+            if (division.SurfaceDefence > 0)
+            {
+                writer.WriteLine("      surfacedefence = {0}", DoubleHelper.ToString(division.SurfaceDefence));
+            }
+            if (division.AirDefence > 0)
+            {
+                writer.WriteLine("      airdefence = {0}", DoubleHelper.ToString(division.AirDefence));
+            }
+            if (division.AirAttack > 0)
+            {
+                writer.WriteLine("      airattack = {0}", DoubleHelper.ToString(division.AirAttack));
+            }
+            if (division.StrategicAttack > 0)
+            {
+                writer.WriteLine("      strategicattack = {0}", DoubleHelper.ToString(division.StrategicAttack));
+            }
+            if (division.SoftAttack > 0)
+            {
+                writer.WriteLine("      softattack = {0}", DoubleHelper.ToString(division.SoftAttack));
+            }
+            if (division.HardAttack > 0)
+            {
+                writer.WriteLine("      hardattack = {0}", DoubleHelper.ToString(division.HardAttack));
+            }
+            if (division.TransportCapability > 0)
+            {
+                writer.WriteLine("      transportcapability = {0}", DoubleHelper.ToString(division.TransportCapability));
+            }
+            if (division.NavalAttack > 0)
+            {
+                writer.WriteLine("      navalattack = {0}", DoubleHelper.ToString(division.NavalAttack));
+            }
+            if (division.Range > 0)
+            {
+                writer.WriteLine("      range = {0}", DoubleHelper.ToString(division.Range));
             }
             if (division.Dormant)
             {
@@ -2965,6 +3394,172 @@ namespace HoI2Editor.Writers
                 writer.Write(" locked = yes");
             }
             writer.WriteLine(" } ");
+        }
+
+        #endregion
+
+        #region 任務
+
+        /// <summary>
+        ///     陸軍任務を書き出す
+        /// </summary>
+        /// <param name="mission">陸軍任務</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteLandMission(LandMission mission, TextWriter writer)
+        {
+            writer.WriteLine("    mission = {");
+            if (mission.Type != LandMissionType.None)
+            {
+                writer.WriteLine("      type = {0}", Scenarios.LandMissionStrings[(int) mission.Type]);
+            }
+            if (mission.Target > 0)
+            {
+                writer.WriteLine("      target = {0}", mission.Target);
+            }
+            writer.WriteLine("      percentage = {0}", DoubleHelper.ToString(mission.Percentage));
+            if (mission.Night)
+            {
+                writer.WriteLine("      night = yes");
+            }
+            if (mission.Day)
+            {
+                writer.WriteLine("      day = yes");
+            }
+            if (mission.StartDate != null)
+            {
+                writer.Write("      startdate = ");
+                WriteDate(mission.StartDate, writer);
+                writer.WriteLine();
+            }
+            if (mission.EndDate != null)
+            {
+                writer.Write("      enddate = ");
+                WriteDate(mission.EndDate, writer);
+                writer.WriteLine();
+            }
+            if (mission.Task > 0)
+            {
+                writer.WriteLine("      task = {0}", mission.Task);
+            }
+            if (mission.Location > 0)
+            {
+                writer.WriteLine("      location = {0}", mission.Location);
+            }
+            writer.WriteLine("    }");
+        }
+
+        /// <summary>
+        ///     海軍任務を書き出す
+        /// </summary>
+        /// <param name="mission">海軍任務</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteNavalMission(NavalMission mission, TextWriter writer)
+        {
+            writer.WriteLine("    mission = {");
+            if (mission.Type != NavalMissionType.None)
+            {
+                writer.WriteLine("      type = {0}", Scenarios.NavalMissionStrings[(int) mission.Type]);
+            }
+            if (mission.Target > 0)
+            {
+                writer.WriteLine("      target = {0}", mission.Target);
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                writer.WriteLine("      missionscope = {0}", mission.MissionScope);
+            }
+            writer.WriteLine("      percentage = {0}", DoubleHelper.ToString(mission.Percentage));
+            if (mission.Night)
+            {
+                writer.WriteLine("      night = yes");
+            }
+            if (mission.Day)
+            {
+                writer.WriteLine("      day = yes");
+            }
+            if (Game.Type == GameType.DarkestHour)
+            {
+                if (mission.TargetZone > 0)
+                {
+                    writer.WriteLine("      tz = {0}", mission.TargetZone);
+                }
+                if (mission.AttackConvoy)
+                {
+                    writer.WriteLine("      ac = yes");
+                }
+                if (!DoubleHelper.IsEqual(mission.OrgLimit, mission.Percentage))
+                {
+                    writer.WriteLine("      org = {0}", DoubleHelper.ToString(mission.OrgLimit));
+                }
+            }
+            if (mission.StartDate != null)
+            {
+                writer.Write("      startdate = ");
+                WriteDate(mission.StartDate, writer);
+                writer.WriteLine();
+            }
+            if (mission.EndDate != null)
+            {
+                writer.Write("      enddate = ");
+                WriteDate(mission.EndDate, writer);
+                writer.WriteLine();
+            }
+            writer.WriteLine("    }");
+        }
+
+        /// <summary>
+        ///     空軍任務を書き出す
+        /// </summary>
+        /// <param name="mission">空軍任務</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteAirMission(AirMission mission, TextWriter writer)
+        {
+            writer.WriteLine("    mission = {");
+            if (mission.Type != AirMissionType.None)
+            {
+                writer.WriteLine("      type = {0}", Scenarios.AirMissionStrings[(int) mission.Type]);
+            }
+            if (mission.Target > 0)
+            {
+                writer.WriteLine("      target = {0}", mission.Target);
+            }
+            if (Game.Type == GameType.ArsenalOfDemocracy)
+            {
+                writer.WriteLine("      missionscope = {0}", mission.MissionScope);
+            }
+            writer.WriteLine("      percentage = {0}", DoubleHelper.ToString(mission.Percentage));
+            if (mission.Night)
+            {
+                writer.WriteLine("      night = yes");
+            }
+            if (mission.Day)
+            {
+                writer.WriteLine("      day = yes");
+            }
+            if (Game.Type == GameType.DarkestHour)
+            {
+                if (mission.TargetZone > 0)
+                {
+                    writer.WriteLine("      tz = {0}", mission.TargetZone);
+                }
+                if (!DoubleHelper.IsEqual(mission.OrgLimit, mission.Percentage))
+                {
+                    writer.WriteLine("      org = {0}", DoubleHelper.ToString(mission.OrgLimit));
+                }
+            }
+            if (mission.StartDate != null)
+            {
+                writer.Write("      startdate = ");
+                WriteDate(mission.StartDate, writer);
+                writer.WriteLine();
+            }
+            if (mission.EndDate != null)
+            {
+                writer.Write("      enddate = ");
+                WriteDate(mission.EndDate, writer);
+                writer.WriteLine();
+            }
+            writer.WriteLine("    }");
         }
 
         #endregion

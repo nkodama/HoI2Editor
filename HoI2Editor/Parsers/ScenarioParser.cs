@@ -5653,6 +5653,36 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // stand_ground
+                if (keyword.Equals("stand_ground"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "stand_ground", lexer);
+                        continue;
+                    }
+
+                    // 死守命令
+                    unit.StandGround = (bool) b;
+                    continue;
+                }
+
+                // scorch_ground
+                if (keyword.Equals("scorch_ground"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "scorch_ground", lexer);
+                        continue;
+                    }
+
+                    // 焦土作戦
+                    unit.ScorchGround = (bool) b;
+                    continue;
+                }
+
                 // prioritized
                 if (keyword.Equals("prioritized"))
                 {
@@ -5998,6 +6028,21 @@ namespace HoI2Editor.Parsers
 
                     // 攻撃開始日時
                     unit.AttackDate = date;
+                    continue;
+                }
+
+                // stand_ground
+                if (keyword.Equals("stand_ground"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "stand_ground", lexer);
+                        continue;
+                    }
+
+                    // 強制戦闘
+                    unit.StandGround = (bool) b;
                     continue;
                 }
 
@@ -9441,6 +9486,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // enddate
+                if (keyword.Equals("enddate"))
+                {
+                    GameDate date = ParseDate(lexer);
+                    if (date == null)
+                    {
+                        Log.InvalidSection(LogCategory, "enddate", lexer);
+                        continue;
+                    }
+
+                    // 終了日時
+                    mission.EndDate = date;
+                    continue;
+                }
+
                 // task
                 if (keyword.Equals("task"))
                 {
@@ -9588,6 +9648,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // missionscope
+                if (keyword.Equals("missionscope"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "missionscope", lexer);
+                        continue;
+                    }
+
+                    // 対象範囲
+                    mission.MissionScope = (int) n;
+                    continue;
+                }
+
                 // percentage
                 if (keyword.Equals("percentage"))
                 {
@@ -9633,6 +9708,51 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // tz
+                if (keyword.Equals("tz"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "tz", lexer);
+                        continue;
+                    }
+
+                    // 対象範囲
+                    mission.TargetZone = (int) n;
+                    continue;
+                }
+
+                // ac
+                if (keyword.Equals("ac"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "ac", lexer);
+                        continue;
+                    }
+
+                    // 船団攻撃
+                    mission.AttackConvoy = (bool) b;
+                    continue;
+                }
+
+                // org
+                if (keyword.Equals("org"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "org", lexer);
+                        continue;
+                    }
+
+                    // 指揮統制率下限
+                    mission.OrgLimit = (double) d;
+                    continue;
+                }
+
                 // startdate
                 if (keyword.Equals("startdate"))
                 {
@@ -9660,36 +9780,6 @@ namespace HoI2Editor.Parsers
 
                     // 終了日時
                     mission.EndDate = date;
-                    continue;
-                }
-
-                // task
-                if (keyword.Equals("task"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "task", lexer);
-                        continue;
-                    }
-
-                    // 任務
-                    mission.Task = (int) n;
-                    continue;
-                }
-
-                // location
-                if (keyword.Equals("location"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "location", lexer);
-                        continue;
-                    }
-
-                    // 位置
-                    mission.Location = (int) n;
                     continue;
                 }
 
@@ -9810,6 +9900,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // missionscope
+                if (keyword.Equals("missionscope"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "missionscope", lexer);
+                        continue;
+                    }
+
+                    // 対象範囲
+                    mission.MissionScope = (int) n;
+                    continue;
+                }
+
                 // percentage
                 if (keyword.Equals("percentage"))
                 {
@@ -9855,6 +9960,36 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // tz
+                if (keyword.Equals("tz"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "tz", lexer);
+                        continue;
+                    }
+
+                    // 対象範囲
+                    mission.TargetZone = (int) n;
+                    continue;
+                }
+
+                // org
+                if (keyword.Equals("org"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "org", lexer);
+                        continue;
+                    }
+
+                    // 指揮統制率下限
+                    mission.OrgLimit = (double) d;
+                    continue;
+                }
+
                 // startdate
                 if (keyword.Equals("startdate"))
                 {
@@ -9882,36 +10017,6 @@ namespace HoI2Editor.Parsers
 
                     // 終了日時
                     mission.EndDate = date;
-                    continue;
-                }
-
-                // task
-                if (keyword.Equals("task"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "task", lexer);
-                        continue;
-                    }
-
-                    // 任務
-                    mission.Task = (int) n;
-                    continue;
-                }
-
-                // location
-                if (keyword.Equals("location"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "location", lexer);
-                        continue;
-                    }
-
-                    // 位置
-                    mission.Location = (int) n;
                     continue;
                 }
 

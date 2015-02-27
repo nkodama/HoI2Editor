@@ -3025,6 +3025,16 @@ namespace HoI2Editor.Models
         public int Target { get; set; }
 
         /// <summary>
+        ///     死守命令
+        /// </summary>
+        public bool StandGround { get; set; }
+
+        /// <summary>
+        ///     焦土作戦
+        /// </summary>
+        public bool ScorchGround { get; set; }
+
+        /// <summary>
         ///     優先
         /// </summary>
         public bool Prioritized { get; set; }
@@ -3055,6 +3065,7 @@ namespace HoI2Editor.Models
         {
             Movement = new List<int>();
             Divisions = new List<LandDivision>();
+            Development = true;
         }
 
         #endregion
@@ -3143,6 +3154,11 @@ namespace HoI2Editor.Models
         public GameDate AttackDate { get; set; }
 
         /// <summary>
+        ///     強制戦闘
+        /// </summary>
+        public bool StandGround { get; set; }
+
+        /// <summary>
         ///     優先
         /// </summary>
         public bool Prioritized { get; set; }
@@ -3179,6 +3195,7 @@ namespace HoI2Editor.Models
             Movement = new List<int>();
             Divisions = new List<NavalDivision>();
             LandUnits = new List<LandUnit>();
+            Development = true;
         }
 
         #endregion
@@ -3303,6 +3320,7 @@ namespace HoI2Editor.Models
             Movement = new List<int>();
             Divisions = new List<AirDivision>();
             LandUnits = new List<LandUnit>();
+            Development = true;
         }
 
         #endregion
@@ -4359,6 +4377,11 @@ namespace HoI2Editor.Models
         public GameDate StartDate { get; set; }
 
         /// <summary>
+        ///     終了日時
+        /// </summary>
+        public GameDate EndDate { get; set; }
+
+        /// <summary>
         ///     任務
         /// </summary>
         public int Task { get; set; }
@@ -4389,6 +4412,11 @@ namespace HoI2Editor.Models
         public int Target { get; set; }
 
         /// <summary>
+        ///     対象範囲 (AoDのみ)
+        /// </summary>
+        public int MissionScope { get; set; }
+
+        /// <summary>
         ///     戦力/指揮統制率下限
         /// </summary>
         public double Percentage { get; set; }
@@ -4404,6 +4432,21 @@ namespace HoI2Editor.Models
         public bool Day { get; set; }
 
         /// <summary>
+        ///     対象範囲 (DHのみ)
+        /// </summary>
+        public int TargetZone { get; set; }
+
+        /// <summary>
+        ///     船団攻撃 (DHのみ)
+        /// </summary>
+        public bool AttackConvoy { get; set; }
+
+        /// <summary>
+        ///     指揮統制率下限 (DHのみ)
+        /// </summary>
+        public double OrgLimit { get; set; }
+
+        /// <summary>
         ///     開始日時
         /// </summary>
         public GameDate StartDate { get; set; }
@@ -4412,16 +4455,6 @@ namespace HoI2Editor.Models
         ///     終了日時
         /// </summary>
         public GameDate EndDate { get; set; }
-
-        /// <summary>
-        ///     任務
-        /// </summary>
-        public int Task { get; set; }
-
-        /// <summary>
-        ///     位置
-        /// </summary>
-        public int Location { get; set; }
 
         #endregion
     }
@@ -4444,6 +4477,11 @@ namespace HoI2Editor.Models
         public int Target { get; set; }
 
         /// <summary>
+        ///     対象範囲 (AoDのみ)
+        /// </summary>
+        public int MissionScope { get; set; }
+
+        /// <summary>
         ///     戦力/指揮統制率下限
         /// </summary>
         public double Percentage { get; set; }
@@ -4459,6 +4497,16 @@ namespace HoI2Editor.Models
         public bool Day { get; set; }
 
         /// <summary>
+        ///     対象範囲 (DHのみ)
+        /// </summary>
+        public int TargetZone { get; set; }
+
+        /// <summary>
+        ///     指揮統制率下限 (DHのみ)
+        /// </summary>
+        public double OrgLimit { get; set; }
+
+        /// <summary>
         ///     開始日時
         /// </summary>
         public GameDate StartDate { get; set; }
@@ -4467,16 +4515,6 @@ namespace HoI2Editor.Models
         ///     終了日時
         /// </summary>
         public GameDate EndDate { get; set; }
-
-        /// <summary>
-        ///     任務
-        /// </summary>
-        public int Task { get; set; }
-
-        /// <summary>
-        ///     位置
-        /// </summary>
-        public int Location { get; set; }
 
         #endregion
     }
