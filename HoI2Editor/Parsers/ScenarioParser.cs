@@ -4422,7 +4422,7 @@ namespace HoI2Editor.Parsers
                 // landunit
                 if (keyword.Equals("landunit"))
                 {
-                    LandUnit unit = ParseLandUnit(lexer);
+                    Unit unit = ParseUnit(lexer);
                     if (unit == null)
                     {
                         Log.InvalidSection(LogCategory, "landunit", lexer);
@@ -4437,7 +4437,7 @@ namespace HoI2Editor.Parsers
                 // navalunit
                 if (keyword.Equals("navalunit"))
                 {
-                    NavalUnit unit = ParseNavalUnit(lexer);
+                    Unit unit = ParseUnit(lexer);
                     if (unit == null)
                     {
                         Log.InvalidSection(LogCategory, "navalunit", lexer);
@@ -4452,7 +4452,7 @@ namespace HoI2Editor.Parsers
                 // airunit
                 if (keyword.Equals("airunit"))
                 {
-                    AirUnit unit = ParseAirUnit(lexer);
+                    Unit unit = ParseUnit(lexer);
                     if (unit == null)
                     {
                         Log.InvalidSection(LogCategory, "airunit", lexer);
@@ -4512,7 +4512,7 @@ namespace HoI2Editor.Parsers
                 // landdivision
                 if (keyword.Equals("landdivision"))
                 {
-                    LandDivision division = ParseLandDivision(lexer);
+                    Division division = ParseDivision(lexer);
                     if (division == null)
                     {
                         Log.InvalidSection(LogCategory, "landdivision", lexer);
@@ -4527,7 +4527,7 @@ namespace HoI2Editor.Parsers
                 // navaldivision
                 if (keyword.Equals("navaldivision"))
                 {
-                    NavalDivision division = ParseNavalDivision(lexer);
+                    Division division = ParseDivision(lexer);
                     if (division == null)
                     {
                         Log.InvalidSection(LogCategory, "navaldivision", lexer);
@@ -4542,7 +4542,7 @@ namespace HoI2Editor.Parsers
                 // airdivision
                 if (keyword.Equals("airdivision"))
                 {
-                    AirDivision division = ParseAirDivision(lexer);
+                    Division division = ParseDivision(lexer);
                     if (division == null)
                     {
                         Log.InvalidSection(LogCategory, "airdivision", lexer);
@@ -5344,11 +5344,11 @@ namespace HoI2Editor.Parsers
         #region ユニット
 
         /// <summary>
-        ///     陸軍ユニットを構文解析する
+        ///     ユニットを構文解析する
         /// </summary>
         /// <param name="lexer">字句解析器</param>
-        /// <returns>陸軍ユニット</returns>
-        private static LandUnit ParseLandUnit(TextLexer lexer)
+        /// <returns>ユニット</returns>
+        private static Unit ParseUnit(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -5366,7 +5366,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            LandUnit unit = new LandUnit();
+            Unit unit = new Unit();
             while (true)
             {
                 token = lexer.GetToken();
@@ -5503,6 +5503,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // base
+                if (keyword.Equals("base"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "base", lexer);
+                        continue;
+                    }
+
+                    // 所属基地
+                    unit.Base = (int)n;
+                    continue;
+                }
+
                 // dig_in
                 if (keyword.Equals("dig_in"))
                 {
@@ -5536,7 +5551,7 @@ namespace HoI2Editor.Parsers
                 // mission
                 if (keyword.Equals("mission"))
                 {
-                    LandMission mission = ParseLandMission(lexer);
+                    Mission mission = ParseMission(lexer);
                     if (mission == null)
                     {
                         Log.InvalidSection(LogCategory, "mission", lexer);
@@ -5731,370 +5746,7 @@ namespace HoI2Editor.Parsers
                 // division
                 if (keyword.Equals("division"))
                 {
-                    LandDivision division = ParseLandDivision(lexer);
-                    if (division == null)
-                    {
-                        Log.InvalidSection(LogCategory, "division", lexer);
-                        continue;
-                    }
-
-                    // 師団
-                    unit.Divisions.Add(division);
-                    continue;
-                }
-
-                // 無効なトークン
-                Log.InvalidToken(LogCategory, token, lexer);
-                lexer.SkipLine();
-            }
-
-            return unit;
-        }
-
-        /// <summary>
-        ///     海軍ユニットを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>海軍ユニット</returns>
-        private static NavalUnit ParseNavalUnit(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            NavalUnit unit = new NavalUnit();
-            while (true)
-            {
-                token = lexer.GetToken();
-
-                // ファイルの終端
-                if (token == null)
-                {
-                    break;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                if (token.Type != TokenType.Identifier)
-                {
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
-                    continue;
-                }
-
-                string keyword = token.Value as string;
-                if (string.IsNullOrEmpty(keyword))
-                {
-                    continue;
-                }
-                keyword = keyword.ToLower();
-
-                // id
-                if (keyword.Equals("id"))
-                {
-                    TypeId id = ParseTypeId(lexer);
-                    if (id == null)
-                    {
-                        Log.InvalidSection(LogCategory, "id", lexer);
-                        continue;
-                    }
-
-                    // typeとidの組
-                    unit.Id = id;
-                    continue;
-                }
-
-                // name
-                if (keyword.Equals("name"))
-                {
-                    string s = ParseString(lexer);
-                    if (s == null)
-                    {
-                        Log.InvalidClause(LogCategory, "name", lexer);
-                        continue;
-                    }
-
-                    // ユニット名
-                    unit.Name = s;
-                    continue;
-                }
-
-                // control
-                if (keyword.Equals("control"))
-                {
-                    Country? tag = ParseTag(lexer);
-                    if (!tag.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "control", lexer);
-                        continue;
-                    }
-
-                    // 統帥国
-                    unit.Control = (Country) tag;
-                    continue;
-                }
-
-                // leader
-                if (keyword.Equals("leader"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "leader", lexer);
-                        continue;
-                    }
-
-                    // 指揮官
-                    unit.Leader = (int) n;
-                    continue;
-                }
-
-                // location
-                if (keyword.Equals("location"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "location", lexer);
-                        continue;
-                    }
-
-                    // 現在位置
-                    unit.Location = (int) n;
-                    continue;
-                }
-
-                // prevprov
-                if (keyword.Equals("prevprov"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "prevprov", lexer);
-                        continue;
-                    }
-
-                    // 直前の位置
-                    unit.PrevProv = (int) n;
-                    continue;
-                }
-
-                // home
-                if (keyword.Equals("home"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "home", lexer);
-                        continue;
-                    }
-
-                    // 基準位置
-                    unit.Home = (int) n;
-                    continue;
-                }
-
-                // base
-                if (keyword.Equals("base"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "base", lexer);
-                        continue;
-                    }
-
-                    // 所属基地
-                    unit.Base = (int) n;
-                    continue;
-                }
-
-                // morale
-                if (keyword.Equals("morale"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "morale", lexer);
-                        continue;
-                    }
-
-                    // 士気
-                    unit.Morale = (double) d;
-                    continue;
-                }
-
-                // mission
-                if (keyword.Equals("mission"))
-                {
-                    NavalMission mission = ParseNavalMission(lexer);
-                    if (mission == null)
-                    {
-                        Log.InvalidSection(LogCategory, "mission", lexer);
-                        continue;
-                    }
-
-                    // 任務
-                    unit.Mission = mission;
-                    continue;
-                }
-
-                // date
-                if (keyword.Equals("date"))
-                {
-                    GameDate date = ParseDate(lexer);
-                    if (date == null)
-                    {
-                        Log.InvalidSection(LogCategory, "date", lexer);
-                        continue;
-                    }
-
-                    // 指定日時
-                    unit.Date = date;
-                    continue;
-                }
-
-                // development
-                if (keyword.Equals("development"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "development", lexer);
-                        continue;
-                    }
-
-                    // development (詳細不明)
-                    unit.Development = (bool) b;
-                    continue;
-                }
-
-                // movetime
-                if (keyword.Equals("movetime"))
-                {
-                    GameDate date = ParseDate(lexer);
-                    if (date == null)
-                    {
-                        Log.InvalidSection(LogCategory, "movetime", lexer);
-                        continue;
-                    }
-
-                    // 移動完了日時
-                    unit.MoveTime = date;
-                    continue;
-                }
-
-                // movement
-                if (keyword.Equals("movement"))
-                {
-                    IEnumerable<int> list = ParseIdList(lexer);
-                    if (list == null)
-                    {
-                        Log.InvalidSection(LogCategory, "movement", lexer);
-                        continue;
-                    }
-
-                    // 移動経路
-                    unit.Movement.AddRange(list);
-                    continue;
-                }
-
-                // attack
-                if (keyword.Equals("attack"))
-                {
-                    GameDate date = ParseDate(lexer);
-                    if (date == null)
-                    {
-                        Log.InvalidSection(LogCategory, "attack", lexer);
-                        continue;
-                    }
-
-                    // 攻撃開始日時
-                    unit.AttackDate = date;
-                    continue;
-                }
-
-                // stand_ground
-                if (keyword.Equals("stand_ground"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "stand_ground", lexer);
-                        continue;
-                    }
-
-                    // 強制戦闘
-                    unit.StandGround = (bool) b;
-                    continue;
-                }
-
-                // prioritized
-                if (keyword.Equals("prioritized"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "prioritized", lexer);
-                        continue;
-                    }
-
-                    // 優先
-                    unit.Prioritized = (bool) b;
-                    continue;
-                }
-
-                // can_upgrade
-                if (keyword.Equals("can_upgrade"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "can_upgrade", lexer);
-                        continue;
-                    }
-
-                    // 改良可能
-                    unit.CanUpgrade = (bool) b;
-                    continue;
-                }
-
-                // can_reinforce
-                if (keyword.Equals("can_reinforce"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "can_reinforce", lexer);
-                        continue;
-                    }
-
-                    // 補充可能
-                    unit.CanReinforcement = (bool) b;
-                    continue;
-                }
-
-                // division
-                if (keyword.Equals("division"))
-                {
-                    NavalDivision division = ParseNavalDivision(lexer);
+                    Division division = ParseDivision(lexer);
                     if (division == null)
                     {
                         Log.InvalidSection(LogCategory, "division", lexer);
@@ -6109,370 +5761,7 @@ namespace HoI2Editor.Parsers
                 // landunit
                 if (keyword.Equals("landunit"))
                 {
-                    LandUnit landUnit = ParseLandUnit(lexer);
-                    if (landUnit == null)
-                    {
-                        Log.InvalidSection(LogCategory, "landunit", lexer);
-                        continue;
-                    }
-
-                    // 搭載ユニット
-                    unit.LandUnits.Add(landUnit);
-                    continue;
-                }
-
-                // 無効なトークン
-                Log.InvalidToken(LogCategory, token, lexer);
-                lexer.SkipLine();
-            }
-
-            return unit;
-        }
-
-        /// <summary>
-        ///     空軍ユニットを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>空軍ユニット</returns>
-        private static AirUnit ParseAirUnit(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            AirUnit unit = new AirUnit();
-            while (true)
-            {
-                token = lexer.GetToken();
-
-                // ファイルの終端
-                if (token == null)
-                {
-                    break;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                if (token.Type != TokenType.Identifier)
-                {
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
-                    continue;
-                }
-
-                string keyword = token.Value as string;
-                if (string.IsNullOrEmpty(keyword))
-                {
-                    continue;
-                }
-                keyword = keyword.ToLower();
-
-                // id
-                if (keyword.Equals("id"))
-                {
-                    TypeId id = ParseTypeId(lexer);
-                    if (id == null)
-                    {
-                        Log.InvalidSection(LogCategory, "id", lexer);
-                        continue;
-                    }
-
-                    // typeとidの組
-                    unit.Id = id;
-                    continue;
-                }
-
-                // name
-                if (keyword.Equals("name"))
-                {
-                    string s = ParseString(lexer);
-                    if (s == null)
-                    {
-                        Log.InvalidClause(LogCategory, "name", lexer);
-                        continue;
-                    }
-
-                    // ユニット名
-                    unit.Name = s;
-                    continue;
-                }
-
-                // leader
-                if (keyword.Equals("leader"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "leader", lexer);
-                        continue;
-                    }
-
-                    // 指揮官
-                    unit.Leader = (int) n;
-                    continue;
-                }
-
-                // control
-                if (keyword.Equals("control"))
-                {
-                    Country? tag = ParseTag(lexer);
-                    if (!tag.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "control", lexer);
-                        continue;
-                    }
-
-                    // 統帥国
-                    unit.Control = (Country) tag;
-                    continue;
-                }
-
-                // location
-                if (keyword.Equals("location"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "location", lexer);
-                        continue;
-                    }
-
-                    // 位置
-                    unit.Location = (int) n;
-                    continue;
-                }
-
-                // prevprov
-                if (keyword.Equals("prevprov"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "prevprov", lexer);
-                        continue;
-                    }
-
-                    // 直前の位置
-                    unit.PrevProv = (int) n;
-                    continue;
-                }
-
-                // home
-                if (keyword.Equals("home"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "home", lexer);
-                        continue;
-                    }
-
-                    // 基準位置
-                    unit.Home = (int) n;
-                    continue;
-                }
-
-                // base
-                if (keyword.Equals("base"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "base", lexer);
-                        continue;
-                    }
-
-                    // 所属基地
-                    unit.Base = (int) n;
-                    continue;
-                }
-
-                // morale
-                if (keyword.Equals("morale"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "morale", lexer);
-                        continue;
-                    }
-
-                    // 士気
-                    unit.Morale = (double) d;
-                    continue;
-                }
-
-                // mission
-                if (keyword.Equals("mission"))
-                {
-                    AirMission mission = ParseAirMission(lexer);
-                    if (mission == null)
-                    {
-                        Log.InvalidSection(LogCategory, "mission", lexer);
-                        continue;
-                    }
-
-                    // 任務
-                    unit.Mission = mission;
-                    continue;
-                }
-
-                // date
-                if (keyword.Equals("date"))
-                {
-                    GameDate date = ParseDate(lexer);
-                    if (date == null)
-                    {
-                        Log.InvalidSection(LogCategory, "date", lexer);
-                        continue;
-                    }
-
-                    // 指定日時
-                    unit.Date = date;
-                    continue;
-                }
-
-                // development
-                if (keyword.Equals("development"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "development", lexer);
-                        continue;
-                    }
-
-                    // development (詳細不明)
-                    unit.Development = (bool) b;
-                    continue;
-                }
-
-                // movetime
-                if (keyword.Equals("movetime"))
-                {
-                    GameDate date = ParseDate(lexer);
-                    if (date == null)
-                    {
-                        Log.InvalidSection(LogCategory, "movetime", lexer);
-                        continue;
-                    }
-
-                    // 移動完了日時
-                    unit.MoveTime = date;
-                    continue;
-                }
-
-                // movement
-                if (keyword.Equals("movement"))
-                {
-                    IEnumerable<int> list = ParseIdList(lexer);
-                    if (list == null)
-                    {
-                        Log.InvalidSection(LogCategory, "movement", lexer);
-                        continue;
-                    }
-
-                    // 移動経路
-                    unit.Movement.AddRange(list);
-                    continue;
-                }
-
-                // attack
-                if (keyword.Equals("attack"))
-                {
-                    GameDate date = ParseDate(lexer);
-                    if (date == null)
-                    {
-                        Log.InvalidSection(LogCategory, "attack", lexer);
-                        continue;
-                    }
-
-                    // 攻撃開始日時
-                    unit.AttackDate = date;
-                    continue;
-                }
-
-                // prioritized
-                if (keyword.Equals("prioritized"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "prioritized", lexer);
-                        continue;
-                    }
-
-                    // 優先
-                    unit.Prioritized = (bool) b;
-                    continue;
-                }
-
-                // can_upgrade
-                if (keyword.Equals("can_upgrade"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "can_upgrade", lexer);
-                        continue;
-                    }
-
-                    // 改良可能
-                    unit.CanUpgrade = (bool) b;
-                    continue;
-                }
-
-                // can_reinforce
-                if (keyword.Equals("can_reinforce"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "can_reinforce", lexer);
-                        continue;
-                    }
-
-                    // 補充可能
-                    unit.CanReinforcement = (bool) b;
-                    continue;
-                }
-
-                // division
-                if (keyword.Equals("division"))
-                {
-                    AirDivision division = ParseAirDivision(lexer);
-                    if (division == null)
-                    {
-                        Log.InvalidSection(LogCategory, "division", lexer);
-                        continue;
-                    }
-
-                    // 師団
-                    unit.Divisions.Add(division);
-                    continue;
-                }
-
-                // landunit
-                if (keyword.Equals("landunit"))
-                {
-                    LandUnit landUnit = ParseLandUnit(lexer);
+                    Unit landUnit = ParseUnit(lexer);
                     if (landUnit == null)
                     {
                         Log.InvalidSection(LogCategory, "landunit", lexer);
@@ -6497,11 +5786,11 @@ namespace HoI2Editor.Parsers
         #region 師団
 
         /// <summary>
-        ///     陸軍師団を構文解析する
+        ///     師団を構文解析する
         /// </summary>
         /// <param name="lexer">字句解析器</param>
-        /// <returns>陸軍師団</returns>
-        private static LandDivision ParseLandDivision(TextLexer lexer)
+        /// <returns>師団</returns>
+        private static Division ParseDivision(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -6519,7 +5808,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            LandDivision division = new LandDivision();
+            Division division = new Division();
             while (true)
             {
                 token = lexer.GetToken();
@@ -6608,6 +5897,21 @@ namespace HoI2Editor.Parsers
 
                     // モデル番号
                     division.Model = (int) n;
+                    continue;
+                }
+
+                // nuke
+                if (keyword.Equals("nuke"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "nuke", lexer);
+                        continue;
+                    }
+
+                    // 核兵器搭載
+                    division.Nuke = (bool)b;
                     continue;
                 }
 
@@ -7136,6 +6440,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // transportcapability
+                if (keyword.Equals("transportcapability"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "transportcapability", lexer);
+                        continue;
+                    }
+
+                    // 輸送能力
+                    division.TransportCapability = (double)d;
+                    continue;
+                }
+
                 // defensiveness
                 if (keyword.Equals("defensiveness"))
                 {
@@ -7196,654 +6515,6 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
-                // airdefence
-                if (keyword.Equals("airdefence"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "airdefence", lexer);
-                        continue;
-                    }
-
-                    // 対空防御力
-                    division.AirDefence = (double) d;
-                    continue;
-                }
-
-                // softattack
-                if (keyword.Equals("softattack"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "softattack", lexer);
-                        continue;
-                    }
-
-                    // 対人攻撃力
-                    division.SoftAttack = (double) d;
-                    continue;
-                }
-
-                // hardattack
-                if (keyword.Equals("hardattack"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "hardattack", lexer);
-                        continue;
-                    }
-
-                    // 対甲攻撃力
-                    division.HardAttack = (double) d;
-                    continue;
-                }
-
-                // airattack
-                if (keyword.Equals("airattack"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "airattack", lexer);
-                        continue;
-                    }
-
-                    // 対空攻撃力
-                    division.AirAttack = (double) d;
-                    continue;
-                }
-
-                // artillery_bombardment
-                if (keyword.Equals("artillery_bombardment"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "artillery_bombardment", lexer);
-                        continue;
-                    }
-
-                    // 砲撃能力
-                    division.ArtilleryBombardment = (double) d;
-                    continue;
-                }
-
-                // locked
-                if (keyword.Equals("locked"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "dormant", lexer);
-                        continue;
-                    }
-
-                    // 移動不可
-                    division.Locked = (bool) b;
-                    continue;
-                }
-
-                // dormant
-                if (keyword.Equals("dormant"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "dormant", lexer);
-                        continue;
-                    }
-
-                    // 休止状態
-                    division.Dormant = (bool) b;
-                    continue;
-                }
-
-                // 無効なトークン
-                Log.InvalidToken(LogCategory, token, lexer);
-                lexer.SkipLine();
-            }
-
-            return division;
-        }
-
-        /// <summary>
-        ///     海軍師団を構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>海軍師団</returns>
-        private static NavalDivision ParseNavalDivision(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            NavalDivision division = new NavalDivision();
-            while (true)
-            {
-                token = lexer.GetToken();
-
-                // ファイルの終端
-                if (token == null)
-                {
-                    break;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                if (token.Type != TokenType.Identifier)
-                {
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
-                    continue;
-                }
-
-                string keyword = token.Value as string;
-                if (string.IsNullOrEmpty(keyword))
-                {
-                    continue;
-                }
-                keyword = keyword.ToLower();
-
-                // id
-                if (keyword.Equals("id"))
-                {
-                    TypeId id = ParseTypeId(lexer);
-                    if (id == null)
-                    {
-                        Log.InvalidSection(LogCategory, "id", lexer);
-                        continue;
-                    }
-
-                    // typeとidの組
-                    division.Id = id;
-                    continue;
-                }
-
-                // name
-                if (keyword.Equals("name"))
-                {
-                    string s = ParseString(lexer);
-                    if (s == null)
-                    {
-                        Log.InvalidClause(LogCategory, "name", lexer);
-                        continue;
-                    }
-
-                    // 師団名
-                    division.Name = s;
-                    continue;
-                }
-
-                // type
-                if (keyword.Equals("type"))
-                {
-                    UnitType? type = ParseDivisionType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "type", lexer);
-                        continue;
-                    }
-
-                    // ユニット種類
-                    division.Type = (UnitType) type;
-                    continue;
-                }
-
-                // model
-                if (keyword.Equals("model"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "model", lexer);
-                        continue;
-                    }
-
-                    // モデル番号
-                    division.Model = (int) n;
-                    continue;
-                }
-
-                // nuke
-                if (keyword.Equals("nuke"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "nuke", lexer);
-                        continue;
-                    }
-
-                    // 核兵器搭載
-                    division.Nuke = (bool) b;
-                    continue;
-                }
-
-                // extra
-                if (keyword.Equals("extra"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra = (UnitType) type;
-                    continue;
-                }
-
-                // extra1
-                if (keyword.Equals("extra1"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra1", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra1 = (UnitType) type;
-                    continue;
-                }
-
-                // extra2
-                if (keyword.Equals("extra2"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra2", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra2 = (UnitType) type;
-                    continue;
-                }
-
-                // extra3
-                if (keyword.Equals("extra3"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra3", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra3 = (UnitType) type;
-                    continue;
-                }
-
-                // extra4
-                if (keyword.Equals("extra4"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra4", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra4 = (UnitType) type;
-                    continue;
-                }
-
-                // extra5
-                if (keyword.Equals("extra5"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra5", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra5 = (UnitType) type;
-                    continue;
-                }
-
-                // brigade_model
-                if (keyword.Equals("brigade_model"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel = (int) n;
-                    continue;
-                }
-
-                // brigade_model1
-                if (keyword.Equals("brigade_model1"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model1", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel1 = (int) n;
-                    continue;
-                }
-
-                // brigade_model2
-                if (keyword.Equals("brigade_model2"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model2", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel2 = (int) n;
-                    continue;
-                }
-
-                // brigade_model3
-                if (keyword.Equals("brigade_model3"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model3", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel3 = (int) n;
-                    continue;
-                }
-
-                // brigade_model4
-                if (keyword.Equals("brigade_model4"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model4", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel4 = (int) n;
-                    continue;
-                }
-
-                // brigade_model5
-                if (keyword.Equals("brigade_model5"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model5", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel5 = (int) n;
-                    continue;
-                }
-
-                // max_strength
-                if (keyword.Equals("max_strength"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "max_strength", lexer);
-                        continue;
-                    }
-
-                    // 最大戦力
-                    division.MaxStrength = (double) d;
-                    continue;
-                }
-
-                // strength
-                if (keyword.Equals("strength"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "strength", lexer);
-                        continue;
-                    }
-
-                    // 戦力
-                    division.Strength = (double) d;
-                    continue;
-                }
-
-                // defaultorganisation
-                if (keyword.Equals("defaultorganisation"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "defaultorganisation", lexer);
-                        continue;
-                    }
-
-                    // 最大組織率
-                    division.MaxOrganisation = (double) d;
-                    continue;
-                }
-
-                // organisation
-                if (keyword.Equals("organisation"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "organisation", lexer);
-                        continue;
-                    }
-
-                    // 組織率
-                    division.Organisation = (double) d;
-                    continue;
-                }
-
-                // morale
-                if (keyword.Equals("morale"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "morale", lexer);
-                        continue;
-                    }
-
-                    // 士気
-                    division.Morale = (double) d;
-                    continue;
-                }
-
-                // experience
-                if (keyword.Equals("experience"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "experience", lexer);
-                        continue;
-                    }
-
-                    // 経験値
-                    division.Experience = (double) d;
-                    continue;
-                }
-
-                // div_upgr_progress
-                if (keyword.Equals("div_upgr_progress"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "div_upgr_progress", lexer);
-                        continue;
-                    }
-
-                    // 改良進捗率
-                    division.UpgradeProgress = (double) d;
-                    continue;
-                }
-
-                // supplies
-                if (keyword.Equals("supplies"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "supplies", lexer);
-                        continue;
-                    }
-
-                    // 物資
-                    division.Supplies = (double) d;
-                    continue;
-                }
-
-                // oil
-                if (keyword.Equals("oil"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "oil", lexer);
-                        continue;
-                    }
-
-                    // 燃料
-                    division.Fuel = (double) d;
-                    continue;
-                }
-
-                // max_supply_stock
-                if (keyword.Equals("max_supply_stock"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "max_supply_stock", lexer);
-                        continue;
-                    }
-
-                    // 最大物資
-                    division.MaxSupplies = (double) d;
-                    continue;
-                }
-
-                // max_oil_stock
-                if (keyword.Equals("max_oil_stock"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "max_oil_stock", lexer);
-                        continue;
-                    }
-
-                    // 最大燃料
-                    division.MaxFuel = (double) d;
-                    continue;
-                }
-
-                // supplyconsumption
-                if (keyword.Equals("supplyconsumption"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "supplyconsumption", lexer);
-                        continue;
-                    }
-
-                    // 物資消費量
-                    division.SupplyConsumption = (double) d;
-                    continue;
-                }
-
-                // fuelconsumption
-                if (keyword.Equals("fuelconsumption"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "fuelconsumption", lexer);
-                        continue;
-                    }
-
-                    // 燃料消費量
-                    division.FuelConsumption = (double) d;
-                    continue;
-                }
-
-                // maxspeed
-                if (keyword.Equals("maxspeed"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "maxspeed", lexer);
-                        continue;
-                    }
-
-                    // 移動速度
-                    division.MaxSpeed = (double) d;
-                    continue;
-                }
-
-                // transportcapability
-                if (keyword.Equals("transportcapability"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "transportcapability", lexer);
-                        continue;
-                    }
-
-                    // 輸送能力
-                    division.TransportCapability = (double) d;
-                    continue;
-                }
-
                 // seadefence
                 if (keyword.Equals("seadefence"))
                 {
@@ -7855,760 +6526,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対艦/対潜防御力
-                    division.SeaDefense = (double) d;
-                    continue;
-                }
-
-                // airdefence
-                if (keyword.Equals("airdefence"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "airdefence", lexer);
-                        continue;
-                    }
-
-                    // 対空防御力
-                    division.AirDefence = (double) d;
-                    continue;
-                }
-
-                // seaattack
-                if (keyword.Equals("seaattack"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "seaattack", lexer);
-                        continue;
-                    }
-
-                    // 対艦攻撃力(海軍)
-                    division.SeaAttack = (double) d;
-                    continue;
-                }
-
-                // subattack
-                if (keyword.Equals("subattack"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "subattack", lexer);
-                        continue;
-                    }
-
-                    // 対潜攻撃力
-                    division.SubAttack = (double) d;
-                    continue;
-                }
-
-                // convoyattack
-                if (keyword.Equals("convoyattack"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "convoyattack", lexer);
-                        continue;
-                    }
-
-                    // 通商破壊力
-                    division.ConvoyAttack = (double) d;
-                    continue;
-                }
-
-                // shorebombardment
-                if (keyword.Equals("shorebombardment"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "shorebombardment", lexer);
-                        continue;
-                    }
-
-                    // 沿岸砲撃能力
-                    division.ShoreBombardment = (double) d;
-                    continue;
-                }
-
-                // airattack
-                if (keyword.Equals("airattack"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "airattack", lexer);
-                        continue;
-                    }
-
-                    // 対空攻撃力
-                    division.AirAttack = (double) d;
-                    continue;
-                }
-
-                // surfacedetectioncapability
-                if (keyword.Equals("surfacedetectioncapability"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "surfacedetectioncapability", lexer);
-                        continue;
-                    }
-
-                    // 対艦索敵能力
-                    division.SurfaceDetection = (double) d;
-                    continue;
-                }
-
-                // airdetectioncapability
-                if (keyword.Equals("airdetectioncapability"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "airdetectioncapability", lexer);
-                        continue;
-                    }
-
-                    // 対空索敵能力
-                    division.AirDetection = (double) d;
-                    continue;
-                }
-
-                // subdetectioncapability
-                if (keyword.Equals("subdetectioncapability"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "subdetectioncapability", lexer);
-                        continue;
-                    }
-
-                    // 対潜索敵能力
-                    division.SubDetection = (double) d;
-                    continue;
-                }
-
-                // visibility
-                if (keyword.Equals("visibility"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "visibility", lexer);
-                        continue;
-                    }
-
-                    // 可視性
-                    division.Visibility = (double) d;
-                    continue;
-                }
-
-                // range
-                if (keyword.Equals("range"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "range", lexer);
-                        continue;
-                    }
-
-                    // 航続距離
-                    division.Range = (double) d;
-                    continue;
-                }
-
-                // distance
-                if (keyword.Equals("distance"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "distance", lexer);
-                        continue;
-                    }
-
-                    // 射程距離
-                    division.Distance = (double) d;
-                    continue;
-                }
-
-                // travelled
-                if (keyword.Equals("travelled"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "travelled", lexer);
-                        continue;
-                    }
-
-                    // 移動距離
-                    division.Travelled = (double) d;
-                    continue;
-                }
-
-                // dormant
-                if (keyword.Equals("dormant"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "dormant", lexer);
-                        continue;
-                    }
-
-                    // 休止状態
-                    division.Dormant = (bool) b;
-                    continue;
-                }
-
-                // 無効なトークン
-                Log.InvalidToken(LogCategory, token, lexer);
-                lexer.SkipLine();
-            }
-
-            return division;
-        }
-
-        /// <summary>
-        ///     空軍師団を構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>空軍師団</returns>
-        private static AirDivision ParseAirDivision(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            AirDivision division = new AirDivision();
-            while (true)
-            {
-                token = lexer.GetToken();
-
-                // ファイルの終端
-                if (token == null)
-                {
-                    break;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                if (token.Type != TokenType.Identifier)
-                {
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
-                    continue;
-                }
-
-                string keyword = token.Value as string;
-                if (string.IsNullOrEmpty(keyword))
-                {
-                    continue;
-                }
-                keyword = keyword.ToLower();
-
-                // id
-                if (keyword.Equals("id"))
-                {
-                    TypeId id = ParseTypeId(lexer);
-                    if (id == null)
-                    {
-                        Log.InvalidSection(LogCategory, "id", lexer);
-                        continue;
-                    }
-
-                    // typeとidの組
-                    division.Id = id;
-                    continue;
-                }
-
-                // name
-                if (keyword.Equals("name"))
-                {
-                    string s = ParseString(lexer);
-                    if (s == null)
-                    {
-                        Log.InvalidClause(LogCategory, "name", lexer);
-                        continue;
-                    }
-
-                    // 師団名
-                    division.Name = s;
-                    continue;
-                }
-
-                // type
-                if (keyword.Equals("type"))
-                {
-                    UnitType? type = ParseDivisionType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "type", lexer);
-                        continue;
-                    }
-
-                    // ユニット種類
-                    division.Type = (UnitType) type;
-                    continue;
-                }
-
-                // model
-                if (keyword.Equals("model"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "model", lexer);
-                        continue;
-                    }
-
-                    // モデル番号
-                    division.Model = (int) n;
-                    continue;
-                }
-
-                // nuke
-                if (keyword.Equals("nuke"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "nuke", lexer);
-                        continue;
-                    }
-
-                    // 核兵器搭載
-                    division.Nuke = (bool) b;
-                    continue;
-                }
-
-                // extra
-                if (keyword.Equals("extra"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra = (UnitType) type;
-                    continue;
-                }
-
-                // extra1
-                if (keyword.Equals("extra1"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra1", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra1 = (UnitType) type;
-                    continue;
-                }
-
-                // extra2
-                if (keyword.Equals("extra2"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra2", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra2 = (UnitType) type;
-                    continue;
-                }
-
-                // extra3
-                if (keyword.Equals("extra3"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra3", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra3 = (UnitType) type;
-                    continue;
-                }
-
-                // extra4
-                if (keyword.Equals("extra4"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra4", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra4 = (UnitType) type;
-                    continue;
-                }
-
-                // extra5
-                if (keyword.Equals("extra5"))
-                {
-                    UnitType? type = ParseBrigadeType(lexer);
-                    if (type == null)
-                    {
-                        Log.InvalidClause(LogCategory, "extra5", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のユニット種類
-                    division.Extra5 = (UnitType) type;
-                    continue;
-                }
-
-                // brigade_model
-                if (keyword.Equals("brigade_model"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel = (int) n;
-                    continue;
-                }
-
-                // brigade_model1
-                if (keyword.Equals("brigade_model1"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model1", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel1 = (int) n;
-                    continue;
-                }
-
-                // brigade_model2
-                if (keyword.Equals("brigade_model2"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model2", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel2 = (int) n;
-                    continue;
-                }
-
-                // brigade_model3
-                if (keyword.Equals("brigade_model3"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model3", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel3 = (int) n;
-                    continue;
-                }
-
-                // brigade_model4
-                if (keyword.Equals("brigade_model4"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model4", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel4 = (int) n;
-                    continue;
-                }
-
-                // brigade_model5
-                if (keyword.Equals("brigade_model5"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "brigade_model5", lexer);
-                        continue;
-                    }
-
-                    // 付属旅団のモデル番号
-                    division.BrigadeModel5 = (int) n;
-                    continue;
-                }
-
-                // max_strength
-                if (keyword.Equals("max_strength"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "max_strength", lexer);
-                        continue;
-                    }
-
-                    // 最大戦力
-                    division.MaxStrength = (double) d;
-                    continue;
-                }
-
-                // strength
-                if (keyword.Equals("strength"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "strength", lexer);
-                        continue;
-                    }
-
-                    // 戦力
-                    division.Strength = (double) d;
-                    continue;
-                }
-
-                // defaultorganisation
-                if (keyword.Equals("defaultorganisation"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "defaultorganisation", lexer);
-                        continue;
-                    }
-
-                    // 最大組織率
-                    division.MaxOrganisation = (double) d;
-                    continue;
-                }
-
-                // organisation
-                if (keyword.Equals("organisation"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "organisation", lexer);
-                        continue;
-                    }
-
-                    // 組織率
-                    division.Organisation = (double) d;
-                    continue;
-                }
-
-                // morale
-                if (keyword.Equals("morale"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "morale", lexer);
-                        continue;
-                    }
-
-                    // 士気
-                    division.Morale = (double) d;
-                    continue;
-                }
-
-                // experience
-                if (keyword.Equals("experience"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "experience", lexer);
-                        continue;
-                    }
-
-                    // 経験値
-                    division.Experience = (double) d;
-                    continue;
-                }
-
-                // div_upgr_progress
-                if (keyword.Equals("div_upgr_progress"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "div_upgr_progress", lexer);
-                        continue;
-                    }
-
-                    // 改良進捗率
-                    division.UpgradeProgress = (double) d;
-                    continue;
-                }
-
-                // supplies
-                if (keyword.Equals("supplies"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "supplies", lexer);
-                        continue;
-                    }
-
-                    // 物資
-                    division.Supplies = (double) d;
-                    continue;
-                }
-
-                // oil
-                if (keyword.Equals("oil"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "oil", lexer);
-                        continue;
-                    }
-
-                    // 燃料
-                    division.Fuel = (double) d;
-                    continue;
-                }
-
-                // max_supply_stock
-                if (keyword.Equals("max_supply_stock"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "max_supply_stock", lexer);
-                        continue;
-                    }
-
-                    // 最大物資
-                    division.MaxSupplies = (double) d;
-                    continue;
-                }
-
-                // max_oil_stock
-                if (keyword.Equals("max_oil_stock"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "max_oil_stock", lexer);
-                        continue;
-                    }
-
-                    // 最大燃料
-                    division.MaxFuel = (double) d;
-                    continue;
-                }
-
-                // supplyconsumption
-                if (keyword.Equals("supplyconsumption"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "supplyconsumption", lexer);
-                        continue;
-                    }
-
-                    // 物資消費量
-                    division.SupplyConsumption = (double) d;
-                    continue;
-                }
-
-                // fuelconsumption
-                if (keyword.Equals("fuelconsumption"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "fuelconsumption", lexer);
-                        continue;
-                    }
-
-                    // 燃料消費量
-                    division.FuelConsumption = (double) d;
-                    continue;
-                }
-
-                // maxspeed
-                if (keyword.Equals("maxspeed"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "maxspeed", lexer);
-                        continue;
-                    }
-
-                    // 移動速度
-                    division.MaxSpeed = (double) d;
-                    continue;
-                }
-
-                // transportcapability
-                if (keyword.Equals("transportcapability"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "transportcapability", lexer);
-                        continue;
-                    }
-
-                    // 輸送能力
-                    division.TransportCapability = (double) d;
+                    division.SeaDefense = (double)d;
                     continue;
                 }
 
@@ -8623,7 +6541,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対地防御力
-                    division.SurfaceDefence = (double) d;
+                    division.SurfaceDefence = (double)d;
                     continue;
                 }
 
@@ -8669,6 +6587,66 @@ namespace HoI2Editor.Parsers
 
                     // 対甲攻撃力
                     division.HardAttack = (double) d;
+                    continue;
+                }
+
+                // seaattack
+                if (keyword.Equals("seaattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "seaattack", lexer);
+                        continue;
+                    }
+
+                    // 対艦攻撃力(海軍)
+                    division.SeaAttack = (double)d;
+                    continue;
+                }
+
+                // subattack
+                if (keyword.Equals("subattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "subattack", lexer);
+                        continue;
+                    }
+
+                    // 対潜攻撃力
+                    division.SubAttack = (double)d;
+                    continue;
+                }
+
+                // convoyattack
+                if (keyword.Equals("convoyattack"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "convoyattack", lexer);
+                        continue;
+                    }
+
+                    // 通商破壊力
+                    division.ConvoyAttack = (double)d;
+                    continue;
+                }
+
+                // shorebombardment
+                if (keyword.Equals("shorebombardment"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "shorebombardment", lexer);
+                        continue;
+                    }
+
+                    // 沿岸砲撃能力
+                    division.ShoreBombardment = (double)d;
                     continue;
                 }
 
@@ -8698,7 +6676,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 戦略爆撃攻撃力
-                    division.StrategicAttack = (double) d;
+                    division.StrategicAttack = (double)d;
                     continue;
                 }
 
@@ -8713,7 +6691,22 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 空対艦攻撃力
-                    division.NavalAttack = (double) d;
+                    division.NavalAttack = (double)d;
+                    continue;
+                }
+
+                // artillery_bombardment
+                if (keyword.Equals("artillery_bombardment"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "artillery_bombardment", lexer);
+                        continue;
+                    }
+
+                    // 砲撃能力
+                    division.ArtilleryBombardment = (double) d;
                     continue;
                 }
 
@@ -8728,7 +6721,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対艦索敵能力
-                    division.SurfaceDetection = (double) d;
+                    division.SurfaceDetection = (double)d;
                     continue;
                 }
 
@@ -8743,7 +6736,37 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対空索敵能力
-                    division.AirDetection = (double) d;
+                    division.AirDetection = (double)d;
+                    continue;
+                }
+
+                // subdetectioncapability
+                if (keyword.Equals("subdetectioncapability"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "subdetectioncapability", lexer);
+                        continue;
+                    }
+
+                    // 対潜索敵能力
+                    division.SubDetection = (double)d;
+                    continue;
+                }
+
+                // visibility
+                if (keyword.Equals("visibility"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "visibility", lexer);
+                        continue;
+                    }
+
+                    // 可視性
+                    division.Visibility = (double)d;
                     continue;
                 }
 
@@ -8758,7 +6781,52 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 航続距離
-                    division.Range = (double) d;
+                    division.Range = (double)d;
+                    continue;
+                }
+
+                // distance
+                if (keyword.Equals("distance"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "distance", lexer);
+                        continue;
+                    }
+
+                    // 射程距離
+                    division.Distance = (double)d;
+                    continue;
+                }
+
+                // travelled
+                if (keyword.Equals("travelled"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "travelled", lexer);
+                        continue;
+                    }
+
+                    // 移動距離
+                    division.Travelled = (double)d;
+                    continue;
+                }
+
+                // locked
+                if (keyword.Equals("locked"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "dormant", lexer);
+                        continue;
+                    }
+
+                    // 移動不可
+                    division.Locked = (bool) b;
                     continue;
                 }
 
@@ -9318,11 +7386,11 @@ namespace HoI2Editor.Parsers
         #region 任務
 
         /// <summary>
-        ///     陸軍任務を構文解析する
+        ///     任務を構文解析する
         /// </summary>
         /// <param name="lexer">字句解析器</param>
-        /// <returns>陸軍任務</returns>
-        private static LandMission ParseLandMission(TextLexer lexer)
+        /// <returns>任務</returns>
+        private static Mission ParseMission(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();
@@ -9340,7 +7408,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            LandMission mission = new LandMission();
+            Mission mission = new Mission();
             while (true)
             {
                 token = lexer.GetToken();
@@ -9399,7 +7467,7 @@ namespace HoI2Editor.Parsers
                     }
                     s = s.ToLower();
 
-                    if (!Scenarios.LandMissionStrings.Contains(s))
+                    if (!Scenarios.MissionStrings.Contains(s))
                     {
                         // 無効なトークン
                         Log.InvalidToken(LogCategory, token, lexer);
@@ -9407,7 +7475,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 任務の種類
-                    mission.Type = (LandMissionType) Array.IndexOf(Scenarios.LandMissionStrings, s);
+                    mission.Type = (MissionType) Array.IndexOf(Scenarios.MissionStrings, s);
                     continue;
                 }
 
@@ -9423,6 +7491,21 @@ namespace HoI2Editor.Parsers
 
                     // 対象プロヴィンス
                     mission.Target = (int) n;
+                    continue;
+                }
+
+                // missionscope
+                if (keyword.Equals("missionscope"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "missionscope", lexer);
+                        continue;
+                    }
+
+                    // 対象範囲
+                    mission.MissionScope = (int)n;
                     continue;
                 }
 
@@ -9468,6 +7551,51 @@ namespace HoI2Editor.Parsers
 
                     // 昼間遂行
                     mission.Day = (bool) b;
+                    continue;
+                }
+
+                // tz
+                if (keyword.Equals("tz"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "tz", lexer);
+                        continue;
+                    }
+
+                    // 対象範囲
+                    mission.TargetZone = (int)n;
+                    continue;
+                }
+
+                // ac
+                if (keyword.Equals("ac"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "ac", lexer);
+                        continue;
+                    }
+
+                    // 船団攻撃
+                    mission.AttackConvoy = (bool)b;
+                    continue;
+                }
+
+                // org
+                if (keyword.Equals("org"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "org", lexer);
+                        continue;
+                    }
+
+                    // 指揮統制率下限
+                    mission.OrgLimit = (double)d;
                     continue;
                 }
 
@@ -9528,495 +7656,6 @@ namespace HoI2Editor.Parsers
 
                     // 位置
                     mission.Location = (int) n;
-                    continue;
-                }
-
-                // 無効なトークン
-                Log.InvalidToken(LogCategory, token, lexer);
-                lexer.SkipLine();
-            }
-
-            return mission;
-        }
-
-        /// <summary>
-        ///     海軍任務を構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>海軍任務</returns>
-        private static NavalMission ParseNavalMission(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            NavalMission mission = new NavalMission();
-            while (true)
-            {
-                token = lexer.GetToken();
-
-                // ファイルの終端
-                if (token == null)
-                {
-                    break;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                if (token.Type != TokenType.Identifier)
-                {
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
-                    continue;
-                }
-
-                string keyword = token.Value as string;
-                if (string.IsNullOrEmpty(keyword))
-                {
-                    continue;
-                }
-                keyword = keyword.ToLower();
-
-                // type
-                if (keyword.Equals("type"))
-                {
-                    // =
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Equal)
-                    {
-                        Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
-                        continue;
-                    }
-
-                    // 無効なトークン
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Identifier)
-                    {
-                        Log.InvalidToken(LogCategory, token, lexer);
-                        continue;
-                    }
-
-                    string s = token.Value as string;
-                    if (string.IsNullOrEmpty(s))
-                    {
-                        return null;
-                    }
-                    s = s.ToLower();
-
-                    if (!Scenarios.NavalMissionStrings.Contains(s))
-                    {
-                        // 無効なトークン
-                        Log.InvalidToken(LogCategory, token, lexer);
-                        continue;
-                    }
-
-                    // 任務の種類
-                    mission.Type = (NavalMissionType) Array.IndexOf(Scenarios.NavalMissionStrings, s);
-                    continue;
-                }
-
-                // target
-                if (keyword.Equals("target"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "target", lexer);
-                        continue;
-                    }
-
-                    // 対象プロヴィンス
-                    mission.Target = (int) n;
-                    continue;
-                }
-
-                // missionscope
-                if (keyword.Equals("missionscope"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "missionscope", lexer);
-                        continue;
-                    }
-
-                    // 対象範囲
-                    mission.MissionScope = (int) n;
-                    continue;
-                }
-
-                // percentage
-                if (keyword.Equals("percentage"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "percentage", lexer);
-                        continue;
-                    }
-
-                    // 戦力/指揮統制率下限
-                    mission.Percentage = (double) d;
-                    continue;
-                }
-
-                // night
-                if (keyword.Equals("night"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "night", lexer);
-                        continue;
-                    }
-
-                    // 夜間遂行
-                    mission.Night = (bool) b;
-                    continue;
-                }
-
-                // day
-                if (keyword.Equals("day"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "day", lexer);
-                        continue;
-                    }
-
-                    // 昼間遂行
-                    mission.Day = (bool) b;
-                    continue;
-                }
-
-                // tz
-                if (keyword.Equals("tz"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "tz", lexer);
-                        continue;
-                    }
-
-                    // 対象範囲
-                    mission.TargetZone = (int) n;
-                    continue;
-                }
-
-                // ac
-                if (keyword.Equals("ac"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "ac", lexer);
-                        continue;
-                    }
-
-                    // 船団攻撃
-                    mission.AttackConvoy = (bool) b;
-                    continue;
-                }
-
-                // org
-                if (keyword.Equals("org"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "org", lexer);
-                        continue;
-                    }
-
-                    // 指揮統制率下限
-                    mission.OrgLimit = (double) d;
-                    continue;
-                }
-
-                // startdate
-                if (keyword.Equals("startdate"))
-                {
-                    GameDate date = ParseDate(lexer);
-                    if (date == null)
-                    {
-                        Log.InvalidSection(LogCategory, "startdate", lexer);
-                        continue;
-                    }
-
-                    // 開始日時
-                    mission.StartDate = date;
-                    continue;
-                }
-
-                // enddate
-                if (keyword.Equals("enddate"))
-                {
-                    GameDate date = ParseDate(lexer);
-                    if (date == null)
-                    {
-                        Log.InvalidSection(LogCategory, "enddate", lexer);
-                        continue;
-                    }
-
-                    // 終了日時
-                    mission.EndDate = date;
-                    continue;
-                }
-
-                // 無効なトークン
-                Log.InvalidToken(LogCategory, token, lexer);
-                lexer.SkipLine();
-            }
-
-            return mission;
-        }
-
-        /// <summary>
-        ///     空軍任務を構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>空軍任務</returns>
-        private static AirMission ParseAirMission(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            AirMission mission = new AirMission();
-            while (true)
-            {
-                token = lexer.GetToken();
-
-                // ファイルの終端
-                if (token == null)
-                {
-                    break;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                if (token.Type != TokenType.Identifier)
-                {
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
-                    continue;
-                }
-
-                string keyword = token.Value as string;
-                if (string.IsNullOrEmpty(keyword))
-                {
-                    continue;
-                }
-                keyword = keyword.ToLower();
-
-                // type
-                if (keyword.Equals("type"))
-                {
-                    // =
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Equal)
-                    {
-                        Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
-                        continue;
-                    }
-
-                    // 無効なトークン
-                    token = lexer.GetToken();
-                    if (token.Type != TokenType.Identifier)
-                    {
-                        Log.InvalidToken(LogCategory, token, lexer);
-                        continue;
-                    }
-
-                    string s = token.Value as string;
-                    if (string.IsNullOrEmpty(s))
-                    {
-                        return null;
-                    }
-                    s = s.ToLower();
-
-                    if (!Scenarios.AirMissionStrings.Contains(s))
-                    {
-                        // 無効なトークン
-                        Log.InvalidToken(LogCategory, token, lexer);
-                        continue;
-                    }
-
-                    // 任務の種類
-                    mission.Type = (AirMissionType) Array.IndexOf(Scenarios.AirMissionStrings, s);
-                    continue;
-                }
-
-                // target
-                if (keyword.Equals("target"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "target", lexer);
-                        continue;
-                    }
-
-                    // 対象プロヴィンス
-                    mission.Target = (int) n;
-                    continue;
-                }
-
-                // missionscope
-                if (keyword.Equals("missionscope"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "missionscope", lexer);
-                        continue;
-                    }
-
-                    // 対象範囲
-                    mission.MissionScope = (int) n;
-                    continue;
-                }
-
-                // percentage
-                if (keyword.Equals("percentage"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "percentage", lexer);
-                        continue;
-                    }
-
-                    // 戦力/指揮統制率下限
-                    mission.Percentage = (double) d;
-                    continue;
-                }
-
-                // night
-                if (keyword.Equals("night"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "night", lexer);
-                        continue;
-                    }
-
-                    // 夜間遂行
-                    mission.Night = (bool) b;
-                    continue;
-                }
-
-                // day
-                if (keyword.Equals("day"))
-                {
-                    bool? b = ParseBool(lexer);
-                    if (!b.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "day", lexer);
-                        continue;
-                    }
-
-                    // 昼間遂行
-                    mission.Day = (bool) b;
-                    continue;
-                }
-
-                // tz
-                if (keyword.Equals("tz"))
-                {
-                    int? n = ParseInt(lexer);
-                    if (!n.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "tz", lexer);
-                        continue;
-                    }
-
-                    // 対象範囲
-                    mission.TargetZone = (int) n;
-                    continue;
-                }
-
-                // org
-                if (keyword.Equals("org"))
-                {
-                    double? d = ParseDouble(lexer);
-                    if (!d.HasValue)
-                    {
-                        Log.InvalidClause(LogCategory, "org", lexer);
-                        continue;
-                    }
-
-                    // 指揮統制率下限
-                    mission.OrgLimit = (double) d;
-                    continue;
-                }
-
-                // startdate
-                if (keyword.Equals("startdate"))
-                {
-                    GameDate date = ParseDate(lexer);
-                    if (date == null)
-                    {
-                        Log.InvalidSection(LogCategory, "startdate", lexer);
-                        continue;
-                    }
-
-                    // 開始日時
-                    mission.StartDate = date;
-                    continue;
-                }
-
-                // enddate
-                if (keyword.Equals("enddate"))
-                {
-                    GameDate date = ParseDate(lexer);
-                    if (date == null)
-                    {
-                        Log.InvalidSection(LogCategory, "enddate", lexer);
-                        continue;
-                    }
-
-                    // 終了日時
-                    mission.EndDate = date;
                     continue;
                 }
 

@@ -2180,7 +2180,7 @@ namespace HoI2Editor.Writers
                 return;
             }
             writer.WriteLine();
-            foreach (LandUnit unit in settings.LandUnits)
+            foreach (Unit unit in settings.LandUnits)
             {
                 WriteLandUnit(unit, writer);
             }
@@ -2198,7 +2198,7 @@ namespace HoI2Editor.Writers
                 return;
             }
             writer.WriteLine();
-            foreach (NavalUnit unit in settings.NavalUnits)
+            foreach (Unit unit in settings.NavalUnits)
             {
                 WriteNavalUnit(unit, writer);
             }
@@ -2216,7 +2216,7 @@ namespace HoI2Editor.Writers
                 return;
             }
             writer.WriteLine();
-            foreach (AirUnit unit in settings.AirUnits)
+            foreach (Unit unit in settings.AirUnits)
             {
                 WriteAirUnit(unit, writer);
             }
@@ -2227,7 +2227,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="unit">ユニット</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteLandUnit(LandUnit unit, TextWriter writer)
+        private static void WriteLandUnit(Unit unit, TextWriter writer)
         {
             writer.WriteLine("  landunit = {");
             if (unit.Id != null)
@@ -2310,7 +2310,7 @@ namespace HoI2Editor.Writers
                 WriteIdList(unit.Movement, writer);
                 writer.WriteLine(" }");
             }
-            foreach (LandDivision division in unit.Divisions)
+            foreach (Division division in unit.Divisions)
             {
                 WriteLandDivision(division, writer);
             }
@@ -2340,7 +2340,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="unit">ユニット</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteNavalUnit(NavalUnit unit, TextWriter writer)
+        private static void WriteNavalUnit(Unit unit, TextWriter writer)
         {
             writer.WriteLine("  navalunit = {");
             if (unit.Id != null)
@@ -2423,11 +2423,11 @@ namespace HoI2Editor.Writers
                 WriteIdList(unit.Movement, writer);
                 writer.WriteLine(" }");
             }
-            foreach (NavalDivision division in unit.Divisions)
+            foreach (Division division in unit.Divisions)
             {
                 WriteNavalDivision(division, writer);
             }
-            foreach (LandUnit landUnit in unit.LandUnits)
+            foreach (Unit landUnit in unit.LandUnits)
             {
                 WriteLandUnit(landUnit, writer);
             }
@@ -2445,7 +2445,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="unit">ユニット</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteAirUnit(AirUnit unit, TextWriter writer)
+        private static void WriteAirUnit(Unit unit, TextWriter writer)
         {
             writer.WriteLine("  airunit = { ");
             if (unit.Id != null)
@@ -2524,11 +2524,11 @@ namespace HoI2Editor.Writers
                 WriteIdList(unit.Movement, writer);
                 writer.WriteLine(" }");
             }
-            foreach (AirDivision division in unit.Divisions)
+            foreach (Division division in unit.Divisions)
             {
                 WriteAirDivision(division, writer);
             }
-            foreach (LandUnit landUnit in unit.LandUnits)
+            foreach (Unit landUnit in unit.LandUnits)
             {
                 WriteLandUnit(landUnit, writer);
             }
@@ -2550,7 +2550,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="division">師団</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteLandDivision(LandDivision division, TextWriter writer)
+        private static void WriteLandDivision(Division division, TextWriter writer)
         {
             writer.WriteLine("    division = {");
             writer.Write("      id             = ");
@@ -2762,7 +2762,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="division">師団</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteNavalDivision(NavalDivision division, TextWriter writer)
+        private static void WriteNavalDivision(Division division, TextWriter writer)
         {
             writer.WriteLine("    division = {");
             writer.Write("      id             = ");
@@ -2958,7 +2958,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="division">師団</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteAirDivision(AirDivision division, TextWriter writer)
+        private static void WriteAirDivision(Division division, TextWriter writer)
         {
             writer.WriteLine("    division = {");
             writer.Write("      id             = ");
@@ -3289,7 +3289,7 @@ namespace HoI2Editor.Writers
                 return;
             }
             writer.WriteLine();
-            foreach (LandDivision division in settings.LandDivisions)
+            foreach (Division division in settings.LandDivisions)
             {
                 WriteDormantLandDivision(division, writer);
             }
@@ -3300,7 +3300,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="division">師団</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteDormantLandDivision(LandDivision division, TextWriter writer)
+        private static void WriteDormantLandDivision(Division division, TextWriter writer)
         {
             writer.Write("  landdivision = {");
             if (division.Dormant)
@@ -3403,14 +3403,14 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     陸軍任務を書き出す
         /// </summary>
-        /// <param name="mission">陸軍任務</param>
+        /// <param name="mission">任務</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteLandMission(LandMission mission, TextWriter writer)
+        private static void WriteLandMission(Mission mission, TextWriter writer)
         {
             writer.WriteLine("    mission = {");
-            if (mission.Type != LandMissionType.None)
+            if (mission.Type != MissionType.None)
             {
-                writer.WriteLine("      type = {0}", Scenarios.LandMissionStrings[(int) mission.Type]);
+                writer.WriteLine("      type = {0}", Scenarios.MissionStrings[(int) mission.Type]);
             }
             if (mission.Target > 0)
             {
@@ -3451,14 +3451,14 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     海軍任務を書き出す
         /// </summary>
-        /// <param name="mission">海軍任務</param>
+        /// <param name="mission">任務</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteNavalMission(NavalMission mission, TextWriter writer)
+        private static void WriteNavalMission(Mission mission, TextWriter writer)
         {
             writer.WriteLine("    mission = {");
-            if (mission.Type != NavalMissionType.None)
+            if (mission.Type != MissionType.None)
             {
-                writer.WriteLine("      type = {0}", Scenarios.NavalMissionStrings[(int) mission.Type]);
+                writer.WriteLine("      type = {0}", Scenarios.MissionStrings[(int) mission.Type]);
             }
             if (mission.Target > 0)
             {
@@ -3510,14 +3510,14 @@ namespace HoI2Editor.Writers
         /// <summary>
         ///     空軍任務を書き出す
         /// </summary>
-        /// <param name="mission">空軍任務</param>
+        /// <param name="mission">任務</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteAirMission(AirMission mission, TextWriter writer)
+        private static void WriteAirMission(Mission mission, TextWriter writer)
         {
             writer.WriteLine("    mission = {");
-            if (mission.Type != AirMissionType.None)
+            if (mission.Type != MissionType.None)
             {
-                writer.WriteLine("      type = {0}", Scenarios.AirMissionStrings[(int) mission.Type]);
+                writer.WriteLine("      type = {0}", Scenarios.MissionStrings[(int) mission.Type]);
             }
             if (mission.Target > 0)
             {

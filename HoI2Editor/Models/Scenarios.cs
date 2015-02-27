@@ -216,9 +216,9 @@ namespace HoI2Editor.Models
         };
 
         /// <summary>
-        ///     陸軍任務文字列
+        ///     任務文字列
         /// </summary>
-        public static readonly string[] LandMissionStrings =
+        public static readonly string[] MissionStrings =
         {
             "",
             "attack",
@@ -226,15 +226,7 @@ namespace HoI2Editor.Models
             "support_attack",
             "support_defense",
             "reserves",
-            "anti_partisan_duty"
-        };
-
-        /// <summary>
-        ///     海軍任務文字列
-        /// </summary>
-        public static readonly string[] NavalMissionStrings =
-        {
-            "",
+            "anti_partisan_duty",
             "rebase",
             "convoy_raiding",
             "asw",
@@ -244,15 +236,7 @@ namespace HoI2Editor.Models
             "sea_transport",
             "naval_combat_patrol",
             "naval_port_strike",
-            "naval_airbase_strike"
-        };
-
-        /// <summary>
-        ///     空軍任務文字列
-        /// </summary>
-        public static readonly string[] AirMissionStrings =
-        {
-            "",
+            "naval_airbase_strike",
             "air_superiority",
             "ground_attack",
             "runway_cratering",
@@ -1488,41 +1472,41 @@ namespace HoI2Editor.Models
                 AddTypeId(settings.ChiefOfNavy);
                 AddTypeId(settings.ChiefOfAir);
 
-                foreach (LandUnit unit in settings.LandUnits)
+                foreach (Unit unit in settings.LandUnits)
                 {
                     AddTypeId(unit.Id);
-                    foreach (LandDivision division in unit.Divisions)
+                    foreach (Division division in unit.Divisions)
                     {
                         AddTypeId(division.Id);
                     }
                 }
-                foreach (NavalUnit unit in settings.NavalUnits)
+                foreach (Unit unit in settings.NavalUnits)
                 {
                     AddTypeId(unit.Id);
-                    foreach (NavalDivision division in unit.Divisions)
+                    foreach (Division division in unit.Divisions)
                     {
                         AddTypeId(division.Id);
                     }
-                    foreach (LandUnit landUnit in unit.LandUnits)
+                    foreach (Unit landUnit in unit.LandUnits)
                     {
                         AddTypeId(landUnit.Id);
-                        foreach (LandDivision landDivision in landUnit.Divisions)
+                        foreach (Division landDivision in landUnit.Divisions)
                         {
                             AddTypeId(landDivision.Id);
                         }
                     }
                 }
-                foreach (AirUnit unit in settings.AirUnits)
+                foreach (Unit unit in settings.AirUnits)
                 {
                     AddTypeId(unit.Id);
-                    foreach (AirDivision division in unit.Divisions)
+                    foreach (Division division in unit.Divisions)
                     {
                         AddTypeId(division.Id);
                     }
-                    foreach (LandUnit landUnit in unit.LandUnits)
+                    foreach (Unit landUnit in unit.LandUnits)
                     {
                         AddTypeId(landUnit.Id);
-                        foreach (LandDivision landDivision in landUnit.Divisions)
+                        foreach (Division landDivision in landUnit.Divisions)
                         {
                             AddTypeId(landDivision.Id);
                         }
