@@ -3954,4 +3954,34 @@
   <data name="CheckMessageScenario" xml:space="preserve">
     <value>シナリオデータのチェック</value>
   </data>
+  <data name="UnitTreeAir" xml:space="preserve">
+    <value>空軍ユニット</value>
+  </data>
+  <data name="UnitTreeBoarding" xml:space="preserve">
+    <value>搭乗中ユニット</value>
+  </data>
+  <data name="UnitTreeConvoyDevelopment" xml:space="preserve">
+    <value>生産中輸送船団</value>
+  </data>
+  <data name="UnitTreeDivisionDevelopment" xml:space="preserve">
+    <value>生産中師団</value>
+  </data>
+  <data name="UnitTreeLand" xml:space="preserve">
+    <value>陸軍ユニット</value>
+  </data>
+  <data name="UnitTreeNaval" xml:space="preserve">
+    <value>海軍ユニット</value>
+  </data>
+  <data name="UnitTreeProvinceDevelopment" xml:space="preserve">
+    <value>生産中建物</value>
+  </data>
+  <data name="UnitTreeUndeployedAir" xml:space="preserve">
+    <value>未配備空軍師団</value>
+  </data>
+  <data name="UnitTreeUndeployedLand" xml:space="preserve">
+    <value>未配備陸軍師団</value>
+  </data>
+  <data name="UnitTreeUndeployedNaval" xml:space="preserve">
+    <value>未配備海軍師団</value>
+  </data>
 </root>

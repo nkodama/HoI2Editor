@@ -3079,6 +3079,66 @@ namespace HoI2Editor.Models
             Development = true;
         }
 
+        /// <summary>
+        ///     オブジェクトを複製する
+        /// </summary>
+        /// <returns>複製したオブジェクト</returns>
+        public Unit Clone()
+        {
+            Unit unit = (Unit) MemberwiseClone();
+            if (Id != null)
+            {
+                unit.Id = Scenarios.GetNewTypeId(Id.Type, Id.Id);
+            }
+            if (Mission != null)
+            {
+                unit.Mission = Mission.Clone();
+            }
+            if (Date != null)
+            {
+                unit.Date = Date.Clone();
+            }
+            if (MoveTime != null)
+            {
+                unit.MoveTime = MoveTime.Clone();
+            }
+            if (AttackDate != null)
+            {
+                unit.AttackDate = AttackDate.Clone();
+            }
+            unit.Divisions = new List<Division>();
+            foreach (Division division in Divisions)
+            {
+                unit.Divisions.Add(division.Clone());
+            }
+            unit.LandUnits = new List<Unit>();
+            foreach (Unit landUnit in LandUnits)
+            {
+                unit.LandUnits.Add(landUnit.Clone());
+            }
+            return unit;
+        }
+
+        #endregion
+
+        #region typeとidの組操作
+
+        /// <summary>
+        ///     typeとidの組を削除する
+        /// </summary>
+        public void RemoveTypeId()
+        {
+            Scenarios.RemoveTypeId(Id);
+            foreach (Division division in Divisions)
+            {
+                division.RemoveTypeId();
+            }
+            foreach (Unit landUnit in LandUnits)
+            {
+                landUnit.RemoveTypeId();
+            }
+        }
+
         #endregion
     }
 
@@ -3455,6 +3515,41 @@ namespace HoI2Editor.Models
             BrigadeModel5 = UndefinedModelNo;
         }
 
+        /// <summary>
+        ///     オブジェクトを複製する
+        /// </summary>
+        /// <returns>複製したオブジェクト</returns>
+        public Division Clone()
+        {
+            Division division = (Division) MemberwiseClone();
+            if (Id != null)
+            {
+                division.Id = Scenarios.GetNewTypeId(Id.Type, Id.Id);
+            }
+            if (RedeployUnitId != null)
+            {
+                division.RedeployUnitId = Scenarios.GetNewTypeId(RedeployUnitId.Type, RedeployUnitId.Id);
+            }
+            if (Offensive != null)
+            {
+                division.Offensive = Offensive.Clone();
+            }
+            return division;
+        }
+
+        #endregion
+
+        #region typeとidの組操作
+
+        /// <summary>
+        ///     typeとidの組を削除する
+        /// </summary>
+        public void RemoveTypeId()
+        {
+            Scenarios.RemoveTypeId(Id);
+            Scenarios.RemoveTypeId(RedeployUnitId);
+        }
+
         #endregion
     }
 
@@ -3727,6 +3822,28 @@ namespace HoI2Editor.Models
         ///     位置
         /// </summary>
         public int Location { get; set; }
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     オブジェクトを複製する
+        /// </summary>
+        /// <returns>複製したオブジェクト</returns>
+        public Mission Clone()
+        {
+            Mission mission = (Mission) MemberwiseClone();
+            if (StartDate != null)
+            {
+                mission.StartDate = StartDate.Clone();
+            }
+            if (EndDate != null)
+            {
+                mission.EndDate = EndDate.Clone();
+            }
+            return mission;
+        }
 
         #endregion
     }

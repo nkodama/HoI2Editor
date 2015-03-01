@@ -5514,7 +5514,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 所属基地
-                    unit.Base = (int)n;
+                    unit.Base = (int) n;
                     continue;
                 }
 
@@ -5911,7 +5911,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 核兵器搭載
-                    division.Nuke = (bool)b;
+                    division.Nuke = (bool) b;
                     continue;
                 }
 
@@ -6451,7 +6451,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 輸送能力
-                    division.TransportCapability = (double)d;
+                    division.TransportCapability = (double) d;
                     continue;
                 }
 
@@ -6526,7 +6526,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対艦/対潜防御力
-                    division.SeaDefense = (double)d;
+                    division.SeaDefense = (double) d;
                     continue;
                 }
 
@@ -6541,7 +6541,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対地防御力
-                    division.SurfaceDefence = (double)d;
+                    division.SurfaceDefence = (double) d;
                     continue;
                 }
 
@@ -6601,7 +6601,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対艦攻撃力(海軍)
-                    division.SeaAttack = (double)d;
+                    division.SeaAttack = (double) d;
                     continue;
                 }
 
@@ -6616,7 +6616,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対潜攻撃力
-                    division.SubAttack = (double)d;
+                    division.SubAttack = (double) d;
                     continue;
                 }
 
@@ -6631,7 +6631,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 通商破壊力
-                    division.ConvoyAttack = (double)d;
+                    division.ConvoyAttack = (double) d;
                     continue;
                 }
 
@@ -6646,7 +6646,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 沿岸砲撃能力
-                    division.ShoreBombardment = (double)d;
+                    division.ShoreBombardment = (double) d;
                     continue;
                 }
 
@@ -6676,7 +6676,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 戦略爆撃攻撃力
-                    division.StrategicAttack = (double)d;
+                    division.StrategicAttack = (double) d;
                     continue;
                 }
 
@@ -6691,7 +6691,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 空対艦攻撃力
-                    division.NavalAttack = (double)d;
+                    division.NavalAttack = (double) d;
                     continue;
                 }
 
@@ -6721,7 +6721,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対艦索敵能力
-                    division.SurfaceDetection = (double)d;
+                    division.SurfaceDetection = (double) d;
                     continue;
                 }
 
@@ -6736,7 +6736,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対空索敵能力
-                    division.AirDetection = (double)d;
+                    division.AirDetection = (double) d;
                     continue;
                 }
 
@@ -6751,7 +6751,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対潜索敵能力
-                    division.SubDetection = (double)d;
+                    division.SubDetection = (double) d;
                     continue;
                 }
 
@@ -6766,7 +6766,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 可視性
-                    division.Visibility = (double)d;
+                    division.Visibility = (double) d;
                     continue;
                 }
 
@@ -6781,7 +6781,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 航続距離
-                    division.Range = (double)d;
+                    division.Range = (double) d;
                     continue;
                 }
 
@@ -6796,7 +6796,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 射程距離
-                    division.Distance = (double)d;
+                    division.Distance = (double) d;
                     continue;
                 }
 
@@ -6811,7 +6811,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 移動距離
-                    division.Travelled = (double)d;
+                    division.Travelled = (double) d;
                     continue;
                 }
 
@@ -7505,7 +7505,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対象範囲
-                    mission.MissionScope = (int)n;
+                    mission.MissionScope = (int) n;
                     continue;
                 }
 
@@ -7565,7 +7565,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対象範囲
-                    mission.TargetZone = (int)n;
+                    mission.TargetZone = (int) n;
                     continue;
                 }
 
@@ -7580,7 +7580,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 船団攻撃
-                    mission.AttackConvoy = (bool)b;
+                    mission.AttackConvoy = (bool) b;
                     continue;
                 }
 
@@ -7595,7 +7595,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 指揮統制率下限
-                    mission.OrgLimit = (double)d;
+                    mission.OrgLimit = (double) d;
                     continue;
                 }
 

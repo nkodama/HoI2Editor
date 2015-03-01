@@ -85,6 +85,26 @@ namespace HoI2Editor.Forms
         /// </summary>
         private bool _mapPanelInitialized;
 
+        /// <summary>
+        ///     ユニットツリーのコントローラ
+        /// </summary>
+        private UnitTreeController _unitTreeController;
+
+        /// <summary>
+        ///     選択中の国家
+        /// </summary>
+        private Country _selectedCountry;
+
+        /// <summary>
+        ///     選択中のユニット
+        /// </summary>
+        private Unit _selectedUnit;
+
+        /// <summary>
+        ///     選択中の師団
+        /// </summary>
+        private Division _selectedDivision;
+
         #endregion
 
         #region 内部定数
@@ -101,7 +121,8 @@ namespace HoI2Editor.Forms
             Country, // 国家
             Government, // 政府
             Technology, // 技術
-            Province // プロヴィンス
+            Province, // プロヴィンス
+            Oob // 初期部隊
         }
 
         /// <summary>
@@ -191,6 +212,7 @@ namespace HoI2Editor.Forms
             OnGovernmentTabPageFileLoad();
             OnTechTabPageFileLoad();
             OnProvinceTabPageFileLoad();
+            OnOobTabPageFileLoad();
         }
 
         /// <summary>
@@ -297,6 +319,9 @@ namespace HoI2Editor.Forms
             // マップを遅延読み込みする
             Maps.LoadAsync(MapLevel.Level2, OnMapFileLoad);
 
+            // 指揮官データを遅延読み込みする
+            Leaders.LoadAsync(null);
+
             // 閣僚データを遅延読込する
             Ministers.LoadAsync(null);
 
@@ -305,6 +330,9 @@ namespace HoI2Editor.Forms
 
             // プロヴィンスデータを遅延読み込みする
             Provinces.LoadAsync(null);
+
+            // ユニットデータを遅延読み込みする
+            Units.LoadAsync(null);
 
             // 表示項目を初期化する
             OnMainTabPageFormLoad();
@@ -315,6 +343,7 @@ namespace HoI2Editor.Forms
             OnGovernmentTabPageFormLoad();
             OnTechTabPageFormLoad();
             OnProvinceTabPageFormLoad();
+            OnOobTabPageFormLoad();
 
             // シナリオファイル読み込み済みなら編集項目を更新する
             if (Scenarios.IsLoaded())
@@ -488,6 +517,10 @@ namespace HoI2Editor.Forms
 
                 case TabPageNo.Province:
                     OnProvinceTabPageSelected();
+                    break;
+
+                case TabPageNo.Oob:
+                    OnOobTabPageSelected();
                     break;
             }
         }
@@ -9932,6 +9965,437 @@ namespace HoI2Editor.Forms
             // 項目値変更後の処理
             _controller.PostItemChanged(itemId, val, province, settings);
         }
+
+        #endregion
+
+        #endregion
+
+        #region 初期部隊タブ
+
+        #region 初期部隊タブ - 共通
+
+        /// <summary>
+        ///     初期部隊タブを初期化する
+        /// </summary>
+        private void InitOobTab()
+        {
+            InitUnitTree();
+            InitOobUnitItems();
+            InitOobDivisionItems();
+        }
+
+        /// <summary>
+        ///     初期部隊タブの表示を更新する
+        /// </summary>
+        private void UpdateOobTab()
+        {
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Oob])
+            {
+                return;
+            }
+
+            // 国家リストボックスを更新する
+            UpdateCountryListBox(oobCountryListBox);
+
+            // 国家リストボックスを有効化する
+            EnableOobCountryListBox();
+
+            // ユニットツリーを有効化する
+            EnableUnitTree();
+
+            // 編集項目を無効化する
+            DisableOobUnitItems();
+            DisableOobDivisionItems();
+
+            // 編集項目をクリアする
+            ClearOobUnitItems();
+            ClearOobDivisionItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Oob] = true;
+        }
+
+        /// <summary>
+        ///     初期部隊タブのフォーム読み込み時の処理
+        /// </summary>
+        private void OnOobTabPageFormLoad()
+        {
+            // 初期部隊タブを初期化する
+            InitOobTab();
+        }
+
+        /// <summary>
+        ///     初期部隊タブのファイル読み込み時の処理
+        /// </summary>
+        private void OnOobTabPageFileLoad()
+        {
+            // 初期部隊タブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Oob)
+            {
+                return;
+            }
+
+            // 指揮官データの読み込み完了まで待機する
+            Leaders.WaitLoading();
+
+            // プロヴィンスデータの読み込み完了まで待機する
+            Provinces.WaitLoading();
+
+            // ユニットデータの読み込み完了まで待機する
+            Units.WaitLoading();
+
+            // 初回遷移時には表示を更新する
+            UpdateOobTab();
+        }
+
+        /// <summary>
+        ///     初期部隊タブ選択時の処理
+        /// </summary>
+        private void OnOobTabPageSelected()
+        {
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // 指揮官データの読み込み完了まで待機する
+            Leaders.WaitLoading();
+
+            // プロヴィンスデータの読み込み完了まで待機する
+            Provinces.WaitLoading();
+
+            // ユニットデータの読み込み完了まで待機する
+            Units.WaitLoading();
+
+            // 初回遷移時には表示を更新する
+            UpdateOobTab();
+        }
+
+        #endregion
+
+        #region 初期部隊タブ - 国家
+
+        /// <summary>
+        ///     国家リストボックスを有効化する
+        /// </summary>
+        private void EnableOobCountryListBox()
+        {
+            oobCountryListBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     国家リストボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOobCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ編集項目を無効化する
+            if (oobCountryListBox.SelectedIndex < 0)
+            {
+                // 編集項目を無効化する
+                DisableOobUnitItems();
+                DisableOobDivisionItems();
+
+                // 編集項目をクリアする
+                ClearOobUnitItems();
+                ClearOobDivisionItems();
+                return;
+            }
+
+            _selectedCountry = Countries.Tags[oobCountryListBox.SelectedIndex];
+
+            // ユニットツリーを更新する
+            _unitTreeController.Country = _selectedCountry;
+        }
+
+        #endregion
+
+        #region 初期部隊タブ - ユニットツリー
+
+        /// <summary>
+        ///     ユニットツリーを初期化する
+        /// </summary>
+        private void InitUnitTree()
+        {
+            _unitTreeController = new UnitTreeController(unitTreeView);
+            _unitTreeController.AfterSelect += OnUnitTreeAfterSelect;
+        }
+
+        /// <summary>
+        ///     ユニットツリーを有効化する
+        /// </summary>
+        private void EnableUnitTree()
+        {
+            unitTreeView.Enabled = true;
+        }
+
+        /// <summary>
+        ///     ユニットツリーのノード選択時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitTreeAfterSelect(object sender, UnitTreeController.UnitTreeViewEventArgs e)
+        {
+            // ボタンの状態を更新する
+            oobAddUnitButton.Enabled = e.CanAddUnit;
+            oobAddDivisinButton.Enabled = e.CanAddDivision;
+            bool selected = (e.Unit != null) || (e.Division != null);
+            oobCloneButton.Enabled = selected;
+            oobRemoveButton.Enabled = selected;
+            TreeNode parent = e.Node.Parent;
+            if (selected && (parent != null))
+            {
+                int index = parent.Nodes.IndexOf(e.Node);
+                int bottom = parent.Nodes.Count - 1;
+                oobTopButton.Enabled = (index > 0);
+                oobUpButton.Enabled = (index > 0);
+                oobDownButton.Enabled = (index < bottom);
+                oobBottomButton.Enabled = (index < bottom);
+            }
+            else
+            {
+                oobTopButton.Enabled = false;
+                oobUpButton.Enabled = false;
+                oobDownButton.Enabled = false;
+                oobBottomButton.Enabled = false;
+            }
+
+            _selectedUnit = e.Unit;
+            _selectedDivision = e.Division;
+
+            if (e.Unit != null)
+            {
+                UpdateOobUnitItems(e.Unit);
+                EnableOobUnitItems();
+            }
+            else
+            {
+                DisableOobUnitItems();
+                ClearOobUnitItems();
+            }
+
+            if (e.Division != null)
+            {
+                UpdateOobDivisionItems(e.Division);
+                EnableOobDivisionItems();
+            }
+            else
+            {
+                DisableOobDivisionItems();
+                ClearOobDivisionItems();
+            }
+        }
+
+        /// <summary>
+        ///     先頭へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOobTopButtonClick(object sender, EventArgs e)
+        {
+            _unitTreeController.MoveTop();
+        }
+
+        /// <summary>
+        ///     上へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOobUpButtonClick(object sender, EventArgs e)
+        {
+            _unitTreeController.MoveUp();
+        }
+
+        /// <summary>
+        ///     下へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOobDownButtonClick(object sender, EventArgs e)
+        {
+            _unitTreeController.MoveDown();
+        }
+
+        /// <summary>
+        ///     末尾へボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOobBottomButtonClick(object sender, EventArgs e)
+        {
+            _unitTreeController.MoveBottom();
+        }
+
+        /// <summary>
+        ///     新規ユニットボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOobAddUnitButtonClick(object sender, EventArgs e)
+        {
+            _unitTreeController.AddUnit();
+        }
+
+        /// <summary>
+        ///     新規師団ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOobAddDivisionButtonClick(object sender, EventArgs e)
+        {
+            _unitTreeController.AddDivision();
+        }
+
+        /// <summary>
+        ///     複製ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOobCloneButtonClick(object sender, EventArgs e)
+        {
+            _unitTreeController.Clone();
+        }
+
+        /// <summary>
+        ///     削除ボタン押下時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOobRemoveButtonClick(object sender, EventArgs e)
+        {
+            _unitTreeController.Remove();
+        }
+
+        #endregion
+
+        #region 初期部隊タブ - ユニット情報
+
+        /// <summary>
+        ///     ユニット情報の編集項目を初期化する
+        /// </summary>
+        private void InitOobUnitItems()
+        {
+            // TODO: 編集項目
+        }
+
+        /// <summary>
+        ///     ユニット情報の編集項目を更新する
+        /// </summary>
+        /// <param name="unit">ユニット</param>
+        private void UpdateOobUnitItems(Unit unit)
+        {
+            // TODO: 編集項目
+        }
+
+        /// <summary>
+        ///     ユニット情報の編集項目をクリアする
+        /// </summary>
+        private void ClearOobUnitItems()
+        {
+            unitTypeTextBox.Text = "";
+            unitIdTextBox.Text = "";
+            unitNameTextBox.Text = "";
+            locationTextBox.Text = "";
+            locationComboBox.SelectedIndex = -1;
+            homeTextBox.Text = "";
+            homeComboBox.SelectedIndex = -1;
+            baseTextBox.Text = "";
+            baseComboBox.SelectedIndex = -1;
+            leaderTextBox.Text = "";
+            leaderComboBox.SelectedIndex = -1;
+            unitMoraleTextBox.Text = "";
+            digInTextBox.Text = "";
+        }
+
+        /// <summary>
+        ///     ユニット情報の編集項目を有効化する
+        /// </summary>
+        private void EnableOobUnitItems()
+        {
+            unitGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     ユニット情報の編集項目を無効化する
+        /// </summary>
+        private void DisableOobUnitItems()
+        {
+            unitGroupBox.Enabled = false;
+        }
+
+        #endregion
+
+        #region 初期部隊タブ - 師団情報
+
+        /// <summary>
+        ///     師団情報の編集項目を初期化する
+        /// </summary>
+        private void InitOobDivisionItems()
+        {
+            // TODO: 編集項目
+        }
+
+        /// <summary>
+        ///     師団情報の編集項目を更新する
+        /// </summary>
+        /// <param name="division">師団</param>
+        private void UpdateOobDivisionItems(Division division)
+        {
+            // TODO: 編集項目
+        }
+
+        /// <summary>
+        ///     師団情報の編集項目をクリアする
+        /// </summary>
+        private void ClearOobDivisionItems()
+        {
+            unitTypeTextBox.Text = "";
+            unitIdTextBox.Text = "";
+            unitNameTextBox.Text = "";
+            unitTypeComboBox.SelectedIndex = -1;
+            unitModelComboBox.SelectedIndex = -1;
+            brigadeTypeComboBox1.SelectedIndex = -1;
+            brigadeTypeComboBox2.SelectedIndex = -1;
+            brigadeTypeComboBox3.SelectedIndex = -1;
+            brigadeTypeComboBox4.SelectedIndex = -1;
+            brigadeTypeComboBox5.SelectedIndex = -1;
+            brigadeModelComboBox1.SelectedIndex = -1;
+            brigadeModelComboBox2.SelectedIndex = -1;
+            brigadeModelComboBox3.SelectedIndex = -1;
+            brigadeModelComboBox4.SelectedIndex = -1;
+            brigadeModelComboBox5.SelectedIndex = -1;
+            strengthTextBox.Text = "";
+            maxStrengthTextBox.Text = "";
+            organisationTextBox.Text = "";
+            maxOrganisationTextBox.Text = "";
+            unitMoraleTextBox.Text = "";
+            experienceTextBox.Text = "";
+            lockedCheckBox.Checked = false;
+            dormantCheckBox.Checked = false;
+        }
+
+        /// <summary>
+        ///     師団情報の編集項目を有効化する
+        /// </summary>
+        private void EnableOobDivisionItems()
+        {
+            divisionGroupBox.Enabled = true;
+        }
+
+        /// <summary>
+        ///     師団情報の編集項目を無効化する
+        /// </summary>
+        private void DisableOobDivisionItems()
+        {
+            divisionGroupBox.Enabled = false;
+        }
+
+        #endregion
+
+        #region 初期部隊タブ - 編集項目
 
         #endregion
 

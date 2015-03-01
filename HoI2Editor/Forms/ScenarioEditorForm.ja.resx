@@ -232,9 +232,6 @@
   <data name="resourcePoolLabel.Text" xml:space="preserve">
     <value>備蓄</value>
   </data>
-  <data name="technologyTabPage.Text" xml:space="preserve">
-    <value>技術</value>
-  </data>
   <data name="ownedTechsLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
   </data>
@@ -255,6 +252,9 @@
   </data>
   <data name="techCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
+  </data>
+  <data name="technologyTabPage.Text" xml:space="preserve">
+    <value>技術</value>
   </data>
   <data name="peacetimeIcModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 12</value>
@@ -400,16 +400,10 @@
   <data name="reloadButton.Text" xml:space="preserve">
     <value>再読み込み</value>
   </data>
-  <data name="provinceTabPage.Text" xml:space="preserve">
-    <value>プロヴィンス</value>
-  </data>
   <data name="provinceCountryFilterLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
   </data>
   <data name="provinceCountryFilterLabel.Text" xml:space="preserve">
-    <value>国家</value>
-  </data>
-  <data name="provinceCountryGroupBox.Text" xml:space="preserve">
     <value>国家</value>
   </data>
   <data name="claimedProvinceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
@@ -442,8 +436,8 @@
   <data name="ownedProvinceCheckBox.Text" xml:space="preserve">
     <value>保有</value>
   </data>
-  <data name="mapFilterGroupBox.Text" xml:space="preserve">
-    <value>フィルター</value>
+  <data name="provinceCountryGroupBox.Text" xml:space="preserve">
+    <value>国家</value>
   </data>
   <data name="mapFilterClaimedRadioButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>237, 18</value>
@@ -487,6 +481,9 @@
   <data name="mapFilterNoneRadioButton.Text" xml:space="preserve">
     <value>なし</value>
   </data>
+  <data name="mapFilterGroupBox.Text" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
   <data name="provinceInfoGroupBox.Text" xml:space="preserve">
     <value>プロヴィンス情報</value>
   </data>
@@ -514,8 +511,8 @@
   <data name="claimedProvinceColumnHeader.Text" xml:space="preserve">
     <value>領有権</value>
   </data>
-  <data name="governmentTabPage.Text" xml:space="preserve">
-    <value>政府</value>
+  <data name="provinceTabPage.Text" xml:space="preserve">
+    <value>プロヴィンス</value>
   </data>
   <data name="cabinetGroupBox.Text" xml:space="preserve">
     <value>閣僚</value>
@@ -523,17 +520,17 @@
   <data name="governmentCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
-  <data name="politicalSliderGroupBox.Text" xml:space="preserve">
-    <value>政策スライダー</value>
-  </data>
   <data name="sliderDateLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 12</value>
   </data>
   <data name="sliderDateLabel.Text" xml:space="preserve">
     <value>スライダー移動日時</value>
   </data>
-  <data name="countryTabPage.Text" xml:space="preserve">
-    <value>国家</value>
+  <data name="politicalSliderGroupBox.Text" xml:space="preserve">
+    <value>政策スライダー</value>
+  </data>
+  <data name="governmentTabPage.Text" xml:space="preserve">
+    <value>政府</value>
   </data>
   <data name="countryModifierGroupBox.Text" xml:space="preserve">
     <value>補正値</value>
@@ -547,17 +544,17 @@
   <data name="countryResourceGroupBox.Text" xml:space="preserve">
     <value>資源</value>
   </data>
-  <data name="countryInfoGroupBox.Text" xml:space="preserve">
-    <value>国家情報</value>
-  </data>
   <data name="regularIdComboBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="regularIdComboBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 20</value>
   </data>
-  <data name="tradeTabPage.Text" xml:space="preserve">
-    <value>貿易</value>
+  <data name="countryInfoGroupBox.Text" xml:space="preserve">
+    <value>国家情報</value>
+  </data>
+  <data name="countryTabPage.Text" xml:space="preserve">
+    <value>国家</value>
   </data>
   <data name="tradeCountryComboBox1.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
@@ -634,8 +631,8 @@
   <data name="tradeUpButton.Text" xml:space="preserve">
     <value>上へ</value>
   </data>
-  <data name="relationTabPage.Text" xml:space="preserve">
-    <value>関係</value>
+  <data name="tradeTabPage.Text" xml:space="preserve">
+    <value>貿易</value>
   </data>
   <data name="peaceEndLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -743,11 +740,8 @@
   <data name="relationCountryListBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 208</value>
   </data>
-  <data name="allianceTabPage.Text" xml:space="preserve">
-    <value>同盟</value>
-  </data>
-  <data name="warGroupBox.Text" xml:space="preserve">
-    <value>戦争</value>
+  <data name="relationTabPage.Text" xml:space="preserve">
+    <value>関係</value>
   </data>
   <data name="warDefenderLeaderButton.Text" xml:space="preserve">
     <value>リーダーに設定</value>
@@ -806,8 +800,8 @@
   <data name="warRemoveButton.Text" xml:space="preserve">
     <value>削除</value>
   </data>
-  <data name="allianceGroupBox.Text" xml:space="preserve">
-    <value>同盟</value>
+  <data name="warGroupBox.Text" xml:space="preserve">
+    <value>戦争</value>
   </data>
   <data name="allianceNameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -848,11 +842,11 @@
   <data name="allianceDownButton.Text" xml:space="preserve">
     <value>下へ</value>
   </data>
-  <data name="mainTabPage.Text" xml:space="preserve">
-    <value>メイン</value>
+  <data name="allianceGroupBox.Text" xml:space="preserve">
+    <value>同盟</value>
   </data>
-  <data name="scenarioOptionGroupBox.Text" xml:space="preserve">
-    <value>オプション</value>
+  <data name="allianceTabPage.Text" xml:space="preserve">
+    <value>同盟</value>
   </data>
   <data name="gameSpeedLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 12</value>
@@ -902,8 +896,8 @@
   <data name="battleScenarioCheckBox.Text" xml:space="preserve">
     <value>ショートシナリオ</value>
   </data>
-  <data name="countrySelectionGroupBox.Text" xml:space="preserve">
-    <value>国家選択</value>
+  <data name="scenarioOptionGroupBox.Text" xml:space="preserve">
+    <value>オプション</value>
   </data>
   <data name="majorFlagExtLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 12</value>
@@ -959,8 +953,8 @@
   <data name="majorDownButton.Text" xml:space="preserve">
     <value>下へ</value>
   </data>
-  <data name="scenarioInfoGroupBox.Text" xml:space="preserve">
-    <value>シナリオ情報</value>
+  <data name="countrySelectionGroupBox.Text" xml:space="preserve">
+    <value>国家選択</value>
   </data>
   <data name="includeFolderBrowseButton.Text" xml:space="preserve">
     <value>参照</value>
@@ -998,6 +992,9 @@
   <data name="endDateLabel.Text" xml:space="preserve">
     <value>終了日時</value>
   </data>
+  <data name="scenarioInfoGroupBox.Text" xml:space="preserve">
+    <value>シナリオ情報</value>
+  </data>
   <data name="loadButton.Text" xml:space="preserve">
     <value>読み込み</value>
   </data>
@@ -1030,6 +1027,138 @@
   </data>
   <data name="scenarioRadioButton.Text" xml:space="preserve">
     <value>シナリオ</value>
+  </data>
+  <data name="mainTabPage.Text" xml:space="preserve">
+    <value>メイン</value>
+  </data>
+  <data name="oobBottomButton.Text" xml:space="preserve">
+    <value>末尾へ</value>
+  </data>
+  <data name="oobDownButton.Text" xml:space="preserve">
+    <value>下へ</value>
+  </data>
+  <data name="oobUpButton.Text" xml:space="preserve">
+    <value>上へ</value>
+  </data>
+  <data name="oobTopButton.Text" xml:space="preserve">
+    <value>先頭へ</value>
+  </data>
+  <data name="oobRemoveButton.Text" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="oobCloneButton.Text" xml:space="preserve">
+    <value>複製</value>
+  </data>
+  <data name="oobAddDivisinButton.Text" xml:space="preserve">
+    <value>新規師団</value>
+  </data>
+  <data name="oobAddUnitButton.Text" xml:space="preserve">
+    <value>新規ユニット</value>
+  </data>
+  <data name="dormantCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="dormantCheckBox.Text" xml:space="preserve">
+    <value>休止状態</value>
+  </data>
+  <data name="lockedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="lockedCheckBox.Text" xml:space="preserve">
+    <value>移動不可</value>
+  </data>
+  <data name="experienceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="experienceLabel.Text" xml:space="preserve">
+    <value>経験値</value>
+  </data>
+  <data name="divisionMoraleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="divisionMoraleLabel.Text" xml:space="preserve">
+    <value>士気</value>
+  </data>
+  <data name="organisationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="organisationLabel.Text" xml:space="preserve">
+    <value>指揮統制率</value>
+  </data>
+  <data name="strengthLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="strengthLabel.Text" xml:space="preserve">
+    <value>戦力</value>
+  </data>
+  <data name="brigadesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="brigadesLabel.Text" xml:space="preserve">
+    <value>付属旅団</value>
+  </data>
+  <data name="unitTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 12</value>
+  </data>
+  <data name="unitTypeLabel.Text" xml:space="preserve">
+    <value>ユニット種類</value>
+  </data>
+  <data name="divisionNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="divisionNameLabel.Text" xml:space="preserve">
+    <value>師団名</value>
+  </data>
+  <data name="divisionGroupBox.Text" xml:space="preserve">
+    <value>師団</value>
+  </data>
+  <data name="digInLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="digInLabel.Text" xml:space="preserve">
+    <value>塹壕</value>
+  </data>
+  <data name="leaderLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="leaderLabel.Text" xml:space="preserve">
+    <value>指揮官</value>
+  </data>
+  <data name="unitMoraleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="unitMoraleLabel.Text" xml:space="preserve">
+    <value>士気</value>
+  </data>
+  <data name="baseLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="baseLabel.Text" xml:space="preserve">
+    <value>基地</value>
+  </data>
+  <data name="homeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="homeLabel.Text" xml:space="preserve">
+    <value>基準位置</value>
+  </data>
+  <data name="locationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="locationLabel.Text" xml:space="preserve">
+    <value>現在位置</value>
+  </data>
+  <data name="unitNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>51, 12</value>
+  </data>
+  <data name="unitNameLabel.Text" xml:space="preserve">
+    <value>ユニット名</value>
+  </data>
+  <data name="unitGroupBox.Text" xml:space="preserve">
+    <value>ユニット</value>
+  </data>
+  <data name="oobTabPage.Text" xml:space="preserve">
+    <value>初期部隊</value>
   </data>
   <data name="checkButton.Text" xml:space="preserve">
     <value>チェック</value>

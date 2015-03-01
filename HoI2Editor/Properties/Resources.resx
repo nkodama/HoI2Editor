@@ -3996,4 +3996,34 @@
   <data name="CheckMessageScenario" xml:space="preserve">
     <value>Checking scenario</value>
   </data>
+  <data name="UnitTreeAir" xml:space="preserve">
+    <value>Air units</value>
+  </data>
+  <data name="UnitTreeBoarding" xml:space="preserve">
+    <value>Boarding units</value>
+  </data>
+  <data name="UnitTreeConvoyDevelopment" xml:space="preserve">
+    <value>Convoys under construction</value>
+  </data>
+  <data name="UnitTreeDivisionDevelopment" xml:space="preserve">
+    <value>Divisions under construction</value>
+  </data>
+  <data name="UnitTreeLand" xml:space="preserve">
+    <value>Land units</value>
+  </data>
+  <data name="UnitTreeNaval" xml:space="preserve">
+    <value>Naval units</value>
+  </data>
+  <data name="UnitTreeProvinceDevelopment" xml:space="preserve">
+    <value>Buildings under construction</value>
+  </data>
+  <data name="UnitTreeUndeployedAir" xml:space="preserve">
+    <value>Undeployed air divisions</value>
+  </data>
+  <data name="UnitTreeUndeployedLand" xml:space="preserve">
+    <value>Undeployed land divisions</value>
+  </data>
+  <data name="UnitTreeUndeployedNaval" xml:space="preserve">
+    <value>Undeployed naval divisions</value>
+  </data>
 </root>

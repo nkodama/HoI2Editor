@@ -1870,7 +1870,7 @@
     <value>75, 23</value>
   </data>
   <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Close</value>
@@ -1900,7 +1900,7 @@
     <value>75, 23</value>
   </data>
   <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Save</value>
@@ -1930,7 +1930,7 @@
     <value>75, 23</value>
   </data>
   <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="reloadButton.Text" xml:space="preserve">
     <value>Reload</value>
@@ -12867,6 +12867,243 @@
   <data name="scenarioTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="oobBottomButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="oobBottomButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobBottomButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>270, 492</value>
+  </data>
+  <data name="oobBottomButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="oobBottomButton.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="oobBottomButton.Text" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="&gt;&gt;oobBottomButton.Name" xml:space="preserve">
+    <value>oobBottomButton</value>
+  </data>
+  <data name="&gt;&gt;oobBottomButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oobBottomButton.Parent" xml:space="preserve">
+    <value>oobTabPage</value>
+  </data>
+  <data name="&gt;&gt;oobBottomButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="oobDownButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="oobDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobDownButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>184, 492</value>
+  </data>
+  <data name="oobDownButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="oobDownButton.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="oobDownButton.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="&gt;&gt;oobDownButton.Name" xml:space="preserve">
+    <value>oobDownButton</value>
+  </data>
+  <data name="&gt;&gt;oobDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oobDownButton.Parent" xml:space="preserve">
+    <value>oobTabPage</value>
+  </data>
+  <data name="&gt;&gt;oobDownButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="oobUpButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="oobUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 492</value>
+  </data>
+  <data name="oobUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="oobUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="oobUpButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;oobUpButton.Name" xml:space="preserve">
+    <value>oobUpButton</value>
+  </data>
+  <data name="&gt;&gt;oobUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oobUpButton.Parent" xml:space="preserve">
+    <value>oobTabPage</value>
+  </data>
+  <data name="&gt;&gt;oobUpButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="oobTopButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="oobTopButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobTopButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 492</value>
+  </data>
+  <data name="oobTopButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="oobTopButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="oobTopButton.Text" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="&gt;&gt;oobTopButton.Name" xml:space="preserve">
+    <value>oobTopButton</value>
+  </data>
+  <data name="&gt;&gt;oobTopButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oobTopButton.Parent" xml:space="preserve">
+    <value>oobTabPage</value>
+  </data>
+  <data name="&gt;&gt;oobTopButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="oobRemoveButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="oobRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>270, 521</value>
+  </data>
+  <data name="oobRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="oobRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="oobRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;oobRemoveButton.Name" xml:space="preserve">
+    <value>oobRemoveButton</value>
+  </data>
+  <data name="&gt;&gt;oobRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oobRemoveButton.Parent" xml:space="preserve">
+    <value>oobTabPage</value>
+  </data>
+  <data name="&gt;&gt;oobRemoveButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="oobCloneButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="oobCloneButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobCloneButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>184, 521</value>
+  </data>
+  <data name="oobCloneButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="oobCloneButton.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="oobCloneButton.Text" xml:space="preserve">
+    <value>Clone</value>
+  </data>
+  <data name="&gt;&gt;oobCloneButton.Name" xml:space="preserve">
+    <value>oobCloneButton</value>
+  </data>
+  <data name="&gt;&gt;oobCloneButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oobCloneButton.Parent" xml:space="preserve">
+    <value>oobTabPage</value>
+  </data>
+  <data name="&gt;&gt;oobCloneButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="oobAddDivisinButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="oobAddDivisinButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobAddDivisinButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 521</value>
+  </data>
+  <data name="oobAddDivisinButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="oobAddDivisinButton.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="oobAddDivisinButton.Text" xml:space="preserve">
+    <value>Add Division</value>
+  </data>
+  <data name="&gt;&gt;oobAddDivisinButton.Name" xml:space="preserve">
+    <value>oobAddDivisinButton</value>
+  </data>
+  <data name="&gt;&gt;oobAddDivisinButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oobAddDivisinButton.Parent" xml:space="preserve">
+    <value>oobTabPage</value>
+  </data>
+  <data name="&gt;&gt;oobAddDivisinButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="oobAddUnitButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="oobAddUnitButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 521</value>
+  </data>
+  <data name="oobAddUnitButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="oobAddUnitButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="oobAddUnitButton.Text" xml:space="preserve">
+    <value>Add Unit</value>
+  </data>
+  <data name="&gt;&gt;oobAddUnitButton.Name" xml:space="preserve">
+    <value>oobAddUnitButton</value>
+  </data>
+  <data name="&gt;&gt;oobAddUnitButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oobAddUnitButton.Parent" xml:space="preserve">
+    <value>oobTabPage</value>
+  </data>
+  <data name="&gt;&gt;oobAddUnitButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="dormantCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -12880,7 +13117,7 @@
     <value>67, 16</value>
   </data>
   <data name="dormantCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>30</value>
   </data>
   <data name="dormantCheckBox.Text" xml:space="preserve">
     <value>Dormant</value>
@@ -12907,7 +13144,7 @@
     <value>60, 16</value>
   </data>
   <data name="lockedCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>29</value>
   </data>
   <data name="lockedCheckBox.Text" xml:space="preserve">
     <value>Locked</value>
@@ -12931,7 +13168,7 @@
     <value>50, 19</value>
   </data>
   <data name="experienceTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>36</value>
+    <value>28</value>
   </data>
   <data name="&gt;&gt;experienceTextBox.Name" xml:space="preserve">
     <value>experienceTextBox</value>
@@ -12958,7 +13195,7 @@
     <value>61, 12</value>
   </data>
   <data name="experienceLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>35</value>
+    <value>27</value>
   </data>
   <data name="experienceLabel.Text" xml:space="preserve">
     <value>Experience</value>
@@ -12982,7 +13219,7 @@
     <value>50, 19</value>
   </data>
   <data name="divisionMoraleTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>34</value>
+    <value>26</value>
   </data>
   <data name="&gt;&gt;divisionMoraleTextBox.Name" xml:space="preserve">
     <value>divisionMoraleTextBox</value>
@@ -13009,7 +13246,7 @@
     <value>39, 12</value>
   </data>
   <data name="divisionMoraleLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>33</value>
+    <value>25</value>
   </data>
   <data name="divisionMoraleLabel.Text" xml:space="preserve">
     <value>Morale</value>
@@ -13033,7 +13270,7 @@
     <value>50, 19</value>
   </data>
   <data name="maxOrganisationTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>32</value>
+    <value>24</value>
   </data>
   <data name="&gt;&gt;maxOrganisationTextBox.Name" xml:space="preserve">
     <value>maxOrganisationTextBox</value>
@@ -13054,7 +13291,7 @@
     <value>50, 19</value>
   </data>
   <data name="organisationTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
+    <value>23</value>
   </data>
   <data name="&gt;&gt;organisationTextBox.Name" xml:space="preserve">
     <value>organisationTextBox</value>
@@ -13081,7 +13318,7 @@
     <value>69, 12</value>
   </data>
   <data name="organisationLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+    <value>22</value>
   </data>
   <data name="organisationLabel.Text" xml:space="preserve">
     <value>Organisation</value>
@@ -13105,7 +13342,7 @@
     <value>50, 19</value>
   </data>
   <data name="maxStrengthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+    <value>21</value>
   </data>
   <data name="&gt;&gt;maxStrengthTextBox.Name" xml:space="preserve">
     <value>maxStrengthTextBox</value>
@@ -13126,7 +13363,7 @@
     <value>50, 19</value>
   </data>
   <data name="strengthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>20</value>
   </data>
   <data name="&gt;&gt;strengthTextBox.Name" xml:space="preserve">
     <value>strengthTextBox</value>
@@ -13153,7 +13390,7 @@
     <value>48, 12</value>
   </data>
   <data name="strengthLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>19</value>
   </data>
   <data name="strengthLabel.Text" xml:space="preserve">
     <value>Strength</value>
@@ -13177,7 +13414,7 @@
     <value>120, 20</value>
   </data>
   <data name="brigadeModelComboBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>18</value>
   </data>
   <data name="&gt;&gt;brigadeModelComboBox5.Name" xml:space="preserve">
     <value>brigadeModelComboBox5</value>
@@ -13198,7 +13435,7 @@
     <value>120, 20</value>
   </data>
   <data name="brigadeTypeComboBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>17</value>
   </data>
   <data name="&gt;&gt;brigadeTypeComboBox5.Name" xml:space="preserve">
     <value>brigadeTypeComboBox5</value>
@@ -13219,7 +13456,7 @@
     <value>120, 20</value>
   </data>
   <data name="brigadeModelComboBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
+    <value>16</value>
   </data>
   <data name="&gt;&gt;brigadeModelComboBox4.Name" xml:space="preserve">
     <value>brigadeModelComboBox4</value>
@@ -13240,7 +13477,7 @@
     <value>120, 20</value>
   </data>
   <data name="brigadeTypeComboBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;brigadeTypeComboBox4.Name" xml:space="preserve">
     <value>brigadeTypeComboBox4</value>
@@ -13261,7 +13498,7 @@
     <value>120, 20</value>
   </data>
   <data name="brigadeModelComboBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;brigadeModelComboBox3.Name" xml:space="preserve">
     <value>brigadeModelComboBox3</value>
@@ -13282,7 +13519,7 @@
     <value>120, 20</value>
   </data>
   <data name="brigadeTypeComboBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;brigadeTypeComboBox3.Name" xml:space="preserve">
     <value>brigadeTypeComboBox3</value>
@@ -13303,7 +13540,7 @@
     <value>120, 20</value>
   </data>
   <data name="brigadeModelComboBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;brigadeModelComboBox2.Name" xml:space="preserve">
     <value>brigadeModelComboBox2</value>
@@ -13324,7 +13561,7 @@
     <value>120, 20</value>
   </data>
   <data name="brigadeTypeComboBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;brigadeTypeComboBox2.Name" xml:space="preserve">
     <value>brigadeTypeComboBox2</value>
@@ -13345,7 +13582,7 @@
     <value>120, 20</value>
   </data>
   <data name="brigadeModelComboBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;brigadeModelComboBox1.Name" xml:space="preserve">
     <value>brigadeModelComboBox1</value>
@@ -13372,7 +13609,7 @@
     <value>50, 12</value>
   </data>
   <data name="brigadesLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>8</value>
   </data>
   <data name="brigadesLabel.Text" xml:space="preserve">
     <value>Brigades</value>
@@ -13396,7 +13633,7 @@
     <value>120, 20</value>
   </data>
   <data name="brigadeTypeComboBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;brigadeTypeComboBox1.Name" xml:space="preserve">
     <value>brigadeTypeComboBox1</value>
@@ -13417,7 +13654,7 @@
     <value>120, 20</value>
   </data>
   <data name="unitModelComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;unitModelComboBox.Name" xml:space="preserve">
     <value>unitModelComboBox</value>
@@ -13444,7 +13681,7 @@
     <value>30, 12</value>
   </data>
   <data name="unitTypeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>5</value>
   </data>
   <data name="unitTypeLabel.Text" xml:space="preserve">
     <value>Type</value>
@@ -13468,7 +13705,7 @@
     <value>120, 20</value>
   </data>
   <data name="unitTypeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;unitTypeComboBox.Name" xml:space="preserve">
     <value>unitTypeComboBox</value>
@@ -13489,7 +13726,7 @@
     <value>200, 19</value>
   </data>
   <data name="divisionNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;divisionNameTextBox.Name" xml:space="preserve">
     <value>divisionNameTextBox</value>
@@ -13516,7 +13753,7 @@
     <value>34, 12</value>
   </data>
   <data name="divisionNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>3</value>
   </data>
   <data name="divisionNameLabel.Text" xml:space="preserve">
     <value>Name</value>
@@ -13540,7 +13777,7 @@
     <value>50, 19</value>
   </data>
   <data name="divisionIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;divisionIdTextBox.Name" xml:space="preserve">
     <value>divisionIdTextBox</value>
@@ -13561,7 +13798,7 @@
     <value>50, 19</value>
   </data>
   <data name="divisionTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;divisionTypeTextBox.Name" xml:space="preserve">
     <value>divisionTypeTextBox</value>
@@ -13588,7 +13825,7 @@
     <value>16, 12</value>
   </data>
   <data name="divisionIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>0</value>
   </data>
   <data name="divisionIdLabel.Text" xml:space="preserve">
     <value>ID</value>
@@ -13605,14 +13842,17 @@
   <data name="&gt;&gt;divisionIdLabel.ZOrder" xml:space="preserve">
     <value>30</value>
   </data>
+  <data name="divisionGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="divisionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 170</value>
+    <value>360, 170</value>
   </data>
   <data name="divisionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>352, 328</value>
+    <value>352, 329</value>
   </data>
   <data name="divisionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>11</value>
   </data>
   <data name="divisionGroupBox.Text" xml:space="preserve">
     <value>Division</value>
@@ -13627,7 +13867,7 @@
     <value>oobTabPage</value>
   </data>
   <data name="&gt;&gt;divisionGroupBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>8</value>
   </data>
   <data name="leaderComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>404, 18</value>
@@ -13636,7 +13876,7 @@
     <value>120, 20</value>
   </data>
   <data name="leaderComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>40</value>
+    <value>16</value>
   </data>
   <data name="&gt;&gt;leaderComboBox.Name" xml:space="preserve">
     <value>leaderComboBox</value>
@@ -13657,7 +13897,7 @@
     <value>120, 20</value>
   </data>
   <data name="baseComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>39</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;baseComboBox.Name" xml:space="preserve">
     <value>baseComboBox</value>
@@ -13678,7 +13918,7 @@
     <value>120, 20</value>
   </data>
   <data name="homeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>38</value>
+    <value>10</value>
   </data>
   <data name="&gt;&gt;homeComboBox.Name" xml:space="preserve">
     <value>homeComboBox</value>
@@ -13699,7 +13939,7 @@
     <value>120, 20</value>
   </data>
   <data name="locationComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>37</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;locationComboBox.Name" xml:space="preserve">
     <value>locationComboBox</value>
@@ -13720,7 +13960,7 @@
     <value>50, 19</value>
   </data>
   <data name="digInTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>20</value>
   </data>
   <data name="&gt;&gt;digInTextBox.Name" xml:space="preserve">
     <value>digInTextBox</value>
@@ -13747,7 +13987,7 @@
     <value>35, 12</value>
   </data>
   <data name="digInLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>19</value>
   </data>
   <data name="digInLabel.Text" xml:space="preserve">
     <value>Dig In</value>
@@ -13771,7 +14011,7 @@
     <value>50, 19</value>
   </data>
   <data name="leaderTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="&gt;&gt;leaderTextBox.Name" xml:space="preserve">
     <value>leaderTextBox</value>
@@ -13798,7 +14038,7 @@
     <value>39, 12</value>
   </data>
   <data name="leaderLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="leaderLabel.Text" xml:space="preserve">
     <value>Leader</value>
@@ -13822,7 +14062,7 @@
     <value>50, 19</value>
   </data>
   <data name="unitMoraleTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>18</value>
   </data>
   <data name="&gt;&gt;unitMoraleTextBox.Name" xml:space="preserve">
     <value>unitMoraleTextBox</value>
@@ -13849,7 +14089,7 @@
     <value>39, 12</value>
   </data>
   <data name="unitMoraleLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>17</value>
   </data>
   <data name="unitMoraleLabel.Text" xml:space="preserve">
     <value>Morale</value>
@@ -13873,7 +14113,7 @@
     <value>50, 19</value>
   </data>
   <data name="baseTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;baseTextBox.Name" xml:space="preserve">
     <value>baseTextBox</value>
@@ -13900,7 +14140,7 @@
     <value>31, 12</value>
   </data>
   <data name="baseLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="baseLabel.Text" xml:space="preserve">
     <value>Base</value>
@@ -13924,7 +14164,7 @@
     <value>50, 19</value>
   </data>
   <data name="homeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;homeTextBox.Name" xml:space="preserve">
     <value>homeTextBox</value>
@@ -13951,7 +14191,7 @@
     <value>34, 12</value>
   </data>
   <data name="homeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="homeLabel.Text" xml:space="preserve">
     <value>Home</value>
@@ -14133,14 +14373,17 @@
   <data name="&gt;&gt;unitIdLabel.ZOrder" xml:space="preserve">
     <value>20</value>
   </data>
+  <data name="unitGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="unitGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>350, 14</value>
+    <value>360, 14</value>
   </data>
   <data name="unitGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>537, 150</value>
   </data>
   <data name="unitGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>10</value>
   </data>
   <data name="unitGroupBox.Text" xml:space="preserve">
     <value>Unit</value>
@@ -14155,28 +14398,31 @@
     <value>oobTabPage</value>
   </data>
   <data name="&gt;&gt;unitGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>9</value>
   </data>
-  <data name="oobTreeView.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="unitTreeView.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="unitTreeView.Location" type="System.Drawing.Point, System.Drawing">
     <value>140, 14</value>
   </data>
-  <data name="oobTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 511</value>
+  <data name="unitTreeView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 472</value>
   </data>
-  <data name="oobTreeView.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="unitTreeView.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;oobTreeView.Name" xml:space="preserve">
-    <value>oobTreeView</value>
+  <data name="&gt;&gt;unitTreeView.Name" xml:space="preserve">
+    <value>unitTreeView</value>
   </data>
-  <data name="&gt;&gt;oobTreeView.Type" xml:space="preserve">
+  <data name="&gt;&gt;unitTreeView.Type" xml:space="preserve">
     <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;oobTreeView.Parent" xml:space="preserve">
+  <data name="&gt;&gt;unitTreeView.Parent" xml:space="preserve">
     <value>oobTabPage</value>
   </data>
-  <data name="&gt;&gt;oobTreeView.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;unitTreeView.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="oobCountryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -14191,10 +14437,10 @@
     <value>12, 14</value>
   </data>
   <data name="oobCountryListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 511</value>
+    <value>120, 472</value>
   </data>
   <data name="oobCountryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;oobCountryListBox.Name" xml:space="preserve">
     <value>oobCountryListBox</value>
@@ -14206,7 +14452,7 @@
     <value>oobTabPage</value>
   </data>
   <data name="&gt;&gt;oobCountryListBox.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>11</value>
   </data>
   <data name="oobTabPage.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -14269,7 +14515,7 @@
     <value>75, 23</value>
   </data>
   <data name="checkButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="checkButton.Text" xml:space="preserve">
     <value>Check</value>

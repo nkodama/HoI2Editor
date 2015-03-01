@@ -101,6 +101,15 @@ namespace HoI2Editor.Models
             Day = 1;
         }
 
+        /// <summary>
+        ///     オブジェクトを複製する
+        /// </summary>
+        /// <returns>複製したオブジェクト</returns>
+        public GameDate Clone()
+        {
+            return (GameDate) MemberwiseClone();
+        }
+
         #endregion
 
         #region 日数計算

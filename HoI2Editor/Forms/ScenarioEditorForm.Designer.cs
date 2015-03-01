@@ -516,7 +516,17 @@
             this.scenarioListBox = new System.Windows.Forms.ListBox();
             this.scenarioTabControl = new System.Windows.Forms.TabControl();
             this.oobTabPage = new System.Windows.Forms.TabPage();
+            this.oobBottomButton = new System.Windows.Forms.Button();
+            this.oobDownButton = new System.Windows.Forms.Button();
+            this.oobUpButton = new System.Windows.Forms.Button();
+            this.oobTopButton = new System.Windows.Forms.Button();
+            this.oobRemoveButton = new System.Windows.Forms.Button();
+            this.oobCloneButton = new System.Windows.Forms.Button();
+            this.oobAddDivisinButton = new System.Windows.Forms.Button();
+            this.oobAddUnitButton = new System.Windows.Forms.Button();
             this.divisionGroupBox = new System.Windows.Forms.GroupBox();
+            this.dormantCheckBox = new System.Windows.Forms.CheckBox();
+            this.lockedCheckBox = new System.Windows.Forms.CheckBox();
             this.experienceTextBox = new System.Windows.Forms.TextBox();
             this.experienceLabel = new System.Windows.Forms.Label();
             this.divisionMoraleTextBox = new System.Windows.Forms.TextBox();
@@ -568,11 +578,9 @@
             this.unitIdTextBox = new System.Windows.Forms.TextBox();
             this.unitTypeTextBox = new System.Windows.Forms.TextBox();
             this.unitIdLabel = new System.Windows.Forms.Label();
-            this.oobTreeView = new System.Windows.Forms.TreeView();
+            this.unitTreeView = new System.Windows.Forms.TreeView();
             this.oobCountryListBox = new System.Windows.Forms.ListBox();
             this.checkButton = new System.Windows.Forms.Button();
-            this.lockedCheckBox = new System.Windows.Forms.CheckBox();
-            this.dormantCheckBox = new System.Windows.Forms.CheckBox();
             provinceIcLabel = new System.Windows.Forms.Label();
             provinceInfrastructureLabel = new System.Windows.Forms.Label();
             provinceLandFortLabel = new System.Windows.Forms.Label();
@@ -4139,12 +4147,76 @@
             // oobTabPage
             // 
             this.oobTabPage.BackColor = System.Drawing.SystemColors.Control;
+            this.oobTabPage.Controls.Add(this.oobBottomButton);
+            this.oobTabPage.Controls.Add(this.oobDownButton);
+            this.oobTabPage.Controls.Add(this.oobUpButton);
+            this.oobTabPage.Controls.Add(this.oobTopButton);
+            this.oobTabPage.Controls.Add(this.oobRemoveButton);
+            this.oobTabPage.Controls.Add(this.oobCloneButton);
+            this.oobTabPage.Controls.Add(this.oobAddDivisinButton);
+            this.oobTabPage.Controls.Add(this.oobAddUnitButton);
             this.oobTabPage.Controls.Add(this.divisionGroupBox);
             this.oobTabPage.Controls.Add(this.unitGroupBox);
-            this.oobTabPage.Controls.Add(this.oobTreeView);
+            this.oobTabPage.Controls.Add(this.unitTreeView);
             this.oobTabPage.Controls.Add(this.oobCountryListBox);
             resources.ApplyResources(this.oobTabPage, "oobTabPage");
             this.oobTabPage.Name = "oobTabPage";
+            // 
+            // oobBottomButton
+            // 
+            resources.ApplyResources(this.oobBottomButton, "oobBottomButton");
+            this.oobBottomButton.Name = "oobBottomButton";
+            this.oobBottomButton.UseVisualStyleBackColor = true;
+            this.oobBottomButton.Click += new System.EventHandler(this.OnOobBottomButtonClick);
+            // 
+            // oobDownButton
+            // 
+            resources.ApplyResources(this.oobDownButton, "oobDownButton");
+            this.oobDownButton.Name = "oobDownButton";
+            this.oobDownButton.UseVisualStyleBackColor = true;
+            this.oobDownButton.Click += new System.EventHandler(this.OnOobDownButtonClick);
+            // 
+            // oobUpButton
+            // 
+            resources.ApplyResources(this.oobUpButton, "oobUpButton");
+            this.oobUpButton.Name = "oobUpButton";
+            this.oobUpButton.UseVisualStyleBackColor = true;
+            this.oobUpButton.Click += new System.EventHandler(this.OnOobUpButtonClick);
+            // 
+            // oobTopButton
+            // 
+            resources.ApplyResources(this.oobTopButton, "oobTopButton");
+            this.oobTopButton.Name = "oobTopButton";
+            this.oobTopButton.UseVisualStyleBackColor = true;
+            this.oobTopButton.Click += new System.EventHandler(this.OnOobTopButtonClick);
+            // 
+            // oobRemoveButton
+            // 
+            resources.ApplyResources(this.oobRemoveButton, "oobRemoveButton");
+            this.oobRemoveButton.Name = "oobRemoveButton";
+            this.oobRemoveButton.UseVisualStyleBackColor = true;
+            this.oobRemoveButton.Click += new System.EventHandler(this.OnOobRemoveButtonClick);
+            // 
+            // oobCloneButton
+            // 
+            resources.ApplyResources(this.oobCloneButton, "oobCloneButton");
+            this.oobCloneButton.Name = "oobCloneButton";
+            this.oobCloneButton.UseVisualStyleBackColor = true;
+            this.oobCloneButton.Click += new System.EventHandler(this.OnOobCloneButtonClick);
+            // 
+            // oobAddDivisinButton
+            // 
+            resources.ApplyResources(this.oobAddDivisinButton, "oobAddDivisinButton");
+            this.oobAddDivisinButton.Name = "oobAddDivisinButton";
+            this.oobAddDivisinButton.UseVisualStyleBackColor = true;
+            this.oobAddDivisinButton.Click += new System.EventHandler(this.OnOobAddDivisionButtonClick);
+            // 
+            // oobAddUnitButton
+            // 
+            resources.ApplyResources(this.oobAddUnitButton, "oobAddUnitButton");
+            this.oobAddUnitButton.Name = "oobAddUnitButton";
+            this.oobAddUnitButton.UseVisualStyleBackColor = true;
+            this.oobAddUnitButton.Click += new System.EventHandler(this.OnOobAddUnitButtonClick);
             // 
             // divisionGroupBox
             // 
@@ -4182,6 +4254,18 @@
             resources.ApplyResources(this.divisionGroupBox, "divisionGroupBox");
             this.divisionGroupBox.Name = "divisionGroupBox";
             this.divisionGroupBox.TabStop = false;
+            // 
+            // dormantCheckBox
+            // 
+            resources.ApplyResources(this.dormantCheckBox, "dormantCheckBox");
+            this.dormantCheckBox.Name = "dormantCheckBox";
+            this.dormantCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // lockedCheckBox
+            // 
+            resources.ApplyResources(this.lockedCheckBox, "lockedCheckBox");
+            this.lockedCheckBox.Name = "lockedCheckBox";
+            this.lockedCheckBox.UseVisualStyleBackColor = true;
             // 
             // experienceTextBox
             // 
@@ -4486,10 +4570,10 @@
             resources.ApplyResources(this.unitIdLabel, "unitIdLabel");
             this.unitIdLabel.Name = "unitIdLabel";
             // 
-            // oobTreeView
+            // unitTreeView
             // 
-            resources.ApplyResources(this.oobTreeView, "oobTreeView");
-            this.oobTreeView.Name = "oobTreeView";
+            resources.ApplyResources(this.unitTreeView, "unitTreeView");
+            this.unitTreeView.Name = "unitTreeView";
             // 
             // oobCountryListBox
             // 
@@ -4497,6 +4581,8 @@
             this.oobCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.oobCountryListBox.FormattingEnabled = true;
             this.oobCountryListBox.Name = "oobCountryListBox";
+            this.oobCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
+            this.oobCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnOobCountryListBoxSelectedIndexChanged);
             // 
             // checkButton
             // 
@@ -4504,18 +4590,6 @@
             this.checkButton.Name = "checkButton";
             this.checkButton.UseVisualStyleBackColor = true;
             this.checkButton.Click += new System.EventHandler(this.OnCheckButtonClick);
-            // 
-            // lockedCheckBox
-            // 
-            resources.ApplyResources(this.lockedCheckBox, "lockedCheckBox");
-            this.lockedCheckBox.Name = "lockedCheckBox";
-            this.lockedCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // dormantCheckBox
-            // 
-            resources.ApplyResources(this.dormantCheckBox, "dormantCheckBox");
-            this.dormantCheckBox.Name = "dormantCheckBox";
-            this.dormantCheckBox.UseVisualStyleBackColor = true;
             // 
             // ScenarioEditorForm
             // 
@@ -5119,10 +5193,18 @@
         private System.Windows.Forms.TextBox unitIdTextBox;
         private System.Windows.Forms.TextBox unitTypeTextBox;
         private System.Windows.Forms.Label unitIdLabel;
-        private System.Windows.Forms.TreeView oobTreeView;
+        private System.Windows.Forms.TreeView unitTreeView;
         private System.Windows.Forms.ListBox oobCountryListBox;
         private System.Windows.Forms.CheckBox dormantCheckBox;
         private System.Windows.Forms.CheckBox lockedCheckBox;
+        private System.Windows.Forms.Button oobBottomButton;
+        private System.Windows.Forms.Button oobDownButton;
+        private System.Windows.Forms.Button oobUpButton;
+        private System.Windows.Forms.Button oobTopButton;
+        private System.Windows.Forms.Button oobRemoveButton;
+        private System.Windows.Forms.Button oobCloneButton;
+        private System.Windows.Forms.Button oobAddDivisinButton;
+        private System.Windows.Forms.Button oobAddUnitButton;
 
     }
 }

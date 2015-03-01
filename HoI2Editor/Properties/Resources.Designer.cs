@@ -11626,6 +11626,96 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   Air units に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeAir {
+            get {
+                return ResourceManager.GetString("UnitTreeAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Boarding units に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeBoarding {
+            get {
+                return ResourceManager.GetString("UnitTreeBoarding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Convoys under construction に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeConvoyDevelopment {
+            get {
+                return ResourceManager.GetString("UnitTreeConvoyDevelopment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Divisions under construction に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeDivisionDevelopment {
+            get {
+                return ResourceManager.GetString("UnitTreeDivisionDevelopment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Land units に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeLand {
+            get {
+                return ResourceManager.GetString("UnitTreeLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Naval units に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeNaval {
+            get {
+                return ResourceManager.GetString("UnitTreeNaval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Buildings under construction に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeProvinceDevelopment {
+            get {
+                return ResourceManager.GetString("UnitTreeProvinceDevelopment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Undeployed air divisions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeUndeployedAir {
+            get {
+                return ResourceManager.GetString("UnitTreeUndeployedAir", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Undeployed land divisions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeUndeployedLand {
+            get {
+                return ResourceManager.GetString("UnitTreeUndeployedLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Undeployed naval divisions に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeUndeployedNaval {
+            get {
+                return ResourceManager.GetString("UnitTreeUndeployedNaval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Removed unused temp key に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string WarningRemovedUnusedTempKey {
