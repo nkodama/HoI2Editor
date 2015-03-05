@@ -2287,7 +2287,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の実体が存在するかどうかを取得する
         /// </summary>
-        /// <returns></returns>
+        /// <returns>実体が存在すればtrueを返す</returns>
         public bool ExistsEntity()
         {
             return _entityFlag;
@@ -2311,16 +2311,6 @@ namespace HoI2Editor.Models
             }
 
             _entityFlag = true;
-
-            // 実体存在フラグをセットする場合は師団/旅団定義ファイルも更新する
-            if (Organization == UnitOrganization.Division)
-            {
-                Units.SetDirtyDivisionTypes();
-            }
-            else
-            {
-                Units.SetDirtyBrigadeTypes();
-            }
         }
 
         #endregion

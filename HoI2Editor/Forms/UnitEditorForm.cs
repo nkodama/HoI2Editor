@@ -5336,7 +5336,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     自動改良先クラスコンボボックスのフォーカス移動後の処理
+        ///     自動改良先モデルコンボボックスのフォーカス移動後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

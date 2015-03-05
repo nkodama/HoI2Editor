@@ -4431,6 +4431,13 @@ namespace HoI2Editor.Parsers
 
                     // 陸軍ユニット
                     country.LandUnits.Add(unit);
+
+                    // 兵科を設定
+                    unit.Branch = Branch.Army;
+                    foreach (Division division in unit.Divisions)
+                    {
+                        division.Branch = Branch.Army;
+                    }
                     continue;
                 }
 
@@ -4446,6 +4453,13 @@ namespace HoI2Editor.Parsers
 
                     // 海軍ユニット
                     country.NavalUnits.Add(unit);
+
+                    // 兵科を設定
+                    unit.Branch = Branch.Navy;
+                    foreach (Division division in unit.Divisions)
+                    {
+                        division.Branch = Branch.Navy;
+                    }
                     continue;
                 }
 
@@ -4461,6 +4475,13 @@ namespace HoI2Editor.Parsers
 
                     // 空軍ユニット
                     country.AirUnits.Add(unit);
+
+                    // 兵科を設定
+                    unit.Branch = Branch.Airforce;
+                    foreach (Division division in unit.Divisions)
+                    {
+                        division.Branch = Branch.Airforce;
+                    }
                     continue;
                 }
 
@@ -4520,6 +4541,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 陸軍師団
+                    division.Branch = Branch.Army;
                     country.LandDivisions.Add(division);
                     continue;
                 }
@@ -4535,6 +4557,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 海軍師団
+                    division.Branch = Branch.Navy;
                     country.NavalDivisions.Add(division);
                     continue;
                 }
@@ -4550,6 +4573,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 空軍師団
+                    division.Branch = Branch.Airforce;
                     country.AirDivisions.Add(division);
                     continue;
                 }
@@ -5770,6 +5794,13 @@ namespace HoI2Editor.Parsers
 
                     // 搭載ユニット
                     unit.LandUnits.Add(landUnit);
+
+                    // 兵科を設定
+                    unit.Branch = Branch.Army;
+                    foreach (Division division in unit.Divisions)
+                    {
+                        division.Branch = Branch.Army;
+                    }
                     continue;
                 }
 
@@ -7594,7 +7625,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    // 指揮統制率下限
+                    // 組織率下限
                     mission.OrgLimit = (double) d;
                     continue;
                 }

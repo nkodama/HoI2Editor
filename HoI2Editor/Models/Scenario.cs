@@ -2687,6 +2687,37 @@ namespace HoI2Editor.Models
                     spy.ResetDirtyAll();
                 }
             }
+
+            foreach (Unit unit in LandUnits)
+            {
+                unit.ResetDirtyAll();
+            }
+            foreach (Unit unit in NavalUnits)
+            {
+                unit.ResetDirtyAll();
+            }
+            foreach (Unit unit in AirUnits)
+            {
+                unit.ResetDirtyAll();
+            }
+
+            foreach (Division division in LandDivisions)
+            {
+                division.ResetDirtyAll();
+            }
+            foreach (Division division in NavalDivisions)
+            {
+                division.ResetDirtyAll();
+            }
+            foreach (Division division in AirDivisions)
+            {
+                division.ResetDirtyAll();
+            }
+
+            foreach (DivisionDevelopment division in DivisionDevelopments)
+            {
+                division.ResetDirtyAll();
+            }
         }
 
         #endregion
@@ -2950,6 +2981,11 @@ namespace HoI2Editor.Models
         public string Name { get; set; }
 
         /// <summary>
+        ///     兵科
+        /// </summary>
+        public Branch Branch { get; set; }
+
+        /// <summary>
         ///     統帥国
         /// </summary>
         public Country Control { get; set; }
@@ -3066,6 +3102,62 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部フィールド
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+
+        #endregion
+
+        #region 公開定数
+
+        /// <summary>
+        ///     項目ID
+        /// </summary>
+        public enum ItemId
+        {
+            Type,
+            Id,
+            Name,
+            Control,
+            Leader,
+            Location,
+            PrevProv,
+            Home,
+            Base,
+            DigIn,
+            Morale,
+            Year,
+            Month,
+            Day,
+            Hour,
+            Development,
+            MoveYear,
+            MoveMonth,
+            MoveDay,
+            MoveHour,
+            AttackYear,
+            AttackMonth,
+            AttackDay,
+            AttackHour,
+            Invasion,
+            Target,
+            StandGround,
+            ScorchGround,
+            Prioritized,
+            CanUpgrade,
+            CanReinforcement
+        }
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -3140,6 +3232,74 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     プロヴィンス設定が編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(ItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(ItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            _dirtyFlag = false;
+
+            if (Mission != null)
+            {
+                Mission.ResetDirtyAll();
+            }
+
+            foreach (Division division in Divisions)
+            {
+                division.ResetDirtyAll();
+            }
+
+            foreach (Unit landUnit in LandUnits)
+            {
+                landUnit.ResetDirtyAll();
+            }
+        }
+
+        #endregion
     }
 
     #endregion
@@ -3162,6 +3322,11 @@ namespace HoI2Editor.Models
         ///     師団名
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        ///     兵科
+        /// </summary>
+        public Branch Branch { get; set; }
 
         /// <summary>
         ///     ユニット種類
@@ -3490,12 +3655,99 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部フィールド
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+
+        #endregion
+
         #region 公開定数
 
         /// <summary>
         ///     未定義のモデル番号
         /// </summary>
         public const int UndefinedModelNo = -1;
+
+        /// <summary>
+        ///     項目ID
+        /// </summary>
+        public enum ItemId
+        {
+            Type,
+            Id,
+            Name,
+            UnitType,
+            Model,
+            Nuke,
+            BrigadeType1,
+            BrigadeType2,
+            BrigadeType3,
+            BrigadeType4,
+            BrigadeType5,
+            BirgadeModel1,
+            BirgadeModel2,
+            BirgadeModel3,
+            BirgadeModel4,
+            BirgadeModel5,
+            MaxStrength,
+            Strength,
+            MaxOrganisation,
+            Organisation,
+            Morale,
+            Experience,
+            UpgradeProgress,
+            RedeployTarget,
+            RedeployUnitName,
+            RedeployUnitType,
+            RedeployUnitId,
+            Supplies,
+            Fuel,
+            MaxSupplies,
+            MaxFuel,
+            SupplyConsumption,
+            FuelConsumption,
+            MaxSpeed,
+            SpeedCapArt,
+            SpeedCapEng,
+            SpeedCapAa,
+            SpeedCapAt,
+            TransportWeight,
+            TransportCapability,
+            Defensiveness,
+            Toughness,
+            Softness,
+            Suppression,
+            SeaDefence,
+            SurfaceDefence,
+            AirDefence,
+            SoftAttack,
+            HardAttack,
+            SeaAttack,
+            SubAttack,
+            ConvoyAttack,
+            ShoreBombardment,
+            AirAttack,
+            StrategicAttack,
+            NavalAttack,
+            ArtilleryBombardment,
+            SurfaceDetection,
+            AirDetection,
+            SubDetection,
+            Visibility,
+            Range,
+            Distance,
+            Travelled,
+            Locked,
+            Dormant
+        }
 
         #endregion
 
@@ -3548,6 +3800,59 @@ namespace HoI2Editor.Models
         {
             Scenarios.RemoveTypeId(Id);
             Scenarios.RemoveTypeId(RedeployUnitId);
+        }
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     プロヴィンス設定が編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(ItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(ItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            _dirtyFlag = false;
         }
 
         #endregion
@@ -3717,12 +4022,65 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部フィールド
+
+        /// <summary>
+        ///     編集済みフラグ
+        /// </summary>
+        private bool _dirtyFlag;
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+
+        #endregion
+
         #region 公開定数
 
         /// <summary>
         ///     未定義のモデル番号
         /// </summary>
         public const int UndefinedModelNo = -1;
+
+        /// <summary>
+        ///     項目ID
+        /// </summary>
+        public enum ItemId
+        {
+            Type,
+            Id,
+            Name,
+            Cost,
+            Manpower,
+            UnitCost,
+            NewModel,
+            Year,
+            Month,
+            Day,
+            Progress,
+            TotalProgress,
+            GearingBonus,
+            Size,
+            Done,
+            Days,
+            DaysForFirst,
+            Halted,
+            CloseWhenFinished,
+            WaitingForClosure,
+            UnitType,
+            Model,
+            BrigadeType1,
+            BrigadeType2,
+            BrigadeType3,
+            BrigadeType4,
+            BrigadeType5,
+            BrigadeModel1,
+            BrigadeModel2,
+            BrigadeModel3,
+            BrigadeModel4,
+            BrigadeModel5
+        }
 
         #endregion
 
@@ -3742,6 +4100,59 @@ namespace HoI2Editor.Models
             BrigadeModel3 = UndefinedModelNo;
             BrigadeModel4 = UndefinedModelNo;
             BrigadeModel5 = UndefinedModelNo;
+        }
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     プロヴィンス設定が編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty()
+        {
+            return _dirtyFlag;
+        }
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(ItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(ItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
+            _dirtyFlag = false;
         }
 
         #endregion
@@ -3774,7 +4185,7 @@ namespace HoI2Editor.Models
         public int MissionScope { get; set; }
 
         /// <summary>
-        ///     戦力/指揮統制率下限
+        ///     戦力/組織率下限
         /// </summary>
         public double Percentage { get; set; }
 
@@ -3799,7 +4210,7 @@ namespace HoI2Editor.Models
         public bool AttackConvoy { get; set; }
 
         /// <summary>
-        ///     指揮統制率下限 (DHのみ)
+        ///     組織率下限 (DHのみ)
         /// </summary>
         public double OrgLimit { get; set; }
 
@@ -3825,6 +4236,45 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 内部フィールド
+
+        /// <summary>
+        ///     項目の編集済みフラグ
+        /// </summary>
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+
+        #endregion
+
+        #region 公開定数
+
+        /// <summary>
+        ///     項目ID
+        /// </summary>
+        public enum ItemId
+        {
+            Type,
+            Target,
+            MissionScope,
+            Percentage,
+            Night,
+            Day,
+            TargetZone,
+            AttackConvoy,
+            OrgLimit,
+            StartYear,
+            StartMonth,
+            StartDay,
+            StartHour,
+            EndYear,
+            EndMonth,
+            EndDay,
+            EndHour,
+            Task,
+            Location
+        }
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -3843,6 +4293,40 @@ namespace HoI2Editor.Models
                 mission.EndDate = EndDate.Clone();
             }
             return mission;
+        }
+
+        #endregion
+
+        #region 編集済みフラグ操作
+
+        /// <summary>
+        ///     項目が編集済みかどうかを取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>編集済みならばtrueを返す</returns>
+        public bool IsDirty(ItemId id)
+        {
+            return _dirtyFlags[(int) id];
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        public void SetDirty(ItemId id)
+        {
+            _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て解除する
+        /// </summary>
+        public void ResetDirtyAll()
+        {
+            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            {
+                _dirtyFlags[(int) id] = false;
+            }
         }
 
         #endregion

@@ -105,6 +105,16 @@ namespace HoI2Editor.Forms
         /// </summary>
         private Division _selectedDivision;
 
+        /// <summary>
+        ///     最終のユニットの兵科
+        /// </summary>
+        private Branch _lastUnitBranch;
+
+        /// <summary>
+        ///     最終の師団の兵科
+        /// </summary>
+        private Branch _lastDivisionBranch;
+
         #endregion
 
         #region 内部定数
@@ -8652,7 +8662,7 @@ namespace HoI2Editor.Forms
             }
 
             // 陸地プロヴィンスリストを初期化する
-            _controller.InitProvinceList(provinceListView);
+            _controller.InitProvinceList();
 
             // プロヴィンスリストを初期化する
             InitProvinceList();
@@ -9995,6 +10005,12 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // プロヴィンスリストを初期化する
+            _controller.InitProvinceList();
+
+            // ユニット種類リストを初期化する
+            _controller.InitUnitTypeList();
+
             // 国家リストボックスを更新する
             UpdateCountryListBox(oobCountryListBox);
 
@@ -10106,6 +10122,11 @@ namespace HoI2Editor.Forms
             }
 
             _selectedCountry = Countries.Tags[oobCountryListBox.SelectedIndex];
+
+            // 指揮官リストを初期化する
+            ScenarioHeader header = Scenarios.Data.Header;
+            int year = (header.StartDate != null) ? header.StartDate.Year : header.StartYear;
+            _controller.UpdateLeaderList(_selectedCountry, year);
 
             // ユニットツリーを更新する
             _unitTreeController.Country = _selectedCountry;
@@ -10278,7 +10299,29 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitOobUnitItems()
         {
-            // TODO: 編集項目
+            _itemControls.Add(ScenarioEditorItemId.UnitType, unitTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.UnitId, unitIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.UnitName, unitNameTextBox);
+            _itemControls.Add(ScenarioEditorItemId.UnitLocationId, locationTextBox);
+            _itemControls.Add(ScenarioEditorItemId.UnitLocation, locationComboBox);
+            _itemControls.Add(ScenarioEditorItemId.UnitBaseId, baseTextBox);
+            _itemControls.Add(ScenarioEditorItemId.UnitBase, baseComboBox);
+            _itemControls.Add(ScenarioEditorItemId.UnitLeaderId, leaderTextBox);
+            _itemControls.Add(ScenarioEditorItemId.UnitLeader, leaderComboBox);
+            _itemControls.Add(ScenarioEditorItemId.UnitMorale, unitMoraleTextBox);
+            _itemControls.Add(ScenarioEditorItemId.UnitDigIn, digInTextBox);
+
+            unitTypeTextBox.Tag = ScenarioEditorItemId.UnitType;
+            unitIdTextBox.Tag = ScenarioEditorItemId.UnitId;
+            unitNameTextBox.Tag = ScenarioEditorItemId.UnitName;
+            locationTextBox.Tag = ScenarioEditorItemId.UnitLocationId;
+            locationComboBox.Tag = ScenarioEditorItemId.UnitLocation;
+            baseTextBox.Tag = ScenarioEditorItemId.UnitBaseId;
+            baseComboBox.Tag = ScenarioEditorItemId.UnitBase;
+            leaderTextBox.Tag = ScenarioEditorItemId.UnitLeaderId;
+            leaderComboBox.Tag = ScenarioEditorItemId.UnitLeader;
+            unitMoraleTextBox.Tag = ScenarioEditorItemId.UnitMorale;
+            digInTextBox.Tag = ScenarioEditorItemId.UnitDigIn;
         }
 
         /// <summary>
@@ -10287,7 +10330,36 @@ namespace HoI2Editor.Forms
         /// <param name="unit">ユニット</param>
         private void UpdateOobUnitItems(Unit unit)
         {
-            // TODO: 編集項目
+            _controller.UpdateItemValue(unitTypeTextBox, unit);
+            _controller.UpdateItemValue(unitIdTextBox, unit);
+            _controller.UpdateItemValue(unitNameTextBox, unit);
+            _controller.UpdateItemValue(locationTextBox, unit);
+            _controller.UpdateItemValue(baseTextBox, unit);
+            _controller.UpdateItemValue(leaderTextBox, unit);
+            _controller.UpdateItemValue(unitMoraleTextBox, unit);
+            _controller.UpdateItemValue(digInTextBox, unit);
+
+            _controller.UpdateItemColor(unitTypeTextBox, unit);
+            _controller.UpdateItemColor(unitIdTextBox, unit);
+            _controller.UpdateItemColor(unitNameTextBox, unit);
+            _controller.UpdateItemColor(locationTextBox, unit);
+            _controller.UpdateItemColor(baseTextBox, unit);
+            _controller.UpdateItemColor(leaderTextBox, unit);
+            _controller.UpdateItemColor(unitMoraleTextBox, unit);
+            _controller.UpdateItemColor(digInTextBox, unit);
+
+            // ユニットの兵科が変更された場合、リストの選択肢も変更する
+            if (unit.Branch != _lastUnitBranch)
+            {
+                _lastUnitBranch = unit.Branch;
+                _controller.UpdateListItems(locationComboBox, unit);
+                _controller.UpdateListItems(baseComboBox, unit);
+                _controller.UpdateListItems(leaderComboBox, unit);
+            }
+
+            _controller.UpdateItemValue(locationComboBox, unit);
+            _controller.UpdateItemValue(baseComboBox, unit);
+            _controller.UpdateItemValue(leaderComboBox, unit);
         }
 
         /// <summary>
@@ -10300,8 +10372,6 @@ namespace HoI2Editor.Forms
             unitNameTextBox.Text = "";
             locationTextBox.Text = "";
             locationComboBox.SelectedIndex = -1;
-            homeTextBox.Text = "";
-            homeComboBox.SelectedIndex = -1;
             baseTextBox.Text = "";
             baseComboBox.SelectedIndex = -1;
             leaderTextBox.Text = "";
@@ -10335,7 +10405,53 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitOobDivisionItems()
         {
-            // TODO: 編集項目
+            _itemControls.Add(ScenarioEditorItemId.DivisionType, divisionTypeTextBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionId, divisionIdTextBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionName, divisionNameTextBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionUnitType, unitTypeComboBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionModel, unitModelComboBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionBrigadeType1, brigadeTypeComboBox1);
+            _itemControls.Add(ScenarioEditorItemId.DivisionBrigadeType2, brigadeTypeComboBox2);
+            _itemControls.Add(ScenarioEditorItemId.DivisionBrigadeType3, brigadeTypeComboBox3);
+            _itemControls.Add(ScenarioEditorItemId.DivisionBrigadeType4, brigadeTypeComboBox4);
+            _itemControls.Add(ScenarioEditorItemId.DivisionBrigadeType5, brigadeTypeComboBox5);
+            _itemControls.Add(ScenarioEditorItemId.DivisionBrigadeModel1, brigadeModelComboBox1);
+            _itemControls.Add(ScenarioEditorItemId.DivisionBrigadeModel2, brigadeModelComboBox2);
+            _itemControls.Add(ScenarioEditorItemId.DivisionBrigadeModel3, brigadeModelComboBox3);
+            _itemControls.Add(ScenarioEditorItemId.DivisionBrigadeModel4, brigadeModelComboBox4);
+            _itemControls.Add(ScenarioEditorItemId.DivisionBrigadeModel5, brigadeModelComboBox5);
+            _itemControls.Add(ScenarioEditorItemId.DivisionStrength, strengthTextBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionMaxStrength, maxStrengthTextBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionOrganisation, organisationTextBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionMaxOrganisation, maxOrganisationTextBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionMorale, divisionMoraleTextBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionExperience, experienceTextBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionLocked, lockedCheckBox);
+            _itemControls.Add(ScenarioEditorItemId.DivisionDormant, dormantCheckBox);
+
+            divisionTypeTextBox.Tag = ScenarioEditorItemId.DivisionType;
+            divisionIdTextBox.Tag = ScenarioEditorItemId.DivisionId;
+            divisionNameTextBox.Tag = ScenarioEditorItemId.DivisionName;
+            unitTypeComboBox.Tag = ScenarioEditorItemId.DivisionUnitType;
+            unitModelComboBox.Tag = ScenarioEditorItemId.DivisionModel;
+            brigadeTypeComboBox1.Tag = ScenarioEditorItemId.DivisionBrigadeType1;
+            brigadeTypeComboBox2.Tag = ScenarioEditorItemId.DivisionBrigadeType2;
+            brigadeTypeComboBox3.Tag = ScenarioEditorItemId.DivisionBrigadeType3;
+            brigadeTypeComboBox4.Tag = ScenarioEditorItemId.DivisionBrigadeType4;
+            brigadeTypeComboBox5.Tag = ScenarioEditorItemId.DivisionBrigadeType5;
+            brigadeModelComboBox1.Tag = ScenarioEditorItemId.DivisionBrigadeModel1;
+            brigadeModelComboBox2.Tag = ScenarioEditorItemId.DivisionBrigadeModel2;
+            brigadeModelComboBox3.Tag = ScenarioEditorItemId.DivisionBrigadeModel3;
+            brigadeModelComboBox4.Tag = ScenarioEditorItemId.DivisionBrigadeModel4;
+            brigadeModelComboBox5.Tag = ScenarioEditorItemId.DivisionBrigadeModel5;
+            strengthTextBox.Tag = ScenarioEditorItemId.DivisionStrength;
+            maxStrengthTextBox.Tag = ScenarioEditorItemId.DivisionMaxStrength;
+            organisationTextBox.Tag = ScenarioEditorItemId.DivisionOrganisation;
+            maxOrganisationTextBox.Tag = ScenarioEditorItemId.DivisionMaxOrganisation;
+            divisionMoraleTextBox.Tag = ScenarioEditorItemId.DivisionMorale;
+            experienceTextBox.Tag = ScenarioEditorItemId.DivisionExperience;
+            lockedCheckBox.Tag = ScenarioEditorItemId.DivisionLocked;
+            dormantCheckBox.Tag = ScenarioEditorItemId.DivisionDormant;
         }
 
         /// <summary>
@@ -10344,7 +10460,63 @@ namespace HoI2Editor.Forms
         /// <param name="division">師団</param>
         private void UpdateOobDivisionItems(Division division)
         {
-            // TODO: 編集項目
+            _controller.UpdateItemValue(divisionTypeTextBox, division);
+            _controller.UpdateItemValue(divisionIdTextBox, division);
+            _controller.UpdateItemValue(divisionNameTextBox, division);
+            _controller.UpdateItemValue(strengthTextBox, division);
+            _controller.UpdateItemValue(maxStrengthTextBox, division);
+            _controller.UpdateItemValue(organisationTextBox, division);
+            _controller.UpdateItemValue(maxOrganisationTextBox, division);
+            _controller.UpdateItemValue(divisionMoraleTextBox, division);
+            _controller.UpdateItemValue(experienceTextBox, division);
+            _controller.UpdateItemValue(lockedCheckBox, division);
+            _controller.UpdateItemValue(dormantCheckBox, division);
+
+            _controller.UpdateItemColor(divisionTypeTextBox, division);
+            _controller.UpdateItemColor(divisionIdTextBox, division);
+            _controller.UpdateItemColor(divisionNameTextBox, division);
+            _controller.UpdateItemColor(strengthTextBox, division);
+            _controller.UpdateItemColor(maxStrengthTextBox, division);
+            _controller.UpdateItemColor(organisationTextBox, division);
+            _controller.UpdateItemColor(maxOrganisationTextBox, division);
+            _controller.UpdateItemColor(divisionMoraleTextBox, division);
+            _controller.UpdateItemColor(experienceTextBox, division);
+            _controller.UpdateItemColor(lockedCheckBox, division);
+            _controller.UpdateItemColor(dormantCheckBox, division);
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // ユニットの兵科が変更された場合、リストの選択肢も変更する
+            if (division.Branch != _lastDivisionBranch)
+            {
+                _lastDivisionBranch = division.Branch;
+                _controller.UpdateListItems(unitTypeComboBox, division, settings);
+                _controller.UpdateListItems(brigadeTypeComboBox1, division, settings);
+                _controller.UpdateListItems(brigadeTypeComboBox2, division, settings);
+                _controller.UpdateListItems(brigadeTypeComboBox3, division, settings);
+                _controller.UpdateListItems(brigadeTypeComboBox4, division, settings);
+                _controller.UpdateListItems(brigadeTypeComboBox5, division, settings);
+            }
+
+            _controller.UpdateListItems(unitModelComboBox, division, settings);
+            _controller.UpdateListItems(brigadeModelComboBox1, division, settings);
+            _controller.UpdateListItems(brigadeModelComboBox2, division, settings);
+            _controller.UpdateListItems(brigadeModelComboBox3, division, settings);
+            _controller.UpdateListItems(brigadeModelComboBox4, division, settings);
+            _controller.UpdateListItems(brigadeModelComboBox5, division, settings);
+
+            _controller.UpdateItemValue(unitTypeComboBox, division);
+            _controller.UpdateItemValue(brigadeTypeComboBox1, division);
+            _controller.UpdateItemValue(brigadeTypeComboBox2, division);
+            _controller.UpdateItemValue(brigadeTypeComboBox3, division);
+            _controller.UpdateItemValue(brigadeTypeComboBox4, division);
+            _controller.UpdateItemValue(brigadeTypeComboBox5, division);
+            _controller.UpdateItemValue(unitModelComboBox, division);
+            _controller.UpdateItemValue(brigadeModelComboBox1, division);
+            _controller.UpdateItemValue(brigadeModelComboBox2, division);
+            _controller.UpdateItemValue(brigadeModelComboBox3, division);
+            _controller.UpdateItemValue(brigadeModelComboBox4, division);
+            _controller.UpdateItemValue(brigadeModelComboBox5, division);
         }
 
         /// <summary>
@@ -10352,9 +10524,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void ClearOobDivisionItems()
         {
-            unitTypeTextBox.Text = "";
-            unitIdTextBox.Text = "";
-            unitNameTextBox.Text = "";
+            divisionTypeTextBox.Text = "";
+            divisionIdTextBox.Text = "";
+            divisionNameTextBox.Text = "";
             unitTypeComboBox.SelectedIndex = -1;
             unitModelComboBox.SelectedIndex = -1;
             brigadeTypeComboBox1.SelectedIndex = -1;
@@ -10396,6 +10568,679 @@ namespace HoI2Editor.Forms
         #endregion
 
         #region 初期部隊タブ - 編集項目
+
+        /// <summary>
+        ///     テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitIntItemTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Unit unit = _selectedUnit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            TextBox control = sender as TextBox;
+            if (control == null)
+            {
+                return;
+            }
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // 文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(control.Text, out val))
+            {
+                _controller.UpdateItemValue(control, unit);
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            object prev = _controller.GetItemValue(itemId, unit);
+            if ((prev == null) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((prev != null) && (val == (int) prev))
+            {
+                return;
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, unit);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, unit);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, unit);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, unit, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, unit);
+        }
+
+        /// <summary>
+        ///     テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitDoubleItemTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Unit unit = _selectedUnit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            TextBox control = sender as TextBox;
+            if (control == null)
+            {
+                return;
+            }
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // 文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(control.Text, out val))
+            {
+                _controller.UpdateItemValue(control, unit);
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            object prev = _controller.GetItemValue(itemId, settings);
+            if ((prev == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((prev != null) && DoubleHelper.IsEqual(val, (double) prev))
+            {
+                return;
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, unit);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, unit);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, unit);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, unit, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, unit);
+        }
+
+        /// <summary>
+        ///     テキストボックスの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitStringItemTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Unit unit = _selectedUnit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            TextBox control = sender as TextBox;
+            if (control == null)
+            {
+                return;
+            }
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // 初期値から変更されていなければ何もしない
+            object prev = _controller.GetItemValue(itemId, unit);
+            string val = control.Text;
+            if ((prev == null) && string.IsNullOrEmpty(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val.Equals(prev))
+            {
+                return;
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, unit);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, unit);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, unit);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, unit, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, unit);
+        }
+
+        /// <summary>
+        ///     コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            Unit unit = _selectedUnit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            ComboBox control = sender as ComboBox;
+            if (control == null)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            object val = _controller.GetItemValue(itemId, unit);
+            object sel = _controller.GetListItemValue(itemId, e.Index, unit);
+            Brush brush = (((int) val == (int) sel) && _controller.IsItemDirty(itemId, unit))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = control.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUnitComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            ComboBox control = (ComboBox) sender;
+            int index = control.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+
+            Unit unit = _selectedUnit;
+            if (unit == null)
+            {
+                return;
+            }
+
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // 初期値から変更されていなければ何もしない
+            object val = _controller.GetListItemValue(itemId, index);
+            if (val == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            object prev = _controller.GetItemValue(itemId, unit);
+            if ((prev != null) && ((int) val == (int) prev))
+            {
+                return;
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, unit);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, val, unit, settings);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, unit);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, unit, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, unit);
+        }
+
+        /// <summary>
+        ///     テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionIntItemTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Division division = _selectedDivision;
+            if (division == null)
+            {
+                return;
+            }
+
+            TextBox control = sender as TextBox;
+            if (control == null)
+            {
+                return;
+            }
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // 文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(control.Text, out val))
+            {
+                _controller.UpdateItemValue(control, division);
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            object prev = _controller.GetItemValue(itemId, division);
+            if ((prev == null) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((prev != null) && (val == (int) prev))
+            {
+                return;
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, division);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, division);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, division);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, division, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, division);
+        }
+
+        /// <summary>
+        ///     テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionDoubleItemTextBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Division division = _selectedDivision;
+            if (division == null)
+            {
+                return;
+            }
+
+            TextBox control = sender as TextBox;
+            if (control == null)
+            {
+                return;
+            }
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // 文字列を数値に変換できなければ値を戻す
+            double val;
+            if (!DoubleHelper.TryParse(control.Text, out val))
+            {
+                _controller.UpdateItemValue(control, division);
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            object prev = _controller.GetItemValue(itemId, division);
+            if ((prev == null) && DoubleHelper.IsZero(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((prev != null) && DoubleHelper.IsEqual(val, (double) prev))
+            {
+                return;
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, division);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, division);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, division);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, division, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, division);
+        }
+
+        /// <summary>
+        ///     テキストボックスの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionStringItemTextBoxTextChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Division division = _selectedDivision;
+            if (division == null)
+            {
+                return;
+            }
+
+            TextBox control = sender as TextBox;
+            if (control == null)
+            {
+                return;
+            }
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // 初期値から変更されていなければ何もしない
+            object prev = _controller.GetItemValue(itemId, division);
+            string val = control.Text;
+            if ((prev == null) && string.IsNullOrEmpty(val))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if (val.Equals(prev))
+            {
+                return;
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, division);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, division);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, division);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, division, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, division);
+        }
+
+        /// <summary>
+        ///     コンボボックスの項目描画処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
+            Division division = _selectedDivision;
+            if (division == null)
+            {
+                return;
+            }
+
+            ComboBox control = sender as ComboBox;
+            if (control == null)
+            {
+                return;
+            }
+
+            // 背景を描画する
+            e.DrawBackground();
+
+            // 項目の文字列を描画する
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            object val = _controller.GetItemValue(itemId, division);
+            object sel = _controller.GetListItemValue(itemId, e.Index);
+            Brush brush = (((int) val == (int) sel) && _controller.IsItemDirty(itemId, division))
+                ? new SolidBrush(Color.Red)
+                : new SolidBrush(SystemColors.WindowText);
+            string s = control.Items[e.Index].ToString();
+            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
+            brush.Dispose();
+
+            // フォーカスを描画する
+            e.DrawFocusRectangle();
+        }
+
+        /// <summary>
+        ///     コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            ComboBox control = (ComboBox) sender;
+            int index = control.SelectedIndex;
+            if (index < 0)
+            {
+                return;
+            }
+
+            Division division = _selectedDivision;
+            if (division == null)
+            {
+                return;
+            }
+
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // 初期値から変更されていなければ何もしない
+            object val = _controller.GetListItemValue(itemId, index, division);
+            if (val == null)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            object prev = _controller.GetItemValue(itemId, division);
+            if ((prev != null) && ((int) val == (int) prev))
+            {
+                return;
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, division);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, val, division, settings);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, division);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, division, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, division);
+        }
+
+        /// <summary>
+        ///     テキストボックスのフォーカス移動後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionComboBoxValidated(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Division division = _selectedDivision;
+            if (division == null)
+            {
+                return;
+            }
+
+            ComboBox control = sender as ComboBox;
+            if (control == null)
+            {
+                return;
+            }
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // 文字列を数値に変換できなければ値を戻す
+            int val;
+            if (!IntHelper.TryParse(control.Text, out val))
+            {
+                _controller.UpdateItemValue(control, division);
+                return;
+            }
+
+            // 初期値から変更されていなければ何もしない
+            object prev = _controller.GetItemValue(itemId, division);
+            if ((prev == null) && (val == 0))
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((prev != null) && (val == (int) prev))
+            {
+                return;
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, division);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, division);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, division);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, division, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, division);
+        }
+
+        /// <summary>
+        ///     チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDivisionCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            Division division = _selectedDivision;
+            if (division == null)
+            {
+                return;
+            }
+
+            CheckBox control = sender as CheckBox;
+            if (control == null)
+            {
+                return;
+            }
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
+
+            // 初期値から変更されていなければ何もしない
+            bool val = control.Checked;
+            object prev = _controller.GetItemValue(itemId, division);
+            if ((prev == null) && !val)
+            {
+                return;
+            }
+
+            // 値に変化がなければ何もしない
+            if ((prev != null) && (val == (bool) prev))
+            {
+                return;
+            }
+
+            _controller.OutputItemValueChangedLog(itemId, val, division);
+
+            // 項目値変更前の処理
+            _controller.PreItemChanged(itemId, val, division, settings);
+
+            // 値を更新する
+            _controller.SetItemValue(itemId, val, division);
+
+            // 編集済みフラグを設定する
+            _controller.SetItemDirty(itemId, division, settings);
+
+            // 文字色を変更する
+            control.ForeColor = Color.Red;
+
+            // 項目値変更後の処理
+            _controller.PostItemChanged(itemId, division);
+        }
 
         #endregion
 

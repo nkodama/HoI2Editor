@@ -1080,10 +1080,10 @@
     <value>士気</value>
   </data>
   <data name="organisationLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
+    <value>41, 12</value>
   </data>
   <data name="organisationLabel.Text" xml:space="preserve">
-    <value>指揮統制率</value>
+    <value>組織率</value>
   </data>
   <data name="strengthLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -1136,12 +1136,6 @@
   <data name="baseLabel.Text" xml:space="preserve">
     <value>基地</value>
   </data>
-  <data name="homeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="homeLabel.Text" xml:space="preserve">
-    <value>基準位置</value>
-  </data>
   <data name="locationLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
   </data>
@@ -1156,6 +1150,9 @@
   </data>
   <data name="unitGroupBox.Text" xml:space="preserve">
     <value>ユニット</value>
+  </data>
+  <data name="oobCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="oobTabPage.Text" xml:space="preserve">
     <value>初期部隊</value>
