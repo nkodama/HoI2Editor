@@ -3984,4 +3984,10 @@
   <data name="UnitTreeUndeployedNaval" xml:space="preserve">
     <value>未配備海軍師団</value>
   </data>
+  <data name="UnitTreeNewDivision" xml:space="preserve">
+    <value>&lt;新規師団&gt;</value>
+  </data>
+  <data name="UnitTreeNewUnit" xml:space="preserve">
+    <value>&lt;新規ユニット&gt;</value>
+  </data>
 </root>

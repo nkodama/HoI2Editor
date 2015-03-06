@@ -29,24 +29,29 @@ namespace HoI2Editor.Controllers
         /// </summary>
         private readonly MapPanelController _mapPanelController;
 
+        /// <summary>
+        ///     ユニットツリーのコントローラ
+        /// </summary>
+        private readonly UnitTreeController _unitTreeController;
+
         #endregion
 
         #region 指揮官候補リスト
 
         /// <summary>
-        /// 陸軍指揮官リスト
+        ///     陸軍指揮官リスト
         /// </summary>
         private List<Leader> _landLeaders;
 
         /// <summary>
-        /// 海軍指揮官リスト
+        ///     海軍指揮官リスト
         /// </summary>
         private List<Leader> _navalLeaders;
 
         /// <summary>
-        /// 空軍指揮官リスト
+        ///     空軍指揮官リスト
         /// </summary>
-        private List<Leader> _airLeaders; 
+        private List<Leader> _airLeaders;
 
         #endregion
 
@@ -112,22 +117,22 @@ namespace HoI2Editor.Controllers
         private List<Province> _landProvinces;
 
         /// <summary>
-        /// 海洋/海軍基地プロヴィンスリスト
+        ///     海洋/海軍基地プロヴィンスリスト
         /// </summary>
         private List<Province> _seaBaseProvinces;
 
         /// <summary>
-        /// 海軍基地プロヴィンスリスト
+        ///     海軍基地プロヴィンスリスト
         /// </summary>
         private List<Province> _navalBaseProvinces;
 
         /// <summary>
-        /// 空軍基地プロヴィンスリスト
+        ///     空軍基地プロヴィンスリスト
         /// </summary>
         private List<Province> _airBaseProvinces;
 
         /// <summary>
-        /// プロヴィンスリストの初期化済みフラグ
+        ///     プロヴィンスリストの初期化済みフラグ
         /// </summary>
         private bool _provincesInitialized;
 
@@ -136,34 +141,34 @@ namespace HoI2Editor.Controllers
         #region ユニット種類リスト
 
         /// <summary>
-        /// 陸軍師団のユニット種類
+        ///     陸軍師団のユニット種類
         /// </summary>
         private List<UnitType> _landDivisionTypes;
 
         /// <summary>
-        /// 海軍師団のユニット種類
+        ///     海軍師団のユニット種類
         /// </summary>
         private List<UnitType> _navalDivisionTypes;
 
         /// <summary>
-        /// 空軍師団のユニット種類
+        ///     空軍師団のユニット種類
         /// </summary>
         private List<UnitType> _airDivisionTypes;
 
         /// <summary>
-        /// 陸軍旅団のユニット種類
+        ///     陸軍旅団のユニット種類
         /// </summary>
         private List<UnitType> _landBrigadeTypes;
 
         /// <summary>
-        /// 海軍旅団のユニット種類
+        ///     海軍旅団のユニット種類
         /// </summary>
         private List<UnitType> _navalBrigadeTypes;
 
         /// <summary>
-        /// 空軍旅団のユニット種類
+        ///     空軍旅団のユニット種類
         /// </summary>
-        private List<UnitType> _airBrigadeTypes; 
+        private List<UnitType> _airBrigadeTypes;
 
         #endregion
 
@@ -718,10 +723,13 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="form">シナリオエディタのフォーム</param>
         /// <param name="mapPanelController">マップパネルのコントローラ</param>
-        public ScenarioEditorController(ScenarioEditorForm form, MapPanelController mapPanelController)
+        /// <param name="unitTreeController">ユニットツリーのコントローラ</param>
+        public ScenarioEditorController(ScenarioEditorForm form, MapPanelController mapPanelController,
+            UnitTreeController unitTreeController)
         {
             _form = form;
             _mapPanelController = mapPanelController;
+            _unitTreeController = unitTreeController;
         }
 
         #endregion
@@ -845,22 +853,22 @@ namespace HoI2Editor.Controllers
         #region ユニット種類リスト
 
         /// <summary>
-        /// ユニット種類リストを初期化する
+        ///     ユニット種類リストを初期化する
         /// </summary>
         public void InitUnitTypeList()
         {
             _landDivisionTypes =
                 Units.DivisionTypes.Where(type => Units.Items[(int) type].Branch == Branch.Army).ToList();
             _navalDivisionTypes =
-                Units.DivisionTypes.Where(type => Units.Items[(int)type].Branch == Branch.Navy).ToList();
+                Units.DivisionTypes.Where(type => Units.Items[(int) type].Branch == Branch.Navy).ToList();
             _airDivisionTypes =
                 Units.DivisionTypes.Where(type => Units.Items[(int) type].Branch == Branch.Airforce).ToList();
             _landBrigadeTypes =
-                Units.BrigadeTypes.Where(type => Units.Items[(int)type].Branch == Branch.Army).ToList();
+                Units.BrigadeTypes.Where(type => Units.Items[(int) type].Branch == Branch.Army).ToList();
             _navalBrigadeTypes =
-                Units.BrigadeTypes.Where(type => Units.Items[(int)type].Branch == Branch.Navy).ToList();
+                Units.BrigadeTypes.Where(type => Units.Items[(int) type].Branch == Branch.Navy).ToList();
             _airBrigadeTypes =
-                Units.BrigadeTypes.Where(type => Units.Items[(int)type].Branch == Branch.Airforce).ToList();
+                Units.BrigadeTypes.Where(type => Units.Items[(int) type].Branch == Branch.Airforce).ToList();
         }
 
         #endregion
@@ -1232,7 +1240,7 @@ namespace HoI2Editor.Controllers
         /// <param name="unit">ユニット</param>
         public void UpdateItemValue(TextBox control, Unit unit)
         {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             control.Text = ObjectHelper.ToString(GetItemValue(itemId, unit));
         }
 
@@ -1243,7 +1251,7 @@ namespace HoI2Editor.Controllers
         /// <param name="unit">ユニット</param>
         public void UpdateItemValue(ComboBox control, Unit unit)
         {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             object val = GetItemValue(itemId, unit);
             switch (itemId)
             {
@@ -1257,7 +1265,7 @@ namespace HoI2Editor.Controllers
 
                 case ScenarioEditorItemId.UnitLeader:
                     List<Leader> leaders = (List<Leader>) GetListItems(itemId, unit);
-                    control.SelectedIndex = leaders.FindIndex(leader => leader.Id == (int)val);
+                    control.SelectedIndex = leaders.FindIndex(leader => leader.Id == (int) val);
                     break;
             }
         }
@@ -1269,7 +1277,7 @@ namespace HoI2Editor.Controllers
         /// <param name="division">師団</param>
         public void UpdateItemValue(TextBox control, Division division)
         {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             control.Text = ObjectHelper.ToString(GetItemValue(itemId, division));
         }
 
@@ -1280,7 +1288,7 @@ namespace HoI2Editor.Controllers
         /// <param name="division">師団</param>
         public void UpdateItemValue(ComboBox control, Division division)
         {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             object val = GetItemValue(itemId, division);
             switch (itemId)
             {
@@ -1405,7 +1413,7 @@ namespace HoI2Editor.Controllers
         /// <param name="division">師団</param>
         public void UpdateItemValue(CheckBox control, Division division)
         {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             control.Checked = (bool) GetItemValue(itemId, division);
         }
 
@@ -1414,7 +1422,7 @@ namespace HoI2Editor.Controllers
         #region 編集項目 - リスト項目更新
 
         /// <summary>
-        /// リスト項目の値を更新する
+        ///     リスト項目の値を更新する
         /// </summary>
         /// <param name="control">コントロール</param>
         /// <param name="unit">ユニット</param>
@@ -1422,12 +1430,12 @@ namespace HoI2Editor.Controllers
         {
             control.BeginUpdate();
             control.Items.Clear();
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             switch (itemId)
             {
                 case ScenarioEditorItemId.UnitLocation:
                 case ScenarioEditorItemId.UnitBase:
-                    List<Province> provinces = (List<Province>)GetListItems(itemId, unit);
+                    List<Province> provinces = (List<Province>) GetListItems(itemId, unit);
                     if (provinces != null)
                     {
                         foreach (Province province in provinces)
@@ -1439,7 +1447,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.UnitLeader:
-                    List<Leader> leaders = (List<Leader>)GetListItems(itemId, unit);
+                    List<Leader> leaders = (List<Leader>) GetListItems(itemId, unit);
                     foreach (Leader leader in leaders)
                     {
                         control.Items.Add(leader.Name);
@@ -1450,7 +1458,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        /// リスト項目の値を更新する
+        ///     リスト項目の値を更新する
         /// </summary>
         /// <param name="control">コントロール</param>
         /// <param name="division">師団</param>
@@ -1459,7 +1467,7 @@ namespace HoI2Editor.Controllers
         {
             control.BeginUpdate();
             control.Items.Clear();
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             UnitClass uc;
             switch (itemId)
             {
@@ -1469,15 +1477,15 @@ namespace HoI2Editor.Controllers
                 case ScenarioEditorItemId.DivisionBrigadeType3:
                 case ScenarioEditorItemId.DivisionBrigadeType4:
                 case ScenarioEditorItemId.DivisionBrigadeType5:
-                    List<UnitType> types = (List<UnitType>)GetListItems(itemId, division);
+                    List<UnitType> types = (List<UnitType>) GetListItems(itemId, division);
                     foreach (UnitType type in types)
                     {
-                        control.Items.Add(Units.Items[(int)type]);
+                        control.Items.Add(Units.Items[(int) type]);
                     }
                     break;
 
                 case ScenarioEditorItemId.DivisionModel:
-                    uc = Units.Items[(int)division.Type];
+                    uc = Units.Items[(int) division.Type];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
                         control.Items.Add(uc.GetModelName(i, settings.Country));
@@ -1485,7 +1493,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeModel1:
-                    uc = Units.Items[(int)division.Extra1];
+                    uc = Units.Items[(int) division.Extra1];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
                         control.Items.Add(uc.GetModelName(i, settings.Country));
@@ -1493,7 +1501,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeModel2:
-                    uc = Units.Items[(int)division.Extra2];
+                    uc = Units.Items[(int) division.Extra2];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
                         control.Items.Add(uc.GetModelName(i, settings.Country));
@@ -1501,7 +1509,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeModel3:
-                    uc = Units.Items[(int)division.Extra3];
+                    uc = Units.Items[(int) division.Extra3];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
                         control.Items.Add(uc.GetModelName(i, settings.Country));
@@ -1509,7 +1517,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeModel4:
-                    uc = Units.Items[(int)division.Extra4];
+                    uc = Units.Items[(int) division.Extra4];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
                         control.Items.Add(uc.GetModelName(i, settings.Country));
@@ -1517,7 +1525,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeModel5:
-                    uc = Units.Items[(int)division.Extra5];
+                    uc = Units.Items[(int) division.Extra5];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
                         control.Items.Add(uc.GetModelName(i, settings.Country));
@@ -1660,7 +1668,7 @@ namespace HoI2Editor.Controllers
         /// <param name="unit">ユニット</param>
         public void UpdateItemColor(Control control, Unit unit)
         {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             control.ForeColor = IsItemDirty(itemId, unit) ? Color.Red : SystemColors.WindowText;
         }
 
@@ -1671,7 +1679,7 @@ namespace HoI2Editor.Controllers
         /// <param name="division">師団</param>
         public void UpdateItemColor(Control control, Division division)
         {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             control.ForeColor = IsItemDirty(itemId, division) ? Color.Red : SystemColors.WindowText;
         }
 
@@ -3245,7 +3253,7 @@ namespace HoI2Editor.Controllers
                     {
                         return null;
                     }
-                    return ((List<Minister>)GetListItems(itemId))[index].Id;
+                    return ((List<Minister>) GetListItems(itemId))[index].Id;
             }
 
             return null;
@@ -3264,10 +3272,10 @@ namespace HoI2Editor.Controllers
             {
                 case ScenarioEditorItemId.UnitLocation:
                 case ScenarioEditorItemId.UnitBase:
-                    return ((List<Province>)GetListItems(itemId, unit))[index].Id;
+                    return ((List<Province>) GetListItems(itemId, unit))[index].Id;
 
                 case ScenarioEditorItemId.UnitLeader:
-                    return ((List<Leader>)GetListItems(itemId, unit))[index].Id;
+                    return ((List<Leader>) GetListItems(itemId, unit))[index].Id;
             }
 
             return null;
@@ -3290,7 +3298,7 @@ namespace HoI2Editor.Controllers
                 case ScenarioEditorItemId.DivisionBrigadeType3:
                 case ScenarioEditorItemId.DivisionBrigadeType4:
                 case ScenarioEditorItemId.DivisionBrigadeType5:
-                    return ((List<UnitType>)GetListItems(itemId, division))[index];
+                    return ((List<UnitType>) GetListItems(itemId, division))[index];
 
                 case ScenarioEditorItemId.DivisionModel:
                 case ScenarioEditorItemId.DivisionBrigadeModel1:
@@ -5021,14 +5029,14 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.UnitType:
-                    if ((unit.Id != null) && Scenarios.ExistsTypeId((int)val, unit.Id.Id))
+                    if ((unit.Id != null) && Scenarios.ExistsTypeId((int) val, unit.Id.Id))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.UnitId:
-                    if ((unit.Id != null) && Scenarios.ExistsTypeId(unit.Id.Type, (int)val))
+                    if ((unit.Id != null) && Scenarios.ExistsTypeId(unit.Id.Type, (int) val))
                     {
                         return false;
                     }
@@ -5050,14 +5058,14 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.DivisionType:
-                    if ((division.Id != null) && Scenarios.ExistsTypeId((int)val, division.Id.Id))
+                    if ((division.Id != null) && Scenarios.ExistsTypeId((int) val, division.Id.Id))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.DivisionId:
-                    if ((division.Id != null) && Scenarios.ExistsTypeId(division.Id.Type, (int)val))
+                    if ((division.Id != null) && Scenarios.ExistsTypeId(division.Id.Type, (int) val))
                     {
                         return false;
                     }
@@ -5220,7 +5228,7 @@ namespace HoI2Editor.Controllers
         /// <returns>編集済みフラグ</returns>
         public bool IsItemDirty(ScenarioEditorItemId itemId, Unit unit)
         {
-            return unit.IsDirty((Unit.ItemId)ItemDirtyFlags[(int)itemId]);
+            return unit.IsDirty((Unit.ItemId) ItemDirtyFlags[(int) itemId]);
         }
 
         /// <summary>
@@ -5231,7 +5239,7 @@ namespace HoI2Editor.Controllers
         /// <returns>編集済みフラグ</returns>
         public bool IsItemDirty(ScenarioEditorItemId itemId, Division division)
         {
-            return division.IsDirty((Division.ItemId)ItemDirtyFlags[(int)itemId]);
+            return division.IsDirty((Division.ItemId) ItemDirtyFlags[(int) itemId]);
         }
 
         #endregion
@@ -5515,7 +5523,7 @@ namespace HoI2Editor.Controllers
         /// <param name="settings">国家設定</param>
         public void SetItemDirty(ScenarioEditorItemId itemId, Unit unit, CountrySettings settings)
         {
-            unit.SetDirty((Unit.ItemId)ItemDirtyFlags[(int)itemId]);
+            unit.SetDirty((Unit.ItemId) ItemDirtyFlags[(int) itemId]);
             settings.SetDirty();
             Scenarios.SetDirty();
         }
@@ -5528,7 +5536,7 @@ namespace HoI2Editor.Controllers
         /// <param name="settings">国家設定</param>
         public void SetItemDirty(ScenarioEditorItemId itemId, Division division, CountrySettings settings)
         {
-            division.SetDirty((Division.ItemId)ItemDirtyFlags[(int)itemId]);
+            division.SetDirty((Division.ItemId) ItemDirtyFlags[(int) itemId]);
             settings.SetDirty();
             Scenarios.SetDirty();
         }
@@ -6406,7 +6414,8 @@ namespace HoI2Editor.Controllers
                     if (division.Id == null)
                     {
                         division.Id = new TypeId();
-                        PreItemChangedDivisionType((TextBox)_form.GetItemControl(ScenarioEditorItemId.DivisionId), val, division,
+                        PreItemChangedDivisionType((TextBox) _form.GetItemControl(ScenarioEditorItemId.DivisionId), val,
+                            division,
                             settings);
                     }
                     break;
@@ -6415,7 +6424,8 @@ namespace HoI2Editor.Controllers
                     if (division.Id == null)
                     {
                         division.Id = new TypeId();
-                        PreItemChangedDivisionId((TextBox)_form.GetItemControl(ScenarioEditorItemId.DivisionType), val, division,
+                        PreItemChangedDivisionId((TextBox) _form.GetItemControl(ScenarioEditorItemId.DivisionType), val,
+                            division,
                             settings);
                     }
                     break;
@@ -7025,10 +7035,10 @@ namespace HoI2Editor.Controllers
         private void PreItemChangedUnitType(TextBox control, object val, Unit unit, CountrySettings settings)
         {
             // 新規idを設定する
-            unit.Id.Id = Scenarios.GetNewId((int)val, 1);
+            unit.Id.Id = Scenarios.GetNewId((int) val, 1);
 
             // 編集済みフラグを設定する
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             SetItemDirty(itemId, unit, settings);
 
             // 編集項目の値を更新する
@@ -7047,10 +7057,10 @@ namespace HoI2Editor.Controllers
         /// <param name="settings">国家設定</param>
         private void PreItemChangedUnitId(TextBox control, object val, Unit unit, CountrySettings settings)
         {
-            unit.Id.Type = Scenarios.GetNewType(1, (int)val);
+            unit.Id.Type = Scenarios.GetNewType(1, (int) val);
 
             // 編集済みフラグを設定する
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             SetItemDirty(itemId, unit, settings);
 
             // 編集項目の値を更新する
@@ -7070,10 +7080,10 @@ namespace HoI2Editor.Controllers
         private void PreItemChangedDivisionType(TextBox control, object val, Division division, CountrySettings settings)
         {
             // 新規idを設定する
-            division.Id.Id = Scenarios.GetNewId((int)val, 1);
+            division.Id.Id = Scenarios.GetNewId((int) val, 1);
 
             // 編集済みフラグを設定する
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             SetItemDirty(itemId, division, settings);
 
             // 編集項目の値を更新する
@@ -7092,10 +7102,10 @@ namespace HoI2Editor.Controllers
         /// <param name="settings">国家設定</param>
         private void PreItemChangedDivisionId(TextBox control, object val, Division division, CountrySettings settings)
         {
-            division.Id.Type = Scenarios.GetNewType(1, (int)val);
+            division.Id.Type = Scenarios.GetNewType(1, (int) val);
 
             // 編集済みフラグを設定する
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId)control.Tag;
+            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             SetItemDirty(itemId, division, settings);
 
             // 編集項目の値を更新する
@@ -7821,6 +7831,10 @@ namespace HoI2Editor.Controllers
         {
             switch (itemId)
             {
+                case ScenarioEditorItemId.UnitName:
+                    _unitTreeController.UpdateUnitNodeLabel(unit.Name);
+                    break;
+
                 case ScenarioEditorItemId.UnitLocationId:
                     PostItemChangedProvinceId((ComboBox) _form.GetItemControl(ScenarioEditorItemId.UnitLocation), unit);
                     break;
@@ -7857,6 +7871,10 @@ namespace HoI2Editor.Controllers
         {
             switch (itemId)
             {
+                case ScenarioEditorItemId.DivisionName:
+                    _unitTreeController.UpdateDivisionNodeLabel(division.Name);
+                    break;
+
                 case ScenarioEditorItemId.DivisionType:
                     PostItemChangedUnitType((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionModel),
                         division, settings);
@@ -7869,22 +7887,22 @@ namespace HoI2Editor.Controllers
 
                 case ScenarioEditorItemId.DivisionBrigadeType2:
                     PostItemChangedUnitType(
-                        (ComboBox)_form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel2), division, settings);
+                        (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel2), division, settings);
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeType3:
                     PostItemChangedUnitType(
-                        (ComboBox)_form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel3), division, settings);
+                        (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel3), division, settings);
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeType4:
                     PostItemChangedUnitType(
-                        (ComboBox)_form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel4), division, settings);
+                        (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel4), division, settings);
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeType5:
                     PostItemChangedUnitType(
-                        (ComboBox)_form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel5), division, settings);
+                        (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel5), division, settings);
                     break;
             }
         }
@@ -8400,7 +8418,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        /// 項目値変更後の処理 - ユニット種類
+        ///     項目値変更後の処理 - ユニット種類
         /// </summary>
         /// <param name="control">ユニットモデルコンボボックス</param>
         /// <param name="division">師団</param>
@@ -8616,7 +8634,7 @@ namespace HoI2Editor.Controllers
         /// <param name="division">師団</param>
         public void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, Division division)
         {
-            Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int)itemId],
+            Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
                 ObjectHelper.ToString(GetItemValue(itemId, division)), ObjectHelper.ToString(val), division.Name);
         }
 

@@ -11680,6 +11680,24 @@ namespace HoI2Editor.Properties {
         }
         
         /// <summary>
+        ///   &lt;New Division&gt; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeNewDivision {
+            get {
+                return ResourceManager.GetString("UnitTreeNewDivision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   &lt;New Unit&gt; に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UnitTreeNewUnit {
+            get {
+                return ResourceManager.GetString("UnitTreeNewUnit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Buildings under construction に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string UnitTreeProvinceDevelopment {

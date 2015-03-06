@@ -96,16 +96,6 @@ namespace HoI2Editor.Forms
         private Country _selectedCountry;
 
         /// <summary>
-        ///     選択中のユニット
-        /// </summary>
-        private Unit _selectedUnit;
-
-        /// <summary>
-        ///     選択中の師団
-        /// </summary>
-        private Division _selectedDivision;
-
-        /// <summary>
         ///     最終のユニットの兵科
         /// </summary>
         private Branch _lastUnitBranch;
@@ -297,8 +287,11 @@ namespace HoI2Editor.Forms
             // マップパネル
             _mapPanelController = new MapPanelController(provinceMapPanel, provinceMapPictureBox);
 
+            // ユニットツリー
+            _unitTreeController = new UnitTreeController(unitTreeView);
+
             // コントローラ
-            _controller = new ScenarioEditorController(this, _mapPanelController);
+            _controller = new ScenarioEditorController(this, _mapPanelController, _unitTreeController);
         }
 
         /// <summary>
@@ -10141,7 +10134,6 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitUnitTree()
         {
-            _unitTreeController = new UnitTreeController(unitTreeView);
             _unitTreeController.AfterSelect += OnUnitTreeAfterSelect;
         }
 
@@ -10183,9 +10175,6 @@ namespace HoI2Editor.Forms
                 oobDownButton.Enabled = false;
                 oobBottomButton.Enabled = false;
             }
-
-            _selectedUnit = e.Unit;
-            _selectedDivision = e.Division;
 
             if (e.Unit != null)
             {
@@ -10543,7 +10532,7 @@ namespace HoI2Editor.Forms
             maxStrengthTextBox.Text = "";
             organisationTextBox.Text = "";
             maxOrganisationTextBox.Text = "";
-            unitMoraleTextBox.Text = "";
+            divisionMoraleTextBox.Text = "";
             experienceTextBox.Text = "";
             lockedCheckBox.Checked = false;
             dormantCheckBox.Checked = false;
@@ -10577,7 +10566,7 @@ namespace HoI2Editor.Forms
         private void OnUnitIntItemTextBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            Unit unit = _selectedUnit;
+            Unit unit = _unitTreeController.GetSelectedUnit();
             if (unit == null)
             {
                 return;
@@ -10639,7 +10628,7 @@ namespace HoI2Editor.Forms
         private void OnUnitDoubleItemTextBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            Unit unit = _selectedUnit;
+            Unit unit = _unitTreeController.GetSelectedUnit();
             if (unit == null)
             {
                 return;
@@ -10701,7 +10690,7 @@ namespace HoI2Editor.Forms
         private void OnUnitStringItemTextBoxTextChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            Unit unit = _selectedUnit;
+            Unit unit = _unitTreeController.GetSelectedUnit();
             if (unit == null)
             {
                 return;
@@ -10761,7 +10750,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = _selectedUnit;
+            Unit unit = _unitTreeController.GetSelectedUnit();
             if (unit == null)
             {
                 return;
@@ -10806,7 +10795,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Unit unit = _selectedUnit;
+            Unit unit = _unitTreeController.GetSelectedUnit();
             if (unit == null)
             {
                 return;
@@ -10855,7 +10844,7 @@ namespace HoI2Editor.Forms
         private void OnDivisionIntItemTextBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            Division division = _selectedDivision;
+            Division division = _unitTreeController.GetSelectedDivision();
             if (division == null)
             {
                 return;
@@ -10906,7 +10895,7 @@ namespace HoI2Editor.Forms
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, division);
+            _controller.PostItemChanged(itemId, division, settings);
         }
 
         /// <summary>
@@ -10917,7 +10906,7 @@ namespace HoI2Editor.Forms
         private void OnDivisionDoubleItemTextBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            Division division = _selectedDivision;
+            Division division = _unitTreeController.GetSelectedDivision();
             if (division == null)
             {
                 return;
@@ -10968,7 +10957,7 @@ namespace HoI2Editor.Forms
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, division);
+            _controller.PostItemChanged(itemId, division, settings);
         }
 
         /// <summary>
@@ -10979,7 +10968,7 @@ namespace HoI2Editor.Forms
         private void OnDivisionStringItemTextBoxTextChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            Division division = _selectedDivision;
+            Division division = _unitTreeController.GetSelectedDivision();
             if (division == null)
             {
                 return;
@@ -11023,7 +11012,7 @@ namespace HoI2Editor.Forms
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, division);
+            _controller.PostItemChanged(itemId, division, settings);
         }
 
         /// <summary>
@@ -11039,7 +11028,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Division division = _selectedDivision;
+            Division division = _unitTreeController.GetSelectedDivision();
             if (division == null)
             {
                 return;
@@ -11084,7 +11073,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            Division division = _selectedDivision;
+            Division division = _unitTreeController.GetSelectedDivision();
             if (division == null)
             {
                 return;
@@ -11122,7 +11111,7 @@ namespace HoI2Editor.Forms
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, division);
+            _controller.PostItemChanged(itemId, division, settings);
         }
 
         /// <summary>
@@ -11133,7 +11122,7 @@ namespace HoI2Editor.Forms
         private void OnDivisionComboBoxValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            Division division = _selectedDivision;
+            Division division = _unitTreeController.GetSelectedDivision();
             if (division == null)
             {
                 return;
@@ -11184,7 +11173,7 @@ namespace HoI2Editor.Forms
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, division);
+            _controller.PostItemChanged(itemId, division, settings);
         }
 
         /// <summary>
@@ -11195,7 +11184,7 @@ namespace HoI2Editor.Forms
         private void OnDivisionCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
-            Division division = _selectedDivision;
+            Division division = _unitTreeController.GetSelectedDivision();
             if (division == null)
             {
                 return;
@@ -11239,7 +11228,7 @@ namespace HoI2Editor.Forms
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, division);
+            _controller.PostItemChanged(itemId, division, settings);
         }
 
         #endregion

@@ -3273,6 +3273,33 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirtyAll()
+        {
+            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            {
+                _dirtyFlags[(int) id] = true;
+            }
+            _dirtyFlag = true;
+
+            if (Mission != null)
+            {
+                Mission.SetDirtyAll();
+            }
+
+            foreach (Division division in Divisions)
+            {
+                division.SetDirtyAll();
+            }
+
+            foreach (Unit landUnit in LandUnits)
+            {
+                landUnit.SetDirtyAll();
+            }
+        }
+
+        /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
         public void ResetDirtyAll()
@@ -3844,6 +3871,18 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirtyAll()
+        {
+            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            {
+                _dirtyFlags[(int) id] = true;
+            }
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
         public void ResetDirtyAll()
@@ -4144,6 +4183,18 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirtyAll()
+        {
+            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            {
+                _dirtyFlags[(int) id] = true;
+            }
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
         public void ResetDirtyAll()
@@ -4316,6 +4367,17 @@ namespace HoI2Editor.Models
         public void SetDirty(ItemId id)
         {
             _dirtyFlags[(int) id] = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを全て設定する
+        /// </summary>
+        public void SetDirtyAll()
+        {
+            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            {
+                _dirtyFlags[(int) id] = true;
+            }
         }
 
         /// <summary>

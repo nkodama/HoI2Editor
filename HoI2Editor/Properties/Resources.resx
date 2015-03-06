@@ -4026,4 +4026,10 @@
   <data name="UnitTreeUndeployedNaval" xml:space="preserve">
     <value>Undeployed naval divisions</value>
   </data>
+  <data name="UnitTreeNewDivision" xml:space="preserve">
+    <value>&lt;New Division&gt;</value>
+  </data>
+  <data name="UnitTreeNewUnit" xml:space="preserve">
+    <value>&lt;New Unit&gt;</value>
+  </data>
 </root>

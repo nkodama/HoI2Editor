@@ -176,17 +176,31 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     選択ノードのラベルを更新する
+        ///     選択ユニットノードのラベルを更新する
         /// </summary>
-        /// <param name="name">ラベル名</param>
-        public void UpdateNodeLabel(string name)
+        public void UpdateUnitNodeLabel(string name)
         {
-            if (_treeView.SelectedNode == null)
+            TreeNode node = GetSelectedUnitNode();
+            if (node == null)
             {
                 return;
             }
 
-            _treeView.SelectedNode.Text = name;
+            node.Text = name;
+        }
+
+        /// <summary>
+        ///     選択師団ノードのラベルを更新する
+        /// </summary>
+        public void UpdateDivisionNodeLabel(string name)
+        {
+            TreeNode node = GetSelectedDivisionNode();
+            if (node == null)
+            {
+                return;
+            }
+
+            node.Text = name;
         }
 
         /// <summary>
@@ -299,34 +313,48 @@ namespace HoI2Editor.Controllers
         public void AddUnit()
         {
             Unit unit = new Unit();
-            TreeNode node = _treeView.SelectedNode;
-            TreeNode parent = node.Parent;
-            CountrySettings settings;
+            unit.SetDirtyAll();
+            TreeNode selected = _treeView.SelectedNode;
+            TreeNode parent = selected.Parent;
+            TreeNode node;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
+                                       Scenarios.CreateCountrySettings(_country);
+
+            // 編集済みフラグを設定する
+            settings.SetDirty();
+            Scenarios.SetDirty();
 
             // 陸軍/海軍/空軍ユニットのルートノード
             if (parent == null)
             {
-                switch ((NodeType) node.Tag)
+                switch ((NodeType) selected.Tag)
                 {
                     case NodeType.Land:
                         unit.Branch = Branch.Army;
-                        node.Nodes.Add(CreateLandUnitNode(unit));
-                        settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                        node = CreateLandUnitNode(unit);
+                        node.Text = Resources.UnitTreeNewUnit;
+                        selected.Nodes.Add(node);
                         settings.LandUnits.Add(unit);
+                        _treeView.SelectedNode = node;
                         break;
 
                     case NodeType.Naval:
                         unit.Branch = Branch.Navy;
-                        node.Nodes.Add(CreateNavalUnitNode(unit));
-                        settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                        node = CreateNavalUnitNode(unit);
+                        node.Text = Resources.UnitTreeNewUnit;
+                        selected.Nodes.Add(node);
                         settings.NavalUnits.Add(unit);
+                        _treeView.SelectedNode = node;
                         break;
 
                     case NodeType.Air:
                         unit.Branch = Branch.Airforce;
-                        node.Nodes.Add(CreateAirUnitNode(unit));
-                        settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                        node = CreateAirUnitNode(unit);
+                        node.Text = Resources.UnitTreeNewUnit;
+                        selected.Nodes.Add(node);
                         settings.AirUnits.Add(unit);
+                        _treeView.SelectedNode = node;
                         break;
                 }
                 return;
@@ -337,41 +365,53 @@ namespace HoI2Editor.Controllers
             if (transport != null)
             {
                 unit.Branch = Branch.Army;
-                node.Nodes.Add(CreateLandUnitNode(unit));
+                node = CreateLandUnitNode(unit);
+                node.Text = Resources.UnitTreeNewUnit;
+                selected.Nodes.Add(node);
                 transport.LandUnits.Add(unit);
+                _treeView.SelectedNode = node;
                 return;
             }
 
             // 陸軍/海軍/空軍/搭載ユニット
-            int index = parent.Nodes.IndexOf(node) + 1;
+            int index = parent.Nodes.IndexOf(selected) + 1;
             switch ((NodeType) parent.Tag)
             {
                 case NodeType.Land:
                     unit.Branch = Branch.Army;
-                    parent.Nodes.Insert(index, CreateLandUnitNode(unit));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateLandUnitNode(unit);
+                    node.Text = Resources.UnitTreeNewUnit;
+                    parent.Nodes.Insert(index, node);
                     settings.LandUnits.Insert(index, unit);
+                    _treeView.SelectedNode = node;
                     break;
 
                 case NodeType.Naval:
                     unit.Branch = Branch.Navy;
-                    parent.Nodes.Insert(index, CreateNavalUnitNode(unit));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateNavalUnitNode(unit);
+                    node.Text = Resources.UnitTreeNewUnit;
+                    parent.Nodes.Insert(index, node);
                     settings.NavalUnits.Insert(index, unit);
+                    _treeView.SelectedNode = node;
                     break;
 
                 case NodeType.Air:
                     unit.Branch = Branch.Airforce;
-                    parent.Nodes.Insert(index, CreateAirUnitNode(unit));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateAirUnitNode(unit);
+                    node.Text = Resources.UnitTreeNewUnit;
+                    parent.Nodes.Insert(index, node);
                     settings.AirUnits.Insert(index, unit);
+                    _treeView.SelectedNode = node;
                     break;
 
                 case NodeType.Boarding:
                     unit.Branch = Branch.Army;
-                    parent.Nodes.Insert(index, CreateLandUnitNode(unit));
+                    node = CreateLandUnitNode(unit);
+                    node.Text = Resources.UnitTreeNewUnit;
+                    parent.Nodes.Insert(index, node);
                     transport = (Unit) parent.Parent.Tag;
                     transport.LandUnits.Insert(index, unit);
+                    _treeView.SelectedNode = node;
                     break;
             }
         }
@@ -382,41 +422,55 @@ namespace HoI2Editor.Controllers
         public void AddDivision()
         {
             Division division = new Division();
-            TreeNode node = _treeView.SelectedNode;
-            TreeNode parent = node.Parent;
-            CountrySettings settings;
+            division.SetDirtyAll();
+            TreeNode selected = _treeView.SelectedNode;
+            TreeNode parent = selected.Parent;
+            TreeNode node;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
+                                       Scenarios.CreateCountrySettings(_country);
+
+            // 編集済みフラグを設定する
+            settings.SetDirty();
+            Scenarios.SetDirty();
 
             // 未配備陸軍/海軍/空軍師団のルートノード
             if (parent == null)
             {
-                switch ((NodeType) node.Tag)
+                switch ((NodeType) selected.Tag)
                 {
                     case NodeType.UndeployedLand:
                         division.Branch = Branch.Army;
-                        node.Nodes.Add(CreateLandDivisionNode(division));
-                        settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                        node = CreateLandDivisionNode(division);
+                        node.Text = Resources.UnitTreeNewDivision;
+                        selected.Nodes.Add(node);
                         settings.LandDivisions.Add(division);
+                        _treeView.SelectedNode = node;
                         break;
 
                     case NodeType.UndeployedNaval:
                         division.Branch = Branch.Navy;
-                        node.Nodes.Add(CreateNavalDivisionNode(division));
-                        settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                        node = CreateNavalDivisionNode(division);
+                        node.Text = Resources.UnitTreeNewDivision;
+                        selected.Nodes.Add(node);
                         settings.NavalDivisions.Add(division);
+                        _treeView.SelectedNode = node;
                         break;
 
                     case NodeType.UndeployedAir:
                         division.Branch = Branch.Airforce;
-                        node.Nodes.Add(CreateAirDivisionNode(division));
-                        settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                        node = CreateAirDivisionNode(division);
+                        node.Text = Resources.UnitTreeNewDivision;
+                        selected.Nodes.Add(node);
                         settings.AirDivisions.Add(division);
+                        _treeView.SelectedNode = node;
                         break;
                 }
                 return;
             }
 
             // 陸軍/海軍/空軍/搭載ユニット
-            Unit unit = node.Tag as Unit;
+            Unit unit = selected.Tag as Unit;
             if (unit != null)
             {
                 division.Branch = unit.Branch;
@@ -424,18 +478,27 @@ namespace HoI2Editor.Controllers
                 {
                     case NodeType.Land:
                     case NodeType.Boarding:
-                        node.Nodes.Add(CreateLandDivisionNode(division));
+                        node = CreateLandDivisionNode(division);
+                        node.Text = Resources.UnitTreeNewDivision;
+                        selected.Nodes.Add(node);
                         unit.Divisions.Add(division);
+                        _treeView.SelectedNode = node;
                         break;
 
                     case NodeType.Naval:
-                        node.Nodes.Add(CreateNavalDivisionNode(division));
+                        node = CreateNavalDivisionNode(division);
+                        node.Text = Resources.UnitTreeNewDivision;
+                        selected.Nodes.Add(node);
                         unit.Divisions.Add(division);
+                        _treeView.SelectedNode = node;
                         break;
 
                     case NodeType.Air:
-                        node.Nodes.Add(CreateAirDivisionNode(division));
+                        node = CreateAirDivisionNode(division);
+                        node.Text = Resources.UnitTreeNewDivision;
+                        selected.Nodes.Add(node);
                         unit.Divisions.Add(division);
+                        _treeView.SelectedNode = node;
                         break;
                 }
                 return;
@@ -450,18 +513,27 @@ namespace HoI2Editor.Controllers
                 {
                     case NodeType.Land:
                     case NodeType.Boarding:
-                        parent.Nodes.Add(CreateLandDivisionNode(division));
+                        node = CreateLandDivisionNode(division);
+                        node.Text = Resources.UnitTreeNewDivision;
+                        parent.Nodes.Add(node);
                         unit.Divisions.Add(division);
+                        _treeView.SelectedNode = node;
                         break;
 
                     case NodeType.Naval:
-                        parent.Nodes.Add(CreateNavalDivisionNode(division));
+                        node = CreateNavalDivisionNode(division);
+                        node.Text = Resources.UnitTreeNewDivision;
+                        parent.Nodes.Add(node);
                         unit.Divisions.Add(division);
+                        _treeView.SelectedNode = node;
                         break;
 
                     case NodeType.Air:
-                        parent.Nodes.Add(CreateAirDivisionNode(division));
+                        node = CreateAirDivisionNode(division);
+                        node.Text = Resources.UnitTreeNewDivision;
+                        parent.Nodes.Add(node);
                         unit.Divisions.Add(division);
+                        _treeView.SelectedNode = node;
                         break;
                 }
                 return;
@@ -472,23 +544,29 @@ namespace HoI2Editor.Controllers
             {
                 case NodeType.UndeployedLand:
                     division.Branch = Branch.Army;
-                    parent.Nodes.Add(CreateLandDivisionNode(division));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateLandDivisionNode(division);
+                    node.Text = Resources.UnitTreeNewDivision;
+                    parent.Nodes.Add(node);
                     settings.LandDivisions.Add(division);
+                    _treeView.SelectedNode = node;
                     break;
 
                 case NodeType.UndeployedNaval:
                     division.Branch = Branch.Navy;
-                    parent.Nodes.Add(CreateNavalDivisionNode(division));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateNavalDivisionNode(division);
+                    node.Text = Resources.UnitTreeNewDivision;
+                    parent.Nodes.Add(node);
                     settings.NavalDivisions.Add(division);
+                    _treeView.SelectedNode = node;
                     break;
 
                 case NodeType.UndeployedAir:
                     division.Branch = Branch.Airforce;
-                    parent.Nodes.Add(CreateAirDivisionNode(division));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateAirDivisionNode(division);
+                    node.Text = Resources.UnitTreeNewDivision;
+                    parent.Nodes.Add(node);
                     settings.AirDivisions.Add(division);
+                    _treeView.SelectedNode = node;
                     break;
             }
         }
@@ -520,36 +598,65 @@ namespace HoI2Editor.Controllers
         private void CloneUnit(Unit original)
         {
             Unit unit = original.Clone();
-            TreeNode node = _treeView.SelectedNode;
-            TreeNode parent = node.Parent;
-            int index = parent.Nodes.IndexOf(node) + 1;
+            unit.SetDirtyAll();
+            TreeNode selected = _treeView.SelectedNode;
+            TreeNode parent = selected.Parent;
+            TreeNode node;
+            int index = parent.Nodes.IndexOf(selected) + 1;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
+                                       Scenarios.CreateCountrySettings(_country);
+
+            // 編集済みフラグを設定する
+            settings.SetDirty();
+            Scenarios.SetDirty();
 
             // 陸軍/海軍/空軍/搭載ユニット
-            CountrySettings settings;
             switch ((NodeType) parent.Tag)
             {
                 case NodeType.Land:
-                    parent.Nodes.Insert(index, CreateLandUnitNode(unit));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateLandUnitNode(unit);
+                    if (string.IsNullOrEmpty(unit.Name))
+                    {
+                        node.Text = Resources.UnitTreeNewUnit;
+                    }
+                    parent.Nodes.Insert(index, node);
                     settings.LandUnits.Insert(index, unit);
+                    _treeView.SelectedNode = node;
                     break;
 
                 case NodeType.Naval:
-                    parent.Nodes.Insert(index, CreateNavalUnitNode(unit));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateNavalUnitNode(unit);
+                    if (string.IsNullOrEmpty(unit.Name))
+                    {
+                        node.Text = Resources.UnitTreeNewUnit;
+                    }
+                    parent.Nodes.Insert(index, node);
                     settings.NavalUnits.Insert(index, unit);
+                    _treeView.SelectedNode = node;
                     break;
 
                 case NodeType.Air:
-                    parent.Nodes.Insert(index, CreateAirUnitNode(unit));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateAirUnitNode(unit);
+                    if (string.IsNullOrEmpty(unit.Name))
+                    {
+                        node.Text = Resources.UnitTreeNewUnit;
+                    }
+                    parent.Nodes.Insert(index, node);
                     settings.AirUnits.Insert(index, unit);
+                    _treeView.SelectedNode = node;
                     break;
 
                 case NodeType.Boarding:
-                    parent.Nodes.Insert(index, CreateLandUnitNode(unit));
+                    node = CreateLandUnitNode(unit);
+                    if (string.IsNullOrEmpty(unit.Name))
+                    {
+                        node.Text = Resources.UnitTreeNewUnit;
+                    }
+                    parent.Nodes.Insert(index, node);
                     Unit transport = (Unit) parent.Parent.Tag;
                     transport.LandUnits.Insert(index, unit);
+                    _treeView.SelectedNode = node;
                     break;
             }
         }
@@ -561,9 +668,18 @@ namespace HoI2Editor.Controllers
         private void CloneDivision(Division original)
         {
             Division division = original.Clone();
-            TreeNode node = _treeView.SelectedNode;
-            TreeNode parent = node.Parent;
-            int index = parent.Nodes.IndexOf(node) + 1;
+            division.SetDirtyAll();
+            TreeNode selected = _treeView.SelectedNode;
+            TreeNode parent = selected.Parent;
+            TreeNode node;
+            int index = parent.Nodes.IndexOf(selected) + 1;
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
+                                       Scenarios.CreateCountrySettings(_country);
+
+            // 編集済みフラグを設定する
+            settings.SetDirty();
+            Scenarios.SetDirty();
 
             // 陸軍/海軍/空軍/搭載師団
             Unit unit = parent.Tag as Unit;
@@ -573,43 +689,75 @@ namespace HoI2Editor.Controllers
                 {
                     case NodeType.Land:
                     case NodeType.Boarding:
-                        parent.Nodes.Insert(index, CreateLandDivisionNode(division));
+                        node = CreateLandDivisionNode(division);
+                        if (string.IsNullOrEmpty(division.Name))
+                        {
+                            node.Text = Resources.UnitTreeNewDivision;
+                        }
+                        parent.Nodes.Insert(index, node);
                         unit.Divisions.Insert(index, division);
+                        _treeView.SelectedNode = node;
                         break;
 
                     case NodeType.Naval:
-                        parent.Nodes.Insert(index, CreateNavalDivisionNode(division));
+                        node = CreateNavalDivisionNode(division);
+                        if (string.IsNullOrEmpty(division.Name))
+                        {
+                            node.Text = Resources.UnitTreeNewDivision;
+                        }
+                        parent.Nodes.Insert(index, node);
                         unit.Divisions.Insert(index, division);
+                        _treeView.SelectedNode = node;
                         break;
 
                     case NodeType.Air:
-                        parent.Nodes.Insert(index, CreateAirDivisionNode(division));
+                        node = CreateAirDivisionNode(division);
+                        if (string.IsNullOrEmpty(division.Name))
+                        {
+                            node.Text = Resources.UnitTreeNewDivision;
+                        }
+                        parent.Nodes.Insert(index, node);
                         unit.Divisions.Insert(index, division);
+                        _treeView.SelectedNode = node;
                         break;
                 }
                 return;
             }
 
             // 未配備陸軍/海軍/空軍師団
-            CountrySettings settings;
             switch ((NodeType) parent.Tag)
             {
                 case NodeType.UndeployedLand:
-                    parent.Nodes.Insert(index, CreateLandDivisionNode(division));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateLandDivisionNode(division);
+                    if (string.IsNullOrEmpty(division.Name))
+                    {
+                        node.Text = Resources.UnitTreeNewDivision;
+                    }
+                    parent.Nodes.Insert(index, node);
                     settings.LandDivisions.Insert(index, division);
+                    _treeView.SelectedNode = node;
                     break;
 
                 case NodeType.UndeployedNaval:
-                    parent.Nodes.Insert(index, CreateNavalDivisionNode(division));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateNavalDivisionNode(division);
+                    if (string.IsNullOrEmpty(division.Name))
+                    {
+                        node.Text = Resources.UnitTreeNewDivision;
+                    }
+                    parent.Nodes.Insert(index, node);
                     settings.NavalDivisions.Insert(index, division);
+                    _treeView.SelectedNode = node;
                     break;
 
                 case NodeType.UndeployedAir:
-                    parent.Nodes.Insert(index, CreateAirDivisionNode(division));
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
+                    node = CreateAirDivisionNode(division);
+                    if (string.IsNullOrEmpty(division.Name))
+                    {
+                        node.Text = Resources.UnitTreeNewDivision;
+                    }
+                    parent.Nodes.Insert(index, node);
                     settings.AirDivisions.Insert(index, division);
+                    _treeView.SelectedNode = node;
                     break;
             }
         }
@@ -650,25 +798,28 @@ namespace HoI2Editor.Controllers
         {
             TreeNode node = _treeView.SelectedNode;
             TreeNode parent = node.Parent;
-            CountrySettings settings;
 
             parent.Nodes.Remove(node);
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
+                                       Scenarios.CreateCountrySettings(_country);
+
+            // 編集済みフラグを設定する
+            settings.SetDirty();
+            Scenarios.SetDirty();
 
             // 陸軍/海軍/空軍/搭載ユニット
             switch ((NodeType) parent.Tag)
             {
                 case NodeType.Land:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.LandUnits.Remove(unit);
                     break;
 
                 case NodeType.Naval:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.NavalUnits.Remove(unit);
                     break;
 
                 case NodeType.Air:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.AirUnits.Remove(unit);
                     break;
 
@@ -690,6 +841,13 @@ namespace HoI2Editor.Controllers
 
             parent.Nodes.Remove(node);
 
+            CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
+                                       Scenarios.CreateCountrySettings(_country);
+
+            // 編集済みフラグを設定する
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
             // 陸軍/海軍/空軍/搭載師団
             Unit unit = parent.Tag as Unit;
             if (unit != null)
@@ -699,21 +857,17 @@ namespace HoI2Editor.Controllers
             }
 
             // 未配備陸軍/海軍/空軍師団
-            CountrySettings settings;
             switch ((NodeType) parent.Tag)
             {
                 case NodeType.UndeployedLand:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.LandDivisions.Remove(division);
                     break;
 
                 case NodeType.UndeployedNaval:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.NavalDivisions.Remove(division);
                     break;
 
                 case NodeType.UndeployedAir:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.AirDivisions.Remove(division);
                     break;
             }
@@ -818,28 +972,31 @@ namespace HoI2Editor.Controllers
         {
             TreeNode node = _treeView.SelectedNode;
             TreeNode parent = node.Parent;
-            CountrySettings settings;
 
             parent.Nodes.Remove(node);
             parent.Nodes.Insert(index, node);
+
+            CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
+                                       Scenarios.CreateCountrySettings(_country);
+
+            // 編集済みフラグを設定する
+            settings.SetDirty();
+            Scenarios.SetDirty();
 
             // 陸軍/海軍/空軍/搭載ユニット
             switch ((NodeType) parent.Tag)
             {
                 case NodeType.Land:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.LandUnits.Remove(unit);
                     settings.LandUnits.Insert(index, unit);
                     break;
 
                 case NodeType.Naval:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.NavalUnits.Remove(unit);
                     settings.NavalUnits.Insert(index, unit);
                     break;
 
                 case NodeType.Air:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.AirUnits.Remove(unit);
                     settings.AirUnits.Insert(index, unit);
                     break;
@@ -850,6 +1007,9 @@ namespace HoI2Editor.Controllers
                     transport.LandUnits.Insert(index, unit);
                     break;
             }
+
+            // 移動対象のノードを選択する
+            _treeView.SelectedNode = node;
         }
 
         /// <summary>
@@ -864,42 +1024,134 @@ namespace HoI2Editor.Controllers
             parent.Nodes.Remove(node);
             parent.Nodes.Insert(index, node);
 
+            CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
+                                       Scenarios.CreateCountrySettings(_country);
+
+            // 編集済みフラグを設定する
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
             // 陸軍/海軍/空軍/搭載師団
             Unit unit = parent.Tag as Unit;
             if (unit != null)
             {
                 unit.Divisions.Remove(division);
                 unit.Divisions.Insert(index, division);
+
+                // 移動対象のノードを選択する
+                _treeView.SelectedNode = node;
                 return;
             }
 
             // 未配備陸軍/海軍/空軍師団
-            CountrySettings settings;
             switch ((NodeType) parent.Tag)
             {
                 case NodeType.UndeployedLand:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.LandDivisions.Remove(division);
                     settings.LandDivisions.Insert(index, division);
                     break;
 
                 case NodeType.UndeployedNaval:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.NavalDivisions.Remove(division);
                     settings.NavalDivisions.Insert(index, division);
                     break;
 
                 case NodeType.UndeployedAir:
-                    settings = Scenarios.GetCountrySettings(_country) ?? Scenarios.CreateCountrySettings(_country);
                     settings.AirDivisions.Remove(division);
                     settings.AirDivisions.Insert(index, division);
                     break;
             }
+
+            // 移動対象のノードを選択する
+            _treeView.SelectedNode = node;
         }
 
         #endregion
 
         #region ノード選択
+
+        /// <summary>
+        ///     選択中のユニットを取得する
+        /// </summary>
+        /// <returns>選択中のユニット</returns>
+        public Unit GetSelectedUnit()
+        {
+            TreeNode node = _treeView.SelectedNode;
+            if (node == null)
+            {
+                return null;
+            }
+
+            Unit unit = node.Tag as Unit;
+            if (unit != null)
+            {
+                return unit;
+            }
+
+            node = node.Parent;
+            if (node == null)
+            {
+                return null;
+            }
+
+            return node.Tag as Unit;
+        }
+
+        /// <summary>
+        ///     選択中の師団を取得する
+        /// </summary>
+        /// <returns>選択中の師団</returns>
+        public Division GetSelectedDivision()
+        {
+            TreeNode node = _treeView.SelectedNode;
+            if (node == null)
+            {
+                return null;
+            }
+
+            return node.Tag as Division;
+        }
+
+        /// <summary>
+        ///     選択中のユニットノードを取得する
+        /// </summary>
+        /// <returns>選択中のユニットノード</returns>
+        private TreeNode GetSelectedUnitNode()
+        {
+            TreeNode node = _treeView.SelectedNode;
+            if (node == null)
+            {
+                return null;
+            }
+
+            if (node.Tag is Unit)
+            {
+                return node;
+            }
+
+            node = node.Parent;
+            if (node != null && node.Tag is Unit)
+            {
+                return node;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///     選択中の師団ノードを取得する
+        /// </summary>
+        /// <returns>選択中の師団ノード</returns>
+        private TreeNode GetSelectedDivisionNode()
+        {
+            TreeNode node = _treeView.SelectedNode;
+            if (node != null && node.Tag is Division)
+            {
+                return node;
+            }
+
+            return null;
+        }
 
         /// <summary>
         ///     ユニットツリービューのノード選択時の処理
@@ -970,6 +1222,7 @@ namespace HoI2Editor.Controllers
             UnitTreeViewEventArgs args = new UnitTreeViewEventArgs(e)
             {
                 Division = division,
+                Unit = e.Node.Parent.Tag as Unit,
                 CanAddDivision = true,
                 IsTop = (index <= 0),
                 IsBottom = (index >= bottom)
@@ -994,7 +1247,11 @@ namespace HoI2Editor.Controllers
                 case NodeType.Land:
                 case NodeType.Naval:
                 case NodeType.Air:
+                    args.CanAddUnit = true;
+                    break;
+
                 case NodeType.Boarding:
+                    args.Unit = e.Node.Parent.Tag as Unit;
                     args.CanAddUnit = true;
                     break;
 
