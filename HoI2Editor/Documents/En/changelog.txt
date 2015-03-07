@@ -1,5 +1,13 @@
 Alternative HoI2 Editor Changelog
 
+- 7 Mar 2015; Ver 0.44
+
+Added unit OOB editing.
+Fixed a bug that transportcapability of air unit is not saved.
+Fixed a bug that tech effect command parameters are not saved.
+Only existing provinces are checked in the scenario editor.
+Write a log if there is not a closing brace at the end of scenario files.
+
 - 21 Feb 2015; Ver 0.43
 
 New country's inc file can be saved.
