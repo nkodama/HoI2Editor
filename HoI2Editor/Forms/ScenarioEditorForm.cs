@@ -701,7 +701,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
+            if (Scenarios.IsLoaded() && HoI2Editor.IsDirty())
             {
                 DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
