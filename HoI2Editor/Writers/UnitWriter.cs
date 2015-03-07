@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using HoI2Editor.Models;
@@ -190,7 +189,7 @@ namespace HoI2Editor.Writers
         {
             writer.WriteLine("\tcost \t\t\t\t\t= {0}", DoubleHelper.ToString(model.Cost));
             // 必要ICが0のモデルは未定義と扱う
-            if (Math.Abs(model.Cost) <= 0.00005)
+            if (DoubleHelper.IsZero(model.Cost))
             {
                 return;
             }
@@ -210,47 +209,43 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\ttransportweight\t\t\t= {0}", DoubleHelper.ToString(model.TransportWeight));
             writer.WriteLine("\tsupplyconsumption \t\t= {0}", DoubleHelper.ToString(model.SupplyConsumption));
             writer.WriteLine("\tfuelconsumption\t\t\t= {0}", DoubleHelper.ToString(model.FuelConsumption));
-            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.NoFuelCombatMod) > 0.00005))
+            if ((Game.Type == GameType.DarkestHour) && !DoubleHelper.IsZero(model.NoFuelCombatMod))
             {
                 writer.WriteLine("\tno_fuel_combat_mod \t\t= {0}", DoubleHelper.ToString(model.NoFuelCombatMod));
             }
-            if (Math.Abs(model.SpeedCapArt) > 0.00005)
+            if (!DoubleHelper.IsZero(model.SpeedCapArt))
             {
                 writer.WriteLine("\tspeed_cap_art\t\t\t= {0}", DoubleHelper.ToString(model.SpeedCapArt));
             }
-            if (Math.Abs(model.SpeedCapEng) > 0.00005)
+            if (!DoubleHelper.IsZero(model.SpeedCapEng))
             {
                 writer.WriteLine("\tspeed_cap_eng\t\t\t= {0}", DoubleHelper.ToString(model.SpeedCapEng));
             }
-            if (Math.Abs(model.SpeedCapAt) > 0.00005)
+            if (!DoubleHelper.IsZero(model.SpeedCapAt))
             {
                 writer.WriteLine("\tspeed_cap_at\t\t\t= {0}", DoubleHelper.ToString(model.SpeedCapAt));
             }
-            if (Math.Abs(model.SpeedCapAa) > 0.00005)
+            if (!DoubleHelper.IsZero(model.SpeedCapAa))
             {
                 writer.WriteLine("\tspeed_cap_aa\t\t\t= {0}", DoubleHelper.ToString(model.SpeedCapAa));
             }
             writer.WriteLine("\tupgrade_time_factor = {0}", DoubleHelper.ToString(model.UpgradeTimeFactor));
             writer.WriteLine("\tupgrade_cost_factor = {0}", DoubleHelper.ToString(model.UpgradeCostFactor));
-            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxSupplyStock) > 0.00005))
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && !DoubleHelper.IsZero(model.MaxSupplyStock))
             {
                 writer.WriteLine("\tmax_supply_stock = {0}", DoubleHelper.ToString(model.MaxSupplyStock));
             }
-            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxOilStock) > 0.00005))
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && !DoubleHelper.IsZero(model.MaxOilStock))
             {
                 writer.WriteLine("\tmax_oil_stock = {0}", DoubleHelper.ToString(model.MaxOilStock));
             }
-            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceTimeFactor) > 0.00005))
+            if ((Game.Type == GameType.DarkestHour) && !DoubleHelper.IsZero(model.ReinforceTimeFactor))
             {
                 writer.WriteLine("\treinforce_time\t\t= {0}", DoubleHelper.ToString(model.ReinforceTimeFactor));
             }
-            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceCostFactor) > 0.00005))
+            if ((Game.Type == GameType.DarkestHour) && !DoubleHelper.IsZero(model.ReinforceCostFactor))
             {
                 writer.WriteLine("\treinforce_cost \t\t= {0}", DoubleHelper.ToString(model.ReinforceCostFactor));
-            }
-            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) && (Math.Abs(model.SpeedCap) > 0.00005))
-            {
-                writer.WriteLine("\tspeed_cap\t\t\t= {0}", DoubleHelper.ToString(model.SpeedCap));
             }
         }
 
@@ -263,7 +258,7 @@ namespace HoI2Editor.Writers
         {
             writer.WriteLine("\tcost\t\t\t\t\t\t= {0}", DoubleHelper.ToString(model.Cost));
             // 必要ICが0のモデルは未定義と扱う
-            if (Math.Abs(model.Cost) <= 0.00005)
+            if (DoubleHelper.IsZero(model.Cost))
             {
                 return;
             }
@@ -289,11 +284,11 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\tsupplyconsumption\t\t\t= {0}", DoubleHelper.ToString(model.SupplyConsumption));
             writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", DoubleHelper.ToString(model.FuelConsumption));
             writer.WriteLine("\tdistance\t\t\t\t\t= {0}", DoubleHelper.ToString(model.Distance));
-            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceTimeFactor) > 0.00005))
+            if ((Game.Type == GameType.DarkestHour) && !DoubleHelper.IsZero(model.ReinforceTimeFactor))
             {
                 writer.WriteLine("\treinforce_time\t\t= {0}", DoubleHelper.ToString(model.ReinforceTimeFactor));
             }
-            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceCostFactor) > 0.00005))
+            if ((Game.Type == GameType.DarkestHour) && !DoubleHelper.IsZero(model.ReinforceCostFactor))
             {
                 writer.WriteLine("\treinforce_cost \t\t= {0}", DoubleHelper.ToString(model.ReinforceCostFactor));
             }
@@ -308,7 +303,7 @@ namespace HoI2Editor.Writers
         {
             writer.WriteLine("\tcost \t\t\t\t\t= {0}", DoubleHelper.ToString(model.Cost));
             // 必要ICが0のモデルは未定義と扱う
-            if (Math.Abs(model.Cost) <= 0.00005)
+            if (DoubleHelper.IsZero(model.Cost))
             {
                 return;
             }
@@ -327,16 +322,20 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\tsoftattack\t\t\t\t= {0}", DoubleHelper.ToString(model.SoftAttack));
             writer.WriteLine("\thardattack\t\t\t\t= {0}", DoubleHelper.ToString(model.HardAttack));
             writer.WriteLine("\tnavalattack\t\t\t\t= {0}", DoubleHelper.ToString(model.NavalAttack));
+            if (!DoubleHelper.IsZero(model.TransportCapability))
+            {
+                writer.WriteLine("\ttransportcapability\t\t\t= {0}", DoubleHelper.ToString(model.TransportCapability));
+            }
             writer.WriteLine("\trange\t\t\t\t\t= {0}", DoubleHelper.ToString(model.Range));
             writer.WriteLine("\tsupplyconsumption \t\t\t= {0}", DoubleHelper.ToString(model.SupplyConsumption));
             writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", DoubleHelper.ToString(model.FuelConsumption));
             writer.WriteLine("\tupgrade_time_factor = {0}", DoubleHelper.ToString(model.UpgradeTimeFactor));
             writer.WriteLine("\tupgrade_cost_factor = {0}", DoubleHelper.ToString(model.UpgradeCostFactor));
-            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceTimeFactor) > 0.00005))
+            if ((Game.Type == GameType.DarkestHour) && !DoubleHelper.IsZero(model.ReinforceTimeFactor))
             {
                 writer.WriteLine("\treinforce_time\t\t= {0}", DoubleHelper.ToString(model.ReinforceTimeFactor));
             }
-            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.ReinforceCostFactor) > 0.00005))
+            if ((Game.Type == GameType.DarkestHour) && !DoubleHelper.IsZero(model.ReinforceCostFactor))
             {
                 writer.WriteLine("\treinforce_cost \t\t= {0}", DoubleHelper.ToString(model.ReinforceCostFactor));
             }
@@ -351,100 +350,72 @@ namespace HoI2Editor.Writers
         {
             writer.WriteLine("\tcost \t\t\t\t= {0}", DoubleHelper.ToString(model.Cost));
             // 必要ICが0のモデルは未定義と扱う
-            if (Math.Abs(model.Cost) <= 0.00005)
+            if (DoubleHelper.IsZero(model.Cost))
             {
                 return;
             }
             writer.WriteLine("\tbuildtime\t \t\t= {0}", DoubleHelper.ToString(model.BuildTime));
             writer.WriteLine("\tmanpower \t\t\t= {0}", DoubleHelper.ToString(model.ManPower));
-            if (Math.Abs(model.MaxSpeed) > 0.00005)
+            if (!DoubleHelper.IsZero(model.MaxSpeed))
             {
                 writer.WriteLine("\tmaxspeed \t\t\t= {0}", DoubleHelper.ToString(model.MaxSpeed));
             }
-            if (Math.Abs(model.DefaultOrganization) > 0.00005)
+            if (!DoubleHelper.IsZero(model.DefaultOrganization))
             {
                 writer.WriteLine("\tdefaultorganisation = {0}", DoubleHelper.ToString(model.DefaultOrganization));
             }
-            if (Math.Abs(model.Morale) > 0.00005)
+            if (!DoubleHelper.IsZero(model.Morale))
             {
                 writer.WriteLine("\tmorale\t\t\t\t\t= {0}", DoubleHelper.ToString(model.Morale));
             }
-            if (Math.Abs(model.Defensiveness) > 0.00005)
+            if (!DoubleHelper.IsZero(model.Defensiveness))
             {
                 writer.WriteLine("\tdefensiveness \t\t= {0}", DoubleHelper.ToString(model.Defensiveness));
             }
-            if (Math.Abs(model.Toughness) > 0.00005)
+            if (!DoubleHelper.IsZero(model.Toughness))
             {
                 writer.WriteLine("\ttoughness \t\t\t= {0}", DoubleHelper.ToString(model.Toughness));
             }
-            if (Math.Abs(model.Softness) > 0.00005)
+            if (!DoubleHelper.IsZero(model.Softness))
             {
                 writer.WriteLine("\tsoftness\t\t\t= {0}", DoubleHelper.ToString(model.Softness));
             }
-            if (Math.Abs(model.Suppression) > 0.00005)
+            if (!DoubleHelper.IsZero(model.Suppression))
             {
                 writer.WriteLine("\tsuppression\t\t\t= {0}", DoubleHelper.ToString(model.Suppression));
             }
-            if (Math.Abs(model.AirDefence) > 0.00005)
+            if (!DoubleHelper.IsZero(model.AirDefence))
             {
                 writer.WriteLine("\tairdefence\t\t\t\t= {0}", DoubleHelper.ToString(model.AirDefence));
             }
-            if (Math.Abs(model.SoftAttack) > 0.00005)
+            if (!DoubleHelper.IsZero(model.SoftAttack))
             {
                 writer.WriteLine("\tsoftattack\t\t\t= {0}", DoubleHelper.ToString(model.SoftAttack));
             }
-            if (Math.Abs(model.HardAttack) > 0.00005)
+            if (!DoubleHelper.IsZero(model.HardAttack))
             {
                 writer.WriteLine("\thardattack\t\t\t= {0}", DoubleHelper.ToString(model.HardAttack));
             }
-            if (Math.Abs(model.AirAttack) > 0.00005)
+            if (!DoubleHelper.IsZero(model.AirAttack))
             {
                 writer.WriteLine("\tairattack\t\t\t= {0}", DoubleHelper.ToString(model.AirAttack));
             }
-            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.ArtilleryBombardment) > 0.00005))
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && !DoubleHelper.IsZero(model.ArtilleryBombardment))
             {
                 writer.WriteLine("\tartillery_bombardment\t\t= {0}", DoubleHelper.ToString(model.ArtilleryBombardment));
             }
-            if (Math.Abs(model.TransportWeight) > 0.00005)
+            if (!DoubleHelper.IsZero(model.TransportWeight))
             {
                 writer.WriteLine("\ttransportweight\t\t\t= {0}", DoubleHelper.ToString(model.TransportWeight));
             }
             writer.WriteLine("\tsupplyconsumption \t= {0}", DoubleHelper.ToString(model.SupplyConsumption));
-            if (Math.Abs(model.FuelConsumption) > 0.00005)
+            if (!DoubleHelper.IsZero(model.FuelConsumption))
             {
                 writer.WriteLine("\tfuelconsumption\t\t= {0}", DoubleHelper.ToString(model.FuelConsumption));
             }
-            if ((Game.Type == GameType.DarkestHour) && (Math.Abs(model.NoFuelCombatMod) > 0.00005))
-            {
-                writer.WriteLine("\tno_fuel_combat_mod \t\t= {0}", DoubleHelper.ToString(model.NoFuelCombatMod));
-            }
-            if (Math.Abs(model.SpeedCapArt) > 0.00005)
-            {
-                writer.WriteLine("\tspeed_cap_art\t\t\t= {0}", DoubleHelper.ToString(model.SpeedCapArt));
-            }
-            if (Math.Abs(model.SpeedCapEng) > 0.00005)
-            {
-                writer.WriteLine("\tspeed_cap_eng\t\t\t= {0}", DoubleHelper.ToString(model.SpeedCapEng));
-            }
-            if (Math.Abs(model.SpeedCapAt) > 0.00005)
-            {
-                writer.WriteLine("\tspeed_cap_at\t\t\t= {0}", DoubleHelper.ToString(model.SpeedCapAt));
-            }
-            if (Math.Abs(model.SpeedCapAa) > 0.00005)
-            {
-                writer.WriteLine("\tspeed_cap_aa\t\t\t= {0}", DoubleHelper.ToString(model.SpeedCapAa));
-            }
             writer.WriteLine("\tupgrade_time_factor = {0}", DoubleHelper.ToString(model.UpgradeTimeFactor));
             writer.WriteLine("\tupgrade_cost_factor = {0}", DoubleHelper.ToString(model.UpgradeCostFactor));
-            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxSupplyStock) > 0.00005))
-            {
-                writer.WriteLine("\tmax_supply_stock = {0}", DoubleHelper.ToString(model.MaxSupplyStock));
-            }
-            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Math.Abs(model.MaxOilStock) > 0.00005))
-            {
-                writer.WriteLine("\tmax_oil_stock = {0}", DoubleHelper.ToString(model.MaxOilStock));
-            }
-            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) && (Math.Abs(model.SpeedCap) > 0.00005))
+            if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) && !DoubleHelper.IsZero(model.SpeedCap))
             {
                 writer.WriteLine("\tspeed_cap\t\t\t= {0}", DoubleHelper.ToString(model.SpeedCap));
             }
@@ -459,21 +430,21 @@ namespace HoI2Editor.Writers
         {
             writer.WriteLine("\tcost \t\t\t\t= {0}", DoubleHelper.ToString(model.Cost));
             // 必要ICが0のモデルは未定義と扱う
-            if (Math.Abs(model.Cost) <= 0.00005)
+            if (DoubleHelper.IsZero(model.Cost))
             {
                 return;
             }
             writer.WriteLine("\tbuildtime\t\t\t= {0}", DoubleHelper.ToString(model.BuildTime));
-            if (Math.Abs(model.DefaultOrganization) > 0.00005)
+            if (!DoubleHelper.IsZero(model.DefaultOrganization))
             {
                 writer.WriteLine("\tdefaultorganisation \t= {0}", DoubleHelper.ToString(model.DefaultOrganization));
             }
-            if (Math.Abs(model.Morale) > 0.00005)
+            if (!DoubleHelper.IsZero(model.Morale))
             {
                 writer.WriteLine("\tmorale\t\t\t\t\t= {0}", DoubleHelper.ToString(model.Morale));
             }
             writer.WriteLine("\tmanpower \t\t\t= {0}", DoubleHelper.ToString(model.ManPower));
-            if (Math.Abs(model.MaxSpeed) > 0.00005)
+            if (!DoubleHelper.IsZero(model.MaxSpeed))
             {
                 writer.WriteLine("\tmaxspeed \t\t\t\t= {0}", DoubleHelper.ToString(model.MaxSpeed));
             }
@@ -481,12 +452,12 @@ namespace HoI2Editor.Writers
                 DoubleHelper.ToString(model.SurfaceDetectionCapability));
             writer.WriteLine("\tairdetectioncapability\t\t= {0}", DoubleHelper.ToString(model.AirDetectionCapability));
             writer.WriteLine("\tsubdetectioncapability\t\t= {0}", DoubleHelper.ToString(model.SubDetectionCapability));
-            if (Math.Abs(model.Visibility) > 0.00005)
+            if (!DoubleHelper.IsZero(model.Visibility))
             {
                 writer.WriteLine("\tvisibility\t\t\t\t\t= {0}", DoubleHelper.ToString(model.Visibility));
             }
             writer.WriteLine("\tairdefence\t\t\t= {0}", DoubleHelper.ToString(model.AirDefence));
-            if (Math.Abs(model.SeaDefense) > 0.00005)
+            if (!DoubleHelper.IsZero(model.SeaDefense))
             {
                 writer.WriteLine("\tseadefence\t\t\t= {0}", DoubleHelper.ToString(model.SeaDefense));
             }
@@ -495,11 +466,11 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\tsubattack\t\t\t= {0}", DoubleHelper.ToString(model.SubAttack));
             writer.WriteLine("\tairattack\t\t\t= {0}", DoubleHelper.ToString(model.AirAttack));
             writer.WriteLine("\tshorebombardment\t\t= {0}", DoubleHelper.ToString(model.ShoreBombardment));
-            if (Math.Abs(model.TransportCapability) > 0.00005)
+            if (!DoubleHelper.IsZero(model.TransportCapability))
             {
                 writer.WriteLine("\ttransportcapability\t\t\t= {0}", DoubleHelper.ToString(model.TransportCapability));
             }
-            if (Math.Abs(model.Range) > 0.00005)
+            if (!DoubleHelper.IsZero(model.Range))
             {
                 writer.WriteLine("\trange\t\t\t\t\t\t= {0}", DoubleHelper.ToString(model.Range));
             }
@@ -519,7 +490,7 @@ namespace HoI2Editor.Writers
         {
             writer.WriteLine("\tcost \t\t\t\t\t= {0}", DoubleHelper.ToString(model.Cost));
             // 必要ICが0のモデルは未定義と扱う
-            if (Math.Abs(model.Cost) <= 0.00005)
+            if (DoubleHelper.IsZero(model.Cost))
             {
                 return;
             }
@@ -538,6 +509,10 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\tsoftattack\t\t\t\t= {0}", DoubleHelper.ToString(model.SoftAttack));
             writer.WriteLine("\thardattack\t\t\t\t= {0}", DoubleHelper.ToString(model.HardAttack));
             writer.WriteLine("\tnavalattack\t\t\t\t= {0}", DoubleHelper.ToString(model.NavalAttack));
+            if (!DoubleHelper.IsZero(model.TransportCapability))
+            {
+                writer.WriteLine("\ttransportcapability\t\t\t= {0}", DoubleHelper.ToString(model.TransportCapability));
+            }
             writer.WriteLine("\trange\t\t\t\t\t= {0}", DoubleHelper.ToString(model.Range));
             writer.WriteLine("\tsupplyconsumption \t\t\t= {0}", DoubleHelper.ToString(model.SupplyConsumption));
             writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", DoubleHelper.ToString(model.FuelConsumption));
