@@ -9315,6 +9315,7 @@ namespace HoI2Editor.Forms
         private void EnableProvinceInfoItems()
         {
             provinceInfoGroupBox.Enabled = true;
+            provinceNameKeyTextBox.Enabled = (Game.Type == GameType.DarkestHour);
         }
 
         /// <summary>
