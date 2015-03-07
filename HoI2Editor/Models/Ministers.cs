@@ -1521,6 +1521,12 @@ namespace HoI2Editor.Models
                 return true;
             }
 
+            // 読み込み途中ならば完了を待つ
+            if (Worker.IsBusy)
+            {
+                WaitLoading();
+            }
+
             // 閣僚リストファイルを保存する
             if ((Game.Type == GameType.DarkestHour) && IsDirtyList())
             {

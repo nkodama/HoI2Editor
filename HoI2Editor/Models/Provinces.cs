@@ -4315,6 +4315,12 @@ namespace HoI2Editor.Models
         /// <returns>保存に失敗すればfalseを返す</returns>
         public static bool Save()
         {
+            // 読み込み途中ならば完了を待つ
+            if (Worker.IsBusy)
+            {
+                WaitLoading();
+            }
+
             if (IsDirty())
             {
                 string folderName = Game.GetWriteFileName(Game.GetProvinceFolderName());
