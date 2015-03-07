@@ -8431,12 +8431,12 @@ namespace HoI2Editor.Forms
             if (tech != null)
             {
                 // 左クリックで保有技術の有無を切り替える
-                if (e.MouseEvent.Button == MouseButtons.Left)
+                if (e.Button == MouseButtons.Left)
                 {
                     ToggleOwnedTech(tech, country);
                 }
                 // 右クリックで青写真の有無を切り替える
-                else if (e.MouseEvent.Button == MouseButtons.Right)
+                else if (e.Button == MouseButtons.Right)
                 {
                     ToggleBlueprint(tech, country);
                 }
@@ -8447,7 +8447,7 @@ namespace HoI2Editor.Forms
             if (ev != null)
             {
                 // 左クリックで保有技術の有無を切り替える
-                if (e.MouseEvent.Button == MouseButtons.Left)
+                if (e.Button == MouseButtons.Left)
                 {
                     ToggleInvention(ev, country);
                 }
@@ -8783,7 +8783,7 @@ namespace HoI2Editor.Forms
         private void OnMapPanelMouseClick(object sender, MapPanelController.ProvinceEventArgs e)
         {
             // 左クリック以外では何もしない
-            if (e.MouseEvent.Button != MouseButtons.Left)
+            if (e.Button != MouseButtons.Left)
             {
                 return;
             }

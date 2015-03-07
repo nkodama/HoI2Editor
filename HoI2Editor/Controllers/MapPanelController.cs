@@ -534,7 +534,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     プロヴィンスイベントのパラメータ
         /// </summary>
-        public class ProvinceEventArgs : EventArgs
+        public class ProvinceEventArgs : MouseEventArgs
         {
             /// <summary>
             ///     プロヴィンスID
@@ -542,19 +542,13 @@ namespace HoI2Editor.Controllers
             public int Id { get; private set; }
 
             /// <summary>
-            ///     マウスイベントのパラメータ
-            /// </summary>
-            public MouseEventArgs MouseEvent;
-
-            /// <summary>
             ///     コンストラクタ
             /// </summary>
             /// <param name="id">プロヴィンスID</param>
             /// <param name="e">マウスイベントのパラメータ</param>
-            public ProvinceEventArgs(int id, MouseEventArgs e)
+            public ProvinceEventArgs(int id, MouseEventArgs e) : base(e.Button, e.Clicks, e.X, e.Y, e.Delta)
             {
                 Id = id;
-                MouseEvent = e;
             }
         }
 

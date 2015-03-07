@@ -1194,12 +1194,17 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     項目ラベルマウスイベントのパラメータ
         /// </summary>
-        public class ItemMouseEventArgs : ItemEventArgs
+        public class ItemMouseEventArgs : MouseEventArgs
         {
             /// <summary>
-            ///     マウスイベントのパラメータ
+            ///     技術項目
             /// </summary>
-            public MouseEventArgs MouseEvent;
+            public ITechItem Item { get; private set; }
+
+            /// <summary>
+            ///     項目ラベルの位置
+            /// </summary>
+            public TechPosition Position { get; private set; }
 
             /// <summary>
             ///     コンストラクタ
@@ -1208,21 +1213,27 @@ namespace HoI2Editor.Controllers
             /// <param name="position">項目ラベルの位置</param>
             /// <param name="e">マウスイベントのパラメータ</param>
             public ItemMouseEventArgs(ITechItem item, TechPosition position, MouseEventArgs e)
-                : base(item, position)
+                : base(e.Button, e.Clicks, e.X, e.Y, e.Delta)
             {
-                MouseEvent = e;
+                Item = item;
+                Position = position;
             }
         }
 
         /// <summary>
         ///     項目ラベルドラッグアンドドロップイベントのパラメータ
         /// </summary>
-        public class ItemDragEventArgs : ItemEventArgs
+        public class ItemDragEventArgs : DragEventArgs
         {
             /// <summary>
-            ///     マウスイベントのパラメータ
+            ///     技術項目
             /// </summary>
-            public DragEventArgs DragEvent;
+            public ITechItem Item { get; private set; }
+
+            /// <summary>
+            ///     項目ラベルの位置
+            /// </summary>
+            public TechPosition Position { get; private set; }
 
             /// <summary>
             ///     コンストラクタ
@@ -1231,9 +1242,10 @@ namespace HoI2Editor.Controllers
             /// <param name="position">項目ラベルの位置</param>
             /// <param name="e">ドラッグアンドドロップイベントのパラメータ</param>
             public ItemDragEventArgs(ITechItem item, TechPosition position, DragEventArgs e)
-                : base(item, position)
+                : base(e.Data, e.KeyState, e.X, e.Y, e.AllowedEffect, e.Effect)
             {
-                DragEvent = e;
+                Item = item;
+                Position = position;
             }
         }
 
