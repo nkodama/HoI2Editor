@@ -10004,6 +10004,9 @@ namespace HoI2Editor.Forms
             // ユニット種類リストを初期化する
             _controller.InitUnitTypeList();
 
+            // ユニットツリーコントローラの選択国を解除する
+            _unitTreeController.Country = Country.None;
+
             // 国家リストボックスを更新する
             UpdateCountryListBox(oobCountryListBox);
 
@@ -10337,13 +10340,36 @@ namespace HoI2Editor.Forms
             _controller.UpdateItemColor(unitMoraleTextBox, unit);
             _controller.UpdateItemColor(digInTextBox, unit);
 
-            // ユニットの兵科が変更された場合、リストの選択肢も変更する
+            // ユニットの兵科が変更された場合
             if (unit.Branch != _lastUnitBranch)
             {
                 _lastUnitBranch = unit.Branch;
+
+                // リストの選択肢を変更する
                 _controller.UpdateListItems(locationComboBox, unit);
                 _controller.UpdateListItems(baseComboBox, unit);
                 _controller.UpdateListItems(leaderComboBox, unit);
+
+                // 兵科による編集制限
+                switch (unit.Branch)
+                {
+                    case Branch.Army:
+                        baseLabel.Enabled = false;
+                        baseTextBox.Enabled = false;
+                        baseComboBox.Enabled = false;
+                        digInLabel.Enabled = true;
+                        digInTextBox.Enabled = true;
+                        break;
+
+                    case Branch.Navy:
+                    case Branch.Airforce:
+                        baseLabel.Enabled = true;
+                        baseTextBox.Enabled = true;
+                        baseComboBox.Enabled = true;
+                        digInLabel.Enabled = false;
+                        digInTextBox.Enabled = false;
+                        break;
+                }
             }
 
             _controller.UpdateItemValue(locationComboBox, unit);
@@ -10475,7 +10501,7 @@ namespace HoI2Editor.Forms
 
             CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
 
-            // ユニットの兵科が変更された場合、リストの選択肢も変更する
+            // 師団の兵科が変更された場合、リストの選択肢も変更する
             if (division.Branch != _lastDivisionBranch)
             {
                 _lastDivisionBranch = division.Branch;
@@ -10506,6 +10532,19 @@ namespace HoI2Editor.Forms
             _controller.UpdateItemValue(brigadeModelComboBox3, division);
             _controller.UpdateItemValue(brigadeModelComboBox4, division);
             _controller.UpdateItemValue(brigadeModelComboBox5, division);
+
+            // 最大付属旅団数により編集項目を制限する
+            int max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+            brigadeTypeComboBox1.Enabled = (max > 0);
+            brigadeModelComboBox1.Enabled = (max > 0);
+            brigadeTypeComboBox2.Enabled = (max > 1);
+            brigadeModelComboBox2.Enabled = (max > 1);
+            brigadeTypeComboBox3.Enabled = (max > 2);
+            brigadeModelComboBox3.Enabled = (max > 2);
+            brigadeTypeComboBox4.Enabled = (max > 3);
+            brigadeModelComboBox4.Enabled = (max > 3);
+            brigadeTypeComboBox5.Enabled = (max > 4);
+            brigadeModelComboBox5.Enabled = (max > 4);
         }
 
         /// <summary>
@@ -10805,7 +10844,7 @@ namespace HoI2Editor.Forms
             CountrySettings settings = Scenarios.GetCountrySettings(_selectedCountry);
 
             // 初期値から変更されていなければ何もしない
-            object val = _controller.GetListItemValue(itemId, index);
+            object val = _controller.GetListItemValue(itemId, index, unit);
             if (val == null)
             {
                 return;
@@ -10829,8 +10868,8 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             _controller.SetItemDirty(itemId, unit, settings);
 
-            // 文字色を変更する
-            control.ForeColor = Color.Red;
+            // 文字色変更のため描画更新する
+            control.Refresh();
 
             // 項目値変更後の処理
             _controller.PostItemChanged(itemId, unit);
@@ -11046,7 +11085,7 @@ namespace HoI2Editor.Forms
             // 項目の文字列を描画する
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             object val = _controller.GetItemValue(itemId, division);
-            object sel = _controller.GetListItemValue(itemId, e.Index);
+            object sel = _controller.GetListItemValue(itemId, e.Index, division);
             Brush brush = (((int) val == (int) sel) && _controller.IsItemDirty(itemId, division))
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
@@ -11107,8 +11146,8 @@ namespace HoI2Editor.Forms
             // 編集済みフラグを設定する
             _controller.SetItemDirty(itemId, division, settings);
 
-            // 文字色を変更する
-            control.ForeColor = Color.Red;
+            // 文字色変更のため描画更新する
+            control.Refresh();
 
             // 項目値変更後の処理
             _controller.PostItemChanged(itemId, division, settings);

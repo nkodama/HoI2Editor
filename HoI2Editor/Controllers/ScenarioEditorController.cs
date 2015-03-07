@@ -2969,6 +2969,10 @@ namespace HoI2Editor.Controllers
 
                 case ScenarioEditorItemId.UnitBaseId:
                 case ScenarioEditorItemId.UnitBase:
+                    if (unit.Branch == Branch.Army)
+                    {
+                        return null;
+                    }
                     return unit.Base;
 
                 case ScenarioEditorItemId.UnitLeaderId:
@@ -2979,6 +2983,10 @@ namespace HoI2Editor.Controllers
                     return unit.Morale;
 
                 case ScenarioEditorItemId.UnitDigIn:
+                    if (unit.Branch == Branch.Navy || unit.Branch == Branch.Airforce)
+                    {
+                        return null;
+                    }
                     return unit.DigIn;
             }
 
@@ -7904,6 +7912,28 @@ namespace HoI2Editor.Controllers
                     PostItemChangedUnitType(
                         (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel5), division, settings);
                     break;
+
+                case ScenarioEditorItemId.DivisionStrength:
+                    PostItemChangedStrength((TextBox) _form.GetItemControl(ScenarioEditorItemId.DivisionMaxStrength),
+                        division, settings);
+                    break;
+
+                case ScenarioEditorItemId.DivisionMaxStrength:
+                    PostItemChangedMaxStrength((TextBox) _form.GetItemControl(ScenarioEditorItemId.DivisionStrength),
+                        division, settings);
+                    break;
+
+                case ScenarioEditorItemId.DivisionOrganisation:
+                    PostItemChangedOrganisation(
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.DivisionMaxOrganisation),
+                        division, settings);
+                    break;
+
+                case ScenarioEditorItemId.DivisionMaxOrganisation:
+                    PostItemChangedMaxOrganisation(
+                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.DivisionOrganisation),
+                        division, settings);
+                    break;
             }
         }
 
@@ -8430,6 +8460,122 @@ namespace HoI2Editor.Controllers
 
             // 項目の値を更新する
             UpdateItemValue(control, division);
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 師団の戦力
+        /// </summary>
+        /// <param name="control">最大値のコントロール</param>
+        /// <param name="division">師団</param>
+        /// <param name="settings">国家設定</param>
+        private void PostItemChangedStrength(TextBox control, Division division, CountrySettings settings)
+        {
+            if (DoubleHelper.IsZero(division.MaxStrength) ||
+                DoubleHelper.IsLessOrEqual(division.Strength, division.MaxStrength))
+            {
+                return;
+            }
+
+            // 最大値を現在値に合わせる
+            division.MaxStrength = division.Strength;
+
+            // 編集済みフラグを設定する
+            division.SetDirty(Division.ItemId.MaxStrength);
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
+            // 項目の値を更新する
+            UpdateItemValue(control, division);
+
+            // 項目の色を更新する
+            UpdateItemColor(control, division);
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 師団の最大戦力
+        /// </summary>
+        /// <param name="control">現在値のコントロール</param>
+        /// <param name="division">師団</param>
+        /// <param name="settings">国家設定</param>
+        private void PostItemChangedMaxStrength(TextBox control, Division division, CountrySettings settings)
+        {
+            if (DoubleHelper.IsZero(division.Strength) ||
+                DoubleHelper.IsLessOrEqual(division.Strength, division.MaxStrength))
+            {
+                return;
+            }
+
+            // 現在値を最大値に合わせる
+            division.Strength = division.MaxStrength;
+
+            // 編集済みフラグを設定する
+            division.SetDirty(Division.ItemId.Strength);
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
+            // 項目の値を更新する
+            UpdateItemValue(control, division);
+
+            // 項目の色を更新する
+            UpdateItemColor(control, division);
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 師団の組織率
+        /// </summary>
+        /// <param name="control">最大値のコントロール</param>
+        /// <param name="division">師団</param>
+        /// <param name="settings">国家設定</param>
+        private void PostItemChangedOrganisation(TextBox control, Division division, CountrySettings settings)
+        {
+            if (DoubleHelper.IsZero(division.MaxOrganisation) ||
+                DoubleHelper.IsLessOrEqual(division.Organisation, division.MaxOrganisation))
+            {
+                return;
+            }
+
+            // 最大値を現在値に合わせる
+            division.MaxOrganisation = division.Organisation;
+
+            // 編集済みフラグを設定する
+            division.SetDirty(Division.ItemId.MaxOrganisation);
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
+            // 項目の値を更新する
+            UpdateItemValue(control, division);
+
+            // 項目の色を更新する
+            UpdateItemColor(control, division);
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 師団の最大組織率
+        /// </summary>
+        /// <param name="control">現在値のコントロール</param>
+        /// <param name="division">師団</param>
+        /// <param name="settings">国家設定</param>
+        private void PostItemChangedMaxOrganisation(TextBox control, Division division, CountrySettings settings)
+        {
+            if (DoubleHelper.IsZero(division.Organisation) ||
+                DoubleHelper.IsLessOrEqual(division.Organisation, division.MaxOrganisation))
+            {
+                return;
+            }
+
+            // 現在値を最大値に合わせる
+            division.Organisation = division.MaxOrganisation;
+
+            // 編集済みフラグを設定する
+            division.SetDirty(Division.ItemId.Organisation);
+            settings.SetDirty();
+            Scenarios.SetDirty();
+
+            // 項目の値を更新する
+            UpdateItemValue(control, division);
+
+            // 項目の色を更新する
+            UpdateItemColor(control, division);
         }
 
         #endregion

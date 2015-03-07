@@ -5957,7 +5957,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra = (UnitType) type;
+                    division.Extra1 = (UnitType) type;
                     continue;
                 }
 
@@ -6047,7 +6047,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 付属旅団のモデル番号
-                    division.BrigadeModel = (int) n;
+                    division.BrigadeModel1 = (int) n;
                     continue;
                 }
 
@@ -7235,7 +7235,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 付属旅団のユニット種類
-                    division.Extra = (UnitType) type;
+                    division.Extra1 = (UnitType) type;
                     continue;
                 }
 
@@ -7325,7 +7325,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 付属旅団のモデル番号
-                    division.BrigadeModel = (int) n;
+                    division.BrigadeModel1 = (int) n;
                     continue;
                 }
 

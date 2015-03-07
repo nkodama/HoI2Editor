@@ -4324,6 +4324,7 @@
             // 
             // brigadeModelComboBox5
             // 
+            this.brigadeModelComboBox5.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.brigadeModelComboBox5.FormattingEnabled = true;
             resources.ApplyResources(this.brigadeModelComboBox5, "brigadeModelComboBox5");
             this.brigadeModelComboBox5.Name = "brigadeModelComboBox5";
@@ -4333,6 +4334,7 @@
             // 
             // brigadeTypeComboBox5
             // 
+            this.brigadeTypeComboBox5.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.brigadeTypeComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.brigadeTypeComboBox5.FormattingEnabled = true;
             resources.ApplyResources(this.brigadeTypeComboBox5, "brigadeTypeComboBox5");
@@ -4342,6 +4344,7 @@
             // 
             // brigadeModelComboBox4
             // 
+            this.brigadeModelComboBox4.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.brigadeModelComboBox4.FormattingEnabled = true;
             resources.ApplyResources(this.brigadeModelComboBox4, "brigadeModelComboBox4");
             this.brigadeModelComboBox4.Name = "brigadeModelComboBox4";
@@ -4351,6 +4354,7 @@
             // 
             // brigadeTypeComboBox4
             // 
+            this.brigadeTypeComboBox4.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.brigadeTypeComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.brigadeTypeComboBox4.FormattingEnabled = true;
             resources.ApplyResources(this.brigadeTypeComboBox4, "brigadeTypeComboBox4");
@@ -4360,6 +4364,7 @@
             // 
             // brigadeModelComboBox3
             // 
+            this.brigadeModelComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.brigadeModelComboBox3.FormattingEnabled = true;
             resources.ApplyResources(this.brigadeModelComboBox3, "brigadeModelComboBox3");
             this.brigadeModelComboBox3.Name = "brigadeModelComboBox3";
@@ -4369,6 +4374,7 @@
             // 
             // brigadeTypeComboBox3
             // 
+            this.brigadeTypeComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.brigadeTypeComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.brigadeTypeComboBox3.FormattingEnabled = true;
             resources.ApplyResources(this.brigadeTypeComboBox3, "brigadeTypeComboBox3");
@@ -4378,6 +4384,7 @@
             // 
             // brigadeModelComboBox2
             // 
+            this.brigadeModelComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.brigadeModelComboBox2.FormattingEnabled = true;
             resources.ApplyResources(this.brigadeModelComboBox2, "brigadeModelComboBox2");
             this.brigadeModelComboBox2.Name = "brigadeModelComboBox2";
@@ -4387,6 +4394,7 @@
             // 
             // brigadeTypeComboBox2
             // 
+            this.brigadeTypeComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.brigadeTypeComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.brigadeTypeComboBox2.FormattingEnabled = true;
             resources.ApplyResources(this.brigadeTypeComboBox2, "brigadeTypeComboBox2");
@@ -4396,6 +4404,7 @@
             // 
             // brigadeModelComboBox1
             // 
+            this.brigadeModelComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.brigadeModelComboBox1.FormattingEnabled = true;
             resources.ApplyResources(this.brigadeModelComboBox1, "brigadeModelComboBox1");
             this.brigadeModelComboBox1.Name = "brigadeModelComboBox1";
@@ -4410,6 +4419,7 @@
             // 
             // brigadeTypeComboBox1
             // 
+            this.brigadeTypeComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.brigadeTypeComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.brigadeTypeComboBox1.FormattingEnabled = true;
             resources.ApplyResources(this.brigadeTypeComboBox1, "brigadeTypeComboBox1");
@@ -4419,6 +4429,7 @@
             // 
             // unitModelComboBox
             // 
+            this.unitModelComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.unitModelComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.unitModelComboBox, "unitModelComboBox");
             this.unitModelComboBox.Name = "unitModelComboBox";
@@ -4433,6 +4444,7 @@
             // 
             // unitTypeComboBox
             // 
+            this.unitTypeComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.unitTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.unitTypeComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.unitTypeComboBox, "unitTypeComboBox");
@@ -4494,6 +4506,7 @@
             // 
             // leaderComboBox
             // 
+            this.leaderComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.leaderComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.leaderComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.leaderComboBox, "leaderComboBox");
@@ -4503,6 +4516,7 @@
             // 
             // baseComboBox
             // 
+            this.baseComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.baseComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.baseComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.baseComboBox, "baseComboBox");
@@ -4512,6 +4526,7 @@
             // 
             // locationComboBox
             // 
+            this.locationComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.locationComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.locationComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.locationComboBox, "locationComboBox");

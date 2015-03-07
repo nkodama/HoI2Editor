@@ -2474,6 +2474,20 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region typeとidの組操作
+
+        /// <summary>
+        ///     新規idを取得する
+        /// </summary>
+        /// <returns>新規id</returns>
+        public TypeId GetNewUnitTypeId()
+        {
+            return Scenarios.GetNewTypeId(
+                (LandUnits.Count > 0 && LandUnits[0].Id != null) ? LandUnits[0].Id.Type : Scenarios.GetNewType(1), 1);
+        }
+
+        #endregion
+
         #region 編集済みフラグ操作
 
         /// <summary>
@@ -3373,11 +3387,6 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     付属旅団のユニット種類
         /// </summary>
-        public UnitType Extra { get; set; }
-
-        /// <summary>
-        ///     付属旅団のユニット種類
-        /// </summary>
         public UnitType Extra1 { get; set; }
 
         /// <summary>
@@ -3399,11 +3408,6 @@ namespace HoI2Editor.Models
         ///     付属旅団のユニット種類
         /// </summary>
         public UnitType Extra5 { get; set; }
-
-        /// <summary>
-        ///     付属旅団のモデル番号
-        /// </summary>
-        public int BrigadeModel { get; set; }
 
         /// <summary>
         ///     付属旅団のモデル番号
@@ -3786,7 +3790,6 @@ namespace HoI2Editor.Models
         public Division()
         {
             Model = UndefinedModelNo;
-            BrigadeModel = UndefinedModelNo;
             BrigadeModel1 = UndefinedModelNo;
             BrigadeModel2 = UndefinedModelNo;
             BrigadeModel3 = UndefinedModelNo;
@@ -4002,11 +4005,6 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     付属旅団のユニット種類
         /// </summary>
-        public UnitType Extra { get; set; }
-
-        /// <summary>
-        ///     付属旅団のユニット種類
-        /// </summary>
         public UnitType Extra1 { get; set; }
 
         /// <summary>
@@ -4028,11 +4026,6 @@ namespace HoI2Editor.Models
         ///     付属旅団のユニット種類
         /// </summary>
         public UnitType Extra5 { get; set; }
-
-        /// <summary>
-        ///     付属旅団のモデル番号
-        /// </summary>
-        public int BrigadeModel { get; set; }
 
         /// <summary>
         ///     付属旅団のモデル番号
@@ -4133,7 +4126,6 @@ namespace HoI2Editor.Models
             UnitCost = true;
             NewModel = true;
             Model = UndefinedModelNo;
-            BrigadeModel = UndefinedModelNo;
             BrigadeModel1 = UndefinedModelNo;
             BrigadeModel2 = UndefinedModelNo;
             BrigadeModel3 = UndefinedModelNo;
