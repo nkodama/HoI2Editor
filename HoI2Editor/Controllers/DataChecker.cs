@@ -40,7 +40,7 @@ namespace HoI2Editor.Controllers
             {
                 provinces = Scenarios.Data.Map.All
                     ? provinces.Where(province => !Scenarios.Data.Map.No.Contains(province.Id)).ToList()
-                    : provinces.Where(province => !Scenarios.Data.Map.Yes.Contains(province.Id)).ToList();
+                    : provinces.Where(province => Scenarios.Data.Map.Yes.Contains(province.Id)).ToList();
             }
 
             // 保有プロヴィンス
