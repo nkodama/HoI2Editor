@@ -395,19 +395,19 @@ namespace HoI2Editor.Models
                 sb.Append(" } ");
             }
             sb.AppendFormat("type = {0}", TypeStringTable[(int) Type]);
-            if (!ObjectHelper.IsNullOrEmpty(Which))
+            if (Which != null)
             {
                 sb.AppendFormat(" which = {0}", ObjectHelper.ToString(Which));
             }
-            if (!ObjectHelper.IsNullOrEmpty(When))
+            if (When != null)
             {
                 sb.AppendFormat(" when = {0}", ObjectHelper.ToString(When));
             }
-            if (!ObjectHelper.IsNullOrEmpty(Where))
+            if (Where != null)
             {
                 sb.AppendFormat(" where = {0}", ObjectHelper.ToString(Where));
             }
-            if (!ObjectHelper.IsNullOrEmpty(Value))
+            if (Value != null)
             {
                 sb.AppendFormat(" value = {0}", ObjectHelper.ToString(Value));
             }
