@@ -158,6 +158,18 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     閉じ括弧忘れエラーをログ出力する
+        /// </summary>
+        /// <param name="categoryName">カテゴリ名</param>
+        /// <param name="sectionName">セクション名</param>
+        /// <param name="lexer">字句解析器</param>
+        public static void MissingCloseBrace(string categoryName, string sectionName, TextLexer lexer)
+        {
+            Warning("[{0}] Missing close brace: {1} section ({2} L{3})", categoryName, sectionName, lexer.FileName,
+                lexer.LineNo);
+        }
+
+        /// <summary>
         ///     範囲外エラーをログ出力
         /// </summary>
         /// <param name="categoryName">カテゴリ名</param>

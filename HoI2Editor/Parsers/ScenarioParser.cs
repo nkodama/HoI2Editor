@@ -427,6 +427,7 @@ namespace HoI2Editor.Parsers
                 // ファイルの終端
                 if (token == null)
                 {
+                    Log.MissingCloseBrace(LogCategory, "header", lexer);
                     break;
                 }
 
@@ -806,6 +807,7 @@ namespace HoI2Editor.Parsers
                 // ファイルの終端
                 if (token == null)
                 {
+                    Log.MissingCloseBrace(LogCategory, "globaldata", lexer);
                     break;
                 }
 
@@ -1491,6 +1493,7 @@ namespace HoI2Editor.Parsers
                 // ファイルの終端
                 if (token == null)
                 {
+                    Log.MissingCloseBrace(LogCategory, "map", lexer);
                     break;
                 }
 
@@ -1765,6 +1768,7 @@ namespace HoI2Editor.Parsers
                 // ファイルの終端
                 if (token == null)
                 {
+                    Log.MissingCloseBrace(LogCategory, "province", lexer);
                     break;
                 }
 
@@ -3519,6 +3523,7 @@ namespace HoI2Editor.Parsers
                 // ファイルの終端
                 if (token == null)
                 {
+                    Log.MissingCloseBrace(LogCategory, "country", lexer);
                     break;
                 }
 
