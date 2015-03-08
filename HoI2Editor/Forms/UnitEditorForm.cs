@@ -1270,7 +1270,7 @@ namespace HoI2Editor.Forms
                     uiPrioNumericUpDown.Text = IntHelper.ToString((int) uiPrioNumericUpDown.Value);
                     realUnitTypeComboBox.SelectedIndex = (int) unit.RealType;
                     spriteTypeComboBox.SelectedIndex = (int) unit.Sprite;
-                    transmuteComboBox.SelectedIndex = Units.UnitTypes.IndexOf(unit.Transmute);
+                    transmuteComboBox.SelectedIndex = Array.IndexOf(Units.DivisionTypes, unit.Transmute);
                     militaryValueTextBox.Text = DoubleHelper.ToString(unit.Value);
                 }
                 else
@@ -1643,8 +1643,9 @@ namespace HoI2Editor.Forms
             e.DrawBackground();
 
             // 項目の文字列を描画する
+            UnitType type = Units.DivisionTypes[e.Index];
             Brush brush;
-            if ((e.Index == (int) unit.Transmute) && unit.IsDirty(UnitClassItemId.Transmute))
+            if ((type == unit.Transmute) && unit.IsDirty(UnitClassItemId.Transmute))
             {
                 brush = new SolidBrush(Color.Red);
             }
@@ -2222,7 +2223,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            UnitType type = (UnitType) transmuteComboBox.SelectedIndex;
+            UnitType type = Units.DivisionTypes[transmuteComboBox.SelectedIndex];
             if (type == unit.Transmute)
             {
                 return;

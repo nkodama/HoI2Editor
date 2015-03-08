@@ -106,6 +106,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly string[] Strings =
         {
+            "",
             "infantry",
             "cavalry",
             "motorized",
@@ -877,6 +878,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static readonly int[] UnitNumbers =
         {
+            0,
             0,
             1,
             2,
@@ -1692,6 +1694,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly string[] DefaultFileNames =
         {
+            "",
             "infantry.txt",
             "cavalry.txt",
             "motorized.txt",

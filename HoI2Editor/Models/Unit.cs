@@ -183,6 +183,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly Branch[] DefaultBranches =
         {
+            Branch.None,
             Branch.Army,
             Branch.Army,
             Branch.Army,
@@ -634,6 +635,7 @@ namespace HoI2Editor.Models
             UnitOrganization.Division,
             UnitOrganization.Division,
             UnitOrganization.Division,
+            UnitOrganization.Division,
             UnitOrganization.Brigade,
             UnitOrganization.Brigade,
             UnitOrganization.Brigade,
@@ -805,6 +807,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly string[] DefaultNames =
         {
+            "",
             "INFANTRY",
             "CAVALRY",
             "MOTORIZED",
@@ -1116,6 +1119,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static readonly int[] DefaultMaxBrigades =
         {
+            0,
             1,
             1,
             1,
@@ -3001,6 +3005,8 @@ namespace HoI2Editor.Models
     /// </summary>
     public enum UnitType
     {
+        Undefined, // 未定義
+
         // 師団
         Infantry,
         Cavalry,
