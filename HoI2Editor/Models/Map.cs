@@ -491,12 +491,6 @@ namespace HoI2Editor.Models
                 DecodeBlockBottom(j);
             }
 
-            // 右端のブロックをデコードする
-            for (int i = _blocks.Height - 2; i >= 0; i--)
-            {
-                DecodeBlockRight(i);
-            }
-
             for (int i = _blocks.Height - 2; i >= 0; i--)
             {
                 // 右端のブロックをデコードする
