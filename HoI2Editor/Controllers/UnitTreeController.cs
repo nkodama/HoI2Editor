@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -421,6 +422,9 @@ namespace HoI2Editor.Controllers
             Unit unit = new Unit { Id = settings.GetNewUnitTypeId(), Branch = branch };
             unit.SetDirtyAll();
 
+            // ユニットの位置を初期化する
+            InitUnitLocation(unit, settings);
+
             // ツリーノードを追加する
             TreeNode node = CreateUnitNode(unit);
             node.Text = Resources.UnitTreeNewUnit;
@@ -451,6 +455,9 @@ namespace HoI2Editor.Controllers
             Unit unit = new Unit { Id = settings.GetNewUnitTypeId(), Branch = branch };
             unit.SetDirtyAll();
 
+            // ユニットの位置を初期化する
+            InitUnitLocation(unit, settings);
+
             // ツリーノードを追加する
             TreeNode node = CreateUnitNode(unit);
             node.Text = Resources.UnitTreeNewUnit;
@@ -465,6 +472,63 @@ namespace HoI2Editor.Controllers
 
             // 追加したノードを選択する
             _treeView.SelectedNode = node;
+        }
+
+        /// <summary>
+        ///     ユニットの位置を初期化する
+        /// </summary>
+        /// <param name="unit">ユニット</param>
+        /// <param name="settings">国家設定</param>
+        private static void InitUnitLocation(Unit unit, CountrySettings settings)
+        {
+            ProvinceSettings capitalSettings;
+
+            switch (unit.Branch)
+            {
+                case Branch.Army:
+                    unit.Location = settings.Capital;
+                    break;
+
+                case Branch.Navy:
+                    capitalSettings = Scenarios.GetProvinceSettings(settings.Capital);
+                    if (capitalSettings != null && capitalSettings.NavalBase != null)
+                    {
+                        unit.Location = settings.Capital;
+                        unit.Base = settings.Capital;
+                    }
+                    else
+                    {
+                        foreach (ProvinceSettings ps in settings.ControlledProvinces
+                            .Select(Scenarios.GetProvinceSettings)
+                            .Where(ps => ps != null && ps.NavalBase != null))
+                        {
+                            unit.Location = ps.Id;
+                            unit.Base = ps.Id;
+                            break;
+                        }
+                    }
+                    break;
+
+                case Branch.Airforce:
+                    capitalSettings = Scenarios.GetProvinceSettings(settings.Capital);
+                    if (capitalSettings != null && capitalSettings.AirBase != null)
+                    {
+                        unit.Location = settings.Capital;
+                        unit.Base = settings.Capital;
+                    }
+                    else
+                    {
+                        foreach (ProvinceSettings ps in settings.ControlledProvinces
+                            .Select(Scenarios.GetProvinceSettings)
+                            .Where(ps => ps != null && ps.AirBase != null))
+                        {
+                            unit.Location = ps.Id;
+                            unit.Base = ps.Id;
+                            break;
+                        }
+                    }
+                    break;
+            }
         }
 
         /// <summary>
