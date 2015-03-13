@@ -1318,18 +1318,91 @@ namespace HoI2Editor.Controllers
         /// <param name="division">師団</param>
         public void UpdateItemValue(ComboBox control, Division division)
         {
+            List<UnitType> types;
+            int max;
+
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             object val = GetItemValue(itemId, division);
             switch (itemId)
             {
                 case ScenarioEditorItemId.DivisionUnitType:
-                case ScenarioEditorItemId.DivisionBrigadeType1:
-                case ScenarioEditorItemId.DivisionBrigadeType2:
-                case ScenarioEditorItemId.DivisionBrigadeType3:
-                case ScenarioEditorItemId.DivisionBrigadeType4:
-                case ScenarioEditorItemId.DivisionBrigadeType5:
-                    List<UnitType> types = (List<UnitType>) GetListItems(itemId, division);
+                    types = (List<UnitType>) GetListItems(itemId, division);
                     control.SelectedIndex = types.FindIndex(type => type == (UnitType) val);
+                    break;
+
+                case ScenarioEditorItemId.DivisionBrigadeType1:
+                    max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+                    if (max > 0)
+                    {
+                        types = (List<UnitType>) GetListItems(itemId, division);
+                        control.SelectedIndex = types.FindIndex(type => type == (UnitType) val);
+                        control.Enabled = true;
+                    }
+                    else
+                    {
+                        control.SelectedIndex = -1;
+                        control.Enabled = false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.DivisionBrigadeType2:
+                    max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+                    if (max > 1)
+                    {
+                        types = (List<UnitType>) GetListItems(itemId, division);
+                        control.SelectedIndex = types.FindIndex(type => type == (UnitType) val);
+                        control.Enabled = true;
+                    }
+                    else
+                    {
+                        control.SelectedIndex = -1;
+                        control.Enabled = false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.DivisionBrigadeType3:
+                    max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+                    if (max > 2)
+                    {
+                        types = (List<UnitType>) GetListItems(itemId, division);
+                        control.SelectedIndex = types.FindIndex(type => type == (UnitType) val);
+                        control.Enabled = true;
+                    }
+                    else
+                    {
+                        control.SelectedIndex = -1;
+                        control.Enabled = false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.DivisionBrigadeType4:
+                    max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+                    if (max > 3)
+                    {
+                        types = (List<UnitType>) GetListItems(itemId, division);
+                        control.SelectedIndex = types.FindIndex(type => type == (UnitType) val);
+                        control.Enabled = true;
+                    }
+                    else
+                    {
+                        control.SelectedIndex = -1;
+                        control.Enabled = false;
+                    }
+                    break;
+
+                case ScenarioEditorItemId.DivisionBrigadeType5:
+                    max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+                    if (max > 4)
+                    {
+                        types = (List<UnitType>) GetListItems(itemId, division);
+                        control.SelectedIndex = types.FindIndex(type => type == (UnitType) val);
+                        control.Enabled = true;
+                    }
+                    else
+                    {
+                        control.SelectedIndex = -1;
+                        control.Enabled = false;
+                    }
                     break;
 
                 case ScenarioEditorItemId.DivisionModel:
@@ -1350,87 +1423,142 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeModel1:
-                    if ((int) val < 0)
+                    max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+                    if (max > 0)
                     {
-                        control.SelectedIndex = -1;
-                        control.Text = "";
-                    }
-                    else if ((int) val < Units.Items[(int) division.Extra1].Models.Count)
-                    {
-                        control.SelectedIndex = (int) val;
+                        if ((int) val < 0)
+                        {
+                            control.SelectedIndex = -1;
+                            control.Text = "";
+                        }
+                        else if ((int) val < Units.Items[(int) division.Extra1].Models.Count)
+                        {
+                            control.SelectedIndex = (int) val;
+                        }
+                        else
+                        {
+                            control.SelectedIndex = -1;
+                            control.Text = ObjectHelper.ToString(val);
+                        }
+                        control.Enabled = true;
                     }
                     else
                     {
                         control.SelectedIndex = -1;
-                        control.Text = ObjectHelper.ToString(val);
+                        control.Text = "";
+                        control.Enabled = false;
                     }
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeModel2:
-                    if ((int) val < 0)
+                    max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+                    if (max > 1)
                     {
-                        control.SelectedIndex = -1;
-                        control.Text = "";
-                    }
-                    else if ((int) val < Units.Items[(int) division.Extra2].Models.Count)
-                    {
-                        control.SelectedIndex = (int) val;
+                        if ((int) val < 0)
+                        {
+                            control.SelectedIndex = -1;
+                            control.Text = "";
+                        }
+                        else if ((int) val < Units.Items[(int) division.Extra2].Models.Count)
+                        {
+                            control.SelectedIndex = (int) val;
+                        }
+                        else
+                        {
+                            control.SelectedIndex = -1;
+                            control.Text = ObjectHelper.ToString(val);
+                        }
+                        control.Enabled = true;
                     }
                     else
                     {
                         control.SelectedIndex = -1;
-                        control.Text = ObjectHelper.ToString(val);
+                        control.Text = "";
+                        control.Enabled = false;
                     }
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeModel3:
-                    if ((int) val < 0)
+                    max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+                    if (max > 2)
                     {
-                        control.SelectedIndex = -1;
-                        control.Text = "";
-                    }
-                    else if ((int) val >= 0 && (int) val < Units.Items[(int) division.Extra3].Models.Count)
-                    {
-                        control.SelectedIndex = (int) val;
+                        if ((int) val < 0)
+                        {
+                            control.SelectedIndex = -1;
+                            control.Text = "";
+                        }
+                        else if ((int) val >= 0 && (int) val < Units.Items[(int) division.Extra3].Models.Count)
+                        {
+                            control.SelectedIndex = (int) val;
+                        }
+                        else
+                        {
+                            control.SelectedIndex = -1;
+                            control.Text = ObjectHelper.ToString(val);
+                        }
+                        control.Enabled = true;
                     }
                     else
                     {
                         control.SelectedIndex = -1;
-                        control.Text = ObjectHelper.ToString(val);
+                        control.Text = "";
+                        control.Enabled = false;
                     }
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeModel4:
-                    if ((int) val < 0)
+                    max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+                    if (max > 3)
                     {
-                        control.SelectedIndex = -1;
-                        control.Text = "";
-                    }
-                    else if ((int) val < Units.Items[(int) division.Extra4].Models.Count)
-                    {
-                        control.SelectedIndex = (int) val;
+                        if ((int) val < 0)
+                        {
+                            control.SelectedIndex = -1;
+                            control.Text = "";
+                        }
+                        else if ((int) val < Units.Items[(int) division.Extra4].Models.Count)
+                        {
+                            control.SelectedIndex = (int) val;
+                        }
+                        else
+                        {
+                            control.SelectedIndex = -1;
+                            control.Text = ObjectHelper.ToString(val);
+                        }
+                        control.Enabled = true;
                     }
                     else
                     {
                         control.SelectedIndex = -1;
-                        control.Text = ObjectHelper.ToString(val);
+                        control.Text = "";
+                        control.Enabled = false;
                     }
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeModel5:
-                    if ((int) val < 0)
+                    max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
+                    if (max > 4)
                     {
-                        control.SelectedIndex = -1;
-                        control.Text = "";
-                    }
-                    else if ((int) val < Units.Items[(int) division.Extra5].Models.Count)
-                    {
-                        control.SelectedIndex = (int) val;
+                        if ((int) val < 0)
+                        {
+                            control.SelectedIndex = -1;
+                            control.Text = "";
+                        }
+                        else if ((int) val < Units.Items[(int) division.Extra5].Models.Count)
+                        {
+                            control.SelectedIndex = (int) val;
+                        }
+                        else
+                        {
+                            control.SelectedIndex = -1;
+                            control.Text = ObjectHelper.ToString(val);
+                        }
+                        control.Enabled = true;
                     }
                     else
                     {
                         control.SelectedIndex = -1;
-                        control.Text = ObjectHelper.ToString(val);
+                        control.Text = "";
+                        control.Enabled = false;
                     }
                     break;
             }
@@ -7914,32 +8042,31 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.DivisionUnitType:
-                    PostItemChangedUnitType((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionModel),
-                        division, settings);
+                    PostItemChangedDivisionType(division, settings);
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeType1:
-                    PostItemChangedUnitType(
+                    PostItemChangedBrigadeType(
                         (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel1), division, settings);
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeType2:
-                    PostItemChangedUnitType(
+                    PostItemChangedBrigadeType(
                         (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel2), division, settings);
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeType3:
-                    PostItemChangedUnitType(
+                    PostItemChangedBrigadeType(
                         (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel3), division, settings);
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeType4:
-                    PostItemChangedUnitType(
+                    PostItemChangedBrigadeType(
                         (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel4), division, settings);
                     break;
 
                 case ScenarioEditorItemId.DivisionBrigadeType5:
-                    PostItemChangedUnitType(
+                    PostItemChangedBrigadeType(
                         (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel5), division, settings);
                     break;
 
@@ -8478,12 +8605,39 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     項目値変更後の処理 - ユニット種類
+        ///     項目値変更後の処理 - 師団のユニット種類
+        /// </summary>
+        /// <param name="division">師団</param>
+        /// <param name="settings">国家設定</param>
+        private void PostItemChangedDivisionType(Division division, CountrySettings settings)
+        {
+            // ユニットモデル項目の候補を更新する
+            ComboBox control = (ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionModel);
+            UpdateListItems(control, division, settings);
+
+            // ユニットモデル項目の値を更新する
+            UpdateItemValue(control, division);
+
+            // 付属旅団の項目の値を更新する
+            UpdateItemValue((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeType1), division);
+            UpdateItemValue((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel1), division);
+            UpdateItemValue((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeType2), division);
+            UpdateItemValue((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel2), division);
+            UpdateItemValue((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeType3), division);
+            UpdateItemValue((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel3), division);
+            UpdateItemValue((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeType4), division);
+            UpdateItemValue((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel4), division);
+            UpdateItemValue((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeType5), division);
+            UpdateItemValue((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionBrigadeModel5), division);
+        }
+
+        /// <summary>
+        ///     項目値変更後の処理 - 旅団のユニット種類
         /// </summary>
         /// <param name="control">ユニットモデルコンボボックス</param>
         /// <param name="division">師団</param>
         /// <param name="settings">国家設定</param>
-        private void PostItemChangedUnitType(ComboBox control, Division division, CountrySettings settings)
+        private void PostItemChangedBrigadeType(ComboBox control, Division division, CountrySettings settings)
         {
             // 項目の候補を更新する
             UpdateListItems(control, division, settings);

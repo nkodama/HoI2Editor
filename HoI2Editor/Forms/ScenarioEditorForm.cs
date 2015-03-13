@@ -10543,19 +10543,6 @@ namespace HoI2Editor.Forms
             _controller.UpdateItemValue(brigadeModelComboBox3, division);
             _controller.UpdateItemValue(brigadeModelComboBox4, division);
             _controller.UpdateItemValue(brigadeModelComboBox5, division);
-
-            // 最大付属旅団数により編集項目を制限する
-            int max = Units.Items[(int) division.Type].GetMaxAllowedBrigades();
-            brigadeTypeComboBox1.Enabled = (max > 0);
-            brigadeModelComboBox1.Enabled = (max > 0);
-            brigadeTypeComboBox2.Enabled = (max > 1);
-            brigadeModelComboBox2.Enabled = (max > 1);
-            brigadeTypeComboBox3.Enabled = (max > 2);
-            brigadeModelComboBox3.Enabled = (max > 2);
-            brigadeTypeComboBox4.Enabled = (max > 3);
-            brigadeModelComboBox4.Enabled = (max > 3);
-            brigadeTypeComboBox5.Enabled = (max > 4);
-            brigadeModelComboBox5.Enabled = (max > 4);
         }
 
         /// <summary>
