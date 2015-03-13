@@ -106,6 +106,12 @@ namespace HoI2Editor.Controllers
             _treeView.BeginUpdate();
             _treeView.Nodes.Clear();
 
+            if (_country == Country.None)
+            {
+                _treeView.EndUpdate();
+                return;
+            }
+
             CountrySettings settings = Scenarios.GetCountrySettings(_country);
 
             // 陸軍ユニット

@@ -1049,7 +1049,7 @@
   <data name="oobCloneButton.Text" xml:space="preserve">
     <value>複製</value>
   </data>
-  <data name="oobAddDivisinButton.Text" xml:space="preserve">
+  <data name="oobAddDivisionButton.Text" xml:space="preserve">
     <value>新規師団</value>
   </data>
   <data name="oobAddUnitButton.Text" xml:space="preserve">

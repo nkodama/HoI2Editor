@@ -13047,34 +13047,34 @@
   <data name="&gt;&gt;oobCloneButton.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="oobAddDivisinButton.Enabled" type="System.Boolean, mscorlib">
+  <data name="oobAddDivisionButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="oobAddDivisinButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="oobAddDivisionButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="oobAddDivisinButton.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="oobAddDivisionButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>98, 521</value>
   </data>
-  <data name="oobAddDivisinButton.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="oobAddDivisionButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 23</value>
   </data>
-  <data name="oobAddDivisinButton.TabIndex" type="System.Int32, mscorlib">
+  <data name="oobAddDivisionButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="oobAddDivisinButton.Text" xml:space="preserve">
+  <data name="oobAddDivisionButton.Text" xml:space="preserve">
     <value>Add Division</value>
   </data>
-  <data name="&gt;&gt;oobAddDivisinButton.Name" xml:space="preserve">
-    <value>oobAddDivisinButton</value>
+  <data name="&gt;&gt;oobAddDivisionButton.Name" xml:space="preserve">
+    <value>oobAddDivisionButton</value>
   </data>
-  <data name="&gt;&gt;oobAddDivisinButton.Type" xml:space="preserve">
+  <data name="&gt;&gt;oobAddDivisionButton.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;oobAddDivisinButton.Parent" xml:space="preserve">
+  <data name="&gt;&gt;oobAddDivisionButton.Parent" xml:space="preserve">
     <value>oobTabPage</value>
   </data>
-  <data name="&gt;&gt;oobAddDivisinButton.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;oobAddDivisionButton.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="oobAddUnitButton.Enabled" type="System.Boolean, mscorlib">

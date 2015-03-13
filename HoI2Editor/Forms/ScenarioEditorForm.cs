@@ -10147,6 +10147,16 @@ namespace HoI2Editor.Forms
         private void EnableUnitTree()
         {
             unitTreeView.Enabled = true;
+
+            // ツリー操作ボタンを無効化する
+            oobAddUnitButton.Enabled = false;
+            oobAddDivisionButton.Enabled = false;
+            oobCloneButton.Enabled = false;
+            oobRemoveButton.Enabled = false;
+            oobTopButton.Enabled = false;
+            oobUpButton.Enabled = false;
+            oobDownButton.Enabled = false;
+            oobBottomButton.Enabled = false;
         }
 
         /// <summary>
@@ -10158,7 +10168,7 @@ namespace HoI2Editor.Forms
         {
             // ボタンの状態を更新する
             oobAddUnitButton.Enabled = e.CanAddUnit;
-            oobAddDivisinButton.Enabled = e.CanAddDivision;
+            oobAddDivisionButton.Enabled = e.CanAddDivision;
             bool selected = (e.Unit != null) || (e.Division != null);
             oobCloneButton.Enabled = selected;
             oobRemoveButton.Enabled = selected;

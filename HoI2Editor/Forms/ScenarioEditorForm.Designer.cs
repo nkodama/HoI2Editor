@@ -522,7 +522,7 @@
             this.oobTopButton = new System.Windows.Forms.Button();
             this.oobRemoveButton = new System.Windows.Forms.Button();
             this.oobCloneButton = new System.Windows.Forms.Button();
-            this.oobAddDivisinButton = new System.Windows.Forms.Button();
+            this.oobAddDivisionButton = new System.Windows.Forms.Button();
             this.oobAddUnitButton = new System.Windows.Forms.Button();
             this.divisionGroupBox = new System.Windows.Forms.GroupBox();
             this.dormantCheckBox = new System.Windows.Forms.CheckBox();
@@ -4150,7 +4150,7 @@
             this.oobTabPage.Controls.Add(this.oobTopButton);
             this.oobTabPage.Controls.Add(this.oobRemoveButton);
             this.oobTabPage.Controls.Add(this.oobCloneButton);
-            this.oobTabPage.Controls.Add(this.oobAddDivisinButton);
+            this.oobTabPage.Controls.Add(this.oobAddDivisionButton);
             this.oobTabPage.Controls.Add(this.oobAddUnitButton);
             this.oobTabPage.Controls.Add(this.divisionGroupBox);
             this.oobTabPage.Controls.Add(this.unitGroupBox);
@@ -4203,10 +4203,10 @@
             // 
             // oobAddDivisinButton
             // 
-            resources.ApplyResources(this.oobAddDivisinButton, "oobAddDivisinButton");
-            this.oobAddDivisinButton.Name = "oobAddDivisinButton";
-            this.oobAddDivisinButton.UseVisualStyleBackColor = true;
-            this.oobAddDivisinButton.Click += new System.EventHandler(this.OnOobAddDivisionButtonClick);
+            resources.ApplyResources(this.oobAddDivisionButton, "oobAddDivisionButton");
+            this.oobAddDivisionButton.Name = "oobAddDivisionButton";
+            this.oobAddDivisionButton.UseVisualStyleBackColor = true;
+            this.oobAddDivisionButton.Click += new System.EventHandler(this.OnOobAddDivisionButtonClick);
             // 
             // oobAddUnitButton
             // 
@@ -5249,7 +5249,7 @@
         private System.Windows.Forms.Button oobTopButton;
         private System.Windows.Forms.Button oobRemoveButton;
         private System.Windows.Forms.Button oobCloneButton;
-        private System.Windows.Forms.Button oobAddDivisinButton;
+        private System.Windows.Forms.Button oobAddDivisionButton;
         private System.Windows.Forms.Button oobAddUnitButton;
 
     }
