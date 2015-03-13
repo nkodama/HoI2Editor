@@ -495,7 +495,7 @@ namespace HoI2Editor.Forms
                     // テキストボックスの最大幅を求める
                     if (unit.ExistsModelName(i, country))
                     {
-                        string s = unit.GetModelName(i, country);
+                        string s = unit.GetCountryModelName(i, country);
                         maxEditWidth = Math.Max(maxEditWidth, (int) g.MeasureString(s, Font).Width + textBoxWidthMargin);
                     }
                 }
@@ -514,7 +514,7 @@ namespace HoI2Editor.Forms
                     };
                     if (unit.ExistsModelName(i, country))
                     {
-                        textBox.Text = unit.GetModelName(i, country);
+                        textBox.Text = unit.GetCountryModelName(i, country);
                     }
                     textBox.Validated += OnItemTextBoxValidated;
                     itemPanel.Controls.Add(textBox);
@@ -561,7 +561,7 @@ namespace HoI2Editor.Forms
             if (unit.ExistsModelName(index, country))
             {
                 // 値に変化がなければ何もしない
-                if (textBox.Text.Equals(unit.GetModelName(index, country)))
+                if (textBox.Text.Equals(unit.GetCountryModelName(index, country)))
                 {
                     return;
                 }

@@ -1646,7 +1646,12 @@ namespace HoI2Editor.Controllers
                     uc = Units.Items[(int) division.Type];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
-                        control.Items.Add(uc.GetModelName(i, settings.Country));
+                        string name = uc.GetCountryModelName(i, settings.Country);
+                        if (string.IsNullOrEmpty(name))
+                        {
+                            name = uc.GetModelName(i);
+                        }
+                        control.Items.Add(name);
                     }
                     break;
 
@@ -1654,7 +1659,12 @@ namespace HoI2Editor.Controllers
                     uc = Units.Items[(int) division.Extra1];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
-                        control.Items.Add(uc.GetModelName(i, settings.Country));
+                        string name = uc.GetCountryModelName(i, settings.Country);
+                        if (string.IsNullOrEmpty(name))
+                        {
+                            name = uc.GetModelName(i);
+                        }
+                        control.Items.Add(name);
                     }
                     break;
 
@@ -1662,7 +1672,12 @@ namespace HoI2Editor.Controllers
                     uc = Units.Items[(int) division.Extra2];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
-                        control.Items.Add(uc.GetModelName(i, settings.Country));
+                        string name = uc.GetCountryModelName(i, settings.Country);
+                        if (string.IsNullOrEmpty(name))
+                        {
+                            name = uc.GetModelName(i);
+                        }
+                        control.Items.Add(name);
                     }
                     break;
 
@@ -1670,7 +1685,12 @@ namespace HoI2Editor.Controllers
                     uc = Units.Items[(int) division.Extra3];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
-                        control.Items.Add(uc.GetModelName(i, settings.Country));
+                        string name = uc.GetCountryModelName(i, settings.Country);
+                        if (string.IsNullOrEmpty(name))
+                        {
+                            name = uc.GetModelName(i);
+                        }
+                        control.Items.Add(name);
                     }
                     break;
 
@@ -1678,7 +1698,12 @@ namespace HoI2Editor.Controllers
                     uc = Units.Items[(int) division.Extra4];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
-                        control.Items.Add(uc.GetModelName(i, settings.Country));
+                        string name = uc.GetCountryModelName(i, settings.Country);
+                        if (string.IsNullOrEmpty(name))
+                        {
+                            name = uc.GetModelName(i);
+                        }
+                        control.Items.Add(name);
                     }
                     break;
 
@@ -1686,7 +1711,12 @@ namespace HoI2Editor.Controllers
                     uc = Units.Items[(int) division.Extra5];
                     for (int i = 0; i < uc.Models.Count; i++)
                     {
-                        control.Items.Add(uc.GetModelName(i, settings.Country));
+                        string name = uc.GetCountryModelName(i, settings.Country);
+                        if (string.IsNullOrEmpty(name))
+                        {
+                            name = uc.GetModelName(i);
+                        }
+                        control.Items.Add(name);
                     }
                     break;
             }

@@ -1777,7 +1777,7 @@ namespace HoI2Editor.Models
             // 移動元のユニットモデル名を退避する
             string name = GetModelName(src);
             Dictionary<Country, string> names = Countries.Tags.Where(country => ExistsModelName(src, country))
-                .ToDictionary(country => country, country => GetModelName(src, country));
+                .ToDictionary(country => country, country => GetCountryModelName(src, country));
 
             // 移動元と移動先の間のユニットモデル名を変更する
             if (src > dest)
@@ -1813,7 +1813,8 @@ namespace HoI2Editor.Models
         /// <returns>ユニットモデル名</returns>
         public string GetModelName(int index)
         {
-            return Config.GetText(GetModelNameKey(index));
+            string key = GetModelNameKey(index);
+            return Config.ExistsKey(key) ? Config.GetText(key) : "";
         }
 
         /// <summary>
@@ -1822,18 +1823,10 @@ namespace HoI2Editor.Models
         /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
         /// <returns>ユニットモデル名</returns>
-        public string GetModelName(int index, Country country)
+        public string GetCountryModelName(int index, Country country)
         {
-            if (country == Country.None)
-            {
-                return GetModelName(index);
-            }
             string key = GetModelNameKey(index, country);
-            if (!Config.ExistsKey(key))
-            {
-                return GetModelName(index);
-            }
-            return Config.GetText(key);
+            return Config.ExistsKey(key) ? Config.GetText(key) : "";
         }
 
         /// <summary>
@@ -1897,7 +1890,7 @@ namespace HoI2Editor.Models
             Log.Info("[Unit] Copy country model name: {0} -> {1} <{2}> ({3})", src, dest,
                 Countries.Strings[(int) country], this);
 
-            SetModelName(dest, country, GetModelName(src, country));
+            SetModelName(dest, country, GetCountryModelName(src, country));
         }
 
         /// <summary>

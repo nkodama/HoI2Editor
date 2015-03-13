@@ -738,7 +738,12 @@ namespace HoI2Editor.Forms
             modelListView.BeginUpdate();
             for (int i = 0; i < unit.Models.Count; i++)
             {
-                modelListView.Items[i].SubItems[1].Text = unit.GetModelName(i, country);
+                string name = unit.GetCountryModelName(i, country);
+                if (string.IsNullOrEmpty(name))
+                {
+                    name = unit.GetModelName(i);
+                }
+                modelListView.Items[i].SubItems[1].Text = name;
             }
             modelListView.EndUpdate();
         }
@@ -800,7 +805,12 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[index];
 
             ListViewItem item = new ListViewItem { Text = IntHelper.ToString(index) };
-            item.SubItems.Add(unit.GetModelName(index, GetSelectedCountry()));
+            string name = unit.GetCountryModelName(index, GetSelectedCountry());
+            if (string.IsNullOrEmpty(name))
+            {
+                name = unit.GetModelName(index);
+            }
+            item.SubItems.Add(name);
             item.SubItems.Add(DoubleHelper.ToString(model.Cost));
             item.SubItems.Add(DoubleHelper.ToString(model.BuildTime));
             item.SubItems.Add(DoubleHelper.ToString(model.ManPower));
@@ -3845,32 +3855,26 @@ namespace HoI2Editor.Forms
             }
             int index = modelListView.SelectedIndices[0];
 
-            Country country = GetSelectedCountry();
-
             // ユニットモデル名を更新する
-            modelNameTextBox.Text = unit.GetModelName(index, country);
-
-            // ユニットモデル名の表示色を更新する
             UnitModel model = unit.Models[index];
+            Country country = GetSelectedCountry();
             if (country == Country.None)
             {
-                modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name)
-                    ? Color.Red
-                    : SystemColors.WindowText;
+                modelNameTextBox.Text = unit.GetModelName(index);
+                modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name) ? Color.Red : SystemColors.WindowText;
             }
             else
             {
-                if (unit.ExistsModelName(index, country))
+                string name = unit.GetCountryModelName(index, country);
+                if (string.IsNullOrEmpty(name))
                 {
-                    modelNameTextBox.ForeColor = model.IsDirtyName(country)
-                        ? Color.Red
-                        : SystemColors.WindowText;
+                    modelNameTextBox.Text = unit.GetModelName(index);
+                    modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name) ? Color.Salmon : Color.Gray;
                 }
                 else
                 {
-                    modelNameTextBox.ForeColor = model.IsDirty(UnitModelItemId.Name)
-                        ? Color.Salmon
-                        : Color.Gray;
+                    modelNameTextBox.Text = name;
+                    modelNameTextBox.ForeColor = model.IsDirtyName(country) ? Color.Red : SystemColors.WindowText;
                 }
             }
         }
@@ -3899,7 +3903,11 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             Country country = GetSelectedCountry();
-            string name = unit.GetModelName(index, country);
+            string name = unit.GetCountryModelName(index, country);
+            if (string.IsNullOrEmpty(name))
+            {
+                name = unit.GetModelName(index);
+            }
             if (modelNameTextBox.Text.Equals(name))
             {
                 return;
