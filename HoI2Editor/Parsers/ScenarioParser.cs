@@ -5801,8 +5801,8 @@ namespace HoI2Editor.Parsers
                     unit.LandUnits.Add(landUnit);
 
                     // 兵科を設定
-                    unit.Branch = Branch.Army;
-                    foreach (Division division in unit.Divisions)
+                    landUnit.Branch = Branch.Army;
+                    foreach (Division division in landUnit.Divisions)
                     {
                         division.Branch = Branch.Army;
                     }
