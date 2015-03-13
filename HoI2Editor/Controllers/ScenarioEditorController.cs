@@ -112,24 +112,29 @@ namespace HoI2Editor.Controllers
         #region プロヴィンスリスト
 
         /// <summary>
+        ///     全プロヴィンスリスト
+        /// </summary>
+        private List<Province> _provinces = new List<Province>();
+
+        /// <summary>
         ///     陸地プロヴィンスリスト
         /// </summary>
-        private List<Province> _landProvinces;
+        private readonly List<Province> _landProvinces = new List<Province>();
 
         /// <summary>
         ///     海洋/海軍基地プロヴィンスリスト
         /// </summary>
-        private List<Province> _seaBaseProvinces;
+        private readonly List<Province> _seaBaseProvinces = new List<Province>();
 
         /// <summary>
         ///     海軍基地プロヴィンスリスト
         /// </summary>
-        private List<Province> _navalBaseProvinces;
+        private readonly List<Province> _navalBaseProvinces = new List<Province>();
 
         /// <summary>
         ///     空軍基地プロヴィンスリスト
         /// </summary>
-        private List<Province> _airBaseProvinces;
+        private readonly List<Province> _airBaseProvinces = new List<Province>();
 
         /// <summary>
         ///     プロヴィンスリストの初期化済みフラグ
@@ -813,14 +818,39 @@ namespace HoI2Editor.Controllers
                 return;
             }
 
-            _landProvinces = Provinces.Items.Where(province => province.IsLand && (province.Id > 0)).ToList();
-            _seaBaseProvinces = Provinces.Items.Where(province => province.IsSea || province.PortAllowed).ToList();
-            _navalBaseProvinces = Provinces.Items.Where(province => province.PortAllowed).ToList();
-            _airBaseProvinces = new List<Province>();
-            foreach (Province province in Provinces.Items)
+            _provinces = Provinces.Items.Where(province => province.Id > 0).ToList();
+            if (Scenarios.Data.Map != null)
             {
+                _provinces = Scenarios.Data.Map.All
+                    ? _provinces.Where(province => !Scenarios.Data.Map.No.Contains(province.Id)).ToList()
+                    : _provinces.Where(province => Scenarios.Data.Map.Yes.Contains(province.Id)).ToList();
+            }
+            _landProvinces.Clear();
+            _seaBaseProvinces.Clear();
+            _navalBaseProvinces.Clear();
+            _airBaseProvinces.Clear();
+            foreach (Province province in _provinces)
+            {
+                if (province.IsSea)
+                {
+                    _seaBaseProvinces.Add(province);
+                    continue;
+                }
+                if (province.IsLand)
+                {
+                    _landProvinces.Add(province);
+                }
                 ProvinceSettings settings = Scenarios.GetProvinceSettings(province.Id);
-                if (settings != null && settings.AirBase != null)
+                if (settings == null)
+                {
+                    continue;
+                }
+                if (settings.NavalBase != null)
+                {
+                    _seaBaseProvinces.Add(province);
+                    _navalBaseProvinces.Add(province);
+                }
+                if (settings.AirBase != null)
                 {
                     _airBaseProvinces.Add(province);
                 }
@@ -3151,7 +3181,7 @@ namespace HoI2Editor.Controllers
                             return _seaBaseProvinces;
 
                         case Branch.Airforce:
-                            return Provinces.Items;
+                            return _provinces;
                     }
                     break;
 
