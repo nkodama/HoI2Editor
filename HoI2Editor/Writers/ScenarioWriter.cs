@@ -2184,7 +2184,7 @@ namespace HoI2Editor.Writers
             writer.WriteLine();
             foreach (Unit unit in settings.LandUnits)
             {
-                WriteLandUnit(unit, writer);
+                WriteLandUnit(unit, writer, "  ");
             }
         }
 
@@ -2229,112 +2229,113 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="unit">ユニット</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteLandUnit(Unit unit, TextWriter writer)
+        /// <param name="indent">インデント文字列</param>
+        private static void WriteLandUnit(Unit unit, TextWriter writer, string indent)
         {
-            writer.WriteLine("  landunit = {");
+            writer.WriteLine("{0}landunit = {{", indent);
             if (unit.Id != null)
             {
-                writer.Write("    id       = ");
+                writer.Write("{0}  id       = ", indent);
                 WriteTypeId(unit.Id, writer);
                 writer.WriteLine();
             }
             if (!string.IsNullOrEmpty(unit.Name))
             {
-                writer.WriteLine("    name     = \"{0}\"", unit.Name);
+                writer.WriteLine("{0}  name     = \"{1}\"", indent, unit.Name);
             }
             if (unit.Location > 0)
             {
-                writer.WriteLine("    location = {0}", unit.Location);
+                writer.WriteLine("{0}  location = {1}", indent, unit.Location);
             }
             if (unit.PrevProv > 0)
             {
-                writer.WriteLine("    prevprov = {0}", unit.PrevProv);
+                writer.WriteLine("{0}  prevprov = {1}", indent, unit.PrevProv);
             }
             if (unit.Home > 0)
             {
-                writer.WriteLine("    home     = {0}", unit.Home);
+                writer.WriteLine("{0}  home     = {1}", indent, unit.Home);
             }
             if (unit.Mission != null)
             {
-                WriteLandMission(unit.Mission, writer);
+                WriteLandMission(unit.Mission, writer, indent + "  ");
             }
             if (unit.Date != null)
             {
-                writer.Write("    date     = ");
+                writer.Write("{0}  date     = ", indent);
                 WriteDate(unit.Date, writer);
                 writer.WriteLine();
             }
             if (Game.Type == GameType.ArsenalOfDemocracy && !unit.Development)
             {
-                writer.WriteLine("    development = no");
+                writer.WriteLine("{0}  development = no", indent);
             }
             if (unit.StandGround)
             {
-                writer.WriteLine("    stand_ground = yes");
+                writer.WriteLine("{0}  stand_ground = yes", indent);
             }
             if (unit.ScorchGround)
             {
-                writer.WriteLine("    scorch_ground = yes");
+                writer.WriteLine("{0}  scorch_ground = yes", indent);
             }
             if (unit.Prioritized)
             {
-                writer.WriteLine("    prioritized = yes");
+                writer.WriteLine("{0}  prioritized = yes", indent);
             }
             if (unit.CanUpgrade)
             {
-                writer.WriteLine("    can_upgrade = no");
+                writer.WriteLine("{0}  can_upgrade = no", indent);
             }
             if (unit.CanReinforcement)
             {
-                writer.WriteLine("    can_reinforce = no");
+                writer.WriteLine("{0}  can_reinforce = no", indent);
             }
             if (unit.Control != Country.None)
             {
-                writer.WriteLine("    control  = {0}", Countries.Strings[(int) unit.Control]);
+                writer.WriteLine("{0}  control  = {1}", indent, Countries.Strings[(int) unit.Control]);
             }
             if (unit.Morale > 0)
             {
-                writer.WriteLine("    morale   = {0}", DoubleHelper.ToString(unit.Morale));
+                writer.WriteLine("{0}  morale   = {1}", indent, DoubleHelper.ToString(unit.Morale));
             }
             if (unit.Leader > 0)
             {
-                writer.WriteLine("    leader   = {0}", unit.Leader);
+                writer.WriteLine("{0}  leader   = {1}", indent, unit.Leader);
             }
             if (unit.MoveTime != null)
             {
-                writer.Write("    movetime = ");
+                writer.Write("{0}  movetime = ", indent);
                 WriteDate(unit.MoveTime, writer);
                 writer.WriteLine();
             }
             if (unit.Movement.Count > 0)
             {
-                writer.Write("    movement = {");
+                writer.Write("{0}  movement = {{", indent);
                 WriteIdList(unit.Movement, writer);
                 writer.WriteLine(" }");
             }
             foreach (Division division in unit.Divisions)
             {
-                WriteLandDivision(division, writer);
+                WriteLandDivision(division, writer, indent + "  ");
             }
             if (unit.DigIn > 0)
             {
-                writer.WriteLine("    dig_in   = {0}", DoubleHelper.ToString3(unit.DigIn));
+                writer.WriteLine("{0}  dig_in   = {1}", indent, DoubleHelper.ToString3(unit.DigIn));
             }
             if (unit.AttackDate != null)
             {
-                writer.Write("    attack   = ");
+                writer.Write("{0}  attack   = ", indent);
                 WriteDate(unit.AttackDate, writer);
                 writer.WriteLine();
             }
             if (unit.Invasion)
             {
-                writer.WriteLine("    invasion = yes");
+                writer.WriteLine("{0}  invasion = yes", indent);
             }
             if (unit.Target > 0)
             {
-                writer.WriteLine("    target   = {0}", unit.Target);
+                writer.WriteLine("{0}  target   = {1}", indent, unit.Target);
             }
-            writer.WriteLine("  }");
+            writer.WriteLine("{0}}}", indent);
         }
 
         /// <summary>
@@ -2431,7 +2432,7 @@ namespace HoI2Editor.Writers
             }
             foreach (Unit landUnit in unit.LandUnits)
             {
-                WriteLandUnit(landUnit, writer);
+                WriteLandUnit(landUnit, writer, "    ");
             }
             if (unit.AttackDate != null)
             {
@@ -2532,7 +2533,7 @@ namespace HoI2Editor.Writers
             }
             foreach (Unit landUnit in unit.LandUnits)
             {
-                WriteLandUnit(landUnit, writer);
+                WriteLandUnit(landUnit, writer, "    ");
             }
             if (unit.AttackDate != null)
             {
@@ -2552,205 +2553,208 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="division">師団</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteLandDivision(Division division, TextWriter writer)
+        /// <param name="indent">インデント文字列</param>
+        private static void WriteLandDivision(Division division, TextWriter writer, string indent)
         {
-            writer.WriteLine("    division = {");
-            writer.Write("      id             = ");
+            writer.WriteLine("{0}division = {{", indent);
+            writer.Write("{0}  id             = ", indent);
             WriteTypeId(division.Id, writer);
             writer.WriteLine();
             if (!string.IsNullOrEmpty(division.Name))
             {
-                writer.WriteLine("      name           = \"{0}\"", division.Name);
+                writer.WriteLine("{0}  name           = \"{1}\"", indent, division.Name);
             }
-            writer.WriteLine("      type           = {0}", Units.Strings[(int) division.Type]);
+            writer.WriteLine("{0}  type           = {1}", indent, Units.Strings[(int) division.Type]);
             if (division.Model >= 0)
             {
-                writer.WriteLine("      model          = {0}", division.Model);
+                writer.WriteLine("{0}  model          = {1}", indent, division.Model);
             }
             if (division.Extra1 != UnitType.Undefined)
             {
-                writer.WriteLine("      extra{0}         = {1}", (division.Extra2 == UnitType.Undefined) ? " " : "1",
-                    Units.Strings[(int) division.Extra1]);
+                writer.WriteLine("{0}  extra{1}         = {2}", indent,
+                    (division.Extra2 == UnitType.Undefined) ? " " : "1", Units.Strings[(int) division.Extra1]);
             }
             if (division.Extra2 != UnitType.Undefined)
             {
-                writer.WriteLine("      extra2         = {0}", Units.Strings[(int) division.Extra2]);
+                writer.WriteLine("{0}  extra2         = {1}", indent, Units.Strings[(int) division.Extra2]);
             }
             if (division.Extra3 != UnitType.Undefined)
             {
-                writer.WriteLine("      extra3         = {0}", Units.Strings[(int) division.Extra3]);
+                writer.WriteLine("{0}  extra3         = {1}", indent, Units.Strings[(int) division.Extra3]);
             }
             if (division.Extra4 != UnitType.Undefined)
             {
-                writer.WriteLine("      extra4         = {0}", Units.Strings[(int) division.Extra4]);
+                writer.WriteLine("{0}  extra4         = {1}", indent, Units.Strings[(int) division.Extra4]);
             }
             if (division.Extra5 != UnitType.Undefined)
             {
-                writer.WriteLine("      extra5         = {0}", Units.Strings[(int) division.Extra5]);
+                writer.WriteLine("{0}  extra5         = {1}", indent, Units.Strings[(int) division.Extra5]);
             }
             if (division.Extra1 != UnitType.Undefined && division.BrigadeModel1 >= 0)
             {
-                writer.WriteLine("      brigade_model{0} = {1}", (division.Extra2 == UnitType.Undefined) ? " " : "1",
-                    division.BrigadeModel1);
+                writer.WriteLine("{0}  brigade_model{1} = {2}", indent,
+                    (division.Extra2 == UnitType.Undefined) ? " " : "1", division.BrigadeModel1);
             }
             if (division.Extra2 != UnitType.Undefined && division.BrigadeModel2 >= 0)
             {
-                writer.WriteLine("      brigade_model2 = {0}", division.BrigadeModel2);
+                writer.WriteLine("{0}  brigade_model2 = {1}", indent, division.BrigadeModel2);
             }
             if (division.Extra3 != UnitType.Undefined && division.BrigadeModel3 >= 0)
             {
-                writer.WriteLine("      brigade_model3 = {0}", division.BrigadeModel3);
+                writer.WriteLine("{0}  brigade_model3 = {1}", indent, division.BrigadeModel3);
             }
             if (division.Extra4 != UnitType.Undefined && division.BrigadeModel4 >= 0)
             {
-                writer.WriteLine("      brigade_model4 = {0}", division.BrigadeModel4);
+                writer.WriteLine("{0}  brigade_model4 = {1}", indent, division.BrigadeModel4);
             }
             if (division.Extra5 != UnitType.Undefined && division.BrigadeModel5 >= 0)
             {
-                writer.WriteLine("      brigade_model5 = {0}", division.BrigadeModel5);
+                writer.WriteLine("{0}  brigade_model5 = {1}", indent, division.BrigadeModel5);
             }
             if (division.Strength > 0)
             {
-                writer.WriteLine("      strength       = {0}", DoubleHelper.ToString(division.Strength));
+                writer.WriteLine("{0}  strength       = {1}", indent, DoubleHelper.ToString(division.Strength));
             }
             if (division.MaxStrength > 0)
             {
-                writer.WriteLine("      max_strength   = {0}", DoubleHelper.ToString(division.MaxStrength));
+                writer.WriteLine("{0}  max_strength   = {1}", indent, DoubleHelper.ToString(division.MaxStrength));
             }
             if (division.Organisation > 0)
             {
-                writer.WriteLine("      organisation   = {0}", DoubleHelper.ToString(division.Organisation));
+                writer.WriteLine("{0}  organisation   = {1}", indent, DoubleHelper.ToString(division.Organisation));
             }
             if (division.Morale > 0)
             {
-                writer.WriteLine("      morale         = {0}", DoubleHelper.ToString(division.Morale));
+                writer.WriteLine("{0}  morale         = {1}", indent, DoubleHelper.ToString(division.Morale));
             }
             if (division.Experience > 0)
             {
-                writer.WriteLine("      experience     = {0}", DoubleHelper.ToString(division.Experience));
+                writer.WriteLine("{0}  experience     = {1}", indent, DoubleHelper.ToString(division.Experience));
             }
             if (division.Organisation > 0)
             {
-                writer.WriteLine("      defaultorganisation = {0}", DoubleHelper.ToString(division.MaxOrganisation));
+                writer.WriteLine("{0}  defaultorganisation = {1}", indent,
+                    DoubleHelper.ToString(division.MaxOrganisation));
             }
             if (division.UpgradeProgress > 0)
             {
-                writer.WriteLine("      div_upgr_progress = {0}", DoubleHelper.ToString(division.Experience));
+                writer.WriteLine("{0}  div_upgr_progress = {1}", indent, DoubleHelper.ToString(division.Experience));
             }
             if (division.RedeployTarget > 0)
             {
-                writer.WriteLine("      redep_target = {0}", division.RedeployTarget);
+                writer.WriteLine("{0}  redep_target = {1}", indent, division.RedeployTarget);
             }
             if (division.RedeployUnitName != null)
             {
-                writer.WriteLine("      redep_unit_name = {0}", division.RedeployUnitName);
+                writer.WriteLine("{0}  redep_unit_name = {1}", indent, division.RedeployUnitName);
             }
             if (division.RedeployUnitId != null)
             {
-                writer.Write("      redep_unit_id = ");
+                writer.Write("{0}  redep_unit_id = ", indent);
                 WriteTypeId(division.Id, writer);
                 writer.WriteLine();
             }
             if (division.Offensive != null)
             {
-                writer.Write("      offensive = ");
+                writer.Write("{0}  offensive = ", indent);
                 WriteDate(division.Offensive, writer);
                 writer.WriteLine();
             }
             if (division.Supplies > 0)
             {
-                writer.WriteLine("      supplies = {0}", DoubleHelper.ToString(division.Supplies));
+                writer.WriteLine("{0}  supplies = {1}", indent, DoubleHelper.ToString(division.Supplies));
             }
             if (division.Fuel > 0)
             {
-                writer.WriteLine("      oil = {0}", DoubleHelper.ToString(division.Fuel));
+                writer.WriteLine("{0}  oil = {1}", indent, DoubleHelper.ToString(division.Fuel));
             }
             if (division.MaxSupplies > 0)
             {
-                writer.WriteLine("      max_supply_stock = {0}", DoubleHelper.ToString(division.MaxSupplies));
+                writer.WriteLine("{0}  max_supply_stock = {1}", indent, DoubleHelper.ToString(division.MaxSupplies));
             }
             if (division.MaxFuel > 0)
             {
-                writer.WriteLine("      max_oil_stock  = {0}", DoubleHelper.ToString(division.MaxFuel));
+                writer.WriteLine("{0}  max_oil_stock  = {1}", indent, DoubleHelper.ToString(division.MaxFuel));
             }
             if (division.MaxSpeed > 0)
             {
-                writer.WriteLine("      maxspeed = {0}", DoubleHelper.ToString(division.MaxSpeed));
+                writer.WriteLine("{0}  maxspeed = {1}", indent, DoubleHelper.ToString(division.MaxSpeed));
             }
             if (division.SupplyConsumption > 0)
             {
-                writer.WriteLine("      supplyconsumption = {0}", DoubleHelper.ToString(division.SupplyConsumption));
+                writer.WriteLine("{0}  supplyconsumption = {1}", indent,
+                    DoubleHelper.ToString(division.SupplyConsumption));
             }
             if (division.FuelConsumption > 0)
             {
-                writer.WriteLine("      fuelconsumption = {0}", DoubleHelper.ToString(division.FuelConsumption));
+                writer.WriteLine("{0}  fuelconsumption = {1}", indent, DoubleHelper.ToString(division.FuelConsumption));
             }
             if (division.Defensiveness > 0)
             {
-                writer.WriteLine("      defensiveness = {0}", DoubleHelper.ToString(division.Defensiveness));
+                writer.WriteLine("{0}  defensiveness = {1}", indent, DoubleHelper.ToString(division.Defensiveness));
             }
             if (division.Toughness > 0)
             {
-                writer.WriteLine("      toughness = {0}", DoubleHelper.ToString(division.Toughness));
+                writer.WriteLine("{0}  toughness = {1}", indent, DoubleHelper.ToString(division.Toughness));
             }
             if (division.Softness > 0)
             {
-                writer.WriteLine("      softness = {0}", DoubleHelper.ToString(division.Softness));
+                writer.WriteLine("{0}  softness = {1}", indent, DoubleHelper.ToString(division.Softness));
             }
             if (division.Suppression > 0)
             {
-                writer.WriteLine("      suppression = {0}", DoubleHelper.ToString(division.Suppression));
+                writer.WriteLine("{0}  suppression = {1}", indent, DoubleHelper.ToString(division.Suppression));
             }
             if (division.AirDefence > 0)
             {
-                writer.WriteLine("      airdefence = {0}", DoubleHelper.ToString(division.AirDefence));
+                writer.WriteLine("{0}  airdefence = {1}", indent, DoubleHelper.ToString(division.AirDefence));
             }
             if (division.SoftAttack > 0)
             {
-                writer.WriteLine("      softattack = {0}", DoubleHelper.ToString(division.SoftAttack));
+                writer.WriteLine("{0}  softattack = {1}", indent, DoubleHelper.ToString(division.SoftAttack));
             }
             if (division.HardAttack > 0)
             {
-                writer.WriteLine("      hardattack = {0}", DoubleHelper.ToString(division.HardAttack));
+                writer.WriteLine("{0}  hardattack = {1}", indent, DoubleHelper.ToString(division.HardAttack));
             }
             if (division.TransportWeight > 0)
             {
-                writer.WriteLine("      transportweight = {0}", DoubleHelper.ToString(division.TransportWeight));
+                writer.WriteLine("{0}  transportweight = {1}", indent, DoubleHelper.ToString(division.TransportWeight));
             }
             if (division.AirAttack > 0)
             {
-                writer.WriteLine("      airattack = {0}", DoubleHelper.ToString(division.AirAttack));
+                writer.WriteLine("{0}  airattack = {1}", indent, DoubleHelper.ToString(division.AirAttack));
             }
             if (division.SpeedCapArt > 0)
             {
-                writer.WriteLine("      speed_cap_art = {0}", DoubleHelper.ToString(division.SpeedCapArt));
+                writer.WriteLine("{0}  speed_cap_art = {1}", indent, DoubleHelper.ToString(division.SpeedCapArt));
             }
             if (division.SpeedCapEng > 0)
             {
-                writer.WriteLine("      speed_cap_eng = {0}", DoubleHelper.ToString(division.SpeedCapEng));
+                writer.WriteLine("{0}  speed_cap_eng = {1}", indent, DoubleHelper.ToString(division.SpeedCapEng));
             }
             if (division.SpeedCapAa > 0)
             {
-                writer.WriteLine("      speed_cap_aa = {0}", DoubleHelper.ToString(division.SpeedCapAa));
+                writer.WriteLine("{0}  speed_cap_aa = {1}", indent, DoubleHelper.ToString(division.SpeedCapAa));
             }
             if (division.SpeedCapAt > 0)
             {
-                writer.WriteLine("      speed_cap_at = {0}", DoubleHelper.ToString(division.SpeedCapAt));
+                writer.WriteLine("{0}  speed_cap_at = {1}", indent, DoubleHelper.ToString(division.SpeedCapAt));
             }
             if (division.ArtilleryBombardment > 0)
             {
-                writer.WriteLine("      artillery_bombardment = {0}",
+                writer.WriteLine("{0}  artillery_bombardment = {1}", indent,
                     DoubleHelper.ToString(division.ArtilleryBombardment));
             }
             if (division.Dormant)
             {
-                writer.WriteLine("      dormant        = yes");
+                writer.WriteLine("{0}  dormant        = yes", indent);
             }
             if (division.Locked)
             {
-                writer.WriteLine("      locked         = yes");
+                writer.WriteLine("{0}  locked         = yes", indent);
             }
-            writer.WriteLine("    }");
+            writer.WriteLine("{0}}}", indent);
         }
 
         /// <summary>
@@ -3613,47 +3617,48 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="mission">任務</param>
         /// <param name="writer">ファイル書き込み用</param>
-        private static void WriteLandMission(Mission mission, TextWriter writer)
+        /// <param name="indent">インデント文字列</param>
+        private static void WriteLandMission(Mission mission, TextWriter writer, string indent)
         {
-            writer.WriteLine("    mission = {");
+            writer.WriteLine("{0}mission = {{", indent);
             if (mission.Type != MissionType.None)
             {
-                writer.WriteLine("      type = {0}", Scenarios.MissionStrings[(int) mission.Type]);
+                writer.WriteLine("{0}  type = {1}", indent, Scenarios.MissionStrings[(int) mission.Type]);
             }
             if (mission.Target > 0)
             {
-                writer.WriteLine("      target = {0}", mission.Target);
+                writer.WriteLine("{0}  target = {1}", indent, mission.Target);
             }
-            writer.WriteLine("      percentage = {0}", DoubleHelper.ToString(mission.Percentage));
+            writer.WriteLine("{0}  percentage = {1}", indent, DoubleHelper.ToString(mission.Percentage));
             if (mission.Night)
             {
-                writer.WriteLine("      night = yes");
+                writer.WriteLine("{0}  night = yes", indent);
             }
             if (mission.Day)
             {
-                writer.WriteLine("      day = yes");
+                writer.WriteLine("{0}  day = yes", indent);
             }
             if (mission.StartDate != null)
             {
-                writer.Write("      startdate = ");
+                writer.Write("{0}  startdate = ", indent);
                 WriteDate(mission.StartDate, writer);
                 writer.WriteLine();
             }
             if (mission.EndDate != null)
             {
-                writer.Write("      enddate = ");
+                writer.Write("{0}  enddate = ", indent);
                 WriteDate(mission.EndDate, writer);
                 writer.WriteLine();
             }
             if (mission.Task > 0)
             {
-                writer.WriteLine("      task = {0}", mission.Task);
+                writer.WriteLine("{0}  task = {1}", indent, mission.Task);
             }
             if (mission.Location > 0)
             {
-                writer.WriteLine("      location = {0}", mission.Location);
+                writer.WriteLine("{0}  location = {1}", indent, mission.Location);
             }
-            writer.WriteLine("    }");
+            writer.WriteLine("{0}}}", indent);
         }
 
         /// <summary>
