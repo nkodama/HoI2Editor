@@ -7883,7 +7883,7 @@ namespace HoI2Editor.Controllers
                     _unitTreeController.UpdateDivisionNodeLabel(division.Name);
                     break;
 
-                case ScenarioEditorItemId.DivisionType:
+                case ScenarioEditorItemId.DivisionUnitType:
                     PostItemChangedUnitType((ComboBox) _form.GetItemControl(ScenarioEditorItemId.DivisionModel),
                         division, settings);
                     break;
