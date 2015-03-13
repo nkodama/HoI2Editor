@@ -1,5 +1,17 @@
 Alternative HoI2 Editor Changelog
 
+- 13 Mar 2015; Ver 0.45
+
+Corrected typo of division_development/new_model.
+Undeployed naval/air divisions are saved now.
+Fixed a crash when a boarding unit is selected.
+Initialized location/base province when a new division is created.
+When unit type is changed in OOB editor, unit model list is updated.
+When unit type is changed in OOB editor, max allowed brigades are updated.
+Fixed a bug that unit OOB can be edited without selecting any countries. 
+Fixed a bug that province list of air division's location contains (Embarked).
+If country specific model name is null, common model name is shown.
+
 - 7 Mar 2015; Ver 0.44
 
 Added unit OOB editing.
