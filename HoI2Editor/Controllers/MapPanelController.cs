@@ -198,7 +198,12 @@ namespace HoI2Editor.Controllers
             map.UpdateColorPalette();
 
             // ピクチャーボックスに画像を設定する
+            Image prev = _pictureBox.Image;
             _pictureBox.Image = map.Image;
+            if (prev != null)
+            {
+                prev.Dispose();
+            }
 
             // イベントハンドラを初期化する
             InitEventHandler();

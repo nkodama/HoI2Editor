@@ -1144,7 +1144,7 @@ namespace HoI2Editor.Forms
             int index = modelListView.SelectedIndices[0];
 
             // ユニットモデル画像名を更新する
-            Image oldImage = modelImagePictureBox.Image;
+            Image prev = modelImagePictureBox.Image;
             string fileName = GetModelImageFileName(unit, index, GetSelectedCountry());
             if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
             {
@@ -1156,9 +1156,9 @@ namespace HoI2Editor.Forms
             {
                 modelImagePictureBox.Image = null;
             }
-            if (oldImage != null)
+            if (prev != null)
             {
-                oldImage.Dispose();
+                prev.Dispose();
             }
 
             // ユニットモデル名を更新する
@@ -3122,7 +3122,7 @@ namespace HoI2Editor.Forms
             UnitModel model = unit.Models[index];
 
             // モデル画像
-            Image oldImage = modelImagePictureBox.Image;
+            Image prev = modelImagePictureBox.Image;
             string fileName = GetModelImageFileName(unit, index, GetSelectedCountry());
             if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
             {
@@ -3134,12 +3134,12 @@ namespace HoI2Editor.Forms
             {
                 modelImagePictureBox.Image = null;
             }
-            if (oldImage != null)
+            if (prev != null)
             {
-                oldImage.Dispose();
+                prev.Dispose();
             }
             // モデルアイコン
-            oldImage = modelIconPictureBox.Image;
+            prev = modelIconPictureBox.Image;
             fileName = GetModelIconFileName(unit, index);
             if (!string.IsNullOrEmpty(fileName) && File.Exists(fileName))
             {
@@ -3151,9 +3151,9 @@ namespace HoI2Editor.Forms
             {
                 modelIconPictureBox.Image = null;
             }
-            if (oldImage != null)
+            if (prev != null)
             {
-                oldImage.Dispose();
+                prev.Dispose();
             }
             // モデル名
             UpdateModelNameTextBox();
@@ -3738,17 +3738,17 @@ namespace HoI2Editor.Forms
             battleGroupBox.Enabled = false;
             equipmentGroupBox.Enabled = false;
 
-            Image oldImage = modelImagePictureBox.Image;
+            Image prev = modelImagePictureBox.Image;
             modelImagePictureBox.Image = null;
-            if (oldImage != null)
+            if (prev != null)
             {
-                oldImage.Dispose();
+                prev.Dispose();
             }
-            oldImage = modelIconPictureBox.Image;
+            prev = modelIconPictureBox.Image;
             modelIconPictureBox.Image = null;
-            if (oldImage != null)
+            if (prev != null)
             {
-                oldImage.Dispose();
+                prev.Dispose();
             }
             modelNameTextBox.ResetText();
 

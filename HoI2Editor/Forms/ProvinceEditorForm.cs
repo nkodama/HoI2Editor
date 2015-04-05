@@ -1347,8 +1347,13 @@ namespace HoI2Editor.Forms
         /// <param name="province">プロヴィンス</param>
         private void UpdateProvinceImage(Province province)
         {
+            Image prev = provincePictureBox.Image;
             string fileName = Game.GetReadFileName(Game.GetProvinceImageFileName(province.Id));
             provincePictureBox.ImageLocation = File.Exists(fileName) ? fileName : "";
+            if (prev != null)
+            {
+                prev.Dispose();
+            }
         }
 
         /// <summary>

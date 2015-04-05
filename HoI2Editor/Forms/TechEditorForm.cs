@@ -1410,7 +1410,12 @@ namespace HoI2Editor.Forms
             techPositionListView.Items.Clear();
             techXNumericUpDown.ResetText();
             techYNumericUpDown.ResetText();
+            Image prev = techPictureBox.Image;
             techPictureBox.Image = null;
+            if (prev != null)
+            {
+                prev.Dispose();
+            }
         }
 
         /// <summary>
@@ -1930,6 +1935,7 @@ namespace HoI2Editor.Forms
                 ? Color.Red
                 : SystemColors.WindowText;
 
+            Image prev = techPictureBox.Image;
             string fileName = Game.GetReadFileName(Game.TechPicturePathName,
                 string.Format("{0}.bmp",
                     string.IsNullOrEmpty(item.PictureName) ? IntHelper.ToString(item.Id) : item.PictureName));
@@ -1943,6 +1949,10 @@ namespace HoI2Editor.Forms
             else
             {
                 techPictureBox.Image = null;
+            }
+            if (prev != null)
+            {
+                prev.Dispose();
             }
         }
 

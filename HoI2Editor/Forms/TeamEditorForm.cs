@@ -1533,7 +1533,12 @@ namespace HoI2Editor.Forms
             startYearNumericUpDown.ResetText();
             endYearNumericUpDown.ResetText();
             pictureNameTextBox.ResetText();
-            teamPictureBox.ImageLocation = "";
+            Image prev = teamPictureBox.Image;
+            teamPictureBox.Image = null;
+            if (prev != null)
+            {
+                prev.Dispose();
+            }
 
             countryComboBox.Enabled = false;
             idNumericUpDown.Enabled = false;
@@ -1655,6 +1660,7 @@ namespace HoI2Editor.Forms
         /// <param name="team">研究機関データ</param>
         private void UpdateTeamPicture(Team team)
         {
+            Image prev = teamPictureBox.Image;
             if (!string.IsNullOrEmpty(team.PictureName))
             {
                 string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
@@ -1663,7 +1669,11 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                teamPictureBox.ImageLocation = "";
+                teamPictureBox.Image = null;
+            }
+            if (prev != null)
+            {
+                prev.Dispose();
             }
         }
 

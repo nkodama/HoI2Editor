@@ -2015,7 +2015,12 @@ namespace HoI2Editor.Forms
             rankYearNumericUpDown3.ResetText();
             rankYearNumericUpDown4.ResetText();
             pictureNameTextBox.ResetText();
-            leaderPictureBox.ImageLocation = "";
+            Image prev = leaderPictureBox.Image;
+            leaderPictureBox.Image = null;
+            if (prev != null)
+            {
+                prev.Dispose();
+            }
 
             ResetTraitsCheckBoxValue();
 
@@ -2167,6 +2172,7 @@ namespace HoI2Editor.Forms
         /// <param name="leader">指揮官データ</param>
         private void UpdateLeaderPicture(Leader leader)
         {
+            Image prev = leaderPictureBox.Image;
             if (!string.IsNullOrEmpty(leader.PictureName))
             {
                 string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
@@ -2175,7 +2181,11 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                leaderPictureBox.ImageLocation = "";
+                leaderPictureBox.Image = null;
+            }
+            if (prev != null)
+            {
+                prev.Dispose();
             }
         }
 
