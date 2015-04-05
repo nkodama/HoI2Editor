@@ -3757,7 +3757,7 @@ namespace HoI2Editor.Forms
             commandTypeComboBox.BeginUpdate();
             commandTypeComboBox.Items.Clear();
             int width = commandTypeComboBox.Width;
-            foreach (string name in Command.TypeStringTable)
+            foreach (string name in Commands.Types.Select(type => Commands.Strings[(int) type]))
             {
                 commandTypeComboBox.Items.Add(name);
                 width = Math.Max(width,
@@ -3895,7 +3895,7 @@ namespace HoI2Editor.Forms
             {
                 Command command = item.Effects[effectListView.SelectedIndices[0]];
                 Brush brush;
-                if ((e.Index == (int) command.Type) && command.IsDirty(CommandItemId.Type))
+                if ((Commands.Types[e.Index] == command.Type) && command.IsDirty(CommandItemId.Type))
                 {
                     brush = new SolidBrush(Color.Red);
                 }
@@ -4075,7 +4075,7 @@ namespace HoI2Editor.Forms
             // 編集項目の値を更新する
             if (command.Type != CommandType.None)
             {
-                commandTypeComboBox.SelectedIndex = (int) command.Type;
+                commandTypeComboBox.SelectedIndex = Commands.Types.IndexOf(command.Type);
             }
             else
             {
@@ -4185,7 +4185,7 @@ namespace HoI2Editor.Forms
 
             Command command = item.Effects[index].Clone();
 
-            Log.Info("[Tech] Added new effect: {0} [{1}]", Command.TypeStringTable[(int) command.Type], item);
+            Log.Info("[Tech] Added new effect: {0} [{1}]", Commands.Strings[(int) command.Type], item);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4221,7 +4221,7 @@ namespace HoI2Editor.Forms
             }
             int index = effectListView.SelectedIndices[0];
 
-            Log.Info("[Tech] Removed effect: {0} [{1}]", Command.TypeStringTable[(int) item.Effects[index].Type], item);
+            Log.Info("[Tech] Removed effect: {0} [{1}]", Commands.Strings[(int) item.Effects[index].Type], item);
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4343,20 +4343,20 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            CommandType type = (CommandType) commandTypeComboBox.SelectedIndex;
+            CommandType type = Commands.Types[commandTypeComboBox.SelectedIndex];
             if (type == command.Type)
             {
                 return;
             }
 
-            Log.Info("[Tech] Changed tech effect type: {0} -> {1} [{2}]", Command.TypeStringTable[(int) command.Type],
-                Command.TypeStringTable[(int) type], item);
+            Log.Info("[Tech] Changed tech effect type: {0} -> {1} [{2}]", Commands.Strings[(int) command.Type],
+                Commands.Strings[(int) type], item);
 
             // 値を更新する
             command.Type = type;
 
             // 技術効果リストビューの表示を更新する
-            effectListView.Items[index].Text = Command.TypeStringTable[(int) type];
+            effectListView.Items[index].Text = Commands.Strings[(int) type];
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -4671,7 +4671,7 @@ namespace HoI2Editor.Forms
         /// <returns>技術効果リストの項目</returns>
         private static ListViewItem CreateEffectListItem(Command command)
         {
-            ListViewItem li = new ListViewItem { Text = Command.TypeStringTable[(int) command.Type] };
+            ListViewItem li = new ListViewItem { Text = Commands.Strings[(int) command.Type] };
             li.SubItems.Add(ObjectHelper.ToString(command.Which));
             li.SubItems.Add(ObjectHelper.ToString(command.Value));
             li.SubItems.Add(ObjectHelper.ToString(command.When));

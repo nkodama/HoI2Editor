@@ -168,6 +168,7 @@
     <Compile Include="HoI2EditorSettings.cs" />
     <Compile Include="Models\Branches.cs" />
     <Compile Include="Models\Command.cs" />
+    <Compile Include="Models\Commands.cs" />
     <Compile Include="Models\CorpsNames.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="HoI2EditorApplication.cs" />

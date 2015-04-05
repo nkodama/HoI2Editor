@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using HoI2Editor.Models;
 
 namespace HoI2Editor.Parsers
@@ -9,36 +8,12 @@ namespace HoI2Editor.Parsers
     /// </summary>
     public static class CommandParser
     {
-        #region 内部フィールド
-
-        /// <summary>
-        ///     コマンド種類文字列とIDの対応付け
-        /// </summary>
-        private static readonly Dictionary<string, CommandType> TypeMap = new Dictionary<string, CommandType>();
-
-        #endregion
-
         #region 内部定数
 
         /// <summary>
         ///     ログ出力時のカテゴリ名
         /// </summary>
         private const string LogCategory = "Command";
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     静的コンストラクタ
-        /// </summary>
-        static CommandParser()
-        {
-            foreach (CommandType type in Enum.GetValues(typeof (CommandType)))
-            {
-                TypeMap.Add(Command.TypeStringTable[(int) type], type);
-            }
-        }
 
         #endregion
 
@@ -127,7 +102,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
                     s = s.ToLower();
-                    if (!TypeMap.ContainsKey(s))
+                    if (!Commands.StringMap.ContainsKey(s))
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
                         lexer.SkipLine();
@@ -135,7 +110,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // コマンド種類
-                    command.Type = TypeMap[s];
+                    command.Type = Commands.StringMap[s];
                     continue;
                 }
 
