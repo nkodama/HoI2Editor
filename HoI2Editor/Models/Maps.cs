@@ -106,6 +106,17 @@ namespace HoI2Editor.Models
         #region ファイル読み込み
 
         /// <summary>
+        /// マップファイルの再読み込みを要求する
+        /// </summary>
+        public static void RequestReload()
+        {
+            foreach (MapLevel level in Enum.GetValues(typeof (MapLevel)))
+            {
+                IsLoaded[(int) level] = false;
+            }
+        }
+
+        /// <summary>
         ///     マップファイルを読み込む
         /// </summary>
         /// <param name="level">マップレベル</param>

@@ -112,6 +112,7 @@ namespace HoI2Editor
             UnitNames.RequestReload();
             RandomLeaders.RequestReload();
             Scenarios.RequestReload();
+            Maps.RequestReload();
 
             SaveCanceled = false;
 
