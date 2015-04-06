@@ -370,15 +370,15 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteAlliances(ScenarioGlobalData data, TextWriter writer)
         {
-            if (data.Axis != null)
+            if (data.Axis != null && data.Axis.Id != null)
             {
                 WriteAlliance(data.Axis, "axis", writer);
             }
-            if (data.Allies != null)
+            if (data.Allies != null && data.Allies.Id != null)
             {
                 WriteAlliance(data.Allies, "allies", writer);
             }
-            if (data.Comintern != null)
+            if (data.Comintern != null && data.Comintern.Id != null)
             {
                 WriteAlliance(data.Comintern, "comintern", writer);
             }

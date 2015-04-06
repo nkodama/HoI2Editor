@@ -678,6 +678,9 @@ namespace HoI2Editor.Models
         public ScenarioGlobalData()
         {
             Rules = new ScenarioRules();
+            Axis = new Alliance();
+            Allies = new Alliance();
+            Comintern = new Alliance();
             Alliances = new List<Alliance>();
             Wars = new List<War>();
             NonAggressions = new List<Treaty>();
