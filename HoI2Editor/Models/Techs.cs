@@ -778,6 +778,9 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void LoadFiles()
         {
+            // コマンドの初期化
+            Commands.Init();
+
             Groups.Clear();
 
             bool error = false;

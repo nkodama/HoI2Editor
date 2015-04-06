@@ -28,12 +28,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     初期化済みフラグ
         /// </summary>
-        private static readonly bool _initialized;
+        private static bool _initialized;
 
         /// <summary>
         ///     ゲーム種類
         /// </summary>
-        private static readonly CommandGameType _gameType;
+        private static CommandGameType _gameType;
 
         #endregion
 
@@ -654,9 +654,9 @@ namespace HoI2Editor.Models
         #region 初期化
 
         /// <summary>
-        ///     静的コンストラクタ
+        ///     初期化処理
         /// </summary>
-        static Commands()
+        public static void Init()
         {
             CommandGameType gameType = GetGameType();
 
