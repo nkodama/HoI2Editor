@@ -45,6 +45,9 @@ namespace HoI2Editor.Forms
                 Game.OutputGameVersion();
             }
 
+            // マップ読み込みの禁止チェックボックスを初期化する
+            mapLoadCheckBox.Checked = Maps.ForbidLoad;
+
             // 初期状態のゲームフォルダ名を設定する
             if (!string.IsNullOrEmpty(Game.FolderName))
             {
@@ -770,6 +773,16 @@ namespace HoI2Editor.Forms
         {
             Log.Level = logLevelComboBox.SelectedIndex;
             Log.Error("[Log] Level: {0}", (TraceLevel) Log.Level);
+        }
+
+        /// <summary>
+        ///     マップ読み込み禁止チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMapLoadCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            Maps.ForbidLoad = mapLoadCheckBox.Checked;
         }
 
         #endregion

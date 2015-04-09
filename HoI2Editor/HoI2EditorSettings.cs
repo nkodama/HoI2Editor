@@ -268,63 +268,6 @@ namespace HoI2Editor
             return new Rectangle(x, y, width, height);
         }
 
-        /// <summary>
-        ///     フォームの位置を丸める (低解像度/中解像度/高解像度でデフォルトの高さが異なる場合)
-        /// </summary>
-        /// <param name="location">現在の位置</param>
-        /// <param name="size">現在のサイズ</param>
-        /// <param name="defaultWidth">デフォルト幅</param>
-        /// <param name="defaultHeightShort">デフォルト高さ(低解像度)</param>
-        /// <param name="defaultHeightMiddle">デフォルト高さ(中解像度)</param>
-        /// <param name="defaultHeightLong">デフォルト高さ(高解像度)</param>
-        /// <returns>丸めた後の位置</returns>
-        private static Rectangle RoundFormPosition(Point location, Size size, int defaultWidth, int defaultHeightShort,
-            int defaultHeightMiddle, int defaultHeightLong)
-        {
-            // デスクトップのサイズを取得する
-            Rectangle screenRect = Screen.GetWorkingArea(new Point(200, 200));
-
-            // フォームのサイズを丸める
-            int width = size.Width;
-            int scaledWidth = DeviceCaps.GetScaledWidth(defaultWidth);
-            if ((width > screenRect.Width) || (width < scaledWidth))
-            {
-                width = scaledWidth;
-            }
-            int height = size.Height;
-            int scaledHeightShort = DeviceCaps.GetScaledHeight(defaultHeightShort);
-            if ((height > screenRect.Height) || (height < scaledHeightShort))
-            {
-                int scaledHeightMiddle = DeviceCaps.GetScaledHeight(defaultHeightMiddle);
-                int scaledHeightLong = DeviceCaps.GetScaledHeight(defaultHeightLong);
-                height = (screenRect.Height >= scaledHeightLong)
-                    ? scaledHeightLong
-                    : (screenRect.Height >= scaledHeightMiddle) ? scaledHeightMiddle : scaledHeightShort;
-            }
-
-            // フォームの位置を丸める
-            int x = location.X;
-            if (x < screenRect.Left)
-            {
-                x = screenRect.Left;
-            }
-            else if (x >= screenRect.Right)
-            {
-                x = screenRect.Right - 1;
-            }
-            int y = location.Y;
-            if (y < screenRect.Top)
-            {
-                y = screenRect.Top;
-            }
-            else if (y >= screenRect.Bottom)
-            {
-                y = screenRect.Bottom - 1;
-            }
-
-            return new Rectangle(x, y, width, height);
-        }
-
         #endregion
 
         #region メインフォーム
@@ -373,36 +316,23 @@ namespace HoI2Editor
             }
 
             /// <summary>
-            ///     ウィンドウ位置
+            ///     マップ読み込みの禁止
             /// </summary>
-            public Point Location
+            public bool ForbidLoadMaps
             {
-                get { return _location; }
-                set { _location = value; }
+                get { return Maps.ForbidLoad; }
+                set { Maps.ForbidLoad = value; }
             }
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
-
-            #endregion
-
-            #region 内部フィールド
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            private Point _location;
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            private Size _size;
+            public Size Size { get; set; }
 
             #endregion
 
@@ -467,20 +397,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     指揮官リストビューの列の幅
@@ -513,16 +435,6 @@ namespace HoI2Editor
             ///     指揮官リストビューの列の幅
             /// </summary>
             private int[] _listColumnWidth = new int[LeaderEditorForm.LeaderListColumnCount];
-
-            /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             #endregion
 
@@ -619,20 +531,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     閣僚リストビューの列の幅
@@ -665,16 +569,6 @@ namespace HoI2Editor
             ///     閣僚リストビューの列の幅
             /// </summary>
             private int[] _listColumnWidth = new int[MinisterEditorForm.MinisterListColumnCount];
-
-            /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             #endregion
 
@@ -764,20 +658,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     研究機関リストビューの列の幅
@@ -810,16 +696,6 @@ namespace HoI2Editor
             ///     研究機関リストビューの列の幅
             /// </summary>
             private int[] _listColumnWidth = new int[TeamEditorForm.TeamListColumnCount];
-
-            /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             #endregion
 
@@ -909,20 +785,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     プロヴィンスリストビューの列の幅
@@ -941,16 +809,6 @@ namespace HoI2Editor
             ///     プロヴィンスリストビューの列の幅
             /// </summary>
             private int[] _listColumnWidth = new int[ProvinceEditorForm.ProvinceListColumnCount];
-
-            /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             #endregion
 
@@ -1041,20 +899,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     AND必要技術リストビューの列の幅
@@ -1154,19 +1004,9 @@ namespace HoI2Editor
             private int[] _labelPositionListColumnWidth = new int[TechEditorForm.PositionListColumnCount];
 
             /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
             ///     OR必要技術リストビューの列の幅
             /// </summary>
             private int[] _orRequiredListColumnWidth = new int[TechEditorForm.RequiredListColumnCount];
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             /// <summary>
             ///     技術座標リストビューの列の幅
@@ -1306,20 +1146,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     ユニットモデルリストビューの列の幅
@@ -1358,19 +1190,9 @@ namespace HoI2Editor
             private int[] _equipmentListColumnWidth = new int[UnitEditorForm.EquipmentListColumnCount];
 
             /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
             ///     ユニットモデルリストビューの列の幅
             /// </summary>
             private int[] _modelListColumnWidth = new int[UnitEditorForm.ModelListColumnCount];
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             /// <summary>
             ///     改良リストビューの列の幅
@@ -1488,39 +1310,17 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     選択中のタブページ
             /// </summary>
             public int SelectedTab { get; set; }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             #endregion
 
@@ -1600,20 +1400,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     選択中の兵科
@@ -1681,19 +1473,9 @@ namespace HoI2Editor
             #region 内部フィールド
 
             /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
             ///     接頭辞の履歴
             /// </summary>
             private List<string> _prefixHistory = new List<string>();
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             /// <summary>
             ///     接尾辞の履歴
@@ -1781,20 +1563,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     選択中の国家
@@ -1805,20 +1579,6 @@ namespace HoI2Editor
             ///     選択中のユニット種類
             /// </summary>
             public int UnitType { get; set; }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             #endregion
 
@@ -1891,20 +1651,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     選択中の国家
@@ -1972,19 +1724,9 @@ namespace HoI2Editor
             #region 内部フィールド
 
             /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
             ///     接頭辞の履歴
             /// </summary>
             private List<string> _prefixHistory = new List<string>();
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             /// <summary>
             ///     接尾辞の履歴
@@ -2072,20 +1814,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     選択中の国家
@@ -2123,16 +1857,6 @@ namespace HoI2Editor
             #endregion
 
             #region 内部フィールド
-
-            /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             /// <summary>
             ///     置換元の履歴
@@ -2215,20 +1939,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     技術リストビューの列の幅
@@ -2335,16 +2051,6 @@ namespace HoI2Editor
             ///     選択中の国家
             /// </summary>
             private List<Country> _countries = new List<Country>();
-
-            /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
 
             /// <summary>
             ///     研究機関リストビューの列の幅
@@ -2455,34 +2161,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            public Point Location
-            {
-                get { return _location; }
-                set { _location = value; }
-            }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            public Size Size
-            {
-                get { return _size; }
-                set { _size = value; }
-            }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     ウィンドウ位置
-            /// </summary>
-            private Point _location;
-
-            /// <summary>
-            ///     ウィンドウサイズ
-            /// </summary>
-            private Size _size;
+            public Size Size { get; set; }
 
             #endregion
 

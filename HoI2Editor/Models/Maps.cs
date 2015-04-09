@@ -41,6 +41,11 @@ namespace HoI2Editor.Models
         public static byte[] ColorMasks { get; private set; }
 
         /// <summary>
+        ///     マップ読み込みの禁止
+        /// </summary>
+        public static bool ForbidLoad;
+
+        /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
         public static bool[] IsLoaded;
@@ -106,7 +111,7 @@ namespace HoI2Editor.Models
         #region ファイル読み込み
 
         /// <summary>
-        /// マップファイルの再読み込みを要求する
+        ///     マップファイルの再読み込みを要求する
         /// </summary>
         public static void RequestReload()
         {
@@ -122,6 +127,12 @@ namespace HoI2Editor.Models
         /// <param name="level">マップレベル</param>
         public static void Load(MapLevel level)
         {
+            // 読み込み禁止ならば何もしない
+            if (ForbidLoad)
+            {
+                return;
+            }
+
             // 既に読み込み済みならば何もしない
             if (IsLoaded[(int) level])
             {
@@ -145,6 +156,12 @@ namespace HoI2Editor.Models
         /// <param name="handler">読み込み完了イベントハンドラ</param>
         public static void LoadAsync(MapLevel level, RunWorkerCompletedEventHandler handler)
         {
+            // 読み込み禁止ならば何もしない
+            if (ForbidLoad)
+            {
+                return;
+            }
+
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (IsLoaded[(int) level])
             {

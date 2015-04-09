@@ -187,6 +187,12 @@
   <data name="languageLabel.Text" xml:space="preserve">
     <value>言語</value>
   </data>
+  <data name="mapLoadCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 16</value>
+  </data>
+  <data name="mapLoadCheckBox.Text" xml:space="preserve">
+    <value>マップ読み込み禁止</value>
+  </data>
   <data name="logLevelComboBox.Items" xml:space="preserve">
     <value>なし</value>
   </data>
