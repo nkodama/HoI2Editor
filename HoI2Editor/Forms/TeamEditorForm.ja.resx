@@ -126,7 +126,7 @@
   <data name="reloadButton.Text" xml:space="preserve">
     <value>再読み込み</value>
   </data>
-  <data name="pictureNameReferButton.Text" xml:space="preserve">
+  <data name="pictureNameBrowseButton.Text" xml:space="preserve">
     <value>参照</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -211,14 +211,14 @@
   <data name="skillLabel.Text" xml:space="preserve">
     <value>スキル</value>
   </data>
-  <data name="specialityGroupBox.Text" xml:space="preserve">
-    <value>特性</value>
-  </data>
   <data name="sortAbcButton.Text" xml:space="preserve">
     <value>ABC順</value>
   </data>
   <data name="sortIdButton.Text" xml:space="preserve">
     <value>ID順</value>
+  </data>
+  <data name="specialityGroupBox.Text" xml:space="preserve">
+    <value>特性</value>
   </data>
   <data name="batchButton.Text" xml:space="preserve">
     <value>一括編集</value>

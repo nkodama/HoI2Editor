@@ -220,7 +220,7 @@
   <data name="pictureNameLabel.Text" xml:space="preserve">
     <value>画像ファイル名</value>
   </data>
-  <data name="pictureNameReferButton.Text" xml:space="preserve">
+  <data name="pictureNameBrowseButton.Text" xml:space="preserve">
     <value>参照</value>
   </data>
   <data name="reloadButton.Text" xml:space="preserve">
