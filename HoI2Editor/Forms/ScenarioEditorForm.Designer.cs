@@ -4201,7 +4201,7 @@
             this.oobCloneButton.UseVisualStyleBackColor = true;
             this.oobCloneButton.Click += new System.EventHandler(this.OnOobCloneButtonClick);
             // 
-            // oobAddDivisinButton
+            // oobAddDivisionButton
             // 
             resources.ApplyResources(this.oobAddDivisionButton, "oobAddDivisionButton");
             this.oobAddDivisionButton.Name = "oobAddDivisionButton";

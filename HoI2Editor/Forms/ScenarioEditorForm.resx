@@ -12867,6 +12867,9 @@
   <data name="scenarioTabControl.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="oobBottomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="oobBottomButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -12896,6 +12899,9 @@
   </data>
   <data name="&gt;&gt;oobBottomButton.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="oobDownButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="oobDownButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -12927,6 +12933,9 @@
   <data name="&gt;&gt;oobDownButton.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="oobUpButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="oobUpButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -12956,6 +12965,9 @@
   </data>
   <data name="&gt;&gt;oobUpButton.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="oobTopButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="oobTopButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -12987,6 +12999,9 @@
   <data name="&gt;&gt;oobTopButton.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="oobRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="oobRemoveButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -13016,6 +13031,9 @@
   </data>
   <data name="&gt;&gt;oobRemoveButton.ZOrder" xml:space="preserve">
     <value>4</value>
+  </data>
+  <data name="oobCloneButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="oobCloneButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -13047,6 +13065,9 @@
   <data name="&gt;&gt;oobCloneButton.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <data name="oobAddDivisionButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="oobAddDivisionButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -13076,6 +13097,9 @@
   </data>
   <data name="&gt;&gt;oobAddDivisionButton.ZOrder" xml:space="preserve">
     <value>6</value>
+  </data>
+  <data name="oobAddUnitButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="oobAddUnitButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -14372,6 +14396,9 @@
   </data>
   <data name="&gt;&gt;unitGroupBox.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="unitTreeView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
   </data>
   <data name="unitTreeView.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
