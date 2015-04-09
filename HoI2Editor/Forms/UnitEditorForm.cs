@@ -1420,7 +1420,7 @@ namespace HoI2Editor.Forms
 
             // 改良
             if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103) &&
-                (unit.Organization == UnitOrganization.Division) && (unit.Branch != Branch.Navy))
+                (unit.Organization == UnitOrganization.Division))
             {
                 upgradeGroupBox.Enabled = true;
                 UpdateUpgradeList(unit);
@@ -3357,14 +3357,6 @@ namespace HoI2Editor.Forms
             // 海軍
             if (unit.Branch == Branch.Navy)
             {
-                // 改良コスト
-                upgradeCostFactorLabel.Enabled = false;
-                upgradeCostFactorTextBox.Enabled = false;
-                upgradeCostFactorTextBox.ResetText();
-                // 改良時間
-                upgradeTimeFactorLabel.Enabled = false;
-                upgradeTimeFactorTextBox.Enabled = false;
-                upgradeTimeFactorTextBox.ResetText();
                 // 対艦防御力
                 seaDefenceLabel.Enabled = true;
                 seaDefenceTextBox.Enabled = true;
@@ -3432,20 +3424,6 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                // 改良コスト
-                upgradeCostFactorLabel.Enabled = true;
-                upgradeCostFactorTextBox.Enabled = true;
-                upgradeCostFactorTextBox.Text = DoubleHelper.ToString(model.UpgradeCostFactor);
-                upgradeCostFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeCostFactor)
-                    ? Color.Red
-                    : SystemColors.WindowText;
-                // 改良時間
-                upgradeTimeFactorLabel.Enabled = true;
-                upgradeTimeFactorTextBox.Enabled = true;
-                upgradeTimeFactorTextBox.Text = DoubleHelper.ToString(model.UpgradeTimeFactor);
-                upgradeTimeFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeFactor)
-                    ? Color.Red
-                    : SystemColors.WindowText;
                 // 対艦防御力
                 seaDefenceLabel.Enabled = false;
                 seaDefenceTextBox.Enabled = false;
@@ -3533,40 +3511,6 @@ namespace HoI2Editor.Forms
                 strategicAttackLabel.Enabled = false;
                 strategicAttackTextBox.Enabled = false;
                 strategicAttackTextBox.ResetText();
-            }
-
-            // 海軍師団以外
-            if ((unit.Branch != Branch.Navy) || (unit.Organization != UnitOrganization.Division))
-            {
-                // 2段階改良
-                upgradeTimeBoostCheckBox.Enabled = (Game.Type == GameType.DarkestHour);
-                upgradeTimeBoostCheckBox.Checked = model.UpgradeTimeBoost;
-                upgradeTimeBoostCheckBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeBoost)
-                    ? Color.Red
-                    : SystemColors.WindowText;
-                // 自動改良先
-                autoUpgradeCheckBox.Enabled = (Game.Type == GameType.DarkestHour);
-                autoUpgradeCheckBox.Checked = model.AutoUpgrade;
-                autoUpgradeCheckBox.ForeColor = model.IsDirty(UnitModelItemId.AutoUpgrade)
-                    ? Color.Red
-                    : SystemColors.WindowText;
-                UpdateAutoUpgradeClassList();
-                UpdateAutoUpgradeModelList();
-            }
-            else
-            {
-                // 2段階改良
-                upgradeTimeBoostCheckBox.Enabled = false;
-                upgradeTimeBoostCheckBox.Checked = false;
-                autoUpgradeCheckBox.Enabled = false;
-                autoUpgradeCheckBox.Checked = false;
-                // 自動改良先
-                autoUpgradeClassComboBox.BeginUpdate();
-                autoUpgradeClassComboBox.Items.Clear();
-                autoUpgradeClassComboBox.EndUpdate();
-                autoUpgradeModelComboBox.BeginUpdate();
-                autoUpgradeModelComboBox.Items.Clear();
-                autoUpgradeModelComboBox.EndUpdate();
             }
 
             // AoD/陸軍
@@ -3669,6 +3613,64 @@ namespace HoI2Editor.Forms
                 noFuelCombatModLabel.Enabled = false;
                 noFuelCombatModTextBox.Enabled = false;
                 noFuelCombatModTextBox.ResetText();
+            }
+
+            // DH以外/海軍師団
+            if ((Game.Type != GameType.DarkestHour) &&
+                (unit.Branch == Branch.Navy) &&
+                (unit.Organization == UnitOrganization.Division))
+            {
+                // 改良コスト
+                upgradeCostFactorLabel.Enabled = false;
+                upgradeCostFactorTextBox.Enabled = false;
+                upgradeCostFactorTextBox.ResetText();
+                // 改良時間
+                upgradeTimeFactorLabel.Enabled = false;
+                upgradeTimeFactorTextBox.Enabled = false;
+                upgradeTimeFactorTextBox.ResetText();
+                // 2段階改良
+                upgradeTimeBoostCheckBox.Enabled = false;
+                upgradeTimeBoostCheckBox.Checked = false;
+                autoUpgradeCheckBox.Enabled = false;
+                autoUpgradeCheckBox.Checked = false;
+                // 自動改良先
+                autoUpgradeClassComboBox.BeginUpdate();
+                autoUpgradeClassComboBox.Items.Clear();
+                autoUpgradeClassComboBox.EndUpdate();
+                autoUpgradeModelComboBox.BeginUpdate();
+                autoUpgradeModelComboBox.Items.Clear();
+                autoUpgradeModelComboBox.EndUpdate();
+            }
+            else
+            {
+                // 改良コスト
+                upgradeCostFactorLabel.Enabled = true;
+                upgradeCostFactorTextBox.Enabled = true;
+                upgradeCostFactorTextBox.Text = DoubleHelper.ToString(model.UpgradeCostFactor);
+                upgradeCostFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeCostFactor)
+                    ? Color.Red
+                    : SystemColors.WindowText;
+                // 改良時間
+                upgradeTimeFactorLabel.Enabled = true;
+                upgradeTimeFactorTextBox.Enabled = true;
+                upgradeTimeFactorTextBox.Text = DoubleHelper.ToString(model.UpgradeTimeFactor);
+                upgradeTimeFactorTextBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeFactor)
+                    ? Color.Red
+                    : SystemColors.WindowText;
+                // 2段階改良
+                upgradeTimeBoostCheckBox.Enabled = (Game.Type == GameType.DarkestHour);
+                upgradeTimeBoostCheckBox.Checked = model.UpgradeTimeBoost;
+                upgradeTimeBoostCheckBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeBoost)
+                    ? Color.Red
+                    : SystemColors.WindowText;
+                // 自動改良先
+                autoUpgradeCheckBox.Enabled = (Game.Type == GameType.DarkestHour);
+                autoUpgradeCheckBox.Checked = model.AutoUpgrade;
+                autoUpgradeCheckBox.ForeColor = model.IsDirty(UnitModelItemId.AutoUpgrade)
+                    ? Color.Red
+                    : SystemColors.WindowText;
+                UpdateAutoUpgradeClassList();
+                UpdateAutoUpgradeModelList();
             }
 
             // DH1.03以降
@@ -5038,8 +5040,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 選択中のユニットクラスが海軍師団ならば何もしない
-            if ((unit.Branch == Branch.Navy) && (unit.Organization == UnitOrganization.Division))
+            // DH以外で選択中のユニットクラスが海軍師団ならば何もしない
+            if ((Game.Type != GameType.DarkestHour) && (unit.Branch == Branch.Navy) &&
+                (unit.Organization == UnitOrganization.Division))
             {
                 return;
             }
@@ -5086,8 +5089,9 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            // 選択中のユニットクラスが海軍師団ならば何もしない
-            if ((unit.Branch == Branch.Navy) && (unit.Organization == UnitOrganization.Division))
+            // DH以外で選択中のユニットクラスが海軍師団ならば何もしない
+            if ((Game.Type != GameType.DarkestHour) && (unit.Branch == Branch.Navy) &&
+                (unit.Organization == UnitOrganization.Division))
             {
                 return;
             }

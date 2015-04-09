@@ -284,6 +284,14 @@ namespace HoI2Editor.Writers
             writer.WriteLine("\tsupplyconsumption\t\t\t= {0}", DoubleHelper.ToString(model.SupplyConsumption));
             writer.WriteLine("\tfuelconsumption\t\t\t\t= {0}", DoubleHelper.ToString(model.FuelConsumption));
             writer.WriteLine("\tdistance\t\t\t\t\t= {0}", DoubleHelper.ToString(model.Distance));
+            if ((Game.Type == GameType.DarkestHour) && !DoubleHelper.IsZero(model.UpgradeTimeFactor))
+            {
+                writer.WriteLine("\tupgrade_time_factor = {0}", DoubleHelper.ToString(model.UpgradeTimeFactor));
+            }
+            if ((Game.Type == GameType.DarkestHour) && !DoubleHelper.IsZero(model.UpgradeCostFactor))
+            {
+                writer.WriteLine("\tupgrade_cost_factor = {0}", DoubleHelper.ToString(model.UpgradeCostFactor));
+            }
             if ((Game.Type == GameType.DarkestHour) && !DoubleHelper.IsZero(model.ReinforceTimeFactor))
             {
                 writer.WriteLine("\treinforce_time\t\t= {0}", DoubleHelper.ToString(model.ReinforceTimeFactor));
