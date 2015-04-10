@@ -119,6 +119,9 @@ namespace HoI2Editor.Models
             {
                 IsLoaded[(int) level] = false;
             }
+
+            BoundBoxes = null;
+            ColorScales = null;
         }
 
         /// <summary>
