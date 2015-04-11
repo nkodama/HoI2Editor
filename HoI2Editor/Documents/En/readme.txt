@@ -1,11 +1,11 @@
-Alternative HoI2 Editor Ver 0.45
+Alternative HoI2 Editor Ver 0.46
 
 - What is this?
 
 A data editor for DH, AoD, and HoI2DDA.
 It supports editing leaders, ministers, tech teams, provinces,
 tech trees, unit models, misc settings, unit names, unit model names,
-corps names, and random leader names.
+corps names, random leader names, and scenarios.
 It also supports moddir.
 
 - How to use?

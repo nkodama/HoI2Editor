@@ -1,5 +1,15 @@
 Alternative HoI2 Editor Changelog
 
+- 11 April 2015; Ver 0.46
+
+Added an option to forbid loading maps.
+Added missing commands at unit effects editing.
+Fixed a bug that some unit equipments are changed to another one.
+Fixed a crash bug when there are not axis, allies, and comintern definitions.
+Fixed a bug that the map is not loaded when game or mod folder is changed.
+Fixed a bug that the text color is not reverted when reloading at the model name editor.
+Fixed the window layout of the OOB editor.
+
 - 13 Mar 2015; Ver 0.45
 
 Corrected typo of division_development/new_model.
