@@ -2015,12 +2015,7 @@ namespace HoI2Editor.Forms
             rankYearNumericUpDown3.ResetText();
             rankYearNumericUpDown4.ResetText();
             pictureNameTextBox.ResetText();
-            Image prev = leaderPictureBox.Image;
-            leaderPictureBox.Image = null;
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            leaderPictureBox.ImageLocation = "";
 
             ResetTraitsCheckBoxValue();
 
@@ -2172,7 +2167,6 @@ namespace HoI2Editor.Forms
         /// <param name="leader">指揮官データ</param>
         private void UpdateLeaderPicture(Leader leader)
         {
-            Image prev = leaderPictureBox.Image;
             if (!string.IsNullOrEmpty(leader.PictureName))
             {
                 string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
@@ -2181,11 +2175,7 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                leaderPictureBox.Image = null;
-            }
-            if (prev != null)
-            {
-                prev.Dispose();
+                leaderPictureBox.ImageLocation = "";
             }
         }
 
@@ -4209,7 +4199,7 @@ namespace HoI2Editor.Forms
         /// <param name="endYear">終了年</param>
         /// <param name="retirementYear">引退年</param>
         /// <param name="rankYear">任官年</param>
-        private void BatchEditAll(bool[] items, LeaderRank idealRank, int skill, int maxSkill, int experience,
+        private static void BatchEditAll(bool[] items, LeaderRank idealRank, int skill, int maxSkill, int experience,
             int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
         {
             // 一括編集項目が設定されていなければ戻る
@@ -4293,7 +4283,8 @@ namespace HoI2Editor.Forms
         /// <param name="endYear">終了年</param>
         /// <param name="retirementYear">引退年</param>
         /// <param name="rankYear">任官年</param>
-        private void BatchEditSpecified(Country country, bool[] items, LeaderRank idealRank, int skill, int maxSkill,
+        private static void BatchEditSpecified(Country country, bool[] items, LeaderRank idealRank, int skill,
+            int maxSkill,
             int experience, int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
         {
             // 一括編集項目が設定されていなければ戻る
@@ -4327,7 +4318,7 @@ namespace HoI2Editor.Forms
         /// <param name="endYear">終了年</param>
         /// <param name="retirementYear">引退年</param>
         /// <param name="rankYear">任官年</param>
-        private void BatchEditLeader(Leader leader, bool[] items, LeaderRank idealRank, int skill, int maxSkill,
+        private static void BatchEditLeader(Leader leader, bool[] items, LeaderRank idealRank, int skill, int maxSkill,
             int experience, int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
         {
             // 理想階級

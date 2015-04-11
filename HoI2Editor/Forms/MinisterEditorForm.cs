@@ -1385,12 +1385,7 @@ namespace HoI2Editor.Forms
             endYearNumericUpDown.ResetText();
             retirementYearNumericUpDown.ResetText();
             pictureNameTextBox.ResetText();
-            Image prev = ministerPictureBox.Image;
-            ministerPictureBox.Image = null;
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            ministerPictureBox.ImageLocation = "";
 
             countryComboBox.Enabled = false;
             idNumericUpDown.Enabled = false;
@@ -1669,7 +1664,6 @@ namespace HoI2Editor.Forms
         /// <param name="minister">閣僚データ</param>
         private void UpdateMinisterPicture(Minister minister)
         {
-            Image prev = ministerPictureBox.Image;
             if (!string.IsNullOrEmpty(minister.PictureName))
             {
                 string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
@@ -1678,11 +1672,7 @@ namespace HoI2Editor.Forms
             }
             else
             {
-                ministerPictureBox.Image = null;
-            }
-            if (prev != null)
-            {
-                prev.Dispose();
+                ministerPictureBox.ImageLocation = "";
             }
         }
 
