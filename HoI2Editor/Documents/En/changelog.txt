@@ -1,5 +1,9 @@
 Alternative HoI2 Editor Changelog
 
+- 11 April 2015; Ver 0.47
+
+Fixed a crash bug with the leader, minister, team, and province editor.
+
 - 11 April 2015; Ver 0.46
 
 Added an option to forbid loading maps.
