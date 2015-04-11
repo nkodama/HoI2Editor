@@ -35,12 +35,11 @@ namespace HoI2Editor.Forms
         /// </summary>
         public void OnFileLoaded()
         {
-            // 編集項目の表示を更新する
-            UpdateEditableItems();
+            // 国家リストボックスを初期化する
+            InitCountryListBox();
 
-            // 編集済みフラグがクリアされるため表示を更新する
-            countryListBox.Refresh();
-            typeListBox.Refresh();
+            // ユニット種類リストボックスを初期化する
+            InitTypeListBox();
         }
 
         /// <summary>
@@ -125,12 +124,6 @@ namespace HoI2Editor.Forms
 
             // ユニットデータを読み込む
             Units.Load();
-
-            // 国家リストボックスを初期化する
-            InitCountryListBox();
-
-            // ユニット種類リストボックスを初期化する
-            InitTypeListBox();
 
             // データ読み込み後の処理
             OnFileLoaded();
