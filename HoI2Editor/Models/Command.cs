@@ -351,7 +351,6 @@ namespace HoI2Editor.Models
         SoftAttack,
         HardAttack,
         Defensiveness,
-        GroundDefense,
         AirAttack,
         AirDefense,
         BuildCost,
