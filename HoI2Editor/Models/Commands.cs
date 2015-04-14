@@ -678,6 +678,8 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void InitTypes()
         {
+            Types.Clear();
+            StringMap.Clear();
             foreach (CommandType type in Enum.GetValues(typeof (CommandType))
                 .Cast<CommandType>()
                 .Where(type => CommandTypeTable[(int) type, (int) _gameType]))
