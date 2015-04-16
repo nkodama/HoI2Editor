@@ -1,5 +1,10 @@
 Alternative HoI2 Editor Changelog
 
+- 15 April 2015; Ver 0.48
+
+Fixed a bug that defensiveness tech effect command is not supported.
+Fixed a crash bug when loading tech tree after game version is changed.
+
 - 11 April 2015; Ver 0.47
 
 Fixed a crash bug with the leader, minister, team, and province editor.
