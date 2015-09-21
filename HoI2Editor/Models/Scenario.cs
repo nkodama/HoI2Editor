@@ -4396,20 +4396,14 @@ namespace HoI2Editor.Models
     {
         None,
         Attack, // 攻撃
+        Rebase, // 基地移動
         StratRedeploy, // 戦略的再配備
         SupportAttack, // 支援攻撃
         SupportDefense, // 防戦支援
         Reserves, // 待機
         AntiPartisanDuty, // パルチザン掃討
-        ConvoyRaiding, // 船団襲撃
-        Asw, // 対潜作戦
-        NavalInterdiction, // 海上阻止
-        ShoreBombardment, // 沿岸砲撃
-        AmphibiousAssault, // 強襲上陸
-        SeaTransport, // 海上輸送
-        NavalCombatPatrol, // 海上戦闘哨戒
-        NavalPortStrike, // 空母による港湾攻撃
-        NavalAirbaseStrike, // 空母による航空基地攻撃
+        ArtilleryBombardment, // 砲撃任務
+        PlannedDefense, // 防衛計画
         AirSuperiority, // 制空権
         GroundAttack, // 地上攻撃
         RunwayCratering, // 空港空爆
@@ -4421,8 +4415,21 @@ namespace HoI2Editor.Models
         StrategicBombardment, // 戦略爆撃
         AirSupply, // 空輸補給
         AirborneAssault, // 空挺強襲
+        AirScramble, // 航空緊急出撃
+        ConvoyRaiding, // 船団襲撃
+        Asw, // 対潜作戦
+        NavalInterdiction, // 海上阻止
+        ShoreBombardment, // 沿岸砲撃
+        AmphibiousAssault, // 強襲上陸
+        SeaTransport, // 海上輸送
+        NavalCombatPatrol, // 海上戦闘哨戒
+        SneakMove, // 隠密移動
+        NavalScramble, // 海上緊急出撃
         ConvoyAirRaiding, // 船団爆撃
-        Nuke // 核攻撃
+        NavalPortStrike, // 空母による港湾攻撃
+        NavalAirbaseStrike, // 空母による航空基地攻撃
+        Nuke, // 核攻撃
+        Retreat // 退却
     }
 
     #endregion
