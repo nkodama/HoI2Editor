@@ -629,17 +629,22 @@ namespace HoI2Editor.Forms
         private void InitScenarioListBox()
         {
             // フォルダグループボックスのどれかのラジオボタンを有効にする
-            if (Game.IsExportFolderActive && Directory.Exists(Game.GetExportFileName(Game.ScenarioPathName)))
-            {
-                exportRadioButton.Checked = true;
-            }
-            else if (Game.IsModActive && Directory.Exists(Game.GetModFileName(Game.ScenarioPathName)))
+            vanillaRadioButton.Checked = true;
+            if (Game.IsModActive && Directory.Exists(Game.GetModFileName(Game.ScenarioPathName)))
             {
                 modRadioButton.Checked = true;
             }
             else
             {
-                vanillaRadioButton.Checked = true;
+                modRadioButton.Enabled = false;
+            }
+            if (Game.IsExportFolderActive && Directory.Exists(Game.GetExportFileName(Game.ScenarioPathName)))
+            {
+                exportRadioButton.Checked = true;
+            }
+            else
+            {
+                exportRadioButton.Enabled = false;
             }
         }
 
