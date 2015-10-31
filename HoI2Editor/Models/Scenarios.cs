@@ -780,7 +780,7 @@ namespace HoI2Editor.Models
             CountrySettings settings = new CountrySettings
             {
                 Country = country,
-                FileName = $"{Countries.Strings[(int) country].ToLower()}.inc"
+                FileName = country != Country.CON ? $"{Countries.Strings[(int) country].ToLower()}.inc" : "congo.inc"
             };
 
             // 国家設定テーブルに登録する
