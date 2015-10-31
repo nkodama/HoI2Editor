@@ -37,13 +37,12 @@ namespace HoI2Editor
             FileVersionInfo info = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
             if (info.FilePrivatePart > 0 && info.FilePrivatePart <= 26)
             {
-                Version = string.Format("{0} Ver {1}.{2}{3}{4}", Name, info.FileMajorPart,
-                    info.FileMinorPart, info.FileBuildPart, (char) ('`' + info.FilePrivatePart));
+                Version =
+                    $"{Name} Ver {info.FileMajorPart}.{info.FileMinorPart}{info.FileBuildPart}{'`' + info.FilePrivatePart}";
             }
             else
             {
-                Version = string.Format("{0} Ver {1}.{2}{3}", Name, info.FileMajorPart,
-                    info.FileMinorPart, info.FileBuildPart);
+                Version = $"{Name} Ver {info.FileMajorPart}.{info.FileMinorPart}{info.FileBuildPart}";
             }
         }
 
@@ -222,58 +221,19 @@ namespace HoI2Editor
         /// </summary>
         private static void OnFileLoaded()
         {
-            if (_leaderEditorForm != null)
-            {
-                _leaderEditorForm.OnFileLoaded();
-            }
-            if (_ministerEditorForm != null)
-            {
-                _ministerEditorForm.OnFileLoaded();
-            }
-            if (_teamEditorForm != null)
-            {
-                _teamEditorForm.OnFileLoaded();
-            }
-            if (_provinceEditorForm != null)
-            {
-                _provinceEditorForm.OnFileLoaded();
-            }
-            if (_techEditorForm != null)
-            {
-                _techEditorForm.OnFileLoaded();
-            }
-            if (_unitEditorForm != null)
-            {
-                _unitEditorForm.OnFileLoaded();
-            }
-            if (_miscEditorForm != null)
-            {
-                _miscEditorForm.OnFileLoaded();
-            }
-            if (_corpsNameEditorForm != null)
-            {
-                _corpsNameEditorForm.OnFileLoaded();
-            }
-            if (_unitNameEditorForm != null)
-            {
-                _unitNameEditorForm.OnFileLoaded();
-            }
-            if (_modelNameEditorForm != null)
-            {
-                _modelNameEditorForm.OnFileLoaded();
-            }
-            if (_randomLeaderEditorForm != null)
-            {
-                _randomLeaderEditorForm.OnFileLoaded();
-            }
-            if (_researchViewerForm != null)
-            {
-                _researchViewerForm.OnFileLoaded();
-            }
-            if (_scenarioEditorForm != null)
-            {
-                _scenarioEditorForm.OnFileLoaded();
-            }
+            _leaderEditorForm?.OnFileLoaded();
+            _ministerEditorForm?.OnFileLoaded();
+            _teamEditorForm?.OnFileLoaded();
+            _provinceEditorForm?.OnFileLoaded();
+            _techEditorForm?.OnFileLoaded();
+            _unitEditorForm?.OnFileLoaded();
+            _miscEditorForm?.OnFileLoaded();
+            _corpsNameEditorForm?.OnFileLoaded();
+            _unitNameEditorForm?.OnFileLoaded();
+            _modelNameEditorForm?.OnFileLoaded();
+            _randomLeaderEditorForm?.OnFileLoaded();
+            _researchViewerForm?.OnFileLoaded();
+            _scenarioEditorForm?.OnFileLoaded();
         }
 
         /// <summary>
@@ -281,54 +241,18 @@ namespace HoI2Editor
         /// </summary>
         private static void OnFileSaved()
         {
-            if (_leaderEditorForm != null)
-            {
-                _leaderEditorForm.OnFileSaved();
-            }
-            if (_ministerEditorForm != null)
-            {
-                _ministerEditorForm.OnFileSaved();
-            }
-            if (_teamEditorForm != null)
-            {
-                _teamEditorForm.OnFileSaved();
-            }
-            if (_provinceEditorForm != null)
-            {
-                _provinceEditorForm.OnFileSaved();
-            }
-            if (_techEditorForm != null)
-            {
-                _techEditorForm.OnFileSaved();
-            }
-            if (_unitEditorForm != null)
-            {
-                _unitEditorForm.OnFileSaved();
-            }
-            if (_miscEditorForm != null)
-            {
-                _miscEditorForm.OnFileSaved();
-            }
-            if (_corpsNameEditorForm != null)
-            {
-                _corpsNameEditorForm.OnFileSaved();
-            }
-            if (_unitNameEditorForm != null)
-            {
-                _unitNameEditorForm.OnFileSaved();
-            }
-            if (_modelNameEditorForm != null)
-            {
-                _modelNameEditorForm.OnFileSaved();
-            }
-            if (_randomLeaderEditorForm != null)
-            {
-                _randomLeaderEditorForm.OnFileSaved();
-            }
-            if (_scenarioEditorForm != null)
-            {
-                _scenarioEditorForm.OnFileSaved();
-            }
+            _leaderEditorForm?.OnFileSaved();
+            _ministerEditorForm?.OnFileSaved();
+            _teamEditorForm?.OnFileSaved();
+            _provinceEditorForm?.OnFileSaved();
+            _techEditorForm?.OnFileSaved();
+            _unitEditorForm?.OnFileSaved();
+            _miscEditorForm?.OnFileSaved();
+            _corpsNameEditorForm?.OnFileSaved();
+            _unitNameEditorForm?.OnFileSaved();
+            _modelNameEditorForm?.OnFileSaved();
+            _randomLeaderEditorForm?.OnFileSaved();
+            _scenarioEditorForm?.OnFileSaved();
         }
 
         /// <summary>
@@ -340,7 +264,7 @@ namespace HoI2Editor
         {
             if ((_leaderEditorForm != null) && (form != _leaderEditorForm))
             {
-                _leaderEditorForm.OnItemChanged(id);
+                _leaderEditorForm?.OnItemChanged(id);
             }
             if ((_ministerEditorForm != null) && (form != _ministerEditorForm))
             {
@@ -382,10 +306,7 @@ namespace HoI2Editor
             {
                 _randomLeaderEditorForm.OnItemChanged(id);
             }
-            if (_researchViewerForm != null)
-            {
-                _researchViewerForm.OnItemChanged(id);
-            }
+            _researchViewerForm?.OnItemChanged(id);
             if ((_scenarioEditorForm != null) && (form != _scenarioEditorForm))
             {
                 _scenarioEditorForm.OnItemChanged(id);
@@ -891,7 +812,7 @@ namespace HoI2Editor
                 _mutex = null;
             }
 
-            _mutex = new Mutex(false, string.Format("{0}: {1}", MutextName, key.GetHashCode()));
+            _mutex = new Mutex(false, $"{MutextName}: {key.GetHashCode()}");
 
             if (!_mutex.WaitOne(0, false))
             {

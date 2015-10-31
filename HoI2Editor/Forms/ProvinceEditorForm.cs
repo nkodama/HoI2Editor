@@ -339,7 +339,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="continent">大陸</param>
         /// <param name="parent">親ノード</param>
-        private void AddContinentTreeItem(ContinentId continent, TreeNode parent)
+        private static void AddContinentTreeItem(ContinentId continent, TreeNode parent)
         {
             // 大陸ノードを追加する
             TreeNode node = new TreeNode { Text = Provinces.GetContinentName(continent), Tag = continent };
@@ -360,7 +360,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="region">地方</param>
         /// <param name="parent">親ノード</param>
-        private void AddRegionTreeItem(RegionId region, TreeNode parent)
+        private static void AddRegionTreeItem(RegionId region, TreeNode parent)
         {
             // 地方ノードを追加する
             TreeNode node = new TreeNode { Text = Provinces.GetRegionName(region), Tag = region };
@@ -381,7 +381,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="area">地域</param>
         /// <param name="parent">親ノード</param>
-        private void AddAreaTreeItem(AreaId area, TreeNode parent)
+        private static void AddAreaTreeItem(AreaId area, TreeNode parent)
         {
             // 地域ノードを追加する
             TreeNode node = new TreeNode { Text = Provinces.GetAreaName(area), Tag = area };

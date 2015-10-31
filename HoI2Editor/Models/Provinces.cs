@@ -21,17 +21,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マスタープロヴィンスリスト
         /// </summary>
-        public static List<Province> Items { get; private set; }
+        public static List<Province> Items { get; }
 
         /// <summary>
         ///     海域リスト
         /// </summary>
-        public static List<int> SeaZones { get; private set; }
+        public static List<int> SeaZones { get; }
 
         /// <summary>
         ///     海域とIDの対応付け
         /// </summary>
-        public static Dictionary<int, Province> SeaZoneMap { get; private set; }
+        public static Dictionary<int, Province> SeaZoneMap { get; }
 
         /// <summary>
         ///     利用可能な大陸ID
@@ -3477,10 +3477,7 @@ namespace HoI2Editor.Models
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (_loaded)
             {
-                if (handler != null)
-                {
-                    handler(null, new RunWorkerCompletedEventArgs(null, null, false));
-                }
+                handler?.Invoke(null, new RunWorkerCompletedEventArgs(null, null, false));
                 return;
             }
 
@@ -3546,7 +3543,7 @@ namespace HoI2Editor.Models
             {
                 error = true;
                 Log.Error("[Province] Read error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                     Resources.EditorProvince, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
@@ -3617,14 +3614,8 @@ namespace HoI2Editor.Models
         {
             string[] tokens = lexer.GetTokens();
 
-            // 空行を読み飛ばす
-            if (tokens == null)
-            {
-                return null;
-            }
-
             // ID指定のない行は読み飛ばす
-            if (string.IsNullOrEmpty(tokens[0]))
+            if (string.IsNullOrEmpty(tokens?[0]))
             {
                 return null;
             }
@@ -4345,7 +4336,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     Log.Error("[Province] Write error: {0}", fileName);
-                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                    MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                         Resources.EditorProvince, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }

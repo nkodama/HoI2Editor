@@ -200,10 +200,7 @@ namespace HoI2Editor.Controllers
             // ピクチャーボックスに画像を設定する
             Image prev = _pictureBox.Image;
             _pictureBox.Image = map.Image;
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
 
             // イベントハンドラを初期化する
             InitEventHandler();
@@ -400,10 +397,7 @@ namespace HoI2Editor.Controllers
         {
             Map map = Maps.Data[(int) Level];
             ushort id = map.ProvinceIds[e.X, e.Y];
-            if (ProvinceMouseClick != null)
-            {
-                ProvinceMouseClick(sender, new ProvinceEventArgs(id, e));
-            }
+            ProvinceMouseClick?.Invoke(sender, new ProvinceEventArgs(id, e));
         }
 
         /// <summary>

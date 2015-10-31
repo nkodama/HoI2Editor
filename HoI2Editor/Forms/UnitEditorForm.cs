@@ -1156,10 +1156,7 @@ namespace HoI2Editor.Forms
             {
                 modelImagePictureBox.Image = null;
             }
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
 
             // ユニットモデル名を更新する
             UpdateModelNameTextBox();
@@ -2978,7 +2975,7 @@ namespace HoI2Editor.Forms
             }
 
             UnitClass selected = upgradeTypeComboBox.SelectedItem as UnitClass;
-            UnitUpgrade upgrade = new UnitUpgrade { Type = (selected != null) ? selected.Type : unit.Type };
+            UnitUpgrade upgrade = new UnitUpgrade { Type = selected?.Type ?? unit.Type };
             double val;
             if (DoubleHelper.TryParse(upgradeCostTextBox.Text, out val))
             {
@@ -3134,10 +3131,7 @@ namespace HoI2Editor.Forms
             {
                 modelImagePictureBox.Image = null;
             }
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
             // モデルアイコン
             prev = modelIconPictureBox.Image;
             fileName = GetModelIconFileName(unit, index);
@@ -3151,10 +3145,7 @@ namespace HoI2Editor.Forms
             {
                 modelIconPictureBox.Image = null;
             }
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
             // モデル名
             UpdateModelNameTextBox();
 
@@ -3742,16 +3733,10 @@ namespace HoI2Editor.Forms
 
             Image prev = modelImagePictureBox.Image;
             modelImagePictureBox.Image = null;
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
             prev = modelIconPictureBox.Image;
             modelIconPictureBox.Image = null;
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
             modelNameTextBox.ResetText();
 
             defaultOrganisationTextBox.ResetText();
@@ -4022,7 +4007,7 @@ namespace HoI2Editor.Forms
                 return string.Empty;
             }
 
-            string name = string.Format("model_{0}_{1}.bmp", Units.UnitNumbers[(int) unit.Type], index);
+            string name = $"model_{Units.UnitNumbers[(int) unit.Type]}_{index}.bmp";
             string fileName = Game.GetReadFileName(Game.ModelPicturePathName, name);
             return File.Exists(fileName) ? fileName : string.Empty;
         }

@@ -72,12 +72,12 @@ namespace HoI2Editor
         /// <param name="e">例外</param>
         private static void UnhandledExceptionHandler(Exception e)
         {
-            Log.Error(string.Format("===== {0} =====", Resources.CriticalError));
+            Log.Error($"===== {Resources.CriticalError} =====");
             Log.Error(e.Message);
             Log.Error(e.StackTrace);
 
-            MessageBox.Show(string.Format("{0}\n{1}", e.Message, e.StackTrace),
-                string.Format("{0} - {1}", HoI2Editor.Name, Resources.CriticalError), MessageBoxButtons.OK,
+            MessageBox.Show($"{e.Message}\n{e.StackTrace}",
+                $"{HoI2Editor.Name} - {Resources.CriticalError}", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
 
             Application.Exit();

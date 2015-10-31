@@ -38,7 +38,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     カラーマスクの配列
         /// </summary>
-        public static byte[] ColorMasks { get; private set; }
+        public static byte[] ColorMasks { get; }
 
         /// <summary>
         ///     マップ読み込みの禁止
@@ -168,10 +168,7 @@ namespace HoI2Editor.Models
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (IsLoaded[(int) level])
             {
-                if (handler != null)
-                {
-                    handler(null, new RunWorkerCompletedEventArgs(level, null, false));
-                }
+                handler?.Invoke(null, new RunWorkerCompletedEventArgs(level, null, false));
                 return;
             }
 
@@ -302,7 +299,7 @@ namespace HoI2Editor.Models
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();
-                    if (String.IsNullOrEmpty(line))
+                    if (string.IsNullOrEmpty(line))
                     {
                         continue;
                     }
@@ -351,7 +348,7 @@ namespace HoI2Editor.Models
         /// <returns>色定義</returns>
         private static int[] ParseColor(string s)
         {
-            if (String.IsNullOrEmpty(s))
+            if (string.IsNullOrEmpty(s))
             {
                 return null;
             }

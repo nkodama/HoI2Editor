@@ -318,7 +318,7 @@ namespace HoI2Editor.Models
             // 単発トリガーの場合
             if (ParamTypeTable[(int) Type] != TriggerParamType.Container)
             {
-                return string.Format("{0} = {1}", TypeStringTable[(int) Type], ObjectHelper.ToString(Value));
+                return $"{TypeStringTable[(int) Type]} = {ObjectHelper.ToString(Value)}";
             }
 
             // コンテナトリガーの場合

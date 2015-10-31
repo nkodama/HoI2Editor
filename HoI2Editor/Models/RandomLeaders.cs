@@ -98,7 +98,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[RandomLeader] Read error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                     Resources.EditorCorpsName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -206,7 +206,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[RandomLeader] Write error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                     Resources.EditorCorpsName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

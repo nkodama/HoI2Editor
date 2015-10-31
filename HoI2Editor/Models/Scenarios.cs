@@ -364,7 +364,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Scenario] Read error: {0}", _fileName);
-                MessageBox.Show(String.Format("{0}: {1}", Resources.FileReadError, _fileName),
+                MessageBox.Show($"{Resources.FileReadError}: {_fileName}",
                     Resources.EditorScenario, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -480,7 +480,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Scenario] Write error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                MessageBox.Show($"{Resources.FileWriteError}: {fileName}", Resources.EditorScenario,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -510,7 +510,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Scenario] Write error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                MessageBox.Show($"{Resources.FileWriteError}: {fileName}", Resources.EditorScenario,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -540,7 +540,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Scenario] Write error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                MessageBox.Show($"{Resources.FileWriteError}: {fileName}", Resources.EditorScenario,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -570,7 +570,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Scenario] Write error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                MessageBox.Show($"{Resources.FileWriteError}: {fileName}", Resources.EditorScenario,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -600,7 +600,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Scenario] Write error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                MessageBox.Show($"{Resources.FileWriteError}: {fileName}", Resources.EditorScenario,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -622,7 +622,7 @@ namespace HoI2Editor.Models
             }
 
             string fileName = Path.Combine(folderName, string.IsNullOrEmpty(settings.FileName)
-                ? string.Format("{0}.inc", Countries.Strings[(int) settings.Country].ToLower())
+                ? $"{Countries.Strings[(int) settings.Country].ToLower()}.inc"
                 : settings.FileName);
             try
             {
@@ -632,7 +632,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Scenario] Write error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName), Resources.EditorScenario,
+                MessageBox.Show($"{Resources.FileWriteError}: {fileName}", Resources.EditorScenario,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -780,7 +780,7 @@ namespace HoI2Editor.Models
             CountrySettings settings = new CountrySettings
             {
                 Country = country,
-                FileName = string.Format("{0}.inc", Countries.Strings[(int) country].ToLower())
+                FileName = $"{Countries.Strings[(int) country].ToLower()}.inc"
             };
 
             // 国家設定テーブルに登録する
@@ -790,7 +790,7 @@ namespace HoI2Editor.Models
             Data.Countries.Add(settings);
 
             // インクルードファイルを追加する
-            Data.IncludeFiles.Add(string.Format("scenarios\\{0}\\{1}", Data.IncludeFolder, settings.FileName));
+            Data.IncludeFiles.Add($"scenarios\\{Data.IncludeFolder}\\{settings.FileName}");
 
             // シナリオファイルの編集済みフラグを設定する
             Data.SetDirty();
@@ -961,7 +961,7 @@ namespace HoI2Editor.Models
         /// <returns>国タグと国名の文字列</returns>
         public static string GetCountryTagName(Country country)
         {
-            return String.Format("{0} {1}", Countries.Strings[(int) country], GetCountryName(country));
+            return $"{Countries.Strings[(int) country]} {GetCountryName(country)}";
         }
 
         /// <summary>
@@ -973,14 +973,14 @@ namespace HoI2Editor.Models
         {
             // 主要国設定の国名
             MajorCountrySettings major = GetMajorCountrySettings(country);
-            if (major != null && !String.IsNullOrEmpty(major.Name))
+            if (!string.IsNullOrEmpty(major?.Name))
             {
                 return Config.ExistsKey(major.Name) ? Config.GetText(major.Name) : "";
             }
 
             // 国家設定の国名
             CountrySettings settings = GetCountrySettings(country);
-            if (settings != null && !String.IsNullOrEmpty(settings.Name))
+            if (!string.IsNullOrEmpty(settings?.Name))
             {
                 return Config.ExistsKey(settings.Name) ? Config.GetText(settings.Name) : "";
             }
@@ -1002,7 +1002,7 @@ namespace HoI2Editor.Models
         {
             Province province = Provinces.Items[id];
             ProvinceSettings settings = GetProvinceSettings(id);
-            if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
+            if (!string.IsNullOrEmpty(settings?.Name))
             {
                 return Config.ExistsKey(settings.Name) ? Config.GetText(settings.Name) : "";
             }
@@ -1017,7 +1017,7 @@ namespace HoI2Editor.Models
         /// <returns>プロヴィンス名</returns>
         public static string GetProvinceName(Province province, ProvinceSettings settings)
         {
-            if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
+            if (!string.IsNullOrEmpty(settings?.Name))
             {
                 return Config.ExistsKey(settings.Name) ? Config.GetText(settings.Name) : "";
             }
@@ -1032,7 +1032,7 @@ namespace HoI2Editor.Models
         /// <param name="s">プロヴィンス名</param>
         public static void SetProvinceName(Province province, ProvinceSettings settings, string s)
         {
-            if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
+            if (!string.IsNullOrEmpty(settings?.Name))
             {
                 Config.SetText(settings.Name, s, Game.ScenarioTextFileName);
             }

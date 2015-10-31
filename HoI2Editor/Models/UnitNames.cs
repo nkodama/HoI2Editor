@@ -316,7 +316,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[UnitName] Read error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                     Resources.EditorUnitName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -437,7 +437,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[UnitName] Write error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                     Resources.EditorUnitName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -636,7 +636,7 @@ namespace HoI2Editor.Models
         {
             for (int i = start; i <= end; i++)
             {
-                string name = string.Format("{0}{1}{2}", prefix, i, suffix);
+                string name = $"{prefix}{i}{suffix}";
                 if (!Exists(name, country, type))
                 {
                     AddName(name, country, type);

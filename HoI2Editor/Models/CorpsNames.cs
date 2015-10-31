@@ -107,7 +107,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     Log.Error("[CorpsName] Read error: {0}", fileName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                         Resources.EditorCorpsName, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
@@ -132,7 +132,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     Log.Error("[CorpsName] Read error: {0}", fileName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                         Resources.EditorCorpsName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
@@ -157,7 +157,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     Log.Error("[CorpsName] Read error: {0}", fileName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                         Resources.EditorCorpsName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
@@ -272,7 +272,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     Log.Error("[CorpsName] Write error: {0}", fileName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                    if (MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                         Resources.EditorCorpsName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
@@ -294,7 +294,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     Log.Error("[CorpsName] Write error: {0}", fileName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                    if (MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                         Resources.EditorCorpsName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
@@ -315,7 +315,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     Log.Error("[CorpsName] Write error: {0}", fileName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                    if (MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                         Resources.EditorCorpsName, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
@@ -508,7 +508,7 @@ namespace HoI2Editor.Models
 
             for (int i = start; i <= end; i++)
             {
-                string name = string.Format("{0}{1}{2}", prefix, i, suffix);
+                string name = $"{prefix}{i}{suffix}";
                 if (!Items[(int) branch, (int) country].Contains(name))
                 {
                     AddName(name, branch, country);

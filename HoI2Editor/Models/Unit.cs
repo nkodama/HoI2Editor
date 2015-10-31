@@ -14,7 +14,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニットの種類
         /// </summary>
-        public UnitType Type { get; private set; }
+        public UnitType Type { get; }
 
         /// <summary>
         ///     ユニットの兵科
@@ -24,7 +24,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニットの編成
         /// </summary>
-        public UnitOrganization Organization { get; private set; }
+        public UnitOrganization Organization { get; }
 
         /// <summary>
         ///     名前
@@ -134,7 +134,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     モデルリスト
         /// </summary>
-        public List<UnitModel> Models { get; private set; }
+        public List<UnitModel> Models { get; }
 
         /// <summary>
         ///     ユニット更新情報
@@ -2568,7 +2568,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     装備 (DH1.03以降)
         /// </summary>
-        public List<UnitEquipment> Equipments { get; private set; }
+        public List<UnitEquipment> Equipments { get; }
 
         #endregion
 

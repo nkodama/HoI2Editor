@@ -680,7 +680,7 @@ namespace HoI2Editor.Forms
         ///     編集項目の色を更新する
         /// </summary>
         /// <param name="tabPage">対象のタブページ</param>
-        private void UpdateItemColor(TabPage tabPage)
+        private static void UpdateItemColor(TabPage tabPage)
         {
             foreach (Control control in tabPage.Controls)
             {
@@ -1138,7 +1138,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnItemComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        private static void OnItemComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
             if (comboBox == null)
@@ -1191,7 +1191,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnItemComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        private static void OnItemComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox comboBox = sender as ComboBox;
             if (comboBox == null)

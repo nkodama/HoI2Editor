@@ -407,34 +407,12 @@ namespace HoI2Editor
             /// <summary>
             ///     指揮官リストビューの列の幅
             /// </summary>
-            public int[] ListColumnWidth
-            {
-                get { return _listColumnWidth; }
-                set { _listColumnWidth = value; }
-            }
+            public int[] ListColumnWidth { get; set; } = new int[LeaderEditorForm.LeaderListColumnCount];
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            public List<Country> Countries
-            {
-                get { return _countries; }
-                set { _countries = value; }
-            }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     選択中の国家
-            /// </summary>
-            private List<Country> _countries = new List<Country>();
-
-            /// <summary>
-            ///     指揮官リストビューの列の幅
-            /// </summary>
-            private int[] _listColumnWidth = new int[LeaderEditorForm.LeaderListColumnCount];
+            public List<Country> Countries { get; set; } = new List<Country>();
 
             #endregion
 
@@ -541,34 +519,12 @@ namespace HoI2Editor
             /// <summary>
             ///     閣僚リストビューの列の幅
             /// </summary>
-            public int[] ListColumnWidth
-            {
-                get { return _listColumnWidth; }
-                set { _listColumnWidth = value; }
-            }
+            public int[] ListColumnWidth { get; set; } = new int[MinisterEditorForm.MinisterListColumnCount];
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            public List<Country> Countries
-            {
-                get { return _countries; }
-                set { _countries = value; }
-            }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     選択中の国家
-            /// </summary>
-            private List<Country> _countries = new List<Country>();
-
-            /// <summary>
-            ///     閣僚リストビューの列の幅
-            /// </summary>
-            private int[] _listColumnWidth = new int[MinisterEditorForm.MinisterListColumnCount];
+            public List<Country> Countries { get; set; } = new List<Country>();
 
             #endregion
 
@@ -668,34 +624,12 @@ namespace HoI2Editor
             /// <summary>
             ///     研究機関リストビューの列の幅
             /// </summary>
-            public int[] ListColumnWidth
-            {
-                get { return _listColumnWidth; }
-                set { _listColumnWidth = value; }
-            }
+            public int[] ListColumnWidth { get; set; } = new int[TeamEditorForm.TeamListColumnCount];
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            public List<Country> Countries
-            {
-                get { return _countries; }
-                set { _countries = value; }
-            }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     選択中の国家
-            /// </summary>
-            private List<Country> _countries = new List<Country>();
-
-            /// <summary>
-            ///     研究機関リストビューの列の幅
-            /// </summary>
-            private int[] _listColumnWidth = new int[TeamEditorForm.TeamListColumnCount];
+            public List<Country> Countries { get; set; } = new List<Country>();
 
             #endregion
 
@@ -795,20 +729,7 @@ namespace HoI2Editor
             /// <summary>
             ///     プロヴィンスリストビューの列の幅
             /// </summary>
-            public int[] ListColumnWidth
-            {
-                get { return _listColumnWidth; }
-                set { _listColumnWidth = value; }
-            }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     プロヴィンスリストビューの列の幅
-            /// </summary>
-            private int[] _listColumnWidth = new int[ProvinceEditorForm.ProvinceListColumnCount];
+            public int[] ListColumnWidth { get; set; } = new int[ProvinceEditorForm.ProvinceListColumnCount];
 
             #endregion
 
@@ -909,109 +830,42 @@ namespace HoI2Editor
             /// <summary>
             ///     AND必要技術リストビューの列の幅
             /// </summary>
-            public int[] AndRequiredListColumnWidth
-            {
-                get { return _andRequiredListColumnWidth; }
-                set { _andRequiredListColumnWidth = value; }
-            }
+            public int[] AndRequiredListColumnWidth { get; set; } = new int[TechEditorForm.RequiredListColumnCount];
 
             /// <summary>
             ///     OR必要技術リストビューの列の幅
             /// </summary>
-            public int[] OrRequiredListColumnWidth
-            {
-                get { return _orRequiredListColumnWidth; }
-                set { _orRequiredListColumnWidth = value; }
-            }
+            public int[] OrRequiredListColumnWidth { get; set; } = new int[TechEditorForm.RequiredListColumnCount];
 
             /// <summary>
             ///     小研究リストビューの列の幅
             /// </summary>
-            public int[] ComponentListColumnWidth
-            {
-                get { return _componentListColumnWidth; }
-                set { _componentListColumnWidth = value; }
-            }
+            public int[] ComponentListColumnWidth { get; set; } = new int[TechEditorForm.ComponentListColumnCount];
 
             /// <summary>
             ///     技術効果リストビューの列の幅
             /// </summary>
-            public int[] EffectListColumnWidth
-            {
-                get { return _effectListColumnWidth; }
-                set { _effectListColumnWidth = value; }
-            }
+            public int[] EffectListColumnWidth { get; set; } = new int[TechEditorForm.EffectListColumnCount];
 
             /// <summary>
             ///     技術座標リストビューの列の幅
             /// </summary>
-            public int[] TechPositionListColumnWidth
-            {
-                get { return _techPositionListColumnWidth; }
-                set { _techPositionListColumnWidth = value; }
-            }
+            public int[] TechPositionListColumnWidth { get; set; } = new int[TechEditorForm.PositionListColumnCount];
 
             /// <summary>
             ///     ラベル座標リストビューの列の幅
             /// </summary>
-            public int[] LabelPositionListColumnWidth
-            {
-                get { return _labelPositionListColumnWidth; }
-                set { _labelPositionListColumnWidth = value; }
-            }
+            public int[] LabelPositionListColumnWidth { get; set; } = new int[TechEditorForm.PositionListColumnCount];
 
             /// <summary>
             ///     イベント座標リストビューの列の幅
             /// </summary>
-            public int[] EventPositionListColumnWidth
-            {
-                get { return _eventPositionListColumnWidth; }
-                set { _eventPositionListColumnWidth = value; }
-            }
+            public int[] EventPositionListColumnWidth { get; set; } = new int[TechEditorForm.PositionListColumnCount];
 
             /// <summary>
             ///     技術カテゴリリストボックスの選択項目
             /// </summary>
             public int Category { get; set; }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     AND必要技術リストビューの列の幅
-            /// </summary>
-            private int[] _andRequiredListColumnWidth = new int[TechEditorForm.RequiredListColumnCount];
-
-            /// <summary>
-            ///     小研究リストビューの列の幅
-            /// </summary>
-            private int[] _componentListColumnWidth = new int[TechEditorForm.ComponentListColumnCount];
-
-            /// <summary>
-            ///     技術効果リストビューの列の幅
-            /// </summary>
-            private int[] _effectListColumnWidth = new int[TechEditorForm.EffectListColumnCount];
-
-            /// <summary>
-            ///     イベント座標リストビューの列の幅
-            /// </summary>
-            private int[] _eventPositionListColumnWidth = new int[TechEditorForm.PositionListColumnCount];
-
-            /// <summary>
-            ///     ラベル座標リストビューの列の幅
-            /// </summary>
-            private int[] _labelPositionListColumnWidth = new int[TechEditorForm.PositionListColumnCount];
-
-            /// <summary>
-            ///     OR必要技術リストビューの列の幅
-            /// </summary>
-            private int[] _orRequiredListColumnWidth = new int[TechEditorForm.RequiredListColumnCount];
-
-            /// <summary>
-            ///     技術座標リストビューの列の幅
-            /// </summary>
-            private int[] _techPositionListColumnWidth = new int[TechEditorForm.PositionListColumnCount];
 
             #endregion
 
@@ -1156,48 +1010,17 @@ namespace HoI2Editor
             /// <summary>
             ///     ユニットモデルリストビューの列の幅
             /// </summary>
-            public int[] ModelListColumnWidth
-            {
-                get { return _modelListColumnWidth; }
-                set { _modelListColumnWidth = value; }
-            }
+            public int[] ModelListColumnWidth { get; set; } = new int[UnitEditorForm.ModelListColumnCount];
 
             /// <summary>
             ///     改良リストビューの列の幅
             /// </summary>
-            public int[] UpgradeListColumnWidth
-            {
-                get { return _upgradeListColumnWidth; }
-                set { _upgradeListColumnWidth = value; }
-            }
+            public int[] UpgradeListColumnWidth { get; set; } = new int[UnitEditorForm.UpgradeListColumnCount];
 
             /// <summary>
             ///     装備リストビューの列の幅
             /// </summary>
-            public int[] EquipmentListColumnWidth
-            {
-                get { return _equipmentListColumnWidth; }
-                set { _equipmentListColumnWidth = value; }
-            }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     装備リストビューの列の幅
-            /// </summary>
-            private int[] _equipmentListColumnWidth = new int[UnitEditorForm.EquipmentListColumnCount];
-
-            /// <summary>
-            ///     ユニットモデルリストビューの列の幅
-            /// </summary>
-            private int[] _modelListColumnWidth = new int[UnitEditorForm.ModelListColumnCount];
-
-            /// <summary>
-            ///     改良リストビューの列の幅
-            /// </summary>
-            private int[] _upgradeListColumnWidth = new int[UnitEditorForm.UpgradeListColumnCount];
+            public int[] EquipmentListColumnWidth { get; set; } = new int[UnitEditorForm.EquipmentListColumnCount];
 
             #endregion
 
@@ -1435,62 +1258,22 @@ namespace HoI2Editor
             /// <summary>
             ///     置換元の履歴
             /// </summary>
-            public List<string> ToHistory
-            {
-                get { return _toHistory; }
-                set { _toHistory = value; }
-            }
+            public List<string> ToHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     置換先の履歴
             /// </summary>
-            public List<string> WithHistory
-            {
-                get { return _withHistory; }
-                set { _withHistory = value; }
-            }
+            public List<string> WithHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     接頭辞の履歴
             /// </summary>
-            public List<string> PrefixHistory
-            {
-                get { return _prefixHistory; }
-                set { _prefixHistory = value; }
-            }
+            public List<string> PrefixHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     接尾辞の履歴
             /// </summary>
-            public List<string> SuffixHistory
-            {
-                get { return _suffixHistory; }
-                set { _suffixHistory = value; }
-            }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     接頭辞の履歴
-            /// </summary>
-            private List<string> _prefixHistory = new List<string>();
-
-            /// <summary>
-            ///     接尾辞の履歴
-            /// </summary>
-            private List<string> _suffixHistory = new List<string>();
-
-            /// <summary>
-            ///     置換元の履歴
-            /// </summary>
-            private List<string> _toHistory = new List<string>();
-
-            /// <summary>
-            ///     置換先の履歴
-            /// </summary>
-            private List<string> _withHistory = new List<string>();
+            public List<string> SuffixHistory { get; set; } = new List<string>();
 
             #endregion
 
@@ -1686,62 +1469,22 @@ namespace HoI2Editor
             /// <summary>
             ///     置換元の履歴
             /// </summary>
-            public List<string> ToHistory
-            {
-                get { return _toHistory; }
-                set { _toHistory = value; }
-            }
+            public List<string> ToHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     置換先の履歴
             /// </summary>
-            public List<string> WithHistory
-            {
-                get { return _withHistory; }
-                set { _withHistory = value; }
-            }
+            public List<string> WithHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     接頭辞の履歴
             /// </summary>
-            public List<string> PrefixHistory
-            {
-                get { return _prefixHistory; }
-                set { _prefixHistory = value; }
-            }
+            public List<string> PrefixHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     接尾辞の履歴
             /// </summary>
-            public List<string> SuffixHistory
-            {
-                get { return _suffixHistory; }
-                set { _suffixHistory = value; }
-            }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     接頭辞の履歴
-            /// </summary>
-            private List<string> _prefixHistory = new List<string>();
-
-            /// <summary>
-            ///     接尾辞の履歴
-            /// </summary>
-            private List<string> _suffixHistory = new List<string>();
-
-            /// <summary>
-            ///     置換元の履歴
-            /// </summary>
-            private List<string> _toHistory = new List<string>();
-
-            /// <summary>
-            ///     置換先の履歴
-            /// </summary>
-            private List<string> _withHistory = new List<string>();
+            public List<string> SuffixHistory { get; set; } = new List<string>();
 
             #endregion
 
@@ -1839,34 +1582,12 @@ namespace HoI2Editor
             /// <summary>
             ///     置換元の履歴
             /// </summary>
-            public List<string> ToHistory
-            {
-                get { return _toHistory; }
-                set { _toHistory = value; }
-            }
+            public List<string> ToHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     置換先の履歴
             /// </summary>
-            public List<string> WithHistory
-            {
-                get { return _withHistory; }
-                set { _withHistory = value; }
-            }
-
-            #endregion
-
-            #region 内部フィールド
-
-            /// <summary>
-            ///     置換元の履歴
-            /// </summary>
-            private List<string> _toHistory = new List<string>();
-
-            /// <summary>
-            ///     置換先の履歴
-            /// </summary>
-            private List<string> _withHistory = new List<string>();
+            public List<string> WithHistory { get; set; } = new List<string>();
 
             #endregion
 
@@ -1949,20 +1670,12 @@ namespace HoI2Editor
             /// <summary>
             ///     技術リストビューの列の幅
             /// </summary>
-            public int[] TechListColumnWidth
-            {
-                get { return _techListColumnWidth; }
-                set { _techListColumnWidth = value; }
-            }
+            public int[] TechListColumnWidth { get; set; } = new int[LeaderEditorForm.LeaderListColumnCount];
 
             /// <summary>
             ///     研究機関リストビューの列の幅
             /// </summary>
-            public int[] TeamListColumnWidth
-            {
-                get { return _teamListColumnWidth; }
-                set { _teamListColumnWidth = value; }
-            }
+            public int[] TeamListColumnWidth { get; set; } = new int[LeaderEditorForm.LeaderListColumnCount];
 
             /// <summary>
             ///     技術カテゴリリストボックスの選択項目
@@ -2051,16 +1764,6 @@ namespace HoI2Editor
             ///     選択中の国家
             /// </summary>
             private List<Country> _countries = new List<Country>();
-
-            /// <summary>
-            ///     研究機関リストビューの列の幅
-            /// </summary>
-            private int[] _teamListColumnWidth = new int[LeaderEditorForm.LeaderListColumnCount];
-
-            /// <summary>
-            ///     技術リストビューの列の幅
-            /// </summary>
-            private int[] _techListColumnWidth = new int[LeaderEditorForm.LeaderListColumnCount];
 
             #endregion
 

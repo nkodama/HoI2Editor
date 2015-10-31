@@ -21,17 +21,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     技術グループリスト
         /// </summary>
-        public static List<TechGroup> Groups { get; private set; }
+        public static List<TechGroup> Groups { get; }
 
         /// <summary>
         ///     技術IDリスト
         /// </summary>
-        public static List<int> TechIds { get; private set; }
+        public static List<int> TechIds { get; }
 
         /// <summary>
         ///     技術IDの対応付けテーブル
         /// </summary>
-        public static Dictionary<int, TechItem> TechIdMap { get; private set; }
+        public static Dictionary<int, TechItem> TechIdMap { get; }
 
         /// <summary>
         ///     研究特性リスト
@@ -41,7 +41,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究特性文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, TechSpeciality> SpecialityStringMap { get; private set; }
+        public static Dictionary<string, TechSpeciality> SpecialityStringMap { get; }
 
         /// <summary>
         ///     研究特性画像リスト
@@ -722,10 +722,7 @@ namespace HoI2Editor.Models
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (_loaded)
             {
-                if (handler != null)
-                {
-                    handler(null, new RunWorkerCompletedEventArgs(null, null, false));
-                }
+                handler?.Invoke(null, new RunWorkerCompletedEventArgs(null, null, false));
                 return;
             }
 
@@ -797,7 +794,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     Log.Error("[Tech] Read error: {0}", pathName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, pathName),
+                    if (MessageBox.Show($"{Resources.FileReadError}: {pathName}",
                         Resources.EditorTech, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
@@ -875,7 +872,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     Log.Error("[Tech] Write error: {0}", folderName);
-                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, folderName),
+                    MessageBox.Show($"{Resources.FileWriteError}: {folderName}",
                         Resources.EditorTech, MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
                     return false;
                 }
@@ -894,7 +891,7 @@ namespace HoI2Editor.Models
                     {
                         error = true;
                         Log.Error("[Tech] Write error: {0}", fileName);
-                        if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                        if (MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                             Resources.EditorTech, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                             == DialogResult.Cancel)
                         {
@@ -1057,9 +1054,9 @@ namespace HoI2Editor.Models
         /// <param name="item">技術項目</param>
         public static void AddDuplicatedListItem(ITechItem item)
         {
-            if (item is TechItem)
+            TechItem techItem = item as TechItem;
+            if (techItem != null)
             {
-                TechItem techItem = item as TechItem;
                 IncrementDuplicatedListCount(techItem.Name);
                 IncrementDuplicatedListCount(techItem.ShortName);
                 IncrementDuplicatedListCount(techItem.Desc);
@@ -1067,10 +1064,12 @@ namespace HoI2Editor.Models
                 {
                     IncrementDuplicatedListCount(component.Name);
                 }
+                return;
             }
-            else if (item is TechLabel)
+
+            TechLabel labelItem = item as TechLabel;
+            if (labelItem != null)
             {
-                TechLabel labelItem = item as TechLabel;
                 IncrementDuplicatedListCount(labelItem.Name);
             }
         }
@@ -1081,9 +1080,9 @@ namespace HoI2Editor.Models
         /// <param name="item">技術項目</param>
         public static void RemoveDuplicatedListItem(ITechItem item)
         {
-            if (item is TechItem)
+            TechItem techItem = item as TechItem;
+            if (techItem != null)
             {
-                TechItem techItem = item as TechItem;
                 DecrementDuplicatedListCount(techItem.Name);
                 DecrementDuplicatedListCount(techItem.ShortName);
                 DecrementDuplicatedListCount(techItem.Desc);
@@ -1091,10 +1090,12 @@ namespace HoI2Editor.Models
                 {
                     DecrementDuplicatedListCount(component.Name);
                 }
+                return;
             }
-            else if (item is TechLabel)
+
+            TechLabel labelItem = item as TechLabel;
+            if (labelItem != null)
             {
-                TechLabel labelItem = item as TechLabel;
                 DecrementDuplicatedListCount(labelItem.Name);
             }
         }

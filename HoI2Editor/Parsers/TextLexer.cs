@@ -21,10 +21,7 @@ namespace HoI2Editor.Parsers
         /// <summary>
         ///     解析中のファイル名 (ディレクトリ除く)
         /// </summary>
-        public string FileName
-        {
-            get { return Path.GetFileName(PathName); }
-        }
+        public string FileName => Path.GetFileName(PathName);
 
         /// <summary>
         ///     解析中の行番号

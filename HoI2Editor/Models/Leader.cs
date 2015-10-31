@@ -51,10 +51,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     任官年
         /// </summary>
-        public int[] RankYear
-        {
-            get { return _rankYear; }
-        }
+        public int[] RankYear { get; } = new int[RankLength];
 
         /// <summary>
         ///     開始年
@@ -104,11 +101,6 @@ namespace HoI2Editor.Models
         ///     項目の編集済みフラグ
         /// </summary>
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (LeaderItemId)).Length];
-
-        /// <summary>
-        ///     任官年
-        /// </summary>
-        private readonly int[] _rankYear = new int[RankLength];
 
         /// <summary>
         ///     編集済みフラグ

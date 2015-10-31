@@ -318,7 +318,7 @@ namespace HoI2Editor.Models
             // DHでデフォルト以外のマップを使用する場合、マップフォルダからprovince_names.csvを読み込む
             if ((Game.Type == GameType.DarkestHour) && (Misc.MapNumber != 0))
             {
-                folderName = Path.Combine(Game.MapPathName, string.Format("Map_{0}", Misc.MapNumber));
+                folderName = Path.Combine(Game.MapPathName, $"Map_{Misc.MapNumber}");
                 string fileName = Game.GetReadFileName(folderName, Game.ProvinceTextFileName);
                 if (File.Exists(fileName))
                 {
@@ -335,7 +335,7 @@ namespace HoI2Editor.Models
                     {
                         error = true;
                         Log.Error("[Config] Read error: {0}", fileName);
-                        if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                        if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                             Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                             == DialogResult.Cancel)
                         {
@@ -365,7 +365,7 @@ namespace HoI2Editor.Models
                             {
                                 error = true;
                                 Log.Error("[Config] Read error: {0}", fileName);
-                                if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                                     Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                     == DialogResult.Cancel)
                                 {
@@ -397,7 +397,7 @@ namespace HoI2Editor.Models
                             {
                                 error = true;
                                 Log.Error("[Config] Read error: {0}", fileName);
-                                if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                                     Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                     == DialogResult.Cancel)
                                 {
@@ -426,7 +426,7 @@ namespace HoI2Editor.Models
                         {
                             error = true;
                             Log.Error("[Config] Read error: {0}", fileName);
-                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                            if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                                 Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                 == DialogResult.Cancel)
                             {
@@ -462,7 +462,7 @@ namespace HoI2Editor.Models
                             {
                                 error = true;
                                 Log.Error("[Config] Read error: {0}", fileName);
-                                if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                                     Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                     == DialogResult.Cancel)
                                 {
@@ -493,7 +493,7 @@ namespace HoI2Editor.Models
                             {
                                 error = true;
                                 Log.Error("[Config] Read error: {0}", fileName);
-                                if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                                     Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                     == DialogResult.Cancel)
                                 {
@@ -521,7 +521,7 @@ namespace HoI2Editor.Models
                             {
                                 error = true;
                                 Log.Error("[Config] Read error: {0}", fileName);
-                                if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                                if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                                     Resources.EditorConfig, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                     == DialogResult.Cancel)
                                 {
@@ -693,7 +693,7 @@ namespace HoI2Editor.Models
                     error = true;
                     string pathName = Game.GetWriteFileName(Game.ConfigPathName, fileName);
                     Log.Error("[Config] Write error: {0}", pathName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, pathName),
+                    if (MessageBox.Show($"{Resources.FileWriteError}: {pathName}",
                         Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
@@ -1139,7 +1139,7 @@ namespace HoI2Editor.Models
             string key;
             do
             {
-                key = string.Format("_EDITOR_TEMP_{0}", _tempNo);
+                key = $"_EDITOR_TEMP_{_tempNo}";
                 _tempNo++;
             } while (TempKeyList.Contains(key) || ExistsKey(key));
 
@@ -1205,11 +1205,9 @@ namespace HoI2Editor.Models
                     .Equals(GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2")))
             {
                 AddReplacedText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE"),
-                        Resources.BranchArmy));
+                    $"{GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE")}({Resources.BranchArmy})");
                 AddReplacedText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2"),
-                        Resources.BranchNavy));
+                    $"{GetText("NPERSONALITY_DECISIVE_BATTLE_DOCTRINE2")}({Resources.BranchNavy})");
             }
 
             // 偏執的誇大妄想家: ヒトラー/スターリン
@@ -1218,9 +1216,9 @@ namespace HoI2Editor.Models
                 GetText("NPERSONALITY_HITLER").Equals(GetText("NPERSONALITY_STALIN")))
             {
                 AddReplacedText("NPERSONALITY_HITLER",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_HITLER"), Resources.MinisterHitler));
+                    $"{GetText("NPERSONALITY_HITLER")}({Resources.MinisterHitler})");
                 AddReplacedText("NPERSONALITY_STALIN",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_STALIN"), Resources.MinisterStalin));
+                    $"{GetText("NPERSONALITY_STALIN")}({Resources.MinisterStalin})");
             }
 
             // ドイツ軍事顧問: パイパー/マイスナー/ブロンザルト/ゼークト/ゾウヒョン/パシヴィッツ/ゼルノ/ゴルツ/ジーフェルト/トヴネ/ウーゼドム
@@ -1247,27 +1245,27 @@ namespace HoI2Editor.Models
                 GetText("NPERSONALITY_GER_MIL_M1").Equals(GetText("NPERSONALITY_GER_MIL_M11")))
             {
                 AddReplacedText("NPERSONALITY_GER_MIL_M1",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M1"), Resources.MinisterPeiper));
+                    $"{GetText("NPERSONALITY_GER_MIL_M1")}({Resources.MinisterPeiper})");
                 AddReplacedText("NPERSONALITY_GER_MIL_M2",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M2"), Resources.MinisterMeissner));
+                    $"{GetText("NPERSONALITY_GER_MIL_M2")}({Resources.MinisterMeissner})");
                 AddReplacedText("NPERSONALITY_GER_MIL_M3",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M3"), Resources.MinisterBronsart));
+                    $"{GetText("NPERSONALITY_GER_MIL_M3")}({Resources.MinisterBronsart})");
                 AddReplacedText("NPERSONALITY_GER_MIL_M4",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M4"), Resources.MinisterSeeckt));
+                    $"{GetText("NPERSONALITY_GER_MIL_M4")}({Resources.MinisterSeeckt})");
                 AddReplacedText("NPERSONALITY_GER_MIL_M5",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M5"), Resources.MinisterSouchon));
+                    $"{GetText("NPERSONALITY_GER_MIL_M5")}({Resources.MinisterSouchon})");
                 AddReplacedText("NPERSONALITY_GER_MIL_M6",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M6"), Resources.MinisterPaschwitz));
+                    $"{GetText("NPERSONALITY_GER_MIL_M6")}({Resources.MinisterPaschwitz})");
                 AddReplacedText("NPERSONALITY_GER_MIL_M7",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M7"), Resources.MinisterSerno));
+                    $"{GetText("NPERSONALITY_GER_MIL_M7")}({Resources.MinisterSerno})");
                 AddReplacedText("NPERSONALITY_GER_MIL_M8",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M8"), Resources.MinisterGoltz));
+                    $"{GetText("NPERSONALITY_GER_MIL_M8")}({Resources.MinisterGoltz})");
                 AddReplacedText("NPERSONALITY_GER_MIL_M9",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M9"), Resources.MinisterSievert));
+                    $"{GetText("NPERSONALITY_GER_MIL_M9")}({Resources.MinisterSievert})");
                 AddReplacedText("NPERSONALITY_GER_MIL_M10",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M10"), Resources.MinisterThauvenay));
+                    $"{GetText("NPERSONALITY_GER_MIL_M10")}({Resources.MinisterThauvenay})");
                 AddReplacedText("NPERSONALITY_GER_MIL_M11",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_GER_MIL_M11"), Resources.MinisterUsedom));
+                    $"{GetText("NPERSONALITY_GER_MIL_M11")}({Resources.MinisterUsedom})");
             }
 
             // 暗号解析の専門家: シンクレア/フリードマン
@@ -1276,9 +1274,9 @@ namespace HoI2Editor.Models
                 GetText("NPERSONALITY_SINCLAIR").Equals(GetText("NPERSONALITY_FRIEDMAN")))
             {
                 AddReplacedText("NPERSONALITY_SINCLAIR",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_SINCLAIR"), Resources.MinisterSinclair));
+                    $"{GetText("NPERSONALITY_SINCLAIR")}({Resources.MinisterSinclair})");
                 AddReplacedText("NPERSONALITY_FRIEDMAN",
-                    string.Format("{0}({1})", GetText("NPERSONALITY_FRIEDMAN"), Resources.MinisterFriedman));
+                    $"{GetText("NPERSONALITY_FRIEDMAN")}({Resources.MinisterFriedman})");
             }
         }
 
@@ -1304,8 +1302,8 @@ namespace HoI2Editor.Models
                 // ユーザー定義のユニットクラス名
                 for (int i = 1; i <= 20; i++)
                 {
-                    AddComplementedText(string.Format("NAME_B_U{0}", i),
-                        string.Format("{0}{1}", Resources.BrigadeUser, i));
+                    AddComplementedText($"NAME_B_U{i}",
+                        $"{Resources.BrigadeUser}{i}");
                 }
             }
 
@@ -1331,8 +1329,8 @@ namespace HoI2Editor.Models
                 // ユーザー定義の研究特性
                 for (int i = 1; i <= 60; i++)
                 {
-                    AddComplementedText(string.Format("RT_USER{0}", i),
-                        string.Format("{0}{1}", Resources.SpecialityUser, i));
+                    AddComplementedText($"RT_USER{i}",
+                        $"{Resources.SpecialityUser}{i}");
                 }
 
                 // DH固有のユニットクラス名
@@ -1351,20 +1349,20 @@ namespace HoI2Editor.Models
                 // ユーザー定義のユニットクラス名
                 for (int i = 33; i <= 40; i++)
                 {
-                    AddComplementedText(string.Format("NAME_D_RSV_{0}", i),
-                        string.Format("{0}{1}", Resources.DivisionReserved, i));
+                    AddComplementedText($"NAME_D_RSV_{i}",
+                        $"{Resources.DivisionReserved}{i}");
                 }
                 for (int i = 36; i <= 40; i++)
                 {
-                    AddComplementedText(string.Format("NAME_B_RSV_{0}", i),
-                        string.Format("{0}{1}", Resources.BrigadeReserved, i));
+                    AddComplementedText($"NAME_B_RSV_{i}",
+                        $"{Resources.BrigadeReserved}{i}");
                 }
                 for (int i = 1; i <= 99; i++)
                 {
-                    AddComplementedText(string.Format("NAME_D_{0:D2}", i),
-                        string.Format("{0}{1}", Resources.DivisionUser, i));
-                    AddComplementedText(string.Format("NAME_B_{0:D2}", i),
-                        string.Format("{0}{1}", Resources.BrigadeUser, i));
+                    AddComplementedText($"NAME_D_{i:D2}",
+                        $"{Resources.DivisionUser}{i}");
+                    AddComplementedText($"NAME_B_{i:D2}",
+                        $"{Resources.BrigadeUser}{i}");
                 }
 
                 // DH Fullで定義されていない旅団のユニットクラス名

@@ -1412,10 +1412,7 @@ namespace HoI2Editor.Forms
             techYNumericUpDown.ResetText();
             Image prev = techPictureBox.Image;
             techPictureBox.Image = null;
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
         }
 
         /// <summary>
@@ -1937,8 +1934,7 @@ namespace HoI2Editor.Forms
 
             Image prev = techPictureBox.Image;
             string fileName = Game.GetReadFileName(Game.TechPicturePathName,
-                string.Format("{0}.bmp",
-                    string.IsNullOrEmpty(item.PictureName) ? IntHelper.ToString(item.Id) : item.PictureName));
+                $"{(string.IsNullOrEmpty(item.PictureName) ? IntHelper.ToString(item.Id) : item.PictureName)}.bmp");
             if (File.Exists(fileName))
             {
                 // 技術画像を更新する
@@ -1950,10 +1946,7 @@ namespace HoI2Editor.Forms
             {
                 techPictureBox.Image = null;
             }
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
         }
 
         /// <summary>

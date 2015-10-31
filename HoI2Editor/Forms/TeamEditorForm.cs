@@ -1390,7 +1390,7 @@ namespace HoI2Editor.Forms
             foreach (string s in Countries.Tags
                 .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
-                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    ? $"{name} {Config.GetText(name)}"
                     : name))
             {
                 countryComboBox.Items.Add(s);
@@ -1980,7 +1980,7 @@ namespace HoI2Editor.Forms
         /// <param name="team">対象の研究機関</param>
         /// <param name="no">研究特性の番号</param>
         /// <param name="speciality">研究特性</param>
-        private void ChangeTechSpeciality(Team team, int no, TechSpeciality speciality)
+        private static void ChangeTechSpeciality(Team team, int no, TechSpeciality speciality)
         {
             if (speciality == TechSpeciality.None)
             {
@@ -2430,7 +2430,7 @@ namespace HoI2Editor.Forms
         /// <param name="skill">スキル</param>
         /// <param name="startYear">開始年</param>
         /// <param name="endYear">終了年</param>
-        private void BatchEditAll(bool[] items, int skill, int startYear, int endYear)
+        private static void BatchEditAll(bool[] items, int skill, int startYear, int endYear)
         {
             // 一括編集項目が設定されていなければ戻る
             if (!Enum.GetValues(typeof (TeamBatchItemId)).Cast<TeamBatchItemId>().Any(id => items[(int) id]))
@@ -2496,7 +2496,7 @@ namespace HoI2Editor.Forms
         /// <param name="skill">スキル</param>
         /// <param name="startYear">開始年</param>
         /// <param name="endYear">終了年</param>
-        private void BatchEditSpecified(Country country, bool[] items, int skill, int startYear, int endYear)
+        private static void BatchEditSpecified(Country country, bool[] items, int skill, int startYear, int endYear)
         {
             // 一括編集項目が設定されていなければ戻る
             if (!Enum.GetValues(typeof (TeamBatchItemId)).Cast<TeamBatchItemId>().Any(id => items[(int) id]))
@@ -2521,7 +2521,7 @@ namespace HoI2Editor.Forms
         /// <param name="skill">スキル</param>
         /// <param name="startYear">開始年</param>
         /// <param name="endYear">終了年</param>
-        private void BatchEditTeam(Team team, bool[] items, int skill, int startYear, int endYear)
+        private static void BatchEditTeam(Team team, bool[] items, int skill, int startYear, int endYear)
         {
             // スキル
             if (items[(int) TeamBatchItemId.Skill])
@@ -2571,7 +2571,7 @@ namespace HoI2Editor.Forms
 
             if (items[(int) TeamBatchItemId.Skill])
             {
-                sb.AppendFormat(" skill: {0}", startYear);
+                sb.AppendFormat(" skill: {0}", skill);
             }
             if (items[(int) TeamBatchItemId.StartYear])
             {

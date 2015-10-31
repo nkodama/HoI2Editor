@@ -950,12 +950,12 @@ namespace HoI2Editor.Controllers
             {
                 case ScenarioEditorItemId.MajorCountryNameString:
                     // 主要国設定の国名定義がなければ編集不可
-                    control.ReadOnly = String.IsNullOrEmpty(major.Name);
+                    control.ReadOnly = string.IsNullOrEmpty(major.Name);
                     break;
 
                 case ScenarioEditorItemId.MajorCountryDescString:
                     // 主要国設定の説明文定義がなければ編集不可
-                    control.ReadOnly = String.IsNullOrEmpty(major.Desc);
+                    control.ReadOnly = string.IsNullOrEmpty(major.Desc);
                     break;
             }
         }
@@ -1162,7 +1162,7 @@ namespace HoI2Editor.Controllers
             {
                 case ScenarioEditorItemId.CountryNameString:
                     // 国家設定の国名定義がなければ編集不可
-                    control.ReadOnly = (settings == null) || String.IsNullOrEmpty(settings.Name);
+                    control.ReadOnly = string.IsNullOrEmpty(settings?.Name);
                     break;
             }
         }
@@ -1258,7 +1258,7 @@ namespace HoI2Editor.Controllers
             {
                 case ScenarioEditorItemId.ProvinceNameString:
                     // プロヴィンス設定のプロヴィンス名定義がなければ編集不可
-                    control.ReadOnly = (settings == null) || string.IsNullOrEmpty(settings.Name);
+                    control.ReadOnly = string.IsNullOrEmpty(settings?.Name);
                     break;
             }
         }
@@ -1288,9 +1288,7 @@ namespace HoI2Editor.Controllers
                 case ScenarioEditorItemId.UnitLocation:
                 case ScenarioEditorItemId.UnitBase:
                     List<Province> provinces = (List<Province>) GetListItems(itemId, unit);
-                    control.SelectedIndex = (provinces != null)
-                        ? provinces.FindIndex(province => province.Id == (int) val)
-                        : -1;
+                    control.SelectedIndex = provinces?.FindIndex(province => province.Id == (int) val) ?? -1;
                     break;
 
                 case ScenarioEditorItemId.UnitLeader:
@@ -1893,46 +1891,22 @@ namespace HoI2Editor.Controllers
                     return scenario.PanelName;
 
                 case ScenarioEditorItemId.ScenarioStartYear:
-                    if (scenario.GlobalData.StartDate == null)
-                    {
-                        return null;
-                    }
-                    return scenario.GlobalData.StartDate.Year;
+                    return scenario.GlobalData.StartDate?.Year;
 
                 case ScenarioEditorItemId.ScenarioStartMonth:
-                    if (scenario.GlobalData.StartDate == null)
-                    {
-                        return null;
-                    }
-                    return scenario.GlobalData.StartDate.Month;
+                    return scenario.GlobalData.StartDate?.Month;
 
                 case ScenarioEditorItemId.ScenarioStartDay:
-                    if (scenario.GlobalData.StartDate == null)
-                    {
-                        return null;
-                    }
-                    return scenario.GlobalData.StartDate.Day;
+                    return scenario.GlobalData.StartDate?.Day;
 
                 case ScenarioEditorItemId.ScenarioEndYear:
-                    if (scenario.GlobalData.EndDate == null)
-                    {
-                        return null;
-                    }
-                    return scenario.GlobalData.EndDate.Year;
+                    return scenario.GlobalData.EndDate?.Year;
 
                 case ScenarioEditorItemId.ScenarioEndMonth:
-                    if (scenario.GlobalData.EndDate == null)
-                    {
-                        return null;
-                    }
-                    return scenario.GlobalData.EndDate.Month;
+                    return scenario.GlobalData.EndDate?.Month;
 
                 case ScenarioEditorItemId.ScenarioEndDay:
-                    if (scenario.GlobalData.EndDate == null)
-                    {
-                        return null;
-                    }
-                    return scenario.GlobalData.EndDate.Day;
+                    return scenario.GlobalData.EndDate?.Day;
 
                 case ScenarioEditorItemId.ScenarioIncludeFolder:
                     return scenario.IncludeFolder;
@@ -1988,7 +1962,7 @@ namespace HoI2Editor.Controllers
                     return major.Desc;
 
                 case ScenarioEditorItemId.MajorCountryDescString:
-                    if (!String.IsNullOrEmpty(major.Desc))
+                    if (!string.IsNullOrEmpty(major.Desc))
                     {
                         return Config.GetText(major.Desc);
                     }
@@ -2000,12 +1974,12 @@ namespace HoI2Editor.Controllers
                     // 年数の下2桁のみ使用する
                     year = year % 100;
                     // 年数別の説明があれば使用する
-                    string key = String.Format("{0}_{1}_DESC", major.Country, year);
+                    string key = $"{major.Country}_{year}_DESC";
                     if (Config.ExistsKey(key))
                     {
                         return Config.GetText(key);
                     }
-                    key = String.Format("{0}_DESC", major.Country);
+                    key = $"{major.Country}_DESC";
                     return Config.GetText(key);
 
                 case ScenarioEditorItemId.MajorPropaganada:
@@ -2026,7 +2000,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.AllianceName:
-                    if (!String.IsNullOrEmpty(alliance.Name))
+                    if (!string.IsNullOrEmpty(alliance.Name))
                     {
                         return Config.GetText("ALLIANCE_" + alliance.Name);
                     }
@@ -2046,18 +2020,10 @@ namespace HoI2Editor.Controllers
                     return "";
 
                 case ScenarioEditorItemId.AllianceType:
-                    if (alliance.Id == null)
-                    {
-                        return null;
-                    }
-                    return alliance.Id.Type;
+                    return alliance.Id?.Type;
 
                 case ScenarioEditorItemId.AllianceId:
-                    if (alliance.Id == null)
-                    {
-                        return null;
-                    }
-                    return alliance.Id.Id;
+                    return alliance.Id?.Id;
             }
 
             return null;
@@ -2074,67 +2040,31 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.WarStartYear:
-                    if (war.StartDate == null)
-                    {
-                        return null;
-                    }
-                    return war.StartDate.Year;
+                    return war.StartDate?.Year;
 
                 case ScenarioEditorItemId.WarStartMonth:
-                    if (war.StartDate == null)
-                    {
-                        return null;
-                    }
-                    return war.StartDate.Month;
+                    return war.StartDate?.Month;
 
                 case ScenarioEditorItemId.WarStartDay:
-                    if (war.StartDate == null)
-                    {
-                        return null;
-                    }
-                    return war.StartDate.Day;
+                    return war.StartDate?.Day;
 
                 case ScenarioEditorItemId.WarEndYear:
-                    if (war.EndDate == null)
-                    {
-                        return null;
-                    }
-                    return war.EndDate.Year;
+                    return war.EndDate?.Year;
 
                 case ScenarioEditorItemId.WarEndMonth:
-                    if (war.EndDate == null)
-                    {
-                        return null;
-                    }
-                    return war.EndDate.Month;
+                    return war.EndDate?.Month;
 
                 case ScenarioEditorItemId.WarEndDay:
-                    if (war.EndDate == null)
-                    {
-                        return null;
-                    }
-                    return war.EndDate.Day;
+                    return war.EndDate?.Day;
 
                 case ScenarioEditorItemId.WarType:
-                    if (war.Id == null)
-                    {
-                        return null;
-                    }
-                    return war.Id.Type;
+                    return war.Id?.Type;
 
                 case ScenarioEditorItemId.WarId:
-                    if (war.Id == null)
-                    {
-                        return null;
-                    }
-                    return war.Id.Id;
+                    return war.Id?.Id;
 
                 case ScenarioEditorItemId.WarAttackerType:
-                    if ((war.Attackers == null) || (war.Attackers.Id == null))
-                    {
-                        return null;
-                    }
-                    return war.Attackers.Id.Type;
+                    return war.Attackers?.Id?.Type;
 
                 case ScenarioEditorItemId.WarAttackerId:
                     if (war.Id == null)
@@ -2144,11 +2074,7 @@ namespace HoI2Editor.Controllers
                     return war.Attackers.Id.Id;
 
                 case ScenarioEditorItemId.WarDefenderType:
-                    if ((war.Defenders == null) || (war.Defenders.Id == null))
-                    {
-                        return null;
-                    }
-                    return war.Defenders.Id.Type;
+                    return war.Defenders?.Id?.Type;
 
                 case ScenarioEditorItemId.WarDefenderId:
                     if (war.Id == null)
@@ -2182,28 +2108,16 @@ namespace HoI2Editor.Controllers
                     return (relation != null) && relation.Access;
 
                 case ScenarioEditorItemId.DiplomacyGuaranteed:
-                    return (relation != null) && (relation.Guaranteed != null);
+                    return relation?.Guaranteed != null;
 
                 case ScenarioEditorItemId.DiplomacyGuaranteedEndYear:
-                    if ((relation == null) || (relation.Guaranteed == null))
-                    {
-                        return null;
-                    }
-                    return relation.Guaranteed.Year;
+                    return relation?.Guaranteed?.Year;
 
                 case ScenarioEditorItemId.DiplomacyGuaranteedEndMonth:
-                    if ((relation == null) || (relation.Guaranteed == null))
-                    {
-                        return null;
-                    }
-                    return relation.Guaranteed.Month;
+                    return relation?.Guaranteed?.Month;
 
                 case ScenarioEditorItemId.DiplomacyGuaranteedEndDay:
-                    if ((relation == null) || (relation.Guaranteed == null))
-                    {
-                        return null;
-                    }
-                    return relation.Guaranteed.Day;
+                    return relation?.Guaranteed?.Day;
             }
 
             return null;
@@ -2226,74 +2140,42 @@ namespace HoI2Editor.Controllers
                 case ScenarioEditorItemId.DiplomacyNonAggressionStartYear:
                 case ScenarioEditorItemId.DiplomacyPeaceStartYear:
                 case ScenarioEditorItemId.TradeStartYear:
-                    if ((treaty == null) || (treaty.StartDate == null))
-                    {
-                        return null;
-                    }
-                    return treaty.StartDate.Year;
+                    return treaty?.StartDate?.Year;
 
                 case ScenarioEditorItemId.DiplomacyNonAggressionStartMonth:
                 case ScenarioEditorItemId.DiplomacyPeaceStartMonth:
                 case ScenarioEditorItemId.TradeStartMonth:
-                    if ((treaty == null) || (treaty.StartDate == null))
-                    {
-                        return null;
-                    }
-                    return treaty.StartDate.Month;
+                    return treaty?.StartDate?.Month;
 
                 case ScenarioEditorItemId.DiplomacyNonAggressionStartDay:
                 case ScenarioEditorItemId.DiplomacyPeaceStartDay:
                 case ScenarioEditorItemId.TradeStartDay:
-                    if ((treaty == null) || (treaty.StartDate == null))
-                    {
-                        return null;
-                    }
-                    return treaty.StartDate.Day;
+                    return treaty?.StartDate?.Day;
 
                 case ScenarioEditorItemId.DiplomacyNonAggressionEndYear:
                 case ScenarioEditorItemId.DiplomacyPeaceEndYear:
                 case ScenarioEditorItemId.TradeEndYear:
-                    if ((treaty == null) || (treaty.EndDate == null))
-                    {
-                        return null;
-                    }
-                    return treaty.EndDate.Year;
+                    return treaty?.EndDate?.Year;
 
                 case ScenarioEditorItemId.DiplomacyNonAggressionEndMonth:
                 case ScenarioEditorItemId.DiplomacyPeaceEndMonth:
                 case ScenarioEditorItemId.TradeEndMonth:
-                    if ((treaty == null) || (treaty.EndDate == null))
-                    {
-                        return null;
-                    }
-                    return treaty.EndDate.Month;
+                    return treaty?.EndDate?.Month;
 
                 case ScenarioEditorItemId.DiplomacyNonAggressionEndDay:
                 case ScenarioEditorItemId.DiplomacyPeaceEndDay:
                 case ScenarioEditorItemId.TradeEndDay:
-                    if ((treaty == null) || (treaty.EndDate == null))
-                    {
-                        return null;
-                    }
-                    return treaty.EndDate.Day;
+                    return treaty?.EndDate?.Day;
 
                 case ScenarioEditorItemId.DiplomacyNonAggressionType:
                 case ScenarioEditorItemId.DiplomacyPeaceType:
                 case ScenarioEditorItemId.TradeType:
-                    if ((treaty == null) || (treaty.Id == null))
-                    {
-                        return null;
-                    }
-                    return treaty.Id.Type;
+                    return treaty?.Id?.Type;
 
                 case ScenarioEditorItemId.DiplomacyNonAggressionId:
                 case ScenarioEditorItemId.DiplomacyPeaceId:
                 case ScenarioEditorItemId.TradeId:
-                    if ((treaty == null) || (treaty.Id == null))
-                    {
-                        return null;
-                    }
-                    return treaty.Id.Id;
+                    return treaty?.Id?.Id;
 
                 case ScenarioEditorItemId.TradeCancel:
                     return treaty.Cancel;
@@ -2355,7 +2237,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.IntelligenceSpies:
-                    return (spy != null) ? spy.Spies : 0;
+                    return spy?.Spies ?? 0;
             }
 
             return null;
@@ -2372,10 +2254,10 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.DiplomacyMaster:
-                    return (settings != null) ? settings.Master : Country.None;
+                    return settings?.Master ?? Country.None;
 
                 case ScenarioEditorItemId.DiplomacyMilitaryControl:
-                    return (settings != null) ? settings.Control : Country.None;
+                    return settings?.Control ?? Country.None;
 
                 case ScenarioEditorItemId.CountryNameKey:
                     return (settings != null) ? settings.Name : "";
@@ -2384,309 +2266,203 @@ namespace HoI2Editor.Controllers
                     return (settings != null) ? settings.FlagExt : "";
 
                 case ScenarioEditorItemId.CountryRegularId:
-                    return (settings != null) ? settings.RegularId : Country.None;
+                    return settings?.RegularId ?? Country.None;
 
                 case ScenarioEditorItemId.CountryBelligerence:
-                    return (settings != null) ? settings.Belligerence : 0;
+                    return settings?.Belligerence ?? 0;
 
                 case ScenarioEditorItemId.CountryDissent:
-                    return (settings != null) ? settings.Dissent : (double) 0;
+                    return settings?.Dissent ?? 0;
 
                 case ScenarioEditorItemId.CountryExtraTc:
-                    return (settings != null) ? settings.ExtraTc : (double) 0;
+                    return settings?.ExtraTc ?? 0;
 
                 case ScenarioEditorItemId.CountryNuke:
-                    return (settings != null) ? settings.Nuke : 0;
+                    return settings?.Nuke ?? 0;
 
                 case ScenarioEditorItemId.CountryNukeYear:
-                    if ((settings == null) || (settings.NukeDate == null))
-                    {
-                        return null;
-                    }
-                    return settings.NukeDate.Year;
+                    return settings?.NukeDate?.Year;
 
                 case ScenarioEditorItemId.CountryNukeMonth:
-                    if ((settings == null) || (settings.NukeDate == null))
-                    {
-                        return null;
-                    }
-                    return settings.NukeDate.Month;
+                    return settings?.NukeDate?.Month;
 
                 case ScenarioEditorItemId.CountryNukeDay:
-                    if ((settings == null) || (settings.NukeDate == null))
-                    {
-                        return null;
-                    }
-                    return settings.NukeDate.Day;
+                    return settings?.NukeDate?.Day;
 
                 case ScenarioEditorItemId.CountryGroundDefEff:
-                    return (settings != null) ? settings.GroundDefEff : (double) 0;
+                    return settings?.GroundDefEff ?? 0;
 
                 case ScenarioEditorItemId.CountryPeacetimeIcModifier:
-                    return (settings != null) ? settings.PeacetimeIcModifier : (double) 0;
+                    return settings?.PeacetimeIcModifier ?? 0;
 
                 case ScenarioEditorItemId.CountryWartimeIcModifier:
-                    return (settings != null) ? settings.WartimeIcModifier : (double) 0;
+                    return settings?.WartimeIcModifier ?? 0;
 
                 case ScenarioEditorItemId.CountryIndustrialModifier:
-                    return (settings != null) ? settings.IndustrialModifier : (double) 0;
+                    return settings?.IndustrialModifier ?? 0;
 
                 case ScenarioEditorItemId.CountryRelativeManpower:
-                    return (settings != null) ? settings.RelativeManpower : (double) 0;
+                    return settings?.RelativeManpower ?? 0;
 
                 case ScenarioEditorItemId.CountryEnergy:
-                    return (settings != null) ? settings.Energy : (double) 0;
+                    return settings?.Energy ?? 0;
 
                 case ScenarioEditorItemId.CountryMetal:
-                    return (settings != null) ? settings.Metal : (double) 0;
+                    return settings?.Metal ?? 0;
 
                 case ScenarioEditorItemId.CountryRareMaterials:
-                    return (settings != null) ? settings.RareMaterials : (double) 0;
+                    return settings?.RareMaterials ?? 0;
 
                 case ScenarioEditorItemId.CountryOil:
-                    return (settings != null) ? settings.Oil : (double) 0;
+                    return settings?.Oil ?? 0;
 
                 case ScenarioEditorItemId.CountrySupplies:
-                    return (settings != null) ? settings.Supplies : (double) 0;
+                    return settings?.Supplies ?? 0;
 
                 case ScenarioEditorItemId.CountryMoney:
-                    return (settings != null) ? settings.Money : (double) 0;
+                    return settings?.Money ?? 0;
 
                 case ScenarioEditorItemId.CountryTransports:
-                    return (settings != null) ? settings.Transports : 0;
+                    return settings?.Transports ?? 0;
 
                 case ScenarioEditorItemId.CountryEscorts:
-                    return (settings != null) ? settings.Escorts : 0;
+                    return settings?.Escorts ?? 0;
 
                 case ScenarioEditorItemId.CountryManpower:
-                    return (settings != null) ? settings.Manpower : (double) 0;
+                    return settings?.Manpower ?? 0;
 
                 case ScenarioEditorItemId.CountryOffmapEnergy:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Energy : (double) 0;
+                    return settings?.Offmap?.Energy ?? 0;
 
                 case ScenarioEditorItemId.CountryOffmapMetal:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Metal : (double) 0;
+                    return settings?.Offmap?.Metal ?? 0;
 
                 case ScenarioEditorItemId.CountryOffmapRareMaterials:
-                    return ((settings != null) && (settings.Offmap != null))
-                        ? settings.Offmap.RareMaterials
-                        : (double) 0;
+                    return settings?.Offmap?.RareMaterials ?? 0;
 
                 case ScenarioEditorItemId.CountryOffmapOil:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Oil : (double) 0;
+                    return settings?.Offmap?.Oil ?? 0;
 
                 case ScenarioEditorItemId.CountryOffmapSupplies:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Supplies : (double) 0;
+                    return settings?.Offmap?.Supplies ?? 0;
 
                 case ScenarioEditorItemId.CountryOffmapMoney:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Money : (double) 0;
+                    return settings?.Offmap?.Money ?? 0;
 
                 case ScenarioEditorItemId.CountryOffmapTransports:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Transports : 0;
+                    return settings?.Offmap?.Transports ?? 0;
 
                 case ScenarioEditorItemId.CountryOffmapEscorts:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Escorts : 0;
+                    return settings?.Offmap?.Escorts ?? 0;
 
                 case ScenarioEditorItemId.CountryOffmapManpower:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Manpower : (double) 0;
+                    return settings?.Offmap?.Manpower ?? 0;
 
                 case ScenarioEditorItemId.CountryOffmapIc:
-                    return ((settings != null) && (settings.Offmap != null)) ? settings.Offmap.Ic : (double) 0;
+                    return settings?.Offmap?.Ic ?? 0;
 
                 case ScenarioEditorItemId.CountryAiFileName:
                     return (settings != null) ? settings.AiFileName : "";
 
                 case ScenarioEditorItemId.SliderYear:
-                    if ((settings == null) || (settings.Policy == null) || (settings.Policy.Date == null))
-                    {
-                        return null;
-                    }
-                    return settings.Policy.Date.Year;
+                    return settings?.Policy?.Date?.Year;
 
                 case ScenarioEditorItemId.SliderMonth:
-                    if ((settings == null) || (settings.Policy == null) || (settings.Policy.Date == null))
-                    {
-                        return null;
-                    }
-                    return settings.Policy.Date.Month;
+                    return settings?.Policy?.Date?.Month;
 
                 case ScenarioEditorItemId.SliderDay:
-                    if ((settings == null) || (settings.Policy == null) || (settings.Policy.Date == null))
-                    {
-                        return null;
-                    }
-                    return settings.Policy.Date.Day;
+                    return settings?.Policy?.Date?.Day;
 
                 case ScenarioEditorItemId.SliderDemocratic:
-                    return ((settings != null) && (settings.Policy != null)) ? settings.Policy.Democratic : 5;
+                    return settings?.Policy?.Democratic ?? 5;
 
                 case ScenarioEditorItemId.SliderPoliticalLeft:
-                    return ((settings != null) && (settings.Policy != null)) ? settings.Policy.PoliticalLeft : 5;
+                    return settings?.Policy?.PoliticalLeft ?? 5;
 
                 case ScenarioEditorItemId.SliderFreedom:
-                    return ((settings != null) && (settings.Policy != null)) ? settings.Policy.Freedom : 5;
+                    return settings?.Policy?.Freedom ?? 5;
 
                 case ScenarioEditorItemId.SliderFreeMarket:
-                    return ((settings != null) && (settings.Policy != null)) ? settings.Policy.FreeMarket : 5;
+                    return settings?.Policy?.FreeMarket ?? 5;
 
                 case ScenarioEditorItemId.SliderProfessionalArmy:
-                    return ((settings != null) && (settings.Policy != null)) ? settings.Policy.ProfessionalArmy : 5;
+                    return settings?.Policy?.ProfessionalArmy ?? 5;
 
                 case ScenarioEditorItemId.SliderDefenseLobby:
-                    return ((settings != null) && (settings.Policy != null)) ? settings.Policy.DefenseLobby : 5;
+                    return settings?.Policy?.DefenseLobby ?? 5;
 
                 case ScenarioEditorItemId.SliderInterventionism:
-                    return ((settings != null) && (settings.Policy != null)) ? settings.Policy.Interventionism : 5;
+                    return settings?.Policy?.Interventionism ?? 5;
 
                 case ScenarioEditorItemId.CabinetHeadOfState:
                 case ScenarioEditorItemId.CabinetHeadOfStateId:
-                    if ((settings == null) || (settings.HeadOfState == null))
-                    {
-                        return null;
-                    }
-                    return settings.HeadOfState.Id;
+                    return settings?.HeadOfState?.Id;
 
                 case ScenarioEditorItemId.CabinetHeadOfStateType:
-                    if ((settings == null) || (settings.HeadOfState == null))
-                    {
-                        return null;
-                    }
-                    return settings.HeadOfState.Type;
+                    return settings?.HeadOfState?.Type;
 
                 case ScenarioEditorItemId.CabinetHeadOfGovernment:
                 case ScenarioEditorItemId.CabinetHeadOfGovernmentId:
-                    if ((settings == null) || (settings.HeadOfGovernment == null))
-                    {
-                        return null;
-                    }
-                    return settings.HeadOfGovernment.Id;
+                    return settings?.HeadOfGovernment?.Id;
 
                 case ScenarioEditorItemId.CabinetHeadOfGovernmentType:
-                    if ((settings == null) || (settings.HeadOfGovernment == null))
-                    {
-                        return null;
-                    }
-                    return settings.HeadOfGovernment.Type;
+                    return settings?.HeadOfGovernment?.Type;
 
                 case ScenarioEditorItemId.CabinetForeignMinister:
                 case ScenarioEditorItemId.CabinetForeignMinisterId:
-                    if ((settings == null) || (settings.ForeignMinister == null))
-                    {
-                        return null;
-                    }
-                    return settings.ForeignMinister.Id;
+                    return settings?.ForeignMinister?.Id;
 
                 case ScenarioEditorItemId.CabinetForeignMinisterType:
-                    if ((settings == null) || (settings.ForeignMinister == null))
-                    {
-                        return null;
-                    }
-                    return settings.ForeignMinister.Type;
+                    return settings?.ForeignMinister?.Type;
 
                 case ScenarioEditorItemId.CabinetArmamentMinister:
                 case ScenarioEditorItemId.CabinetArmamentMinisterId:
-                    if ((settings == null) || (settings.ArmamentMinister == null))
-                    {
-                        return null;
-                    }
-                    return settings.ArmamentMinister.Id;
+                    return settings?.ArmamentMinister?.Id;
 
                 case ScenarioEditorItemId.CabinetArmamentMinisterType:
-                    if ((settings == null) || (settings.ArmamentMinister == null))
-                    {
-                        return null;
-                    }
-                    return settings.ArmamentMinister.Type;
+                    return settings?.ArmamentMinister?.Type;
 
                 case ScenarioEditorItemId.CabinetMinisterOfSecurity:
                 case ScenarioEditorItemId.CabinetMinisterOfSecurityId:
-                    if ((settings == null) || (settings.MinisterOfSecurity == null))
-                    {
-                        return null;
-                    }
-                    return settings.MinisterOfSecurity.Id;
+                    return settings?.MinisterOfSecurity?.Id;
 
                 case ScenarioEditorItemId.CabinetMinisterOfSecurityType:
-                    if ((settings == null) || (settings.MinisterOfSecurity == null))
-                    {
-                        return null;
-                    }
-                    return settings.MinisterOfSecurity.Type;
+                    return settings?.MinisterOfSecurity?.Type;
 
                 case ScenarioEditorItemId.CabinetMinisterOfIntelligence:
                 case ScenarioEditorItemId.CabinetMinisterOfIntelligenceId:
-                    if ((settings == null) || (settings.MinisterOfIntelligence == null))
-                    {
-                        return null;
-                    }
-                    return settings.MinisterOfIntelligence.Id;
+                    return settings?.MinisterOfIntelligence?.Id;
 
                 case ScenarioEditorItemId.CabinetMinisterOfIntelligenceType:
-                    if ((settings == null) || (settings.MinisterOfIntelligence == null))
-                    {
-                        return null;
-                    }
-                    return settings.MinisterOfIntelligence.Type;
+                    return settings?.MinisterOfIntelligence?.Type;
 
                 case ScenarioEditorItemId.CabinetChiefOfStaff:
                 case ScenarioEditorItemId.CabinetChiefOfStaffId:
-                    if ((settings == null) || (settings.ChiefOfStaff == null))
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfStaff.Id;
+                    return settings?.ChiefOfStaff?.Id;
 
                 case ScenarioEditorItemId.CabinetChiefOfStaffType:
-                    if ((settings == null) || (settings.ChiefOfStaff == null))
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfStaff.Type;
+                    return settings?.ChiefOfStaff?.Type;
 
                 case ScenarioEditorItemId.CabinetChiefOfArmy:
                 case ScenarioEditorItemId.CabinetChiefOfArmyId:
-                    if ((settings == null) || (settings.ChiefOfArmy == null))
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfArmy.Id;
+                    return settings?.ChiefOfArmy?.Id;
 
                 case ScenarioEditorItemId.CabinetChiefOfArmyType:
-                    if ((settings == null) || (settings.ChiefOfArmy == null))
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfArmy.Type;
+                    return settings?.ChiefOfArmy?.Type;
 
                 case ScenarioEditorItemId.CabinetChiefOfNavy:
                 case ScenarioEditorItemId.CabinetChiefOfNavyId:
-                    if ((settings == null) || (settings.ChiefOfNavy == null))
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfNavy.Id;
+                    return settings?.ChiefOfNavy?.Id;
 
                 case ScenarioEditorItemId.CabinetChiefOfNavyType:
-                    if ((settings == null) || (settings.ChiefOfNavy == null))
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfNavy.Type;
+                    return settings?.ChiefOfNavy?.Type;
 
                 case ScenarioEditorItemId.CabinetChiefOfAir:
                 case ScenarioEditorItemId.CabinetChiefOfAirId:
-                    if ((settings == null) || (settings.ChiefOfAir == null))
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfAir.Id;
+                    return settings?.ChiefOfAir?.Id;
 
                 case ScenarioEditorItemId.CabinetChiefOfAirType:
-                    if ((settings == null) || (settings.ChiefOfAir == null))
-                    {
-                        return null;
-                    }
-                    return settings.ChiefOfAir.Type;
+                    return settings?.ChiefOfAir?.Type;
             }
 
             return null;
@@ -2704,7 +2480,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.CountryNameString:
-                    if ((settings != null) && !string.IsNullOrEmpty(settings.Name))
+                    if (!string.IsNullOrEmpty(settings?.Name))
                     {
                         return Config.ExistsKey(settings.Name) ? Config.GetText(settings.Name) : "";
                     }
@@ -2776,328 +2552,172 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.ProvinceVp:
-                    return (settings != null) ? settings.Vp : 0;
+                    return settings?.Vp ?? 0;
 
                 case ScenarioEditorItemId.ProvinceRevoltRisk:
-                    return (settings != null) ? settings.RevoltRisk : (double) 0;
+                    return settings?.RevoltRisk ?? 0;
 
                 case ScenarioEditorItemId.ProvinceManpowerCurrent:
-                    return (settings != null) ? settings.Manpower : (double) 0;
+                    return settings?.Manpower ?? 0;
 
                 case ScenarioEditorItemId.ProvinceManpowerMax:
-                    return (settings != null) ? settings.MaxManpower : (double) 0;
+                    return settings?.MaxManpower ?? 0;
 
                 case ScenarioEditorItemId.ProvinceEnergyPool:
-                    return (settings != null) ? settings.EnergyPool : (double) 0;
+                    return settings?.EnergyPool ?? 0;
 
                 case ScenarioEditorItemId.ProvinceEnergyCurrent:
-                    return (settings != null) ? settings.Energy : (double) 0;
+                    return settings?.Energy ?? 0;
 
                 case ScenarioEditorItemId.ProvinceEnergyMax:
-                    return (settings != null) ? settings.MaxEnergy : (double) 0;
+                    return settings?.MaxEnergy ?? 0;
 
                 case ScenarioEditorItemId.ProvinceMetalPool:
-                    return (settings != null) ? settings.MetalPool : (double) 0;
+                    return settings?.MetalPool ?? 0;
 
                 case ScenarioEditorItemId.ProvinceMetalCurrent:
-                    return (settings != null) ? settings.Metal : (double) 0;
+                    return settings?.Metal ?? 0;
 
                 case ScenarioEditorItemId.ProvinceMetalMax:
-                    return (settings != null) ? settings.MaxMetal : (double) 0;
+                    return settings?.MaxMetal ?? 0;
 
                 case ScenarioEditorItemId.ProvinceRareMaterialsPool:
-                    return (settings != null) ? settings.RareMaterialsPool : (double) 0;
+                    return settings?.RareMaterialsPool ?? 0;
 
                 case ScenarioEditorItemId.ProvinceRareMaterialsCurrent:
-                    return (settings != null) ? settings.RareMaterials : (double) 0;
+                    return settings?.RareMaterials ?? 0;
 
                 case ScenarioEditorItemId.ProvinceRareMaterialsMax:
-                    return (settings != null) ? settings.MaxRareMaterials : (double) 0;
+                    return settings?.MaxRareMaterials ?? 0;
 
                 case ScenarioEditorItemId.ProvinceOilPool:
-                    return (settings != null) ? settings.OilPool : (double) 0;
+                    return settings?.OilPool ?? 0;
 
                 case ScenarioEditorItemId.ProvinceOilCurrent:
-                    return (settings != null) ? settings.Oil : (double) 0;
+                    return settings?.Oil ?? 0;
 
                 case ScenarioEditorItemId.ProvinceOilMax:
-                    return (settings != null) ? settings.MaxOil : (double) 0;
+                    return settings?.MaxOil ?? 0;
 
                 case ScenarioEditorItemId.ProvinceSupplyPool:
-                    return (settings != null) ? settings.SupplyPool : (double) 0;
+                    return settings?.SupplyPool ?? 0;
 
                 case ScenarioEditorItemId.ProvinceIcCurrent:
-                    if ((settings == null) || (settings.Ic == null))
-                    {
-                        return null;
-                    }
-                    return settings.Ic.CurrentSize;
+                    return settings?.Ic?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceIcMax:
-                    if ((settings == null) || (settings.Ic == null))
-                    {
-                        return null;
-                    }
-                    return settings.Ic.MaxSize;
+                    return settings?.Ic?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceIcRelative:
-                    if ((settings == null) || (settings.Ic == null))
-                    {
-                        return null;
-                    }
-                    return settings.Ic.Size;
+                    return settings?.Ic?.Size;
 
                 case ScenarioEditorItemId.ProvinceInfrastructureCurrent:
-                    if ((settings == null) || (settings.Infrastructure == null))
-                    {
-                        return null;
-                    }
-                    return settings.Infrastructure.CurrentSize;
+                    return settings?.Infrastructure?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceInfrastructureMax:
-                    if ((settings == null) || (settings.Infrastructure == null))
-                    {
-                        return null;
-                    }
-                    return settings.Infrastructure.MaxSize;
+                    return settings?.Infrastructure?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceInfrastructureRelative:
-                    if ((settings == null) || (settings.Infrastructure == null))
-                    {
-                        return null;
-                    }
-                    return settings.Infrastructure.Size;
+                    return settings?.Infrastructure?.Size;
 
                 case ScenarioEditorItemId.ProvinceLandFortCurrent:
-                    if ((settings == null) || (settings.LandFort == null))
-                    {
-                        return null;
-                    }
-                    return settings.LandFort.CurrentSize;
+                    return settings?.LandFort?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceLandFortMax:
-                    if ((settings == null) || (settings.LandFort == null))
-                    {
-                        return null;
-                    }
-                    return settings.LandFort.MaxSize;
+                    return settings?.LandFort?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceLandFortRelative:
-                    if ((settings == null) || (settings.LandFort == null))
-                    {
-                        return null;
-                    }
-                    return settings.LandFort.Size;
+                    return settings?.LandFort?.Size;
 
                 case ScenarioEditorItemId.ProvinceCoastalFortCurrent:
-                    if ((settings == null) || (settings.CoastalFort == null))
-                    {
-                        return null;
-                    }
-                    return settings.CoastalFort.CurrentSize;
+                    return settings?.CoastalFort?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceCoastalFortMax:
-                    if ((settings == null) || (settings.CoastalFort == null))
-                    {
-                        return null;
-                    }
-                    return settings.CoastalFort.MaxSize;
+                    return settings?.CoastalFort?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceCoastalFortRelative:
-                    if ((settings == null) || (settings.CoastalFort == null))
-                    {
-                        return null;
-                    }
-                    return settings.CoastalFort.Size;
+                    return settings?.CoastalFort?.Size;
 
                 case ScenarioEditorItemId.ProvinceAntiAirCurrent:
-                    if ((settings == null) || (settings.AntiAir == null))
-                    {
-                        return null;
-                    }
-                    return settings.AntiAir.CurrentSize;
+                    return settings?.AntiAir?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceAntiAirMax:
-                    if ((settings == null) || (settings.AntiAir == null))
-                    {
-                        return null;
-                    }
-                    return settings.AntiAir.MaxSize;
+                    return settings?.AntiAir?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceAntiAirRelative:
-                    if ((settings == null) || (settings.AntiAir == null))
-                    {
-                        return null;
-                    }
-                    return settings.AntiAir.Size;
+                    return settings?.AntiAir?.Size;
 
                 case ScenarioEditorItemId.ProvinceAirBaseCurrent:
-                    if ((settings == null) || (settings.AirBase == null))
-                    {
-                        return null;
-                    }
-                    return settings.AirBase.CurrentSize;
+                    return settings?.AirBase?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceAirBaseMax:
-                    if ((settings == null) || (settings.AirBase == null))
-                    {
-                        return null;
-                    }
-                    return settings.AirBase.MaxSize;
+                    return settings?.AirBase?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceAirBaseRelative:
-                    if ((settings == null) || (settings.AirBase == null))
-                    {
-                        return null;
-                    }
-                    return settings.AirBase.Size;
+                    return settings?.AirBase?.Size;
 
                 case ScenarioEditorItemId.ProvinceNavalBaseCurrent:
-                    if ((settings == null) || (settings.NavalBase == null))
-                    {
-                        return null;
-                    }
-                    return settings.NavalBase.CurrentSize;
+                    return settings?.NavalBase?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceNavalBaseMax:
-                    if ((settings == null) || (settings.NavalBase == null))
-                    {
-                        return null;
-                    }
-                    return settings.NavalBase.MaxSize;
+                    return settings?.NavalBase?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceNavalBaseRelative:
-                    if ((settings == null) || (settings.NavalBase == null))
-                    {
-                        return null;
-                    }
-                    return settings.NavalBase.Size;
+                    return settings?.NavalBase?.Size;
 
                 case ScenarioEditorItemId.ProvinceRadarStationCurrent:
-                    if ((settings == null) || (settings.RadarStation == null))
-                    {
-                        return null;
-                    }
-                    return settings.RadarStation.CurrentSize;
+                    return settings?.RadarStation?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceRadarStationMax:
-                    if ((settings == null) || (settings.RadarStation == null))
-                    {
-                        return null;
-                    }
-                    return settings.RadarStation.MaxSize;
+                    return settings?.RadarStation?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceRadarStationRelative:
-                    if ((settings == null) || (settings.RadarStation == null))
-                    {
-                        return null;
-                    }
-                    return settings.RadarStation.Size;
+                    return settings?.RadarStation?.Size;
 
                 case ScenarioEditorItemId.ProvinceNuclearReactorCurrent:
-                    if ((settings == null) || (settings.NuclearReactor == null))
-                    {
-                        return null;
-                    }
-                    return settings.NuclearReactor.CurrentSize;
+                    return settings?.NuclearReactor?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceNuclearReactorMax:
-                    if ((settings == null) || (settings.NuclearReactor == null))
-                    {
-                        return null;
-                    }
-                    return settings.NuclearReactor.MaxSize;
+                    return settings?.NuclearReactor?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceNuclearReactorRelative:
-                    if ((settings == null) || (settings.NuclearReactor == null))
-                    {
-                        return null;
-                    }
-                    return settings.NuclearReactor.Size;
+                    return settings?.NuclearReactor?.Size;
 
                 case ScenarioEditorItemId.ProvinceRocketTestCurrent:
-                    if ((settings == null) || (settings.RocketTest == null))
-                    {
-                        return null;
-                    }
-                    return settings.RocketTest.CurrentSize;
+                    return settings?.RocketTest?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceRocketTestMax:
-                    if ((settings == null) || (settings.RocketTest == null))
-                    {
-                        return null;
-                    }
-                    return settings.RocketTest.MaxSize;
+                    return settings?.RocketTest?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceRocketTestRelative:
-                    if ((settings == null) || (settings.RocketTest == null))
-                    {
-                        return null;
-                    }
-                    return settings.RocketTest.Size;
+                    return settings?.RocketTest?.Size;
 
                 case ScenarioEditorItemId.ProvinceSyntheticOilCurrent:
-                    if ((settings == null) || (settings.SyntheticOil == null))
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticOil.CurrentSize;
+                    return settings?.SyntheticOil?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceSyntheticOilMax:
-                    if ((settings == null) || (settings.SyntheticOil == null))
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticOil.MaxSize;
+                    return settings?.SyntheticOil?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceSyntheticOilRelative:
-                    if ((settings == null) || (settings.SyntheticOil == null))
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticOil.Size;
+                    return settings?.SyntheticOil?.Size;
 
                 case ScenarioEditorItemId.ProvinceSyntheticRaresCurrent:
-                    if ((settings == null) || (settings.SyntheticRares == null))
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticRares.CurrentSize;
+                    return settings?.SyntheticRares?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceSyntheticRaresMax:
-                    if ((settings == null) || (settings.SyntheticRares == null))
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticRares.MaxSize;
+                    return settings?.SyntheticRares?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceSyntheticRaresRelative:
-                    if ((settings == null) || (settings.SyntheticRares == null))
-                    {
-                        return null;
-                    }
-                    return settings.SyntheticRares.Size;
+                    return settings?.SyntheticRares?.Size;
 
                 case ScenarioEditorItemId.ProvinceNuclearPowerCurrent:
-                    if ((settings == null) || (settings.NuclearPower == null))
-                    {
-                        return null;
-                    }
-                    return settings.NuclearPower.CurrentSize;
+                    return settings?.NuclearPower?.CurrentSize;
 
                 case ScenarioEditorItemId.ProvinceNuclearPowerMax:
-                    if ((settings == null) || (settings.NuclearPower == null))
-                    {
-                        return null;
-                    }
-                    return settings.NuclearPower.MaxSize;
+                    return settings?.NuclearPower?.MaxSize;
 
                 case ScenarioEditorItemId.ProvinceNuclearPowerRelative:
-                    if ((settings == null) || (settings.NuclearPower == null))
-                    {
-                        return null;
-                    }
-                    return settings.NuclearPower.Size;
+                    return settings?.NuclearPower?.Size;
             }
 
             return null;
@@ -3115,7 +2735,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.ProvinceNameKey:
-                    return ((settings != null) && !string.IsNullOrEmpty(settings.Name)) ? settings.Name : "";
+                    return (!string.IsNullOrEmpty(settings?.Name)) ? settings.Name : "";
 
                 case ScenarioEditorItemId.ProvinceNameString:
                     return Scenarios.GetProvinceName(province, settings);
@@ -3135,18 +2755,10 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.UnitType:
-                    if (unit.Id == null)
-                    {
-                        return null;
-                    }
-                    return unit.Id.Type;
+                    return unit.Id?.Type;
 
                 case ScenarioEditorItemId.UnitId:
-                    if (unit.Id == null)
-                    {
-                        return null;
-                    }
-                    return unit.Id.Id;
+                    return unit.Id?.Id;
 
                 case ScenarioEditorItemId.UnitName:
                     return unit.Name;
@@ -3192,18 +2804,10 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.DivisionType:
-                    if (division.Id == null)
-                    {
-                        return null;
-                    }
-                    return division.Id.Type;
+                    return division.Id?.Type;
 
                 case ScenarioEditorItemId.DivisionId:
-                    if (division.Id == null)
-                    {
-                        return null;
-                    }
-                    return division.Id.Id;
+                    return division.Id?.Id;
 
                 case ScenarioEditorItemId.DivisionName:
                     return division.Name;
@@ -3609,14 +3213,14 @@ namespace HoI2Editor.Controllers
 
                 case ScenarioEditorItemId.MajorCountryNameString:
                     // 主要国設定の国名
-                    if (!String.IsNullOrEmpty(major.Name))
+                    if (!string.IsNullOrEmpty(major.Name))
                     {
                         Config.SetText(major.Name, (string) val, Game.WorldTextFileName);
                         break;
                     }
                     // 国家設定の国名
                     CountrySettings settings = Scenarios.GetCountrySettings(major.Country);
-                    if ((settings != null) && !String.IsNullOrEmpty(settings.Name))
+                    if (!string.IsNullOrEmpty(settings?.Name))
                     {
                         Config.SetText(settings.Name, (string) val, Game.WorldTextFileName);
                         break;
@@ -3635,7 +3239,7 @@ namespace HoI2Editor.Controllers
 
                 case ScenarioEditorItemId.MajorCountryDescString:
                     // 主要国設定の説明文
-                    if (!String.IsNullOrEmpty(major.Desc))
+                    if (!string.IsNullOrEmpty(major.Desc))
                     {
                         Config.SetText(major.Desc, (string) val, Game.ScenarioTextFileName);
                         break;
@@ -3648,14 +3252,14 @@ namespace HoI2Editor.Controllers
                     // 年数の下2桁のみ使用する
                     year = year % 100;
                     // 年数別の説明文
-                    string key = String.Format("{0}_{1}_DESC", major.Country, year);
+                    string key = $"{major.Country}_{year}_DESC";
                     if (Config.ExistsKey(key))
                     {
                         Config.SetText(key, (string) val, Game.ScenarioTextFileName);
                         break;
                     }
                     // 標準の説明文
-                    key = String.Format("{0}_DESC", major.Country);
+                    key = $"{major.Country}_DESC";
                     Config.SetText(key, (string) val, Game.ScenarioTextFileName);
                     break;
 
@@ -3676,7 +3280,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.AllianceName:
-                    if (!String.IsNullOrEmpty(alliance.Name))
+                    if (!string.IsNullOrEmpty(alliance.Name))
                     {
                         Config.SetText("ALLIANCE_" + alliance.Name, (string) val, Game.ScenarioTextFileName);
                     }
@@ -4900,32 +4504,28 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.WarAttackerType:
-                    if ((war.Attackers != null) && (war.Attackers.Id != null) &&
-                        Scenarios.ExistsTypeId((int) val, war.Attackers.Id.Id))
+                    if (war.Attackers?.Id != null && Scenarios.ExistsTypeId((int) val, war.Attackers.Id.Id))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.WarAttackerId:
-                    if ((war.Attackers != null) && (war.Attackers.Id != null) &&
-                        Scenarios.ExistsTypeId(war.Attackers.Id.Type, (int) val))
+                    if (war.Attackers?.Id != null && Scenarios.ExistsTypeId(war.Attackers.Id.Type, (int) val))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.WarDefenderType:
-                    if ((war.Defenders != null) && (war.Defenders.Id != null) &&
-                        Scenarios.ExistsTypeId((int) val, war.Defenders.Id.Id))
+                    if (war.Defenders?.Id != null && Scenarios.ExistsTypeId((int) val, war.Defenders.Id.Id))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.WarDefenderId:
-                    if ((war.Defenders != null) && (war.Defenders.Id != null) &&
-                        Scenarios.ExistsTypeId(war.Defenders.Id.Type, (int) val))
+                    if (war.Defenders?.Id != null && Scenarios.ExistsTypeId(war.Defenders.Id.Type, (int) val))
                     {
                         return false;
                     }
@@ -5050,23 +4650,21 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetHeadOfStateType:
-                    if ((settings != null) && (settings.HeadOfState != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.HeadOfState.Id))
+                    if (settings?.HeadOfState != null && Scenarios.ExistsTypeId((int) val, settings.HeadOfState.Id))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.CabinetHeadOfStateId:
-                    if ((settings != null) && (settings.HeadOfState != null) &&
-                        Scenarios.ExistsTypeId(settings.HeadOfState.Type, (int) val))
+                    if (settings?.HeadOfState != null && Scenarios.ExistsTypeId(settings.HeadOfState.Type, (int) val))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.CabinetHeadOfGovernmentType:
-                    if ((settings != null) && (settings.HeadOfGovernment != null) &&
+                    if (settings?.HeadOfGovernment != null &&
                         Scenarios.ExistsTypeId((int) val, settings.HeadOfGovernment.Id))
                     {
                         return false;
@@ -5074,7 +4672,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetHeadOfGovernmentId:
-                    if ((settings != null) && (settings.HeadOfGovernment != null) &&
+                    if (settings?.HeadOfGovernment != null &&
                         Scenarios.ExistsTypeId(settings.HeadOfGovernment.Type, (int) val))
                     {
                         return false;
@@ -5082,7 +4680,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetForeignMinisterType:
-                    if ((settings != null) && (settings.ForeignMinister != null) &&
+                    if (settings?.ForeignMinister != null &&
                         Scenarios.ExistsTypeId((int) val, settings.ForeignMinister.Id))
                     {
                         return false;
@@ -5090,7 +4688,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetForeignMinisterId:
-                    if ((settings != null) && (settings.ForeignMinister != null) &&
+                    if (settings?.ForeignMinister != null &&
                         Scenarios.ExistsTypeId(settings.ForeignMinister.Type, (int) val))
                     {
                         return false;
@@ -5098,7 +4696,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetArmamentMinisterType:
-                    if ((settings != null) && (settings.ArmamentMinister != null) &&
+                    if (settings?.ArmamentMinister != null &&
                         Scenarios.ExistsTypeId((int) val, settings.ArmamentMinister.Id))
                     {
                         return false;
@@ -5106,7 +4704,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetArmamentMinisterId:
-                    if ((settings != null) && (settings.ArmamentMinister != null) &&
+                    if (settings?.ArmamentMinister != null &&
                         Scenarios.ExistsTypeId(settings.ArmamentMinister.Type, (int) val))
                     {
                         return false;
@@ -5114,7 +4712,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetMinisterOfSecurityType:
-                    if ((settings != null) && (settings.MinisterOfSecurity != null) &&
+                    if (settings?.MinisterOfSecurity != null &&
                         Scenarios.ExistsTypeId((int) val, settings.MinisterOfSecurity.Id))
                     {
                         return false;
@@ -5122,7 +4720,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetMinisterOfSecurityId:
-                    if ((settings != null) && (settings.MinisterOfSecurity != null) &&
+                    if (settings?.MinisterOfSecurity != null &&
                         Scenarios.ExistsTypeId(settings.MinisterOfSecurity.Type, (int) val))
                     {
                         return false;
@@ -5130,7 +4728,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetMinisterOfIntelligenceType:
-                    if ((settings != null) && (settings.MinisterOfIntelligence != null) &&
+                    if (settings?.MinisterOfIntelligence != null &&
                         Scenarios.ExistsTypeId((int) val, settings.MinisterOfIntelligence.Id))
                     {
                         return false;
@@ -5138,7 +4736,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetMinisterOfIntelligenceId:
-                    if ((settings != null) && (settings.MinisterOfIntelligence != null) &&
+                    if (settings?.MinisterOfIntelligence != null &&
                         Scenarios.ExistsTypeId(settings.MinisterOfIntelligence.Type, (int) val))
                     {
                         return false;
@@ -5146,64 +4744,56 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.CabinetChiefOfStaffType:
-                    if ((settings != null) && (settings.ChiefOfStaff != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.ChiefOfStaff.Id))
+                    if (settings?.ChiefOfStaff != null && Scenarios.ExistsTypeId((int) val, settings.ChiefOfStaff.Id))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.CabinetChiefOfStaffId:
-                    if ((settings != null) && (settings.ChiefOfStaff != null) &&
-                        Scenarios.ExistsTypeId(settings.ChiefOfStaff.Type, (int) val))
+                    if (settings?.ChiefOfStaff != null && Scenarios.ExistsTypeId(settings.ChiefOfStaff.Type, (int) val))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.CabinetChiefOfArmyType:
-                    if ((settings != null) && (settings.ChiefOfArmy != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.ChiefOfArmy.Id))
+                    if (settings?.ChiefOfArmy != null && Scenarios.ExistsTypeId((int) val, settings.ChiefOfArmy.Id))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.CabinetChiefOfArmyId:
-                    if ((settings != null) && (settings.ChiefOfArmy != null) &&
-                        Scenarios.ExistsTypeId(settings.ChiefOfArmy.Type, (int) val))
+                    if (settings?.ChiefOfArmy != null && Scenarios.ExistsTypeId(settings.ChiefOfArmy.Type, (int) val))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.CabinetChiefOfNavyType:
-                    if ((settings != null) && (settings.ChiefOfNavy != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.ChiefOfNavy.Id))
+                    if (settings?.ChiefOfNavy != null && Scenarios.ExistsTypeId((int) val, settings.ChiefOfNavy.Id))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.CabinetChiefOfNavyId:
-                    if ((settings != null) && (settings.ChiefOfNavy != null) &&
-                        Scenarios.ExistsTypeId(settings.ChiefOfNavy.Type, (int) val))
+                    if (settings?.ChiefOfNavy != null && Scenarios.ExistsTypeId(settings.ChiefOfNavy.Type, (int) val))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.CabinetChiefOfAirType:
-                    if ((settings != null) && (settings.ChiefOfAir != null) &&
-                        Scenarios.ExistsTypeId((int) val, settings.ChiefOfAir.Id))
+                    if (settings?.ChiefOfAir != null && Scenarios.ExistsTypeId((int) val, settings.ChiefOfAir.Id))
                     {
                         return false;
                     }
                     break;
 
                 case ScenarioEditorItemId.CabinetChiefOfAirId:
-                    if ((settings != null) && (settings.ChiefOfAir != null) &&
-                        Scenarios.ExistsTypeId(settings.ChiefOfAir.Type, (int) val))
+                    if (settings?.ChiefOfAir != null && Scenarios.ExistsTypeId(settings.ChiefOfAir.Type, (int) val))
                     {
                         return false;
                     }
@@ -7120,7 +6710,7 @@ namespace HoI2Editor.Controllers
         /// <param name="typeId">typeとidの組</param>
         private void PreItemChangedCabinetId(TextBox control, CountrySettings settings, TypeId typeId)
         {
-            typeId.Type = Scenarios.GetNewType((settings.HeadOfState != null) ? settings.HeadOfState.Type : 1);
+            typeId.Type = Scenarios.GetNewType(settings.HeadOfState?.Type ?? 1);
 
             // 編集済みフラグを設定する
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;

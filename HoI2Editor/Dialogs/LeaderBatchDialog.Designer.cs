@@ -78,7 +78,6 @@
             // 
             // editGroupBox
             // 
-            resources.ApplyResources(this.editGroupBox, "editGroupBox");
             this.editGroupBox.Controls.Add(this.rankYearCheckBox4);
             this.editGroupBox.Controls.Add(this.rankYearNumericUpDown4);
             this.editGroupBox.Controls.Add(this.rankYearCheckBox1);
@@ -103,6 +102,7 @@
             this.editGroupBox.Controls.Add(this.endYearNumericUpDown);
             this.editGroupBox.Controls.Add(this.retirementYearCheckBox);
             this.editGroupBox.Controls.Add(this.retirementYearNumericUpDown);
+            resources.ApplyResources(this.editGroupBox, "editGroupBox");
             this.editGroupBox.Name = "editGroupBox";
             this.editGroupBox.TabStop = false;
             // 
@@ -232,10 +232,11 @@
             // 
             // idealRankComboBox
             // 
-            resources.ApplyResources(this.idealRankComboBox, "idealRankComboBox");
             this.idealRankComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.idealRankComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.idealRankComboBox, "idealRankComboBox");
             this.idealRankComboBox.Name = "idealRankComboBox";
+            this.idealRankComboBox.SelectedIndexChanged += new System.EventHandler(this.OnIdealRankComboBoxSelectedIndexChanged);
             // 
             // idealRankCheckBox
             // 
@@ -323,18 +324,18 @@
             // 
             // countryComboBox
             // 
-            resources.ApplyResources(this.countryComboBox, "countryComboBox");
             this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.countryComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.countryComboBox, "countryComboBox");
             this.countryComboBox.Name = "countryComboBox";
             // 
             // targetGroupBox
             // 
-            resources.ApplyResources(this.targetGroupBox, "targetGroupBox");
             this.targetGroupBox.Controls.Add(this.allRadioButton);
             this.targetGroupBox.Controls.Add(this.selectedRadioButton);
             this.targetGroupBox.Controls.Add(this.countryComboBox);
             this.targetGroupBox.Controls.Add(this.specifiedRadioButton);
+            resources.ApplyResources(this.targetGroupBox, "targetGroupBox");
             this.targetGroupBox.Name = "targetGroupBox";
             this.targetGroupBox.TabStop = false;
             // 
@@ -360,15 +361,15 @@
             // 
             // cancelButton
             // 
-            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.cancelButton, "cancelButton");
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
-            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            resources.ApplyResources(this.okButton, "okButton");
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OnOkButtonClick);

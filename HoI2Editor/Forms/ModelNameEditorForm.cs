@@ -254,7 +254,7 @@ namespace HoI2Editor.Forms
             foreach (string s in Countries.Tags
                 .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
-                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    ? $"{name} {Config.GetText(name)}"
                     : name))
             {
                 countryListBox.Items.Add(s);
@@ -477,7 +477,7 @@ namespace HoI2Editor.Forms
                     // ラベルを作成する
                     Label label = new Label
                     {
-                        Text = string.Format("{0}: {1}", i, unit.GetModelName(i)),
+                        Text = $"{i}: {unit.GetModelName(i)}",
                         AutoSize = true,
                         Location = new Point(labelX, labelY)
                     };
@@ -544,11 +544,11 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            if (!(sender is TextBox))
+            TextBox textBox = sender as TextBox;
+            if (textBox == null)
             {
                 return;
             }
-            TextBox textBox = sender as TextBox;
             int index = (int) textBox.Tag;
 
             if (unit.ExistsModelName(index, country))

@@ -23,10 +23,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static int TpMaxAttach
         {
-            get
-            {
-                return (_items[(int) MiscItemId.TpMaxAttach] != null) ? (int) _items[(int) MiscItemId.TpMaxAttach] : 0;
-            }
+            get { return (int?) _items[(int) MiscItemId.TpMaxAttach] ?? 0; }
             set
             {
                 _items[(int) MiscItemId.TpMaxAttach] = value;
@@ -39,10 +36,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static int SsMaxAttach
         {
-            get
-            {
-                return (_items[(int) MiscItemId.SsMaxAttach] != null) ? (int) _items[(int) MiscItemId.SsMaxAttach] : 0;
-            }
+            get { return (int?) _items[(int) MiscItemId.SsMaxAttach] ?? 0; }
             set
             {
                 _items[(int) MiscItemId.SsMaxAttach] = value;
@@ -55,10 +49,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static int SsnMaxAttach
         {
-            get
-            {
-                return (_items[(int) MiscItemId.SsnMaxAttach] != null) ? (int) _items[(int) MiscItemId.SsnMaxAttach] : 0;
-            }
+            get { return (int?) _items[(int) MiscItemId.SsnMaxAttach] ?? 0; }
             set
             {
                 _items[(int) MiscItemId.SsnMaxAttach] = value;
@@ -71,10 +62,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static int DdMaxAttach
         {
-            get
-            {
-                return (_items[(int) MiscItemId.DdMaxAttach] != null) ? (int) _items[(int) MiscItemId.DdMaxAttach] : 1;
-            }
+            get { return (int?) _items[(int) MiscItemId.DdMaxAttach] ?? 1; }
             set
             {
                 _items[(int) MiscItemId.DdMaxAttach] = value;
@@ -87,10 +75,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static int ClMaxAttach
         {
-            get
-            {
-                return (_items[(int) MiscItemId.ClMaxAttach] != null) ? (int) _items[(int) MiscItemId.ClMaxAttach] : 2;
-            }
+            get { return (int?) _items[(int) MiscItemId.ClMaxAttach] ?? 2; }
             set
             {
                 _items[(int) MiscItemId.ClMaxAttach] = value;
@@ -103,10 +88,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static int CaMaxAttach
         {
-            get
-            {
-                return (_items[(int) MiscItemId.CaMaxAttach] != null) ? (int) _items[(int) MiscItemId.CaMaxAttach] : 3;
-            }
+            get { return (int?) _items[(int) MiscItemId.CaMaxAttach] ?? 3; }
             set
             {
                 _items[(int) MiscItemId.CaMaxAttach] = value;
@@ -119,10 +101,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static int BcMaxAttach
         {
-            get
-            {
-                return (_items[(int) MiscItemId.BcMaxAttach] != null) ? (int) _items[(int) MiscItemId.BcMaxAttach] : 4;
-            }
+            get { return (int?) _items[(int) MiscItemId.BcMaxAttach] ?? 4; }
             set
             {
                 _items[(int) MiscItemId.BcMaxAttach] = value;
@@ -135,10 +114,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static int BbMaxAttach
         {
-            get
-            {
-                return (_items[(int) MiscItemId.BbMaxAttach] != null) ? (int) _items[(int) MiscItemId.BbMaxAttach] : 5;
-            }
+            get { return (int?) _items[(int) MiscItemId.BbMaxAttach] ?? 5; }
             set
             {
                 _items[(int) MiscItemId.BbMaxAttach] = value;
@@ -151,10 +127,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static int CvlMaxAttach
         {
-            get
-            {
-                return (_items[(int) MiscItemId.CvlMaxAttach] != null) ? (int) _items[(int) MiscItemId.CvlMaxAttach] : 1;
-            }
+            get { return (int?) _items[(int) MiscItemId.CvlMaxAttach] ?? 1; }
             set
             {
                 _items[(int) MiscItemId.CvlMaxAttach] = value;
@@ -167,10 +140,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public static int CvMaxAttach
         {
-            get
-            {
-                return (_items[(int) MiscItemId.CvMaxAttach] != null) ? (int) _items[(int) MiscItemId.CvMaxAttach] : 1;
-            }
+            get { return (int?) _items[(int) MiscItemId.CvMaxAttach] ?? 1; }
             set
             {
                 _items[(int) MiscItemId.CvMaxAttach] = value;
@@ -209,28 +179,13 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     青写真ボーナス
         /// </summary>
-        public static double BlueprintBonus
-        {
-            get
-            {
-                return (_items[(int) MiscItemId.BlueprintBonus] != null)
-                    ? (double) _items[(int) MiscItemId.BlueprintBonus]
-                    : 1;
-            }
-        }
+        public static double BlueprintBonus => (double?) _items[(int) MiscItemId.BlueprintBonus] ?? 1;
 
         /// <summary>
         ///     史実年度以前研究ペナルティ
         /// </summary>
         public static double PreHistoricalDateModifier
-        {
-            get
-            {
-                return (_items[(int) MiscItemId.PreHistoricalDateModifier] != null)
-                    ? (double) _items[(int) MiscItemId.PreHistoricalDateModifier]
-                    : 1;
-            }
-        }
+            => (double?) _items[(int) MiscItemId.PreHistoricalDateModifier] ?? 1;
 
         /// <summary>
         ///     史実年度以降研究ボーナス
@@ -242,14 +197,10 @@ namespace HoI2Editor.Models
                 switch (Game.Type)
                 {
                     case GameType.ArsenalOfDemocracy:
-                        return (_items[(int) MiscItemId.PostHistoricalDateModifierAoD] != null)
-                            ? (double) _items[(int) MiscItemId.PostHistoricalDateModifierAoD]
-                            : 1;
+                        return (double?) _items[(int) MiscItemId.PostHistoricalDateModifierAoD] ?? 1;
 
                     case GameType.DarkestHour:
-                        return (_items[(int) MiscItemId.PostHistoricalDateModifierDh] != null)
-                            ? (double) _items[(int) MiscItemId.PostHistoricalDateModifierDh]
-                            : 1;
+                        return (double?) _items[(int) MiscItemId.PostHistoricalDateModifierDh] ?? 1;
                 }
                 return 1;
             }
@@ -259,27 +210,13 @@ namespace HoI2Editor.Models
         ///     史実年度以降研究ボーナス (AoD)
         /// </summary>
         public static double PostHistoricalDateModifierAoD
-        {
-            get
-            {
-                return (_items[(int) MiscItemId.PostHistoricalDateModifierAoD] != null)
-                    ? (double) _items[(int) MiscItemId.PostHistoricalDateModifierAoD]
-                    : 1;
-            }
-        }
+            => (double?) _items[(int) MiscItemId.PostHistoricalDateModifierAoD] ?? 1;
 
         /// <summary>
         ///     史実年度以降研究ボーナス (DH)
         /// </summary>
         public static double PostHistoricalDateModifierDh
-        {
-            get
-            {
-                return (_items[(int) MiscItemId.PostHistoricalDateModifierDh] != null)
-                    ? (double) _items[(int) MiscItemId.PostHistoricalDateModifierDh]
-                    : 1;
-            }
-        }
+            => (double?) _items[(int) MiscItemId.PostHistoricalDateModifierDh] ?? 1;
 
         /// <summary>
         ///     研究速度補正
@@ -290,9 +227,7 @@ namespace HoI2Editor.Models
             {
                 if (Game.Type == GameType.ArsenalOfDemocracy)
                 {
-                    return (_items[(int) MiscItemId.TechSpeedModifier] != null)
-                        ? (double) _items[(int) MiscItemId.TechSpeedModifier]
-                        : 1;
+                    return (double?) _items[(int) MiscItemId.TechSpeedModifier] ?? 1;
                 }
                 return 1;
             }
@@ -307,9 +242,7 @@ namespace HoI2Editor.Models
             {
                 if (Game.Type == GameType.ArsenalOfDemocracy)
                 {
-                    return (_items[(int) MiscItemId.PreHistoricalPenaltyLimit] != null)
-                        ? (double) _items[(int) MiscItemId.PreHistoricalPenaltyLimit]
-                        : 1;
+                    return (double?) _items[(int) MiscItemId.PreHistoricalPenaltyLimit] ?? 1;
                 }
                 return 1;
             }
@@ -324,9 +257,7 @@ namespace HoI2Editor.Models
             {
                 if (Game.Type == GameType.ArsenalOfDemocracy)
                 {
-                    return (_items[(int) MiscItemId.PostHistoricalBonusLimit] != null)
-                        ? (double) _items[(int) MiscItemId.PostHistoricalBonusLimit]
-                        : 1;
+                    return (double?) _items[(int) MiscItemId.PostHistoricalBonusLimit] ?? 1;
                 }
                 return 1;
             }
@@ -394,10 +325,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップ番号
         /// </summary>
-        public static int MapNumber
-        {
-            get { return (_items[(int) MiscItemId.MapNumber] != null) ? (int) _items[(int) MiscItemId.MapNumber] : 0; }
-        }
+        public static int MapNumber => (int?) _items[(int) MiscItemId.MapNumber] ?? 0;
 
         #endregion
 
@@ -4483,7 +4411,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Misc] Read error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                     Resources.EditorMisc, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -4528,7 +4456,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Misc] Write error: {0}", fileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                     Resources.EditorMisc, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }

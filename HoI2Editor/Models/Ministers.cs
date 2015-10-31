@@ -21,17 +21,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マスター閣僚リスト
         /// </summary>
-        public static List<Minister> Items { get; private set; }
+        public static List<Minister> Items { get; }
 
         /// <summary>
         ///     国タグと閣僚ファイル名の対応付け
         /// </summary>
-        public static Dictionary<Country, string> FileNameMap { get; private set; }
+        public static Dictionary<Country, string> FileNameMap { get; }
 
         /// <summary>
         ///     使用済みIDリスト
         /// </summary>
-        public static HashSet<int> IdSet { get; private set; }
+        public static HashSet<int> IdSet { get; }
 
         /// <summary>
         ///     閣僚特性一覧
@@ -41,7 +41,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚地位と特性の対応付け
         /// </summary>
-        public static List<int>[] PositionPersonalityTable { get; private set; }
+        public static List<int>[] PositionPersonalityTable { get; }
 
         /// <summary>
         ///     忠誠度名
@@ -988,10 +988,7 @@ namespace HoI2Editor.Models
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (_loaded)
             {
-                if (handler != null)
-                {
-                    handler(null, new RunWorkerCompletedEventArgs(null, null, false));
-                }
+                handler?.Invoke(null, new RunWorkerCompletedEventArgs(null, null, false));
                 return;
             }
 
@@ -1098,7 +1095,7 @@ namespace HoI2Editor.Models
 
                             // 閣僚ファイル一覧に読み込んだファイル名を登録する
                             string name = Path.GetFileName(fileName);
-                            if (!String.IsNullOrEmpty(name))
+                            if (!string.IsNullOrEmpty(name))
                             {
                                 fileList.Add(name.ToLower());
                             }
@@ -1107,7 +1104,7 @@ namespace HoI2Editor.Models
                         {
                             error = true;
                             Log.Error("[Minister] Read error: {0}", fileName);
-                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                            if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                                 Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                 == DialogResult.Cancel)
                             {
@@ -1133,7 +1130,7 @@ namespace HoI2Editor.Models
 
                             // 閣僚ファイル一覧に読み込んだファイル名を登録する
                             string name = Path.GetFileName(fileName);
-                            if (!String.IsNullOrEmpty(name))
+                            if (!string.IsNullOrEmpty(name))
                             {
                                 fileList.Add(name.ToLower());
                             }
@@ -1142,7 +1139,7 @@ namespace HoI2Editor.Models
                         {
                             error = true;
                             Log.Error("[Minister] Read error: {0}", fileName);
-                            if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                            if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                                 Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                                 == DialogResult.Cancel)
                             {
@@ -1161,7 +1158,7 @@ namespace HoI2Editor.Models
                 {
                     // MODフォルダ内で読み込んだファイルは無視する
                     string name = Path.GetFileName(fileName);
-                    if (String.IsNullOrEmpty(name) || fileList.Contains(name.ToLower()))
+                    if (string.IsNullOrEmpty(name) || fileList.Contains(name.ToLower()))
                     {
                         continue;
                     }
@@ -1175,7 +1172,7 @@ namespace HoI2Editor.Models
                     {
                         error = true;
                         Log.Error("[Minister] Read error: {0}", fileName);
-                        if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                        if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                             Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                             == DialogResult.Cancel)
                         {
@@ -1210,7 +1207,7 @@ namespace HoI2Editor.Models
             catch (Exception)
             {
                 Log.Error("[Minister] Read error: {0}", listFileName);
-                MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, listFileName),
+                MessageBox.Show($"{Resources.FileReadError}: {listFileName}",
                     Resources.EditorMinister, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
@@ -1227,7 +1224,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     Log.Error("[Minister] Read error: {0}", fileName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                         Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
@@ -1254,7 +1251,7 @@ namespace HoI2Editor.Models
                     string line = reader.ReadLine();
 
                     // 空行
-                    if (String.IsNullOrEmpty(line))
+                    if (string.IsNullOrEmpty(line))
                     {
                         continue;
                     }
@@ -1335,14 +1332,8 @@ namespace HoI2Editor.Models
         {
             string[] tokens = lexer.GetTokens();
 
-            // 空行を読み飛ばす
-            if (tokens == null)
-            {
-                return null;
-            }
-
             // ID指定のない行は読み飛ばす
-            if (string.IsNullOrEmpty(tokens[0]))
+            if (string.IsNullOrEmpty(tokens?[0]))
             {
                 return null;
             }
@@ -1538,7 +1529,7 @@ namespace HoI2Editor.Models
                 {
                     string fileName = Game.GetWriteFileName(Game.DhMinisterListPathName);
                     Log.Error("[Minister] Write error: {0}", fileName);
-                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                         Resources.EditorMinister, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
@@ -1558,7 +1549,7 @@ namespace HoI2Editor.Models
                     error = true;
                     string fileName = Game.GetWriteFileName(Game.MinisterPathName, Game.GetMinisterFileName(country));
                     Log.Error("[Minister] Write error: {0}", fileName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                    if (MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                         Resources.EditorMinister, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                         return false;

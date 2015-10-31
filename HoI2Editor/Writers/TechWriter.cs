@@ -41,17 +41,24 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteTechItem(ITechItem item, StreamWriter writer)
         {
-            if (item is TechItem)
+            TechItem techItem = item as TechItem;
+            if (techItem != null)
             {
-                WriteApplication(item as TechItem, writer);
+                WriteApplication(techItem, writer);
+                return;
             }
-            else if (item is TechLabel)
+
+            TechLabel labelItem = item as TechLabel;
+            if (labelItem != null)
             {
-                WriteLabel(item as TechLabel, writer);
+                WriteLabel(labelItem, writer);
+                return;
             }
-            else if (item is TechEvent)
+
+            TechEvent eventItem = item as TechEvent;
+            if (eventItem != null)
             {
-                WriteEvent(item as TechEvent, writer);
+                WriteEvent(eventItem, writer);
             }
         }
 

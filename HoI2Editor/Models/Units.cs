@@ -20,27 +20,27 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット一覧
         /// </summary>
-        public static List<UnitClass> Items { get; private set; }
+        public static List<UnitClass> Items { get; }
 
         /// <summary>
         ///     ユニット種類文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, UnitType> StringMap { get; private set; }
+        public static Dictionary<string, UnitType> StringMap { get; }
 
         /// <summary>
         ///     実ユニット種類文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, RealUnitType> RealStringMap { get; private set; }
+        public static Dictionary<string, RealUnitType> RealStringMap { get; }
 
         /// <summary>
         ///     スプライト種類文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, SpriteType> SpriteStringMap { get; private set; }
+        public static Dictionary<string, SpriteType> SpriteStringMap { get; }
 
         /// <summary>
         ///     装備文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, EquipmentType> EquipmentStringMap { get; private set; }
+        public static Dictionary<string, EquipmentType> EquipmentStringMap { get; }
 
         /// <summary>
         ///     利用可能なユニット種類
@@ -2143,10 +2143,7 @@ namespace HoI2Editor.Models
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (_loaded)
             {
-                if (handler != null)
-                {
-                    handler(null, new RunWorkerCompletedEventArgs(null, null, false));
-                }
+                handler?.Invoke(null, new RunWorkerCompletedEventArgs(null, null, false));
                 return;
             }
 
@@ -2222,7 +2219,7 @@ namespace HoI2Editor.Models
                 catch (Exception)
                 {
                     Log.Error("[Unit] Read error: {0}", fileName);
-                    MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                         Resources.EditorUnit, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
@@ -2246,7 +2243,7 @@ namespace HoI2Editor.Models
                                 ? Game.DivisionPathName
                                 : Game.BrigadePathName, DefaultFileNames[(int) type]);
                     Log.Error("[Unit] Read error: {0}", fileName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileReadError, fileName),
+                    if (MessageBox.Show($"{Resources.FileReadError}: {fileName}",
                         Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {
@@ -2370,7 +2367,7 @@ namespace HoI2Editor.Models
                     catch (Exception)
                     {
                         Log.Error("[Unit] Write error: {0}", fileName);
-                        MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                        MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                             Resources.EditorUnit, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
@@ -2386,7 +2383,7 @@ namespace HoI2Editor.Models
                     catch (Exception)
                     {
                         Log.Error("[Unit] Write error: {0}", fileName);
-                        MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                        MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                             Resources.EditorUnit, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
@@ -2419,7 +2416,7 @@ namespace HoI2Editor.Models
                 {
                     error = true;
                     Log.Error("[Unit] Write error: {0}", fileName);
-                    if (MessageBox.Show(string.Format("{0}: {1}", Resources.FileWriteError, fileName),
+                    if (MessageBox.Show($"{Resources.FileWriteError}: {fileName}",
                         Resources.EditorUnit, MessageBoxButtons.OKCancel, MessageBoxIcon.Error)
                         == DialogResult.Cancel)
                     {

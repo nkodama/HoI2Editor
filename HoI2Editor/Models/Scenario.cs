@@ -78,7 +78,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンス設定
         /// </summary>
-        public List<ProvinceSettings> Provinces { get; private set; }
+        public List<ProvinceSettings> Provinces { get; }
 
         /// <summary>
         ///     国別incにプロヴィンス設定を定義するかどうか
@@ -108,7 +108,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国家情報
         /// </summary>
-        public List<CountrySettings> Countries { get; private set; }
+        public List<CountrySettings> Countries { get; }
 
         #endregion
 
@@ -291,7 +291,7 @@ namespace HoI2Editor.Models
 
             _dirtySelectableCountries.Clear();
 
-            if ((Header != null) && (Header.MajorCountries != null))
+            if (Header?.MajorCountries != null)
             {
                 foreach (MajorCountrySettings major in Header.MajorCountries)
                 {
@@ -301,18 +301,9 @@ namespace HoI2Editor.Models
 
             if (GlobalData != null)
             {
-                if (GlobalData.Axis != null)
-                {
-                    GlobalData.Axis.ResetDirtyAll();
-                }
-                if (GlobalData.Allies != null)
-                {
-                    GlobalData.Allies.ResetDirtyAll();
-                }
-                if (GlobalData.Comintern != null)
-                {
-                    GlobalData.Comintern.ResetDirtyAll();
-                }
+                GlobalData.Axis?.ResetDirtyAll();
+                GlobalData.Allies?.ResetDirtyAll();
+                GlobalData.Comintern?.ResetDirtyAll();
                 foreach (Alliance alliance in GlobalData.Alliances)
                 {
                     alliance.ResetDirtyAll();
@@ -403,7 +394,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     主要国設定
         /// </summary>
-        public List<MajorCountrySettings> MajorCountries { get; private set; }
+        public List<MajorCountrySettings> MajorCountries { get; }
 
         /// <summary>
         ///     AIの攻撃性
@@ -621,27 +612,27 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     同盟リスト
         /// </summary>
-        public List<Alliance> Alliances { get; private set; }
+        public List<Alliance> Alliances { get; }
 
         /// <summary>
         ///     戦争リスト
         /// </summary>
-        public List<War> Wars { get; private set; }
+        public List<War> Wars { get; }
 
         /// <summary>
         ///     不可侵条約リスト
         /// </summary>
-        public List<Treaty> NonAggressions { get; private set; }
+        public List<Treaty> NonAggressions { get; }
 
         /// <summary>
         ///     講和条約リスト
         /// </summary>
-        public List<Treaty> Peaces { get; private set; }
+        public List<Treaty> Peaces { get; }
 
         /// <summary>
         ///     貿易リスト
         /// </summary>
-        public List<Treaty> Trades { get; private set; }
+        public List<Treaty> Trades { get; }
 
         /// <summary>
         ///     休止指揮官
@@ -2120,12 +2111,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     外交関係
         /// </summary>
-        public List<Relation> Relations { get; private set; }
+        public List<Relation> Relations { get; }
 
         /// <summary>
         ///     諜報情報
         /// </summary>
-        public List<SpySettings> Intelligence { get; private set; }
+        public List<SpySettings> Intelligence { get; }
 
         /// <summary>
         ///     中核プロヴィンス
@@ -2265,22 +2256,22 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     陸軍ユニット
         /// </summary>
-        public List<Unit> LandUnits { get; private set; }
+        public List<Unit> LandUnits { get; }
 
         /// <summary>
         ///     海軍ユニット
         /// </summary>
-        public List<Unit> NavalUnits { get; private set; }
+        public List<Unit> NavalUnits { get; }
 
         /// <summary>
         ///     空軍ユニット
         /// </summary>
-        public List<Unit> AirUnits { get; private set; }
+        public List<Unit> AirUnits { get; }
 
         /// <summary>
         ///     生産中師団
         /// </summary>
-        public List<DivisionDevelopment> DivisionDevelopments { get; private set; }
+        public List<DivisionDevelopment> DivisionDevelopments { get; }
 
         /// <summary>
         ///     生産中輸送船団
@@ -2295,17 +2286,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     陸軍師団
         /// </summary>
-        public List<Division> LandDivisions { get; private set; }
+        public List<Division> LandDivisions { get; }
 
         /// <summary>
         ///     海軍師団
         /// </summary>
-        public List<Division> NavalDivisions { get; private set; }
+        public List<Division> NavalDivisions { get; }
 
         /// <summary>
         ///     空軍師団
         /// </summary>
-        public List<Division> AirDivisions { get; private set; }
+        public List<Division> AirDivisions { get; }
 
         #endregion
 
@@ -3300,10 +3291,7 @@ namespace HoI2Editor.Models
             }
             _dirtyFlag = true;
 
-            if (Mission != null)
-            {
-                Mission.SetDirtyAll();
-            }
+            Mission?.SetDirtyAll();
 
             foreach (Division division in Divisions)
             {
@@ -3327,10 +3315,7 @@ namespace HoI2Editor.Models
             }
             _dirtyFlag = false;
 
-            if (Mission != null)
-            {
-                Mission.ResetDirtyAll();
-            }
+            Mission?.ResetDirtyAll();
 
             foreach (Division division in Divisions)
             {

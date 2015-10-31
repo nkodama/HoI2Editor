@@ -36,7 +36,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目リスト
         /// </summary>
-        public List<ITechItem> Items { get; private set; }
+        public List<ITechItem> Items { get; }
 
         #endregion
 
@@ -95,9 +95,9 @@ namespace HoI2Editor.Models
         {
             Items.Remove(item);
 
-            if (item is TechItem)
+            TechItem techItem = item as TechItem;
+            if (techItem != null)
             {
-                TechItem techItem = item as TechItem;
                 // 一時キーを削除する
                 techItem.RemoveTempKey();
                 // 技術項目とIDの対応付けを更新する
@@ -106,7 +106,7 @@ namespace HoI2Editor.Models
             }
             else if (item is TechLabel)
             {
-                TechLabel labelItem = item as TechLabel;
+                TechLabel labelItem = (TechLabel) item;
                 // 一時キーを削除する
                 labelItem.RemoveTempKey();
             }
@@ -324,27 +324,27 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     小研究リスト
         /// </summary>
-        public List<TechComponent> Components { get; private set; }
+        public List<TechComponent> Components { get; }
 
         /// <summary>
         ///     必要技術リスト(AND条件)
         /// </summary>
-        public List<RequiredTech> AndRequiredTechs { get; private set; }
+        public List<RequiredTech> AndRequiredTechs { get; }
 
         /// <summary>
         ///     必要技術リスト(OR条件)
         /// </summary>
-        public List<RequiredTech> OrRequiredTechs { get; private set; }
+        public List<RequiredTech> OrRequiredTechs { get; }
 
         /// <summary>
         ///     技術効果リスト
         /// </summary>
-        public List<Command> Effects { get; private set; }
+        public List<Command> Effects { get; }
 
         /// <summary>
         ///     座標リスト
         /// </summary>
-        public List<TechPosition> Positions { get; private set; }
+        public List<TechPosition> Positions { get; }
 
         #endregion
 
@@ -645,7 +645,7 @@ namespace HoI2Editor.Models
             if (Config.IsTempKey(Name))
             {
                 no = GetKeyNumber(list, categoryName);
-                string newKey = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
+                string newKey = $"TECH_APP_{categoryName}_{no}_NAME";
                 string oldKey = Name;
                 if (!Techs.IsDuplicatedName(oldKey))
                 {
@@ -671,7 +671,7 @@ namespace HoI2Editor.Models
                 {
                     no = GetKeyNumber(list, categoryName);
                 }
-                string newKey = string.Format("SHORT_TECH_APP_{0}_{1}_NAME", categoryName, no);
+                string newKey = $"SHORT_TECH_APP_{categoryName}_{no}_NAME";
                 string oldKey = ShortName;
                 if (!Techs.IsDuplicatedName(oldKey))
                 {
@@ -697,7 +697,7 @@ namespace HoI2Editor.Models
                 {
                     no = GetKeyNumber(list, categoryName);
                 }
-                string newKey = string.Format("TECH_APP_{0}_{1}_DESC", categoryName, no);
+                string newKey = $"TECH_APP_{categoryName}_{no}_DESC";
                 string oldKey = Desc;
                 if (!Techs.IsDuplicatedName(oldKey))
                 {
@@ -726,11 +726,11 @@ namespace HoI2Editor.Models
                     {
                         no = GetKeyNumber(list, categoryName);
                     }
-                    string newKey = string.Format("TECH_CMP_{0}_{1}_{2}_NAME", categoryName, no, componentId);
+                    string newKey = $"TECH_CMP_{categoryName}_{no}_{componentId}_NAME";
                     while (Config.ExistsKey(newKey))
                     {
                         componentId++;
-                        newKey = string.Format("TECH_CMP_{0}_{1}_{2}_NAME", categoryName, no, componentId);
+                        newKey = $"TECH_CMP_{categoryName}_{no}_{componentId}_NAME";
                     }
                     string oldKey = component.Name;
                     if (!Techs.IsDuplicatedName(oldKey))
@@ -814,19 +814,19 @@ namespace HoI2Editor.Models
         private bool ExistsUnlinkedKey(string categoryName, int no)
         {
             // 技術名
-            string name = string.Format("TECH_APP_{0}_{1}_NAME", categoryName, no);
+            string name = $"TECH_APP_{categoryName}_{no}_NAME";
             if (Config.ExistsKey(name))
             {
                 return true;
             }
             // 技術短縮名
-            name = string.Format("SHORT_TECH_APP_{0}_{1}_Name", categoryName, no);
+            name = $"SHORT_TECH_APP_{categoryName}_{no}_Name";
             if (Config.ExistsKey(name))
             {
                 return true;
             }
             // 技術名
-            name = string.Format("TECH_APP_{0}_{1}_DESC", categoryName, no);
+            name = $"TECH_APP_{categoryName}_{no}_DESC";
             if (Config.ExistsKey(name))
             {
                 return true;
@@ -834,7 +834,7 @@ namespace HoI2Editor.Models
             // 小研究名
             for (int i = 1; i <= Components.Count; i++)
             {
-                name = string.Format("TECH_CMP_{0}_{1}_{2}_NAME", categoryName, no, i);
+                name = $"TECH_CMP_{categoryName}_{no}_{i}_NAME";
                 if (Config.ExistsKey(name))
                 {
                     return true;
@@ -1024,7 +1024,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     座標リスト
         /// </summary>
-        public List<TechPosition> Positions { get; private set; }
+        public List<TechPosition> Positions { get; }
 
         #endregion
 
@@ -1134,7 +1134,7 @@ namespace HoI2Editor.Models
             if (Config.IsTempKey(Name) || IsOldStyleKey(Name))
             {
                 int no = GetKeyNumber(list, categoryName);
-                string newKey = string.Format("TECH_CAT_{0}_{1}", categoryName, no);
+                string newKey = $"TECH_CAT_{categoryName}_{no}";
                 string oldKey = Name;
                 if (!Techs.IsDuplicatedName(oldKey))
                 {
@@ -1193,7 +1193,7 @@ namespace HoI2Editor.Models
         /// <returns>定義が存在すればtrueを返す</returns>
         private static bool ExistsUnlinkedKey(string categoryName, int no)
         {
-            string name = string.Format("TECH_CAT_{0}_{1}", categoryName, no);
+            string name = $"TECH_CAT_{categoryName}_{no}";
             if (Config.ExistsKey(name))
             {
                 return true;
@@ -1335,7 +1335,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     座標リスト
         /// </summary>
-        public List<TechPosition> Positions { get; private set; }
+        public List<TechPosition> Positions { get; }
 
         #endregion
 

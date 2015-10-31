@@ -168,16 +168,8 @@ namespace HoI2Editor.Parsers
                     // save_date
                     if (keyword.Equals("save_date"))
                     {
-                        GameDate startDate;
-                        if (scenario.GlobalData == null || scenario.GlobalData.StartDate == null)
-                        {
-                            // シナリオ開始日時が設定されていなければ1936/1/1とみなす
-                            startDate = new GameDate();
-                        }
-                        else
-                        {
-                            startDate = scenario.GlobalData.StartDate;
-                        }
+                        // シナリオ開始日時が設定されていなければ1936/1/1とみなす
+                        GameDate startDate = scenario.GlobalData?.StartDate ?? new GameDate();
 
                         Dictionary<int, GameDate> dates = ParseSaveDate(lexer, startDate);
                         if (dates == null)
@@ -2380,7 +2372,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    if ((double) d < 0)
+                    if (d < 0)
                     {
                         Log.OutOfRange(LogCategory, "size", d, lexer);
                         continue;
@@ -5223,7 +5215,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    if ((int) n < 1 || (int) n > 10)
+                    if (n < 1 || n > 10)
                     {
                         Log.OutOfRange(LogCategory, "democratic", n, lexer);
                         continue;
@@ -5244,7 +5236,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    if ((int) n < 1 || (int) n > 10)
+                    if (n < 1 || n > 10)
                     {
                         Log.OutOfRange(LogCategory, "political_left", n, lexer);
                         continue;
@@ -5265,7 +5257,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    if ((int) n < 1 || (int) n > 10)
+                    if (n < 1 || n > 10)
                     {
                         Log.OutOfRange(LogCategory, "freedom", n, lexer);
                         continue;
@@ -5286,7 +5278,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    if ((int) n < 1 || (int) n > 10)
+                    if (n < 1 || n > 10)
                     {
                         Log.OutOfRange(LogCategory, "freedom", n, lexer);
                         continue;
@@ -5307,7 +5299,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    if ((int) n < 1 || (int) n > 10)
+                    if (n < 1 || n > 10)
                     {
                         Log.OutOfRange(LogCategory, "professional_army", n, lexer);
                         continue;
@@ -5328,7 +5320,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    if ((int) n < 1 || (int) n > 10)
+                    if (n < 1 || n > 10)
                     {
                         Log.OutOfRange(LogCategory, "defense_lobby", n, lexer);
                         continue;
@@ -5349,7 +5341,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    if ((int) n < 1 || (int) n > 10)
+                    if (n < 1 || n > 10)
                     {
                         Log.OutOfRange(LogCategory, "interventionism", n, lexer);
                         continue;
@@ -8556,11 +8548,11 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 30日の記載が数多くあるので[情報]レベルでエラー出力する
-                    if ((int) n == 30)
+                    if (n == 30)
                     {
                         Log.Info("[Scenario] Out of range: {0} at day ({1} L{2})", n, lexer.FileName, lexer.LineNo);
                     }
-                    else if ((int) n < 0 || (int) n > 30)
+                    else if (n < 0 || n > 30)
                     {
                         Log.OutOfRange(LogCategory, "day", n, lexer);
                     }
@@ -8580,7 +8572,7 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
-                    if ((int) n < 0 || (int) n >= 24)
+                    if (n < 0 || n >= 24)
                     {
                         Log.OutOfRange(LogCategory, "hour", n, lexer);
                     }

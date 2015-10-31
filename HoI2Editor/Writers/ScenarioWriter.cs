@@ -80,16 +80,8 @@ namespace HoI2Editor.Writers
                 return;
             }
 
-            GameDate startDate;
-            if (scenario.GlobalData == null || scenario.GlobalData.StartDate == null)
-            {
-                // シナリオ開始日時が設定されていなければ1936/1/1とみなす
-                startDate = new GameDate();
-            }
-            else
-            {
-                startDate = scenario.GlobalData.StartDate;
-            }
+            // シナリオ開始日時が設定されていなければ1936/1/1とみなす
+            GameDate startDate = scenario.GlobalData?.StartDate ?? new GameDate();
 
             writer.WriteLine();
             writer.WriteLine("save_date = {");
@@ -370,15 +362,15 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteAlliances(ScenarioGlobalData data, TextWriter writer)
         {
-            if (data.Axis != null && data.Axis.Id != null)
+            if (data.Axis?.Id != null)
             {
                 WriteAlliance(data.Axis, "axis", writer);
             }
-            if (data.Allies != null && data.Allies.Id != null)
+            if (data.Allies?.Id != null)
             {
                 WriteAlliance(data.Allies, "allies", writer);
             }
-            if (data.Comintern != null && data.Comintern.Id != null)
+            if (data.Comintern?.Id != null)
             {
                 WriteAlliance(data.Comintern, "comintern", writer);
             }

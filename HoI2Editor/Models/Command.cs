@@ -40,7 +40,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コマンドトリガー
         /// </summary>
-        public List<Trigger> Triggers { get; private set; }
+        public List<Trigger> Triggers { get; }
 
         #endregion
 

@@ -22,7 +22,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップレベル
         /// </summary>
-        public MapLevel Level { get; private set; }
+        public MapLevel Level { get; }
 
         /// <summary>
         ///     プロヴィンスIDの配列
@@ -1430,12 +1430,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップ画素の配列
         /// </summary>
-        public byte[] Data { get; private set; }
+        public byte[] Data { get; }
 
         /// <summary>
         ///     マップ画素単位の幅
         /// </summary>
-        public int Width { get; private set; }
+        public int Width { get; }
 
         /// <summary>
         ///     マップ画素単位の高さ
@@ -1549,17 +1549,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップブロックの配列
         /// </summary>
-        public MapBlock[] Data { get; private set; }
+        public MapBlock[] Data { get; }
 
         /// <summary>
         ///     マップブロック単位の幅
         /// </summary>
-        public int Width { get; private set; }
+        public int Width { get; }
 
         /// <summary>
         ///     マップブロック単位の高さ
         /// </summary>
-        public int Height { get; private set; }
+        public int Height { get; }
 
         #endregion
 
@@ -1673,12 +1673,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンスIDの配列
         /// </summary>
-        public ushort[] Data { get; private set; }
+        public ushort[] Data { get; }
 
         /// <summary>
         ///     マップ画素単位の幅
         /// </summary>
-        public int Width { get; private set; }
+        public int Width { get; }
 
         /// <summary>
         ///     マップ画素単位の高さ

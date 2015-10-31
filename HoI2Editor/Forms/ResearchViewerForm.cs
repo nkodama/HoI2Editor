@@ -622,7 +622,7 @@ namespace HoI2Editor.Forms
         /// <param name="research">研究速度データ</param>
         /// <param name="rank">研究速度順位</param>
         /// <returns>研究機関リストビューの項目</returns>
-        private ListViewItem CreateTeamListViewItem(Research research, int rank)
+        private static ListViewItem CreateTeamListViewItem(Research research, int rank)
         {
             if (research == null)
             {

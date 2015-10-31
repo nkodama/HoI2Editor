@@ -56,10 +56,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究特性
         /// </summary>
-        public TechSpeciality[] Specialities
-        {
-            get { return _specialities; }
-        }
+        public TechSpeciality[] Specialities { get; } = new TechSpeciality[SpecialityLength];
 
         #endregion
 
@@ -69,11 +66,6 @@ namespace HoI2Editor.Models
         ///     項目の編集済みフラグ
         /// </summary>
         private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TeamItemId)).Length];
-
-        /// <summary>
-        ///     研究特性
-        /// </summary>
-        private readonly TechSpeciality[] _specialities = new TechSpeciality[SpecialityLength];
 
         /// <summary>
         ///     編集済みフラグ

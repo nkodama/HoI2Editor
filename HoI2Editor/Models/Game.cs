@@ -94,10 +94,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ゲームフォルダが有効かどうか
         /// </summary>
-        public static bool IsGameFolderActive
-        {
-            get { return Type != GameType.None; }
-        }
+        public static bool IsGameFolderActive => Type != GameType.None;
 
         /// <summary>
         ///     MOD名
@@ -165,10 +162,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     保存フォルダ名
         /// </summary>
-        public static string ExportFolderName
-        {
-            get { return _exportFolderName; }
-        }
+        public static string ExportFolderName => _exportFolderName;
 
         #endregion
 
@@ -725,7 +719,7 @@ namespace HoI2Editor.Models
         {
             return Leaders.FileNameMap.ContainsKey(country)
                 ? Leaders.FileNameMap[country]
-                : string.Format("leaders{0}.csv", Countries.Strings[(int) country].ToUpper());
+                : $"leaders{Countries.Strings[(int) country].ToUpper()}.csv";
         }
 
         /// <summary>
@@ -737,7 +731,7 @@ namespace HoI2Editor.Models
         {
             return Ministers.FileNameMap.ContainsKey(country)
                 ? Ministers.FileNameMap[country]
-                : string.Format("ministers_{0}.csv", Countries.Strings[(int) country].ToLower());
+                : $"ministers_{Countries.Strings[(int) country].ToLower()}.csv";
         }
 
         /// <summary>
@@ -749,7 +743,7 @@ namespace HoI2Editor.Models
         {
             return Teams.FileNameMap.ContainsKey(country)
                 ? Teams.FileNameMap[country]
-                : string.Format("teams_{0}.csv", Countries.Strings[(int) country].ToLower());
+                : $"teams_{Countries.Strings[(int) country].ToLower()}.csv";
         }
 
         /// <summary>
@@ -765,7 +759,7 @@ namespace HoI2Editor.Models
             }
 
             // DHのマップ拡張
-            return Path.Combine(MapPathName, string.Format("Map_{0}", Misc.MapNumber));
+            return Path.Combine(MapPathName, $"Map_{Misc.MapNumber}");
         }
 
         /// <summary>
@@ -781,7 +775,7 @@ namespace HoI2Editor.Models
             }
 
             // DHのマップ拡張
-            return Path.Combine(MapPathName, string.Format("Map_{0}", Misc.MapNumber));
+            return Path.Combine(MapPathName, $"Map_{Misc.MapNumber}");
         }
 
         /// <summary>
@@ -800,11 +794,11 @@ namespace HoI2Editor.Models
             else
             {
                 // DHのマップ拡張
-                folderName = Path.Combine(MapPathName, string.Format("Map_{0}", Misc.MapNumber));
+                folderName = Path.Combine(MapPathName, $"Map_{Misc.MapNumber}");
                 folderName = Path.Combine(folderName, MapImagePathName);
             }
 
-            return Path.Combine(folderName, string.Format("ill_prov_{0}.bmp", id));
+            return Path.Combine(folderName, $"ill_prov_{id}.bmp");
         }
 
         /// <summary>
@@ -820,7 +814,7 @@ namespace HoI2Editor.Models
             }
             else
             {
-                folderName = Path.Combine(MapPathName, string.Format("Map_{0}", Misc.MapNumber));
+                folderName = Path.Combine(MapPathName, $"Map_{Misc.MapNumber}");
             }
             return folderName;
         }
@@ -1139,12 +1133,12 @@ namespace HoI2Editor.Models
             switch (_type)
             {
                 case GameType.HeartsOfIron2:
-                    s = string.Format("{0}.{1}", _version / 100, (_version % 100) / 10);
+                    s = $"{_version / 100}.{(_version % 100) / 10}";
                     break;
 
                 case GameType.ArsenalOfDemocracy:
                 case GameType.DarkestHour:
-                    s = string.Format("{0}.{1}{2}", _version / 100, (_version % 100) / 10, (_version % 10));
+                    s = $"{_version / 100}.{(_version % 100) / 10}{(_version % 10)}";
                     break;
 
                 default:

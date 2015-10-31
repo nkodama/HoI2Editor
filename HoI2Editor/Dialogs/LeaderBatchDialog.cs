@@ -114,7 +114,7 @@ namespace HoI2Editor.Dialogs
             foreach (string s in Countries.Tags
                 .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
-                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    ? $"{name} {Config.GetText(name)}"
                     : name))
             {
                 countryComboBox.Items.Add(s);
@@ -232,6 +232,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnIdealRankComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
+            idealRankCheckBox.Checked = true;
         }
 
         /// <summary>

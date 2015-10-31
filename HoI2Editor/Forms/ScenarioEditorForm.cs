@@ -1676,7 +1676,7 @@ namespace HoI2Editor.Forms
             }
 
             pathName = Game.GetReadFileName(Game.ScenarioDataPathName,
-                string.Format("propaganda_{0}.bmp", Countries.Strings[(int) country]));
+                $"propaganda_{Countries.Strings[(int) country]}.bmp");
             if (!File.Exists(pathName))
             {
                 return null;

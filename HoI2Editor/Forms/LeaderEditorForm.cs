@@ -532,11 +532,11 @@ namespace HoI2Editor.Forms
                 case SortKey.Traits: // 特性
                     if (_order == SortOrder.Ascendant)
                     {
-                        _list.Sort((leader1, leader2) => (int) ((long) leader1.Traits - (long) leader2.Traits));
+                        _list.Sort((leader1, leader2) => (int) (leader1.Traits - (long) leader2.Traits));
                     }
                     else
                     {
-                        _list.Sort((leader1, leader2) => (int) ((long) leader2.Traits - (long) leader1.Traits));
+                        _list.Sort((leader1, leader2) => (int) (leader2.Traits - (long) leader1.Traits));
                     }
                     break;
             }
@@ -1132,7 +1132,7 @@ namespace HoI2Editor.Forms
                 .Where(id => (traits & Leaders.TraitsValues[(int) id]) != 0)
                 .Aggregate("",
                     (current, id) =>
-                        string.Format("{0}, {1}", current, Config.GetText(Leaders.TraitsNames[(int) id])));
+                        $"{current}, {Config.GetText(Leaders.TraitsNames[(int) id])}");
             // 先頭項目の", "を削除する
             if (!string.IsNullOrEmpty(s))
             {
@@ -1693,7 +1693,7 @@ namespace HoI2Editor.Forms
             foreach (string s in Countries.Tags
                 .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
-                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    ? $"{name} {Config.GetText(name)}"
                     : name))
             {
                 countryComboBox.Items.Add(s);

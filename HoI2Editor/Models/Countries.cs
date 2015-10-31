@@ -19,7 +19,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, Country> StringMap { get; private set; }
+        public static Dictionary<string, Country> StringMap { get; }
 
         #endregion
 
@@ -1083,7 +1083,7 @@ namespace HoI2Editor.Models
             }
             string tag = Strings[(int) country];
             return Config.ExistsKey(tag)
-                ? string.Format("{0} {1}", tag, Config.GetText(tag))
+                ? $"{tag} {Config.GetText(tag)}"
                 : tag;
         }
 

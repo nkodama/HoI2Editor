@@ -294,10 +294,7 @@ namespace HoI2Editor.Controllers
 
             Image prev = _pictureBox.Image;
             _pictureBox.Image = bitmap;
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
         }
 
         /// <summary>
@@ -307,10 +304,7 @@ namespace HoI2Editor.Controllers
         {
             Image prev = _pictureBox.Image;
             _pictureBox.Image = null;
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
         }
 
         #endregion
@@ -640,24 +634,10 @@ namespace HoI2Editor.Controllers
         private static void OnTechItemPaint(object sender, PaintEventArgs e)
         {
             Label label = sender as Label;
-            if (label == null)
-            {
-                return;
-            }
+            TechLabelInfo info = label?.Tag as TechLabelInfo;
+            TechItem techItem = info?.Item as TechItem;
 
-            TechLabelInfo info = label.Tag as TechLabelInfo;
-            if (info == null)
-            {
-                return;
-            }
-
-            TechItem techItem = info.Item as TechItem;
-            if (techItem == null)
-            {
-                return;
-            }
-
-            string s = techItem.GetShortName();
+            string s = techItem?.GetShortName();
             if (string.IsNullOrEmpty(s))
             {
                 return;
@@ -675,24 +655,10 @@ namespace HoI2Editor.Controllers
         private static void OnTechLabelPaint(object sender, PaintEventArgs e)
         {
             Label label = sender as Label;
-            if (label == null)
-            {
-                return;
-            }
+            TechLabelInfo info = label?.Tag as TechLabelInfo;
+            TechLabel labelItem = info?.Item as TechLabel;
 
-            TechLabelInfo info = label.Tag as TechLabelInfo;
-            if (info == null)
-            {
-                return;
-            }
-
-            TechLabel labelItem = info.Item as TechLabel;
-            if (labelItem == null)
-            {
-                return;
-            }
-
-            string s = labelItem.ToString();
+            string s = labelItem?.ToString();
             if (string.IsNullOrEmpty(s))
             {
                 return;
@@ -728,12 +694,7 @@ namespace HoI2Editor.Controllers
             if (ItemClick != null)
             {
                 Label label = sender as Label;
-                if (label == null)
-                {
-                    return;
-                }
-
-                TechLabelInfo info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label?.Tag as TechLabelInfo;
                 if (info == null)
                 {
                     return;
@@ -754,12 +715,7 @@ namespace HoI2Editor.Controllers
             if (ItemMouseClick != null)
             {
                 Label label = sender as Label;
-                if (label == null)
-                {
-                    return;
-                }
-
-                TechLabelInfo info = label.Tag as TechLabelInfo;
+                TechLabelInfo info = label?.Tag as TechLabelInfo;
                 if (info == null)
                 {
                     return;
@@ -777,12 +733,7 @@ namespace HoI2Editor.Controllers
         private void OnItemLabelMouseDown(object sender, MouseEventArgs e)
         {
             Label label = sender as Label;
-            if (label == null)
-            {
-                return;
-            }
-
-            TechLabelInfo info = label.Tag as TechLabelInfo;
+            TechLabelInfo info = label?.Tag as TechLabelInfo;
             if (info == null)
             {
                 return;
@@ -804,10 +755,7 @@ namespace HoI2Editor.Controllers
             }
 
             // イベントハンドラを呼び出す
-            if (ItemMouseDown != null)
-            {
-                ItemMouseDown(sender, new ItemMouseEventArgs(info.Item, info.Position, e));
-            }
+            ItemMouseDown?.Invoke(sender, new ItemMouseEventArgs(info.Item, info.Position, e));
         }
 
         /// <summary>
@@ -1002,10 +950,7 @@ namespace HoI2Editor.Controllers
             label.Location = p;
 
             // イベントハンドラを呼び出す
-            if (ItemDragDrop != null)
-            {
-                ItemDragDrop(this, new ItemDragEventArgs(info.Item, info.Position, e));
-            }
+            ItemDragDrop?.Invoke(this, new ItemDragEventArgs(info.Item, info.Position, e));
         }
 
         /// <summary>

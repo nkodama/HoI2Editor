@@ -1178,7 +1178,7 @@ namespace HoI2Editor.Forms
             foreach (string s in Countries.Tags
                 .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
-                    ? string.Format("{0} {1}", name, Config.GetText(name))
+                    ? $"{name} {Config.GetText(name)}"
                     : name))
             {
                 countryComboBox.Items.Add(s);
@@ -2241,7 +2241,7 @@ namespace HoI2Editor.Forms
         /// <param name="retirementYear">引退年</param>
         /// <param name="ideology">イデオロギー</param>
         /// <param name="loyalty">忠誠度</param>
-        private void BatchEditAll(bool[] items, int startYear, int endYear, int retirementYear,
+        private static void BatchEditAll(bool[] items, int startYear, int endYear, int retirementYear,
             MinisterIdeology ideology, MinisterLoyalty loyalty)
         {
             // 一括編集項目が設定されていなければ戻る
@@ -2313,7 +2313,8 @@ namespace HoI2Editor.Forms
         /// <param name="retirementYear">引退年</param>
         /// <param name="ideology">イデオロギー</param>
         /// <param name="loyalty">忠誠度</param>
-        private void BatchEditSpecified(Country country, bool[] items, int startYear, int endYear, int retirementYear,
+        private static void BatchEditSpecified(Country country, bool[] items, int startYear, int endYear,
+            int retirementYear,
             MinisterIdeology ideology, MinisterLoyalty loyalty)
         {
             // 一括編集項目が設定されていなければ戻る
@@ -2341,7 +2342,8 @@ namespace HoI2Editor.Forms
         /// <param name="retirementYear">引退年</param>
         /// <param name="ideology">イデオロギー</param>
         /// <param name="loyalty">忠誠度</param>
-        private void BatchEditMinister(Minister minister, bool[] items, int startYear, int endYear, int retirementYear,
+        private static void BatchEditMinister(Minister minister, bool[] items, int startYear, int endYear,
+            int retirementYear,
             MinisterIdeology ideology, MinisterLoyalty loyalty)
         {
             // 開始年

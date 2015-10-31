@@ -23,7 +23,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究に要する日数
         /// </summary>
-        public int Days { get; private set; }
+        public int Days { get; }
 
         /// <summary>
         ///     研究が完了する日付

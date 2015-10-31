@@ -112,10 +112,7 @@ namespace HoI2Editor.Models
             {
                 Trace.Listeners.Remove(_listener);
             }
-            if (_writer != null)
-            {
-                _writer.Close();
-            }
+            _writer?.Close();
         }
 
         #endregion

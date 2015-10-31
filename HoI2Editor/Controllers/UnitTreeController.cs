@@ -497,7 +497,7 @@ namespace HoI2Editor.Controllers
 
                 case Branch.Navy:
                     capitalSettings = Scenarios.GetProvinceSettings(settings.Capital);
-                    if (capitalSettings != null && capitalSettings.NavalBase != null)
+                    if (capitalSettings?.NavalBase != null)
                     {
                         unit.Location = settings.Capital;
                         unit.Base = settings.Capital;
@@ -506,7 +506,7 @@ namespace HoI2Editor.Controllers
                     {
                         foreach (ProvinceSettings ps in settings.ControlledProvinces
                             .Select(Scenarios.GetProvinceSettings)
-                            .Where(ps => ps != null && ps.NavalBase != null))
+                            .Where(ps => ps?.NavalBase != null))
                         {
                             unit.Location = ps.Id;
                             unit.Base = ps.Id;
@@ -517,7 +517,7 @@ namespace HoI2Editor.Controllers
 
                 case Branch.Airforce:
                     capitalSettings = Scenarios.GetProvinceSettings(settings.Capital);
-                    if (capitalSettings != null && capitalSettings.AirBase != null)
+                    if (capitalSettings?.AirBase != null)
                     {
                         unit.Location = settings.Capital;
                         unit.Base = settings.Capital;
@@ -526,7 +526,7 @@ namespace HoI2Editor.Controllers
                     {
                         foreach (ProvinceSettings ps in settings.ControlledProvinces
                             .Select(Scenarios.GetProvinceSettings)
-                            .Where(ps => ps != null && ps.AirBase != null))
+                            .Where(ps => ps?.AirBase != null))
                         {
                             unit.Location = ps.Id;
                             unit.Base = ps.Id;
@@ -1208,12 +1208,8 @@ namespace HoI2Editor.Controllers
             }
 
             node = node.Parent;
-            if (node == null)
-            {
-                return null;
-            }
 
-            return node.Tag as Unit;
+            return node?.Tag as Unit;
         }
 
         /// <summary>
@@ -1223,12 +1219,8 @@ namespace HoI2Editor.Controllers
         public Division GetSelectedDivision()
         {
             TreeNode node = _treeView.SelectedNode;
-            if (node == null)
-            {
-                return null;
-            }
 
-            return node.Tag as Division;
+            return node?.Tag as Division;
         }
 
         /// <summary>
@@ -1249,7 +1241,7 @@ namespace HoI2Editor.Controllers
             }
 
             node = node.Parent;
-            if (node != null && node.Tag is Unit)
+            if (node?.Tag is Unit)
             {
                 return node;
             }
@@ -1264,7 +1256,7 @@ namespace HoI2Editor.Controllers
         private TreeNode GetSelectedDivisionNode()
         {
             TreeNode node = _treeView.SelectedNode;
-            if (node != null && node.Tag is Division)
+            if (node?.Tag is Division)
             {
                 return node;
             }
@@ -1316,10 +1308,7 @@ namespace HoI2Editor.Controllers
                 IsBottom = (index == bottom)
             };
 
-            if (AfterSelect != null)
-            {
-                AfterSelect(sender, args);
-            }
+            AfterSelect?.Invoke(sender, args);
         }
 
         /// <summary>
@@ -1347,10 +1336,7 @@ namespace HoI2Editor.Controllers
                 IsBottom = (index >= bottom)
             };
 
-            if (AfterSelect != null)
-            {
-                AfterSelect(sender, args);
-            }
+            AfterSelect?.Invoke(sender, args);
         }
 
         /// <summary>
@@ -1381,10 +1367,7 @@ namespace HoI2Editor.Controllers
                     break;
             }
 
-            if (AfterSelect != null)
-            {
-                AfterSelect(sender, args);
-            }
+            AfterSelect?.Invoke(sender, args);
         }
 
         #endregion
