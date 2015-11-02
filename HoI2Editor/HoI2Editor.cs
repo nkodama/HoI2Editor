@@ -262,55 +262,88 @@ namespace HoI2Editor
         /// <param name="form">呼び出し元のフォーム</param>
         public static void OnItemChanged(EditorItemId id, Form form)
         {
-            if ((_leaderEditorForm != null) && (form != _leaderEditorForm))
+            if (form != _leaderEditorForm)
             {
-                _leaderEditorForm?.OnItemChanged(id);
+                _leaderEditorForm.OnItemChanged(id);
             }
-            if ((_ministerEditorForm != null) && (form != _ministerEditorForm))
+            if (form != _ministerEditorForm)
             {
                 _ministerEditorForm.OnItemChanged(id);
             }
-            if ((_teamEditorForm != null) && (form != _teamEditorForm))
+            if (form != _teamEditorForm)
             {
                 _teamEditorForm.OnItemChanged(id);
             }
-            if ((_provinceEditorForm != null) && (form != _provinceEditorForm))
+            if (form != _provinceEditorForm)
             {
                 _provinceEditorForm.OnItemChanged(id);
             }
-            if ((_techEditorForm != null) && (form != _techEditorForm))
+            if (form != _techEditorForm)
             {
                 _techEditorForm.OnItemChanged(id);
             }
-            if ((_unitEditorForm != null) && (form != _unitEditorForm))
+            if (form != _unitEditorForm)
             {
                 _unitEditorForm.OnItemChanged(id);
             }
-            if ((_miscEditorForm != null) && (form != _miscEditorForm))
+            if (form != _miscEditorForm)
             {
                 _miscEditorForm.OnItemChanged(id);
             }
-            if ((_corpsNameEditorForm != null) && (form != _corpsNameEditorForm))
+            if (form != _corpsNameEditorForm)
             {
                 _corpsNameEditorForm.OnItemChanged(id);
             }
-            if ((_unitNameEditorForm != null) && (form != _unitNameEditorForm))
+            if (form != _unitNameEditorForm)
             {
                 _unitNameEditorForm.OnItemChanged(id);
             }
-            if ((_modelNameEditorForm != null) && (form != _modelNameEditorForm))
+            if (form != _modelNameEditorForm)
             {
                 _modelNameEditorForm.OnItemChanged(id);
             }
-            if ((_randomLeaderEditorForm != null) && (form != _randomLeaderEditorForm))
+            if (form != _randomLeaderEditorForm)
             {
                 _randomLeaderEditorForm.OnItemChanged(id);
             }
-            _researchViewerForm?.OnItemChanged(id);
-            if ((_scenarioEditorForm != null) && (form != _scenarioEditorForm))
+            if (form != _researchViewerForm)
+            {
+                _researchViewerForm.OnItemChanged(id);
+            }
+            if (form != _scenarioEditorForm)
             {
                 _scenarioEditorForm.OnItemChanged(id);
             }
+        }
+
+        /// <summary>
+        ///     遅延読み込み完了後の更新処理呼び出し
+        /// </summary>
+        public static void OnLoadingCompleted()
+        {
+            if (!ExistsEditorForms() && !IsLoadingData())
+            {
+                _mainForm.EnableFolderChange();
+            }
+            else
+            {
+                _mainForm.DisableFolderChange();
+            }
+        }
+
+        /// <summary>
+        ///     データを遅延読み込み中かどうかを判定する
+        /// </summary>
+        /// <returns>データを遅延読み込み中ならばtrueを返す</returns>
+        private static bool IsLoadingData()
+        {
+            return (Leaders.IsLoading() ||
+                    Ministers.IsLoading() ||
+                    Teams.IsLoading() ||
+                    Provinces.IsLoading() ||
+                    Techs.IsLoading() ||
+                    Units.IsLoading() ||
+                    Maps.IsLoading());
         }
 
         #endregion
@@ -765,19 +798,7 @@ namespace HoI2Editor
         /// </summary>
         private static void OnEditorStatusUpdate()
         {
-            if (_leaderEditorForm == null &&
-                _ministerEditorForm == null &&
-                _teamEditorForm == null &&
-                _provinceEditorForm == null &&
-                _techEditorForm == null &&
-                _unitEditorForm == null &&
-                _miscEditorForm == null &&
-                _corpsNameEditorForm == null &&
-                _unitNameEditorForm == null &&
-                _modelNameEditorForm == null &&
-                _randomLeaderEditorForm == null &&
-                _researchViewerForm == null &&
-                _scenarioEditorForm == null)
+            if (!ExistsEditorForms() && !IsLoadingData())
             {
                 _mainForm.EnableFolderChange();
             }
@@ -785,6 +806,27 @@ namespace HoI2Editor
             {
                 _mainForm.DisableFolderChange();
             }
+        }
+
+        /// <summary>
+        ///     エディタのフォームが存在するかどうかを判定する
+        /// </summary>
+        /// <returns>エディタのフォームが存在すればtrueを返す</returns>
+        private static bool ExistsEditorForms()
+        {
+            return (_leaderEditorForm != null ||
+                    _ministerEditorForm != null ||
+                    _teamEditorForm != null ||
+                    _provinceEditorForm != null ||
+                    _techEditorForm != null ||
+                    _unitEditorForm != null ||
+                    _miscEditorForm != null ||
+                    _corpsNameEditorForm != null ||
+                    _unitNameEditorForm != null ||
+                    _modelNameEditorForm != null ||
+                    _randomLeaderEditorForm != null ||
+                    _researchViewerForm != null ||
+                    _scenarioEditorForm != null);
         }
 
         #endregion

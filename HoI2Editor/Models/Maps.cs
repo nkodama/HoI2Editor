@@ -177,6 +177,7 @@ namespace HoI2Editor.Models
             if (handler != null)
             {
                 worker.RunWorkerCompleted += handler;
+                worker.RunWorkerCompleted += OnMapWorkerRunWorkerCompleted;
             }
 
             // 読み込み途中ならば戻る
@@ -209,6 +210,18 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     遅延読み込み中かどうかを判定する
+        /// </summary>
+        /// <returns>遅延読み込み中ならばtrueを返す</returns>
+        public static bool IsLoading()
+        {
+            return Workers[(int) MapLevel.Level1].IsBusy ||
+                   Workers[(int) MapLevel.Level2].IsBusy ||
+                   Workers[(int) MapLevel.Level3].IsBusy ||
+                   Workers[(int) MapLevel.Level4].IsBusy;
+        }
+
+        /// <summary>
         ///     マップ遅延読み込み処理
         /// </summary>
         /// <param name="sender"></param>
@@ -219,6 +232,17 @@ namespace HoI2Editor.Models
             e.Result = level;
 
             LoadFiles(level);
+        }
+
+        /// <summary>
+        ///     遅延読み込み完了時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnMapWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            // 遅延読み込み完了時の処理
+            HoI2Editor.OnLoadingCompleted();
         }
 
         /// <summary>

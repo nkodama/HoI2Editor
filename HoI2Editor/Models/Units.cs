@@ -2151,6 +2151,7 @@ namespace HoI2Editor.Models
             if (handler != null)
             {
                 Worker.RunWorkerCompleted += handler;
+                Worker.RunWorkerCompleted += OnWorkerRunWorkerCompleted;
             }
 
             // 読み込み途中ならば戻る
@@ -2182,6 +2183,15 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     遅延読み込み中かどうかを判定する
+        /// </summary>
+        /// <returns>遅延読み込み中ならばtrueを返す</returns>
+        public static bool IsLoading()
+        {
+            return Worker.IsBusy;
+        }
+
+        /// <summary>
         ///     遅延読み込み処理
         /// </summary>
         /// <param name="sender"></param>
@@ -2189,6 +2199,17 @@ namespace HoI2Editor.Models
         private static void OnWorkerDoWork(object sender, DoWorkEventArgs e)
         {
             LoadFiles();
+        }
+
+        /// <summary>
+        ///     遅延読み込み完了時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private static void OnWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            // 遅延読み込み完了時の処理
+            HoI2Editor.OnLoadingCompleted();
         }
 
         /// <summary>
