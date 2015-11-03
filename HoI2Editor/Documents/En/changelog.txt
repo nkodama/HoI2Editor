@@ -1,5 +1,11 @@
 Alternative HoI2 Editor Changelog
 
+- 3 Nov 2015; Ver 0.49
+
+Fixed an error when CON scenario settings are saved.
+Fixed a crash bug when the mod folder is changed after a scenario editor window is closed.
+Fixed a crash bug using invalid path letters with picture file names.
+
 - 15 April 2015; Ver 0.48
 
 Fixed a bug that defensiveness tech effect command is not supported.
