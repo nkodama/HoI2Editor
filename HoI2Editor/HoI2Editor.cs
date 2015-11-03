@@ -264,55 +264,52 @@ namespace HoI2Editor
         {
             if (form != _leaderEditorForm)
             {
-                _leaderEditorForm.OnItemChanged(id);
+                _leaderEditorForm?.OnItemChanged(id);
             }
             if (form != _ministerEditorForm)
             {
-                _ministerEditorForm.OnItemChanged(id);
+                _ministerEditorForm?.OnItemChanged(id);
             }
             if (form != _teamEditorForm)
             {
-                _teamEditorForm.OnItemChanged(id);
+                _teamEditorForm?.OnItemChanged(id);
             }
             if (form != _provinceEditorForm)
             {
-                _provinceEditorForm.OnItemChanged(id);
+                _provinceEditorForm?.OnItemChanged(id);
             }
             if (form != _techEditorForm)
             {
-                _techEditorForm.OnItemChanged(id);
+                _techEditorForm?.OnItemChanged(id);
             }
             if (form != _unitEditorForm)
             {
-                _unitEditorForm.OnItemChanged(id);
+                _unitEditorForm?.OnItemChanged(id);
             }
             if (form != _miscEditorForm)
             {
-                _miscEditorForm.OnItemChanged(id);
+                _miscEditorForm?.OnItemChanged(id);
             }
             if (form != _corpsNameEditorForm)
             {
-                _corpsNameEditorForm.OnItemChanged(id);
+                _corpsNameEditorForm?.OnItemChanged(id);
             }
             if (form != _unitNameEditorForm)
             {
-                _unitNameEditorForm.OnItemChanged(id);
+                _unitNameEditorForm?.OnItemChanged(id);
             }
             if (form != _modelNameEditorForm)
             {
-                _modelNameEditorForm.OnItemChanged(id);
+                _modelNameEditorForm?.OnItemChanged(id);
             }
             if (form != _randomLeaderEditorForm)
             {
-                _randomLeaderEditorForm.OnItemChanged(id);
+                _randomLeaderEditorForm?.OnItemChanged(id);
             }
-            if (form != _researchViewerForm)
-            {
-                _researchViewerForm.OnItemChanged(id);
-            }
+            _researchViewerForm?.OnItemChanged(id);
             if (form != _scenarioEditorForm)
             {
-                _scenarioEditorForm.OnItemChanged(id);
+                _scenarioEditorForm?.OnItemChanged(id);
             }
         }
 
