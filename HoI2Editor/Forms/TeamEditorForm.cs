@@ -825,9 +825,9 @@ namespace HoI2Editor.Forms
                 {
                     Country = selected.Country,
                     Id = Teams.GetNewId(selected.Country),
-                    Skill = 1,
-                    StartYear = 1930,
-                    EndYear = 1970
+                    Skill = selected.Skill,
+                    StartYear = selected.StartYear,
+                    EndYear = selected.EndYear
                 };
 
                 // 研究機関ごとの編集済みフラグを設定する

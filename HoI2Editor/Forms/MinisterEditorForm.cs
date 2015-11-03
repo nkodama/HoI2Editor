@@ -614,13 +614,13 @@ namespace HoI2Editor.Forms
                 {
                     Country = selected.Country,
                     Id = Ministers.GetNewId(selected.Country),
-                    StartYear = 1936,
-                    EndYear = 1970,
-                    RetirementYear = 1999,
-                    Position = MinisterPosition.None,
-                    Personality = 0,
-                    Ideology = MinisterIdeology.None,
-                    Loyalty = MinisterLoyalty.None
+                    StartYear = selected.StartYear,
+                    EndYear = selected.EndYear,
+                    RetirementYear = selected.RetirementYear,
+                    Position = selected.Position,
+                    Personality = selected.Personality,
+                    Ideology = selected.Ideology,
+                    Loyalty = selected.Loyalty
                 };
 
                 // 閣僚ごとの編集済みフラグを設定する

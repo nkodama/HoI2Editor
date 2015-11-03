@@ -703,16 +703,20 @@ namespace HoI2Editor.Forms
                 {
                     Country = selected.Country,
                     Id = Leaders.GetNewId(selected.Country),
-                    Branch = Branch.None,
-                    IdealRank = LeaderRank.None,
-                    StartYear = 1930,
-                    EndYear = 1990,
-                    RetirementYear = 1999
+                    Branch = selected.Branch,
+                    IdealRank = selected.IdealRank,
+                    Skill = selected.Skill,
+                    MaxSkill = selected.MaxSkill,
+                    Experience = selected.Experience,
+                    Loyalty = selected.Loyalty,
+                    StartYear = selected.StartYear,
+                    EndYear = selected.EndYear,
+                    RetirementYear = selected.RetirementYear
                 };
-                leader.RankYear[0] = 1930;
-                leader.RankYear[1] = 1990;
-                leader.RankYear[2] = 1990;
-                leader.RankYear[3] = 1990;
+                leader.RankYear[0] = selected.RankYear[0];
+                leader.RankYear[1] = selected.RankYear[1];
+                leader.RankYear[2] = selected.RankYear[2];
+                leader.RankYear[3] = selected.RankYear[3];
 
                 // 指揮官ごとの編集済みフラグを設定する
                 leader.SetDirtyAll();
