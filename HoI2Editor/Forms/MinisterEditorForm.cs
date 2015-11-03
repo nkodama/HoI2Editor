@@ -1664,7 +1664,8 @@ namespace HoI2Editor.Forms
         /// <param name="minister">閣僚データ</param>
         private void UpdateMinisterPicture(Minister minister)
         {
-            if (!string.IsNullOrEmpty(minister.PictureName))
+            if (!string.IsNullOrEmpty(minister.PictureName) &&
+                (minister.PictureName.IndexOfAny(Path.GetInvalidPathChars()) < 0))
             {
                 string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
                     Path.ChangeExtension(minister.PictureName, ".bmp"));

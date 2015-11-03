@@ -1933,8 +1933,11 @@ namespace HoI2Editor.Forms
                 : SystemColors.WindowText;
 
             Image prev = techPictureBox.Image;
-            string fileName = Game.GetReadFileName(Game.TechPicturePathName,
-                $"{(string.IsNullOrEmpty(item.PictureName) ? IntHelper.ToString(item.Id) : item.PictureName)}.bmp");
+            string name = !string.IsNullOrEmpty(item.PictureName) &&
+                          (item.PictureName.IndexOfAny(Path.GetInvalidPathChars()) < 0)
+                ? item.PictureName
+                : IntHelper.ToString(item.Id);
+            string fileName = Game.GetReadFileName(Game.TechPicturePathName, $"{name}.bmp");
             if (File.Exists(fileName))
             {
                 // 技術画像を更新する

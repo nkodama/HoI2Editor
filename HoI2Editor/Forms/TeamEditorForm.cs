@@ -1655,7 +1655,8 @@ namespace HoI2Editor.Forms
         /// <param name="team">研究機関データ</param>
         private void UpdateTeamPicture(Team team)
         {
-            if (!string.IsNullOrEmpty(team.PictureName))
+            if (!string.IsNullOrEmpty(team.PictureName) &&
+                (team.PictureName.IndexOfAny(Path.GetInvalidPathChars()) < 0))
             {
                 string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
                     Path.ChangeExtension(team.PictureName, ".bmp"));

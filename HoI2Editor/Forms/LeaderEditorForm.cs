@@ -2171,7 +2171,8 @@ namespace HoI2Editor.Forms
         /// <param name="leader">指揮官データ</param>
         private void UpdateLeaderPicture(Leader leader)
         {
-            if (!string.IsNullOrEmpty(leader.PictureName))
+            if (!string.IsNullOrEmpty(leader.PictureName) &&
+                (leader.PictureName.IndexOfAny(Path.GetInvalidPathChars()) < 0))
             {
                 string fileName = Game.GetReadFileName(Game.PersonPicturePathName,
                     Path.ChangeExtension(leader.PictureName, ".bmp"));

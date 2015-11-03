@@ -863,21 +863,26 @@ namespace HoI2Editor.Forms
         public void UpdatePanelImage(string fileName)
         {
             Image prev = panelPictureBox.Image;
-            string pathName = Game.GetReadFileName(fileName);
-            if (File.Exists(pathName))
+            if (!string.IsNullOrEmpty(fileName) &&
+                (fileName.IndexOfAny(Path.GetInvalidPathChars()) < 0))
             {
-                Bitmap bitmap = new Bitmap(pathName);
-                bitmap.MakeTransparent(Color.Lime);
-                panelPictureBox.Image = bitmap;
+                string pathName = Game.GetReadFileName(fileName);
+                if (File.Exists(pathName))
+                {
+                    Bitmap bitmap = new Bitmap(pathName);
+                    bitmap.MakeTransparent(Color.Lime);
+                    panelPictureBox.Image = bitmap;
+                }
+                else
+                {
+                    panelPictureBox.Image = null;
+                }
             }
             else
             {
                 panelPictureBox.Image = null;
             }
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
         }
 
         #endregion
@@ -1067,10 +1072,7 @@ namespace HoI2Editor.Forms
             propagandaTextBox.Text = "";
             Image prev = propagandaPictureBox.Image;
             propagandaPictureBox.Image = null;
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
         }
 
         /// <summary>
@@ -1653,10 +1655,7 @@ namespace HoI2Editor.Forms
         {
             Image prev = propagandaPictureBox.Image;
             propagandaPictureBox.Image = GetPropagandaImage(country, fileName);
-            if (prev != null)
-            {
-                prev.Dispose();
-            }
+            prev?.Dispose();
         }
 
         /// <summary>
@@ -1669,7 +1668,8 @@ namespace HoI2Editor.Forms
         {
             Bitmap bitmap;
             string pathName;
-            if (!string.IsNullOrEmpty(fileName))
+            if (!string.IsNullOrEmpty(fileName) &&
+                (fileName.IndexOfAny(Path.GetInvalidPathChars()) < 0))
             {
                 pathName = Game.GetReadFileName(fileName);
                 if (File.Exists(pathName))
@@ -3179,7 +3179,7 @@ namespace HoI2Editor.Forms
             // 攻撃側参加国
             warAttackerListBox.BeginUpdate();
             warAttackerListBox.Items.Clear();
-            if ((war.Attackers != null) && (war.Attackers.Participant != null))
+            if (war.Attackers?.Participant != null)
             {
                 foreach (Country country in war.Attackers.Participant)
                 {
@@ -3192,7 +3192,7 @@ namespace HoI2Editor.Forms
             // 防御側参加国
             warDefenderListBox.BeginUpdate();
             warDefenderListBox.Items.Clear();
-            if ((war.Defenders != null) && (war.Defenders.Participant != null))
+            if (war.Defenders?.Participant != null)
             {
                 foreach (Country country in war.Defenders.Participant)
                 {
@@ -7288,7 +7288,7 @@ namespace HoI2Editor.Forms
             Country country = GetSelectedGovernmentCountry();
             CountrySettings settings = Scenarios.GetCountrySettings(country);
             ScenarioHeader header = Scenarios.Data.Header;
-            int year = (header.StartDate != null) ? header.StartDate.Year : header.StartYear;
+            int year = header.StartDate?.Year ?? header.StartYear;
 
             // 編集項目を更新する
             UpdatePoliticalSliderItems(settings);
@@ -10127,7 +10127,7 @@ namespace HoI2Editor.Forms
 
             // 指揮官リストを初期化する
             ScenarioHeader header = Scenarios.Data.Header;
-            int year = (header.StartDate != null) ? header.StartDate.Year : header.StartYear;
+            int year = header.StartDate?.Year ?? header.StartYear;
             _controller.UpdateLeaderList(_selectedCountry, year);
 
             // ユニットツリーを更新する
