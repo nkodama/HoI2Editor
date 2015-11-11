@@ -869,7 +869,12 @@ namespace HoI2Editor.Models
             // 関連テーブルを初期化する
             for (int i = 0; i < Personalities.Length; i++)
             {
-                PersonalityStringMap.Add(Personalities[i].String.ToLower(), i);
+                string s = Personalities[i].String.ToLower();
+                if (PersonalityStringMap.ContainsKey(s))
+                {
+                    Log.Warning($"[Minister] Duplicated personality strings: {Personalities[i].String}");
+                }
+                PersonalityStringMap[s] = i;
                 Personalities[i].String = GetCasePersonalityString(Personalities[i].String.ToLower());
                 for (int j = 0; j < Enum.GetValues(typeof (MinisterPosition)).Length; j++)
                 {
@@ -900,7 +905,12 @@ namespace HoI2Editor.Models
             // 関連テーブルを初期化する
             for (int i = 0; i < Personalities.Length; i++)
             {
-                PersonalityStringMap.Add(Personalities[i].String.ToLower(), i);
+                string s = Personalities[i].String.ToLower();
+                if (PersonalityStringMap.ContainsKey(s))
+                {
+                    Log.Warning($"[Minister] Duplicated personality strings: {Personalities[i].String}");
+                }
+                PersonalityStringMap[s] = i;
                 Personalities[i].String = GetCasePersonalityString(Personalities[i].String.ToLower());
                 for (int j = 0; j < Enum.GetValues(typeof (MinisterPosition)).Length; j++)
                 {
