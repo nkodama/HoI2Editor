@@ -3349,6 +3349,34 @@ namespace HoI2Editor.Models
             TerrainId.River
         };
 
+        /// <summary>
+        ///     地域名置き換えテーブル (AoD1.10以降)
+        /// </summary>
+        private static readonly Dictionary<AreaId, string> ReplacingAreaNamesAod = new Dictionary<AreaId, string>
+        {
+            { AreaId.AtlanticIndianRidge, "AREA_ATLANTIC-INDIAN_RIDGE" },
+            { AreaId.CoastOfAngolaNamibia, "AREA_COAST_OF_ANGOLA-NAMIBIA" },
+            { AreaId.MidIndianRidge, "AREA_MID-INDIAN_RIDGE" },
+            { AreaId.MidPacificMountains, "AREA_MID-PACIFIC_MOUNTAINS" },
+            { AreaId.CanadianMaritimes, "AREA_CANADIAN_MARITIMES" },
+            { AreaId.CentralMidAtlanticRidge, "AREA_CENTRAL_MID-ATLANTIC_RIDGE" },
+            { AreaId.GrandBanks, "AREA_GRAND_BANKS" },
+            { AreaId.GuianaBasin, "AREA_GUIANA_BASIN" },
+            { AreaId.NorthernSeaOfLabrador, "AREA_NORTHERN_SEA_OF_LABRADOR" },
+            { AreaId.SouthCentralMidAtlanticRidge, "AREA_SOUTH-CENTRAL_MID-ATLANTIC_RIDGE" },
+            { AreaId.SouthernSeaOfLabrador, "AREA_SOUTHERN_SEA_OF_LABRADOR" },
+            { AreaId.TheSeamounts, "AREA_THE_SEAMOUNTS" },
+            { AreaId.UsMaritimes, "AREA_US_MARITIMES" }
+        };
+
+        /// <summary>
+        ///     地方名置き換えテーブル (AoD1.10以降)
+        /// </summary>
+        private static readonly Dictionary<RegionId, string> ReplacingRegionNamesAod = new Dictionary<RegionId, string>
+        {
+            { RegionId.CentralMidAtlanticRidge, "SEAREGION_CENTRAL_MID-ATLANTIC_RIDGE" }
+        };
+
         #endregion
 
         #region 初期化
@@ -4861,6 +4889,15 @@ namespace HoI2Editor.Models
         /// <returns>地方名</returns>
         public static string GetRegionName(RegionId region)
         {
+            // AoD1.10以降の場合、文字列定義が変更になっているかをチェックする
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Game.Version >= 110))
+            {
+                if (ReplacingRegionNamesAod.ContainsKey(region))
+                {
+                    return Config.GetText(ReplacingRegionNamesAod[region]);
+                }
+            }
+
             return Config.GetText(RegionNames[(int) region]);
         }
 
@@ -4871,6 +4908,15 @@ namespace HoI2Editor.Models
         /// <returns>地域名</returns>
         public static string GetAreaName(AreaId area)
         {
+            // AoD1.10以降の場合、文字列定義が変更になっているかをチェックする
+            if ((Game.Type == GameType.ArsenalOfDemocracy) && (Game.Version >= 110))
+            {
+                if (ReplacingAreaNamesAod.ContainsKey(area))
+                {
+                    return Config.GetText(ReplacingAreaNamesAod[area]);
+                }
+            }
+
             return Config.GetText(AreaNames[(int) area]);
         }
 
