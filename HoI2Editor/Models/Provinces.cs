@@ -3358,6 +3358,7 @@ namespace HoI2Editor.Models
             { AreaId.CoastOfAngolaNamibia, "AREA_COAST_OF_ANGOLA-NAMIBIA" },
             { AreaId.MidIndianRidge, "AREA_MID-INDIAN_RIDGE" },
             { AreaId.MidPacificMountains, "AREA_MID-PACIFIC_MOUNTAINS" },
+            { AreaId.PernambucoPlain, "AREA_PERNAMBUCO_PLAIN" },
             { AreaId.CanadianMaritimes, "AREA_CANADIAN_MARITIMES" },
             { AreaId.CentralMidAtlanticRidge, "AREA_CENTRAL_MID-ATLANTIC_RIDGE" },
             { AreaId.GrandBanks, "AREA_GRAND_BANKS" },
