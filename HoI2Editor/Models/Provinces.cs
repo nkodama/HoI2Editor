@@ -4672,7 +4672,7 @@ namespace HoI2Editor.Models
                 !string.IsNullOrEmpty(province.GetName())))
             {
                 SeaZones.Add(province.Id);
-                SeaZoneMap.Add(province.Id, province);
+                SeaZoneMap[province.Id] = province;
             }
         }
 
@@ -4689,7 +4689,7 @@ namespace HoI2Editor.Models
             }
 
             SeaZones.Add(province.Id);
-            SeaZoneMap.Add(province.Id, province);
+            SeaZoneMap[province.Id] = province;
         }
 
         /// <summary>
