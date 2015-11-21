@@ -1349,7 +1349,10 @@ namespace HoI2Editor.Models
 
                 ResetDirty(country);
 
-                FileNameMap.Add(country, lexer.FileName);
+                if (country != Country.None && !FileNameMap.ContainsKey(country))
+                {
+                    FileNameMap.Add(country, lexer.FileName);
+                }
             }
         }
 
