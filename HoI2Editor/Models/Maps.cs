@@ -360,7 +360,7 @@ namespace HoI2Editor.Models
                         continue;
                     }
                     Color[] colorScale = GetColorScale(colors);
-                    ColorScales.Add(name, colorScale);
+                    ColorScales[name] = colorScale;
                 }
             }
         }
