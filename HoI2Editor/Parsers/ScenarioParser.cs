@@ -294,7 +294,7 @@ namespace HoI2Editor.Parsers
                     // country
                     if (keyword.Equals("country"))
                     {
-                        CountrySettings country = ParseCountry(lexer);
+                        CountrySettings country = ParseCountry(lexer, scenario);
                         if (country == null)
                         {
                             Log.InvalidSection(LogCategory, "country", lexer);
@@ -3493,8 +3493,9 @@ namespace HoI2Editor.Parsers
         ///     国家設定を構文解析する
         /// </summary>
         /// <param name="lexer">字句解析器</param>
+        /// <param name="scenario">シナリオデータ</param>
         /// <returns>国家設定</returns>
-        private static CountrySettings ParseCountry(TextLexer lexer)
+        private static CountrySettings ParseCountry(TextLexer lexer, Scenario scenario)
         {
             // =
             Token token = lexer.GetToken();
@@ -3512,7 +3513,7 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            CountrySettings country = new CountrySettings();
+            CountrySettings settings = new CountrySettings();
             while (true)
             {
                 token = lexer.GetToken();
@@ -3555,8 +3556,14 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
+                    CountrySettings prev = scenario.Countries.FirstOrDefault(s => s.Country == tag.Value);
+                    if (prev != null)
+                    {
+                        settings = prev;
+                    }
+
                     // 国タグ
-                    country.Country = (Country) tag;
+                    settings.Country = (Country) tag;
                     continue;
                 }
 
@@ -3571,7 +3578,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 兄弟国
-                    country.RegularId = (Country) tag;
+                    settings.RegularId = (Country) tag;
                     continue;
                 }
 
@@ -3592,7 +3599,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 独立可能政体
-                    country.IntrinsicGovType = (GovernmentType) Array.IndexOf(Scenarios.GovernmentStrings, s);
+                    settings.IntrinsicGovType = (GovernmentType) Array.IndexOf(Scenarios.GovernmentStrings, s);
                     continue;
                 }
 
@@ -3607,7 +3614,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 宗主国
-                    country.Master = (Country) tag;
+                    settings.Master = (Country) tag;
                     continue;
                 }
 
@@ -3622,7 +3629,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 統帥権取得国
-                    country.Control = (Country) tag;
+                    settings.Control = (Country) tag;
                     continue;
                 }
 
@@ -3637,7 +3644,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 好戦性
-                    country.Belligerence = (int) n;
+                    settings.Belligerence = (int) n;
                     continue;
                 }
 
@@ -3652,7 +3659,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 追加輸送能力
-                    country.ExtraTc = (double) d;
+                    settings.ExtraTc = (double) d;
                     continue;
                 }
 
@@ -3667,7 +3674,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 国民不満度
-                    country.Dissent = (double) d;
+                    settings.Dissent = (double) d;
                     continue;
                 }
 
@@ -3682,7 +3689,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 首都のプロヴィンスID
-                    country.Capital = (int) (double) n;
+                    settings.Capital = (int) (double) n;
                     continue;
                 }
 
@@ -3697,7 +3704,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 平時IC補正
-                    country.PeacetimeIcModifier = (double) d;
+                    settings.PeacetimeIcModifier = (double) d;
                     continue;
                 }
 
@@ -3712,7 +3719,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 戦時IC補正
-                    country.WartimeIcModifier = (double) d;
+                    settings.WartimeIcModifier = (double) d;
                     continue;
                 }
 
@@ -3727,7 +3734,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 工業力補正
-                    country.IndustrialModifier = (double) d;
+                    settings.IndustrialModifier = (double) d;
                     continue;
                 }
 
@@ -3742,7 +3749,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 対地防御補正
-                    country.GroundDefEff = (double) d;
+                    settings.GroundDefEff = (double) d;
                     continue;
                 }
 
@@ -3757,7 +3764,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // AIファイル名
-                    country.AiFileName = s;
+                    settings.AiFileName = s;
                     continue;
                 }
 
@@ -3772,7 +3779,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 人的資源
-                    country.Manpower = (double) d;
+                    settings.Manpower = (double) d;
                     continue;
                 }
 
@@ -3787,7 +3794,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 人的資源補正値
-                    country.RelativeManpower = (double) d;
+                    settings.RelativeManpower = (double) d;
                     continue;
                 }
 
@@ -3802,7 +3809,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // エネルギー
-                    country.Energy = (double) d;
+                    settings.Energy = (double) d;
                     continue;
                 }
 
@@ -3817,7 +3824,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 金属
-                    country.Metal = (double) d;
+                    settings.Metal = (double) d;
                     continue;
                 }
 
@@ -3832,7 +3839,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 希少資源
-                    country.RareMaterials = (double) d;
+                    settings.RareMaterials = (double) d;
                     continue;
                 }
 
@@ -3847,7 +3854,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 石油
-                    country.Oil = (double) d;
+                    settings.Oil = (double) d;
                     continue;
                 }
 
@@ -3862,7 +3869,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 物資
-                    country.Supplies = (double) d;
+                    settings.Supplies = (double) d;
                     continue;
                 }
 
@@ -3877,7 +3884,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 資金
-                    country.Money = (double) d;
+                    settings.Money = (double) d;
                     continue;
                 }
 
@@ -3892,7 +3899,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 輸送船団
-                    country.Transports = (int) n;
+                    settings.Transports = (int) n;
                     continue;
                 }
 
@@ -3907,7 +3914,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 護衛艦
-                    country.Escorts = (int) n;
+                    settings.Escorts = (int) n;
                     continue;
                 }
 
@@ -3922,7 +3929,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 核兵器
-                    country.Nuke = (int) n;
+                    settings.Nuke = (int) n;
                     continue;
                 }
 
@@ -3937,7 +3944,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // マップ外資源
-                    country.Offmap = free;
+                    settings.Offmap = free;
                     continue;
                 }
 
@@ -3952,7 +3959,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 消費財IC比率
-                    country.ConsumerSlider = (double) d;
+                    settings.ConsumerSlider = (double) d;
                     continue;
                 }
 
@@ -3967,7 +3974,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 物資IC比率
-                    country.ConsumerSlider = (double) d;
+                    settings.ConsumerSlider = (double) d;
                     continue;
                 }
 
@@ -3982,7 +3989,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 生産IC比率
-                    country.ConsumerSlider = (double) d;
+                    settings.ConsumerSlider = (double) d;
                     continue;
                 }
 
@@ -3997,7 +4004,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 補充IC比率
-                    country.ConsumerSlider = (double) d;
+                    settings.ConsumerSlider = (double) d;
                     continue;
                 }
 
@@ -4012,7 +4019,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 外交設定
-                    country.Relations.AddRange(list);
+                    settings.Relations.AddRange(list);
                     continue;
                 }
 
@@ -4027,7 +4034,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 諜報設定
-                    country.Intelligence.Add(spy);
+                    settings.Intelligence.Add(spy);
                     continue;
                 }
 
@@ -4042,7 +4049,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 中核プロヴィンス
-                    country.NationalProvinces.AddRange(list);
+                    settings.NationalProvinces.AddRange(list);
                     continue;
                 }
 
@@ -4057,7 +4064,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 保有プロヴィンス
-                    country.OwnedProvinces.AddRange(list);
+                    settings.OwnedProvinces.AddRange(list);
                     continue;
                 }
 
@@ -4072,7 +4079,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 支配プロヴィンス
-                    country.ControlledProvinces.AddRange(list);
+                    settings.ControlledProvinces.AddRange(list);
                     continue;
                 }
 
@@ -4087,7 +4094,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 保有技術
-                    country.TechApps.AddRange(list);
+                    settings.TechApps.AddRange(list);
                     continue;
                 }
 
@@ -4102,7 +4109,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 青写真
-                    country.BluePrints.AddRange(list);
+                    settings.BluePrints.AddRange(list);
                     continue;
                 }
 
@@ -4117,7 +4124,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 発明イベント
-                    country.Inventions.AddRange(list);
+                    settings.Inventions.AddRange(list);
                     continue;
                 }
 
@@ -4132,7 +4139,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 政策スライダー
-                    country.Policy = policy;
+                    settings.Policy = policy;
                     continue;
                 }
 
@@ -4147,7 +4154,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 核兵器完成日時
-                    country.NukeDate = date;
+                    settings.NukeDate = date;
                     continue;
                 }
 
@@ -4162,7 +4169,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 国家元首
-                    country.HeadOfState = id;
+                    settings.HeadOfState = id;
                     continue;
                 }
 
@@ -4177,7 +4184,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 政府首班
-                    country.HeadOfGovernment = id;
+                    settings.HeadOfGovernment = id;
                     continue;
                 }
 
@@ -4192,7 +4199,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 外務大臣
-                    country.ForeignMinister = id;
+                    settings.ForeignMinister = id;
                     continue;
                 }
 
@@ -4207,7 +4214,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 軍需大臣
-                    country.ArmamentMinister = id;
+                    settings.ArmamentMinister = id;
                     continue;
                 }
 
@@ -4222,7 +4229,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 内務大臣
-                    country.MinisterOfSecurity = id;
+                    settings.MinisterOfSecurity = id;
                     continue;
                 }
 
@@ -4237,7 +4244,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 情報大臣
-                    country.MinisterOfIntelligence = id;
+                    settings.MinisterOfIntelligence = id;
                     continue;
                 }
 
@@ -4252,7 +4259,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 統合参謀総長
-                    country.ChiefOfStaff = id;
+                    settings.ChiefOfStaff = id;
                     continue;
                 }
 
@@ -4267,7 +4274,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 陸軍総司令官
-                    country.ChiefOfArmy = id;
+                    settings.ChiefOfArmy = id;
                     continue;
                 }
 
@@ -4282,7 +4289,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 海軍総司令官
-                    country.ChiefOfNavy = id;
+                    settings.ChiefOfNavy = id;
                     continue;
                 }
 
@@ -4297,7 +4304,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 空軍総司令官
-                    country.ChiefOfAir = id;
+                    settings.ChiefOfAir = id;
                     continue;
                 }
 
@@ -4312,7 +4319,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 国民の意識
-                    country.NationalIdentity = s;
+                    settings.NationalIdentity = s;
                     continue;
                 }
 
@@ -4327,7 +4334,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 社会政策
-                    country.SocialPolicy = s;
+                    settings.SocialPolicy = s;
                     continue;
                 }
 
@@ -4342,7 +4349,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 国家の文化
-                    country.NationalCulture = s;
+                    settings.NationalCulture = s;
                     continue;
                 }
 
@@ -4357,7 +4364,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 休止指揮官
-                    country.DormantLeaders.AddRange(list);
+                    settings.DormantLeaders.AddRange(list);
                     continue;
                 }
 
@@ -4372,7 +4379,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 休止閣僚
-                    country.DormantMinisters.AddRange(list);
+                    settings.DormantMinisters.AddRange(list);
                     continue;
                 }
 
@@ -4387,7 +4394,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 休止研究機関
-                    country.DormantTeams.AddRange(list);
+                    settings.DormantTeams.AddRange(list);
                     continue;
                 }
 
@@ -4402,7 +4409,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 抽出指揮官
-                    country.StealLeaders.Add((int) n);
+                    settings.StealLeaders.Add((int) n);
                     continue;
                 }
 
@@ -4417,7 +4424,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 輸送船団
-                    country.Convoys.Add(convoy);
+                    settings.Convoys.Add(convoy);
                     continue;
                 }
 
@@ -4432,7 +4439,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 陸軍ユニット
-                    country.LandUnits.Add(unit);
+                    settings.LandUnits.Add(unit);
 
                     // 兵科を設定
                     unit.Branch = Branch.Army;
@@ -4454,7 +4461,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 海軍ユニット
-                    country.NavalUnits.Add(unit);
+                    settings.NavalUnits.Add(unit);
 
                     // 兵科を設定
                     unit.Branch = Branch.Navy;
@@ -4476,7 +4483,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 空軍ユニット
-                    country.AirUnits.Add(unit);
+                    settings.AirUnits.Add(unit);
 
                     // 兵科を設定
                     unit.Branch = Branch.Airforce;
@@ -4498,7 +4505,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 生産中師団
-                    country.DivisionDevelopments.Add(division);
+                    settings.DivisionDevelopments.Add(division);
                     continue;
                 }
 
@@ -4513,7 +4520,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 生産中輸送船団
-                    country.ConvoyDevelopments.Add(convoy);
+                    settings.ConvoyDevelopments.Add(convoy);
                     continue;
                 }
 
@@ -4528,7 +4535,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // 生産中建物
-                    country.BuildingDevelopments.Add(building);
+                    settings.BuildingDevelopments.Add(building);
                     continue;
                 }
 
@@ -4544,7 +4551,7 @@ namespace HoI2Editor.Parsers
 
                     // 陸軍師団
                     division.Branch = Branch.Army;
-                    country.LandDivisions.Add(division);
+                    settings.LandDivisions.Add(division);
                     continue;
                 }
 
@@ -4560,7 +4567,7 @@ namespace HoI2Editor.Parsers
 
                     // 海軍師団
                     division.Branch = Branch.Navy;
-                    country.NavalDivisions.Add(division);
+                    settings.NavalDivisions.Add(division);
                     continue;
                 }
 
@@ -4576,7 +4583,7 @@ namespace HoI2Editor.Parsers
 
                     // 空軍師団
                     division.Branch = Branch.Airforce;
-                    country.AirDivisions.Add(division);
+                    settings.AirDivisions.Add(division);
                     continue;
                 }
 
@@ -4593,7 +4600,7 @@ namespace HoI2Editor.Parsers
                         }
 
                         // 国名
-                        country.Name = s;
+                        settings.Name = s;
                         continue;
                     }
 
@@ -4608,14 +4615,14 @@ namespace HoI2Editor.Parsers
                         }
 
                         // 国旗の接尾辞
-                        country.FlagExt = s;
+                        settings.FlagExt = s;
                         continue;
                     }
 
                     // ai_settings
                     if (keyword.Equals("ai_settings"))
                     {
-                        AiSettings settings = ParseAiSettings(lexer);
+                        AiSettings ai = ParseAiSettings(lexer);
                         if (settings == null)
                         {
                             Log.InvalidSection(LogCategory, "ai_settings", lexer);
@@ -4623,7 +4630,7 @@ namespace HoI2Editor.Parsers
                         }
 
                         // AI設定
-                        country.AiSettings = settings;
+                        settings.AiSettings = ai;
                         continue;
                     }
 
@@ -4638,7 +4645,7 @@ namespace HoI2Editor.Parsers
                         }
 
                         // 領有権主張プロヴィンス
-                        country.ClaimedProvinces.AddRange(list);
+                        settings.ClaimedProvinces.AddRange(list);
                         continue;
                     }
                 }
@@ -4648,7 +4655,7 @@ namespace HoI2Editor.Parsers
                 lexer.SkipLine();
             }
 
-            return country;
+            return settings;
         }
 
         /// <summary>

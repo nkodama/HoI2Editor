@@ -672,14 +672,20 @@ namespace HoI2Editor.Models
                 CountryTable[country] = settings;
 
                 // 国タグと国家関係の対応付け
-                RelationTable.Add(country, new Dictionary<Country, Relation>());
+                if (!RelationTable.ContainsKey(country))
+                {
+                    RelationTable.Add(country, new Dictionary<Country, Relation>());
+                }
                 foreach (Relation relation in settings.Relations)
                 {
                     RelationTable[country][relation.Country] = relation;
                 }
 
                 // 国タグと諜報設定の対応付け
-                SpyTable.Add(country, new Dictionary<Country, SpySettings>());
+                if (!SpyTable.ContainsKey(country))
+                {
+                    SpyTable.Add(country, new Dictionary<Country, SpySettings>());
+                }
                 foreach (SpySettings spy in settings.Intelligence)
                 {
                     SpyTable[country][spy.Country] = spy;
