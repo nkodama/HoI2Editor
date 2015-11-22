@@ -652,7 +652,7 @@ namespace HoI2Editor.Models
             MajorTable.Clear();
             foreach (MajorCountrySettings major in Data.Header.MajorCountries)
             {
-                MajorTable.Add(major.Country, major);
+                MajorTable[major.Country] = major;
             }
         }
 
@@ -669,7 +669,7 @@ namespace HoI2Editor.Models
                 Country country = settings.Country;
 
                 // 国タグと国家設定の対応付け
-                CountryTable.Add(country, settings);
+                CountryTable[country] = settings;
 
                 // 国タグと国家関係の対応付け
                 RelationTable.Add(country, new Dictionary<Country, Relation>());

@@ -610,6 +610,11 @@ namespace HoI2Editor.Parsers
 
                         // 主要国設定
                         major.Country = tag;
+                        MajorCountrySettings prev = header.MajorCountries.FirstOrDefault(m => m.Country == tag);
+                        if (prev != null)
+                        {
+                            header.MajorCountries.Remove(prev);
+                        }
                         header.MajorCountries.Add(major);
                         continue;
                     }
