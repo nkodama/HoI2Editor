@@ -378,7 +378,7 @@ namespace HoI2Editor.Parsers
 
                 // 保存日時
                 GameDate date = startDate.Minus((int) n);
-                dates.Add(id, date);
+                dates[id] = date;
             }
 
             return dates;
@@ -4804,7 +4804,7 @@ namespace HoI2Editor.Parsers
                     int n = (int) (double) token.Value;
                     if (n == 0 || n == 1)
                     {
-                        flags.Add(keyword, ObjectHelper.ToString(token.Value));
+                        flags[keyword] = ObjectHelper.ToString(token.Value);
                         continue;
                     }
 
@@ -4824,7 +4824,7 @@ namespace HoI2Editor.Parsers
 
                     if (s.Equals("yes") || s.Equals("no"))
                     {
-                        flags.Add(keyword, ObjectHelper.ToString(token.Value));
+                        flags[keyword] = ObjectHelper.ToString(token.Value);
                         continue;
                     }
 
