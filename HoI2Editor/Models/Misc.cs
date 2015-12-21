@@ -4595,7 +4595,7 @@ namespace HoI2Editor.Models
         /// <returns>セクション名</returns>
         public static string GetSectionName(MiscSectionId section)
         {
-            return HoI2Editor.GetResourceString("MiscSection" + SectionNames[(int) section]);
+            return HoI2EditorController.GetResourceString("MiscSection" + SectionNames[(int) section]);
         }
 
         /// <summary>
@@ -4605,7 +4605,7 @@ namespace HoI2Editor.Models
         /// <returns>項目名</returns>
         public static string GetItemName(MiscItemId id)
         {
-            return HoI2Editor.GetResourceString("MiscLabel" + ItemNames[(int) id]);
+            return HoI2EditorController.GetResourceString("MiscLabel" + ItemNames[(int) id]);
         }
 
         /// <summary>
@@ -4615,7 +4615,7 @@ namespace HoI2Editor.Models
         /// <returns>ツールチップ文字列</returns>
         public static string GetItemToolTip(MiscItemId id)
         {
-            return HoI2Editor.GetResourceString("MiscToolTip" + ItemNames[(int) id]);
+            return HoI2EditorController.GetResourceString("MiscToolTip" + ItemNames[(int) id]);
         }
 
         /// <summary>
@@ -4627,7 +4627,7 @@ namespace HoI2Editor.Models
         public static string GetItemChoice(MiscItemId id, int index)
         {
             string s = IntHelper.ToString(index);
-            return s + ": " + HoI2Editor.GetResourceString("MiscEnum" + ItemNames[(int) id] + s);
+            return s + ": " + HoI2EditorController.GetResourceString("MiscEnum" + ItemNames[(int) id] + s);
         }
 
         /// <summary>

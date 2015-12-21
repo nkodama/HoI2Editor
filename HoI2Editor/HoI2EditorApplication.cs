@@ -22,23 +22,23 @@ namespace HoI2Editor
                 Application.ThreadException += OnThreadException;
                 Thread.GetDomain().UnhandledException += OnUnhandledException;
 
-                HoI2Editor.InitVersion();
-                HoI2Editor.LoadSettings();
+                HoI2EditorController.InitVersion();
+                HoI2EditorController.LoadSettings();
 
                 Log.Error("");
                 Log.Error("[{0}]", DateTime.Now);
-                Log.Error(HoI2Editor.Version);
+                Log.Error(HoI2EditorController.Version);
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                HoI2Editor.LaunchMainForm();
+                HoI2EditorController.LaunchMainForm();
             }
             finally
             {
                 Log.Terminate();
-                HoI2Editor.SaveSettings();
-                HoI2Editor.UnlockMutex();
+                HoI2EditorController.SaveSettings();
+                HoI2EditorController.UnlockMutex();
             }
         }
 
@@ -77,7 +77,7 @@ namespace HoI2Editor
             Log.Error(e.StackTrace);
 
             MessageBox.Show($"{e.Message}\n{e.StackTrace}",
-                $"{HoI2Editor.Name} - {Resources.CriticalError}", MessageBoxButtons.OK,
+                $"{HoI2EditorController.Name} - {Resources.CriticalError}", MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
 
             Application.Exit();

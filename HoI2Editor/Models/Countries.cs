@@ -1475,5 +1475,5 @@ namespace HoI2Editor.Models
         UF8,
         UF9
         // ReSharper restore InconsistentNaming
-    };
+    }
 }

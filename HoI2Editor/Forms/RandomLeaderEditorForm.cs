@@ -97,8 +97,8 @@ namespace HoI2Editor.Forms
             countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
 
             // ウィンドウの位置
-            Location = HoI2Editor.Settings.RandomLeaderEditor.Location;
-            Size = HoI2Editor.Settings.RandomLeaderEditor.Size;
+            Location = HoI2EditorController.Settings.RandomLeaderEditor.Location;
+            Size = HoI2EditorController.Settings.RandomLeaderEditor.Size;
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace HoI2Editor.Forms
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
+            if (!HoI2EditorController.IsDirty())
             {
                 return;
             }
@@ -152,10 +152,10 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.Save();
+                    HoI2EditorController.Save();
                     break;
                 case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
+                    HoI2EditorController.SaveCanceled = true;
                     break;
             }
         }
@@ -167,7 +167,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2Editor.OnRandomLeaderEditorFormClosed();
+            HoI2EditorController.OnRandomLeaderEditorFormClosed();
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.RandomLeaderEditor.Location = Location;
+                HoI2EditorController.Settings.RandomLeaderEditor.Location = Location;
             }
         }
 
@@ -192,7 +192,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.RandomLeaderEditor.Size = Size;
+                HoI2EditorController.Settings.RandomLeaderEditor.Size = Size;
             }
         }
 
@@ -204,7 +204,7 @@ namespace HoI2Editor.Forms
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
             // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
+            if (HoI2EditorController.IsDirty())
             {
                 DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
@@ -213,12 +213,12 @@ namespace HoI2Editor.Forms
                     case DialogResult.Cancel:
                         return;
                     case DialogResult.Yes:
-                        HoI2Editor.Save();
+                        HoI2EditorController.Save();
                         break;
                 }
             }
 
-            HoI2Editor.Reload();
+            HoI2EditorController.Reload();
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.Save();
+            HoI2EditorController.Save();
         }
 
         /// <summary>
@@ -262,7 +262,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中の国家を反映する
-            int index = HoI2Editor.Settings.RandomLeaderEditor.Country;
+            int index = HoI2EditorController.Settings.RandomLeaderEditor.Country;
             if ((index < 0) || (index >= countryListBox.Items.Count))
             {
                 index = 0;
@@ -321,7 +321,7 @@ namespace HoI2Editor.Forms
             UpdateNameList();
 
             // 選択中の国家を保存する
-            HoI2Editor.Settings.RandomLeaderEditor.Country = countryListBox.SelectedIndex;
+            HoI2EditorController.Settings.RandomLeaderEditor.Country = countryListBox.SelectedIndex;
         }
 
         #endregion
@@ -457,8 +457,8 @@ namespace HoI2Editor.Forms
             _toHistory.Add(to);
             _withHistory.Add(with);
 
-            HoI2Editor.Settings.RandomLeaderEditor.ToHistory = _toHistory.Get().ToList();
-            HoI2Editor.Settings.RandomLeaderEditor.WithHistory = _withHistory.Get().ToList();
+            HoI2EditorController.Settings.RandomLeaderEditor.ToHistory = _toHistory.Get().ToList();
+            HoI2EditorController.Settings.RandomLeaderEditor.WithHistory = _withHistory.Get().ToList();
 
             // 履歴コンボボックスを更新する
             UpdateHistory();
@@ -469,8 +469,8 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitHistory()
         {
-            _toHistory.Set(HoI2Editor.Settings.RandomLeaderEditor.ToHistory.ToArray());
-            _withHistory.Set(HoI2Editor.Settings.RandomLeaderEditor.WithHistory.ToArray());
+            _toHistory.Set(HoI2EditorController.Settings.RandomLeaderEditor.ToHistory.ToArray());
+            _withHistory.Set(HoI2EditorController.Settings.RandomLeaderEditor.WithHistory.ToArray());
 
             UpdateHistory();
 
@@ -508,8 +508,8 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitOption()
         {
-            allCountryCheckBox.Checked = HoI2Editor.Settings.RandomLeaderEditor.ApplyAllCountires;
-            regexCheckBox.Checked = HoI2Editor.Settings.RandomLeaderEditor.RegularExpression;
+            allCountryCheckBox.Checked = HoI2EditorController.Settings.RandomLeaderEditor.ApplyAllCountires;
+            regexCheckBox.Checked = HoI2EditorController.Settings.RandomLeaderEditor.RegularExpression;
         }
 
         /// <summary>
@@ -519,7 +519,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAllCountryCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            HoI2Editor.Settings.RandomLeaderEditor.ApplyAllCountires = allCountryCheckBox.Checked;
+            HoI2EditorController.Settings.RandomLeaderEditor.ApplyAllCountires = allCountryCheckBox.Checked;
         }
 
         /// <summary>
@@ -529,7 +529,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnRegexCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            HoI2Editor.Settings.RandomLeaderEditor.RegularExpression = regexCheckBox.Checked;
+            HoI2EditorController.Settings.RandomLeaderEditor.RegularExpression = regexCheckBox.Checked;
         }
 
         #endregion

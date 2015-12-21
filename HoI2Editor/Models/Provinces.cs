@@ -3572,7 +3572,7 @@ namespace HoI2Editor.Models
         private static void OnWorkerRunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             // 遅延読み込み完了時の処理
-            HoI2Editor.OnLoadingCompleted();
+            HoI2EditorController.OnLoadingCompleted();
         }
 
         /// <summary>

@@ -173,13 +173,13 @@ namespace HoI2Editor.Forms
         private void InitForm()
         {
             // 研究機関リストビュー
-            countryColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[0];
-            idColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[1];
-            nameColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[2];
-            skillColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[3];
-            startYearColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[4];
-            endYearColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[5];
-            specialityColumnHeader.Width = HoI2Editor.Settings.TeamEditor.ListColumnWidth[6];
+            countryColumnHeader.Width = HoI2EditorController.Settings.TeamEditor.ListColumnWidth[0];
+            idColumnHeader.Width = HoI2EditorController.Settings.TeamEditor.ListColumnWidth[1];
+            nameColumnHeader.Width = HoI2EditorController.Settings.TeamEditor.ListColumnWidth[2];
+            skillColumnHeader.Width = HoI2EditorController.Settings.TeamEditor.ListColumnWidth[3];
+            startYearColumnHeader.Width = HoI2EditorController.Settings.TeamEditor.ListColumnWidth[4];
+            endYearColumnHeader.Width = HoI2EditorController.Settings.TeamEditor.ListColumnWidth[5];
+            specialityColumnHeader.Width = HoI2EditorController.Settings.TeamEditor.ListColumnWidth[6];
 
             // 国家リストボックス
             countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
@@ -195,8 +195,8 @@ namespace HoI2Editor.Forms
             specialityComboBox7.ItemHeight = DeviceCaps.GetScaledHeight(specialityComboBox7.ItemHeight);
 
             // ウィンドウの位置
-            Location = HoI2Editor.Settings.TeamEditor.Location;
-            Size = HoI2Editor.Settings.TeamEditor.Size;
+            Location = HoI2EditorController.Settings.TeamEditor.Location;
+            Size = HoI2EditorController.Settings.TeamEditor.Size;
         }
 
         /// <summary>
@@ -242,7 +242,7 @@ namespace HoI2Editor.Forms
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
+            if (!HoI2EditorController.IsDirty())
             {
                 return;
             }
@@ -256,10 +256,10 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.Save();
+                    HoI2EditorController.Save();
                     break;
                 case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
+                    HoI2EditorController.SaveCanceled = true;
                     break;
             }
         }
@@ -271,7 +271,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2Editor.OnTeamEditorFormClosed();
+            HoI2EditorController.OnTeamEditorFormClosed();
         }
 
         /// <summary>
@@ -283,7 +283,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.TeamEditor.Location = Location;
+                HoI2EditorController.Settings.TeamEditor.Location = Location;
             }
         }
 
@@ -296,7 +296,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.TeamEditor.Size = Size;
+                HoI2EditorController.Settings.TeamEditor.Size = Size;
             }
         }
 
@@ -327,7 +327,7 @@ namespace HoI2Editor.Forms
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
             // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
+            if (HoI2EditorController.IsDirty())
             {
                 DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
@@ -336,12 +336,12 @@ namespace HoI2Editor.Forms
                     case DialogResult.Cancel:
                         return;
                     case DialogResult.Yes:
-                        HoI2Editor.Save();
+                        HoI2EditorController.Save();
                         break;
                 }
             }
 
-            HoI2Editor.Reload();
+            HoI2EditorController.Reload();
         }
 
         /// <summary>
@@ -351,7 +351,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.Save();
+            HoI2EditorController.Save();
         }
 
         /// <summary>
@@ -804,7 +804,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < TeamListColumnCount))
             {
-                HoI2Editor.Settings.TeamEditor.ListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.TeamEditor.ListColumnWidth[e.ColumnIndex] =
                     teamListView.Columns[e.ColumnIndex].Width;
             }
         }
@@ -865,7 +865,7 @@ namespace HoI2Editor.Forms
             Teams.SetDirty(team.Country);
 
             // 研究機関リストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TeamList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamList, this);
 
             // ファイル一覧に存在しなければ追加する
             if (!Teams.FileNameMap.ContainsKey(team.Country))
@@ -916,7 +916,7 @@ namespace HoI2Editor.Forms
             Teams.SetDirty(team.Country);
 
             // 研究機関リストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TeamList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamList, this);
         }
 
         /// <summary>
@@ -947,7 +947,7 @@ namespace HoI2Editor.Forms
             Teams.SetDirty(selected.Country);
 
             // 研究機関リストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TeamList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamList, this);
         }
 
         /// <summary>
@@ -1252,7 +1252,7 @@ namespace HoI2Editor.Forms
             // 選択イベントを処理すると時間がかかるので、一時的に無効化する
             countryListBox.SelectedIndexChanged -= OnCountryListBoxSelectedIndexChanged;
             // 選択中の国家を反映する
-            foreach (Country country in HoI2Editor.Settings.TeamEditor.Countries)
+            foreach (Country country in HoI2EditorController.Settings.TeamEditor.Countries)
             {
                 int index = Array.IndexOf(Countries.Tags, country);
                 if (index >= 0)
@@ -1326,7 +1326,7 @@ namespace HoI2Editor.Forms
             newButton.Enabled = (count > 0);
 
             // 選択中の国家を保存する
-            HoI2Editor.Settings.TeamEditor.Countries =
+            HoI2EditorController.Settings.TeamEditor.Countries =
                 countryListBox.SelectedIndices.Cast<int>().Select(index => Countries.Tags[index]).ToList();
 
             // 研究機関リストを更新する
@@ -1721,7 +1721,7 @@ namespace HoI2Editor.Forms
             countryListBox.Refresh();
 
             // 研究機関の所属国家の更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TeamCountry, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamCountry, this);
         }
 
         /// <summary>
@@ -1761,7 +1761,7 @@ namespace HoI2Editor.Forms
             idNumericUpDown.ForeColor = Color.Red;
 
             // 研究機関IDの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TeamId, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamId, this);
         }
 
         /// <summary>
@@ -1811,7 +1811,7 @@ namespace HoI2Editor.Forms
             nameTextBox.ForeColor = Color.Red;
 
             // 研究機関名の更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TeamName, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamName, this);
         }
 
         /// <summary>
@@ -1851,7 +1851,7 @@ namespace HoI2Editor.Forms
             skillNumericUpDown.ForeColor = Color.Red;
 
             // 研究機関のスキルの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TeamSkill, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamSkill, this);
         }
 
         /// <summary>
@@ -1972,7 +1972,7 @@ namespace HoI2Editor.Forms
             UpdateEditableItemsColor(team);
 
             // 研究機関の特性の更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TeamSpeciality, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamSpeciality, this);
         }
 
         /// <summary>

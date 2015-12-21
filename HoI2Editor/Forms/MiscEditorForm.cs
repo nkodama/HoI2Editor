@@ -247,7 +247,7 @@ namespace HoI2Editor.Forms
         private void InitForm()
         {
             // ウィンドウの位置
-            Location = HoI2Editor.Settings.MiscEditor.Location;
+            Location = HoI2EditorController.Settings.MiscEditor.Location;
             //Size = HoI2Editor.Settings.MiscEditor.Size;
 
             // 画面解像度が十分に広い場合はタブページが広く表示できるようにする
@@ -277,7 +277,7 @@ namespace HoI2Editor.Forms
             // 選択中のタブページを初期化する
             if (miscTabControl.TabCount > 0)
             {
-                int index = HoI2Editor.Settings.MiscEditor.SelectedTab;
+                int index = HoI2EditorController.Settings.MiscEditor.SelectedTab;
                 if ((index < 0) || (index >= miscTabControl.TabCount))
                 {
                     index = 0;
@@ -295,7 +295,7 @@ namespace HoI2Editor.Forms
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
+            if (!HoI2EditorController.IsDirty())
             {
                 return;
             }
@@ -309,10 +309,10 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.Save();
+                    HoI2EditorController.Save();
                     break;
                 case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
+                    HoI2EditorController.SaveCanceled = true;
                     break;
             }
         }
@@ -324,7 +324,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2Editor.OnMiscEditorFormClosed();
+            HoI2EditorController.OnMiscEditorFormClosed();
         }
 
         /// <summary>
@@ -336,7 +336,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.MiscEditor.Location = Location;
+                HoI2EditorController.Settings.MiscEditor.Location = Location;
             }
         }
 
@@ -349,7 +349,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.MiscEditor.Size = Size;
+                HoI2EditorController.Settings.MiscEditor.Size = Size;
             }
         }
 
@@ -361,7 +361,7 @@ namespace HoI2Editor.Forms
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
             // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
+            if (HoI2EditorController.IsDirty())
             {
                 DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
@@ -370,12 +370,12 @@ namespace HoI2Editor.Forms
                     case DialogResult.Cancel:
                         return;
                     case DialogResult.Yes:
-                        HoI2Editor.Save();
+                        HoI2EditorController.Save();
                         break;
                 }
             }
 
-            HoI2Editor.Reload();
+            HoI2EditorController.Reload();
         }
 
         /// <summary>
@@ -385,7 +385,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.Save();
+            HoI2EditorController.Save();
         }
 
         /// <summary>
@@ -723,7 +723,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のタブページを保存する
-            HoI2Editor.Settings.MiscEditor.SelectedTab = miscTabControl.SelectedIndex;
+            HoI2EditorController.Settings.MiscEditor.SelectedTab = miscTabControl.SelectedIndex;
         }
 
         #endregion
@@ -1056,7 +1056,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.Transport].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
                     break;
 
                 case MiscItemId.SsMaxAttach: // 潜水艦最大付属装備数
@@ -1064,7 +1064,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.Submarine].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
                     break;
 
                 case MiscItemId.SsnMaxAttach: // 原子力潜水艦最大付属装備数
@@ -1072,7 +1072,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.NuclearSubmarine].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
                     break;
 
                 case MiscItemId.DdMaxAttach: // 駆逐艦最大付属装備数
@@ -1080,7 +1080,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.Destroyer].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
                     break;
 
                 case MiscItemId.ClMaxAttach: // 軽巡洋艦最大付属装備数
@@ -1088,7 +1088,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.LightCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
                     break;
 
                 case MiscItemId.CaMaxAttach: // 重巡洋艦最大付属装備数
@@ -1096,7 +1096,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.HeavyCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
                     break;
 
                 case MiscItemId.BcMaxAttach: // 巡洋戦艦最大付属装備数
@@ -1104,7 +1104,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.BattleCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
                     break;
 
                 case MiscItemId.BbMaxAttach: // 戦艦最大付属装備数
@@ -1112,7 +1112,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.BattleShip].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
                     break;
 
                 case MiscItemId.CvlMaxAttach: // 軽空母最大付属装備数
@@ -1120,7 +1120,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.EscortCarrier].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
                     break;
 
                 case MiscItemId.CvMaxAttach: // 空母最大付属装備数
@@ -1128,7 +1128,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.Carrier].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
                     break;
             }
         }

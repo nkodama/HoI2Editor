@@ -118,8 +118,8 @@ namespace HoI2Editor.Forms
             typeListBox.ItemHeight = DeviceCaps.GetScaledHeight(typeListBox.ItemHeight);
 
             // ウィンドウの位置
-            Location = HoI2Editor.Settings.UnitNameEditor.Location;
-            Size = HoI2Editor.Settings.UnitNameEditor.Size;
+            Location = HoI2EditorController.Settings.UnitNameEditor.Location;
+            Size = HoI2EditorController.Settings.UnitNameEditor.Size;
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace HoI2Editor.Forms
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
+            if (!HoI2EditorController.IsDirty())
             {
                 return;
             }
@@ -179,10 +179,10 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.Save();
+                    HoI2EditorController.Save();
                     break;
                 case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
+                    HoI2EditorController.SaveCanceled = true;
                     break;
             }
         }
@@ -194,7 +194,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2Editor.OnUnitNameEditorFormClosed();
+            HoI2EditorController.OnUnitNameEditorFormClosed();
         }
 
         /// <summary>
@@ -206,7 +206,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.UnitNameEditor.Location = Location;
+                HoI2EditorController.Settings.UnitNameEditor.Location = Location;
             }
         }
 
@@ -219,7 +219,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.UnitNameEditor.Size = Size;
+                HoI2EditorController.Settings.UnitNameEditor.Size = Size;
             }
         }
 
@@ -231,7 +231,7 @@ namespace HoI2Editor.Forms
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
             // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
+            if (HoI2EditorController.IsDirty())
             {
                 DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
@@ -240,12 +240,12 @@ namespace HoI2Editor.Forms
                     case DialogResult.Cancel:
                         return;
                     case DialogResult.Yes:
-                        HoI2Editor.Save();
+                        HoI2EditorController.Save();
                         break;
                 }
             }
 
-            HoI2Editor.Reload();
+            HoI2EditorController.Reload();
         }
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.Save();
+            HoI2EditorController.Save();
         }
 
         /// <summary>
@@ -289,7 +289,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中の国家を反映する
-            int index = HoI2Editor.Settings.UnitNameEditor.Country;
+            int index = HoI2EditorController.Settings.UnitNameEditor.Country;
             if ((index < 0) || (index >= countryListBox.Items.Count))
             {
                 index = 0;
@@ -349,7 +349,7 @@ namespace HoI2Editor.Forms
             typeListBox.Refresh();
 
             // 選択中の国家を保存する
-            HoI2Editor.Settings.UnitNameEditor.Country = countryListBox.SelectedIndex;
+            HoI2EditorController.Settings.UnitNameEditor.Country = countryListBox.SelectedIndex;
         }
 
         #endregion
@@ -369,7 +369,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のユニット種類を反映する
-            int index = HoI2Editor.Settings.UnitNameEditor.UnitType;
+            int index = HoI2EditorController.Settings.UnitNameEditor.UnitType;
             if ((index < 0) || (index >= typeListBox.Items.Count))
             {
                 index = 0;
@@ -446,7 +446,7 @@ namespace HoI2Editor.Forms
             UpdateNameList();
 
             // 選択中のユニット種類を保存する
-            HoI2Editor.Settings.UnitNameEditor.UnitType = typeListBox.SelectedIndex;
+            HoI2EditorController.Settings.UnitNameEditor.UnitType = typeListBox.SelectedIndex;
         }
 
         #endregion
@@ -625,8 +625,8 @@ namespace HoI2Editor.Forms
             _toHistory.Add(to);
             _withHistory.Add(with);
 
-            HoI2Editor.Settings.UnitNameEditor.ToHistory = _toHistory.Get().ToList();
-            HoI2Editor.Settings.UnitNameEditor.WithHistory = _withHistory.Get().ToList();
+            HoI2EditorController.Settings.UnitNameEditor.ToHistory = _toHistory.Get().ToList();
+            HoI2EditorController.Settings.UnitNameEditor.WithHistory = _withHistory.Get().ToList();
 
             // 履歴コンボボックスを更新する
             UpdateReplaceHistory();
@@ -675,8 +675,8 @@ namespace HoI2Editor.Forms
             _prefixHistory.Add(prefix);
             _suffixHistory.Add(suffix);
 
-            HoI2Editor.Settings.UnitNameEditor.PrefixHistory = _prefixHistory.Get().ToList();
-            HoI2Editor.Settings.UnitNameEditor.SuffixHistory = _suffixHistory.Get().ToList();
+            HoI2EditorController.Settings.UnitNameEditor.PrefixHistory = _prefixHistory.Get().ToList();
+            HoI2EditorController.Settings.UnitNameEditor.SuffixHistory = _suffixHistory.Get().ToList();
 
             // 履歴コンボボックスを更新する
             UpdateAddHistory();
@@ -747,10 +747,10 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitHistory()
         {
-            _toHistory.Set(HoI2Editor.Settings.UnitNameEditor.ToHistory.ToArray());
-            _withHistory.Set(HoI2Editor.Settings.UnitNameEditor.WithHistory.ToArray());
-            _prefixHistory.Set(HoI2Editor.Settings.UnitNameEditor.PrefixHistory.ToArray());
-            _suffixHistory.Set(HoI2Editor.Settings.UnitNameEditor.SuffixHistory.ToArray());
+            _toHistory.Set(HoI2EditorController.Settings.UnitNameEditor.ToHistory.ToArray());
+            _withHistory.Set(HoI2EditorController.Settings.UnitNameEditor.WithHistory.ToArray());
+            _prefixHistory.Set(HoI2EditorController.Settings.UnitNameEditor.PrefixHistory.ToArray());
+            _suffixHistory.Set(HoI2EditorController.Settings.UnitNameEditor.SuffixHistory.ToArray());
 
             UpdateReplaceHistory();
             UpdateAddHistory();
@@ -817,9 +817,9 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void InitOption()
         {
-            allCountryCheckBox.Checked = HoI2Editor.Settings.UnitNameEditor.ApplyAllCountires;
-            allUnitTypeCheckBox.Checked = HoI2Editor.Settings.UnitNameEditor.ApplyAllUnitTypes;
-            regexCheckBox.Checked = HoI2Editor.Settings.UnitNameEditor.RegularExpression;
+            allCountryCheckBox.Checked = HoI2EditorController.Settings.UnitNameEditor.ApplyAllCountires;
+            allUnitTypeCheckBox.Checked = HoI2EditorController.Settings.UnitNameEditor.ApplyAllUnitTypes;
+            regexCheckBox.Checked = HoI2EditorController.Settings.UnitNameEditor.RegularExpression;
         }
 
         /// <summary>
@@ -829,7 +829,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAllCountryCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            HoI2Editor.Settings.UnitNameEditor.ApplyAllCountires = allCountryCheckBox.Checked;
+            HoI2EditorController.Settings.UnitNameEditor.ApplyAllCountires = allCountryCheckBox.Checked;
         }
 
         /// <summary>
@@ -839,7 +839,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnAllUnitTypeCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            HoI2Editor.Settings.UnitNameEditor.ApplyAllUnitTypes = allUnitTypeCheckBox.Checked;
+            HoI2EditorController.Settings.UnitNameEditor.ApplyAllUnitTypes = allUnitTypeCheckBox.Checked;
         }
 
         /// <summary>
@@ -849,7 +849,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnRegexCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            HoI2Editor.Settings.UnitNameEditor.RegularExpression = regexCheckBox.Checked;
+            HoI2EditorController.Settings.UnitNameEditor.RegularExpression = regexCheckBox.Checked;
         }
 
         #endregion

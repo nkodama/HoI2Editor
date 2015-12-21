@@ -134,22 +134,22 @@ namespace HoI2Editor.Forms
         private void InitForm()
         {
             // プロヴィンスリストビュー
-            nameColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[0];
-            idColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[1];
-            seaColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[2];
-            portColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[3];
-            beachColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[4];
-            infraColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[5];
-            icColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[6];
-            manpowerColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[7];
-            energyColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[8];
-            metalColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[9];
-            rareMaterialsColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[10];
-            oilColumnHeader.Width = HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[11];
+            nameColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[0];
+            idColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[1];
+            seaColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[2];
+            portColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[3];
+            beachColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[4];
+            infraColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[5];
+            icColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[6];
+            manpowerColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[7];
+            energyColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[8];
+            metalColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[9];
+            rareMaterialsColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[10];
+            oilColumnHeader.Width = HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[11];
 
             // ウィンドウの位置
-            Location = HoI2Editor.Settings.ProvinceEditor.Location;
-            Size = HoI2Editor.Settings.ProvinceEditor.Size;
+            Location = HoI2EditorController.Settings.ProvinceEditor.Location;
+            Size = HoI2EditorController.Settings.ProvinceEditor.Size;
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace HoI2Editor.Forms
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
+            if (!HoI2EditorController.IsDirty())
             {
                 return;
             }
@@ -200,10 +200,10 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.Save();
+                    HoI2EditorController.Save();
                     break;
                 case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
+                    HoI2EditorController.SaveCanceled = true;
                     break;
             }
         }
@@ -215,7 +215,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2Editor.OnProvinceEditorFormClosed();
+            HoI2EditorController.OnProvinceEditorFormClosed();
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.ProvinceEditor.Location = Location;
+                HoI2EditorController.Settings.ProvinceEditor.Location = Location;
             }
         }
 
@@ -240,7 +240,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.ProvinceEditor.Size = Size;
+                HoI2EditorController.Settings.ProvinceEditor.Size = Size;
             }
         }
 
@@ -252,7 +252,7 @@ namespace HoI2Editor.Forms
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
             // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
+            if (HoI2EditorController.IsDirty())
             {
                 DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
@@ -261,12 +261,12 @@ namespace HoI2Editor.Forms
                     case DialogResult.Cancel:
                         return;
                     case DialogResult.Yes:
-                        HoI2Editor.Save();
+                        HoI2EditorController.Save();
                         break;
                 }
             }
 
-            HoI2Editor.Reload();
+            HoI2EditorController.Reload();
         }
 
         /// <summary>
@@ -276,7 +276,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.Save();
+            HoI2EditorController.Save();
         }
 
         /// <summary>
@@ -854,7 +854,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < ProvinceListColumnCount))
             {
-                HoI2Editor.Settings.ProvinceEditor.ListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.ProvinceEditor.ListColumnWidth[e.ColumnIndex] =
                     provinceListView.Columns[e.ColumnIndex].Width;
             }
         }

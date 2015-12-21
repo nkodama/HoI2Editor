@@ -125,41 +125,41 @@ namespace HoI2Editor.Forms
             techListBox.ItemHeight = DeviceCaps.GetScaledHeight(techListBox.ItemHeight);
 
             // 技術座標リストビュー
-            techXColumnHeader.Width = HoI2Editor.Settings.TechEditor.TechPositionListColumnWidth[0];
-            techYColumnHeader.Width = HoI2Editor.Settings.TechEditor.TechPositionListColumnWidth[1];
+            techXColumnHeader.Width = HoI2EditorController.Settings.TechEditor.TechPositionListColumnWidth[0];
+            techYColumnHeader.Width = HoI2EditorController.Settings.TechEditor.TechPositionListColumnWidth[1];
 
             // AND条件必要技術リストビュー
-            andIdColumnHeader.Width = HoI2Editor.Settings.TechEditor.AndRequiredListColumnWidth[0];
-            andNameColumnHeader.Width = HoI2Editor.Settings.TechEditor.AndRequiredListColumnWidth[1];
+            andIdColumnHeader.Width = HoI2EditorController.Settings.TechEditor.AndRequiredListColumnWidth[0];
+            andNameColumnHeader.Width = HoI2EditorController.Settings.TechEditor.AndRequiredListColumnWidth[1];
 
             // OR条件必要技術リストビュー
-            orIdColumnHeader.Width = HoI2Editor.Settings.TechEditor.OrRequiredListColumnWidth[0];
-            orNameColumnHeader.Width = HoI2Editor.Settings.TechEditor.OrRequiredListColumnWidth[1];
+            orIdColumnHeader.Width = HoI2EditorController.Settings.TechEditor.OrRequiredListColumnWidth[0];
+            orNameColumnHeader.Width = HoI2EditorController.Settings.TechEditor.OrRequiredListColumnWidth[1];
 
             // 小研究リストビュー
-            componentIdColumnHeader.Width = HoI2Editor.Settings.TechEditor.ComponentListColumnWidth[0];
-            componentNameColumnHeader.Width = HoI2Editor.Settings.TechEditor.ComponentListColumnWidth[1];
-            componentSpecialityColumnHeader.Width = HoI2Editor.Settings.TechEditor.ComponentListColumnWidth[2];
-            componentDifficultyColumnHeader.Width = HoI2Editor.Settings.TechEditor.ComponentListColumnWidth[3];
-            componentDoubleTimeColumnHeader.Width = HoI2Editor.Settings.TechEditor.ComponentListColumnWidth[4];
+            componentIdColumnHeader.Width = HoI2EditorController.Settings.TechEditor.ComponentListColumnWidth[0];
+            componentNameColumnHeader.Width = HoI2EditorController.Settings.TechEditor.ComponentListColumnWidth[1];
+            componentSpecialityColumnHeader.Width = HoI2EditorController.Settings.TechEditor.ComponentListColumnWidth[2];
+            componentDifficultyColumnHeader.Width = HoI2EditorController.Settings.TechEditor.ComponentListColumnWidth[3];
+            componentDoubleTimeColumnHeader.Width = HoI2EditorController.Settings.TechEditor.ComponentListColumnWidth[4];
 
             // 小研究特性コンボボックス
             componentSpecialityComboBox.ItemHeight = DeviceCaps.GetScaledHeight(componentSpecialityComboBox.ItemHeight);
 
             // 技術効果リストビュー
-            commandTypeColumnHeader.Width = HoI2Editor.Settings.TechEditor.EffectListColumnWidth[0];
-            commandWhichColumnHeader.Width = HoI2Editor.Settings.TechEditor.EffectListColumnWidth[1];
-            commandValueColumnHeader.Width = HoI2Editor.Settings.TechEditor.EffectListColumnWidth[2];
-            commandWhenColumnHeader.Width = HoI2Editor.Settings.TechEditor.EffectListColumnWidth[3];
-            commandWhereColumnHeader.Width = HoI2Editor.Settings.TechEditor.EffectListColumnWidth[4];
+            commandTypeColumnHeader.Width = HoI2EditorController.Settings.TechEditor.EffectListColumnWidth[0];
+            commandWhichColumnHeader.Width = HoI2EditorController.Settings.TechEditor.EffectListColumnWidth[1];
+            commandValueColumnHeader.Width = HoI2EditorController.Settings.TechEditor.EffectListColumnWidth[2];
+            commandWhenColumnHeader.Width = HoI2EditorController.Settings.TechEditor.EffectListColumnWidth[3];
+            commandWhereColumnHeader.Width = HoI2EditorController.Settings.TechEditor.EffectListColumnWidth[4];
 
             // ラベル座標リストビュー
-            labelXColumnHeader.Width = HoI2Editor.Settings.TechEditor.LabelPositionListColumnWidth[0];
-            labelYColumnHeader.Width = HoI2Editor.Settings.TechEditor.LabelPositionListColumnWidth[1];
+            labelXColumnHeader.Width = HoI2EditorController.Settings.TechEditor.LabelPositionListColumnWidth[0];
+            labelYColumnHeader.Width = HoI2EditorController.Settings.TechEditor.LabelPositionListColumnWidth[1];
 
             // 発明イベント座標リストビュー
-            eventXColumnHeader.Width = HoI2Editor.Settings.TechEditor.EventPositionListColumnWidth[0];
-            eventYColumnHeader.Width = HoI2Editor.Settings.TechEditor.EventPositionListColumnWidth[1];
+            eventXColumnHeader.Width = HoI2EditorController.Settings.TechEditor.EventPositionListColumnWidth[0];
+            eventYColumnHeader.Width = HoI2EditorController.Settings.TechEditor.EventPositionListColumnWidth[1];
 
             // 技術ツリーパネル
             _techTreePanelController = new TechTreePanelController(treePictureBox) { AllowDragDrop = true };
@@ -167,8 +167,8 @@ namespace HoI2Editor.Forms
             _techTreePanelController.ItemDragDrop += OnTreePictureBoxDragDrop;
 
             // ウィンドウの位置
-            Location = HoI2Editor.Settings.TechEditor.Location;
-            Size = HoI2Editor.Settings.TechEditor.Size;
+            Location = HoI2EditorController.Settings.TechEditor.Location;
+            Size = HoI2EditorController.Settings.TechEditor.Size;
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace HoI2Editor.Forms
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
+            if (!HoI2EditorController.IsDirty())
             {
                 return;
             }
@@ -232,10 +232,10 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.Save();
+                    HoI2EditorController.Save();
                     break;
                 case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
+                    HoI2EditorController.SaveCanceled = true;
                     break;
             }
         }
@@ -247,7 +247,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2Editor.OnTechEditorFormClosed();
+            HoI2EditorController.OnTechEditorFormClosed();
         }
 
         /// <summary>
@@ -259,7 +259,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.TechEditor.Location = Location;
+                HoI2EditorController.Settings.TechEditor.Location = Location;
             }
         }
 
@@ -272,7 +272,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.TechEditor.Size = Size;
+                HoI2EditorController.Settings.TechEditor.Size = Size;
             }
         }
 
@@ -284,7 +284,7 @@ namespace HoI2Editor.Forms
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
             // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
+            if (HoI2EditorController.IsDirty())
             {
                 DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
@@ -293,12 +293,12 @@ namespace HoI2Editor.Forms
                     case DialogResult.Cancel:
                         return;
                     case DialogResult.Yes:
-                        HoI2Editor.Save();
+                        HoI2EditorController.Save();
                         break;
                 }
             }
 
-            HoI2Editor.Reload();
+            HoI2EditorController.Reload();
         }
 
         /// <summary>
@@ -308,7 +308,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.Save();
+            HoI2EditorController.Save();
         }
 
         /// <summary>
@@ -337,7 +337,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のカテゴリを反映する
-            int index = HoI2Editor.Settings.TechEditor.Category;
+            int index = HoI2EditorController.Settings.TechEditor.Category;
             if ((index < 0) || (index >= categoryListBox.Items.Count))
             {
                 index = 0;
@@ -381,7 +381,7 @@ namespace HoI2Editor.Forms
             bottomButton.Enabled = false;
 
             // 選択中のカテゴリを保存する
-            HoI2Editor.Settings.TechEditor.Category = categoryListBox.SelectedIndex;
+            HoI2EditorController.Settings.TechEditor.Category = categoryListBox.SelectedIndex;
         }
 
         /// <summary>
@@ -694,7 +694,7 @@ namespace HoI2Editor.Forms
             UpdateEventTechListItems();
 
             // 技術項目リストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechItemList, this);
 
             Log.Info("[Tech] Added new tech: {0}", item.Id);
         }
@@ -850,7 +850,7 @@ namespace HoI2Editor.Forms
             if (item is TechItem)
             {
                 // 技術項目リストの更新を通知する
-                HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
+                HoI2EditorController.OnItemChanged(EditorItemId.TechItemList, this);
 
                 TechItem techItem = item as TechItem;
                 Log.Info("[Tech] Added new tech: {0}", techItem.Id);
@@ -920,7 +920,7 @@ namespace HoI2Editor.Forms
             if (selected is TechItem)
             {
                 // 技術項目リストの更新を通知する
-                HoI2Editor.OnItemChanged(EditorItemId.TechItemList, this);
+                HoI2EditorController.OnItemChanged(EditorItemId.TechItemList, this);
 
                 TechItem techItem = selected as TechItem;
                 Log.Info("[Tech] Removed tech: {0} [{1}]", techItem.Id, techItem);
@@ -1546,7 +1546,7 @@ namespace HoI2Editor.Forms
             techNameTextBox.ForeColor = Color.Red;
 
             // 技術項目名の更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TechItemName, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechItemName, this);
         }
 
         /// <summary>
@@ -1628,7 +1628,7 @@ namespace HoI2Editor.Forms
             techIdNumericUpDown.ForeColor = Color.Red;
 
             // 技術項目IDの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TechItemId, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechItemId, this);
         }
 
         /// <summary>
@@ -1666,7 +1666,7 @@ namespace HoI2Editor.Forms
             techYearNumericUpDown.ForeColor = Color.Red;
 
             // 技術項目の史実年度の更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TechItemYear, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechItemYear, this);
         }
 
         /// <summary>
@@ -1712,7 +1712,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < PositionListColumnCount))
             {
-                HoI2Editor.Settings.TechEditor.TechPositionListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.TechEditor.TechPositionListColumnWidth[e.ColumnIndex] =
                     techPositionListView.Columns[e.ColumnIndex].Width;
             }
         }
@@ -2407,7 +2407,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < RequiredListColumnCount))
             {
-                HoI2Editor.Settings.TechEditor.AndRequiredListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.TechEditor.AndRequiredListColumnWidth[e.ColumnIndex] =
                     andRequiredListView.Columns[e.ColumnIndex].Width;
             }
         }
@@ -2421,7 +2421,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < RequiredListColumnCount))
             {
-                HoI2Editor.Settings.TechEditor.OrRequiredListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.TechEditor.OrRequiredListColumnWidth[e.ColumnIndex] =
                     orRequiredListView.Columns[e.ColumnIndex].Width;
             }
         }
@@ -3088,7 +3088,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < ComponentListColumnCount))
             {
-                HoI2Editor.Settings.TechEditor.ComponentListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.TechEditor.ComponentListColumnWidth[e.ColumnIndex] =
                     componentListView.Columns[e.ColumnIndex].Width;
             }
         }
@@ -3194,7 +3194,7 @@ namespace HoI2Editor.Forms
             }
 
             // 小研究リストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TechComponentList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList, this);
 
             Log.Info("[Tech] Added new tech component: {0} [{1}]", component.Id, item);
         }
@@ -3242,7 +3242,7 @@ namespace HoI2Editor.Forms
             InsertComponentListItem(component, index + 1);
 
             // 小研究リストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TechComponentList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList, this);
         }
 
         /// <summary>
@@ -3280,7 +3280,7 @@ namespace HoI2Editor.Forms
             RemoveComponentListItem(index);
 
             // 小研究リストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TechComponentList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList, this);
         }
 
         /// <summary>
@@ -3520,7 +3520,7 @@ namespace HoI2Editor.Forms
             componentSpecialityComboBox.Refresh();
 
             // 小研究の特性の更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TechComponentSpeciality, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentSpeciality, this);
         }
 
         /// <summary>
@@ -3576,7 +3576,7 @@ namespace HoI2Editor.Forms
             componentDifficultyNumericUpDown.ForeColor = Color.Red;
 
             // 小研究の難易度の更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TechComponentDifficulty, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentDifficulty, this);
         }
 
         /// <summary>
@@ -3632,7 +3632,7 @@ namespace HoI2Editor.Forms
             componentDoubleTimeCheckBox.ForeColor = Color.Red;
 
             // 小研究の難易度の更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.TechComponentDoubleTime, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentDoubleTime, this);
         }
 
         /// <summary>
@@ -4120,7 +4120,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < EffectListColumnCount))
             {
-                HoI2Editor.Settings.TechEditor.EffectListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.TechEditor.EffectListColumnWidth[e.ColumnIndex] =
                     effectListView.Columns[e.ColumnIndex].Width;
             }
         }
@@ -4988,7 +4988,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < PositionListColumnCount))
             {
-                HoI2Editor.Settings.TechEditor.LabelPositionListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.TechEditor.LabelPositionListColumnWidth[e.ColumnIndex] =
                     labelPositionListView.Columns[e.ColumnIndex].Width;
             }
         }
@@ -5541,7 +5541,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < PositionListColumnCount))
             {
-                HoI2Editor.Settings.TechEditor.EventPositionListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.TechEditor.EventPositionListColumnWidth[e.ColumnIndex] =
                     eventPositionListView.Columns[e.ColumnIndex].Width;
             }
         }

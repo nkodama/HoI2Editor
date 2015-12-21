@@ -415,16 +415,16 @@ namespace HoI2Editor.Forms
         private void InitForm()
         {
             // ユニットモデルリストビュー
-            noColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[0];
-            nameColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[1];
-            buildCostColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[2];
-            buildTimeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[3];
-            manpowerColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[4];
-            supplyColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[5];
-            fuelColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[6];
-            organisationColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[7];
-            moraleColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[8];
-            maxSpeedColumnHeader.Width = HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[9];
+            noColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[0];
+            nameColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[1];
+            buildCostColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[2];
+            buildTimeColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[3];
+            manpowerColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[4];
+            supplyColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[5];
+            fuelColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[6];
+            organisationColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[7];
+            moraleColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[8];
+            maxSpeedColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[9];
 
             // ユニットクラスリストボックス
             classListBox.ItemHeight = DeviceCaps.GetScaledHeight(classListBox.ItemHeight);
@@ -433,18 +433,18 @@ namespace HoI2Editor.Forms
             countryDummyColumnHeader.Width = DeviceCaps.GetScaledWidth(countryDummyColumnHeader.Width);
 
             // 改良リストビュー
-            upgradeTypeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[0];
-            upgradeCostColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[1];
-            upgradeTimeColumnHeader.Width = HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[2];
+            upgradeTypeColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.UpgradeListColumnWidth[0];
+            upgradeCostColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.UpgradeListColumnWidth[1];
+            upgradeTimeColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.UpgradeListColumnWidth[2];
 
             // 装備リストビュー
-            resourceColumnHeader.Width = HoI2Editor.Settings.UnitEditor.EquipmentListColumnWidth[0];
-            quantityColumnHeader.Width = HoI2Editor.Settings.UnitEditor.EquipmentListColumnWidth[1];
+            resourceColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.EquipmentListColumnWidth[0];
+            quantityColumnHeader.Width = HoI2EditorController.Settings.UnitEditor.EquipmentListColumnWidth[1];
 
 
             // ウィンドウの位置
-            Location = HoI2Editor.Settings.UnitEditor.Location;
-            Size = HoI2Editor.Settings.UnitEditor.Size;
+            Location = HoI2EditorController.Settings.UnitEditor.Location;
+            Size = HoI2EditorController.Settings.UnitEditor.Size;
         }
 
         /// <summary>
@@ -484,7 +484,7 @@ namespace HoI2Editor.Forms
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
+            if (!HoI2EditorController.IsDirty())
             {
                 return;
             }
@@ -498,10 +498,10 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.Save();
+                    HoI2EditorController.Save();
                     break;
                 case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
+                    HoI2EditorController.SaveCanceled = true;
                     break;
             }
         }
@@ -513,7 +513,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2Editor.OnUnitEditorFormClosed();
+            HoI2EditorController.OnUnitEditorFormClosed();
         }
 
         /// <summary>
@@ -525,7 +525,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.UnitEditor.Location = Location;
+                HoI2EditorController.Settings.UnitEditor.Location = Location;
             }
         }
 
@@ -538,7 +538,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.UnitEditor.Size = Size;
+                HoI2EditorController.Settings.UnitEditor.Size = Size;
             }
         }
 
@@ -550,7 +550,7 @@ namespace HoI2Editor.Forms
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
             // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
+            if (HoI2EditorController.IsDirty())
             {
                 DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
@@ -559,12 +559,12 @@ namespace HoI2Editor.Forms
                     case DialogResult.Cancel:
                         return;
                     case DialogResult.Yes:
-                        HoI2Editor.Save();
+                        HoI2EditorController.Save();
                         break;
                 }
             }
 
-            HoI2Editor.Reload();
+            HoI2EditorController.Reload();
         }
 
         /// <summary>
@@ -574,7 +574,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.Save();
+            HoI2EditorController.Save();
         }
 
         /// <summary>
@@ -789,7 +789,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < ModelListColumnCount))
             {
-                HoI2Editor.Settings.UnitEditor.ModelListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[e.ColumnIndex] =
                     modelListView.Columns[e.ColumnIndex].Width;
             }
         }
@@ -843,7 +843,7 @@ namespace HoI2Editor.Forms
             InsertModel(unit, model, index, "");
 
             // ユニットモデルリストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -872,7 +872,7 @@ namespace HoI2Editor.Forms
             InsertModel(unit, model, index + 1, unit.GetModelName(index));
 
             // ユニットモデルリストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -900,7 +900,7 @@ namespace HoI2Editor.Forms
             RemoveModel(unit, index);
 
             // ユニットモデルリストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -934,7 +934,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, 0);
 
             // ユニットモデルリストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -968,7 +968,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, index - 1);
 
             // ユニットモデルリストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -1002,7 +1002,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, index + 1);
 
             // ユニットモデルリストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -1036,7 +1036,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, unit.Models.Count - 1);
 
             // ユニットモデルリストの更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -1795,7 +1795,7 @@ namespace HoI2Editor.Forms
             classNameTextBox.ForeColor = Color.Red;
 
             // ユニットクラス名の更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.UnitName, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.UnitName, this);
         }
 
         /// <summary>
@@ -2532,7 +2532,7 @@ namespace HoI2Editor.Forms
             // 最大付属旅団数の更新を通知する
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                HoI2Editor.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
             }
         }
 
@@ -2790,7 +2790,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < UpgradeListColumnCount))
             {
-                HoI2Editor.Settings.UnitEditor.UpgradeListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.UnitEditor.UpgradeListColumnWidth[e.ColumnIndex] =
                     upgradeListView.Columns[e.ColumnIndex].Width;
             }
         }
@@ -3925,7 +3925,7 @@ namespace HoI2Editor.Forms
             unit.SetDirty();
 
             // ユニットモデル名の更新を通知する
-            HoI2Editor.OnItemChanged(
+            HoI2EditorController.OnItemChanged(
                 (country == Country.None) ? EditorItemId.CommonModelName : EditorItemId.CountryModelName, this);
         }
 
@@ -7004,7 +7004,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < EquipmentListColumnCount))
             {
-                HoI2Editor.Settings.UnitEditor.EquipmentListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.UnitEditor.EquipmentListColumnWidth[e.ColumnIndex] =
                     equipmentListView.Columns[e.ColumnIndex].Width;
             }
         }

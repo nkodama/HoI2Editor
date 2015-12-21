@@ -102,8 +102,8 @@ namespace HoI2Editor.Forms
             typeListBox.ItemHeight = DeviceCaps.GetScaledHeight(typeListBox.ItemHeight);
 
             // ウィンドウの位置
-            Location = HoI2Editor.Settings.ModelNameEditor.Location;
-            Size = HoI2Editor.Settings.ModelNameEditor.Size;
+            Location = HoI2EditorController.Settings.ModelNameEditor.Location;
+            Size = HoI2EditorController.Settings.ModelNameEditor.Size;
         }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace HoI2Editor.Forms
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
+            if (!HoI2EditorController.IsDirty())
             {
                 return;
             }
@@ -151,10 +151,10 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.Save();
+                    HoI2EditorController.Save();
                     break;
                 case DialogResult.No:
-                    HoI2Editor.SaveCanceled = true;
+                    HoI2EditorController.SaveCanceled = true;
                     break;
             }
         }
@@ -166,7 +166,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2Editor.OnModelNameEditorFormClosed();
+            HoI2EditorController.OnModelNameEditorFormClosed();
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.ModelNameEditor.Location = Location;
+                HoI2EditorController.Settings.ModelNameEditor.Location = Location;
             }
         }
 
@@ -191,7 +191,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.ModelNameEditor.Size = Size;
+                HoI2EditorController.Settings.ModelNameEditor.Size = Size;
             }
         }
 
@@ -203,7 +203,7 @@ namespace HoI2Editor.Forms
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
             // 編集済みならば保存するかを問い合わせる
-            if (HoI2Editor.IsDirty())
+            if (HoI2EditorController.IsDirty())
             {
                 DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
@@ -212,12 +212,12 @@ namespace HoI2Editor.Forms
                     case DialogResult.Cancel:
                         return;
                     case DialogResult.Yes:
-                        HoI2Editor.Save();
+                        HoI2EditorController.Save();
                         break;
                 }
             }
 
-            HoI2Editor.Reload();
+            HoI2EditorController.Reload();
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.Save();
+            HoI2EditorController.Save();
         }
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中の国家を反映する
-            int index = HoI2Editor.Settings.ModelNameEditor.Country;
+            int index = HoI2EditorController.Settings.ModelNameEditor.Country;
             if ((index < 0) || (index >= countryListBox.Items.Count))
             {
                 index = 0;
@@ -323,7 +323,7 @@ namespace HoI2Editor.Forms
             typeListBox.Refresh();
 
             // 選択中の国家を保存する
-            HoI2Editor.Settings.ModelNameEditor.Country = countryListBox.SelectedIndex;
+            HoI2EditorController.Settings.ModelNameEditor.Country = countryListBox.SelectedIndex;
         }
 
         #endregion
@@ -345,7 +345,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のユニット種類を反映する
-            int index = HoI2Editor.Settings.ModelNameEditor.UnitType;
+            int index = HoI2EditorController.Settings.ModelNameEditor.UnitType;
             if ((index < 0) || (index >= typeListBox.Items.Count))
             {
                 index = 0;
@@ -423,7 +423,7 @@ namespace HoI2Editor.Forms
             UpdateEditableItems();
 
             // 選択中のユニット種類を保存する
-            HoI2Editor.Settings.ModelNameEditor.UnitType = typeListBox.SelectedIndex;
+            HoI2EditorController.Settings.ModelNameEditor.UnitType = typeListBox.SelectedIndex;
         }
 
         #endregion
@@ -593,7 +593,7 @@ namespace HoI2Editor.Forms
             typeListBox.Refresh();
 
             // ユニットモデル名の更新を通知する
-            HoI2Editor.OnItemChanged(EditorItemId.CountryModelName, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.CountryModelName, this);
         }
 
         #endregion

@@ -53,7 +53,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ログ出力スイッチ
         /// </summary>
-        private static readonly TraceSwitch Sw = new TraceSwitch(LogFileIdentifier, HoI2Editor.Name);
+        private static readonly TraceSwitch Sw = new TraceSwitch(LogFileIdentifier, HoI2EditorController.Name);
 
         /// <summary>
         ///     ログファイル書き込み用
@@ -96,7 +96,8 @@ namespace HoI2Editor.Models
             }
             catch (Exception)
             {
-                MessageBox.Show(Resources.LogFileOpenError, HoI2Editor.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.LogFileOpenError, HoI2EditorController.Name, MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
                 Terminate();
             }
             Verbose("[Log] Init");

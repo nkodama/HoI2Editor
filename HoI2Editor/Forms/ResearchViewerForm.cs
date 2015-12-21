@@ -189,27 +189,27 @@ namespace HoI2Editor.Forms
         private void InitForm()
         {
             // 技術リストビュー
-            techNameColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[0];
-            techIdColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[1];
-            techYearColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[2];
-            techComponentsColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[3];
+            techNameColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TechListColumnWidth[0];
+            techIdColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TechListColumnWidth[1];
+            techYearColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TechListColumnWidth[2];
+            techComponentsColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TechListColumnWidth[3];
 
             // 国家リストボックス
             countryListBox.ColumnWidth = DeviceCaps.GetScaledWidth(countryListBox.ColumnWidth);
             countryListBox.ItemHeight = DeviceCaps.GetScaledHeight(countryListBox.ItemHeight);
 
             // 研究機関リストビュー
-            teamRankColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[1];
-            teamDaysColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[2];
-            teamEndDateColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[3];
-            teamNameColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[4];
-            teamIdColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[5];
-            teamSkillColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[6];
-            teamSpecialityColumnHeader.Width = HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[7];
+            teamRankColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TeamListColumnWidth[1];
+            teamDaysColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TeamListColumnWidth[2];
+            teamEndDateColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TeamListColumnWidth[3];
+            teamNameColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TeamListColumnWidth[4];
+            teamIdColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TeamListColumnWidth[5];
+            teamSkillColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TeamListColumnWidth[6];
+            teamSpecialityColumnHeader.Width = HoI2EditorController.Settings.ResearchViewer.TeamListColumnWidth[7];
 
             // ウィンドウの位置
-            Location = HoI2Editor.Settings.ResearchViewer.Location;
-            Size = HoI2Editor.Settings.ResearchViewer.Size;
+            Location = HoI2EditorController.Settings.ResearchViewer.Location;
+            Size = HoI2EditorController.Settings.ResearchViewer.Size;
         }
 
         /// <summary>
@@ -264,7 +264,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2Editor.OnResearchViewerFormClosed();
+            HoI2EditorController.OnResearchViewerFormClosed();
         }
 
         /// <summary>
@@ -276,7 +276,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.ResearchViewer.Location = Location;
+                HoI2EditorController.Settings.ResearchViewer.Location = Location;
             }
         }
 
@@ -289,7 +289,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.ResearchViewer.Size = Size;
+                HoI2EditorController.Settings.ResearchViewer.Size = Size;
             }
         }
 
@@ -319,7 +319,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択中のカテゴリを反映する
-            int index = HoI2Editor.Settings.ResearchViewer.Category;
+            int index = HoI2EditorController.Settings.ResearchViewer.Category;
             if ((index < 0) || (index >= categoryListBox.Items.Count))
             {
                 index = 0;
@@ -338,7 +338,7 @@ namespace HoI2Editor.Forms
             UpdateTechList();
 
             // 選択中のカテゴリを保存する
-            HoI2Editor.Settings.ResearchViewer.Category = categoryListBox.SelectedIndex;
+            HoI2EditorController.Settings.ResearchViewer.Category = categoryListBox.SelectedIndex;
         }
 
         #endregion
@@ -506,7 +506,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < TechListColumnCount))
             {
-                HoI2Editor.Settings.ResearchViewer.TechListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.ResearchViewer.TechListColumnWidth[e.ColumnIndex] =
                     techListView.Columns[e.ColumnIndex].Width;
             }
         }
@@ -530,7 +530,7 @@ namespace HoI2Editor.Forms
             // 選択イベントを処理すると時間がかかるので、一時的に無効化する
             countryListBox.SelectedIndexChanged -= OnCountryListBoxSelectedIndexChanged;
             // 選択中の国家を反映する
-            foreach (Country country in HoI2Editor.Settings.ResearchViewer.Countries)
+            foreach (Country country in HoI2EditorController.Settings.ResearchViewer.Countries)
             {
                 int index = Array.IndexOf(Countries.Tags, country);
                 if (index >= 0)
@@ -552,7 +552,7 @@ namespace HoI2Editor.Forms
         private void OnCountryListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 選択中の国家を保存する
-            HoI2Editor.Settings.ResearchViewer.Countries =
+            HoI2EditorController.Settings.ResearchViewer.Countries =
                 countryListBox.SelectedIndices.Cast<int>().Select(index => Countries.Tags[index]).ToList();
 
             // 研究機関リストを更新する
@@ -731,7 +731,7 @@ namespace HoI2Editor.Forms
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < TeamListColumnCount))
             {
-                HoI2Editor.Settings.ResearchViewer.TeamListColumnWidth[e.ColumnIndex] =
+                HoI2EditorController.Settings.ResearchViewer.TeamListColumnWidth[e.ColumnIndex] =
                     teamListView.Columns[e.ColumnIndex].Width;
             }
         }

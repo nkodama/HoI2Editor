@@ -33,7 +33,7 @@ namespace HoI2Editor.Forms
         private void OnMainFormLoad(object sender, EventArgs e)
         {
             // バージョン文字列を更新する
-            Text = HoI2Editor.Version;
+            Text = HoI2EditorController.Version;
 
             // ログレベルを初期化する
             logLevelComboBox.SelectedIndex = Log.Level;
@@ -51,18 +51,18 @@ namespace HoI2Editor.Forms
             // 初期状態のゲームフォルダ名を設定する
             if (!string.IsNullOrEmpty(Game.FolderName))
             {
-                gameFolderTextBox.Text = HoI2Editor.Settings.Main.GameFolder;
-                Log.Error("Game Folder: {0}", HoI2Editor.Settings.Main.GameFolder);
+                gameFolderTextBox.Text = HoI2EditorController.Settings.Main.GameFolder;
+                Log.Error("Game Folder: {0}", HoI2EditorController.Settings.Main.GameFolder);
 
-                if (!string.IsNullOrEmpty(HoI2Editor.Settings.Main.ModFolder))
+                if (!string.IsNullOrEmpty(HoI2EditorController.Settings.Main.ModFolder))
                 {
-                    modTextBox.Text = HoI2Editor.Settings.Main.ModFolder;
-                    Log.Error("MOD Name: {0}", HoI2Editor.Settings.Main.ModFolder);
+                    modTextBox.Text = HoI2EditorController.Settings.Main.ModFolder;
+                    Log.Error("MOD Name: {0}", HoI2EditorController.Settings.Main.ModFolder);
                 }
-                if (!string.IsNullOrEmpty(HoI2Editor.Settings.Main.ExportFolder))
+                if (!string.IsNullOrEmpty(HoI2EditorController.Settings.Main.ExportFolder))
                 {
-                    exportFolderTextBox.Text = HoI2Editor.Settings.Main.ExportFolder;
-                    Log.Error("Export Name: {0}", HoI2Editor.Settings.Main.ExportFolder);
+                    exportFolderTextBox.Text = HoI2EditorController.Settings.Main.ExportFolder;
+                    Log.Error("Export Name: {0}", HoI2EditorController.Settings.Main.ExportFolder);
                 }
 
                 // 言語リストを更新する
@@ -76,7 +76,7 @@ namespace HoI2Editor.Forms
                 }
 
                 // 他のエディタプロセスで使われていなければ、データ編集を有効化する
-                editGroupBox.Enabled = HoI2Editor.LockMutex(Game.FolderName);
+                editGroupBox.Enabled = HoI2EditorController.LockMutex(Game.FolderName);
             }
             else
             {
@@ -106,13 +106,13 @@ namespace HoI2Editor.Forms
         private void OnMainFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!HoI2Editor.IsDirty())
+            if (!HoI2EditorController.IsDirty())
             {
                 return;
             }
 
             // 既に保存をキャンセルしていればフォームを閉じる
-            if (HoI2Editor.SaveCanceled)
+            if (HoI2EditorController.SaveCanceled)
             {
                 return;
             }
@@ -126,7 +126,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2Editor.Save();
+                    HoI2EditorController.Save();
                     break;
             }
         }
@@ -141,8 +141,8 @@ namespace HoI2Editor.Forms
         private void InitPosition()
         {
             // ウィンドウの位置
-            Location = HoI2Editor.Settings.Main.Location;
-            Size = HoI2Editor.Settings.Main.Size;
+            Location = HoI2EditorController.Settings.Main.Location;
+            Size = HoI2EditorController.Settings.Main.Size;
         }
 
         /// <summary>
@@ -154,7 +154,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.Main.Location = Location;
+                HoI2EditorController.Settings.Main.Location = Location;
             }
         }
 
@@ -167,7 +167,7 @@ namespace HoI2Editor.Forms
         {
             if (WindowState == FormWindowState.Normal)
             {
-                HoI2Editor.Settings.Main.Size = Size;
+                HoI2EditorController.Settings.Main.Size = Size;
             }
         }
 
@@ -182,7 +182,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLeaderButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchLeaderEditorForm();
+            HoI2EditorController.LaunchLeaderEditorForm();
         }
 
         /// <summary>
@@ -192,7 +192,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMinisterButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchMinisterEditorForm();
+            HoI2EditorController.LaunchMinisterEditorForm();
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTeamButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchTeamEditorForm();
+            HoI2EditorController.LaunchTeamEditorForm();
         }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnProvinceButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchProvinceEditorForm();
+            HoI2EditorController.LaunchProvinceEditorForm();
         }
 
         /// <summary>
@@ -222,7 +222,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchTechEditorForm();
+            HoI2EditorController.LaunchTechEditorForm();
         }
 
         /// <summary>
@@ -232,7 +232,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUnitButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchUnitEditorForm();
+            HoI2EditorController.LaunchUnitEditorForm();
         }
 
         /// <summary>
@@ -242,7 +242,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMiscButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchMiscEditorForm();
+            HoI2EditorController.LaunchMiscEditorForm();
         }
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCorpsNameButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchCorpsNameEditorForm();
+            HoI2EditorController.LaunchCorpsNameEditorForm();
         }
 
         /// <summary>
@@ -262,7 +262,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUnitNameButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchUnitNameEditorForm();
+            HoI2EditorController.LaunchUnitNameEditorForm();
         }
 
         /// <summary>
@@ -272,7 +272,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnModelNameButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchModelNameEditorForm();
+            HoI2EditorController.LaunchModelNameEditorForm();
         }
 
         /// <summary>
@@ -282,7 +282,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnRandomLeaderButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchRandomLeaderEditorForm();
+            HoI2EditorController.LaunchRandomLeaderEditorForm();
         }
 
         /// <summary>
@@ -292,7 +292,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnResearchButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchResearchViewerForm();
+            HoI2EditorController.LaunchResearchViewerForm();
         }
 
         /// <summary>
@@ -302,7 +302,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnScenarioButtonClick(object sender, EventArgs e)
         {
-            HoI2Editor.LaunchScenarioEditorForm();
+            HoI2EditorController.LaunchScenarioEditorForm();
         }
 
         #endregion
@@ -361,7 +361,7 @@ namespace HoI2Editor.Forms
             }
 
             // 他のエディタプロセスで使われていなければ、データ編集を有効化する
-            editGroupBox.Enabled = HoI2Editor.LockMutex(Game.FolderName);
+            editGroupBox.Enabled = HoI2EditorController.LockMutex(Game.FolderName);
         }
 
         /// <summary>

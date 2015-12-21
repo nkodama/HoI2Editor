@@ -15,7 +15,7 @@ namespace HoI2Editor
     /// <summary>
     ///     アプリケーションコントローラクラス
     /// </summary>
-    public static class HoI2Editor
+    public static class HoI2EditorController
     {
         #region エディタのバージョン
 
