@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HoI2Editor.Controls;
 using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -551,6 +552,42 @@ namespace HoI2Editor.Forms
         {
             // 編集項目を更新する
             UpdateEditableItems();
+        }
+
+        /// <summary>
+        ///     指揮官リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 自前で項目を入れ替えるのでキャンセル扱いにする
+            e.Cancel = true;
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+            if (srcIndex < destIndex)
+            {
+                destIndex--;
+            }
+
+            Leader src = leaderListView.Items[srcIndex].Tag as Leader;
+            if (src == null)
+            {
+                return;
+            }
+            Leader dest = leaderListView.Items[destIndex].Tag as Leader;
+            if (dest == null)
+            {
+                return;
+            }
+
+            // 指揮官リストの項目を移動する
+            Leaders.MoveItem(src, dest);
+            MoveListItem(srcIndex, destIndex);
+
+            // 編集済みフラグを設定する
+            Leaders.SetDirty(src.Country);
         }
 
         /// <summary>

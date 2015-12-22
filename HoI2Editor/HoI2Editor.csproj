@@ -50,6 +50,13 @@
     <Compile Include="Controllers\ScenarioEditorController.cs" />
     <Compile Include="Controllers\TechTreePanelController.cs" />
     <Compile Include="Controllers\UnitTreeController.cs" />
+    <Compile Include="Controls\ExtendedListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ExtendedListView.Designer.cs">
+      <DependentUpon>ExtendedListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RowReorderedEventArgs.cs" />
     <Compile Include="Dialogs\LeaderBatchDialog.cs">
       <SubType>Form</SubType>
     </Compile>

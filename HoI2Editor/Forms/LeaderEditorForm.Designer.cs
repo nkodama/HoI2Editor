@@ -54,17 +54,7 @@
             this.topButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.cloneButton = new System.Windows.Forms.Button();
-            this.countryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.startYearColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.newButton = new System.Windows.Forms.Button();
-            this.traitsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.endYearColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.leaderListView = new System.Windows.Forms.ListView();
-            this.branchColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.skillColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.maxSkillColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.rankYearNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.rankYearLabel1 = new System.Windows.Forms.Label();
             this.rankYearNumericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -160,6 +150,16 @@
             this.retirementYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.retirementYearLabel = new System.Windows.Forms.Label();
             this.batchButton = new System.Windows.Forms.Button();
+            this.leaderListView = new HoI2Editor.Controls.ExtendedListView();
+            this.countryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.branchColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.skillColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.maxSkillColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.startYearColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.endYearColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.traitsColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.leaderPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).BeginInit();
@@ -367,72 +367,12 @@
             this.cloneButton.UseVisualStyleBackColor = true;
             this.cloneButton.Click += new System.EventHandler(this.OnCloneButtonClick);
             // 
-            // countryColumnHeader
-            // 
-            resources.ApplyResources(this.countryColumnHeader, "countryColumnHeader");
-            // 
-            // idColumnHeader
-            // 
-            resources.ApplyResources(this.idColumnHeader, "idColumnHeader");
-            // 
-            // nameColumnHeader
-            // 
-            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
-            // 
-            // startYearColumnHeader
-            // 
-            resources.ApplyResources(this.startYearColumnHeader, "startYearColumnHeader");
-            // 
             // newButton
             // 
             resources.ApplyResources(this.newButton, "newButton");
             this.newButton.Name = "newButton";
             this.newButton.UseVisualStyleBackColor = true;
             this.newButton.Click += new System.EventHandler(this.OnNewButtonClick);
-            // 
-            // traitsColumnHeader
-            // 
-            resources.ApplyResources(this.traitsColumnHeader, "traitsColumnHeader");
-            // 
-            // endYearColumnHeader
-            // 
-            resources.ApplyResources(this.endYearColumnHeader, "endYearColumnHeader");
-            // 
-            // leaderListView
-            // 
-            resources.ApplyResources(this.leaderListView, "leaderListView");
-            this.leaderListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.countryColumnHeader,
-            this.idColumnHeader,
-            this.nameColumnHeader,
-            this.branchColumnHeader,
-            this.skillColumnHeader,
-            this.maxSkillColumnHeader,
-            this.startYearColumnHeader,
-            this.endYearColumnHeader,
-            this.traitsColumnHeader});
-            this.leaderListView.FullRowSelect = true;
-            this.leaderListView.GridLines = true;
-            this.leaderListView.HideSelection = false;
-            this.leaderListView.MultiSelect = false;
-            this.leaderListView.Name = "leaderListView";
-            this.leaderListView.UseCompatibleStateImageBehavior = false;
-            this.leaderListView.View = System.Windows.Forms.View.Details;
-            this.leaderListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
-            this.leaderListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnLeaderListViewColumnWidthChanged);
-            this.leaderListView.SelectedIndexChanged += new System.EventHandler(this.OnLeaderListViewSelectedIndexChanged);
-            // 
-            // branchColumnHeader
-            // 
-            resources.ApplyResources(this.branchColumnHeader, "branchColumnHeader");
-            // 
-            // skillColumnHeader
-            // 
-            resources.ApplyResources(this.skillColumnHeader, "skillColumnHeader");
-            // 
-            // maxSkillColumnHeader
-            // 
-            resources.ApplyResources(this.maxSkillColumnHeader, "maxSkillColumnHeader");
             // 
             // rankYearNumericUpDown1
             // 
@@ -1198,6 +1138,68 @@
             this.batchButton.UseVisualStyleBackColor = true;
             this.batchButton.Click += new System.EventHandler(this.OnBatchButtonClick);
             // 
+            // leaderListView
+            // 
+            this.leaderListView.AllowRowReorder = true;
+            resources.ApplyResources(this.leaderListView, "leaderListView");
+            this.leaderListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.countryColumnHeader,
+            this.idColumnHeader,
+            this.nameColumnHeader,
+            this.branchColumnHeader,
+            this.skillColumnHeader,
+            this.maxSkillColumnHeader,
+            this.startYearColumnHeader,
+            this.endYearColumnHeader,
+            this.traitsColumnHeader});
+            this.leaderListView.FullRowSelect = true;
+            this.leaderListView.GridLines = true;
+            this.leaderListView.HideSelection = false;
+            this.leaderListView.MultiSelect = false;
+            this.leaderListView.Name = "leaderListView";
+            this.leaderListView.UseCompatibleStateImageBehavior = false;
+            this.leaderListView.View = System.Windows.Forms.View.Details;
+            this.leaderListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnLeaderListViewRowReordered);
+            this.leaderListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
+            this.leaderListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnLeaderListViewColumnWidthChanged);
+            this.leaderListView.SelectedIndexChanged += new System.EventHandler(this.OnLeaderListViewSelectedIndexChanged);
+            // 
+            // countryColumnHeader
+            // 
+            resources.ApplyResources(this.countryColumnHeader, "countryColumnHeader");
+            // 
+            // idColumnHeader
+            // 
+            resources.ApplyResources(this.idColumnHeader, "idColumnHeader");
+            // 
+            // nameColumnHeader
+            // 
+            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
+            // 
+            // branchColumnHeader
+            // 
+            resources.ApplyResources(this.branchColumnHeader, "branchColumnHeader");
+            // 
+            // skillColumnHeader
+            // 
+            resources.ApplyResources(this.skillColumnHeader, "skillColumnHeader");
+            // 
+            // maxSkillColumnHeader
+            // 
+            resources.ApplyResources(this.maxSkillColumnHeader, "maxSkillColumnHeader");
+            // 
+            // startYearColumnHeader
+            // 
+            resources.ApplyResources(this.startYearColumnHeader, "startYearColumnHeader");
+            // 
+            // endYearColumnHeader
+            // 
+            resources.ApplyResources(this.endYearColumnHeader, "endYearColumnHeader");
+            // 
+            // traitsColumnHeader
+            // 
+            resources.ApplyResources(this.traitsColumnHeader, "traitsColumnHeader");
+            // 
             // LeaderEditorForm
             // 
             resources.ApplyResources(this, "$this");
@@ -1319,7 +1321,7 @@
         private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.ColumnHeader traitsColumnHeader;
         private System.Windows.Forms.ColumnHeader endYearColumnHeader;
-        private System.Windows.Forms.ListView leaderListView;
+        private HoI2Editor.Controls.ExtendedListView leaderListView;
         private System.Windows.Forms.NumericUpDown rankYearNumericUpDown1;
         private System.Windows.Forms.Label rankYearLabel1;
         private System.Windows.Forms.NumericUpDown rankYearNumericUpDown2;
