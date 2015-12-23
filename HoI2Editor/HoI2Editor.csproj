@@ -56,6 +56,15 @@
     <Compile Include="Controls\ExtendedListView.Designer.cs">
       <DependentUpon>ExtendedListView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\FinishTextEditEventArgs.cs" />
+    <Compile Include="Controls\InlineTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\InlineTextBox.Designer.cs">
+      <DependentUpon>InlineTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ListViewItemEditEventArgs.cs" />
+    <Compile Include="Controls\QueryListViewItemEditEventArgs.cs" />
     <Compile Include="Controls\RowReorderedEventArgs.cs" />
     <Compile Include="Dialogs\LeaderBatchDialog.cs">
       <SubType>Form</SubType>

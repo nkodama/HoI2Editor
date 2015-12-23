@@ -555,6 +555,67 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     指揮官リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLeaderListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0: // 国タグ
+                    e.Type = ItemEditType.List;
+                    break;
+
+                case 1: // ID
+                    e.Type = ItemEditType.Number;
+                    break;
+
+                case 2: // 名前
+                    e.Type = ItemEditType.Text;
+                    break;
+
+                case 3: // 兵科
+                    e.Type = ItemEditType.List;
+                    break;
+
+                case 4: // スキル
+                    e.Type = ItemEditType.Number;
+                    break;
+
+                case 5: // 最大スキル
+                    e.Type = ItemEditType.Number;
+                    break;
+
+                case 6: // 開始年
+                    e.Type = ItemEditType.Number;
+                    break;
+
+                case 7: // 終了年
+                    e.Type = ItemEditType.Number;
+                    break;
+
+                case 8: // 特性
+                    e.Type = ItemEditType.None;
+                    break;
+            }
+        }
+
+        private void OnLeaderListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+        }
+
+        private void OnLeaderListViewAfterItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 2:
+                    nameTextBox.Text = e.Data as string;
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     指揮官リストビューの項目入れ替え時の処理
         /// </summary>
         /// <param name="sender"></param>
