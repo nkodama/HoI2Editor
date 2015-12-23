@@ -6,9 +6,9 @@ using System.Windows.Forms;
 namespace HoI2Editor.Controls
 {
     /// <summary>
-    ///     項目編集用テキストボックス
+    ///     項目編集用コンボボックス
     /// </summary>
-    public partial class InlineTextBox : TextBox
+    public partial class InlineComboBox : ComboBox
     {
         #region 公開イベント
 
@@ -17,7 +17,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         [Category("動作")]
         [Description("項目の編集を完了したときに発生します。")]
-        public event EventHandler<FinishTextEditEventArgs> FinishEdit;
+        public event EventHandler<FinishListEditEventArgs> FinishEdit;
 
         #endregion
 
@@ -26,37 +26,40 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        /// <param name="text">元の文字列</param>
+        /// <param name="control">参照するコンボボックス</param>
         /// <param name="location">座標</param>
         /// <param name="size">サイズ</param>
         /// <param name="parent">親コントロール</param>
-        public InlineTextBox(string text, Point location, Size size, Control parent)
+        public InlineComboBox(ComboBox control, Point location, Size size, Control parent)
         {
             InitializeComponent();
 
-            Init(text, location, size, parent);
+            Init(control, location, size, parent);
         }
 
         /// <summary>
         ///     初期化処理
         /// </summary>
-        /// <param name="text">元の文字列</param>
+        /// <param name="control">参照するコンボボックス</param>
         /// <param name="location">座標</param>
         /// <param name="size">サイズ</param>
         /// <param name="parent">親コントロール</param>
-        private void Init(string text, Point location, Size size, Control parent)
+        private void Init(ComboBox control, Point location, Size size, Control parent)
         {
             Parent = parent;
             Location = location;
             Size = size;
-            Text = text;
-            Multiline = false;
+            Font = control.Font;
+            foreach (object o in control.Items)
+            {
+                Items.Add(o);
+            }
+            SelectedIndex = control.SelectedIndex;
+            DropDownStyle = ComboBoxStyle.DropDownList;
+            DropDownWidth = control.DropDownWidth;
 
-            // 文字列を全選択する
-            SelectAll();
-
-            // フォーカスを設定する
-            Focus();
+            // ドロップダウンリストを開く
+            DroppedDown = true;
         }
 
         #endregion
@@ -69,11 +72,7 @@ namespace HoI2Editor.Controls
         protected override void OnKeyDown(KeyEventArgs e)
         {
             base.OnKeyDown(e);
-            if (e.KeyCode == Keys.Enter)
-            {
-                Finish(false);
-            }
-            else if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape)
             {
                 Finish(true);
             }
@@ -85,6 +84,27 @@ namespace HoI2Editor.Controls
         protected override void OnLostFocus(EventArgs e)
         {
             base.OnLostFocus(e);
+            Finish(true);
+        }
+
+        /// <summary>
+        ///     選択項目変更時の処理
+        /// </summary>
+        protected override void OnSelectedIndexChanged(EventArgs e)
+        {
+            base.OnSelectedIndexChanged(e);
+            Finish(false);
+        }
+
+        /// <summary>
+        ///     ドロップダウンリストが閉じられた時の処理
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnDropDownClosed(EventArgs e)
+        {
+            base.OnDropDownClosed(e);
+
+            // 領域外クリックと項目選択を区別する方法が思いつかないので常に更新ありと見なす
             Finish(false);
         }
 
@@ -106,7 +126,7 @@ namespace HoI2Editor.Controls
         /// <param name="cancel">キャンセルされたかどうか</param>
         private void Finish(bool cancel)
         {
-            FinishTextEditEventArgs e = new FinishTextEditEventArgs(Text, cancel);
+            FinishListEditEventArgs e = new FinishListEditEventArgs(SelectedIndex, cancel);
             FinishEdit?.Invoke(this, e);
         }
 

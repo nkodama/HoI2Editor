@@ -54,7 +54,6 @@ namespace HoI2Editor.Controls
     {
         None, // 編集なし
         Text, // 文字列編集
-        Number, // 数値編集
         List // リストから選択
     }
 }

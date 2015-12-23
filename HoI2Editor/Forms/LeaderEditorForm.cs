@@ -565,34 +565,21 @@ namespace HoI2Editor.Forms
             {
                 case 0: // 国タグ
                     e.Type = ItemEditType.List;
-                    break;
-
-                case 1: // ID
-                    e.Type = ItemEditType.Number;
-                    break;
-
-                case 2: // 名前
-                    e.Type = ItemEditType.Text;
+                    e.Data = countryComboBox;
                     break;
 
                 case 3: // 兵科
                     e.Type = ItemEditType.List;
+                    e.Data = branchComboBox;
                     break;
 
+                case 1: // ID
+                case 2: // 名前
                 case 4: // スキル
-                    e.Type = ItemEditType.Number;
-                    break;
-
                 case 5: // 最大スキル
-                    e.Type = ItemEditType.Number;
-                    break;
-
                 case 6: // 開始年
-                    e.Type = ItemEditType.Number;
-                    break;
-
                 case 7: // 終了年
-                    e.Type = ItemEditType.Number;
+                    e.Type = ItemEditType.Text;
                     break;
 
                 case 8: // 特性
@@ -609,8 +596,36 @@ namespace HoI2Editor.Forms
         {
             switch (e.ColumnIndex)
             {
+                case 0:
+                    countryComboBox.SelectedIndex = (int) e.Data;
+                    break;
+
+                case 1:
+                    idNumericUpDown.Text = e.Data as string;
+                    break;
+
                 case 2:
                     nameTextBox.Text = e.Data as string;
+                    break;
+
+                case 3:
+                    branchComboBox.SelectedIndex = (int) e.Data;
+                    break;
+
+                case 4:
+                    skillNumericUpDown.Text = e.Data as string;
+                    break;
+
+                case 5:
+                    maxSkillNumericUpDown.Text = e.Data as string;
+                    break;
+
+                case 6:
+                    startYearNumericUpDown.Text = e.Data as string;
+                    break;
+
+                case 7:
+                    endYearNumericUpDown.Text = e.Data as string;
                     break;
             }
         }
