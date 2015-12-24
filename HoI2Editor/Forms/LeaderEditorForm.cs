@@ -589,7 +589,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 指揮官リストビューの項目編集後の処理
+        ///     指揮官リストビューの項目編集後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

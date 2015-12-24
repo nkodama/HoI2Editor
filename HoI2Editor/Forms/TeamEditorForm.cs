@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HoI2Editor.Controls;
 using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -698,6 +699,101 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     研究機関リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0: // 国タグ
+                    e.Type = ItemEditType.List;
+                    e.Data = countryComboBox;
+                    break;
+
+                case 1: // ID
+                case 2: // 名前
+                case 3: // スキル
+                case 4: // 開始年
+                case 5: // 終了年
+                    e.Type = ItemEditType.Text;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     研究機関リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamListViewAfterItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0: // 国タグ
+                    countryComboBox.SelectedIndex = (int) e.Data;
+                    break;
+
+                case 1: // ID
+                    idNumericUpDown.Text = e.Data as string;
+                    break;
+
+                case 2: // 名前
+                    nameTextBox.Text = e.Data as string;
+                    break;
+
+                case 3: // スキル
+                    skillNumericUpDown.Text = e.Data as string;
+                    break;
+
+                case 4: // 開始年
+                    startYearNumericUpDown.Text = e.Data as string;
+                    break;
+
+                case 5: // 終了年
+                    endYearNumericUpDown.Text = e.Data as string;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     研究機関リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTeamListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 自前で項目を入れ替えるのでキャンセル扱いにする
+            e.Cancel = true;
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+            if (srcIndex < destIndex)
+            {
+                destIndex--;
+            }
+
+            Team src = teamListView.Items[srcIndex].Tag as Team;
+            if (src == null)
+            {
+                return;
+            }
+            Team dest = teamListView.Items[destIndex].Tag as Team;
+            if (dest == null)
+            {
+                return;
+            }
+
+            // 研究機関リストの項目を移動する
+            Teams.MoveItem(src, dest);
+            MoveListItem(srcIndex, destIndex);
+
+            // 編集済みフラグを設定する
+            Teams.SetDirty(src.Country);
+        }
+
+        /// <summary>
         ///     研究機関リストビューのカラムクリック時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -1136,7 +1232,7 @@ namespace HoI2Editor.Forms
             // 絞り込みリストから項目を削除する
             _list.RemoveAt(index);
 
-            // 閣僚リストビューから項目を削除する
+            // 研究機関リストビューから項目を削除する
             teamListView.Items.RemoveAt(index);
 
             // 削除した項目の次の項目を選択する
@@ -1169,7 +1265,7 @@ namespace HoI2Editor.Forms
                 _list.Insert(dest, team);
                 _list.RemoveAt(src + 1);
 
-                // 閣僚リストビューの項目を移動する
+                // 研究機関リストビューの項目を移動する
                 teamListView.Items.Insert(dest, CreateTeamListViewItem(team));
                 teamListView.Items.RemoveAt(src + 1);
             }
@@ -1180,7 +1276,7 @@ namespace HoI2Editor.Forms
                 _list.Insert(dest + 1, team);
                 _list.RemoveAt(src);
 
-                // 閣僚リストビューの項目を移動する
+                // 研究機関リストビューの項目を移動する
                 teamListView.Items.Insert(dest + 1, CreateTeamListViewItem(team));
                 teamListView.Items.RemoveAt(src);
             }

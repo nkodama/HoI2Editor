@@ -44,7 +44,7 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.countryListBox = new System.Windows.Forms.ListBox();
-            this.teamListView = new System.Windows.Forms.ListView();
+            this.teamListView = new HoI2Editor.Controls.ExtendedListView();
             this.countryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -206,6 +206,8 @@
             // 
             // teamListView
             // 
+            this.teamListView.AllowDrop = true;
+            this.teamListView.AllowRowReorder = true;
             resources.ApplyResources(this.teamListView, "teamListView");
             this.teamListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.countryColumnHeader,
@@ -221,8 +223,12 @@
             this.teamListView.MultiSelect = false;
             this.teamListView.Name = "teamListView";
             this.teamListView.OwnerDraw = true;
+            this.teamListView.SubItemEdit = true;
             this.teamListView.UseCompatibleStateImageBehavior = false;
             this.teamListView.View = System.Windows.Forms.View.Details;
+            this.teamListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnTeamListViewRowReordered);
+            this.teamListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnTeamListViewQueryItemEdit);
+            this.teamListView.AfterItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnTeamListViewAfterItemEdit);
             this.teamListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
             this.teamListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnTeamListViewColumnWidthChanged);
             this.teamListView.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.OnTeamListViewDrawColumnHeader);
@@ -375,70 +381,70 @@
             // 
             // specialityComboBox7
             // 
-            resources.ApplyResources(this.specialityComboBox7, "specialityComboBox7");
             this.specialityComboBox7.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox7.FormattingEnabled = true;
+            resources.ApplyResources(this.specialityComboBox7, "specialityComboBox7");
             this.specialityComboBox7.Name = "specialityComboBox7";
             this.specialityComboBox7.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox7.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox6
             // 
-            resources.ApplyResources(this.specialityComboBox6, "specialityComboBox6");
             this.specialityComboBox6.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox6.FormattingEnabled = true;
+            resources.ApplyResources(this.specialityComboBox6, "specialityComboBox6");
             this.specialityComboBox6.Name = "specialityComboBox6";
             this.specialityComboBox6.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox6.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox5
             // 
-            resources.ApplyResources(this.specialityComboBox5, "specialityComboBox5");
             this.specialityComboBox5.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox5.FormattingEnabled = true;
+            resources.ApplyResources(this.specialityComboBox5, "specialityComboBox5");
             this.specialityComboBox5.Name = "specialityComboBox5";
             this.specialityComboBox5.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox5.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox4
             // 
-            resources.ApplyResources(this.specialityComboBox4, "specialityComboBox4");
             this.specialityComboBox4.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox4.FormattingEnabled = true;
+            resources.ApplyResources(this.specialityComboBox4, "specialityComboBox4");
             this.specialityComboBox4.Name = "specialityComboBox4";
             this.specialityComboBox4.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox4.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox3
             // 
-            resources.ApplyResources(this.specialityComboBox3, "specialityComboBox3");
             this.specialityComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox3.FormattingEnabled = true;
+            resources.ApplyResources(this.specialityComboBox3, "specialityComboBox3");
             this.specialityComboBox3.Name = "specialityComboBox3";
             this.specialityComboBox3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox3.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox2
             // 
-            resources.ApplyResources(this.specialityComboBox2, "specialityComboBox2");
             this.specialityComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox2.FormattingEnabled = true;
+            resources.ApplyResources(this.specialityComboBox2, "specialityComboBox2");
             this.specialityComboBox2.Name = "specialityComboBox2";
             this.specialityComboBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox2.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
             // 
             // specialityComboBox1
             // 
-            resources.ApplyResources(this.specialityComboBox1, "specialityComboBox1");
             this.specialityComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.specialityComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.specialityComboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.specialityComboBox1, "specialityComboBox1");
             this.specialityComboBox1.Name = "specialityComboBox1";
             this.specialityComboBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSpecialityComboBoxDrawItem);
             this.specialityComboBox1.SelectedIndexChanged += new System.EventHandler(this.OnSpecialityComboBoxSelectedIndexChanged);
@@ -519,7 +525,7 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.NumericUpDown idNumericUpDown;
         private System.Windows.Forms.ListBox countryListBox;
-        private System.Windows.Forms.ListView teamListView;
+        private HoI2Editor.Controls.ExtendedListView teamListView;
         private System.Windows.Forms.ColumnHeader countryColumnHeader;
         private System.Windows.Forms.ColumnHeader idColumnHeader;
         private System.Windows.Forms.ColumnHeader nameColumnHeader;

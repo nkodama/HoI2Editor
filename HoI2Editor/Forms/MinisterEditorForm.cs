@@ -515,7 +515,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        /// 閣僚リストビューの項目編集後の処理
+        ///     閣僚リストビューの項目編集後の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -524,7 +524,7 @@ namespace HoI2Editor.Forms
             switch (e.ColumnIndex)
             {
                 case 0: // 国タグ
-                    countryComboBox.SelectedIndex = (int)e.Data;
+                    countryComboBox.SelectedIndex = (int) e.Data;
                     break;
 
                 case 1: // ID
