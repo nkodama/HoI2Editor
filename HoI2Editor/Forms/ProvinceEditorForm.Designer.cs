@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProvinceEditorForm));
-            this.provinceListView = new System.Windows.Forms.ListView();
+            this.provinceListView = new HoI2Editor.Controls.ExtendedListView();
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.seaColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -164,10 +164,13 @@
             this.provinceListView.GridLines = true;
             this.provinceListView.HideSelection = false;
             this.provinceListView.Name = "provinceListView";
+            this.provinceListView.SubItemEdit = true;
             this.provinceListView.UseCompatibleStateImageBehavior = false;
             this.provinceListView.View = System.Windows.Forms.View.Details;
+            this.provinceListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnProvinceListViewQueryItemEdit);
+            this.provinceListView.AfterItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnProvinceListViewAfterItemEdit);
             this.provinceListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
-            this.provinceListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnTeamListViewColumnWidthChanged);
+            this.provinceListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnProvinceListViewColumnWidthChanged);
             this.provinceListView.SelectedIndexChanged += new System.EventHandler(this.OnProvinceListViewSelectedIndexChanged);
             // 
             // nameColumnHeader
@@ -801,7 +804,7 @@
             // 
             resources.ApplyResources(this.oilTextBox, "oilTextBox");
             this.oilTextBox.Name = "oilTextBox";
-            this.oilTextBox.Validated += new System.EventHandler(this.OnOilNumericUpDownValueChanged);
+            this.oilTextBox.Validated += new System.EventHandler(this.OnOilNumericUpDownValidated);
             // 
             // rareMaterialsTextBox
             // 
@@ -937,7 +940,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView provinceListView;
+        private HoI2Editor.Controls.ExtendedListView provinceListView;
         private System.Windows.Forms.TreeView worldTreeView;
         private System.Windows.Forms.GroupBox basicGroupBox;
         private System.Windows.Forms.ComboBox areaComboBox;

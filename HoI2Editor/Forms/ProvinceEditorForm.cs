@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controls;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
@@ -693,6 +694,78 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     プロヴィンスリストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0: // 名前
+                case 5: // インフラ
+                case 6: // IC
+                case 7: // 労働力
+                case 8: // エネルギー
+                case 9: // 金属
+                case 10: // 希少資源
+                case 11: // 石油
+                    e.Type = ItemEditType.Text;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     プロヴィンスリストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnProvinceListViewAfterItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0: // 名前
+                    nameTextBox.Text = e.Data as string;
+                    break;
+
+                case 5: // インフラ
+                    infraTextBox.Text = e.Data as string;
+                    OnInfraTextBoxValidated(infraTextBox, new EventArgs());
+                    break;
+
+                case 6: // IC
+                    icTextBox.Text = e.Data as string;
+                    OnIcTextBoxValidated(icTextBox, new EventArgs());
+                    break;
+
+                case 7: // 労働力
+                    manpowerTextBox.Text = e.Data as string;
+                    OnManpowerTextBoxValidated(manpowerTextBox, new EventArgs());
+                    break;
+
+                case 8: // エネルギー
+                    energyTextBox.Text = e.Data as string;
+                    OnEnergyTextBoxValidated(energyTextBox, new EventArgs());
+                    break;
+
+                case 9: // 金属
+                    metalTextBox.Text = e.Data as string;
+                    OnMetalTextBoxValidated(metalTextBox, new EventArgs());
+                    break;
+
+                case 10: // 希少資源
+                    rareMaterialsTextBox.Text = e.Data as string;
+                    OnRareMaterialsTextBoxValidated(rareMaterialsTextBox, new EventArgs());
+                    break;
+
+                case 11: // 石油
+                    oilTextBox.Text = e.Data as string;
+                    OnOilNumericUpDownValidated(oilTextBox, new EventArgs());
+                    break;
+            }
+        }
+
+        /// <summary>
         ///     閣僚リストビューのカラムクリック時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -850,7 +923,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTeamListViewColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
+        private void OnProvinceListViewColumnWidthChanged(object sender, ColumnWidthChangedEventArgs e)
         {
             if ((e.ColumnIndex >= 0) && (e.ColumnIndex < ProvinceListColumnCount))
             {
@@ -2093,7 +2166,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnOilNumericUpDownValueChanged(object sender, EventArgs e)
+        private void OnOilNumericUpDownValidated(object sender, EventArgs e)
         {
             // 選択項目がなければ何もしない
             Province province = GetSelectedProvince();
