@@ -1140,6 +1140,7 @@
             // 
             // leaderListView
             // 
+            this.leaderListView.AllowDrop = true;
             this.leaderListView.AllowRowReorder = true;
             resources.ApplyResources(this.leaderListView, "leaderListView");
             this.leaderListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -1161,7 +1162,6 @@
             this.leaderListView.View = System.Windows.Forms.View.Details;
             this.leaderListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnLeaderListViewRowReordered);
             this.leaderListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnLeaderListViewQueryItemEdit);
-            this.leaderListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnLeaderListViewBeforeItemEdit);
             this.leaderListView.AfterItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnLeaderListViewAfterItemEdit);
             this.leaderListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
             this.leaderListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnLeaderListViewColumnWidthChanged);

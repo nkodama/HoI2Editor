@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MinisterEditorForm));
-            this.ministerListView = new System.Windows.Forms.ListView();
+            this.ministerListView = new HoI2Editor.Controls.ExtendedListView();
             this.countryColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -84,6 +84,8 @@
             // 
             // ministerListView
             // 
+            this.ministerListView.AllowDrop = true;
+            this.ministerListView.AllowRowReorder = true;
             resources.ApplyResources(this.ministerListView, "ministerListView");
             this.ministerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.countryColumnHeader,
@@ -99,9 +101,13 @@
             this.ministerListView.HideSelection = false;
             this.ministerListView.MultiSelect = false;
             this.ministerListView.Name = "ministerListView";
+            this.ministerListView.SubItemEdit = true;
             this.ministerListView.UseCompatibleStateImageBehavior = false;
             this.ministerListView.View = System.Windows.Forms.View.Details;
-            this.ministerListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
+            this.ministerListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnMinisterListViewRowReordered);
+            this.ministerListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnMinisterListViewQueryItemEdit);
+            this.ministerListView.AfterItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnMinisterListViewAfterItemEdit);
+            this.ministerListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnMinisterListViewColumnClick);
             this.ministerListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnMinisterListViewColumnWidthChanged);
             this.ministerListView.SelectedIndexChanged += new System.EventHandler(this.OnMinisterListViewSelectedIndexChanged);
             // 
@@ -481,7 +487,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView ministerListView;
+        private HoI2Editor.Controls.ExtendedListView ministerListView;
         private System.Windows.Forms.ColumnHeader countryColumnHeader;
         private System.Windows.Forms.ColumnHeader idColumnHeader;
         private System.Windows.Forms.ColumnHeader nameColumnHeader;

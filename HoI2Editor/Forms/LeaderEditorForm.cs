@@ -588,43 +588,44 @@ namespace HoI2Editor.Forms
             }
         }
 
-        private void OnLeaderListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
-        {
-        }
-
+        /// <summary>
+        /// 指揮官リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnLeaderListViewAfterItemEdit(object sender, ListViewItemEditEventArgs e)
         {
             switch (e.ColumnIndex)
             {
-                case 0:
+                case 0: // 国タグ
                     countryComboBox.SelectedIndex = (int) e.Data;
                     break;
 
-                case 1:
+                case 1: // ID
                     idNumericUpDown.Text = e.Data as string;
                     break;
 
-                case 2:
+                case 2: // 名前
                     nameTextBox.Text = e.Data as string;
                     break;
 
-                case 3:
+                case 3: // 兵科
                     branchComboBox.SelectedIndex = (int) e.Data;
                     break;
 
-                case 4:
+                case 4: // スキル
                     skillNumericUpDown.Text = e.Data as string;
                     break;
 
-                case 5:
+                case 5: // 最大スキル
                     maxSkillNumericUpDown.Text = e.Data as string;
                     break;
 
-                case 6:
+                case 6: // 開始年
                     startYearNumericUpDown.Text = e.Data as string;
                     break;
 
-                case 7:
+                case 7: // 終了年
                     endYearNumericUpDown.Text = e.Data as string;
                     break;
             }

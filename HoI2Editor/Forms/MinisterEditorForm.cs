@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HoI2Editor.Controls;
 using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -476,11 +477,128 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     閣僚リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0: // 国タグ
+                    e.Type = ItemEditType.List;
+                    e.Data = countryComboBox;
+                    break;
+
+                case 5: // 地位
+                    e.Type = ItemEditType.List;
+                    e.Data = positionComboBox;
+                    break;
+
+                case 6: // 特性
+                    e.Type = ItemEditType.List;
+                    e.Data = personalityComboBox;
+                    break;
+
+                case 7: // イデオロギー
+                    e.Type = ItemEditType.List;
+                    e.Data = ideologyComboBox;
+                    break;
+
+                case 1: // ID
+                case 2: // 名前
+                case 3: // 開始年
+                case 4: // 終了年
+                    e.Type = ItemEditType.Text;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// 閣僚リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterListViewAfterItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.ColumnIndex)
+            {
+                case 0: // 国タグ
+                    countryComboBox.SelectedIndex = (int)e.Data;
+                    break;
+
+                case 1: // ID
+                    idNumericUpDown.Text = e.Data as string;
+                    break;
+
+                case 2: // 名前
+                    nameTextBox.Text = e.Data as string;
+                    break;
+
+                case 3: // 開始年
+                    startYearNumericUpDown.Text = e.Data as string;
+                    break;
+
+                case 4: // 終了年
+                    endYearNumericUpDown.Text = e.Data as string;
+                    break;
+
+                case 5: // 地位
+                    positionComboBox.SelectedIndex = (int) e.Data;
+                    break;
+
+                case 6: // 特性
+                    personalityComboBox.SelectedIndex = (int) e.Data;
+                    break;
+
+                case 7: // イデオロギー
+                    ideologyComboBox.SelectedIndex = (int) e.Data;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     閣僚リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMinisterListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 自前で項目を入れ替えるのでキャンセル扱いにする
+            e.Cancel = true;
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+            if (srcIndex < destIndex)
+            {
+                destIndex--;
+            }
+
+            Minister src = ministerListView.Items[srcIndex].Tag as Minister;
+            if (src == null)
+            {
+                return;
+            }
+            Minister dest = ministerListView.Items[destIndex].Tag as Minister;
+            if (dest == null)
+            {
+                return;
+            }
+
+            // 閣僚リストの項目を移動する
+            Ministers.MoveItem(src, dest);
+            MoveListItem(srcIndex, destIndex);
+
+            // 編集済みフラグを設定する
+            Ministers.SetDirty(src.Country);
+        }
+
+        /// <summary>
         ///     閣僚リストビューのカラムクリック時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLeaderListViewColumnClick(object sender, ColumnClickEventArgs e)
+        private void OnMinisterListViewColumnClick(object sender, ColumnClickEventArgs e)
         {
             switch (e.Column)
             {
