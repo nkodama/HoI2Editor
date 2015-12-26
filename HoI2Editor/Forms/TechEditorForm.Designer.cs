@@ -148,7 +148,6 @@
             this.eventTechLabel = new System.Windows.Forms.Label();
             this.eventIdNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.eventTechIdLabel = new System.Windows.Forms.Label();
-            this.techListBox = new System.Windows.Forms.ListBox();
             this.reloadButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
@@ -162,6 +161,8 @@
             this.cloneButton = new System.Windows.Forms.Button();
             this.removeButton = new System.Windows.Forms.Button();
             this.treePanel = new System.Windows.Forms.Panel();
+            this.techListView = new HoI2Editor.Controls.ExtendedListView();
+            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.treePictureBox)).BeginInit();
             this.editTabControl.SuspendLayout();
             this.categoryTabPage.SuspendLayout();
@@ -1164,15 +1165,6 @@
             resources.ApplyResources(this.eventTechIdLabel, "eventTechIdLabel");
             this.eventTechIdLabel.Name = "eventTechIdLabel";
             // 
-            // techListBox
-            // 
-            resources.ApplyResources(this.techListBox, "techListBox");
-            this.techListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.techListBox.FormattingEnabled = true;
-            this.techListBox.Name = "techListBox";
-            this.techListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTechListBoxDrawItem);
-            this.techListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechListBoxSelectedIndexChanged);
-            // 
             // reloadButton
             // 
             resources.ApplyResources(this.reloadButton, "reloadButton");
@@ -1263,10 +1255,34 @@
             this.treePanel.Controls.Add(this.treePictureBox);
             this.treePanel.Name = "treePanel";
             // 
+            // techListView
+            // 
+            this.techListView.AllowDrop = true;
+            this.techListView.AllowRowReorder = true;
+            resources.ApplyResources(this.techListView, "techListView");
+            this.techListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.nameColumnHeader});
+            this.techListView.FullRowSelect = true;
+            this.techListView.HideSelection = false;
+            this.techListView.MultiSelect = false;
+            this.techListView.Name = "techListView";
+            this.techListView.OwnerDraw = true;
+            this.techListView.SelectedIndex = -1;
+            this.techListView.UseCompatibleStateImageBehavior = false;
+            this.techListView.View = System.Windows.Forms.View.Details;
+            this.techListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnTechListViewRowReordered);
+            this.techListView.DrawSubItem += new System.Windows.Forms.DrawListViewSubItemEventHandler(this.OnTechListViewDrawSubItem);
+            this.techListView.SelectedIndexChanged += new System.EventHandler(this.OnTechListViewSelectedIndexChanged);
+            // 
+            // nameColumnHeader
+            // 
+            resources.ApplyResources(this.nameColumnHeader, "nameColumnHeader");
+            // 
             // TechEditorForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.techListView);
             this.Controls.Add(this.treePanel);
             this.Controls.Add(this.editTabControl);
             this.Controls.Add(this.removeButton);
@@ -1281,7 +1297,6 @@
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.reloadButton);
-            this.Controls.Add(this.techListBox);
             this.Controls.Add(this.categoryListBox);
             this.Name = "TechEditorForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OnFormClosing);
@@ -1346,7 +1361,6 @@
         private System.Windows.Forms.TabPage effectTabPage;
         private System.Windows.Forms.TabPage labelTabPage;
         private System.Windows.Forms.TabPage eventTabPage;
-        private System.Windows.Forms.ListBox techListBox;
         private System.Windows.Forms.Button reloadButton;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button closeButton;
@@ -1461,5 +1475,7 @@
         private System.Windows.Forms.Label categoryDescLabel;
         private System.Windows.Forms.TextBox categoryNameTextBox;
         private System.Windows.Forms.Label categoryNameLabel;
+        private Controls.ExtendedListView techListView;
+        private System.Windows.Forms.ColumnHeader nameColumnHeader;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace HoI2Editor.Controls
@@ -11,6 +12,33 @@ namespace HoI2Editor.Controls
     public partial class ExtendedListView : ListView
     {
         #region 公開プロパティ
+
+        /// <summary>
+        ///     選択中の項目のインデックス
+        /// </summary>
+        public int SelectedIndex
+        {
+            get { return SelectedIndices.Count > 0 ? SelectedIndices[0] : -1; }
+            set
+            {
+                foreach (int index in SelectedIndices.Cast<int>().Where(index => index != value))
+                {
+                    Items[index].Selected = false;
+                    Items[index].Focused = false;
+                }
+                if ((value < 0) || (value >= Items.Count))
+                {
+                    return;
+                }
+                Items[value].Selected = true;
+                Items[value].Focused = true;
+            }
+        }
+
+        /// <summary>
+        ///     選択中の項目
+        /// </summary>
+        public ListViewItem SelectedItem => (SelectedItems.Count > 0) ? SelectedItems[0] : null;
 
         /// <summary>
         ///     行の入れ替えをサポートするかどうか
@@ -261,8 +289,13 @@ namespace HoI2Editor.Controls
             }
 
             // リストビューの項目を移動する
-            Items.Insert(index, (ListViewItem) item.Clone());
+            ListViewItem newItem = (ListViewItem) item.Clone();
+            Items.Insert(index, newItem);
             Items.Remove(item);
+
+            // 移動先の項目を選択する
+            newItem.Selected = true;
+            newItem.Focused = true;
         }
 
         /// <summary>
@@ -404,8 +437,8 @@ namespace HoI2Editor.Controls
                 return;
             }
 
-            ListViewItem item = Items[_editingRowIndex];
-            ListViewItem.ListViewSubItem subItem = item.SubItems[_editingColumnIndex];
+            //ListViewItem item = Items[_editingRowIndex];
+            //ListViewItem.ListViewSubItem subItem = item.SubItems[_editingColumnIndex];
 
             ListViewItemEditEventArgs ie = new ListViewItemEditEventArgs(_editingRowIndex, _editingColumnIndex, e.Index);
             BeforeItemEdit?.Invoke(this, ie);
