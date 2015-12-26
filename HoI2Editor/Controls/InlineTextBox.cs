@@ -8,6 +8,7 @@ namespace HoI2Editor.Controls
     /// <summary>
     ///     項目編集用テキストボックス
     /// </summary>
+    [ToolboxItem(false)]
     public partial class InlineTextBox : TextBox
     {
         #region 公開イベント
@@ -17,7 +18,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         [Category("動作")]
         [Description("項目の編集を完了したときに発生します。")]
-        public event EventHandler<FinishTextEditEventArgs> FinishEdit;
+        public event EventHandler<CancelEventArgs> FinishEdit;
 
         #endregion
 
@@ -26,7 +27,7 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        /// <param name="text">元の文字列</param>
+        /// <param name="text">初期文字列</param>
         /// <param name="location">座標</param>
         /// <param name="size">サイズ</param>
         /// <param name="parent">親コントロール</param>
@@ -40,7 +41,7 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     初期化処理
         /// </summary>
-        /// <param name="text">元の文字列</param>
+        /// <param name="text">初期文字列</param>
         /// <param name="location">座標</param>
         /// <param name="size">サイズ</param>
         /// <param name="parent">親コントロール</param>
@@ -72,10 +73,12 @@ namespace HoI2Editor.Controls
             if (e.KeyCode == Keys.Enter)
             {
                 Finish(false);
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Finish(true);
+                e.Handled = true;
             }
         }
 
@@ -106,7 +109,7 @@ namespace HoI2Editor.Controls
         /// <param name="cancel">キャンセルされたかどうか</param>
         private void Finish(bool cancel)
         {
-            FinishTextEditEventArgs e = new FinishTextEditEventArgs(Text, cancel);
+            CancelEventArgs e = new CancelEventArgs(cancel);
             FinishEdit?.Invoke(this, e);
         }
 

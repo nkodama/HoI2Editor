@@ -565,21 +565,46 @@ namespace HoI2Editor.Forms
             {
                 case 0: // 国タグ
                     e.Type = ItemEditType.List;
-                    e.Data = countryComboBox;
+                    e.Items = countryComboBox.Items.Cast<string>();
+                    e.Index = countryComboBox.SelectedIndex;
+                    e.DropDownWidth = countryComboBox.DropDownWidth;
+                    break;
+
+                case 1: // ID
+                    e.Type = ItemEditType.Text;
+                    e.Text = idNumericUpDown.Text;
+                    break;
+
+                case 2: // 名前
+                    e.Type = ItemEditType.Text;
+                    e.Text = nameTextBox.Text;
                     break;
 
                 case 3: // 兵科
                     e.Type = ItemEditType.List;
-                    e.Data = branchComboBox;
+                    e.Items = branchComboBox.Items.Cast<string>();
+                    e.Index = branchComboBox.SelectedIndex;
+                    e.DropDownWidth = branchComboBox.DropDownWidth;
                     break;
 
-                case 1: // ID
-                case 2: // 名前
                 case 4: // スキル
+                    e.Type = ItemEditType.Text;
+                    e.Text = skillNumericUpDown.Text;
+                    break;
+
                 case 5: // 最大スキル
+                    e.Type = ItemEditType.Text;
+                    e.Text = maxSkillNumericUpDown.Text;
+                    break;
+
                 case 6: // 開始年
+                    e.Type = ItemEditType.Text;
+                    e.Text = startYearNumericUpDown.Text;
+                    break;
+
                 case 7: // 終了年
                     e.Type = ItemEditType.Text;
+                    e.Text = endYearNumericUpDown.Text;
                     break;
 
                 case 8: // 特性
@@ -593,42 +618,45 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLeaderListViewAfterItemEdit(object sender, ListViewItemEditEventArgs e)
+        private void OnLeaderListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
         {
-            switch (e.ColumnIndex)
+            switch (e.Column)
             {
                 case 0: // 国タグ
-                    countryComboBox.SelectedIndex = (int) e.Data;
+                    countryComboBox.SelectedIndex = e.Index;
                     break;
 
                 case 1: // ID
-                    idNumericUpDown.Text = e.Data as string;
+                    idNumericUpDown.Text = e.Text;
                     break;
 
                 case 2: // 名前
-                    nameTextBox.Text = e.Data as string;
+                    nameTextBox.Text = e.Text;
                     break;
 
                 case 3: // 兵科
-                    branchComboBox.SelectedIndex = (int) e.Data;
+                    branchComboBox.SelectedIndex = e.Index;
                     break;
 
                 case 4: // スキル
-                    skillNumericUpDown.Text = e.Data as string;
+                    skillNumericUpDown.Text = e.Text;
                     break;
 
                 case 5: // 最大スキル
-                    maxSkillNumericUpDown.Text = e.Data as string;
+                    maxSkillNumericUpDown.Text = e.Text;
                     break;
 
                 case 6: // 開始年
-                    startYearNumericUpDown.Text = e.Data as string;
+                    startYearNumericUpDown.Text = e.Text;
                     break;
 
                 case 7: // 終了年
-                    endYearNumericUpDown.Text = e.Data as string;
+                    endYearNumericUpDown.Text = e.Text;
                     break;
             }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
         }
 
         /// <summary>

@@ -17,17 +17,22 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     リストビュー項目の行インデックス
         /// </summary>
-        public int RowIndex { get; private set; }
+        public int Row { get; private set; }
 
         /// <summary>
         ///     リストビュー項目の列インデックス
         /// </summary>
-        public int ColumnIndex { get; private set; }
+        public int Column { get; private set; }
 
         /// <summary>
-        ///     項目編集用のデータ
+        ///     編集後の文字列
         /// </summary>
-        public object Data { get; private set; }
+        public string Text { get; private set; }
+
+        /// <summary>
+        ///     選択後のインデックス
+        /// </summary>
+        public int Index { get; private set; }
 
         #endregion
 
@@ -36,14 +41,30 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        /// <param name="rowIndex">リストビュー項目の行インデックス</param>
-        /// <param name="columnIndex">リストビュー項目の列インデックス</param>
-        /// <param name="data">項目編集用のデータ</param>
-        public ListViewItemEditEventArgs(int rowIndex, int columnIndex, object data)
+        /// <param name="row">リストビュー項目の行インデックス</param>
+        /// <param name="column">リストビュー項目の列インデックス</param>
+        /// <param name="text">編集後の文字列</param>
+        public ListViewItemEditEventArgs(int row, int column, string text)
         {
-            RowIndex = rowIndex;
-            ColumnIndex = columnIndex;
-            Data = data;
+            Row = row;
+            Column = column;
+            Text = text;
+            Index = -1;
+        }
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        /// <param name="row">リストビュー項目の行インデックス</param>
+        /// <param name="column">リストビュー項目の列インデックス</param>
+        /// <param name="text">編集後の文字列</param>
+        /// <param name="index">選択後のインデックス</param>
+        public ListViewItemEditEventArgs(int row, int column, string text, int index)
+        {
+            Row = row;
+            Column = column;
+            Text = text;
+            Index = index;
         }
 
         #endregion

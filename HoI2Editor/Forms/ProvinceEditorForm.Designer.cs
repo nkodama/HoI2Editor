@@ -164,11 +164,12 @@
             this.provinceListView.GridLines = true;
             this.provinceListView.HideSelection = false;
             this.provinceListView.Name = "provinceListView";
+            this.provinceListView.SelectedIndex = -1;
             this.provinceListView.SubItemEdit = true;
             this.provinceListView.UseCompatibleStateImageBehavior = false;
             this.provinceListView.View = System.Windows.Forms.View.Details;
             this.provinceListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnProvinceListViewQueryItemEdit);
-            this.provinceListView.AfterItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnProvinceListViewAfterItemEdit);
+            this.provinceListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnProvinceListViewBeforeItemEdit);
             this.provinceListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
             this.provinceListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnProvinceListViewColumnWidthChanged);
             this.provinceListView.SelectedIndexChanged += new System.EventHandler(this.OnProvinceListViewSelectedIndexChanged);

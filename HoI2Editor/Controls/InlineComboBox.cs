@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,6 +9,7 @@ namespace HoI2Editor.Controls
     /// <summary>
     ///     項目編集用コンボボックス
     /// </summary>
+    [ToolboxItem(false)]
     public partial class InlineComboBox : ComboBox
     {
         #region 公開イベント
@@ -17,7 +19,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         [Category("動作")]
         [Description("項目の編集を完了したときに発生します。")]
-        public event EventHandler<FinishListEditEventArgs> FinishEdit;
+        public event EventHandler<CancelEventArgs> FinishEdit;
 
         #endregion
 
@@ -26,37 +28,42 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        /// <param name="control">参照するコンボボックス</param>
+        /// <param name="items">項目リスト</param>
+        /// <param name="index">初期インデックス</param>
         /// <param name="location">座標</param>
         /// <param name="size">サイズ</param>
         /// <param name="parent">親コントロール</param>
-        public InlineComboBox(ComboBox control, Point location, Size size, Control parent)
+        /// <param name="dropDownWidth">ドロップダウンリストの幅</param>
+        public InlineComboBox(IEnumerable<string> items, int index, Point location, Size size, int dropDownWidth,
+            Control parent)
         {
             InitializeComponent();
 
-            Init(control, location, size, parent);
+            Init(items, index, location, size, dropDownWidth, parent);
         }
 
         /// <summary>
         ///     初期化処理
         /// </summary>
-        /// <param name="control">参照するコンボボックス</param>
+        /// <param name="items">項目リスト</param>
+        /// <param name="index">初期インデックス</param>
         /// <param name="location">座標</param>
         /// <param name="size">サイズ</param>
         /// <param name="parent">親コントロール</param>
-        private void Init(ComboBox control, Point location, Size size, Control parent)
+        /// <param name="dropDownWidth">ドロップダウンリストの幅</param>
+        private void Init(IEnumerable<string> items, int index, Point location, Size size, int dropDownWidth,
+            Control parent)
         {
             Parent = parent;
             Location = location;
             Size = size;
-            Font = control.Font;
-            foreach (object o in control.Items)
+            foreach (string s in items)
             {
-                Items.Add(o);
+                Items.Add(s);
             }
-            SelectedIndex = control.SelectedIndex;
+            SelectedIndex = index;
             DropDownStyle = ComboBoxStyle.DropDownList;
-            DropDownWidth = control.DropDownWidth;
+            DropDownWidth = dropDownWidth > size.Width ? dropDownWidth : size.Width;
 
             // ドロップダウンリストを開く
             DroppedDown = true;
@@ -126,7 +133,7 @@ namespace HoI2Editor.Controls
         /// <param name="cancel">キャンセルされたかどうか</param>
         private void Finish(bool cancel)
         {
-            FinishListEditEventArgs e = new FinishListEditEventArgs(SelectedIndex, cancel);
+            CancelEventArgs e = new CancelEventArgs(cancel);
             FinishEdit?.Invoke(this, e);
         }
 

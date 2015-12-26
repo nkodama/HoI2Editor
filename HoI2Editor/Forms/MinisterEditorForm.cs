@@ -487,29 +487,50 @@ namespace HoI2Editor.Forms
             {
                 case 0: // 国タグ
                     e.Type = ItemEditType.List;
-                    e.Data = countryComboBox;
+                    e.Items = countryComboBox.Items.Cast<string>();
+                    e.Index = countryComboBox.SelectedIndex;
+                    e.DropDownWidth = countryComboBox.DropDownWidth;
+                    break;
+
+                case 1: // ID
+                    e.Type = ItemEditType.Text;
+                    e.Text = idNumericUpDown.Text;
+                    break;
+
+                case 2: // 名前
+                    e.Type = ItemEditType.Text;
+                    e.Text = nameTextBox.Text;
+                    break;
+
+                case 3: // 開始年
+                    e.Type = ItemEditType.Text;
+                    e.Text = startYearNumericUpDown.Text;
+                    break;
+
+                case 4: // 終了年
+                    e.Type = ItemEditType.Text;
+                    e.Text = endYearNumericUpDown.Text;
                     break;
 
                 case 5: // 地位
                     e.Type = ItemEditType.List;
-                    e.Data = positionComboBox;
+                    e.Items = positionComboBox.Items.Cast<string>();
+                    e.Index = positionComboBox.SelectedIndex;
+                    e.DropDownWidth = positionComboBox.DropDownWidth;
                     break;
 
                 case 6: // 特性
                     e.Type = ItemEditType.List;
-                    e.Data = personalityComboBox;
+                    e.Items = personalityComboBox.Items.Cast<string>();
+                    e.Index = personalityComboBox.SelectedIndex;
+                    e.DropDownWidth = personalityComboBox.DropDownWidth;
                     break;
 
                 case 7: // イデオロギー
                     e.Type = ItemEditType.List;
-                    e.Data = ideologyComboBox;
-                    break;
-
-                case 1: // ID
-                case 2: // 名前
-                case 3: // 開始年
-                case 4: // 終了年
-                    e.Type = ItemEditType.Text;
+                    e.Items = ideologyComboBox.Items.Cast<string>();
+                    e.Index = ideologyComboBox.SelectedIndex;
+                    e.DropDownWidth = ideologyComboBox.DropDownWidth;
                     break;
             }
         }
@@ -519,42 +540,45 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnMinisterListViewAfterItemEdit(object sender, ListViewItemEditEventArgs e)
+        private void OnMinisterListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
         {
-            switch (e.ColumnIndex)
+            switch (e.Column)
             {
                 case 0: // 国タグ
-                    countryComboBox.SelectedIndex = (int) e.Data;
+                    countryComboBox.SelectedIndex = e.Index;
                     break;
 
                 case 1: // ID
-                    idNumericUpDown.Text = e.Data as string;
+                    idNumericUpDown.Text = e.Text;
                     break;
 
                 case 2: // 名前
-                    nameTextBox.Text = e.Data as string;
+                    nameTextBox.Text = e.Text;
                     break;
 
                 case 3: // 開始年
-                    startYearNumericUpDown.Text = e.Data as string;
+                    startYearNumericUpDown.Text = e.Text;
                     break;
 
                 case 4: // 終了年
-                    endYearNumericUpDown.Text = e.Data as string;
+                    endYearNumericUpDown.Text = e.Text;
                     break;
 
                 case 5: // 地位
-                    positionComboBox.SelectedIndex = (int) e.Data;
+                    positionComboBox.SelectedIndex = e.Index;
                     break;
 
                 case 6: // 特性
-                    personalityComboBox.SelectedIndex = (int) e.Data;
+                    personalityComboBox.SelectedIndex = e.Index;
                     break;
 
                 case 7: // イデオロギー
-                    ideologyComboBox.SelectedIndex = (int) e.Data;
+                    ideologyComboBox.SelectedIndex = e.Index;
                     break;
             }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
         }
 
         /// <summary>

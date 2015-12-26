@@ -223,12 +223,13 @@
             this.teamListView.MultiSelect = false;
             this.teamListView.Name = "teamListView";
             this.teamListView.OwnerDraw = true;
+            this.teamListView.SelectedIndex = -1;
             this.teamListView.SubItemEdit = true;
             this.teamListView.UseCompatibleStateImageBehavior = false;
             this.teamListView.View = System.Windows.Forms.View.Details;
             this.teamListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnTeamListViewRowReordered);
             this.teamListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnTeamListViewQueryItemEdit);
-            this.teamListView.AfterItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnTeamListViewAfterItemEdit);
+            this.teamListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnTeamListViewBeforeItemEdit);
             this.teamListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);
             this.teamListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnTeamListViewColumnWidthChanged);
             this.teamListView.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.OnTeamListViewDrawColumnHeader);

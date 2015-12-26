@@ -56,8 +56,6 @@
     <Compile Include="Controls\ExtendedListView.Designer.cs">
       <DependentUpon>ExtendedListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\FinishListEditEventArgs.cs" />
-    <Compile Include="Controls\FinishTextEditEventArgs.cs" />
     <Compile Include="Controls\InlineComboBox.cs">
       <SubType>Component</SubType>
     </Compile>

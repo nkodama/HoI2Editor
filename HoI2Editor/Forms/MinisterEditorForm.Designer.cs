@@ -101,12 +101,13 @@
             this.ministerListView.HideSelection = false;
             this.ministerListView.MultiSelect = false;
             this.ministerListView.Name = "ministerListView";
+            this.ministerListView.SelectedIndex = -1;
             this.ministerListView.SubItemEdit = true;
             this.ministerListView.UseCompatibleStateImageBehavior = false;
             this.ministerListView.View = System.Windows.Forms.View.Details;
             this.ministerListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnMinisterListViewRowReordered);
             this.ministerListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnMinisterListViewQueryItemEdit);
-            this.ministerListView.AfterItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnMinisterListViewAfterItemEdit);
+            this.ministerListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnMinisterListViewBeforeItemEdit);
             this.ministerListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnMinisterListViewColumnClick);
             this.ministerListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnMinisterListViewColumnWidthChanged);
             this.ministerListView.SelectedIndexChanged += new System.EventHandler(this.OnMinisterListViewSelectedIndexChanged);

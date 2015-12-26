@@ -703,14 +703,43 @@ namespace HoI2Editor.Forms
             switch (e.ColumnIndex)
             {
                 case 0: // 名前
+                    e.Type = ItemEditType.Text;
+                    e.Text = nameTextBox.Text;
+                    break;
+
                 case 5: // インフラ
+                    e.Type = ItemEditType.Text;
+                    e.Text = infraTextBox.Text;
+                    break;
+
                 case 6: // IC
+                    e.Type = ItemEditType.Text;
+                    e.Text = icTextBox.Text;
+                    break;
+
                 case 7: // 労働力
+                    e.Type = ItemEditType.Text;
+                    e.Text = manpowerTextBox.Text;
+                    break;
+
                 case 8: // エネルギー
+                    e.Type = ItemEditType.Text;
+                    e.Text = energyTextBox.Text;
+                    break;
+
                 case 9: // 金属
+                    e.Type = ItemEditType.Text;
+                    e.Text = metalTextBox.Text;
+                    break;
+
                 case 10: // 希少資源
+                    e.Type = ItemEditType.Text;
+                    e.Text = rareMaterialsTextBox.Text;
+                    break;
+
                 case 11: // 石油
                     e.Type = ItemEditType.Text;
+                    e.Text = oilTextBox.Text;
                     break;
             }
         }
@@ -720,49 +749,52 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnProvinceListViewAfterItemEdit(object sender, ListViewItemEditEventArgs e)
+        private void OnProvinceListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
         {
-            switch (e.ColumnIndex)
+            switch (e.Column)
             {
                 case 0: // 名前
-                    nameTextBox.Text = e.Data as string;
+                    nameTextBox.Text = e.Text;
                     break;
 
                 case 5: // インフラ
-                    infraTextBox.Text = e.Data as string;
+                    infraTextBox.Text = e.Text;
                     OnInfraTextBoxValidated(infraTextBox, new EventArgs());
                     break;
 
                 case 6: // IC
-                    icTextBox.Text = e.Data as string;
+                    icTextBox.Text = e.Text;
                     OnIcTextBoxValidated(icTextBox, new EventArgs());
                     break;
 
                 case 7: // 労働力
-                    manpowerTextBox.Text = e.Data as string;
+                    manpowerTextBox.Text = e.Text;
                     OnManpowerTextBoxValidated(manpowerTextBox, new EventArgs());
                     break;
 
                 case 8: // エネルギー
-                    energyTextBox.Text = e.Data as string;
+                    energyTextBox.Text = e.Text;
                     OnEnergyTextBoxValidated(energyTextBox, new EventArgs());
                     break;
 
                 case 9: // 金属
-                    metalTextBox.Text = e.Data as string;
+                    metalTextBox.Text = e.Text;
                     OnMetalTextBoxValidated(metalTextBox, new EventArgs());
                     break;
 
                 case 10: // 希少資源
-                    rareMaterialsTextBox.Text = e.Data as string;
+                    rareMaterialsTextBox.Text = e.Text;
                     OnRareMaterialsTextBoxValidated(rareMaterialsTextBox, new EventArgs());
                     break;
 
                 case 11: // 石油
-                    oilTextBox.Text = e.Data as string;
+                    oilTextBox.Text = e.Text;
                     OnOilNumericUpDownValidated(oilTextBox, new EventArgs());
                     break;
             }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
         }
 
         /// <summary>

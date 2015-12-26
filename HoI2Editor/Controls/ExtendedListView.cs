@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -332,17 +333,13 @@ namespace HoI2Editor.Controls
             switch (e.Type)
             {
                 case ItemEditType.Text:
-                    ShowEditTextBox(subItem.Text, new Point(subItem.Bounds.Left, subItem.Bounds.Top),
+                    ShowEditTextBox(e.Text, new Point(subItem.Bounds.Left, subItem.Bounds.Top),
                         new Size(Columns[e.ColumnIndex].Width, subItem.Bounds.Height));
                     break;
 
                 case ItemEditType.List:
-                    ComboBox control = e.Data as ComboBox;
-                    if (control != null)
-                    {
-                        ShowEditComboBox(control, new Point(subItem.Bounds.Left, subItem.Bounds.Top),
-                            new Size(Columns[e.ColumnIndex].Width, subItem.Bounds.Height));
-                    }
+                    ShowEditComboBox(e.Items, e.Index, new Point(subItem.Bounds.Left, subItem.Bounds.Top),
+                        new Size(Columns[e.ColumnIndex].Width, subItem.Bounds.Height), e.DropDownWidth);
                     break;
             }
         }
@@ -350,7 +347,7 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     項目編集用テキストボックスを表示する
         /// </summary>
-        /// <param name="text">元の文字列</param>
+        /// <param name="text">初期文字列</param>
         /// <param name="location">テキストボックスの位置</param>
         /// <param name="size">テキストボックスのサイズ</param>
         private void ShowEditTextBox(string text, Point location, Size size)
@@ -363,12 +360,14 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     項目編集用コンボボックスを表示する
         /// </summary>
-        /// <param name="control">参照するコンボボックス</param>
-        /// <param name="location">テキストボックスの位置</param>
-        /// <param name="size">テキストボックスのサイズ</param>
-        private void ShowEditComboBox(ComboBox control, Point location, Size size)
+        /// <param name="items">項目リスト</param>
+        /// <param name="index">初期インデックス</param>
+        /// <param name="location">コンボボックスの位置</param>
+        /// <param name="size">コンボボックスのサイズ</param>
+        /// <param name="dropDownWidth">ドロップダウンリストの幅</param>
+        private void ShowEditComboBox(IEnumerable<string> items, int index, Point location, Size size, int dropDownWidth)
         {
-            InlineComboBox comboBox = new InlineComboBox(control, location, size, this);
+            InlineComboBox comboBox = new InlineComboBox(items, index, location, size, dropDownWidth, this);
             comboBox.FinishEdit += OnListFinishEdit;
             Controls.Add(comboBox);
         }
@@ -376,13 +375,14 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     文字列編集時の処理
         /// </summary>
-        private void OnTextFinishEdit(object sender, FinishTextEditEventArgs e)
+        private void OnTextFinishEdit(object sender, CancelEventArgs e)
         {
             InlineTextBox textBox = sender as InlineTextBox;
             if (textBox == null)
             {
                 return;
             }
+            string text = textBox.Text;
 
             // イベントハンドラを削除する
             textBox.FinishEdit -= OnTextFinishEdit;
@@ -399,7 +399,8 @@ namespace HoI2Editor.Controls
             ListViewItem item = Items[_editingRowIndex];
             ListViewItem.ListViewSubItem subItem = item.SubItems[_editingColumnIndex];
 
-            ListViewItemEditEventArgs ie = new ListViewItemEditEventArgs(_editingRowIndex, _editingColumnIndex, e.Text);
+            ListViewItemEditEventArgs ie = new ListViewItemEditEventArgs(_editingRowIndex, _editingColumnIndex,
+                textBox.Text);
             BeforeItemEdit?.Invoke(this, ie);
 
             // キャンセルされれば項目を更新しない
@@ -409,7 +410,7 @@ namespace HoI2Editor.Controls
             }
 
             // 項目の文字列を更新する
-            subItem.Text = e.Text;
+            subItem.Text = text;
 
             AfterItemEdit?.Invoke(this, ie);
         }
@@ -417,13 +418,15 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     リスト編集時の処理
         /// </summary>
-        private void OnListFinishEdit(object sender, FinishListEditEventArgs e)
+        private void OnListFinishEdit(object sender, CancelEventArgs e)
         {
             InlineComboBox comboBox = sender as InlineComboBox;
             if (comboBox == null)
             {
                 return;
             }
+            string s = comboBox.Text;
+            int index = comboBox.SelectedIndex;
 
             // イベントハンドラを削除する
             comboBox.FinishEdit -= OnListFinishEdit;
@@ -437,10 +440,10 @@ namespace HoI2Editor.Controls
                 return;
             }
 
-            //ListViewItem item = Items[_editingRowIndex];
-            //ListViewItem.ListViewSubItem subItem = item.SubItems[_editingColumnIndex];
+            ListViewItem item = Items[_editingRowIndex];
+            ListViewItem.ListViewSubItem subItem = item.SubItems[_editingColumnIndex];
 
-            ListViewItemEditEventArgs ie = new ListViewItemEditEventArgs(_editingRowIndex, _editingColumnIndex, e.Index);
+            ListViewItemEditEventArgs ie = new ListViewItemEditEventArgs(_editingRowIndex, _editingColumnIndex, s, index);
             BeforeItemEdit?.Invoke(this, ie);
 
             // キャンセルされれば項目を更新しない
@@ -449,8 +452,8 @@ namespace HoI2Editor.Controls
                 return;
             }
 
-            // リスト項目の文字列とリストビューに表示する内容が一致しないことがあるのでここでは更新しない
-            //subItem.Text = comboBox.Items[e.Index].ToString();
+            // 項目の文字列を更新する
+            subItem.Text = comboBox.Items[index].ToString();
 
             AfterItemEdit?.Invoke(this, ie);
         }

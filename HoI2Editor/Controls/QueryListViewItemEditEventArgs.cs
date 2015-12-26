@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HoI2Editor.Controls
 {
@@ -25,9 +26,24 @@ namespace HoI2Editor.Controls
         public ItemEditType Type { get; set; }
 
         /// <summary>
-        ///     項目編集用のデータ
+        ///     初期文字列
         /// </summary>
-        public object Data { get; set; }
+        public string Text { get; set; }
+
+        /// <summary>
+        ///     初期インデックス
+        /// </summary>
+        public int Index { get; set; }
+
+        /// <summary>
+        ///     リスト選択用項目リスト
+        /// </summary>
+        public IEnumerable<string> Items { get; set; }
+
+        /// <summary>
+        ///     ドロップダウンリストの幅
+        /// </summary>
+        public int DropDownWidth { get; set; }
 
         #endregion
 
@@ -54,6 +70,6 @@ namespace HoI2Editor.Controls
     {
         None, // 編集なし
         Text, // 文字列編集
-        List // リストから選択
+        List // リスト選択
     }
 }
