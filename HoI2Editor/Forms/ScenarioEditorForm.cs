@@ -3151,8 +3151,11 @@ namespace HoI2Editor.Forms
             {
                 index --;
             }
-            warListView.Items[index].Focused = true;
-            warListView.Items[index].Selected = true;
+            if (index >= 0)
+            {
+                warListView.Items[index].Focused = true;
+                warListView.Items[index].Selected = true;
+            }
         }
 
         /// <summary>
@@ -5635,8 +5638,11 @@ namespace HoI2Editor.Forms
             {
                 index--;
             }
-            tradeListView.Items[index].Focused = true;
-            tradeListView.Items[index].Selected = true;
+            if (index >= 0)
+            {
+                tradeListView.Items[index].Focused = true;
+                tradeListView.Items[index].Selected = true;
+            }
         }
 
         /// <summary>
