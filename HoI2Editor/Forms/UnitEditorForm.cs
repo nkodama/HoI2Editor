@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controls;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
@@ -792,6 +793,151 @@ namespace HoI2Editor.Forms
                 HoI2EditorController.Settings.UnitEditor.ModelListColumnWidth[e.ColumnIndex] =
                     modelListView.Columns[e.ColumnIndex].Width;
             }
+        }
+
+        /// <summary>
+        ///     ユニットモデルリストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModelListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 1: // 名前
+                    e.Type = ItemEditType.Text;
+                    e.Text = modelNameTextBox.Text;
+                    break;
+
+                case 2: // IC
+                    e.Type = ItemEditType.Text;
+                    e.Text = costTextBox.Text;
+                    break;
+
+                case 3: // 時間
+                    e.Type = ItemEditType.Text;
+                    e.Text = buildTimeTextBox.Text;
+                    break;
+
+                case 4: // 労働力
+                    e.Type = ItemEditType.Text;
+                    e.Text = manPowerTextBox.Text;
+                    break;
+
+                case 5: // 物資
+                    e.Type = ItemEditType.Text;
+                    e.Text = supplyConsumptionTextBox.Text;
+                    break;
+
+                case 6: // 燃料
+                    e.Type = ItemEditType.Text;
+                    e.Text = fuelConsumptionTextBox.Text;
+                    break;
+
+                case 7: // 組織率
+                    e.Type = ItemEditType.Text;
+                    e.Text = defaultOrganisationTextBox.Text;
+                    break;
+
+                case 8: // 士気
+                    e.Type = ItemEditType.Text;
+                    e.Text = moraleTextBox.Text;
+                    break;
+
+                case 9: // 速度
+                    e.Type = ItemEditType.Text;
+                    e.Text = maxSpeedTextBox.Text;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     ユニットモデルリストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModelListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 1: // 名前
+                    modelNameTextBox.Text = e.Text;
+                    break;
+
+                case 2: // IC
+                    costTextBox.Text = e.Text;
+                    OnCostTextBoxValidated(costTextBox, new EventArgs());
+                    break;
+
+                case 3: // 時間
+                    buildTimeTextBox.Text = e.Text;
+                    OnBuildTimeTextBoxValidated(buildTimeTextBox, new EventArgs());
+                    break;
+
+                case 4: // 労働力
+                    manPowerTextBox.Text = e.Text;
+                    OnManPowerTextBoxValidated(manPowerTextBox, new EventArgs());
+                    break;
+
+                case 5: // 物資
+                    supplyConsumptionTextBox.Text = e.Text;
+                    OnSupplyConsumptionTextBoxValidated(supplyConsumptionTextBox, new EventArgs());
+                    break;
+
+                case 6: // 燃料
+                    fuelConsumptionTextBox.Text = e.Text;
+                    OnFuelConsumptionTextBoxValidated(fuelConsumptionTextBox, new EventArgs());
+                    break;
+
+                case 7: // 組織率
+                    defaultOrganisationTextBox.Text = e.Text;
+                    OnDefaultOrganizationTextBoxValidated(defaultOrganisationTextBox, new EventArgs());
+                    break;
+
+                case 8: // 士気
+                    moraleTextBox.Text = e.Text;
+                    OnMoraleTextBoxValidated(moraleTextBox, new EventArgs());
+                    break;
+
+                case 9: // 速度
+                    maxSpeedTextBox.Text = e.Text;
+                    OnMaxSpeedTextBoxValidated(maxSpeedTextBox, new EventArgs());
+                    break;
+            }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        ///     ユニットモデルリストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnModelListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 自前で項目を入れ替えるのでキャンセル扱いにする
+            e.Cancel = true;
+
+            // 選択中のユニットクラスがなければ何もしない
+            UnitClass unit = classListBox.SelectedItem as UnitClass;
+            if (unit == null)
+            {
+                return;
+            }
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+            if (srcIndex < destIndex)
+            {
+                destIndex--;
+            }
+
+            // ユニットモデルを移動する
+            MoveModel(unit, srcIndex, destIndex);
+
+            // ユニットモデルリストの更新を通知する
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
         }
 
         /// <summary>
@@ -4380,7 +4526,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnFuelConsumptionTextBox(object sender, EventArgs e)
+        private void OnFuelConsumptionTextBoxValidated(object sender, EventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
             UnitClass unit = classListBox.SelectedItem as UnitClass;
