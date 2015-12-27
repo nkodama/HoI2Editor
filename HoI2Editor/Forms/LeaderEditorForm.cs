@@ -561,7 +561,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLeaderListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
         {
-            switch (e.ColumnIndex)
+            switch (e.Column)
             {
                 case 0: // 国タグ
                     e.Type = ItemEditType.List;

@@ -700,11 +700,21 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnProvinceListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
         {
-            switch (e.ColumnIndex)
+            switch (e.Column)
             {
                 case 0: // 名前
                     e.Type = ItemEditType.Text;
                     e.Text = nameTextBox.Text;
+                    break;
+
+                case 3: // 港
+                    e.Type = ItemEditType.Bool;
+                    e.Flag = portCheckBox.Checked;
+                    break;
+
+                case 4: // 砂浜
+                    e.Type = ItemEditType.Bool;
+                    e.Flag = beachCheckBox.Checked;
                     break;
 
                 case 5: // インフラ
@@ -755,6 +765,14 @@ namespace HoI2Editor.Forms
             {
                 case 0: // 名前
                     nameTextBox.Text = e.Text;
+                    break;
+
+                case 3: // 港
+                    portCheckBox.Checked = e.Flag;
+                    break;
+
+                case 4: // 砂浜
+                    beachCheckBox.Checked = e.Flag;
                     break;
 
                 case 5: // インフラ

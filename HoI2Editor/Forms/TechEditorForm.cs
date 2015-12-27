@@ -1780,6 +1780,87 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     技術座標リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechPositionListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // X
+                    e.Type = ItemEditType.Text;
+                    e.Text = techXNumericUpDown.Text;
+                    break;
+
+                case 1: // Y
+                    e.Type = ItemEditType.Text;
+                    e.Text = techYNumericUpDown.Text;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     技術座標リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechPositionListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // X
+                    techXNumericUpDown.Text = e.Text;
+                    break;
+
+                case 1: // Y
+                    techYNumericUpDown.Text = e.Text;
+                    break;
+            }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        ///     技術座標リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnTechPositionListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            TechItem item = GetSelectedItem() as TechItem;
+            if (item == null)
+            {
+                return;
+            }
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+
+            // 技術座標を移動する
+            TechPosition position = item.Positions[srcIndex];
+            item.Positions.Insert(destIndex, position);
+            if (srcIndex < destIndex)
+            {
+                item.Positions.RemoveAt(srcIndex);
+            }
+            else
+            {
+                item.Positions.RemoveAt(srcIndex + 1);
+            }
+
+            Log.Info("[Tech] Move tech position: {0} -> {1} ({2}, {3}) [{4}]", srcIndex, destIndex, position.X,
+                position.Y, item);
+
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+        }
+
+        /// <summary>
         ///     技術X座標変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -2489,6 +2570,172 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     AND条件必要技術リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAndRequiredListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // ID
+                    e.Type = ItemEditType.Text;
+                    e.Text = andIdNumericUpDown.Text;
+                    break;
+
+                case 1: // 名前
+                    e.Type = ItemEditType.List;
+                    e.Items = andTechComboBox.Items.Cast<string>();
+                    e.Index = andTechComboBox.SelectedIndex;
+                    e.DropDownWidth = andTechComboBox.DropDownWidth;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     AND条件必要技術リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAndRequiredListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // ID
+                    andIdNumericUpDown.Text = e.Text;
+                    break;
+
+                case 1: // 名前
+                    andTechComboBox.SelectedIndex = e.Index;
+                    break;
+            }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        ///     OR条件必要技術リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOrRequiredListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // ID
+                    e.Type = ItemEditType.Text;
+                    e.Text = orIdNumericUpDown.Text;
+                    break;
+
+                case 1: // 名前
+                    e.Type = ItemEditType.List;
+                    e.Items = orTechComboBox.Items.Cast<string>();
+                    e.Index = orTechComboBox.SelectedIndex;
+                    e.DropDownWidth = orTechComboBox.DropDownWidth;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     OR条件必要技術リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOrRequiredListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // ID
+                    orIdNumericUpDown.Text = e.Text;
+                    break;
+
+                case 1: // 名前
+                    orTechComboBox.SelectedIndex = e.Index;
+                    break;
+            }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        ///     AND条件必要技術リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnAndRequiredListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            TechItem item = GetSelectedItem() as TechItem;
+            if (item == null)
+            {
+                return;
+            }
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+
+            // 必要技術を移動する
+            RequiredTech tech = item.AndRequiredTechs[srcIndex];
+            item.AndRequiredTechs.Insert(destIndex, tech);
+            if (srcIndex < destIndex)
+            {
+                item.AndRequiredTechs.RemoveAt(srcIndex);
+            }
+            else
+            {
+                item.AndRequiredTechs.RemoveAt(srcIndex + 1);
+            }
+
+            Log.Info("[Tech] Move and required tech: {0} -> {1} {2} [{3}]", srcIndex, destIndex, tech.Id, item);
+
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            tech.SetDirty();
+        }
+
+        /// <summary>
+        ///     OR条件必要技術リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnOrRequiredListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            TechItem item = GetSelectedItem() as TechItem;
+            if (item == null)
+            {
+                return;
+            }
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+
+            // 必要技術を移動する
+            RequiredTech tech = item.OrRequiredTechs[srcIndex];
+            item.OrRequiredTechs.Insert(destIndex, tech);
+            if (srcIndex < destIndex)
+            {
+                item.OrRequiredTechs.RemoveAt(srcIndex);
+            }
+            else
+            {
+                item.OrRequiredTechs.RemoveAt(srcIndex + 1);
+            }
+
+            Log.Info("[Tech] Move or required tech: {0} -> {1} {2} [{3}]", srcIndex, destIndex, tech.Id, item);
+
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            tech.SetDirty();
+        }
+
+        /// <summary>
         ///     AND条件必要技術追加ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -3153,6 +3400,119 @@ namespace HoI2Editor.Forms
                 HoI2EditorController.Settings.TechEditor.ComponentListColumnWidth[e.ColumnIndex] =
                     componentListView.Columns[e.ColumnIndex].Width;
             }
+        }
+
+        /// <summary>
+        ///     小研究リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnComponentListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // ID
+                    e.Type = ItemEditType.Text;
+                    e.Text = componentIdNumericUpDown.Text;
+                    break;
+
+                case 1: // 小研究名
+                    e.Type = ItemEditType.Text;
+                    e.Text = componentNameTextBox.Text;
+                    break;
+
+                case 2: // 研究特性
+                    e.Type = ItemEditType.List;
+                    e.Items = componentSpecialityComboBox.Items.Cast<string>();
+                    e.Index = componentSpecialityComboBox.SelectedIndex;
+                    e.DropDownWidth = componentSpecialityComboBox.DropDownWidth;
+                    break;
+
+                case 3: // 難易度
+                    e.Type = ItemEditType.Text;
+                    e.Text = componentDifficultyNumericUpDown.Text;
+                    break;
+
+                case 4: // 2倍
+                    e.Type = ItemEditType.Bool;
+                    e.Flag = componentDoubleTimeCheckBox.Checked;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     小研究リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnComponentListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // ID
+                    componentIdNumericUpDown.Text = e.Text;
+                    break;
+
+                case 1: // 小研究名
+                    componentNameTextBox.Text = e.Text;
+                    break;
+
+                case 2: // 研究特性
+                    componentSpecialityComboBox.SelectedIndex = e.Index;
+                    break;
+
+                case 3: // 難易度
+                    componentDifficultyNumericUpDown.Text = e.Text;
+                    break;
+
+                case 4: // 2倍
+                    componentDoubleTimeCheckBox.Checked = e.Flag;
+                    break;
+            }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        ///     小研究リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnComponentListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            TechItem item = GetSelectedItem() as TechItem;
+            if (item == null)
+            {
+                return;
+            }
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+
+            // 小研究を移動する
+            TechComponent component = item.Components[srcIndex];
+            item.Components.Insert(destIndex, component);
+            if (srcIndex < destIndex)
+            {
+                item.Components.RemoveAt(srcIndex);
+            }
+            else
+            {
+                item.Components.RemoveAt(srcIndex + 1);
+            }
+
+            Log.Info("[Tech] Move component: {0} -> {1} {2} [{3}]", srcIndex, destIndex, component.Id, item);
+
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            component.SetDirty();
+
+            // 小研究リストの更新を通知する
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList, this);
         }
 
         /// <summary>
@@ -4188,6 +4548,117 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     技術効果リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEffectListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // 種類
+                    e.Type = ItemEditType.List;
+                    e.Items = commandTypeComboBox.Items.Cast<string>();
+                    e.Index = commandTypeComboBox.SelectedIndex;
+                    e.DropDownWidth = commandTypeComboBox.DropDownWidth;
+                    break;
+
+                case 1: // Which
+                    e.Type = ItemEditType.Text;
+                    e.Text = commandWhichComboBox.Text;
+                    break;
+
+                case 2: // Value
+                    e.Type = ItemEditType.Text;
+                    e.Text = commandValueComboBox.Text;
+                    break;
+
+                case 3: // When
+                    e.Type = ItemEditType.Text;
+                    e.Text = commandWhenComboBox.Text;
+                    break;
+
+                case 4: // Where
+                    e.Type = ItemEditType.Text;
+                    e.Text = commandWhereComboBox.Text;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     技術効果リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEffectListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // 種類
+                    commandTypeComboBox.SelectedIndex = e.Index;
+                    break;
+
+                case 1: // Which
+                    commandWhichComboBox.Text = e.Text;
+                    break;
+
+                case 2: // Value
+                    commandValueComboBox.Text = e.Text;
+                    break;
+
+                case 3: // When
+                    commandWhenComboBox.Text = e.Text;
+                    break;
+
+                case 4: // Where
+                    commandWhereComboBox.Text = e.Text;
+                    break;
+            }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        ///     技術効果リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEffectListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            TechItem item = GetSelectedItem() as TechItem;
+            if (item == null)
+            {
+                return;
+            }
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+
+            // 技術効果を移動する
+            Command command = item.Effects[srcIndex];
+            item.Effects.Insert(destIndex, command);
+            if (srcIndex < destIndex)
+            {
+                item.Effects.RemoveAt(srcIndex);
+            }
+            else
+            {
+                item.Effects.RemoveAt(srcIndex + 1);
+            }
+
+            Log.Info("[Tech] Move effect: {0} -> {1} {2} [{3}]", srcIndex, destIndex,
+                Commands.Strings[(int) command.Type], item);
+
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+            command.SetDirty();
+        }
+
+        /// <summary>
         ///     技術効果の新規ボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -5052,6 +5523,87 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
+        ///     ラベル座標リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLabelPositionListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // X
+                    e.Type = ItemEditType.Text;
+                    e.Text = labelXNumericUpDown.Text;
+                    break;
+
+                case 1: // Y
+                    e.Type = ItemEditType.Text;
+                    e.Text = labelYNumericUpDown.Text;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     ラベル座標リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLabelPositionListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // X
+                    labelXNumericUpDown.Text = e.Text;
+                    break;
+
+                case 1: // Y
+                    labelYNumericUpDown.Text = e.Text;
+                    break;
+            }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        ///     ラベル座標リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnLabelPositionListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            TechLabel item = GetSelectedItem() as TechLabel;
+            if (item == null)
+            {
+                return;
+            }
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+
+            // ラベル座標を移動する
+            TechPosition position = item.Positions[srcIndex];
+            item.Positions.Insert(destIndex, position);
+            if (srcIndex < destIndex)
+            {
+                item.Positions.RemoveAt(srcIndex);
+            }
+            else
+            {
+                item.Positions.RemoveAt(srcIndex + 1);
+            }
+
+            Log.Info("[Tech] Move label position: {0} -> {1} ({2}, {3}) [{4}]", srcIndex, destIndex, position.X,
+                position.Y, item);
+
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
+        }
+
+        /// <summary>
         ///     ラベルX座標変更時の処理
         /// </summary>
         /// <param name="sender"></param>
@@ -5598,6 +6150,87 @@ namespace HoI2Editor.Forms
                 HoI2EditorController.Settings.TechEditor.EventPositionListColumnWidth[e.ColumnIndex] =
                     eventPositionListView.Columns[e.ColumnIndex].Width;
             }
+        }
+
+        /// <summary>
+        ///     発明イベント座標リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEventPositionListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // X
+                    e.Type = ItemEditType.Text;
+                    e.Text = eventXNumericUpDown.Text;
+                    break;
+
+                case 1: // Y
+                    e.Type = ItemEditType.Text;
+                    e.Text = eventYNumericUpDown.Text;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     発明イベント座標リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEventPositionListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // X
+                    eventXNumericUpDown.Text = e.Text;
+                    break;
+
+                case 1: // Y
+                    eventYNumericUpDown.Text = e.Text;
+                    break;
+            }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        ///     発明イベント座標リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEventPositionListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 選択項目がなければ何もしない
+            TechEvent item = GetSelectedItem() as TechEvent;
+            if (item == null)
+            {
+                return;
+            }
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+
+            // ラベル座標を移動する
+            TechPosition position = item.Positions[srcIndex];
+            item.Positions.Insert(destIndex, position);
+            if (srcIndex < destIndex)
+            {
+                item.Positions.RemoveAt(srcIndex);
+            }
+            else
+            {
+                item.Positions.RemoveAt(srcIndex + 1);
+            }
+
+            Log.Info("[Tech] Move event position: {0} -> {1} ({2}, {3}) [{4}]", srcIndex, destIndex, position.X,
+                position.Y, item);
+
+            // 編集済みフラグを設定する
+            TechGroup grp = GetSelectedGroup();
+            grp.SetDirty();
+            item.SetDirty();
         }
 
         /// <summary>

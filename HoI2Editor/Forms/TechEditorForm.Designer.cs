@@ -40,7 +40,7 @@
             this.techTabPage = new System.Windows.Forms.TabPage();
             this.techPositionRemoveButton = new System.Windows.Forms.Button();
             this.techPositionAddButton = new System.Windows.Forms.Button();
-            this.techPositionListView = new System.Windows.Forms.ListView();
+            this.techPositionListView = new HoI2Editor.Controls.ExtendedListView();
             this.techXColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.techYColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.techPictureNameBrowseButton = new System.Windows.Forms.Button();
@@ -70,10 +70,10 @@
             this.andAddButton = new System.Windows.Forms.Button();
             this.orRemoveButton = new System.Windows.Forms.Button();
             this.orAddButton = new System.Windows.Forms.Button();
-            this.orRequiredListView = new System.Windows.Forms.ListView();
+            this.orRequiredListView = new HoI2Editor.Controls.ExtendedListView();
             this.orIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.orNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.andRequiredListView = new System.Windows.Forms.ListView();
+            this.andRequiredListView = new HoI2Editor.Controls.ExtendedListView();
             this.andIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.andNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.orRequiredLabel = new System.Windows.Forms.Label();
@@ -93,7 +93,7 @@
             this.componentNameLabel = new System.Windows.Forms.Label();
             this.componentIdNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.componentIdLabel = new System.Windows.Forms.Label();
-            this.componentListView = new System.Windows.Forms.ListView();
+            this.componentListView = new HoI2Editor.Controls.ExtendedListView();
             this.componentIdColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.componentNameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.componentSpecialityColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -115,7 +115,7 @@
             this.commandWhichLabel = new System.Windows.Forms.Label();
             this.commandValueLabel = new System.Windows.Forms.Label();
             this.commandTypeLabel = new System.Windows.Forms.Label();
-            this.effectListView = new System.Windows.Forms.ListView();
+            this.effectListView = new HoI2Editor.Controls.ExtendedListView();
             this.commandTypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.commandWhichColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.commandValueColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -124,7 +124,7 @@
             this.labelTabPage = new System.Windows.Forms.TabPage();
             this.labelPositionRemoveButton = new System.Windows.Forms.Button();
             this.labelPositionAddButton = new System.Windows.Forms.Button();
-            this.labelPositionListView = new System.Windows.Forms.ListView();
+            this.labelPositionListView = new HoI2Editor.Controls.ExtendedListView();
             this.labelXColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.labelYColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.labelYNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -136,7 +136,7 @@
             this.eventTabPage = new System.Windows.Forms.TabPage();
             this.eventPositionRemoveButton = new System.Windows.Forms.Button();
             this.eventPositionAddButton = new System.Windows.Forms.Button();
-            this.eventPositionListView = new System.Windows.Forms.ListView();
+            this.eventPositionListView = new HoI2Editor.Controls.ExtendedListView();
             this.eventXColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.eventYColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.eventTechComboBox = new System.Windows.Forms.ComboBox();
@@ -301,6 +301,8 @@
             // 
             // techPositionListView
             // 
+            this.techPositionListView.AllowDrop = true;
+            this.techPositionListView.AllowRowReorder = true;
             resources.ApplyResources(this.techPositionListView, "techPositionListView");
             this.techPositionListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.techXColumnHeader,
@@ -308,10 +310,15 @@
             this.techPositionListView.FullRowSelect = true;
             this.techPositionListView.GridLines = true;
             this.techPositionListView.HideSelection = false;
+            this.techPositionListView.ItemEdit = true;
             this.techPositionListView.MultiSelect = false;
             this.techPositionListView.Name = "techPositionListView";
+            this.techPositionListView.SelectedIndex = -1;
             this.techPositionListView.UseCompatibleStateImageBehavior = false;
             this.techPositionListView.View = System.Windows.Forms.View.Details;
+            this.techPositionListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnTechPositionListViewRowReordered);
+            this.techPositionListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnTechPositionListViewQueryItemEdit);
+            this.techPositionListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnTechPositionListViewBeforeItemEdit);
             this.techPositionListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnTechPositionListViewColumnWidthChanged);
             this.techPositionListView.SelectedIndexChanged += new System.EventHandler(this.OnTechPositionListViewSelectedIndexChanged);
             // 
@@ -555,6 +562,8 @@
             // 
             // orRequiredListView
             // 
+            this.orRequiredListView.AllowDrop = true;
+            this.orRequiredListView.AllowRowReorder = true;
             resources.ApplyResources(this.orRequiredListView, "orRequiredListView");
             this.orRequiredListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.orIdColumnHeader,
@@ -562,10 +571,15 @@
             this.orRequiredListView.FullRowSelect = true;
             this.orRequiredListView.GridLines = true;
             this.orRequiredListView.HideSelection = false;
+            this.orRequiredListView.ItemEdit = true;
             this.orRequiredListView.MultiSelect = false;
             this.orRequiredListView.Name = "orRequiredListView";
+            this.orRequiredListView.SelectedIndex = -1;
             this.orRequiredListView.UseCompatibleStateImageBehavior = false;
             this.orRequiredListView.View = System.Windows.Forms.View.Details;
+            this.orRequiredListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnOrRequiredListViewRowReordered);
+            this.orRequiredListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnOrRequiredListViewQueryItemEdit);
+            this.orRequiredListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnOrRequiredListViewBeforeItemEdit);
             this.orRequiredListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnOrRequiredListViewColumnWidthChanged);
             this.orRequiredListView.SelectedIndexChanged += new System.EventHandler(this.OnOrRequiredListViewSelectedIndexChanged);
             // 
@@ -579,6 +593,8 @@
             // 
             // andRequiredListView
             // 
+            this.andRequiredListView.AllowDrop = true;
+            this.andRequiredListView.AllowRowReorder = true;
             resources.ApplyResources(this.andRequiredListView, "andRequiredListView");
             this.andRequiredListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.andIdColumnHeader,
@@ -586,10 +602,15 @@
             this.andRequiredListView.FullRowSelect = true;
             this.andRequiredListView.GridLines = true;
             this.andRequiredListView.HideSelection = false;
+            this.andRequiredListView.ItemEdit = true;
             this.andRequiredListView.MultiSelect = false;
             this.andRequiredListView.Name = "andRequiredListView";
+            this.andRequiredListView.SelectedIndex = -1;
             this.andRequiredListView.UseCompatibleStateImageBehavior = false;
             this.andRequiredListView.View = System.Windows.Forms.View.Details;
+            this.andRequiredListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnAndRequiredListViewRowReordered);
+            this.andRequiredListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnAndRequiredListViewQueryItemEdit);
+            this.andRequiredListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnAndRequiredListViewBeforeItemEdit);
             this.andRequiredListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnAndRequiredListViewColumnWidthChanged);
             this.andRequiredListView.SelectedIndexChanged += new System.EventHandler(this.OnAndRequiredListViewSelectedIndexChanged);
             // 
@@ -729,6 +750,8 @@
             // 
             // componentListView
             // 
+            this.componentListView.AllowDrop = true;
+            this.componentListView.AllowRowReorder = true;
             resources.ApplyResources(this.componentListView, "componentListView");
             this.componentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.componentIdColumnHeader,
@@ -739,10 +762,15 @@
             this.componentListView.FullRowSelect = true;
             this.componentListView.GridLines = true;
             this.componentListView.HideSelection = false;
+            this.componentListView.ItemEdit = true;
             this.componentListView.MultiSelect = false;
             this.componentListView.Name = "componentListView";
+            this.componentListView.SelectedIndex = -1;
             this.componentListView.UseCompatibleStateImageBehavior = false;
             this.componentListView.View = System.Windows.Forms.View.Details;
+            this.componentListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnComponentListViewRowReordered);
+            this.componentListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnComponentListViewQueryItemEdit);
+            this.componentListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnComponentListViewBeforeItemEdit);
             this.componentListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnComponentListViewColumnWidthChanged);
             this.componentListView.SelectedIndexChanged += new System.EventHandler(this.OnComponentListViewSelectedIndexChanged);
             // 
@@ -897,6 +925,8 @@
             // 
             // effectListView
             // 
+            this.effectListView.AllowDrop = true;
+            this.effectListView.AllowRowReorder = true;
             resources.ApplyResources(this.effectListView, "effectListView");
             this.effectListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.commandTypeColumnHeader,
@@ -907,10 +937,15 @@
             this.effectListView.FullRowSelect = true;
             this.effectListView.GridLines = true;
             this.effectListView.HideSelection = false;
+            this.effectListView.ItemEdit = true;
             this.effectListView.MultiSelect = false;
             this.effectListView.Name = "effectListView";
+            this.effectListView.SelectedIndex = -1;
             this.effectListView.UseCompatibleStateImageBehavior = false;
             this.effectListView.View = System.Windows.Forms.View.Details;
+            this.effectListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnEffectListViewRowReordered);
+            this.effectListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnEffectListViewQueryItemEdit);
+            this.effectListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnEffectListViewBeforeItemEdit);
             this.effectListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnEffectListViewColumnWidthChanged);
             this.effectListView.SelectedIndexChanged += new System.EventHandler(this.OnEffectListViewSelectedIndexChanged);
             // 
@@ -965,6 +1000,8 @@
             // 
             // labelPositionListView
             // 
+            this.labelPositionListView.AllowDrop = true;
+            this.labelPositionListView.AllowRowReorder = true;
             resources.ApplyResources(this.labelPositionListView, "labelPositionListView");
             this.labelPositionListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.labelXColumnHeader,
@@ -972,10 +1009,15 @@
             this.labelPositionListView.FullRowSelect = true;
             this.labelPositionListView.GridLines = true;
             this.labelPositionListView.HideSelection = false;
+            this.labelPositionListView.ItemEdit = true;
             this.labelPositionListView.MultiSelect = false;
             this.labelPositionListView.Name = "labelPositionListView";
+            this.labelPositionListView.SelectedIndex = -1;
             this.labelPositionListView.UseCompatibleStateImageBehavior = false;
             this.labelPositionListView.View = System.Windows.Forms.View.Details;
+            this.labelPositionListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnLabelPositionListViewRowReordered);
+            this.labelPositionListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnLabelPositionListViewQueryItemEdit);
+            this.labelPositionListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnLabelPositionListViewBeforeItemEdit);
             this.labelPositionListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnLabelPositionListViewColumnWidthChanged);
             this.labelPositionListView.SelectedIndexChanged += new System.EventHandler(this.OnLabelPositionListViewSelectedIndexChanged);
             // 
@@ -1064,6 +1106,8 @@
             // 
             // eventPositionListView
             // 
+            this.eventPositionListView.AllowDrop = true;
+            this.eventPositionListView.AllowRowReorder = true;
             resources.ApplyResources(this.eventPositionListView, "eventPositionListView");
             this.eventPositionListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.eventXColumnHeader,
@@ -1071,10 +1115,15 @@
             this.eventPositionListView.FullRowSelect = true;
             this.eventPositionListView.GridLines = true;
             this.eventPositionListView.HideSelection = false;
+            this.eventPositionListView.ItemEdit = true;
             this.eventPositionListView.MultiSelect = false;
             this.eventPositionListView.Name = "eventPositionListView";
+            this.eventPositionListView.SelectedIndex = -1;
             this.eventPositionListView.UseCompatibleStateImageBehavior = false;
             this.eventPositionListView.View = System.Windows.Forms.View.Details;
+            this.eventPositionListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnEventPositionListViewRowReordered);
+            this.eventPositionListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnEventPositionListViewQueryItemEdit);
+            this.eventPositionListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnEventPositionListViewBeforeItemEdit);
             this.eventPositionListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnEventPositionListViewColumnWidthChanged);
             this.eventPositionListView.SelectedIndexChanged += new System.EventHandler(this.OnEventPositionListViewSelectedIndexChanged);
             // 
@@ -1380,10 +1429,10 @@
         private System.Windows.Forms.Label andIdLabel;
         private System.Windows.Forms.Button andAddButton;
         private System.Windows.Forms.Button orAddButton;
-        private System.Windows.Forms.ListView orRequiredListView;
+        private HoI2Editor.Controls.ExtendedListView orRequiredListView;
         private System.Windows.Forms.ColumnHeader orIdColumnHeader;
         private System.Windows.Forms.ColumnHeader orNameColumnHeader;
-        private System.Windows.Forms.ListView andRequiredListView;
+        private HoI2Editor.Controls.ExtendedListView andRequiredListView;
         private System.Windows.Forms.ColumnHeader andIdColumnHeader;
         private System.Windows.Forms.ColumnHeader andNameColumnHeader;
         private System.Windows.Forms.Label orRequiredLabel;
@@ -1394,7 +1443,7 @@
         private System.Windows.Forms.Button cloneButton;
         private System.Windows.Forms.Button removeButton;
         private System.Windows.Forms.Label componentIdLabel;
-        private System.Windows.Forms.ListView componentListView;
+        private HoI2Editor.Controls.ExtendedListView componentListView;
         private System.Windows.Forms.TextBox componentNameTextBox;
         private System.Windows.Forms.Label componentNameLabel;
         private System.Windows.Forms.NumericUpDown componentIdNumericUpDown;
@@ -1423,7 +1472,7 @@
         private System.Windows.Forms.Label commandWhichLabel;
         private System.Windows.Forms.Label commandValueLabel;
         private System.Windows.Forms.Label commandTypeLabel;
-        private System.Windows.Forms.ListView effectListView;
+        private HoI2Editor.Controls.ExtendedListView effectListView;
         private System.Windows.Forms.ColumnHeader commandTypeColumnHeader;
         private System.Windows.Forms.ColumnHeader commandWhichColumnHeader;
         private System.Windows.Forms.ColumnHeader commandValueColumnHeader;
@@ -1452,13 +1501,13 @@
         private System.Windows.Forms.TextBox techPictureNameTextBox;
         private System.Windows.Forms.Label techPictureNameLabel;
         private System.Windows.Forms.ComboBox commandValueComboBox;
-        private System.Windows.Forms.ListView techPositionListView;
+        private HoI2Editor.Controls.ExtendedListView techPositionListView;
         private System.Windows.Forms.ColumnHeader techXColumnHeader;
         private System.Windows.Forms.ColumnHeader techYColumnHeader;
-        private System.Windows.Forms.ListView labelPositionListView;
+        private HoI2Editor.Controls.ExtendedListView labelPositionListView;
         private System.Windows.Forms.ColumnHeader labelXColumnHeader;
         private System.Windows.Forms.ColumnHeader labelYColumnHeader;
-        private System.Windows.Forms.ListView eventPositionListView;
+        private HoI2Editor.Controls.ExtendedListView eventPositionListView;
         private System.Windows.Forms.ColumnHeader eventXColumnHeader;
         private System.Windows.Forms.ColumnHeader eventYColumnHeader;
         private System.Windows.Forms.Button techPositionRemoveButton;

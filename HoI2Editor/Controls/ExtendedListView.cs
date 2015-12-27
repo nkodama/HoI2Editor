@@ -59,8 +59,8 @@ namespace HoI2Editor.Controls
 
         [Category("動作")]
         [DefaultValue(typeof (bool), "false")]
-        [Description("ユーザーによるサブ項目の編集が可能になります。")]
-        public bool SubItemEdit { get; set; }
+        [Description("ユーザーによる項目の編集が可能になります。")]
+        public bool ItemEdit { get; set; }
 
         #endregion
 
@@ -323,25 +323,48 @@ namespace HoI2Editor.Controls
                 return;
             }
 
-            _editingRowIndex = e.RowIndex;
-            _editingColumnIndex = e.ColumnIndex;
+            _editingRowIndex = e.Row;
+            _editingColumnIndex = e.Column;
 
-            ListViewItem item = Items[e.RowIndex];
-            ListViewItem.ListViewSubItem subItem = item.SubItems[e.ColumnIndex];
+            ListViewItem item = Items[e.Row];
+            ListViewItem.ListViewSubItem subItem = item.SubItems[e.Column];
 
             // 項目編集用コントロールを表示する
             switch (e.Type)
             {
+                case ItemEditType.Bool:
+                    // 編集用コントロールを表示せず真偽値を反転させる
+                    InvertFlag(e.Flag);
+                    break;
+
                 case ItemEditType.Text:
                     ShowEditTextBox(e.Text, new Point(subItem.Bounds.Left, subItem.Bounds.Top),
-                        new Size(Columns[e.ColumnIndex].Width, subItem.Bounds.Height));
+                        new Size(Columns[e.Column].Width, subItem.Bounds.Height));
                     break;
 
                 case ItemEditType.List:
                     ShowEditComboBox(e.Items, e.Index, new Point(subItem.Bounds.Left, subItem.Bounds.Top),
-                        new Size(Columns[e.ColumnIndex].Width, subItem.Bounds.Height), e.DropDownWidth);
+                        new Size(Columns[e.Column].Width, subItem.Bounds.Height), e.DropDownWidth);
                     break;
             }
+        }
+
+        /// <summary>
+        ///     項目の真偽値を反転させる
+        /// </summary>
+        /// <param name="flag">初期真偽値</param>
+        private void InvertFlag(bool flag)
+        {
+            ListViewItemEditEventArgs ie = new ListViewItemEditEventArgs(_editingRowIndex, _editingColumnIndex, !flag);
+            BeforeItemEdit?.Invoke(this, ie);
+
+            // キャンセルされれば項目を更新しない
+            if (ie.Cancel)
+            {
+                return;
+            }
+
+            AfterItemEdit?.Invoke(this, ie);
         }
 
         /// <summary>

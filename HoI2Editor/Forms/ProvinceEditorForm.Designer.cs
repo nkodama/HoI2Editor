@@ -165,7 +165,7 @@
             this.provinceListView.HideSelection = false;
             this.provinceListView.Name = "provinceListView";
             this.provinceListView.SelectedIndex = -1;
-            this.provinceListView.SubItemEdit = true;
+            this.provinceListView.ItemEdit = true;
             this.provinceListView.UseCompatibleStateImageBehavior = false;
             this.provinceListView.View = System.Windows.Forms.View.Details;
             this.provinceListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnProvinceListViewQueryItemEdit);

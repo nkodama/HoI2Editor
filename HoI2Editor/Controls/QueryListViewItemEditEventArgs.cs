@@ -13,17 +13,22 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     リストビュー項目の行インデックス
         /// </summary>
-        public int RowIndex { get; private set; }
+        public int Row { get; private set; }
 
         /// <summary>
         ///     リストビュー項目の列インデックス
         /// </summary>
-        public int ColumnIndex { get; private set; }
+        public int Column { get; private set; }
 
         /// <summary>
         ///     項目編集の種類
         /// </summary>
         public ItemEditType Type { get; set; }
+
+        /// <summary>
+        ///     初期真偽値
+        /// </summary>
+        public bool Flag { get; set; }
 
         /// <summary>
         ///     初期文字列
@@ -52,12 +57,12 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        /// <param name="rowIndex">リストビュー項目の行インデックス</param>
-        /// <param name="columnIndex">リストビュー項目の列インデックス</param>
-        public QueryListViewItemEditEventArgs(int rowIndex, int columnIndex)
+        /// <param name="row">リストビュー項目の行インデックス</param>
+        /// <param name="column">リストビュー項目の列インデックス</param>
+        public QueryListViewItemEditEventArgs(int row, int column)
         {
-            RowIndex = rowIndex;
-            ColumnIndex = columnIndex;
+            Row = row;
+            Column = column;
         }
 
         #endregion
@@ -69,6 +74,7 @@ namespace HoI2Editor.Controls
     public enum ItemEditType
     {
         None, // 編集なし
+        Bool, // 真偽値
         Text, // 文字列編集
         List // リスト選択
     }

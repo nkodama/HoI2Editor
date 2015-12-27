@@ -102,7 +102,7 @@
             this.ministerListView.MultiSelect = false;
             this.ministerListView.Name = "ministerListView";
             this.ministerListView.SelectedIndex = -1;
-            this.ministerListView.SubItemEdit = true;
+            this.ministerListView.ItemEdit = true;
             this.ministerListView.UseCompatibleStateImageBehavior = false;
             this.ministerListView.View = System.Windows.Forms.View.Details;
             this.ministerListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnMinisterListViewRowReordered);

@@ -145,6 +145,14 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
+        public void SetDirty()
+        {
+            _dirtyFlag = true;
+        }
+
+        /// <summary>
+        ///     編集済みフラグを設定する
+        /// </summary>
         /// <param name="id">項目ID</param>
         public void SetDirty(CommandItemId id)
         {

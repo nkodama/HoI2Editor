@@ -224,7 +224,7 @@
             this.teamListView.Name = "teamListView";
             this.teamListView.OwnerDraw = true;
             this.teamListView.SelectedIndex = -1;
-            this.teamListView.SubItemEdit = true;
+            this.teamListView.ItemEdit = true;
             this.teamListView.UseCompatibleStateImageBehavior = false;
             this.teamListView.View = System.Windows.Forms.View.Details;
             this.teamListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnTeamListViewRowReordered);

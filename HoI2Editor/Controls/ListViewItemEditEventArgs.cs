@@ -25,6 +25,11 @@ namespace HoI2Editor.Controls
         public int Column { get; private set; }
 
         /// <summary>
+        ///     編集後の真偽値
+        /// </summary>
+        public bool Flag { get; private set; }
+
+        /// <summary>
         ///     編集後の文字列
         /// </summary>
         public string Text { get; private set; }
@@ -43,13 +48,25 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="row">リストビュー項目の行インデックス</param>
         /// <param name="column">リストビュー項目の列インデックス</param>
+        /// <param name="flag">編集後の真偽値</param>
+        public ListViewItemEditEventArgs(int row, int column, bool flag)
+        {
+            Row = row;
+            Column = column;
+            Flag = flag;
+        }
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        /// <param name="row">リストビュー項目の行インデックス</param>
+        /// <param name="column">リストビュー項目の列インデックス</param>
         /// <param name="text">編集後の文字列</param>
         public ListViewItemEditEventArgs(int row, int column, string text)
         {
             Row = row;
             Column = column;
             Text = text;
-            Index = -1;
         }
 
         /// <summary>

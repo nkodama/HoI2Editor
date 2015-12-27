@@ -424,7 +424,7 @@
     <value>techPositionListView</value>
   </data>
   <data name="&gt;&gt;techPositionListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>HoI2Editor.Controls.ExtendedListView, HoI2Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;techPositionListView.Parent" xml:space="preserve">
     <value>techTabPage</value>
@@ -1228,7 +1228,7 @@
     <value>orRequiredListView</value>
   </data>
   <data name="&gt;&gt;orRequiredListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>HoI2Editor.Controls.ExtendedListView, HoI2Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;orRequiredListView.Parent" xml:space="preserve">
     <value>requiredTabPage</value>
@@ -1261,7 +1261,7 @@
     <value>andRequiredListView</value>
   </data>
   <data name="&gt;&gt;andRequiredListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>HoI2Editor.Controls.ExtendedListView, HoI2Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;andRequiredListView.Parent" xml:space="preserve">
     <value>requiredTabPage</value>
@@ -1816,7 +1816,7 @@
     <value>componentListView</value>
   </data>
   <data name="&gt;&gt;componentListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>HoI2Editor.Controls.ExtendedListView, HoI2Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;componentListView.Parent" xml:space="preserve">
     <value>componentTabPage</value>
@@ -2329,7 +2329,7 @@
     <value>effectListView</value>
   </data>
   <data name="&gt;&gt;effectListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>HoI2Editor.Controls.ExtendedListView, HoI2Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;effectListView.Parent" xml:space="preserve">
     <value>effectTabPage</value>
@@ -2449,7 +2449,7 @@
     <value>labelPositionListView</value>
   </data>
   <data name="&gt;&gt;labelPositionListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>HoI2Editor.Controls.ExtendedListView, HoI2Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;labelPositionListView.Parent" xml:space="preserve">
     <value>labelTabPage</value>
@@ -2743,7 +2743,7 @@
     <value>eventPositionListView</value>
   </data>
   <data name="&gt;&gt;eventPositionListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>HoI2Editor.Controls.ExtendedListView, HoI2Editor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;eventPositionListView.Parent" xml:space="preserve">
     <value>eventTabPage</value>
@@ -3467,9 +3467,6 @@
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>984, 632</value>
-  </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>1000, 670</value>
