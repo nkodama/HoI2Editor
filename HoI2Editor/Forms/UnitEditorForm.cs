@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -2939,6 +2940,99 @@ namespace HoI2Editor.Forms
                 HoI2EditorController.Settings.UnitEditor.UpgradeListColumnWidth[e.ColumnIndex] =
                     upgradeListView.Columns[e.ColumnIndex].Width;
             }
+        }
+
+        /// <summary>
+        ///     改良リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // ユニット種類
+                    e.Type = ItemEditType.List;
+                    e.Items = (from UnitClass unit in upgradeTypeComboBox.Items select unit.ToString()).ToArray();
+                    e.Index = upgradeTypeComboBox.SelectedIndex;
+                    e.DropDownWidth = upgradeTypeComboBox.DropDownWidth;
+                    break;
+
+                case 1: // IC
+                    e.Type = ItemEditType.Text;
+                    e.Text = upgradeCostTextBox.Text;
+                    break;
+
+                case 2: // 時間
+                    e.Type = ItemEditType.Text;
+                    e.Text = upgradeTimeTextBox.Text;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     改良リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // ユニット種類
+                    upgradeTypeComboBox.SelectedIndex = e.Index;
+                    break;
+
+                case 1: // IC
+                    upgradeCostTextBox.Text = e.Text;
+                    OnUpgradeCostTextBoxValidated(upgradeCostTextBox, new EventArgs());
+                    break;
+
+                case 2: // 時間
+                    upgradeTimeTextBox.Text = e.Text;
+                    OnUpgradeTimeTextBoxValidated(upgradeTimeTextBox, new EventArgs());
+                    break;
+            }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        ///     改良リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnUpgradeListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            UnitClass unit = classListBox.SelectedItem as UnitClass;
+            if (unit == null)
+            {
+                return;
+            }
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+
+            // 改良情報を移動する
+            UnitUpgrade upgrade = unit.Upgrades[srcIndex];
+            unit.Upgrades.Insert(destIndex, upgrade);
+            if (srcIndex < destIndex)
+            {
+                unit.Upgrades.RemoveAt(srcIndex);
+            }
+            else
+            {
+                unit.Upgrades.RemoveAt(srcIndex + 1);
+            }
+
+            Log.Info("[Unit] Moved upgrade info: {0} -> {1} {2} [{3}]", srcIndex, destIndex,
+                Units.Items[(int) upgrade.Type], unit);
+
+            // 編集済みフラグを設定する
+            upgrade.SetDirty();
+            unit.SetDirtyFile();
         }
 
         /// <summary>
@@ -7153,6 +7247,98 @@ namespace HoI2Editor.Forms
                 HoI2EditorController.Settings.UnitEditor.EquipmentListColumnWidth[e.ColumnIndex] =
                     equipmentListView.Columns[e.ColumnIndex].Width;
             }
+        }
+
+        /// <summary>
+        ///     装備リストビューの項目編集前の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEquipmentListViewQueryItemEdit(object sender, QueryListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // 資源
+                    e.Type = ItemEditType.List;
+                    e.Items = resourceComboBox.Items.Cast<string>();
+                    e.Index = resourceComboBox.SelectedIndex;
+                    e.DropDownWidth = resourceComboBox.DropDownWidth;
+                    break;
+
+                case 1: // 量
+                    e.Type = ItemEditType.Text;
+                    e.Text = quantityTextBox.Text;
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     装備リストビューの項目編集後の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEquipmentListViewBeforeItemEdit(object sender, ListViewItemEditEventArgs e)
+        {
+            switch (e.Column)
+            {
+                case 0: // 資源
+                    resourceComboBox.SelectedIndex = e.Index;
+                    break;
+
+                case 1: // 量
+                    quantityTextBox.Text = e.Text;
+                    OnQuantityTextBoxValidated(quantityTextBox, new EventArgs());
+                    break;
+            }
+
+            // 自前でリストビューの項目を更新するのでキャンセル扱いとする
+            e.Cancel = true;
+        }
+
+        /// <summary>
+        ///     装備リストビューの項目入れ替え時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEquipmentListViewRowReordered(object sender, RowReorderedEventArgs e)
+        {
+            // 選択中のユニットクラスがなければ何もしない
+            UnitClass unit = classListBox.SelectedItem as UnitClass;
+            if (unit == null)
+            {
+                return;
+            }
+
+            // 選択中のユニットモデルがなければ何もしない
+            if (modelListView.SelectedIndices.Count == 0)
+            {
+                return;
+            }
+            int index = modelListView.SelectedIndices[0];
+            UnitModel model = unit.Models[index];
+
+            int srcIndex = e.OldDisplayIndex;
+            int destIndex = e.NewDisplayIndex;
+
+            // 装備情報を移動する
+            UnitEquipment equipment = model.Equipments[srcIndex];
+            model.Equipments.Insert(destIndex, equipment);
+            if (srcIndex < destIndex)
+            {
+                model.Equipments.RemoveAt(srcIndex);
+            }
+            else
+            {
+                model.Equipments.RemoveAt(srcIndex + 1);
+            }
+
+            Log.Info("[Unit] Moved equipment: {0} -> {1} {2} [{3}]", srcIndex, destIndex,
+                Config.GetText(Units.EquipmentNames[(int)equipment.Resource]), unit.GetModelName(index));
+
+            // 編集済みフラグを設定する
+            equipment.SetDirty();
+            model.SetDirty();
+            unit.SetDirtyFile();
         }
 
         /// <summary>

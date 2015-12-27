@@ -67,6 +67,10 @@
             this.upgradeTypeLabel = new System.Windows.Forms.Label();
             this.upgradeRemoveButton = new System.Windows.Forms.Button();
             this.upgradeAddButton = new System.Windows.Forms.Button();
+            this.upgradeListView = new HoI2Editor.Controls.ExtendedListView();
+            this.upgradeTypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.upgradeCostColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.upgradeTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.militaryValueLabel = new System.Windows.Forms.Label();
             this.transmuteComboBox = new System.Windows.Forms.ComboBox();
             this.transmuteLabel = new System.Windows.Forms.Label();
@@ -103,6 +107,9 @@
             this.resourceLabel = new System.Windows.Forms.Label();
             this.equipmentRemoveButton = new System.Windows.Forms.Button();
             this.equipmentAddButton = new System.Windows.Forms.Button();
+            this.equipmentListView = new HoI2Editor.Controls.ExtendedListView();
+            this.resourceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.quantityColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.productionGroupBox = new System.Windows.Forms.GroupBox();
             this.autoUpgradeModelComboBox = new System.Windows.Forms.ComboBox();
             this.autoUpgradeClassComboBox = new System.Windows.Forms.ComboBox();
@@ -216,13 +223,6 @@
             this.organisationColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.moraleColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.maxSpeedColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.upgradeListView = new HoI2Editor.Controls.ExtendedListView();
-            this.upgradeTypeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.upgradeCostColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.upgradeTimeColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.equipmentListView = new HoI2Editor.Controls.ExtendedListView();
-            this.resourceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.quantityColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.editTabControl.SuspendLayout();
             this.classTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiPrioNumericUpDown)).BeginInit();
@@ -559,6 +559,42 @@
             this.upgradeAddButton.UseVisualStyleBackColor = true;
             this.upgradeAddButton.Click += new System.EventHandler(this.OnUpgradeAddButtonClick);
             // 
+            // upgradeListView
+            // 
+            this.upgradeListView.AllowDrop = true;
+            this.upgradeListView.AllowRowReorder = true;
+            this.upgradeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.upgradeTypeColumnHeader,
+            this.upgradeCostColumnHeader,
+            this.upgradeTimeColumnHeader});
+            this.upgradeListView.FullRowSelect = true;
+            this.upgradeListView.GridLines = true;
+            this.upgradeListView.HideSelection = false;
+            this.upgradeListView.ItemEdit = true;
+            resources.ApplyResources(this.upgradeListView, "upgradeListView");
+            this.upgradeListView.MultiSelect = false;
+            this.upgradeListView.Name = "upgradeListView";
+            this.upgradeListView.SelectedIndex = -1;
+            this.upgradeListView.UseCompatibleStateImageBehavior = false;
+            this.upgradeListView.View = System.Windows.Forms.View.Details;
+            this.upgradeListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnUpgradeListViewRowReordered);
+            this.upgradeListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnUpgradeListViewQueryItemEdit);
+            this.upgradeListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnUpgradeListViewBeforeItemEdit);
+            this.upgradeListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnUpgradeListViewColumnWidthChanged);
+            this.upgradeListView.SelectedIndexChanged += new System.EventHandler(this.OnUpgradeListViewSelectedIndexChanged);
+            // 
+            // upgradeTypeColumnHeader
+            // 
+            resources.ApplyResources(this.upgradeTypeColumnHeader, "upgradeTypeColumnHeader");
+            // 
+            // upgradeCostColumnHeader
+            // 
+            resources.ApplyResources(this.upgradeCostColumnHeader, "upgradeCostColumnHeader");
+            // 
+            // upgradeTimeColumnHeader
+            // 
+            resources.ApplyResources(this.upgradeTimeColumnHeader, "upgradeTimeColumnHeader");
+            // 
             // militaryValueLabel
             // 
             resources.ApplyResources(this.militaryValueLabel, "militaryValueLabel");
@@ -815,6 +851,37 @@
             this.equipmentAddButton.Name = "equipmentAddButton";
             this.equipmentAddButton.UseVisualStyleBackColor = true;
             this.equipmentAddButton.Click += new System.EventHandler(this.OnEquipmentAddButtonClick);
+            // 
+            // equipmentListView
+            // 
+            this.equipmentListView.AllowDrop = true;
+            this.equipmentListView.AllowRowReorder = true;
+            this.equipmentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.resourceColumnHeader,
+            this.quantityColumnHeader});
+            this.equipmentListView.FullRowSelect = true;
+            this.equipmentListView.GridLines = true;
+            this.equipmentListView.HideSelection = false;
+            this.equipmentListView.ItemEdit = true;
+            resources.ApplyResources(this.equipmentListView, "equipmentListView");
+            this.equipmentListView.MultiSelect = false;
+            this.equipmentListView.Name = "equipmentListView";
+            this.equipmentListView.SelectedIndex = -1;
+            this.equipmentListView.UseCompatibleStateImageBehavior = false;
+            this.equipmentListView.View = System.Windows.Forms.View.Details;
+            this.equipmentListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnEquipmentListViewRowReordered);
+            this.equipmentListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnEquipmentListViewQueryItemEdit);
+            this.equipmentListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnEquipmentListViewBeforeItemEdit);
+            this.equipmentListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnEquipmentListViewColumnWidthChanged);
+            this.equipmentListView.SelectedIndexChanged += new System.EventHandler(this.OnEquipmentListViewSelectedIndexChanged);
+            // 
+            // resourceColumnHeader
+            // 
+            resources.ApplyResources(this.resourceColumnHeader, "resourceColumnHeader");
+            // 
+            // quantityColumnHeader
+            // 
+            resources.ApplyResources(this.quantityColumnHeader, "quantityColumnHeader");
             // 
             // productionGroupBox
             // 
@@ -1563,61 +1630,6 @@
             // maxSpeedColumnHeader
             // 
             resources.ApplyResources(this.maxSpeedColumnHeader, "maxSpeedColumnHeader");
-            // 
-            // upgradeListView
-            // 
-            this.upgradeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.upgradeTypeColumnHeader,
-            this.upgradeCostColumnHeader,
-            this.upgradeTimeColumnHeader});
-            this.upgradeListView.FullRowSelect = true;
-            this.upgradeListView.GridLines = true;
-            this.upgradeListView.HideSelection = false;
-            resources.ApplyResources(this.upgradeListView, "upgradeListView");
-            this.upgradeListView.MultiSelect = false;
-            this.upgradeListView.Name = "upgradeListView";
-            this.upgradeListView.SelectedIndex = -1;
-            this.upgradeListView.UseCompatibleStateImageBehavior = false;
-            this.upgradeListView.View = System.Windows.Forms.View.Details;
-            this.upgradeListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnUpgradeListViewColumnWidthChanged);
-            this.upgradeListView.SelectedIndexChanged += new System.EventHandler(this.OnUpgradeListViewSelectedIndexChanged);
-            // 
-            // upgradeTypeColumnHeader
-            // 
-            resources.ApplyResources(this.upgradeTypeColumnHeader, "upgradeTypeColumnHeader");
-            // 
-            // upgradeCostColumnHeader
-            // 
-            resources.ApplyResources(this.upgradeCostColumnHeader, "upgradeCostColumnHeader");
-            // 
-            // upgradeTimeColumnHeader
-            // 
-            resources.ApplyResources(this.upgradeTimeColumnHeader, "upgradeTimeColumnHeader");
-            // 
-            // equipmentListView
-            // 
-            this.equipmentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.resourceColumnHeader,
-            this.quantityColumnHeader});
-            this.equipmentListView.FullRowSelect = true;
-            this.equipmentListView.GridLines = true;
-            this.equipmentListView.HideSelection = false;
-            resources.ApplyResources(this.equipmentListView, "equipmentListView");
-            this.equipmentListView.MultiSelect = false;
-            this.equipmentListView.Name = "equipmentListView";
-            this.equipmentListView.SelectedIndex = -1;
-            this.equipmentListView.UseCompatibleStateImageBehavior = false;
-            this.equipmentListView.View = System.Windows.Forms.View.Details;
-            this.equipmentListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnEquipmentListViewColumnWidthChanged);
-            this.equipmentListView.SelectedIndexChanged += new System.EventHandler(this.OnEquipmentListViewSelectedIndexChanged);
-            // 
-            // resourceColumnHeader
-            // 
-            resources.ApplyResources(this.resourceColumnHeader, "resourceColumnHeader");
-            // 
-            // quantityColumnHeader
-            // 
-            resources.ApplyResources(this.quantityColumnHeader, "quantityColumnHeader");
             // 
             // UnitEditorForm
             // 

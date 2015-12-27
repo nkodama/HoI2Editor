@@ -5010,9 +5010,6 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>984, 632</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>1000, 670</value>
   </data>
@@ -5026,6 +5023,36 @@
     <value>allowedBrigadesDummyColumnHeader</value>
   </data>
   <data name="&gt;&gt;allowedBrigadesDummyColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeColumnHeader.Name" xml:space="preserve">
+    <value>upgradeTypeColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;upgradeTypeColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostColumnHeader.Name" xml:space="preserve">
+    <value>upgradeCostColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;upgradeCostColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeColumnHeader.Name" xml:space="preserve">
+    <value>upgradeTimeColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;upgradeTimeColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;resourceColumnHeader.Name" xml:space="preserve">
+    <value>resourceColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;resourceColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;quantityColumnHeader.Name" xml:space="preserve">
+    <value>quantityColumnHeader</value>
+  </data>
+  <data name="&gt;&gt;quantityColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;countryDummyColumnHeader.Name" xml:space="preserve">
@@ -5092,36 +5119,6 @@
     <value>maxSpeedColumnHeader</value>
   </data>
   <data name="&gt;&gt;maxSpeedColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeTypeColumnHeader.Name" xml:space="preserve">
-    <value>upgradeTypeColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;upgradeTypeColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostColumnHeader.Name" xml:space="preserve">
-    <value>upgradeCostColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;upgradeCostColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeColumnHeader.Name" xml:space="preserve">
-    <value>upgradeTimeColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;upgradeTimeColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;resourceColumnHeader.Name" xml:space="preserve">
-    <value>resourceColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;resourceColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;quantityColumnHeader.Name" xml:space="preserve">
-    <value>quantityColumnHeader</value>
-  </data>
-  <data name="&gt;&gt;quantityColumnHeader.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
