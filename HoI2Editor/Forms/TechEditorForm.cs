@@ -1180,6 +1180,9 @@ namespace HoI2Editor.Forms
 
             // 追加した項目を選択する
             techListView.SelectedIndex = techListView.Items.Count - 1;
+
+            // 追加した項目を表示する
+            techListView.EnsureVisible(techListView.Items.Count - 1);
         }
 
         /// <summary>
@@ -1195,6 +1198,9 @@ namespace HoI2Editor.Forms
 
             // 挿入した項目を選択する
             techListView.SelectedIndex = techListView.Items.Count - 1;
+
+            // 追加した項目を表示する
+            techListView.EnsureVisible(techListView.Items.Count - 1);
         }
 
         /// <summary>
@@ -1210,11 +1216,17 @@ namespace HoI2Editor.Forms
             {
                 // 削除した項目の次の項目を選択する
                 techListView.SelectedIndex = index;
+
+                // 削除した項目の次の項目を表示する
+                techListView.EnsureVisible(index);
             }
             else if (index > 0)
             {
                 // リストの末尾ならば、削除した項目の前の項目を選択する
                 techListView.SelectedIndex = index - 1;
+
+                // 削除した項目の前の項目を表示する
+                techListView.EnsureVisible(index - 1);
             }
         }
 
@@ -1247,6 +1259,9 @@ namespace HoI2Editor.Forms
 
             // 移動先の項目を選択する
             techListView.SelectedIndex = dest;
+
+            // 移動先の項目を表示する
+            techListView.EnsureVisible(dest);
         }
 
         /// <summary>
@@ -1273,6 +1288,7 @@ namespace HoI2Editor.Forms
             foreach (ListViewItem li in techListView.Items.Cast<ListViewItem>().Where(li => li.Tag == e.Item))
             {
                 techListView.SelectedIndex = li.Index;
+                techListView.EnsureVisible(li.Index);
                 return;
             }
         }
