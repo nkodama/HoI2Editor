@@ -73,12 +73,12 @@ namespace HoI2Editor.Controls
             if (e.KeyCode == Keys.Enter)
             {
                 Finish(false);
-                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
             else if (e.KeyCode == Keys.Escape)
             {
                 Finish(true);
-                e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
 
