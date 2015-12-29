@@ -500,6 +500,11 @@ namespace HoI2Editor.Models
         public string PictureName { get; set; }
 
         /// <summary>
+        /// 音楽ファイル名
+        /// </summary>
+        public string Songs { get; set; }
+
+        /// <summary>
         ///     右端に配置
         /// </summary>
         public bool Bottom { get; set; }

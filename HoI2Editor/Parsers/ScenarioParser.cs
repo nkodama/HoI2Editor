@@ -713,6 +713,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // songs
+                if (keyword.Equals("songs"))
+                {
+                    string s = ParseString(lexer);
+                    if (s == null)
+                    {
+                        Log.InvalidClause(LogCategory, "songs", lexer);
+                        continue;
+                    }
+
+                    // 音楽ファイル名
+                    major.Songs = s;
+                    continue;
+                }
+
                 // bottom
                 if (keyword.Equals("bottom"))
                 {
