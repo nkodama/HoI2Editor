@@ -72,6 +72,11 @@ namespace HoI2Editor.Controls
         private bool _allowItemReorder;
 
         /// <summary>
+        ///     ドラッグアンドドロップ中の項目のインデックス
+        /// </summary>
+        private static readonly List<int> DragIndices = new List<int>();
+
+        /// <summary>
         ///     編集中の行インデックス
         /// </summary>
         private int _editingRowIndex;
@@ -159,14 +164,17 @@ namespace HoI2Editor.Controls
                 return;
             }
 
-            // 項目入れ替えは1項目選択時のみ
-            if (SelectedItems.Count != 1)
+            // 選択項目がなければ何もしない
+            if (SelectedItems.Count == 0)
             {
                 return;
             }
 
+            // 項目のインデックスを保存する
+            DragIndices.AddRange(SelectedIndices.Cast<int>());
+
             // ドラッグアンドドロップを開始する
-            DoDragDrop(SelectedItems[0], DragDropEffects.Move);
+            DoDragDrop(this, DragDropEffects.Move);
         }
 
         /// <summary>
@@ -182,8 +190,8 @@ namespace HoI2Editor.Controls
                 return;
             }
 
-            // ドラッグした項目がリストビューの項目でなければドロップを許可しない
-            if (!e.Data.GetDataPresent(typeof (ListViewItem)))
+            // ExtendedListViewの項目でなければドロップを許可しない
+            if (!e.Data.GetDataPresent(typeof (ExtendedListView)))
             {
                 e.Effect = DragDropEffects.None;
                 return;
@@ -206,8 +214,8 @@ namespace HoI2Editor.Controls
                 return;
             }
 
-            // ドラッグした項目がリストビューの項目でなければドロップを許可しない
-            if (!e.Data.GetDataPresent(typeof (ListViewItem)))
+            // ExtendedListViewの項目でなければドロップを許可しない
+            if (!e.Data.GetDataPresent(typeof (ExtendedListView)))
             {
                 e.Effect = DragDropEffects.None;
                 return;
@@ -226,7 +234,7 @@ namespace HoI2Editor.Controls
             InsertionMark.AppearsAfterItem = (p.Y > bounds.Top + bounds.Height / 2);
             InsertionMark.Index = index;
 
-            // 挿入位置の項目を表示することでスクロールする
+            // 挿入位置の項目を表示することで自動スクロールする
             Items[index].EnsureVisible();
         }
 
@@ -262,8 +270,9 @@ namespace HoI2Editor.Controls
                 return;
             }
 
-            // ドラッグした項目がリストビューの項目でなければドロップを許可しない
-            if (!e.Data.GetDataPresent(typeof (ListViewItem)))
+            // 自分自身の項目でなければドロップを許可しない
+            ExtendedListView listView = e.Data.GetData(typeof (ExtendedListView)) as ExtendedListView;
+            if (listView != this)
             {
                 return;
             }
@@ -279,24 +288,47 @@ namespace HoI2Editor.Controls
                 index++;
             }
 
-            ListViewItem item = (ListViewItem) e.Data.GetData(typeof (ListViewItem));
-
             // イベントハンドラを呼び出す
-            ItemReorderedEventArgs re = new ItemReorderedEventArgs(item.Index, index);
+            ItemReorderedEventArgs re = new ItemReorderedEventArgs(DragIndices, index);
             ItemReordered?.Invoke(this, re);
             if (re.Cancel)
             {
+                // ドラッグ状態を解除する
+                DragIndices.Clear();
                 return;
             }
 
             // リストビューの項目を移動する
-            ListViewItem newItem = (ListViewItem) item.Clone();
-            Items.Insert(index, newItem);
-            Items.Remove(item);
+            ListViewItem firstItem = null;
+            foreach (int dragIndex in DragIndices)
+            {
+                ListViewItem item = (ListViewItem) Items[dragIndex].Clone();
+                if (firstItem == null)
+                {
+                    firstItem = item;
+                }
+                Items.Insert(index, item);
+                if (index < dragIndex)
+                {
+                    Items.RemoveAt(dragIndex + 1);
+                    index++;
+                }
+                else
+                {
+                    Items.RemoveAt(dragIndex);
+                }
+            }
 
             // 移動先の項目を選択する
-            newItem.Selected = true;
-            newItem.Focused = true;
+            if (firstItem != null)
+            {
+                firstItem.Selected = true;
+                firstItem.Focused = true;
+                EnsureVisible(firstItem.Index);
+            }
+
+            // ドラッグ状態を解除する
+            DragIndices.Clear();
         }
 
         /// <summary>

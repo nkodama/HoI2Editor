@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
 
 namespace HoI2Editor.Controls
 {
@@ -12,7 +14,7 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     前の表示位置
         /// </summary>
-        public int OldDisplayIndex { get; private set; }
+        public int[] OldDisplayIndices { get; private set; }
 
         /// <summary>
         ///     新しい表示位置
@@ -26,11 +28,11 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        /// <param name="oldDisplayIndex">前の表示位置</param>
+        /// <param name="oldDisplayIndices">前の表示位置</param>
         /// <param name="newDisplayIndex">新しい表示位置</param>
-        public ItemReorderedEventArgs(int oldDisplayIndex, int newDisplayIndex)
+        public ItemReorderedEventArgs(IEnumerable<int> oldDisplayIndices, int newDisplayIndex)
         {
-            OldDisplayIndex = oldDisplayIndex;
+            OldDisplayIndices = oldDisplayIndices.ToArray();
             NewDisplayIndex = newDisplayIndex;
         }
 

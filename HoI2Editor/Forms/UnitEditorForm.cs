@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -927,7 +926,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
             if (srcIndex < destIndex)
             {
@@ -1249,6 +1248,9 @@ namespace HoI2Editor.Forms
             // 移動先の項目を選択する
             modelListView.Items[dest].Focused = true;
             modelListView.Items[dest].Selected = true;
+
+            // 移動先の項目を表示する
+            modelListView.EnsureVisible(dest);
         }
 
         #endregion
@@ -3012,7 +3014,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
 
             // 改良情報を移動する
@@ -7317,7 +7319,7 @@ namespace HoI2Editor.Forms
             int index = modelListView.SelectedIndices[0];
             UnitModel model = unit.Models[index];
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
 
             // 装備情報を移動する
@@ -7333,7 +7335,7 @@ namespace HoI2Editor.Forms
             }
 
             Log.Info("[Unit] Moved equipment: {0} -> {1} {2} [{3}]", srcIndex, destIndex,
-                Config.GetText(Units.EquipmentNames[(int)equipment.Resource]), unit.GetModelName(index));
+                Config.GetText(Units.EquipmentNames[(int) equipment.Resource]), unit.GetModelName(index));
 
             // 編集済みフラグを設定する
             equipment.SetDirty();

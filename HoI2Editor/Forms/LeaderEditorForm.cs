@@ -669,7 +669,7 @@ namespace HoI2Editor.Forms
             // 自前で項目を入れ替えるのでキャンセル扱いにする
             e.Cancel = true;
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
             if (srcIndex < destIndex)
             {

@@ -97,7 +97,7 @@ namespace HoI2Editor.Forms
         {
             // 編集済みフラグがクリアされるため表示を更新する
             categoryListBox.Refresh();
-            techListView.Refresh();
+            techListBox.Refresh();
             UpdateCategoryItems();
             UpdateEditableItems();
         }
@@ -123,8 +123,8 @@ namespace HoI2Editor.Forms
             // 技術カテゴリリストボックス
             categoryListBox.ItemHeight = DeviceCaps.GetScaledHeight(categoryListBox.ItemHeight);
 
-            // 技術項目リストビュー
-            techListView.HeaderStyle = ColumnHeaderStyle.None;
+            // 技術項目リストボックス
+            techListBox.ItemHeight = DeviceCaps.GetScaledHeight(techListBox.ItemHeight);
 
             // 技術座標リストビュー
             techXColumnHeader.Width = HoI2EditorController.Settings.TechEditor.TechPositionListColumnWidth[0];
@@ -382,12 +382,6 @@ namespace HoI2Editor.Forms
             downButton.Enabled = false;
             bottomButton.Enabled = false;
 
-            // 技術項目リストの先頭項目を選択する
-            if (techListView.Items.Count > 0)
-            {
-                techListView.SelectedIndex = 0;
-            }
-
             // 選択中のカテゴリを保存する
             HoI2EditorController.Settings.TechEditor.Category = categoryListBox.SelectedIndex;
         }
@@ -445,30 +439,26 @@ namespace HoI2Editor.Forms
         /// </summary>
         private void UpdateItemList()
         {
-            techListView.BeginUpdate();
+            techListBox.BeginUpdate();
 
-            techListView.Items.Clear();
+            techListBox.Items.Clear();
             treePictureBox.Controls.Clear();
 
             foreach (ITechItem item in Techs.Groups[categoryListBox.SelectedIndex].Items)
             {
-                ListViewItem li = new ListViewItem(item.ToString()) { Tag = item };
-                techListView.Items.Add(li);
+                techListBox.Items.Add(item);
                 _techTreePanelController.AddItem(item);
             }
 
-            // 列ヘッダのサイズを調整する
-            techListView.Columns[0].Width = -2;
-
-            techListView.EndUpdate();
+            techListBox.EndUpdate();
         }
 
         /// <summary>
-        ///     技術項目リストビューの選択項目変更時の処理
+        ///     技術項目リストボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechListViewSelectedIndexChanged(object sender, EventArgs e)
+        private void OnTechListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
             // 編集項目を更新する
             UpdateEditableItems();
@@ -479,24 +469,20 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechListViewItemReordered(object sender, ItemReorderedEventArgs e)
+        private void OnTechListBoxItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 自前で項目を入れ替えるのでキャンセル扱いにする
             e.Cancel = true;
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
-            if (srcIndex < destIndex)
-            {
-                destIndex--;
-            }
 
-            ITechItem src = techListView.Items[srcIndex].Tag as ITechItem;
+            ITechItem src = techListBox.Items[srcIndex] as ITechItem;
             if (src == null)
             {
                 return;
             }
-            ITechItem dest = techListView.Items[destIndex].Tag as ITechItem;
+            ITechItem dest = techListBox.Items[destIndex] as ITechItem;
             if (dest == null)
             {
                 return;
@@ -604,69 +590,62 @@ namespace HoI2Editor.Forms
 
             cloneButton.Enabled = true;
             removeButton.Enabled = true;
-            int index = techListView.SelectedIndex;
-            if (index >= 0)
-            {
-                int count = techListView.Items.Count;
-                topButton.Enabled = (index > 0);
-                upButton.Enabled = (index > 0);
-                downButton.Enabled = (index < count - 1);
-                bottomButton.Enabled = (index < count - 1);
-            }
+            topButton.Enabled = techListBox.SelectedIndex != 0;
+            upButton.Enabled = techListBox.SelectedIndex != 0;
+            downButton.Enabled = techListBox.SelectedIndex != techListBox.Items.Count - 1;
+            bottomButton.Enabled = techListBox.SelectedIndex != techListBox.Items.Count - 1;
         }
 
         /// <summary>
-        ///     技術項目リストビューの項目描画処理
+        ///     技術項目リストボックスの項目描画処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechListViewDrawSubItem(object sender, DrawListViewSubItemEventArgs e)
+        private void OnTechListBoxDrawItem(object sender, DrawItemEventArgs e)
         {
+            // 項目がなければ何もしない
+            if (e.Index == -1)
+            {
+                return;
+            }
+
             // 背景を描画する
             e.DrawBackground();
 
             // 背景色を変更する
-            int selectedIndex = techListView.SelectedIndex;
-            if (e.ItemIndex == selectedIndex)
+            if ((e.State & DrawItemState.Selected) == 0)
             {
-                Brush brush = new SolidBrush(SystemColors.Highlight);
-                e.Graphics.FillRectangle(brush, e.Bounds);
-                brush.Dispose();
-            }
-            else
-            {
-                if (e.Item.Tag is TechLabel)
+                if (techListBox.Items[e.Index] is TechLabel)
                 {
-                    e.Graphics.FillRectangle(Brushes.AliceBlue, e.Bounds);
+                    e.Graphics.FillRectangle(Brushes.AliceBlue,
+                        new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
                 }
-                else if (e.Item.Tag is TechEvent)
+                else if (techListBox.Items[e.Index] is TechEvent)
                 {
-                    e.Graphics.FillRectangle(Brushes.Honeydew, e.Bounds);
+                    e.Graphics.FillRectangle(Brushes.Honeydew,
+                        new Rectangle(e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height));
                 }
             }
 
             // 項目の文字列を描画する
-            ITechItem item = e.Item.Tag as ITechItem;
-            if (item != null)
+            Brush brush;
+            if ((e.State & DrawItemState.Selected) != DrawItemState.Selected)
             {
-                Brush brush;
-                if (e.ItemIndex == selectedIndex)
-                {
-                    brush = new SolidBrush(SystemColors.HighlightText);
-                }
-                else
-                {
-                    // 変更ありの項目は文字色を変更する
-                    brush = item.IsDirty() ? new SolidBrush(Color.Red) : new SolidBrush(techListView.ForeColor);
-                }
-                Rectangle rect = new Rectangle(e.Bounds.Left + 4, e.Bounds.Top + 3, e.Bounds.Width - 4,
-                    e.Bounds.Height - 3);
-                e.Graphics.DrawString(item.ToString(), techListView.Font, brush, rect);
-                brush.Dispose();
+                // 変更ありの項目は文字色を変更する
+                ITechItem item = techListBox.Items[e.Index] as ITechItem;
+                brush = (item != null && item.IsDirty())
+                    ? new SolidBrush(Color.Red)
+                    : new SolidBrush(categoryListBox.ForeColor);
             }
+            else
+            {
+                brush = new SolidBrush(SystemColors.HighlightText);
+            }
+            e.Graphics.DrawString(techListBox.Items[e.Index].ToString(), e.Font, brush, e.Bounds);
+            brush.Dispose();
 
             // フォーカスを描画する
-            e.DrawFocusRectangle(e.Bounds);
+            e.DrawFocusRectangle();
         }
 
         /// <summary>
@@ -697,7 +676,7 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirtyAll();
 
-            ITechItem selected = GetSelectedItem();
+            ITechItem selected = techListBox.SelectedItem as ITechItem;
             if (selected != null)
             {
                 // 選択項目の先頭座標を引き継ぐ
@@ -722,7 +701,7 @@ namespace HoI2Editor.Forms
                 grp.InsertItem(item, selected);
 
                 // 項目リストビューに項目を挿入する
-                InsertTechListItem(item, techListView.SelectedIndex + 1);
+                InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
             {
@@ -778,7 +757,7 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirtyAll();
 
-            ITechItem selected = GetSelectedItem();
+            ITechItem selected = techListBox.SelectedItem as ITechItem;
             if (selected != null)
             {
                 // 選択項目の先頭座標を引き継ぐ
@@ -788,7 +767,7 @@ namespace HoI2Editor.Forms
                 grp.InsertItem(item, selected);
 
                 // 項目リストビューに項目を挿入する
-                InsertTechListItem(item, techListView.SelectedIndex + 1);
+                InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
             {
@@ -824,7 +803,7 @@ namespace HoI2Editor.Forms
             grp.SetDirty();
             item.SetDirtyAll();
 
-            ITechItem selected = GetSelectedItem();
+            ITechItem selected = techListBox.SelectedItem as ITechItem;
             if (selected != null)
             {
                 // 選択項目の先頭座標を引き継ぐ
@@ -841,7 +820,7 @@ namespace HoI2Editor.Forms
                 grp.InsertItem(item, selected);
 
                 // 項目リストビューに項目を挿入する
-                InsertTechListItem(item, techListView.SelectedIndex + 1);
+                InsertTechListItem(item, techListBox.SelectedIndex + 1);
             }
             else
             {
@@ -901,7 +880,7 @@ namespace HoI2Editor.Forms
             item.SetDirtyAll();
 
             // 項目リストビューに項目を挿入する
-            InsertTechListItem(item, techListView.SelectedIndex + 1);
+            InsertTechListItem(item, techListBox.SelectedIndex + 1);
 
             // 技術ツリーにラベルを追加する
             _techTreePanelController.AddItem(item);
@@ -945,7 +924,7 @@ namespace HoI2Editor.Forms
             grp.RemoveItem(selected);
 
             // 項目リストビューから項目を削除する
-            RemoveTechListItem(techListView.SelectedIndex);
+            RemoveTechListItem(techListBox.SelectedIndex);
 
             // 技術ツリーからラベルを削除する
             _techTreePanelController.RemoveItem(selected);
@@ -959,7 +938,7 @@ namespace HoI2Editor.Forms
             }
 
             // 項目がなくなれば編集項目を無効化する
-            if (techListView.Items.Count == 0)
+            if (techListBox.Items.Count == 0)
             {
                 // 技術/必要技術/小研究/技術効果/技術ラベル/技術イベントタブを無効化する
                 DisableTechTab();
@@ -1011,7 +990,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択項目がリストの先頭ならば何もしない
-            int index = techListView.SelectedIndex;
+            int index = techListBox.SelectedIndex;
             if (index == 0)
             {
                 return;
@@ -1057,7 +1036,7 @@ namespace HoI2Editor.Forms
             }
 
             // 選択項目がリストの先頭ならば何もしない
-            int index = techListView.SelectedIndex;
+            int index = techListBox.SelectedIndex;
             if (index == 0)
             {
                 return;
@@ -1099,8 +1078,8 @@ namespace HoI2Editor.Forms
             }
 
             // 選択項目がリストの末尾ならば何もしない
-            int index = techListView.SelectedIndex;
-            if (index == techListView.Items.Count - 1)
+            int index = techListBox.SelectedIndex;
+            if (index == techListBox.Items.Count - 1)
             {
                 return;
             }
@@ -1141,20 +1120,20 @@ namespace HoI2Editor.Forms
             }
 
             // 選択項目がリストの末尾ならば何もしない
-            int index = techListView.SelectedIndex;
-            if (index == techListView.Items.Count - 1)
+            int index = techListBox.SelectedIndex;
+            if (index == techListBox.Items.Count - 1)
             {
                 return;
             }
 
             TechGroup grp = GetSelectedGroup();
-            ITechItem bottom = grp.Items[techListView.Items.Count - 1];
+            ITechItem bottom = grp.Items[techListBox.Items.Count - 1];
 
             // 技術項目リストの項目を移動する
             grp.MoveItem(selected, bottom);
 
             // 項目リストビューの項目を移動する
-            MoveTechListItem(index, techListView.Items.Count - 1);
+            MoveTechListItem(index, techListBox.Items.Count - 1);
 
             if (selected is TechItem)
             {
@@ -1175,14 +1154,10 @@ namespace HoI2Editor.Forms
         private void AddTechListItem(ITechItem item)
         {
             // 項目リストビューに項目を追加する
-            ListViewItem li = new ListViewItem(item.ToString()) { Tag = item };
-            techListView.Items.Add(li);
+            techListBox.Items.Add(item);
 
             // 追加した項目を選択する
-            techListView.SelectedIndex = techListView.Items.Count - 1;
-
-            // 追加した項目を表示する
-            techListView.EnsureVisible(techListView.Items.Count - 1);
+            techListBox.SelectedIndex = techListBox.Items.Count - 1;
         }
 
         /// <summary>
@@ -1193,14 +1168,10 @@ namespace HoI2Editor.Forms
         private void InsertTechListItem(object item, int index)
         {
             // 項目リストビューに項目を挿入する
-            ListViewItem li = new ListViewItem(item.ToString()) { Tag = item };
-            techListView.Items.Insert(index, li);
+            techListBox.Items.Insert(index, item);
 
             // 挿入した項目を選択する
-            techListView.SelectedIndex = techListView.Items.Count - 1;
-
-            // 追加した項目を表示する
-            techListView.EnsureVisible(techListView.Items.Count - 1);
+            techListBox.SelectedIndex = index;
         }
 
         /// <summary>
@@ -1210,23 +1181,17 @@ namespace HoI2Editor.Forms
         private void RemoveTechListItem(int index)
         {
             // 項目リストビューから項目を削除する
-            techListView.Items.RemoveAt(index);
+            techListBox.Items.RemoveAt(index);
 
-            if (index < techListView.Items.Count)
+            if (index < techListBox.Items.Count)
             {
                 // 削除した項目の次の項目を選択する
-                techListView.SelectedIndex = index;
-
-                // 削除した項目の次の項目を表示する
-                techListView.EnsureVisible(index);
+                techListBox.SelectedIndex = index;
             }
             else if (index > 0)
             {
                 // リストの末尾ならば、削除した項目の前の項目を選択する
-                techListView.SelectedIndex = index - 1;
-
-                // 削除した項目の前の項目を表示する
-                techListView.EnsureVisible(index - 1);
+                techListBox.SelectedIndex = index - 1;
             }
         }
 
@@ -1237,31 +1202,27 @@ namespace HoI2Editor.Forms
         /// <param name="dest">移動先の位置</param>
         private void MoveTechListItem(int src, int dest)
         {
-            ITechItem item = techListView.Items[src].Tag as ITechItem;
+            ITechItem item = techListBox.Items[src] as ITechItem;
             if (item == null)
             {
                 return;
             }
 
-            ListViewItem li = new ListViewItem(item.ToString()) { Tag = item };
             if (src > dest)
             {
                 // 上へ移動する場合
-                techListView.Items.Insert(dest, li);
-                techListView.Items.RemoveAt(src + 1);
+                techListBox.Items.Insert(dest, item);
+                techListBox.Items.RemoveAt(src + 1);
             }
             else
             {
                 // 下へ移動する場合
-                techListView.Items.Insert(dest + 1, li);
-                techListView.Items.RemoveAt(src);
+                techListBox.Items.Insert(dest + 1, item);
+                techListBox.Items.RemoveAt(src);
             }
 
             // 移動先の項目を選択する
-            techListView.SelectedIndex = dest;
-
-            // 移動先の項目を表示する
-            techListView.EnsureVisible(dest);
+            techListBox.SelectedIndex = dest;
         }
 
         /// <summary>
@@ -1270,7 +1231,7 @@ namespace HoI2Editor.Forms
         /// <returns>選択中の技術項目</returns>
         private ITechItem GetSelectedItem()
         {
-            return techListView.SelectedItem?.Tag as ITechItem;
+            return techListBox.SelectedItem as ITechItem;
         }
 
         #endregion
@@ -1285,12 +1246,7 @@ namespace HoI2Editor.Forms
         private void OnTechTreeLabelMouseDown(object sender, TechTreePanelController.ItemMouseEventArgs e)
         {
             // 技術項目リストの項目を選択する
-            foreach (ListViewItem li in techListView.Items.Cast<ListViewItem>().Where(li => li.Tag == e.Item))
-            {
-                techListView.SelectedIndex = li.Index;
-                techListView.EnsureVisible(li.Index);
-                return;
-            }
+            techListBox.SelectedItem = e.Item;
         }
 
         /// <summary>
@@ -1597,7 +1553,11 @@ namespace HoI2Editor.Forms
             // 値を更新する
             Config.SetText(item.Name, name, Game.TechTextFileName);
 
-            techListView.SelectedItem.Text = item.ToString();
+            // 項目リストボックスの項目を再設定することで表示更新している
+            // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
+            techListBox.SelectedIndexChanged -= OnTechListBoxSelectedIndexChanged;
+            techListBox.Items[techListBox.SelectedIndex] = item;
+            techListBox.SelectedIndexChanged += OnTechListBoxSelectedIndexChanged;
 
             // 技術コンボボックスの項目を再設定することで表示更新している
             // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
@@ -1852,7 +1812,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
 
             // 技術座標を移動する
@@ -2689,7 +2649,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
 
             // 必要技術を移動する
@@ -2727,7 +2687,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
 
             // 必要技術を移動する
@@ -3504,7 +3464,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
 
             // 小研究を移動する
@@ -4649,7 +4609,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
 
             // 技術効果を移動する
@@ -5478,7 +5438,11 @@ namespace HoI2Editor.Forms
             // 値を更新する
             Config.SetText(item.Name, text, Game.TechTextFileName);
 
-            techListView.SelectedItem.Text = item.ToString();
+            // 項目リストボックスの項目を再設定することで表示更新している
+            // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
+            techListBox.SelectedIndexChanged -= OnTechListBoxSelectedIndexChanged;
+            techListBox.Items[techListBox.SelectedIndex] = item;
+            techListBox.SelectedIndexChanged += OnTechListBoxSelectedIndexChanged;
 
             // 技術ツリー上のラベル名を更新する
             _techTreePanelController.UpdateItem(item);
@@ -5595,7 +5559,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
 
             // ラベル座標を移動する
@@ -6036,7 +6000,11 @@ namespace HoI2Editor.Forms
             // 値を更新する
             item.Id = id;
 
-            techListView.SelectedItem.Text = item.ToString();
+            // 項目リストボックスの項目を再設定することで表示更新している
+            // この時再選択によりフォーカスが外れるので、イベントハンドラを一時的に無効化する
+            techListBox.SelectedIndexChanged -= OnTechListBoxSelectedIndexChanged;
+            techListBox.Items[techListBox.SelectedIndex] = item;
+            techListBox.SelectedIndexChanged += OnTechListBoxSelectedIndexChanged;
 
             // 編集済みフラグを設定する
             TechGroup grp = GetSelectedGroup();
@@ -6225,7 +6193,7 @@ namespace HoI2Editor.Forms
                 return;
             }
 
-            int srcIndex = e.OldDisplayIndex;
+            int srcIndex = e.OldDisplayIndices[0];
             int destIndex = e.NewDisplayIndex;
 
             // ラベル座標を移動する
