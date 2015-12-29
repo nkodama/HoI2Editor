@@ -282,7 +282,7 @@ namespace HoI2Editor.Controls
             ListViewItem item = (ListViewItem) e.Data.GetData(typeof (ListViewItem));
 
             // イベントハンドラを呼び出す
-            ItemReorderedEventArgs re = new ItemReorderedEventArgs(item.Index, index, item);
+            ItemReorderedEventArgs re = new ItemReorderedEventArgs(item.Index, index);
             ItemReordered?.Invoke(this, re);
             if (re.Cancel)
             {

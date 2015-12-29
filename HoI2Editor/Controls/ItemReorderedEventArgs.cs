@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Forms;
 
 namespace HoI2Editor.Controls
 {
@@ -29,8 +28,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="oldDisplayIndex">前の表示位置</param>
         /// <param name="newDisplayIndex">新しい表示位置</param>
-        /// <param name="item">並べ替えられる項目</param>
-        public ItemReorderedEventArgs(int oldDisplayIndex, int newDisplayIndex, ListViewItem item)
+        public ItemReorderedEventArgs(int oldDisplayIndex, int newDisplayIndex)
         {
             OldDisplayIndex = oldDisplayIndex;
             NewDisplayIndex = newDisplayIndex;
