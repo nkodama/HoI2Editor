@@ -915,7 +915,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnModelListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnModelListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 自前で項目を入れ替えるのでキャンセル扱いにする
             e.Cancel = true;
@@ -3003,7 +3003,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnUpgradeListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnUpgradeListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
             UnitClass unit = classListBox.SelectedItem as UnitClass;
@@ -7300,7 +7300,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnEquipmentListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnEquipmentListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 選択中のユニットクラスがなければ何もしない
             UnitClass unit = classListBox.SelectedItem as UnitClass;

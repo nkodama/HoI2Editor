@@ -562,7 +562,7 @@
             // upgradeListView
             // 
             this.upgradeListView.AllowDrop = true;
-            this.upgradeListView.AllowRowReorder = true;
+            this.upgradeListView.AllowItemReorder = true;
             this.upgradeListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.upgradeTypeColumnHeader,
             this.upgradeCostColumnHeader,
@@ -577,7 +577,7 @@
             this.upgradeListView.SelectedIndex = -1;
             this.upgradeListView.UseCompatibleStateImageBehavior = false;
             this.upgradeListView.View = System.Windows.Forms.View.Details;
-            this.upgradeListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnUpgradeListViewRowReordered);
+            this.upgradeListView.ItemReordered += new System.EventHandler<HoI2Editor.Controls.ItemReorderedEventArgs>(this.OnUpgradeListViewItemReordered);
             this.upgradeListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnUpgradeListViewQueryItemEdit);
             this.upgradeListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnUpgradeListViewBeforeItemEdit);
             this.upgradeListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnUpgradeListViewColumnWidthChanged);
@@ -855,7 +855,7 @@
             // equipmentListView
             // 
             this.equipmentListView.AllowDrop = true;
-            this.equipmentListView.AllowRowReorder = true;
+            this.equipmentListView.AllowItemReorder = true;
             this.equipmentListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.resourceColumnHeader,
             this.quantityColumnHeader});
@@ -869,7 +869,7 @@
             this.equipmentListView.SelectedIndex = -1;
             this.equipmentListView.UseCompatibleStateImageBehavior = false;
             this.equipmentListView.View = System.Windows.Forms.View.Details;
-            this.equipmentListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnEquipmentListViewRowReordered);
+            this.equipmentListView.ItemReordered += new System.EventHandler<HoI2Editor.Controls.ItemReorderedEventArgs>(this.OnEquipmentListViewItemReordered);
             this.equipmentListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnEquipmentListViewQueryItemEdit);
             this.equipmentListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnEquipmentListViewBeforeItemEdit);
             this.equipmentListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnEquipmentListViewColumnWidthChanged);
@@ -1563,7 +1563,7 @@
             // modelListView
             // 
             this.modelListView.AllowDrop = true;
-            this.modelListView.AllowRowReorder = true;
+            this.modelListView.AllowItemReorder = true;
             resources.ApplyResources(this.modelListView, "modelListView");
             this.modelListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.noColumnHeader,
@@ -1585,7 +1585,7 @@
             this.modelListView.SelectedIndex = -1;
             this.modelListView.UseCompatibleStateImageBehavior = false;
             this.modelListView.View = System.Windows.Forms.View.Details;
-            this.modelListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnModelListViewRowReordered);
+            this.modelListView.ItemReordered += new System.EventHandler<HoI2Editor.Controls.ItemReorderedEventArgs>(this.OnModelListViewItemReordered);
             this.modelListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnModelListViewQueryItemEdit);
             this.modelListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnModelListViewBeforeItemEdit);
             this.modelListView.ColumnWidthChanged += new System.Windows.Forms.ColumnWidthChangedEventHandler(this.OnModelListViewColumnWidthChanged);

@@ -475,11 +475,11 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     指揮官リストビューの項目入れ替え時の処理
+        ///     技術項目リストビューの項目入れ替え時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnTechListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 自前で項目を入れ替えるのでキャンセル扱いにする
             e.Cancel = true;
@@ -1843,7 +1843,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnTechPositionListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnTechPositionListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 選択項目がなければ何もしない
             TechItem item = GetSelectedItem() as TechItem;
@@ -2680,7 +2680,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnAndRequiredListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnAndRequiredListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 選択項目がなければ何もしない
             TechItem item = GetSelectedItem() as TechItem;
@@ -2718,7 +2718,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnOrRequiredListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnOrRequiredListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 選択項目がなければ何もしない
             TechItem item = GetSelectedItem() as TechItem;
@@ -3495,7 +3495,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnComponentListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnComponentListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 選択項目がなければ何もしない
             TechItem item = GetSelectedItem() as TechItem;
@@ -4640,7 +4640,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnEffectListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnEffectListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 選択項目がなければ何もしない
             TechItem item = GetSelectedItem() as TechItem;
@@ -5586,7 +5586,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLabelPositionListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnLabelPositionListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 選択項目がなければ何もしない
             TechLabel item = GetSelectedItem() as TechLabel;
@@ -6216,7 +6216,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnEventPositionListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnEventPositionListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 選択項目がなければ何もしない
             TechEvent item = GetSelectedItem() as TechEvent;

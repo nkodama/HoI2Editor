@@ -42,17 +42,17 @@ namespace HoI2Editor.Controls
         public ListViewItem SelectedItem => (SelectedItems.Count > 0) ? SelectedItems[0] : null;
 
         /// <summary>
-        ///     行の入れ替えをサポートするかどうか
+        ///     項目の入れ替えをサポートするかどうか
         /// </summary>
         [Category("動作")]
         [DefaultValue(typeof (bool), "false")]
         [Description("ユーザーが項目の順番を再変更できるかどうかを示します。")]
-        public bool AllowRowReorder
+        public bool AllowItemReorder
         {
-            get { return _allowRowReorder; }
+            get { return _allowItemReorder; }
             set
             {
-                _allowRowReorder = value;
+                _allowItemReorder = value;
                 AllowDrop = value;
             }
         }
@@ -69,7 +69,7 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     行の入れ替えをサポートするかどうか
         /// </summary>
-        private bool _allowRowReorder;
+        private bool _allowItemReorder;
 
         /// <summary>
         ///     編集中の行インデックス
@@ -86,11 +86,11 @@ namespace HoI2Editor.Controls
         #region 公開イベント
 
         /// <summary>
-        ///     行の入れ替え時の処理
+        ///     項目入れ替え時の処理
         /// </summary>
         [Category("動作")]
         [Description("項目の順番を再変更したときに発生します。")]
-        public event EventHandler<RowReorderedEventArgs> RowReordered;
+        public event EventHandler<ItemReorderedEventArgs> ItemReordered;
 
         [Category("動作")]
         [Description("ユーザーが項目の編集を始めたときに発生します。")]
@@ -154,7 +154,7 @@ namespace HoI2Editor.Controls
             base.OnItemDrag(e);
 
             // ドラッグアンドドロップによる項目入れ替えが許可されていなければ何もしない
-            if (!AllowRowReorder)
+            if (!AllowItemReorder)
             {
                 return;
             }
@@ -177,7 +177,7 @@ namespace HoI2Editor.Controls
             base.OnDragEnter(e);
 
             // ドラッグアンドドロップによる項目入れ替えが許可されていなければ何もしない
-            if (!AllowRowReorder)
+            if (!AllowItemReorder)
             {
                 return;
             }
@@ -201,7 +201,7 @@ namespace HoI2Editor.Controls
             base.OnDragOver(e);
 
             // ドラッグアンドドロップによる項目入れ替えが許可されていなければ何もしない
-            if (!AllowRowReorder)
+            if (!AllowItemReorder)
             {
                 return;
             }
@@ -239,7 +239,7 @@ namespace HoI2Editor.Controls
             base.OnDragLeave(e);
 
             // ドラッグアンドドロップによる項目入れ替えが許可されていなければ何もしない
-            if (!AllowRowReorder)
+            if (!AllowItemReorder)
             {
                 return;
             }
@@ -257,7 +257,7 @@ namespace HoI2Editor.Controls
             base.OnDragDrop(e);
 
             // ドラッグアンドドロップによる項目入れ替えが許可されていなければ何もしない
-            if (!AllowRowReorder)
+            if (!AllowItemReorder)
             {
                 return;
             }
@@ -282,8 +282,8 @@ namespace HoI2Editor.Controls
             ListViewItem item = (ListViewItem) e.Data.GetData(typeof (ListViewItem));
 
             // イベントハンドラを呼び出す
-            RowReorderedEventArgs re = new RowReorderedEventArgs(item.Index, index, item);
-            RowReordered?.Invoke(this, re);
+            ItemReorderedEventArgs re = new ItemReorderedEventArgs(item.Index, index, item);
+            ItemReordered?.Invoke(this, re);
             if (re.Cancel)
             {
                 return;

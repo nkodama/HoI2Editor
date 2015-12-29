@@ -664,7 +664,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnLeaderListViewRowReordered(object sender, RowReorderedEventArgs e)
+        private void OnLeaderListViewItemReordered(object sender, ItemReorderedEventArgs e)
         {
             // 自前で項目を入れ替えるのでキャンセル扱いにする
             e.Cancel = true;

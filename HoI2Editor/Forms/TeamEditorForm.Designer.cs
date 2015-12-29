@@ -207,7 +207,7 @@
             // teamListView
             // 
             this.teamListView.AllowDrop = true;
-            this.teamListView.AllowRowReorder = true;
+            this.teamListView.AllowItemReorder = true;
             resources.ApplyResources(this.teamListView, "teamListView");
             this.teamListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.countryColumnHeader,
@@ -227,7 +227,7 @@
             this.teamListView.ItemEdit = true;
             this.teamListView.UseCompatibleStateImageBehavior = false;
             this.teamListView.View = System.Windows.Forms.View.Details;
-            this.teamListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnTeamListViewRowReordered);
+            this.teamListView.ItemReordered += new System.EventHandler<HoI2Editor.Controls.ItemReorderedEventArgs>(this.OnTeamListViewItemReordered);
             this.teamListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnTeamListViewQueryItemEdit);
             this.teamListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnTeamListViewBeforeItemEdit);
             this.teamListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnLeaderListViewColumnClick);

@@ -85,7 +85,7 @@
             // ministerListView
             // 
             this.ministerListView.AllowDrop = true;
-            this.ministerListView.AllowRowReorder = true;
+            this.ministerListView.AllowItemReorder = true;
             resources.ApplyResources(this.ministerListView, "ministerListView");
             this.ministerListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.countryColumnHeader,
@@ -105,7 +105,7 @@
             this.ministerListView.ItemEdit = true;
             this.ministerListView.UseCompatibleStateImageBehavior = false;
             this.ministerListView.View = System.Windows.Forms.View.Details;
-            this.ministerListView.RowReordered += new System.EventHandler<HoI2Editor.Controls.RowReorderedEventArgs>(this.OnMinisterListViewRowReordered);
+            this.ministerListView.ItemReordered += new System.EventHandler<HoI2Editor.Controls.ItemReorderedEventArgs>(this.OnMinisterListViewItemReordered);
             this.ministerListView.QueryItemEdit += new System.EventHandler<HoI2Editor.Controls.QueryListViewItemEditEventArgs>(this.OnMinisterListViewQueryItemEdit);
             this.ministerListView.BeforeItemEdit += new System.EventHandler<HoI2Editor.Controls.ListViewItemEditEventArgs>(this.OnMinisterListViewBeforeItemEdit);
             this.ministerListView.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnMinisterListViewColumnClick);
