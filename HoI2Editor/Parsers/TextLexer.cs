@@ -626,6 +626,15 @@ namespace HoI2Editor.Parsers
             }
         }
 
+        /// <summary>
+        ///     トークンを保留する
+        /// </summary>
+        /// <param name="token"></param>
+        public void ReserveToken(Token token)
+        {
+            _token = token;
+        }
+
         #endregion
     }
 }

@@ -5294,6 +5294,7 @@ namespace HoI2Editor.Parsers
             }
 
             SpySettings spy = new SpySettings();
+            int lastLineNo = -1;
             while (true)
             {
                 token = lexer.GetToken();
@@ -5337,6 +5338,9 @@ namespace HoI2Editor.Parsers
 
                     // 国タグ
                     spy.Country = (Country) tag;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5352,11 +5356,20 @@ namespace HoI2Editor.Parsers
 
                     // スパイの数
                     spy.Spies = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
                 // 無効なトークン
                 Log.InvalidToken(LogCategory, token, lexer);
+                if (lexer.LineNo != lastLineNo)
+                {
+                    // 現在行が最終解釈行と異なる場合、閉じ括弧が不足しているものと見なす
+                    lexer.ReserveToken(token);
+                    break;
+                }
                 lexer.SkipLine();
             }
 
@@ -8529,6 +8542,7 @@ namespace HoI2Editor.Parsers
             }
 
             List<int> list = new List<int>();
+            int lastLineNo = -1;
             while (true)
             {
                 token = lexer.GetToken();
@@ -8549,12 +8563,21 @@ namespace HoI2Editor.Parsers
                 if (token.Type != TokenType.Number)
                 {
                     Log.InvalidToken(LogCategory, token, lexer);
+                    if (lexer.LineNo != lastLineNo)
+                    {
+                        // 現在行が最終解釈行と異なる場合、閉じ括弧が不足しているものと見なす
+                        lexer.ReserveToken(token);
+                        break;
+                    }
                     lexer.SkipLine();
                     continue;
                 }
 
                 // ID
                 list.Add((int) (double) token.Value);
+
+                // 最終解釈行を覚えておく
+                lastLineNo = lexer.LineNo;
             }
 
             return list;
