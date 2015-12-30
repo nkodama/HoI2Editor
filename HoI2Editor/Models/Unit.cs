@@ -2543,7 +2543,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     改良時間の補正をするか (DH)
         /// </summary>
-        public bool UpgradeTimeBoost { get; set; }
+        public bool UpgradeTimeBoost { get; set; } = true;
 
         /// <summary>
         ///     他師団への自動改良を許可するか (DH)
@@ -2568,7 +2568,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     装備 (DH1.03以降)
         /// </summary>
-        public List<UnitEquipment> Equipments { get; }
+        public List<UnitEquipment> Equipments { get; } = new List<UnitEquipment>();
 
         #endregion
 
@@ -2598,8 +2598,6 @@ namespace HoI2Editor.Models
         /// </summary>
         public UnitModel()
         {
-            UpgradeTimeBoost = true;
-            Equipments = new List<UnitEquipment>();
         }
 
         /// <summary>
@@ -2608,35 +2606,24 @@ namespace HoI2Editor.Models
         /// <param name="original">複製元のユニットモデル</param>
         public UnitModel(UnitModel original)
         {
-            DefaultOrganization = original.DefaultOrganization;
-            Morale = original.Morale;
-            Range = original.Range;
-            TransportWeight = original.TransportWeight;
-            TransportCapability = original.TransportCapability;
-            Suppression = original.Suppression;
-            SupplyConsumption = original.SupplyConsumption;
-            FuelConsumption = original.FuelConsumption;
-            MaxSupplyStock = original.MaxSupplyStock;
-            MaxOilStock = original.MaxOilStock;
             Cost = original.Cost;
             BuildTime = original.BuildTime;
             ManPower = original.ManPower;
-            UpgradeCostFactor = original.UpgradeCostFactor;
-            UpgradeTimeFactor = original.UpgradeTimeFactor;
-            ReinforceCostFactor = original.ReinforceCostFactor;
-            ReinforceTimeFactor = original.ReinforceTimeFactor;
             MaxSpeed = original.MaxSpeed;
-            SpeedCap = original.SpeedCap;
             SpeedCapArt = original.SpeedCapArt;
             SpeedCapEng = original.SpeedCapEng;
             SpeedCapAt = original.SpeedCapAt;
             SpeedCapAa = original.SpeedCapAa;
+            Range = original.Range;
+            DefaultOrganization = original.DefaultOrganization;
+            Morale = original.Morale;
             Defensiveness = original.Defensiveness;
             SeaDefense = original.SeaDefense;
             AirDefence = original.AirDefence;
             SurfaceDefence = original.SurfaceDefence;
             Toughness = original.Toughness;
             Softness = original.Softness;
+            Suppression = original.Suppression;
             SoftAttack = original.SoftAttack;
             HardAttack = original.HardAttack;
             SeaAttack = original.SeaAttack;
@@ -2646,14 +2633,32 @@ namespace HoI2Editor.Models
             AirAttack = original.AirAttack;
             NavalAttack = original.NavalAttack;
             StrategicAttack = original.StrategicAttack;
-            ArtilleryBombardment = original.ArtilleryBombardment;
             Distance = original.Distance;
-            Visibility = original.Visibility;
             SurfaceDetectionCapability = original.SurfaceDetectionCapability;
             SubDetectionCapability = original.SubDetectionCapability;
             AirDetectionCapability = original.AirDetectionCapability;
+            Visibility = original.Visibility;
+            TransportWeight = original.TransportWeight;
+            TransportCapability = original.TransportCapability;
+            SupplyConsumption = original.SupplyConsumption;
+            FuelConsumption = original.FuelConsumption;
+            UpgradeTimeFactor = original.UpgradeTimeFactor;
+            UpgradeCostFactor = original.UpgradeCostFactor;
+            ArtilleryBombardment = original.ArtilleryBombardment;
+            MaxSupplyStock = original.MaxSupplyStock;
+            MaxOilStock = original.MaxOilStock;
             NoFuelCombatMod = original.NoFuelCombatMod;
-            Equipments = new List<UnitEquipment>(original.Equipments);
+            ReinforceTimeFactor = original.ReinforceTimeFactor;
+            ReinforceCostFactor = original.ReinforceCostFactor;
+            UpgradeTimeBoost = original.UpgradeTimeBoost;
+            AutoUpgrade = original.AutoUpgrade;
+            UpgradeClass = original.UpgradeClass;
+            UpgradeModel = original.UpgradeModel;
+            SpeedCap = original.SpeedCap;
+            foreach (UnitEquipment equipment in original.Equipments)
+            {
+                Equipments.Add(new UnitEquipment(equipment));
+            }
         }
 
         #endregion
@@ -2811,6 +2816,27 @@ namespace HoI2Editor.Models
         ///     編集済みフラグ
         /// </summary>
         private bool _dirtyFlag;
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public UnitEquipment()
+        {
+        }
+
+        /// <summary>
+        ///     コピーコンストラクタ
+        /// </summary>
+        /// <param name="original">複製元のユニット装備情報</param>
+        public UnitEquipment(UnitEquipment original)
+        {
+            Resource = original.Resource;
+            Quantity = original.Quantity;
+        }
 
         #endregion
 
