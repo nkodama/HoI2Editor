@@ -102,12 +102,15 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
-        ///     オブジェクトを複製する
+        ///     コピーコンストラクタ
         /// </summary>
-        /// <returns>複製したオブジェクト</returns>
-        public GameDate Clone()
+        /// <param name="original">複製元のゲーム日時</param>
+        public GameDate(GameDate original)
         {
-            return (GameDate) MemberwiseClone();
+            Year = original.Year;
+            Month = original.Month;
+            Day = original.Day;
+            Hour = original.Hour;
         }
 
         #endregion

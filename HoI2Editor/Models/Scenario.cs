@@ -3231,15 +3231,15 @@ namespace HoI2Editor.Models
             }
             if (Date != null)
             {
-                unit.Date = Date.Clone();
+                unit.Date = new GameDate(Date);
             }
             if (MoveTime != null)
             {
-                unit.MoveTime = MoveTime.Clone();
+                unit.MoveTime = new GameDate(MoveTime);
             }
             if (AttackDate != null)
             {
-                unit.AttackDate = AttackDate.Clone();
+                unit.AttackDate = new GameDate(AttackDate);
             }
             unit.Divisions = new List<Division>();
             foreach (Division division in Divisions)
@@ -3837,7 +3837,7 @@ namespace HoI2Editor.Models
             }
             if (Offensive != null)
             {
-                division.Offensive = Offensive.Clone();
+                division.Offensive = new GameDate(Offensive);
             }
             return division;
         }
@@ -4352,11 +4352,11 @@ namespace HoI2Editor.Models
             Mission mission = (Mission) MemberwiseClone();
             if (StartDate != null)
             {
-                mission.StartDate = StartDate.Clone();
+                mission.StartDate = new GameDate(StartDate);
             }
             if (EndDate != null)
             {
-                mission.EndDate = EndDate.Clone();
+                mission.EndDate = new GameDate(EndDate);
             }
             return mission;
         }
