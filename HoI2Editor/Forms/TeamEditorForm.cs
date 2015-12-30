@@ -939,13 +939,11 @@ namespace HoI2Editor.Forms
             if (selected != null)
             {
                 // 選択項目がある場合、国タグやIDを引き継いで項目を作成する
-                team = new Team
+                team = new Team(selected)
                 {
-                    Country = selected.Country,
                     Id = Teams.GetNewId(selected.Country),
-                    Skill = selected.Skill,
-                    StartYear = selected.StartYear,
-                    EndYear = selected.EndYear
+                    Name = "",
+                    PictureName = ""
                 };
 
                 // 研究機関ごとの編集済みフラグを設定する
@@ -1008,20 +1006,10 @@ namespace HoI2Editor.Forms
             }
 
             // 選択項目を引き継いで項目を作成する
-            Team team = new Team
+            Team team = new Team(selected)
             {
-                Country = selected.Country,
-                Id = Teams.GetNewId(selected.Country),
-                Name = selected.Name,
-                Skill = selected.Skill,
-                StartYear = selected.StartYear,
-                EndYear = selected.EndYear,
-                PictureName = selected.PictureName
+                Id = Teams.GetNewId(selected.Country)
             };
-            for (int i = 0; i < Team.SpecialityLength; i++)
-            {
-                team.Specialities[i] = selected.Specialities[i];
-            }
 
             // 研究機関ごとの編集済みフラグを設定する
             team.SetDirtyAll();

@@ -88,6 +88,36 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public Team()
+        {
+        }
+
+        /// <summary>
+        ///     コピーコンストラクタ
+        /// </summary>
+        /// <param name="original">複製元の研究機関データ</param>
+        public Team(Team original)
+        {
+            Country = original.Country;
+            Id = original.Id;
+            Name = original.Name;
+            PictureName = original.PictureName;
+            Skill = original.Skill;
+            StartYear = original.StartYear;
+            EndYear = original.EndYear;
+            for (int i = 0; i < SpecialityLength; i++)
+            {
+                Specialities[i] = original.Specialities[i];
+            }
+        }
+
+        #endregion
+
         #region 編集済みフラグ操作
 
         /// <summary>

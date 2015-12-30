@@ -94,6 +94,36 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public Minister()
+        {
+        }
+
+        /// <summary>
+        ///     コピーコンストラクタ
+        /// </summary>
+        /// <param name="original">複製元の閣僚データ</param>
+        public Minister(Minister original)
+        {
+            Country = original.Country;
+            Id = original.Id;
+            Name = original.Name;
+            PictureName = original.PictureName;
+            Position = original.Position;
+            Personality = original.Personality;
+            Loyalty = original.Loyalty;
+            Ideology = original.Ideology;
+            StartYear = original.StartYear;
+            EndYear = original.EndYear;
+            RetirementYear = original.RetirementYear;
+        }
+
+        #endregion
+
         #region 編集済みフラグ操作
 
         /// <summary>

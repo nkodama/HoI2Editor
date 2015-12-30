@@ -752,17 +752,11 @@ namespace HoI2Editor.Forms
             if (selected != null)
             {
                 // 選択項目がある場合、国タグやIDを引き継いで項目を作成する
-                minister = new Minister
+                minister = new Minister(selected)
                 {
-                    Country = selected.Country,
                     Id = Ministers.GetNewId(selected.Country),
-                    StartYear = selected.StartYear,
-                    EndYear = selected.EndYear,
-                    RetirementYear = selected.RetirementYear,
-                    Position = selected.Position,
-                    Personality = selected.Personality,
-                    Ideology = selected.Ideology,
-                    Loyalty = selected.Loyalty
+                    Name = "",
+                    PictureName = ""
                 };
 
                 // 閣僚ごとの編集済みフラグを設定する
@@ -826,19 +820,9 @@ namespace HoI2Editor.Forms
             }
 
             // 選択項目を引き継いで項目を作成する
-            Minister minister = new Minister
+            Minister minister = new Minister(selected)
             {
-                Country = selected.Country,
-                Id = Ministers.GetNewId(selected.Country),
-                Name = selected.Name,
-                StartYear = selected.StartYear,
-                EndYear = selected.EndYear,
-                RetirementYear = selected.RetirementYear,
-                Position = selected.Position,
-                Personality = selected.Personality,
-                Ideology = selected.Ideology,
-                Loyalty = selected.Loyalty,
-                PictureName = selected.PictureName
+                Id = Ministers.GetNewId(selected.Country)
             };
 
             // 閣僚ごとの編集済みフラグを設定する
