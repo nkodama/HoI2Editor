@@ -236,7 +236,6 @@
             this.idealRankComboBox.FormattingEnabled = true;
             resources.ApplyResources(this.idealRankComboBox, "idealRankComboBox");
             this.idealRankComboBox.Name = "idealRankComboBox";
-            this.idealRankComboBox.SelectedIndexChanged += new System.EventHandler(this.OnIdealRankComboBoxSelectedIndexChanged);
             // 
             // idealRankCheckBox
             // 
