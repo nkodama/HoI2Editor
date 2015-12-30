@@ -500,7 +500,7 @@ namespace HoI2Editor.Models
         public string PictureName { get; set; }
 
         /// <summary>
-        /// 音楽ファイル名
+        ///     音楽ファイル名
         /// </summary>
         public string Songs { get; set; }
 
@@ -640,7 +640,7 @@ namespace HoI2Editor.Models
         public List<Treaty> Trades { get; }
 
         /// <summary>
-        /// 処理待ちイベントリスト
+        ///     処理待ちイベントリスト
         /// </summary>
         public List<QueuedEvent> QueuedEvents { get; } = new List<QueuedEvent>();
 
@@ -696,24 +696,24 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    /// 処理待ちイベント
+    ///     処理待ちイベント
     /// </summary>
     public class QueuedEvent
     {
         #region 公開プロパティ
 
         /// <summary>
-        /// イベント発生国
+        ///     イベント発生国
         /// </summary>
         public Country Country { get; set; }
 
         /// <summary>
-        /// イベントID
+        ///     イベントID
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// イベント発生待ち時間
+        ///     イベント発生待ち時間
         /// </summary>
         public int Hour { get; set; }
 

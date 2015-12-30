@@ -1301,7 +1301,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // イベントID
-                    qe.Id = (int)n;
+                    qe.Id = (int) n;
                     continue;
                 }
 
@@ -1316,7 +1316,7 @@ namespace HoI2Editor.Parsers
                     }
 
                     // イベント発生待ち時間
-                    qe.Hour = (int)n;
+                    qe.Hour = (int) n;
                     continue;
                 }
 

@@ -335,11 +335,14 @@ namespace HoI2Editor.Parsers
         private Token ParseNumber()
         {
             StringBuilder sb = new StringBuilder();
+            bool minus = false;
             bool point = false;
+            bool identifier = false;
 
             int c = _reader.Peek();
             if (c == '-')
             {
+                minus = true;
                 _reader.Read();
                 sb.Append((char) c);
             }
@@ -363,7 +366,7 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 小数点
-                if (!point && c == '.')
+                if (!point && !identifier && c == '.')
                 {
                     point = true;
                     _reader.Read();
@@ -371,8 +374,23 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // 英文字ならば識別子に切り替えて読み進める
+                if (!minus && !point && (char.IsLetter((char) c) || c == '_'))
+                {
+                    identifier = true;
+                    _reader.Read();
+                    sb.Append((char) c);
+                    continue;
+                }
+
                 // 対象外の文字ならば抜ける
                 break;
+            }
+
+            // 識別子トークンを返す
+            if (identifier)
+            {
+                return new Token { Type = TokenType.Identifier, Value = sb.ToString() };
             }
 
             // 数字トークンを返す
