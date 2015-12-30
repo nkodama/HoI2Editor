@@ -1203,6 +1203,9 @@ namespace HoI2Editor.Forms
             // 挿入した項目を選択する
             modelListView.Items[index].Focused = true;
             modelListView.Items[index].Selected = true;
+
+            // 挿入した項目が表示されるようにする
+            modelListView.EnsureVisible(index);
         }
 
         /// <summary>
