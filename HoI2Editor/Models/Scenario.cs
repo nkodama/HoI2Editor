@@ -640,6 +640,11 @@ namespace HoI2Editor.Models
         public List<Treaty> Trades { get; }
 
         /// <summary>
+        /// 処理待ちイベントリスト
+        /// </summary>
+        public List<QueuedEvent> QueuedEvents { get; } = new List<QueuedEvent>();
+
+        /// <summary>
         ///     休止指揮官
         /// </summary>
         public List<int> DormantLeaders { get; private set; }
@@ -686,6 +691,31 @@ namespace HoI2Editor.Models
             DormantMinisters = new List<int>();
             DormantTeams = new List<int>();
         }
+
+        #endregion
+    }
+
+    /// <summary>
+    /// 処理待ちイベント
+    /// </summary>
+    public class QueuedEvent
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        /// イベント発生国
+        /// </summary>
+        public Country Country { get; set; }
+
+        /// <summary>
+        /// イベントID
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// イベント発生待ち時間
+        /// </summary>
+        public int Hour { get; set; }
 
         #endregion
     }

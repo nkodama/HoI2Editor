@@ -992,6 +992,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // queued_events
+                if (keyword.Equals("queued_events"))
+                {
+                    List<QueuedEvent> events = ParseQueuedEvents(lexer);
+                    if (events == null)
+                    {
+                        Log.InvalidSection(LogCategory, "queued_events", lexer);
+                        continue;
+                    }
+
+                    // 処理待ちイベントリスト
+                    data.QueuedEvents.AddRange(events);
+                    continue;
+                }
+
                 // dormant_leaders
                 if (keyword.Equals("dormant_leaders"))
                 {
@@ -1125,6 +1140,192 @@ namespace HoI2Editor.Parsers
             }
 
             return data;
+        }
+
+        /// <summary>
+        ///     処理待ちイベントリストを構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>処理待ちイベントリスト</returns>
+        private static List<QueuedEvent> ParseQueuedEvents(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            List<QueuedEvent> list = new List<QueuedEvent>();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                string keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // event
+                if (keyword.Equals("event"))
+                {
+                    QueuedEvent qe = ParseQueuedEvent(lexer);
+                    if (qe == null)
+                    {
+                        Log.InvalidSection(LogCategory, "event", lexer);
+                        continue;
+                    }
+
+                    // 処理待ちイベント
+                    list.Add(qe);
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        ///     処理待ちイベントを構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>処理待ちイベント</returns>
+        private static QueuedEvent ParseQueuedEvent(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            QueuedEvent qe = new QueuedEvent();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                string keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+                keyword = keyword.ToLower();
+
+                // tag
+                if (keyword.Equals("tag"))
+                {
+                    Country? tag = ParseTag(lexer);
+                    if (!tag.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "tag", lexer);
+                        continue;
+                    }
+
+                    // イベント発生国
+                    qe.Country = (Country) tag;
+                    continue;
+                }
+
+                // id
+                if (keyword.Equals("id"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "id", lexer);
+                        continue;
+                    }
+
+                    // イベントID
+                    qe.Id = (int)n;
+                    continue;
+                }
+
+                // hour
+                if (keyword.Equals("hour"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "hour", lexer);
+                        continue;
+                    }
+
+                    // イベント発生待ち時間
+                    qe.Hour = (int)n;
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return qe;
         }
 
         /// <summary>
