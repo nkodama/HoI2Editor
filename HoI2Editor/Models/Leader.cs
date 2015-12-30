@@ -123,6 +123,43 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public Leader()
+        {
+        }
+
+        /// <summary>
+        ///     コピーコンストラクタ
+        /// </summary>
+        /// <param name="original">複製元の指揮官データ</param>
+        public Leader(Leader original)
+        {
+            Country = original.Country;
+            Id = original.Id;
+            Name = original.Name;
+            PictureName = original.Name;
+            Skill = original.Skill;
+            MaxSkill = original.Skill;
+            for (int i = 0; i < RankLength; i++)
+            {
+                RankYear[i] = original.RankYear[i];
+            }
+            StartYear = original.StartYear;
+            EndYear = original.EndYear;
+            RetirementYear = original.RetirementYear;
+            IdealRank = original.IdealRank;
+            Traits = original.Traits;
+            Experience = original.Experience;
+            Loyalty = original.Loyalty;
+            Branch = original.Branch;
+        }
+
+        #endregion
+
         #region 編集済みフラグ操作
 
         /// <summary>
@@ -186,6 +223,8 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class LeaderTraits
     {
+        #region 公開定数
+
         /// <summary>
         ///     特性なし
         /// </summary>
@@ -365,6 +404,8 @@ namespace HoI2Editor.Models
         /// </summary>
         public const uint AirforceTraits =
             OldGuard | SuperiorTactician | Spotter | TankBuster | CarpetBomber | NightFlyer | FleetDestroyer;
+
+        #endregion
     }
 
     /// <summary>
