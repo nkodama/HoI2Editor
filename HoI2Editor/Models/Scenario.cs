@@ -43,12 +43,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     発生済みイベント
         /// </summary>
-        public List<int> HistoryEvents { get; private set; }
+        public List<int> HistoryEvents { get; } = new List<int>();
 
         /// <summary>
         ///     休止イベント
         /// </summary>
-        public List<int> SleepEvents { get; private set; }
+        public List<int> SleepEvents { get; } = new List<int>();
 
         /// <summary>
         ///     イベント発生日時
@@ -63,12 +63,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     イベントファイル
         /// </summary>
-        public List<string> EventFiles { get; private set; }
+        public List<string> EventFiles { get; } = new List<string>();
 
         /// <summary>
         ///     インクルードファイル
         /// </summary>
-        public List<string> IncludeFiles { get; private set; }
+        public List<string> IncludeFiles { get; } = new List<string>();
 
         /// <summary>
         ///     インクルードフォルダ
@@ -78,7 +78,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンス設定
         /// </summary>
-        public List<ProvinceSettings> Provinces { get; }
+        public List<ProvinceSettings> Provinces { get; } = new List<ProvinceSettings>();
 
         /// <summary>
         ///     国別incにプロヴィンス設定を定義するかどうか
@@ -108,7 +108,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国家情報
         /// </summary>
-        public List<CountrySettings> Countries { get; }
+        public List<CountrySettings> Countries { get; } = new List<CountrySettings>();
 
         #endregion
 
@@ -165,23 +165,6 @@ namespace HoI2Editor.Models
             EndYear, // 終了年
             EndMonth, // 終了月
             EndDay // 終了日
-        }
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public Scenario()
-        {
-            HistoryEvents = new List<int>();
-            SleepEvents = new List<int>();
-            EventFiles = new List<string>();
-            IncludeFiles = new List<string>();
-            Provinces = new List<ProvinceSettings>();
-            Countries = new List<CountrySettings>();
         }
 
         #endregion
@@ -379,7 +362,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国家の自由選択
         /// </summary>
-        public bool IsFreeSelection { get; set; }
+        public bool IsFreeSelection { get; set; } = true;
 
         /// <summary>
         ///     ショートシナリオ
@@ -389,27 +372,27 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     選択可能国家
         /// </summary>
-        public List<Country> SelectableCountries { get; private set; }
+        public List<Country> SelectableCountries { get; } = new List<Country>();
 
         /// <summary>
         ///     主要国設定
         /// </summary>
-        public List<MajorCountrySettings> MajorCountries { get; }
+        public List<MajorCountrySettings> MajorCountries { get; } = new List<MajorCountrySettings>();
 
         /// <summary>
         ///     AIの攻撃性
         /// </summary>
-        public int AiAggressive { get; set; }
+        public int AiAggressive { get; set; } = AiAggressiveDefault;
 
         /// <summary>
         ///     難易度
         /// </summary>
-        public int Difficulty { get; set; }
+        public int Difficulty { get; set; } = DifficultyDefault;
 
         /// <summary>
         ///     ゲームスピード
         /// </summary>
-        public int GameSpeed { get; set; }
+        public int GameSpeed { get; set; } = GameSpeedDefault;
 
         #endregion
 
@@ -444,25 +427,6 @@ namespace HoI2Editor.Models
         ///     ゲームスピードの選択肢数
         /// </summary>
         public const int GameSpeedCount = 8;
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public ScenarioHeader()
-        {
-            SelectableCountries = new List<Country>();
-            MajorCountries = new List<MajorCountrySettings>();
-
-            IsFreeSelection = true;
-
-            AiAggressive = AiAggressiveDefault;
-            Difficulty = DifficultyDefault;
-            GameSpeed = GameSpeedDefault;
-        }
 
         #endregion
     }
@@ -617,27 +581,27 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     同盟リスト
         /// </summary>
-        public List<Alliance> Alliances { get; }
+        public List<Alliance> Alliances { get; } = new List<Alliance>();
 
         /// <summary>
         ///     戦争リスト
         /// </summary>
-        public List<War> Wars { get; }
+        public List<War> Wars { get; } = new List<War>();
 
         /// <summary>
         ///     不可侵条約リスト
         /// </summary>
-        public List<Treaty> NonAggressions { get; }
+        public List<Treaty> NonAggressions { get; } = new List<Treaty>();
 
         /// <summary>
         ///     講和条約リスト
         /// </summary>
-        public List<Treaty> Peaces { get; }
+        public List<Treaty> Peaces { get; } = new List<Treaty>();
 
         /// <summary>
         ///     貿易リスト
         /// </summary>
-        public List<Treaty> Trades { get; }
+        public List<Treaty> Trades { get; } = new List<Treaty>();
 
         /// <summary>
         ///     処理待ちイベントリスト
@@ -647,17 +611,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     休止指揮官
         /// </summary>
-        public List<int> DormantLeaders { get; private set; }
+        public List<int> DormantLeaders { get; } = new List<int>();
 
         /// <summary>
         ///     休止閣僚
         /// </summary>
-        public List<int> DormantMinisters { get; private set; }
+        public List<int> DormantMinisters { get; } = new List<int>();
 
         /// <summary>
         ///     休止研究機関
         /// </summary>
-        public List<int> DormantTeams { get; private set; }
+        public List<int> DormantTeams { get; } = new List<int>();
 
         /// <summary>
         ///     全指揮官を休止
@@ -678,18 +642,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public ScenarioGlobalData()
         {
+            // null動作が保証できれば削除
             Rules = new ScenarioRules();
             Axis = new Alliance();
             Allies = new Alliance();
             Comintern = new Alliance();
-            Alliances = new List<Alliance>();
-            Wars = new List<War>();
-            NonAggressions = new List<Treaty>();
-            Peaces = new List<Treaty>();
-            Trades = new List<Treaty>();
-            DormantLeaders = new List<int>();
-            DormantMinisters = new List<int>();
-            DormantTeams = new List<int>();
         }
 
         #endregion
@@ -778,19 +735,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     天候パターン
         /// </summary>
-        public List<WeatherPattern> Patterns { get; private set; }
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public Weather()
-        {
-            Patterns = new List<WeatherPattern>();
-        }
+        public List<WeatherPattern> Patterns { get; } = new List<WeatherPattern>();
 
         #endregion
     }
@@ -810,7 +755,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンスリスト
         /// </summary>
-        public List<int> Provinces { get; private set; }
+        public List<int> Provinces { get; } = new List<int>();
 
         /// <summary>
         ///     中央プロヴィンス
@@ -826,18 +771,6 @@ namespace HoI2Editor.Models
         ///     方向
         /// </summary>
         public string Heading { get; set; }
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public WeatherPattern()
-        {
-            Provinces = new List<int>();
-        }
 
         #endregion
     }
@@ -871,17 +804,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     全プロヴィンスが有効かどうか
         /// </summary>
-        public bool All { get; set; }
+        public bool All { get; set; } = true;
 
         /// <summary>
         ///     有効プロヴィンス
         /// </summary>
-        public List<int> Yes { get; private set; }
+        public List<int> Yes { get; } = new List<int>();
 
         /// <summary>
         ///     無効プロヴィンス
         /// </summary>
-        public List<int> No { get; private set; }
+        public List<int> No { get; } = new List<int>();
 
         /// <summary>
         ///     マップの範囲(左上)
@@ -892,20 +825,6 @@ namespace HoI2Editor.Models
         ///     マップの範囲(右下)
         /// </summary>
         public MapPoint Bottom { get; set; }
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public MapSettings()
-        {
-            All = true;
-            Yes = new List<int>();
-            No = new List<int>();
-        }
 
         #endregion
     }
@@ -1409,7 +1328,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     参加国
         /// </summary>
-        public List<Country> Participant { get; private set; }
+        public List<Country> Participant { get; } = new List<Country>();
 
         /// <summary>
         ///     同盟名
@@ -1442,18 +1361,6 @@ namespace HoI2Editor.Models
             Type, // type
             Id, // id
             Name // 同盟名
-        }
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public Alliance()
-        {
-            Participant = new List<Country>();
         }
 
         #endregion
@@ -1711,7 +1618,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     取り消し可能かどうか
         /// </summary>
-        public bool Cancel { get; set; }
+        public bool Cancel { get; set; } = true;
 
         #endregion
 
@@ -1753,18 +1660,6 @@ namespace HoI2Editor.Models
             RareMaterials, // 希少資源
             Oil, // 石油
             Cancel // 取り消し可能かどうか
-        }
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public Treaty()
-        {
-            Cancel = true;
         }
 
         #endregion
@@ -2146,47 +2041,47 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     外交関係
         /// </summary>
-        public List<Relation> Relations { get; }
+        public List<Relation> Relations { get; } = new List<Relation>();
 
         /// <summary>
         ///     諜報情報
         /// </summary>
-        public List<SpySettings> Intelligence { get; }
+        public List<SpySettings> Intelligence { get; } = new List<SpySettings>();
 
         /// <summary>
         ///     中核プロヴィンス
         /// </summary>
-        public List<int> NationalProvinces { get; private set; }
+        public List<int> NationalProvinces { get; } = new List<int>();
 
         /// <summary>
         ///     保有プロヴィンス
         /// </summary>
-        public List<int> OwnedProvinces { get; private set; }
+        public List<int> OwnedProvinces { get; } = new List<int>();
 
         /// <summary>
         ///     支配プロヴィンス
         /// </summary>
-        public List<int> ControlledProvinces { get; private set; }
+        public List<int> ControlledProvinces { get; } = new List<int>();
 
         /// <summary>
         ///     領有権主張プロヴィンス
         /// </summary>
-        public List<int> ClaimedProvinces { get; private set; }
+        public List<int> ClaimedProvinces { get; } = new List<int>();
 
         /// <summary>
         ///     保有技術
         /// </summary>
-        public List<int> TechApps { get; private set; }
+        public List<int> TechApps { get; } = new List<int>();
 
         /// <summary>
         ///     青写真
         /// </summary>
-        public List<int> BluePrints { get; private set; }
+        public List<int> BluePrints { get; } = new List<int>();
 
         /// <summary>
         ///     発明イベント
         /// </summary>
-        public List<int> Inventions { get; private set; }
+        public List<int> Inventions { get; } = new List<int>();
 
         /// <summary>
         ///     政策スライダー
@@ -2266,72 +2161,72 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     休止指揮官
         /// </summary>
-        public List<int> DormantLeaders { get; private set; }
+        public List<int> DormantLeaders { get; } = new List<int>();
 
         /// <summary>
         ///     休止閣僚
         /// </summary>
-        public List<int> DormantMinisters { get; private set; }
+        public List<int> DormantMinisters { get; } = new List<int>();
 
         /// <summary>
         ///     休止研究機関
         /// </summary>
-        public List<int> DormantTeams { get; private set; }
+        public List<int> DormantTeams { get; } = new List<int>();
 
         /// <summary>
         ///     抽出指揮官
         /// </summary>
-        public List<int> StealLeaders { get; private set; }
+        public List<int> StealLeaders { get; } = new List<int>();
 
         /// <summary>
         ///     輸送船団
         /// </summary>
-        public List<Convoy> Convoys { get; private set; }
+        public List<Convoy> Convoys { get; } = new List<Convoy>();
 
         /// <summary>
         ///     陸軍ユニット
         /// </summary>
-        public List<Unit> LandUnits { get; }
+        public List<Unit> LandUnits { get; } = new List<Unit>();
 
         /// <summary>
         ///     海軍ユニット
         /// </summary>
-        public List<Unit> NavalUnits { get; }
+        public List<Unit> NavalUnits { get; } = new List<Unit>();
 
         /// <summary>
         ///     空軍ユニット
         /// </summary>
-        public List<Unit> AirUnits { get; }
+        public List<Unit> AirUnits { get; } = new List<Unit>();
 
         /// <summary>
         ///     生産中師団
         /// </summary>
-        public List<DivisionDevelopment> DivisionDevelopments { get; }
+        public List<DivisionDevelopment> DivisionDevelopments { get; } = new List<DivisionDevelopment>();
 
         /// <summary>
         ///     生産中輸送船団
         /// </summary>
-        public List<ConvoyDevelopment> ConvoyDevelopments { get; private set; }
+        public List<ConvoyDevelopment> ConvoyDevelopments { get; } = new List<ConvoyDevelopment>();
 
         /// <summary>
         ///     生産中建物
         /// </summary>
-        public List<BuildingDevelopment> BuildingDevelopments { get; private set; }
+        public List<BuildingDevelopment> BuildingDevelopments { get; } = new List<BuildingDevelopment>();
 
         /// <summary>
         ///     陸軍師団
         /// </summary>
-        public List<Division> LandDivisions { get; }
+        public List<Division> LandDivisions { get; } = new List<Division>();
 
         /// <summary>
         ///     海軍師団
         /// </summary>
-        public List<Division> NavalDivisions { get; }
+        public List<Division> NavalDivisions { get; } = new List<Division>();
 
         /// <summary>
         ///     空軍師団
         /// </summary>
-        public List<Division> AirDivisions { get; }
+        public List<Division> AirDivisions { get; } = new List<Division>();
 
         #endregion
 
@@ -2465,40 +2360,6 @@ namespace HoI2Editor.Models
             ChiefOfArmyId, // 陸軍総司令官のid
             ChiefOfNavyId, // 海軍総司令官のid
             ChiefOfAirId // 空軍総司令官のid
-        }
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public CountrySettings()
-        {
-            Relations = new List<Relation>();
-            Intelligence = new List<SpySettings>();
-            NationalProvinces = new List<int>();
-            OwnedProvinces = new List<int>();
-            ControlledProvinces = new List<int>();
-            ClaimedProvinces = new List<int>();
-            TechApps = new List<int>();
-            BluePrints = new List<int>();
-            Inventions = new List<int>();
-            DormantLeaders = new List<int>();
-            DormantMinisters = new List<int>();
-            DormantTeams = new List<int>();
-            StealLeaders = new List<int>();
-            Convoys = new List<Convoy>();
-            LandUnits = new List<Unit>();
-            NavalUnits = new List<Unit>();
-            AirUnits = new List<Unit>();
-            DivisionDevelopments = new List<DivisionDevelopment>();
-            ConvoyDevelopments = new List<ConvoyDevelopment>();
-            BuildingDevelopments = new List<BuildingDevelopment>();
-            LandDivisions = new List<Division>();
-            NavalDivisions = new List<Division>();
-            AirDivisions = new List<Division>();
         }
 
         #endregion
@@ -2931,55 +2792,37 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     民主的 - 独裁的
         /// </summary>
-        public int Democratic { get; set; }
+        public int Democratic { get; set; } = 5;
 
         /// <summary>
         ///     政治的左派 - 政治的右派
         /// </summary>
-        public int PoliticalLeft { get; set; }
+        public int PoliticalLeft { get; set; } = 5;
 
         /// <summary>
         ///     開放社会 - 閉鎖社会
         /// </summary>
-        public int Freedom { get; set; }
+        public int Freedom { get; set; } = 5;
 
         /// <summary>
         ///     自由経済 - 中央計画経済
         /// </summary>
-        public int FreeMarket { get; set; }
+        public int FreeMarket { get; set; } = 5;
 
         /// <summary>
         ///     常備軍 - 徴兵軍 (DH Fullでは動員 - 復員)
         /// </summary>
-        public int ProfessionalArmy { get; set; }
+        public int ProfessionalArmy { get; set; } = 5;
 
         /// <summary>
         ///     タカ派 - ハト派
         /// </summary>
-        public int DefenseLobby { get; set; }
+        public int DefenseLobby { get; set; } = 5;
 
         /// <summary>
         ///     介入主義 - 孤立主義
         /// </summary>
-        public int Interventionism { get; set; }
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public CountryPolicy()
-        {
-            Democratic = 5;
-            PoliticalLeft = 5;
-            Freedom = 5;
-            FreeMarket = 5;
-            ProfessionalArmy = 5;
-            DefenseLobby = 5;
-            Interventionism = 5;
-        }
+        public int Interventionism { get; set; } = 5;
 
         #endregion
     }
@@ -3081,7 +2924,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     development (詳細不明)
         /// </summary>
-        public bool Development { get; set; }
+        public bool Development { get; set; } = true;
 
         /// <summary>
         ///     移動完了日時
@@ -3091,7 +2934,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     移動経路
         /// </summary>
-        public List<int> Movement { get; private set; }
+        public List<int> Movement { get; } = new List<int>();
 
         /// <summary>
         ///     攻撃日時
@@ -3136,12 +2979,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     構成師団
         /// </summary>
-        public List<Division> Divisions { get; private set; }
+        public List<Division> Divisions { get; } = new List<Division>();
 
         /// <summary>
         ///     搭載ユニット
         /// </summary>
-        public List<Unit> LandUnits { get; private set; }
+        public List<Unit> LandUnits { get; } = new List<Unit>();
 
         #endregion
 
@@ -3208,50 +3051,58 @@ namespace HoI2Editor.Models
         /// </summary>
         public Unit()
         {
-            Movement = new List<int>();
-            Divisions = new List<Division>();
-            LandUnits = new List<Unit>();
-            Development = true;
         }
 
         /// <summary>
-        ///     オブジェクトを複製する
+        ///     コピーコンストラクタ
         /// </summary>
-        /// <returns>複製したオブジェクト</returns>
-        public Unit Clone()
+        /// <param name="original">複製元のユニット</param>
+        public Unit(Unit original)
         {
-            Unit unit = (Unit) MemberwiseClone();
-            if (Id != null)
+            Id = Scenarios.GetNewTypeId(original.Id.Type, original.Id.Id);
+            Name = original.Name;
+            Branch = original.Branch;
+            Control = original.Control;
+            Leader = original.Leader;
+            Location = original.Location;
+            PrevProv = original.PrevProv;
+            Home = original.Home;
+            Base = original.Base;
+            DigIn = original.DigIn;
+            Morale = original.Morale;
+            if (original.Mission != null)
             {
-                unit.Id = Scenarios.GetNewTypeId(Id.Type, Id.Id);
+                Mission = new Mission(original.Mission);
             }
-            if (Mission != null)
+            if (original.Date != null)
             {
-                unit.Mission = Mission.Clone();
+                Date = new GameDate(original.Date);
             }
-            if (Date != null)
+            Development = original.Development;
+            if (original.MoveTime != null)
             {
-                unit.Date = new GameDate(Date);
+                MoveTime = new GameDate(original.MoveTime);
             }
-            if (MoveTime != null)
+            Movement.AddRange(original.Movement);
+            if (original.AttackDate != null)
             {
-                unit.MoveTime = new GameDate(MoveTime);
+                AttackDate = new GameDate(original.AttackDate);
             }
-            if (AttackDate != null)
+            Invasion = original.Invasion;
+            Target = original.Target;
+            StandGround = original.StandGround;
+            ScorchGround = original.ScorchGround;
+            Prioritized = original.Prioritized;
+            CanUpgrade = original.CanUpgrade;
+            CanReinforcement = original.CanReinforcement;
+            foreach (Division division in original.Divisions)
             {
-                unit.AttackDate = new GameDate(AttackDate);
+                Divisions.Add(new Division(division));
             }
-            unit.Divisions = new List<Division>();
-            foreach (Division division in Divisions)
+            foreach (Unit landUnit in original.LandUnits)
             {
-                unit.Divisions.Add(division.Clone());
+                LandUnits.Add(new Unit(landUnit));
             }
-            unit.LandUnits = new List<Unit>();
-            foreach (Unit landUnit in LandUnits)
-            {
-                unit.LandUnits.Add(landUnit.Clone());
-            }
-            return unit;
         }
 
         #endregion
@@ -3400,7 +3251,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     モデル番号
         /// </summary>
-        public int Model { get; set; }
+        public int Model { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     核兵器搭載
@@ -3435,27 +3286,27 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     付属旅団のモデル番号
         /// </summary>
-        public int BrigadeModel1 { get; set; }
+        public int BrigadeModel1 { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     付属旅団のモデル番号
         /// </summary>
-        public int BrigadeModel2 { get; set; }
+        public int BrigadeModel2 { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     付属旅団のモデル番号
         /// </summary>
-        public int BrigadeModel3 { get; set; }
+        public int BrigadeModel3 { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     付属旅団のモデル番号
         /// </summary>
-        public int BrigadeModel4 { get; set; }
+        public int BrigadeModel4 { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     付属旅団のモデル番号
         /// </summary>
-        public int BrigadeModel5 { get; set; }
+        public int BrigadeModel5 { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     最大戦力
@@ -3812,34 +3663,86 @@ namespace HoI2Editor.Models
         /// </summary>
         public Division()
         {
-            Model = UndefinedModelNo;
-            BrigadeModel1 = UndefinedModelNo;
-            BrigadeModel2 = UndefinedModelNo;
-            BrigadeModel3 = UndefinedModelNo;
-            BrigadeModel4 = UndefinedModelNo;
-            BrigadeModel5 = UndefinedModelNo;
         }
 
         /// <summary>
-        ///     オブジェクトを複製する
+        ///     コピーコンストラクタ
         /// </summary>
-        /// <returns>複製したオブジェクト</returns>
-        public Division Clone()
+        /// <param name="original">複製元の師団</param>
+        public Division(Division original)
         {
-            Division division = (Division) MemberwiseClone();
-            if (Id != null)
+            Id = Scenarios.GetNewTypeId(original.Id.Type, original.Id.Id);
+            Name = original.Name;
+            Branch = original.Branch;
+            Type = original.Type;
+            Model = original.Model;
+            Nuke = original.Nuke;
+            Extra1 = original.Extra1;
+            Extra2 = original.Extra2;
+            Extra3 = original.Extra3;
+            Extra4 = original.Extra4;
+            Extra5 = original.Extra5;
+            BrigadeModel1 = original.BrigadeModel1;
+            BrigadeModel2 = original.BrigadeModel2;
+            BrigadeModel3 = original.BrigadeModel3;
+            BrigadeModel4 = original.BrigadeModel4;
+            BrigadeModel5 = original.BrigadeModel5;
+            MaxStrength = original.MaxStrength;
+            Strength = original.Strength;
+            MaxOrganisation = original.MaxOrganisation;
+            Organisation = original.Organisation;
+            Morale = original.Morale;
+            Experience = original.Experience;
+            UpgradeProgress = original.UpgradeProgress;
+            RedeployTarget = original.RedeployTarget;
+            RedeployUnitName = original.RedeployUnitName;
+            if (original.RedeployUnitId != null)
             {
-                division.Id = Scenarios.GetNewTypeId(Id.Type, Id.Id);
+                RedeployUnitId = Scenarios.GetNewTypeId(original.RedeployUnitId.Type, original.RedeployUnitId.Id);
             }
-            if (RedeployUnitId != null)
+            if (original.Offensive != null)
             {
-                division.RedeployUnitId = Scenarios.GetNewTypeId(RedeployUnitId.Type, RedeployUnitId.Id);
+                Offensive = new GameDate(original.Offensive);
             }
-            if (Offensive != null)
-            {
-                division.Offensive = new GameDate(Offensive);
-            }
-            return division;
+            Supplies = original.Supplies;
+            Fuel = original.Fuel;
+            MaxSupplies = original.MaxSupplies;
+            MaxFuel = original.MaxFuel;
+            SupplyConsumption = original.SupplyConsumption;
+            FuelConsumption = original.FuelConsumption;
+            MaxSpeed = original.MaxSpeed;
+            SpeedCapArt = original.SpeedCapArt;
+            SpeedCapEng = original.SpeedCapEng;
+            SpeedCapAa = original.SpeedCapAa;
+            SpeedCapAt = original.SpeedCapAt;
+            TransportWeight = original.TransportWeight;
+            TransportCapability = original.TransportCapability;
+            Defensiveness = original.Defensiveness;
+            Toughness = original.Toughness;
+            Softness = original.Softness;
+            Suppression = original.Suppression;
+            SeaDefense = original.SeaDefense;
+            SurfaceDefence = original.SurfaceDefence;
+            AirDefence = original.AirDefence;
+            SoftAttack = original.SoftAttack;
+            HardAttack = original.HardAttack;
+            SeaAttack = original.SeaAttack;
+            SubAttack = original.SubAttack;
+            ConvoyAttack = original.ConvoyAttack;
+            ShoreBombardment = original.ShoreBombardment;
+            AirAttack = original.AirAttack;
+            StrategicAttack = original.StrategicAttack;
+            NavalAttack = original.NavalAttack;
+            ArtilleryBombardment = original.ArtilleryBombardment;
+            SurfaceDetection = original.SurfaceDetection;
+            AirDetection = original.AirDetection;
+            SubDetection = original.SubDetection;
+            Visibility = original.Visibility;
+            Range = original.Range;
+            Distance = original.Distance;
+            Travelled = original.Travelled;
+            Locked = original.Locked;
+            Dormant = original.Dormant;
         }
 
         #endregion
@@ -3953,12 +3856,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     unitcost (詳細不明)
         /// </summary>
-        public bool UnitCost { get; set; }
+        public bool UnitCost { get; set; } = true;
 
         /// <summary>
         ///     new_model (詳細不明)
         /// </summary>
-        public bool NewModel { get; set; }
+        public bool NewModel { get; set; } = true;
 
         /// <summary>
         ///     完了予定日
@@ -4023,7 +3926,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     モデル番号
         /// </summary>
-        public int Model { get; set; }
+        public int Model { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     付属旅団のユニット種類
@@ -4053,27 +3956,27 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     付属旅団のモデル番号
         /// </summary>
-        public int BrigadeModel1 { get; set; }
+        public int BrigadeModel1 { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     付属旅団のモデル番号
         /// </summary>
-        public int BrigadeModel2 { get; set; }
+        public int BrigadeModel2 { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     付属旅団のモデル番号
         /// </summary>
-        public int BrigadeModel3 { get; set; }
+        public int BrigadeModel3 { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     付属旅団のモデル番号
         /// </summary>
-        public int BrigadeModel4 { get; set; }
+        public int BrigadeModel4 { get; set; } = UndefinedModelNo;
 
         /// <summary>
         ///     付属旅団のモデル番号
         /// </summary>
-        public int BrigadeModel5 { get; set; }
+        public int BrigadeModel5 { get; set; } = UndefinedModelNo;
 
         #endregion
 
@@ -4135,25 +4038,6 @@ namespace HoI2Editor.Models
             BrigadeModel3,
             BrigadeModel4,
             BrigadeModel5
-        }
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public DivisionDevelopment()
-        {
-            UnitCost = true;
-            NewModel = true;
-            Model = UndefinedModelNo;
-            BrigadeModel1 = UndefinedModelNo;
-            BrigadeModel2 = UndefinedModelNo;
-            BrigadeModel3 = UndefinedModelNo;
-            BrigadeModel4 = UndefinedModelNo;
-            BrigadeModel5 = UndefinedModelNo;
         }
 
         #endregion
@@ -4344,21 +4228,37 @@ namespace HoI2Editor.Models
         #region 初期化
 
         /// <summary>
-        ///     オブジェクトを複製する
+        ///     コンストラクタ
         /// </summary>
-        /// <returns>複製したオブジェクト</returns>
-        public Mission Clone()
+        public Mission()
         {
-            Mission mission = (Mission) MemberwiseClone();
-            if (StartDate != null)
+        }
+
+        /// <summary>
+        ///     コピーコンストラクタ
+        /// </summary>
+        /// <param name="original">複製元の任務</param>
+        public Mission(Mission original)
+        {
+            Type = original.Type;
+            Target = original.Target;
+            MissionScope = original.MissionScope;
+            Percentage = original.Percentage;
+            Night = original.Night;
+            Day = original.Day;
+            TargetZone = original.TargetZone;
+            AttackConvoy = original.AttackConvoy;
+            OrgLimit = original.OrgLimit;
+            if (original.StartDate != null)
             {
-                mission.StartDate = new GameDate(StartDate);
+                StartDate = new GameDate(original.StartDate);
             }
-            if (EndDate != null)
+            if (original.EndDate != null)
             {
-                mission.EndDate = new GameDate(EndDate);
+                EndDate = new GameDate(original.EndDate);
             }
-            return mission;
+            Task = original.Task;
+            Location = original.Location;
         }
 
         #endregion
@@ -4516,19 +4416,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     航路
         /// </summary>
-        public List<int> Path { get; set; }
-
-        #endregion
-
-        #region 初期化
-
-        /// <summary>
-        ///     コンストラクタ
-        /// </summary>
-        public Convoy()
-        {
-            Path = new List<int>();
-        }
+        public List<int> Path { get; set; } = new List<int>();
 
         #endregion
     }

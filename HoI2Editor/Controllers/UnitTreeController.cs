@@ -719,7 +719,7 @@ namespace HoI2Editor.Controllers
         {
             CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
                                        Scenarios.CreateCountrySettings(_country);
-            Unit unit = original.Clone();
+            Unit unit = new Unit(original);
             unit.SetDirtyAll();
             TreeNode selected = _treeView.SelectedNode;
             TreeNode parent = selected.Parent;
@@ -786,7 +786,7 @@ namespace HoI2Editor.Controllers
         /// <param name="original">複製対象の師団</param>
         private void CloneDivision(Division original)
         {
-            Division division = original.Clone();
+            Division division = new Division(original);
             division.SetDirtyAll();
             TreeNode selected = _treeView.SelectedNode;
             TreeNode parent = selected.Parent;
