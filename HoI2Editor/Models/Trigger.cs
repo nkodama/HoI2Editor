@@ -307,6 +307,38 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        public Trigger()
+        {
+        }
+
+        /// <summary>
+        ///     コピーコンストラクタ
+        /// </summary>
+        /// <param name="original">コピー元のトリガー</param>
+        public Trigger(Trigger original)
+        {
+            Type = original.Type;
+            if (ParamTypeTable[(int) Type] == TriggerParamType.Container)
+            {
+                Value = new List<Trigger>();
+                foreach (Trigger trigger in (List<Trigger>) original.Value)
+                {
+                    ((List<Trigger>) Value).Add(new Trigger(trigger));
+                }
+            }
+            else
+            {
+                Value = original.Value;
+            }
+        }
+
+        #endregion
+
         #region 文字列操作
 
         /// <summary>

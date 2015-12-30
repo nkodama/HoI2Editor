@@ -441,7 +441,7 @@ namespace HoI2Editor.Models
             // 技術効果リスト
             foreach (Command command in Effects)
             {
-                item.Effects.Add(command.Clone());
+                item.Effects.Add(new Command(command));
             }
 
             return item;

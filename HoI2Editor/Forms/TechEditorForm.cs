@@ -4698,7 +4698,7 @@ namespace HoI2Editor.Forms
             }
             int index = effectListView.SelectedIndices[0];
 
-            Command command = item.Effects[index].Clone();
+            Command command = new Command(item.Effects[index]);
 
             Log.Info("[Tech] Added new effect: {0} [{1}]", Commands.Strings[(int) command.Type], item);
 

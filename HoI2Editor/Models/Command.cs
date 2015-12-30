@@ -40,7 +40,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コマンドトリガー
         /// </summary>
-        public List<Trigger> Triggers { get; }
+        public List<Trigger> Triggers { get; } = new List<Trigger>();
 
         #endregion
 
@@ -65,18 +65,26 @@ namespace HoI2Editor.Models
         /// </summary>
         public Command()
         {
-            Triggers = new List<Trigger>();
         }
 
         /// <summary>
-        ///     コマンドを複製する
+        ///     コピーコンストラクタ
         /// </summary>
-        /// <returns>複製するコマンド</returns>
-        public Command Clone()
+        /// <param name="original">複製元のイベントコマンド</param>
+        public Command(Command original)
         {
-            Command command = new Command { Type = Type, Which = Which, Value = Value, When = When, Where = Where };
+            Type = original.Type;
 
-            return command;
+            // 参照型のオブジェクトを格納する場合はここをdeep copyに変える
+            Which = original.Which;
+            Value = original.Value;
+            When = original.When;
+            Where = original.Where;
+
+            foreach (Trigger trigger in original.Triggers)
+            {
+                Triggers.Add(new Trigger(trigger));
+            }
         }
 
         #endregion
