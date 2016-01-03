@@ -102,7 +102,7 @@
             // ModelNameEditorForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.listSplitContainer);
             this.Controls.Add(this.itemPanel);
             this.Controls.Add(this.closeButton);

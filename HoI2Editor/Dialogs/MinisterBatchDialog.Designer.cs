@@ -217,7 +217,7 @@
             // MinisterBatchDialog
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.editGroupBox);
             this.Controls.Add(this.targetGroupBox);
             this.Controls.Add(this.cancelButton);

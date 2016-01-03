@@ -347,7 +347,7 @@
             // ResearchViewerForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.teamGroupBox);
             this.Controls.Add(this.optionGroupBox);
