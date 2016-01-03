@@ -54,13 +54,21 @@
             this.endYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.retirementYearCheckBox = new System.Windows.Forms.CheckBox();
             this.retirementYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.countryComboBox = new System.Windows.Forms.ComboBox();
+            this.targetCountryComboBox = new System.Windows.Forms.ComboBox();
             this.targetGroupBox = new System.Windows.Forms.GroupBox();
+            this.airforceCheckBox = new System.Windows.Forms.CheckBox();
+            this.navyCheckBox = new System.Windows.Forms.CheckBox();
+            this.armyCheckBox = new System.Windows.Forms.CheckBox();
             this.allRadioButton = new System.Windows.Forms.RadioButton();
             this.selectedRadioButton = new System.Windows.Forms.RadioButton();
             this.specifiedRadioButton = new System.Windows.Forms.RadioButton();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
+            this.copyGroupBox = new System.Windows.Forms.GroupBox();
+            this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.idLabel = new System.Windows.Forms.Label();
+            this.copyCountryComboBox = new System.Windows.Forms.ComboBox();
+            this.copyToCheckBox = new System.Windows.Forms.CheckBox();
             this.editGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rankYearNumericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rankYearNumericUpDown1)).BeginInit();
@@ -74,6 +82,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retirementYearNumericUpDown)).BeginInit();
             this.targetGroupBox.SuspendLayout();
+            this.copyGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // editGroupBox
@@ -293,7 +303,7 @@
             0});
             this.endYearNumericUpDown.Name = "endYearNumericUpDown";
             this.endYearNumericUpDown.Value = new decimal(new int[] {
-            1960,
+            1990,
             0,
             0,
             0});
@@ -321,22 +331,49 @@
             0});
             this.retirementYearNumericUpDown.ValueChanged += new System.EventHandler(this.OnRetirementYearNumericUpDownValueChanged);
             // 
-            // countryComboBox
+            // targetCountryComboBox
             // 
-            this.countryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.countryComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.countryComboBox, "countryComboBox");
-            this.countryComboBox.Name = "countryComboBox";
+            this.targetCountryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.targetCountryComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.targetCountryComboBox, "targetCountryComboBox");
+            this.targetCountryComboBox.Name = "targetCountryComboBox";
             // 
             // targetGroupBox
             // 
+            this.targetGroupBox.Controls.Add(this.airforceCheckBox);
+            this.targetGroupBox.Controls.Add(this.navyCheckBox);
+            this.targetGroupBox.Controls.Add(this.armyCheckBox);
             this.targetGroupBox.Controls.Add(this.allRadioButton);
             this.targetGroupBox.Controls.Add(this.selectedRadioButton);
-            this.targetGroupBox.Controls.Add(this.countryComboBox);
+            this.targetGroupBox.Controls.Add(this.targetCountryComboBox);
             this.targetGroupBox.Controls.Add(this.specifiedRadioButton);
             resources.ApplyResources(this.targetGroupBox, "targetGroupBox");
             this.targetGroupBox.Name = "targetGroupBox";
             this.targetGroupBox.TabStop = false;
+            // 
+            // airforceCheckBox
+            // 
+            resources.ApplyResources(this.airforceCheckBox, "airforceCheckBox");
+            this.airforceCheckBox.Checked = true;
+            this.airforceCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.airforceCheckBox.Name = "airforceCheckBox";
+            this.airforceCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // navyCheckBox
+            // 
+            resources.ApplyResources(this.navyCheckBox, "navyCheckBox");
+            this.navyCheckBox.Checked = true;
+            this.navyCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.navyCheckBox.Name = "navyCheckBox";
+            this.navyCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // armyCheckBox
+            // 
+            resources.ApplyResources(this.armyCheckBox, "armyCheckBox");
+            this.armyCheckBox.Checked = true;
+            this.armyCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.armyCheckBox.Name = "armyCheckBox";
+            this.armyCheckBox.UseVisualStyleBackColor = true;
             // 
             // allRadioButton
             // 
@@ -373,10 +410,56 @@
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OnOkButtonClick);
             // 
+            // copyGroupBox
+            // 
+            this.copyGroupBox.Controls.Add(this.idNumericUpDown);
+            this.copyGroupBox.Controls.Add(this.idLabel);
+            this.copyGroupBox.Controls.Add(this.copyCountryComboBox);
+            this.copyGroupBox.Controls.Add(this.copyToCheckBox);
+            resources.ApplyResources(this.copyGroupBox, "copyGroupBox");
+            this.copyGroupBox.Name = "copyGroupBox";
+            this.copyGroupBox.TabStop = false;
+            // 
+            // idNumericUpDown
+            // 
+            resources.ApplyResources(this.idNumericUpDown, "idNumericUpDown");
+            this.idNumericUpDown.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.idNumericUpDown.Name = "idNumericUpDown";
+            this.idNumericUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // idLabel
+            // 
+            resources.ApplyResources(this.idLabel, "idLabel");
+            this.idLabel.Name = "idLabel";
+            // 
+            // copyCountryComboBox
+            // 
+            this.copyCountryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.copyCountryComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.copyCountryComboBox, "copyCountryComboBox");
+            this.copyCountryComboBox.Name = "copyCountryComboBox";
+            // 
+            // copyToCheckBox
+            // 
+            resources.ApplyResources(this.copyToCheckBox, "copyToCheckBox");
+            this.copyToCheckBox.Name = "copyToCheckBox";
+            this.copyToCheckBox.UseVisualStyleBackColor = true;
+            // 
             // LeaderBatchDialog
             // 
+            this.AcceptButton = this.okButton;
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.CancelButton = this.cancelButton;
+            this.Controls.Add(this.copyGroupBox);
             this.Controls.Add(this.editGroupBox);
             this.Controls.Add(this.targetGroupBox);
             this.Controls.Add(this.cancelButton);
@@ -402,6 +485,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.retirementYearNumericUpDown)).EndInit();
             this.targetGroupBox.ResumeLayout(false);
             this.targetGroupBox.PerformLayout();
+            this.copyGroupBox.ResumeLayout(false);
+            this.copyGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.idNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -415,7 +501,7 @@
         private System.Windows.Forms.NumericUpDown endYearNumericUpDown;
         private System.Windows.Forms.CheckBox retirementYearCheckBox;
         private System.Windows.Forms.NumericUpDown retirementYearNumericUpDown;
-        private System.Windows.Forms.ComboBox countryComboBox;
+        private System.Windows.Forms.ComboBox targetCountryComboBox;
         private System.Windows.Forms.GroupBox targetGroupBox;
         private System.Windows.Forms.RadioButton allRadioButton;
         private System.Windows.Forms.RadioButton selectedRadioButton;
@@ -440,5 +526,13 @@
         private System.Windows.Forms.NumericUpDown rankYearNumericUpDown2;
         private System.Windows.Forms.CheckBox rankYearCheckBox3;
         private System.Windows.Forms.NumericUpDown rankYearNumericUpDown3;
+        private System.Windows.Forms.CheckBox airforceCheckBox;
+        private System.Windows.Forms.CheckBox navyCheckBox;
+        private System.Windows.Forms.CheckBox armyCheckBox;
+        private System.Windows.Forms.GroupBox copyGroupBox;
+        private System.Windows.Forms.CheckBox copyToCheckBox;
+        private System.Windows.Forms.NumericUpDown idNumericUpDown;
+        private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.ComboBox copyCountryComboBox;
     }
 }

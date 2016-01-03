@@ -36,7 +36,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     階級名
         /// </summary>
-        public static string[] RankNames { get; private set; }
+        public static string[] RankNames { get; }
 
         #endregion
 
@@ -1086,6 +1086,326 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 一括編集
+
+        /// <summary>
+        ///     一括編集
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        public static void BatchEdit(LeaderBatchEditArgs args)
+        {
+            LogBatchEdit(args);
+
+            IEnumerable<Leader> leaders = GetBatchEditLeaders(args);
+            if (args.CopyCountry == Country.None)
+            {
+                foreach (Leader leader in leaders)
+                {
+                    BatchEditLeader(leader, args);
+                }
+            }
+            else
+            {
+                Country newCountry = args.CopyCountry;
+                int id = args.Id;
+                foreach (Leader leader in leaders)
+                {
+                    id = GetNewId(id);
+                    Leader newLeader = new Leader(leader)
+                    {
+                        Country = newCountry,
+                        Id = id
+                    };
+                    newLeader.SetDirtyAll();
+                    BatchEditLeader(newLeader, args);
+                    Items.Add(newLeader);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     一括編集の個別処理
+        /// </summary>
+        /// <param name="leader">対象指揮官</param>
+        /// <param name="args">一括編集のパラメータ</param>
+        private static void BatchEditLeader(Leader leader, LeaderBatchEditArgs args)
+        {
+            // 理想階級
+            if (args.Items[(int) LeaderBatchItemId.IdealRank])
+            {
+                if (leader.IdealRank != args.IdealRank)
+                {
+                    leader.IdealRank = args.IdealRank;
+                    leader.SetDirty(LeaderItemId.IdealRank);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // スキル
+            if (args.Items[(int) LeaderBatchItemId.Skill])
+            {
+                if (leader.Skill != args.Skill)
+                {
+                    leader.Skill = args.Skill;
+                    leader.SetDirty(LeaderItemId.Skill);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // 最大スキル
+            if (args.Items[(int) LeaderBatchItemId.MaxSkill])
+            {
+                if (leader.MaxSkill != args.MaxSkill)
+                {
+                    leader.MaxSkill = args.MaxSkill;
+                    leader.SetDirty(LeaderItemId.MaxSkill);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // 経験値
+            if (args.Items[(int) LeaderBatchItemId.Experience])
+            {
+                if (leader.Experience != args.Experience)
+                {
+                    leader.Experience = args.Experience;
+                    leader.SetDirty(LeaderItemId.Experience);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // 忠誠度
+            if (args.Items[(int) LeaderBatchItemId.Loyalty])
+            {
+                if (leader.Loyalty != args.Loyalty)
+                {
+                    leader.Loyalty = args.Loyalty;
+                    leader.SetDirty(LeaderItemId.Loyalty);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // 開始年
+            if (args.Items[(int) LeaderBatchItemId.StartYear])
+            {
+                if (leader.StartYear != args.StartYear)
+                {
+                    leader.StartYear = args.StartYear;
+                    leader.SetDirty(LeaderItemId.StartYear);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // 終了年
+            if (args.Items[(int) LeaderBatchItemId.EndYear])
+            {
+                if (leader.EndYear != args.EndYear)
+                {
+                    leader.EndYear = args.EndYear;
+                    leader.SetDirty(LeaderItemId.EndYear);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // 引退年
+            if (args.Items[(int) LeaderBatchItemId.RetirementYear])
+            {
+                if (leader.RetirementYear != args.RetirementYear)
+                {
+                    leader.RetirementYear = args.RetirementYear;
+                    leader.SetDirty(LeaderItemId.RetirementYear);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // 少将任官年
+            if (args.Items[(int) LeaderBatchItemId.Rank3Year])
+            {
+                if (leader.RankYear[0] != args.RankYear[0])
+                {
+                    leader.RankYear[0] = args.RankYear[0];
+                    leader.SetDirty(LeaderItemId.Rank3Year);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // 中将任官年
+            if (args.Items[(int) LeaderBatchItemId.Rank2Year])
+            {
+                if (leader.RankYear[1] != args.RankYear[1])
+                {
+                    leader.RankYear[1] = args.RankYear[1];
+                    leader.SetDirty(LeaderItemId.Rank2Year);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // 大将任官年
+            if (args.Items[(int) LeaderBatchItemId.Rank1Year])
+            {
+                if (leader.RankYear[2] != args.RankYear[2])
+                {
+                    leader.RankYear[2] = args.RankYear[2];
+                    leader.SetDirty(LeaderItemId.Rank1Year);
+                    SetDirty(leader.Country);
+                }
+            }
+
+            // 元帥任官年
+            if (args.Items[(int) LeaderBatchItemId.Rank0Year])
+            {
+                if (leader.RankYear[3] != args.RankYear[3])
+                {
+                    leader.RankYear[3] = args.RankYear[3];
+                    leader.SetDirty(LeaderItemId.Rank0Year);
+                    SetDirty(leader.Country);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     一括編集対象の指揮官リストを取得する
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        /// <returns>一括編集対象の指揮官リスト</returns>
+        private static IEnumerable<Leader> GetBatchEditLeaders(LeaderBatchEditArgs args)
+        {
+            return args.Mode == BatchMode.All
+                ? Items
+                    .Where(leader =>
+                        (leader.Branch == Branch.Army && args.Army) ||
+                        (leader.Branch == Branch.Navy && args.Navy) ||
+                        (leader.Branch == Branch.Airforce && args.Airforce))
+                    .ToList()
+                : Items
+                    .Where(leader => args.TargetCountries.Contains(leader.Country))
+                    .Where(leader =>
+                        (leader.Branch == Branch.Army && args.Army) ||
+                        (leader.Branch == Branch.Navy && args.Navy) ||
+                        (leader.Branch == Branch.Airforce && args.Airforce))
+                    .ToList();
+        }
+
+        /// <summary>
+        ///     一括編集処理のログ出力
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        private static void LogBatchEdit(LeaderBatchEditArgs args)
+        {
+            Log.Verbose("[Leader] Batch {0} ({1})", GetBatchEditItemLog(args), GetBatchEditModeLog(args));
+        }
+
+        /// <summary>
+        ///     一括編集項目のログ文字列を取得する
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        /// <returns>ログ文字列</returns>
+        private static string GetBatchEditItemLog(LeaderBatchEditArgs args)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (args.Items[(int) LeaderBatchItemId.IdealRank])
+            {
+                sb.AppendFormat(" ideal rank: {0}", Config.GetText(RankNames[(int) args.IdealRank]));
+            }
+            if (args.Items[(int) LeaderBatchItemId.Skill])
+            {
+                sb.AppendFormat(" skill: {0}", args.Skill);
+            }
+            if (args.Items[(int) LeaderBatchItemId.MaxSkill])
+            {
+                sb.AppendFormat(" max skill: {0}", args.MaxSkill);
+            }
+            if (args.Items[(int) LeaderBatchItemId.Experience])
+            {
+                sb.AppendFormat(" experience: {0}", args.Experience);
+            }
+            if (args.Items[(int) LeaderBatchItemId.Loyalty])
+            {
+                sb.AppendFormat(" loyalty: {0}", args.Loyalty);
+            }
+            if (args.Items[(int) LeaderBatchItemId.StartYear])
+            {
+                sb.AppendFormat(" start year: {0}", args.StartYear);
+            }
+            if (args.Items[(int) LeaderBatchItemId.EndYear])
+            {
+                sb.AppendFormat(" end year: {0}", args.EndYear);
+            }
+            if (args.Items[(int) LeaderBatchItemId.RetirementYear])
+            {
+                sb.AppendFormat(" retirement year: {0}", args.RetirementYear);
+            }
+            if (args.Items[(int) LeaderBatchItemId.Rank3Year])
+            {
+                sb.AppendFormat(" rank3 year: {0}", args.RankYear[0]);
+            }
+            if (args.Items[(int) LeaderBatchItemId.Rank2Year])
+            {
+                sb.AppendFormat(" rank2 year: {0}", args.RankYear[1]);
+            }
+            if (args.Items[(int) LeaderBatchItemId.Rank1Year])
+            {
+                sb.AppendFormat(" rank1 year: {0}", args.RankYear[2]);
+            }
+            if (args.Items[(int) LeaderBatchItemId.Rank0Year])
+            {
+                sb.AppendFormat(" rank0 year: {0}", args.RankYear[3]);
+            }
+            if (args.CopyCountry != Country.None)
+            {
+                sb.AppendFormat(" Copy: {0} id: {1}", Countries.Strings[(int) args.CopyCountry], args.Id);
+            }
+            if (sb.Length > 0)
+            {
+                sb.Remove(0, 1);
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        ///     一括編集対象モードのログ文字列を取得する
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        /// <returns>ログ文字列</returns>
+        private static string GetBatchEditModeLog(LeaderBatchEditArgs args)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (args.Mode == BatchMode.All)
+            {
+                sb.Append("ALL");
+            }
+            else
+            {
+                foreach (Country country in args.TargetCountries)
+                {
+                    sb.AppendFormat(" {0}", Countries.Strings[(int) country]);
+                }
+                if (sb.Length > 0)
+                {
+                    sb.Remove(0, 1);
+                }
+            }
+            if (!args.Army || !args.Navy || !args.Airforce)
+            {
+                sb.Append(":");
+                if (args.Army)
+                {
+                    sb.Append("L");
+                }
+                if (args.Navy)
+                {
+                    sb.Append("N");
+                }
+                if (args.Airforce)
+                {
+                    sb.Append("A");
+                }
+            }
+            return sb.ToString();
+        }
+
+        #endregion
+
         #region ID操作
 
         /// <summary>
@@ -1096,21 +1416,42 @@ namespace HoI2Editor.Models
         public static int GetNewId(Country country)
         {
             // 対象国の指揮官IDの最大値+1から検索を始める
-            int id = 1;
-            if (country != Country.None)
-            {
-                List<int> ids = Items.Where(leader => leader.Country == country).Select(leader => leader.Id).ToList();
-                if (ids.Any())
-                {
-                    id = ids.Max() + 1;
-                }
-            }
+            int id = GetMaxId(country);
             // 未使用IDが見つかるまでIDを1ずつ増やす
+            return GetNewId(id);
+        }
+
+        /// <summary>
+        ///     未使用の指揮官IDを取得する
+        /// </summary>
+        /// <param name="id">開始ID</param>
+        /// <returns>指揮官ID</returns>
+        public static int GetNewId(int id)
+        {
             while (IdSet.Contains(id))
             {
                 id++;
             }
             return id;
+        }
+
+        /// <summary>
+        ///     対象国の指揮官IDの最大値を取得する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        /// <returns>指揮官ID</returns>
+        private static int GetMaxId(Country country)
+        {
+            if (country == Country.None)
+            {
+                return 1;
+            }
+            List<int> ids = Items.Where(leader => leader.Country == country).Select(leader => leader.Id).ToList();
+            if (!ids.Any())
+            {
+                return 1;
+            }
+            return ids.Max() + 1;
         }
 
         #endregion
@@ -1181,5 +1522,129 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+    }
+
+    /// <summary>
+    ///     指揮官一括編集のパラメータ
+    /// </summary>
+    public class LeaderBatchEditArgs
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     一括編集対象モード
+        /// </summary>
+        public BatchMode Mode { get; set; }
+
+        /// <summary>
+        ///     対象国リスト
+        /// </summary>
+        public List<Country> TargetCountries { get; } = new List<Country>();
+
+        /// <summary>
+        ///     陸軍指揮官を対象とするかどうか
+        /// </summary>
+        public bool Army { get; set; }
+
+        /// <summary>
+        ///     海軍指揮官を対象とするかどうか
+        /// </summary>
+        public bool Navy { get; set; }
+
+        /// <summary>
+        ///     空軍指揮官を対象とするかどうか
+        /// </summary>
+        public bool Airforce { get; set; }
+
+        /// <summary>
+        ///     コピー先指定国
+        /// </summary>
+        public Country CopyCountry { get; set; }
+
+        /// <summary>
+        ///     開始ID
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        ///     一括編集項目
+        /// </summary>
+        public bool[] Items { get; } = new bool[Enum.GetValues(typeof (LeaderBatchItemId)).Length];
+
+        /// <summary>
+        ///     理想階級
+        /// </summary>
+        public LeaderRank IdealRank { get; set; }
+
+        /// <summary>
+        ///     スキル
+        /// </summary>
+        public int Skill { get; set; }
+
+        /// <summary>
+        ///     最大スキル
+        /// </summary>
+        public int MaxSkill { get; set; }
+
+        /// <summary>
+        ///     経験値
+        /// </summary>
+        public int Experience { get; set; }
+
+        /// <summary>
+        ///     忠誠度
+        /// </summary>
+        public int Loyalty { get; set; }
+
+        /// <summary>
+        ///     開始年
+        /// </summary>
+        public int StartYear { get; set; }
+
+        /// <summary>
+        ///     終了年
+        /// </summary>
+        public int EndYear { get; set; }
+
+        /// <summary>
+        ///     引退年
+        /// </summary>
+        public int RetirementYear { get; set; }
+
+        /// <summary>
+        ///     任官年
+        /// </summary>
+        public int[] RankYear { get; } = new int[Leader.RankLength];
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     一括編集対象モード
+    /// </summary>
+    public enum BatchMode
+    {
+        All, // 全て
+        Selected, // 選択国
+        Specified // 指定国
+    }
+
+    /// <summary>
+    ///     一括編集項目ID
+    /// </summary>
+    public enum LeaderBatchItemId
+    {
+        IdealRank, // 理想階級
+        Skill, // スキル
+        MaxSkill, // 最大スキル
+        Experience, // 経験値
+        Loyalty, // 忠誠度
+        StartYear, // 開始年
+        EndYear, // 終了年
+        RetirementYear, // 引退年
+        Rank3Year, // 少将任官年
+        Rank2Year, // 中将任官年
+        Rank1Year, // 大将任官年
+        Rank0Year // 元帥任官年
     }
 }

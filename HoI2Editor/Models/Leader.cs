@@ -114,12 +114,12 @@ namespace HoI2Editor.Models
 
         #endregion
 
-        #region 内部定数
+        #region 公開定数
 
         /// <summary>
         ///     階級の数
         /// </summary>
-        private const int RankLength = 4;
+        public const int RankLength = 4;
 
         #endregion
 

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Controls;
 using HoI2Editor.Dialogs;
@@ -260,17 +259,33 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnBatchButtonClick(object sender, EventArgs e)
         {
-            string countryName = countryListBox.SelectedItem as string;
-            Country country = !string.IsNullOrEmpty(countryName) ? Countries.StringMap[countryName] : Country.None;
-            LeaderBatchDialog dialog = new LeaderBatchDialog(country);
+            LeaderBatchEditArgs args = new LeaderBatchEditArgs();
+            args.TargetCountries.AddRange(from string name in countryListBox.SelectedItems
+                select Countries.StringMap[name]);
+
+            // 一括編集ダイアログを表示する
+            LeaderBatchDialog dialog = new LeaderBatchDialog(args);
             if (dialog.ShowDialog() == DialogResult.Cancel)
             {
                 return;
             }
 
-            BatchEdit(dialog.Mode, dialog.SelectedCountry, dialog.BatchItems, dialog.IdealRank, dialog.Skill,
-                dialog.MaxSkill, dialog.Experience, dialog.Loyalty, dialog.StartYear, dialog.EndYear,
-                dialog.RetirementYear, dialog.RankYear);
+            // 引退年が未設定ならばMiscの値を変更する
+            if (args.Items[(int) LeaderBatchItemId.RetirementYear] && !Misc.EnableRetirementYearLeaders)
+            {
+                Misc.EnableRetirementYearLeaders = true;
+                HoI2EditorController.OnItemChanged(EditorItemId.LeaderRetirementYear, this);
+            }
+
+            // 一括編集処理
+            Leaders.BatchEdit(args);
+
+            // 指揮官リストを更新する
+            NarrowLeaderList();
+            UpdateLeaderList();
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -4248,399 +4263,6 @@ namespace HoI2Editor.Forms
 
             // 項目色を変更する
             blitzerCheckBox.ForeColor = Color.Red;
-        }
-
-        #endregion
-
-        #region 一括編集
-
-        /// <summary>
-        ///     一括編集処理
-        /// </summary>
-        /// <param name="mode">一括編集モード</param>
-        /// <param name="country">指定国</param>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="idealRank">理想階級</param>
-        /// <param name="skill">スキル</param>
-        /// <param name="maxSkill">最大スキル</param>
-        /// <param name="experience">経験値</param>
-        /// <param name="loyalty">忠誠度</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="rankYear">任官年</param>
-        private void BatchEdit(LeaderBatchMode mode, Country country, bool[] items, LeaderRank idealRank, int skill,
-            int maxSkill, int experience, int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
-        {
-            switch (mode)
-            {
-                case LeaderBatchMode.All:
-                    BatchEditAll(items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
-                        retirementYear, rankYear);
-                    break;
-
-                case LeaderBatchMode.Selected:
-                    BatchEditSelected(items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
-                        retirementYear, rankYear);
-                    break;
-
-                case LeaderBatchMode.Specified:
-                    BatchEditSpecified(country, items, idealRank, skill, maxSkill, experience, loyalty, startYear,
-                        endYear, retirementYear, rankYear);
-                    break;
-            }
-
-            // 指揮官リストを更新する
-            UpdateLeaderList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
-
-            // 引退年が未設定ならばMiscの値を変更する
-            if (items[(int) LeaderBatchItemId.RetirementYear] && !Misc.EnableRetirementYearLeaders)
-            {
-                Misc.EnableRetirementYearLeaders = true;
-                HoI2EditorController.OnItemChanged(EditorItemId.LeaderRetirementYear, this);
-            }
-        }
-
-        /// <summary>
-        ///     全ての指揮官を一括編集する
-        /// </summary>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="idealRank">理想階級</param>
-        /// <param name="skill">スキル</param>
-        /// <param name="maxSkill">最大スキル</param>
-        /// <param name="experience">経験値</param>
-        /// <param name="loyalty">忠誠度</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="rankYear">任官年</param>
-        private static void BatchEditAll(bool[] items, LeaderRank idealRank, int skill, int maxSkill, int experience,
-            int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
-        {
-            // 一括編集項目が設定されていなければ戻る
-            if (!Enum.GetValues(typeof (LeaderBatchItemId)).Cast<LeaderBatchItemId>().Any(id => items[(int) id]))
-            {
-                return;
-            }
-
-            LogBatchEdit("All", items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
-                retirementYear, rankYear);
-
-            // 一括編集処理を順に呼び出す
-            foreach (Leader leader in Leaders.Items)
-            {
-                BatchEditLeader(leader, items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
-                    retirementYear, rankYear);
-            }
-        }
-
-        /// <summary>
-        ///     選択国の指揮官を一括編集する
-        /// </summary>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="idealRank">理想階級</param>
-        /// <param name="skill">スキル</param>
-        /// <param name="maxSkill">最大スキル</param>
-        /// <param name="experience">経験値</param>
-        /// <param name="loyalty">忠誠度</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="rankYear">任官年</param>
-        private void BatchEditSelected(bool[] items, LeaderRank idealRank, int skill, int maxSkill, int experience,
-            int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
-        {
-            // 一括編集項目が設定されていなければ戻る
-            if (!Enum.GetValues(typeof (LeaderBatchItemId)).Cast<LeaderBatchItemId>().Any(id => items[(int) id]))
-            {
-                return;
-            }
-
-            // 選択中の国家リストを作成する
-            Country[] countries =
-                (from string s in countryListBox.SelectedItems select Countries.StringMap[s]).ToArray();
-            if (countries.Length == 0)
-            {
-                return;
-            }
-
-            StringBuilder sb = new StringBuilder();
-            foreach (string s in countries.Select(country => Countries.Strings[(int) country]))
-            {
-                sb.AppendFormat("{0} ", s);
-            }
-            if (sb.Length > 0)
-            {
-                sb.Remove(sb.Length - 1, 1);
-            }
-            LogBatchEdit(sb.ToString(), items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
-                retirementYear, rankYear);
-
-            // 一括編集処理を順に呼び出す
-            foreach (Leader leader in Leaders.Items.Where(leader => countries.Contains(leader.Country)))
-            {
-                BatchEditLeader(leader, items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
-                    retirementYear, rankYear);
-            }
-        }
-
-        /// <summary>
-        ///     指定国の指揮官を一括編集する
-        /// </summary>
-        /// <param name="country">選択国</param>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="idealRank">理想階級</param>
-        /// <param name="skill">スキル</param>
-        /// <param name="maxSkill">最大スキル</param>
-        /// <param name="experience">経験値</param>
-        /// <param name="loyalty">忠誠度</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="rankYear">任官年</param>
-        private static void BatchEditSpecified(Country country, bool[] items, LeaderRank idealRank, int skill,
-            int maxSkill,
-            int experience, int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
-        {
-            // 一括編集項目が設定されていなければ戻る
-            if (!Enum.GetValues(typeof (LeaderBatchItemId)).Cast<LeaderBatchItemId>().Any(id => items[(int) id]))
-            {
-                return;
-            }
-
-            LogBatchEdit(Countries.Strings[(int) country], items, idealRank, skill, maxSkill, experience, loyalty,
-                startYear, endYear, retirementYear, rankYear);
-
-            // 一括編集処理を順に呼び出す
-            foreach (Leader leader in Leaders.Items.Where(leader => leader.Country == country))
-            {
-                BatchEditLeader(leader, items, idealRank, skill, maxSkill, experience, loyalty, startYear, endYear,
-                    retirementYear, rankYear);
-            }
-        }
-
-        /// <summary>
-        ///     一括編集処理
-        /// </summary>
-        /// <param name="leader">一括編集対象の指揮官</param>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="idealRank">理想階級</param>
-        /// <param name="skill">スキル</param>
-        /// <param name="maxSkill">最大スキル</param>
-        /// <param name="experience">経験値</param>
-        /// <param name="loyalty">忠誠度</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="rankYear">任官年</param>
-        private static void BatchEditLeader(Leader leader, bool[] items, LeaderRank idealRank, int skill, int maxSkill,
-            int experience, int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
-        {
-            // 理想階級
-            if (items[(int) LeaderBatchItemId.IdealRank])
-            {
-                if (idealRank != leader.IdealRank)
-                {
-                    leader.IdealRank = idealRank;
-                    leader.SetDirty(LeaderItemId.IdealRank);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // スキル
-            if (items[(int) LeaderBatchItemId.Skill])
-            {
-                if (skill != leader.Skill)
-                {
-                    leader.Skill = skill;
-                    leader.SetDirty(LeaderItemId.Skill);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // 最大スキル
-            if (items[(int) LeaderBatchItemId.MaxSkill])
-            {
-                if (maxSkill != leader.MaxSkill)
-                {
-                    leader.MaxSkill = maxSkill;
-                    leader.SetDirty(LeaderItemId.MaxSkill);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // 経験値
-            if (items[(int) LeaderBatchItemId.Experience])
-            {
-                if (experience != leader.Experience)
-                {
-                    leader.Experience = experience;
-                    leader.SetDirty(LeaderItemId.Experience);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // 忠誠度
-            if (items[(int) LeaderBatchItemId.Loyalty])
-            {
-                if (loyalty != leader.Loyalty)
-                {
-                    leader.Loyalty = loyalty;
-                    leader.SetDirty(LeaderItemId.Loyalty);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // 開始年
-            if (items[(int) LeaderBatchItemId.StartYear])
-            {
-                if (startYear != leader.StartYear)
-                {
-                    leader.StartYear = startYear;
-                    leader.SetDirty(LeaderItemId.StartYear);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // 終了年
-            if (items[(int) LeaderBatchItemId.EndYear])
-            {
-                if (endYear != leader.EndYear)
-                {
-                    leader.EndYear = endYear;
-                    leader.SetDirty(LeaderItemId.EndYear);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // 引退年
-            if (items[(int) LeaderBatchItemId.RetirementYear])
-            {
-                if (retirementYear != leader.RetirementYear)
-                {
-                    leader.RetirementYear = retirementYear;
-                    leader.SetDirty(LeaderItemId.RetirementYear);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // 少将任官年
-            if (items[(int) LeaderBatchItemId.Rank3Year])
-            {
-                if (rankYear[0] != leader.RankYear[0])
-                {
-                    leader.RankYear[0] = rankYear[0];
-                    leader.SetDirty(LeaderItemId.Rank3Year);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // 中将任官年
-            if (items[(int) LeaderBatchItemId.Rank2Year])
-            {
-                if (rankYear[1] != leader.RankYear[1])
-                {
-                    leader.RankYear[1] = rankYear[1];
-                    leader.SetDirty(LeaderItemId.Rank2Year);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // 大将任官年
-            if (items[(int) LeaderBatchItemId.Rank1Year])
-            {
-                if (rankYear[2] != leader.RankYear[2])
-                {
-                    leader.RankYear[2] = rankYear[2];
-                    leader.SetDirty(LeaderItemId.Rank1Year);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-
-            // 元帥任官年
-            if (items[(int) LeaderBatchItemId.Rank0Year])
-            {
-                if (rankYear[3] != leader.RankYear[3])
-                {
-                    leader.RankYear[3] = rankYear[3];
-                    leader.SetDirty(LeaderItemId.Rank0Year);
-                    Leaders.SetDirty(leader.Country);
-                }
-            }
-        }
-
-        /// <summary>
-        ///     一括編集処理のログ出力
-        /// </summary>
-        /// <param name="countries">対象国の文字列</param>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="idealRank">理想階級</param>
-        /// <param name="skill">スキル</param>
-        /// <param name="maxSkill">最大スキル</param>
-        /// <param name="experience">経験値</param>
-        /// <param name="loyalty">忠誠度</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="rankYear">任官年</param>
-        private static void LogBatchEdit(string countries, bool[] items, LeaderRank idealRank, int skill, int maxSkill,
-            int experience, int loyalty, int startYear, int endYear, int retirementYear, int[] rankYear)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            if (items[(int) LeaderBatchItemId.IdealRank])
-            {
-                sb.AppendFormat(" ideal rank: {0}", Config.GetText(Leaders.RankNames[(int) idealRank]));
-            }
-            if (items[(int) LeaderBatchItemId.Skill])
-            {
-                sb.AppendFormat(" skill: {0}", skill);
-            }
-            if (items[(int) LeaderBatchItemId.MaxSkill])
-            {
-                sb.AppendFormat(" max skill: {0}", maxSkill);
-            }
-            if (items[(int) LeaderBatchItemId.Experience])
-            {
-                sb.AppendFormat(" experience: {0}", experience);
-            }
-            if (items[(int) LeaderBatchItemId.Loyalty])
-            {
-                sb.AppendFormat(" loyalty: {0}", loyalty);
-            }
-            if (items[(int) LeaderBatchItemId.StartYear])
-            {
-                sb.AppendFormat(" start year: {0}", startYear);
-            }
-            if (items[(int) LeaderBatchItemId.EndYear])
-            {
-                sb.AppendFormat(" end year: {0}", endYear);
-            }
-            if (items[(int) LeaderBatchItemId.RetirementYear])
-            {
-                sb.AppendFormat(" retirement year: {0}", retirementYear);
-            }
-            if (items[(int) LeaderBatchItemId.Rank3Year])
-            {
-                sb.AppendFormat(" rank3 year: {0}", rankYear[0]);
-            }
-            if (items[(int) LeaderBatchItemId.Rank2Year])
-            {
-                sb.AppendFormat(" rank2 year: {0}", rankYear[1]);
-            }
-            if (items[(int) LeaderBatchItemId.Rank1Year])
-            {
-                sb.AppendFormat(" rank1 year: {0}", rankYear[2]);
-            }
-            if (items[(int) LeaderBatchItemId.Rank0Year])
-            {
-                sb.AppendFormat(" rank0 year: {0}", rankYear[3]);
-            }
-
-            Log.Verbose("[Leader] Batch{0} ({1})", sb, countries);
         }
 
         #endregion
