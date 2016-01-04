@@ -48,24 +48,24 @@
             this.countryGroupBox = new System.Windows.Forms.GroupBox();
             this.modifyGroupBox = new System.Windows.Forms.GroupBox();
             this.actionGroupBox = new System.Windows.Forms.GroupBox();
+            this.destLabel = new System.Windows.Forms.Label();
+            this.moveRadioButton = new System.Windows.Forms.RadioButton();
+            this.copyRadioButton = new System.Windows.Forms.RadioButton();
+            this.modifyRadioButton = new System.Windows.Forms.RadioButton();
             this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.idLabel = new System.Windows.Forms.Label();
             this.destComboBox = new System.Windows.Forms.ComboBox();
-            this.modifyRadioButton = new System.Windows.Forms.RadioButton();
-            this.copyRadioButton = new System.Windows.Forms.RadioButton();
-            this.moveRadioButton = new System.Windows.Forms.RadioButton();
-            this.destLabel = new System.Windows.Forms.Label();
             this.positionGroupBox = new System.Windows.Forms.GroupBox();
-            this.hosCheckBox = new System.Windows.Forms.CheckBox();
-            this.hogCheckBox = new System.Windows.Forms.CheckBox();
-            this.mofCheckBox = new System.Windows.Forms.CheckBox();
-            this.moaCheckBox = new System.Windows.Forms.CheckBox();
-            this.mosCheckBox = new System.Windows.Forms.CheckBox();
-            this.moiCheckBox = new System.Windows.Forms.CheckBox();
-            this.cosCheckBox = new System.Windows.Forms.CheckBox();
-            this.coaCheckBox = new System.Windows.Forms.CheckBox();
-            this.conCheckBox = new System.Windows.Forms.CheckBox();
             this.coafCheckBox = new System.Windows.Forms.CheckBox();
+            this.conCheckBox = new System.Windows.Forms.CheckBox();
+            this.coaCheckBox = new System.Windows.Forms.CheckBox();
+            this.cosCheckBox = new System.Windows.Forms.CheckBox();
+            this.moiCheckBox = new System.Windows.Forms.CheckBox();
+            this.mosCheckBox = new System.Windows.Forms.CheckBox();
+            this.moaCheckBox = new System.Windows.Forms.CheckBox();
+            this.mofCheckBox = new System.Windows.Forms.CheckBox();
+            this.hogCheckBox = new System.Windows.Forms.CheckBox();
+            this.hosCheckBox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.startYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endYearNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.retirementYearNumericUpDown)).BeginInit();
@@ -78,16 +78,16 @@
             // 
             // okButton
             // 
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.okButton, "okButton");
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OnOkButtonClick);
             // 
             // cancelButton
             // 
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.cancelButton, "cancelButton");
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -189,9 +189,9 @@
             // 
             // ideologyComboBox
             // 
+            resources.ApplyResources(this.ideologyComboBox, "ideologyComboBox");
             this.ideologyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ideologyComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.ideologyComboBox, "ideologyComboBox");
             this.ideologyComboBox.Name = "ideologyComboBox";
             // 
             // loyaltyCheckBox
@@ -203,30 +203,31 @@
             // 
             // loyaltyComboBox
             // 
+            resources.ApplyResources(this.loyaltyComboBox, "loyaltyComboBox");
             this.loyaltyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.loyaltyComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.loyaltyComboBox, "loyaltyComboBox");
             this.loyaltyComboBox.Name = "loyaltyComboBox";
             // 
             // srcComboBox
             // 
+            resources.ApplyResources(this.srcComboBox, "srcComboBox");
             this.srcComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.srcComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.srcComboBox, "srcComboBox");
             this.srcComboBox.Name = "srcComboBox";
             // 
             // countryGroupBox
             // 
+            resources.ApplyResources(this.countryGroupBox, "countryGroupBox");
             this.countryGroupBox.Controls.Add(this.allRadioButton);
             this.countryGroupBox.Controls.Add(this.selectedRadioButton);
             this.countryGroupBox.Controls.Add(this.srcComboBox);
             this.countryGroupBox.Controls.Add(this.specifiedRadioButton);
-            resources.ApplyResources(this.countryGroupBox, "countryGroupBox");
             this.countryGroupBox.Name = "countryGroupBox";
             this.countryGroupBox.TabStop = false;
             // 
             // modifyGroupBox
             // 
+            resources.ApplyResources(this.modifyGroupBox, "modifyGroupBox");
             this.modifyGroupBox.Controls.Add(this.startYearCheckBox);
             this.modifyGroupBox.Controls.Add(this.loyaltyComboBox);
             this.modifyGroupBox.Controls.Add(this.startYearNumericUpDown);
@@ -237,12 +238,12 @@
             this.modifyGroupBox.Controls.Add(this.endYearNumericUpDown);
             this.modifyGroupBox.Controls.Add(this.retirementYearCheckBox);
             this.modifyGroupBox.Controls.Add(this.retirementYearNumericUpDown);
-            resources.ApplyResources(this.modifyGroupBox, "modifyGroupBox");
             this.modifyGroupBox.Name = "modifyGroupBox";
             this.modifyGroupBox.TabStop = false;
             // 
             // actionGroupBox
             // 
+            resources.ApplyResources(this.actionGroupBox, "actionGroupBox");
             this.actionGroupBox.Controls.Add(this.destLabel);
             this.actionGroupBox.Controls.Add(this.moveRadioButton);
             this.actionGroupBox.Controls.Add(this.copyRadioButton);
@@ -250,9 +251,37 @@
             this.actionGroupBox.Controls.Add(this.idNumericUpDown);
             this.actionGroupBox.Controls.Add(this.idLabel);
             this.actionGroupBox.Controls.Add(this.destComboBox);
-            resources.ApplyResources(this.actionGroupBox, "actionGroupBox");
             this.actionGroupBox.Name = "actionGroupBox";
             this.actionGroupBox.TabStop = false;
+            // 
+            // destLabel
+            // 
+            resources.ApplyResources(this.destLabel, "destLabel");
+            this.destLabel.Name = "destLabel";
+            // 
+            // moveRadioButton
+            // 
+            resources.ApplyResources(this.moveRadioButton, "moveRadioButton");
+            this.moveRadioButton.Name = "moveRadioButton";
+            this.moveRadioButton.TabStop = true;
+            this.moveRadioButton.UseVisualStyleBackColor = true;
+            this.moveRadioButton.CheckedChanged += new System.EventHandler(this.OnMoveRadioButtonCheckedChanged);
+            // 
+            // copyRadioButton
+            // 
+            resources.ApplyResources(this.copyRadioButton, "copyRadioButton");
+            this.copyRadioButton.Name = "copyRadioButton";
+            this.copyRadioButton.TabStop = true;
+            this.copyRadioButton.UseVisualStyleBackColor = true;
+            this.copyRadioButton.CheckedChanged += new System.EventHandler(this.OnCopyRadioButtonCheckedChanged);
+            // 
+            // modifyRadioButton
+            // 
+            resources.ApplyResources(this.modifyRadioButton, "modifyRadioButton");
+            this.modifyRadioButton.Checked = true;
+            this.modifyRadioButton.Name = "modifyRadioButton";
+            this.modifyRadioButton.TabStop = true;
+            this.modifyRadioButton.UseVisualStyleBackColor = true;
             // 
             // idNumericUpDown
             // 
@@ -276,42 +305,14 @@
             // 
             // destComboBox
             // 
+            resources.ApplyResources(this.destComboBox, "destComboBox");
             this.destComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.destComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.destComboBox, "destComboBox");
             this.destComboBox.Name = "destComboBox";
-            // 
-            // modifyRadioButton
-            // 
-            resources.ApplyResources(this.modifyRadioButton, "modifyRadioButton");
-            this.modifyRadioButton.Checked = true;
-            this.modifyRadioButton.Name = "modifyRadioButton";
-            this.modifyRadioButton.TabStop = true;
-            this.modifyRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // copyRadioButton
-            // 
-            resources.ApplyResources(this.copyRadioButton, "copyRadioButton");
-            this.copyRadioButton.Name = "copyRadioButton";
-            this.copyRadioButton.TabStop = true;
-            this.copyRadioButton.UseVisualStyleBackColor = true;
-            this.copyRadioButton.CheckedChanged += new System.EventHandler(this.OnCopyRadioButtonCheckedChanged);
-            // 
-            // moveRadioButton
-            // 
-            resources.ApplyResources(this.moveRadioButton, "moveRadioButton");
-            this.moveRadioButton.Name = "moveRadioButton";
-            this.moveRadioButton.TabStop = true;
-            this.moveRadioButton.UseVisualStyleBackColor = true;
-            this.moveRadioButton.CheckedChanged += new System.EventHandler(this.OnMoveRadioButtonCheckedChanged);
-            // 
-            // destLabel
-            // 
-            resources.ApplyResources(this.destLabel, "destLabel");
-            this.destLabel.Name = "destLabel";
             // 
             // positionGroupBox
             // 
+            resources.ApplyResources(this.positionGroupBox, "positionGroupBox");
             this.positionGroupBox.Controls.Add(this.coafCheckBox);
             this.positionGroupBox.Controls.Add(this.conCheckBox);
             this.positionGroupBox.Controls.Add(this.coaCheckBox);
@@ -322,73 +323,16 @@
             this.positionGroupBox.Controls.Add(this.mofCheckBox);
             this.positionGroupBox.Controls.Add(this.hogCheckBox);
             this.positionGroupBox.Controls.Add(this.hosCheckBox);
-            resources.ApplyResources(this.positionGroupBox, "positionGroupBox");
             this.positionGroupBox.Name = "positionGroupBox";
             this.positionGroupBox.TabStop = false;
             // 
-            // hosCheckBox
+            // coafCheckBox
             // 
-            resources.ApplyResources(this.hosCheckBox, "hosCheckBox");
-            this.hosCheckBox.Checked = true;
-            this.hosCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.hosCheckBox.Name = "hosCheckBox";
-            this.hosCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // hogCheckBox
-            // 
-            resources.ApplyResources(this.hogCheckBox, "hogCheckBox");
-            this.hogCheckBox.Checked = true;
-            this.hogCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.hogCheckBox.Name = "hogCheckBox";
-            this.hogCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // mofCheckBox
-            // 
-            resources.ApplyResources(this.mofCheckBox, "mofCheckBox");
-            this.mofCheckBox.Checked = true;
-            this.mofCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mofCheckBox.Name = "mofCheckBox";
-            this.mofCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // moaCheckBox
-            // 
-            resources.ApplyResources(this.moaCheckBox, "moaCheckBox");
-            this.moaCheckBox.Checked = true;
-            this.moaCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.moaCheckBox.Name = "moaCheckBox";
-            this.moaCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // mosCheckBox
-            // 
-            resources.ApplyResources(this.mosCheckBox, "mosCheckBox");
-            this.mosCheckBox.Checked = true;
-            this.mosCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.mosCheckBox.Name = "mosCheckBox";
-            this.mosCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // moiCheckBox
-            // 
-            resources.ApplyResources(this.moiCheckBox, "moiCheckBox");
-            this.moiCheckBox.Checked = true;
-            this.moiCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.moiCheckBox.Name = "moiCheckBox";
-            this.moiCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // cosCheckBox
-            // 
-            resources.ApplyResources(this.cosCheckBox, "cosCheckBox");
-            this.cosCheckBox.Checked = true;
-            this.cosCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cosCheckBox.Name = "cosCheckBox";
-            this.cosCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // coaCheckBox
-            // 
-            resources.ApplyResources(this.coaCheckBox, "coaCheckBox");
-            this.coaCheckBox.Checked = true;
-            this.coaCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.coaCheckBox.Name = "coaCheckBox";
-            this.coaCheckBox.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.coafCheckBox, "coafCheckBox");
+            this.coafCheckBox.Checked = true;
+            this.coafCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.coafCheckBox.Name = "coafCheckBox";
+            this.coafCheckBox.UseVisualStyleBackColor = true;
             // 
             // conCheckBox
             // 
@@ -398,13 +342,69 @@
             this.conCheckBox.Name = "conCheckBox";
             this.conCheckBox.UseVisualStyleBackColor = true;
             // 
-            // coafCheckBox
+            // coaCheckBox
             // 
-            resources.ApplyResources(this.coafCheckBox, "coafCheckBox");
-            this.coafCheckBox.Checked = true;
-            this.coafCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.coafCheckBox.Name = "coafCheckBox";
-            this.coafCheckBox.UseVisualStyleBackColor = true;
+            resources.ApplyResources(this.coaCheckBox, "coaCheckBox");
+            this.coaCheckBox.Checked = true;
+            this.coaCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.coaCheckBox.Name = "coaCheckBox";
+            this.coaCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // cosCheckBox
+            // 
+            resources.ApplyResources(this.cosCheckBox, "cosCheckBox");
+            this.cosCheckBox.Checked = true;
+            this.cosCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cosCheckBox.Name = "cosCheckBox";
+            this.cosCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // moiCheckBox
+            // 
+            resources.ApplyResources(this.moiCheckBox, "moiCheckBox");
+            this.moiCheckBox.Checked = true;
+            this.moiCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.moiCheckBox.Name = "moiCheckBox";
+            this.moiCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // mosCheckBox
+            // 
+            resources.ApplyResources(this.mosCheckBox, "mosCheckBox");
+            this.mosCheckBox.Checked = true;
+            this.mosCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mosCheckBox.Name = "mosCheckBox";
+            this.mosCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // moaCheckBox
+            // 
+            resources.ApplyResources(this.moaCheckBox, "moaCheckBox");
+            this.moaCheckBox.Checked = true;
+            this.moaCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.moaCheckBox.Name = "moaCheckBox";
+            this.moaCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // mofCheckBox
+            // 
+            resources.ApplyResources(this.mofCheckBox, "mofCheckBox");
+            this.mofCheckBox.Checked = true;
+            this.mofCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mofCheckBox.Name = "mofCheckBox";
+            this.mofCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // hogCheckBox
+            // 
+            resources.ApplyResources(this.hogCheckBox, "hogCheckBox");
+            this.hogCheckBox.Checked = true;
+            this.hogCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.hogCheckBox.Name = "hogCheckBox";
+            this.hogCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // hosCheckBox
+            // 
+            resources.ApplyResources(this.hosCheckBox, "hosCheckBox");
+            this.hosCheckBox.Checked = true;
+            this.hosCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.hosCheckBox.Name = "hosCheckBox";
+            this.hosCheckBox.UseVisualStyleBackColor = true;
             // 
             // MinisterBatchDialog
             // 

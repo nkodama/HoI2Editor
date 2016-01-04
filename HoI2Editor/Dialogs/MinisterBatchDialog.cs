@@ -76,6 +76,18 @@ namespace HoI2Editor.Dialogs
             }
             srcComboBox.SelectedIndexChanged += OnSrcComboBoxSelectedIndexChanged;
 
+            // 閣僚地位
+            hosCheckBox.Text = Config.GetText(TextId.MinisterHeadOfState);
+            hogCheckBox.Text = Config.GetText(TextId.MinisterHeadOfGovernment);
+            mofCheckBox.Text = Config.GetText(TextId.MinisterForeignMinister);
+            moaCheckBox.Text = Config.GetText(TextId.MinisterArmamentMinister);
+            mosCheckBox.Text = Config.GetText(TextId.MinisterMinisterOfSecurity);
+            moiCheckBox.Text = Config.GetText(TextId.MinisterMinisterOfIntelligence);
+            cosCheckBox.Text = Config.GetText(TextId.MinisterChiefOfStaff);
+            coaCheckBox.Text = Config.GetText(TextId.MinisterChiefOfArmy);
+            conCheckBox.Text = Config.GetText(TextId.MinisterChiefOfNavy);
+            coafCheckBox.Text = Config.GetText(TextId.MinisterChiefOfAir);
+
             // コピー/移動先コンボボックス
             destComboBox.BeginUpdate();
             destComboBox.Items.Clear();

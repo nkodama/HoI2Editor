@@ -169,11 +169,47 @@
   <data name="loyaltyCheckBox.Text" xml:space="preserve">
     <value>忠誠度</value>
   </data>
-  <data name="targetGroupBox.Text" xml:space="preserve">
-    <value>対象</value>
+  <data name="countryGroupBox.Text" xml:space="preserve">
+    <value>対象国</value>
   </data>
-  <data name="editGroupBox.Text" xml:space="preserve">
-    <value>編集</value>
+  <data name="modifyGroupBox.Text" xml:space="preserve">
+    <value>変更</value>
+  </data>
+  <data name="destLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 12</value>
+  </data>
+  <data name="destLabel.Text" xml:space="preserve">
+    <value>コピー/移動先</value>
+  </data>
+  <data name="moveRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
+  </data>
+  <data name="moveRadioButton.Text" xml:space="preserve">
+    <value>移動</value>
+  </data>
+  <data name="copyRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 16</value>
+  </data>
+  <data name="copyRadioButton.Text" xml:space="preserve">
+    <value>コピー</value>
+  </data>
+  <data name="modifyRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
+  </data>
+  <data name="modifyRadioButton.Text" xml:space="preserve">
+    <value>変更</value>
+  </data>
+  <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 12</value>
+  </data>
+  <data name="idLabel.Text" xml:space="preserve">
+    <value>開始ID</value>
+  </data>
+  <data name="actionGroupBox.Text" xml:space="preserve">
+    <value>一括操作</value>
+  </data>
+  <data name="positionGroupBox.Text" xml:space="preserve">
+    <value>閣僚地位</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>一括編集</value>
