@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using HoI2Editor.Controls;
 using HoI2Editor.Dialogs;
@@ -258,16 +257,40 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnBatchButtonClick(object sender, EventArgs e)
         {
-            string countryName = countryListBox.SelectedItem as string;
-            Country country = !string.IsNullOrEmpty(countryName) ? Countries.StringMap[countryName] : Country.None;
-            MinisterBatchDialog dialog = new MinisterBatchDialog(country);
+            MinisterBatchEditArgs args = new MinisterBatchEditArgs();
+            args.TargetCountries.AddRange(from string name in countryListBox.SelectedItems
+                select Countries.StringMap[name]);
+
+            // 一括編集ダイアログを表示する
+            MinisterBatchDialog dialog = new MinisterBatchDialog(args);
             if (dialog.ShowDialog() == DialogResult.Cancel)
             {
                 return;
             }
 
-            BatchEdit(dialog.Mode, dialog.SelectedCountry, dialog.BatchItems, dialog.StartYear, dialog.EndYear,
-                dialog.RetirementYear, dialog.Ideology, dialog.Loyalty);
+            // 終了年が未設定ならばMiscの値を変更する
+            if (args.Items[(int) MinisterBatchItemId.EndYear] && !Misc.UseNewMinisterFilesFormat)
+            {
+                Misc.UseNewMinisterFilesFormat = true;
+                HoI2EditorController.OnItemChanged(EditorItemId.MinisterEndYear, this);
+            }
+
+            // 引退年が未設定ならばMiscの値を変更する
+            if (args.Items[(int) MinisterBatchItemId.RetirementYear] && !Misc.EnableRetirementYearMinisters)
+            {
+                Misc.EnableRetirementYearMinisters = true;
+                HoI2EditorController.OnItemChanged(EditorItemId.MinisterRetirementYear, this);
+            }
+
+            // 一括編集処理
+            Ministers.BatchEdit(args);
+
+            // 閣僚リストを更新する
+            NarrowMinisterList();
+            UpdateMinisterList();
+
+            // 国家リストボックスの項目色を変更するため描画更新する
+            countryListBox.Refresh();
         }
 
         /// <summary>
@@ -2305,267 +2328,6 @@ namespace HoI2Editor.Forms
             {
                 pictureNameTextBox.Text = Path.GetFileNameWithoutExtension(dialog.FileName);
             }
-        }
-
-        #endregion
-
-        #region 一括編集
-
-        /// <summary>
-        ///     一括編集処理
-        /// </summary>
-        /// <param name="mode">一括編集モード</param>
-        /// <param name="country">指定国</param>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="ideology">イデオロギー</param>
-        /// <param name="loyalty">忠誠度</param>
-        private void BatchEdit(MinisterBatchMode mode, Country country, bool[] items, int startYear, int endYear,
-            int retirementYear, MinisterIdeology ideology, MinisterLoyalty loyalty)
-        {
-            switch (mode)
-            {
-                case MinisterBatchMode.All:
-                    BatchEditAll(items, startYear, endYear, retirementYear, ideology, loyalty);
-                    break;
-
-                case MinisterBatchMode.Selected:
-                    BatchEditSelected(items, startYear, endYear, retirementYear, ideology, loyalty);
-                    break;
-
-                case MinisterBatchMode.Specified:
-                    BatchEditSpecified(country, items, startYear, endYear, retirementYear, ideology, loyalty);
-                    break;
-            }
-
-            // 閣僚リストを更新する
-            UpdateMinisterList();
-
-            // 国家リストボックスの項目色を変更するため描画更新する
-            countryListBox.Refresh();
-
-            // 終了年/引退年が未設定ならばMiscの値を変更する
-            if (items[(int) MinisterBatchItemId.EndYear] && !Misc.UseNewMinisterFilesFormat)
-            {
-                Misc.UseNewMinisterFilesFormat = true;
-                HoI2EditorController.OnItemChanged(EditorItemId.MinisterEndYear, this);
-            }
-            if (items[(int) MinisterBatchItemId.RetirementYear] && !Misc.EnableRetirementYearMinisters)
-            {
-                Misc.EnableRetirementYearMinisters = true;
-                HoI2EditorController.OnItemChanged(EditorItemId.MinisterRetirementYear, this);
-            }
-        }
-
-        /// <summary>
-        ///     全ての閣僚を一括編集する
-        /// </summary>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="ideology">イデオロギー</param>
-        /// <param name="loyalty">忠誠度</param>
-        private static void BatchEditAll(bool[] items, int startYear, int endYear, int retirementYear,
-            MinisterIdeology ideology, MinisterLoyalty loyalty)
-        {
-            // 一括編集項目が設定されていなければ戻る
-            if (!Enum.GetValues(typeof (MinisterBatchItemId)).Cast<MinisterBatchItemId>().Any(id => items[(int) id]))
-            {
-                return;
-            }
-
-            LogBatchEdit("All", items, startYear, endYear, retirementYear, ideology, loyalty);
-
-            // 一括編集処理を順に呼び出す
-            foreach (Minister minister in Ministers.Items)
-            {
-                BatchEditMinister(minister, items, startYear, endYear, retirementYear, ideology, loyalty);
-            }
-        }
-
-        /// <summary>
-        ///     選択国の閣僚を一括編集する
-        /// </summary>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="ideology">イデオロギー</param>
-        /// <param name="loyalty">忠誠度</param>
-        private void BatchEditSelected(bool[] items, int startYear, int endYear, int retirementYear,
-            MinisterIdeology ideology, MinisterLoyalty loyalty)
-        {
-            // 一括編集項目が設定されていなければ戻る
-            if (!Enum.GetValues(typeof (MinisterBatchItemId)).Cast<MinisterBatchItemId>().Any(id => items[(int) id]))
-            {
-                return;
-            }
-
-            // 選択中の国家リストを作成する
-            Country[] countries =
-                (from string s in countryListBox.SelectedItems select Countries.StringMap[s]).ToArray();
-            if (countries.Length == 0)
-            {
-                return;
-            }
-
-            StringBuilder sb = new StringBuilder();
-            foreach (string s in countries.Select(country => Countries.Strings[(int) country]))
-            {
-                sb.AppendFormat("{0} ", s);
-            }
-            if (sb.Length > 0)
-            {
-                sb.Remove(sb.Length - 1, 1);
-            }
-            LogBatchEdit(sb.ToString(), items, startYear, endYear, retirementYear, ideology, loyalty);
-
-            // 一括編集処理を順に呼び出す
-            foreach (Minister minister in Ministers.Items.Where(minister => countries.Contains(minister.Country)))
-            {
-                BatchEditMinister(minister, items, startYear, endYear, retirementYear, ideology, loyalty);
-            }
-        }
-
-        /// <summary>
-        ///     指定国の閣僚を一括編集する
-        /// </summary>
-        /// <param name="country">選択国</param>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="ideology">イデオロギー</param>
-        /// <param name="loyalty">忠誠度</param>
-        private static void BatchEditSpecified(Country country, bool[] items, int startYear, int endYear,
-            int retirementYear,
-            MinisterIdeology ideology, MinisterLoyalty loyalty)
-        {
-            // 一括編集項目が設定されていなければ戻る
-            if (!Enum.GetValues(typeof (MinisterBatchItemId)).Cast<MinisterBatchItemId>().Any(id => items[(int) id]))
-            {
-                return;
-            }
-
-            LogBatchEdit(Countries.Strings[(int) country], items, startYear, endYear, retirementYear, ideology, loyalty);
-
-            // 一括編集処理を順に呼び出す
-            foreach (Minister minister in Ministers.Items.Where(minister => minister.Country == country))
-            {
-                BatchEditMinister(minister, items, startYear, endYear, retirementYear, ideology, loyalty);
-            }
-        }
-
-        /// <summary>
-        ///     一括編集処理
-        /// </summary>
-        /// <param name="minister">一括編集対象の閣僚</param>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="ideology">イデオロギー</param>
-        /// <param name="loyalty">忠誠度</param>
-        private static void BatchEditMinister(Minister minister, bool[] items, int startYear, int endYear,
-            int retirementYear,
-            MinisterIdeology ideology, MinisterLoyalty loyalty)
-        {
-            // 開始年
-            if (items[(int) MinisterBatchItemId.StartYear])
-            {
-                if (startYear != minister.StartYear)
-                {
-                    minister.StartYear = startYear;
-                    minister.SetDirty(MinisterItemId.StartYear);
-                    Ministers.SetDirty(minister.Country);
-                }
-            }
-
-            // 終了年
-            if (items[(int) MinisterBatchItemId.EndYear])
-            {
-                if (endYear != minister.EndYear)
-                {
-                    minister.EndYear = endYear;
-                    minister.SetDirty(MinisterItemId.EndYear);
-                    Ministers.SetDirty(minister.Country);
-                }
-            }
-
-            // 引退年
-            if (items[(int) MinisterBatchItemId.RetirementYear])
-            {
-                if (retirementYear != minister.RetirementYear)
-                {
-                    minister.RetirementYear = retirementYear;
-                    minister.SetDirty(MinisterItemId.RetirementYear);
-                    Ministers.SetDirty(minister.Country);
-                }
-            }
-
-            // イデオロギー
-            if (items[(int) MinisterBatchItemId.Ideology])
-            {
-                if (ideology != minister.Ideology)
-                {
-                    minister.Ideology = ideology;
-                    minister.SetDirty(MinisterItemId.Ideology);
-                    Ministers.SetDirty(minister.Country);
-                }
-            }
-
-            // 忠誠度
-            if (items[(int) MinisterBatchItemId.Loyalty])
-            {
-                if (loyalty != minister.Loyalty)
-                {
-                    minister.Loyalty = loyalty;
-                    minister.SetDirty(MinisterItemId.Loyalty);
-                    Ministers.SetDirty(minister.Country);
-                }
-            }
-        }
-
-        /// <summary>
-        ///     一括編集処理のログ出力
-        /// </summary>
-        /// <param name="countries">対象国の文字列</param>
-        /// <param name="items">一括編集項目</param>
-        /// <param name="startYear">開始年</param>
-        /// <param name="endYear">終了年</param>
-        /// <param name="retirementYear">引退年</param>
-        /// <param name="ideology">イデオロギー</param>
-        /// <param name="loyalty">忠誠度</param>
-        private static void LogBatchEdit(string countries, bool[] items, int startYear, int endYear, int retirementYear,
-            MinisterIdeology ideology, MinisterLoyalty loyalty)
-        {
-            StringBuilder sb = new StringBuilder();
-
-            if (items[(int) MinisterBatchItemId.StartYear])
-            {
-                sb.AppendFormat(" start year: {0}", startYear);
-            }
-            if (items[(int) MinisterBatchItemId.EndYear])
-            {
-                sb.AppendFormat(" end year: {0}", endYear);
-            }
-            if (items[(int) MinisterBatchItemId.RetirementYear])
-            {
-                sb.AppendFormat(" retirement year: {0}", retirementYear);
-            }
-            if (items[(int) MinisterBatchItemId.Ideology])
-            {
-                sb.AppendFormat(" ideology: {0}", Config.GetText(Ministers.IdeologyNames[(int) ideology]));
-            }
-            if (items[(int) MinisterBatchItemId.Loyalty])
-            {
-                sb.AppendFormat(" loyalty: {0}", Ministers.LoyaltyNames[(int) loyalty]);
-            }
-
-            Log.Verbose("[Minister] Batch{0} ({1})", sb, countries);
         }
 
         #endregion

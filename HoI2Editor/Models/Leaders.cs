@@ -1270,7 +1270,7 @@ namespace HoI2Editor.Models
         /// <returns>一括編集対象の指揮官リスト</returns>
         private static IEnumerable<Leader> GetBatchEditLeaders(LeaderBatchEditArgs args)
         {
-            return args.Mode == BatchMode.All
+            return args.CountryMode == BatchCountryMode.All
                 ? Items
                     .Where(leader =>
                         (leader.Branch == Branch.Army && args.Army) ||
@@ -1370,7 +1370,7 @@ namespace HoI2Editor.Models
         private static string GetBatchEditModeLog(LeaderBatchEditArgs args)
         {
             StringBuilder sb = new StringBuilder();
-            if (args.Mode == BatchMode.All)
+            if (args.CountryMode == BatchCountryMode.All)
             {
                 sb.Append("ALL");
             }
@@ -1534,7 +1534,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     一括編集対象モード
         /// </summary>
-        public BatchMode Mode { get; set; }
+        public BatchCountryMode CountryMode { get; set; }
 
         /// <summary>
         ///     対象国リスト
@@ -1620,13 +1620,23 @@ namespace HoI2Editor.Models
     }
 
     /// <summary>
-    ///     一括編集対象モード
+    ///     一括編集対象国モード
     /// </summary>
-    public enum BatchMode
+    public enum BatchCountryMode
     {
         All, // 全て
         Selected, // 選択国
         Specified // 指定国
+    }
+
+    /// <summary>
+    ///     一括編集動作モード
+    /// </summary>
+    public enum BatchActionMode
+    {
+        Modify, // 編集
+        Copy, // コピー
+        Move // 移動
     }
 
     /// <summary>

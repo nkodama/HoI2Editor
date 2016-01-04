@@ -143,15 +143,15 @@ namespace HoI2Editor.Dialogs
         {
             if (allRadioButton.Checked)
             {
-                _args.Mode = BatchMode.All;
+                _args.CountryMode = BatchCountryMode.All;
             }
             else if (selectedRadioButton.Checked)
             {
-                _args.Mode = BatchMode.Selected;
+                _args.CountryMode = BatchCountryMode.Selected;
             }
             else
             {
-                _args.Mode = BatchMode.Specified;
+                _args.CountryMode = BatchCountryMode.Specified;
                 _args.TargetCountries.Clear();
                 _args.TargetCountries.Add(Countries.Tags[targetCountryComboBox.SelectedIndex]);
             }

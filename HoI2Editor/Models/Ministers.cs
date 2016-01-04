@@ -46,7 +46,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     忠誠度名
         /// </summary>
-        public static string[] LoyaltyNames { get; private set; }
+        public static string[] LoyaltyNames { get; }
 
         #endregion
 
@@ -1822,6 +1822,263 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 一括編集
+
+        /// <summary>
+        ///     一括編集
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        public static void BatchEdit(MinisterBatchEditArgs args)
+        {
+            LogBatchEdit(args);
+
+            IEnumerable<Minister> ministers = GetBatchEditMinisters(args);
+            Country newCountry;
+            switch (args.ActionMode)
+            {
+                case BatchActionMode.Modify:
+                    // 閣僚を一括編集する
+                    foreach (Minister minister in ministers)
+                    {
+                        BatchEditMinister(minister, args);
+                    }
+                    break;
+
+                case BatchActionMode.Copy:
+                    // 閣僚をコピーする
+                    newCountry = args.Destination;
+                    int id = args.Id;
+                    foreach (Minister minister in ministers)
+                    {
+                        id = GetNewId(id);
+                        Minister newMinister = new Minister(minister)
+                        {
+                            Country = newCountry,
+                            Id = id
+                        };
+                        newMinister.SetDirtyAll();
+                        Items.Add(newMinister);
+                    }
+
+                    // コピー先の国の編集済みフラグを設定する
+                    SetDirty(newCountry);
+
+                    // コピー先の国がファイル一覧に存在しなければ追加する
+                    if (!FileNameMap.ContainsKey(newCountry))
+                    {
+                        FileNameMap.Add(newCountry, Game.GetMinisterFileName(newCountry));
+                        SetDirtyList();
+                    }
+                    break;
+
+                case BatchActionMode.Move:
+                    // 閣僚を移動する
+                    newCountry = args.Destination;
+                    foreach (Minister minister in ministers)
+                    {
+                        // 移動前の国の編集済みフラグを設定する
+                        SetDirty(minister.Country);
+
+                        minister.Country = newCountry;
+                        minister.SetDirty(MinisterItemId.Country);
+                    }
+
+                    // 移動先の国の編集済みフラグを設定する
+                    SetDirty(newCountry);
+
+                    // 移動先の国がファイル一覧に存在しなければ追加する
+                    if (!FileNameMap.ContainsKey(newCountry))
+                    {
+                        FileNameMap.Add(newCountry, Game.GetMinisterFileName(newCountry));
+                        SetDirtyList();
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     一括編集の個別処理
+        /// </summary>
+        /// <param name="minister">対象閣僚</param>
+        /// <param name="args">一括編集のパラメータ</param>
+        private static void BatchEditMinister(Minister minister, MinisterBatchEditArgs args)
+        {
+            // 開始年
+            if (args.Items[(int) MinisterBatchItemId.StartYear])
+            {
+                if (minister.StartYear != args.StartYear)
+                {
+                    minister.StartYear = args.StartYear;
+                    minister.SetDirty(MinisterItemId.StartYear);
+                    SetDirty(minister.Country);
+                }
+            }
+
+            // 終了年
+            if (args.Items[(int) MinisterBatchItemId.EndYear])
+            {
+                if (minister.EndYear != args.EndYear)
+                {
+                    minister.EndYear = args.EndYear;
+                    minister.SetDirty(MinisterItemId.EndYear);
+                    SetDirty(minister.Country);
+                }
+            }
+
+            // 引退年
+            if (args.Items[(int) MinisterBatchItemId.RetirementYear])
+            {
+                if (minister.RetirementYear != args.RetirementYear)
+                {
+                    minister.RetirementYear = args.RetirementYear;
+                    minister.SetDirty(MinisterItemId.RetirementYear);
+                    SetDirty(minister.Country);
+                }
+            }
+
+            // イデオロギー
+            if (args.Items[(int) MinisterBatchItemId.Ideology])
+            {
+                if (minister.Ideology != args.Ideology)
+                {
+                    minister.Ideology = args.Ideology;
+                    minister.SetDirty(MinisterItemId.Ideology);
+                    SetDirty(minister.Country);
+                }
+            }
+
+            // 忠誠度
+            if (args.Items[(int) MinisterBatchItemId.Loyalty])
+            {
+                if (minister.Loyalty != args.Loyalty)
+                {
+                    minister.Loyalty = args.Loyalty;
+                    minister.SetDirty(MinisterItemId.Loyalty);
+                    SetDirty(minister.Country);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     一括編集対象の閣僚リストを取得する
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        /// <returns>一括編集対象の閣僚リスト</returns>
+        private static IEnumerable<Minister> GetBatchEditMinisters(MinisterBatchEditArgs args)
+        {
+            return args.CountryMode == BatchCountryMode.All
+                ? Items.Where(minister => args.PositionMode[(int) minister.Position]).ToList()
+                : Items.Where(minister => args.TargetCountries.Contains(minister.Country))
+                    .Where(minister => args.PositionMode[(int) minister.Position]).ToList();
+        }
+
+        /// <summary>
+        ///     一括編集処理のログ出力
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        private static void LogBatchEdit(MinisterBatchEditArgs args)
+        {
+            Log.Verbose($"[Minister] Batch {GetBatchEditItemLog(args)} ({GetBatchEditModeLog(args)})");
+        }
+
+        /// <summary>
+        ///     一括編集項目のログ文字列を取得する
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        /// <returns>ログ文字列</returns>
+        private static string GetBatchEditItemLog(MinisterBatchEditArgs args)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (args.Items[(int) MinisterBatchItemId.StartYear])
+            {
+                sb.Append($" start year: {args.StartYear}");
+            }
+            if (args.Items[(int) MinisterBatchItemId.EndYear])
+            {
+                sb.Append($" end year: {args.EndYear}");
+            }
+            if (args.Items[(int) MinisterBatchItemId.RetirementYear])
+            {
+                sb.Append($" retirement year: {args.RetirementYear}");
+            }
+            if (args.Items[(int) MinisterBatchItemId.Ideology])
+            {
+                sb.Append($" ideology: {IdeologyNames[(int) args.Ideology]}");
+            }
+            if (args.Items[(int) MinisterBatchItemId.Loyalty])
+            {
+                sb.Append($" loyalty: {LoyaltyNames[(int) args.Loyalty]}");
+            }
+            if (args.ActionMode == BatchActionMode.Copy)
+            {
+                sb.Append($" Copy: {Countries.Strings[(int) args.Destination]} id: {args.Id}");
+            }
+            else if (args.ActionMode == BatchActionMode.Move)
+            {
+                sb.Append($" Move: {Countries.Strings[(int) args.Destination]} id: {args.Id}");
+            }
+            if (sb.Length > 0)
+            {
+                sb.Remove(0, 1);
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        ///     一括編集対象モードのログ文字列を取得する
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        /// <returns>ログ文字列</returns>
+        private static string GetBatchEditModeLog(MinisterBatchEditArgs args)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // 一括編集対象国
+            if (args.CountryMode == BatchCountryMode.All)
+            {
+                sb.Append("ALL");
+            }
+            else
+            {
+                foreach (Country country in args.TargetCountries)
+                {
+                    sb.Append($" {Countries.Strings[(int) country]}");
+                }
+                if (sb.Length > 0)
+                {
+                    sb.Remove(0, 1);
+                }
+            }
+
+            // 一括編集対象地位
+            if (!args.PositionMode[(int) MinisterPosition.HeadOfState] ||
+                !args.PositionMode[(int) MinisterPosition.HeadOfGovernment] ||
+                !args.PositionMode[(int) MinisterPosition.ForeignMinister] ||
+                !args.PositionMode[(int) MinisterPosition.MinisterOfArmament] ||
+                !args.PositionMode[(int) MinisterPosition.MinisterOfSecurity] ||
+                !args.PositionMode[(int) MinisterPosition.HeadOfMilitaryIntelligence] ||
+                !args.PositionMode[(int) MinisterPosition.ChiefOfStaff] ||
+                !args.PositionMode[(int) MinisterPosition.ChiefOfArmy] ||
+                !args.PositionMode[(int) MinisterPosition.ChiefOfNavy] ||
+                !args.PositionMode[(int) MinisterPosition.ChiefOfAirForce])
+            {
+                sb.Append(
+                    $"|{(args.PositionMode[(int) MinisterPosition.HeadOfState] ? 'o' : 'x')}" +
+                    $"{(args.PositionMode[(int) MinisterPosition.HeadOfGovernment] ? 'o' : 'x')}" +
+                    $"{(args.PositionMode[(int) MinisterPosition.ForeignMinister] ? 'o' : 'x')}" +
+                    $"{(args.PositionMode[(int) MinisterPosition.MinisterOfArmament] ? 'o' : 'x')}" +
+                    $"{(args.PositionMode[(int) MinisterPosition.MinisterOfSecurity] ? 'o' : 'x')}" +
+                    $"{(args.PositionMode[(int) MinisterPosition.HeadOfMilitaryIntelligence] ? 'o' : 'x')}" +
+                    $"{(args.PositionMode[(int) MinisterPosition.ChiefOfStaff] ? 'o' : 'x')}" +
+                    $"{(args.PositionMode[(int) MinisterPosition.ChiefOfArmy] ? 'o' : 'x')}" +
+                    $"{(args.PositionMode[(int) MinisterPosition.ChiefOfNavy] ? 'o' : 'x')}" +
+                    $"{(args.PositionMode[(int) MinisterPosition.ChiefOfAirForce] ? 'o' : 'x')}");
+            }
+            return sb.ToString();
+        }
+
+        #endregion
+
         #region ID操作
 
         /// <summary>
@@ -1832,22 +2089,43 @@ namespace HoI2Editor.Models
         public static int GetNewId(Country country)
         {
             // 対象国の閣僚IDの最大値+1から検索を始める
-            int id = 1;
-            if (country != Country.None)
-            {
-                List<int> ids =
-                    Items.Where(minister => minister.Country == country).Select(minister => minister.Id).ToList();
-                if (ids.Any())
-                {
-                    id = ids.Max() + 1;
-                }
-            }
+            int id = GetMaxId(country);
             // 未使用IDが見つかるまでIDを1ずつ増やす
+            return GetNewId(id);
+        }
+
+        /// <summary>
+        ///     未使用の閣僚IDを取得する
+        /// </summary>
+        /// <param name="id">開始ID</param>
+        /// <returns>閣僚ID</returns>
+        public static int GetNewId(int id)
+        {
             while (IdSet.Contains(id))
             {
                 id++;
             }
             return id;
+        }
+
+        /// <summary>
+        ///     対象国の閣僚IDの最大値を取得する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        /// <returns>閣僚ID</returns>
+        private static int GetMaxId(Country country)
+        {
+            if (country == Country.None)
+            {
+                return 1;
+            }
+            List<int> ids =
+                Items.Where(minister => minister.Country == country).Select(minister => minister.Id).ToList();
+            if (!ids.Any())
+            {
+                return 1;
+            }
+            return ids.Max() + 1;
         }
 
         #endregion
@@ -1925,19 +2203,105 @@ namespace HoI2Editor.Models
     /// </summary>
     public class MinisterPersonalityInfo
     {
+        #region 公開プロパティ
+
         /// <summary>
         ///     閣僚地位と閣僚特性の対応付け
         /// </summary>
-        public readonly bool[] Position = new bool[Enum.GetValues(typeof (MinisterPosition)).Length];
+        public bool[] Position { get; } = new bool[Enum.GetValues(typeof (MinisterPosition)).Length];
 
         /// <summary>
         ///     閣僚特性名
         /// </summary>
-        public string Name;
+        public string Name { get; set; }
 
         /// <summary>
         ///     閣僚特性文字列
         /// </summary>
-        public string String;
+        public string String { get; set; }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     閣僚一括編集のパラメータ
+    /// </summary>
+    public class MinisterBatchEditArgs
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     一括編集対象国モード
+        /// </summary>
+        public BatchCountryMode CountryMode { get; set; }
+
+        /// <summary>
+        ///     対象国リスト
+        /// </summary>
+        public List<Country> TargetCountries { get; } = new List<Country>();
+
+        /// <summary>
+        ///     一括編集対象地位モード
+        /// </summary>
+        public bool[] PositionMode { get; } = new bool[Enum.GetValues(typeof (MinisterPosition)).Length];
+
+        /// <summary>
+        ///     一括編集動作モード
+        /// </summary>
+        public BatchActionMode ActionMode { get; set; }
+
+        /// <summary>
+        ///     コピー/移動先指定国
+        /// </summary>
+        public Country Destination { get; set; }
+
+        /// <summary>
+        ///     開始ID
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        ///     一括編集項目
+        /// </summary>
+        public bool[] Items { get; } = new bool[Enum.GetValues(typeof (MinisterBatchItemId)).Length];
+
+        /// <summary>
+        ///     開始年
+        /// </summary>
+        public int StartYear { get; set; }
+
+        /// <summary>
+        ///     終了年
+        /// </summary>
+        public int EndYear { get; set; }
+
+        /// <summary>
+        ///     引退年
+        /// </summary>
+        public int RetirementYear { get; set; }
+
+        /// <summary>
+        ///     イデオロギー
+        /// </summary>
+        public MinisterIdeology Ideology { get; set; }
+
+        /// <summary>
+        ///     忠誠度
+        /// </summary>
+        public MinisterLoyalty Loyalty { get; set; }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     閣僚一括編集項目ID
+    /// </summary>
+    public enum MinisterBatchItemId
+    {
+        StartYear, // 開始年
+        EndYear, // 終了年
+        RetirementYear, // 引退年
+        Ideology, // イデオロギー
+        Loyalty // 忠誠度
     }
 }
