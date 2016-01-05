@@ -10397,6 +10397,10 @@ namespace HoI2Editor.Forms
             _controller.UpdateItemValue(locationComboBox, unit);
             _controller.UpdateItemValue(baseComboBox, unit);
             _controller.UpdateItemValue(leaderComboBox, unit);
+
+            _controller.UpdateItemColor(locationComboBox, unit);
+            _controller.UpdateItemColor(baseComboBox, unit);
+            _controller.UpdateItemColor(leaderComboBox, unit);
         }
 
         /// <summary>
@@ -10554,6 +10558,19 @@ namespace HoI2Editor.Forms
             _controller.UpdateItemValue(brigadeModelComboBox3, division);
             _controller.UpdateItemValue(brigadeModelComboBox4, division);
             _controller.UpdateItemValue(brigadeModelComboBox5, division);
+
+            _controller.UpdateItemColor(unitTypeComboBox, division);
+            _controller.UpdateItemColor(brigadeTypeComboBox1, division);
+            _controller.UpdateItemColor(brigadeTypeComboBox2, division);
+            _controller.UpdateItemColor(brigadeTypeComboBox3, division);
+            _controller.UpdateItemColor(brigadeTypeComboBox4, division);
+            _controller.UpdateItemColor(brigadeTypeComboBox5, division);
+            _controller.UpdateItemColor(unitModelComboBox, division);
+            _controller.UpdateItemColor(brigadeModelComboBox1, division);
+            _controller.UpdateItemColor(brigadeModelComboBox2, division);
+            _controller.UpdateItemColor(brigadeModelComboBox3, division);
+            _controller.UpdateItemColor(brigadeModelComboBox4, division);
+            _controller.UpdateItemColor(brigadeModelComboBox5, division);
         }
 
         /// <summary>
