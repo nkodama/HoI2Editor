@@ -135,7 +135,7 @@
             0});
             this.startYearNumericUpDown.Name = "startYearNumericUpDown";
             this.startYearNumericUpDown.Value = new decimal(new int[] {
-            1936,
+            1930,
             0,
             0,
             0});
@@ -151,7 +151,7 @@
             0});
             this.endYearNumericUpDown.Name = "endYearNumericUpDown";
             this.endYearNumericUpDown.Value = new decimal(new int[] {
-            1964,
+            1970,
             0,
             0,
             0});
