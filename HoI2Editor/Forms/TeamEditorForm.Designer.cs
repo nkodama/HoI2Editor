@@ -220,11 +220,11 @@
             this.teamListView.FullRowSelect = true;
             this.teamListView.GridLines = true;
             this.teamListView.HideSelection = false;
+            this.teamListView.ItemEdit = true;
             this.teamListView.MultiSelect = false;
             this.teamListView.Name = "teamListView";
             this.teamListView.OwnerDraw = true;
             this.teamListView.SelectedIndex = -1;
-            this.teamListView.ItemEdit = true;
             this.teamListView.UseCompatibleStateImageBehavior = false;
             this.teamListView.View = System.Windows.Forms.View.Details;
             this.teamListView.ItemReordered += new System.EventHandler<HoI2Editor.Controls.ItemReorderedEventArgs>(this.OnTeamListViewItemReordered);

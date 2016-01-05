@@ -133,7 +133,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>50</value>
+    <value>51</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Close</value>
@@ -163,7 +163,7 @@
     <value>75, 23</value>
   </data>
   <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>49</value>
+    <value>50</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Save</value>
@@ -193,7 +193,7 @@
     <value>75, 23</value>
   </data>
   <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>48</value>
+    <value>49</value>
   </data>
   <data name="reloadButton.Text" xml:space="preserve">
     <value>Reload</value>
@@ -3709,7 +3709,7 @@
     <value>75, 23</value>
   </data>
   <data name="batchButton.TabIndex" type="System.Int32, mscorlib">
-    <value>72</value>
+    <value>48</value>
   </data>
   <data name="batchButton.Text" xml:space="preserve">
     <value>Batch</value>

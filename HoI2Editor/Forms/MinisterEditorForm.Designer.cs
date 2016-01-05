@@ -99,10 +99,10 @@
             this.ministerListView.FullRowSelect = true;
             this.ministerListView.GridLines = true;
             this.ministerListView.HideSelection = false;
+            this.ministerListView.ItemEdit = true;
             this.ministerListView.MultiSelect = false;
             this.ministerListView.Name = "ministerListView";
             this.ministerListView.SelectedIndex = -1;
-            this.ministerListView.ItemEdit = true;
             this.ministerListView.UseCompatibleStateImageBehavior = false;
             this.ministerListView.View = System.Windows.Forms.View.Details;
             this.ministerListView.ItemReordered += new System.EventHandler<HoI2Editor.Controls.ItemReorderedEventArgs>(this.OnMinisterListViewItemReordered);

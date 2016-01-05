@@ -130,7 +130,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="closeButton.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
+    <value>29</value>
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>Close</value>
@@ -157,7 +157,7 @@
     <value>75, 23</value>
   </data>
   <data name="saveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>Save</value>
@@ -184,7 +184,7 @@
     <value>75, 23</value>
   </data>
   <data name="reloadButton.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>27</value>
   </data>
   <data name="reloadButton.Text" xml:space="preserve">
     <value>Reload</value>
@@ -985,7 +985,7 @@
     <value>75, 23</value>
   </data>
   <data name="sortAbcButton.TabIndex" type="System.Int32, mscorlib">
-    <value>73</value>
+    <value>8</value>
   </data>
   <data name="sortAbcButton.Text" xml:space="preserve">
     <value>Sort ABC</value>
@@ -1015,7 +1015,7 @@
     <value>75, 23</value>
   </data>
   <data name="sortIdButton.TabIndex" type="System.Int32, mscorlib">
-    <value>72</value>
+    <value>7</value>
   </data>
   <data name="sortIdButton.Text" xml:space="preserve">
     <value>Sort ID</value>
@@ -1237,7 +1237,7 @@
     <value>75, 23</value>
   </data>
   <data name="batchButton.TabIndex" type="System.Int32, mscorlib">
-    <value>72</value>
+    <value>26</value>
   </data>
   <data name="batchButton.Text" xml:space="preserve">
     <value>Batch</value>
