@@ -56,23 +56,23 @@
             this.retirementYearNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.srcComboBox = new System.Windows.Forms.ComboBox();
             this.countryGroupBox = new System.Windows.Forms.GroupBox();
-            this.airforceCheckBox = new System.Windows.Forms.CheckBox();
-            this.navyCheckBox = new System.Windows.Forms.CheckBox();
-            this.armyCheckBox = new System.Windows.Forms.CheckBox();
             this.allRadioButton = new System.Windows.Forms.RadioButton();
             this.selectedRadioButton = new System.Windows.Forms.RadioButton();
             this.specifiedRadioButton = new System.Windows.Forms.RadioButton();
+            this.airforceCheckBox = new System.Windows.Forms.CheckBox();
+            this.navyCheckBox = new System.Windows.Forms.CheckBox();
+            this.armyCheckBox = new System.Windows.Forms.CheckBox();
             this.cancelButton = new System.Windows.Forms.Button();
             this.okButton = new System.Windows.Forms.Button();
             this.actionGroupBox = new System.Windows.Forms.GroupBox();
             this.idNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.idLabel = new System.Windows.Forms.Label();
-            this.destComboBox = new System.Windows.Forms.ComboBox();
-            this.branchGroupBox = new System.Windows.Forms.GroupBox();
-            this.destLabel = new System.Windows.Forms.Label();
             this.moveRadioButton = new System.Windows.Forms.RadioButton();
+            this.destLabel = new System.Windows.Forms.Label();
+            this.idLabel = new System.Windows.Forms.Label();
             this.copyRadioButton = new System.Windows.Forms.RadioButton();
+            this.destComboBox = new System.Windows.Forms.ComboBox();
             this.modifyRadioButton = new System.Windows.Forms.RadioButton();
+            this.branchGroupBox = new System.Windows.Forms.GroupBox();
             this.modifyGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rankYearNumericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rankYearNumericUpDown1)).BeginInit();
@@ -93,6 +93,7 @@
             // 
             // modifyGroupBox
             // 
+            resources.ApplyResources(this.modifyGroupBox, "modifyGroupBox");
             this.modifyGroupBox.Controls.Add(this.rankYearCheckBox4);
             this.modifyGroupBox.Controls.Add(this.rankYearNumericUpDown4);
             this.modifyGroupBox.Controls.Add(this.rankYearCheckBox1);
@@ -117,7 +118,6 @@
             this.modifyGroupBox.Controls.Add(this.endYearNumericUpDown);
             this.modifyGroupBox.Controls.Add(this.retirementYearCheckBox);
             this.modifyGroupBox.Controls.Add(this.retirementYearNumericUpDown);
-            resources.ApplyResources(this.modifyGroupBox, "modifyGroupBox");
             this.modifyGroupBox.Name = "modifyGroupBox";
             this.modifyGroupBox.TabStop = false;
             // 
@@ -254,9 +254,9 @@
             // 
             // idealRankComboBox
             // 
+            resources.ApplyResources(this.idealRankComboBox, "idealRankComboBox");
             this.idealRankComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.idealRankComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.idealRankComboBox, "idealRankComboBox");
             this.idealRankComboBox.Name = "idealRankComboBox";
             // 
             // idealRankCheckBox
@@ -350,20 +350,40 @@
             // 
             // srcComboBox
             // 
+            resources.ApplyResources(this.srcComboBox, "srcComboBox");
             this.srcComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.srcComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.srcComboBox, "srcComboBox");
             this.srcComboBox.Name = "srcComboBox";
             // 
             // countryGroupBox
             // 
+            resources.ApplyResources(this.countryGroupBox, "countryGroupBox");
             this.countryGroupBox.Controls.Add(this.allRadioButton);
             this.countryGroupBox.Controls.Add(this.selectedRadioButton);
             this.countryGroupBox.Controls.Add(this.srcComboBox);
             this.countryGroupBox.Controls.Add(this.specifiedRadioButton);
-            resources.ApplyResources(this.countryGroupBox, "countryGroupBox");
             this.countryGroupBox.Name = "countryGroupBox";
             this.countryGroupBox.TabStop = false;
+            // 
+            // allRadioButton
+            // 
+            resources.ApplyResources(this.allRadioButton, "allRadioButton");
+            this.allRadioButton.Name = "allRadioButton";
+            this.allRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // selectedRadioButton
+            // 
+            resources.ApplyResources(this.selectedRadioButton, "selectedRadioButton");
+            this.selectedRadioButton.Checked = true;
+            this.selectedRadioButton.Name = "selectedRadioButton";
+            this.selectedRadioButton.TabStop = true;
+            this.selectedRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // specifiedRadioButton
+            // 
+            resources.ApplyResources(this.specifiedRadioButton, "specifiedRadioButton");
+            this.specifiedRadioButton.Name = "specifiedRadioButton";
+            this.specifiedRadioButton.UseVisualStyleBackColor = true;
             // 
             // airforceCheckBox
             // 
@@ -389,43 +409,24 @@
             this.armyCheckBox.Name = "armyCheckBox";
             this.armyCheckBox.UseVisualStyleBackColor = true;
             // 
-            // allRadioButton
-            // 
-            resources.ApplyResources(this.allRadioButton, "allRadioButton");
-            this.allRadioButton.Name = "allRadioButton";
-            this.allRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // selectedRadioButton
-            // 
-            resources.ApplyResources(this.selectedRadioButton, "selectedRadioButton");
-            this.selectedRadioButton.Checked = true;
-            this.selectedRadioButton.Name = "selectedRadioButton";
-            this.selectedRadioButton.TabStop = true;
-            this.selectedRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // specifiedRadioButton
-            // 
-            resources.ApplyResources(this.specifiedRadioButton, "specifiedRadioButton");
-            this.specifiedRadioButton.Name = "specifiedRadioButton";
-            this.specifiedRadioButton.UseVisualStyleBackColor = true;
-            // 
             // cancelButton
             // 
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.cancelButton, "cancelButton");
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
             // okButton
             // 
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.okButton, "okButton");
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OnOkButtonClick);
             // 
             // actionGroupBox
             // 
+            resources.ApplyResources(this.actionGroupBox, "actionGroupBox");
             this.actionGroupBox.Controls.Add(this.idNumericUpDown);
             this.actionGroupBox.Controls.Add(this.moveRadioButton);
             this.actionGroupBox.Controls.Add(this.destLabel);
@@ -433,7 +434,6 @@
             this.actionGroupBox.Controls.Add(this.copyRadioButton);
             this.actionGroupBox.Controls.Add(this.destComboBox);
             this.actionGroupBox.Controls.Add(this.modifyRadioButton);
-            resources.ApplyResources(this.actionGroupBox, "actionGroupBox");
             this.actionGroupBox.Name = "actionGroupBox";
             this.actionGroupBox.TabStop = false;
             // 
@@ -452,32 +452,6 @@
             0,
             0});
             // 
-            // idLabel
-            // 
-            resources.ApplyResources(this.idLabel, "idLabel");
-            this.idLabel.Name = "idLabel";
-            // 
-            // destComboBox
-            // 
-            this.destComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.destComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.destComboBox, "destComboBox");
-            this.destComboBox.Name = "destComboBox";
-            // 
-            // branchGroupBox
-            // 
-            this.branchGroupBox.Controls.Add(this.airforceCheckBox);
-            this.branchGroupBox.Controls.Add(this.armyCheckBox);
-            this.branchGroupBox.Controls.Add(this.navyCheckBox);
-            resources.ApplyResources(this.branchGroupBox, "branchGroupBox");
-            this.branchGroupBox.Name = "branchGroupBox";
-            this.branchGroupBox.TabStop = false;
-            // 
-            // destLabel
-            // 
-            resources.ApplyResources(this.destLabel, "destLabel");
-            this.destLabel.Name = "destLabel";
-            // 
             // moveRadioButton
             // 
             resources.ApplyResources(this.moveRadioButton, "moveRadioButton");
@@ -485,6 +459,16 @@
             this.moveRadioButton.TabStop = true;
             this.moveRadioButton.UseVisualStyleBackColor = true;
             this.moveRadioButton.CheckedChanged += new System.EventHandler(this.OnMoveRadioButtonCheckedChanged);
+            // 
+            // destLabel
+            // 
+            resources.ApplyResources(this.destLabel, "destLabel");
+            this.destLabel.Name = "destLabel";
+            // 
+            // idLabel
+            // 
+            resources.ApplyResources(this.idLabel, "idLabel");
+            this.idLabel.Name = "idLabel";
             // 
             // copyRadioButton
             // 
@@ -494,6 +478,13 @@
             this.copyRadioButton.UseVisualStyleBackColor = true;
             this.copyRadioButton.CheckedChanged += new System.EventHandler(this.OnCopyRadioButtonCheckedChanged);
             // 
+            // destComboBox
+            // 
+            resources.ApplyResources(this.destComboBox, "destComboBox");
+            this.destComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.destComboBox.FormattingEnabled = true;
+            this.destComboBox.Name = "destComboBox";
+            // 
             // modifyRadioButton
             // 
             resources.ApplyResources(this.modifyRadioButton, "modifyRadioButton");
@@ -501,6 +492,15 @@
             this.modifyRadioButton.Name = "modifyRadioButton";
             this.modifyRadioButton.TabStop = true;
             this.modifyRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // branchGroupBox
+            // 
+            resources.ApplyResources(this.branchGroupBox, "branchGroupBox");
+            this.branchGroupBox.Controls.Add(this.airforceCheckBox);
+            this.branchGroupBox.Controls.Add(this.armyCheckBox);
+            this.branchGroupBox.Controls.Add(this.navyCheckBox);
+            this.branchGroupBox.Name = "branchGroupBox";
+            this.branchGroupBox.TabStop = false;
             // 
             // LeaderBatchDialog
             // 

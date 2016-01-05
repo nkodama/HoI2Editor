@@ -848,6 +848,208 @@ namespace HoI2Editor.Models
 
         #endregion
 
+        #region 一括編集
+
+        /// <summary>
+        ///     一括編集
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        public static void BatchEdit(TeamBatchEditArgs args)
+        {
+            LogBatchEdit(args);
+
+            IEnumerable<Team> teams = GetBatchEditTeams(args);
+            Country newCountry;
+            switch (args.ActionMode)
+            {
+                case BatchActionMode.Modify:
+                    // 研究機関を一括編集する
+                    foreach (Team team in teams)
+                    {
+                        BatchEditTeam(team, args);
+                    }
+                    break;
+
+                case BatchActionMode.Copy:
+                    // 研究機関をコピーする
+                    newCountry = args.Destination;
+                    int id = args.Id;
+                    foreach (Team team in teams)
+                    {
+                        id = GetNewId(id);
+                        Team newTeam = new Team(team)
+                        {
+                            Country = newCountry,
+                            Id = id
+                        };
+                        newTeam.SetDirtyAll();
+                        Items.Add(newTeam);
+                    }
+
+                    // コピー先の国の編集済みフラグを設定する
+                    SetDirty(newCountry);
+
+                    // コピー先の国がファイル一覧に存在しなければ追加する
+                    if (!FileNameMap.ContainsKey(newCountry))
+                    {
+                        FileNameMap.Add(newCountry, Game.GetTeamFileName(newCountry));
+                        SetDirtyList();
+                    }
+                    break;
+
+                case BatchActionMode.Move:
+                    // 研究機関を移動する
+                    newCountry = args.Destination;
+                    foreach (Team team in teams)
+                    {
+                        // 移動前の国の編集済みフラグを設定する
+                        SetDirty(team.Country);
+
+                        team.Country = newCountry;
+                        team.SetDirty(TeamItemId.Country);
+                    }
+
+                    // 移動先の国の編集済みフラグを設定する
+                    SetDirty(newCountry);
+
+                    // 移動先の国がファイル一覧に存在しなければ追加する
+                    if (!FileNameMap.ContainsKey(newCountry))
+                    {
+                        FileNameMap.Add(newCountry, Game.GetTeamFileName(newCountry));
+                        SetDirtyList();
+                    }
+                    break;
+            }
+        }
+
+        /// <summary>
+        ///     一括編集の個別処理
+        /// </summary>
+        /// <param name="team">対象研究機関</param>
+        /// <param name="args">一括編集のパラメータ</param>
+        private static void BatchEditTeam(Team team, TeamBatchEditArgs args)
+        {
+            // スキル
+            if (args.Items[(int) TeamBatchItemId.Skill])
+            {
+                if (team.Skill != args.Skill)
+                {
+                    team.Skill = args.Skill;
+                    team.SetDirty(TeamItemId.Skill);
+                    SetDirty(team.Country);
+                }
+            }
+
+            // 開始年
+            if (args.Items[(int) TeamBatchItemId.StartYear])
+            {
+                if (team.StartYear != args.StartYear)
+                {
+                    team.StartYear = args.StartYear;
+                    team.SetDirty(TeamItemId.StartYear);
+                    SetDirty(team.Country);
+                }
+            }
+
+            // 終了年
+            if (args.Items[(int) TeamBatchItemId.EndYear])
+            {
+                if (team.EndYear != args.EndYear)
+                {
+                    team.EndYear = args.EndYear;
+                    team.SetDirty(TeamItemId.EndYear);
+                    SetDirty(team.Country);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     一括編集対象の研究機関リストを取得する
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        /// <returns>一括編集対象の研究機関リスト</returns>
+        private static IEnumerable<Team> GetBatchEditTeams(TeamBatchEditArgs args)
+        {
+            return args.CountryMode == BatchCountryMode.All
+                ? Items.ToList()
+                : Items.Where(team => args.TargetCountries.Contains(team.Country)).ToList();
+        }
+
+        /// <summary>
+        ///     一括編集処理のログ出力
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        private static void LogBatchEdit(TeamBatchEditArgs args)
+        {
+            Log.Verbose($"[Team] Batch {GetBatchEditItemLog(args)} ({GetBatchEditModeLog(args)})");
+        }
+
+        /// <summary>
+        ///     一括編集項目のログ文字列を取得する
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        /// <returns>ログ文字列</returns>
+        private static string GetBatchEditItemLog(TeamBatchEditArgs args)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (args.Items[(int) TeamBatchItemId.Skill])
+            {
+                sb.AppendFormat($" skill: {args.Skill}");
+            }
+            if (args.Items[(int) TeamBatchItemId.StartYear])
+            {
+                sb.AppendFormat($" start year: {args.StartYear}");
+            }
+            if (args.Items[(int) TeamBatchItemId.EndYear])
+            {
+                sb.AppendFormat($" end year: {args.EndYear}");
+            }
+            if (args.ActionMode == BatchActionMode.Copy)
+            {
+                sb.Append($" Copy: {Countries.Strings[(int) args.Destination]} id: {args.Id}");
+            }
+            else if (args.ActionMode == BatchActionMode.Move)
+            {
+                sb.Append($" Move: {Countries.Strings[(int) args.Destination]} id: {args.Id}");
+            }
+            if (sb.Length > 0)
+            {
+                sb.Remove(0, 1);
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>
+        ///     一括編集対象モードのログ文字列を取得する
+        /// </summary>
+        /// <param name="args">一括編集のパラメータ</param>
+        /// <returns>ログ文字列</returns>
+        private static string GetBatchEditModeLog(TeamBatchEditArgs args)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            // 一括編集対象国
+            if (args.CountryMode == BatchCountryMode.All)
+            {
+                sb.Append("ALL");
+            }
+            else
+            {
+                foreach (Country country in args.TargetCountries)
+                {
+                    sb.AppendFormat(" {0}", Countries.Strings[(int) country]);
+                }
+                if (sb.Length > 0)
+                {
+                    sb.Remove(0, 1);
+                }
+            }
+
+            return sb.ToString();
+        }
+
+        #endregion
+
         #region ID操作
 
         /// <summary>
@@ -858,21 +1060,42 @@ namespace HoI2Editor.Models
         public static int GetNewId(Country country)
         {
             // 対象国の研究機関IDの最大値+1から検索を始める
-            int id = 1;
-            if (country != Country.None)
-            {
-                List<int> ids = Items.Where(team => team.Country == country).Select(team => team.Id).ToList();
-                if (ids.Any())
-                {
-                    id = ids.Max() + 1;
-                }
-            }
+            int id = GetMaxId(country);
             // 未使用IDが見つかるまでIDを1ずつ増やす
+            return GetNewId(id);
+        }
+
+        /// <summary>
+        ///     未使用の研究機関IDを取得する
+        /// </summary>
+        /// <param name="id">開始ID</param>
+        /// <returns>研究機関ID</returns>
+        public static int GetNewId(int id)
+        {
             while (IdSet.Contains(id))
             {
                 id++;
             }
             return id;
+        }
+
+        /// <summary>
+        ///     対象国の研究機関IDの最大値を取得する
+        /// </summary>
+        /// <param name="country">対象国</param>
+        /// <returns>研究機関ID</returns>
+        private static int GetMaxId(Country country)
+        {
+            if (country == Country.None)
+            {
+                return 1;
+            }
+            List<int> ids = Items.Where(team => team.Country == country).Select(team => team.Id).ToList();
+            if (!ids.Any())
+            {
+                return 1;
+            }
+            return ids.Max() + 1;
         }
 
         #endregion
@@ -943,5 +1166,70 @@ namespace HoI2Editor.Models
         }
 
         #endregion
+    }
+
+    /// <summary>
+    ///     研究機関一括編集のパラメータ
+    /// </summary>
+    public class TeamBatchEditArgs
+    {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     一括編集対象国モード
+        /// </summary>
+        public BatchCountryMode CountryMode { get; set; }
+
+        /// <summary>
+        ///     対象国リスト
+        /// </summary>
+        public List<Country> TargetCountries { get; } = new List<Country>();
+
+        /// <summary>
+        ///     一括編集動作モード
+        /// </summary>
+        public BatchActionMode ActionMode { get; set; }
+
+        /// <summary>
+        ///     コピー/移動先指定国
+        /// </summary>
+        public Country Destination { get; set; }
+
+        /// <summary>
+        ///     開始ID
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        ///     一括編集項目
+        /// </summary>
+        public bool[] Items { get; } = new bool[Enum.GetValues(typeof (TeamBatchItemId)).Length];
+
+        /// <summary>
+        ///     スキル
+        /// </summary>
+        public int Skill { get; set; }
+
+        /// <summary>
+        ///     開始年
+        /// </summary>
+        public int StartYear { get; set; }
+
+        /// <summary>
+        ///     終了年
+        /// </summary>
+        public int EndYear { get; set; }
+
+        #endregion
+    }
+
+    /// <summary>
+    ///     一括編集項目ID
+    /// </summary>
+    public enum TeamBatchItemId
+    {
+        Skill, // スキル
+        StartYear, // 開始年
+        EndYear // 終了年
     }
 }

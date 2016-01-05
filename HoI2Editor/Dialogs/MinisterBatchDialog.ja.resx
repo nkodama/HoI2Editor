@@ -175,6 +175,9 @@
   <data name="modifyGroupBox.Text" xml:space="preserve">
     <value>変更</value>
   </data>
+  <data name="actionGroupBox.Text" xml:space="preserve">
+    <value>一括操作</value>
+  </data>
   <data name="destLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 12</value>
   </data>
@@ -205,13 +208,10 @@
   <data name="idLabel.Text" xml:space="preserve">
     <value>開始ID</value>
   </data>
-  <data name="actionGroupBox.Text" xml:space="preserve">
-    <value>一括操作</value>
-  </data>
   <data name="positionGroupBox.Text" xml:space="preserve">
     <value>閣僚地位</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>一括編集</value>
+    <value>閣僚一括編集</value>
   </data>
 </root>

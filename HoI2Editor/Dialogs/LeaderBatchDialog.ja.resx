@@ -190,26 +190,11 @@
   <data name="retirementYearCheckBox.Text" xml:space="preserve">
     <value>引退年</value>
   </data>
-  <data name="editGroupBox.Text" xml:space="preserve">
-    <value>編集</value>
+  <data name="modifyGroupBox.Text" xml:space="preserve">
+    <value>変更</value>
   </data>
-  <data name="airforceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
-  <data name="airforceCheckBox.Text" xml:space="preserve">
-    <value>空軍</value>
-  </data>
-  <data name="navyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
-  <data name="navyCheckBox.Text" xml:space="preserve">
-    <value>海軍</value>
-  </data>
-  <data name="armyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
-  <data name="armyCheckBox.Text" xml:space="preserve">
-    <value>陸軍</value>
+  <data name="countryGroupBox.Text" xml:space="preserve">
+    <value>対象国</value>
   </data>
   <data name="allRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 16</value>
@@ -229,11 +214,41 @@
   <data name="specifiedRadioButton.Text" xml:space="preserve">
     <value>指定国</value>
   </data>
-  <data name="targetGroupBox.Text" xml:space="preserve">
-    <value>対象</value>
+  <data name="airforceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="airforceCheckBox.Text" xml:space="preserve">
+    <value>空軍</value>
+  </data>
+  <data name="navyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="navyCheckBox.Text" xml:space="preserve">
+    <value>海軍</value>
+  </data>
+  <data name="armyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="armyCheckBox.Text" xml:space="preserve">
+    <value>陸軍</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>キャンセル</value>
+  </data>
+  <data name="actionGroupBox.Text" xml:space="preserve">
+    <value>一括操作</value>
+  </data>
+  <data name="moveRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
+  </data>
+  <data name="moveRadioButton.Text" xml:space="preserve">
+    <value>移動</value>
+  </data>
+  <data name="destLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 12</value>
+  </data>
+  <data name="destLabel.Text" xml:space="preserve">
+    <value>コピー/移動先</value>
   </data>
   <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 12</value>
@@ -241,16 +256,22 @@
   <data name="idLabel.Text" xml:space="preserve">
     <value>開始ID</value>
   </data>
-  <data name="copyToCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>97, 16</value>
+  <data name="copyRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 16</value>
   </data>
-  <data name="copyToCheckBox.Text" xml:space="preserve">
-    <value>指定国へコピー</value>
-  </data>
-  <data name="copyGroupBox.Text" xml:space="preserve">
+  <data name="copyRadioButton.Text" xml:space="preserve">
     <value>コピー</value>
   </data>
+  <data name="modifyRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
+  </data>
+  <data name="modifyRadioButton.Text" xml:space="preserve">
+    <value>変更</value>
+  </data>
+  <data name="branchGroupBox.Text" xml:space="preserve">
+    <value>兵科</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>一括編集</value>
+    <value>指揮官一括編集</value>
   </data>
 </root>

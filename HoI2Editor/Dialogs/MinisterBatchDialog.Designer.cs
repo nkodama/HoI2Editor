@@ -408,8 +408,10 @@
             // 
             // MinisterBatchDialog
             // 
+            this.AcceptButton = this.okButton;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.CancelButton = this.cancelButton;
             this.Controls.Add(this.positionGroupBox);
             this.Controls.Add(this.actionGroupBox);
             this.Controls.Add(this.modifyGroupBox);

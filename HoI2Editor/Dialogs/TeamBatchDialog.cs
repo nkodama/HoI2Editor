@@ -12,37 +12,17 @@ namespace HoI2Editor.Dialogs
     /// </summary>
     public partial class TeamBatchDialog : Form
     {
-        #region 公開プロパティ
+        #region 内部フィールド
 
         /// <summary>
-        ///     一括編集対象モード
+        ///     一括編集のパラメータ
         /// </summary>
-        public TeamBatchMode Mode { get; private set; }
+        private readonly TeamBatchEditArgs _args;
 
         /// <summary>
-        ///     一括編集項目
+        ///     開始IDが変更されたかどうか
         /// </summary>
-        public bool[] BatchItems { get; private set; }
-
-        /// <summary>
-        ///     選択国
-        /// </summary>
-        public Country SelectedCountry { get; private set; }
-
-        /// <summary>
-        ///     スキル
-        /// </summary>
-        public int Skill { get; private set; }
-
-        /// <summary>
-        ///     開始年
-        /// </summary>
-        public int StartYear { get; private set; }
-
-        /// <summary>
-        ///     終了年
-        /// </summary>
-        public int EndYear { get; private set; }
+        private bool _idChanged;
 
         #endregion
 
@@ -51,12 +31,12 @@ namespace HoI2Editor.Dialogs
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        /// <param name="country">研究機関エディタフォームでの選択国</param>
-        public TeamBatchDialog(Country country)
+        /// <param name="args">一括編集のパラメータ</param>
+        public TeamBatchDialog(TeamBatchEditArgs args)
         {
             InitializeComponent();
 
-            SelectedCountry = country;
+            _args = args;
         }
 
         #endregion
@@ -70,34 +50,62 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnFormLoad(object sender, EventArgs e)
         {
-            // メンバ変数の初期化
-            BatchItems = new bool[Enum.GetValues(typeof (MinisterBatchItemId)).Length];
-
             Graphics g = Graphics.FromHwnd(Handle);
             int margin = DeviceCaps.GetScaledWidth(2) + 1;
 
             // 選択国コンボボックス
-            countryComboBox.BeginUpdate();
-            countryComboBox.Items.Clear();
-            int width = countryComboBox.Width;
+            srcComboBox.BeginUpdate();
+            srcComboBox.Items.Clear();
+            int width = srcComboBox.Width;
             foreach (string s in Countries.Tags
                 .Select(country => Countries.Strings[(int) country])
                 .Select(name => Config.ExistsKey(name)
                     ? $"{name} {Config.GetText(name)}"
                     : name))
             {
-                countryComboBox.Items.Add(s);
+                srcComboBox.Items.Add(s);
                 width = Math.Max(width,
-                    (int) g.MeasureString(s, countryComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
+                    (int) g.MeasureString(s, srcComboBox.Font).Width + SystemInformation.VerticalScrollBarWidth +
                     margin);
             }
-            countryComboBox.DropDownWidth = width;
-            countryComboBox.EndUpdate();
-            if (countryComboBox.Items.Count > 0)
+            srcComboBox.DropDownWidth = width;
+            srcComboBox.EndUpdate();
+            if (srcComboBox.Items.Count > 0)
             {
-                countryComboBox.SelectedIndex = Countries.Tags.ToList().IndexOf(SelectedCountry);
+                srcComboBox.SelectedIndex = Countries.Tags.ToList().IndexOf(_args.TargetCountries[0]);
             }
-            countryComboBox.SelectedIndexChanged += OnCountryComboBoxSelectedIndexChanged;
+            srcComboBox.SelectedIndexChanged += OnSrcComboBoxSelectedIndexChanged;
+
+            // コピー/移動先コンボボックス
+            destComboBox.BeginUpdate();
+            destComboBox.Items.Clear();
+            width = destComboBox.Width;
+            foreach (string s in Countries.Tags
+                .Select(country => Countries.Strings[(int) country])
+                .Select(name => Config.ExistsKey(name)
+                    ? $"{name} {Config.GetText(name)}"
+                    : name))
+            {
+                destComboBox.Items.Add(s);
+                width = Math.Max(width,
+                    (int) g.MeasureString(s, srcComboBox.Font).Width +
+                    SystemInformation.VerticalScrollBarWidth +
+                    margin);
+            }
+            destComboBox.DropDownWidth = width;
+            destComboBox.EndUpdate();
+            if (_args.TargetCountries.Count > 0)
+            {
+                destComboBox.SelectedIndex = Countries.Tags.ToList().IndexOf(_args.TargetCountries[0]);
+            }
+            destComboBox.SelectedIndexChanged += OnDestComboBoxSelectedIndexChanged;
+
+            // 開始ID
+            if (_args.TargetCountries.Count > 0)
+            {
+                idNumericUpDown.Value = Teams.GetNewId(_args.TargetCountries[0]);
+            }
+            idNumericUpDown.ValueChanged += OnIdNumericUpDownValueChanged;
         }
 
         /// <summary>
@@ -107,30 +115,47 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnOkButtonClick(object sender, EventArgs e)
         {
+            // 対象国モード
             if (allRadioButton.Checked)
             {
-                Mode = TeamBatchMode.All;
+                _args.CountryMode = BatchCountryMode.All;
             }
             else if (selectedRadioButton.Checked)
             {
-                Mode = TeamBatchMode.Selected;
+                _args.CountryMode = BatchCountryMode.Selected;
             }
             else
             {
-                Mode = TeamBatchMode.Specified;
+                _args.CountryMode = BatchCountryMode.Specified;
+                _args.TargetCountries.Clear();
+                _args.TargetCountries.Add(Countries.Tags[srcComboBox.SelectedIndex]);
             }
-            if (countryComboBox.SelectedIndex >= 0)
+
+            // 動作モード
+            if (copyRadioButton.Checked)
             {
-                SelectedCountry = Countries.Tags[countryComboBox.SelectedIndex];
+                _args.ActionMode = BatchActionMode.Copy;
+            }
+            else if (moveRadioButton.Checked)
+            {
+                _args.ActionMode = BatchActionMode.Move;
+            }
+            else
+            {
+                _args.ActionMode = BatchActionMode.Modify;
             }
 
-            BatchItems[(int) TeamBatchItemId.Skill] = skillCheckBox.Checked;
-            BatchItems[(int) TeamBatchItemId.StartYear] = startYearCheckBox.Checked;
-            BatchItems[(int) TeamBatchItemId.EndYear] = endYearCheckBox.Checked;
+            _args.Destination = Countries.Tags[destComboBox.SelectedIndex];
+            _args.Id = (int) idNumericUpDown.Value;
 
-            Skill = (int) skillNumericUpDown.Value;
-            StartYear = (int) startYearNumericUpDown.Value;
-            EndYear = (int) endYearNumericUpDown.Value;
+            // 編集項目
+            _args.Items[(int) TeamBatchItemId.Skill] = skillCheckBox.Checked;
+            _args.Items[(int) TeamBatchItemId.StartYear] = startYearCheckBox.Checked;
+            _args.Items[(int) TeamBatchItemId.EndYear] = endYearCheckBox.Checked;
+
+            _args.Skill = (int) skillNumericUpDown.Value;
+            _args.StartYear = (int) startYearNumericUpDown.Value;
+            _args.EndYear = (int) endYearNumericUpDown.Value;
         }
 
         #endregion
@@ -138,19 +163,131 @@ namespace HoI2Editor.Dialogs
         #region 編集項目
 
         /// <summary>
-        ///     国家コンボボックスの選択項目変更時の処理
+        ///     対象国コンボボックスの選択項目変更時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnCountryComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        private void OnSrcComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            if (countryComboBox.SelectedIndex < 0)
+            if (srcComboBox.SelectedIndex < 0)
             {
                 return;
             }
-            if (!specifiedRadioButton.Checked)
+
+            specifiedRadioButton.Checked = true;
+        }
+
+        /// <summary>
+        ///     コピーラジオボタンのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCopyRadioButtonCheckedChanged(object sender, EventArgs e)
+        {
+            if (!copyRadioButton.Checked)
             {
-                specifiedRadioButton.Checked = true;
+                return;
+            }
+
+            skillCheckBox.Checked = false;
+            startYearCheckBox.Checked = false;
+            endYearCheckBox.Checked = false;
+        }
+
+        /// <summary>
+        ///     移動ラジオボタンのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMoveRadioButtonCheckedChanged(object sender, EventArgs e)
+        {
+            if (!moveRadioButton.Checked)
+            {
+                return;
+            }
+
+            skillCheckBox.Checked = false;
+            startYearCheckBox.Checked = false;
+            endYearCheckBox.Checked = false;
+        }
+
+        /// <summary>
+        ///     コピー/移動先コンボボックスの選択項目変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnDestComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (destComboBox.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            if (!copyRadioButton.Checked && !moveRadioButton.Checked)
+            {
+                copyRadioButton.Checked = true;
+            }
+
+            // 開始ID数値アップダウンの数値が変更されていなければ変更する
+            if (!_idChanged)
+            {
+                idNumericUpDown.ValueChanged -= OnIdNumericUpDownValueChanged;
+                idNumericUpDown.Value = Teams.GetNewId(Countries.Tags[destComboBox.SelectedIndex]);
+                idNumericUpDown.ValueChanged += OnIdNumericUpDownValueChanged;
+            }
+        }
+
+        /// <summary>
+        ///     開始ID数値アップダウンの値変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnIdNumericUpDownValueChanged(object sender, EventArgs e)
+        {
+            _idChanged = true;
+
+            if (!copyRadioButton.Checked && !moveRadioButton.Checked)
+            {
+                copyRadioButton.Checked = true;
+            }
+        }
+
+        /// <summary>
+        ///     スキルチェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnSkillCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            if (skillCheckBox.Checked)
+            {
+                modifyRadioButton.Checked = true;
+            }
+        }
+
+        /// <summary>
+        ///     開始年チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnStartYearCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            if (startYearCheckBox.Checked)
+            {
+                modifyRadioButton.Checked = true;
+            }
+        }
+
+        /// <summary>
+        ///     終了年チェックボックスのチェック状態変更時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnEndYearCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            if (endYearCheckBox.Checked)
+            {
+                modifyRadioButton.Checked = true;
             }
         }
 
@@ -161,10 +298,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnSkillNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            if (!skillCheckBox.Checked)
-            {
-                skillCheckBox.Checked = true;
-            }
+            skillCheckBox.Checked = true;
         }
 
         /// <summary>
@@ -174,10 +308,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnStartYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            if (!startYearCheckBox.Checked)
-            {
-                startYearCheckBox.Checked = true;
-            }
+            startYearCheckBox.Checked = true;
         }
 
         /// <summary>
@@ -187,32 +318,9 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnEndYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            if (!endYearCheckBox.Checked)
-            {
-                endYearCheckBox.Checked = true;
-            }
+            endYearCheckBox.Checked = true;
         }
 
         #endregion
-    }
-
-    /// <summary>
-    ///     一括編集対象モード
-    /// </summary>
-    public enum TeamBatchMode
-    {
-        All, // 全て
-        Selected, // 選択国
-        Specified // 指定国
-    }
-
-    /// <summary>
-    ///     一括編集項目ID
-    /// </summary>
-    public enum TeamBatchItemId
-    {
-        Skill, // スキル
-        StartYear, // 開始年
-        EndYear // 終了年
     }
 }
