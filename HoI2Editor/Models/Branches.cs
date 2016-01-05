@@ -7,10 +7,22 @@ namespace HoI2Editor.Models
     /// </summary>
     public static class Branches
     {
+        #region 内部定数
+
         /// <summary>
         ///     兵科名
         /// </summary>
-        private static readonly string[] Names = { "", "EYR_ARMY", "EYR_NAVY", "EYR_AIRFORCE" };
+        private static readonly TextId[] Names =
+        {
+            TextId.Empty,
+            TextId.BranchArmy,
+            TextId.BranchNavy,
+            TextId.BranchAirForce
+        };
+
+        #endregion
+
+        #region 公開メソッド
 
         /// <summary>
         ///     兵科名を取得する
@@ -28,8 +40,10 @@ namespace HoI2Editor.Models
         /// <returns>兵科名の集合</returns>
         public static string[] GetNames()
         {
-            return Names.Where(s => !string.IsNullOrEmpty(s)).Select(Config.GetText).ToArray();
+            return Names.Where(id => id != TextId.Empty).Select(Config.GetText).ToArray();
         }
+
+        #endregion
     }
 
     /// <summary>

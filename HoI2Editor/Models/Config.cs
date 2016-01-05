@@ -193,6 +193,9 @@ namespace HoI2Editor.Models
         private static readonly string[] KeyStrings =
         {
             "",
+            "EYR_ARMY",
+            "EYR_NAVY",
+            "EYR_AIRFORCE",
             "EYR_AXIS",
             "EYR_ALLIES",
             "EYR_COM",
@@ -1431,6 +1434,9 @@ namespace HoI2Editor.Models
     public enum TextId
     {
         Empty, // 空文字列
+        BranchArmy, // 陸軍
+        BranchNavy, // 海軍
+        BranchAirForce, // 空軍
         AllianceAxis, // 枢軸国
         AllianceAllies, // 連合国
         AllianceComintern, // 共産国

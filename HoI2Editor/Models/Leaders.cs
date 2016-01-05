@@ -1097,29 +1097,66 @@ namespace HoI2Editor.Models
             LogBatchEdit(args);
 
             IEnumerable<Leader> leaders = GetBatchEditLeaders(args);
-            if (args.CopyCountry == Country.None)
+            Country newCountry;
+            switch (args.ActionMode)
             {
-                foreach (Leader leader in leaders)
-                {
-                    BatchEditLeader(leader, args);
-                }
-            }
-            else
-            {
-                Country newCountry = args.CopyCountry;
-                int id = args.Id;
-                foreach (Leader leader in leaders)
-                {
-                    id = GetNewId(id);
-                    Leader newLeader = new Leader(leader)
+                case BatchActionMode.Modify:
+                    // 指揮官を一括編集する
+                    foreach (Leader leader in leaders)
                     {
-                        Country = newCountry,
-                        Id = id
-                    };
-                    newLeader.SetDirtyAll();
-                    BatchEditLeader(newLeader, args);
-                    Items.Add(newLeader);
-                }
+                        BatchEditLeader(leader, args);
+                    }
+                    break;
+
+                case BatchActionMode.Copy:
+                    // 指揮官をコピーする
+                    newCountry = args.Destination;
+                    int id = args.Id;
+                    foreach (Leader leader in leaders)
+                    {
+                        id = GetNewId(id);
+                        Leader newLeader = new Leader(leader)
+                        {
+                            Country = newCountry,
+                            Id = id
+                        };
+                        newLeader.SetDirtyAll();
+                        Items.Add(newLeader);
+                    }
+
+                    // コピー先の国の編集済みフラグを設定する
+                    SetDirty(newCountry);
+
+                    // コピー先の国がファイル一覧に存在しなければ追加する
+                    if (!FileNameMap.ContainsKey(newCountry))
+                    {
+                        FileNameMap.Add(newCountry, Game.GetLeaderFileName(newCountry));
+                        SetDirtyList();
+                    }
+                    break;
+
+                case BatchActionMode.Move:
+                    // 指揮官を移動する
+                    newCountry = args.Destination;
+                    foreach (Leader leader in leaders)
+                    {
+                        // 移動前の国の編集済みフラグを設定する
+                        SetDirty(leader.Country);
+
+                        leader.Country = newCountry;
+                        leader.SetDirty(LeaderItemId.Country);
+                    }
+
+                    // 移動先の国の編集済みフラグを設定する
+                    SetDirty(newCountry);
+
+                    // 移動先の国がファイル一覧に存在しなければ追加する
+                    if (!FileNameMap.ContainsKey(newCountry))
+                    {
+                        FileNameMap.Add(newCountry, Game.GetLeaderFileName(newCountry));
+                        SetDirtyList();
+                    }
+                    break;
             }
         }
 
@@ -1292,7 +1329,7 @@ namespace HoI2Editor.Models
         /// <param name="args">一括編集のパラメータ</param>
         private static void LogBatchEdit(LeaderBatchEditArgs args)
         {
-            Log.Verbose("[Leader] Batch {0} ({1})", GetBatchEditItemLog(args), GetBatchEditModeLog(args));
+            Log.Verbose($"[Leader] Batch {GetBatchEditItemLog(args)} ({GetBatchEditModeLog(args)})");
         }
 
         /// <summary>
@@ -1305,55 +1342,55 @@ namespace HoI2Editor.Models
             StringBuilder sb = new StringBuilder();
             if (args.Items[(int) LeaderBatchItemId.IdealRank])
             {
-                sb.AppendFormat(" ideal rank: {0}", Config.GetText(RankNames[(int) args.IdealRank]));
+                sb.AppendFormat($" ideal rank: {Config.GetText(RankNames[(int) args.IdealRank])}");
             }
             if (args.Items[(int) LeaderBatchItemId.Skill])
             {
-                sb.AppendFormat(" skill: {0}", args.Skill);
+                sb.AppendFormat($" skill: {args.Skill}");
             }
             if (args.Items[(int) LeaderBatchItemId.MaxSkill])
             {
-                sb.AppendFormat(" max skill: {0}", args.MaxSkill);
+                sb.AppendFormat($" max skill: {args.MaxSkill}");
             }
             if (args.Items[(int) LeaderBatchItemId.Experience])
             {
-                sb.AppendFormat(" experience: {0}", args.Experience);
+                sb.AppendFormat($" experience: {args.Experience}");
             }
             if (args.Items[(int) LeaderBatchItemId.Loyalty])
             {
-                sb.AppendFormat(" loyalty: {0}", args.Loyalty);
+                sb.AppendFormat($" loyalty: {args.Loyalty}");
             }
             if (args.Items[(int) LeaderBatchItemId.StartYear])
             {
-                sb.AppendFormat(" start year: {0}", args.StartYear);
+                sb.AppendFormat($" start year: {args.StartYear}");
             }
             if (args.Items[(int) LeaderBatchItemId.EndYear])
             {
-                sb.AppendFormat(" end year: {0}", args.EndYear);
+                sb.AppendFormat($" end year: {args.EndYear}");
             }
             if (args.Items[(int) LeaderBatchItemId.RetirementYear])
             {
-                sb.AppendFormat(" retirement year: {0}", args.RetirementYear);
+                sb.AppendFormat($" retirement year: {args.RetirementYear}");
             }
             if (args.Items[(int) LeaderBatchItemId.Rank3Year])
             {
-                sb.AppendFormat(" rank3 year: {0}", args.RankYear[0]);
+                sb.AppendFormat($" rank3 year: {args.RankYear[0]}");
             }
             if (args.Items[(int) LeaderBatchItemId.Rank2Year])
             {
-                sb.AppendFormat(" rank2 year: {0}", args.RankYear[1]);
+                sb.AppendFormat($" rank2 year: {args.RankYear[1]}");
             }
             if (args.Items[(int) LeaderBatchItemId.Rank1Year])
             {
-                sb.AppendFormat(" rank1 year: {0}", args.RankYear[2]);
+                sb.AppendFormat($" rank1 year: {args.RankYear[2]}");
             }
-            if (args.Items[(int) LeaderBatchItemId.Rank0Year])
+            if (args.ActionMode == BatchActionMode.Copy)
             {
-                sb.AppendFormat(" rank0 year: {0}", args.RankYear[3]);
+                sb.Append($" Copy: {Countries.Strings[(int) args.Destination]} id: {args.Id}");
             }
-            if (args.CopyCountry != Country.None)
+            else if (args.ActionMode == BatchActionMode.Move)
             {
-                sb.AppendFormat(" Copy: {0} id: {1}", Countries.Strings[(int) args.CopyCountry], args.Id);
+                sb.Append($" Move: {Countries.Strings[(int) args.Destination]} id: {args.Id}");
             }
             if (sb.Length > 0)
             {
@@ -1370,6 +1407,8 @@ namespace HoI2Editor.Models
         private static string GetBatchEditModeLog(LeaderBatchEditArgs args)
         {
             StringBuilder sb = new StringBuilder();
+
+            // 一括編集対象国
             if (args.CountryMode == BatchCountryMode.All)
             {
                 sb.Append("ALL");
@@ -1385,21 +1424,11 @@ namespace HoI2Editor.Models
                     sb.Remove(0, 1);
                 }
             }
+
+            // 一括編集対象兵科
             if (!args.Army || !args.Navy || !args.Airforce)
             {
-                sb.Append(":");
-                if (args.Army)
-                {
-                    sb.Append("L");
-                }
-                if (args.Navy)
-                {
-                    sb.Append("N");
-                }
-                if (args.Airforce)
-                {
-                    sb.Append("A");
-                }
+                sb.Append($"|{(args.Army ? 'o' : 'x')}{(args.Navy ? 'o' : 'x')}{(args.Airforce ? 'o' : 'x')}");
             }
             return sb.ToString();
         }
@@ -1532,7 +1561,7 @@ namespace HoI2Editor.Models
         #region 公開プロパティ
 
         /// <summary>
-        ///     一括編集対象モード
+        ///     一括編集対象国モード
         /// </summary>
         public BatchCountryMode CountryMode { get; set; }
 
@@ -1557,9 +1586,14 @@ namespace HoI2Editor.Models
         public bool Airforce { get; set; }
 
         /// <summary>
-        ///     コピー先指定国
+        ///     一括編集動作モード
         /// </summary>
-        public Country CopyCountry { get; set; }
+        public BatchActionMode ActionMode { get; set; }
+
+        /// <summary>
+        ///     コピー/移動先指定国
+        /// </summary>
+        public Country Destination { get; set; }
 
         /// <summary>
         ///     開始ID

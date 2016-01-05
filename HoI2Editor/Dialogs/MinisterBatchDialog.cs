@@ -251,10 +251,7 @@ namespace HoI2Editor.Dialogs
                 return;
             }
 
-            if (!specifiedRadioButton.Checked)
-            {
-                specifiedRadioButton.Checked = true;
-            }
+            specifiedRadioButton.Checked = true;
         }
 
         /// <summary>
@@ -269,26 +266,11 @@ namespace HoI2Editor.Dialogs
                 return;
             }
 
-            if (startYearCheckBox.Checked)
-            {
-                startYearCheckBox.Checked = false;
-            }
-            if (endYearCheckBox.Checked)
-            {
-                endYearCheckBox.Checked = false;
-            }
-            if (retirementYearCheckBox.Checked)
-            {
-                retirementYearCheckBox.Checked = false;
-            }
-            if (ideologyCheckBox.Checked)
-            {
-                ideologyCheckBox.Checked = false;
-            }
-            if (loyaltyCheckBox.Checked)
-            {
-                loyaltyCheckBox.Checked = false;
-            }
+            startYearCheckBox.Checked = false;
+            endYearCheckBox.Checked = false;
+            retirementYearCheckBox.Checked = false;
+            ideologyCheckBox.Checked = false;
+            loyaltyCheckBox.Checked = false;
         }
 
         /// <summary>
@@ -303,26 +285,11 @@ namespace HoI2Editor.Dialogs
                 return;
             }
 
-            if (startYearCheckBox.Checked)
-            {
-                startYearCheckBox.Checked = false;
-            }
-            if (endYearCheckBox.Checked)
-            {
-                endYearCheckBox.Checked = false;
-            }
-            if (retirementYearCheckBox.Checked)
-            {
-                retirementYearCheckBox.Checked = false;
-            }
-            if (ideologyCheckBox.Checked)
-            {
-                ideologyCheckBox.Checked = false;
-            }
-            if (loyaltyCheckBox.Checked)
-            {
-                loyaltyCheckBox.Checked = false;
-            }
+            startYearCheckBox.Checked = false;
+            endYearCheckBox.Checked = false;
+            retirementYearCheckBox.Checked = false;
+            ideologyCheckBox.Checked = false;
+            loyaltyCheckBox.Checked = false;
         }
 
         /// <summary>
@@ -373,7 +340,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnStartYearCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            if (startYearCheckBox.Checked && !modifyRadioButton.Checked)
+            if (startYearCheckBox.Checked)
             {
                 modifyRadioButton.Checked = true;
             }
@@ -386,7 +353,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnEndYearCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            if (endYearCheckBox.Checked && !modifyRadioButton.Checked)
+            if (endYearCheckBox.Checked)
             {
                 modifyRadioButton.Checked = true;
             }
@@ -399,7 +366,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnRetirementYearCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            if (retirementYearCheckBox.Checked && !modifyRadioButton.Checked)
+            if (retirementYearCheckBox.Checked)
             {
                 modifyRadioButton.Checked = true;
             }
@@ -412,7 +379,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnIdeologyCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            if (ideologyCheckBox.Checked && !modifyRadioButton.Checked)
+            if (ideologyCheckBox.Checked)
             {
                 modifyRadioButton.Checked = true;
             }
@@ -425,7 +392,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnLoyaltyCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            if (loyaltyCheckBox.Checked && !modifyRadioButton.Checked)
+            if (loyaltyCheckBox.Checked)
             {
                 modifyRadioButton.Checked = true;
             }
@@ -438,10 +405,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnStartYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            if (!startYearCheckBox.Checked)
-            {
-                startYearCheckBox.Checked = true;
-            }
+            startYearCheckBox.Checked = true;
         }
 
         /// <summary>
@@ -451,10 +415,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnEndYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            if (!endYearCheckBox.Checked)
-            {
-                endYearCheckBox.Checked = true;
-            }
+            endYearCheckBox.Checked = true;
         }
 
         /// <summary>
@@ -464,10 +425,7 @@ namespace HoI2Editor.Dialogs
         /// <param name="e"></param>
         private void OnRetirementYearNumericUpDownValueChanged(object sender, EventArgs e)
         {
-            if (!retirementYearCheckBox.Checked)
-            {
-                retirementYearCheckBox.Checked = true;
-            }
+            retirementYearCheckBox.Checked = true;
         }
 
         /// <summary>
@@ -482,10 +440,7 @@ namespace HoI2Editor.Dialogs
                 return;
             }
 
-            if (!ideologyCheckBox.Checked)
-            {
-                ideologyCheckBox.Checked = true;
-            }
+            ideologyCheckBox.Checked = true;
         }
 
         /// <summary>
@@ -500,10 +455,7 @@ namespace HoI2Editor.Dialogs
                 return;
             }
 
-            if (!loyaltyCheckBox.Checked)
-            {
-                loyaltyCheckBox.Checked = true;
-            }
+            loyaltyCheckBox.Checked = true;
         }
 
         #endregion

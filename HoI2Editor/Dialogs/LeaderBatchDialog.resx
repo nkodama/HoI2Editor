@@ -145,7 +145,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rankYearCheckBox4.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;rankYearCheckBox4.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -169,7 +169,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown4.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown4.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -199,7 +199,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rankYearCheckBox1.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;rankYearCheckBox1.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -223,7 +223,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown1.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown1.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -253,7 +253,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rankYearCheckBox2.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;rankYearCheckBox2.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -277,7 +277,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown2.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown2.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -307,7 +307,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rankYearCheckBox3.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;rankYearCheckBox3.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -331,7 +331,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown3.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;rankYearNumericUpDown3.ZOrder" xml:space="preserve">
     <value>7</value>
@@ -361,7 +361,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;loyaltyCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;loyaltyCheckBox.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -385,7 +385,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;loyaltyNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;loyaltyNumericUpDown.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -415,7 +415,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;experienceCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;experienceCheckBox.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -439,7 +439,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;experienceNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;experienceNumericUpDown.ZOrder" xml:space="preserve">
     <value>11</value>
@@ -469,7 +469,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;maxSkillCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;maxSkillCheckBox.ZOrder" xml:space="preserve">
     <value>12</value>
@@ -493,7 +493,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;maxSkillNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;maxSkillNumericUpDown.ZOrder" xml:space="preserve">
     <value>13</value>
@@ -514,7 +514,7 @@
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;idealRankComboBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;idealRankComboBox.ZOrder" xml:space="preserve">
     <value>14</value>
@@ -544,7 +544,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;idealRankCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;idealRankCheckBox.ZOrder" xml:space="preserve">
     <value>15</value>
@@ -574,7 +574,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;skillCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;skillCheckBox.ZOrder" xml:space="preserve">
     <value>16</value>
@@ -598,7 +598,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;skillNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;skillNumericUpDown.ZOrder" xml:space="preserve">
     <value>17</value>
@@ -628,7 +628,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;startYearCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;startYearCheckBox.ZOrder" xml:space="preserve">
     <value>18</value>
@@ -652,7 +652,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;startYearNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;startYearNumericUpDown.ZOrder" xml:space="preserve">
     <value>19</value>
@@ -682,7 +682,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;endYearCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;endYearCheckBox.ZOrder" xml:space="preserve">
     <value>20</value>
@@ -706,7 +706,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;endYearNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;endYearNumericUpDown.ZOrder" xml:space="preserve">
     <value>21</value>
@@ -736,7 +736,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;retirementYearCheckBox.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;retirementYearCheckBox.ZOrder" xml:space="preserve">
     <value>22</value>
@@ -760,67 +760,127 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;retirementYearNumericUpDown.Parent" xml:space="preserve">
-    <value>editGroupBox</value>
+    <value>modifyGroupBox</value>
   </data>
   <data name="&gt;&gt;retirementYearNumericUpDown.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
-  <data name="editGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="modifyGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>180, 12</value>
   </data>
-  <data name="editGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="modifyGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>272, 328</value>
   </data>
-  <data name="editGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="editGroupBox.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="&gt;&gt;editGroupBox.Name" xml:space="preserve">
-    <value>editGroupBox</value>
-  </data>
-  <data name="&gt;&gt;editGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;editGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;editGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="targetCountryComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 85</value>
-  </data>
-  <data name="targetCountryComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 20</value>
-  </data>
-  <data name="targetCountryComboBox.TabIndex" type="System.Int32, mscorlib">
+  <data name="modifyGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;targetCountryComboBox.Name" xml:space="preserve">
-    <value>targetCountryComboBox</value>
+  <data name="modifyGroupBox.Text" xml:space="preserve">
+    <value>Modify</value>
   </data>
-  <data name="&gt;&gt;targetCountryComboBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;modifyGroupBox.Name" xml:space="preserve">
+    <value>modifyGroupBox</value>
+  </data>
+  <data name="&gt;&gt;modifyGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modifyGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;modifyGroupBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="srcComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 85</value>
+  </data>
+  <data name="srcComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="srcComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;srcComboBox.Name" xml:space="preserve">
+    <value>srcComboBox</value>
+  </data>
+  <data name="&gt;&gt;srcComboBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;targetCountryComboBox.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
+  <data name="&gt;&gt;srcComboBox.Parent" xml:space="preserve">
+    <value>countryGroupBox</value>
   </data>
-  <data name="&gt;&gt;targetCountryComboBox.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;srcComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;allRadioButton.Name" xml:space="preserve">
+    <value>allRadioButton</value>
+  </data>
+  <data name="&gt;&gt;allRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;allRadioButton.Parent" xml:space="preserve">
+    <value>countryGroupBox</value>
+  </data>
+  <data name="&gt;&gt;allRadioButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;selectedRadioButton.Name" xml:space="preserve">
+    <value>selectedRadioButton</value>
+  </data>
+  <data name="&gt;&gt;selectedRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;selectedRadioButton.Parent" xml:space="preserve">
+    <value>countryGroupBox</value>
+  </data>
+  <data name="&gt;&gt;selectedRadioButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;specifiedRadioButton.Name" xml:space="preserve">
+    <value>specifiedRadioButton</value>
+  </data>
+  <data name="&gt;&gt;specifiedRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;specifiedRadioButton.Parent" xml:space="preserve">
+    <value>countryGroupBox</value>
+  </data>
+  <data name="&gt;&gt;specifiedRadioButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="countryGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="countryGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 116</value>
+  </data>
+  <data name="countryGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="countryGroupBox.Text" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="&gt;&gt;countryGroupBox.Name" xml:space="preserve">
+    <value>countryGroupBox</value>
+  </data>
+  <data name="&gt;&gt;countryGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;countryGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;countryGroupBox.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="airforceCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="airforceCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 159</value>
+    <value>18, 62</value>
   </data>
   <data name="airforceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 16</value>
   </data>
   <data name="airforceCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>2</value>
   </data>
   <data name="airforceCheckBox.Text" xml:space="preserve">
     <value>Airforce</value>
@@ -832,7 +892,7 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;airforceCheckBox.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
+    <value>branchGroupBox</value>
   </data>
   <data name="&gt;&gt;airforceCheckBox.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -841,13 +901,13 @@
     <value>True</value>
   </data>
   <data name="navyCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 137</value>
+    <value>18, 40</value>
   </data>
   <data name="navyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 16</value>
   </data>
   <data name="navyCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>1</value>
   </data>
   <data name="navyCheckBox.Text" xml:space="preserve">
     <value>Navy</value>
@@ -859,10 +919,10 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;navyCheckBox.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
+    <value>branchGroupBox</value>
   </data>
   <data name="&gt;&gt;navyCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="armyCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -871,13 +931,13 @@
     <value>NoControl</value>
   </data>
   <data name="armyCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 115</value>
+    <value>18, 18</value>
   </data>
   <data name="armyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 16</value>
   </data>
   <data name="armyCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>0</value>
   </data>
   <data name="armyCheckBox.Text" xml:space="preserve">
     <value>Army</value>
@@ -889,10 +949,10 @@
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;armyCheckBox.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
+    <value>branchGroupBox</value>
   </data>
   <data name="&gt;&gt;armyCheckBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="allRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -919,10 +979,10 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;allRadioButton.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
+    <value>countryGroupBox</value>
   </data>
   <data name="&gt;&gt;allRadioButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>0</value>
   </data>
   <data name="selectedRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -949,10 +1009,10 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;selectedRadioButton.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
+    <value>countryGroupBox</value>
   </data>
   <data name="&gt;&gt;selectedRadioButton.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="specifiedRadioButton.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -979,46 +1039,22 @@
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;specifiedRadioButton.Parent" xml:space="preserve">
-    <value>targetGroupBox</value>
+    <value>countryGroupBox</value>
   </data>
   <data name="&gt;&gt;specifiedRadioButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="targetGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="targetGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 186</value>
-  </data>
-  <data name="targetGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="targetGroupBox.Text" xml:space="preserve">
-    <value>Target</value>
-  </data>
-  <data name="&gt;&gt;targetGroupBox.Name" xml:space="preserve">
-    <value>targetGroupBox</value>
-  </data>
-  <data name="&gt;&gt;targetGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;targetGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;targetGroupBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="cancelButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cancelButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>377, 351</value>
+    <value>377, 376</value>
   </data>
   <data name="cancelButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
   <data name="cancelButton.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="cancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -1033,19 +1069,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cancelButton.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="okButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="okButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 351</value>
+    <value>296, 376</value>
   </data>
   <data name="okButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
   </data>
   <data name="okButton.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="okButton.Text" xml:space="preserve">
     <value>OK</value>
@@ -1060,16 +1096,124 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;okButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.Name" xml:space="preserve">
+    <value>idNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.Type" xml:space="preserve">
+    <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;idNumericUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;moveRadioButton.Name" xml:space="preserve">
+    <value>moveRadioButton</value>
+  </data>
+  <data name="&gt;&gt;moveRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;moveRadioButton.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;moveRadioButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;destLabel.Name" xml:space="preserve">
+    <value>destLabel</value>
+  </data>
+  <data name="&gt;&gt;destLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;destLabel.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;destLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;idLabel.Name" xml:space="preserve">
+    <value>idLabel</value>
+  </data>
+  <data name="&gt;&gt;idLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;idLabel.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;copyRadioButton.Name" xml:space="preserve">
+    <value>copyRadioButton</value>
+  </data>
+  <data name="&gt;&gt;copyRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;copyRadioButton.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;copyRadioButton.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="&gt;&gt;destComboBox.Name" xml:space="preserve">
+    <value>destComboBox</value>
+  </data>
+  <data name="&gt;&gt;destComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;destComboBox.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;destComboBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;modifyRadioButton.Name" xml:space="preserve">
+    <value>modifyRadioButton</value>
+  </data>
+  <data name="&gt;&gt;modifyRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modifyRadioButton.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;modifyRadioButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="actionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 229</value>
+  </data>
+  <data name="actionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 170</value>
+  </data>
+  <data name="actionGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="actionGroupBox.Text" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="&gt;&gt;actionGroupBox.Name" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;actionGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;actionGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;actionGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="idNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 88</value>
+    <value>30, 140</value>
   </data>
   <data name="idNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 19</value>
+    <value>120, 19</value>
   </data>
   <data name="idNumericUpDown.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="idNumericUpDown.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1081,7 +1225,7 @@
     <value>System.Windows.Forms.NumericUpDown, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;idNumericUpDown.Parent" xml:space="preserve">
-    <value>copyGroupBox</value>
+    <value>actionGroupBox</value>
   </data>
   <data name="&gt;&gt;idNumericUpDown.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -1090,13 +1234,13 @@
     <value>True</value>
   </data>
   <data name="idLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 73</value>
+    <value>16, 125</value>
   </data>
   <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 12</value>
   </data>
   <data name="idLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="idLabel.Text" xml:space="preserve">
     <value>Starting ID</value>
@@ -1108,82 +1252,175 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;idLabel.Parent" xml:space="preserve">
-    <value>copyGroupBox</value>
+    <value>actionGroupBox</value>
   </data>
   <data name="&gt;&gt;idLabel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="copyCountryComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 46</value>
-  </data>
-  <data name="copyCountryComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>121, 20</value>
-  </data>
-  <data name="copyCountryComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;copyCountryComboBox.Name" xml:space="preserve">
-    <value>copyCountryComboBox</value>
-  </data>
-  <data name="&gt;&gt;copyCountryComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;copyCountryComboBox.Parent" xml:space="preserve">
-    <value>copyGroupBox</value>
-  </data>
-  <data name="&gt;&gt;copyCountryComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="copyToCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="copyToCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 24</value>
-  </data>
-  <data name="copyToCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 16</value>
-  </data>
-  <data name="copyToCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="copyToCheckBox.Text" xml:space="preserve">
-    <value>Copy To</value>
-  </data>
-  <data name="&gt;&gt;copyToCheckBox.Name" xml:space="preserve">
-    <value>copyToCheckBox</value>
-  </data>
-  <data name="&gt;&gt;copyToCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;copyToCheckBox.Parent" xml:space="preserve">
-    <value>copyGroupBox</value>
-  </data>
-  <data name="&gt;&gt;copyToCheckBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="copyGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 208</value>
+  <data name="destComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 100</value>
   </data>
-  <data name="copyGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>162, 132</value>
+  <data name="destComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
   </data>
-  <data name="copyGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="destComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
-  <data name="copyGroupBox.Text" xml:space="preserve">
-    <value>Copy</value>
+  <data name="&gt;&gt;destComboBox.Name" xml:space="preserve">
+    <value>destComboBox</value>
   </data>
-  <data name="&gt;&gt;copyGroupBox.Name" xml:space="preserve">
-    <value>copyGroupBox</value>
+  <data name="&gt;&gt;destComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;copyGroupBox.Type" xml:space="preserve">
+  <data name="&gt;&gt;destComboBox.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;destComboBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="branchGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 134</value>
+  </data>
+  <data name="branchGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 89</value>
+  </data>
+  <data name="branchGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="branchGroupBox.Text" xml:space="preserve">
+    <value>Branch</value>
+  </data>
+  <data name="&gt;&gt;branchGroupBox.Name" xml:space="preserve">
+    <value>branchGroupBox</value>
+  </data>
+  <data name="&gt;&gt;branchGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;copyGroupBox.Parent" xml:space="preserve">
+  <data name="&gt;&gt;branchGroupBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;copyGroupBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;branchGroupBox.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="destLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="destLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="destLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 85</value>
+  </data>
+  <data name="destLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 12</value>
+  </data>
+  <data name="destLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="destLabel.Text" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="&gt;&gt;destLabel.Name" xml:space="preserve">
+    <value>destLabel</value>
+  </data>
+  <data name="&gt;&gt;destLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;destLabel.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;destLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="moveRadioButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="moveRadioButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="moveRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 62</value>
+  </data>
+  <data name="moveRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 16</value>
+  </data>
+  <data name="moveRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="moveRadioButton.Text" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="&gt;&gt;moveRadioButton.Name" xml:space="preserve">
+    <value>moveRadioButton</value>
+  </data>
+  <data name="&gt;&gt;moveRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;moveRadioButton.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;moveRadioButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="copyRadioButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="copyRadioButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="copyRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 40</value>
+  </data>
+  <data name="copyRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 16</value>
+  </data>
+  <data name="copyRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="copyRadioButton.Text" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="&gt;&gt;copyRadioButton.Name" xml:space="preserve">
+    <value>copyRadioButton</value>
+  </data>
+  <data name="&gt;&gt;copyRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;copyRadioButton.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;copyRadioButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="modifyRadioButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="modifyRadioButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="modifyRadioButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 18</value>
+  </data>
+  <data name="modifyRadioButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 16</value>
+  </data>
+  <data name="modifyRadioButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="modifyRadioButton.Text" xml:space="preserve">
+    <value>Modify</value>
+  </data>
+  <data name="&gt;&gt;modifyRadioButton.Name" xml:space="preserve">
+    <value>modifyRadioButton</value>
+  </data>
+  <data name="&gt;&gt;modifyRadioButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;modifyRadioButton.Parent" xml:space="preserve">
+    <value>actionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;modifyRadioButton.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -1192,10 +1429,10 @@
     <value>96, 96</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>464, 386</value>
+    <value>464, 411</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Batch Editing</value>
+    <value>Leader Batch Editing</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>LeaderBatchDialog</value>

@@ -141,7 +141,7 @@ namespace HoI2Editor.Models
             Country = original.Country;
             Id = original.Id;
             Name = original.Name;
-            PictureName = original.Name;
+            PictureName = original.PictureName;
             Skill = original.Skill;
             MaxSkill = original.Skill;
             for (int i = 0; i < RankLength; i++)
