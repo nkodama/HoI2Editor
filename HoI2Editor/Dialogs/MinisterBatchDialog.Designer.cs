@@ -78,16 +78,16 @@
             // 
             // okButton
             // 
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             resources.ApplyResources(this.okButton, "okButton");
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.okButton.Name = "okButton";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.OnOkButtonClick);
             // 
             // cancelButton
             // 
-            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.cancelButton, "cancelButton");
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -189,9 +189,9 @@
             // 
             // ideologyComboBox
             // 
+            resources.ApplyResources(this.ideologyComboBox, "ideologyComboBox");
             this.ideologyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ideologyComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.ideologyComboBox, "ideologyComboBox");
             this.ideologyComboBox.Name = "ideologyComboBox";
             // 
             // loyaltyCheckBox
@@ -203,30 +203,31 @@
             // 
             // loyaltyComboBox
             // 
+            resources.ApplyResources(this.loyaltyComboBox, "loyaltyComboBox");
             this.loyaltyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.loyaltyComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.loyaltyComboBox, "loyaltyComboBox");
             this.loyaltyComboBox.Name = "loyaltyComboBox";
             // 
             // srcComboBox
             // 
+            resources.ApplyResources(this.srcComboBox, "srcComboBox");
             this.srcComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.srcComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.srcComboBox, "srcComboBox");
             this.srcComboBox.Name = "srcComboBox";
             // 
             // countryGroupBox
             // 
+            resources.ApplyResources(this.countryGroupBox, "countryGroupBox");
             this.countryGroupBox.Controls.Add(this.allRadioButton);
             this.countryGroupBox.Controls.Add(this.selectedRadioButton);
             this.countryGroupBox.Controls.Add(this.srcComboBox);
             this.countryGroupBox.Controls.Add(this.specifiedRadioButton);
-            resources.ApplyResources(this.countryGroupBox, "countryGroupBox");
             this.countryGroupBox.Name = "countryGroupBox";
             this.countryGroupBox.TabStop = false;
             // 
             // modifyGroupBox
             // 
+            resources.ApplyResources(this.modifyGroupBox, "modifyGroupBox");
             this.modifyGroupBox.Controls.Add(this.startYearCheckBox);
             this.modifyGroupBox.Controls.Add(this.loyaltyComboBox);
             this.modifyGroupBox.Controls.Add(this.startYearNumericUpDown);
@@ -237,12 +238,12 @@
             this.modifyGroupBox.Controls.Add(this.endYearNumericUpDown);
             this.modifyGroupBox.Controls.Add(this.retirementYearCheckBox);
             this.modifyGroupBox.Controls.Add(this.retirementYearNumericUpDown);
-            resources.ApplyResources(this.modifyGroupBox, "modifyGroupBox");
             this.modifyGroupBox.Name = "modifyGroupBox";
             this.modifyGroupBox.TabStop = false;
             // 
             // actionGroupBox
             // 
+            resources.ApplyResources(this.actionGroupBox, "actionGroupBox");
             this.actionGroupBox.Controls.Add(this.destLabel);
             this.actionGroupBox.Controls.Add(this.moveRadioButton);
             this.actionGroupBox.Controls.Add(this.copyRadioButton);
@@ -250,7 +251,6 @@
             this.actionGroupBox.Controls.Add(this.idNumericUpDown);
             this.actionGroupBox.Controls.Add(this.idLabel);
             this.actionGroupBox.Controls.Add(this.destComboBox);
-            resources.ApplyResources(this.actionGroupBox, "actionGroupBox");
             this.actionGroupBox.Name = "actionGroupBox";
             this.actionGroupBox.TabStop = false;
             // 
@@ -305,13 +305,14 @@
             // 
             // destComboBox
             // 
+            resources.ApplyResources(this.destComboBox, "destComboBox");
             this.destComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.destComboBox.FormattingEnabled = true;
-            resources.ApplyResources(this.destComboBox, "destComboBox");
             this.destComboBox.Name = "destComboBox";
             // 
             // positionGroupBox
             // 
+            resources.ApplyResources(this.positionGroupBox, "positionGroupBox");
             this.positionGroupBox.Controls.Add(this.coafCheckBox);
             this.positionGroupBox.Controls.Add(this.conCheckBox);
             this.positionGroupBox.Controls.Add(this.coaCheckBox);
@@ -322,7 +323,6 @@
             this.positionGroupBox.Controls.Add(this.mofCheckBox);
             this.positionGroupBox.Controls.Add(this.hogCheckBox);
             this.positionGroupBox.Controls.Add(this.hosCheckBox);
-            resources.ApplyResources(this.positionGroupBox, "positionGroupBox");
             this.positionGroupBox.Name = "positionGroupBox";
             this.positionGroupBox.TabStop = false;
             // 

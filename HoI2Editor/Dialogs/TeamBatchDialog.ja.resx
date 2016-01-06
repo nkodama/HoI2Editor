@@ -139,6 +139,9 @@
   <data name="modifyGroupBox.Text" xml:space="preserve">
     <value>変更</value>
   </data>
+  <data name="srcComboBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="allRadioButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 16</value>
   </data>
@@ -192,6 +195,9 @@
   </data>
   <data name="idLabel.Text" xml:space="preserve">
     <value>開始ID</value>
+  </data>
+  <data name="destComboBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="actionGroupBox.Text" xml:space="preserve">
     <value>一括操作</value>

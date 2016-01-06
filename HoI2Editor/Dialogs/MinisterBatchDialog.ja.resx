@@ -169,14 +169,14 @@
   <data name="loyaltyCheckBox.Text" xml:space="preserve">
     <value>忠誠度</value>
   </data>
+  <data name="srcComboBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="countryGroupBox.Text" xml:space="preserve">
     <value>対象国</value>
   </data>
   <data name="modifyGroupBox.Text" xml:space="preserve">
     <value>変更</value>
-  </data>
-  <data name="actionGroupBox.Text" xml:space="preserve">
-    <value>一括操作</value>
   </data>
   <data name="destLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>74, 12</value>
@@ -207,6 +207,12 @@
   </data>
   <data name="idLabel.Text" xml:space="preserve">
     <value>開始ID</value>
+  </data>
+  <data name="destComboBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
+  <data name="actionGroupBox.Text" xml:space="preserve">
+    <value>一括操作</value>
   </data>
   <data name="positionGroupBox.Text" xml:space="preserve">
     <value>閣僚地位</value>
