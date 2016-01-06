@@ -478,13 +478,13 @@
     <value>Bottom, Right</value>
   </data>
   <data name="countryComboBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="countryComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>359, 251</value>
+    <value>359, 254</value>
   </data>
   <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+    <value>160, 20</value>
   </data>
   <data name="countryComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>

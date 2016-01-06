@@ -48,12 +48,10 @@
             // 
             // listSplitContainer.Panel1
             // 
-            resources.ApplyResources(this.listSplitContainer.Panel1, "listSplitContainer.Panel1");
             this.listSplitContainer.Panel1.Controls.Add(this.countryListBox);
             // 
             // listSplitContainer.Panel2
             // 
-            resources.ApplyResources(this.listSplitContainer.Panel2, "listSplitContainer.Panel2");
             this.listSplitContainer.Panel2.Controls.Add(this.typeListBox);
             // 
             // countryListBox

@@ -205,7 +205,7 @@
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="resultRichTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="resultRichTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 12</value>

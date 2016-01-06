@@ -1009,7 +1009,7 @@
     <value>False</value>
   </data>
   <data name="techCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="techCountryListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 143</value>
@@ -1519,7 +1519,7 @@
     <value>True</value>
   </data>
   <data name="regularIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 97</value>
+    <value>14, 96</value>
   </data>
   <data name="regularIdLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -2003,6 +2003,9 @@
   </data>
   <data name="provinceCountryFilterComboBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
+  </data>
+  <data name="provinceCountryFilterComboBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="provinceCountryFilterComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>72, 61</value>
@@ -5200,7 +5203,7 @@
     <value>False</value>
   </data>
   <data name="governmentCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="governmentCountryListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 14</value>
@@ -6190,7 +6193,7 @@
     <value>False</value>
   </data>
   <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="countryListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 14</value>
@@ -7207,13 +7210,13 @@
     <value>13</value>
   </data>
   <data name="regularIdComboBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="regularIdComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>102, 92</value>
+    <value>102, 94</value>
   </data>
   <data name="regularIdComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>120, 20</value>
   </data>
   <data name="regularIdComboBox.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -7309,13 +7312,13 @@
     <value>Bottom, Left</value>
   </data>
   <data name="tradeCountryComboBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="tradeCountryComboBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 16</value>
   </data>
   <data name="tradeCountryComboBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>120, 20</value>
   </data>
   <data name="tradeCountryComboBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -7696,13 +7699,13 @@
     <value>14</value>
   </data>
   <data name="tradeCountryComboBox2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="tradeCountryComboBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>207, 16</value>
   </data>
   <data name="tradeCountryComboBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>120, 20</value>
   </data>
   <data name="tradeCountryComboBox2.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -9469,16 +9472,13 @@
     <value>False</value>
   </data>
   <data name="relationCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
-  </data>
-  <data name="relationCountryListBox.ItemHeight" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="relationCountryListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 14</value>
   </data>
   <data name="relationCountryListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 214</value>
+    <value>120, 212</value>
   </data>
   <data name="relationCountryListBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -10261,7 +10261,7 @@
     <value>False</value>
   </data>
   <data name="warAttackerListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="warAttackerListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 269</value>
@@ -10357,7 +10357,7 @@
     <value>False</value>
   </data>
   <data name="warDefenderListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="warDefenderListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>366, 269</value>
@@ -10417,7 +10417,7 @@
     <value>False</value>
   </data>
   <data name="warFreeCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="warFreeCountryListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>189, 269</value>
@@ -10813,7 +10813,7 @@
     <value>False</value>
   </data>
   <data name="allianceParticipantListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="allianceParticipantListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 269</value>
@@ -10906,7 +10906,7 @@
     <value>False</value>
   </data>
   <data name="allianceFreeCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="allianceFreeCountryListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>193, 269</value>
@@ -11662,7 +11662,7 @@
     <value>7</value>
   </data>
   <data name="unselectableListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="unselectableListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>370, 32</value>
@@ -11686,7 +11686,7 @@
     <value>8</value>
   </data>
   <data name="selectableListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="selectableListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>193, 32</value>
@@ -11947,7 +11947,7 @@
     <value>17</value>
   </data>
   <data name="majorListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="majorListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>16, 32</value>
@@ -14431,7 +14431,7 @@
     <value>False</value>
   </data>
   <data name="oobCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Courier New, 9pt</value>
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="oobCountryListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 14</value>

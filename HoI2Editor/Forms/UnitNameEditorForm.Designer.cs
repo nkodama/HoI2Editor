@@ -76,12 +76,10 @@
             // 
             // listSplitContainer.Panel1
             // 
-            resources.ApplyResources(this.listSplitContainer.Panel1, "listSplitContainer.Panel1");
             this.listSplitContainer.Panel1.Controls.Add(this.countryListBox);
             // 
             // listSplitContainer.Panel2
             // 
-            resources.ApplyResources(this.listSplitContainer.Panel2, "listSplitContainer.Panel2");
             this.listSplitContainer.Panel2.Controls.Add(this.typeListBox);
             // 
             // countryListBox
@@ -169,14 +167,14 @@
             // 
             // toComboBox
             // 
-            resources.ApplyResources(this.toComboBox, "toComboBox");
             this.toComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.toComboBox, "toComboBox");
             this.toComboBox.Name = "toComboBox";
             // 
             // withComboBox
             // 
-            resources.ApplyResources(this.withComboBox, "withComboBox");
             this.withComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.withComboBox, "withComboBox");
             this.withComboBox.Name = "withComboBox";
             // 
             // startNumericUpDown
@@ -228,8 +226,8 @@
             // 
             // prefixComboBox
             // 
-            resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
             this.prefixComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.prefixComboBox, "prefixComboBox");
             this.prefixComboBox.Name = "prefixComboBox";
             // 
             // addButton
@@ -281,8 +279,8 @@
             // 
             // suffixComboBox
             // 
-            resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
             this.suffixComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.suffixComboBox, "suffixComboBox");
             this.suffixComboBox.Name = "suffixComboBox";
             // 
             // prefixLabel
