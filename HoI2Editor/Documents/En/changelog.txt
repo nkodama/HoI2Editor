@@ -1,5 +1,16 @@
 Alternative HoI2 Editor Changelog
 
+- 7 Jan 2016; Ver 0.51
+
+Added batch copying and moving of leaders, ministers and tech teams.
+Added row reordering by drag and drop on some list items.
+Added double-click editing on some list items.
+Fixed a bug that unit equipments are shared by duplicated items.
+Supported the selectable country specification: songs.
+Fixed errors when loading scenarios of DH 1.04 Full.
+Fixed a crash bug when removing trades and wars of a scenario.
+Fixed a bug that when initial units and divisions are duplicated, some items are not changed red.
+
 - 23 Nov 2015; Ver 0.50
 
 Fixed a crash bug with duplicated minister personality names.
