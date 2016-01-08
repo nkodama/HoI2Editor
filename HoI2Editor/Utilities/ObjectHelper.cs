@@ -29,7 +29,7 @@ namespace HoI2Editor.Utilities
             }
             if (o is bool)
             {
-                return ((bool) o) ? "yes" : "no";
+                return (bool) o ? "yes" : "no";
             }
             if (o is Country)
             {
@@ -46,7 +46,7 @@ namespace HoI2Editor.Utilities
         /// <returns>2つのオブジェクトが等しい値ならばtrueを返す</returns>
         public static bool IsEqual(object x, object y)
         {
-            if ((x is double) && (y is double))
+            if (x is double && y is double)
             {
                 return DoubleHelper.IsEqual((double) x, (double) y);
             }

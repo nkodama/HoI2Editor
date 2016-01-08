@@ -118,74 +118,38 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="rankYearCheckBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
-  </data>
   <data name="rankYearCheckBox4.Text" xml:space="preserve">
     <value>元帥任官年</value>
-  </data>
-  <data name="rankYearCheckBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
   </data>
   <data name="rankYearCheckBox1.Text" xml:space="preserve">
     <value>少将任官年</value>
   </data>
-  <data name="rankYearCheckBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
-  </data>
   <data name="rankYearCheckBox2.Text" xml:space="preserve">
     <value>中将任官年</value>
-  </data>
-  <data name="rankYearCheckBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
   </data>
   <data name="rankYearCheckBox3.Text" xml:space="preserve">
     <value>大将任官年</value>
   </data>
-  <data name="loyaltyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
-  </data>
   <data name="loyaltyCheckBox.Text" xml:space="preserve">
     <value>忠誠度</value>
-  </data>
-  <data name="experienceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
   </data>
   <data name="experienceCheckBox.Text" xml:space="preserve">
     <value>経験値</value>
   </data>
-  <data name="maxSkillCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
   <data name="maxSkillCheckBox.Text" xml:space="preserve">
     <value>最大スキル</value>
-  </data>
-  <data name="idealRankCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
   </data>
   <data name="idealRankCheckBox.Text" xml:space="preserve">
     <value>理想階級</value>
   </data>
-  <data name="skillCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 16</value>
-  </data>
   <data name="skillCheckBox.Text" xml:space="preserve">
     <value>スキル</value>
-  </data>
-  <data name="startYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
   </data>
   <data name="startYearCheckBox.Text" xml:space="preserve">
     <value>開始年</value>
   </data>
-  <data name="endYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
-  </data>
   <data name="endYearCheckBox.Text" xml:space="preserve">
     <value>終了年</value>
-  </data>
-  <data name="retirementYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
   </data>
   <data name="retirementYearCheckBox.Text" xml:space="preserve">
     <value>引退年</value>
@@ -196,20 +160,11 @@
   <data name="srcComboBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
-  <data name="allRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 16</value>
-  </data>
   <data name="allRadioButton.Text" xml:space="preserve">
     <value>全て</value>
   </data>
-  <data name="selectedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 16</value>
-  </data>
   <data name="selectedRadioButton.Text" xml:space="preserve">
     <value>選択中</value>
-  </data>
-  <data name="specifiedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 16</value>
   </data>
   <data name="specifiedRadioButton.Text" xml:space="preserve">
     <value>指定国</value>
@@ -217,20 +172,11 @@
   <data name="countryGroupBox.Text" xml:space="preserve">
     <value>対象国</value>
   </data>
-  <data name="airforceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
   <data name="airforceCheckBox.Text" xml:space="preserve">
     <value>空軍</value>
   </data>
-  <data name="navyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
   <data name="navyCheckBox.Text" xml:space="preserve">
     <value>海軍</value>
-  </data>
-  <data name="armyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
   </data>
   <data name="armyCheckBox.Text" xml:space="preserve">
     <value>陸軍</value>
@@ -238,35 +184,20 @@
   <data name="cancelButton.Text" xml:space="preserve">
     <value>キャンセル</value>
   </data>
-  <data name="moveRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 16</value>
-  </data>
   <data name="moveRadioButton.Text" xml:space="preserve">
     <value>移動</value>
-  </data>
-  <data name="destLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 12</value>
   </data>
   <data name="destLabel.Text" xml:space="preserve">
     <value>コピー/移動先</value>
   </data>
-  <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 12</value>
-  </data>
   <data name="idLabel.Text" xml:space="preserve">
     <value>開始ID</value>
-  </data>
-  <data name="copyRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 16</value>
   </data>
   <data name="copyRadioButton.Text" xml:space="preserve">
     <value>コピー</value>
   </data>
   <data name="destComboBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
-  </data>
-  <data name="modifyRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 16</value>
   </data>
   <data name="modifyRadioButton.Text" xml:space="preserve">
     <value>変更</value>

@@ -1100,7 +1100,7 @@ namespace HoI2Editor.Models
                 sb.AppendFormat("{0}, ", Strings[(int) country]);
             }
             int len = sb.Length;
-            return (len > 0) ? sb.ToString(0, len - 2) : "";
+            return len > 0 ? sb.ToString(0, len - 2) : "";
         }
 
         /// <summary>
@@ -1116,7 +1116,7 @@ namespace HoI2Editor.Models
                 sb.AppendFormat("{0}, ", GetName(country));
             }
             int len = sb.Length;
-            return (len > 0) ? sb.ToString(0, len - 2) : "";
+            return len > 0 ? sb.ToString(0, len - 2) : "";
         }
 
         #endregion

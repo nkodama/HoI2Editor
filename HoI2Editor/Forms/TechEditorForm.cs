@@ -633,7 +633,7 @@ namespace HoI2Editor.Forms
             {
                 // 変更ありの項目は文字色を変更する
                 ITechItem item = techListBox.Items[e.Index] as ITechItem;
-                brush = (item != null && item.IsDirty())
+                brush = item != null && item.IsDirty()
                     ? new SolidBrush(Color.Red)
                     : new SolidBrush(categoryListBox.ForeColor);
             }
@@ -1389,7 +1389,7 @@ namespace HoI2Editor.Forms
         private void InitTechItems()
         {
             // 画像ファイル名
-            bool flag = (Game.Type == GameType.DarkestHour);
+            bool flag = Game.Type == GameType.DarkestHour;
             techPictureNameLabel.Enabled = flag;
             techPictureNameTextBox.Enabled = flag;
             techPictureNameBrowseButton.Enabled = flag;
@@ -4505,8 +4505,8 @@ namespace HoI2Editor.Forms
             // 編集項目を有効化する
             EnableEffectItems();
 
-            effectUpButton.Enabled = (index != 0);
-            effectDownButton.Enabled = (index != item.Effects.Count - 1);
+            effectUpButton.Enabled = index != 0;
+            effectDownButton.Enabled = index != item.Effects.Count - 1;
         }
 
         /// <summary>

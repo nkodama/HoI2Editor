@@ -242,7 +242,7 @@ namespace HoI2Editor
             if ((height > screenRect.Height) || (height < scaledHeightShort))
             {
                 int scaledHeightLong = DeviceCaps.GetScaledHeight(defaultHeightLong);
-                height = (screenRect.Height >= scaledHeightLong) ? scaledHeightLong : scaledHeightShort;
+                height = screenRect.Height >= scaledHeightLong ? scaledHeightLong : scaledHeightShort;
             }
 
             // フォームの位置を丸める
@@ -462,7 +462,7 @@ namespace HoI2Editor
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int longHeight = DeviceCaps.GetScaledHeight(DefaultHeightLong);
                 int shortHeight = DeviceCaps.GetScaledHeight(DefaultHeightShort);
-                int height = (screenRect.Height >= longHeight) ? longHeight : shortHeight;
+                int height = screenRect.Height >= longHeight ? longHeight : shortHeight;
                 int x = screenRect.X + (screenRect.Width - width) / 2;
                 int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
@@ -779,7 +779,7 @@ namespace HoI2Editor
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int longHeight = DeviceCaps.GetScaledHeight(DefaultHeightLong);
                 int shortHeight = DeviceCaps.GetScaledHeight(DefaultHeightShort);
-                int height = (screenRect.Height >= longHeight) ? longHeight : shortHeight;
+                int height = screenRect.Height >= longHeight ? longHeight : shortHeight;
                 int x = screenRect.X + (screenRect.Width - width) / 2;
                 int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
@@ -936,9 +936,9 @@ namespace HoI2Editor
                 int longHeight = DeviceCaps.GetScaledHeight(DefaultHeightLong);
                 int middleHeight = DeviceCaps.GetScaledHeight(DefaultHeightMiddle);
                 int shortHeight = DeviceCaps.GetScaledHeight(DefaultHeightShort);
-                int height = (screenRect.Height >= longHeight)
+                int height = screenRect.Height >= longHeight
                     ? longHeight
-                    : (screenRect.Height >= middleHeight) ? middleHeight : shortHeight;
+                    : screenRect.Height >= middleHeight ? middleHeight : shortHeight;
                 int x = screenRect.X + (screenRect.Width - width) / 2;
                 int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
@@ -1080,7 +1080,7 @@ namespace HoI2Editor
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int longHeight = DeviceCaps.GetScaledHeight(DefaultHeightLong);
                 int shortHeight = DeviceCaps.GetScaledHeight(DefaultHeightShort);
-                int height = (screenRect.Height >= longHeight) ? longHeight : shortHeight;
+                int height = screenRect.Height >= longHeight ? longHeight : shortHeight;
                 int x = screenRect.X + (screenRect.Width - width) / 2;
                 int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
@@ -1188,7 +1188,7 @@ namespace HoI2Editor
                 int width = DeviceCaps.GetScaledWidth(DefaultWidth);
                 int longHeight = DeviceCaps.GetScaledHeight(DefaultHeightLong);
                 int shortHeight = DeviceCaps.GetScaledHeight(DefaultHeightShort);
-                int height = (screenRect.Height >= longHeight) ? longHeight : shortHeight;
+                int height = screenRect.Height >= longHeight ? longHeight : shortHeight;
                 int x = screenRect.X + (screenRect.Width - width) / 2;
                 int y = screenRect.Y + (screenRect.Height - height) / 2;
                 Location = new Point(x, y);
@@ -1696,7 +1696,7 @@ namespace HoI2Editor
             /// </summary>
             public bool UseSpecifiedDate
             {
-                get { return (Researches.DateMode == ResearchDateMode.Specified); }
+                get { return Researches.DateMode == ResearchDateMode.Specified; }
                 set { Researches.DateMode = value ? ResearchDateMode.Specified : ResearchDateMode.Historical; }
             }
 

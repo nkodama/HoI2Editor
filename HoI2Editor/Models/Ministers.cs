@@ -2138,7 +2138,7 @@ namespace HoI2Editor.Models
         /// <returns>編集済みならばtrueを返す</returns>
         public static bool IsDirty()
         {
-            return (_dirtyFlag || _dirtyListFlag);
+            return _dirtyFlag || _dirtyListFlag;
         }
 
         /// <summary>

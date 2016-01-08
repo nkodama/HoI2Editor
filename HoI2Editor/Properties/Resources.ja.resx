@@ -327,9 +327,6 @@
   <data name="LoyaltyMedium" xml:space="preserve">
     <value>中</value>
   </data>
-  <data name="LoyaltyNA" xml:space="preserve">
-    <value>NA</value>
-  </data>
   <data name="LoyaltyUndying" xml:space="preserve">
     <value>不死</value>
   </data>
@@ -516,9 +513,6 @@
   <data name="WarningUnexpectedTempKey" xml:space="preserve">
     <value>想定外の一時キー</value>
   </data>
-  <data name="MiscSectionAi" xml:space="preserve">
-    <value>AI</value>
-  </data>
   <data name="MiscSectionCombat" xml:space="preserve">
     <value>戦闘</value>
   </data>
@@ -539,9 +533,6 @@
   </data>
   <data name="MiscSectionMission" xml:space="preserve">
     <value>任務</value>
-  </data>
-  <data name="MiscSectionMod" xml:space="preserve">
-    <value>MOD</value>
   </data>
   <data name="MiscSectionResearch" xml:space="preserve">
     <value>研究</value>

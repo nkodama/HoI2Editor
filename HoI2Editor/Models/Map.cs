@@ -268,7 +268,7 @@ namespace HoI2Editor.Models
             {
                 work = _data[_index++];
                 work |= (ushort) (_data[_index++] << 8);
-                ids[no++] = ((work & 0x4000) == 0) ? (ushort) (work & 0x7FFF) : ids[((work & 0x3F00) >> 8) - 4];
+                ids[no++] = (work & 0x4000) == 0 ? (ushort) (work & 0x7FFF) : ids[((work & 0x3F00) >> 8) - 4];
             } while ((work & 0x8000) == 0);
 
             block.ProvinceIds = ids;
@@ -624,7 +624,7 @@ namespace HoI2Editor.Models
             int height = 1 << node.Level;
             int top = _block.NodeColors[node.No] << 8;
             int bottom = _pics[pos + height * (MapBlock.Width + 1)] << 8;
-            int delta = ((bottom - top) < SmoothingThrethold) ? (bottom - top) >> node.Level : 0;
+            int delta = bottom - top < SmoothingThrethold ? (bottom - top) >> node.Level : 0;
             int color = top;
             for (int i = 0; i < height; i++)
             {
@@ -649,7 +649,7 @@ namespace HoI2Editor.Models
             int width = 1 << node.Level;
             int left = _block.NodeColors[node.No] << 8;
             int right = _pics[pos + width] << 8;
-            int delta = ((right - left) < SmoothingThrethold) ? (right - left) >> node.Level : 0;
+            int delta = right - left < SmoothingThrethold ? (right - left) >> node.Level : 0;
             int color = left;
             for (int i = 0; i < width; i++)
             {
@@ -674,12 +674,12 @@ namespace HoI2Editor.Models
             int step = MapBlock.Width + 1 - width;
             int top = _block.NodeColors[node.No] << 8;
             int bottom = _pics[pos + width * (MapBlock.Width + 1)] << 8;
-            int deltaY = ((bottom - top) < SmoothingThrethold) ? (bottom - top) >> node.Level : 0;
+            int deltaY = bottom - top < SmoothingThrethold ? (bottom - top) >> node.Level : 0;
             int left = top;
             for (int i = 0; i < width; i++)
             {
                 int right = _pics[pos + width] << 8;
-                int deltaX = ((right - left) < SmoothingThrethold) ? (right - left) >> node.Level : 0;
+                int deltaX = right - left < SmoothingThrethold ? (right - left) >> node.Level : 0;
                 int color = left;
                 for (int j = 0; j < width; j++)
                 {
@@ -708,7 +708,7 @@ namespace HoI2Editor.Models
             int step = _pixels.Width - width + 1;
             int top = _block.NodeColors[node.No] << 8;
             int bottom = pixels[pos + width * _pixels.Width] << 8;
-            int deltaY = ((bottom - top) < SmoothingThrethold) ? (bottom - top) >> node.Level : 0;
+            int deltaY = bottom - top < SmoothingThrethold ? (bottom - top) >> node.Level : 0;
             int left = top;
             switch (node.Level)
             {
@@ -716,7 +716,7 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < width; i++)
                     {
                         int right = pixels[pos + width] << 8;
-                        if (left == right || (right - left) >= SmoothingThrethold)
+                        if (left == right || right - left >= SmoothingThrethold)
                         {
                             byte color = (byte) (left >> 8);
                             pixels[pos++] = color;
@@ -739,7 +739,7 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < width; i++)
                     {
                         int right = pixels[pos + width] << 8;
-                        if (left == right || (right - left) >= SmoothingThrethold)
+                        if (left == right || right - left >= SmoothingThrethold)
                         {
                             byte color = (byte) (left >> 8);
                             pixels[pos++] = color;
@@ -768,7 +768,7 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < width; i++)
                     {
                         int right = pixels[pos + width] << 8;
-                        if (left == right || (right - left) >= SmoothingThrethold)
+                        if (left == right || right - left >= SmoothingThrethold)
                         {
                             byte color = (byte) (left >> 8);
                             pixels[pos++] = color;
@@ -809,7 +809,7 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < width; i++)
                     {
                         int right = pixels[pos + width] << 8;
-                        if (left == right || (right - left) >= SmoothingThrethold)
+                        if (left == right || right - left >= SmoothingThrethold)
                         {
                             byte color = (byte) (left >> 8);
                             pixels[pos++] = color;
@@ -874,7 +874,7 @@ namespace HoI2Editor.Models
                     for (int i = 0; i < width; i++)
                     {
                         int right = pixels[pos + width] << 8;
-                        if (left == right || (right - left) >= SmoothingThrethold)
+                        if (left == right || right - left >= SmoothingThrethold)
                         {
                             byte color = (byte) (left >> 8);
                             pixels[pos++] = color;

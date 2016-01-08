@@ -127,14 +127,8 @@
     <value>切り取り</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="suffixLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="suffixLabel.Text" xml:space="preserve">
     <value>接尾辞</value>
-  </data>
-  <data name="prefixLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="prefixLabel.Text" xml:space="preserve">
     <value>接頭辞</value>
@@ -148,14 +142,8 @@
   <data name="sequentialGroupBox.Text" xml:space="preserve">
     <value>連番</value>
   </data>
-  <data name="withLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="withLabel.Text" xml:space="preserve">
     <value>置換先</value>
-  </data>
-  <data name="toLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="toLabel.Text" xml:space="preserve">
     <value>置換元</value>
@@ -166,20 +154,11 @@
   <data name="replaceGroupBox.Text" xml:space="preserve">
     <value>置換</value>
   </data>
-  <data name="allBranchCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 16</value>
-  </data>
   <data name="allBranchCheckBox.Text" xml:space="preserve">
     <value>全ての兵科に適用</value>
   </data>
-  <data name="regexCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
-  </data>
   <data name="regexCheckBox.Text" xml:space="preserve">
     <value>正規表現</value>
-  </data>
-  <data name="allCountryCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>112, 16</value>
   </data>
   <data name="allCountryCheckBox.Text" xml:space="preserve">
     <value>全ての国家に適用</value>

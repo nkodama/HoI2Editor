@@ -722,7 +722,7 @@ namespace HoI2Editor.Forms
                 case 0: // 国タグ
                     if (_key == SortKey.Tag)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -733,7 +733,7 @@ namespace HoI2Editor.Forms
                 case 1: // ID
                     if (_key == SortKey.Id)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -744,7 +744,7 @@ namespace HoI2Editor.Forms
                 case 2: // 名前
                     if (_key == SortKey.Name)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -755,7 +755,7 @@ namespace HoI2Editor.Forms
                 case 3: // 兵科
                     if (_key == SortKey.Branch)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -766,7 +766,7 @@ namespace HoI2Editor.Forms
                 case 4: // スキル
                     if (_key == SortKey.Skill)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -777,7 +777,7 @@ namespace HoI2Editor.Forms
                 case 5: // 最大スキル
                     if (_key == SortKey.MaxSkill)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -788,7 +788,7 @@ namespace HoI2Editor.Forms
                 case 6: // 開始年
                     if (_key == SortKey.StartYear)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -799,7 +799,7 @@ namespace HoI2Editor.Forms
                 case 7: // 終了年
                     if (_key == SortKey.EndYear)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -810,7 +810,7 @@ namespace HoI2Editor.Forms
                 case 8: // 特性
                     if (_key == SortKey.Traits)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -1702,9 +1702,9 @@ namespace HoI2Editor.Forms
 
             int count = countryListBox.SelectedItems.Count;
             // 選択数に合わせて全選択/全解除を切り替える
-            countryAllButton.Text = (count <= 1) ? Resources.KeySelectAll : Resources.KeyUnselectAll;
+            countryAllButton.Text = count <= 1 ? Resources.KeySelectAll : Resources.KeyUnselectAll;
             // 選択数がゼロの場合は新規追加ボタンを無効化する
-            newButton.Enabled = (count > 0);
+            newButton.Enabled = count > 0;
 
             countryListBox.EndUpdate();
         }
@@ -1755,10 +1755,10 @@ namespace HoI2Editor.Forms
             int count = countryListBox.SelectedItems.Count;
 
             // 選択数に合わせて全選択/全解除を切り替える
-            countryAllButton.Text = (count <= 1) ? Resources.KeySelectAll : Resources.KeyUnselectAll;
+            countryAllButton.Text = count <= 1 ? Resources.KeySelectAll : Resources.KeyUnselectAll;
 
             // 選択数がゼロの場合は新規追加ボタンを無効化する
-            newButton.Enabled = (count > 0);
+            newButton.Enabled = count > 0;
 
             // 選択中の国家を保存する
             HoI2EditorController.Settings.LeaderEditor.Countries =
@@ -1886,10 +1886,10 @@ namespace HoI2Editor.Forms
             // 項目移動ボタンの状態更新
             int index = leaderListView.SelectedIndices[0];
             int bottom = leaderListView.Items.Count - 1;
-            topButton.Enabled = (index != 0);
-            upButton.Enabled = (index != 0);
-            downButton.Enabled = (index != bottom);
-            bottomButton.Enabled = (index != bottom);
+            topButton.Enabled = index != 0;
+            upButton.Enabled = index != 0;
+            downButton.Enabled = index != bottom;
+            bottomButton.Enabled = index != bottom;
         }
 
         /// <summary>
@@ -1931,37 +1931,37 @@ namespace HoI2Editor.Forms
             UpdateLeaderPicture(leader);
 
             // 特性チェックボックスの状態を更新する
-            logisticsWizardCheckBox.Checked = ((leader.Traits & LeaderTraits.LogisticsWizard) != 0);
-            defensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.DefensiveDoctrine) != 0);
-            offensiveDoctrineCheckBox.Checked = ((leader.Traits & LeaderTraits.OffensiveDoctrine) != 0);
-            winterSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.WinterSpecialist) != 0);
-            tricksterCheckBox.Checked = ((leader.Traits & LeaderTraits.Trickster) != 0);
-            engineerCheckBox.Checked = ((leader.Traits & LeaderTraits.Engineer) != 0);
-            fortressBusterCheckBox.Checked = ((leader.Traits & LeaderTraits.FortressBuster) != 0);
-            panzerLeaderCheckBox.Checked = ((leader.Traits & LeaderTraits.PanzerLeader) != 0);
-            commandoCheckBox.Checked = ((leader.Traits & LeaderTraits.Commando) != 0);
-            oldGuardCheckBox.Checked = ((leader.Traits & LeaderTraits.OldGuard) != 0);
-            seaWolfCheckBox.Checked = ((leader.Traits & LeaderTraits.SeaWolf) != 0);
-            blockadeRunnerCheckBox.Checked = ((leader.Traits & LeaderTraits.BlockadeRunner) != 0);
-            superiorTacticianCheckBox.Checked = ((leader.Traits & LeaderTraits.SuperiorTactician) != 0);
-            spotterCheckBox.Checked = ((leader.Traits & LeaderTraits.Spotter) != 0);
-            tankBusterCheckBox.Checked = ((leader.Traits & LeaderTraits.TankBuster) != 0);
-            carpetBomberCheckBox.Checked = ((leader.Traits & LeaderTraits.CarpetBomber) != 0);
-            nightFlyerCheckBox.Checked = ((leader.Traits & LeaderTraits.NightFlyer) != 0);
-            fleetDestroyerCheckBox.Checked = ((leader.Traits & LeaderTraits.FleetDestroyer) != 0);
-            desertFoxCheckBox.Checked = ((leader.Traits & LeaderTraits.DesertFox) != 0);
-            jungleRatCheckBox.Checked = ((leader.Traits & LeaderTraits.JungleRat) != 0);
-            urbanWarfareSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.UrbanWarfareSpecialist) != 0);
-            rangerCheckBox.Checked = ((leader.Traits & LeaderTraits.Ranger) != 0);
-            mountaineerCheckBox.Checked = ((leader.Traits & LeaderTraits.Mountaineer) != 0);
-            hillsFighterCheckBox.Checked = ((leader.Traits & LeaderTraits.HillsFighter) != 0);
-            counterAttackerCheckBox.Checked = ((leader.Traits & LeaderTraits.CounterAttacker) != 0);
-            assaulterCheckBox.Checked = ((leader.Traits & LeaderTraits.Assaulter) != 0);
-            encirclerCheckBox.Checked = ((leader.Traits & LeaderTraits.Encircler) != 0);
-            ambusherCheckBox.Checked = ((leader.Traits & LeaderTraits.Ambusher) != 0);
-            disciplinedCheckBox.Checked = ((leader.Traits & LeaderTraits.Disciplined) != 0);
-            elasticDefenceSpecialistCheckBox.Checked = ((leader.Traits & LeaderTraits.ElasticDefenceSpecialist) != 0);
-            blitzerCheckBox.Checked = ((leader.Traits & LeaderTraits.Blitzer) != 0);
+            logisticsWizardCheckBox.Checked = (leader.Traits & LeaderTraits.LogisticsWizard) != 0;
+            defensiveDoctrineCheckBox.Checked = (leader.Traits & LeaderTraits.DefensiveDoctrine) != 0;
+            offensiveDoctrineCheckBox.Checked = (leader.Traits & LeaderTraits.OffensiveDoctrine) != 0;
+            winterSpecialistCheckBox.Checked = (leader.Traits & LeaderTraits.WinterSpecialist) != 0;
+            tricksterCheckBox.Checked = (leader.Traits & LeaderTraits.Trickster) != 0;
+            engineerCheckBox.Checked = (leader.Traits & LeaderTraits.Engineer) != 0;
+            fortressBusterCheckBox.Checked = (leader.Traits & LeaderTraits.FortressBuster) != 0;
+            panzerLeaderCheckBox.Checked = (leader.Traits & LeaderTraits.PanzerLeader) != 0;
+            commandoCheckBox.Checked = (leader.Traits & LeaderTraits.Commando) != 0;
+            oldGuardCheckBox.Checked = (leader.Traits & LeaderTraits.OldGuard) != 0;
+            seaWolfCheckBox.Checked = (leader.Traits & LeaderTraits.SeaWolf) != 0;
+            blockadeRunnerCheckBox.Checked = (leader.Traits & LeaderTraits.BlockadeRunner) != 0;
+            superiorTacticianCheckBox.Checked = (leader.Traits & LeaderTraits.SuperiorTactician) != 0;
+            spotterCheckBox.Checked = (leader.Traits & LeaderTraits.Spotter) != 0;
+            tankBusterCheckBox.Checked = (leader.Traits & LeaderTraits.TankBuster) != 0;
+            carpetBomberCheckBox.Checked = (leader.Traits & LeaderTraits.CarpetBomber) != 0;
+            nightFlyerCheckBox.Checked = (leader.Traits & LeaderTraits.NightFlyer) != 0;
+            fleetDestroyerCheckBox.Checked = (leader.Traits & LeaderTraits.FleetDestroyer) != 0;
+            desertFoxCheckBox.Checked = (leader.Traits & LeaderTraits.DesertFox) != 0;
+            jungleRatCheckBox.Checked = (leader.Traits & LeaderTraits.JungleRat) != 0;
+            urbanWarfareSpecialistCheckBox.Checked = (leader.Traits & LeaderTraits.UrbanWarfareSpecialist) != 0;
+            rangerCheckBox.Checked = (leader.Traits & LeaderTraits.Ranger) != 0;
+            mountaineerCheckBox.Checked = (leader.Traits & LeaderTraits.Mountaineer) != 0;
+            hillsFighterCheckBox.Checked = (leader.Traits & LeaderTraits.HillsFighter) != 0;
+            counterAttackerCheckBox.Checked = (leader.Traits & LeaderTraits.CounterAttacker) != 0;
+            assaulterCheckBox.Checked = (leader.Traits & LeaderTraits.Assaulter) != 0;
+            encirclerCheckBox.Checked = (leader.Traits & LeaderTraits.Encircler) != 0;
+            ambusherCheckBox.Checked = (leader.Traits & LeaderTraits.Ambusher) != 0;
+            disciplinedCheckBox.Checked = (leader.Traits & LeaderTraits.Disciplined) != 0;
+            elasticDefenceSpecialistCheckBox.Checked = (leader.Traits & LeaderTraits.ElasticDefenceSpecialist) != 0;
+            blitzerCheckBox.Checked = (leader.Traits & LeaderTraits.Blitzer) != 0;
         }
 
         /// <summary>

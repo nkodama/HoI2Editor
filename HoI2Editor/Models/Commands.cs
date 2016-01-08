@@ -702,17 +702,17 @@ namespace HoI2Editor.Models
             switch (Game.Type)
             {
                 case GameType.HeartsOfIron2:
-                    return (Game.Version >= 130) ? CommandGameType.Dda13 : CommandGameType.Dda12;
+                    return Game.Version >= 130 ? CommandGameType.Dda13 : CommandGameType.Dda12;
 
                 case GameType.ArsenalOfDemocracy:
-                    return (Game.Version >= 108)
+                    return Game.Version >= 108
                         ? CommandGameType.Aod108
-                        : ((Game.Version <= 104) ? CommandGameType.Aod104 : CommandGameType.Aod107);
+                        : (Game.Version <= 104 ? CommandGameType.Aod104 : CommandGameType.Aod107);
 
                 case GameType.DarkestHour:
-                    return (Game.Version >= 104)
+                    return Game.Version >= 104
                         ? CommandGameType.Dh104
-                        : (Game.Version >= 103) ? CommandGameType.Dh103 : CommandGameType.Dh102;
+                        : Game.Version >= 103 ? CommandGameType.Dh103 : CommandGameType.Dh102;
             }
             return CommandGameType.Dda12;
         }

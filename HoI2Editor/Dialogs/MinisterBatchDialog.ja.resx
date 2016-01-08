@@ -121,50 +121,26 @@
     <value>キャンセル</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="specifiedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 16</value>
-  </data>
   <data name="specifiedRadioButton.Text" xml:space="preserve">
     <value>指定国</value>
-  </data>
-  <data name="selectedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 16</value>
   </data>
   <data name="selectedRadioButton.Text" xml:space="preserve">
     <value>選択中</value>
   </data>
-  <data name="allRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 16</value>
-  </data>
   <data name="allRadioButton.Text" xml:space="preserve">
     <value>全て</value>
-  </data>
-  <data name="startYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
   </data>
   <data name="startYearCheckBox.Text" xml:space="preserve">
     <value>開始年</value>
   </data>
-  <data name="endYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
-  </data>
   <data name="endYearCheckBox.Text" xml:space="preserve">
     <value>終了年</value>
-  </data>
-  <data name="retirementYearCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
   </data>
   <data name="retirementYearCheckBox.Text" xml:space="preserve">
     <value>引退年</value>
   </data>
-  <data name="ideologyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 16</value>
-  </data>
   <data name="ideologyCheckBox.Text" xml:space="preserve">
     <value>イデオロギー</value>
-  </data>
-  <data name="loyaltyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
   </data>
   <data name="loyaltyCheckBox.Text" xml:space="preserve">
     <value>忠誠度</value>
@@ -178,32 +154,17 @@
   <data name="modifyGroupBox.Text" xml:space="preserve">
     <value>変更</value>
   </data>
-  <data name="destLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 12</value>
-  </data>
   <data name="destLabel.Text" xml:space="preserve">
     <value>コピー/移動先</value>
-  </data>
-  <data name="moveRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 16</value>
   </data>
   <data name="moveRadioButton.Text" xml:space="preserve">
     <value>移動</value>
   </data>
-  <data name="copyRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 16</value>
-  </data>
   <data name="copyRadioButton.Text" xml:space="preserve">
     <value>コピー</value>
   </data>
-  <data name="modifyRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 16</value>
-  </data>
   <data name="modifyRadioButton.Text" xml:space="preserve">
     <value>変更</value>
-  </data>
-  <data name="idLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 12</value>
   </data>
   <data name="idLabel.Text" xml:space="preserve">
     <value>開始ID</value>

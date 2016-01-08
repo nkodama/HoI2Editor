@@ -1699,7 +1699,7 @@ namespace HoI2Editor.Models
                 sb.AppendFormat("{0}:{1}, ", Config.GetText(TextId.ResourceMoney), DoubleHelper.ToString1(Money));
             }
             int len = sb.Length;
-            return (len > 0) ? sb.ToString(0, len - 2) : "";
+            return len > 0 ? sb.ToString(0, len - 2) : "";
         }
 
         #endregion
@@ -2373,7 +2373,7 @@ namespace HoI2Editor.Models
         public TypeId GetNewUnitTypeId()
         {
             return Scenarios.GetNewTypeId(
-                (LandUnits.Count > 0 && LandUnits[0].Id != null) ? LandUnits[0].Id.Type : Scenarios.GetNewType(1), 1);
+                LandUnits.Count > 0 && LandUnits[0].Id != null ? LandUnits[0].Id.Type : Scenarios.GetNewType(1), 1);
         }
 
         #endregion

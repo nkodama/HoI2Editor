@@ -461,7 +461,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnGameFolderTextBoxDragEnter(object sender, DragEventArgs e)
         {
-            e.Effect = (e.Data.GetDataPresent(DataFormats.FileDrop)) ? DragDropEffects.Copy : DragDropEffects.None;
+            e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
         }
 
         /// <summary>
@@ -594,7 +594,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMainFormDragEnter(object sender, DragEventArgs e)
         {
-            e.Effect = (e.Data.GetDataPresent(DataFormats.FileDrop)) ? DragDropEffects.Copy : DragDropEffects.None;
+            e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
         }
 
         /// <summary>
@@ -735,12 +735,12 @@ namespace HoI2Editor.Forms
 
                 case LanguageMode.English:
                     // ロシア語は1251/それ以外は1252
-                    Game.CodePage = (languageComboBox.SelectedIndex == 7) ? 1251 : 1252;
+                    Game.CodePage = languageComboBox.SelectedIndex == 7 ? 1251 : 1252;
                     break;
 
                 case LanguageMode.PatchedJapanese:
                     // 日本語は932/それ以外は1252
-                    Game.CodePage = (languageComboBox.SelectedIndex == 0) ? 932 : 1252;
+                    Game.CodePage = languageComboBox.SelectedIndex == 0 ? 932 : 1252;
                     break;
 
                 case LanguageMode.PatchedKorean:

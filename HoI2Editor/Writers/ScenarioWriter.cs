@@ -2564,7 +2564,7 @@ namespace HoI2Editor.Writers
             if (division.Extra1 != UnitType.Undefined)
             {
                 writer.WriteLine("{0}  extra{1}         = {2}", indent,
-                    (division.Extra2 == UnitType.Undefined) ? " " : "1", Units.Strings[(int) division.Extra1]);
+                    division.Extra2 == UnitType.Undefined ? " " : "1", Units.Strings[(int) division.Extra1]);
             }
             if (division.Extra2 != UnitType.Undefined)
             {
@@ -2585,7 +2585,7 @@ namespace HoI2Editor.Writers
             if (division.Extra1 != UnitType.Undefined && division.BrigadeModel1 >= 0)
             {
                 writer.WriteLine("{0}  brigade_model{1} = {2}", indent,
-                    (division.Extra2 == UnitType.Undefined) ? " " : "1", division.BrigadeModel1);
+                    division.Extra2 == UnitType.Undefined ? " " : "1", division.BrigadeModel1);
             }
             if (division.Extra2 != UnitType.Undefined && division.BrigadeModel2 >= 0)
             {
@@ -2963,7 +2963,7 @@ namespace HoI2Editor.Writers
             }
             if (division.Extra1 != UnitType.Undefined)
             {
-                writer.WriteLine("      extra{0}         = {1}", (division.Extra2 == UnitType.Undefined) ? " " : "1",
+                writer.WriteLine("      extra{0}         = {1}", division.Extra2 == UnitType.Undefined ? " " : "1",
                     Units.Strings[(int) division.Extra1]);
             }
             if (division.Extra2 != UnitType.Undefined)
@@ -2984,7 +2984,7 @@ namespace HoI2Editor.Writers
             }
             if (division.Extra1 != UnitType.Undefined && division.BrigadeModel1 >= 0)
             {
-                writer.WriteLine("      brigade_model{0} = {1}", (division.Extra2 == UnitType.Undefined) ? " " : "1",
+                writer.WriteLine("      brigade_model{0} = {1}", division.Extra2 == UnitType.Undefined ? " " : "1",
                     division.BrigadeModel1);
             }
             if (division.Extra2 != UnitType.Undefined && division.BrigadeModel2 >= 0)
@@ -3357,7 +3357,7 @@ namespace HoI2Editor.Writers
             }
             if (division.Extra1 != UnitType.Undefined)
             {
-                writer.Write(" extra{0} = {1}", (division.Extra2 == UnitType.Undefined) ? "" : "1",
+                writer.Write(" extra{0} = {1}", division.Extra2 == UnitType.Undefined ? "" : "1",
                     Units.Strings[(int) division.Extra1]);
             }
             if (division.Extra2 != UnitType.Undefined)
@@ -3378,7 +3378,7 @@ namespace HoI2Editor.Writers
             }
             if (division.Extra1 != UnitType.Undefined && division.BrigadeModel1 >= 0)
             {
-                writer.Write(" brigade_model{0} = {1}", (division.Extra2 == UnitType.Undefined) ? "" : "1",
+                writer.Write(" brigade_model{0} = {1}", division.Extra2 == UnitType.Undefined ? "" : "1",
                     division.BrigadeModel1);
             }
             if (division.Extra2 != UnitType.Undefined && division.BrigadeModel2 >= 0)
@@ -3533,7 +3533,7 @@ namespace HoI2Editor.Writers
             }
             if (division.Extra1 != UnitType.Undefined)
             {
-                writer.Write(" extra{0} = {1}", (division.Extra2 == UnitType.Undefined) ? "" : "1",
+                writer.Write(" extra{0} = {1}", division.Extra2 == UnitType.Undefined ? "" : "1",
                     Units.Strings[(int) division.Extra1]);
             }
             if (division.Extra2 != UnitType.Undefined)
@@ -3554,7 +3554,7 @@ namespace HoI2Editor.Writers
             }
             if (division.Extra1 != UnitType.Undefined && division.BrigadeModel1 >= 0)
             {
-                writer.Write(" brigade_model{0} = {1}", (division.Extra2 == UnitType.Undefined) ? "" : "1",
+                writer.Write(" brigade_model{0} = {1}", division.Extra2 == UnitType.Undefined ? "" : "1",
                     division.BrigadeModel1);
             }
             if (division.Extra2 != UnitType.Undefined && division.BrigadeModel2 >= 0)

@@ -4728,8 +4728,8 @@ namespace HoI2Editor.Models
         /// <returns>文字列</returns>
         private static string GetDbl1Dda134String(double val)
         {
-            return (((Game.Type == GameType.HeartsOfIron2) && (Game.Version >= 130)) ||
-                    (Game.Type == GameType.DarkestHour))
+            return ((Game.Type == GameType.HeartsOfIron2) && (Game.Version >= 130)) ||
+                   (Game.Type == GameType.DarkestHour)
                 ? DoubleHelper.ToString4(val)
                 : DoubleHelper.ToString1(val);
         }
@@ -4741,7 +4741,7 @@ namespace HoI2Editor.Models
         /// <returns>文字列</returns>
         private static string GetDbl1AoD2String(double val)
         {
-            return (Game.Type == GameType.ArsenalOfDemocracy)
+            return Game.Type == GameType.ArsenalOfDemocracy
                 ? DoubleHelper.ToString2(val)
                 : DoubleHelper.ToString1(val);
         }
@@ -4753,7 +4753,7 @@ namespace HoI2Editor.Models
         /// <returns>文字列</returns>
         private static string GetDbl1AoD5String(double val)
         {
-            return (Game.Type == GameType.ArsenalOfDemocracy)
+            return Game.Type == GameType.ArsenalOfDemocracy
                 ? DoubleHelper.ToString5(val)
                 : DoubleHelper.ToString1(val);
         }
@@ -4767,7 +4767,7 @@ namespace HoI2Editor.Models
         /// <returns>文字列</returns>
         private static string GetDbl1Range2String(double val, double min, double max)
         {
-            return (val > min && val < max) ? DoubleHelper.ToString2(val) : DoubleHelper.ToString1(val);
+            return val > min && val < max ? DoubleHelper.ToString2(val) : DoubleHelper.ToString1(val);
         }
 
         /// <summary>
@@ -4779,7 +4779,7 @@ namespace HoI2Editor.Models
         /// <param name="max">範囲内の最大値</param>
         private static string GetDbl2Range1String(double val, double min, double max)
         {
-            return (val > min && val < max) ? DoubleHelper.ToString2(val) : DoubleHelper.ToString1(val);
+            return val > min && val < max ? DoubleHelper.ToString2(val) : DoubleHelper.ToString1(val);
         }
 
         /// <summary>
@@ -4789,7 +4789,7 @@ namespace HoI2Editor.Models
         /// <returns>文字列</returns>
         private static string GetNonNegIntNegDblString(double val)
         {
-            return (val < 0) ? DoubleHelper.ToString1(val) : IntHelper.ToString0((int) val);
+            return val < 0 ? DoubleHelper.ToString1(val) : IntHelper.ToString0((int) val);
         }
 
         #endregion
@@ -4805,17 +4805,17 @@ namespace HoI2Editor.Models
             switch (Game.Type)
             {
                 case GameType.HeartsOfIron2:
-                    return (Game.Version >= 130) ? MiscGameType.Dda13 : MiscGameType.Dda12;
+                    return Game.Version >= 130 ? MiscGameType.Dda13 : MiscGameType.Dda12;
 
                 case GameType.ArsenalOfDemocracy:
-                    return (Game.Version >= 108)
+                    return Game.Version >= 108
                         ? MiscGameType.Aod108
-                        : ((Game.Version <= 104) ? MiscGameType.Aod104 : MiscGameType.Aod107);
+                        : (Game.Version <= 104 ? MiscGameType.Aod104 : MiscGameType.Aod107);
 
                 case GameType.DarkestHour:
-                    return (Game.Version >= 104)
+                    return Game.Version >= 104
                         ? MiscGameType.Dh104
-                        : (Game.Version >= 103) ? MiscGameType.Dh103 : MiscGameType.Dh102;
+                        : Game.Version >= 103 ? MiscGameType.Dh103 : MiscGameType.Dh102;
             }
             return MiscGameType.Dda12;
         }

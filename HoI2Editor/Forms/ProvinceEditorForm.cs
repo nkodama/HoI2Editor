@@ -827,7 +827,7 @@ namespace HoI2Editor.Forms
                 case 0: // 名前
                     if (_key == SortKey.Name)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -838,7 +838,7 @@ namespace HoI2Editor.Forms
                 case 1: // ID
                     if (_key == SortKey.Id)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -849,7 +849,7 @@ namespace HoI2Editor.Forms
                 case 2: // 海洋プロヴィンスかどうか
                     if (_key == SortKey.Sea)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -860,7 +860,7 @@ namespace HoI2Editor.Forms
                 case 3: // 港の有無
                     if (_key == SortKey.Port)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -871,7 +871,7 @@ namespace HoI2Editor.Forms
                 case 4: // 砂浜の有無
                     if (_key == SortKey.Beach)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -882,7 +882,7 @@ namespace HoI2Editor.Forms
                 case 5: // インフラ
                     if (_key == SortKey.Infrastructure)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -893,7 +893,7 @@ namespace HoI2Editor.Forms
                 case 6: // IC
                     if (_key == SortKey.Ic)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -904,7 +904,7 @@ namespace HoI2Editor.Forms
                 case 7: // 労働力
                     if (_key == SortKey.Manpower)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -915,7 +915,7 @@ namespace HoI2Editor.Forms
                 case 8: // エネルギー
                     if (_key == SortKey.Energy)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -926,7 +926,7 @@ namespace HoI2Editor.Forms
                 case 9: // 金属
                     if (_key == SortKey.Metal)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -937,7 +937,7 @@ namespace HoI2Editor.Forms
                 case 10: // 希少資源
                     if (_key == SortKey.RareMaterials)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -948,7 +948,7 @@ namespace HoI2Editor.Forms
                 case 11: // 石油
                     if (_key == SortKey.Oil)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -2531,7 +2531,7 @@ namespace HoI2Editor.Forms
             Province newProv = Provinces.Items.Find(prov => prov.Id == seaZone);
 
             Log.Info("[Province] port sea zone: {0} [{1}] -> {2} [{3}] ({4}: {5})", province.PortSeaZone,
-                (oldProv != null) ? oldProv.GetName() : "", seaZone, (newProv != null) ? newProv.GetName() : "",
+                oldProv != null ? oldProv.GetName() : "", seaZone, newProv != null ? newProv.GetName() : "",
                 province.Id, province.GetName());
 
             // 値を更新する

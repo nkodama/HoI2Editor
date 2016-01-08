@@ -637,7 +637,7 @@ namespace HoI2Editor.Controllers
             TreeNode node = CreateDivisionNode(division);
             node.Text = Resources.UnitTreeNewDivision;
             int index = parent.Nodes.Count;
-            if ((parent.Tag is Unit) && (branch == Branch.Navy || branch == Branch.Airforce))
+            if (parent.Tag is Unit && (branch == Branch.Navy || branch == Branch.Airforce))
             {
                 index--;
             }
@@ -1304,8 +1304,8 @@ namespace HoI2Editor.Controllers
                 Unit = unit,
                 CanAddUnit = true,
                 CanAddDivision = true,
-                IsTop = (index == 0),
-                IsBottom = (index == bottom)
+                IsTop = index == 0,
+                IsBottom = index == bottom
             };
 
             AfterSelect?.Invoke(sender, args);
@@ -1332,8 +1332,8 @@ namespace HoI2Editor.Controllers
                 Division = division,
                 Unit = e.Node.Parent.Tag as Unit,
                 CanAddDivision = true,
-                IsTop = (index <= 0),
-                IsBottom = (index >= bottom)
+                IsTop = index <= 0,
+                IsBottom = index >= bottom
             };
 
             AfterSelect?.Invoke(sender, args);

@@ -812,7 +812,7 @@ namespace HoI2Editor.Models
         /// <returns>国家関係</returns>
         public static Relation GetCountryRelation(Country country1, Country country2)
         {
-            return (RelationTable.ContainsKey(country1) && RelationTable[country1].ContainsKey(country2))
+            return RelationTable.ContainsKey(country1) && RelationTable[country1].ContainsKey(country2)
                 ? RelationTable[country1][country2]
                 : null;
         }
@@ -839,7 +839,7 @@ namespace HoI2Editor.Models
         /// <returns>不可侵条約</returns>
         public static Treaty GetNonAggression(Country country1, Country country2)
         {
-            return (NonAggressionTable.ContainsKey(country1) && NonAggressionTable[country1].ContainsKey(country2))
+            return NonAggressionTable.ContainsKey(country1) && NonAggressionTable[country1].ContainsKey(country2)
                 ? NonAggressionTable[country1][country2]
                 : null;
         }
@@ -890,7 +890,7 @@ namespace HoI2Editor.Models
         /// <returns>講和条約</returns>
         public static Treaty GetPeace(Country country1, Country country2)
         {
-            return (PeaceTable.ContainsKey(country1) && PeaceTable[country1].ContainsKey(country2))
+            return PeaceTable.ContainsKey(country1) && PeaceTable[country1].ContainsKey(country2)
                 ? PeaceTable[country1][country2]
                 : null;
         }
@@ -941,7 +941,7 @@ namespace HoI2Editor.Models
         /// <returns>諜報設定</returns>
         public static SpySettings GetCountryIntelligence(Country country1, Country country2)
         {
-            return (SpyTable.ContainsKey(country1) && SpyTable[country1].ContainsKey(country2))
+            return SpyTable.ContainsKey(country1) && SpyTable[country1].ContainsKey(country2)
                 ? SpyTable[country1][country2]
                 : null;
         }

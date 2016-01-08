@@ -2076,7 +2076,7 @@ namespace HoI2Editor.Models
         /// <returns>ユニットモデル名のキー</returns>
         private string GetModelNameKey(int index)
         {
-            string format = (Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}";
+            string format = Organization == UnitOrganization.Division ? "MODEL_{0}_{1}" : "BRIG_MODEL_{0}_{1}";
             return string.Format(format, Units.UnitNumbers[(int) Type], index);
         }
 
@@ -2092,7 +2092,7 @@ namespace HoI2Editor.Models
             {
                 return GetModelNameKey(index);
             }
-            string format = (Organization == UnitOrganization.Division) ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}";
+            string format = Organization == UnitOrganization.Division ? "MODEL_{0}_{1}_{2}" : "BRIG_MODEL_{0}_{1}_{2}";
             return string.Format(format, Countries.Strings[(int) country], Units.UnitNumbers[(int) Type], index);
         }
 
@@ -2718,7 +2718,7 @@ namespace HoI2Editor.Models
         /// <returns>編集済みならばtrueを返す</returns>
         public bool IsDirtyName(Country country)
         {
-            return (country == Country.None) ? _dirtyFlags[(int) UnitModelItemId.Name] : _nameDirtyFlags[(int) country];
+            return country == Country.None ? _dirtyFlags[(int) UnitModelItemId.Name] : _nameDirtyFlags[(int) country];
         }
 
         /// <summary>

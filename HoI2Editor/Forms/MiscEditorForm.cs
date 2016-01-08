@@ -553,8 +553,8 @@ namespace HoI2Editor.Forms
                                     (int) g.MeasureString(s, Font).Width + SystemInformation.VerticalScrollBarWidth
                                     + comboBoxWidthMargin);
                                 maxWidth = comboBoxWidthBase
-                                           + ((maxWidth - comboBoxWidthBase + (comboBoxWidthUnit - 1))
-                                              / comboBoxWidthUnit) * comboBoxWidthUnit;
+                                           + (maxWidth - comboBoxWidthBase + (comboBoxWidthUnit - 1))
+                                           / comboBoxWidthUnit * comboBoxWidthUnit;
                             }
                             x += maxWidth;
                             break;
@@ -599,8 +599,8 @@ namespace HoI2Editor.Forms
                                     (int) g.MeasureString(s, Font).Width + SystemInformation.VerticalScrollBarWidth
                                     + comboBoxWidthMargin);
                                 maxWidth = comboBoxWidthBase
-                                           + ((maxWidth - comboBoxWidthBase + (comboBoxWidthUnit - 1))
-                                              / comboBoxWidthUnit) * comboBoxWidthUnit;
+                                           + (maxWidth - comboBoxWidthBase + (comboBoxWidthUnit - 1))
+                                           / comboBoxWidthUnit * comboBoxWidthUnit;
                             }
                             comboBox.Size = new Size(maxWidth, comboBoxHeight);
                             comboBox.Location = new Point(editX - maxWidth, editY);
@@ -1213,7 +1213,7 @@ namespace HoI2Editor.Forms
             switch (type)
             {
                 case MiscItemType.Bool:
-                    b = (comboBox.SelectedIndex == 1);
+                    b = comboBox.SelectedIndex == 1;
                     if (b == (bool) Misc.GetItem(id))
                     {
                         return;

@@ -405,9 +405,9 @@ namespace HoI2Editor.Models
         {
             Color[] colorScale = new Color[64];
             int width = colors[1][3] - colors[0][3];
-            int deltaR = (width > 0) ? ((colors[1][0] - colors[0][0]) << 10) / width : 0;
-            int deltaG = (width > 0) ? ((colors[1][1] - colors[0][1]) << 10) / width : 0;
-            int deltaB = (width > 0) ? ((colors[1][2] - colors[0][2]) << 10) / width : 0;
+            int deltaR = width > 0 ? ((colors[1][0] - colors[0][0]) << 10) / width : 0;
+            int deltaG = width > 0 ? ((colors[1][1] - colors[0][1]) << 10) / width : 0;
+            int deltaB = width > 0 ? ((colors[1][2] - colors[0][2]) << 10) / width : 0;
             int r = colors[0][0] << 10;
             int g = colors[0][1] << 10;
             int b = colors[0][2] << 10;
@@ -419,9 +419,9 @@ namespace HoI2Editor.Models
                 b += deltaB;
             }
             width = colors[2][3] - colors[1][3];
-            deltaR = (width > 0) ? ((colors[2][0] - colors[1][0]) << 10) / width : 0;
-            deltaG = (width > 0) ? ((colors[2][1] - colors[1][1]) << 10) / width : 0;
-            deltaB = (width > 0) ? ((colors[2][2] - colors[1][2]) << 10) / width : 0;
+            deltaR = width > 0 ? ((colors[2][0] - colors[1][0]) << 10) / width : 0;
+            deltaG = width > 0 ? ((colors[2][1] - colors[1][1]) << 10) / width : 0;
+            deltaB = width > 0 ? ((colors[2][2] - colors[1][2]) << 10) / width : 0;
             r = colors[1][0] << 10;
             g = colors[1][1] << 10;
             b = colors[1][2] << 10;
@@ -433,9 +433,9 @@ namespace HoI2Editor.Models
                 b += deltaB;
             }
             width = colors[3][3] - colors[2][3];
-            deltaR = (width > 0) ? ((colors[3][0] - colors[2][0]) << 10) / width : 0;
-            deltaG = (width > 0) ? ((colors[3][1] - colors[2][1]) << 10) / width : 0;
-            deltaB = (width > 0) ? ((colors[3][2] - colors[2][2]) << 10) / width : 0;
+            deltaR = width > 0 ? ((colors[3][0] - colors[2][0]) << 10) / width : 0;
+            deltaG = width > 0 ? ((colors[3][1] - colors[2][1]) << 10) / width : 0;
+            deltaB = width > 0 ? ((colors[3][2] - colors[2][2]) << 10) / width : 0;
             r = colors[2][0] << 10;
             g = colors[2][1] << 10;
             b = colors[2][2] << 10;

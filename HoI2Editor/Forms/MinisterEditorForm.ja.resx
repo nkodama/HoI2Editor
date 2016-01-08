@@ -160,62 +160,32 @@
     <value>末尾へ</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="countryLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="countryLabel.Text" xml:space="preserve">
     <value>国家</value>
   </data>
   <data name="countryComboBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
-  <data name="countryComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 20</value>
-  </data>
-  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="nameLabel.Text" xml:space="preserve">
     <value>名前</value>
-  </data>
-  <data name="startYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="startYearLabel.Text" xml:space="preserve">
     <value>開始年</value>
   </data>
-  <data name="endYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="endYearLabel.Text" xml:space="preserve">
     <value>終了年</value>
-  </data>
-  <data name="loyaltyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="loyaltyLabel.Text" xml:space="preserve">
     <value>忠誠度</value>
   </data>
-  <data name="ideologyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 12</value>
-  </data>
   <data name="ideologyLabel.Text" xml:space="preserve">
     <value>イデオロギー</value>
-  </data>
-  <data name="personalityLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="personalityLabel.Text" xml:space="preserve">
     <value>特性</value>
   </data>
-  <data name="positionLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="positionLabel.Text" xml:space="preserve">
     <value>地位</value>
-  </data>
-  <data name="pictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 12</value>
   </data>
   <data name="pictureNameLabel.Text" xml:space="preserve">
     <value>画像ファイル名</value>
@@ -231,9 +201,6 @@
   </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>閉じる</value>
-  </data>
-  <data name="retirementYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="retirementYearLabel.Text" xml:space="preserve">
     <value>引退年</value>

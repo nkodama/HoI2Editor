@@ -3809,7 +3809,7 @@ namespace HoI2Editor.Models
             }
             else if (int.TryParse(tokens[index], out n))
             {
-                province.Beaches = (n > 0);
+                province.Beaches = n > 0;
             }
             else
             {
@@ -3825,7 +3825,7 @@ namespace HoI2Editor.Models
             }
             else if (int.TryParse(tokens[index], out n))
             {
-                province.PortAllowed = (n > 0);
+                province.PortAllowed = n > 0;
             }
             else
             {
@@ -4463,13 +4463,13 @@ namespace HoI2Editor.Models
                             province.FillCoordY1,
                             province.FillCoordX2,
                             province.FillCoordY2,
-                            (province.FillCoordX3 != 0) ? IntHelper.ToString(province.FillCoordX3) : "",
-                            (province.FillCoordY3 != 0) ? IntHelper.ToString(province.FillCoordY3) : "",
-                            (province.FillCoordX4 != 0) ? IntHelper.ToString(province.FillCoordX4) : "",
-                            (province.FillCoordY4 != 0) ? IntHelper.ToString(province.FillCoordY4) : "",
-                            (province.FillCoordX5 != 0) ? IntHelper.ToString(province.FillCoordX5) : "",
-                            (province.FillCoordY5 != 0) ? IntHelper.ToString(province.FillCoordY5) : "",
-                            (province.FillCoordX6 != 0) ? IntHelper.ToString(province.FillCoordX6) : "");
+                            province.FillCoordX3 != 0 ? IntHelper.ToString(province.FillCoordX3) : "",
+                            province.FillCoordY3 != 0 ? IntHelper.ToString(province.FillCoordY3) : "",
+                            province.FillCoordX4 != 0 ? IntHelper.ToString(province.FillCoordX4) : "",
+                            province.FillCoordY4 != 0 ? IntHelper.ToString(province.FillCoordY4) : "",
+                            province.FillCoordX5 != 0 ? IntHelper.ToString(province.FillCoordX5) : "",
+                            province.FillCoordY5 != 0 ? IntHelper.ToString(province.FillCoordY5) : "",
+                            province.FillCoordX6 != 0 ? IntHelper.ToString(province.FillCoordX6) : "");
                     }
                     else
                     {
@@ -4486,27 +4486,27 @@ namespace HoI2Editor.Models
                             province.Beaches ? 1 : 0,
                             province.PortAllowed ? 1 : 0,
                             province.PortSeaZone,
-                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.Ic) : "",
-                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.Manpower) : "",
-                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.Oil) : "",
-                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.Metal) : "",
-                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.Energy) : "",
-                            (province.Terrain != TerrainId.Ocean) ? DoubleHelper.ToString(province.RareMaterials) : "",
-                            (province.CityXPos != 0) ? IntHelper.ToString(province.CityXPos) : "",
-                            (province.CityYPos != 0) ? IntHelper.ToString(province.CityYPos) : "",
-                            (province.ArmyXPos != 0) ? IntHelper.ToString(province.ArmyXPos) : "",
-                            (province.ArmyYPos != 0) ? IntHelper.ToString(province.ArmyYPos) : "",
-                            (province.PortXPos != 0) ? IntHelper.ToString(province.PortXPos) : "",
-                            (province.PortYPos != 0) ? IntHelper.ToString(province.PortYPos) : "",
-                            (province.BeachXPos != 0) ? IntHelper.ToString(province.BeachXPos) : "",
-                            (province.BeachYPos != 0) ? IntHelper.ToString(province.BeachYPos) : "",
-                            (province.BeachXPos != 0) ? IntHelper.ToString(province.BeachIcon) : "",
-                            (province.FortXPos != 0) ? IntHelper.ToString(province.FortXPos) : "",
-                            (province.FortYPos != 0) ? IntHelper.ToString(province.FortYPos) : "",
-                            (province.AaXPos != 0) ? IntHelper.ToString(province.AaXPos) : "",
-                            (province.AaYPos != 0) ? IntHelper.ToString(province.AaYPos) : "",
-                            (province.CounterXPos != 0) ? IntHelper.ToString(province.CounterXPos) : "",
-                            (province.CounterYPos != 0) ? IntHelper.ToString(province.CounterYPos) : "",
+                            province.Terrain != TerrainId.Ocean ? DoubleHelper.ToString(province.Ic) : "",
+                            province.Terrain != TerrainId.Ocean ? DoubleHelper.ToString(province.Manpower) : "",
+                            province.Terrain != TerrainId.Ocean ? DoubleHelper.ToString(province.Oil) : "",
+                            province.Terrain != TerrainId.Ocean ? DoubleHelper.ToString(province.Metal) : "",
+                            province.Terrain != TerrainId.Ocean ? DoubleHelper.ToString(province.Energy) : "",
+                            province.Terrain != TerrainId.Ocean ? DoubleHelper.ToString(province.RareMaterials) : "",
+                            province.CityXPos != 0 ? IntHelper.ToString(province.CityXPos) : "",
+                            province.CityYPos != 0 ? IntHelper.ToString(province.CityYPos) : "",
+                            province.ArmyXPos != 0 ? IntHelper.ToString(province.ArmyXPos) : "",
+                            province.ArmyYPos != 0 ? IntHelper.ToString(province.ArmyYPos) : "",
+                            province.PortXPos != 0 ? IntHelper.ToString(province.PortXPos) : "",
+                            province.PortYPos != 0 ? IntHelper.ToString(province.PortYPos) : "",
+                            province.BeachXPos != 0 ? IntHelper.ToString(province.BeachXPos) : "",
+                            province.BeachYPos != 0 ? IntHelper.ToString(province.BeachYPos) : "",
+                            province.BeachXPos != 0 ? IntHelper.ToString(province.BeachIcon) : "",
+                            province.FortXPos != 0 ? IntHelper.ToString(province.FortXPos) : "",
+                            province.FortYPos != 0 ? IntHelper.ToString(province.FortYPos) : "",
+                            province.AaXPos != 0 ? IntHelper.ToString(province.AaXPos) : "",
+                            province.AaYPos != 0 ? IntHelper.ToString(province.AaYPos) : "",
+                            province.CounterXPos != 0 ? IntHelper.ToString(province.CounterXPos) : "",
+                            province.CounterYPos != 0 ? IntHelper.ToString(province.CounterYPos) : "",
                             province.FillCoordX1,
                             province.FillCoordY1,
                             province.FillCoordX2,

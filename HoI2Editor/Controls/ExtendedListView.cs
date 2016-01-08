@@ -39,7 +39,7 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     選択中の項目
         /// </summary>
-        public ListViewItem SelectedItem => (SelectedItems.Count > 0) ? SelectedItems[0] : null;
+        public ListViewItem SelectedItem => SelectedItems.Count > 0 ? SelectedItems[0] : null;
 
         /// <summary>
         ///     項目の入れ替えをサポートするかどうか
@@ -231,7 +231,7 @@ namespace HoI2Editor.Controls
             }
             e.Effect = e.AllowedEffect;
             Rectangle bounds = GetItemRect(index);
-            InsertionMark.AppearsAfterItem = (p.Y > bounds.Top + bounds.Height / 2);
+            InsertionMark.AppearsAfterItem = p.Y > bounds.Top + bounds.Height / 2;
             InsertionMark.Index = index;
 
             // 挿入位置の項目を表示することで自動スクロールする

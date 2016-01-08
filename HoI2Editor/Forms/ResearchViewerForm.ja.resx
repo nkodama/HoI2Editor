@@ -130,38 +130,20 @@
     <value>技術</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="specifiedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 16</value>
-  </data>
   <data name="specifiedRadioButton.Text" xml:space="preserve">
     <value>指定した日付を使用</value>
-  </data>
-  <data name="historicalRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 16</value>
   </data>
   <data name="historicalRadioButton.Text" xml:space="preserve">
     <value>史実年度を使用</value>
   </data>
-  <data name="blueprintCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
-  </data>
   <data name="blueprintCheckBox.Text" xml:space="preserve">
     <value>青写真</value>
-  </data>
-  <data name="modifierLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
   </data>
   <data name="modifierLabel.Text" xml:space="preserve">
     <value>研究速度補正</value>
   </data>
-  <data name="nuclearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="nuclearLabel.Text" xml:space="preserve">
     <value>原子炉</value>
-  </data>
-  <data name="rocketLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 12</value>
   </data>
   <data name="rocketLabel.Text" xml:space="preserve">
     <value>ロケット試験場</value>

@@ -444,7 +444,7 @@ namespace HoI2Editor.Forms
             Rectangle tr = new Rectangle(e.Bounds.X + DeviceCaps.GetScaledWidth(16) + 3, e.Bounds.Y + 3,
                 e.Bounds.Width - DeviceCaps.GetScaledWidth(16) - 3, e.Bounds.Height);
             Brush brush = new SolidBrush(
-                ((techListView.SelectedIndices.Count > 0) && (e.ItemIndex == techListView.SelectedIndices[0]))
+                (techListView.SelectedIndices.Count > 0) && (e.ItemIndex == techListView.SelectedIndices[0])
                     ? (techListView.Focused ? SystemColors.HighlightText : SystemColors.ControlText)
                     : SystemColors.WindowText);
 
@@ -781,7 +781,7 @@ namespace HoI2Editor.Forms
                 : ResearchDateMode.Specified;
 
             // 指定日付を使用の時だけ日付の編集を許可する
-            bool flag = (Researches.DateMode == ResearchDateMode.Specified);
+            bool flag = Researches.DateMode == ResearchDateMode.Specified;
             yearNumericUpDown.Enabled = flag;
             monthNumericUpDown.Enabled = flag;
             dayNumericUpDown.Enabled = flag;

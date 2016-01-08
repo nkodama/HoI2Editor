@@ -148,14 +148,8 @@
     <value>石油</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="terrainLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="terrainLabel.Text" xml:space="preserve">
     <value>地形</value>
-  </data>
-  <data name="climateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="climateLabel.Text" xml:space="preserve">
     <value>気候</value>
@@ -163,20 +157,11 @@
   <data name="areaLabel.Text" xml:space="preserve">
     <value>地域</value>
   </data>
-  <data name="regionLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="regionLabel.Text" xml:space="preserve">
     <value>地方</value>
   </data>
-  <data name="continentLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="continentLabel.Text" xml:space="preserve">
     <value>大陸</value>
-  </data>
-  <data name="nameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="nameLabel.Text" xml:space="preserve">
     <value>名前</value>
@@ -184,62 +169,32 @@
   <data name="basicGroupBox.Text" xml:space="preserve">
     <value>基本設定</value>
   </data>
-  <data name="fillLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="fillLabel.Text" xml:space="preserve">
     <value>塗りつぶし</value>
-  </data>
-  <data name="counterLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 12</value>
   </data>
   <data name="counterLabel.Text" xml:space="preserve">
     <value>カウンター</value>
   </data>
-  <data name="aaLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="aaLabel.Text" xml:space="preserve">
     <value>対空砲</value>
-  </data>
-  <data name="fortLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="fortLabel.Text" xml:space="preserve">
     <value>要塞</value>
   </data>
-  <data name="beachIconLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 12</value>
-  </data>
   <data name="beachIconLabel.Text" xml:space="preserve">
     <value>アイコン</value>
-  </data>
-  <data name="beachCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
   </data>
   <data name="beachCheckBox.Text" xml:space="preserve">
     <value>砂浜</value>
   </data>
-  <data name="portSeaZoneLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="portSeaZoneLabel.Text" xml:space="preserve">
     <value>海域</value>
-  </data>
-  <data name="portCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 16</value>
   </data>
   <data name="portCheckBox.Text" xml:space="preserve">
     <value>港</value>
   </data>
-  <data name="armyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="armyLabel.Text" xml:space="preserve">
     <value>軍隊</value>
-  </data>
-  <data name="cityLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="cityLabel.Text" xml:space="preserve">
     <value>都市</value>
@@ -256,38 +211,20 @@
   <data name="reloadButton.Text" xml:space="preserve">
     <value>再読み込み</value>
   </data>
-  <data name="oilLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="oilLabel.Text" xml:space="preserve">
     <value>石油</value>
-  </data>
-  <data name="rareMaterialsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
   </data>
   <data name="rareMaterialsLabel.Text" xml:space="preserve">
     <value>希少資源</value>
   </data>
-  <data name="metalLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="metalLabel.Text" xml:space="preserve">
     <value>金属</value>
-  </data>
-  <data name="energyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="energyLabel.Text" xml:space="preserve">
     <value>石炭</value>
   </data>
-  <data name="manpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="manpowerLabel.Text" xml:space="preserve">
     <value>労働力</value>
-  </data>
-  <data name="infraLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 12</value>
   </data>
   <data name="infraLabel.Text" xml:space="preserve">
     <value>インフラ</value>

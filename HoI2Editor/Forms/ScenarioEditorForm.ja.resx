@@ -118,56 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="provinceInfrastructureLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 12</value>
-  </data>
   <data name="provinceInfrastructureLabel.Text" xml:space="preserve">
     <value>インフラ</value>
-  </data>
-  <data name="provinceLandFortLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
   </data>
   <data name="provinceLandFortLabel.Text" xml:space="preserve">
     <value>陸上要塞</value>
   </data>
-  <data name="provinceCoastalFortLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="provinceCoastalFortLabel.Text" xml:space="preserve">
     <value>沿岸要塞</value>
-  </data>
-  <data name="provinceNavalBaseLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
   </data>
   <data name="provinceNavalBaseLabel.Text" xml:space="preserve">
     <value>海軍基地</value>
   </data>
-  <data name="provinceAirBaseLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="provinceAirBaseLabel.Text" xml:space="preserve">
     <value>空軍基地</value>
-  </data>
-  <data name="provinceAntiAirLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="provinceAntiAirLabel.Text" xml:space="preserve">
     <value>対空砲</value>
   </data>
-  <data name="provinceNuclearReactorLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="provinceNuclearReactorLabel.Text" xml:space="preserve">
     <value>原子炉</value>
   </data>
-  <data name="provinceRocketTestLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 12</value>
-  </data>
   <data name="provinceRocketTestLabel.Text" xml:space="preserve">
     <value>ロケット試験場</value>
-  </data>
-  <data name="provinceRadarStationLbel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 12</value>
   </data>
   <data name="provinceRadarStationLbel.Text" xml:space="preserve">
     <value>レーダー基地</value>
@@ -175,17 +148,11 @@
   <data name="buildingCurrentLabel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 19</value>
   </data>
-  <data name="buildingCurrentLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="buildingCurrentLabel1.Text" xml:space="preserve">
     <value>現在</value>
   </data>
   <data name="buildingMaxLabel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>159, 19</value>
-  </data>
-  <data name="buildingMaxLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="buildingMaxLabel1.Text" xml:space="preserve">
     <value>最大</value>
@@ -193,26 +160,14 @@
   <data name="buildingRelativeLabel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>204, 19</value>
   </data>
-  <data name="buildingRelativeLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="buildingRelativeLabel1.Text" xml:space="preserve">
     <value>相対</value>
-  </data>
-  <data name="provinceNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="provinceNameLabel.Text" xml:space="preserve">
     <value>名前</value>
   </data>
-  <data name="provinceRevoltRiskLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="provinceRevoltRiskLabel.Text" xml:space="preserve">
     <value>反乱率</value>
-  </data>
-  <data name="resourceMaxLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="resourceMaxLabel.Text" xml:space="preserve">
     <value>最大</value>
@@ -220,32 +175,17 @@
   <data name="resourceCurrentLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>149, 15</value>
   </data>
-  <data name="resourceCurrentLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="resourceCurrentLabel.Text" xml:space="preserve">
     <value>現在</value>
-  </data>
-  <data name="resourcePoolLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="resourcePoolLabel.Text" xml:space="preserve">
     <value>備蓄</value>
   </data>
-  <data name="ownedTechsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="ownedTechsLabel.Text" xml:space="preserve">
     <value>保有技術</value>
   </data>
-  <data name="blueprintsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="blueprintsLabel.Text" xml:space="preserve">
     <value>青写真</value>
-  </data>
-  <data name="inventionsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
   </data>
   <data name="inventionsLabel.Text" xml:space="preserve">
     <value>発明イベント</value>
@@ -256,38 +196,20 @@
   <data name="technologyTabPage.Text" xml:space="preserve">
     <value>技術</value>
   </data>
-  <data name="peacetimeIcModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 12</value>
-  </data>
   <data name="peacetimeIcModifierLabel.Text" xml:space="preserve">
     <value>平時IC補正</value>
-  </data>
-  <data name="wartimeIcModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 12</value>
   </data>
   <data name="wartimeIcModifierLabel.Text" xml:space="preserve">
     <value>戦時IC補正</value>
   </data>
-  <data name="groundDefEffLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
-  </data>
   <data name="groundDefEffLabel.Text" xml:space="preserve">
     <value>対地防御補正</value>
-  </data>
-  <data name="relativeManpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
   </data>
   <data name="relativeManpowerLabel.Text" xml:space="preserve">
     <value>人的資源補正</value>
   </data>
-  <data name="industrialModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
   <data name="industrialModifierLabel.Text" xml:space="preserve">
     <value>工業力補正</value>
-  </data>
-  <data name="aiFileLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 12</value>
   </data>
   <data name="aiFileLabel.Text" xml:space="preserve">
     <value>ファイル名</value>
@@ -295,98 +217,50 @@
   <data name="countryOffmapLabel.Text" xml:space="preserve">
     <value>マップ外</value>
   </data>
-  <data name="countryStockpileLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="countryStockpileLabel.Text" xml:space="preserve">
     <value>備蓄</value>
-  </data>
-  <data name="nukeDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 12</value>
   </data>
   <data name="nukeDateLabel.Text" xml:space="preserve">
     <value>核兵器生産日時</value>
   </data>
-  <data name="dissentLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
   <data name="dissentLabel.Text" xml:space="preserve">
     <value>国民不満度</value>
-  </data>
-  <data name="flagExtLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
   </data>
   <data name="flagExtLabel.Text" xml:space="preserve">
     <value>国旗接尾辞</value>
   </data>
-  <data name="nukeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="nukeLabel.Text" xml:space="preserve">
     <value>核兵器</value>
-  </data>
-  <data name="extraTcLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
   </data>
   <data name="extraTcLabel.Text" xml:space="preserve">
     <value>追加輸送能力</value>
   </data>
-  <data name="belligerenceLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="belligerenceLabel.Text" xml:space="preserve">
     <value>好戦性</value>
-  </data>
-  <data name="regularIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="regularIdLabel.Text" xml:space="preserve">
     <value>兄弟国</value>
   </data>
-  <data name="countryNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="countryNameLabel.Text" xml:space="preserve">
     <value>国名</value>
-  </data>
-  <data name="tradeStartDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
   </data>
   <data name="tradeStartDateLabel.Text" xml:space="preserve">
     <value>開始日時</value>
   </data>
-  <data name="tradeEndDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="tradeEndDateLabel.Text" xml:space="preserve">
     <value>終了日時</value>
-  </data>
-  <data name="relationValueLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="relationValueLabel.Text" xml:space="preserve">
     <value>関係値</value>
   </data>
-  <data name="spyNumLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 12</value>
-  </data>
   <data name="spyNumLabel.Text" xml:space="preserve">
     <value>スパイの数</value>
-  </data>
-  <data name="provinceSyntheticOilLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
   </data>
   <data name="provinceSyntheticOilLabel.Text" xml:space="preserve">
     <value>合成石油工場</value>
   </data>
-  <data name="provinceSyntheticRaresLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
-  </data>
   <data name="provinceSyntheticRaresLabel.Text" xml:space="preserve">
     <value>合成素材工場</value>
-  </data>
-  <data name="provinceNuclearPowerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
   </data>
   <data name="provinceNuclearPowerLabel.Text" xml:space="preserve">
     <value>原子力発電所</value>
@@ -400,41 +274,23 @@
   <data name="reloadButton.Text" xml:space="preserve">
     <value>再読み込み</value>
   </data>
-  <data name="provinceCountryFilterLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="provinceCountryFilterLabel.Text" xml:space="preserve">
     <value>国家</value>
   </data>
   <data name="provinceCountryFilterComboBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
-  <data name="claimedProvinceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
-  </data>
   <data name="claimedProvinceCheckBox.Text" xml:space="preserve">
     <value>領有権</value>
-  </data>
-  <data name="capitalCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
   </data>
   <data name="capitalCheckBox.Text" xml:space="preserve">
     <value>首都</value>
   </data>
-  <data name="controlledProvinceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
-  </data>
   <data name="controlledProvinceCheckBox.Text" xml:space="preserve">
     <value>支配</value>
   </data>
-  <data name="coreProvinceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
-  </data>
   <data name="coreProvinceCheckBox.Text" xml:space="preserve">
     <value>中核州</value>
-  </data>
-  <data name="ownedProvinceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 16</value>
   </data>
   <data name="ownedProvinceCheckBox.Text" xml:space="preserve">
     <value>保有</value>
@@ -445,17 +301,11 @@
   <data name="mapFilterClaimedRadioButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>237, 18</value>
   </data>
-  <data name="mapFilterClaimedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
-  </data>
   <data name="mapFilterClaimedRadioButton.Text" xml:space="preserve">
     <value>領有権主張</value>
   </data>
   <data name="mapFilterControlledRadioButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>182, 18</value>
-  </data>
-  <data name="mapFilterControlledRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 16</value>
   </data>
   <data name="mapFilterControlledRadioButton.Text" xml:space="preserve">
     <value>支配</value>
@@ -463,23 +313,14 @@
   <data name="mapFilterOwnedRadioButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>127, 18</value>
   </data>
-  <data name="mapFilterOwnedRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 16</value>
-  </data>
   <data name="mapFilterOwnedRadioButton.Text" xml:space="preserve">
     <value>保有</value>
   </data>
   <data name="mapFilterCoreRadioButton.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 18</value>
   </data>
-  <data name="mapFilterCoreRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 16</value>
-  </data>
   <data name="mapFilterCoreRadioButton.Text" xml:space="preserve">
     <value>中核州</value>
-  </data>
-  <data name="mapFilterNoneRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 16</value>
   </data>
   <data name="mapFilterNoneRadioButton.Text" xml:space="preserve">
     <value>なし</value>
@@ -523,9 +364,6 @@
   <data name="governmentCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
-  <data name="sliderDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 12</value>
-  </data>
   <data name="sliderDateLabel.Text" xml:space="preserve">
     <value>スライダー移動日時</value>
   </data>
@@ -559,26 +397,14 @@
   <data name="tradeCountryComboBox1.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
-  <data name="tradeRareMaterialsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="tradeRareMaterialsLabel.Text" xml:space="preserve">
     <value>希少資源</value>
-  </data>
-  <data name="tradeOilLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="tradeOilLabel.Text" xml:space="preserve">
     <value>石油</value>
   </data>
-  <data name="tradeMetalLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="tradeMetalLabel.Text" xml:space="preserve">
     <value>金属</value>
-  </data>
-  <data name="tradeSuppliesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="tradeSuppliesLabel.Text" xml:space="preserve">
     <value>物資</value>
@@ -586,20 +412,11 @@
   <data name="tradeCountryComboBox2.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
-  <data name="tradeMoneyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="tradeMoneyLabel.Text" xml:space="preserve">
     <value>資金</value>
   </data>
-  <data name="tradeEnergyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 12</value>
-  </data>
   <data name="tradeEnergyLabel.Text" xml:space="preserve">
     <value>エネルギー</value>
-  </data>
-  <data name="tradeCancelCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 16</value>
   </data>
   <data name="tradeCancelCheckBox.Text" xml:space="preserve">
     <value>キャンセルを許可</value>
@@ -628,74 +445,38 @@
   <data name="tradeTabPage.Text" xml:space="preserve">
     <value>貿易</value>
   </data>
-  <data name="peaceEndLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="peaceEndLabel.Text" xml:space="preserve">
     <value>終了日時</value>
-  </data>
-  <data name="peaceStartLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
   </data>
   <data name="peaceStartLabel.Text" xml:space="preserve">
     <value>開始日時</value>
   </data>
-  <data name="peaceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
-  </data>
   <data name="peaceCheckBox.Text" xml:space="preserve">
     <value>講和条約</value>
-  </data>
-  <data name="guaranteedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
   </data>
   <data name="guaranteedCheckBox.Text" xml:space="preserve">
     <value>独立保障</value>
   </data>
-  <data name="guaranteedEndLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="guaranteedEndLabel.Text" xml:space="preserve">
     <value>終了日時</value>
-  </data>
-  <data name="nonAggressionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
   </data>
   <data name="nonAggressionCheckBox.Text" xml:space="preserve">
     <value>不可侵条約</value>
   </data>
-  <data name="nonAggressionStartLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="nonAggressionStartLabel.Text" xml:space="preserve">
     <value>開始日時</value>
-  </data>
-  <data name="nonAggressionEndLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
   </data>
   <data name="nonAggressionEndLabel.Text" xml:space="preserve">
     <value>終了日時</value>
   </data>
-  <data name="controlCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
-  </data>
   <data name="controlCheckBox.Text" xml:space="preserve">
     <value>統帥権譲渡</value>
-  </data>
-  <data name="masterCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
   </data>
   <data name="masterCheckBox.Text" xml:space="preserve">
     <value>宗主国</value>
   </data>
-  <data name="accessCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 16</value>
-  </data>
   <data name="accessCheckBox.Text" xml:space="preserve">
     <value>軍事通行許可</value>
-  </data>
-  <data name="intelligenceGroupBox.Text" xml:space="preserve">
-    <value>諜報</value>
   </data>
   <data name="relationCountryColumnHeader.Text" xml:space="preserve">
     <value>国家</value>
@@ -728,12 +509,6 @@
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="relationCountryListBox.ItemHeight" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="relationCountryListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 208</value>
-  </data>
   <data name="relationTabPage.Text" xml:space="preserve">
     <value>関係</value>
   </data>
@@ -743,20 +518,11 @@
   <data name="warAttackerLeaderButton.Text" xml:space="preserve">
     <value>リーダーに設定</value>
   </data>
-  <data name="warEndDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="warEndDateLabel.Text" xml:space="preserve">
     <value>終了日時</value>
   </data>
-  <data name="warStartDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="warStartDateLabel.Text" xml:space="preserve">
     <value>開始日時</value>
-  </data>
-  <data name="warDefenderLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="warDefenderLabel.Text" xml:space="preserve">
     <value>防御側</value>
@@ -776,9 +542,6 @@
   <data name="warAttackerListBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
-  <data name="warAttackerLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="warAttackerLabel.Text" xml:space="preserve">
     <value>攻撃側</value>
   </data>
@@ -797,9 +560,6 @@
   <data name="warGroupBox.Text" xml:space="preserve">
     <value>戦争</value>
   </data>
-  <data name="allianceNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="allianceNameLabel.Text" xml:space="preserve">
     <value>名前</value>
   </data>
@@ -808,9 +568,6 @@
   </data>
   <data name="allianceParticipantColumnHeader.Text" xml:space="preserve">
     <value>参加国</value>
-  </data>
-  <data name="allianceParticipantLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="allianceParticipantLabel.Text" xml:space="preserve">
     <value>参加国</value>
@@ -842,50 +599,26 @@
   <data name="allianceTabPage.Text" xml:space="preserve">
     <value>同盟</value>
   </data>
-  <data name="gameSpeedLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 12</value>
-  </data>
   <data name="gameSpeedLabel.Text" xml:space="preserve">
     <value>ゲームスピード</value>
-  </data>
-  <data name="difficultyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="difficultyLabel.Text" xml:space="preserve">
     <value>難易度</value>
   </data>
-  <data name="aiAggressiveLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 12</value>
-  </data>
   <data name="aiAggressiveLabel.Text" xml:space="preserve">
     <value>AIの攻撃性</value>
-  </data>
-  <data name="allowTechnologyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 16</value>
   </data>
   <data name="allowTechnologyCheckBox.Text" xml:space="preserve">
     <value>技術開発を許可</value>
   </data>
-  <data name="allowProductionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 16</value>
-  </data>
   <data name="allowProductionCheckBox.Text" xml:space="preserve">
     <value>生産を許可</value>
-  </data>
-  <data name="allowDiplomacyCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 16</value>
   </data>
   <data name="allowDiplomacyCheckBox.Text" xml:space="preserve">
     <value>外交を許可</value>
   </data>
-  <data name="freeCountryCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>106, 16</value>
-  </data>
   <data name="freeCountryCheckBox.Text" xml:space="preserve">
     <value>国家の自由選択</value>
-  </data>
-  <data name="battleScenarioCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>94, 16</value>
   </data>
   <data name="battleScenarioCheckBox.Text" xml:space="preserve">
     <value>ショートシナリオ</value>
@@ -893,14 +626,8 @@
   <data name="scenarioOptionGroupBox.Text" xml:space="preserve">
     <value>オプション</value>
   </data>
-  <data name="majorFlagExtLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
   <data name="majorFlagExtLabel.Text" xml:space="preserve">
     <value>国旗接尾辞</value>
-  </data>
-  <data name="majorCountryNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="majorCountryNameLabel.Text" xml:space="preserve">
     <value>国名</value>
@@ -914,14 +641,8 @@
   <data name="propagandaBrowseButton.Text" xml:space="preserve">
     <value>参照</value>
   </data>
-  <data name="propagandaLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 12</value>
-  </data>
   <data name="propagandaLabel.Text" xml:space="preserve">
     <value>プロパガンダ画像</value>
-  </data>
-  <data name="countryDescLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="countryDescLabel.Text" xml:space="preserve">
     <value>説明</value>
@@ -929,14 +650,8 @@
   <data name="majorListBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>ＭＳ ゴシック, 9pt</value>
   </data>
-  <data name="majorLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="majorLabel.Text" xml:space="preserve">
     <value>主要国</value>
-  </data>
-  <data name="selectableLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
   </data>
   <data name="selectableLabel.Text" xml:space="preserve">
     <value>選択可能国</value>
@@ -953,20 +668,11 @@
   <data name="includeFolderBrowseButton.Text" xml:space="preserve">
     <value>参照</value>
   </data>
-  <data name="includeFolderLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 12</value>
-  </data>
   <data name="includeFolderLabel.Text" xml:space="preserve">
     <value>インクルードフォルダ</value>
   </data>
-  <data name="scenarioNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="scenarioNameLabel.Text" xml:space="preserve">
     <value>シナリオ名</value>
-  </data>
-  <data name="panelImageLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 12</value>
   </data>
   <data name="panelImageLabel.Text" xml:space="preserve">
     <value>パネル画像</value>
@@ -974,14 +680,8 @@
   <data name="panelImageBrowseButton.Text" xml:space="preserve">
     <value>参照</value>
   </data>
-  <data name="startDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="startDateLabel.Text" xml:space="preserve">
     <value>開始日時</value>
-  </data>
-  <data name="endDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
   </data>
   <data name="endDateLabel.Text" xml:space="preserve">
     <value>終了日時</value>
@@ -992,32 +692,17 @@
   <data name="loadButton.Text" xml:space="preserve">
     <value>読み込み</value>
   </data>
-  <data name="exportRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>82, 16</value>
-  </data>
   <data name="exportRadioButton.Text" xml:space="preserve">
     <value>保存フォルダ</value>
-  </data>
-  <data name="modRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
   </data>
   <data name="modRadioButton.Text" xml:space="preserve">
     <value>MODフォルダ</value>
   </data>
-  <data name="vanillaRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 16</value>
-  </data>
   <data name="vanillaRadioButton.Text" xml:space="preserve">
     <value>バニラフォルダ</value>
   </data>
-  <data name="saveGamesRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 16</value>
-  </data>
   <data name="saveGamesRadioButton.Text" xml:space="preserve">
     <value>保存ゲーム</value>
-  </data>
-  <data name="scenarioRadioButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 16</value>
   </data>
   <data name="scenarioRadioButton.Text" xml:space="preserve">
     <value>シナリオ</value>
@@ -1049,56 +734,29 @@
   <data name="oobAddUnitButton.Text" xml:space="preserve">
     <value>新規ユニット</value>
   </data>
-  <data name="dormantCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
-  </data>
   <data name="dormantCheckBox.Text" xml:space="preserve">
     <value>休止状態</value>
-  </data>
-  <data name="lockedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
   </data>
   <data name="lockedCheckBox.Text" xml:space="preserve">
     <value>移動不可</value>
   </data>
-  <data name="experienceLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="experienceLabel.Text" xml:space="preserve">
     <value>経験値</value>
-  </data>
-  <data name="divisionMoraleLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="divisionMoraleLabel.Text" xml:space="preserve">
     <value>士気</value>
   </data>
-  <data name="organisationLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="organisationLabel.Text" xml:space="preserve">
     <value>組織率</value>
-  </data>
-  <data name="strengthLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="strengthLabel.Text" xml:space="preserve">
     <value>戦力</value>
   </data>
-  <data name="brigadesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="brigadesLabel.Text" xml:space="preserve">
     <value>付属旅団</value>
   </data>
-  <data name="unitTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>63, 12</value>
-  </data>
   <data name="unitTypeLabel.Text" xml:space="preserve">
     <value>ユニット種類</value>
-  </data>
-  <data name="divisionNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="divisionNameLabel.Text" xml:space="preserve">
     <value>師団名</value>
@@ -1106,38 +764,20 @@
   <data name="divisionGroupBox.Text" xml:space="preserve">
     <value>師団</value>
   </data>
-  <data name="digInLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="digInLabel.Text" xml:space="preserve">
     <value>塹壕</value>
-  </data>
-  <data name="leaderLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="leaderLabel.Text" xml:space="preserve">
     <value>指揮官</value>
   </data>
-  <data name="unitMoraleLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="unitMoraleLabel.Text" xml:space="preserve">
     <value>士気</value>
-  </data>
-  <data name="baseLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
   </data>
   <data name="baseLabel.Text" xml:space="preserve">
     <value>基地</value>
   </data>
-  <data name="locationLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="locationLabel.Text" xml:space="preserve">
     <value>現在位置</value>
-  </data>
-  <data name="unitNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 12</value>
   </data>
   <data name="unitNameLabel.Text" xml:space="preserve">
     <value>ユニット名</value>

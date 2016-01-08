@@ -1133,12 +1133,12 @@ namespace HoI2Editor.Models
             switch (_type)
             {
                 case GameType.HeartsOfIron2:
-                    s = $"{_version / 100}.{(_version % 100) / 10}";
+                    s = $"{_version / 100}.{_version % 100 / 10}";
                     break;
 
                 case GameType.ArsenalOfDemocracy:
                 case GameType.DarkestHour:
-                    s = $"{_version / 100}.{(_version % 100) / 10}{(_version % 10)}";
+                    s = $"{_version / 100}.{_version % 100 / 10}{_version % 10}";
                     break;
 
                 default:

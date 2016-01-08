@@ -117,31 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="miscTabControl.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="closeButton.Text" xml:space="preserve">
     <value>閉じる</value>
-  </data>
-  <data name="closeButton.ToolTip" xml:space="preserve">
-    <value />
   </data>
   <data name="saveButton.Text" xml:space="preserve">
     <value>保存</value>
   </data>
-  <data name="saveButton.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="reloadButton.Text" xml:space="preserve">
     <value>再読み込み</value>
   </data>
-  <data name="reloadButton.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>基礎データエディタ</value>
-  </data>
-  <data name="$this.ToolTip" xml:space="preserve">
-    <value />
   </data>
 </root>

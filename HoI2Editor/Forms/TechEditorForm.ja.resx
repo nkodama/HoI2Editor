@@ -121,9 +121,6 @@
     <value>カテゴリ説明</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="categoryNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 12</value>
-  </data>
   <data name="categoryNameLabel.Text" xml:space="preserve">
     <value>カテゴリ名</value>
   </data>
@@ -139,26 +136,14 @@
   <data name="techPictureNameBrowseButton.Text" xml:space="preserve">
     <value>参照</value>
   </data>
-  <data name="techPictureNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 12</value>
-  </data>
   <data name="techPictureNameLabel.Text" xml:space="preserve">
     <value>画像ファイル名</value>
-  </data>
-  <data name="techYearLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
   </data>
   <data name="techYearLabel.Text" xml:space="preserve">
     <value>史実年度</value>
   </data>
-  <data name="techShortNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
   <data name="techShortNameLabel.Text" xml:space="preserve">
     <value>短縮名</value>
-  </data>
-  <data name="techNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="techNameLabel.Text" xml:space="preserve">
     <value>技術名</value>
@@ -184,14 +169,8 @@
   <data name="andNameColumnHeader.Text" xml:space="preserve">
     <value>技術名</value>
   </data>
-  <data name="orRequiredLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 12</value>
-  </data>
   <data name="orRequiredLabel.Text" xml:space="preserve">
     <value>OR条件</value>
-  </data>
-  <data name="andRequiredLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
   </data>
   <data name="andRequiredLabel.Text" xml:space="preserve">
     <value>AND条件</value>
@@ -214,26 +193,14 @@
   <data name="componentNewButton.Text" xml:space="preserve">
     <value>新規</value>
   </data>
-  <data name="componentDoubleTimeCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 16</value>
-  </data>
   <data name="componentDoubleTimeCheckBox.Text" xml:space="preserve">
     <value>2倍</value>
-  </data>
-  <data name="componentDifficultyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
   </data>
   <data name="componentDifficultyLabel.Text" xml:space="preserve">
     <value>難易度</value>
   </data>
-  <data name="componentSpecialityLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="componentSpecialityLabel.Text" xml:space="preserve">
     <value>研究特性</value>
-  </data>
-  <data name="componentNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
   </data>
   <data name="componentNameLabel.Text" xml:space="preserve">
     <value>小研究名</value>
@@ -268,9 +235,6 @@
   <data name="effectNewButton.Text" xml:space="preserve">
     <value>新規</value>
   </data>
-  <data name="commandTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
   <data name="commandTypeLabel.Text" xml:space="preserve">
     <value>種類</value>
   </data>
@@ -286,9 +250,6 @@
   <data name="labelPositionAddButton.Text" xml:space="preserve">
     <value>追加</value>
   </data>
-  <data name="labelNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 12</value>
-  </data>
   <data name="labelNameLabel.Text" xml:space="preserve">
     <value>ラベル名</value>
   </data>
@@ -300,9 +261,6 @@
   </data>
   <data name="eventPositionAddButton.Text" xml:space="preserve">
     <value>追加</value>
-  </data>
-  <data name="eventTechLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>40, 12</value>
   </data>
   <data name="eventTechLabel.Text" xml:space="preserve">
     <value>技術ID</value>

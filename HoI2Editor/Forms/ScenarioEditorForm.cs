@@ -1120,8 +1120,8 @@ namespace HoI2Editor.Forms
             int count = majorListBox.Items.Count;
 
             majorRemoveButton.Enabled = true;
-            majorUpButton.Enabled = (index > 0);
-            majorDownButton.Enabled = (index < count - 1);
+            majorUpButton.Enabled = index > 0;
+            majorDownButton.Enabled = index < count - 1;
         }
 
         /// <summary>
@@ -1490,7 +1490,7 @@ namespace HoI2Editor.Forms
             // 主要国リストボックスの次の項目を選択する
             if (majorListBox.Items.Count > 0)
             {
-                majorListBox.SelectedIndex = (index < majorListBox.Items.Count) ? index : index - 1;
+                majorListBox.SelectedIndex = index < majorListBox.Items.Count ? index : index - 1;
             }
 
             majorListBox.SelectedIndexChanged += OnMajorListBoxSelectedIndexChanged;
@@ -2104,8 +2104,8 @@ namespace HoI2Editor.Forms
             int index = allianceListView.SelectedIndices[0];
 
             // 枢軸国/連合国/共産国以外は名前変更できない
-            allianceNameLabel.Enabled = (index < 3);
-            allianceNameTextBox.Enabled = (index < 3);
+            allianceNameLabel.Enabled = index < 3;
+            allianceNameTextBox.Enabled = index < 3;
             allianceIdLabel.Enabled = true;
             allianceTypeTextBox.Enabled = true;
             allianceIdTextBox.Enabled = true;
@@ -2149,7 +2149,7 @@ namespace HoI2Editor.Forms
                 Text = (string) _controller.GetItemValue(ScenarioEditorItemId.AllianceName, data.Axis),
                 Tag = data.Axis
             };
-            item.SubItems.Add((data.Axis != null) ? Countries.GetNameList(data.Axis.Participant) : "");
+            item.SubItems.Add(data.Axis != null ? Countries.GetNameList(data.Axis.Participant) : "");
             allianceListView.Items.Add(item);
 
             // 連合国
@@ -2158,7 +2158,7 @@ namespace HoI2Editor.Forms
                 Text = (string) _controller.GetItemValue(ScenarioEditorItemId.AllianceName, data.Allies),
                 Tag = data.Allies
             };
-            item.SubItems.Add((data.Allies != null) ? Countries.GetNameList(data.Allies.Participant) : "");
+            item.SubItems.Add(data.Allies != null ? Countries.GetNameList(data.Allies.Participant) : "");
             allianceListView.Items.Add(item);
 
             // 共産国
@@ -2167,7 +2167,7 @@ namespace HoI2Editor.Forms
                 Text = (string) _controller.GetItemValue(ScenarioEditorItemId.AllianceName, data.Comintern),
                 Tag = data.Comintern
             };
-            item.SubItems.Add((data.Comintern != null) ? Countries.GetNameList(data.Comintern.Participant) : "");
+            item.SubItems.Add(data.Comintern != null ? Countries.GetNameList(data.Comintern.Participant) : "");
             allianceListView.Items.Add(item);
 
             // その他の同盟
@@ -2214,9 +2214,9 @@ namespace HoI2Editor.Forms
             int index = allianceListView.SelectedIndices[0];
 
             // 枢軸国/連合国/共産国は順番変更/削除できない
-            allianceUpButton.Enabled = (index > 3);
-            allianceDownButton.Enabled = ((index < count - 1) && (index >= 3));
-            allianceRemoveButton.Enabled = (index >= 3);
+            allianceUpButton.Enabled = index > 3;
+            allianceDownButton.Enabled = (index < count - 1) && (index >= 3);
+            allianceRemoveButton.Enabled = index >= 3;
         }
 
         /// <summary>
@@ -2394,7 +2394,7 @@ namespace HoI2Editor.Forms
             Scenarios.SetDirty();
 
             // 削除した項目の次を選択する
-            index += (index < alliances.Count) ? 3 : (3 - 1);
+            index += index < alliances.Count ? 3 : 3 - 1;
             allianceListView.Items[index].Focused = true;
             allianceListView.Items[index].Selected = true;
         }
@@ -2416,7 +2416,7 @@ namespace HoI2Editor.Forms
         /// <returns>選択中の同盟情報</returns>
         private Alliance GetSelectedAlliance()
         {
-            return (allianceListView.SelectedItems.Count > 0) ? allianceListView.SelectedItems[0].Tag as Alliance : null;
+            return allianceListView.SelectedItems.Count > 0 ? allianceListView.SelectedItems[0].Tag as Alliance : null;
         }
 
         #endregion
@@ -2596,8 +2596,8 @@ namespace HoI2Editor.Forms
             int count = allianceParticipantListBox.SelectedIndices.Count;
             int index = allianceParticipantListBox.SelectedIndex;
 
-            allianceParticipantRemoveButton.Enabled = (count > 0);
-            allianceLeaderButton.Enabled = ((count == 1) && (index > 0));
+            allianceParticipantRemoveButton.Enabled = count > 0;
+            allianceLeaderButton.Enabled = (count == 1) && (index > 0);
         }
 
         /// <summary>
@@ -2609,7 +2609,7 @@ namespace HoI2Editor.Forms
         {
             int count = allianceFreeCountryListBox.SelectedIndices.Count;
 
-            allianceParticipantAddButton.Enabled = (count > 0);
+            allianceParticipantAddButton.Enabled = count > 0;
         }
 
         /// <summary>
@@ -2952,8 +2952,8 @@ namespace HoI2Editor.Forms
             int count = warListView.Items.Count;
             int index = warListView.SelectedIndices[0];
 
-            warUpButton.Enabled = (index > 0);
-            warDownButton.Enabled = (index < count - 1);
+            warUpButton.Enabled = index > 0;
+            warDownButton.Enabled = index < count - 1;
             warRemoveButton.Enabled = true;
         }
 
@@ -3164,7 +3164,7 @@ namespace HoI2Editor.Forms
         /// <returns>選択中の戦争情報</returns>
         private War GetSelectedWar()
         {
-            return (warListView.SelectedItems.Count > 0) ? warListView.SelectedItems[0].Tag as War : null;
+            return warListView.SelectedItems.Count > 0 ? warListView.SelectedItems[0].Tag as War : null;
         }
 
         #endregion
@@ -3419,8 +3419,8 @@ namespace HoI2Editor.Forms
             int count = warAttackerListBox.SelectedIndices.Count;
             int index = warAttackerListBox.SelectedIndex;
 
-            warAttackerRemoveButton.Enabled = (count > 0);
-            warAttackerLeaderButton.Enabled = ((count == 1) && (index > 0));
+            warAttackerRemoveButton.Enabled = count > 0;
+            warAttackerLeaderButton.Enabled = (count == 1) && (index > 0);
         }
 
         /// <summary>
@@ -3433,8 +3433,8 @@ namespace HoI2Editor.Forms
             int count = warDefenderListBox.SelectedIndices.Count;
             int index = warDefenderListBox.SelectedIndex;
 
-            warDefenderRemoveButton.Enabled = (count > 0);
-            warDefenderLeaderButton.Enabled = ((count == 1) && (index > 0));
+            warDefenderRemoveButton.Enabled = count > 0;
+            warDefenderLeaderButton.Enabled = (count == 1) && (index > 0);
         }
 
         /// <summary>
@@ -3446,8 +3446,8 @@ namespace HoI2Editor.Forms
         {
             int count = warFreeCountryListBox.SelectedIndices.Count;
 
-            warAttackerAddButton.Enabled = (count > 0);
-            warDefenderAddButton.Enabled = (count > 0);
+            warAttackerAddButton.Enabled = count > 0;
+            warDefenderAddButton.Enabled = count > 0;
         }
 
         /// <summary>
@@ -4037,7 +4037,7 @@ namespace HoI2Editor.Forms
         /// <returns>国家関係の選択国</returns>
         private Country GetSelectedRelationCountry()
         {
-            return (relationCountryListBox.SelectedIndex >= 0)
+            return relationCountryListBox.SelectedIndex >= 0
                 ? Countries.Tags[relationCountryListBox.SelectedIndex]
                 : Country.None;
         }
@@ -4169,11 +4169,11 @@ namespace HoI2Editor.Forms
             item.SubItems.Add(
                 ObjectHelper.ToString(_controller.GetItemValue(ScenarioEditorItemId.DiplomacyRelationValue, relation)));
             item.SubItems.Add(
-                ((Country) _controller.GetItemValue(ScenarioEditorItemId.DiplomacyMaster, settings) == target)
+                (Country) _controller.GetItemValue(ScenarioEditorItemId.DiplomacyMaster, settings) == target
                     ? Resources.Yes
                     : "");
             item.SubItems.Add(
-                ((Country) _controller.GetItemValue(ScenarioEditorItemId.DiplomacyMilitaryControl, settings) == target)
+                (Country) _controller.GetItemValue(ScenarioEditorItemId.DiplomacyMilitaryControl, settings) == target
                     ? Resources.Yes
                     : "");
             item.SubItems.Add(
@@ -4200,7 +4200,7 @@ namespace HoI2Editor.Forms
         /// <returns>国家関係の対象国</returns>
         private Country GetTargetRelationCountry()
         {
-            return (relationListView.SelectedItems.Count > 0)
+            return relationListView.SelectedItems.Count > 0
                 ? Countries.Tags[relationListView.SelectedIndices[0]]
                 : Country.None;
         }
@@ -5452,8 +5452,8 @@ namespace HoI2Editor.Forms
         {
             int index = tradeListView.SelectedIndices[0];
             int count = tradeListView.Items.Count;
-            tradeUpButton.Enabled = (index > 0);
-            tradeDownButton.Enabled = (index < count - 1);
+            tradeUpButton.Enabled = index > 0;
+            tradeDownButton.Enabled = index < count - 1;
             tradeRemoveButton.Enabled = true;
         }
 
@@ -5679,7 +5679,7 @@ namespace HoI2Editor.Forms
         /// <returns>選択中の貿易情報</returns>
         private Treaty GetSelectedTrade()
         {
-            return (tradeListView.SelectedItems.Count > 0) ? tradeListView.SelectedItems[0].Tag as Treaty : null;
+            return tradeListView.SelectedItems.Count > 0 ? tradeListView.SelectedItems[0].Tag as Treaty : null;
         }
 
         #endregion
@@ -6158,7 +6158,7 @@ namespace HoI2Editor.Forms
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             Country val = (Country) _controller.GetItemValue(itemId, treaty);
             Country sel = (Country) _controller.GetListItemValue(itemId, e.Index);
-            Brush brush = ((val == sel) && _controller.IsItemDirty(itemId, treaty))
+            Brush brush = (val == sel) && _controller.IsItemDirty(itemId, treaty)
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = control.Items[e.Index].ToString();
@@ -6373,7 +6373,7 @@ namespace HoI2Editor.Forms
         /// <returns>選択中の国家</returns>
         private Country GetSelectedCountry()
         {
-            return (countryListBox.SelectedIndex >= 0) ? Countries.Tags[countryListBox.SelectedIndex] : Country.None;
+            return countryListBox.SelectedIndex >= 0 ? Countries.Tags[countryListBox.SelectedIndex] : Country.None;
         }
 
         #endregion
@@ -7102,8 +7102,8 @@ namespace HoI2Editor.Forms
                 ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
                 object val = _controller.GetItemValue(itemId, settings);
                 object sel = _controller.GetListItemValue(itemId, e.Index);
-                Brush brush = ((val != null) && ((Country) val == (Country) sel) &&
-                               _controller.IsItemDirty(itemId, settings))
+                Brush brush = (val != null) && ((Country) val == (Country) sel) &&
+                              _controller.IsItemDirty(itemId, settings)
                     ? new SolidBrush(Color.Red)
                     : new SolidBrush(SystemColors.WindowText);
                 string s = control.Items[e.Index].ToString();
@@ -7145,7 +7145,7 @@ namespace HoI2Editor.Forms
             }
 
             // 値に変化がなければ何もしない
-            Country val = (control.SelectedIndex > 0) ? Countries.Tags[control.SelectedIndex - 1] : Country.None;
+            Country val = control.SelectedIndex > 0 ? Countries.Tags[control.SelectedIndex - 1] : Country.None;
             if ((settings != null) && (val == (Country) _controller.GetItemValue(itemId, settings)))
             {
                 return;
@@ -7796,8 +7796,8 @@ namespace HoI2Editor.Forms
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             object val = _controller.GetItemValue(itemId, settings);
             object sel = _controller.GetListItemValue(itemId, e.Index);
-            Brush brush = ((val != null) && (sel != null) && ((int) val == (int) sel) &&
-                           _controller.IsItemDirty(itemId, settings))
+            Brush brush = (val != null) && (sel != null) && ((int) val == (int) sel) &&
+                          _controller.IsItemDirty(itemId, settings)
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = control.Items[e.Index].ToString();
@@ -8275,7 +8275,7 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             bool val = e.Item.Checked;
-            if ((settings != null) && (val == (settings.TechApps.Contains(item.Id))))
+            if ((settings != null) && (val == settings.TechApps.Contains(item.Id)))
             {
                 return;
             }
@@ -8331,7 +8331,7 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             bool val = e.Item.Checked;
-            if ((settings != null) && (val == (settings.BluePrints.Contains(item.Id))))
+            if ((settings != null) && (val == settings.BluePrints.Contains(item.Id)))
             {
                 return;
             }
@@ -8387,7 +8387,7 @@ namespace HoI2Editor.Forms
 
             // 値に変化がなければ何もしない
             bool val = e.Item.Checked;
-            if ((settings != null) && (val == (settings.Inventions.Contains(ev.Id))))
+            if ((settings != null) && (val == settings.Inventions.Contains(ev.Id)))
             {
                 return;
             }
@@ -9078,7 +9078,7 @@ namespace HoI2Editor.Forms
                 foreach (ListViewItem item in provinceListView.Items)
                 {
                     Province province = (Province) item.Tag;
-                    item.SubItems[2].Text = (province.Id == settings.Capital) ? Resources.Yes : "";
+                    item.SubItems[2].Text = province.Id == settings.Capital ? Resources.Yes : "";
                     item.SubItems[3].Text = settings.NationalProvinces.Contains(province.Id) ? Resources.Yes : "";
                     item.SubItems[4].Text = settings.OwnedProvinces.Contains(province.Id) ? Resources.Yes : "";
                     item.SubItems[5].Text = settings.ControlledProvinces.Contains(province.Id) ? Resources.Yes : "";
@@ -9326,7 +9326,7 @@ namespace HoI2Editor.Forms
         private void EnableProvinceInfoItems()
         {
             provinceInfoGroupBox.Enabled = true;
-            provinceNameKeyTextBox.Enabled = (Game.Type == GameType.DarkestHour);
+            provinceNameKeyTextBox.Enabled = Game.Type == GameType.DarkestHour;
         }
 
         /// <summary>
@@ -9695,7 +9695,7 @@ namespace HoI2Editor.Forms
         {
             provinceBuildingGroupBox.Enabled = true;
 
-            bool flag = (Game.Type == GameType.ArsenalOfDemocracy);
+            bool flag = Game.Type == GameType.ArsenalOfDemocracy;
             provinceSyntheticOilLabel.Enabled = flag;
             syntheticOilCurrentTextBox.Enabled = flag;
             syntheticOilMaxTextBox.Enabled = flag;
@@ -10188,10 +10188,10 @@ namespace HoI2Editor.Forms
             {
                 int index = parent.Nodes.IndexOf(e.Node);
                 int bottom = parent.Nodes.Count - 1;
-                oobTopButton.Enabled = (index > 0);
-                oobUpButton.Enabled = (index > 0);
-                oobDownButton.Enabled = (index < bottom);
-                oobBottomButton.Enabled = (index < bottom);
+                oobTopButton.Enabled = index > 0;
+                oobUpButton.Enabled = index > 0;
+                oobDownButton.Enabled = index < bottom;
+                oobBottomButton.Enabled = index < bottom;
             }
             else
             {
@@ -10834,7 +10834,7 @@ namespace HoI2Editor.Forms
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             object val = _controller.GetItemValue(itemId, unit);
             object sel = _controller.GetListItemValue(itemId, e.Index, unit);
-            Brush brush = (((int) val == (int) sel) && _controller.IsItemDirty(itemId, unit))
+            Brush brush = ((int) val == (int) sel) && _controller.IsItemDirty(itemId, unit)
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = control.Items[e.Index].ToString();
@@ -11112,7 +11112,7 @@ namespace HoI2Editor.Forms
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
             object val = _controller.GetItemValue(itemId, division);
             object sel = _controller.GetListItemValue(itemId, e.Index, division);
-            Brush brush = (((int) val == (int) sel) && _controller.IsItemDirty(itemId, division))
+            Brush brush = ((int) val == (int) sel) && _controller.IsItemDirty(itemId, division)
                 ? new SolidBrush(Color.Red)
                 : new SolidBrush(SystemColors.WindowText);
             string s = control.Items[e.Index].ToString();
@@ -11375,7 +11375,7 @@ namespace HoI2Editor.Forms
             {
                 // 変更ありの項目は文字色を変更する
                 CountrySettings settings = Scenarios.GetCountrySettings(Countries.Tags[e.Index]);
-                brush = new SolidBrush((settings != null)
+                brush = new SolidBrush(settings != null
                     ? (settings.IsDirty() ? Color.Red : control.ForeColor)
                     : Color.LightGray);
             }

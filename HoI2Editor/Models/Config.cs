@@ -1389,7 +1389,7 @@ namespace HoI2Editor.Models
         /// <returns>編集済みならばtrueを返す</returns>
         public static bool IsDirty()
         {
-            return (DirtyFiles.Count > 0);
+            return DirtyFiles.Count > 0;
         }
 
         /// <summary>

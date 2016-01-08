@@ -1176,7 +1176,7 @@ namespace HoI2Editor.Controllers
         public void UpdateItemValue(CheckBox control, Country country, CountrySettings settings)
         {
             ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.Checked = ((Country) GetItemValue(itemId, settings) == country);
+            control.Checked = (Country) GetItemValue(itemId, settings) == country;
         }
 
         /// <summary>
@@ -1197,7 +1197,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.CountryCapital:
-                    control.Checked = (settings.Capital == province.Id);
+                    control.Checked = settings.Capital == province.Id;
                     control.Enabled = !control.Checked;
                     break;
 
@@ -1217,7 +1217,7 @@ namespace HoI2Editor.Controllers
 
                 case ScenarioEditorItemId.CountryClaimedProvinces:
                     control.Checked = settings.ClaimedProvinces.Contains(province.Id);
-                    control.Enabled = (Game.Type == GameType.DarkestHour);
+                    control.Enabled = Game.Type == GameType.DarkestHour;
                     break;
             }
         }
@@ -1966,9 +1966,9 @@ namespace HoI2Editor.Controllers
                     {
                         return Config.GetText(major.Desc);
                     }
-                    int year = (Scenarios.Data.GlobalData.StartDate != null)
+                    int year = Scenarios.Data.GlobalData.StartDate != null
                         ? Scenarios.Data.GlobalData.StartDate.Year
-                        : (Scenarios.Data.Header.StartDate != null)
+                        : Scenarios.Data.Header.StartDate != null
                             ? Scenarios.Data.Header.StartDate.Year
                             : Scenarios.Data.Header.StartYear;
                     // 年数の下2桁のみ使用する
@@ -2135,7 +2135,7 @@ namespace HoI2Editor.Controllers
             {
                 case ScenarioEditorItemId.DiplomacyNonAggression:
                 case ScenarioEditorItemId.DiplomacyPeace:
-                    return (treaty != null);
+                    return treaty != null;
 
                 case ScenarioEditorItemId.DiplomacyNonAggressionStartYear:
                 case ScenarioEditorItemId.DiplomacyPeaceStartYear:
@@ -2260,10 +2260,10 @@ namespace HoI2Editor.Controllers
                     return settings?.Control ?? Country.None;
 
                 case ScenarioEditorItemId.CountryNameKey:
-                    return (settings != null) ? settings.Name : "";
+                    return settings != null ? settings.Name : "";
 
                 case ScenarioEditorItemId.CountryFlagExt:
-                    return (settings != null) ? settings.FlagExt : "";
+                    return settings != null ? settings.FlagExt : "";
 
                 case ScenarioEditorItemId.CountryRegularId:
                     return settings?.RegularId ?? Country.None;
@@ -2362,7 +2362,7 @@ namespace HoI2Editor.Controllers
                     return settings?.Offmap?.Ic ?? 0;
 
                 case ScenarioEditorItemId.CountryAiFileName:
-                    return (settings != null) ? settings.AiFileName : "";
+                    return settings != null ? settings.AiFileName : "";
 
                 case ScenarioEditorItemId.SliderYear:
                     return settings?.Policy?.Date?.Year;
@@ -2507,7 +2507,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.CountryCapital:
-                    return (settings.Capital == province.Id);
+                    return settings.Capital == province.Id;
 
                 case ScenarioEditorItemId.CountryCoreProvinces:
                     return settings.NationalProvinces.Contains(province.Id);
@@ -2735,7 +2735,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.ProvinceNameKey:
-                    return (!string.IsNullOrEmpty(settings?.Name)) ? settings.Name : "";
+                    return !string.IsNullOrEmpty(settings?.Name) ? settings.Name : "";
 
                 case ScenarioEditorItemId.ProvinceNameString:
                     return Scenarios.GetProvinceName(province, settings);
@@ -3034,10 +3034,10 @@ namespace HoI2Editor.Controllers
             {
                 case ScenarioEditorItemId.TradeCountry1:
                 case ScenarioEditorItemId.TradeCountry2:
-                    return (index >= 0) ? Countries.Tags[index] : Country.None;
+                    return index >= 0 ? Countries.Tags[index] : Country.None;
 
                 case ScenarioEditorItemId.CountryRegularId:
-                    return (index > 0) ? Countries.Tags[index - 1] : Country.None;
+                    return index > 0 ? Countries.Tags[index - 1] : Country.None;
 
                 case ScenarioEditorItemId.CabinetHeadOfState:
                 case ScenarioEditorItemId.CabinetHeadOfGovernment:
@@ -3244,9 +3244,9 @@ namespace HoI2Editor.Controllers
                         Config.SetText(major.Desc, (string) val, Game.ScenarioTextFileName);
                         break;
                     }
-                    int year = (Scenarios.Data.GlobalData.StartDate != null)
+                    int year = Scenarios.Data.GlobalData.StartDate != null
                         ? Scenarios.Data.GlobalData.StartDate.Year
-                        : (Scenarios.Data.Header.StartDate != null)
+                        : Scenarios.Data.Header.StartDate != null
                             ? Scenarios.Data.Header.StartDate.Year
                             : Scenarios.Data.Header.StartYear;
                     // 年数の下2桁のみ使用する

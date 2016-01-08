@@ -334,13 +334,13 @@ namespace HoI2Editor
         /// <returns>データを遅延読み込み中ならばtrueを返す</returns>
         private static bool IsLoadingData()
         {
-            return (Leaders.IsLoading() ||
-                    Ministers.IsLoading() ||
-                    Teams.IsLoading() ||
-                    Provinces.IsLoading() ||
-                    Techs.IsLoading() ||
-                    Units.IsLoading() ||
-                    Maps.IsLoading());
+            return Leaders.IsLoading() ||
+                   Ministers.IsLoading() ||
+                   Teams.IsLoading() ||
+                   Provinces.IsLoading() ||
+                   Techs.IsLoading() ||
+                   Units.IsLoading() ||
+                   Maps.IsLoading();
         }
 
         #endregion
@@ -811,19 +811,19 @@ namespace HoI2Editor
         /// <returns>エディタのフォームが存在すればtrueを返す</returns>
         private static bool ExistsEditorForms()
         {
-            return (_leaderEditorForm != null ||
-                    _ministerEditorForm != null ||
-                    _teamEditorForm != null ||
-                    _provinceEditorForm != null ||
-                    _techEditorForm != null ||
-                    _unitEditorForm != null ||
-                    _miscEditorForm != null ||
-                    _corpsNameEditorForm != null ||
-                    _unitNameEditorForm != null ||
-                    _modelNameEditorForm != null ||
-                    _randomLeaderEditorForm != null ||
-                    _researchViewerForm != null ||
-                    _scenarioEditorForm != null);
+            return _leaderEditorForm != null ||
+                   _ministerEditorForm != null ||
+                   _teamEditorForm != null ||
+                   _provinceEditorForm != null ||
+                   _techEditorForm != null ||
+                   _unitEditorForm != null ||
+                   _miscEditorForm != null ||
+                   _corpsNameEditorForm != null ||
+                   _unitNameEditorForm != null ||
+                   _modelNameEditorForm != null ||
+                   _randomLeaderEditorForm != null ||
+                   _researchViewerForm != null ||
+                   _scenarioEditorForm != null;
         }
 
         #endregion

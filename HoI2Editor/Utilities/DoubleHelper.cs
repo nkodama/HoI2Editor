@@ -117,7 +117,7 @@ namespace HoI2Editor.Utilities
         /// <returns>数値1が数値2以下であればtrueを返す</returns>
         public static bool IsLessOrEqual(double val1, double val2)
         {
-            return (val1 - val2) < 0.0000005;
+            return val1 - val2 < 0.0000005;
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace HoI2Editor.Utilities
         /// <returns>数値1が数値2以上であればtrueを返す</returns>
         public static bool IsGreaterOrEqual(double val1, double val2)
         {
-            return (val1 - val2) > -0.0000005;
+            return val1 - val2 > -0.0000005;
         }
 
         /// <summary>

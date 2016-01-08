@@ -775,10 +775,10 @@ namespace HoI2Editor.Forms
 
             // 項目移動ボタンの状態更新
             int index = modelListView.SelectedIndices[0];
-            topButton.Enabled = (index != 0);
-            upButton.Enabled = (index != 0);
-            downButton.Enabled = (index != modelListView.Items.Count - 1);
-            bottomButton.Enabled = (index != modelListView.Items.Count - 1);
+            topButton.Enabled = index != 0;
+            upButton.Enabled = index != 0;
+            downButton.Enabled = index != modelListView.Items.Count - 1;
+            bottomButton.Enabled = index != modelListView.Items.Count - 1;
         }
 
         /// <summary>
@@ -985,7 +985,7 @@ namespace HoI2Editor.Forms
 
             // ユニットモデルを挿入する
             UnitModel model = new UnitModel();
-            int index = (modelListView.SelectedIndices.Count > 0) ? (modelListView.SelectedIndices[0] + 1) : 0;
+            int index = modelListView.SelectedIndices.Count > 0 ? modelListView.SelectedIndices[0] + 1 : 0;
             InsertModel(unit, model, index, "");
 
             // ユニットモデルリストの更新を通知する
@@ -1266,7 +1266,7 @@ namespace HoI2Editor.Forms
         /// <returns></returns>
         private Country GetSelectedCountry()
         {
-            return (countryListView.SelectedIndices.Count > 0)
+            return countryListView.SelectedIndices.Count > 0
                 ? Countries.Tags[countryListView.SelectedIndices[0]]
                 : Country.None;
         }
@@ -1548,12 +1548,12 @@ namespace HoI2Editor.Forms
             // 着脱可能
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                detachableCheckBox.Enabled = (unit.Organization == UnitOrganization.Brigade);
+                detachableCheckBox.Enabled = unit.Organization == UnitOrganization.Brigade;
             }
             else if ((Game.Type == GameType.DarkestHour) && (Game.Version >= 103))
             {
-                detachableCheckBox.Enabled = ((unit.Branch == Branch.Navy) &&
-                                              (unit.Organization == UnitOrganization.Brigade));
+                detachableCheckBox.Enabled = (unit.Branch == Branch.Navy) &&
+                                             (unit.Organization == UnitOrganization.Brigade);
             }
             else
             {
@@ -3894,13 +3894,13 @@ namespace HoI2Editor.Forms
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 2段階改良
-                upgradeTimeBoostCheckBox.Enabled = (Game.Type == GameType.DarkestHour);
+                upgradeTimeBoostCheckBox.Enabled = Game.Type == GameType.DarkestHour;
                 upgradeTimeBoostCheckBox.Checked = model.UpgradeTimeBoost;
                 upgradeTimeBoostCheckBox.ForeColor = model.IsDirty(UnitModelItemId.UpgradeTimeBoost)
                     ? Color.Red
                     : SystemColors.WindowText;
                 // 自動改良先
-                autoUpgradeCheckBox.Enabled = (Game.Type == GameType.DarkestHour);
+                autoUpgradeCheckBox.Enabled = Game.Type == GameType.DarkestHour;
                 autoUpgradeCheckBox.Checked = model.AutoUpgrade;
                 autoUpgradeCheckBox.ForeColor = model.IsDirty(UnitModelItemId.AutoUpgrade)
                     ? Color.Red
@@ -4171,7 +4171,7 @@ namespace HoI2Editor.Forms
 
             // ユニットモデル名の更新を通知する
             HoI2EditorController.OnItemChanged(
-                (country == Country.None) ? EditorItemId.CommonModelName : EditorItemId.CountryModelName, this);
+                country == Country.None ? EditorItemId.CommonModelName : EditorItemId.CountryModelName, this);
         }
 
         /// <summary>

@@ -836,7 +836,7 @@ namespace HoI2Editor.Forms
                 case 0: // 国タグ
                     if (_key == SortKey.Tag)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -847,7 +847,7 @@ namespace HoI2Editor.Forms
                 case 1: // ID
                     if (_key == SortKey.Id)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -858,7 +858,7 @@ namespace HoI2Editor.Forms
                 case 2: // 名前
                     if (_key == SortKey.Name)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -869,7 +869,7 @@ namespace HoI2Editor.Forms
                 case 3: // スキル
                     if (_key == SortKey.Skill)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -880,7 +880,7 @@ namespace HoI2Editor.Forms
                 case 4: // 開始年
                     if (_key == SortKey.StartYear)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -891,7 +891,7 @@ namespace HoI2Editor.Forms
                 case 5: // 終了年
                     if (_key == SortKey.EndYear)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -902,7 +902,7 @@ namespace HoI2Editor.Forms
                 case 6: // 特性
                     if (_key == SortKey.Speciality)
                     {
-                        _order = (_order == SortOrder.Ascendant) ? SortOrder.Decendant : SortOrder.Ascendant;
+                        _order = _order == SortOrder.Ascendant ? SortOrder.Decendant : SortOrder.Ascendant;
                     }
                     else
                     {
@@ -1380,9 +1380,9 @@ namespace HoI2Editor.Forms
 
             int count = countryListBox.SelectedItems.Count;
             // 選択数に合わせて全選択/全解除を切り替える
-            countryAllButton.Text = (count <= 1) ? Resources.KeySelectAll : Resources.KeyUnselectAll;
+            countryAllButton.Text = count <= 1 ? Resources.KeySelectAll : Resources.KeyUnselectAll;
             // 選択数がゼロの場合は新規追加ボタンを無効化する
-            newButton.Enabled = (count > 0);
+            newButton.Enabled = count > 0;
 
             countryListBox.EndUpdate();
         }
@@ -1435,10 +1435,10 @@ namespace HoI2Editor.Forms
             int count = countryListBox.SelectedItems.Count;
 
             // 選択数に合わせて全選択/全解除を切り替える
-            countryAllButton.Text = (count <= 1) ? Resources.KeySelectAll : Resources.KeyUnselectAll;
+            countryAllButton.Text = count <= 1 ? Resources.KeySelectAll : Resources.KeyUnselectAll;
 
             // 選択数がゼロの場合は新規追加ボタンを無効化する
-            newButton.Enabled = (count > 0);
+            newButton.Enabled = count > 0;
 
             // 選択中の国家を保存する
             HoI2EditorController.Settings.TeamEditor.Countries =

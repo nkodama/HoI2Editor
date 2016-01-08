@@ -2415,7 +2415,7 @@ namespace HoI2Editor.Models
             bool error = false;
             foreach (UnitClass unit in Items.Where(unit => unit.IsDirtyFile()))
             {
-                string folderName = Game.GetWriteFileName((unit.Organization == UnitOrganization.Division)
+                string folderName = Game.GetWriteFileName(unit.Organization == UnitOrganization.Division
                     ? Game.DivisionPathName
                     : Game.BrigadePathName);
                 string fileName = Path.Combine(folderName, DefaultFileNames[(int) unit.Type]);

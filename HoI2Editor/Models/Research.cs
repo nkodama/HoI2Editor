@@ -43,7 +43,7 @@ namespace HoI2Editor.Models
         {
             Tech = tech;
             Team = team;
-            GameDate date = (Researches.DateMode == ResearchDateMode.Specified)
+            GameDate date = Researches.DateMode == ResearchDateMode.Specified
                 ? Researches.SpecifiedDate
                 : new GameDate(tech.Year);
             Days = GetTechDays(tech, team, date);
@@ -175,7 +175,7 @@ namespace HoI2Editor.Models
                 double preHistoricalModifier = Misc.PreHistoricalDateModifier;
 
                 // 史実年度前ペナルティの下限値を求める
-                double preHistoricalLimit = (Game.Type == GameType.ArsenalOfDemocracy)
+                double preHistoricalLimit = Game.Type == GameType.ArsenalOfDemocracy
                     ? Misc.PreHistoricalPenaltyLimit
                     : 0.1;
 
@@ -236,7 +236,7 @@ namespace HoI2Editor.Models
             }
 
             // 史実年度後ボーナスを求める
-            double postHistoricalModifier = (Game.Type == GameType.ArsenalOfDemocracy)
+            double postHistoricalModifier = Game.Type == GameType.ArsenalOfDemocracy
                 ? Misc.PostHistoricalDateModifierAoD
                 : Misc.PostHistoricalDateModifierDh;
 
@@ -284,7 +284,7 @@ namespace HoI2Editor.Models
             // STEP4: 上限未達の史実年度後ボーナスで研究する日数を求める
 
             // 史実年度後ボーナスの上限値を求める
-            double postHistoricalLimit = (Game.Type == GameType.ArsenalOfDemocracy)
+            double postHistoricalLimit = Game.Type == GameType.ArsenalOfDemocracy
                 ? Misc.PostHistoricalBonusLimit
                 : Misc.BlueprintBonus;
 
