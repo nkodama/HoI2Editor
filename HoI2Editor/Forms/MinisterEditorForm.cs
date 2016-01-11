@@ -1151,7 +1151,7 @@ namespace HoI2Editor.Forms
             item.SubItems.Add(IntHelper.ToString(minister.StartYear));
             item.SubItems.Add(Misc.UseNewMinisterFilesFormat ? IntHelper.ToString(minister.EndYear) : "");
             item.SubItems.Add(Config.GetText(Ministers.PositionNames[(int) minister.Position]));
-            item.SubItems.Add(Config.GetText(Ministers.Personalities[minister.Personality].Name));
+            item.SubItems.Add(Ministers.Personalities[minister.Personality].NameText);
             item.SubItems.Add(Config.GetText(Ministers.IdeologyNames[(int) minister.Ideology]));
 
             return item;
@@ -1352,9 +1352,9 @@ namespace HoI2Editor.Forms
 
             // 特性
             personalityComboBox.DropDownWidth =
-                Ministers.Personalities.Select(info => Config.GetText(info.Name))
-                    .Select(s => (int) g.MeasureString(s, personalityComboBox.Font).Width +
-                                 SystemInformation.VerticalScrollBarWidth + margin)
+                Ministers.Personalities
+                    .Select(info => (int) g.MeasureString(info.NameText, personalityComboBox.Font).Width +
+                                    SystemInformation.VerticalScrollBarWidth + margin)
                     .Concat(new[] { personalityComboBox.Width })
                     .Max();
 
@@ -1568,19 +1568,19 @@ namespace HoI2Editor.Forms
             if (minister.Position == MinisterPosition.None)
             {
                 // 閣僚地位の値が不正な場合は、現在の閣僚特性のみ登録する
-                personalityComboBox.Items.Add(Config.GetText(Ministers.Personalities[minister.Personality].Name));
+                personalityComboBox.Items.Add(Ministers.Personalities[minister.Personality].NameText);
                 personalityComboBox.SelectedIndex = 0;
             }
             else if (!Ministers.PositionPersonalityTable[(int) minister.Position].Contains(minister.Personality))
             {
                 // 閣僚特性が閣僚地位とマッチしない場合、ワンショットで候補に登録する
-                personalityComboBox.Items.Add(Config.GetText(Ministers.Personalities[minister.Personality].Name));
+                personalityComboBox.Items.Add(Ministers.Personalities[minister.Personality].NameText);
                 personalityComboBox.SelectedIndex = 0;
 
                 // 閣僚地位と対応する閣僚特性を順に登録する
                 foreach (int personality in Ministers.PositionPersonalityTable[(int) minister.Position])
                 {
-                    personalityComboBox.Items.Add(Config.GetText(Ministers.Personalities[personality].Name));
+                    personalityComboBox.Items.Add(Ministers.Personalities[personality].NameText);
                 }
             }
             else
@@ -1588,7 +1588,7 @@ namespace HoI2Editor.Forms
                 // 閣僚地位と対応する閣僚特性を順に登録する
                 foreach (int personality in Ministers.PositionPersonalityTable[(int) minister.Position])
                 {
-                    personalityComboBox.Items.Add(Config.GetText(Ministers.Personalities[personality].Name));
+                    personalityComboBox.Items.Add(Ministers.Personalities[personality].NameText);
                     if (personality == minister.Personality)
                     {
                         personalityComboBox.SelectedIndex = personalityComboBox.Items.Count - 1;
@@ -2158,15 +2158,14 @@ namespace HoI2Editor.Forms
             }
 
             Log.Info("[Minister] personality: {0} -> {1} ({2}: {3})",
-                Config.GetText(Ministers.Personalities[minister.Personality].Name),
-                Config.GetText(Ministers.Personalities[personality].Name), minister.Id, minister.Name);
+                Ministers.Personalities[minister.Personality].NameText, Ministers.Personalities[personality].NameText,
+                minister.Id, minister.Name);
 
             // 値を更新する
             minister.Personality = personality;
 
             // 閣僚リストビューの項目を更新する
-            ministerListView.SelectedItems[0].SubItems[6].Text =
-                Config.GetText(Ministers.Personalities[minister.Personality].Name);
+            ministerListView.SelectedItems[0].SubItems[6].Text = Ministers.Personalities[minister.Personality].NameText;
 
             // 編集済みフラグを設定する
             minister.SetDirty(MinisterItemId.Personality);

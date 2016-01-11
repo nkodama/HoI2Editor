@@ -2216,6 +2216,11 @@ namespace HoI2Editor.Models
         public string Name { get; set; }
 
         /// <summary>
+        ///     閣僚特性名の文字列
+        /// </summary>
+        public string NameText => Config.ExistsKey(Name) ? Config.GetText(Name) : Name;
+
+        /// <summary>
         ///     閣僚特性文字列
         /// </summary>
         public string String { get; set; }
