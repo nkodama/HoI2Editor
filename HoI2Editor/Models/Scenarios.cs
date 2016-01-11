@@ -988,7 +988,7 @@ namespace HoI2Editor.Models
             CountrySettings settings = GetCountrySettings(country);
             if (!string.IsNullOrEmpty(settings?.Name))
             {
-                return Config.ExistsKey(settings.Name) ? Config.GetText(settings.Name) : "";
+                return Config.ExistsKey(settings.Name) ? Config.GetText(settings.Name) : settings.Name;
             }
 
             // 標準の国名

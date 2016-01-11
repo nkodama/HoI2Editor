@@ -1161,8 +1161,8 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.CountryNameString:
-                    // 国家設定の国名定義がなければ編集不可
-                    control.ReadOnly = string.IsNullOrEmpty(settings?.Name);
+                    // 国家設定の国名定義がないか、文字列直接埋め込み形式ならば編集不可
+                    control.ReadOnly = string.IsNullOrEmpty(settings?.Name) || !Config.ExistsKey(settings.Name);
                     break;
             }
         }

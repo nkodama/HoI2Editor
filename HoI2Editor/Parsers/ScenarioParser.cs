@@ -4808,7 +4808,7 @@ namespace HoI2Editor.Parsers
                     // name
                     if (keyword.Equals("name"))
                     {
-                        string s = ParseIdentifier(lexer);
+                        string s = ParseStringOrIdentifier(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
                             Log.InvalidClause(LogCategory, "name", lexer);

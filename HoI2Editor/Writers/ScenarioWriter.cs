@@ -1658,7 +1658,8 @@ namespace HoI2Editor.Writers
             }
             if (!string.IsNullOrEmpty(settings.Name))
             {
-                writer.WriteLine("  name               = {0}", settings.Name);
+                writer.Write("  name               = ");
+                writer.WriteLine(Config.ExistsKey(settings.Name) ? $"{settings.Name}" : $"\"{settings.Name}\"");
             }
             if (!string.IsNullOrEmpty(settings.FlagExt))
             {
