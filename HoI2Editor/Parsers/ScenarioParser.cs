@@ -4647,7 +4647,7 @@ namespace HoI2Editor.Parsers
                 // landunit
                 if (keyword.Equals("landunit"))
                 {
-                    Unit unit = ParseUnit(lexer);
+                    Unit unit = ParseUnit(lexer, Branch.Army);
                     if (unit == null)
                     {
                         Log.InvalidSection(LogCategory, "landunit", lexer);
@@ -4656,20 +4656,13 @@ namespace HoI2Editor.Parsers
 
                     // 陸軍ユニット
                     settings.LandUnits.Add(unit);
-
-                    // 兵科を設定
-                    unit.Branch = Branch.Army;
-                    foreach (Division division in unit.Divisions)
-                    {
-                        division.Branch = Branch.Army;
-                    }
                     continue;
                 }
 
                 // navalunit
                 if (keyword.Equals("navalunit"))
                 {
-                    Unit unit = ParseUnit(lexer);
+                    Unit unit = ParseUnit(lexer, Branch.Navy);
                     if (unit == null)
                     {
                         Log.InvalidSection(LogCategory, "navalunit", lexer);
@@ -4678,20 +4671,13 @@ namespace HoI2Editor.Parsers
 
                     // 海軍ユニット
                     settings.NavalUnits.Add(unit);
-
-                    // 兵科を設定
-                    unit.Branch = Branch.Navy;
-                    foreach (Division division in unit.Divisions)
-                    {
-                        division.Branch = Branch.Navy;
-                    }
                     continue;
                 }
 
                 // airunit
                 if (keyword.Equals("airunit"))
                 {
-                    Unit unit = ParseUnit(lexer);
+                    Unit unit = ParseUnit(lexer, Branch.Airforce);
                     if (unit == null)
                     {
                         Log.InvalidSection(LogCategory, "airunit", lexer);
@@ -4700,13 +4686,6 @@ namespace HoI2Editor.Parsers
 
                     // 空軍ユニット
                     settings.AirUnits.Add(unit);
-
-                    // 兵科を設定
-                    unit.Branch = Branch.Airforce;
-                    foreach (Division division in unit.Divisions)
-                    {
-                        division.Branch = Branch.Airforce;
-                    }
                     continue;
                 }
 
@@ -5609,8 +5588,9 @@ namespace HoI2Editor.Parsers
         ///     ユニットを構文解析する
         /// </summary>
         /// <param name="lexer">字句解析器</param>
+        /// <param name="branch">兵科</param>
         /// <returns>ユニット</returns>
-        private static Unit ParseUnit(TextLexer lexer)
+        private static Unit ParseUnit(TextLexer lexer, Branch branch)
         {
             // =
             Token token = lexer.GetToken();
@@ -5628,7 +5608,8 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
-            Unit unit = new Unit();
+            Unit unit = new Unit { Branch = branch };
+            int lastLineNo = -1;
             while (true)
             {
                 token = lexer.GetToken();
@@ -5672,6 +5653,9 @@ namespace HoI2Editor.Parsers
 
                     // typeとidの組
                     unit.Id = id;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5687,6 +5671,9 @@ namespace HoI2Editor.Parsers
 
                     // ユニット名
                     unit.Name = s;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5702,6 +5689,9 @@ namespace HoI2Editor.Parsers
 
                     // 統帥国
                     unit.Control = (Country) tag;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5717,6 +5707,9 @@ namespace HoI2Editor.Parsers
 
                     // 指揮官
                     unit.Leader = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5732,6 +5725,9 @@ namespace HoI2Editor.Parsers
 
                     // 現在位置
                     unit.Location = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5747,6 +5743,9 @@ namespace HoI2Editor.Parsers
 
                     // 直前の位置
                     unit.PrevProv = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5762,6 +5761,9 @@ namespace HoI2Editor.Parsers
 
                     // 基準位置
                     unit.Home = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5777,6 +5779,9 @@ namespace HoI2Editor.Parsers
 
                     // 所属基地
                     unit.Base = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5792,6 +5797,9 @@ namespace HoI2Editor.Parsers
 
                     // 塹壕レベル
                     unit.DigIn = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5807,6 +5815,9 @@ namespace HoI2Editor.Parsers
 
                     // 士気
                     unit.Morale = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5822,6 +5833,9 @@ namespace HoI2Editor.Parsers
 
                     // 任務
                     unit.Mission = mission;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5837,6 +5851,9 @@ namespace HoI2Editor.Parsers
 
                     // 指定日時
                     unit.Date = date;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5852,6 +5869,9 @@ namespace HoI2Editor.Parsers
 
                     // development (詳細不明)
                     unit.Development = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5867,6 +5887,9 @@ namespace HoI2Editor.Parsers
 
                     // 移動完了日時
                     unit.MoveTime = date;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5882,6 +5905,9 @@ namespace HoI2Editor.Parsers
 
                     // 移動経路
                     unit.Movement.AddRange(list);
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5897,6 +5923,9 @@ namespace HoI2Editor.Parsers
 
                     // 攻撃開始日時
                     unit.AttackDate = date;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5912,6 +5941,9 @@ namespace HoI2Editor.Parsers
 
                     // 上陸中
                     unit.Invasion = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5927,6 +5959,9 @@ namespace HoI2Editor.Parsers
 
                     // 上陸先
                     unit.Target = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5942,6 +5977,9 @@ namespace HoI2Editor.Parsers
 
                     // 死守命令
                     unit.StandGround = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5957,6 +5995,9 @@ namespace HoI2Editor.Parsers
 
                     // 焦土作戦
                     unit.ScorchGround = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5972,6 +6013,9 @@ namespace HoI2Editor.Parsers
 
                     // 優先
                     unit.Prioritized = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -5987,6 +6031,9 @@ namespace HoI2Editor.Parsers
 
                     // 改良可能
                     unit.CanUpgrade = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6002,6 +6049,9 @@ namespace HoI2Editor.Parsers
 
                     // 補充可能
                     unit.CanReinforcement = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6015,15 +6065,21 @@ namespace HoI2Editor.Parsers
                         continue;
                     }
 
+                    // 兵科を設定
+                    division.Branch = unit.Branch;
+
                     // 師団
                     unit.Divisions.Add(division);
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
                 // landunit
-                if (keyword.Equals("landunit"))
+                if (keyword.Equals("landunit") && unit.Branch != Branch.Army)
                 {
-                    Unit landUnit = ParseUnit(lexer);
+                    Unit landUnit = ParseUnit(lexer, Branch.Army);
                     if (landUnit == null)
                     {
                         Log.InvalidSection(LogCategory, "landunit", lexer);
@@ -6033,17 +6089,19 @@ namespace HoI2Editor.Parsers
                     // 搭載ユニット
                     unit.LandUnits.Add(landUnit);
 
-                    // 兵科を設定
-                    landUnit.Branch = Branch.Army;
-                    foreach (Division division in landUnit.Divisions)
-                    {
-                        division.Branch = Branch.Army;
-                    }
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
                 // 無効なトークン
                 Log.InvalidToken(LogCategory, token, lexer);
+                if (lexer.LineNo != lastLineNo)
+                {
+                    // 現在行が最終解釈行と異なる場合、閉じ括弧が不足しているものと見なす
+                    lexer.ReserveToken(token);
+                    break;
+                }
                 lexer.SkipLine();
             }
 
@@ -6078,6 +6136,7 @@ namespace HoI2Editor.Parsers
             }
 
             Division division = new Division();
+            int lastLineNo = -1;
             while (true)
             {
                 token = lexer.GetToken();
@@ -6121,6 +6180,9 @@ namespace HoI2Editor.Parsers
 
                     // typeとidの組
                     division.Id = id;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6136,6 +6198,9 @@ namespace HoI2Editor.Parsers
 
                     // 師団名
                     division.Name = s;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6151,6 +6216,9 @@ namespace HoI2Editor.Parsers
 
                     // ユニット種類
                     division.Type = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6166,6 +6234,9 @@ namespace HoI2Editor.Parsers
 
                     // モデル番号
                     division.Model = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6181,6 +6252,9 @@ namespace HoI2Editor.Parsers
 
                     // 核兵器搭載
                     division.Nuke = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6196,6 +6270,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra1 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6211,6 +6288,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra1 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6226,6 +6306,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra2 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6241,6 +6324,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra3 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6256,6 +6342,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra4 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6271,6 +6360,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra5 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6286,6 +6378,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel1 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6301,6 +6396,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel1 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6316,6 +6414,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel2 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6331,6 +6432,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel3 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6346,6 +6450,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel4 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6361,6 +6468,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel5 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6376,6 +6486,9 @@ namespace HoI2Editor.Parsers
 
                     // 最大戦力
                     division.MaxStrength = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6391,6 +6504,9 @@ namespace HoI2Editor.Parsers
 
                     // 戦力
                     division.Strength = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6406,6 +6522,9 @@ namespace HoI2Editor.Parsers
 
                     // 最大組織率
                     division.MaxOrganisation = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6421,6 +6540,9 @@ namespace HoI2Editor.Parsers
 
                     // 組織率
                     division.Organisation = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6436,6 +6558,9 @@ namespace HoI2Editor.Parsers
 
                     // 士気
                     division.Morale = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6451,6 +6576,9 @@ namespace HoI2Editor.Parsers
 
                     // 経験値
                     division.Experience = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6466,6 +6594,9 @@ namespace HoI2Editor.Parsers
 
                     // 改良進捗率
                     division.UpgradeProgress = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6481,6 +6612,9 @@ namespace HoI2Editor.Parsers
 
                     // 再配置先プロヴィンス
                     division.RedeployTarget = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6496,6 +6630,9 @@ namespace HoI2Editor.Parsers
 
                     // 再配置先ユニット名
                     division.RedeployUnitName = s;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6511,6 +6648,9 @@ namespace HoI2Editor.Parsers
 
                     // 再配置先ユニットID
                     division.RedeployUnitId = id;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6526,6 +6666,9 @@ namespace HoI2Editor.Parsers
 
                     // 攻勢開始日時
                     division.Offensive = date;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6541,6 +6684,9 @@ namespace HoI2Editor.Parsers
 
                     // 物資
                     division.Supplies = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6556,6 +6702,9 @@ namespace HoI2Editor.Parsers
 
                     // 燃料
                     division.Fuel = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6571,6 +6720,9 @@ namespace HoI2Editor.Parsers
 
                     // 最大物資
                     division.MaxSupplies = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6586,6 +6738,9 @@ namespace HoI2Editor.Parsers
 
                     // 最大燃料
                     division.MaxFuel = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6601,6 +6756,9 @@ namespace HoI2Editor.Parsers
 
                     // 物資消費量
                     division.SupplyConsumption = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6616,6 +6774,9 @@ namespace HoI2Editor.Parsers
 
                     // 燃料消費量
                     division.FuelConsumption = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6631,6 +6792,9 @@ namespace HoI2Editor.Parsers
 
                     // 最大速度
                     division.MaxSpeed = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6646,6 +6810,9 @@ namespace HoI2Editor.Parsers
 
                     // 砲兵速度キャップ
                     division.SpeedCapArt = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6661,6 +6828,9 @@ namespace HoI2Editor.Parsers
 
                     // 工兵速度キャップ
                     division.SpeedCapEng = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6676,6 +6846,9 @@ namespace HoI2Editor.Parsers
 
                     // 対空速度キャップ
                     division.SpeedCapAa = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6691,6 +6864,9 @@ namespace HoI2Editor.Parsers
 
                     // 対戦車速度キャップ
                     division.SpeedCapAt = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6721,6 +6897,9 @@ namespace HoI2Editor.Parsers
 
                     // 輸送能力
                     division.TransportCapability = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6736,6 +6915,9 @@ namespace HoI2Editor.Parsers
 
                     // 防御力
                     division.Defensiveness = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6751,6 +6933,9 @@ namespace HoI2Editor.Parsers
 
                     // 耐久力
                     division.Toughness = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6766,6 +6951,9 @@ namespace HoI2Editor.Parsers
 
                     // 脆弱性
                     division.Softness = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6781,6 +6969,9 @@ namespace HoI2Editor.Parsers
 
                     // 制圧力
                     division.Suppression = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6796,6 +6987,9 @@ namespace HoI2Editor.Parsers
 
                     // 対艦/対潜防御力
                     division.SeaDefense = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6811,6 +7005,9 @@ namespace HoI2Editor.Parsers
 
                     // 対地防御力
                     division.SurfaceDefence = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6826,6 +7023,9 @@ namespace HoI2Editor.Parsers
 
                     // 対空防御力
                     division.AirDefence = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6841,6 +7041,9 @@ namespace HoI2Editor.Parsers
 
                     // 対人攻撃力
                     division.SoftAttack = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6856,6 +7059,9 @@ namespace HoI2Editor.Parsers
 
                     // 対甲攻撃力
                     division.HardAttack = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6871,6 +7077,9 @@ namespace HoI2Editor.Parsers
 
                     // 対艦攻撃力(海軍)
                     division.SeaAttack = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6886,6 +7095,9 @@ namespace HoI2Editor.Parsers
 
                     // 対潜攻撃力
                     division.SubAttack = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6901,6 +7113,9 @@ namespace HoI2Editor.Parsers
 
                     // 通商破壊力
                     division.ConvoyAttack = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6916,6 +7131,9 @@ namespace HoI2Editor.Parsers
 
                     // 沿岸砲撃能力
                     division.ShoreBombardment = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6931,6 +7149,9 @@ namespace HoI2Editor.Parsers
 
                     // 対空攻撃力
                     division.AirAttack = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6946,6 +7167,9 @@ namespace HoI2Editor.Parsers
 
                     // 戦略爆撃攻撃力
                     division.StrategicAttack = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6961,6 +7185,9 @@ namespace HoI2Editor.Parsers
 
                     // 空対艦攻撃力
                     division.NavalAttack = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6976,6 +7203,9 @@ namespace HoI2Editor.Parsers
 
                     // 砲撃能力
                     division.ArtilleryBombardment = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -6991,6 +7221,9 @@ namespace HoI2Editor.Parsers
 
                     // 対艦索敵能力
                     division.SurfaceDetection = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7006,6 +7239,9 @@ namespace HoI2Editor.Parsers
 
                     // 対空索敵能力
                     division.AirDetection = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7021,6 +7257,9 @@ namespace HoI2Editor.Parsers
 
                     // 対潜索敵能力
                     division.SubDetection = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7036,6 +7275,9 @@ namespace HoI2Editor.Parsers
 
                     // 可視性
                     division.Visibility = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7051,6 +7293,9 @@ namespace HoI2Editor.Parsers
 
                     // 航続距離
                     division.Range = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7066,6 +7311,9 @@ namespace HoI2Editor.Parsers
 
                     // 射程距離
                     division.Distance = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7081,6 +7329,9 @@ namespace HoI2Editor.Parsers
 
                     // 移動距離
                     division.Travelled = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7096,6 +7347,9 @@ namespace HoI2Editor.Parsers
 
                     // 移動不可
                     division.Locked = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7111,11 +7365,20 @@ namespace HoI2Editor.Parsers
 
                     // 休止状態
                     division.Dormant = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
                 // 無効なトークン
                 Log.InvalidToken(LogCategory, token, lexer);
+                if (lexer.LineNo != lastLineNo)
+                {
+                    // 現在行が最終解釈行と異なる場合、閉じ括弧が不足しているものと見なす
+                    lexer.ReserveToken(token);
+                    break;
+                }
                 lexer.SkipLine();
             }
 
@@ -7146,6 +7409,7 @@ namespace HoI2Editor.Parsers
             }
 
             DivisionDevelopment division = new DivisionDevelopment();
+            int lastLineNo = -1;
             while (true)
             {
                 token = lexer.GetToken();
@@ -7189,6 +7453,9 @@ namespace HoI2Editor.Parsers
 
                     // typeとidの組
                     division.Id = id;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7204,6 +7471,9 @@ namespace HoI2Editor.Parsers
 
                     // 師団名
                     division.Name = s;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7219,6 +7489,9 @@ namespace HoI2Editor.Parsers
 
                     // 必要IC
                     division.Cost = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7234,6 +7507,9 @@ namespace HoI2Editor.Parsers
 
                     // 必要人的資源
                     division.Manpower = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7249,6 +7525,9 @@ namespace HoI2Editor.Parsers
 
                     // unitcost
                     division.UnitCost = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7264,6 +7543,9 @@ namespace HoI2Editor.Parsers
 
                     // new_model
                     division.NewModel = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7279,6 +7561,9 @@ namespace HoI2Editor.Parsers
 
                     // 完了予定日
                     division.Date = date;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7294,6 +7579,9 @@ namespace HoI2Editor.Parsers
 
                     // 進捗率増分
                     division.Progress = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7309,6 +7597,9 @@ namespace HoI2Editor.Parsers
 
                     // 総進捗率
                     division.TotalProgress = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7324,6 +7615,9 @@ namespace HoI2Editor.Parsers
 
                     // 連続生産ボーナス
                     division.GearingBonus = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7339,6 +7633,9 @@ namespace HoI2Editor.Parsers
 
                     // 総生産数
                     division.Size = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7354,6 +7651,9 @@ namespace HoI2Editor.Parsers
 
                     // 生産完了数
                     division.Done = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7369,6 +7669,9 @@ namespace HoI2Editor.Parsers
 
                     // 完了日数
                     division.Days = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7384,6 +7687,9 @@ namespace HoI2Editor.Parsers
 
                     // 1単位の完了日数
                     division.DaysForFirst = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7399,6 +7705,9 @@ namespace HoI2Editor.Parsers
 
                     // 停止中
                     division.Halted = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7414,6 +7723,9 @@ namespace HoI2Editor.Parsers
 
                     // 完了時にキューを削除するかどうか
                     division.CloseWhenFinished = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7429,6 +7741,9 @@ namespace HoI2Editor.Parsers
 
                     // waitingforclosure (詳細不明)
                     division.WaitingForClosure = (bool) b;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7444,6 +7759,9 @@ namespace HoI2Editor.Parsers
 
                     // ユニット種類
                     division.Type = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7459,6 +7777,9 @@ namespace HoI2Editor.Parsers
 
                     // モデル番号
                     division.Model = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7474,6 +7795,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra1 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7489,6 +7813,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra1 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7504,6 +7831,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra2 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7519,6 +7849,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra3 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7534,6 +7867,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra4 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7549,6 +7885,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のユニット種類
                     division.Extra5 = (UnitType) type;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7564,6 +7903,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel1 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7579,6 +7921,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel1 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7594,6 +7939,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel2 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7609,6 +7957,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel3 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7624,6 +7975,9 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel4 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -7639,11 +7993,20 @@ namespace HoI2Editor.Parsers
 
                     // 付属旅団のモデル番号
                     division.BrigadeModel5 = (int) n;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
                 // 無効なトークン
                 Log.InvalidToken(LogCategory, token, lexer);
+                if (lexer.LineNo != lastLineNo)
+                {
+                    // 現在行が最終解釈行と異なる場合、閉じ括弧が不足しているものと見なす
+                    lexer.ReserveToken(token);
+                    break;
+                }
                 lexer.SkipLine();
             }
 
