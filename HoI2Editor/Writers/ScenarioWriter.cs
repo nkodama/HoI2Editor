@@ -267,6 +267,10 @@ namespace HoI2Editor.Writers
             {
                 writer.Write(" name = {0}", major.Name);
             }
+            if (!string.IsNullOrEmpty(major.Songs))
+            {
+                writer.Write($" songs = \"{major.Songs}\"");
+            }
             writer.WriteLine(" }");
         }
 
