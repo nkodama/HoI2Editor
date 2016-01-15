@@ -78,6 +78,7 @@ namespace HoI2Editor.Parsers
         private static List<Trigger> ParseContainerTrigger(TextLexer lexer)
         {
             List<Trigger> list = new List<Trigger>();
+            int lastLineNo = lexer.LineNo;
             while (true)
             {
                 Token token = lexer.GetToken();
@@ -98,7 +99,12 @@ namespace HoI2Editor.Parsers
                 if (token.Type != TokenType.Identifier)
                 {
                     Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
+                    if (lexer.LineNo != lastLineNo)
+                    {
+                        // 現在行が最終解釈行と異なる場合、閉じ括弧が不足しているものと見なす
+                        lexer.ReserveToken(token);
+                        break;
+                    }
                     continue;
                 }
                 string keyword = token.Value as string;
@@ -112,7 +118,12 @@ namespace HoI2Editor.Parsers
                 if (!TypeMap.ContainsKey(keyword))
                 {
                     Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
+                    if (lexer.LineNo != lastLineNo)
+                    {
+                        // 現在行が最終解釈行と異なる場合、閉じ括弧が不足しているものと見なす
+                        lexer.ReserveToken(token);
+                        break;
+                    }
                     continue;
                 }
 
@@ -123,17 +134,22 @@ namespace HoI2Editor.Parsers
                 if (token.Type != TokenType.Equal)
                 {
                     Log.InvalidToken(LogCategory, token, lexer);
-                    return null;
+                    continue;
                 }
 
                 token = lexer.GetToken();
                 if (token.Type == TokenType.OpenBrace)
                 {
-                    trigger.Value = ParseContainerTrigger(lexer);
-                    if (trigger.Value != null)
+                    List<Trigger> triggers = ParseContainerTrigger(lexer);
+                    if (triggers == null)
                     {
-                        list.Add(trigger);
+                        continue;
                     }
+                    trigger.Value = triggers;
+                    list.Add(trigger);
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -142,12 +158,21 @@ namespace HoI2Editor.Parsers
                     token.Type != TokenType.String)
                 {
                     Log.InvalidToken(LogCategory, token, lexer);
+                    if (lexer.LineNo != lastLineNo)
+                    {
+                        // 現在行が最終解釈行と異なる場合、閉じ括弧が不足しているものと見なす
+                        lexer.ReserveToken(token);
+                        break;
+                    }
                     continue;
                 }
 
                 trigger.Value = token.Value;
 
                 list.Add(trigger);
+
+                // 最終解釈行を覚えておく
+                lastLineNo = lexer.LineNo;
             }
 
             return list.Count > 0 ? list : null;

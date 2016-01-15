@@ -43,6 +43,7 @@ namespace HoI2Editor.Parsers
             }
 
             Command command = new Command();
+            int lastLineNo = lexer.LineNo;
             while (true)
             {
                 token = lexer.GetToken();
@@ -63,7 +64,12 @@ namespace HoI2Editor.Parsers
                 if (token.Type != TokenType.Identifier)
                 {
                     Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
+                    if (lexer.LineNo != lastLineNo)
+                    {
+                        // 現在行が最終解釈行と異なる場合、閉じ括弧が不足しているものと見なす
+                        lexer.ReserveToken(token);
+                        break;
+                    }
                     continue;
                 }
 
@@ -82,7 +88,6 @@ namespace HoI2Editor.Parsers
                     if (token.Type != TokenType.Equal)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
@@ -91,7 +96,6 @@ namespace HoI2Editor.Parsers
                     if (token.Type != TokenType.Identifier)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
@@ -105,12 +109,14 @@ namespace HoI2Editor.Parsers
                     if (!Commands.StringMap.ContainsKey(s))
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
                     // コマンド種類
                     command.Type = Commands.StringMap[s];
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -122,7 +128,6 @@ namespace HoI2Editor.Parsers
                     if (token.Type != TokenType.Equal)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
@@ -132,12 +137,14 @@ namespace HoI2Editor.Parsers
                         token.Type != TokenType.String)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
                     // パラメータ - which
                     command.Which = token.Value;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -149,7 +156,6 @@ namespace HoI2Editor.Parsers
                     if (token.Type != TokenType.Equal)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
@@ -159,12 +165,14 @@ namespace HoI2Editor.Parsers
                         token.Type != TokenType.String)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
                     // パラメータ - value
                     command.Value = token.Value;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -176,7 +184,6 @@ namespace HoI2Editor.Parsers
                     if (token.Type != TokenType.Equal)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
@@ -186,12 +193,14 @@ namespace HoI2Editor.Parsers
                         token.Type != TokenType.String)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
                     // パラメータ - when
                     command.When = token.Value;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
@@ -203,7 +212,6 @@ namespace HoI2Editor.Parsers
                     if (token.Type != TokenType.Equal)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
@@ -213,30 +221,42 @@ namespace HoI2Editor.Parsers
                         token.Type != TokenType.String)
                     {
                         Log.InvalidToken(LogCategory, token, lexer);
-                        lexer.SkipLine();
                         continue;
                     }
 
                     // パラメータ - where
                     command.Where = token.Value;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
                 // trigger
                 if (keyword.Equals("trigger"))
                 {
-                    // トリガー
                     List<Trigger> triggers = TriggerParser.Parse(lexer);
-                    if (triggers != null)
+                    if (triggers == null)
                     {
-                        command.Triggers.AddRange(triggers);
+                        continue;
                     }
+
+                    // トリガー
+                    command.Triggers.AddRange(triggers);
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
                     continue;
                 }
 
                 // 無効なトークン
                 Log.InvalidToken(LogCategory, token, lexer);
-                lexer.SkipLine();
+                if (lexer.LineNo != lastLineNo)
+                {
+                    // 現在行が最終解釈行と異なる場合、閉じ括弧が不足しているものと見なす
+                    lexer.ReserveToken(token);
+                    break;
+                }
             }
 
             return command;
