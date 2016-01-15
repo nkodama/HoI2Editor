@@ -1620,6 +1620,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public bool Cancel { get; set; } = true;
 
+        /// <summary>
+        ///     海外貿易かどうか
+        /// </summary>
+        public bool IsOverSea { get; set; }
+
         #endregion
 
         #region 内部フィールド

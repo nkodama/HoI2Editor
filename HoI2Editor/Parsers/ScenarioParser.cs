@@ -3492,6 +3492,24 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                if (Game.Type == GameType.ArsenalOfDemocracy)
+                {
+                    // isoversea
+                    if (keyword.Equals("isoversea"))
+                    {
+                        bool? b = ParseBool(lexer);
+                        if (!b.HasValue)
+                        {
+                            Log.InvalidClause(LogCategory, "isoversea", lexer);
+                            continue;
+                        }
+
+                        // 海外貿易かどうか
+                        treaty.IsOverSea = (bool) b;
+                        continue;
+                    }
+                }
+
                 // 無効なトークン
                 Log.InvalidToken(LogCategory, token, lexer);
                 lexer.SkipLine();

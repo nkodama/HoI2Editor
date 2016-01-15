@@ -517,6 +517,10 @@ namespace HoI2Editor.Writers
                 WriteTypeId(treaty.Id, writer);
                 writer.WriteLine();
             }
+            if (treaty.IsOverSea && (Game.Type == GameType.ArsenalOfDemocracy))
+            {
+                writer.WriteLine("    isoversea      = yes");
+            }
             writer.WriteLine("    type           = {0}", Scenarios.TreatyStrings[(int) treaty.Type]);
             writer.WriteLine("    country        = \"{0}\"", treaty.Country1);
             writer.WriteLine("    country        = \"{0}\"", treaty.Country2);
