@@ -301,11 +301,14 @@ namespace HoI2Editor.Parsers
                             continue;
                         }
 
-                        // ファイル名を関連付ける
-                        country.FileName = Path.GetFileName(_fileName);
+                        if (!scenario.Countries.Contains(country))
+                        {
+                            // ファイル名を関連付ける
+                            country.FileName = Path.GetFileName(_fileName);
 
-                        // 国家設定
-                        scenario.Countries.Add(country);
+                            // 国家設定
+                            scenario.Countries.Add(country);
+                        }
                         continue;
                     }
 
