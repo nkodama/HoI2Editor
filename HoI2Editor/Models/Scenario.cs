@@ -2184,6 +2184,16 @@ namespace HoI2Editor.Models
         public List<int> StealLeaders { get; } = new List<int>();
 
         /// <summary>
+        ///     生産可能師団
+        /// </summary>
+        public Dictionary<UnitType, bool> AllowedDivisions { get; } = new Dictionary<UnitType, bool>();
+
+        /// <summary>
+        ///     生産可能旅団
+        /// </summary>
+        public Dictionary<UnitType, bool> AllowedBrigades { get; } = new Dictionary<UnitType, bool>();
+
+        /// <summary>
         ///     輸送船団
         /// </summary>
         public List<Convoy> Convoys { get; } = new List<Convoy>();

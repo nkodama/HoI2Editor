@@ -1603,6 +1603,8 @@ namespace HoI2Editor.Writers
                 WriteCountryDormantMinisters(settings, writer);
                 WriteCountryDormantTeams(settings, writer);
                 WriteStealLeaders(settings, writer);
+                WriteAllowedDivisions(settings, writer);
+                WriteAllowedBrigades(settings, writer);
                 WriteLandUnits(settings, writer);
                 WriteNavalUnits(settings, writer);
                 WriteAirUnits(settings, writer);
@@ -3611,6 +3613,56 @@ namespace HoI2Editor.Writers
                 writer.Write(" defaultorganisation = {0}", DoubleHelper.ToString(division.MaxOrganisation));
             }
             writer.WriteLine(" }");
+        }
+
+        /// <summary>
+        ///     生産可能師団を書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteAllowedDivisions(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.AllowedDivisions.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine();
+            writer.WriteLine("  allowed_divisions = {");
+            foreach (KeyValuePair<UnitType, bool> pair in settings.AllowedDivisions)
+            {
+                WriteUnitBoolPair(pair.Key, pair.Value, writer);
+            }
+            writer.WriteLine("  }");
+        }
+
+        /// <summary>
+        ///     生産可能旅団を書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteAllowedBrigades(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.AllowedBrigades.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine("  allowed_brigades = {");
+            foreach (KeyValuePair<UnitType, bool> pair in settings.AllowedBrigades)
+            {
+                WriteUnitBoolPair(pair.Key, pair.Value, writer);
+            }
+            writer.WriteLine("  }");
+        }
+
+        /// <summary>
+        ///     ユニット種類と論理値の組を出力する
+        /// </summary>
+        /// <param name="type">ユニット種類</param>
+        /// <param name="b">論理値</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteUnitBoolPair(UnitType type, bool b, TextWriter writer)
+        {
+            writer.WriteLine("    {0} = {1}", Units.Strings[(int) type], b ? "yes" : "no");
         }
 
         #endregion

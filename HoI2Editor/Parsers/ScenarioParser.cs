@@ -4647,6 +4647,42 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // allowed_divisions
+                if (keyword.Equals("allowed_divisions"))
+                {
+                    Dictionary<UnitType, bool> divisions = ParseAllowedDivisions(lexer);
+                    if (divisions == null)
+                    {
+                        Log.InvalidClause(LogCategory, "allowed_divisions", lexer);
+                        continue;
+                    }
+
+                    // 生産可能師団
+                    foreach (KeyValuePair<UnitType, bool> pair in divisions)
+                    {
+                        settings.AllowedDivisions[pair.Key] = pair.Value;
+                    }
+                    continue;
+                }
+
+                // allowed_brigades
+                if (keyword.Equals("allowed_brigades"))
+                {
+                    Dictionary<UnitType, bool> brigades = ParseAllowedBrigades(lexer);
+                    if (brigades == null)
+                    {
+                        Log.InvalidClause(LogCategory, "allowed_brigades", lexer);
+                        continue;
+                    }
+
+                    // 生産可能旅団
+                    foreach (KeyValuePair<UnitType, bool> pair in brigades)
+                    {
+                        settings.AllowedDivisions[pair.Key] = pair.Value;
+                    }
+                    continue;
+                }
+
                 // convoy
                 if (keyword.Equals("convoy"))
                 {
@@ -5596,6 +5632,178 @@ namespace HoI2Editor.Parsers
             }
 
             return policy;
+        }
+
+        /// <summary>
+        ///     生産可能師団を構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>生産可能師団</returns>
+        private static Dictionary<UnitType, bool> ParseAllowedDivisions(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            Dictionary<UnitType, bool> divisions = new Dictionary<UnitType, bool>();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                string s = token.Value as string;
+                if (string.IsNullOrEmpty(s))
+                {
+                    return null;
+                }
+                s = s.ToLower();
+
+                // ユニットクラス名以外
+                if (!Units.StringMap.ContainsKey(s))
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // サポート外のユニット種類
+                UnitType type = Units.StringMap[s];
+                if (!Units.DivisionTypes.Contains(type))
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                bool? b = ParseBool(lexer);
+                if (!b.HasValue)
+                {
+                    Log.InvalidClause(LogCategory, "allowed_divisions", lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                divisions[type] = (bool) b;
+            }
+
+            return divisions;
+        }
+
+        /// <summary>
+        ///     生産可能旅団を構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>生産可能旅団</returns>
+        private static Dictionary<UnitType, bool> ParseAllowedBrigades(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            Dictionary<UnitType, bool> brigades = new Dictionary<UnitType, bool>();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                string s = token.Value as string;
+                if (string.IsNullOrEmpty(s))
+                {
+                    return null;
+                }
+                s = s.ToLower();
+
+                // ユニットクラス名以外
+                if (!Units.StringMap.ContainsKey(s))
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                // サポート外のユニット種類
+                UnitType type = Units.StringMap[s];
+                if (!Units.BrigadeTypes.Contains(type))
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                bool? b = ParseBool(lexer);
+                if (!b.HasValue)
+                {
+                    Log.InvalidClause(LogCategory, Units.Strings[(int) type], lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                brigades[type] = (bool) b;
+            }
+
+            return brigades;
         }
 
         #endregion
