@@ -604,6 +604,11 @@ namespace HoI2Editor.Models
         public List<Treaty> Trades { get; } = new List<Treaty>();
 
         /// <summary>
+        ///     グローバルフラグリスト
+        /// </summary>
+        public Dictionary<string, string> Flags { get; set; }
+
+        /// <summary>
         ///     処理待ちイベントリスト
         /// </summary>
         public List<QueuedEvent> QueuedEvents { get; } = new List<QueuedEvent>();
@@ -2650,7 +2655,7 @@ namespace HoI2Editor.Models
         #region 公開プロパティ
 
         /// <summary>
-        ///     フラグ
+        ///     ローカルフラグリスト
         /// </summary>
         public Dictionary<string, string> Flags { get; set; }
 

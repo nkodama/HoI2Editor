@@ -995,6 +995,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // flags
+                if (keyword.Equals("flags"))
+                {
+                    Dictionary<string, string> flags = ParseFlags(lexer);
+                    if (flags == null)
+                    {
+                        Log.InvalidSection(LogCategory, "flags", lexer);
+                        continue;
+                    }
+
+                    // グローバルフラグリスト
+                    data.Flags = flags;
+                    continue;
+                }
+
                 // queued_events
                 if (keyword.Equals("queued_events"))
                 {
@@ -4968,14 +4983,14 @@ namespace HoI2Editor.Parsers
                 // flags
                 if (keyword.Equals("flags"))
                 {
-                    Dictionary<string, string> flags = ParseAiFlags(lexer);
+                    Dictionary<string, string> flags = ParseFlags(lexer);
                     if (flags == null)
                     {
                         Log.InvalidSection(LogCategory, "flags", lexer);
                         continue;
                     }
 
-                    // AIフラグ
+                    // ローカルフラグリスト
                     settings.Flags = flags;
                     continue;
                 }
@@ -4986,111 +5001,6 @@ namespace HoI2Editor.Parsers
             }
 
             return settings;
-        }
-
-        /// <summary>
-        ///     AIフラグを構文解析する
-        /// </summary>
-        /// <param name="lexer">字句解析器</param>
-        /// <returns>AIフラグ</returns>
-        private static Dictionary<string, string> ParseAiFlags(TextLexer lexer)
-        {
-            // =
-            Token token = lexer.GetToken();
-            if (token.Type != TokenType.Equal)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            // {
-            token = lexer.GetToken();
-            if (token.Type != TokenType.OpenBrace)
-            {
-                Log.InvalidToken(LogCategory, token, lexer);
-                return null;
-            }
-
-            Dictionary<string, string> flags = new Dictionary<string, string>();
-            while (true)
-            {
-                token = lexer.GetToken();
-
-                // ファイルの終端
-                if (token == null)
-                {
-                    break;
-                }
-
-                // } (セクション終端)
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    break;
-                }
-
-                // 無効なトークン
-                if (token.Type != TokenType.Identifier)
-                {
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    lexer.SkipLine();
-                    continue;
-                }
-
-                string keyword = token.Value as string;
-                if (string.IsNullOrEmpty(keyword))
-                {
-                    continue;
-                }
-
-                // =
-                token = lexer.GetToken();
-                if (token.Type != TokenType.Equal)
-                {
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    continue;
-                }
-
-                token = lexer.GetToken();
-                if (token.Type == TokenType.Number)
-                {
-                    int n = (int) (double) token.Value;
-                    if (n == 0 || n == 1)
-                    {
-                        flags[keyword] = ObjectHelper.ToString(token.Value);
-                        continue;
-                    }
-
-                    // 無効なトークン
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    continue;
-                }
-
-                if (token.Type == TokenType.Identifier)
-                {
-                    string s = token.Value as string;
-                    if (string.IsNullOrEmpty(s))
-                    {
-                        continue;
-                    }
-                    s = s.ToLower();
-
-                    if (s.Equals("yes") || s.Equals("no"))
-                    {
-                        flags[keyword] = ObjectHelper.ToString(token.Value);
-                        continue;
-                    }
-
-                    // 無効なトークン
-                    Log.InvalidToken(LogCategory, token, lexer);
-                    continue;
-                }
-
-                // 無効なトークン
-                Log.InvalidToken(LogCategory, token, lexer);
-                lexer.SkipLine();
-            }
-
-            return flags;
         }
 
         /// <summary>
@@ -9557,6 +9467,111 @@ namespace HoI2Editor.Parsers
             }
 
             return id;
+        }
+
+        /// <summary>
+        ///     フラグリストを構文解析する
+        /// </summary>
+        /// <param name="lexer">字句解析器</param>
+        /// <returns>フラグリスト</returns>
+        private static Dictionary<string, string> ParseFlags(TextLexer lexer)
+        {
+            // =
+            Token token = lexer.GetToken();
+            if (token.Type != TokenType.Equal)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            // {
+            token = lexer.GetToken();
+            if (token.Type != TokenType.OpenBrace)
+            {
+                Log.InvalidToken(LogCategory, token, lexer);
+                return null;
+            }
+
+            Dictionary<string, string> flags = new Dictionary<string, string>();
+            while (true)
+            {
+                token = lexer.GetToken();
+
+                // ファイルの終端
+                if (token == null)
+                {
+                    break;
+                }
+
+                // } (セクション終端)
+                if (token.Type == TokenType.CloseBrace)
+                {
+                    break;
+                }
+
+                // 無効なトークン
+                if (token.Type != TokenType.Identifier)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    lexer.SkipLine();
+                    continue;
+                }
+
+                string keyword = token.Value as string;
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    continue;
+                }
+
+                // =
+                token = lexer.GetToken();
+                if (token.Type != TokenType.Equal)
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    continue;
+                }
+
+                token = lexer.GetToken();
+                if (token.Type == TokenType.Number)
+                {
+                    int n = (int) (double) token.Value;
+                    if (n == 0 || n == 1)
+                    {
+                        flags[keyword] = ObjectHelper.ToString(token.Value);
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    continue;
+                }
+
+                if (token.Type == TokenType.Identifier)
+                {
+                    string s = token.Value as string;
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        continue;
+                    }
+                    s = s.ToLower();
+
+                    if (s.Equals("yes") || s.Equals("no"))
+                    {
+                        flags[keyword] = ObjectHelper.ToString(token.Value);
+                        continue;
+                    }
+
+                    // 無効なトークン
+                    Log.InvalidToken(LogCategory, token, lexer);
+                    continue;
+                }
+
+                // 無効なトークン
+                Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
+            }
+
+            return flags;
         }
 
         #endregion

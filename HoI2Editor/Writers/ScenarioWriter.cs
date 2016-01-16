@@ -295,6 +295,7 @@ namespace HoI2Editor.Writers
             WriteScenarioDormantMinisters(data, writer);
             WriteScenarioDormantTeams(data, writer);
             WriteScenarioEndDate(data.EndDate, writer);
+            WriteGlobalFlags(data.Flags, writer);
             writer.WriteLine("}");
         }
 
@@ -355,6 +356,25 @@ namespace HoI2Editor.Writers
             if (!rules.AllowTechnology)
             {
                 writer.WriteLine("    technology = no");
+            }
+            writer.WriteLine("  }");
+        }
+
+        /// <summary>
+        ///     グローバルフラグリストを書き出す
+        /// </summary>
+        /// <param name="flags"></param>
+        /// <param name="writer"></param>
+        private static void WriteGlobalFlags(Dictionary<string, string> flags, TextWriter writer)
+        {
+            if (flags.Count == 0)
+            {
+                return;
+            }
+            writer.WriteLine("  flags = {");
+            foreach (KeyValuePair<string, string> pair in flags)
+            {
+                writer.WriteLine($"    {pair.Key} = {pair.Value}");
             }
             writer.WriteLine("  }");
         }
