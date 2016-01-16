@@ -149,6 +149,12 @@ namespace HoI2Editor.Parsers
                 return null;
             }
 
+            // コメント行ならばnullを返す
+            if (line[0] == '#')
+            {
+                return null;
+            }
+
             return line.Split(Separator);
         }
 
