@@ -1885,7 +1885,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.ScenarioName:
-                    return Config.GetText(scenario.Name);
+                    return Config.ExistsKey(scenario.Name) ? Config.GetText(scenario.Name) : scenario.Name;
 
                 case ScenarioEditorItemId.ScenarioPanelName:
                     return scenario.PanelName;
@@ -3128,7 +3128,14 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.ScenarioName:
-                    Config.SetText(scenario.Name, (string) val, Game.ScenarioTextFileName);
+                    if (Config.ExistsKey(scenario.Name))
+                    {
+                        Config.SetText(scenario.Name, (string) val, Game.ScenarioTextFileName);
+                    }
+                    else
+                    {
+                        scenario.Name = (string) val;
+                    }
                     break;
 
                 case ScenarioEditorItemId.ScenarioPanelName:
