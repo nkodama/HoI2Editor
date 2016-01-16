@@ -3188,6 +3188,10 @@ namespace HoI2Editor.Writers
                 }
                 writer.WriteLine("    close_when_finished = {0}", BoolHelper.ToString(division.CloseWhenFinished));
                 writer.WriteLine("    waitingforclosure = {0}", BoolHelper.ToString(division.WaitingForClosure));
+                if (division.RetoolingTime > 0)
+                {
+                    writer.WriteLine("    retooling_time = {0}", DoubleHelper.ToString4(division.RetoolingTime));
+                }
             }
             if (division.TotalProgress > 0)
             {
@@ -3846,6 +3850,10 @@ namespace HoI2Editor.Writers
                 }
                 writer.WriteLine("    close_when_finished = {0}", BoolHelper.ToString(convoy.CloseWhenFinished));
                 writer.WriteLine("    waitingforclosure = {0}", BoolHelper.ToString(convoy.WaitingForClosure));
+                if (convoy.RetoolingTime > 0)
+                {
+                    writer.WriteLine("    retooling_time = {0}", DoubleHelper.ToString4(convoy.RetoolingTime));
+                }
             }
             if (convoy.TotalProgress > 0)
             {

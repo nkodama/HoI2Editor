@@ -3924,6 +3924,11 @@ namespace HoI2Editor.Models
         public bool WaitingForClosure { get; set; }
 
         /// <summary>
+        ///     生産ライン準備時間
+        /// </summary>
+        public double RetoolingTime { get; set; }
+
+        /// <summary>
         ///     ユニット種類
         /// </summary>
         public UnitType Type { get; set; }
@@ -4517,6 +4522,11 @@ namespace HoI2Editor.Models
         ///     詳細不明
         /// </summary>
         public bool WaitingForClosure { get; set; }
+
+        /// <summary>
+        ///     生産ライン準備時間
+        /// </summary>
+        public double RetoolingTime { get; set; }
 
         #endregion
     }

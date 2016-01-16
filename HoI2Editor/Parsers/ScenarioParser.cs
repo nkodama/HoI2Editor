@@ -7765,6 +7765,24 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // retooling_time
+                if (keyword.Equals("retooling_time"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "retooling_time", lexer);
+                        continue;
+                    }
+
+                    // 生産ライン準備時間
+                    division.RetoolingTime = (double) d;
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
+                    continue;
+                }
+
                 // type
                 if (keyword.Equals("type"))
                 {
@@ -8884,6 +8902,21 @@ namespace HoI2Editor.Parsers
 
                     // waitingforclosure (詳細不明)
                     convoy.WaitingForClosure = (bool) b;
+                    continue;
+                }
+
+                // retooling_time
+                if (keyword.Equals("retooling_time"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "retooling_time", lexer);
+                        continue;
+                    }
+
+                    // 生産ライン準備時間
+                    convoy.RetoolingTime = (double) d;
                     continue;
                 }
 
