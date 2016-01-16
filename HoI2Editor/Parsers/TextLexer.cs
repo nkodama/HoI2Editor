@@ -270,7 +270,7 @@ namespace HoI2Editor.Parsers
             }
 
             // 数字
-            if (char.IsDigit((char) c) || c == '-')
+            if (char.IsDigit((char) c) || c == '-' || c == '.')
             {
                 return ParseNumber();
             }
