@@ -459,6 +459,11 @@ namespace HoI2Editor.Models
         public string Desc { get; set; }
 
         /// <summary>
+        ///     国家戦略
+        /// </summary>
+        public string CountryTactics { get; set; }
+
+        /// <summary>
         ///     プロパガンダ画像名
         /// </summary>
         public string PictureName { get; set; }
@@ -496,7 +501,9 @@ namespace HoI2Editor.Models
             FlagExt, // 国旗の接尾辞
             DescKey, // 説明文定義
             DescString, // 説明文文字列
+            CountryTactics, // 国家戦略
             PictureName, // プロパガンダ画像名
+            Songs, // 音楽ファイル名
             Bottom // 右端に配置
         }
 

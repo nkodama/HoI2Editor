@@ -701,6 +701,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // countrytactics
+                if (keyword.Equals("countrytactics"))
+                {
+                    string s = ParseStringOrIdentifier(lexer);
+                    if (string.IsNullOrEmpty(s))
+                    {
+                        Log.InvalidClause(LogCategory, "countrytactics", lexer);
+                        continue;
+                    }
+
+                    // 国家戦略
+                    major.CountryTactics = s;
+                    continue;
+                }
+
                 // picture
                 if (keyword.Equals("picture"))
                 {

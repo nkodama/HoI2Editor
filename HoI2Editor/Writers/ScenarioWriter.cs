@@ -251,6 +251,10 @@ namespace HoI2Editor.Writers
             {
                 writer.Write(" desc = \"{0}\"", major.Desc);
             }
+            if (!string.IsNullOrEmpty(major.CountryTactics))
+            {
+                writer.Write($" countrytactics = \"{major.CountryTactics}\"");
+            }
             if (major.Bottom)
             {
                 writer.Write(" bottom = yes");
