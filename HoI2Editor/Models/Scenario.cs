@@ -1939,6 +1939,46 @@ namespace HoI2Editor.Models
         public int Capital { get; set; }
 
         /// <summary>
+        ///     TC補正
+        /// </summary>
+        public double TcModifier { get; set; }
+
+        /// <summary>
+        ///     占領地TC補正
+        /// </summary>
+        public double TcOccupiedModifier { get; set; }
+
+        /// <summary>
+        ///     消耗補正
+        /// </summary>
+        public double AttritionModifier { get; set; }
+
+        /// <summary>
+        ///     漸次撤退補正
+        /// </summary>
+        public double TricklebackModifier { get; set; }
+
+        /// <summary>
+        ///     最大強襲上陸補正
+        /// </summary>
+        public int MaxAmphibModifier { get; set; }
+
+        /// <summary>
+        ///     補給補正
+        /// </summary>
+        public double SupplyDistModifier { get; set; }
+
+        /// <summary>
+        ///     修理補正
+        /// </summary>
+        public double RepairModifier { get; set; }
+
+        /// <summary>
+        ///     研究補正
+        /// </summary>
+        public double ResearchModifier { get; set; }
+
+        /// <summary>
         ///     平時IC補正
         /// </summary>
         public double PeacetimeIcModifier { get; set; }

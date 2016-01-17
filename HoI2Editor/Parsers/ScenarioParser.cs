@@ -3945,6 +3945,126 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // tc_mod
+                if (keyword.Equals("tc_mod"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "tc_mod", lexer);
+                        continue;
+                    }
+
+                    // TC補正
+                    settings.TcModifier = (double) d;
+                    continue;
+                }
+
+                // tc_occupied_mod
+                if (keyword.Equals("tc_occupied_mod"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "tc_occupied_mod", lexer);
+                        continue;
+                    }
+
+                    // 占領地TC補正
+                    settings.TcOccupiedModifier = (double) d;
+                    continue;
+                }
+
+                // attrition_mod
+                if (keyword.Equals("attrition_mod"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "attrition_mod", lexer);
+                        continue;
+                    }
+
+                    // 消耗補正
+                    settings.AttritionModifier = (double) d;
+                    continue;
+                }
+
+                // trickleback_mod
+                if (keyword.Equals("trickleback_mod"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "trickleback_mod", lexer);
+                        continue;
+                    }
+
+                    // 漸次撤退補正
+                    settings.TricklebackModifier = (double) d;
+                    continue;
+                }
+
+                // max_amphib_mod
+                if (keyword.Equals("max_amphib_mod"))
+                {
+                    int? n = ParseInt(lexer);
+                    if (!n.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "max_amphib_mod", lexer);
+                        continue;
+                    }
+
+                    // 最大強襲上陸補正
+                    settings.MaxAmphibModifier = (int) n;
+                    continue;
+                }
+
+                // supply_dist_mod
+                if (keyword.Equals("supply_dist_mod"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "supply_dist_mod", lexer);
+                        continue;
+                    }
+
+                    // 補給補正
+                    settings.SupplyDistModifier = (double) d;
+                    continue;
+                }
+
+                // repair_mod
+                if (keyword.Equals("repair_mod"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "repair_mod", lexer);
+                        continue;
+                    }
+
+                    // 修理補正
+                    settings.RepairModifier = (double) d;
+                    continue;
+                }
+
+                // research_mod
+                if (keyword.Equals("research_mod"))
+                {
+                    double? d = ParseDouble(lexer);
+                    if (!d.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "research_mod", lexer);
+                        continue;
+                    }
+
+                    // 研究補正
+                    settings.ResearchModifier = (double) d;
+                    continue;
+                }
+
                 // peacetime_ic_mod
                 if (keyword.Equals("peacetime_ic_mod"))
                 {

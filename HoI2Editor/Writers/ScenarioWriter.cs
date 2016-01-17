@@ -1607,6 +1607,7 @@ namespace HoI2Editor.Writers
                 writer.WriteLine();
                 writer.WriteLine("country = {");
                 WriteCountryInfo(settings, writer);
+                WriteCountryModifiers(settings, writer);
                 WriteCountryResources(settings, writer);
                 WriteOffmapResources(settings, writer);
                 WriteDiplomacy(settings, writer);
@@ -1616,7 +1617,6 @@ namespace HoI2Editor.Writers
                 WriteBlueprints(settings, writer);
                 WriteInventions(settings, writer);
                 WriteCountryPolicy(settings, writer);
-                WriteCountryModifiers(settings, writer);
                 WriteCabinet(settings, writer);
                 WriteIdea(settings, writer);
                 WriteCountryDormantLeaders(settings, writer);
@@ -2004,17 +2004,49 @@ namespace HoI2Editor.Writers
         /// <param name="writer">ファイル書き込み用</param>
         private static void WriteCountryModifiers(CountrySettings settings, TextWriter writer)
         {
+            if (!DoubleHelper.IsZero(settings.TcModifier))
+            {
+                writer.WriteLine($"  tc_mod                 = {DoubleHelper.ToString(settings.TcModifier)}");
+            }
+            if (!DoubleHelper.IsZero(settings.TcOccupiedModifier))
+            {
+                writer.WriteLine($"  tc_occupied_mod        = {DoubleHelper.ToString(settings.TcOccupiedModifier)}");
+            }
+            if (!DoubleHelper.IsZero(settings.AttritionModifier))
+            {
+                writer.WriteLine($"  attrition_mod          = {DoubleHelper.ToString(settings.AttritionModifier)}");
+            }
+            if (!DoubleHelper.IsZero(settings.TricklebackModifier))
+            {
+                writer.WriteLine($"  trickleback_mod        = {DoubleHelper.ToString(settings.TricklebackModifier)}");
+            }
+            if (settings.MaxAmphibModifier > 0)
+            {
+                writer.WriteLine($"  max_amphib_mod         = {IntHelper.ToString(settings.MaxAmphibModifier)}");
+            }
+            if (!DoubleHelper.IsZero(settings.SupplyDistModifier))
+            {
+                writer.WriteLine($"  supply_dist_mod        = {DoubleHelper.ToString(settings.SupplyDistModifier)}");
+            }
+            if (!DoubleHelper.IsZero(settings.RepairModifier))
+            {
+                writer.WriteLine($"  repair_mod             = {DoubleHelper.ToString(settings.RepairModifier)}");
+            }
+            if (!DoubleHelper.IsZero(settings.ResearchModifier))
+            {
+                writer.WriteLine($"  research_mod           = {DoubleHelper.ToString(settings.ResearchModifier)}");
+            }
             if (!DoubleHelper.IsZero(settings.PeacetimeIcModifier))
             {
-                writer.WriteLine("  peacetime_ic_mod       = {0}", DoubleHelper.ToString(settings.PeacetimeIcModifier));
+                writer.WriteLine($"  peacetime_ic_mod       = {DoubleHelper.ToString(settings.PeacetimeIcModifier)}");
             }
             if (!DoubleHelper.IsZero(settings.WartimeIcModifier))
             {
-                writer.WriteLine("  wartime_ic_mod         = {0}", DoubleHelper.ToString(settings.WartimeIcModifier));
+                writer.WriteLine($"  wartime_ic_mod         = {DoubleHelper.ToString(settings.WartimeIcModifier)}");
             }
             if (!DoubleHelper.IsZero(settings.WartimeIcModifier))
             {
-                writer.WriteLine("  industrial_modifier    = {0}", DoubleHelper.ToString(settings.WartimeIcModifier));
+                writer.WriteLine($"  industrial_modifier    = {DoubleHelper.ToString(settings.WartimeIcModifier)}");
             }
         }
 
