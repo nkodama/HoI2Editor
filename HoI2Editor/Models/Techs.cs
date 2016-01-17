@@ -1210,7 +1210,8 @@ namespace HoI2Editor.Models
         /// <returns>研究特性名</returns>
         public static string GetSpecialityName(TechSpeciality speciality)
         {
-            return Config.GetText(SpecialityNames[(int) speciality]);
+            string name = SpecialityNames[(int) speciality];
+            return Config.ExistsKey(name) ? Config.GetText(name) : name;
         }
 
         #endregion
