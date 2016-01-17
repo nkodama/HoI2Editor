@@ -3578,6 +3578,7 @@ namespace HoI2Editor.Parsers
             if (token.Type != TokenType.Equal)
             {
                 Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
                 return null;
             }
 
@@ -3586,6 +3587,7 @@ namespace HoI2Editor.Parsers
             if (token.Type != TokenType.OpenBrace)
             {
                 Log.InvalidToken(LogCategory, token, lexer);
+                lexer.SkipLine();
                 return null;
             }
 
@@ -3638,7 +3640,8 @@ namespace HoI2Editor.Parsers
 
                 // 無効なトークン
                 Log.InvalidToken(LogCategory, token, lexer);
-                lexer.SkipLine();
+                lexer.ReserveToken(token);
+                break;
             }
 
             return list;
