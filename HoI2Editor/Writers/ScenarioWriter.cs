@@ -462,13 +462,17 @@ namespace HoI2Editor.Writers
                 WriteTypeId(alliance.Id, writer);
                 writer.WriteLine();
             }
+            if (!string.IsNullOrEmpty(alliance.Name))
+            {
+                writer.WriteLine("    name        = \"{0}\"", alliance.Name);
+            }
+            if (alliance.Defensive)
+            {
+                writer.WriteLine("    defensive   = yes");
+            }
             writer.Write("    participant = {");
             WriteCountryList(alliance.Participant, writer);
             writer.WriteLine(" }");
-            if (!string.IsNullOrEmpty(alliance.Name))
-            {
-                writer.WriteLine("    name = \"{0}\"", alliance.Name);
-            }
             writer.WriteLine("  }");
         }
 

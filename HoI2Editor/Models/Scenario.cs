@@ -1340,6 +1340,11 @@ namespace HoI2Editor.Models
         /// </summary>
         public string Name { get; set; }
 
+        /// <summary>
+        ///     防衛同盟かどうか
+        /// </summary>
+        public bool Defensive { get; set; }
+
         #endregion
 
         #region 内部フィールド

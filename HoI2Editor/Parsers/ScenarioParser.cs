@@ -3082,6 +3082,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // defensive
+                if (keyword.Equals("defensive"))
+                {
+                    bool? b = ParseBool(lexer);
+                    if (!b.HasValue)
+                    {
+                        Log.InvalidClause(LogCategory, "defensive", lexer);
+                        continue;
+                    }
+
+                    // 防衛同盟かどうか
+                    alliance.Defensive = (bool) b;
+                    continue;
+                }
+
                 if (Game.Type == GameType.DarkestHour)
                 {
                     // name
