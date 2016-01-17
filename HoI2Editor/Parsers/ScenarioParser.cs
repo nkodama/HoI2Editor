@@ -6353,6 +6353,32 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // strength
+                if (keyword.Equals("strength"))
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+
+                    // strengthは師団対象であるがその後のエラー回避のため読み捨てる
+                    ParseDouble(lexer);
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
+                    continue;
+                }
+
+                // locked
+                if (keyword.Equals("locked"))
+                {
+                    Log.InvalidToken(LogCategory, token, lexer);
+
+                    // lockedは師団対象であるがその後のエラー回避のため読み捨てる
+                    ParseBool(lexer);
+
+                    // 最終解釈行を覚えておく
+                    lastLineNo = lexer.LineNo;
+                    continue;
+                }
+
                 // 無効なトークン
                 Log.InvalidToken(LogCategory, token, lexer);
                 if (lexer.LineNo != lastLineNo)
