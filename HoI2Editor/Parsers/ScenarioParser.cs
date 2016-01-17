@@ -9671,14 +9671,14 @@ namespace HoI2Editor.Parsers
                 }
 
                 // 無効なトークン
-                if (token.Type != TokenType.Identifier)
+                if (token.Type != TokenType.Identifier && token.Type != TokenType.Number)
                 {
                     Log.InvalidToken(LogCategory, token, lexer);
                     lexer.SkipLine();
                     continue;
                 }
 
-                string keyword = token.Value as string;
+                string keyword = ObjectHelper.ToString(token.Value);
                 if (string.IsNullOrEmpty(keyword))
                 {
                     continue;
