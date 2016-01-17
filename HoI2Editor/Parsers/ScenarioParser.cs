@@ -5009,7 +5009,7 @@ namespace HoI2Editor.Parsers
                     // flag_ext
                     if (keyword.Equals("flag_ext"))
                     {
-                        string s = ParseIdentifier(lexer);
+                        string s = ParseStringOrIdentifier(lexer);
                         if (string.IsNullOrEmpty(s))
                         {
                             Log.InvalidClause(LogCategory, "flag_ext", lexer);
