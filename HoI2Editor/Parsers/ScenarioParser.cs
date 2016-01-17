@@ -4500,6 +4500,21 @@ namespace HoI2Editor.Parsers
                     continue;
                 }
 
+                // deactivate
+                if (keyword.Equals("deactivate"))
+                {
+                    IEnumerable<int> list = ParseIdList(lexer);
+                    if (list == null)
+                    {
+                        Log.InvalidSection(LogCategory, "deactivate", lexer);
+                        continue;
+                    }
+
+                    // 無効技術
+                    settings.Deactivate.AddRange(list);
+                    continue;
+                }
+
                 // policy
                 if (keyword.Equals("policy"))
                 {

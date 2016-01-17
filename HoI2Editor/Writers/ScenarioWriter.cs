@@ -1616,6 +1616,7 @@ namespace HoI2Editor.Writers
                 WriteTechApps(settings, writer);
                 WriteBlueprints(settings, writer);
                 WriteInventions(settings, writer);
+                WriteDeactivate(settings, writer);
                 WriteCountryPolicy(settings, writer);
                 WriteCabinet(settings, writer);
                 WriteIdea(settings, writer);
@@ -1964,6 +1965,22 @@ namespace HoI2Editor.Writers
             }
             writer.Write("  inventions             = {");
             WriteIdList(settings.Inventions, writer);
+            writer.WriteLine(" }");
+        }
+
+        /// <summary>
+        ///     無効技術リストを書き出す
+        /// </summary>
+        /// <param name="settings">国家設定</param>
+        /// <param name="writer">ファイル書き込み用</param>
+        private static void WriteDeactivate(CountrySettings settings, TextWriter writer)
+        {
+            if (settings.Deactivate.Count == 0)
+            {
+                return;
+            }
+            writer.Write("  deactivate             = {");
+            WriteIdList(settings.Deactivate, writer);
             writer.WriteLine(" }");
         }
 

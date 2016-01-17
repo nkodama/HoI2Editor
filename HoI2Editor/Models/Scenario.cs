@@ -2134,6 +2134,11 @@ namespace HoI2Editor.Models
         public List<int> Inventions { get; } = new List<int>();
 
         /// <summary>
+        ///     無効技術
+        /// </summary>
+        public List<int> Deactivate { get; } = new List<int>();
+
+        /// <summary>
         ///     政策スライダー
         /// </summary>
         public CountryPolicy Policy { get; set; }
