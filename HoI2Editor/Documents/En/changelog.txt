@@ -1,5 +1,11 @@
 Alternative HoI2 Editor Changelog
 
+- 18 Jan 2016; Ver 0.52
+
+Fixed area names; Belarus and Benelux are swapped.
+Supported saving the selectable country specification: songs.
+Improved compativility of various mods.
+
 - 7 Jan 2016; Ver 0.51
 
 Added batch copying and moving of leaders, ministers and tech teams.
