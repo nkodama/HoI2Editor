@@ -613,7 +613,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     グローバルフラグリスト
         /// </summary>
-        public Dictionary<string, string> Flags { get; set; }
+        public Dictionary<string, string> Flags { get; set; } = new Dictionary<string, string>();
 
         /// <summary>
         ///     処理待ちイベントリスト
