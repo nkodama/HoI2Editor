@@ -3268,7 +3268,6 @@ namespace HoI2Editor.Models
             { MiscItemId.NewCountryNuclearPhysicsComponent, 1 },
             { MiscItemId.NewCountryNuclearEngineeringComponent, 1 },
             { MiscItemId.NewCountrySecretTechs, 1 },
-            { MiscItemId.DelayGameStartNewTrades, 0 },
             { MiscItemId.MergeTradeDeals, 1 },
             { MiscItemId.ManualTradeDeals, 100 },
             { MiscItemId.NewTradeDealsMinEffectiveness, 100 },
@@ -3347,7 +3346,7 @@ namespace HoI2Editor.Models
             { MiscItemId.NightHoursSummer, 0 },
             { MiscItemId.FleetSizeRangePenaltyRatio, 0 },
             { MiscItemId.FleetSizeRangePenaltyMax, 0 },
-            { MiscItemId.FleetPositioningFleetComposition, 0 },
+            { MiscItemId.FleetPositioningFleetComposition, -1 },
             { MiscItemId.AttackStartingEfficiency, 0.05 },
             { MiscItemId.RebaseStartingEfficiency, 0.05 },
             { MiscItemId.StratRedeployStartingEfficiency, 0.05 },
@@ -4492,6 +4491,80 @@ namespace HoI2Editor.Models
         }
 
         /// <summary>
+        ///     項目の値を真偽値として取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>項目の値</returns>
+        public static bool GetBool(MiscItemId id)
+        {
+            object item = GetItem(id);
+
+            if (item is bool)
+            {
+                return (bool) item;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        ///     項目の値を整数値として取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>項目の値</returns>
+        public static int GetInt(MiscItemId id)
+        {
+            object item = GetItem(id);
+            int n = 0;
+
+            if (item is int)
+            {
+                n = (int) item;
+            }
+            else if (item is double)
+            {
+                n = (int) (double) item;
+            }
+
+            // 列挙型の場合最小値と最大値の間になければ値を丸める
+            if (ItemTypes[(int) id] != MiscItemType.Enum)
+            {
+                if (IntMinValues.ContainsKey(id) && n < IntMinValues[id])
+                {
+                    n = IntMinValues[id];
+                }
+                else if (IntMaxValues.ContainsKey(id) && n > IntMaxValues[id])
+                {
+                    n = IntMaxValues[id];
+                }
+            }
+
+            return n;
+        }
+
+        /// <summary>
+        ///     項目の値を実数値として取得する
+        /// </summary>
+        /// <param name="id">項目ID</param>
+        /// <returns>項目の値</returns>
+        public static double GetDouble(MiscItemId id)
+        {
+            object item = GetItem(id);
+            double d = 0;
+
+            if (item is double)
+            {
+                d = (double) item;
+            }
+            else if (item is int)
+            {
+                d = (int) item;
+            }
+
+            return d;
+        }
+
+        /// <summary>
         ///     項目の空白文字/コメントを取得する
         /// </summary>
         /// <param name="id">項目ID</param>
@@ -4641,7 +4714,7 @@ namespace HoI2Editor.Models
             switch (ItemTypes[(int) id])
             {
                 case MiscItemType.Bool:
-                    return (bool) GetItem(id) ? "1" : "0";
+                    return GetBool(id) ? "1" : "0";
 
                 case MiscItemType.Enum:
                 case MiscItemType.Int:
@@ -4653,10 +4726,10 @@ namespace HoI2Editor.Models
                 case MiscItemType.RangedPosInt:
                 case MiscItemType.RangedIntMinusOne:
                 case MiscItemType.RangedIntMinusThree:
-                    return IntHelper.ToString0((int) GetItem(id));
+                    return IntHelper.ToString0(GetInt(id));
 
                 case MiscItemType.NonNegInt1:
-                    return IntHelper.ToString1((int) GetItem(id));
+                    return IntHelper.ToString1(GetInt(id));
 
                 case MiscItemType.Dbl:
                 case MiscItemType.PosDbl:
@@ -4665,47 +4738,47 @@ namespace HoI2Editor.Models
                 case MiscItemType.NonNegDblMinusOne1:
                 case MiscItemType.RangedDbl:
                 case MiscItemType.RangedDblMinusOne1:
-                    return DoubleHelper.ToString1((double) GetItem(id));
+                    return DoubleHelper.ToString1(GetDouble(id));
 
                 case MiscItemType.NonNegDbl0:
                 case MiscItemType.NonPosDbl0:
                 case MiscItemType.RangedDbl0:
-                    return DoubleHelper.ToString0((double) GetItem(id));
+                    return DoubleHelper.ToString0(GetDouble(id));
 
                 case MiscItemType.NonNegDbl2:
                 case MiscItemType.NonPosDbl2:
-                    return DoubleHelper.ToString2((double) GetItem(id));
+                    return DoubleHelper.ToString2(GetDouble(id));
 
                 case MiscItemType.NonNegDbl5:
-                    return DoubleHelper.ToString5((double) GetItem(id));
+                    return DoubleHelper.ToString5(GetDouble(id));
 
                 case MiscItemType.NonNegDblMinusOne:
                 case MiscItemType.RangedDblMinusOne:
-                    return GetDbl1MinusOneString((double) GetItem(id));
+                    return GetDbl1MinusOneString(GetDouble(id));
 
                 case MiscItemType.NonNegDbl2AoD:
-                    return GetDbl1AoD2String((double) GetItem(id));
+                    return GetDbl1AoD2String(GetDouble(id));
 
                 case MiscItemType.NonNegDbl4Dda13:
-                    return GetDbl1Dda134String((double) GetItem(id));
+                    return GetDbl1Dda134String(GetDouble(id));
 
                 case MiscItemType.NonNegDbl2Dh103Full:
-                    return GetDbl1Range2String((double) GetItem(id), 0, 0.1000005);
+                    return GetDbl1Range2String(GetDouble(id), 0, 0.1000005);
 
                 case MiscItemType.NonNegDbl2Dh103Full1:
-                    return GetDbl2Range1String((double) GetItem(id), 0, 0.2000005);
+                    return GetDbl2Range1String(GetDouble(id), 0, 0.2000005);
 
                 case MiscItemType.NonNegDbl2Dh103Full2:
-                    return GetDbl1Range2String((double) GetItem(id), 0, 1);
+                    return GetDbl1Range2String(GetDouble(id), 0, 1);
 
                 case MiscItemType.NonPosDbl5AoD:
-                    return GetDbl1AoD5String((double) GetItem(id));
+                    return GetDbl1AoD5String(GetDouble(id));
 
                 case MiscItemType.NonPosDbl2Dh103Full:
-                    return GetDbl1Range2String((double) GetItem(id), -0.1000005, 0);
+                    return GetDbl1Range2String(GetDouble(id), -0.1000005, 0);
 
                 case MiscItemType.NonNegIntNegDbl:
-                    return GetNonNegIntNegDblString((double) GetItem(id));
+                    return GetNonNegIntNegDblString(GetDouble(id));
             }
 
             return string.Empty;

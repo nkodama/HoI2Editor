@@ -113,7 +113,7 @@ namespace HoI2Editor.Forms
                         ComboBox comboBox = control as ComboBox;
                         if (comboBox != null)
                         {
-                            comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
+                            comboBox.SelectedIndex = Misc.GetBool(id) ? 1 : 0;
                             comboBox.ForeColor = Misc.IsDirty(id) ? Color.Red : SystemColors.WindowText;
                         }
                         break;
@@ -148,7 +148,7 @@ namespace HoI2Editor.Forms
                         ComboBox comboBox = control as ComboBox;
                         if (comboBox != null)
                         {
-                            comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
+                            comboBox.SelectedIndex = Misc.GetBool(id) ? 1 : 0;
                             comboBox.ForeColor = Misc.IsDirty(id) ? Color.Red : SystemColors.WindowText;
                         }
                         break;
@@ -183,7 +183,7 @@ namespace HoI2Editor.Forms
                         ComboBox comboBox = control as ComboBox;
                         if (comboBox != null)
                         {
-                            comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
+                            comboBox.SelectedIndex = Misc.GetBool(id) ? 1 : 0;
                             comboBox.ForeColor = Misc.IsDirty(id) ? Color.Red : SystemColors.WindowText;
                         }
                         break;
@@ -653,7 +653,7 @@ namespace HoI2Editor.Forms
                         comboBox = control as ComboBox;
                         if (comboBox != null)
                         {
-                            comboBox.SelectedIndex = (bool) Misc.GetItem(id) ? 1 : 0;
+                            comboBox.SelectedIndex = Misc.GetBool(id) ? 1 : 0;
                         }
                         break;
 
@@ -661,7 +661,16 @@ namespace HoI2Editor.Forms
                         comboBox = control as ComboBox;
                         if (comboBox != null)
                         {
-                            comboBox.SelectedIndex = (int) Misc.GetItem(id) - Misc.IntMinValues[id];
+                            int index = Misc.GetInt(id) - Misc.IntMinValues[id];
+                            if (index < 0)
+                            {
+                                index = 0;
+                            }
+                            if (index >= comboBox.Items.Count)
+                            {
+                                index = comboBox.Items.Count - 1;
+                            }
+                            comboBox.SelectedIndex = index;
                         }
                         break;
 
@@ -950,7 +959,7 @@ namespace HoI2Editor.Forms
                 case MiscItemType.RangedPosInt:
                 case MiscItemType.RangedIntMinusOne:
                 case MiscItemType.RangedIntMinusThree:
-                    if (i == (int) Misc.GetItem(id))
+                    if (i == Misc.GetInt(id))
                     {
                         return;
                     }
@@ -979,7 +988,7 @@ namespace HoI2Editor.Forms
                 case MiscItemType.RangedDblMinusOne1:
                 case MiscItemType.RangedDbl0:
                 case MiscItemType.NonNegIntNegDbl:
-                    if (DoubleHelper.IsEqual(d, (double) Misc.GetItem(id)))
+                    if (DoubleHelper.IsEqual(d, Misc.GetDouble(id)))
                     {
                         return;
                     }
@@ -1163,11 +1172,11 @@ namespace HoI2Editor.Forms
             switch (type)
             {
                 case MiscItemType.Bool:
-                    index = (bool) Misc.GetItem(id) ? 1 : 0;
+                    index = Misc.GetBool(id) ? 1 : 0;
                     break;
 
                 case MiscItemType.Enum:
-                    index = (int) Misc.GetItem(id);
+                    index = Misc.GetInt(id);
                     break;
             }
             if ((e.Index + Misc.IntMinValues[id] == index) && Misc.IsDirty(id))
@@ -1214,7 +1223,7 @@ namespace HoI2Editor.Forms
             {
                 case MiscItemType.Bool:
                     b = comboBox.SelectedIndex == 1;
-                    if (b == (bool) Misc.GetItem(id))
+                    if (b == Misc.GetBool(id))
                     {
                         return;
                     }
@@ -1222,7 +1231,7 @@ namespace HoI2Editor.Forms
 
                 case MiscItemType.Enum:
                     i = comboBox.SelectedIndex + Misc.IntMinValues[id];
-                    if (i == (int) Misc.GetItem(id))
+                    if (i == Misc.GetInt(id))
                     {
                         return;
                     }
@@ -1234,13 +1243,13 @@ namespace HoI2Editor.Forms
             {
                 case MiscItemType.Bool:
                     Log.Info("[Misc] {0}: {1} -> {2}", Misc.GetItemName(id),
-                        Misc.GetItemChoice(id, (bool) Misc.GetItem(id) ? 1 : 0), Misc.GetItemChoice(id, b ? 1 : 0));
+                        Misc.GetItemChoice(id, Misc.GetBool(id) ? 1 : 0), Misc.GetItemChoice(id, b ? 1 : 0));
                     Misc.SetItem(id, b);
                     break;
 
                 case MiscItemType.Enum:
                     Log.Info("[Misc] {0}: {1} -> {2}", Misc.GetItemName(id),
-                        Misc.GetItemChoice(id, (int) Misc.GetItem(id)), Misc.GetItemChoice(id, i));
+                        Misc.GetItemChoice(id, Misc.GetInt(id)), Misc.GetItemChoice(id, i));
                     Misc.SetItem(id, i);
                     break;
             }
