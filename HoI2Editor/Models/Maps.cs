@@ -293,7 +293,6 @@ namespace HoI2Editor.Models
                 data = new byte[len];
                 count = len / 16;
                 reader.Read(data, 0, len);
-                reader.Close();
             }
             int index = 0;
 

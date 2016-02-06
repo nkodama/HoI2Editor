@@ -217,7 +217,6 @@ namespace HoI2Editor.Models
             {
                 _data = new byte[reader.Length];
                 reader.Read(_data, 0, (int) reader.Length);
-                reader.Close();
             }
         }
 

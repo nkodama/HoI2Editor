@@ -65,7 +65,7 @@ namespace HoI2Editor.Utilities
             /// <param name="pszTo"></param>
             /// <param name="dwAttrTo"></param>
             /// <returns></returns>
-            [DllImport("shlwapi.dll")]
+            [DllImport("shlwapi.dll", CharSet = CharSet.Unicode)]
             public static extern bool PathRelativePathTo(StringBuilder pszPath, string pszFrom,
                 FileAttributes dwAttrFrom, string pszTo, FileAttributes dwAttrTo);
         }

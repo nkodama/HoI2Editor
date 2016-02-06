@@ -17,6 +17,11 @@
             {
                 components.Dispose();
             }
+            if (disposing && _techOverlayIcon != null)
+            {
+                _techOverlayIcon.Dispose();
+                _techOverlayIcon = null;
+            }
             base.Dispose(disposing);
         }
 
