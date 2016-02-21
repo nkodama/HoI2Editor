@@ -1,5 +1,10 @@
 Alternative HoI2 Editor Changelog
 
+- 6 Feb 2016; Ver 0.53
+
+Fixed a write error when saving scenario files.
+Fixed a crash bug when improper misc.txt is loaded.
+
 - 18 Jan 2016; Ver 0.52
 
 Fixed area names; Belarus and Benelux are swapped.
