@@ -204,6 +204,7 @@
       <DependentUpon>UnitNameEditorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="HoI2EditorController.cs" />
+    <Compile Include="HoI2EditorInstance.cs" />
     <Compile Include="HoI2EditorSettings.cs" />
     <Compile Include="Models\Branches.cs" />
     <Compile Include="Models\Command.cs" />

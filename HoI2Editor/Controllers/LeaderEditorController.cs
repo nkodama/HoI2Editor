@@ -10,9 +10,27 @@ namespace HoI2Editor.Controllers
         #region 内部フィールド
 
         /// <summary>
+        ///     エディタインスタンス
+        /// </summary>
+        private readonly HoI2EditorInstance _instance;
+
+        /// <summary>
         ///     フォーム
         /// </summary>
         private LeaderEditorForm _form;
+
+        #endregion
+
+        #region 初期化
+
+        /// <summary>
+        ///     コンストラクタ
+        /// </summary>
+        /// <param name="instance">エディタインスタンス</param>
+        internal LeaderEditorController(HoI2EditorInstance instance)
+        {
+            _instance = instance;
+        }
 
         #endregion
 
@@ -44,17 +62,42 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
+        ///     フォームクローズ前の処理
+        /// </summary>
+        /// <returns>キャンセルするならばtrueを返す</returns>
+        internal bool OnFormClosing()
+        {
+            return _instance.QuerySave();
+        }
+
+        /// <summary>
         ///     フォームクローズ時の処理
         /// </summary>
         internal void OnFormClosed()
         {
             _form = null;
-            HoI2EditorController.OnEditorStatusUpdate();
+            _instance.OnEditorStatusUpdate();
         }
 
         #endregion
 
         #region データ処理
+
+        /// <summary>
+        ///     問い合わせてからデータを再読み込みする
+        /// </summary>
+        internal void QueryReload()
+        {
+            _instance.QueryReload();
+        }
+
+        /// <summary>
+        ///     データを保存する
+        /// </summary>
+        internal void Save()
+        {
+            _instance.Save();
+        }
 
         /// <summary>
         ///     データ読み込み後の処理
@@ -73,7 +116,16 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     編集項目変更後の処理
+        ///     他のフォームに更新を通知する
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        internal void NotifyItemChange(EditorItemId id)
+        {
+            _instance.NotifyItemChange(id);
+        }
+
+        /// <summary>
+        ///     編集項目更新時の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
         internal void OnItemChanged(EditorItemId id)

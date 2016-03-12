@@ -111,7 +111,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集項目変更後の処理
+        ///     編集項目更新時の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
         internal void OnItemChanged(EditorItemId id)
@@ -227,27 +227,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
-            // 編集済みでなければフォームを閉じる
-            if (!HoI2EditorController.IsDirty())
-            {
-                return;
-            }
-
-            // 保存するかを問い合わせる
-            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question);
-            switch (result)
-            {
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-                case DialogResult.Yes:
-                    HoI2EditorController.Save();
-                    break;
-                case DialogResult.No:
-                    HoI2EditorController.SaveCanceled = true;
-                    break;
-            }
+            e.Cancel = _controller.OnFormClosing();
         }
 
         /// <summary>
@@ -293,22 +273,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // 編集済みならば保存するかを問い合わせる
-            if (HoI2EditorController.IsDirty())
-            {
-                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Cancel:
-                        return;
-                    case DialogResult.Yes:
-                        HoI2EditorController.Save();
-                        break;
-                }
-            }
-
-            HoI2EditorController.Reload();
+            _controller.QueryReload();
         }
 
         /// <summary>
@@ -318,7 +283,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.Save();
+            _controller.Save();
         }
 
         /// <summary>
@@ -740,7 +705,7 @@ namespace HoI2Editor.Forms
             UpdateEventTechListItems();
 
             // 技術項目リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechItemList);
+            _controller.NotifyItemChange(EditorItemId.TechItemList);
 
             Log.Info("[Tech] Added new tech: {0}", item.Id);
         }
@@ -896,7 +861,7 @@ namespace HoI2Editor.Forms
             if (item is TechItem)
             {
                 // 技術項目リストの更新を通知する
-                HoI2EditorController.OnItemChanged(EditorItemId.TechItemList);
+                _controller.NotifyItemChange(EditorItemId.TechItemList);
 
                 TechItem techItem = item as TechItem;
                 Log.Info("[Tech] Added new tech: {0}", techItem.Id);
@@ -966,7 +931,7 @@ namespace HoI2Editor.Forms
             if (selected is TechItem)
             {
                 // 技術項目リストの更新を通知する
-                HoI2EditorController.OnItemChanged(EditorItemId.TechItemList);
+                _controller.NotifyItemChange(EditorItemId.TechItemList);
 
                 TechItem techItem = selected as TechItem;
                 Log.Info("[Tech] Removed tech: {0} [{1}]", techItem.Id, techItem);
@@ -1592,7 +1557,7 @@ namespace HoI2Editor.Forms
             techNameTextBox.ForeColor = Color.Red;
 
             // 技術項目名の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechItemName);
+            _controller.NotifyItemChange(EditorItemId.TechItemName);
         }
 
         /// <summary>
@@ -1674,7 +1639,7 @@ namespace HoI2Editor.Forms
             techIdNumericUpDown.ForeColor = Color.Red;
 
             // 技術項目IDの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechItemId);
+            _controller.NotifyItemChange(EditorItemId.TechItemId);
         }
 
         /// <summary>
@@ -1712,7 +1677,7 @@ namespace HoI2Editor.Forms
             techYearNumericUpDown.ForeColor = Color.Red;
 
             // 技術項目の史実年度の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechItemYear);
+            _controller.NotifyItemChange(EditorItemId.TechItemYear);
         }
 
         /// <summary>
@@ -3496,7 +3461,7 @@ namespace HoI2Editor.Forms
             component.SetDirty();
 
             // 小研究リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList);
+            _controller.OnItemChanged(EditorItemId.TechComponentList);
         }
 
         /// <summary>
@@ -3600,7 +3565,7 @@ namespace HoI2Editor.Forms
             }
 
             // 小研究リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList);
+            _controller.NotifyItemChange(EditorItemId.TechComponentList);
 
             Log.Info("[Tech] Added new tech component: {0} [{1}]", component.Id, item);
         }
@@ -3648,7 +3613,7 @@ namespace HoI2Editor.Forms
             InsertComponentListItem(component, index + 1);
 
             // 小研究リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList);
+            _controller.NotifyItemChange(EditorItemId.TechComponentList);
         }
 
         /// <summary>
@@ -3686,7 +3651,7 @@ namespace HoI2Editor.Forms
             RemoveComponentListItem(index);
 
             // 小研究リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList);
+            _controller.NotifyItemChange(EditorItemId.TechComponentList);
         }
 
         /// <summary>
@@ -3926,7 +3891,7 @@ namespace HoI2Editor.Forms
             componentSpecialityComboBox.Refresh();
 
             // 小研究の特性の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentSpeciality);
+            _controller.NotifyItemChange(EditorItemId.TechComponentSpeciality);
         }
 
         /// <summary>
@@ -3982,7 +3947,7 @@ namespace HoI2Editor.Forms
             componentDifficultyNumericUpDown.ForeColor = Color.Red;
 
             // 小研究の難易度の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentDifficulty);
+            _controller.NotifyItemChange(EditorItemId.TechComponentDifficulty);
         }
 
         /// <summary>
@@ -4038,7 +4003,7 @@ namespace HoI2Editor.Forms
             componentDoubleTimeCheckBox.ForeColor = Color.Red;
 
             // 小研究の難易度の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentDoubleTime);
+            _controller.NotifyItemChange(EditorItemId.TechComponentDoubleTime);
         }
 
         /// <summary>

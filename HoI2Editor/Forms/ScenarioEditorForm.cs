@@ -234,7 +234,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集項目変更後の処理
+        ///     編集項目更新時の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
         internal void OnItemChanged(EditorItemId id)
@@ -364,27 +364,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
-            // 編集済みでなければフォームを閉じる
-            if (!HoI2EditorController.IsDirty())
-            {
-                return;
-            }
-
-            // 保存するかを問い合わせる
-            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question);
-            switch (result)
-            {
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-                case DialogResult.Yes:
-                    HoI2EditorController.Save();
-                    break;
-                case DialogResult.No:
-                    HoI2EditorController.SaveCanceled = true;
-                    break;
-            }
+            e.Cancel = _controller.OnFormClosing();
         }
 
         /// <summary>
@@ -443,22 +423,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // 編集済みならば保存するかを問い合わせる
-            if (HoI2EditorController.IsDirty())
-            {
-                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Cancel:
-                        return;
-                    case DialogResult.Yes:
-                        HoI2EditorController.Save();
-                        break;
-                }
-            }
-
-            HoI2EditorController.Reload();
+            _controller.QueryReload();
         }
 
         /// <summary>
@@ -468,7 +433,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.Save();
+            _controller.Save();
         }
 
         /// <summary>
@@ -708,7 +673,7 @@ namespace HoI2Editor.Forms
             }
 
             // 編集済みならば保存するかを問い合わせる
-            if (Scenarios.IsLoaded() && HoI2EditorController.IsDirty())
+            if (Scenarios.IsLoaded() && _controller.IsDirty())
             {
                 DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
                     MessageBoxIcon.Question);
@@ -716,8 +681,9 @@ namespace HoI2Editor.Forms
                 {
                     case DialogResult.Cancel:
                         return;
+
                     case DialogResult.Yes:
-                        HoI2EditorController.Save();
+                        _controller.Save();
                         break;
                 }
             }

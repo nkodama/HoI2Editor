@@ -13,14 +13,26 @@ namespace HoI2Editor.Forms
     /// </summary>
     internal partial class MainForm : Form
     {
+        #region 内部フィールド
+
+        /// <summary>
+        ///     エディタインスタンス
+        /// </summary>
+        private readonly HoI2EditorInstance _instance;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        internal MainForm()
+        /// <param name="instance">エディタインスタンス</param>
+        internal MainForm(HoI2EditorInstance instance)
         {
             InitializeComponent();
+
+            _instance = instance;
 
             // ウィンドウ位置の初期化
             InitPosition();
@@ -107,13 +119,13 @@ namespace HoI2Editor.Forms
         private void OnMainFormClosing(object sender, FormClosingEventArgs e)
         {
             // 編集済みでなければフォームを閉じる
-            if (!HoI2EditorController.IsDirty())
+            if (!_instance.IsDirty())
             {
                 return;
             }
 
             // 既に保存をキャンセルしていればフォームを閉じる
-            if (HoI2EditorController.SaveCanceled)
+            if (_instance.SaveCanceled)
             {
                 return;
             }
@@ -127,7 +139,7 @@ namespace HoI2Editor.Forms
                     e.Cancel = true;
                     break;
                 case DialogResult.Yes:
-                    HoI2EditorController.Save();
+                    _instance.Save();
                     break;
             }
         }
@@ -183,7 +195,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnLeaderButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchLeaderEditorForm();
+            _instance.LaunchLeaderEditorForm();
         }
 
         /// <summary>
@@ -193,7 +205,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMinisterButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchMinisterEditorForm();
+            _instance.LaunchMinisterEditorForm();
         }
 
         /// <summary>
@@ -203,7 +215,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTeamButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchTeamEditorForm();
+            _instance.LaunchTeamEditorForm();
         }
 
         /// <summary>
@@ -213,7 +225,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnProvinceButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchProvinceEditorForm();
+            _instance.LaunchProvinceEditorForm();
         }
 
         /// <summary>
@@ -223,7 +235,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnTechButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchTechEditorForm();
+            _instance.LaunchTechEditorForm();
         }
 
         /// <summary>
@@ -233,7 +245,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUnitButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchUnitEditorForm();
+            _instance.LaunchUnitEditorForm();
         }
 
         /// <summary>
@@ -243,7 +255,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnMiscButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchMiscEditorForm();
+            _instance.LaunchMiscEditorForm();
         }
 
         /// <summary>
@@ -253,7 +265,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnCorpsNameButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchCorpsNameEditorForm();
+            _instance.LaunchCorpsNameEditorForm();
         }
 
         /// <summary>
@@ -263,7 +275,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnUnitNameButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchUnitNameEditorForm();
+            _instance.LaunchUnitNameEditorForm();
         }
 
         /// <summary>
@@ -273,7 +285,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnModelNameButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchModelNameEditorForm();
+            _instance.LaunchModelNameEditorForm();
         }
 
         /// <summary>
@@ -283,7 +295,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnRandomLeaderButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchRandomLeaderEditorForm();
+            _instance.LaunchRandomLeaderEditorForm();
         }
 
         /// <summary>
@@ -293,7 +305,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnResearchButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchResearchViewerForm();
+            _instance.LaunchResearchViewerForm();
         }
 
         /// <summary>
@@ -303,7 +315,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnScenarioButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.LaunchScenarioEditorForm();
+            _instance.LaunchScenarioEditorForm();
         }
 
         #endregion

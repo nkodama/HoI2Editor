@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Windows.Forms;
-using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
 
@@ -12,6 +11,11 @@ namespace HoI2Editor
     /// </summary>
     internal static class HoI2EditorApplication
     {
+        /// <summary>
+        ///     エディタインスタンス
+        /// </summary>
+        internal static HoI2EditorInstance Instance { get; set; }
+
         /// <summary>
         ///     アプリケーションのエントリーポイント
         /// </summary>
@@ -33,7 +37,8 @@ namespace HoI2Editor
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
 
-                HoI2EditorController.LaunchMainForm();
+                Instance = new HoI2EditorInstance();
+                Instance.LaunchMainForm();
             }
             finally
             {

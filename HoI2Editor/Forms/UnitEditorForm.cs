@@ -388,7 +388,7 @@ namespace HoI2Editor.Forms
         }
 
         /// <summary>
-        ///     編集項目変更後の処理
+        ///     編集項目更新時の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
         internal void OnItemChanged(EditorItemId id)
@@ -497,27 +497,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
-            // 編集済みでなければフォームを閉じる
-            if (!HoI2EditorController.IsDirty())
-            {
-                return;
-            }
-
-            // 保存するかを問い合わせる
-            DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                MessageBoxIcon.Question);
-            switch (result)
-            {
-                case DialogResult.Cancel:
-                    e.Cancel = true;
-                    break;
-                case DialogResult.Yes:
-                    HoI2EditorController.Save();
-                    break;
-                case DialogResult.No:
-                    HoI2EditorController.SaveCanceled = true;
-                    break;
-            }
+            e.Cancel = _controller.OnFormClosing();
         }
 
         /// <summary>
@@ -563,22 +543,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnReloadButtonClick(object sender, EventArgs e)
         {
-            // 編集済みならば保存するかを問い合わせる
-            if (HoI2EditorController.IsDirty())
-            {
-                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Cancel:
-                        return;
-                    case DialogResult.Yes:
-                        HoI2EditorController.Save();
-                        break;
-                }
-            }
-
-            HoI2EditorController.Reload();
+            _controller.QueryReload();
         }
 
         /// <summary>
@@ -588,7 +553,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnSaveButtonClick(object sender, EventArgs e)
         {
-            HoI2EditorController.Save();
+            _controller.Save();
         }
 
         /// <summary>
@@ -950,7 +915,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, srcIndex, destIndex);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
+            _controller.NotifyItemChange(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1002,7 +967,7 @@ namespace HoI2Editor.Forms
             InsertModel(unit, model, index, "");
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
+            _controller.NotifyItemChange(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1031,7 +996,7 @@ namespace HoI2Editor.Forms
             InsertModel(unit, model, index + 1, unit.GetModelName(index));
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
+            _controller.NotifyItemChange(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1059,7 +1024,7 @@ namespace HoI2Editor.Forms
             RemoveModel(unit, index);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
+            _controller.NotifyItemChange(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1093,7 +1058,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, 0);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
+            _controller.NotifyItemChange(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1127,7 +1092,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, index - 1);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
+            _controller.NotifyItemChange(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1161,7 +1126,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, index + 1);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
+            _controller.NotifyItemChange(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1195,7 +1160,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, unit.Models.Count - 1);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
+            _controller.NotifyItemChange(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1960,7 +1925,7 @@ namespace HoI2Editor.Forms
             classNameTextBox.ForeColor = Color.Red;
 
             // ユニットクラス名の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.UnitName);
+            _controller.NotifyItemChange(EditorItemId.UnitName);
         }
 
         /// <summary>
@@ -2697,7 +2662,7 @@ namespace HoI2Editor.Forms
             // 最大付属旅団数の更新を通知する
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
+                _controller.NotifyItemChange(EditorItemId.MaxAllowedBrigades);
             }
         }
 
@@ -4183,8 +4148,9 @@ namespace HoI2Editor.Forms
             unit.SetDirty();
 
             // ユニットモデル名の更新を通知する
-            HoI2EditorController.OnItemChanged(
-                country == Country.None ? EditorItemId.CommonModelName : EditorItemId.CountryModelName);
+            _controller.NotifyItemChange(country == Country.None
+                ? EditorItemId.CommonModelName
+                : EditorItemId.CountryModelName);
         }
 
         /// <summary>

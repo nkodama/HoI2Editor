@@ -51,7 +51,7 @@ namespace HoI2Editor.Models
                 Log.Verbose("CodePage: {0}", _codePage);
 
                 // ファイルの再読み込みを要求する
-                HoI2EditorController.RequestReload();
+                HoI2EditorApplication.Instance.RequestReload();
             }
         }
 
@@ -87,7 +87,7 @@ namespace HoI2Editor.Models
                 UpdateExportFolderName();
 
                 // ファイルの再読み込みを要求する
-                HoI2EditorController.RequestReload();
+                HoI2EditorApplication.Instance.RequestReload();
             }
         }
 
@@ -116,7 +116,7 @@ namespace HoI2Editor.Models
                 UpdateModFolderName();
 
                 // ファイルの再読み込みを要求する
-                HoI2EditorController.RequestReload();
+                HoI2EditorApplication.Instance.RequestReload();
             }
         }
 
@@ -155,7 +155,7 @@ namespace HoI2Editor.Models
                 UpdateExportFolderName();
 
                 // ファイルの再読み込みを要求する
-                HoI2EditorController.RequestReload();
+                HoI2EditorApplication.Instance.RequestReload();
             }
         }
 
