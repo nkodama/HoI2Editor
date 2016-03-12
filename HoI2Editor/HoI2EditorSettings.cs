@@ -10,7 +10,7 @@ namespace HoI2Editor
     /// <summary>
     ///     エディタの設定を管理するクラス
     /// </summary>
-    internal class HoI2EditorSettings
+    public class HoI2EditorSettings
     {
         #region 公開プロパティ
 
@@ -19,7 +19,7 @@ namespace HoI2Editor
         /// <summary>
         ///     メインフォームの設定
         /// </summary>
-        internal MainFormSettings Main = new MainFormSettings();
+        public MainFormSettings Main = new MainFormSettings();
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace HoI2Editor
         /// <summary>
         ///     指揮官エディタの設定
         /// </summary>
-        internal LeaderEditorSettings LeaderEditor = new LeaderEditorSettings();
+        public LeaderEditorSettings LeaderEditor = new LeaderEditorSettings();
 
         #endregion
 
@@ -37,7 +37,7 @@ namespace HoI2Editor
         /// <summary>
         ///     閣僚エディタの設定
         /// </summary>
-        internal MinisterEditorSettings MinisterEditor = new MinisterEditorSettings();
+        public MinisterEditorSettings MinisterEditor = new MinisterEditorSettings();
 
         #endregion
 
@@ -46,7 +46,7 @@ namespace HoI2Editor
         /// <summary>
         ///     研究機関エディタの設定
         /// </summary>
-        internal TeamEditorSettings TeamEditor = new TeamEditorSettings();
+        public TeamEditorSettings TeamEditor = new TeamEditorSettings();
 
         #endregion
 
@@ -55,7 +55,7 @@ namespace HoI2Editor
         /// <summary>
         ///     プロヴィンスエディタの設定
         /// </summary>
-        internal ProvinceEditorSettings ProvinceEditor = new ProvinceEditorSettings();
+        public ProvinceEditorSettings ProvinceEditor = new ProvinceEditorSettings();
 
         #endregion
 
@@ -64,7 +64,7 @@ namespace HoI2Editor
         /// <summary>
         ///     技術ツリーエディタの設定
         /// </summary>
-        internal TechEditorSettings TechEditor = new TechEditorSettings();
+        public TechEditorSettings TechEditor = new TechEditorSettings();
 
         #endregion
 
@@ -73,7 +73,7 @@ namespace HoI2Editor
         /// <summary>
         ///     ユニットモデルエディタの設定
         /// </summary>
-        internal UnitEditorSettings UnitEditor = new UnitEditorSettings();
+        public UnitEditorSettings UnitEditor = new UnitEditorSettings();
 
         #endregion
 
@@ -82,7 +82,7 @@ namespace HoI2Editor
         /// <summary>
         ///     基礎データエディタの設定
         /// </summary>
-        internal MiscEditorSettings MiscEditor = new MiscEditorSettings();
+        public MiscEditorSettings MiscEditor = new MiscEditorSettings();
 
         #endregion
 
@@ -91,7 +91,7 @@ namespace HoI2Editor
         /// <summary>
         ///     軍団名エディタの設定
         /// </summary>
-        internal CorpsNameEditorSettings CorpsNameEditor = new CorpsNameEditorSettings();
+        public CorpsNameEditorSettings CorpsNameEditor = new CorpsNameEditorSettings();
 
         #endregion
 
@@ -100,7 +100,7 @@ namespace HoI2Editor
         /// <summary>
         ///     ユニット名エディタの設定
         /// </summary>
-        internal UnitNameEditorSettings UnitNameEditor = new UnitNameEditorSettings();
+        public UnitNameEditorSettings UnitNameEditor = new UnitNameEditorSettings();
 
         #endregion
 
@@ -109,7 +109,7 @@ namespace HoI2Editor
         /// <summary>
         ///     ユニットモデル名エディタの設定
         /// </summary>
-        internal ModelNameEditorSettings ModelNameEditor = new ModelNameEditorSettings();
+        public ModelNameEditorSettings ModelNameEditor = new ModelNameEditorSettings();
 
         #endregion
 
@@ -118,7 +118,7 @@ namespace HoI2Editor
         /// <summary>
         ///     ランダム指揮官名エディタの設定
         /// </summary>
-        internal RandomLeaderEditorSettings RandomLeaderEditor = new RandomLeaderEditorSettings();
+        public RandomLeaderEditorSettings RandomLeaderEditor = new RandomLeaderEditorSettings();
 
         #endregion
 
@@ -127,7 +127,7 @@ namespace HoI2Editor
         /// <summary>
         ///     研究速度ビューアの設定
         /// </summary>
-        internal ResearchViewerSettings ResearchViewer = new ResearchViewerSettings();
+        public ResearchViewerSettings ResearchViewer = new ResearchViewerSettings();
 
         #endregion
 
@@ -136,7 +136,7 @@ namespace HoI2Editor
         /// <summary>
         ///     シナリオエディタの設定
         /// </summary>
-        internal ScenarioEditorSettings ScenarioEditor = new ScenarioEditorSettings();
+        public ScenarioEditorSettings ScenarioEditor = new ScenarioEditorSettings();
 
         #endregion
 
@@ -275,14 +275,14 @@ namespace HoI2Editor
         /// <summary>
         ///     メインフォームの設定
         /// </summary>
-        internal class MainFormSettings
+        public class MainFormSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ゲームフォルダ名
             /// </summary>
-            internal string GameFolder
+            public string GameFolder
             {
                 get { return Game.FolderName; }
                 set { Game.FolderName = value; }
@@ -291,7 +291,7 @@ namespace HoI2Editor
             /// <summary>
             ///     MODフォルダ名
             /// </summary>
-            internal string ModFolder
+            public string ModFolder
             {
                 get { return Game.ModName; }
                 set { Game.ModName = value; }
@@ -300,7 +300,7 @@ namespace HoI2Editor
             /// <summary>
             ///     保存フォルダ名
             /// </summary>
-            internal string ExportFolder
+            public string ExportFolder
             {
                 get { return Game.ExportName; }
                 set { Game.ExportName = value; }
@@ -309,7 +309,7 @@ namespace HoI2Editor
             /// <summary>
             ///     ログ出力レベル
             /// </summary>
-            internal int LogLevel
+            public int LogLevel
             {
                 get { return Log.Level; }
                 set { Log.Level = value; }
@@ -318,7 +318,7 @@ namespace HoI2Editor
             /// <summary>
             ///     マップ読み込みの禁止
             /// </summary>
-            internal bool ForbidLoadMaps
+            public bool ForbidLoadMaps
             {
                 get { return Maps.ForbidLoad; }
                 set { Maps.ForbidLoad = value; }
@@ -327,12 +327,12 @@ namespace HoI2Editor
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             #endregion
 
@@ -355,7 +355,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal MainFormSettings()
+            public MainFormSettings()
             {
                 // デスクトップのサイズを取得する
                 Rectangle screenRect = Screen.GetWorkingArea(new Point(200, 200));
@@ -390,29 +390,29 @@ namespace HoI2Editor
         /// <summary>
         ///     指揮官エディタの設定
         /// </summary>
-        internal class LeaderEditorSettings
+        public class LeaderEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     指揮官リストビューの列の幅
             /// </summary>
-            internal int[] ListColumnWidth { get; set; } = new int[LeaderEditorForm.LeaderListColumnCount];
+            public int[] ListColumnWidth { get; set; } = new int[LeaderEditorForm.LeaderListColumnCount];
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            internal List<Country> Countries { get; set; } = new List<Country>();
+            public List<Country> Countries { get; set; } = new List<Country>();
 
             #endregion
 
@@ -445,7 +445,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal LeaderEditorSettings()
+            public LeaderEditorSettings()
             {
                 Init();
             }
@@ -502,29 +502,29 @@ namespace HoI2Editor
         /// <summary>
         ///     閣僚エディタの設定
         /// </summary>
-        internal class MinisterEditorSettings
+        public class MinisterEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     閣僚リストビューの列の幅
             /// </summary>
-            internal int[] ListColumnWidth { get; set; } = new int[MinisterEditorForm.MinisterListColumnCount];
+            public int[] ListColumnWidth { get; set; } = new int[MinisterEditorForm.MinisterListColumnCount];
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            internal List<Country> Countries { get; set; } = new List<Country>();
+            public List<Country> Countries { get; set; } = new List<Country>();
 
             #endregion
 
@@ -552,7 +552,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal MinisterEditorSettings()
+            public MinisterEditorSettings()
             {
                 Init();
             }
@@ -607,29 +607,29 @@ namespace HoI2Editor
         /// <summary>
         ///     研究機関エディタの設定
         /// </summary>
-        internal class TeamEditorSettings
+        public class TeamEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     研究機関リストビューの列の幅
             /// </summary>
-            internal int[] ListColumnWidth { get; set; } = new int[TeamEditorForm.TeamListColumnCount];
+            public int[] ListColumnWidth { get; set; } = new int[TeamEditorForm.TeamListColumnCount];
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            internal List<Country> Countries { get; set; } = new List<Country>();
+            public List<Country> Countries { get; set; } = new List<Country>();
 
             #endregion
 
@@ -657,7 +657,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal TeamEditorSettings()
+            public TeamEditorSettings()
             {
                 Init();
             }
@@ -712,24 +712,24 @@ namespace HoI2Editor
         /// <summary>
         ///     プロヴィンスエディタの設定
         /// </summary>
-        internal class ProvinceEditorSettings
+        public class ProvinceEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     プロヴィンスリストビューの列の幅
             /// </summary>
-            internal int[] ListColumnWidth { get; set; } = new int[ProvinceEditorForm.ProvinceListColumnCount];
+            public int[] ListColumnWidth { get; set; } = new int[ProvinceEditorForm.ProvinceListColumnCount];
 
             #endregion
 
@@ -762,7 +762,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal ProvinceEditorSettings()
+            public ProvinceEditorSettings()
             {
                 Init();
             }
@@ -813,59 +813,59 @@ namespace HoI2Editor
         /// <summary>
         ///     技術ツリーエディタの設定
         /// </summary>
-        internal class TechEditorSettings
+        public class TechEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     AND必要技術リストビューの列の幅
             /// </summary>
-            internal int[] AndRequiredListColumnWidth { get; set; } = new int[TechEditorForm.RequiredListColumnCount];
+            public int[] AndRequiredListColumnWidth { get; set; } = new int[TechEditorForm.RequiredListColumnCount];
 
             /// <summary>
             ///     OR必要技術リストビューの列の幅
             /// </summary>
-            internal int[] OrRequiredListColumnWidth { get; set; } = new int[TechEditorForm.RequiredListColumnCount];
+            public int[] OrRequiredListColumnWidth { get; set; } = new int[TechEditorForm.RequiredListColumnCount];
 
             /// <summary>
             ///     小研究リストビューの列の幅
             /// </summary>
-            internal int[] ComponentListColumnWidth { get; set; } = new int[TechEditorForm.ComponentListColumnCount];
+            public int[] ComponentListColumnWidth { get; set; } = new int[TechEditorForm.ComponentListColumnCount];
 
             /// <summary>
             ///     技術効果リストビューの列の幅
             /// </summary>
-            internal int[] EffectListColumnWidth { get; set; } = new int[TechEditorForm.EffectListColumnCount];
+            public int[] EffectListColumnWidth { get; set; } = new int[TechEditorForm.EffectListColumnCount];
 
             /// <summary>
             ///     技術座標リストビューの列の幅
             /// </summary>
-            internal int[] TechPositionListColumnWidth { get; set; } = new int[TechEditorForm.PositionListColumnCount];
+            public int[] TechPositionListColumnWidth { get; set; } = new int[TechEditorForm.PositionListColumnCount];
 
             /// <summary>
             ///     ラベル座標リストビューの列の幅
             /// </summary>
-            internal int[] LabelPositionListColumnWidth { get; set; } = new int[TechEditorForm.PositionListColumnCount];
+            public int[] LabelPositionListColumnWidth { get; set; } = new int[TechEditorForm.PositionListColumnCount];
 
             /// <summary>
             ///     イベント座標リストビューの列の幅
             /// </summary>
-            internal int[] EventPositionListColumnWidth { get; set; } = new int[TechEditorForm.PositionListColumnCount];
+            public int[] EventPositionListColumnWidth { get; set; } = new int[TechEditorForm.PositionListColumnCount];
 
             /// <summary>
             ///     技術カテゴリリストボックスの選択項目
             /// </summary>
-            internal int Category { get; set; }
+            public int Category { get; set; }
 
             #endregion
 
@@ -918,7 +918,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal TechEditorSettings()
+            public TechEditorSettings()
             {
                 Init();
             }
@@ -993,34 +993,34 @@ namespace HoI2Editor
         /// <summary>
         ///     ユニットモデルエディタの設定
         /// </summary>
-        internal class UnitEditorSettings
+        public class UnitEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     ユニットモデルリストビューの列の幅
             /// </summary>
-            internal int[] ModelListColumnWidth { get; set; } = new int[UnitEditorForm.ModelListColumnCount];
+            public int[] ModelListColumnWidth { get; set; } = new int[UnitEditorForm.ModelListColumnCount];
 
             /// <summary>
             ///     改良リストビューの列の幅
             /// </summary>
-            internal int[] UpgradeListColumnWidth { get; set; } = new int[UnitEditorForm.UpgradeListColumnCount];
+            public int[] UpgradeListColumnWidth { get; set; } = new int[UnitEditorForm.UpgradeListColumnCount];
 
             /// <summary>
             ///     装備リストビューの列の幅
             /// </summary>
-            internal int[] EquipmentListColumnWidth { get; set; } = new int[UnitEditorForm.EquipmentListColumnCount];
+            public int[] EquipmentListColumnWidth { get; set; } = new int[UnitEditorForm.EquipmentListColumnCount];
 
             #endregion
 
@@ -1063,7 +1063,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal UnitEditorSettings()
+            public UnitEditorSettings()
             {
                 Init();
             }
@@ -1126,24 +1126,24 @@ namespace HoI2Editor
         /// <summary>
         ///     基礎データエディタの設定
         /// </summary>
-        internal class MiscEditorSettings
+        public class MiscEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     選択中のタブページ
             /// </summary>
-            internal int SelectedTab { get; set; }
+            public int SelectedTab { get; set; }
 
             #endregion
 
@@ -1171,7 +1171,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal MiscEditorSettings()
+            public MiscEditorSettings()
             {
                 Init();
             }
@@ -1216,64 +1216,64 @@ namespace HoI2Editor
         /// <summary>
         ///     軍団名エディタの設定
         /// </summary>
-        internal class CorpsNameEditorSettings
+        public class CorpsNameEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     選択中の兵科
             /// </summary>
-            internal int Branch { get; set; }
+            public int Branch { get; set; }
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            internal int Country { get; set; }
+            public int Country { get; set; }
 
             /// <summary>
             ///     全ての兵科に適用するかどうか
             /// </summary>
-            internal bool ApplyAllBranches { get; set; }
+            public bool ApplyAllBranches { get; set; }
 
             /// <summary>
             ///     全ての国家に適用するかどうか
             /// </summary>
-            internal bool ApplyAllCountires { get; set; }
+            public bool ApplyAllCountires { get; set; }
 
             /// <summary>
             ///     正規表現を使用するかどうか
             /// </summary>
-            internal bool RegularExpression { get; set; }
+            public bool RegularExpression { get; set; }
 
             /// <summary>
             ///     置換元の履歴
             /// </summary>
-            internal List<string> ToHistory { get; set; } = new List<string>();
+            public List<string> ToHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     置換先の履歴
             /// </summary>
-            internal List<string> WithHistory { get; set; } = new List<string>();
+            public List<string> WithHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     接頭辞の履歴
             /// </summary>
-            internal List<string> PrefixHistory { get; set; } = new List<string>();
+            public List<string> PrefixHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     接尾辞の履歴
             /// </summary>
-            internal List<string> SuffixHistory { get; set; } = new List<string>();
+            public List<string> SuffixHistory { get; set; } = new List<string>();
 
             #endregion
 
@@ -1296,7 +1296,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal CorpsNameEditorSettings()
+            public CorpsNameEditorSettings()
             {
                 Init();
             }
@@ -1339,29 +1339,29 @@ namespace HoI2Editor
         /// <summary>
         ///     ユニットモデル名エディタの設定
         /// </summary>
-        internal class ModelNameEditorSettings
+        public class ModelNameEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            internal int Country { get; set; }
+            public int Country { get; set; }
 
             /// <summary>
             ///     選択中のユニット種類
             /// </summary>
-            internal int UnitType { get; set; }
+            public int UnitType { get; set; }
 
             #endregion
 
@@ -1384,7 +1384,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal ModelNameEditorSettings()
+            public ModelNameEditorSettings()
             {
                 Init();
             }
@@ -1427,64 +1427,64 @@ namespace HoI2Editor
         /// <summary>
         ///     ユニット名エディタの設定
         /// </summary>
-        internal class UnitNameEditorSettings
+        public class UnitNameEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            internal int Country { get; set; }
+            public int Country { get; set; }
 
             /// <summary>
             ///     選択中のユニット種類
             /// </summary>
-            internal int UnitType { get; set; }
+            public int UnitType { get; set; }
 
             /// <summary>
             ///     全ての国家に適用するかどうか
             /// </summary>
-            internal bool ApplyAllCountires { get; set; }
+            public bool ApplyAllCountires { get; set; }
 
             /// <summary>
             ///     全てのユニット種類に適用するかどうか
             /// </summary>
-            internal bool ApplyAllUnitTypes { get; set; }
+            public bool ApplyAllUnitTypes { get; set; }
 
             /// <summary>
             ///     正規表現を使用するかどうか
             /// </summary>
-            internal bool RegularExpression { get; set; }
+            public bool RegularExpression { get; set; }
 
             /// <summary>
             ///     置換元の履歴
             /// </summary>
-            internal List<string> ToHistory { get; set; } = new List<string>();
+            public List<string> ToHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     置換先の履歴
             /// </summary>
-            internal List<string> WithHistory { get; set; } = new List<string>();
+            public List<string> WithHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     接頭辞の履歴
             /// </summary>
-            internal List<string> PrefixHistory { get; set; } = new List<string>();
+            public List<string> PrefixHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     接尾辞の履歴
             /// </summary>
-            internal List<string> SuffixHistory { get; set; } = new List<string>();
+            public List<string> SuffixHistory { get; set; } = new List<string>();
 
             #endregion
 
@@ -1507,7 +1507,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal UnitNameEditorSettings()
+            public UnitNameEditorSettings()
             {
                 Init();
             }
@@ -1550,44 +1550,44 @@ namespace HoI2Editor
         /// <summary>
         ///     ランダム指揮官名エディタの設定
         /// </summary>
-        internal class RandomLeaderEditorSettings
+        public class RandomLeaderEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            internal int Country { get; set; }
+            public int Country { get; set; }
 
             /// <summary>
             ///     全ての国家に適用するかどうか
             /// </summary>
-            internal bool ApplyAllCountires { get; set; }
+            public bool ApplyAllCountires { get; set; }
 
             /// <summary>
             ///     正規表現を使用するかどうか
             /// </summary>
-            internal bool RegularExpression { get; set; }
+            public bool RegularExpression { get; set; }
 
             /// <summary>
             ///     置換元の履歴
             /// </summary>
-            internal List<string> ToHistory { get; set; } = new List<string>();
+            public List<string> ToHistory { get; set; } = new List<string>();
 
             /// <summary>
             ///     置換先の履歴
             /// </summary>
-            internal List<string> WithHistory { get; set; } = new List<string>();
+            public List<string> WithHistory { get; set; } = new List<string>();
 
             #endregion
 
@@ -1610,7 +1610,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal RandomLeaderEditorSettings()
+            public RandomLeaderEditorSettings()
             {
                 Init();
             }
@@ -1653,39 +1653,39 @@ namespace HoI2Editor
         /// <summary>
         ///     研究速度ビューアの設定
         /// </summary>
-        internal class ResearchViewerSettings
+        public class ResearchViewerSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             /// <summary>
             ///     技術リストビューの列の幅
             /// </summary>
-            internal int[] TechListColumnWidth { get; set; } = new int[LeaderEditorForm.LeaderListColumnCount];
+            public int[] TechListColumnWidth { get; set; } = new int[LeaderEditorForm.LeaderListColumnCount];
 
             /// <summary>
             ///     研究機関リストビューの列の幅
             /// </summary>
-            internal int[] TeamListColumnWidth { get; set; } = new int[LeaderEditorForm.LeaderListColumnCount];
+            public int[] TeamListColumnWidth { get; set; } = new int[LeaderEditorForm.LeaderListColumnCount];
 
             /// <summary>
             ///     技術カテゴリリストボックスの選択項目
             /// </summary>
-            internal int Category { get; set; }
+            public int Category { get; set; }
 
             /// <summary>
             ///     選択中の国家
             /// </summary>
-            internal List<Country> Countries
+            public List<Country> Countries
             {
                 get { return _countries; }
                 set { _countries = value; }
@@ -1694,7 +1694,7 @@ namespace HoI2Editor
             /// <summary>
             ///     指定日付を使用するかどうか
             /// </summary>
-            internal bool UseSpecifiedDate
+            public bool UseSpecifiedDate
             {
                 get { return Researches.DateMode == ResearchDateMode.Specified; }
                 set { Researches.DateMode = value ? ResearchDateMode.Specified : ResearchDateMode.Historical; }
@@ -1703,7 +1703,7 @@ namespace HoI2Editor
             /// <summary>
             ///     指定日付
             /// </summary>
-            internal GameDate SpecifiedDate
+            public GameDate SpecifiedDate
             {
                 get { return Researches.SpecifiedDate; }
                 set { Researches.SpecifiedDate = value; }
@@ -1712,7 +1712,7 @@ namespace HoI2Editor
             /// <summary>
             ///     ロケット試験場の規模
             /// </summary>
-            internal int RocketTestingSites
+            public int RocketTestingSites
             {
                 get { return Researches.RocketTestingSites; }
                 set { Researches.RocketTestingSites = value; }
@@ -1721,7 +1721,7 @@ namespace HoI2Editor
             /// <summary>
             ///     原子炉の規模
             /// </summary>
-            internal int NuclearReactors
+            public int NuclearReactors
             {
                 get { return Researches.NuclearReactors; }
                 set { Researches.NuclearReactors = value; }
@@ -1730,7 +1730,7 @@ namespace HoI2Editor
             /// <summary>
             ///     青写真の有無
             /// </summary>
-            internal bool Blueprint
+            public bool Blueprint
             {
                 get { return Researches.Blueprint; }
                 set { Researches.Blueprint = value; }
@@ -1739,7 +1739,7 @@ namespace HoI2Editor
             /// <summary>
             ///     研究速度補正
             /// </summary>
-            internal string Modifier
+            public string Modifier
             {
                 get { return DoubleHelper.ToString(Researches.Modifier); }
                 set
@@ -1796,7 +1796,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal ResearchViewerSettings()
+            public ResearchViewerSettings()
             {
                 Init();
             }
@@ -1857,19 +1857,19 @@ namespace HoI2Editor
         /// <summary>
         ///     シナリオエディタの設定
         /// </summary>
-        internal class ScenarioEditorSettings
+        public class ScenarioEditorSettings
         {
             #region 公開プロパティ
 
             /// <summary>
             ///     ウィンドウ位置
             /// </summary>
-            internal Point Location { get; set; }
+            public Point Location { get; set; }
 
             /// <summary>
             ///     ウィンドウサイズ
             /// </summary>
-            internal Size Size { get; set; }
+            public Size Size { get; set; }
 
             #endregion
 
@@ -1892,7 +1892,7 @@ namespace HoI2Editor
             /// <summary>
             ///     コンストラクタ
             /// </summary>
-            internal ScenarioEditorSettings()
+            public ScenarioEditorSettings()
             {
                 Init();
             }

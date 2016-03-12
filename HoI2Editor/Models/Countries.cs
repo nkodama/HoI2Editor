@@ -1125,7 +1125,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     国タグ
     /// </summary>
-    internal enum Country
+    public enum Country
     {
         None, // 定義なし
 

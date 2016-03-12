@@ -5,7 +5,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ゲーム内の日付
     /// </summary>
-    internal class GameDate
+    public class GameDate
     {
         #region 公開プロパティ
 
