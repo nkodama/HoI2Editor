@@ -216,7 +216,7 @@
     <Compile Include="Models\GameDate.cs" />
     <Compile Include="Models\Leader.cs" />
     <Compile Include="Models\Leaders.cs" />
-    <Compile Include="Models\Log.cs" />
+    <Compile Include="Utilities\Log.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Maps.cs" />
     <Compile Include="Models\Minister.cs" />
