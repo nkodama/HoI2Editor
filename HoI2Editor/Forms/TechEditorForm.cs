@@ -12,11 +12,16 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     技術ツリーエディタのフォーム
+    ///     技術ツリーエディタフォーム
     /// </summary>
-    public partial class TechEditorForm : Form
+    internal partial class TechEditorForm : Form
     {
         #region 内部フィールド
+
+        /// <summary>
+        ///     技術ツリーエディタコントローラ
+        /// </summary>
+        private readonly TechEditorController _controller;
 
         /// <summary>
         ///     技術ツリーパネルのコントローラ
@@ -30,22 +35,22 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     必要技術リストビューの列の数
         /// </summary>
-        public const int RequiredListColumnCount = 2;
+        internal const int RequiredListColumnCount = 2;
 
         /// <summary>
         ///     小研究リストビューの列の数
         /// </summary>
-        public const int ComponentListColumnCount = 5;
+        internal const int ComponentListColumnCount = 5;
 
         /// <summary>
         ///     技術効果リストビューの列の数
         /// </summary>
-        public const int EffectListColumnCount = 5;
+        internal const int EffectListColumnCount = 5;
 
         /// <summary>
         ///     座標リストビューの列の数
         /// </summary>
-        public const int PositionListColumnCount = 2;
+        internal const int PositionListColumnCount = 2;
 
         #endregion
 
@@ -54,9 +59,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public TechEditorForm()
+        /// <param name="controller">技術ツリーエディタコントローラ</param>
+        internal TechEditorForm(TechEditorController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // フォームの初期化
             InitForm();
@@ -69,7 +77,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             // 技術タブの編集項目を初期化する
             InitTechItems();
@@ -93,7 +101,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnFileSaved()
+        internal void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             categoryListBox.Refresh();
@@ -106,7 +114,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             // 何もしない
         }
@@ -249,7 +257,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnTechEditorFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>
@@ -732,7 +740,7 @@ namespace HoI2Editor.Forms
             UpdateEventTechListItems();
 
             // 技術項目リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechItemList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechItemList);
 
             Log.Info("[Tech] Added new tech: {0}", item.Id);
         }
@@ -888,7 +896,7 @@ namespace HoI2Editor.Forms
             if (item is TechItem)
             {
                 // 技術項目リストの更新を通知する
-                HoI2EditorController.OnItemChanged(EditorItemId.TechItemList, this);
+                HoI2EditorController.OnItemChanged(EditorItemId.TechItemList);
 
                 TechItem techItem = item as TechItem;
                 Log.Info("[Tech] Added new tech: {0}", techItem.Id);
@@ -958,7 +966,7 @@ namespace HoI2Editor.Forms
             if (selected is TechItem)
             {
                 // 技術項目リストの更新を通知する
-                HoI2EditorController.OnItemChanged(EditorItemId.TechItemList, this);
+                HoI2EditorController.OnItemChanged(EditorItemId.TechItemList);
 
                 TechItem techItem = selected as TechItem;
                 Log.Info("[Tech] Removed tech: {0} [{1}]", techItem.Id, techItem);
@@ -1584,7 +1592,7 @@ namespace HoI2Editor.Forms
             techNameTextBox.ForeColor = Color.Red;
 
             // 技術項目名の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechItemName, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechItemName);
         }
 
         /// <summary>
@@ -1666,7 +1674,7 @@ namespace HoI2Editor.Forms
             techIdNumericUpDown.ForeColor = Color.Red;
 
             // 技術項目IDの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechItemId, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechItemId);
         }
 
         /// <summary>
@@ -1704,7 +1712,7 @@ namespace HoI2Editor.Forms
             techYearNumericUpDown.ForeColor = Color.Red;
 
             // 技術項目の史実年度の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechItemYear, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechItemYear);
         }
 
         /// <summary>
@@ -3488,7 +3496,7 @@ namespace HoI2Editor.Forms
             component.SetDirty();
 
             // 小研究リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList);
         }
 
         /// <summary>
@@ -3592,7 +3600,7 @@ namespace HoI2Editor.Forms
             }
 
             // 小研究リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList);
 
             Log.Info("[Tech] Added new tech component: {0} [{1}]", component.Id, item);
         }
@@ -3640,7 +3648,7 @@ namespace HoI2Editor.Forms
             InsertComponentListItem(component, index + 1);
 
             // 小研究リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList);
         }
 
         /// <summary>
@@ -3678,7 +3686,7 @@ namespace HoI2Editor.Forms
             RemoveComponentListItem(index);
 
             // 小研究リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentList);
         }
 
         /// <summary>
@@ -3918,7 +3926,7 @@ namespace HoI2Editor.Forms
             componentSpecialityComboBox.Refresh();
 
             // 小研究の特性の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentSpeciality, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentSpeciality);
         }
 
         /// <summary>
@@ -3974,7 +3982,7 @@ namespace HoI2Editor.Forms
             componentDifficultyNumericUpDown.ForeColor = Color.Red;
 
             // 小研究の難易度の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentDifficulty, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentDifficulty);
         }
 
         /// <summary>
@@ -4030,7 +4038,7 @@ namespace HoI2Editor.Forms
             componentDoubleTimeCheckBox.ForeColor = Color.Red;
 
             // 小研究の難易度の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentDoubleTime, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TechComponentDoubleTime);
         }
 
         /// <summary>
@@ -6421,7 +6429,7 @@ namespace HoI2Editor.Forms
     /// <summary>
     ///     技術ツリーエディタのタブ
     /// </summary>
-    public enum TechEditorTab
+    internal enum TechEditorTab
     {
         Category, // カテゴリ
         Tech, // 技術

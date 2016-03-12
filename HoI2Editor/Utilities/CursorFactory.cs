@@ -8,7 +8,7 @@ namespace HoI2Editor.Utilities
     /// <summary>
     ///     カスタムカーソル作成用のヘルパークラス
     /// </summary>
-    public static class CursorFactory
+    internal static class CursorFactory
     {
         /// <summary>
         ///     カーソルを作成する
@@ -17,7 +17,7 @@ namespace HoI2Editor.Utilities
         /// <param name="xHotSpot">ホットスポットのX座標</param>
         /// <param name="yHotSpot">ホットスポットのY座標</param>
         /// <returns>作成したカーソル</returns>
-        public static Cursor CreateCursor(Bitmap bitmap, int xHotSpot, int yHotSpot)
+        internal static Cursor CreateCursor(Bitmap bitmap, int xHotSpot, int yHotSpot)
         {
             Bitmap andMask = new Bitmap(bitmap.Width, bitmap.Height);
             Bitmap xorMask = new Bitmap(bitmap.Width, bitmap.Height);
@@ -60,7 +60,7 @@ namespace HoI2Editor.Utilities
         /// <param name="xHotSpot">ホットスポットのX座標</param>
         /// <param name="yHotSpot">ホットスポットのY座標</param>
         /// <returns>作成したカーソル</returns>
-        public static Cursor CreateCursor(Bitmap bitmap, Bitmap andMask, int xHotSpot, int yHotSpot)
+        internal static Cursor CreateCursor(Bitmap bitmap, Bitmap andMask, int xHotSpot, int yHotSpot)
         {
             Bitmap xorMask = new Bitmap(bitmap.Width, bitmap.Height);
             Color transparent = andMask.GetPixel(0, 0);
@@ -98,7 +98,7 @@ namespace HoI2Editor.Utilities
             /// <returns></returns>
             [DllImport("user32.dll")]
             [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool GetIconInfo(IntPtr hIcon, ref IconInfo pIconInfo);
+            internal static extern bool GetIconInfo(IntPtr hIcon, ref IconInfo pIconInfo);
 
             /// <summary>
             ///     CreateIconIndirect Win32API
@@ -106,19 +106,19 @@ namespace HoI2Editor.Utilities
             /// <param name="icon"></param>
             /// <returns></returns>
             [DllImport("user32.dll")]
-            public static extern IntPtr CreateIconIndirect(ref IconInfo icon);
+            internal static extern IntPtr CreateIconIndirect(ref IconInfo icon);
         }
     }
 
     /// <summary>
     ///     IconInfo Win32 struct
     /// </summary>
-    public struct IconInfo
+    internal struct IconInfo
     {
         #region fIcon
 
         // ReSharper disable InconsistentNaming
-        public bool fIcon;
+        internal bool fIcon;
         // ReSharper restore InconsistentNaming
 
         #endregion
@@ -126,7 +126,7 @@ namespace HoI2Editor.Utilities
         #region xHotspot
 
         // ReSharper disable InconsistentNaming
-        public int xHotspot;
+        internal int xHotspot;
         // ReSharper restore InconsistentNaming
 
         #endregion
@@ -134,7 +134,7 @@ namespace HoI2Editor.Utilities
         #region yHotspot
 
         // ReSharper disable InconsistentNaming
-        public int yHotspot;
+        internal int yHotspot;
         // ReSharper restore InconsistentNaming
 
         #endregion
@@ -142,7 +142,7 @@ namespace HoI2Editor.Utilities
         #region hbmMask
 
         // ReSharper disable InconsistentNaming
-        public IntPtr hbmMask;
+        internal IntPtr hbmMask;
         // ReSharper restore InconsistentNaming
 
         #endregion
@@ -150,7 +150,7 @@ namespace HoI2Editor.Utilities
         #region hbmColor
 
         // ReSharper disable InconsistentNaming
-        public IntPtr hbmColor;
+        internal IntPtr hbmColor;
         // ReSharper restore InconsistentNaming
 
         #endregion

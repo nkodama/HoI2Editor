@@ -13,14 +13,14 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     新規ユニット名を保持するクラス
     /// </summary>
-    public static class UnitNames
+    internal static class UnitNames
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     利用可能なユニット名種類
         /// </summary>
-        public static UnitNameType[] Types { get; private set; }
+        internal static UnitNameType[] Types { get; private set; }
 
         #endregion
 
@@ -65,7 +65,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット種類名
         /// </summary>
-        public static readonly string[] TypeNames =
+        internal static readonly string[] TypeNames =
         {
             "NAME_HQ",
             "NAME_INFANTRY",
@@ -247,7 +247,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット名データを初期化する
         /// </summary>
-        public static void Init()
+        internal static void Init()
         {
             // 利用可能なユニット名種類
             if (Game.Type == GameType.DarkestHour && Game.Version >= 103)
@@ -267,7 +267,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット名定義ファイルの再読み込みを要求する
         /// </summary>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             _loaded = false;
         }
@@ -275,7 +275,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット名定義ファイル群を再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             // 読み込み前なら何もしない
             if (!_loaded)
@@ -291,7 +291,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット名定義ファイルを読み込む
         /// </summary>
-        public static void Load()
+        internal static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -413,7 +413,7 @@ namespace HoI2Editor.Models
         ///     ユニット名定義ファイルを保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
-        public static bool Save()
+        internal static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
@@ -485,7 +485,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名の種類</param>
         /// <returns>ユニット名リスト</returns>
-        public static IEnumerable<string> GetNames(Country country, UnitNameType type)
+        internal static IEnumerable<string> GetNames(Country country, UnitNameType type)
         {
             // 未登録の場合は空のリストを返す
             if (!ExistsType(country, type))
@@ -524,7 +524,7 @@ namespace HoI2Editor.Models
         /// <param name="names">ユニット名リスト</param>
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名の種類</param>
-        public static void SetNames(List<string> names, Country country, UnitNameType type)
+        internal static void SetNames(List<string> names, Country country, UnitNameType type)
         {
             // 未登録の場合は項目を作成する
             if (!ExistsCountry(country))
@@ -560,7 +560,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void Replace(string s, string t, Country country, UnitNameType type, bool regex)
+        internal static void Replace(string s, string t, Country country, UnitNameType type, bool regex)
         {
             List<string> names =
                 Items[country][type].Select(name => regex ? Regex.Replace(name, s, t) : name.Replace(s, t)).ToList();
@@ -573,7 +573,7 @@ namespace HoI2Editor.Models
         /// <param name="s">置換元文字列</param>
         /// <param name="t">置換先文字列</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void ReplaceAll(string s, string t, bool regex)
+        internal static void ReplaceAll(string s, string t, bool regex)
         {
             List<KeyValuePair<Country, UnitNameType>> pairs =
                 (from country in Items.Select(pair => pair.Key)
@@ -592,7 +592,7 @@ namespace HoI2Editor.Models
         /// <param name="t">置換先文字列</param>
         /// <param name="type">ユニット名種類</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void ReplaceAllCountries(string s, string t, UnitNameType type, bool regex)
+        internal static void ReplaceAllCountries(string s, string t, UnitNameType type, bool regex)
         {
             List<Country> countries =
                 Items.Select(pair => pair.Key).Where(country => Items[country].ContainsKey(type)).ToList();
@@ -609,7 +609,7 @@ namespace HoI2Editor.Models
         /// <param name="t">置換先文字列</param>
         /// <param name="country">国タグ</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void ReplaceAllTypes(string s, string t, Country country, bool regex)
+        internal static void ReplaceAllTypes(string s, string t, Country country, bool regex)
         {
             List<UnitNameType> types = new List<UnitNameType>();
             if (Items.ContainsKey(country))
@@ -631,7 +631,7 @@ namespace HoI2Editor.Models
         /// <param name="end">終了番号</param>
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
-        public static void AddSequential(string prefix, string suffix, int start, int end, Country country,
+        internal static void AddSequential(string prefix, string suffix, int start, int end, Country country,
             UnitNameType type)
         {
             for (int i = start; i <= end; i++)
@@ -650,7 +650,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
-        public static void Interpolate(Country country, UnitNameType type)
+        internal static void Interpolate(Country country, UnitNameType type)
         {
             List<string> names = new List<string>();
             Regex r = new Regex("([^\\d]*)(\\d+)(.*)");
@@ -697,7 +697,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     全てのユニット名を連番補間する
         /// </summary>
-        public static void InterpolateAll()
+        internal static void InterpolateAll()
         {
             List<KeyValuePair<Country, UnitNameType>> pairs =
                 (from country in Items.Select(pair => pair.Key)
@@ -713,7 +713,7 @@ namespace HoI2Editor.Models
         ///     全ての国のユニット名を連番補間する
         /// </summary>
         /// <param name="type">ユニット名種類</param>
-        public static void InterpolateAllCountries(UnitNameType type)
+        internal static void InterpolateAllCountries(UnitNameType type)
         {
             List<Country> countries =
                 Items.Select(pair => pair.Key).Where(country => Items[country].ContainsKey(type)).ToList();
@@ -727,7 +727,7 @@ namespace HoI2Editor.Models
         ///     全てのユニット名種類のユニット名を連番補間する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void InterpolateAllTypes(Country country)
+        internal static void InterpolateAllTypes(Country country)
         {
             List<UnitNameType> types = new List<UnitNameType>();
             if (Items.ContainsKey(country))
@@ -791,7 +791,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -801,7 +801,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(Country country)
+        internal static bool IsDirty(Country country)
         {
             return CountryDirtyFlags[(int) country];
         }
@@ -812,7 +812,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(Country country, UnitNameType type)
+        internal static bool IsDirty(Country country, UnitNameType type)
         {
             return TypeDirtyFlags[(int) country, (int) type];
         }
@@ -851,7 +851,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニット名種類
     /// </summary>
-    public enum UnitNameType
+    internal enum UnitNameType
     {
         Hq, // 司令部
         Infantry, // 歩兵

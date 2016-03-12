@@ -13,7 +13,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ランダム指揮官名を保持するクラス
     /// </summary>
-    public static class RandomLeaders
+    internal static class RandomLeaders
     {
         #region 内部フィールド
 
@@ -44,7 +44,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ランダム指揮官名定義ファイルの再読み込みを要求する
         /// </summary>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             _loaded = false;
         }
@@ -52,7 +52,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ランダム指揮官名定義ファイル群を再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             // 読み込み前なら何もしない
             if (!_loaded)
@@ -68,7 +68,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ランダム指揮官名定義ファイルを読み込む
         /// </summary>
-        public static void Load()
+        internal static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -182,7 +182,7 @@ namespace HoI2Editor.Models
         ///     ランダム指揮官名定義ファイルを保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
-        public static bool Save()
+        internal static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
@@ -246,7 +246,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>ランダム指揮官名リスト</returns>
-        public static IEnumerable<string> GetNames(Country country)
+        internal static IEnumerable<string> GetNames(Country country)
         {
             return Items[(int) country] ?? new List<string>();
         }
@@ -273,7 +273,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="names">ランダム指揮官名リスト</param>
         /// <param name="country">国タグ</param>
-        public static void SetNames(List<string> names, Country country)
+        internal static void SetNames(List<string> names, Country country)
         {
             // ランダム指揮官名リストに変更がなければ戻る
             if (Items[(int) country] != null && names.SequenceEqual(Items[(int) country]))
@@ -297,7 +297,7 @@ namespace HoI2Editor.Models
         /// <param name="t">置換先文字列</param>
         /// <param name="country">国タグ</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void Replace(string s, string t, Country country, bool regex)
+        internal static void Replace(string s, string t, Country country, bool regex)
         {
             // 未登録ならば何もしない
             if (Items[(int) country] == null)
@@ -316,7 +316,7 @@ namespace HoI2Editor.Models
         /// <param name="s">置換元文字列</param>
         /// <param name="t">置換先文字列</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void ReplaceAll(string s, string t, bool regex)
+        internal static void ReplaceAll(string s, string t, bool regex)
         {
             foreach (Country country in Countries.Tags)
             {
@@ -332,7 +332,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -342,7 +342,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(Country country)
+        internal static bool IsDirty(Country country)
         {
             return DirtyFlags[(int) country];
         }

@@ -10,7 +10,7 @@ namespace HoI2Editor.Writers
     /// <summary>
     ///     シナリオデータのファイル書き込みを担当するクラス
     /// </summary>
-    public static class ScenarioWriter
+    internal static class ScenarioWriter
     {
         #region シナリオデータ
 
@@ -19,7 +19,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="scenario">シナリオデータ</param>
         /// <param name="fileName">ファイル名</param>
-        public static void Write(Scenario scenario, string fileName)
+        internal static void Write(Scenario scenario, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -664,7 +664,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="scenario">シナリオデータ</param>
         /// <param name="fileName">ファイル名</param>
-        public static void WriteBasesInc(Scenario scenario, string fileName)
+        internal static void WriteBasesInc(Scenario scenario, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -866,7 +866,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="scenario">シナリオデータ</param>
         /// <param name="fileName">ファイル名</param>
-        public static void WriteBasesDodInc(Scenario scenario, string fileName)
+        internal static void WriteBasesDodInc(Scenario scenario, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -894,7 +894,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="scenario">シナリオデータ</param>
         /// <param name="fileName">ファイル名</param>
-        public static void WriteDepotsInc(Scenario scenario, string fileName)
+        internal static void WriteDepotsInc(Scenario scenario, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -933,7 +933,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="scenario">シナリオデータ</param>
         /// <param name="fileName">ファイル名</param>
-        public static void WriteVpInc(Scenario scenario, string fileName)
+        internal static void WriteVpInc(Scenario scenario, string fileName)
         {
             // vp.incに保存しないならば何もしない
             if (!scenario.IsVpProvinceSettings)
@@ -1603,7 +1603,7 @@ namespace HoI2Editor.Writers
         /// <param name="settings">国家設定</param>
         /// <param name="scenario">シナリオデータ</param>
         /// <param name="fileName">ファイル名</param>
-        public static void WriteCountrySettings(CountrySettings settings, Scenario scenario, string fileName)
+        internal static void WriteCountrySettings(CountrySettings settings, Scenario scenario, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Controls;
 using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
@@ -13,11 +14,16 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     閣僚エディタのフォーム
+    ///     閣僚エディタフォーム
     /// </summary>
-    public partial class MinisterEditorForm : Form
+    internal partial class MinisterEditorForm : Form
     {
         #region 内部フィールド
+
+        /// <summary>
+        ///     閣僚エディタコントローラ
+        /// </summary>
+        private readonly MinisterEditorController _controller;
 
         /// <summary>
         ///     絞り込み後の閣僚リスト
@@ -66,7 +72,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     閣僚リストビューの列の数
         /// </summary>
-        public const int MinisterListColumnCount = 8;
+        internal const int MinisterListColumnCount = 8;
 
         #endregion
 
@@ -75,9 +81,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public MinisterEditorForm()
+        /// <param name="controller">閣僚エディタコントローラ</param>
+        internal MinisterEditorForm(MinisterEditorController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // フォームの初期化
             InitForm();
@@ -90,7 +99,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             // 閣僚リストを絞り込む
             NarrowMinisterList();
@@ -108,7 +117,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnFileSaved()
+        internal void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
@@ -119,7 +128,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             // 何もしない
         }
@@ -221,7 +230,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnMinisterEditorFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>
@@ -272,14 +281,14 @@ namespace HoI2Editor.Forms
             if (args.Items[(int) MinisterBatchItemId.EndYear] && !Misc.UseNewMinisterFilesFormat)
             {
                 Misc.UseNewMinisterFilesFormat = true;
-                HoI2EditorController.OnItemChanged(EditorItemId.MinisterEndYear, this);
+                HoI2EditorController.OnItemChanged(EditorItemId.MinisterEndYear);
             }
 
             // 引退年が未設定ならばMiscの値を変更する
             if (args.Items[(int) MinisterBatchItemId.RetirementYear] && !Misc.EnableRetirementYearMinisters)
             {
                 Misc.EnableRetirementYearMinisters = true;
-                HoI2EditorController.OnItemChanged(EditorItemId.MinisterRetirementYear, this);
+                HoI2EditorController.OnItemChanged(EditorItemId.MinisterRetirementYear);
             }
 
             // 一括編集処理

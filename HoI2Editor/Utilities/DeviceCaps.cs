@@ -6,7 +6,7 @@ namespace HoI2Editor.Utilities
     /// <summary>
     ///     デバイス情報のラッパークラス
     /// </summary>
-    public static class DeviceCaps
+    internal static class DeviceCaps
     {
         /// <summary>
         ///     標準のX方向解像度
@@ -43,7 +43,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="x">スケーリング前の幅</param>
         /// <returns>スケーリング後の幅</returns>
-        public static int GetScaledWidth(int x)
+        internal static int GetScaledWidth(int x)
         {
             return NativeMethods.MulDiv(x, DpiX, DefaultDpiX);
         }
@@ -53,7 +53,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="y">スケーリング前の高さ</param>
         /// <returns>スケーリング後の高さ</returns>
-        public static int GetScaledHeight(int y)
+        internal static int GetScaledHeight(int y)
         {
             return NativeMethods.MulDiv(y, DpiY, DefaultDpiY);
         }
@@ -63,7 +63,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="x">スケーリング後の幅</param>
         /// <returns>スケーリング前の幅</returns>
-        public static int GetUnscaledWidth(int x)
+        internal static int GetUnscaledWidth(int x)
         {
             return NativeMethods.MulDiv(x, DefaultDpiX, DpiX);
         }
@@ -73,7 +73,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="y">スケーリング後の高さ</param>
         /// <returns>スケーリング前の高さ</returns>
-        public static int GetUnscaledHeight(int y)
+        internal static int GetUnscaledHeight(int y)
         {
             return NativeMethods.MulDiv(y, DefaultDpiY, DpiY);
         }
@@ -99,7 +99,7 @@ namespace HoI2Editor.Utilities
             /// <param name="nIndex"></param>
             /// <returns></returns>
             [DllImport("gdi32.dll")]
-            public static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+            internal static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
 
             /// <summary>
             ///     GetDC Win32API
@@ -107,7 +107,7 @@ namespace HoI2Editor.Utilities
             /// <param name="hWnd"></param>
             /// <returns></returns>
             [DllImport("user32.dll", SetLastError = true)]
-            public static extern IntPtr GetDC(IntPtr hWnd);
+            internal static extern IntPtr GetDC(IntPtr hWnd);
 
             /// <summary>
             ///     MulDiv Win32API
@@ -117,7 +117,7 @@ namespace HoI2Editor.Utilities
             /// <param name="nDenominator"></param>
             /// <returns></returns>
             [DllImport("kernel32.dll")]
-            public static extern int MulDiv(int nNumber, int nNumerator, int nDenominator);
+            internal static extern int MulDiv(int nNumber, int nNumerator, int nDenominator);
         }
     }
 }

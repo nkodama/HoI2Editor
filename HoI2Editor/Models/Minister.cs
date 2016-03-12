@@ -5,19 +5,19 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     閣僚データ
     /// </summary>
-    public class Minister
+    internal class Minister
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     国タグ
         /// </summary>
-        public Country Country { get; set; }
+        internal Country Country { get; set; }
 
         /// <summary>
         ///     閣僚ID
         /// </summary>
-        public int Id
+        internal int Id
         {
             get { return _id; }
             set
@@ -31,47 +31,47 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     名前
         /// </summary>
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
         /// <summary>
         ///     画像ファイル名
         /// </summary>
-        public string PictureName { get; set; }
+        internal string PictureName { get; set; }
 
         /// <summary>
         ///     閣僚地位
         /// </summary>
-        public MinisterPosition Position { get; set; }
+        internal MinisterPosition Position { get; set; }
 
         /// <summary>
         ///     閣僚特性
         /// </summary>
-        public int Personality { get; set; }
+        internal int Personality { get; set; }
 
         /// <summary>
         ///     忠誠度
         /// </summary>
-        public MinisterLoyalty Loyalty { get; set; }
+        internal MinisterLoyalty Loyalty { get; set; }
 
         /// <summary>
         ///     イデオロギー
         /// </summary>
-        public MinisterIdeology Ideology { get; set; }
+        internal MinisterIdeology Ideology { get; set; }
 
         /// <summary>
         ///     開始年
         /// </summary>
-        public int StartYear { get; set; }
+        internal int StartYear { get; set; }
 
         /// <summary>
         ///     終了年
         /// </summary>
-        public int EndYear { get; set; }
+        internal int EndYear { get; set; }
 
         /// <summary>
         ///     引退年
         /// </summary>
-        public int RetirementYear { get; set; }
+        internal int RetirementYear { get; set; }
 
         #endregion
 
@@ -99,7 +99,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public Minister()
+        internal Minister()
         {
         }
 
@@ -107,7 +107,7 @@ namespace HoI2Editor.Models
         ///     コピーコンストラクタ
         /// </summary>
         /// <param name="original">複製元の閣僚データ</param>
-        public Minister(Minister original)
+        internal Minister(Minister original)
         {
             Country = original.Country;
             Id = original.Id;
@@ -130,7 +130,7 @@ namespace HoI2Editor.Models
         ///     閣僚データが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -140,7 +140,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(MinisterItemId id)
+        internal bool IsDirty(MinisterItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -149,7 +149,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(MinisterItemId id)
+        internal void SetDirty(MinisterItemId id)
         {
             _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
@@ -158,7 +158,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirtyAll()
+        internal void SetDirtyAll()
         {
             foreach (MinisterItemId id in Enum.GetValues(typeof (MinisterItemId)))
             {
@@ -170,7 +170,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (MinisterItemId id in Enum.GetValues(typeof (MinisterItemId)))
             {
@@ -185,7 +185,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     閣僚地位
     /// </summary>
-    public enum MinisterPosition
+    internal enum MinisterPosition
     {
         None,
         HeadOfState, // 国家元首
@@ -203,7 +203,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     閣僚忠誠度
     /// </summary>
-    public enum MinisterLoyalty
+    internal enum MinisterLoyalty
     {
         None,
         VeryLow,
@@ -218,7 +218,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     イデオロギー
     /// </summary>
-    public enum MinisterIdeology
+    internal enum MinisterIdeology
     {
         None,
         NationalSocialist, // NS 国家社会主義
@@ -236,7 +236,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     閣僚項目ID
     /// </summary>
-    public enum MinisterItemId
+    internal enum MinisterItemId
     {
         Country, // 国家
         Id, // ID

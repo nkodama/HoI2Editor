@@ -9,7 +9,7 @@ namespace HoI2Editor.Controllers
     /// <summary>
     ///     データチェック処理
     /// </summary>
-    public static class DataChecker
+    internal static class DataChecker
     {
         #region 内部フィールド
 
@@ -25,7 +25,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     シナリオデータをチェックする
         /// </summary>
-        public static void CheckScenario()
+        internal static void CheckScenario()
         {
             // シナリオ読み込み前ならば何もしない
             if (!Scenarios.IsLoaded())
@@ -120,7 +120,7 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="s">対象文字列</param>
         /// <param name="args">パラメータ</param>
-        public static void Write(string s, params object[] args)
+        internal static void Write(string s, params object[] args)
         {
             if (_form == null)
             {
@@ -138,7 +138,7 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="s">対象文字列</param>
         /// <param name="args">パラメータ</param>
-        public static void WriteLine(string s, params object[] args)
+        internal static void WriteLine(string s, params object[] args)
         {
             if (_form == null)
             {
@@ -154,7 +154,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     チェック結果を出力する
         /// </summary>
-        public static void WriteLine()
+        internal static void WriteLine()
         {
             if (_form == null)
             {

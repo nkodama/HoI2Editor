@@ -8,7 +8,7 @@ namespace HoI2Editor.Utilities
     /// <summary>
     ///     パス操作のヘルパークラス
     /// </summary>
-    public static class PathHelper
+    internal static class PathHelper
     {
         /// <summary>
         ///     パス名の最大サイズ
@@ -26,7 +26,7 @@ namespace HoI2Editor.Utilities
         /// <param name="pathName">対象パス名</param>
         /// <param name="baseDirName">基準ディレクトリ名</param>
         /// <returns>相対パス名</returns>
-        public static string GetRelativePathName(string pathName, string baseDirName)
+        internal static string GetRelativePathName(string pathName, string baseDirName)
         {
             string[] targets = pathName.Split(PathSeparator);
             string[] bases = baseDirName.Split(PathSeparator);
@@ -66,7 +66,7 @@ namespace HoI2Editor.Utilities
             /// <param name="dwAttrTo"></param>
             /// <returns></returns>
             [DllImport("shlwapi.dll", CharSet = CharSet.Unicode)]
-            public static extern bool PathRelativePathTo(StringBuilder pszPath, string pszFrom,
+            internal static extern bool PathRelativePathTo(StringBuilder pszPath, string pszFrom,
                 FileAttributes dwAttrFrom, string pszTo, FileAttributes dwAttrTo);
         }
     }

@@ -5,19 +5,19 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     研究機関データ
     /// </summary>
-    public class Team
+    internal class Team
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     国タグ
         /// </summary>
-        public Country Country { get; set; }
+        internal Country Country { get; set; }
 
         /// <summary>
         ///     研究機関ID
         /// </summary>
-        public int Id
+        internal int Id
         {
             get { return _id; }
             set
@@ -31,32 +31,32 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     名前
         /// </summary>
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
         /// <summary>
         ///     画像ファイル名
         /// </summary>
-        public string PictureName { get; set; }
+        internal string PictureName { get; set; }
 
         /// <summary>
         ///     スキル
         /// </summary>
-        public int Skill { get; set; }
+        internal int Skill { get; set; }
 
         /// <summary>
         ///     開始年
         /// </summary>
-        public int StartYear { get; set; }
+        internal int StartYear { get; set; }
 
         /// <summary>
         ///     終了年
         /// </summary>
-        public int EndYear { get; set; }
+        internal int EndYear { get; set; }
 
         /// <summary>
         ///     研究特性
         /// </summary>
-        public TechSpeciality[] Specialities { get; } = new TechSpeciality[SpecialityLength];
+        internal TechSpeciality[] Specialities { get; } = new TechSpeciality[SpecialityLength];
 
         #endregion
 
@@ -84,7 +84,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究特性定義の数
         /// </summary>
-        public const int SpecialityLength = 32;
+        internal const int SpecialityLength = 32;
 
         #endregion
 
@@ -93,7 +93,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public Team()
+        internal Team()
         {
         }
 
@@ -101,7 +101,7 @@ namespace HoI2Editor.Models
         ///     コピーコンストラクタ
         /// </summary>
         /// <param name="original">複製元の研究機関データ</param>
-        public Team(Team original)
+        internal Team(Team original)
         {
             Country = original.Country;
             Id = original.Id;
@@ -124,7 +124,7 @@ namespace HoI2Editor.Models
         ///     研究機関データが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -134,7 +134,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(TeamItemId id)
+        internal bool IsDirty(TeamItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -143,7 +143,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(TeamItemId id)
+        internal void SetDirty(TeamItemId id)
         {
             _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
@@ -152,7 +152,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirtyAll()
+        internal void SetDirtyAll()
         {
             foreach (TeamItemId id in Enum.GetValues(typeof (TeamItemId)))
             {
@@ -164,7 +164,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (TeamItemId id in Enum.GetValues(typeof (TeamItemId)))
             {
@@ -179,7 +179,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     研究機関項目ID
     /// </summary>
-    public enum TeamItemId
+    internal enum TeamItemId
     {
         Country, // 国家
         Id, // ID

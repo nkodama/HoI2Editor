@@ -9,34 +9,34 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     技術グループ
     /// </summary>
-    public class TechGroup
+    internal class TechGroup
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     技術グループID
         /// </summary>
-        public int Id { get; set; }
+        internal int Id { get; set; }
 
         /// <summary>
         ///     技術カテゴリ
         /// </summary>
-        public TechCategory Category { get; set; }
+        internal TechCategory Category { get; set; }
 
         /// <summary>
         ///     技術グループ名
         /// </summary>
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
         /// <summary>
         ///     技術グループ説明
         /// </summary>
-        public string Desc { get; set; }
+        internal string Desc { get; set; }
 
         /// <summary>
         ///     項目リスト
         /// </summary>
-        public List<ITechItem> Items { get; }
+        internal List<ITechItem> Items { get; }
 
         #endregion
 
@@ -59,7 +59,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public TechGroup()
+        internal TechGroup()
         {
             Items = new List<ITechItem>();
         }
@@ -72,7 +72,7 @@ namespace HoI2Editor.Models
         ///     技術項目リストに項目を挿入する
         /// </summary>
         /// <param name="item">追加対象の項目</param>
-        public void AddItem(ITechItem item)
+        internal void AddItem(ITechItem item)
         {
             Items.Add(item);
         }
@@ -82,7 +82,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="item">挿入対象の項目</param>
         /// <param name="position">挿入位置の直前の項目</param>
-        public void InsertItem(ITechItem item, ITechItem position)
+        internal void InsertItem(ITechItem item, ITechItem position)
         {
             Items.Insert(Items.IndexOf(position) + 1, item);
         }
@@ -91,7 +91,7 @@ namespace HoI2Editor.Models
         ///     技術項目リストから項目を削除する
         /// </summary>
         /// <param name="item">削除対象の項目</param>
-        public void RemoveItem(ITechItem item)
+        internal void RemoveItem(ITechItem item)
         {
             Items.Remove(item);
 
@@ -120,7 +120,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="src">移動対象の項目</param>
         /// <param name="dest">移動先位置の項目</param>
-        public void MoveItem(ITechItem src, ITechItem dest)
+        internal void MoveItem(ITechItem src, ITechItem dest)
         {
             int srcIndex = Items.IndexOf(src);
             int destIndex = Items.IndexOf(dest);
@@ -156,7 +156,7 @@ namespace HoI2Editor.Models
         ///     技術グループ説明を取得する
         /// </summary>
         /// <returns>技術グループ説明</returns>
-        public string GetDesc()
+        internal string GetDesc()
         {
             return Config.ExistsKey(Desc) ? Config.GetText(Desc) : "";
         }
@@ -169,7 +169,7 @@ namespace HoI2Editor.Models
         ///     技術グループが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -179,7 +179,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(TechGroupItemId id)
+        internal bool IsDirty(TechGroupItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -188,7 +188,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(TechGroupItemId id)
+        internal void SetDirty(TechGroupItemId id)
         {
             _dirtyFlags[(int) id] = true;
         }
@@ -196,7 +196,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public void SetDirty()
+        internal void SetDirty()
         {
             _dirtyFlag = true;
             Techs.SetDirty();
@@ -205,7 +205,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (TechGroupItemId id in Enum.GetValues(typeof (TechGroupItemId)))
             {
@@ -224,7 +224,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     技術項目の共通インターフェース
     /// </summary>
-    public interface ITechItem
+    internal interface ITechItem
     {
         #region 公開プロパティ
 
@@ -287,59 +287,59 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     技術項目
     /// </summary>
-    public class TechItem : ITechItem
+    internal class TechItem : ITechItem
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     技術ID
         /// </summary>
-        public int Id { get; set; }
+        internal int Id { get; set; }
 
         /// <summary>
         ///     技術名
         /// </summary>
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
         /// <summary>
         ///     技術短縮名
         /// </summary>
-        public string ShortName { get; set; }
+        internal string ShortName { get; set; }
 
         /// <summary>
         ///     技術説明
         /// </summary>
-        public string Desc { get; set; }
+        internal string Desc { get; set; }
 
         /// <summary>
         ///     画像ファイル名
         /// </summary>
-        public string PictureName { get; set; }
+        internal string PictureName { get; set; }
 
         /// <summary>
         ///     史実年
         /// </summary>
-        public int Year { get; set; }
+        internal int Year { get; set; }
 
         /// <summary>
         ///     小研究リスト
         /// </summary>
-        public List<TechComponent> Components { get; }
+        internal List<TechComponent> Components { get; }
 
         /// <summary>
         ///     必要技術リスト(AND条件)
         /// </summary>
-        public List<RequiredTech> AndRequiredTechs { get; }
+        internal List<RequiredTech> AndRequiredTechs { get; }
 
         /// <summary>
         ///     必要技術リスト(OR条件)
         /// </summary>
-        public List<RequiredTech> OrRequiredTechs { get; }
+        internal List<RequiredTech> OrRequiredTechs { get; }
 
         /// <summary>
         ///     技術効果リスト
         /// </summary>
-        public List<Command> Effects { get; }
+        internal List<Command> Effects { get; }
 
         /// <summary>
         ///     座標リスト
@@ -382,7 +382,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public TechItem()
+        internal TechItem()
         {
             Positions = new List<TechPosition>();
             AndRequiredTechs = new List<RequiredTech>();
@@ -450,7 +450,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     新規小研究を作成する
         /// </summary>
-        public void CreateNewComponents()
+        internal void CreateNewComponents()
         {
             for (int i = 0; i < 5; i++)
             {
@@ -468,7 +468,7 @@ namespace HoI2Editor.Models
         ///     小研究リストに項目を追加する
         /// </summary>
         /// <param name="component">追加対象の項目</param>
-        public void AddComponent(TechComponent component)
+        internal void AddComponent(TechComponent component)
         {
             Components.Add(component);
         }
@@ -478,7 +478,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="component">挿入対象の項目</param>
         /// <param name="index">挿入する位置</param>
-        public void InsertComponent(TechComponent component, int index)
+        internal void InsertComponent(TechComponent component, int index)
         {
             Components.Insert(index, component);
         }
@@ -488,7 +488,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="src">移動元の位置</param>
         /// <param name="dest">移動先の位置</param>
-        public void MoveComponent(int src, int dest)
+        internal void MoveComponent(int src, int dest)
         {
             TechComponent component = Components[src];
 
@@ -510,7 +510,7 @@ namespace HoI2Editor.Models
         ///     小研究リストの項目を削除する
         /// </summary>
         /// <param name="index">削除対象の項目の位置</param>
-        public void RemoveComponent(int index)
+        internal void RemoveComponent(int index)
         {
             // 重複文字列リストから項目を削除する
             Techs.DecrementDuplicatedListCount(Components[index].Name);
@@ -523,7 +523,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="startId">検索を開始するID</param>
         /// <returns>未使用の小研究ID</returns>
-        public int GetNewComponentId(int startId)
+        internal int GetNewComponentId(int startId)
         {
             int id = startId;
             List<int> ids = Components.Select(component => component.Id).ToList();
@@ -542,7 +542,7 @@ namespace HoI2Editor.Models
         ///     技術効果リストに項目を追加する
         /// </summary>
         /// <param name="command">追加対象の項目</param>
-        public void AddCommand(Command command)
+        internal void AddCommand(Command command)
         {
             Effects.Add(command);
         }
@@ -552,7 +552,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="command">挿入対象の項目</param>
         /// <param name="index">挿入する位置</param>
-        public void InsertCommand(Command command, int index)
+        internal void InsertCommand(Command command, int index)
         {
             Effects.Insert(index, command);
         }
@@ -562,7 +562,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="src">移動元の位置</param>
         /// <param name="dest">移動先の位置</param>
-        public void MoveCommand(int src, int dest)
+        internal void MoveCommand(int src, int dest)
         {
             Command command = Effects[src];
 
@@ -584,7 +584,7 @@ namespace HoI2Editor.Models
         ///     技術効果リストの項目を削除する
         /// </summary>
         /// <param name="index">削除対象の項目の位置</param>
-        public void RemoveCommand(int index)
+        internal void RemoveCommand(int index)
         {
             Effects.RemoveAt(index);
         }
@@ -597,7 +597,7 @@ namespace HoI2Editor.Models
         ///     文字列キー番号をリストに登録する
         /// </summary>
         /// <param name="list">登録先のリスト</param>
-        public void AddKeyNumbers(List<int> list)
+        internal void AddKeyNumbers(List<int> list)
         {
             int no;
             Match match;
@@ -636,7 +636,7 @@ namespace HoI2Editor.Models
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="list">キー番号リスト</param>
         /// <returns>変更があればtrueを返す</returns>
-        public bool RenameKeys(string categoryName, List<int> list)
+        internal bool RenameKeys(string categoryName, List<int> list)
         {
             bool dirty = false;
             int no = 0;
@@ -846,7 +846,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     文字列の一時キーを削除する
         /// </summary>
-        public void RemoveTempKey()
+        internal void RemoveTempKey()
         {
             // 技術名
             if (Config.IsTempKey(Name))
@@ -887,7 +887,7 @@ namespace HoI2Editor.Models
         ///     技術短縮名を取得する
         /// </summary>
         /// <returns>技術短縮名</returns>
-        public string GetShortName()
+        internal string GetShortName()
         {
             return Config.ExistsKey(ShortName) ? Config.GetText(ShortName) : "";
         }
@@ -896,7 +896,7 @@ namespace HoI2Editor.Models
         ///     技術説明を取得する
         /// </summary>
         /// <returns>技術説明</returns>
-        public string GetDesc()
+        internal string GetDesc()
         {
             return Config.ExistsKey(Desc) ? Config.GetText(Desc) : "";
         }
@@ -1012,14 +1012,14 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     技術ラベル
     /// </summary>
-    public class TechLabel : ITechItem
+    internal class TechLabel : ITechItem
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     ラベル名
         /// </summary>
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
         /// <summary>
         ///     座標リスト
@@ -1057,7 +1057,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public TechLabel()
+        internal TechLabel()
         {
             Positions = new List<TechPosition>();
         }
@@ -1086,7 +1086,7 @@ namespace HoI2Editor.Models
         ///     技術ラベルを作成する
         /// </summary>
         /// <returns>作成した技術ラベル</returns>
-        public static TechLabel Create()
+        internal static TechLabel Create()
         {
             TechLabel item = new TechLabel { Name = Config.GetTempKey() };
 
@@ -1104,7 +1104,7 @@ namespace HoI2Editor.Models
         ///     文字列キー番号をリストに登録する
         /// </summary>
         /// <param name="list">登録先のリスト</param>
-        public void AddKeyNumbers(List<int> list)
+        internal void AddKeyNumbers(List<int> list)
         {
             if (string.IsNullOrEmpty(Name))
             {
@@ -1126,7 +1126,7 @@ namespace HoI2Editor.Models
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="list">キー番号リスト</param>
         /// <returns>変更があればtrueを返す</returns>
-        public bool RenameKeys(string categoryName, List<int> list)
+        internal bool RenameKeys(string categoryName, List<int> list)
         {
             bool dirty = false;
 
@@ -1204,7 +1204,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     文字列の一時キーを削除する
         /// </summary>
-        public void RemoveTempKey()
+        internal void RemoveTempKey()
         {
             // ラベル名
             if (Config.IsTempKey(Name))
@@ -1318,19 +1318,19 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     技術イベント
     /// </summary>
-    public class TechEvent : ITechItem
+    internal class TechEvent : ITechItem
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     技術イベントID
         /// </summary>
-        public int Id { get; set; }
+        internal int Id { get; set; }
 
         /// <summary>
         ///     技術ID
         /// </summary>
-        public int TechId { get; set; }
+        internal int TechId { get; set; }
 
         /// <summary>
         ///     座標リスト
@@ -1358,7 +1358,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public TechEvent()
+        internal TechEvent()
         {
             Positions = new List<TechPosition>();
         }
@@ -1387,7 +1387,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     文字列の一時キーを削除する
         /// </summary>
-        public void RemoveTempKey()
+        internal void RemoveTempKey()
         {
             // 何もしない
         }
@@ -1481,19 +1481,19 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     技術ツリー内の座標
     /// </summary>
-    public class TechPosition
+    internal class TechPosition
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     X座標
         /// </summary>
-        public int X { get; set; }
+        internal int X { get; set; }
 
         /// <summary>
         ///     Y座標
         /// </summary>
-        public int Y { get; set; }
+        internal int Y { get; set; }
 
         #endregion
 
@@ -1517,7 +1517,7 @@ namespace HoI2Editor.Models
         ///     座標を複製する
         /// </summary>
         /// <returns>複製した座標</returns>
-        public TechPosition Clone()
+        internal TechPosition Clone()
         {
             TechPosition position = new TechPosition { X = X, Y = Y };
 
@@ -1532,7 +1532,7 @@ namespace HoI2Editor.Models
         ///     技術項目データが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -1542,7 +1542,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(TechPositionItemId id)
+        internal bool IsDirty(TechPositionItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -1551,7 +1551,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(TechPositionItemId id)
+        internal void SetDirty(TechPositionItemId id)
         {
             _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
@@ -1560,7 +1560,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirtyAll()
+        internal void SetDirtyAll()
         {
             foreach (TechPositionItemId id in Enum.GetValues(typeof (TechPositionItemId)))
             {
@@ -1572,7 +1572,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (TechPositionItemId id in Enum.GetValues(typeof (TechPositionItemId)))
             {
@@ -1587,14 +1587,14 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     必要技術
     /// </summary>
-    public class RequiredTech
+    internal class RequiredTech
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     技術ID
         /// </summary>
-        public int Id { get; set; }
+        internal int Id { get; set; }
 
         #endregion
 
@@ -1613,7 +1613,7 @@ namespace HoI2Editor.Models
         ///     座標を複製する
         /// </summary>
         /// <returns>複製した座標</returns>
-        public RequiredTech Clone()
+        internal RequiredTech Clone()
         {
             RequiredTech required = new RequiredTech { Id = Id };
 
@@ -1628,7 +1628,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -1636,7 +1636,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public void SetDirty()
+        internal void SetDirty()
         {
             _dirtyFlag = true;
         }
@@ -1644,7 +1644,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを解除する
         /// </summary>
-        public void ResetDirty()
+        internal void ResetDirty()
         {
             _dirtyFlag = false;
         }
@@ -1655,34 +1655,34 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     小研究
     /// </summary>
-    public class TechComponent
+    internal class TechComponent
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     小研究ID
         /// </summary>
-        public int Id { get; set; }
+        internal int Id { get; set; }
 
         /// <summary>
         ///     小研究名
         /// </summary>
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
         /// <summary>
         ///     小研究特性
         /// </summary>
-        public TechSpeciality Speciality { get; set; }
+        internal TechSpeciality Speciality { get; set; }
 
         /// <summary>
         ///     難易度
         /// </summary>
-        public int Difficulty { get; set; }
+        internal int Difficulty { get; set; }
 
         /// <summary>
         ///     倍の時間を要するかどうか
         /// </summary>
-        public bool DoubleTime { get; set; }
+        internal bool DoubleTime { get; set; }
 
         #endregion
 
@@ -1706,7 +1706,7 @@ namespace HoI2Editor.Models
         ///     小研究を作成する
         /// </summary>
         /// <returns>作成した小研究</returns>
-        public static TechComponent Create()
+        internal static TechComponent Create()
         {
             TechComponent component = new TechComponent
             {
@@ -1725,7 +1725,7 @@ namespace HoI2Editor.Models
         ///     小研究を複製する
         /// </summary>
         /// <returns>複製した小研究</returns>
-        public TechComponent Clone()
+        internal TechComponent Clone()
         {
             TechComponent component = new TechComponent
             {
@@ -1761,7 +1761,7 @@ namespace HoI2Editor.Models
         ///     技術項目データが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -1771,7 +1771,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(TechComponentItemId id)
+        internal bool IsDirty(TechComponentItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -1780,7 +1780,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(TechComponentItemId id)
+        internal void SetDirty(TechComponentItemId id)
         {
             _dirtyFlags[(int) id] = true;
         }
@@ -1788,7 +1788,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public void SetDirty()
+        internal void SetDirty()
         {
             _dirtyFlag = true;
         }
@@ -1796,7 +1796,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirtyAll()
+        internal void SetDirtyAll()
         {
             foreach (TechComponentItemId id in Enum.GetValues(typeof (TechComponentItemId)))
             {
@@ -1808,7 +1808,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (TechComponentItemId id in Enum.GetValues(typeof (TechComponentItemId)))
             {
@@ -1823,7 +1823,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     技術カテゴリ
     /// </summary>
-    public enum TechCategory
+    internal enum TechCategory
     {
         Infantry, // 歩兵
         Armor, // 装甲と火砲
@@ -1839,7 +1839,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     研究特性
     /// </summary>
-    public enum TechSpeciality
+    internal enum TechSpeciality
     {
         None,
 
@@ -1960,7 +1960,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     技術グループ項目ID
     /// </summary>
-    public enum TechGroupItemId
+    internal enum TechGroupItemId
     {
         Name, // 名前
         Desc // 説明
@@ -1969,7 +1969,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     技術項目ID
     /// </summary>
-    public enum TechItemId
+    internal enum TechItemId
     {
         Id, // ID
         Name, // 名前
@@ -1983,7 +1983,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     技術座標項目ID
     /// </summary>
-    public enum TechPositionItemId
+    internal enum TechPositionItemId
     {
         X, // X座標
         Y // Y座標
@@ -1992,7 +1992,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     小研究項目ID
     /// </summary>
-    public enum TechComponentItemId
+    internal enum TechComponentItemId
     {
         Id, // 小研究ID
         Name, // 小研究名

@@ -3,6 +3,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Controls;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -13,24 +14,33 @@ namespace HoI2Editor.Forms
     /// <summary>
     ///     ユニットモデルエディタフォーム
     /// </summary>
-    public partial class UnitEditorForm : Form
+    internal partial class UnitEditorForm : Form
     {
+        #region 内部フィールド
+
+        /// <summary>
+        ///     ユニットモデルエディタコントローラ
+        /// </summary>
+        private readonly UnitEditorController _controller;
+
+        #endregion
+
         #region 公開定数
 
         /// <summary>
         ///     ユニットモデルリストビューの列の数
         /// </summary>
-        public const int ModelListColumnCount = 10;
+        internal const int ModelListColumnCount = 10;
 
         /// <summary>
         ///     改良リストビューの列の数
         /// </summary>
-        public const int UpgradeListColumnCount = 3;
+        internal const int UpgradeListColumnCount = 3;
 
         /// <summary>
         ///     装備リストビューの列の数
         /// </summary>
-        public const int EquipmentListColumnCount = 2;
+        internal const int EquipmentListColumnCount = 2;
 
         #endregion
 
@@ -39,9 +49,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public UnitEditorForm()
+        /// <param name="controller">ユニットモデルエディタコントローラ</param>
+        internal UnitEditorForm(UnitEditorController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // フォームの初期化
             InitForm();
@@ -344,7 +357,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             // 付属可能旅団の値が変化してしまうので一旦選択を解除する
             classListBox.SelectedIndex = -1;
@@ -365,7 +378,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnFileSaved()
+        internal void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             classListBox.Refresh();
@@ -378,7 +391,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             switch (id)
             {
@@ -514,7 +527,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnUnitEditorFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>
@@ -937,7 +950,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, srcIndex, destIndex);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -989,7 +1002,7 @@ namespace HoI2Editor.Forms
             InsertModel(unit, model, index, "");
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1018,7 +1031,7 @@ namespace HoI2Editor.Forms
             InsertModel(unit, model, index + 1, unit.GetModelName(index));
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1046,7 +1059,7 @@ namespace HoI2Editor.Forms
             RemoveModel(unit, index);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1080,7 +1093,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, 0);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1114,7 +1127,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, index - 1);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1148,7 +1161,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, index + 1);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1182,7 +1195,7 @@ namespace HoI2Editor.Forms
             MoveModel(unit, index, unit.Models.Count - 1);
 
             // ユニットモデルリストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.ModelList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.ModelList);
         }
 
         /// <summary>
@@ -1947,7 +1960,7 @@ namespace HoI2Editor.Forms
             classNameTextBox.ForeColor = Color.Red;
 
             // ユニットクラス名の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.UnitName, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.UnitName);
         }
 
         /// <summary>
@@ -2684,7 +2697,7 @@ namespace HoI2Editor.Forms
             // 最大付属旅団数の更新を通知する
             if (Game.Type == GameType.ArsenalOfDemocracy)
             {
-                HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
             }
         }
 
@@ -4171,7 +4184,7 @@ namespace HoI2Editor.Forms
 
             // ユニットモデル名の更新を通知する
             HoI2EditorController.OnItemChanged(
-                country == Country.None ? EditorItemId.CommonModelName : EditorItemId.CountryModelName, this);
+                country == Country.None ? EditorItemId.CommonModelName : EditorItemId.CountryModelName);
         }
 
         /// <summary>
@@ -7738,7 +7751,7 @@ namespace HoI2Editor.Forms
     /// <summary>
     ///     ユニットエディタのタブ番号
     /// </summary>
-    public enum UnitEditorTab
+    internal enum UnitEditorTab
     {
         Class, // ユニットクラス
         Model // ユニットモデル

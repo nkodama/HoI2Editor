@@ -14,39 +14,39 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     閣僚データ群
     /// </summary>
-    public static class Ministers
+    internal static class Ministers
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     マスター閣僚リスト
         /// </summary>
-        public static List<Minister> Items { get; }
+        internal static List<Minister> Items { get; }
 
         /// <summary>
         ///     国タグと閣僚ファイル名の対応付け
         /// </summary>
-        public static Dictionary<Country, string> FileNameMap { get; }
+        internal static Dictionary<Country, string> FileNameMap { get; }
 
         /// <summary>
         ///     使用済みIDリスト
         /// </summary>
-        public static HashSet<int> IdSet { get; }
+        internal static HashSet<int> IdSet { get; }
 
         /// <summary>
         ///     閣僚特性一覧
         /// </summary>
-        public static MinisterPersonalityInfo[] Personalities { get; private set; }
+        internal static MinisterPersonalityInfo[] Personalities { get; private set; }
 
         /// <summary>
         ///     閣僚地位と特性の対応付け
         /// </summary>
-        public static List<int>[] PositionPersonalityTable { get; }
+        internal static List<int>[] PositionPersonalityTable { get; }
 
         /// <summary>
         ///     忠誠度名
         /// </summary>
-        public static string[] LoyaltyNames { get; }
+        internal static string[] LoyaltyNames { get; }
 
         #endregion
 
@@ -107,7 +107,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚地位名
         /// </summary>
-        public static readonly TextId[] PositionNames =
+        internal static readonly TextId[] PositionNames =
         {
             TextId.Empty,
             TextId.MinisterHeadOfState,
@@ -125,7 +125,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     イデオロギー名
         /// </summary>
-        public static readonly TextId[] IdeologyNames =
+        internal static readonly TextId[] IdeologyNames =
         {
             TextId.Empty,
             TextId.IdeologyNationalSocialist,
@@ -783,7 +783,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚特性を初期化する
         /// </summary>
-        public static void InitPersonality()
+        internal static void InitPersonality()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -947,7 +947,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚ファイルの再読み込みを要求する
         /// </summary>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             _loaded = false;
         }
@@ -955,7 +955,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚ファイル群を再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             // 読み込み前なら何もしない
             if (!_loaded)
@@ -971,7 +971,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚ファイル群を読み込む
         /// </summary>
-        public static void Load()
+        internal static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -993,7 +993,7 @@ namespace HoI2Editor.Models
         ///     閣僚ファイル群を遅延読み込みする
         /// </summary>
         /// <param name="handler">読み込み完了イベントハンドラ</param>
-        public static void LoadAsync(RunWorkerCompletedEventHandler handler)
+        internal static void LoadAsync(RunWorkerCompletedEventHandler handler)
         {
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (_loaded)
@@ -1029,7 +1029,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     読み込み完了まで待機する
         /// </summary>
-        public static void WaitLoading()
+        internal static void WaitLoading()
         {
             while (Worker.IsBusy)
             {
@@ -1041,7 +1041,7 @@ namespace HoI2Editor.Models
         ///     遅延読み込み中かどうかを判定する
         /// </summary>
         /// <returns>遅延読み込み中ならばtrueを返す</returns>
-        public static bool IsLoading()
+        internal static bool IsLoading()
         {
             return Worker.IsBusy;
         }
@@ -1538,7 +1538,7 @@ namespace HoI2Editor.Models
         ///     閣僚ファイル群を保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
-        public static bool Save()
+        internal static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
@@ -1755,7 +1755,7 @@ namespace HoI2Editor.Models
         ///     閣僚リストに項目を追加する
         /// </summary>
         /// <param name="minister">挿入対象の項目</param>
-        public static void AddItem(Minister minister)
+        internal static void AddItem(Minister minister)
         {
             Log.Info("[Minister] Add minister: ({0}: {1}) <{2}>", minister.Id, minister.Name,
                 Countries.Strings[(int) minister.Country]);
@@ -1768,7 +1768,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="minister">挿入対象の項目</param>
         /// <param name="position">挿入位置の直前の項目</param>
-        public static void InsertItem(Minister minister, Minister position)
+        internal static void InsertItem(Minister minister, Minister position)
         {
             int index = Items.IndexOf(position) + 1;
 
@@ -1782,7 +1782,7 @@ namespace HoI2Editor.Models
         ///     閣僚リストから項目を削除する
         /// </summary>
         /// <param name="minister"></param>
-        public static void RemoveItem(Minister minister)
+        internal static void RemoveItem(Minister minister)
         {
             Log.Info("[Minister] Move minister: ({0}: {1}) <{2}>", minister.Id, minister.Name,
                 Countries.Strings[(int) minister.Country]);
@@ -1798,7 +1798,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="src">移動元の項目</param>
         /// <param name="dest">移動先の項目</param>
-        public static void MoveItem(Minister src, Minister dest)
+        internal static void MoveItem(Minister src, Minister dest)
         {
             int srcIndex = Items.IndexOf(src);
             int destIndex = Items.IndexOf(dest);
@@ -1828,7 +1828,7 @@ namespace HoI2Editor.Models
         ///     一括編集
         /// </summary>
         /// <param name="args">一括編集のパラメータ</param>
-        public static void BatchEdit(MinisterBatchEditArgs args)
+        internal static void BatchEdit(MinisterBatchEditArgs args)
         {
             LogBatchEdit(args);
 
@@ -2086,7 +2086,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">対象の国タグ</param>
         /// <returns>閣僚ID</returns>
-        public static int GetNewId(Country country)
+        internal static int GetNewId(Country country)
         {
             // 対象国の閣僚IDの最大値+1から検索を始める
             int id = GetMaxId(country);
@@ -2099,7 +2099,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">開始ID</param>
         /// <returns>閣僚ID</returns>
-        public static int GetNewId(int id)
+        internal static int GetNewId(int id)
         {
             while (IdSet.Contains(id))
             {
@@ -2136,7 +2136,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return _dirtyFlag || _dirtyListFlag;
         }
@@ -2155,7 +2155,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(Country country)
+        internal static bool IsDirty(Country country)
         {
             return DirtyFlags[(int) country];
         }
@@ -2164,7 +2164,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void SetDirty(Country country)
+        internal static void SetDirty(Country country)
         {
             DirtyFlags[(int) country] = true;
             _dirtyFlag = true;
@@ -2173,7 +2173,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚リストファイルの編集済みフラグを設定する
         /// </summary>
-        public static void SetDirtyList()
+        internal static void SetDirtyList()
         {
             _dirtyListFlag = true;
         }
@@ -2201,29 +2201,29 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     閣僚特性情報
     /// </summary>
-    public class MinisterPersonalityInfo
+    internal class MinisterPersonalityInfo
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     閣僚地位と閣僚特性の対応付け
         /// </summary>
-        public bool[] Position { get; } = new bool[Enum.GetValues(typeof (MinisterPosition)).Length];
+        internal bool[] Position { get; } = new bool[Enum.GetValues(typeof (MinisterPosition)).Length];
 
         /// <summary>
         ///     閣僚特性名
         /// </summary>
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
         /// <summary>
         ///     閣僚特性名の文字列
         /// </summary>
-        public string NameText => Config.ExistsKey(Name) ? Config.GetText(Name) : Name;
+        internal string NameText => Config.ExistsKey(Name) ? Config.GetText(Name) : Name;
 
         /// <summary>
         ///     閣僚特性文字列
         /// </summary>
-        public string String { get; set; }
+        internal string String { get; set; }
 
         #endregion
     }
@@ -2231,69 +2231,69 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     閣僚一括編集のパラメータ
     /// </summary>
-    public class MinisterBatchEditArgs
+    internal class MinisterBatchEditArgs
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     一括編集対象国モード
         /// </summary>
-        public BatchCountryMode CountryMode { get; set; }
+        internal BatchCountryMode CountryMode { get; set; }
 
         /// <summary>
         ///     対象国リスト
         /// </summary>
-        public List<Country> TargetCountries { get; } = new List<Country>();
+        internal List<Country> TargetCountries { get; } = new List<Country>();
 
         /// <summary>
         ///     一括編集対象地位モード
         /// </summary>
-        public bool[] PositionMode { get; } = new bool[Enum.GetValues(typeof (MinisterPosition)).Length];
+        internal bool[] PositionMode { get; } = new bool[Enum.GetValues(typeof (MinisterPosition)).Length];
 
         /// <summary>
         ///     一括編集動作モード
         /// </summary>
-        public BatchActionMode ActionMode { get; set; }
+        internal BatchActionMode ActionMode { get; set; }
 
         /// <summary>
         ///     コピー/移動先指定国
         /// </summary>
-        public Country Destination { get; set; }
+        internal Country Destination { get; set; }
 
         /// <summary>
         ///     開始ID
         /// </summary>
-        public int Id { get; set; }
+        internal int Id { get; set; }
 
         /// <summary>
         ///     一括編集項目
         /// </summary>
-        public bool[] Items { get; } = new bool[Enum.GetValues(typeof (MinisterBatchItemId)).Length];
+        internal bool[] Items { get; } = new bool[Enum.GetValues(typeof (MinisterBatchItemId)).Length];
 
         /// <summary>
         ///     開始年
         /// </summary>
-        public int StartYear { get; set; }
+        internal int StartYear { get; set; }
 
         /// <summary>
         ///     終了年
         /// </summary>
-        public int EndYear { get; set; }
+        internal int EndYear { get; set; }
 
         /// <summary>
         ///     引退年
         /// </summary>
-        public int RetirementYear { get; set; }
+        internal int RetirementYear { get; set; }
 
         /// <summary>
         ///     イデオロギー
         /// </summary>
-        public MinisterIdeology Ideology { get; set; }
+        internal MinisterIdeology Ideology { get; set; }
 
         /// <summary>
         ///     忠誠度
         /// </summary>
-        public MinisterLoyalty Loyalty { get; set; }
+        internal MinisterLoyalty Loyalty { get; set; }
 
         #endregion
     }
@@ -2301,7 +2301,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     閣僚一括編集項目ID
     /// </summary>
-    public enum MinisterBatchItemId
+    internal enum MinisterBatchItemId
     {
         StartYear, // 開始年
         EndYear, // 終了年

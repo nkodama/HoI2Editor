@@ -10,7 +10,7 @@ namespace HoI2Editor.Dialogs
     /// <summary>
     ///     指揮官一括編集ダイアログ
     /// </summary>
-    public partial class LeaderBatchDialog : Form
+    internal partial class LeaderBatchDialog : Form
     {
         #region 内部フィールド
 
@@ -32,7 +32,7 @@ namespace HoI2Editor.Dialogs
         ///     コンストラクタ
         /// </summary>
         /// <param name="args">一括編集のパラメータ</param>
-        public LeaderBatchDialog(LeaderBatchEditArgs args)
+        internal LeaderBatchDialog(LeaderBatchEditArgs args)
         {
             InitializeComponent();
 

@@ -6,14 +6,14 @@ namespace HoI2Editor.Forms
     /// <summary>
     ///     チェック結果出力フォーム
     /// </summary>
-    public partial class DataCheckerForm : Form
+    internal partial class DataCheckerForm : Form
     {
         #region 初期化
 
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public DataCheckerForm()
+        internal DataCheckerForm()
         {
             InitializeComponent();
         }
@@ -63,7 +63,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="s">対象文字列</param>
         /// <param name="args">パラメータ</param>
-        public void Write(string s, params object[] args)
+        internal void Write(string s, params object[] args)
         {
             string t = string.Format(s, args);
             resultRichTextBox.AppendText(t);
@@ -74,7 +74,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="s">対象文字列</param>
         /// <param name="args">パラメータ</param>
-        public void WriteLine(string s, params object[] args)
+        internal void WriteLine(string s, params object[] args)
         {
             string t = string.Format(s, args);
             resultRichTextBox.AppendText(t);
@@ -84,7 +84,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     チェック結果を出力する
         /// </summary>
-        public void WriteLine()
+        internal void WriteLine()
         {
             resultRichTextBox.AppendText(Environment.NewLine);
         }

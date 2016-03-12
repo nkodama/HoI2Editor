@@ -6,7 +6,7 @@ namespace HoI2Editor.Parsers
     /// <summary>
     ///     技術データの構文解析クラス
     /// </summary>
-    public static class TechParser
+    internal static class TechParser
     {
         #region 内部定数
 
@@ -24,7 +24,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="fileName">ファイル名</param>
         /// <returns>技術グループデータ</returns>
-        public static TechGroup Parse(string fileName)
+        internal static TechGroup Parse(string fileName)
         {
             using (TextLexer lexer = new TextLexer(fileName, true))
             {

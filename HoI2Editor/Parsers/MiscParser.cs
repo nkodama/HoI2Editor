@@ -7,7 +7,7 @@ namespace HoI2Editor.Parsers
     /// <summary>
     ///     miscファイルの構文解析クラス
     /// </summary>
-    public static class MiscParser
+    internal static class MiscParser
     {
         #region 内部定数
 
@@ -24,7 +24,7 @@ namespace HoI2Editor.Parsers
         ///     miscファイルを構文解析する
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        public static void Parse(string fileName)
+        internal static void Parse(string fileName)
         {
             // ゲームの種類を設定する
             MiscGameType type = Misc.GetGameType();

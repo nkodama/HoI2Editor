@@ -10,7 +10,7 @@ namespace HoI2Editor.Parsers
     /// <summary>
     ///     シナリオの構文解析クラス
     /// </summary>
-    public static class ScenarioParser
+    internal static class ScenarioParser
     {
         #region 内部フィールド
 
@@ -45,7 +45,7 @@ namespace HoI2Editor.Parsers
         /// <param name="fileName">ファイル名</param>
         /// <param name="scenario">シナリオデータ</param>
         /// <returns>構文解析の成否</returns>
-        public static bool Parse(string fileName, Scenario scenario)
+        internal static bool Parse(string fileName, Scenario scenario)
         {
             _fileName = fileName;
             using (TextLexer lexer = new TextLexer(fileName, true))
@@ -10121,7 +10121,7 @@ namespace HoI2Editor.Parsers
         /// <summary>
         ///     シナリオファイルの種類
         /// </summary>
-        public enum ScenarioFileKind
+        internal enum ScenarioFileKind
         {
             Normal, // その他
             Top, // 最上位のファイル

@@ -10,7 +10,7 @@ namespace HoI2Editor.Dialogs
     /// <summary>
     ///     研究機関一括編集ダイアログ
     /// </summary>
-    public partial class TeamBatchDialog : Form
+    internal partial class TeamBatchDialog : Form
     {
         #region 内部フィールド
 
@@ -32,7 +32,7 @@ namespace HoI2Editor.Dialogs
         ///     コンストラクタ
         /// </summary>
         /// <param name="args">一括編集のパラメータ</param>
-        public TeamBatchDialog(TeamBatchEditArgs args)
+        internal TeamBatchDialog(TeamBatchEditArgs args)
         {
             InitializeComponent();
 

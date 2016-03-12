@@ -5,7 +5,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     兵科データ
     /// </summary>
-    public static class Branches
+    internal static class Branches
     {
         #region 内部定数
 
@@ -29,7 +29,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <returns>兵科名</returns>
-        public static string GetName(Branch branch)
+        internal static string GetName(Branch branch)
         {
             return Config.GetText(Names[(int) branch]);
         }
@@ -38,7 +38,7 @@ namespace HoI2Editor.Models
         ///     兵科名の集合を取得する
         /// </summary>
         /// <returns>兵科名の集合</returns>
-        public static string[] GetNames()
+        internal static string[] GetNames()
         {
             return Names.Where(id => id != TextId.Empty).Select(Config.GetText).ToArray();
         }
@@ -49,7 +49,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     兵科
     /// </summary>
-    public enum Branch
+    internal enum Branch
     {
         None,
         Army, // 陸軍

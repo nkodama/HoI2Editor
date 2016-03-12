@@ -5,44 +5,44 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     研究速度データ群
     /// </summary>
-    public static class Researches
+    internal static class Researches
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     研究速度リスト
         /// </summary>
-        public static readonly List<Research> Items = new List<Research>();
+        internal static readonly List<Research> Items = new List<Research>();
 
         /// <summary>
         ///     研究速度計算時の基準年度
         /// </summary>
-        public static ResearchDateMode DateMode { get; set; }
+        internal static ResearchDateMode DateMode { get; set; }
 
         /// <summary>
         ///     指定日付
         /// </summary>
-        public static GameDate SpecifiedDate { get; set; }
+        internal static GameDate SpecifiedDate { get; set; }
 
         /// <summary>
         ///     ロケット試験場の規模
         /// </summary>
-        public static int RocketTestingSites { get; set; }
+        internal static int RocketTestingSites { get; set; }
 
         /// <summary>
         ///     原子炉の規模
         /// </summary>
-        public static int NuclearReactors { get; set; }
+        internal static int NuclearReactors { get; set; }
 
         /// <summary>
         ///     青写真の有無
         /// </summary>
-        public static bool Blueprint { get; set; }
+        internal static bool Blueprint { get; set; }
 
         /// <summary>
         ///     研究速度補正
         /// </summary>
-        public static double Modifier { get; set; }
+        internal static double Modifier { get; set; }
 
         #endregion
 
@@ -66,7 +66,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="tech">対象技術</param>
         /// <param name="teams">研究機関</param>
-        public static void UpdateResearchList(TechItem tech, IEnumerable<Team> teams)
+        internal static void UpdateResearchList(TechItem tech, IEnumerable<Team> teams)
         {
             Items.Clear();
 
@@ -87,7 +87,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     研究速度計算時の基準日付モード
     /// </summary>
-    public enum ResearchDateMode
+    internal enum ResearchDateMode
     {
         Historical, // 史実年度を使用する
         Specified // 指定日付を使用する

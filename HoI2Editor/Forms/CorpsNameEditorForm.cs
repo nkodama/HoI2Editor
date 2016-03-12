@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
@@ -10,11 +11,16 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     軍団名エディタのフォーム
+    ///     軍団名エディタフォーム
     /// </summary>
-    public partial class CorpsNameEditorForm : Form
+    internal partial class CorpsNameEditorForm : Form
     {
         #region 内部フィールド
+
+        /// <summary>
+        ///     軍団名エディタコントローラ
+        /// </summary>
+        private readonly CorpsNameEditorController _controller;
 
         /// <summary>
         ///     接頭辞の履歴
@@ -52,9 +58,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public CorpsNameEditorForm()
+        /// <param name="controller">軍団名エディタコントローラ</param>
+        internal CorpsNameEditorForm(CorpsNameEditorController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // フォームの初期化
             InitForm();
@@ -67,7 +76,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             // 軍団名リストの表示を更新する
             UpdateNameList();
@@ -80,7 +89,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnFileSaved()
+        internal void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             branchListBox.Refresh();
@@ -91,7 +100,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             // 何もしない
         }
@@ -184,7 +193,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnCorpsNameEditorFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>

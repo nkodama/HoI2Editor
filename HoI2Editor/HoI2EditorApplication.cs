@@ -9,13 +9,13 @@ namespace HoI2Editor
     /// <summary>
     ///     アプリケーションクラス
     /// </summary>
-    public static class HoI2EditorApplication
+    internal static class HoI2EditorApplication
     {
         /// <summary>
         ///     アプリケーションのエントリーポイント
         /// </summary>
         [STAThread]
-        public static void Main()
+        internal static void Main()
         {
             try
             {
@@ -47,7 +47,7 @@ namespace HoI2Editor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void OnThreadException(object sender, ThreadExceptionEventArgs e)
+        internal static void OnThreadException(object sender, ThreadExceptionEventArgs e)
         {
             UnhandledExceptionHandler(e.Exception);
         }
@@ -57,7 +57,7 @@ namespace HoI2Editor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        internal static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Exception exception = e.ExceptionObject as Exception;
             if (exception != null)

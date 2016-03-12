@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Models;
 using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     研究速度ビューアのフォーム
+    ///     研究速度ビューアフォーム
     /// </summary>
-    public partial class ResearchViewerForm : Form
+    internal partial class ResearchViewerForm : Form
     {
         #region 内部フィールド
+
+        /// <summary>
+        ///     研究速度ビューアコントローラ
+        /// </summary>
+        private readonly ResearchViewerController _controller;
 
         /// <summary>
         ///     絞り込み後の研究機関リスト
@@ -37,12 +43,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     技術リストビューの列の数
         /// </summary>
-        public const int TechListColumnCount = 4;
+        internal const int TechListColumnCount = 4;
 
         /// <summary>
         ///     研究機関リストビューの列の数
         /// </summary>
-        public const int TeamListColumnCount = 8;
+        internal const int TeamListColumnCount = 8;
 
         #endregion
 
@@ -51,9 +57,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public ResearchViewerForm()
+        /// <param name="controller">研究速度ビューアコントローラ</param>
+        internal ResearchViewerForm(ResearchViewerController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // フォームの初期化
             InitForm();
@@ -66,7 +75,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             // 研究機関リストを絞り込む
             NarrowTeamList();
@@ -85,7 +94,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             switch (id)
             {
@@ -264,7 +273,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnResearchViewerFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>

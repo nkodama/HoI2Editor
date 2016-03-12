@@ -5,7 +5,7 @@ namespace HoI2Editor.Utilities
     /// <summary>
     ///     文字列の履歴を管理するクラス
     /// </summary>
-    public class History
+    internal class History
     {
         /// <summary>
         ///     履歴の実体
@@ -21,7 +21,7 @@ namespace HoI2Editor.Utilities
         ///     コンストラクタ
         /// </summary>
         /// <param name="size">履歴の最大数</param>
-        public History(int size)
+        internal History(int size)
         {
             _size = size;
             _items = new List<string>();
@@ -30,7 +30,7 @@ namespace HoI2Editor.Utilities
         /// <summary>
         ///     履歴の項目をクリアする
         /// </summary>
-        public void Clear()
+        internal void Clear()
         {
             _items.Clear();
         }
@@ -39,7 +39,7 @@ namespace HoI2Editor.Utilities
         ///     履歴の項目を取得する
         /// </summary>
         /// <returns>履歴の項目</returns>
-        public string[] Get()
+        internal string[] Get()
         {
             return _items.ToArray();
         }
@@ -48,7 +48,7 @@ namespace HoI2Editor.Utilities
         ///     履歴の項目を設定する
         /// </summary>
         /// <param name="items">履歴の項目</param>
-        public void Set(string[] items)
+        internal void Set(string[] items)
         {
             _items.Clear();
             _items.AddRange(items);
@@ -58,7 +58,7 @@ namespace HoI2Editor.Utilities
         ///     履歴の項目を追加する
         /// </summary>
         /// <param name="item">履歴の項目</param>
-        public void Add(string item)
+        internal void Add(string item)
         {
             if (!_items.Contains(item))
             {

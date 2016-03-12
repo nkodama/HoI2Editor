@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
@@ -10,18 +11,30 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     基礎データエディタのフォーム
+    ///     基礎データエディタフォーム
     /// </summary>
-    public partial class MiscEditorForm : Form
+    internal partial class MiscEditorForm : Form
     {
+        #region 内部フィールド
+
+        /// <summary>
+        ///     基礎データエディタコントローラ
+        /// </summary>
+        private readonly MiscEditorController _controller;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public MiscEditorForm()
+        /// <param name="controller">基礎データエディタコントローラ</param>
+        internal MiscEditorForm(MiscEditorController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // フォームの初期化
             InitForm();
@@ -34,7 +47,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             foreach (TabPage page in miscTabControl.TabPages)
             {
@@ -48,7 +61,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnFileSaved()
+        internal void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             foreach (TabPage page in miscTabControl.TabPages)
@@ -61,7 +74,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             switch (id)
             {
@@ -324,7 +337,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnMiscEditorFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>
@@ -1065,7 +1078,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.Transport].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
                     break;
 
                 case MiscItemId.SsMaxAttach: // 潜水艦最大付属装備数
@@ -1073,7 +1086,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.Submarine].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
                     break;
 
                 case MiscItemId.SsnMaxAttach: // 原子力潜水艦最大付属装備数
@@ -1081,7 +1094,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.NuclearSubmarine].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
                     break;
 
                 case MiscItemId.DdMaxAttach: // 駆逐艦最大付属装備数
@@ -1089,7 +1102,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.Destroyer].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
                     break;
 
                 case MiscItemId.ClMaxAttach: // 軽巡洋艦最大付属装備数
@@ -1097,7 +1110,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.LightCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
                     break;
 
                 case MiscItemId.CaMaxAttach: // 重巡洋艦最大付属装備数
@@ -1105,7 +1118,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.HeavyCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
                     break;
 
                 case MiscItemId.BcMaxAttach: // 巡洋戦艦最大付属装備数
@@ -1113,7 +1126,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.BattleCruiser].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
                     break;
 
                 case MiscItemId.BbMaxAttach: // 戦艦最大付属装備数
@@ -1121,7 +1134,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.BattleShip].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
                     break;
 
                 case MiscItemId.CvlMaxAttach: // 軽空母最大付属装備数
@@ -1129,7 +1142,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.EscortCarrier].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
                     break;
 
                 case MiscItemId.CvMaxAttach: // 空母最大付属装備数
@@ -1137,7 +1150,7 @@ namespace HoI2Editor.Forms
                     {
                         Units.Items[(int) UnitType.Carrier].SetDirty(UnitClassItemId.MaxAllowedBrigades);
                     }
-                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades, this);
+                    HoI2EditorController.OnItemChanged(EditorItemId.MaxAllowedBrigades);
                     break;
             }
         }

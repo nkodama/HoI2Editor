@@ -10,7 +10,7 @@ namespace HoI2Editor.Dialogs
     /// <summary>
     ///     閣僚一括編集ダイアログ
     /// </summary>
-    public partial class MinisterBatchDialog : Form
+    internal partial class MinisterBatchDialog : Form
     {
         #region 内部フィールド
 
@@ -32,7 +32,7 @@ namespace HoI2Editor.Dialogs
         ///     コンストラクタ
         /// </summary>
         /// <param name="args">一括編集のパラメータ</param>
-        public MinisterBatchDialog(MinisterBatchEditArgs args)
+        internal MinisterBatchDialog(MinisterBatchEditArgs args)
         {
             InitializeComponent();
 

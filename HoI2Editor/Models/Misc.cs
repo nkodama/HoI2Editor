@@ -12,7 +12,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     miscファイルの設定項目
     /// </summary>
-    public static class Misc
+    internal static class Misc
     {
         #region 公開プロパティ
 
@@ -21,7 +21,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     輸送艦最大付属装備数
         /// </summary>
-        public static int TpMaxAttach
+        internal static int TpMaxAttach
         {
             get { return (int?) _items[(int) MiscItemId.TpMaxAttach] ?? 0; }
             set
@@ -34,7 +34,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     潜水艦最大付属装備数
         /// </summary>
-        public static int SsMaxAttach
+        internal static int SsMaxAttach
         {
             get { return (int?) _items[(int) MiscItemId.SsMaxAttach] ?? 0; }
             set
@@ -47,7 +47,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     原子力潜水艦最大付属装備数
         /// </summary>
-        public static int SsnMaxAttach
+        internal static int SsnMaxAttach
         {
             get { return (int?) _items[(int) MiscItemId.SsnMaxAttach] ?? 0; }
             set
@@ -60,7 +60,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     駆逐艦最大付属装備数
         /// </summary>
-        public static int DdMaxAttach
+        internal static int DdMaxAttach
         {
             get { return (int?) _items[(int) MiscItemId.DdMaxAttach] ?? 1; }
             set
@@ -73,7 +73,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     軽巡洋艦最大付属装備数
         /// </summary>
-        public static int ClMaxAttach
+        internal static int ClMaxAttach
         {
             get { return (int?) _items[(int) MiscItemId.ClMaxAttach] ?? 2; }
             set
@@ -86,7 +86,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     重巡洋艦最大付属装備数
         /// </summary>
-        public static int CaMaxAttach
+        internal static int CaMaxAttach
         {
             get { return (int?) _items[(int) MiscItemId.CaMaxAttach] ?? 3; }
             set
@@ -99,7 +99,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     巡洋戦艦最大付属装備数
         /// </summary>
-        public static int BcMaxAttach
+        internal static int BcMaxAttach
         {
             get { return (int?) _items[(int) MiscItemId.BcMaxAttach] ?? 4; }
             set
@@ -112,7 +112,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     戦艦最大付属装備数
         /// </summary>
-        public static int BbMaxAttach
+        internal static int BbMaxAttach
         {
             get { return (int?) _items[(int) MiscItemId.BbMaxAttach] ?? 5; }
             set
@@ -125,7 +125,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     軽空母最大付属装備数
         /// </summary>
-        public static int CvlMaxAttach
+        internal static int CvlMaxAttach
         {
             get { return (int?) _items[(int) MiscItemId.CvlMaxAttach] ?? 1; }
             set
@@ -138,7 +138,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     空母最大付属装備数
         /// </summary>
-        public static int CvMaxAttach
+        internal static int CvMaxAttach
         {
             get { return (int?) _items[(int) MiscItemId.CvMaxAttach] ?? 1; }
             set
@@ -159,7 +159,7 @@ namespace HoI2Editor.Models
         ///     false: 従来形式
         ///     true : DH1.03以降新形式
         /// </remarks>
-        public static bool CombatMode
+        internal static bool CombatMode
         {
             get
             {
@@ -179,18 +179,18 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     青写真ボーナス
         /// </summary>
-        public static double BlueprintBonus => (double?) _items[(int) MiscItemId.BlueprintBonus] ?? 1;
+        internal static double BlueprintBonus => (double?) _items[(int) MiscItemId.BlueprintBonus] ?? 1;
 
         /// <summary>
         ///     史実年度以前研究ペナルティ
         /// </summary>
-        public static double PreHistoricalDateModifier
+        internal static double PreHistoricalDateModifier
             => (double?) _items[(int) MiscItemId.PreHistoricalDateModifier] ?? 1;
 
         /// <summary>
         ///     史実年度以降研究ボーナス
         /// </summary>
-        public static double PostHistoricalDateModifier
+        internal static double PostHistoricalDateModifier
         {
             get
             {
@@ -209,19 +209,19 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     史実年度以降研究ボーナス (AoD)
         /// </summary>
-        public static double PostHistoricalDateModifierAoD
+        internal static double PostHistoricalDateModifierAoD
             => (double?) _items[(int) MiscItemId.PostHistoricalDateModifierAoD] ?? 1;
 
         /// <summary>
         ///     史実年度以降研究ボーナス (DH)
         /// </summary>
-        public static double PostHistoricalDateModifierDh
+        internal static double PostHistoricalDateModifierDh
             => (double?) _items[(int) MiscItemId.PostHistoricalDateModifierDh] ?? 1;
 
         /// <summary>
         ///     研究速度補正
         /// </summary>
-        public static double TechSpeedModifier
+        internal static double TechSpeedModifier
         {
             get
             {
@@ -236,7 +236,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     史実年度以前研究ペナルティ上限
         /// </summary>
-        public static double PreHistoricalPenaltyLimit
+        internal static double PreHistoricalPenaltyLimit
         {
             get
             {
@@ -251,7 +251,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     史実年度以降研究ボーナス上限
         /// </summary>
-        public static double PostHistoricalBonusLimit
+        internal static double PostHistoricalBonusLimit
         {
             get
             {
@@ -270,7 +270,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     新形式閣僚ファイルフォーマット
         /// </summary>
-        public static bool UseNewMinisterFilesFormat
+        internal static bool UseNewMinisterFilesFormat
         {
             get
             {
@@ -287,7 +287,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚引退年を使用
         /// </summary>
-        public static bool EnableRetirementYearMinisters
+        internal static bool EnableRetirementYearMinisters
         {
             get
             {
@@ -304,7 +304,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     指揮官引退年を使用
         /// </summary>
-        public static bool EnableRetirementYearLeaders
+        internal static bool EnableRetirementYearLeaders
         {
             get
             {
@@ -325,7 +325,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップ番号
         /// </summary>
-        public static int MapNumber => (int?) _items[(int) MiscItemId.MapNumber] ?? 0;
+        internal static int MapNumber => (int?) _items[(int) MiscItemId.MapNumber] ?? 0;
 
         #endregion
 
@@ -370,7 +370,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     セクション文字列
         /// </summary>
-        public static readonly string[] SectionStrings =
+        internal static readonly string[] SectionStrings =
         {
             "economy",
             "intelligence",
@@ -388,7 +388,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ゲームごとのセクションの有無
         /// </summary>
-        public static bool[,] SectionTable =
+        internal static bool[,] SectionTable =
         {
             { true, true, true, true, true, true, true, true }, // 経済
             { false, false, false, false, false, true, true, true }, // 諜報
@@ -406,7 +406,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     セクションごとの項目
         /// </summary>
-        public static MiscItemId[][] SectionItems =
+        internal static MiscItemId[][] SectionItems =
         {
             new[]
             {
@@ -1308,7 +1308,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ゲームごとの項目の有無
         /// </summary>
-        public static bool[,] ItemTable =
+        internal static bool[,] ItemTable =
         {
             { true, true, true, true, true, true, true, true },
             { true, true, true, true, true, true, true, true },
@@ -2176,7 +2176,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の型
         /// </summary>
-        public static MiscItemType[] ItemTypes =
+        internal static MiscItemType[] ItemTypes =
         {
             MiscItemType.NonNegDbl2AoD,
             MiscItemType.NonNegDbl,
@@ -3044,7 +3044,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の最小値 (整数型/列挙型)
         /// </summary>
-        public static readonly Dictionary<MiscItemId, int> IntMinValues = new Dictionary<MiscItemId, int>
+        internal static readonly Dictionary<MiscItemId, int> IntMinValues = new Dictionary<MiscItemId, int>
         {
             { MiscItemId.MaxRevoltRisk, 0 },
             { MiscItemId.CanUnitSendNonAllied, 0 },
@@ -3183,7 +3183,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の最大値 (整数型/列挙型)
         /// </summary>
-        public static Dictionary<MiscItemId, int> IntMaxValues = new Dictionary<MiscItemId, int>
+        internal static Dictionary<MiscItemId, int> IntMaxValues = new Dictionary<MiscItemId, int>
         {
             { MiscItemId.MaxRevoltRisk, 100 },
             { MiscItemId.CanUnitSendNonAllied, 1 },
@@ -3323,7 +3323,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の最小値 (実数型)
         /// </summary>
-        public static Dictionary<MiscItemId, double> DblMinValues = new Dictionary<MiscItemId, double>
+        internal static Dictionary<MiscItemId, double> DblMinValues = new Dictionary<MiscItemId, double>
         {
             { MiscItemId.DistanceModifierNeighbours, 0 },
             { MiscItemId.OverStockpileLimitDailyLoss, 0 },
@@ -3392,7 +3392,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の最大値 (実数型)
         /// </summary>
-        public static Dictionary<MiscItemId, double> DblMaxValues = new Dictionary<MiscItemId, double>
+        internal static Dictionary<MiscItemId, double> DblMaxValues = new Dictionary<MiscItemId, double>
         {
             { MiscItemId.DistanceModifierNeighbours, 1 },
             { MiscItemId.OverStockpileLimitDailyLoss, 1 },
@@ -3461,7 +3461,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目名
         /// </summary>
-        public static readonly string[] ItemNames =
+        internal static readonly string[] ItemNames =
         {
             "IcToTcRatio",
             "IcToSuppliesRatio",
@@ -4358,7 +4358,7 @@ namespace HoI2Editor.Models
         /// <remarks>
         ///     ゲームフォルダ、MOD名、ゲーム種類の変更があった場合に呼び出す
         /// </remarks>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             _loaded = false;
         }
@@ -4366,7 +4366,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     miscファイルを再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             // 読み込み前なら何もしない
             if (!_loaded)
@@ -4383,7 +4383,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     miscファイルを読み込む
         /// </summary>
-        public static void Load()
+        internal static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -4430,7 +4430,7 @@ namespace HoI2Editor.Models
         ///     miscファイルを保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
-        public static bool Save()
+        internal static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
@@ -4475,7 +4475,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>項目の値</returns>
-        public static object GetItem(MiscItemId id)
+        internal static object GetItem(MiscItemId id)
         {
             return _items[(int) id];
         }
@@ -4485,7 +4485,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <param name="o">項目の値</param>
-        public static void SetItem(MiscItemId id, object o)
+        internal static void SetItem(MiscItemId id, object o)
         {
             _items[(int) id] = o;
         }
@@ -4495,7 +4495,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>項目の値</returns>
-        public static bool GetBool(MiscItemId id)
+        internal static bool GetBool(MiscItemId id)
         {
             object item = GetItem(id);
 
@@ -4512,7 +4512,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>項目の値</returns>
-        public static int GetInt(MiscItemId id)
+        internal static int GetInt(MiscItemId id)
         {
             object item = GetItem(id);
             int n = 0;
@@ -4547,7 +4547,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>項目の値</returns>
-        public static double GetDouble(MiscItemId id)
+        internal static double GetDouble(MiscItemId id)
         {
             object item = GetItem(id);
             double d = 0;
@@ -4569,7 +4569,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>項目の空白文字/コメント</returns>
-        public static string GetComment(MiscItemId id)
+        internal static string GetComment(MiscItemId id)
         {
             return _comments[(int) id];
         }
@@ -4579,7 +4579,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <param name="s">設定する文字列</param>
-        public static void SetComment(MiscItemId id, string s)
+        internal static void SetComment(MiscItemId id, string s)
         {
             _comments[(int) id] = s;
         }
@@ -4589,7 +4589,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="section">セクションID</param>
         /// <returns>セクション末尾の空白文字/コメント</returns>
-        public static string GetSuffix(MiscSectionId section)
+        internal static string GetSuffix(MiscSectionId section)
         {
             return _suffixes[(int) section];
         }
@@ -4599,7 +4599,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="section">セクションID</param>
         /// <param name="s">設定する文字列</param>
-        public static void SetSuffix(MiscSectionId section, string s)
+        internal static void SetSuffix(MiscSectionId section, string s)
         {
             _suffixes[(int) section] = s;
         }
@@ -4612,7 +4612,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -4622,7 +4622,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(MiscItemId id)
+        internal static bool IsDirty(MiscItemId id)
         {
             return DirtyFlags[(int) id];
         }
@@ -4630,7 +4630,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public static void SetDirty()
+        internal static void SetDirty()
         {
             _dirtyFlag = true;
         }
@@ -4639,7 +4639,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public static void SetDirty(MiscItemId id)
+        internal static void SetDirty(MiscItemId id)
         {
             DirtyFlags[(int) id] = true;
             _dirtyFlag = true;
@@ -4648,7 +4648,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public static void ResetDirtyAll()
+        internal static void ResetDirtyAll()
         {
             foreach (MiscItemId id in Enum.GetValues(typeof (MiscItemId)))
             {
@@ -4666,7 +4666,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="section">セクション</param>
         /// <returns>セクション名</returns>
-        public static string GetSectionName(MiscSectionId section)
+        internal static string GetSectionName(MiscSectionId section)
         {
             return HoI2EditorController.GetResourceString("MiscSection" + SectionNames[(int) section]);
         }
@@ -4676,7 +4676,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>項目名</returns>
-        public static string GetItemName(MiscItemId id)
+        internal static string GetItemName(MiscItemId id)
         {
             return HoI2EditorController.GetResourceString("MiscLabel" + ItemNames[(int) id]);
         }
@@ -4686,7 +4686,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>ツールチップ文字列</returns>
-        public static string GetItemToolTip(MiscItemId id)
+        internal static string GetItemToolTip(MiscItemId id)
         {
             return HoI2EditorController.GetResourceString("MiscToolTip" + ItemNames[(int) id]);
         }
@@ -4697,7 +4697,7 @@ namespace HoI2Editor.Models
         /// <param name="id">項目ID</param>
         /// <param name="index">選択肢のインデックス</param>
         /// <returns>選択肢の文字列</returns>
-        public static string GetItemChoice(MiscItemId id, int index)
+        internal static string GetItemChoice(MiscItemId id, int index)
         {
             string s = IntHelper.ToString(index);
             return s + ": " + HoI2EditorController.GetResourceString("MiscEnum" + ItemNames[(int) id] + s);
@@ -4709,7 +4709,7 @@ namespace HoI2Editor.Models
         /// <param name="id">項目ID</param>
         /// <returns>文字列</returns>
         /// <remarks>Bool/Enumの項目は整数で表現する</remarks>
-        public static string GetString(MiscItemId id)
+        internal static string GetString(MiscItemId id)
         {
             switch (ItemTypes[(int) id])
             {
@@ -4873,7 +4873,7 @@ namespace HoI2Editor.Models
         ///     miscファイルの種類を取得する
         /// </summary>
         /// <returns></returns>
-        public static MiscGameType GetGameType()
+        internal static MiscGameType GetGameType()
         {
             switch (Game.Type)
             {
@@ -4899,7 +4899,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     misc項目ID
     /// </summary>
-    public enum MiscItemId
+    internal enum MiscItemId
     {
         // economy
         IcToTcRatio, // ICからTCへの変換効率
@@ -5788,7 +5788,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     miscセクションID
     /// </summary>
-    public enum MiscSectionId
+    internal enum MiscSectionId
     {
         Economy, // 経済
         Intelligence, // 諜報
@@ -5806,7 +5806,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     miscファイルの種類
     /// </summary>
-    public enum MiscGameType
+    internal enum MiscGameType
     {
         Dda12, // DDA1.2
         Dda13, // DDA1.3
@@ -5821,7 +5821,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     misc項目の型
     /// </summary>
-    public enum MiscItemType
+    internal enum MiscItemType
     {
         None, // 終端項目
         Bool, // ブール値

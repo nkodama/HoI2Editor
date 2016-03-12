@@ -10,14 +10,14 @@ namespace HoI2Editor.Controllers
     /// <summary>
     ///     ユニットツリーのコントローラクラス
     /// </summary>
-    public class UnitTreeController
+    internal class UnitTreeController
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     選択国
         /// </summary>
-        public Country Country
+        internal Country Country
         {
             get { return _country; }
             set
@@ -48,7 +48,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     特殊ノードの種類
         /// </summary>
-        public enum NodeType
+        internal enum NodeType
         {
             Land,
             Naval,
@@ -69,7 +69,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     ノード選択時の処理
         /// </summary>
-        public event EventHandler<UnitTreeViewEventArgs> AfterSelect;
+        internal event EventHandler<UnitTreeViewEventArgs> AfterSelect;
 
         #endregion
 
@@ -79,7 +79,7 @@ namespace HoI2Editor.Controllers
         ///     コンストラクタ
         /// </summary>
         /// <param name="treeView">ユニットツリービュー</param>
-        public UnitTreeController(TreeView treeView)
+        internal UnitTreeController(TreeView treeView)
         {
             _treeView = treeView;
 
@@ -101,7 +101,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     ユニットツリーを更新する
         /// </summary>
-        public void Update()
+        internal void Update()
         {
             _treeView.BeginUpdate();
             _treeView.Nodes.Clear();
@@ -186,7 +186,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     選択ユニットノードのラベルを更新する
         /// </summary>
-        public void UpdateUnitNodeLabel(string name)
+        internal void UpdateUnitNodeLabel(string name)
         {
             TreeNode node = GetSelectedUnitNode();
             if (node == null)
@@ -200,7 +200,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     選択師団ノードのラベルを更新する
         /// </summary>
-        public void UpdateDivisionNodeLabel(string name)
+        internal void UpdateDivisionNodeLabel(string name)
         {
             TreeNode node = GetSelectedDivisionNode();
             if (node == null)
@@ -357,7 +357,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     ユニットを追加する
         /// </summary>
-        public void AddUnit()
+        internal void AddUnit()
         {
             CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
                                        Scenarios.CreateCountrySettings(_country);
@@ -540,7 +540,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     師団を追加する
         /// </summary>
-        public void AddDivision()
+        internal void AddDivision()
         {
             CountrySettings settings = Scenarios.GetCountrySettings(_country) ??
                                        Scenarios.CreateCountrySettings(_country);
@@ -694,7 +694,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     ユニット/師団を複製する
         /// </summary>
-        public void Clone()
+        internal void Clone()
         {
             TreeNode node = _treeView.SelectedNode;
 
@@ -884,7 +884,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     ユニット/師団を削除する
         /// </summary>
-        public void Remove()
+        internal void Remove()
         {
             TreeNode node = _treeView.SelectedNode;
 
@@ -995,7 +995,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     ユニット/師団を先頭へ移動する
         /// </summary>
-        public void MoveTop()
+        internal void MoveTop()
         {
             TreeNode node = _treeView.SelectedNode;
 
@@ -1015,7 +1015,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     ユニット/師団を1つ上へ移動する
         /// </summary>
-        public void MoveUp()
+        internal void MoveUp()
         {
             TreeNode node = _treeView.SelectedNode;
             TreeNode parent = node.Parent;
@@ -1037,7 +1037,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     ユニット/師団を1つ下へ移動する
         /// </summary>
-        public void MoveDown()
+        internal void MoveDown()
         {
             TreeNode node = _treeView.SelectedNode;
             TreeNode parent = node.Parent;
@@ -1059,7 +1059,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     ユニット/師団を末尾へ移動する
         /// </summary>
-        public void MoveBottom()
+        internal void MoveBottom()
         {
             TreeNode node = _treeView.SelectedNode;
             TreeNode parent = node.Parent;
@@ -1193,7 +1193,7 @@ namespace HoI2Editor.Controllers
         ///     選択中のユニットを取得する
         /// </summary>
         /// <returns>選択中のユニット</returns>
-        public Unit GetSelectedUnit()
+        internal Unit GetSelectedUnit()
         {
             TreeNode node = _treeView.SelectedNode;
             if (node == null)
@@ -1216,7 +1216,7 @@ namespace HoI2Editor.Controllers
         ///     選択中の師団を取得する
         /// </summary>
         /// <returns>選択中の師団</returns>
-        public Division GetSelectedDivision()
+        internal Division GetSelectedDivision()
         {
             TreeNode node = _treeView.SelectedNode;
 
@@ -1377,43 +1377,43 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     ユニットツリーイベントのパラメータ
         /// </summary>
-        public class UnitTreeViewEventArgs : TreeViewEventArgs
+        internal class UnitTreeViewEventArgs : TreeViewEventArgs
         {
             /// <summary>
             ///     対象ユニット
             /// </summary>
-            public Unit Unit { get; set; }
+            internal Unit Unit { get; set; }
 
             /// <summary>
             ///     対象師団
             /// </summary>
-            public Division Division { get; set; }
+            internal Division Division { get; set; }
 
             /// <summary>
             ///     ユニット追加可能かどうか
             /// </summary>
-            public bool CanAddUnit { get; set; }
+            internal bool CanAddUnit { get; set; }
 
             /// <summary>
             ///     師団追加可能かどうか
             /// </summary>
-            public bool CanAddDivision { get; set; }
+            internal bool CanAddDivision { get; set; }
 
             /// <summary>
             ///     先頭ノードかどうか
             /// </summary>
-            public bool IsTop { get; set; }
+            internal bool IsTop { get; set; }
 
             /// <summary>
             ///     末尾ノードかどうか
             /// </summary>
-            public bool IsBottom { get; set; }
+            internal bool IsBottom { get; set; }
 
             /// <summary>
             ///     コンストラクタ
             /// </summary>
             /// <param name="e">ツリーイベントのパラメータ</param>
-            public UnitTreeViewEventArgs(TreeViewEventArgs e) : base(e.Node, e.Action)
+            internal UnitTreeViewEventArgs(TreeViewEventArgs e) : base(e.Node, e.Action)
             {
             }
         }

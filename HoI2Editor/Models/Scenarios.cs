@@ -13,14 +13,14 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     シナリオデータ群
     /// </summary>
-    public static class Scenarios
+    internal static class Scenarios
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     シナリオデータ
         /// </summary>
-        public static Scenario Data { get; private set; }
+        internal static Scenario Data { get; private set; }
 
         #endregion
 
@@ -105,37 +105,37 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     同盟の標準type
         /// </summary>
-        public const int DefaultAllianceType = 15000;
+        internal const int DefaultAllianceType = 15000;
 
         /// <summary>
         ///     戦争の標準type
         /// </summary>
-        public const int DefaultWarType = 9430;
+        internal const int DefaultWarType = 9430;
 
         /// <summary>
         ///     外交協定の標準type
         /// </summary>
-        public const int DefaultTreatyType = 16384;
+        internal const int DefaultTreatyType = 16384;
 
         /// <summary>
         ///     指揮官の標準type
         /// </summary>
-        public const int DefaultLeaderType = 6;
+        internal const int DefaultLeaderType = 6;
 
         /// <summary>
         ///     閣僚の標準type
         /// </summary>
-        public const int DefaultMinisterType = 9;
+        internal const int DefaultMinisterType = 9;
 
         /// <summary>
         ///     研究機関の標準type
         /// </summary>
-        public const int DefaultTeamType = 10;
+        internal const int DefaultTeamType = 10;
 
         /// <summary>
         ///     月名文字列
         /// </summary>
-        public static readonly string[] MonthStrings =
+        internal static readonly string[] MonthStrings =
         {
             "january",
             "february",
@@ -154,7 +154,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     外交協定文字列
         /// </summary>
-        public static readonly string[] TreatyStrings =
+        internal static readonly string[] TreatyStrings =
         {
             "non_aggression",
             "peace",
@@ -164,7 +164,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     天候文字列
         /// </summary>
-        public static readonly string[] WeatherStrings =
+        internal static readonly string[] WeatherStrings =
         {
             "",
             "clear",
@@ -179,7 +179,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     政体文字列
         /// </summary>
-        public static readonly string[] GovernmentStrings =
+        internal static readonly string[] GovernmentStrings =
         {
             "",
             "nazi",
@@ -197,7 +197,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     建物文字列
         /// </summary>
-        public static readonly string[] BuildingStrings =
+        internal static readonly string[] BuildingStrings =
         {
             "",
             "ic",
@@ -218,7 +218,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     任務文字列
         /// </summary>
-        public static readonly string[] MissionStrings =
+        internal static readonly string[] MissionStrings =
         {
             "",
             "attack",
@@ -261,7 +261,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     輸送船団文字列
         /// </summary>
-        public static readonly string[] ConvoyStrings =
+        internal static readonly string[] ConvoyStrings =
         {
             "",
             "transports",
@@ -275,7 +275,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     初期化処理
         /// </summary>
-        public static void Init()
+        internal static void Init()
         {
             // 主要国設定を初期化する
             InitMajorCountries();
@@ -304,7 +304,7 @@ namespace HoI2Editor.Models
         ///     ファイルを読み込み済みかを取得する
         /// </summary>
         /// <returns>ファイルを読み込みならばtrueを返す</returns>
-        public static bool IsLoaded()
+        internal static bool IsLoaded()
         {
             return _loaded;
         }
@@ -312,7 +312,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ファイルの再読み込みを要求する
         /// </summary>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             _loaded = false;
         }
@@ -320,7 +320,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     シナリオファイル群を再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             // 読み込み前なら何もしない
             if (!_loaded)
@@ -336,7 +336,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     シナリオファイル群を読み込む
         /// </summary>
-        public static void Load(string fileName)
+        internal static void Load(string fileName)
         {
             // 読み込み済みのファイル名と一致すれば何もしない
             if (_loaded && fileName.Equals(_fileName))
@@ -384,7 +384,7 @@ namespace HoI2Editor.Models
         ///     シナリオファイル群を保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
-        public static bool Save()
+        internal static bool Save()
         {
             // 読み込み前ならば何もしない
             if (!_loaded)
@@ -740,7 +740,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">対象国</param>
         /// <returns>主要国設定</returns>
-        public static MajorCountrySettings GetMajorCountrySettings(Country country)
+        internal static MajorCountrySettings GetMajorCountrySettings(Country country)
         {
             return MajorTable.ContainsKey(country) ? MajorTable[country] : null;
         }
@@ -749,7 +749,7 @@ namespace HoI2Editor.Models
         ///     主要国設定を設定する
         /// </summary>
         /// <param name="major">主要国設定</param>
-        public static void SetMajorCountrySettings(MajorCountrySettings major)
+        internal static void SetMajorCountrySettings(MajorCountrySettings major)
         {
             MajorTable[major.Country] = major;
         }
@@ -758,7 +758,7 @@ namespace HoI2Editor.Models
         ///     主要国設定を削除する
         /// </summary>
         /// <param name="major">主要国設定</param>
-        public static void RemoveMajorCountrySettings(MajorCountrySettings major)
+        internal static void RemoveMajorCountrySettings(MajorCountrySettings major)
         {
             if (MajorTable.ContainsKey(major.Country))
             {
@@ -771,7 +771,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">対象国</param>
         /// <returns>国家設定</returns>
-        public static CountrySettings GetCountrySettings(Country country)
+        internal static CountrySettings GetCountrySettings(Country country)
         {
             return CountryTable.ContainsKey(country) ? CountryTable[country] : null;
         }
@@ -781,7 +781,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">対象国</param>
         /// <returns>国家設定</returns>
-        public static CountrySettings CreateCountrySettings(Country country)
+        internal static CountrySettings CreateCountrySettings(Country country)
         {
             CountrySettings settings = new CountrySettings
             {
@@ -810,7 +810,7 @@ namespace HoI2Editor.Models
         /// <param name="country1">対象国1</param>
         /// <param name="country2">対象国2</param>
         /// <returns>国家関係</returns>
-        public static Relation GetCountryRelation(Country country1, Country country2)
+        internal static Relation GetCountryRelation(Country country1, Country country2)
         {
             return RelationTable.ContainsKey(country1) && RelationTable[country1].ContainsKey(country2)
                 ? RelationTable[country1][country2]
@@ -822,7 +822,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">対象国</param>
         /// <param name="relation">国家関係</param>
-        public static void SetCountryRelation(Country country, Relation relation)
+        internal static void SetCountryRelation(Country country, Relation relation)
         {
             if (!RelationTable.ContainsKey(country))
             {
@@ -837,7 +837,7 @@ namespace HoI2Editor.Models
         /// <param name="country1">対象国1</param>
         /// <param name="country2">対象国2</param>
         /// <returns>不可侵条約</returns>
-        public static Treaty GetNonAggression(Country country1, Country country2)
+        internal static Treaty GetNonAggression(Country country1, Country country2)
         {
             return NonAggressionTable.ContainsKey(country1) && NonAggressionTable[country1].ContainsKey(country2)
                 ? NonAggressionTable[country1][country2]
@@ -848,7 +848,7 @@ namespace HoI2Editor.Models
         ///     不可侵条約を設定する
         /// </summary>
         /// <param name="treaty">不可侵条約</param>
-        public static void SetNonAggression(Treaty treaty)
+        internal static void SetNonAggression(Treaty treaty)
         {
             if (!NonAggressionTable.ContainsKey(treaty.Country1))
             {
@@ -867,7 +867,7 @@ namespace HoI2Editor.Models
         ///     不可侵条約を削除する
         /// </summary>
         /// <param name="treaty">不可侵条約</param>
-        public static void RemoveNonAggression(Treaty treaty)
+        internal static void RemoveNonAggression(Treaty treaty)
         {
             if (NonAggressionTable.ContainsKey(treaty.Country1) &&
                 NonAggressionTable[treaty.Country1].ContainsKey(treaty.Country2))
@@ -888,7 +888,7 @@ namespace HoI2Editor.Models
         /// <param name="country1">対象国1</param>
         /// <param name="country2">対象国2</param>
         /// <returns>講和条約</returns>
-        public static Treaty GetPeace(Country country1, Country country2)
+        internal static Treaty GetPeace(Country country1, Country country2)
         {
             return PeaceTable.ContainsKey(country1) && PeaceTable[country1].ContainsKey(country2)
                 ? PeaceTable[country1][country2]
@@ -899,7 +899,7 @@ namespace HoI2Editor.Models
         ///     講和条約を設定する
         /// </summary>
         /// <param name="peace">講和条約</param>
-        public static void SetPeace(Treaty peace)
+        internal static void SetPeace(Treaty peace)
         {
             if (!PeaceTable.ContainsKey(peace.Country1))
             {
@@ -918,7 +918,7 @@ namespace HoI2Editor.Models
         ///     講和条約を削除する
         /// </summary>
         /// <param name="peace">講和条約</param>
-        public static void RemovePeace(Treaty peace)
+        internal static void RemovePeace(Treaty peace)
         {
             if (PeaceTable.ContainsKey(peace.Country1) &&
                 PeaceTable[peace.Country1].ContainsKey(peace.Country2))
@@ -939,7 +939,7 @@ namespace HoI2Editor.Models
         /// <param name="country1">対象国1</param>
         /// <param name="country2">対象国2</param>
         /// <returns>諜報設定</returns>
-        public static SpySettings GetCountryIntelligence(Country country1, Country country2)
+        internal static SpySettings GetCountryIntelligence(Country country1, Country country2)
         {
             return SpyTable.ContainsKey(country1) && SpyTable[country1].ContainsKey(country2)
                 ? SpyTable[country1][country2]
@@ -951,7 +951,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">対象国</param>
         /// <param name="spy">諜報設定</param>
-        public static void SetCountryIntelligence(Country country, SpySettings spy)
+        internal static void SetCountryIntelligence(Country country, SpySettings spy)
         {
             if (!SpyTable.ContainsKey(country))
             {
@@ -965,7 +965,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国家</param>
         /// <returns>国タグと国名の文字列</returns>
-        public static string GetCountryTagName(Country country)
+        internal static string GetCountryTagName(Country country)
         {
             return $"{Countries.Strings[(int) country]} {GetCountryName(country)}";
         }
@@ -975,7 +975,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国家</param>
         /// <returns>国名文字列</returns>
-        public static string GetCountryName(Country country)
+        internal static string GetCountryName(Country country)
         {
             // 主要国設定の国名
             MajorCountrySettings major = GetMajorCountrySettings(country);
@@ -1004,7 +1004,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <returns>プロヴィンス名</returns>
-        public static string GetProvinceName(int id)
+        internal static string GetProvinceName(int id)
         {
             Province province = Provinces.Items[id];
             ProvinceSettings settings = GetProvinceSettings(id);
@@ -1021,7 +1021,7 @@ namespace HoI2Editor.Models
         /// <param name="province">プロヴィンス</param>
         /// <param name="settings">プロヴィンス設定</param>
         /// <returns>プロヴィンス名</returns>
-        public static string GetProvinceName(Province province, ProvinceSettings settings)
+        internal static string GetProvinceName(Province province, ProvinceSettings settings)
         {
             if (!string.IsNullOrEmpty(settings?.Name))
             {
@@ -1036,7 +1036,7 @@ namespace HoI2Editor.Models
         /// <param name="province">プロヴィンス</param>
         /// <param name="settings">プロヴィンス設定</param>
         /// <param name="s">プロヴィンス名</param>
-        public static void SetProvinceName(Province province, ProvinceSettings settings, string s)
+        internal static void SetProvinceName(Province province, ProvinceSettings settings, string s)
         {
             if (!string.IsNullOrEmpty(settings?.Name))
             {
@@ -1096,7 +1096,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <returns>プロヴィンス設定</returns>
-        public static ProvinceSettings GetProvinceSettings(int id)
+        internal static ProvinceSettings GetProvinceSettings(int id)
         {
             if (!ProvinceTable.ContainsKey(id))
             {
@@ -1109,7 +1109,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンス設定を追加する
         /// </summary>
         /// <param name="settings">プロヴィンス設定</param>
-        public static void AddProvinceSettings(ProvinceSettings settings)
+        internal static void AddProvinceSettings(ProvinceSettings settings)
         {
             ProvinceSettings prev = Data.Provinces.Find(ps => ps.Id == settings.Id);
             if (prev == null)
@@ -1269,7 +1269,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <param name="settings">国家設定</param>
-        public static void AddCoreProvince(int id, CountrySettings settings)
+        internal static void AddCoreProvince(int id, CountrySettings settings)
         {
             // 中核プロヴィンスを追加する
             if (!settings.NationalProvinces.Contains(id))
@@ -1283,7 +1283,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <param name="settings">国家設定</param>
-        public static void RemoveCoreProvince(int id, CountrySettings settings)
+        internal static void RemoveCoreProvince(int id, CountrySettings settings)
         {
             // 中核プロヴィンスを削除する
             if (settings.NationalProvinces.Contains(id))
@@ -1297,7 +1297,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <param name="settings">国家設定</param>
-        public static void AddOwnedProvince(int id, CountrySettings settings)
+        internal static void AddOwnedProvince(int id, CountrySettings settings)
         {
             // 保有プロヴィンスを追加する
             if (!settings.OwnedProvinces.Contains(id))
@@ -1320,7 +1320,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <param name="settings">国家設定</param>
-        public static void RemoveOwnedProvince(int id, CountrySettings settings)
+        internal static void RemoveOwnedProvince(int id, CountrySettings settings)
         {
             // 保有プロヴィンスを削除する
             if (settings.OwnedProvinces.Contains(id))
@@ -1337,7 +1337,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <param name="settings">国家設定</param>
-        public static void AddControlledProvince(int id, CountrySettings settings)
+        internal static void AddControlledProvince(int id, CountrySettings settings)
         {
             // 支配プロヴィンスを追加する
             if (!settings.ControlledProvinces.Contains(id))
@@ -1360,7 +1360,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <param name="settings">国家設定</param>
-        public static void RemoveControlledProvince(int id, CountrySettings settings)
+        internal static void RemoveControlledProvince(int id, CountrySettings settings)
         {
             // 支配プロヴィンスを削除する
             if (settings.ControlledProvinces.Contains(id))
@@ -1377,7 +1377,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <param name="settings">国家設定</param>
-        public static void AddClaimedProvince(int id, CountrySettings settings)
+        internal static void AddClaimedProvince(int id, CountrySettings settings)
         {
             // 領有権主張プロヴィンスを追加する
             if (!settings.ClaimedProvinces.Contains(id))
@@ -1391,7 +1391,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <param name="settings">国家設定</param>
-        public static void RemoveClaimedProvince(int id, CountrySettings settings)
+        internal static void RemoveClaimedProvince(int id, CountrySettings settings)
         {
             // 領有権主張プロヴィンスを削除する
             if (settings.ClaimedProvinces.Contains(id))
@@ -1552,7 +1552,7 @@ namespace HoI2Editor.Models
         /// <param name="type">type</param>
         /// <param name="id">id</param>
         /// <returns>typeとidの組が存在すればtrueを返す</returns>
-        public static bool ExistsTypeId(int type, int id)
+        internal static bool ExistsTypeId(int type, int id)
         {
             return _usedTypeIds.ContainsKey(type) && _usedTypeIds[type].Contains(id);
         }
@@ -1562,7 +1562,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">typeとidの組</param>
         /// <returns>登録に成功すればtrueを返す</returns>
-        public static bool AddTypeId(TypeId id)
+        internal static bool AddTypeId(TypeId id)
         {
             if (id == null)
             {
@@ -1588,7 +1588,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">typeとidの組</param>
         /// <returns>削除に成功すればtrueを返す</returns>
-        public static bool RemoveTypeId(TypeId id)
+        internal static bool RemoveTypeId(TypeId id)
         {
             if (id == null)
             {
@@ -1614,7 +1614,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="startType">探索開始type</param>
         /// <returns>新規type</returns>
-        public static int GetNewType(int startType)
+        internal static int GetNewType(int startType)
         {
             int type = startType;
             while (!_usedTypeIds.ContainsKey(type))
@@ -1630,7 +1630,7 @@ namespace HoI2Editor.Models
         /// <param name="startType">探索開始type</param>
         /// <param name="id">id</param>
         /// <returns>新規type</returns>
-        public static int GetNewType(int startType, int id)
+        internal static int GetNewType(int startType, int id)
         {
             int type = startType;
             while (ExistsTypeId(type, id))
@@ -1646,7 +1646,7 @@ namespace HoI2Editor.Models
         /// <param name="type">type</param>
         /// <param name="startId">探索開始id</param>
         /// <returns>新規id</returns>
-        public static int GetNewId(int type, int startId)
+        internal static int GetNewId(int type, int startId)
         {
             int id = startId;
             if (!_usedTypeIds.ContainsKey(type))
@@ -1666,7 +1666,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="typeId">typeとidの組</param>
         /// <param name="type">typeの値</param>
-        public static void SetType(TypeId typeId, int type)
+        internal static void SetType(TypeId typeId, int type)
         {
             RemoveTypeId(typeId);
             typeId.Type = type;
@@ -1678,7 +1678,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="typeId">typeとidの組</param>
         /// <param name="id">idの値</param>
-        public static void SetId(TypeId typeId, int id)
+        internal static void SetId(TypeId typeId, int id)
         {
             RemoveTypeId(typeId);
             typeId.Id = id;
@@ -1691,7 +1691,7 @@ namespace HoI2Editor.Models
         /// <param name="type">type</param>
         /// <param name="startId">探索開始id</param>
         /// <returns>新規id</returns>
-        public static TypeId GetNewTypeId(int type, int startId)
+        internal static TypeId GetNewTypeId(int type, int startId)
         {
             if (!_usedTypeIds.ContainsKey(type))
             {
@@ -1715,7 +1715,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -1723,7 +1723,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public static void SetDirty()
+        internal static void SetDirty()
         {
             _dirtyFlag = true;
         }

@@ -6,14 +6,14 @@ namespace HoI2Editor.Utilities
     /// <summary>
     ///     オブジェクト型のヘルパークラス
     /// </summary>
-    public static class ObjectHelper
+    internal static class ObjectHelper
     {
         /// <summary>
         ///     オブジェクト型を文字列に変換する
         /// </summary>
         /// <param name="o">変換対象</param>
         /// <returns>文字列</returns>
-        public static string ToString(object o)
+        internal static string ToString(object o)
         {
             if (o == null)
             {
@@ -44,7 +44,7 @@ namespace HoI2Editor.Utilities
         /// <param name="x">比較対象1</param>
         /// <param name="y">比較対象2</param>
         /// <returns>2つのオブジェクトが等しい値ならばtrueを返す</returns>
-        public static bool IsEqual(object x, object y)
+        internal static bool IsEqual(object x, object y)
         {
             if (x is double && y is double)
             {
@@ -58,7 +58,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="o">判定対象</param>
         /// <returns>nullまたは空文字列ならばtrueを返す</returns>
-        public static bool IsNullOrEmpty(object o)
+        internal static bool IsNullOrEmpty(object o)
         {
             return string.IsNullOrEmpty(o as string);
         }

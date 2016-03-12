@@ -19,7 +19,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     言語モード
         /// </summary>
-        public static LanguageMode LangMode
+        internal static LanguageMode LangMode
         {
             get { return _langMode; }
             set
@@ -36,7 +36,7 @@ namespace HoI2Editor.Models
         ///     日本語環境ならば先頭言語が日本語、その次が英語(英語版日本語化の場合)で残りは空
         ///     日本語環境でなければ、英仏伊西独波葡露Extra1/2の順
         /// </remarks>
-        public static int LangIndex
+        internal static int LangIndex
         {
             private get { return _langIndex; }
             set
@@ -149,7 +149,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     言語名文字列
         /// </summary>
-        public static readonly string[][] LanguageStrings =
+        internal static readonly string[][] LanguageStrings =
         {
             new[] { Resources.LanguageJapanese },
             new[]
@@ -273,7 +273,7 @@ namespace HoI2Editor.Models
         /// <remarks>
         ///     ゲームフォルダ、MOD名、ゲーム種類、言語の変更があった場合に呼び出す
         /// </remarks>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             _loaded = false;
         }
@@ -281,7 +281,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     文字列定義ファイル群を再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             // 読み込み前なら何もしない
             if (!_loaded)
@@ -297,7 +297,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     文字列ファイル群を読み込む
         /// </summary>
-        public static void Load()
+        internal static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -676,7 +676,7 @@ namespace HoI2Editor.Models
         ///     文字列ファイル群を保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
-        public static bool Save()
+        internal static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
@@ -867,7 +867,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="key">文字列の定義名</param>
         /// <returns>取得した文字列</returns>
-        public static string GetText(string key)
+        internal static string GetText(string key)
         {
             if (string.IsNullOrEmpty(key))
             {
@@ -903,7 +903,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">文字列ID</param>
         /// <returns>取得した文字列</returns>
-        public static string GetText(TextId id)
+        internal static string GetText(TextId id)
         {
             string key = KeyStrings[(int) id];
             return GetText(key);
@@ -919,7 +919,7 @@ namespace HoI2Editor.Models
         ///     文字列が登録されていなければ新規追加、登録されていれば値を変更する
         ///     ファイル名の指定は既存の定義が存在しない場合のみ有効
         /// </remarks>
-        public static void SetText(string key, string text, string fileName)
+        internal static void SetText(string key, string text, string fileName)
         {
             if (string.IsNullOrEmpty(key))
             {
@@ -967,7 +967,7 @@ namespace HoI2Editor.Models
         /// <param name="id">文字列ID</param>
         /// <param name="text">登録する文字列</param>
         /// <param name="fileName">文字列定義ファイル名</param>
-        public static void SetText(TextId id, string text, string fileName)
+        internal static void SetText(TextId id, string text, string fileName)
         {
             string key = KeyStrings[(int) id];
             SetText(key, text, fileName);
@@ -979,7 +979,7 @@ namespace HoI2Editor.Models
         /// <param name="oldKey">変更対象の文字列定義名</param>
         /// <param name="newKey">変更後の文字列定義名</param>
         /// <param name="fileName">文字列定義ファイル名</param>
-        public static void RenameText(string oldKey, string newKey, string fileName)
+        internal static void RenameText(string oldKey, string newKey, string fileName)
         {
             if (string.IsNullOrEmpty(oldKey) || string.IsNullOrEmpty(newKey))
             {
@@ -1068,7 +1068,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="key">文字列の定義名</param>
         /// <param name="fileName">文字列定義ファイル名</param>
-        public static void RemoveText(string key, string fileName)
+        internal static void RemoveText(string key, string fileName)
         {
             // 文字列変換テーブルから削除する
             if (Text.ContainsKey(key))
@@ -1112,7 +1112,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="key">文字列の定義名</param>
         /// <returns>文字列が登録されていればtrueを返す</returns>
-        public static bool ExistsKey(string key)
+        internal static bool ExistsKey(string key)
         {
             if (string.IsNullOrEmpty(key))
             {
@@ -1128,7 +1128,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="key">文字列の定義名</param>
         /// <returns>一時キーかどうか</returns>
-        public static bool IsTempKey(string key)
+        internal static bool IsTempKey(string key)
         {
             return !string.IsNullOrEmpty(key) && RegexTempKey.IsMatch(key);
         }
@@ -1137,7 +1137,7 @@ namespace HoI2Editor.Models
         ///     一時キーを取得する
         /// </summary>
         /// <returns>一時キー名</returns>
-        public static string GetTempKey()
+        internal static string GetTempKey()
         {
             string key;
             do
@@ -1157,7 +1157,7 @@ namespace HoI2Editor.Models
         ///     一時キーリストに登録する
         /// </summary>
         /// <param name="key">文字列の定義名</param>
-        public static void AddTempKey(string key)
+        internal static void AddTempKey(string key)
         {
             if (!TempKeyList.Contains(key))
             {
@@ -1387,7 +1387,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return DirtyFiles.Count > 0;
         }
@@ -1396,7 +1396,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを更新する
         /// </summary>
         /// <param name="fileName">文字列定義ファイル名</param>
-        public static void SetDirty(string fileName)
+        internal static void SetDirty(string fileName)
         {
             if (!DirtyFiles.Contains(fileName))
             {
@@ -1418,7 +1418,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     言語モード
     /// </summary>
-    public enum LanguageMode
+    internal enum LanguageMode
     {
         Japanese, // 日本語版
         English, // 英語版
@@ -1431,7 +1431,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     文字列ID
     /// </summary>
-    public enum TextId
+    internal enum TextId
     {
         Empty, // 空文字列
         BranchArmy, // 陸軍

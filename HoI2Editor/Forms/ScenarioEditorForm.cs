@@ -13,16 +13,16 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     シナリオエディタのフォーム
+    ///     シナリオエディタフォーム
     /// </summary>
-    public partial class ScenarioEditorForm : Form
+    internal partial class ScenarioEditorForm : Form
     {
         #region 内部フィールド
 
         /// <summary>
         ///     シナリオエディタのコントローラ
         /// </summary>
-        private ScenarioEditorController _controller;
+        private readonly ScenarioEditorController _controller;
 
         /// <summary>
         ///     タブページ番号
@@ -171,9 +171,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public ScenarioEditorForm()
+        /// <param name="controller">シナリオエディタコントローラ</param>
+        internal ScenarioEditorForm(ScenarioEditorController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // フォームの初期化
             InitForm();
@@ -186,7 +189,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             // 読み込み前ならば何もしない
             if (!Scenarios.IsLoaded())
@@ -218,7 +221,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnFileSaved()
+        internal void OnFileSaved()
         {
             // 各タブページの初期化済み状態をクリアする
             foreach (TabPageNo page in Enum.GetValues(typeof (TabPageNo)))
@@ -234,7 +237,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             // 何もしない
         }
@@ -286,12 +289,11 @@ namespace HoI2Editor.Forms
 
             // マップパネル
             _mapPanelController = new MapPanelController(provinceMapPanel, provinceMapPictureBox);
+            _controller.AttachMapPanel(_mapPanelController);
 
             // ユニットツリー
             _unitTreeController = new UnitTreeController(unitTreeView);
-
-            // コントローラ
-            _controller = new ScenarioEditorController(this, _mapPanelController, _unitTreeController);
+            _controller.AttachUnitTree(_unitTreeController);
         }
 
         /// <summary>
@@ -325,7 +327,7 @@ namespace HoI2Editor.Forms
             // 指揮官データを遅延読み込みする
             Leaders.LoadAsync(null);
 
-            // 閣僚データを遅延読込する
+            // 閣僚データを遅延読み込みする
             Ministers.LoadAsync(null);
 
             // 技術データを遅延読み込みする
@@ -392,7 +394,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnScenarioEditorFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>
@@ -860,7 +862,7 @@ namespace HoI2Editor.Forms
         ///     パネル画像を更新する
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        public void UpdatePanelImage(string fileName)
+        internal void UpdatePanelImage(string fileName)
         {
             Image prev = panelPictureBox.Image;
             if (!string.IsNullOrEmpty(fileName) &&
@@ -1651,7 +1653,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <param name="fileName">プロパガンダ画像名</param>
-        public void UpdatePropagandaImage(Country country, string fileName)
+        internal void UpdatePropagandaImage(Country country, string fileName)
         {
             Image prev = propagandaPictureBox.Image;
             propagandaPictureBox.Image = GetPropagandaImage(country, fileName);
@@ -2405,7 +2407,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="no">項目番号</param>
         /// <param name="s">文字列</param>
-        public void SetAllianceListItemText(int no, string s)
+        internal void SetAllianceListItemText(int no, string s)
         {
             allianceListView.SelectedItems[0].SubItems[no].Text = s;
         }
@@ -4136,7 +4138,7 @@ namespace HoI2Editor.Forms
         /// <param name="index">項目のインデックス</param>
         /// <param name="no">項目番号</param>
         /// <param name="s">文字列</param>
-        public void SetRelationListItemText(int index, int no, string s)
+        internal void SetRelationListItemText(int index, int no, string s)
         {
             relationListView.Items[index].SubItems[no].Text = s;
         }
@@ -4146,7 +4148,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="no">項目番号</param>
         /// <param name="s">文字列</param>
-        public void SetRelationListItemText(int no, string s)
+        internal void SetRelationListItemText(int no, string s)
         {
             relationListView.SelectedItems[0].SubItems[no].Text = s;
         }
@@ -5650,7 +5652,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="no">項目番号</param>
         /// <param name="s">文字列</param>
-        public void SetTradeListItemText(int no, string s)
+        internal void SetTradeListItemText(int no, string s)
         {
             tradeListView.SelectedItems[0].SubItems[no].Text = s;
         }
@@ -9113,7 +9115,7 @@ namespace HoI2Editor.Forms
         /// <param name="index">プロヴィンスリストビューのインデックス</param>
         /// <param name="no">項目番号</param>
         /// <param name="s">文字列</param>
-        public void SetProvinceListItemText(int index, int no, string s)
+        internal void SetProvinceListItemText(int index, int no, string s)
         {
             provinceListView.Items[index].SubItems[no].Text = s;
         }
@@ -11400,7 +11402,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="itemId"></param>
         /// <returns></returns>
-        public Control GetItemControl(ScenarioEditorItemId itemId)
+        internal Control GetItemControl(ScenarioEditorItemId itemId)
         {
             return _itemControls.ContainsKey(itemId) ? _itemControls[itemId] : null;
         }

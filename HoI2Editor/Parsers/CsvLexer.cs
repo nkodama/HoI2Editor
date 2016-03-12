@@ -8,29 +8,29 @@ namespace HoI2Editor.Parsers
     /// <summary>
     ///     CSVファイルの字句解析クラス
     /// </summary>
-    public class CsvLexer : IDisposable
+    internal class CsvLexer : IDisposable
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     解析中のファイル名
         /// </summary>
-        public string PathName { get; private set; }
+        internal string PathName { get; private set; }
 
         /// <summary>
         ///     解析中のファイル名 (ディレクトリ除く)
         /// </summary>
-        public string FileName => Path.GetFileName(PathName);
+        internal string FileName => Path.GetFileName(PathName);
 
         /// <summary>
         ///     解析中の行番号
         /// </summary>
-        public int LineNo { get; private set; }
+        internal int LineNo { get; private set; }
 
         /// <summary>
         ///     ファイルの末尾に到達したかどうかを返す
         /// </summary>
-        public bool EndOfStream => _reader.EndOfStream;
+        internal bool EndOfStream => _reader.EndOfStream;
 
         #endregion
 
@@ -58,7 +58,7 @@ namespace HoI2Editor.Parsers
         ///     コンストラクタ
         /// </summary>
         /// <param name="fileName">解析対象のファイル名</param>
-        public CsvLexer(string fileName)
+        internal CsvLexer(string fileName)
         {
             Open(fileName);
         }
@@ -96,7 +96,7 @@ namespace HoI2Editor.Parsers
         ///     ファイルを開く
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        public void Open(string fileName)
+        internal void Open(string fileName)
         {
             if (!File.Exists(fileName))
             {
@@ -118,7 +118,7 @@ namespace HoI2Editor.Parsers
         /// <summary>
         ///     ファイルを閉じる
         /// </summary>
-        public void Close()
+        internal void Close()
         {
             _reader.Close();
             _reader = null;
@@ -132,7 +132,7 @@ namespace HoI2Editor.Parsers
         ///     字句解析
         /// </summary>
         /// <returns>トークン列</returns>
-        public string[] GetTokens()
+        internal string[] GetTokens()
         {
             // ファイルの末尾に到達したらnullを返す
             if (_reader.EndOfStream)
@@ -161,7 +161,7 @@ namespace HoI2Editor.Parsers
         /// <summary>
         ///     1行読み飛ばす
         /// </summary>
-        public void SkipLine()
+        internal void SkipLine()
         {
             // ファイルの末尾に到達したら何もしない
             if (_reader.EndOfStream)

@@ -6,7 +6,7 @@ namespace HoI2Editor.Parsers
     /// <summary>
     ///     閣僚特性定義ファイルの構文解析(DH)
     /// </summary>
-    public static class MinisterPersonalityParser
+    internal static class MinisterPersonalityParser
     {
         #region 内部定数
 
@@ -47,7 +47,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="fileName">ファイル名</param>
         /// <returns>閣僚特性リスト</returns>
-        public static List<MinisterPersonalityInfo> Parse(string fileName)
+        internal static List<MinisterPersonalityInfo> Parse(string fileName)
         {
             List<MinisterPersonalityInfo> list = new List<MinisterPersonalityInfo>();
 

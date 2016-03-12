@@ -6,29 +6,29 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     研究速度計算クラス
     /// </summary>
-    public class Research
+    internal class Research
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     対象技術
         /// </summary>
-        public TechItem Tech { get; private set; }
+        internal TechItem Tech { get; private set; }
 
         /// <summary>
         ///     対象研究機関
         /// </summary>
-        public Team Team { get; private set; }
+        internal Team Team { get; private set; }
 
         /// <summary>
         ///     研究に要する日数
         /// </summary>
-        public int Days { get; }
+        internal int Days { get; }
 
         /// <summary>
         ///     研究が完了する日付
         /// </summary>
-        public GameDate EndDate { get; private set; }
+        internal GameDate EndDate { get; private set; }
 
         #endregion
 
@@ -39,7 +39,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="tech">技術項目</param>
         /// <param name="team">研究機関</param>
-        public Research(TechItem tech, Team team)
+        internal Research(TechItem tech, Team team)
         {
             Tech = tech;
             Team = team;

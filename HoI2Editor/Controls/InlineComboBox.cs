@@ -10,7 +10,7 @@ namespace HoI2Editor.Controls
     ///     項目編集用コンボボックス
     /// </summary>
     [ToolboxItem(false)]
-    public partial class InlineComboBox : ComboBox
+    internal partial class InlineComboBox : ComboBox
     {
         #region 公開イベント
 
@@ -19,7 +19,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         [Category("動作")]
         [Description("項目の編集を完了したときに発生します。")]
-        public event EventHandler<CancelEventArgs> FinishEdit;
+        internal event EventHandler<CancelEventArgs> FinishEdit;
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace HoI2Editor.Controls
         /// <param name="size">サイズ</param>
         /// <param name="parent">親コントロール</param>
         /// <param name="dropDownWidth">ドロップダウンリストの幅</param>
-        public InlineComboBox(IEnumerable<string> items, int index, Point location, Size size, int dropDownWidth,
+        internal InlineComboBox(IEnumerable<string> items, int index, Point location, Size size, int dropDownWidth,
             Control parent)
         {
             InitializeComponent();

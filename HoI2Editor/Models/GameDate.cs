@@ -5,29 +5,29 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ゲーム内の日付
     /// </summary>
-    public class GameDate
+    internal class GameDate
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     年
         /// </summary>
-        public int Year { get; set; }
+        internal int Year { get; set; }
 
         /// <summary>
         ///     月
         /// </summary>
-        public int Month { get; set; }
+        internal int Month { get; set; }
 
         /// <summary>
         ///     日
         /// </summary>
-        public int Day { get; set; }
+        internal int Day { get; set; }
 
         /// <summary>
         ///     時
         /// </summary>
-        public int Hour { get; set; }
+        internal int Hour { get; set; }
 
         #endregion
 
@@ -36,32 +36,32 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     年の最小値
         /// </summary>
-        public const int MinYear = 0;
+        internal const int MinYear = 0;
 
         /// <summary>
         ///     年の最大値
         /// </summary>
-        public const int MaxYear = 9999;
+        internal const int MaxYear = 9999;
 
         /// <summary>
         ///     月の最小値
         /// </summary>
-        public const int MinMonth = 1;
+        internal const int MinMonth = 1;
 
         /// <summary>
         ///     月の最大値
         /// </summary>
-        public const int MaxMonth = 12;
+        internal const int MaxMonth = 12;
 
         /// <summary>
         ///     日の最小値
         /// </summary>
-        public const int MinDay = 1;
+        internal const int MinDay = 1;
 
         /// <summary>
         ///     日の最大値
         /// </summary>
-        public const int MaxDay = 30;
+        internal const int MaxDay = 30;
 
         #endregion
 
@@ -73,7 +73,7 @@ namespace HoI2Editor.Models
         /// <param name="year">年</param>
         /// <param name="month">月</param>
         /// <param name="day">日</param>
-        public GameDate(int year, int month, int day)
+        internal GameDate(int year, int month, int day)
         {
             Year = year;
             Month = month;
@@ -84,7 +84,7 @@ namespace HoI2Editor.Models
         ///     コンストラクタ
         /// </summary>
         /// <param name="year">年</param>
-        public GameDate(int year)
+        internal GameDate(int year)
         {
             Year = year;
             Month = 1;
@@ -94,7 +94,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public GameDate()
+        internal GameDate()
         {
             Year = 1936;
             Month = 1;
@@ -105,7 +105,7 @@ namespace HoI2Editor.Models
         ///     コピーコンストラクタ
         /// </summary>
         /// <param name="original">複製元のゲーム日時</param>
-        public GameDate(GameDate original)
+        internal GameDate(GameDate original)
         {
             Year = original.Year;
             Month = original.Month;
@@ -122,7 +122,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="days">加算する日数</param>
         /// <returns>加算後の日付</returns>
-        public GameDate Plus(int days)
+        internal GameDate Plus(int days)
         {
             int offset = Year * 360 + (Month - 1) * 30 + (Day - 1) + days;
 
@@ -139,7 +139,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="days">減算する日数</param>
         /// <returns>加算後の日付</returns>
-        public GameDate Minus(int days)
+        internal GameDate Minus(int days)
         {
             int offset = Year * 360 + (Month - 1) * 30 + (Day - 1) - days;
 
@@ -156,7 +156,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="date">比較対象の日付</param>
         /// <returns>差分日数</returns>
-        public int Difference(GameDate date)
+        internal int Difference(GameDate date)
         {
             return (Year - date.Year) * 360 + (Month - date.Month) * 30 + (Day - date.Day);
         }
@@ -166,7 +166,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="year">比較対象の年</param>
         /// <returns>差分日数</returns>
-        public int Difference(int year)
+        internal int Difference(int year)
         {
             return (Year - year) * 360 + (Month - 1) * 30 + (Day - 1);
         }

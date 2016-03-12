@@ -10,14 +10,14 @@ namespace HoI2Editor.Forms
     /// <summary>
     ///     メインフォーム
     /// </summary>
-    public partial class MainForm : Form
+    internal partial class MainForm : Form
     {
         #region 初期化
 
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public MainForm()
+        internal MainForm()
         {
             InitializeComponent();
 
@@ -672,7 +672,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     ゲームフォルダ名/MOD名/保存フォルダ名の変更を許可する
         /// </summary>
-        public void EnableFolderChange()
+        internal void EnableFolderChange()
         {
             gameFolderTextBox.Enabled = true;
             gameFolderBrowseButton.Enabled = true;
@@ -685,7 +685,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     ゲームフォルダ名/MOD名/保存フォルダ名の変更を禁止する
         /// </summary>
-        public void DisableFolderChange()
+        internal void DisableFolderChange()
         {
             gameFolderTextBox.Enabled = false;
             gameFolderBrowseButton.Enabled = false;

@@ -13,49 +13,49 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニットデータ群
     /// </summary>
-    public static class Units
+    internal static class Units
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     ユニット一覧
         /// </summary>
-        public static List<UnitClass> Items { get; }
+        internal static List<UnitClass> Items { get; }
 
         /// <summary>
         ///     ユニット種類文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, UnitType> StringMap { get; }
+        internal static Dictionary<string, UnitType> StringMap { get; }
 
         /// <summary>
         ///     実ユニット種類文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, RealUnitType> RealStringMap { get; }
+        internal static Dictionary<string, RealUnitType> RealStringMap { get; }
 
         /// <summary>
         ///     スプライト種類文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, SpriteType> SpriteStringMap { get; }
+        internal static Dictionary<string, SpriteType> SpriteStringMap { get; }
 
         /// <summary>
         ///     装備文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, EquipmentType> EquipmentStringMap { get; }
+        internal static Dictionary<string, EquipmentType> EquipmentStringMap { get; }
 
         /// <summary>
         ///     利用可能なユニット種類
         /// </summary>
-        public static List<UnitType> UnitTypes { get; private set; }
+        internal static List<UnitType> UnitTypes { get; private set; }
 
         /// <summary>
         ///     利用可能な師団ユニット種類
         /// </summary>
-        public static UnitType[] DivisionTypes { get; private set; }
+        internal static UnitType[] DivisionTypes { get; private set; }
 
         /// <summary>
         ///     利用可能な旅団ユニット種類
         /// </summary>
-        public static UnitType[] BrigadeTypes { get; private set; }
+        internal static UnitType[] BrigadeTypes { get; private set; }
 
         #endregion
 
@@ -104,7 +104,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット種類文字列テーブル
         /// </summary>
-        public static readonly string[] Strings =
+        internal static readonly string[] Strings =
         {
             "",
             "infantry",
@@ -416,7 +416,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     実ユニット文字列
         /// </summary>
-        public static readonly string[] RealStrings =
+        internal static readonly string[] RealStrings =
         {
             "infantry",
             "cavalry",
@@ -454,7 +454,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     スプライト種類文字列
         /// </summary>
-        public static readonly string[] SpriteStrings =
+        internal static readonly string[] SpriteStrings =
         {
             "infantry",
             "cavalry",
@@ -602,7 +602,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     装備文字列
         /// </summary>
-        public static readonly string[] EquipmentStrings =
+        internal static readonly string[] EquipmentStrings =
         {
             "manpower",
             "equipment",
@@ -646,7 +646,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     実ユニット種類とユニット種類の対応
         /// </summary>
-        public static readonly UnitType[] RealTypeTable =
+        internal static readonly UnitType[] RealTypeTable =
         {
             UnitType.Infantry,
             UnitType.Cavalry,
@@ -684,7 +684,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     スプライト種類とユニット種類の対応
         /// </summary>
-        public static readonly UnitType[] SpriteTypeTable =
+        internal static readonly UnitType[] SpriteTypeTable =
         {
             UnitType.Infantry,
             UnitType.Cavalry,
@@ -832,7 +832,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     装備名
         /// </summary>
-        public static readonly string[] EquipmentNames =
+        internal static readonly string[] EquipmentNames =
         {
             "EQ_MANPOWER",
             "EQ_EQUIPMENT",
@@ -876,7 +876,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット番号の初期設定値
         /// </summary>
-        public static readonly int[] UnitNumbers =
+        internal static readonly int[] UnitNumbers =
         {
             0,
             0,
@@ -1188,7 +1188,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     実ユニット種類に対応する兵科
         /// </summary>
-        public static readonly Branch[] RealBranchTable =
+        internal static readonly Branch[] RealBranchTable =
         {
             Branch.Army,
             Branch.Army,
@@ -2045,7 +2045,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニットデータを初期化する
         /// </summary>
-        public static void Init()
+        internal static void Init()
         {
             InitTypes();
         }
@@ -2084,7 +2084,7 @@ namespace HoI2Editor.Models
         ///     ファイルを読み込み済みかを取得する
         /// </summary>
         /// <returns>ファイルを読み込みならばtrueを返す</returns>
-        public static bool IsLoaded()
+        internal static bool IsLoaded()
         {
             return _loaded;
         }
@@ -2092,7 +2092,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ファイルの再読み込みを要求する
         /// </summary>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             _loaded = false;
         }
@@ -2100,7 +2100,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット定義ファイル群を再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             // 読み込み前なら何もしない
             if (!_loaded)
@@ -2116,7 +2116,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ユニット定義ファイル群を読み込む
         /// </summary>
-        public static void Load()
+        internal static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -2138,7 +2138,7 @@ namespace HoI2Editor.Models
         ///     ユニット定義ファイル群を遅延読み込みする
         /// </summary>
         /// <param name="handler">読み込み完了イベントハンドラ</param>
-        public static void LoadAsync(RunWorkerCompletedEventHandler handler)
+        internal static void LoadAsync(RunWorkerCompletedEventHandler handler)
         {
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (_loaded)
@@ -2174,7 +2174,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     読み込み完了まで待機する
         /// </summary>
-        public static void WaitLoading()
+        internal static void WaitLoading()
         {
             while (Worker.IsBusy)
             {
@@ -2186,7 +2186,7 @@ namespace HoI2Editor.Models
         ///     遅延読み込み中かどうかを判定する
         /// </summary>
         /// <returns>遅延読み込み中ならばtrueを返す</returns>
-        public static bool IsLoading()
+        internal static bool IsLoading()
         {
             return Worker.IsBusy;
         }
@@ -2367,7 +2367,7 @@ namespace HoI2Editor.Models
         ///     ユニット定義ファイル群を保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
-        public static bool Save()
+        internal static bool Save()
         {
             // 読み込み途中ならば完了を待つ
             if (Worker.IsBusy)
@@ -2534,7 +2534,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -2542,7 +2542,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public static void SetDirty()
+        internal static void SetDirty()
         {
             _dirtyFlag = true;
         }
@@ -2568,7 +2568,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     師団ユニットクラス定義の編集済みフラグを設定する
         /// </summary>
-        public static void SetDirtyDivisionTypes()
+        internal static void SetDirtyDivisionTypes()
         {
             _divisionTypesDirty = true;
             _dirtyFlag = true;
@@ -2577,7 +2577,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     旅団ユニットクラス定義の編集済みフラグを設定する
         /// </summary>
-        public static void SetDirtyBrigadeTypes()
+        internal static void SetDirtyBrigadeTypes()
         {
             _brigadeTypesDirty = true;
             _dirtyFlag = true;
@@ -2604,7 +2604,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirtyModelName(Country country)
+        internal static bool IsDirtyModelName(Country country)
         {
             return CountryNameDirtyFlags[(int) country];
         }
@@ -2615,7 +2615,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirtyModelName(Country country, UnitType type)
+        internal static bool IsDirtyModelName(Country country, UnitType type)
         {
             return TypeNameDirtyFlags[(int) country, (int) type];
         }
@@ -2625,7 +2625,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <param name="type">ユニット名種類</param>
-        public static void SetDirtyModelName(Country country, UnitType type)
+        internal static void SetDirtyModelName(Country country, UnitType type)
         {
             TypeNameDirtyFlags[(int) country, (int) type] = true;
             CountryNameDirtyFlags[(int) country] = true;

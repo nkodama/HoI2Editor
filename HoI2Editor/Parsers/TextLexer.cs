@@ -9,24 +9,24 @@ namespace HoI2Editor.Parsers
     /// <summary>
     ///     テキストファイルの字句解析クラス
     /// </summary>
-    public class TextLexer : IDisposable
+    internal class TextLexer : IDisposable
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     解析中のファイル名
         /// </summary>
-        public string PathName { get; private set; }
+        internal string PathName { get; private set; }
 
         /// <summary>
         ///     解析中のファイル名 (ディレクトリ除く)
         /// </summary>
-        public string FileName => Path.GetFileName(PathName);
+        internal string FileName => Path.GetFileName(PathName);
 
         /// <summary>
         ///     解析中の行番号
         /// </summary>
-        public int LineNo { get; private set; }
+        internal int LineNo { get; private set; }
 
         #endregion
 
@@ -56,7 +56,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="fileName">解析対象のファイル名</param>
         /// <param name="skipWhiteSpace">空白文字をスキップするかどうか</param>
-        public TextLexer(string fileName, bool skipWhiteSpace)
+        internal TextLexer(string fileName, bool skipWhiteSpace)
         {
             _skipWhiteSpace = skipWhiteSpace;
 
@@ -96,7 +96,7 @@ namespace HoI2Editor.Parsers
         ///     ファイルを開く
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        public void Open(string fileName)
+        internal void Open(string fileName)
         {
             if (!File.Exists(fileName))
             {
@@ -118,7 +118,7 @@ namespace HoI2Editor.Parsers
         /// <summary>
         ///     ファイルを閉じる
         /// </summary>
-        public void Close()
+        internal void Close()
         {
             _reader.Close();
             _reader = null;
@@ -132,7 +132,7 @@ namespace HoI2Editor.Parsers
         ///     字句解析
         /// </summary>
         /// <returns>トークン</returns>
-        public Token GetToken()
+        internal Token GetToken()
         {
             return Read();
         }
@@ -142,7 +142,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="type">要求するトークンの種類</param>
         /// <returns>次のトークンが要求する種類ならばtrueを返す</returns>
-        public bool WantToken(TokenType type)
+        internal bool WantToken(TokenType type)
         {
             Token token = Peek();
 
@@ -160,7 +160,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="keyword">要求するキーワード名</param>
         /// <returns>要求する識別子ならばtrueを返す</returns>
-        public bool WantIdentifier(string keyword)
+        internal bool WantIdentifier(string keyword)
         {
             Token token = Peek();
 
@@ -599,7 +599,7 @@ namespace HoI2Editor.Parsers
         /// <summary>
         ///     行末まで読み飛ばす
         /// </summary>
-        public void SkipLine()
+        internal void SkipLine()
         {
             _reader.ReadLine();
             LineNo++;
@@ -609,7 +609,7 @@ namespace HoI2Editor.Parsers
         ///     指定種類のトークンまで読み飛ばす
         /// </summary>
         /// <param name="type"></param>
-        public void SkipToToken(TokenType type)
+        internal void SkipToToken(TokenType type)
         {
             while (true)
             {
@@ -630,7 +630,7 @@ namespace HoI2Editor.Parsers
         ///     トークンを保留する
         /// </summary>
         /// <param name="token"></param>
-        public void ReserveToken(Token token)
+        internal void ReserveToken(Token token)
         {
             _token = token;
         }

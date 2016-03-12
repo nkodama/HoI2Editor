@@ -8,39 +8,39 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     イベントコマンド
     /// </summary>
-    public class Command
+    internal class Command
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     コマンド種類
         /// </summary>
-        public CommandType Type { get; set; }
+        internal CommandType Type { get; set; }
 
         /// <summary>
         ///     パラメータ - which
         /// </summary>
-        public object Which { get; set; }
+        internal object Which { get; set; }
 
         /// <summary>
         ///     パラメータ - value
         /// </summary>
-        public object Value { get; set; }
+        internal object Value { get; set; }
 
         /// <summary>
         ///     パラメータ - when
         /// </summary>
-        public object When { get; set; }
+        internal object When { get; set; }
 
         /// <summary>
         ///     パラメータ - where
         /// </summary>
-        public object Where { get; set; }
+        internal object Where { get; set; }
 
         /// <summary>
         ///     コマンドトリガー
         /// </summary>
-        public List<Trigger> Triggers { get; } = new List<Trigger>();
+        internal List<Trigger> Triggers { get; } = new List<Trigger>();
 
         #endregion
 
@@ -63,7 +63,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public Command()
+        internal Command()
         {
         }
 
@@ -71,7 +71,7 @@ namespace HoI2Editor.Models
         ///     コピーコンストラクタ
         /// </summary>
         /// <param name="original">複製元のイベントコマンド</param>
-        public Command(Command original)
+        internal Command(Command original)
         {
             Type = original.Type;
 
@@ -135,7 +135,7 @@ namespace HoI2Editor.Models
         ///     技術項目データが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -145,7 +145,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(CommandItemId id)
+        internal bool IsDirty(CommandItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -153,7 +153,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public void SetDirty()
+        internal void SetDirty()
         {
             _dirtyFlag = true;
         }
@@ -162,7 +162,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(CommandItemId id)
+        internal void SetDirty(CommandItemId id)
         {
             _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
@@ -171,7 +171,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirtyAll()
+        internal void SetDirtyAll()
         {
             foreach (CommandItemId id in Enum.GetValues(typeof (CommandItemId)))
             {
@@ -183,7 +183,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (CommandItemId id in Enum.GetValues(typeof (CommandItemId)))
             {
@@ -198,7 +198,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     コマンド種類
     /// </summary>
-    public enum CommandType
+    internal enum CommandType
     {
         None,
         Endgame,
@@ -500,7 +500,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     コマンド項目ID
     /// </summary>
-    public enum CommandItemId
+    internal enum CommandItemId
     {
         Type, // コマンドの種類
         Which, // whichパラメータ

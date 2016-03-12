@@ -14,64 +14,64 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     プロヴィンスデータ群
     /// </summary>
-    public static class Provinces
+    internal static class Provinces
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     マスタープロヴィンスリスト
         /// </summary>
-        public static List<Province> Items { get; }
+        internal static List<Province> Items { get; }
 
         /// <summary>
         ///     海域リスト
         /// </summary>
-        public static List<int> SeaZones { get; }
+        internal static List<int> SeaZones { get; }
 
         /// <summary>
         ///     海域とIDの対応付け
         /// </summary>
-        public static Dictionary<int, Province> SeaZoneMap { get; }
+        internal static Dictionary<int, Province> SeaZoneMap { get; }
 
         /// <summary>
         ///     利用可能な大陸ID
         /// </summary>
-        public static List<ContinentId> Continents { get; private set; }
+        internal static List<ContinentId> Continents { get; private set; }
 
         /// <summary>
         ///     利用可能な地方ID
         /// </summary>
-        public static List<RegionId> Regions { get; private set; }
+        internal static List<RegionId> Regions { get; private set; }
 
         /// <summary>
         ///     利用可能な地域ID
         /// </summary>
-        public static List<AreaId> Areas { get; private set; }
+        internal static List<AreaId> Areas { get; private set; }
 
         /// <summary>
         ///     利用可能な気候ID
         /// </summary>
-        public static List<ClimateId> Climates { get; private set; }
+        internal static List<ClimateId> Climates { get; private set; }
 
         /// <summary>
         ///     利用可能な地形ID
         /// </summary>
-        public static List<TerrainId> Terrains { get; private set; }
+        internal static List<TerrainId> Terrains { get; private set; }
 
         /// <summary>
         ///     大陸と地方の対応付け
         /// </summary>
-        public static Dictionary<ContinentId, List<RegionId>> ContinentRegionMap { get; private set; }
+        internal static Dictionary<ContinentId, List<RegionId>> ContinentRegionMap { get; private set; }
 
         /// <summary>
         ///     地方と地域の対応付け
         /// </summary>
-        public static Dictionary<RegionId, List<AreaId>> RegionAreaMap { get; private set; }
+        internal static Dictionary<RegionId, List<AreaId>> RegionAreaMap { get; private set; }
 
         /// <summary>
         ///     地域とプロヴィンスの対応付け
         /// </summary>
-        public static Dictionary<AreaId, List<Province>> AreaProvinceMap { get; private set; }
+        internal static Dictionary<AreaId, List<Province>> AreaProvinceMap { get; private set; }
 
         #endregion
 
@@ -3430,7 +3430,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     初期化処理
         /// </summary>
-        public static void Init()
+        internal static void Init()
         {
             // 利用可能な大陸IDの初期化
             Continents = new List<ContinentId>(ContinentsHoI2);
@@ -3455,7 +3455,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンスファイルの再読み込みを要求する
         /// </summary>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             _loaded = false;
         }
@@ -3463,7 +3463,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンスファイル群を再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             // 読み込み前なら何もしない
             if (!_loaded)
@@ -3479,7 +3479,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンスファイル群を読み込む
         /// </summary>
-        public static void Load()
+        internal static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -3501,7 +3501,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンスファイル群を遅延読み込みする
         /// </summary>
         /// <param name="handler">読み込み完了イベントハンドラ</param>
-        public static void LoadAsync(RunWorkerCompletedEventHandler handler)
+        internal static void LoadAsync(RunWorkerCompletedEventHandler handler)
         {
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (_loaded)
@@ -3537,7 +3537,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     読み込み完了まで待機する
         /// </summary>
-        public static void WaitLoading()
+        internal static void WaitLoading()
         {
             while (Worker.IsBusy)
             {
@@ -3549,7 +3549,7 @@ namespace HoI2Editor.Models
         ///     遅延読み込み中かどうかを判定する
         /// </summary>
         /// <returns>遅延読み込み中ならばtrueを返す</returns>
-        public static bool IsLoading()
+        internal static bool IsLoading()
         {
             return Worker.IsBusy;
         }
@@ -4354,7 +4354,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンス定義ファイルを保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
-        public static bool Save()
+        internal static bool Save()
         {
             // 読み込み途中ならば完了を待つ
             if (Worker.IsBusy)
@@ -4535,7 +4535,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンスリストに項目を追加する
         /// </summary>
         /// <param name="province">追加対象の項目</param>
-        public static void AddItem(Province province)
+        internal static void AddItem(Province province)
         {
             Items.Add(province);
 
@@ -4550,7 +4550,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="province">挿入対象の項目</param>
         /// <param name="position">挿入位置の直前の項目</param>
-        public static void InsertItem(Province province, Province position)
+        internal static void InsertItem(Province province, Province position)
         {
             Items.Insert(Items.IndexOf(position) + 1, province);
 
@@ -4564,7 +4564,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンスリストから項目を削除する
         /// </summary>
         /// <param name="province">削除対象の項目</param>
-        public static void RemoveItem(Province province)
+        internal static void RemoveItem(Province province)
         {
             Items.Remove(province);
 
@@ -4579,7 +4579,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="src">移動元の項目</param>
         /// <param name="dest">移動先の項目</param>
-        public static void MoveItem(Province src, Province dest)
+        internal static void MoveItem(Province src, Province dest)
         {
             int srcIndex = Items.IndexOf(src);
             int destIndex = Items.IndexOf(dest);
@@ -4607,7 +4607,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="province">プロヴィンス</param>
         /// <param name="area">地域</param>
-        public static void ModifyArea(Province province, AreaId area)
+        internal static void ModifyArea(Province province, AreaId area)
         {
             // 地域とプロヴィンスの対応付けを変更する
             DetachAreaProvince(province.Area, province);
@@ -4626,7 +4626,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="province">プロヴィンス</param>
         /// <param name="region">地方</param>
-        public static void ModifyRegion(Province province, RegionId region)
+        internal static void ModifyRegion(Province province, RegionId region)
         {
             // 地方と地域の対応付けを変更する
             DetachRegionArea(province.Region, province.Area);
@@ -4645,7 +4645,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="province">プロヴィンス</param>
         /// <param name="continent">大陸</param>
-        public static void ModifyContinent(Province province, ContinentId continent)
+        internal static void ModifyContinent(Province province, ContinentId continent)
         {
             // 大陸と地方の対応付けを変更する
             DetachContinentRegion(province.Continent, province.Region);
@@ -4878,7 +4878,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="continent">大陸</param>
         /// <returns>大陸名</returns>
-        public static string GetContinentName(ContinentId continent)
+        internal static string GetContinentName(ContinentId continent)
         {
             return Config.GetText(ContinentNames[(int) continent]);
         }
@@ -4888,7 +4888,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="region">地方</param>
         /// <returns>地方名</returns>
-        public static string GetRegionName(RegionId region)
+        internal static string GetRegionName(RegionId region)
         {
             // AoD1.10以降の場合、文字列定義が変更になっているかをチェックする
             if ((Game.Type == GameType.ArsenalOfDemocracy) && (Game.Version >= 110))
@@ -4907,7 +4907,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="area">地域</param>
         /// <returns>地域名</returns>
-        public static string GetAreaName(AreaId area)
+        internal static string GetAreaName(AreaId area)
         {
             // AoD1.10以降の場合、文字列定義が変更になっているかをチェックする
             if ((Game.Type == GameType.ArsenalOfDemocracy) && (Game.Version >= 110))
@@ -4926,7 +4926,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="climate">気候</param>
         /// <returns>気候名</returns>
-        public static string GetClimateName(ClimateId climate)
+        internal static string GetClimateName(ClimateId climate)
         {
             return Config.GetText(ClimateNames[(int) climate]);
         }
@@ -4936,7 +4936,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="terrain">地形</param>
         /// <returns>地形名</returns>
-        public static string GetTerrainName(TerrainId terrain)
+        internal static string GetTerrainName(TerrainId terrain)
         {
             return Config.GetText(TerrainNames[(int) terrain]);
         }
@@ -4949,7 +4949,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -4957,7 +4957,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public static void SetDirty()
+        internal static void SetDirty()
         {
             _dirtyFlag = true;
         }

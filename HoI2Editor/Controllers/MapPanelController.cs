@@ -10,19 +10,19 @@ namespace HoI2Editor.Controllers
     /// <summary>
     ///     マップパネルのコントローラクラス
     /// </summary>
-    public class MapPanelController
+    internal class MapPanelController
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     マップレベル
         /// </summary>
-        public MapLevel Level { get; set; }
+        internal MapLevel Level { get; set; }
 
         /// <summary>
         ///     フィルターモード
         /// </summary>
-        public MapFilterMode FilterMode
+        internal MapFilterMode FilterMode
         {
             get { return _mode; }
             set
@@ -43,7 +43,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     選択国
         /// </summary>
-        public Country SelectedCountry
+        internal Country SelectedCountry
         {
             get { return _country; }
             set
@@ -97,7 +97,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     マップ表示のフィルターモード
         /// </summary>
-        public enum MapFilterMode
+        internal enum MapFilterMode
         {
             None, // フィルターなし
             Core, // 中核プロヴィンス
@@ -128,7 +128,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     プロヴィンスマウスクリック時のイベント
         /// </summary>
-        public event EventHandler<ProvinceEventArgs> ProvinceMouseClick;
+        internal event EventHandler<ProvinceEventArgs> ProvinceMouseClick;
 
         #endregion
 
@@ -139,7 +139,7 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="panel">マップパネル</param>
         /// <param name="pictureBox">マップパネルのピクチャーボックス</param>
-        public MapPanelController(Panel panel, PictureBox pictureBox)
+        internal MapPanelController(Panel panel, PictureBox pictureBox)
         {
             _panel = panel;
             _pictureBox = pictureBox;
@@ -154,7 +154,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     マップ画像を表示する
         /// </summary>
-        public void Show()
+        internal void Show()
         {
             // カラーパレットを初期化する
             InitColorPalette();
@@ -221,7 +221,7 @@ namespace HoI2Editor.Controllers
         ///     指定プロヴィンスが表示されるようにスクロールする
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
-        public void ScrollToProvince(int id)
+        internal void ScrollToProvince(int id)
         {
             // 未読み込みならば何もしない
             if (!Maps.IsLoaded[(int) Level])
@@ -278,7 +278,7 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="id">更新対象のプロヴィンスID</param>
         /// <param name="highlighted">強調表示の有無</param>
-        public void UpdateProvince(ushort id, bool highlighted)
+        internal void UpdateProvince(ushort id, bool highlighted)
         {
             // 未読み込みならば何もしない
             if (!Maps.IsLoaded[(int) Level])
@@ -533,19 +533,19 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     プロヴィンスイベントのパラメータ
         /// </summary>
-        public class ProvinceEventArgs : MouseEventArgs
+        internal class ProvinceEventArgs : MouseEventArgs
         {
             /// <summary>
             ///     プロヴィンスID
             /// </summary>
-            public int Id { get; private set; }
+            internal int Id { get; private set; }
 
             /// <summary>
             ///     コンストラクタ
             /// </summary>
             /// <param name="id">プロヴィンスID</param>
             /// <param name="e">マウスイベントのパラメータ</param>
-            public ProvinceEventArgs(int id, MouseEventArgs e) : base(e.Button, e.Clicks, e.X, e.Y, e.Delta)
+            internal ProvinceEventArgs(int id, MouseEventArgs e) : base(e.Button, e.Clicks, e.X, e.Y, e.Delta)
             {
                 Id = id;
             }

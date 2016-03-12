@@ -12,14 +12,14 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ログの管理
     /// </summary>
-    public static class Log
+    internal static class Log
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     ログ出力レベル
         /// </summary>
-        public static int Level
+        internal static int Level
         {
             get { return (int) Sw.Level; }
             set
@@ -86,7 +86,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ログを初期化する
         /// </summary>
-        public static void Init()
+        internal static void Init()
         {
             try
             {
@@ -106,7 +106,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ログを終了する
         /// </summary>
-        public static void Terminate()
+        internal static void Terminate()
         {
             Verbose("[Log] Terminate");
             if (_listener != null)
@@ -126,7 +126,7 @@ namespace HoI2Editor.Models
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="token">トークン</param>
         /// <param name="lexer">字句解析器</param>
-        public static void InvalidToken(string categoryName, Token token, TextLexer lexer)
+        internal static void InvalidToken(string categoryName, Token token, TextLexer lexer)
         {
             Warning("[{0}] Invalid token: {1} ({2} L{3})",
                 categoryName, ObjectHelper.ToString(token.Value), lexer.FileName, lexer.LineNo);
@@ -138,7 +138,7 @@ namespace HoI2Editor.Models
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="clauseName">クローズ名</param>
         /// <param name="lexer">字句解析器</param>
-        public static void InvalidClause(string categoryName, string clauseName, TextLexer lexer)
+        internal static void InvalidClause(string categoryName, string clauseName, TextLexer lexer)
         {
             Warning("[{0}] Parse failed: {1} clause ({2} L{3})", categoryName, clauseName, lexer.FileName, lexer.LineNo);
         }
@@ -149,7 +149,7 @@ namespace HoI2Editor.Models
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="sectionName">セクション名</param>
         /// <param name="lexer">字句解析器</param>
-        public static void InvalidSection(string categoryName, string sectionName, TextLexer lexer)
+        internal static void InvalidSection(string categoryName, string sectionName, TextLexer lexer)
         {
             Warning("[{0}] Parse failed: {1} section ({2} L{3})", categoryName, sectionName, lexer.FileName,
                 lexer.LineNo);
@@ -161,7 +161,7 @@ namespace HoI2Editor.Models
         /// <param name="categoryName">カテゴリ名</param>
         /// <param name="sectionName">セクション名</param>
         /// <param name="lexer">字句解析器</param>
-        public static void MissingCloseBrace(string categoryName, string sectionName, TextLexer lexer)
+        internal static void MissingCloseBrace(string categoryName, string sectionName, TextLexer lexer)
         {
             Warning("[{0}] Missing close brace: {1} section ({2} L{3})", categoryName, sectionName, lexer.FileName,
                 lexer.LineNo);
@@ -174,7 +174,7 @@ namespace HoI2Editor.Models
         /// <param name="itemName">項目名</param>
         /// <param name="o">対象の値</param>
         /// <param name="lexer">字句解析器</param>
-        public static void OutOfRange(string categoryName, string itemName, Object o, TextLexer lexer)
+        internal static void OutOfRange(string categoryName, string itemName, Object o, TextLexer lexer)
         {
             Warning("[{0}] Out of range: {1} at {2} ({3} L{4})",
                 categoryName, ObjectHelper.ToString(o), itemName, lexer.FileName, lexer.LineNo);
@@ -185,7 +185,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="s">対象文字列</param>
         /// <param name="args">パラメータ</param>
-        public static void Error(string s, params object[] args)
+        internal static void Error(string s, params object[] args)
         {
             WriteLine(TraceLevel.Error, s, args);
         }
@@ -194,7 +194,7 @@ namespace HoI2Editor.Models
         ///     エラーログを出力する
         /// </summary>
         /// <param name="s">対象文字列</param>
-        public static void Error(string s)
+        internal static void Error(string s)
         {
             WriteLine(TraceLevel.Error, s);
         }
@@ -204,7 +204,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="s">対象文字列</param>
         /// <param name="args">パラメータ</param>
-        public static void Warning(string s, params object[] args)
+        internal static void Warning(string s, params object[] args)
         {
             WriteLine(TraceLevel.Warning, s, args);
         }
@@ -213,7 +213,7 @@ namespace HoI2Editor.Models
         ///     警告ログを出力する
         /// </summary>
         /// <param name="s">対象文字列</param>
-        public static void Warning(string s)
+        internal static void Warning(string s)
         {
             WriteLine(TraceLevel.Warning, s);
         }
@@ -223,7 +223,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="s">対象文字列</param>
         /// <param name="args">パラメータ</param>
-        public static void Info(string s, params object[] args)
+        internal static void Info(string s, params object[] args)
         {
             WriteLine(TraceLevel.Info, s, args);
         }
@@ -232,7 +232,7 @@ namespace HoI2Editor.Models
         ///     情報ログを出力する
         /// </summary>
         /// <param name="s">対象文字列</param>
-        public static void Info(string s)
+        internal static void Info(string s)
         {
             WriteLine(TraceLevel.Info, s);
         }
@@ -242,7 +242,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="s">対象文字列</param>
         /// <param name="args">パラメータ</param>
-        public static void Verbose(string s, params object[] args)
+        internal static void Verbose(string s, params object[] args)
         {
             WriteLine(TraceLevel.Verbose, s, args);
         }
@@ -251,7 +251,7 @@ namespace HoI2Editor.Models
         ///     詳細ログを出力する
         /// </summary>
         /// <param name="s">対象文字列</param>
-        public static void Verbose(string s)
+        internal static void Verbose(string s)
         {
             WriteLine(TraceLevel.Verbose, s);
         }

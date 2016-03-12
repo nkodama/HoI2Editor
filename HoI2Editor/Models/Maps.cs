@@ -11,44 +11,44 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     マップデータ群
     /// </summary>
-    public static class Maps
+    internal static class Maps
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     マップデータ
         /// </summary>
-        public static Map[] Data;
+        internal static Map[] Data;
 
         /// <summary>
         ///     プロヴィンス境界の配列
         /// </summary>
-        public static Rectangle[] BoundBoxes { get; private set; }
+        internal static Rectangle[] BoundBoxes { get; private set; }
 
         /// <summary>
         ///     カラースケールテーブル
         /// </summary>
-        public static Dictionary<string, Color[]> ColorScales { get; private set; }
+        internal static Dictionary<string, Color[]> ColorScales { get; private set; }
 
         /// <summary>
         ///     カラーパレット
         /// </summary>
-        public static Color[] ColorPalette { get; private set; }
+        internal static Color[] ColorPalette { get; private set; }
 
         /// <summary>
         ///     カラーマスクの配列
         /// </summary>
-        public static byte[] ColorMasks { get; }
+        internal static byte[] ColorMasks { get; }
 
         /// <summary>
         ///     マップ読み込みの禁止
         /// </summary>
-        public static bool ForbidLoad;
+        internal static bool ForbidLoad;
 
         /// <summary>
         ///     読み込み済みフラグ
         /// </summary>
-        public static bool[] IsLoaded;
+        internal static bool[] IsLoaded;
 
         #endregion
 
@@ -67,7 +67,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     最大プロヴィンス数
         /// </summary>
-        public const int MaxProvinces = 10000;
+        internal const int MaxProvinces = 10000;
 
         #endregion
 
@@ -113,7 +113,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップファイルの再読み込みを要求する
         /// </summary>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             foreach (MapLevel level in Enum.GetValues(typeof (MapLevel)))
             {
@@ -128,7 +128,7 @@ namespace HoI2Editor.Models
         ///     マップファイルを読み込む
         /// </summary>
         /// <param name="level">マップレベル</param>
-        public static void Load(MapLevel level)
+        internal static void Load(MapLevel level)
         {
             // 読み込み禁止ならば何もしない
             if (ForbidLoad)
@@ -157,7 +157,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="level">マップレベル</param>
         /// <param name="handler">読み込み完了イベントハンドラ</param>
-        public static void LoadAsync(MapLevel level, RunWorkerCompletedEventHandler handler)
+        internal static void LoadAsync(MapLevel level, RunWorkerCompletedEventHandler handler)
         {
             // 読み込み禁止ならば何もしない
             if (ForbidLoad)
@@ -201,7 +201,7 @@ namespace HoI2Editor.Models
         ///     マップ読み込み完了まで待機する
         /// </summary>
         /// <param name="level">マップレベル</param>
-        public static void WaitLoading(MapLevel level)
+        internal static void WaitLoading(MapLevel level)
         {
             while (Workers[(int) level].IsBusy)
             {
@@ -213,7 +213,7 @@ namespace HoI2Editor.Models
         ///     遅延読み込み中かどうかを判定する
         /// </summary>
         /// <returns>遅延読み込み中ならばtrueを返す</returns>
-        public static bool IsLoading()
+        internal static bool IsLoading()
         {
             return Workers[(int) MapLevel.Level1].IsBusy ||
                    Workers[(int) MapLevel.Level2].IsBusy ||
@@ -457,7 +457,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <returns>カラーインデックス</returns>
-        public static int GetColorIndex(ushort id)
+        internal static int GetColorIndex(ushort id)
         {
             return ColorMasks[id] >> 6;
         }
@@ -467,7 +467,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="ids">プロヴィンスIDの配列</param>
         /// <param name="index">カラーインデックス</param>
-        public static void SetColorIndex(IEnumerable<ushort> ids, int index)
+        internal static void SetColorIndex(IEnumerable<ushort> ids, int index)
         {
             foreach (ushort id in ids)
             {
@@ -480,7 +480,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
         /// <param name="index">カラーインデックス</param>
-        public static void SetColorIndex(ushort id, int index)
+        internal static void SetColorIndex(ushort id, int index)
         {
             ColorMasks[id] = (byte) (index << 6);
         }
@@ -490,7 +490,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="index">カラーインデックス</param>
         /// <param name="color">カラースケール名</param>
-        public static void SetColorPalette(int index, string color)
+        internal static void SetColorPalette(int index, string color)
         {
             // 存在しない色名ならば何もしない
             if (!ColorScales.ContainsKey(color.ToLower()))
@@ -526,7 +526,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     マップレベル
     /// </summary>
-    public enum MapLevel
+    internal enum MapLevel
     {
         Level1, // 936x360
         Level2, // 468x180

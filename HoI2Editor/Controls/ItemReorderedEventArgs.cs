@@ -7,19 +7,19 @@ namespace HoI2Editor.Controls
     /// <summary>
     ///     項目並び替えイベントのパラメータ
     /// </summary>
-    public class ItemReorderedEventArgs : CancelEventArgs
+    internal class ItemReorderedEventArgs : CancelEventArgs
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     前の表示位置
         /// </summary>
-        public int[] OldDisplayIndices { get; private set; }
+        internal int[] OldDisplayIndices { get; private set; }
 
         /// <summary>
         ///     新しい表示位置
         /// </summary>
-        public int NewDisplayIndex { get; private set; }
+        internal int NewDisplayIndex { get; private set; }
 
         #endregion
 
@@ -30,7 +30,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         /// <param name="oldDisplayIndices">前の表示位置</param>
         /// <param name="newDisplayIndex">新しい表示位置</param>
-        public ItemReorderedEventArgs(IEnumerable<int> oldDisplayIndices, int newDisplayIndex)
+        internal ItemReorderedEventArgs(IEnumerable<int> oldDisplayIndices, int newDisplayIndex)
         {
             OldDisplayIndices = oldDisplayIndices.ToArray();
             NewDisplayIndex = newDisplayIndex;

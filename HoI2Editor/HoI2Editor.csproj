@@ -45,10 +45,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CorpsNameEditorController.cs" />
     <Compile Include="Controllers\DataChecker.cs" />
+    <Compile Include="Controllers\LeaderEditorController.cs" />
     <Compile Include="Controllers\MapPanelController.cs" />
+    <Compile Include="Controllers\MinisterEditorController.cs" />
+    <Compile Include="Controllers\MiscEditorController.cs" />
+    <Compile Include="Controllers\ModelNameEditorController.cs" />
+    <Compile Include="Controllers\ProvinceEditorController.cs" />
+    <Compile Include="Controllers\RandomLeaderEditorController.cs" />
+    <Compile Include="Controllers\ResearchViewerController.cs" />
     <Compile Include="Controllers\ScenarioEditorController.cs" />
+    <Compile Include="Controllers\TeamEditorController.cs" />
+    <Compile Include="Controllers\TechEditorController.cs" />
     <Compile Include="Controllers\TechTreePanelController.cs" />
+    <Compile Include="Controllers\UnitEditorController.cs" />
+    <Compile Include="Controllers\UnitNameEditorController.cs" />
     <Compile Include="Controllers\UnitTreeController.cs" />
     <Compile Include="Controls\ExtendedListBox.cs">
       <SubType>Component</SubType>

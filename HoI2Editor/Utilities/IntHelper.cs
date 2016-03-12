@@ -5,7 +5,7 @@ namespace HoI2Editor.Utilities
     /// <summary>
     ///     整数型のヘルパークラス
     /// </summary>
-    public static class IntHelper
+    internal static class IntHelper
     {
         #region 文字列変換
 
@@ -14,7 +14,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToString(int val)
+        internal static string ToString(int val)
         {
             return ToString0(val);
         }
@@ -24,7 +24,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToString0(int val)
+        internal static string ToString0(int val)
         {
             return val.ToString("D", CultureInfo.InvariantCulture);
         }
@@ -34,7 +34,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToString1(int val)
+        internal static string ToString1(int val)
         {
             return val.ToString("F1", CultureInfo.InvariantCulture);
         }
@@ -49,7 +49,7 @@ namespace HoI2Editor.Utilities
         /// <param name="s">変換対象の文字列</param>
         /// <param name="val">変換後の値</param>
         /// <returns>変換が成功すればtrueを返す</returns>
-        public static bool TryParse(string s, out int val)
+        internal static bool TryParse(string s, out int val)
         {
             return int.TryParse(s, NumberStyles.Integer, CultureInfo.InvariantCulture, out val);
         }

@@ -8,7 +8,7 @@ namespace HoI2Editor.Writers
     /// <summary>
     ///     技術データのファイル書き込みを担当するクラス
     /// </summary>
-    public static class TechWriter
+    internal static class TechWriter
     {
         #region ファイル書き込み
 
@@ -17,7 +17,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="grp">技術グループデータ</param>
         /// <param name="fileName">ファイル名</param>
-        public static void Write(TechGroup grp, string fileName)
+        internal static void Write(TechGroup grp, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {

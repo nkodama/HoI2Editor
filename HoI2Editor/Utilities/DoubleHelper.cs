@@ -6,7 +6,7 @@ namespace HoI2Editor.Utilities
     /// <summary>
     ///     実数型のヘルパークラス
     /// </summary>
-    public static class DoubleHelper
+    internal static class DoubleHelper
     {
         #region 数値比較
 
@@ -16,7 +16,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool IsEqual(double val1, double val2)
+        internal static bool IsEqual(double val1, double val2)
         {
             // 小数点以下6桁まで考慮する
             return Math.Abs(val1 - val2) < 0.0000005;
@@ -28,7 +28,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool IsEqual0(double val1, double val2)
+        internal static bool IsEqual0(double val1, double val2)
         {
             return Math.Abs(val1 - val2) < 0.5;
         }
@@ -39,7 +39,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool IsEqual1(double val1, double val2)
+        internal static bool IsEqual1(double val1, double val2)
         {
             return Math.Abs(val1 - val2) < 0.05;
         }
@@ -50,7 +50,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool IsEqual2(double val1, double val2)
+        internal static bool IsEqual2(double val1, double val2)
         {
             return Math.Abs(val1 - val2) < 0.005;
         }
@@ -61,7 +61,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool IsEqual3(double val1, double val2)
+        internal static bool IsEqual3(double val1, double val2)
         {
             return Math.Abs(val1 - val2) < 0.0005;
         }
@@ -72,7 +72,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool IsEqual4(double val1, double val2)
+        internal static bool IsEqual4(double val1, double val2)
         {
             return Math.Abs(val1 - val2) < 0.00005;
         }
@@ -83,7 +83,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool IsEqual5(double val1, double val2)
+        internal static bool IsEqual5(double val1, double val2)
         {
             return Math.Abs(val1 - val2) < 0.000005;
         }
@@ -94,7 +94,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値が等しければtrueを返す</returns>
-        public static bool IsEqual6(double val1, double val2)
+        internal static bool IsEqual6(double val1, double val2)
         {
             return Math.Abs(val1 - val2) < 0.0000005;
         }
@@ -104,7 +104,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">数値</param>
         /// <returns>数値が0に等しければtrueを返す</returns>
-        public static bool IsZero(double val)
+        internal static bool IsZero(double val)
         {
             return Math.Abs(val) < 0.0000005;
         }
@@ -115,7 +115,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値1が数値2以下であればtrueを返す</returns>
-        public static bool IsLessOrEqual(double val1, double val2)
+        internal static bool IsLessOrEqual(double val1, double val2)
         {
             return val1 - val2 < 0.0000005;
         }
@@ -126,7 +126,7 @@ namespace HoI2Editor.Utilities
         /// <param name="val1">数値1</param>
         /// <param name="val2">数値2</param>
         /// <returns>数値1が数値2以上であればtrueを返す</returns>
-        public static bool IsGreaterOrEqual(double val1, double val2)
+        internal static bool IsGreaterOrEqual(double val1, double val2)
         {
             return val1 - val2 > -0.0000005;
         }
@@ -136,7 +136,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">数値</param>
         /// <returns>数値が正であればtrueを返す</returns>
-        public static bool IsPositive(double val)
+        internal static bool IsPositive(double val)
         {
             return val > 0.0000005;
         }
@@ -146,7 +146,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">数値</param>
         /// <returns>数値が負であればtrueを返す</returns>
-        public static bool IsNegative(double val)
+        internal static bool IsNegative(double val)
         {
             return val < -0.0000005;
         }
@@ -160,7 +160,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToString(double val)
+        internal static string ToString(double val)
         {
             return val.ToString(CultureInfo.InvariantCulture);
         }
@@ -170,7 +170,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToString0(double val)
+        internal static string ToString0(double val)
         {
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
@@ -211,7 +211,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToString1(double val)
+        internal static string ToString1(double val)
         {
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
@@ -247,7 +247,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToString2(double val)
+        internal static string ToString2(double val)
         {
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
@@ -278,7 +278,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToString3(double val)
+        internal static string ToString3(double val)
         {
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
@@ -304,7 +304,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToString4(double val)
+        internal static string ToString4(double val)
         {
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
@@ -325,7 +325,7 @@ namespace HoI2Editor.Utilities
         /// </summary>
         /// <param name="val">変換対象の値</param>
         /// <returns>変換後の文字列</returns>
-        public static string ToString5(double val)
+        internal static string ToString5(double val)
         {
             // 小数点以下6桁
             if (Math.Abs(val - Math.Round(val, 5)) > 0.0000005)
@@ -346,7 +346,7 @@ namespace HoI2Editor.Utilities
         /// <param name="s">変換対象の文字列</param>
         /// <param name="val">変換後の値</param>
         /// <returns>変換が成功すればtrueを返す</returns>
-        public static bool TryParse(string s, out double val)
+        internal static bool TryParse(string s, out double val)
         {
             return double.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out val);
         }

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Controls;
 using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
@@ -13,11 +14,16 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     指揮官エディタのフォーム
+    ///     指揮官エディタフォーム
     /// </summary>
-    public partial class LeaderEditorForm : Form
+    internal partial class LeaderEditorForm : Form
     {
         #region 内部フィールド
+
+        /// <summary>
+        ///     指揮官エディタコントローラ
+        /// </summary>
+        private readonly LeaderEditorController _controller;
 
         /// <summary>
         ///     絞り込み後の指揮官リスト
@@ -67,7 +73,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     指揮官リストビューの列の数
         /// </summary>
-        public const int LeaderListColumnCount = 9;
+        internal const int LeaderListColumnCount = 9;
 
         #endregion
 
@@ -76,9 +82,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public LeaderEditorForm()
+        /// <param name="controller">指揮官エディタコントローラ</param>
+        internal LeaderEditorForm(LeaderEditorController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // フォームの初期化
             InitForm();
@@ -91,7 +100,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             // 指揮官リストを絞り込む
             NarrowLeaderList();
@@ -109,7 +118,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnFileSaved()
+        internal void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
@@ -120,7 +129,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             // 何もしない
         }
@@ -223,7 +232,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnLeaderEditorFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>
@@ -274,7 +283,7 @@ namespace HoI2Editor.Forms
             if (args.Items[(int) LeaderBatchItemId.RetirementYear] && !Misc.EnableRetirementYearLeaders)
             {
                 Misc.EnableRetirementYearLeaders = true;
-                HoI2EditorController.OnItemChanged(EditorItemId.LeaderRetirementYear, this);
+                HoI2EditorController.OnItemChanged(EditorItemId.LeaderRetirementYear);
             }
 
             // 一括編集処理

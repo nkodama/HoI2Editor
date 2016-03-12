@@ -10,24 +10,24 @@ namespace HoI2Editor.Controllers
     /// <summary>
     ///     技術ツリーパネルのコントローラクラス
     /// </summary>
-    public class TechTreePanelController
+    internal class TechTreePanelController
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     技術カテゴリ
         /// </summary>
-        public TechCategory Category { get; set; }
+        internal TechCategory Category { get; set; }
 
         /// <summary>
         ///     項目ラベルの表示に項目の状態を反映するかどうか
         /// </summary>
-        public bool ApplyItemStatus { get; set; }
+        internal bool ApplyItemStatus { get; set; }
 
         /// <summary>
         ///     項目ラベルのドラッグアンドドロップを許可するかどうか
         /// </summary>
-        public bool AllowDragDrop { get; set; }
+        internal bool AllowDragDrop { get; set; }
 
         #endregion
 
@@ -190,27 +190,27 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     項目ラベルクリック時のイベント
         /// </summary>
-        public event EventHandler<ItemEventArgs> ItemClick;
+        internal event EventHandler<ItemEventArgs> ItemClick;
 
         /// <summary>
         ///     項目ラベルマウスクリック時のイベント
         /// </summary>
-        public event EventHandler<ItemMouseEventArgs> ItemMouseClick;
+        internal event EventHandler<ItemMouseEventArgs> ItemMouseClick;
 
         /// <summary>
         ///     項目ラベルマウスダウン時のイベント
         /// </summary>
-        public event EventHandler<ItemMouseEventArgs> ItemMouseDown;
+        internal event EventHandler<ItemMouseEventArgs> ItemMouseDown;
 
         /// <summary>
         ///     項目ラベルドラッグアンドドロップ時のイベント
         /// </summary>
-        public event EventHandler<ItemDragEventArgs> ItemDragDrop;
+        internal event EventHandler<ItemDragEventArgs> ItemDragDrop;
 
         /// <summary>
         ///     項目状態問い合わせイベント
         /// </summary>
-        public event EventHandler<QueryItemStatusEventArgs> QueryItemStatus;
+        internal event EventHandler<QueryItemStatusEventArgs> QueryItemStatus;
 
         #endregion
 
@@ -220,7 +220,7 @@ namespace HoI2Editor.Controllers
         ///     コンストラクタ
         /// </summary>
         /// <param name="pictureBox">技術ツリーピクチャーボックス</param>
-        public TechTreePanelController(PictureBox pictureBox)
+        internal TechTreePanelController(PictureBox pictureBox)
         {
             _pictureBox = pictureBox;
 
@@ -251,7 +251,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     技術ツリーを更新する
         /// </summary>
-        public void Update()
+        internal void Update()
         {
             // 技術ツリー画像を更新する
             UpdateTechTreeImage();
@@ -263,7 +263,7 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     技術ツリーをクリアする
         /// </summary>
-        public void Clear()
+        internal void Clear()
         {
             // 技術ツリー画像をクリアする
             ClearTechTreeImage();
@@ -335,7 +335,7 @@ namespace HoI2Editor.Controllers
         ///     技術ツリーに項目ラベル群を追加する
         /// </summary>
         /// <param name="item">追加対象の項目</param>
-        public void AddItem(ITechItem item)
+        internal void AddItem(ITechItem item)
         {
             foreach (TechPosition position in item.Positions)
             {
@@ -348,7 +348,7 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="item">追加対象の項目</param>
         /// <param name="position">追加対象の位置</param>
-        public void AddItem(ITechItem item, TechPosition position)
+        internal void AddItem(ITechItem item, TechPosition position)
         {
             TechItem tech = item as TechItem;
             if (tech != null)
@@ -480,7 +480,7 @@ namespace HoI2Editor.Controllers
         ///     技術ツリーの項目群を削除する
         /// </summary>
         /// <param name="item">削除対象の項目</param>
-        public void RemoveItem(ITechItem item)
+        internal void RemoveItem(ITechItem item)
         {
             Control.ControlCollection labels = _pictureBox.Controls;
             foreach (Label label in labels)
@@ -503,7 +503,7 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="item">削除対象の項目</param>
         /// <param name="position">削除対象の位置</param>
-        public void RemoveItem(ITechItem item, TechPosition position)
+        internal void RemoveItem(ITechItem item, TechPosition position)
         {
             Control.ControlCollection labels = _pictureBox.Controls;
             foreach (Label label in labels)
@@ -525,7 +525,7 @@ namespace HoI2Editor.Controllers
         ///     技術ツリーの項目ラベルを更新する
         /// </summary>
         /// <param name="item">更新対象の項目</param>
-        public void UpdateItem(ITechItem item)
+        internal void UpdateItem(ITechItem item)
         {
             Control.ControlCollection labels = _pictureBox.Controls;
             foreach (Label label in labels)
@@ -578,7 +578,7 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="item">更新対象の項目</param>
         /// <param name="position">更新対象の座標</param>
-        public void UpdateItem(ITechItem item, TechPosition position)
+        internal void UpdateItem(ITechItem item, TechPosition position)
         {
             Control.ControlCollection labels = _pictureBox.Controls;
             foreach (Label label in labels)
@@ -1101,35 +1101,35 @@ namespace HoI2Editor.Controllers
             /// <summary>
             ///     技術項目
             /// </summary>
-            public ITechItem Item;
+            internal ITechItem Item;
 
             /// <summary>
             ///     位置
             /// </summary>
-            public TechPosition Position;
+            internal TechPosition Position;
         }
 
         /// <summary>
         ///     項目ラベルイベントのパラメータ
         /// </summary>
-        public class ItemEventArgs : EventArgs
+        internal class ItemEventArgs : EventArgs
         {
             /// <summary>
             ///     技術項目
             /// </summary>
-            public ITechItem Item { get; private set; }
+            internal ITechItem Item { get; private set; }
 
             /// <summary>
             ///     項目ラベルの位置
             /// </summary>
-            public TechPosition Position { get; private set; }
+            internal TechPosition Position { get; private set; }
 
             /// <summary>
             ///     コンストラクタ
             /// </summary>
             /// <param name="item">技術項目</param>
             /// <param name="position">項目ラベルの位置</param>
-            public ItemEventArgs(ITechItem item, TechPosition position)
+            internal ItemEventArgs(ITechItem item, TechPosition position)
             {
                 Item = item;
                 Position = position;
@@ -1139,17 +1139,17 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     項目ラベルマウスイベントのパラメータ
         /// </summary>
-        public class ItemMouseEventArgs : MouseEventArgs
+        internal class ItemMouseEventArgs : MouseEventArgs
         {
             /// <summary>
             ///     技術項目
             /// </summary>
-            public ITechItem Item { get; private set; }
+            internal ITechItem Item { get; private set; }
 
             /// <summary>
             ///     項目ラベルの位置
             /// </summary>
-            public TechPosition Position { get; private set; }
+            internal TechPosition Position { get; private set; }
 
             /// <summary>
             ///     コンストラクタ
@@ -1157,7 +1157,7 @@ namespace HoI2Editor.Controllers
             /// <param name="item">技術項目</param>
             /// <param name="position">項目ラベルの位置</param>
             /// <param name="e">マウスイベントのパラメータ</param>
-            public ItemMouseEventArgs(ITechItem item, TechPosition position, MouseEventArgs e)
+            internal ItemMouseEventArgs(ITechItem item, TechPosition position, MouseEventArgs e)
                 : base(e.Button, e.Clicks, e.X, e.Y, e.Delta)
             {
                 Item = item;
@@ -1168,17 +1168,17 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     項目ラベルドラッグアンドドロップイベントのパラメータ
         /// </summary>
-        public class ItemDragEventArgs : DragEventArgs
+        internal class ItemDragEventArgs : DragEventArgs
         {
             /// <summary>
             ///     技術項目
             /// </summary>
-            public ITechItem Item { get; private set; }
+            internal ITechItem Item { get; private set; }
 
             /// <summary>
             ///     項目ラベルの位置
             /// </summary>
-            public TechPosition Position { get; private set; }
+            internal TechPosition Position { get; private set; }
 
             /// <summary>
             ///     コンストラクタ
@@ -1186,7 +1186,7 @@ namespace HoI2Editor.Controllers
             /// <param name="item">技術項目</param>
             /// <param name="position">項目ラベルの位置</param>
             /// <param name="e">ドラッグアンドドロップイベントのパラメータ</param>
-            public ItemDragEventArgs(ITechItem item, TechPosition position, DragEventArgs e)
+            internal ItemDragEventArgs(ITechItem item, TechPosition position, DragEventArgs e)
                 : base(e.Data, e.KeyState, e.X, e.Y, e.AllowedEffect, e.Effect)
             {
                 Item = item;
@@ -1197,28 +1197,28 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     項目状態問い合わせイベントのパラメータ
         /// </summary>
-        public class QueryItemStatusEventArgs : EventArgs
+        internal class QueryItemStatusEventArgs : EventArgs
         {
             /// <summary>
             ///     技術項目
             /// </summary>
-            public ITechItem Item { get; private set; }
+            internal ITechItem Item { get; private set; }
 
             /// <summary>
             ///     完了したかどうか
             /// </summary>
-            public bool Done;
+            internal bool Done;
 
             /// <summary>
             ///     青写真ありかどうか
             /// </summary>
-            public bool Blueprint;
+            internal bool Blueprint;
 
             /// <summary>
             ///     コンストラクタ
             /// </summary>
             /// <param name="item">技術項目</param>
-            public QueryItemStatusEventArgs(ITechItem item)
+            internal QueryItemStatusEventArgs(ITechItem item)
             {
                 Item = item;
             }

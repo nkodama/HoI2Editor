@@ -47,7 +47,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="fileName">ファイル名</param>
         /// <returns>閣僚特性リスト</returns>
-        public static List<MinisterPersonalityInfo> Parse(string fileName)
+        internal static List<MinisterPersonalityInfo> Parse(string fileName)
         {
             List<MinisterPersonalityInfo> list = null;
 

@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Controls;
 using HoI2Editor.Dialogs;
 using HoI2Editor.Models;
@@ -13,11 +14,16 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     研究機関エディタのフォーム
+    ///     研究機関エディタフォーム
     /// </summary>
-    public partial class TeamEditorForm : Form
+    internal partial class TeamEditorForm : Form
     {
         #region 内部フィールド
+
+        /// <summary>
+        ///     研究機関エディタコントローラ
+        /// </summary>
+        private readonly TeamEditorController _controller;
 
         /// <summary>
         ///     絞り込み後の研究機関リスト
@@ -70,7 +76,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     研究機関リストビューの列の数
         /// </summary>
-        public const int TeamListColumnCount = 7;
+        internal const int TeamListColumnCount = 7;
 
         #endregion
 
@@ -102,9 +108,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public TeamEditorForm()
+        /// <param name="controller">研究機関エディタコントローラ</param>
+        internal TeamEditorForm(TeamEditorController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // 研究特性コンボボックスの配列を初期化する
             _specialityComboBoxes = new[]
@@ -129,7 +138,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             // 研究機関リストを絞り込む
             NarrowTeamList();
@@ -147,7 +156,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnFileSaved()
+        internal void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             countryListBox.Refresh();
@@ -158,7 +167,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             // 何もしない
         }
@@ -271,7 +280,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnTeamEditorFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>
@@ -990,7 +999,7 @@ namespace HoI2Editor.Forms
             Teams.SetDirty(team.Country);
 
             // 研究機関リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TeamList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamList);
 
             // ファイル一覧に存在しなければ追加する
             if (!Teams.FileNameMap.ContainsKey(team.Country))
@@ -1031,7 +1040,7 @@ namespace HoI2Editor.Forms
             Teams.SetDirty(team.Country);
 
             // 研究機関リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TeamList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamList);
         }
 
         /// <summary>
@@ -1062,7 +1071,7 @@ namespace HoI2Editor.Forms
             Teams.SetDirty(selected.Country);
 
             // 研究機関リストの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TeamList, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamList);
         }
 
         /// <summary>
@@ -1836,7 +1845,7 @@ namespace HoI2Editor.Forms
             countryListBox.Refresh();
 
             // 研究機関の所属国家の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TeamCountry, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamCountry);
         }
 
         /// <summary>
@@ -1876,7 +1885,7 @@ namespace HoI2Editor.Forms
             idNumericUpDown.ForeColor = Color.Red;
 
             // 研究機関IDの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TeamId, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamId);
         }
 
         /// <summary>
@@ -1926,7 +1935,7 @@ namespace HoI2Editor.Forms
             nameTextBox.ForeColor = Color.Red;
 
             // 研究機関名の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TeamName, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamName);
         }
 
         /// <summary>
@@ -1966,7 +1975,7 @@ namespace HoI2Editor.Forms
             skillNumericUpDown.ForeColor = Color.Red;
 
             // 研究機関のスキルの更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TeamSkill, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamSkill);
         }
 
         /// <summary>
@@ -2087,7 +2096,7 @@ namespace HoI2Editor.Forms
             UpdateEditableItemsColor(team);
 
             // 研究機関の特性の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.TeamSpeciality, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.TeamSpeciality);
         }
 
         /// <summary>

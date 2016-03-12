@@ -5,294 +5,294 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     プロヴィンスデータ
     /// </summary>
-    public class Province
+    internal class Province
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     プロヴィンスID
         /// </summary>
-        public int Id { get; set; }
+        internal int Id { get; set; }
 
         /// <summary>
         ///     プロヴィンス名
         /// </summary>
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
         /// <summary>
         ///     地域ID
         /// </summary>
-        public AreaId Area { get; set; }
+        internal AreaId Area { get; set; }
 
         /// <summary>
         ///     地方ID
         /// </summary>
-        public RegionId Region { get; set; }
+        internal RegionId Region { get; set; }
 
         /// <summary>
         ///     大陸ID
         /// </summary>
-        public ContinentId Continent { get; set; }
+        internal ContinentId Continent { get; set; }
 
         /// <summary>
         ///     気候ID
         /// </summary>
-        public ClimateId Climate { get; set; }
+        internal ClimateId Climate { get; set; }
 
         /// <summary>
         ///     地形ID
         /// </summary>
-        public TerrainId Terrain { get; set; }
+        internal TerrainId Terrain { get; set; }
 
         /// <summary>
         ///     サイズ補正(不明)
         /// </summary>
-        public int SizeModifier { get; set; }
+        internal int SizeModifier { get; set; }
 
         /// <summary>
         ///     航空機許容量(不明)
         /// </summary>
-        public int AirCapacity { get; set; }
+        internal int AirCapacity { get; set; }
 
         /// <summary>
         ///     インフラ
         /// </summary>
-        public double Infrastructure { get; set; }
+        internal double Infrastructure { get; set; }
 
         /// <summary>
         ///     都市(不明)
         /// </summary>
-        public int City { get; set; }
+        internal int City { get; set; }
 
         /// <summary>
         ///     砂浜の有無
         /// </summary>
-        public bool Beaches { get; set; }
+        internal bool Beaches { get; set; }
 
         /// <summary>
         ///     港の有無
         /// </summary>
-        public bool PortAllowed { get; set; }
+        internal bool PortAllowed { get; set; }
 
         /// <summary>
         ///     港の海域
         /// </summary>
-        public int PortSeaZone { get; set; }
+        internal int PortSeaZone { get; set; }
 
         /// <summary>
         ///     IC
         /// </summary>
-        public double Ic { get; set; }
+        internal double Ic { get; set; }
 
         /// <summary>
         ///     労働力
         /// </summary>
-        public double Manpower { get; set; }
+        internal double Manpower { get; set; }
 
         /// <summary>
         ///     石油
         /// </summary>
-        public double Oil { get; set; }
+        internal double Oil { get; set; }
 
         /// <summary>
         ///     金属
         /// </summary>
-        public double Metal { get; set; }
+        internal double Metal { get; set; }
 
         /// <summary>
         ///     エネルギー
         /// </summary>
-        public double Energy { get; set; }
+        internal double Energy { get; set; }
 
         /// <summary>
         ///     希少資源
         /// </summary>
-        public double RareMaterials { get; set; }
+        internal double RareMaterials { get; set; }
 
         /// <summary>
         ///     都市のX座標
         /// </summary>
-        public int CityXPos { get; set; }
+        internal int CityXPos { get; set; }
 
         /// <summary>
         ///     都市のY座標
         /// </summary>
-        public int CityYPos { get; set; }
+        internal int CityYPos { get; set; }
 
         /// <summary>
         ///     軍隊のX座標
         /// </summary>
-        public int ArmyXPos { get; set; }
+        internal int ArmyXPos { get; set; }
 
         /// <summary>
         ///     軍隊のY座標
         /// </summary>
-        public int ArmyYPos { get; set; }
+        internal int ArmyYPos { get; set; }
 
         /// <summary>
         ///     港のX座標
         /// </summary>
-        public int PortXPos { get; set; }
+        internal int PortXPos { get; set; }
 
         /// <summary>
         ///     港のY座標
         /// </summary>
-        public int PortYPos { get; set; }
+        internal int PortYPos { get; set; }
 
         /// <summary>
         ///     砂浜のX座標
         /// </summary>
-        public int BeachXPos { get; set; }
+        internal int BeachXPos { get; set; }
 
         /// <summary>
         ///     砂浜のY座標
         /// </summary>
-        public int BeachYPos { get; set; }
+        internal int BeachYPos { get; set; }
 
         /// <summary>
         ///     砂浜のアイコン
         /// </summary>
-        public int BeachIcon { get; set; }
+        internal int BeachIcon { get; set; }
 
         /// <summary>
         ///     要塞のX座標
         /// </summary>
-        public int FortXPos { get; set; }
+        internal int FortXPos { get; set; }
 
         /// <summary>
         ///     要塞のY座標
         /// </summary>
-        public int FortYPos { get; set; }
+        internal int FortYPos { get; set; }
 
         /// <summary>
         ///     対空砲のX座標
         /// </summary>
-        public int AaXPos { get; set; }
+        internal int AaXPos { get; set; }
 
         /// <summary>
         ///     対空砲のY座標
         /// </summary>
-        public int AaYPos { get; set; }
+        internal int AaYPos { get; set; }
 
         /// <summary>
         ///     カウンターのX座標
         /// </summary>
-        public int CounterXPos { get; set; }
+        internal int CounterXPos { get; set; }
 
         /// <summary>
         ///     カウンターのY座標
         /// </summary>
-        public int CounterYPos { get; set; }
+        internal int CounterYPos { get; set; }
 
         /// <summary>
         ///     不明
         /// </summary>
-        public int TerrainVariant1 { get; set; }
+        internal int TerrainVariant1 { get; set; }
 
         /// <summary>
         ///     不明
         /// </summary>
-        public int TerrainXPos1 { get; set; }
+        internal int TerrainXPos1 { get; set; }
 
         /// <summary>
         ///     不明
         /// </summary>
-        public int TerrainYPos1 { get; set; }
+        internal int TerrainYPos1 { get; set; }
 
         /// <summary>
         ///     不明
         /// </summary>
-        public int TerrainVariant2 { get; set; }
+        internal int TerrainVariant2 { get; set; }
 
         /// <summary>
         ///     不明
         /// </summary>
-        public int TerrainXPos2 { get; set; }
+        internal int TerrainXPos2 { get; set; }
 
         /// <summary>
         ///     不明
         /// </summary>
-        public int TerrainYPos2 { get; set; }
+        internal int TerrainYPos2 { get; set; }
 
         /// <summary>
         ///     不明
         /// </summary>
-        public int TerrainVariant3 { get; set; }
+        internal int TerrainVariant3 { get; set; }
 
         /// <summary>
         ///     不明
         /// </summary>
-        public int TerrainXPos3 { get; set; }
+        internal int TerrainXPos3 { get; set; }
 
         /// <summary>
         ///     不明
         /// </summary>
-        public int TerrainYPos3 { get; set; }
+        internal int TerrainYPos3 { get; set; }
 
         /// <summary>
         ///     不明
         /// </summary>
-        public int TerrainVariant4 { get; set; }
+        internal int TerrainVariant4 { get; set; }
 
         /// <summary>
         ///     塗りつぶしX座標1
         /// </summary>
-        public int FillCoordX1 { get; set; }
+        internal int FillCoordX1 { get; set; }
 
         /// <summary>
         ///     塗りつぶしY座標1
         /// </summary>
-        public int FillCoordY1 { get; set; }
+        internal int FillCoordY1 { get; set; }
 
         /// <summary>
         ///     塗りつぶしX座標2
         /// </summary>
-        public int FillCoordX2 { get; set; }
+        internal int FillCoordX2 { get; set; }
 
         /// <summary>
         ///     塗りつぶしY座標2
         /// </summary>
-        public int FillCoordY2 { get; set; }
+        internal int FillCoordY2 { get; set; }
 
         /// <summary>
         ///     塗りつぶしX座標3
         /// </summary>
-        public int FillCoordX3 { get; set; }
+        internal int FillCoordX3 { get; set; }
 
         /// <summary>
         ///     塗りつぶしY座標3
         /// </summary>
-        public int FillCoordY3 { get; set; }
+        internal int FillCoordY3 { get; set; }
 
         /// <summary>
         ///     塗りつぶしX座標4
         /// </summary>
-        public int FillCoordX4 { get; set; }
+        internal int FillCoordX4 { get; set; }
 
         /// <summary>
         ///     塗りつぶしY座標4
         /// </summary>
-        public int FillCoordY4 { get; set; }
+        internal int FillCoordY4 { get; set; }
 
         /// <summary>
         ///     塗りつぶしX座標5
         /// </summary>
-        public int FillCoordX5 { get; set; }
+        internal int FillCoordX5 { get; set; }
 
         /// <summary>
         ///     塗りつぶしY座標5
         /// </summary>
-        public int FillCoordY5 { get; set; }
+        internal int FillCoordY5 { get; set; }
 
         /// <summary>
         ///     塗りつぶしX座標6
         /// </summary>
-        public int FillCoordX6 { get; set; }
+        internal int FillCoordX6 { get; set; }
 
         /// <summary>
         ///     陸地プロヴィンスかどうか
         /// </summary>
-        public bool IsLand
+        internal bool IsLand
         {
             get
             {
@@ -318,7 +318,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     海洋プロヴィンスかどうか
         /// </summary>
-        public bool IsSea
+        internal bool IsSea
         {
             get
             {
@@ -337,7 +337,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     無効プロヴィンスかどうか
         /// </summary>
-        public bool IsInvalid
+        internal bool IsInvalid
         {
             get
             {
@@ -375,7 +375,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンス名を取得する
         /// </summary>
         /// <returns>プロヴィンス名</returns>
-        public string GetName()
+        internal string GetName()
         {
             return Config.GetText(Name);
         }
@@ -384,7 +384,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンス名を設定する
         /// </summary>
         /// <param name="s">プロヴィンス名</param>
-        public void SetName(string s)
+        internal void SetName(string s)
         {
             Config.SetText(Name, s, Game.ProvinceTextFileName);
         }
@@ -397,7 +397,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンスデータが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -407,7 +407,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(ProvinceItemId id)
+        internal bool IsDirty(ProvinceItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -416,7 +416,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(ProvinceItemId id)
+        internal void SetDirty(ProvinceItemId id)
         {
             _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
@@ -425,7 +425,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (TeamItemId id in Enum.GetValues(typeof (ProvinceItemId)))
             {
@@ -440,7 +440,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     地域ID
     /// </summary>
-    public enum AreaId
+    internal enum AreaId
     {
         None,
 
@@ -1057,7 +1057,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     地方ID
     /// </summary>
-    public enum RegionId
+    internal enum RegionId
     {
         None,
 
@@ -1220,7 +1220,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     大陸ID
     /// </summary>
-    public enum ContinentId
+    internal enum ContinentId
     {
         None,
         NorthAmerica,
@@ -1238,7 +1238,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     気候ID
     /// </summary>
-    public enum ClimateId
+    internal enum ClimateId
     {
         None,
         Arctic,
@@ -1254,7 +1254,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     地形ID
     /// </summary>
-    public enum TerrainId
+    internal enum TerrainId
     {
         Plains,
         Forest,
@@ -1274,7 +1274,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     プロヴィンス項目ID
     /// </summary>
-    public enum ProvinceItemId
+    internal enum ProvinceItemId
     {
         Id, // プロヴィンスID
         Name, // プロヴィンス名

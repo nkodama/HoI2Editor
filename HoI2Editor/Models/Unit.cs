@@ -7,139 +7,139 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニットクラス
     /// </summary>
-    public class UnitClass
+    internal class UnitClass
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     ユニットの種類
         /// </summary>
-        public UnitType Type { get; }
+        internal UnitType Type { get; }
 
         /// <summary>
         ///     ユニットの兵科
         /// </summary>
-        public Branch Branch { get; set; }
+        internal Branch Branch { get; set; }
 
         /// <summary>
         ///     ユニットの編成
         /// </summary>
-        public UnitOrganization Organization { get; }
+        internal UnitOrganization Organization { get; }
 
         /// <summary>
         ///     名前
         /// </summary>
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
         /// <summary>
         ///     短縮名
         /// </summary>
-        public string ShortName { get; set; }
+        internal string ShortName { get; set; }
 
         /// <summary>
         ///     説明
         /// </summary>
-        public string Desc { get; set; }
+        internal string Desc { get; set; }
 
         /// <summary>
         ///     簡易説明
         /// </summary>
-        public string ShortDesc { get; set; }
+        internal string ShortDesc { get; set; }
 
         /// <summary>
         ///     統計グループ
         /// </summary>
-        public int Eyr { get; set; }
+        internal int Eyr { get; set; }
 
         /// <summary>
         ///     スプライトの種類
         /// </summary>
-        public SpriteType Sprite { get; set; }
+        internal SpriteType Sprite { get; set; }
 
         /// <summary>
         ///     生産不可能な時に使用するクラス
         /// </summary>
-        public UnitType Transmute { get; set; }
+        internal UnitType Transmute { get; set; }
 
         /// <summary>
         ///     画像の優先度
         /// </summary>
-        public int GfxPrio { get; set; }
+        internal int GfxPrio { get; set; }
 
         /// <summary>
         ///     軍事力
         /// </summary>
-        public double Value { get; set; }
+        internal double Value { get; set; }
 
         /// <summary>
         ///     リストの優先度
         /// </summary>
-        public int ListPrio { get; set; }
+        internal int ListPrio { get; set; }
 
         /// <summary>
         ///     UI優先度
         /// </summary>
-        public int UiPrio { get; set; }
+        internal int UiPrio { get; set; }
 
         /// <summary>
         ///     実ユニット種類
         /// </summary>
-        public RealUnitType RealType { get; set; }
+        internal RealUnitType RealType { get; set; }
 
         /// <summary>
         ///     最大生産速度
         /// </summary>
-        public int MaxSpeedStep { get; set; }
+        internal int MaxSpeedStep { get; set; }
 
         /// <summary>
         ///     初期状態で生産可能かどうか
         /// </summary>
-        public bool Productable { get; set; }
+        internal bool Productable { get; set; }
 
         /// <summary>
         ///     空母航空隊かどうか
         /// </summary>
-        public bool Cag { get; set; }
+        internal bool Cag { get; set; }
 
         /// <summary>
         ///     護衛戦闘機かどうか
         /// </summary>
-        public bool Escort { get; set; }
+        internal bool Escort { get; set; }
 
         /// <summary>
         ///     工兵かどうか
         /// </summary>
-        public bool Engineer { get; set; }
+        internal bool Engineer { get; set; }
 
         /// <summary>
         ///     標準の生産タイプかどうか
         /// </summary>
-        public bool DefaultType { get; set; }
+        internal bool DefaultType { get; set; }
 
         /// <summary>
         ///     旅団が着脱可能か
         /// </summary>
-        public bool Detachable { get; set; }
+        internal bool Detachable { get; set; }
 
         /// <summary>
         ///     最大旅団数 (-1の場合未定義)
         /// </summary>
-        public int MaxAllowedBrigades { get; set; }
+        internal int MaxAllowedBrigades { get; set; }
 
         /// <summary>
         ///     付属可能旅団
         /// </summary>
-        public List<UnitType> AllowedBrigades { get; private set; }
+        internal List<UnitType> AllowedBrigades { get; private set; }
 
         /// <summary>
         ///     モデルリスト
         /// </summary>
-        public List<UnitModel> Models { get; }
+        internal List<UnitModel> Models { get; }
 
         /// <summary>
         ///     ユニット更新情報
         /// </summary>
-        public List<UnitUpgrade> Upgrades { get; private set; }
+        internal List<UnitUpgrade> Upgrades { get; private set; }
 
         #endregion
 
@@ -1433,7 +1433,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public UnitClass(UnitType type)
+        internal UnitClass(UnitType type)
         {
             Type = type;
             Branch = DefaultBranches[(int) type];
@@ -1483,7 +1483,7 @@ namespace HoI2Editor.Models
         ///     ユニット短縮名を取得する
         /// </summary>
         /// <returns>短縮名</returns>
-        public string GetShortName()
+        internal string GetShortName()
         {
             return Config.ExistsKey(ShortName) ? Config.GetText(ShortName) : "";
         }
@@ -1492,7 +1492,7 @@ namespace HoI2Editor.Models
         ///     ユニット説明を取得する
         /// </summary>
         /// <returns>ユニット説明</returns>
-        public string GetDesc()
+        internal string GetDesc()
         {
             return Config.ExistsKey(Desc) ? Config.GetText(Desc) : "";
         }
@@ -1501,7 +1501,7 @@ namespace HoI2Editor.Models
         ///     ユニット短縮説明を取得する
         /// </summary>
         /// <returns>ユニット短縮説明</returns>
-        public string GetShortDesc()
+        internal string GetShortDesc()
         {
             return Config.ExistsKey(ShortDesc) ? Config.GetText(ShortDesc) : "";
         }
@@ -1514,7 +1514,7 @@ namespace HoI2Editor.Models
         ///     最大付属旅団数が編集可能かどうかを取得する
         /// </summary>
         /// <returns>編集可能ならばtrueを返す</returns>
-        public bool CanModifyMaxAllowedBrigades()
+        internal bool CanModifyMaxAllowedBrigades()
         {
             // 旅団の場合は編集不可
             if (Organization == UnitOrganization.Brigade)
@@ -1554,7 +1554,7 @@ namespace HoI2Editor.Models
         ///     最大付属旅団数を取得する
         /// </summary>
         /// <returns>最大付属旅団数</returns>
-        public int GetMaxAllowedBrigades()
+        internal int GetMaxAllowedBrigades()
         {
             // 値が設定済みならば設定された値を返す
             if ((Game.Type == GameType.DarkestHour) && (MaxAllowedBrigades >= 0))
@@ -1616,7 +1616,7 @@ namespace HoI2Editor.Models
         ///     最大付属旅団数を設定する
         /// </summary>
         /// <param name="brigades"></param>
-        public void SetMaxAllowedBrigades(int brigades)
+        internal void SetMaxAllowedBrigades(int brigades)
         {
             // 旅団の場合は何もしない
             if (Organization == UnitOrganization.Brigade)
@@ -1700,7 +1700,7 @@ namespace HoI2Editor.Models
         /// <param name="model">挿入対象のユニットモデル</param>
         /// <param name="index">挿入する位置</param>
         /// <param name="name">ユニットモデル名</param>
-        public void InsertModel(UnitModel model, int index, string name)
+        internal void InsertModel(UnitModel model, int index, string name)
         {
             Log.Info("[Unit] Insert model: {0} ({1})", index, this);
 
@@ -1728,7 +1728,7 @@ namespace HoI2Editor.Models
         ///     ユニットモデルを削除する
         /// </summary>
         /// <param name="index">削除する位置</param>
-        public void RemoveModel(int index)
+        internal void RemoveModel(int index)
         {
             Log.Info("[Unit] Remove model: {0} ({1})", index, this);
 
@@ -1754,7 +1754,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="src">移動元の位置</param>
         /// <param name="dest">移動先の位置</param>
-        public void MoveModel(int src, int dest)
+        internal void MoveModel(int src, int dest)
         {
             Log.Info("[Unit] Move model: {0} -> {1} ({2})", src, dest, this);
 
@@ -1811,7 +1811,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="index">ユニットモデルのインデックス</param>
         /// <returns>ユニットモデル名</returns>
-        public string GetModelName(int index)
+        internal string GetModelName(int index)
         {
             string key = GetModelNameKey(index);
             return Config.ExistsKey(key) ? Config.GetText(key) : "";
@@ -1823,7 +1823,7 @@ namespace HoI2Editor.Models
         /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
         /// <returns>ユニットモデル名</returns>
-        public string GetCountryModelName(int index, Country country)
+        internal string GetCountryModelName(int index, Country country)
         {
             string key = GetModelNameKey(index, country);
             return Config.ExistsKey(key) ? Config.GetText(key) : "";
@@ -1847,7 +1847,7 @@ namespace HoI2Editor.Models
         /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
         /// <param name="s">ユニットモデル名</param>
-        public void SetModelName(int index, Country country, string s)
+        internal void SetModelName(int index, Country country, string s)
         {
             if (country == Country.None)
             {
@@ -1916,7 +1916,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
-        public void RemoveModelName(int index, Country country)
+        internal void RemoveModelName(int index, Country country)
         {
             if (country == Country.None)
             {
@@ -2059,7 +2059,7 @@ namespace HoI2Editor.Models
         /// <param name="index">ユニットモデルのインデックス</param>
         /// <param name="country">国タグ</param>
         /// <returns>モデル名が存在すればtrueを返す</returns>
-        public bool ExistsModelName(int index, Country country)
+        internal bool ExistsModelName(int index, Country country)
         {
             if (country == Country.None)
             {
@@ -2104,7 +2104,7 @@ namespace HoI2Editor.Models
         ///     ユニットクラスが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -2114,7 +2114,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(UnitClassItemId id)
+        internal bool IsDirty(UnitClassItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -2123,7 +2123,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(UnitClassItemId id)
+        internal void SetDirty(UnitClassItemId id)
         {
             _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
@@ -2210,7 +2210,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public void SetDirty()
+        internal void SetDirty()
         {
             _dirtyFlag = true;
             SetEntity();
@@ -2220,7 +2220,7 @@ namespace HoI2Editor.Models
         ///     ユニット定義ファイルが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirtyFile()
+        internal bool IsDirtyFile()
         {
             return _dirtyFileFlag;
         }
@@ -2229,7 +2229,7 @@ namespace HoI2Editor.Models
         ///     ユニット定義ファイルの編集済みフラグを設定する
         /// </summary>
         /// <returns></returns>
-        public void SetDirtyFile()
+        internal void SetDirtyFile()
         {
             _dirtyFileFlag = true;
             _dirtyFlag = true;
@@ -2242,7 +2242,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public bool IsDirtyAllowedBrigades(UnitType type)
+        internal bool IsDirtyAllowedBrigades(UnitType type)
         {
             return _dirtyBrigades.Contains(type);
         }
@@ -2251,7 +2251,7 @@ namespace HoI2Editor.Models
         ///     付属可能旅団の編集済みフラグを設定する
         /// </summary>
         /// <param name="type">旅団の種類</param>
-        public void SetDirtyAllowedBrigades(UnitType type)
+        internal void SetDirtyAllowedBrigades(UnitType type)
         {
             if (!_dirtyBrigades.Contains(type))
             {
@@ -2266,7 +2266,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (UnitClassItemId id in Enum.GetValues(typeof (UnitClassItemId)))
             {
@@ -2285,7 +2285,7 @@ namespace HoI2Editor.Models
         ///     項目の実体が存在するかどうかを取得する
         /// </summary>
         /// <returns>実体が存在すればtrueを返す</returns>
-        public bool ExistsEntity()
+        internal bool ExistsEntity()
         {
             return _entityFlag;
         }
@@ -2293,7 +2293,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     実体存在フラグを設定する
         /// </summary>
-        public void SetEntity()
+        internal void SetEntity()
         {
             // DH1.03以降以外ならば何もしない
             if ((Game.Type != GameType.DarkestHour) || (Game.Version < 103))
@@ -2316,259 +2316,259 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニットモデル
     /// </summary>
-    public class UnitModel
+    internal class UnitModel
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     必要IC
         /// </summary>
-        public double Cost { get; set; }
+        internal double Cost { get; set; }
 
         /// <summary>
         ///     生産に要する時間
         /// </summary>
-        public double BuildTime { get; set; }
+        internal double BuildTime { get; set; }
 
         /// <summary>
         ///     必要人的資源
         /// </summary>
-        public double ManPower { get; set; }
+        internal double ManPower { get; set; }
 
         /// <summary>
         ///     移動速度
         /// </summary>
-        public double MaxSpeed { get; set; }
+        internal double MaxSpeed { get; set; }
 
         /// <summary>
         ///     砲兵旅団付随時の速度キャップ
         /// </summary>
-        public double SpeedCapArt { get; set; }
+        internal double SpeedCapArt { get; set; }
 
         /// <summary>
         ///     工兵旅団付随時の速度キャップ
         /// </summary>
-        public double SpeedCapEng { get; set; }
+        internal double SpeedCapEng { get; set; }
 
         /// <summary>
         ///     対戦車旅団付随時の速度キャップ
         /// </summary>
-        public double SpeedCapAt { get; set; }
+        internal double SpeedCapAt { get; set; }
 
         /// <summary>
         ///     対空旅団付随時の速度キャップ
         /// </summary>
-        public double SpeedCapAa { get; set; }
+        internal double SpeedCapAa { get; set; }
 
         /// <summary>
         ///     航続距離
         /// </summary>
-        public double Range { get; set; }
+        internal double Range { get; set; }
 
         /// <summary>
         ///     組織率
         /// </summary>
-        public double DefaultOrganization { get; set; }
+        internal double DefaultOrganization { get; set; }
 
         /// <summary>
         ///     士気
         /// </summary>
-        public double Morale { get; set; }
+        internal double Morale { get; set; }
 
         /// <summary>
         ///     防御力
         /// </summary>
-        public double Defensiveness { get; set; }
+        internal double Defensiveness { get; set; }
 
         /// <summary>
         ///     対艦/対潜防御力
         /// </summary>
-        public double SeaDefense { get; set; }
+        internal double SeaDefense { get; set; }
 
         /// <summary>
         ///     対空防御力
         /// </summary>
-        public double AirDefence { get; set; }
+        internal double AirDefence { get; set; }
 
         /// <summary>
         ///     対地/対艦防御力
         /// </summary>
-        public double SurfaceDefence { get; set; }
+        internal double SurfaceDefence { get; set; }
 
         /// <summary>
         ///     耐久力
         /// </summary>
-        public double Toughness { get; set; }
+        internal double Toughness { get; set; }
 
         /// <summary>
         ///     脆弱性
         /// </summary>
-        public double Softness { get; set; }
+        internal double Softness { get; set; }
 
         /// <summary>
         ///     制圧力
         /// </summary>
-        public double Suppression { get; set; }
+        internal double Suppression { get; set; }
 
         /// <summary>
         ///     対人攻撃力
         /// </summary>
-        public double SoftAttack { get; set; }
+        internal double SoftAttack { get; set; }
 
         /// <summary>
         ///     対甲攻撃力
         /// </summary>
-        public double HardAttack { get; set; }
+        internal double HardAttack { get; set; }
 
         /// <summary>
         ///     対艦攻撃力(海軍)
         /// </summary>
-        public double SeaAttack { get; set; }
+        internal double SeaAttack { get; set; }
 
         /// <summary>
         ///     対潜攻撃力
         /// </summary>
-        public double SubAttack { get; set; }
+        internal double SubAttack { get; set; }
 
         /// <summary>
         ///     通商破壊力
         /// </summary>
-        public double ConvoyAttack { get; set; }
+        internal double ConvoyAttack { get; set; }
 
         /// <summary>
         ///     湾岸攻撃力
         /// </summary>
-        public double ShoreBombardment { get; set; }
+        internal double ShoreBombardment { get; set; }
 
         /// <summary>
         ///     対空攻撃力
         /// </summary>
-        public double AirAttack { get; set; }
+        internal double AirAttack { get; set; }
 
         /// <summary>
         ///     対艦攻撃力(空軍)
         /// </summary>
-        public double NavalAttack { get; set; }
+        internal double NavalAttack { get; set; }
 
         /// <summary>
         ///     戦略爆撃力
         /// </summary>
-        public double StrategicAttack { get; set; }
+        internal double StrategicAttack { get; set; }
 
         /// <summary>
         ///     射程距離
         /// </summary>
-        public double Distance { get; set; }
+        internal double Distance { get; set; }
 
         /// <summary>
         ///     対艦索敵能力
         /// </summary>
-        public double SurfaceDetectionCapability { get; set; }
+        internal double SurfaceDetectionCapability { get; set; }
 
         /// <summary>
         ///     対潜索敵能力
         /// </summary>
-        public double SubDetectionCapability { get; set; }
+        internal double SubDetectionCapability { get; set; }
 
         /// <summary>
         ///     対空索敵能力
         /// </summary>
-        public double AirDetectionCapability { get; set; }
+        internal double AirDetectionCapability { get; set; }
 
         /// <summary>
         ///     可視性
         /// </summary>
-        public double Visibility { get; set; }
+        internal double Visibility { get; set; }
 
         /// <summary>
         ///     所要TC
         /// </summary>
-        public double TransportWeight { get; set; }
+        internal double TransportWeight { get; set; }
 
         /// <summary>
         ///     輸送能力
         /// </summary>
-        public double TransportCapability { get; set; }
+        internal double TransportCapability { get; set; }
 
         /// <summary>
         ///     消費物資
         /// </summary>
-        public double SupplyConsumption { get; set; }
+        internal double SupplyConsumption { get; set; }
 
         /// <summary>
         ///     消費燃料
         /// </summary>
-        public double FuelConsumption { get; set; }
+        internal double FuelConsumption { get; set; }
 
         /// <summary>
         ///     改良時間補正
         /// </summary>
-        public double UpgradeTimeFactor { get; set; }
+        internal double UpgradeTimeFactor { get; set; }
 
         /// <summary>
         ///     改良IC補正
         /// </summary>
-        public double UpgradeCostFactor { get; set; }
+        internal double UpgradeCostFactor { get; set; }
 
         /// <summary>
         ///     砲撃攻撃力 (AoD)
         /// </summary>
-        public double ArtilleryBombardment { get; set; }
+        internal double ArtilleryBombardment { get; set; }
 
         /// <summary>
         ///     最大携行物資 (AoD)
         /// </summary>
-        public double MaxSupplyStock { get; set; }
+        internal double MaxSupplyStock { get; set; }
 
         /// <summary>
         ///     最大携行燃料 (AoD)
         /// </summary>
-        public double MaxOilStock { get; set; }
+        internal double MaxOilStock { get; set; }
 
         /// <summary>
         ///     燃料切れ時の戦闘補正 (DH)
         /// </summary>
-        public double NoFuelCombatMod { get; set; }
+        internal double NoFuelCombatMod { get; set; }
 
         /// <summary>
         ///     補充時間補正 (DH)
         /// </summary>
-        public double ReinforceTimeFactor { get; set; }
+        internal double ReinforceTimeFactor { get; set; }
 
         /// <summary>
         ///     補充IC補正 (DH)
         /// </summary>
-        public double ReinforceCostFactor { get; set; }
+        internal double ReinforceCostFactor { get; set; }
 
         /// <summary>
         ///     改良時間の補正をするか (DH)
         /// </summary>
-        public bool UpgradeTimeBoost { get; set; } = true;
+        internal bool UpgradeTimeBoost { get; set; } = true;
 
         /// <summary>
         ///     他師団への自動改良を許可するか (DH)
         /// </summary>
-        public bool AutoUpgrade { get; set; }
+        internal bool AutoUpgrade { get; set; }
 
         /// <summary>
         ///     自動改良先のユニットクラス (DH)
         /// </summary>
-        public UnitType UpgradeClass { get; set; }
+        internal UnitType UpgradeClass { get; set; }
 
         /// <summary>
         ///     自動改良先モデル番号 (DH)
         /// </summary>
-        public int UpgradeModel { get; set; }
+        internal int UpgradeModel { get; set; }
 
         /// <summary>
         ///     速度キャップ (DH1.03以降)
         /// </summary>
-        public double SpeedCap { get; set; }
+        internal double SpeedCap { get; set; }
 
         /// <summary>
         ///     装備 (DH1.03以降)
         /// </summary>
-        public List<UnitEquipment> Equipments { get; } = new List<UnitEquipment>();
+        internal List<UnitEquipment> Equipments { get; } = new List<UnitEquipment>();
 
         #endregion
 
@@ -2596,7 +2596,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public UnitModel()
+        internal UnitModel()
         {
         }
 
@@ -2604,7 +2604,7 @@ namespace HoI2Editor.Models
         ///     コピーコンストラクタ
         /// </summary>
         /// <param name="original">複製元のユニットモデル</param>
-        public UnitModel(UnitModel original)
+        internal UnitModel(UnitModel original)
         {
             Cost = original.Cost;
             BuildTime = original.BuildTime;
@@ -2670,7 +2670,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="src">移動元の位置</param>
         /// <param name="dest">移動先の位置</param>
-        public void MoveEquipment(int src, int dest)
+        internal void MoveEquipment(int src, int dest)
         {
             UnitEquipment equipment = Equipments[src];
 
@@ -2696,7 +2696,7 @@ namespace HoI2Editor.Models
         ///     ユニットモデルが編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -2706,7 +2706,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(UnitModelItemId id)
+        internal bool IsDirty(UnitModelItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -2716,7 +2716,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirtyName(Country country)
+        internal bool IsDirtyName(Country country)
         {
             return country == Country.None ? _dirtyFlags[(int) UnitModelItemId.Name] : _nameDirtyFlags[(int) country];
         }
@@ -2724,7 +2724,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public void SetDirty()
+        internal void SetDirty()
         {
             _dirtyFlag = true;
         }
@@ -2733,7 +2733,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(UnitModelItemId id)
+        internal void SetDirty(UnitModelItemId id)
         {
             _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
@@ -2743,7 +2743,7 @@ namespace HoI2Editor.Models
         ///     国別モデル名の編集済みフラグを設定する
         /// </summary>
         /// <param name="country">項目ID</param>
-        public void SetDirtyName(Country country)
+        internal void SetDirtyName(Country country)
         {
             if (country == Country.None)
             {
@@ -2758,7 +2758,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirtyAll()
+        internal void SetDirtyAll()
         {
             foreach (UnitModelItemId id in Enum.GetValues(typeof (UnitModelItemId)))
             {
@@ -2770,7 +2770,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (UnitModelItemId id in Enum.GetValues(typeof (UnitModelItemId)))
             {
@@ -2789,19 +2789,19 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニット装備情報
     /// </summary>
-    public class UnitEquipment
+    internal class UnitEquipment
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     資源
         /// </summary>
-        public EquipmentType Resource { get; set; }
+        internal EquipmentType Resource { get; set; }
 
         /// <summary>
         ///     量
         /// </summary>
-        public double Quantity { get; set; }
+        internal double Quantity { get; set; }
 
         #endregion
 
@@ -2824,7 +2824,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public UnitEquipment()
+        internal UnitEquipment()
         {
         }
 
@@ -2832,7 +2832,7 @@ namespace HoI2Editor.Models
         ///     コピーコンストラクタ
         /// </summary>
         /// <param name="original">複製元のユニット装備情報</param>
-        public UnitEquipment(UnitEquipment original)
+        internal UnitEquipment(UnitEquipment original)
         {
             Resource = original.Resource;
             Quantity = original.Quantity;
@@ -2846,7 +2846,7 @@ namespace HoI2Editor.Models
         ///     ユニット装備情報が編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -2856,7 +2856,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(UnitEquipmentItemId id)
+        internal bool IsDirty(UnitEquipmentItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -2865,7 +2865,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(UnitEquipmentItemId id)
+        internal void SetDirty(UnitEquipmentItemId id)
         {
             _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
@@ -2874,7 +2874,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public void SetDirty()
+        internal void SetDirty()
         {
             _dirtyFlag = true;
         }
@@ -2882,7 +2882,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirtyAll()
+        internal void SetDirtyAll()
         {
             foreach (UnitEquipmentItemId id in Enum.GetValues(typeof (UnitEquipmentItemId)))
             {
@@ -2894,7 +2894,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (UnitEquipmentItemId id in Enum.GetValues(typeof (UnitEquipmentItemId)))
             {
@@ -2909,24 +2909,24 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニット更新情報
     /// </summary>
-    public class UnitUpgrade
+    internal class UnitUpgrade
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     ユニットの種類
         /// </summary>
-        public UnitType Type { get; set; }
+        internal UnitType Type { get; set; }
 
         /// <summary>
         ///     改良時間補正
         /// </summary>
-        public double UpgradeTimeFactor { get; set; }
+        internal double UpgradeTimeFactor { get; set; }
 
         /// <summary>
         ///     改良IC補正
         /// </summary>
-        public double UpgradeCostFactor { get; set; }
+        internal double UpgradeCostFactor { get; set; }
 
         #endregion
 
@@ -2950,7 +2950,7 @@ namespace HoI2Editor.Models
         ///     ユニット更新情報が編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty()
+        internal bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -2960,7 +2960,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">項目ID</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public bool IsDirty(UnitUpgradeItemId id)
+        internal bool IsDirty(UnitUpgradeItemId id)
         {
             return _dirtyFlags[(int) id];
         }
@@ -2969,7 +2969,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="id">項目ID</param>
-        public void SetDirty(UnitUpgradeItemId id)
+        internal void SetDirty(UnitUpgradeItemId id)
         {
             _dirtyFlags[(int) id] = true;
             _dirtyFlag = true;
@@ -2978,7 +2978,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを設定する
         /// </summary>
-        public void SetDirty()
+        internal void SetDirty()
         {
             _dirtyFlag = true;
         }
@@ -2986,7 +2986,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て設定する
         /// </summary>
-        public void SetDirtyAll()
+        internal void SetDirtyAll()
         {
             foreach (UnitUpgradeItemId id in Enum.GetValues(typeof (UnitUpgradeItemId)))
             {
@@ -2998,7 +2998,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグを全て解除する
         /// </summary>
-        public void ResetDirtyAll()
+        internal void ResetDirtyAll()
         {
             foreach (UnitUpgradeItemId id in Enum.GetValues(typeof (UnitUpgradeItemId)))
             {
@@ -3013,7 +3013,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニットの編成
     /// </summary>
-    public enum UnitOrganization
+    internal enum UnitOrganization
     {
         Division, // 師団
         Brigade // 旅団
@@ -3022,7 +3022,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニットの種類
     /// </summary>
-    public enum UnitType
+    internal enum UnitType
     {
         Undefined, // 未定義
 
@@ -3347,7 +3347,7 @@ namespace HoI2Editor.Models
     ///     パルチザン: Militia/Infantry
     ///     エイリアン: Infantry/Armor/StrategicBomber/Interceptor/Destroyer/Carrier
     /// </remarks>
-    public enum RealUnitType
+    internal enum RealUnitType
     {
         Infantry,
         Cavalry,
@@ -3385,7 +3385,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     スプライトの種類 (DH1.03以降用)
     /// </summary>
-    public enum SpriteType
+    internal enum SpriteType
     {
         Infantry,
         Cavalry,
@@ -3533,7 +3533,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     装備の種類 (DH1.03以降用)
     /// </summary>
-    public enum EquipmentType
+    internal enum EquipmentType
     {
         Manpower,
         Equipment,
@@ -3577,7 +3577,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニットクラス項目ID
     /// </summary>
-    public enum UnitClassItemId
+    internal enum UnitClassItemId
     {
         Type, // ユニットの種類
         Branch, // ユニットの兵科
@@ -3607,7 +3607,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニットモデル項目ID
     /// </summary>
-    public enum UnitModelItemId
+    internal enum UnitModelItemId
     {
         Name, // 名前
         Cost, // 必要IC
@@ -3664,7 +3664,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニット装備項目ID
     /// </summary>
-    public enum UnitEquipmentItemId
+    internal enum UnitEquipmentItemId
     {
         Resource, // 資源
         Quantity // 量
@@ -3673,7 +3673,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     ユニット更新項目ID
     /// </summary>
-    public enum UnitUpgradeItemId
+    internal enum UnitUpgradeItemId
     {
         Type, // ユニットの種類
         UpgradeTimeFactor, // 改良時間補正

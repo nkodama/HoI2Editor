@@ -9,7 +9,7 @@ namespace HoI2Editor.Writers
     /// <summary>
     ///     ユニットデータの書き込みを担当するクラス
     /// </summary>
-    public static class UnitWriter
+    internal static class UnitWriter
     {
         #region ファイル書き込み
 
@@ -18,7 +18,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="unit">ユニットデータ</param>
         /// <param name="fileName">ファイル名</param>
-        public static void Write(UnitClass unit, string fileName)
+        internal static void Write(UnitClass unit, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -533,7 +533,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="units">ユニットクラス一覧</param>
         /// <param name="fileName">ファイル名</param>
-        public static void WriteDivisionTypes(List<UnitClass> units, string fileName)
+        internal static void WriteDivisionTypes(List<UnitClass> units, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {
@@ -791,7 +791,7 @@ namespace HoI2Editor.Writers
         /// </summary>
         /// <param name="units">ユニットクラス一覧</param>
         /// <param name="fileName">ファイル名</param>
-        public static void WriteBrigadeTypes(List<UnitClass> units, string fileName)
+        internal static void WriteBrigadeTypes(List<UnitClass> units, string fileName)
         {
             using (StreamWriter writer = new StreamWriter(fileName, false, Encoding.GetEncoding(Game.CodePage)))
             {

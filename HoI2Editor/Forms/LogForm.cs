@@ -6,14 +6,14 @@ namespace HoI2Editor.Forms
     /// <summary>
     ///     ログ出力フォーム
     /// </summary>
-    public partial class LogForm : Form
+    internal partial class LogForm : Form
     {
         #region 初期化
 
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public LogForm()
+        internal LogForm()
         {
             InitializeComponent();
         }
@@ -36,7 +36,7 @@ namespace HoI2Editor.Forms
         ///     ログを出力する
         /// </summary>
         /// <param name="s">対象文字列</param>
-        public void Write(string s)
+        internal void Write(string s)
         {
             if (!Visible)
             {

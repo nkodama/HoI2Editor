@@ -6,6 +6,7 @@ using System.Resources;
 using System.Threading;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using HoI2Editor.Controllers;
 using HoI2Editor.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -15,24 +16,24 @@ namespace HoI2Editor
     /// <summary>
     ///     アプリケーションコントローラクラス
     /// </summary>
-    public static class HoI2EditorController
+    internal static class HoI2EditorController
     {
         #region エディタのバージョン
 
         /// <summary>
         ///     アプリケーション名
         /// </summary>
-        public const string Name = "Alternative HoI2 Editor";
+        internal const string Name = "Alternative HoI2 Editor";
 
         /// <summary>
         ///     エディタのバージョン
         /// </summary>
-        public static string Version { get; private set; }
+        internal static string Version { get; private set; }
 
         /// <summary>
         ///     エディタのバージョンを初期化する
         /// </summary>
-        public static void InitVersion()
+        internal static void InitVersion()
         {
             FileVersionInfo info = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
             if (info.FilePrivatePart > 0 && info.FilePrivatePart <= 26)
@@ -60,7 +61,7 @@ namespace HoI2Editor
         ///     リソース文字列を取得する
         /// </summary>
         /// <param name="name">リソース名</param>
-        public static string GetResourceString(string name)
+        internal static string GetResourceString(string name)
         {
             return ResourceManager.GetString(name);
         }
@@ -72,13 +73,13 @@ namespace HoI2Editor
         /// <summary>
         ///     保存がキャンセルされたかどうか
         /// </summary>
-        public static bool SaveCanceled { get; set; }
+        internal static bool SaveCanceled { get; set; }
 
         /// <summary>
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return Misc.IsDirty() ||
                    Config.IsDirty() ||
@@ -97,7 +98,7 @@ namespace HoI2Editor
         /// <summary>
         ///     ファイルの再読み込みを要求する
         /// </summary>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             Misc.RequestReload();
             Config.RequestReload();
@@ -121,7 +122,7 @@ namespace HoI2Editor
         /// <summary>
         ///     データを再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             Log.Info("Reload");
 
@@ -148,7 +149,7 @@ namespace HoI2Editor
         /// <summary>
         ///     データを保存する
         /// </summary>
-        public static void Save()
+        internal static void Save()
         {
             Log.Info("Save");
 
@@ -221,19 +222,19 @@ namespace HoI2Editor
         /// </summary>
         private static void OnFileLoaded()
         {
-            _leaderEditorForm?.OnFileLoaded();
-            _ministerEditorForm?.OnFileLoaded();
-            _teamEditorForm?.OnFileLoaded();
-            _provinceEditorForm?.OnFileLoaded();
-            _techEditorForm?.OnFileLoaded();
-            _unitEditorForm?.OnFileLoaded();
-            _miscEditorForm?.OnFileLoaded();
-            _corpsNameEditorForm?.OnFileLoaded();
-            _unitNameEditorForm?.OnFileLoaded();
-            _modelNameEditorForm?.OnFileLoaded();
-            _randomLeaderEditorForm?.OnFileLoaded();
-            _researchViewerForm?.OnFileLoaded();
-            _scenarioEditorForm?.OnFileLoaded();
+            _leaderEditor?.OnFileLoaded();
+            _ministerEditor?.OnFileLoaded();
+            _teamEditor?.OnFileLoaded();
+            _provinceEditor?.OnFileLoaded();
+            _techEditor?.OnFileLoaded();
+            _unitEditor?.OnFileLoaded();
+            _miscEditor?.OnFileLoaded();
+            _corpsNameEditor?.OnFileLoaded();
+            _unitNameEditor?.OnFileLoaded();
+            _modelNameEditor?.OnFileLoaded();
+            _randomLeaderEditor?.OnFileLoaded();
+            _researchViewer?.OnFileLoaded();
+            _scenarioEditor?.OnFileLoaded();
         }
 
         /// <summary>
@@ -241,82 +242,45 @@ namespace HoI2Editor
         /// </summary>
         private static void OnFileSaved()
         {
-            _leaderEditorForm?.OnFileSaved();
-            _ministerEditorForm?.OnFileSaved();
-            _teamEditorForm?.OnFileSaved();
-            _provinceEditorForm?.OnFileSaved();
-            _techEditorForm?.OnFileSaved();
-            _unitEditorForm?.OnFileSaved();
-            _miscEditorForm?.OnFileSaved();
-            _corpsNameEditorForm?.OnFileSaved();
-            _unitNameEditorForm?.OnFileSaved();
-            _modelNameEditorForm?.OnFileSaved();
-            _randomLeaderEditorForm?.OnFileSaved();
-            _scenarioEditorForm?.OnFileSaved();
+            _leaderEditor?.OnFileSaved();
+            _ministerEditor?.OnFileSaved();
+            _teamEditor?.OnFileSaved();
+            _provinceEditor?.OnFileSaved();
+            _techEditor?.OnFileSaved();
+            _unitEditor?.OnFileSaved();
+            _miscEditor?.OnFileSaved();
+            _corpsNameEditor?.OnFileSaved();
+            _unitNameEditor?.OnFileSaved();
+            _modelNameEditor?.OnFileSaved();
+            _randomLeaderEditor?.OnFileSaved();
+            _scenarioEditor?.OnFileSaved();
         }
 
         /// <summary>
         ///     編集項目変更後の更新処理呼び出し
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        /// <param name="form">呼び出し元のフォーム</param>
-        public static void OnItemChanged(EditorItemId id, Form form)
+        internal static void OnItemChanged(EditorItemId id)
         {
-            if (form != _leaderEditorForm)
-            {
-                _leaderEditorForm?.OnItemChanged(id);
-            }
-            if (form != _ministerEditorForm)
-            {
-                _ministerEditorForm?.OnItemChanged(id);
-            }
-            if (form != _teamEditorForm)
-            {
-                _teamEditorForm?.OnItemChanged(id);
-            }
-            if (form != _provinceEditorForm)
-            {
-                _provinceEditorForm?.OnItemChanged(id);
-            }
-            if (form != _techEditorForm)
-            {
-                _techEditorForm?.OnItemChanged(id);
-            }
-            if (form != _unitEditorForm)
-            {
-                _unitEditorForm?.OnItemChanged(id);
-            }
-            if (form != _miscEditorForm)
-            {
-                _miscEditorForm?.OnItemChanged(id);
-            }
-            if (form != _corpsNameEditorForm)
-            {
-                _corpsNameEditorForm?.OnItemChanged(id);
-            }
-            if (form != _unitNameEditorForm)
-            {
-                _unitNameEditorForm?.OnItemChanged(id);
-            }
-            if (form != _modelNameEditorForm)
-            {
-                _modelNameEditorForm?.OnItemChanged(id);
-            }
-            if (form != _randomLeaderEditorForm)
-            {
-                _randomLeaderEditorForm?.OnItemChanged(id);
-            }
-            _researchViewerForm?.OnItemChanged(id);
-            if (form != _scenarioEditorForm)
-            {
-                _scenarioEditorForm?.OnItemChanged(id);
-            }
+            _leaderEditor?.OnItemChanged(id);
+            _ministerEditor?.OnItemChanged(id);
+            _teamEditor?.OnItemChanged(id);
+            _provinceEditor?.OnItemChanged(id);
+            _techEditor?.OnItemChanged(id);
+            _unitEditor?.OnItemChanged(id);
+            _miscEditor?.OnItemChanged(id);
+            _corpsNameEditor?.OnItemChanged(id);
+            _unitNameEditor?.OnItemChanged(id);
+            _modelNameEditor?.OnItemChanged(id);
+            _randomLeaderEditor?.OnItemChanged(id);
+            _researchViewer?.OnItemChanged(id);
+            _scenarioEditor?.OnItemChanged(id);
         }
 
         /// <summary>
         ///     遅延読み込み完了後の更新処理呼び出し
         /// </summary>
-        public static void OnLoadingCompleted()
+        internal static void OnLoadingCompleted()
         {
             if (!ExistsEditorForms() && !IsLoadingData())
             {
@@ -353,74 +317,74 @@ namespace HoI2Editor
         private static MainForm _mainForm;
 
         /// <summary>
-        ///     指揮官エディタのフォーム
+        ///     指揮官エディタコントローラ
         /// </summary>
-        private static LeaderEditorForm _leaderEditorForm;
+        private static LeaderEditorController _leaderEditor;
 
         /// <summary>
-        ///     閣僚エディタのフォーム
+        ///     閣僚エディタコントローラ
         /// </summary>
-        private static MinisterEditorForm _ministerEditorForm;
+        private static MinisterEditorController _ministerEditor;
 
         /// <summary>
-        ///     研究機関エディタのフォーム
+        ///     研究機関エディタコントローラ
         /// </summary>
-        private static TeamEditorForm _teamEditorForm;
+        private static TeamEditorController _teamEditor;
 
         /// <summary>
-        ///     プロヴィンスエディタのフォーム
+        ///     プロヴィンスエディタコントローラ
         /// </summary>
-        private static ProvinceEditorForm _provinceEditorForm;
+        private static ProvinceEditorController _provinceEditor;
 
         /// <summary>
-        ///     技術ツリーエディタのフォーム
+        ///     技術ツリーエディタコントローラ
         /// </summary>
-        private static TechEditorForm _techEditorForm;
+        private static TechEditorController _techEditor;
 
         /// <summary>
-        ///     ユニットモデルエディタのフォーム
+        ///     ユニットモデルエディタコントローラ
         /// </summary>
-        private static UnitEditorForm _unitEditorForm;
+        private static UnitEditorController _unitEditor;
 
         /// <summary>
-        ///     ゲーム設定エディタのフォーム
+        ///     ゲーム設定エディタコントローラ
         /// </summary>
-        private static MiscEditorForm _miscEditorForm;
+        private static MiscEditorController _miscEditor;
 
         /// <summary>
-        ///     軍団名エディタのフォーム
+        ///     軍団名エディタコントローラ
         /// </summary>
-        private static CorpsNameEditorForm _corpsNameEditorForm;
+        private static CorpsNameEditorController _corpsNameEditor;
 
         /// <summary>
-        ///     ユニット名エディタのフォーム
+        ///     ユニット名エディタコントローラ
         /// </summary>
-        private static UnitNameEditorForm _unitNameEditorForm;
+        private static UnitNameEditorController _unitNameEditor;
 
         /// <summary>
-        ///     モデル名エディタのフォーム
+        ///     モデル名エディタコントローラ
         /// </summary>
-        private static ModelNameEditorForm _modelNameEditorForm;
+        private static ModelNameEditorController _modelNameEditor;
 
         /// <summary>
-        ///     ランダム指揮官エディタのフォーム
+        ///     ランダム指揮官エディタコントローラ
         /// </summary>
-        private static RandomLeaderEditorForm _randomLeaderEditorForm;
+        private static RandomLeaderEditorController _randomLeaderEditor;
 
         /// <summary>
-        ///     研究速度ビューアのフォーム
+        ///     研究速度ビューアコントローラ
         /// </summary>
-        private static ResearchViewerForm _researchViewerForm;
+        private static ResearchViewerController _researchViewer;
 
         /// <summary>
-        ///     シナリオエディタのフォーム
+        ///     シナリオエディタコントローラ
         /// </summary>
-        private static ScenarioEditorForm _scenarioEditorForm;
+        private static ScenarioEditorController _scenarioEditor;
 
         /// <summary>
         ///     メインフォームを起動する
         /// </summary>
-        public static void LaunchMainForm()
+        internal static void LaunchMainForm()
         {
             _mainForm = new MainForm();
             Application.Run(_mainForm);
@@ -429,371 +393,189 @@ namespace HoI2Editor
         /// <summary>
         ///     指揮官エディタフォームを起動する
         /// </summary>
-        public static void LaunchLeaderEditorForm()
+        internal static void LaunchLeaderEditorForm()
         {
-            if (_leaderEditorForm == null)
+            if (_leaderEditor == null)
             {
-                _leaderEditorForm = new LeaderEditorForm();
-                _leaderEditorForm.Show();
+                _leaderEditor = new LeaderEditorController();
+            }
+            _leaderEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _leaderEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     閣僚エディタフォームを起動する
         /// </summary>
-        public static void LaunchMinisterEditorForm()
+        internal static void LaunchMinisterEditorForm()
         {
-            if (_ministerEditorForm == null)
+            if (_ministerEditor == null)
             {
-                _ministerEditorForm = new MinisterEditorForm();
-                _ministerEditorForm.Show();
+                _ministerEditor = new MinisterEditorController();
+            }
+            _ministerEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _ministerEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     研究機関エディタフォームを起動する
         /// </summary>
-        public static void LaunchTeamEditorForm()
+        internal static void LaunchTeamEditorForm()
         {
-            if (_teamEditorForm == null)
+            if (_teamEditor == null)
             {
-                _teamEditorForm = new TeamEditorForm();
-                _teamEditorForm.Show();
+                _teamEditor = new TeamEditorController();
+            }
+            _teamEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _teamEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     プロヴィンスエディタフォームを起動する
         /// </summary>
-        public static void LaunchProvinceEditorForm()
+        internal static void LaunchProvinceEditorForm()
         {
-            if (_provinceEditorForm == null)
+            if (_provinceEditor == null)
             {
-                _provinceEditorForm = new ProvinceEditorForm();
-                _provinceEditorForm.Show();
+                _provinceEditor = new ProvinceEditorController();
+            }
+            _provinceEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _provinceEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     技術ツリーエディタフォームを起動する
         /// </summary>
-        public static void LaunchTechEditorForm()
+        internal static void LaunchTechEditorForm()
         {
-            if (_techEditorForm == null)
+            if (_techEditor == null)
             {
-                _techEditorForm = new TechEditorForm();
-                _techEditorForm.Show();
+                _techEditor = new TechEditorController();
+            }
+            _techEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _techEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     ユニットモデルエディタフォームを起動する
         /// </summary>
-        public static void LaunchUnitEditorForm()
+        internal static void LaunchUnitEditorForm()
         {
-            if (_unitEditorForm == null)
+            if (_unitNameEditor == null)
             {
-                _unitEditorForm = new UnitEditorForm();
-                _unitEditorForm.Show();
+                _unitEditor = new UnitEditorController();
+            }
+            _unitEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _unitEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     ゲーム設定エディタフォームを起動する
         /// </summary>
-        public static void LaunchMiscEditorForm()
+        internal static void LaunchMiscEditorForm()
         {
-            if (_miscEditorForm == null)
+            if (_miscEditor == null)
             {
-                _miscEditorForm = new MiscEditorForm();
-                _miscEditorForm.Show();
+                _miscEditor = new MiscEditorController();
+            }
+            _miscEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _miscEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     軍団名エディタフォームを起動する
         /// </summary>
-        public static void LaunchCorpsNameEditorForm()
+        internal static void LaunchCorpsNameEditorForm()
         {
-            if (_corpsNameEditorForm == null)
+            if (_corpsNameEditor == null)
             {
-                _corpsNameEditorForm = new CorpsNameEditorForm();
-                _corpsNameEditorForm.Show();
+                _corpsNameEditor = new CorpsNameEditorController();
+            }
+            _corpsNameEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _corpsNameEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     ユニット名エディタフォームを起動する
         /// </summary>
-        public static void LaunchUnitNameEditorForm()
+        internal static void LaunchUnitNameEditorForm()
         {
-            if (_unitNameEditorForm == null)
+            if (_unitNameEditor == null)
             {
-                _unitNameEditorForm = new UnitNameEditorForm();
-                _unitNameEditorForm.Show();
+                _unitNameEditor = new UnitNameEditorController();
+            }
+            _unitNameEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _unitNameEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     モデル名エディタフォームを起動する
         /// </summary>
-        public static void LaunchModelNameEditorForm()
+        internal static void LaunchModelNameEditorForm()
         {
-            if (_modelNameEditorForm == null)
+            if (_modelNameEditor == null)
             {
-                _modelNameEditorForm = new ModelNameEditorForm();
-                _modelNameEditorForm.Show();
+                _modelNameEditor = new ModelNameEditorController();
+            }
+            _modelNameEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _modelNameEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     ランダム指揮官エディタフォームを起動する
         /// </summary>
-        public static void LaunchRandomLeaderEditorForm()
+        internal static void LaunchRandomLeaderEditorForm()
         {
-            if (_randomLeaderEditorForm == null)
+            if (_randomLeaderEditor == null)
             {
-                _randomLeaderEditorForm = new RandomLeaderEditorForm();
-                _randomLeaderEditorForm.Show();
+                _randomLeaderEditor = new RandomLeaderEditorController();
+            }
+            _randomLeaderEditor.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _randomLeaderEditorForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     研究速度ビューアフォームを起動する
         /// </summary>
-        public static void LaunchResearchViewerForm()
+        internal static void LaunchResearchViewerForm()
         {
-            if (_researchViewerForm == null)
+            if (_researchViewer == null)
             {
-                _researchViewerForm = new ResearchViewerForm();
-                _researchViewerForm.Show();
+                _researchViewer = new ResearchViewerController();
+            }
+            _researchViewer.OpenForm();
 
-                OnEditorStatusUpdate();
-            }
-            else
-            {
-                _researchViewerForm.Activate();
-            }
+            OnEditorStatusUpdate();
         }
 
         /// <summary>
         ///     シナリオエディタフォームを起動する
         /// </summary>
-        public static void LaunchScenarioEditorForm()
+        internal static void LaunchScenarioEditorForm()
         {
-            if (_scenarioEditorForm == null)
+            if (_scenarioEditor == null)
             {
-                _scenarioEditorForm = new ScenarioEditorForm();
-                _scenarioEditorForm.Show();
-
-                OnEditorStatusUpdate();
+                _scenarioEditor = new ScenarioEditorController();
             }
-            else
-            {
-                _scenarioEditorForm.Activate();
-            }
-        }
-
-        /// <summary>
-        ///     指揮官エディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnLeaderEditorFormClosed()
-        {
-            _leaderEditorForm = null;
+            _scenarioEditor.OpenForm();
 
             OnEditorStatusUpdate();
         }
 
         /// <summary>
-        ///     閣僚エディタフォームクローズ時の処理
+        ///     エディタフォームの状態更新時の処理
         /// </summary>
-        public static void OnMinisterEditorFormClosed()
-        {
-            _ministerEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     研究機関エディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnTeamEditorFormClosed()
-        {
-            _teamEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     プロヴィンスエディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnProvinceEditorFormClosed()
-        {
-            _provinceEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     技術ツリーエディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnTechEditorFormClosed()
-        {
-            _techEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     ユニットモデルエディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnUnitEditorFormClosed()
-        {
-            _unitEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     ゲーム設定エディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnMiscEditorFormClosed()
-        {
-            _miscEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     軍団名エディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnCorpsNameEditorFormClosed()
-        {
-            _corpsNameEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     ユニット名エディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnUnitNameEditorFormClosed()
-        {
-            _unitNameEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     モデル名エディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnModelNameEditorFormClosed()
-        {
-            _modelNameEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     ランダム指揮官エディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnRandomLeaderEditorFormClosed()
-        {
-            _randomLeaderEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     研究速度ビューアフォームクローズ時の処理
-        /// </summary>
-        public static void OnResearchViewerFormClosed()
-        {
-            _researchViewerForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     シナリオエディタフォームクローズ時の処理
-        /// </summary>
-        public static void OnScenarioEditorFormClosed()
-        {
-            _scenarioEditorForm = null;
-
-            OnEditorStatusUpdate();
-        }
-
-        /// <summary>
-        ///     エディタの状態更新時の処理
-        /// </summary>
-        private static void OnEditorStatusUpdate()
+        internal static void OnEditorStatusUpdate()
         {
             if (!ExistsEditorForms() && !IsLoadingData())
             {
@@ -811,19 +593,19 @@ namespace HoI2Editor
         /// <returns>エディタのフォームが存在すればtrueを返す</returns>
         private static bool ExistsEditorForms()
         {
-            return _leaderEditorForm != null ||
-                   _ministerEditorForm != null ||
-                   _teamEditorForm != null ||
-                   _provinceEditorForm != null ||
-                   _techEditorForm != null ||
-                   _unitEditorForm != null ||
-                   _miscEditorForm != null ||
-                   _corpsNameEditorForm != null ||
-                   _unitNameEditorForm != null ||
-                   _modelNameEditorForm != null ||
-                   _randomLeaderEditorForm != null ||
-                   _researchViewerForm != null ||
-                   _scenarioEditorForm != null;
+            return (_leaderEditor != null && _leaderEditor.ExistsForm()) ||
+                   (_ministerEditor != null && _ministerEditor.ExistsForm()) ||
+                   (_teamEditor != null && _teamEditor.ExistsForm()) ||
+                   (_provinceEditor != null && _provinceEditor.ExistsForm()) ||
+                   (_techEditor != null && _techEditor.ExistsForm()) ||
+                   (_unitNameEditor != null && _unitNameEditor.ExistsForm()) ||
+                   (_miscEditor != null && _miscEditor.ExistsForm()) ||
+                   (_corpsNameEditor != null && _corpsNameEditor.ExistsForm()) ||
+                   (_unitNameEditor != null && _unitNameEditor.ExistsForm()) ||
+                   (_modelNameEditor != null && _modelNameEditor.ExistsForm()) ||
+                   (_randomLeaderEditor != null && _randomLeaderEditor.ExistsForm()) ||
+                   (_researchViewer != null && _researchViewer.ExistsForm()) ||
+                   (_scenarioEditor != null && _scenarioEditor.ExistsForm());
         }
 
         #endregion
@@ -842,7 +624,7 @@ namespace HoI2Editor
         /// </summary>
         /// <param name="key">キー文字列</param>
         /// <returns>ロックに成功したらtrueを返す</returns>
-        public static bool LockMutex(string key)
+        internal static bool LockMutex(string key)
         {
             // 既にミューテックスをロックしていれば解放する
             if (_mutex != null)
@@ -864,7 +646,7 @@ namespace HoI2Editor
         /// <summary>
         ///     ミューテックスをアンロックする
         /// </summary>
-        public static void UnlockMutex()
+        internal static void UnlockMutex()
         {
             if (_mutex == null)
             {
@@ -887,12 +669,12 @@ namespace HoI2Editor
         /// <summary>
         ///     設定値
         /// </summary>
-        public static HoI2EditorSettings Settings { get; private set; }
+        internal static HoI2EditorSettings Settings { get; private set; }
 
         /// <summary>
         ///     設定値を読み込む
         /// </summary>
-        public static void LoadSettings()
+        internal static void LoadSettings()
         {
             if (!File.Exists(SettingsFileName))
             {
@@ -926,7 +708,7 @@ namespace HoI2Editor
         /// <summary>
         ///     設定値を保存する
         /// </summary>
-        public static void SaveSettings()
+        internal static void SaveSettings()
         {
             if (Settings == null)
             {
@@ -952,7 +734,7 @@ namespace HoI2Editor
     /// <summary>
     ///     エディタの編集項目ID
     /// </summary>
-    public enum EditorItemId
+    internal enum EditorItemId
     {
         LeaderRetirementYear, // 指揮官の引退年設定
         MinisterEndYear, // 閣僚の終了年設定

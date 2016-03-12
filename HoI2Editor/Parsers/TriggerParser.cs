@@ -7,7 +7,7 @@ namespace HoI2Editor.Parsers
     /// <summary>
     ///     トリガーの構文解析クラス
     /// </summary>
-    public static class TriggerParser
+    internal static class TriggerParser
     {
         #region 内部フィールド
 
@@ -49,7 +49,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>トリガーリスト</returns>
-        public static List<Trigger> Parse(TextLexer lexer)
+        internal static List<Trigger> Parse(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();

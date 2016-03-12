@@ -10,24 +10,24 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     マップデータの管理
     /// </summary>
-    public class Map
+    internal class Map
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     マップ画像
         /// </summary>
-        public Bitmap Image { get; private set; }
+        internal Bitmap Image { get; private set; }
 
         /// <summary>
         ///     マップレベル
         /// </summary>
-        public MapLevel Level { get; }
+        internal MapLevel Level { get; }
 
         /// <summary>
         ///     プロヴィンスIDの配列
         /// </summary>
-        public MapProvinceIds ProvinceIds;
+        internal MapProvinceIds ProvinceIds;
 
         #endregion
 
@@ -125,7 +125,7 @@ namespace HoI2Editor.Models
         ///     コンストラクタ
         /// </summary>
         /// <param name="level">マップレベル</param>
-        public Map(MapLevel level)
+        internal Map(MapLevel level)
         {
             Level = level;
             _blockWidth = MaxWidth >> (int) level;
@@ -139,7 +139,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップファイルを読み込む
         /// </summary>
-        public void Load()
+        internal void Load()
         {
             // マップデータを読み込む
             LoadLightMap();
@@ -1300,7 +1300,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     カラーパレットを更新する
         /// </summary>
-        public void UpdateColorPalette()
+        internal void UpdateColorPalette()
         {
             ColorPalette palette = Image.Palette;
             for (int i = 0; i < 256; i++)
@@ -1314,7 +1314,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンス単位でマップ画像を更新する
         /// </summary>
         /// <param name="ids">プロヴィンスIDの配列</param>
-        public void UpdateProvinces(IEnumerable<ushort> ids)
+        internal void UpdateProvinces(IEnumerable<ushort> ids)
         {
             BitmapData data = Image.LockBits(new Rectangle(0, 0, Image.Width, Image.Height), ImageLockMode.WriteOnly,
                 PixelFormat.Format8bppIndexed);
@@ -1329,7 +1329,7 @@ namespace HoI2Editor.Models
         ///     プロヴィンス単位でマップ画像を更新する
         /// </summary>
         /// <param name="id">プロヴィンスID</param>
-        public void UpdateProvince(ushort id)
+        internal void UpdateProvince(ushort id)
         {
             BitmapData data = Image.LockBits(new Rectangle(0, 0, Image.Width, Image.Height), ImageLockMode.WriteOnly,
                 PixelFormat.Format8bppIndexed);
@@ -1399,7 +1399,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     マップ画素の配列
     /// </summary>
-    public class MapPixels
+    internal class MapPixels
     {
         #region 公開プロパティ
 
@@ -1408,7 +1408,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="index">配列のインデックス</param>
         /// <returns>マップ画素</returns>
-        public byte this[int index]
+        internal byte this[int index]
         {
             get { return Data[index]; }
             set { Data[index] = value; }
@@ -1420,7 +1420,7 @@ namespace HoI2Editor.Models
         /// <param name="x">X座標</param>
         /// <param name="y">Y座標</param>
         /// <returns>マップ画素</returns>
-        public byte this[int x, int y]
+        internal byte this[int x, int y]
         {
             get { return Data[y * Width + x]; }
             set { Data[y * Width + x] = value; }
@@ -1429,17 +1429,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップ画素の配列
         /// </summary>
-        public byte[] Data { get; }
+        internal byte[] Data { get; }
 
         /// <summary>
         ///     マップ画素単位の幅
         /// </summary>
-        public int Width { get; }
+        internal int Width { get; }
 
         /// <summary>
         ///     マップ画素単位の高さ
         /// </summary>
-        public int Height { get; private set; }
+        internal int Height { get; private set; }
 
         #endregion
 
@@ -1450,7 +1450,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="width">マップ画素の配列の幅</param>
         /// <param name="height">マップ画素の配列の高さ</param>
-        public MapPixels(int width, int height)
+        internal MapPixels(int width, int height)
         {
             Width = width;
             Height = height;
@@ -1464,39 +1464,39 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     マップブロック
     /// </summary>
-    public class MapBlock
+    internal class MapBlock
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     プロヴィンスIDリスト
         /// </summary>
-        public ushort[] ProvinceIds { get; set; }
+        internal ushort[] ProvinceIds { get; set; }
 
         /// <summary>
         ///     プロヴィンスIDの数
         /// </summary>
-        public int ProvinceIdCount { get; set; }
+        internal int ProvinceIdCount { get; set; }
 
         /// <summary>
         ///     ツリーノード
         /// </summary>
-        public MapTreeNode Nodes { get; set; }
+        internal MapTreeNode Nodes { get; set; }
 
         /// <summary>
         ///     ツリーノードの数
         /// </summary>
-        public int NodeCount { get; set; }
+        internal int NodeCount { get; set; }
 
         /// <summary>
         ///     ツリーノードごとのプロヴィンスID
         /// </summary>
-        public byte[] NodeIds { get; set; }
+        internal byte[] NodeIds { get; set; }
 
         /// <summary>
         ///     ツリーノードごとのカラーインデックス
         /// </summary>
-        public byte[] NodeColors { get; set; }
+        internal byte[] NodeColors { get; set; }
 
         #endregion
 
@@ -1505,12 +1505,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップブロックの幅
         /// </summary>
-        public const int Width = 32;
+        internal const int Width = 32;
 
         /// <summary>
         ///     マップブロックの高さ
         /// </summary>
-        public const int Height = 32;
+        internal const int Height = 32;
 
         #endregion
     }
@@ -1518,7 +1518,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     マップブロックの配列
     /// </summary>
-    public class MapBlocks
+    internal class MapBlocks
     {
         #region 公開プロパティ
 
@@ -1527,7 +1527,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="index">配列のインデックス</param>
         /// <returns>マップブロック</returns>
-        public MapBlock this[int index]
+        internal MapBlock this[int index]
         {
             get { return Data[index]; }
             set { Data[index] = value; }
@@ -1539,7 +1539,7 @@ namespace HoI2Editor.Models
         /// <param name="x">X座標</param>
         /// <param name="y">Y座標</param>
         /// <returns>マップブロック</returns>
-        public MapBlock this[int x, int y]
+        internal MapBlock this[int x, int y]
         {
             get { return Data[y * Width + x]; }
             set { Data[y * Width + x] = value; }
@@ -1548,17 +1548,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     マップブロックの配列
         /// </summary>
-        public MapBlock[] Data { get; }
+        internal MapBlock[] Data { get; }
 
         /// <summary>
         ///     マップブロック単位の幅
         /// </summary>
-        public int Width { get; }
+        internal int Width { get; }
 
         /// <summary>
         ///     マップブロック単位の高さ
         /// </summary>
-        public int Height { get; }
+        internal int Height { get; }
 
         #endregion
 
@@ -1569,7 +1569,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="width">マップブロックの配列の幅</param>
         /// <param name="height">マップブロックの配列の高さ</param>
-        public MapBlocks(int width, int height)
+        internal MapBlocks(int width, int height)
         {
             Width = width;
             Height = height;
@@ -1583,49 +1583,49 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     マップツリーのノード
     /// </summary>
-    public class MapTreeNode
+    internal class MapTreeNode
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     ノード番号
         /// </summary>
-        public int No { get; set; }
+        internal int No { get; set; }
 
         /// <summary>
         ///     ノードレベル
         /// </summary>
-        public int Level { get; set; }
+        internal int Level { get; set; }
 
         /// <summary>
         ///     マップブロック内のX座標
         /// </summary>
-        public int X { get; set; }
+        internal int X { get; set; }
 
         /// <summary>
         ///     マップブロック内のY座標
         /// </summary>
-        public int Y { get; set; }
+        internal int Y { get; set; }
 
         /// <summary>
         ///     右下の子ノード
         /// </summary>
-        public MapTreeNode BottomRightChild { get; set; }
+        internal MapTreeNode BottomRightChild { get; set; }
 
         /// <summary>
         ///     左下の子ノード
         /// </summary>
-        public MapTreeNode BottomLeftChild { get; set; }
+        internal MapTreeNode BottomLeftChild { get; set; }
 
         /// <summary>
         ///     右上の子ノード
         /// </summary>
-        public MapTreeNode TopRightChild { get; set; }
+        internal MapTreeNode TopRightChild { get; set; }
 
         /// <summary>
         ///     左上の子ノード
         /// </summary>
-        public MapTreeNode TopLeftChild { get; set; }
+        internal MapTreeNode TopLeftChild { get; set; }
 
         #endregion
 
@@ -1634,7 +1634,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     最大ノードレベル
         /// </summary>
-        public const int MaxLevel = 5;
+        internal const int MaxLevel = 5;
 
         #endregion
     }
@@ -1642,7 +1642,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     プロヴィンスIDの配列
     /// </summary>
-    public class MapProvinceIds
+    internal class MapProvinceIds
     {
         #region 公開プロパティ
 
@@ -1651,7 +1651,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="index">配列のインデックス</param>
         /// <returns>プロヴィンスID</returns>
-        public ushort this[int index]
+        internal ushort this[int index]
         {
             get { return Data[index]; }
             set { Data[index] = value; }
@@ -1663,7 +1663,7 @@ namespace HoI2Editor.Models
         /// <param name="x">X座標</param>
         /// <param name="y">Y座標</param>
         /// <returns>プロヴィンスID</returns>
-        public ushort this[int x, int y]
+        internal ushort this[int x, int y]
         {
             get { return Data[y * Width + x]; }
             set { Data[y * Width + x] = value; }
@@ -1672,17 +1672,17 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     プロヴィンスIDの配列
         /// </summary>
-        public ushort[] Data { get; }
+        internal ushort[] Data { get; }
 
         /// <summary>
         ///     マップ画素単位の幅
         /// </summary>
-        public int Width { get; }
+        internal int Width { get; }
 
         /// <summary>
         ///     マップ画素単位の高さ
         /// </summary>
-        public int Height { get; private set; }
+        internal int Height { get; private set; }
 
         #endregion
 
@@ -1693,7 +1693,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="width">マップ画素の配列の幅</param>
         /// <param name="height">マップ画素の配列の高さ</param>
-        public MapProvinceIds(int width, int height)
+        internal MapProvinceIds(int width, int height)
         {
             Width = width;
             Height = height;

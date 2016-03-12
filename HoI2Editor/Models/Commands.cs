@@ -7,19 +7,19 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     コマンドデータの管理クラス
     /// </summary>
-    public static class Commands
+    internal static class Commands
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     コマンド文字列とコマンド種類の対応付け
         /// </summary>
-        public static Dictionary<string, CommandType> StringMap = new Dictionary<string, CommandType>();
+        internal static Dictionary<string, CommandType> StringMap = new Dictionary<string, CommandType>();
 
         /// <summary>
         ///     利用可能なコマンド種類
         /// </summary>
-        public static List<CommandType> Types = new List<CommandType>();
+        internal static List<CommandType> Types = new List<CommandType>();
 
         #endregion
 
@@ -42,7 +42,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コマンド文字列
         /// </summary>
-        public static readonly string[] Strings =
+        internal static readonly string[] Strings =
         {
             "",
             "endgame",
@@ -654,7 +654,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     初期化処理
         /// </summary>
-        public static void Init()
+        internal static void Init()
         {
             CommandGameType gameType = GetGameType();
 
@@ -697,7 +697,7 @@ namespace HoI2Editor.Models
         ///     コマンドのゲーム種類を取得する
         /// </summary>
         /// <returns>コマンドのゲーム種類</returns>
-        public static CommandGameType GetGameType()
+        internal static CommandGameType GetGameType()
         {
             switch (Game.Type)
             {
@@ -723,7 +723,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     コマンドのゲーム種類
     /// </summary>
-    public enum CommandGameType
+    internal enum CommandGameType
     {
         Dda12, // DDA1.2
         Dda13, // DDA1.3

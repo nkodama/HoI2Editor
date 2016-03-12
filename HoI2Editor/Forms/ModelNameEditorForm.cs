@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
@@ -9,18 +10,30 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     モデル名エディタのフォーム
+    ///     モデル名エディタフォーム
     /// </summary>
-    public partial class ModelNameEditorForm : Form
+    internal partial class ModelNameEditorForm : Form
     {
+        #region 内部フィールド
+
+        /// <summary>
+        ///     モデル名エディタコントローラ
+        /// </summary>
+        private readonly ModelNameEditorController _controller;
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public ModelNameEditorForm()
+        /// <param name="controller">モデル名エディタコントローラ</param>
+        internal ModelNameEditorForm(ModelNameEditorController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // フォームの初期化
             InitForm();
@@ -33,7 +46,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             // 国家リストボックスを初期化する
             InitCountryListBox();
@@ -45,7 +58,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnFileSaved()
+        internal void OnFileSaved()
         {
             // 編集項目の表示を更新する
             UpdateEditableItems();
@@ -59,7 +72,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             switch (id)
             {
@@ -166,7 +179,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnModelNameEditorFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>
@@ -593,7 +606,7 @@ namespace HoI2Editor.Forms
             typeListBox.Refresh();
 
             // ユニットモデル名の更新を通知する
-            HoI2EditorController.OnItemChanged(EditorItemId.CountryModelName, this);
+            HoI2EditorController.OnItemChanged(EditorItemId.CountryModelName);
         }
 
         #endregion

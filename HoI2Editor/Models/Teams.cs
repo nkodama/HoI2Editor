@@ -13,24 +13,24 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     研究機関データ群
     /// </summary>
-    public static class Teams
+    internal static class Teams
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     マスター研究機関リスト
         /// </summary>
-        public static List<Team> Items { get; }
+        internal static List<Team> Items { get; }
 
         /// <summary>
         ///     国タグと研究機関ファイル名の対応付け
         /// </summary>
-        public static Dictionary<Country, string> FileNameMap { get; }
+        internal static Dictionary<Country, string> FileNameMap { get; }
 
         /// <summary>
         ///     使用済みIDリスト
         /// </summary>
-        public static HashSet<int> IdSet { get; }
+        internal static HashSet<int> IdSet { get; }
 
         #endregion
 
@@ -87,7 +87,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究機関ファイルの再読み込みを要求する
         /// </summary>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             _loaded = false;
         }
@@ -95,7 +95,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究機関ファイル群を再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             // 読み込み前なら何もしない
             if (!_loaded)
@@ -111,7 +111,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究機関ファイル群を読み込む
         /// </summary>
-        public static void Load()
+        internal static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -133,7 +133,7 @@ namespace HoI2Editor.Models
         ///     研究機関ファイル群を遅延読み込みする
         /// </summary>
         /// <param name="handler">読み込み完了イベントハンドラ</param>
-        public static void LoadAsync(RunWorkerCompletedEventHandler handler)
+        internal static void LoadAsync(RunWorkerCompletedEventHandler handler)
         {
             // 既に読み込み済みならば完了イベントハンドラを呼び出す
             if (_loaded)
@@ -169,7 +169,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     読み込み完了まで待機する
         /// </summary>
-        public static void WaitLoading()
+        internal static void WaitLoading()
         {
             while (Worker.IsBusy)
             {
@@ -181,7 +181,7 @@ namespace HoI2Editor.Models
         ///     遅延読み込み中かどうかを判定する
         /// </summary>
         /// <returns>遅延読み込み中ならばtrueを返す</returns>
-        public static bool IsLoading()
+        internal static bool IsLoading()
         {
             return Worker.IsBusy;
         }
@@ -630,7 +630,7 @@ namespace HoI2Editor.Models
         ///     研究機関ファイル群を保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
-        public static bool Save()
+        internal static bool Save()
         {
             // 編集済みでなければ何もしない
             if (!IsDirty())
@@ -782,7 +782,7 @@ namespace HoI2Editor.Models
         ///     研究機関リストに項目を追加する
         /// </summary>
         /// <param name="team">追加対象の項目</param>
-        public static void AddItem(Team team)
+        internal static void AddItem(Team team)
         {
             Log.Info("[Team] Add team: ({0}: {1}) <{2}>", team.Id, team.Name, Countries.Strings[(int) team.Country]);
 
@@ -794,7 +794,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="team">挿入対象の項目</param>
         /// <param name="position">挿入位置の直前の項目</param>
-        public static void InsertItem(Team team, Team position)
+        internal static void InsertItem(Team team, Team position)
         {
             int index = Items.IndexOf(position) + 1;
 
@@ -808,7 +808,7 @@ namespace HoI2Editor.Models
         ///     研究機関リストから項目を削除する
         /// </summary>
         /// <param name="team">削除対象の項目</param>
-        public static void RemoveItem(Team team)
+        internal static void RemoveItem(Team team)
         {
             Log.Info("[Team] Remove team: ({0}: {1}) <{2}>", team.Id, team.Name,
                 Countries.Strings[(int) team.Country]);
@@ -824,7 +824,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="src">移動元の項目</param>
         /// <param name="dest">移動先の項目</param>
-        public static void MoveItem(Team src, Team dest)
+        internal static void MoveItem(Team src, Team dest)
         {
             int srcIndex = Items.IndexOf(src);
             int destIndex = Items.IndexOf(dest);
@@ -854,7 +854,7 @@ namespace HoI2Editor.Models
         ///     一括編集
         /// </summary>
         /// <param name="args">一括編集のパラメータ</param>
-        public static void BatchEdit(TeamBatchEditArgs args)
+        internal static void BatchEdit(TeamBatchEditArgs args)
         {
             LogBatchEdit(args);
 
@@ -1057,7 +1057,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">対象の国タグ</param>
         /// <returns>研究機関ID</returns>
-        public static int GetNewId(Country country)
+        internal static int GetNewId(Country country)
         {
             // 対象国の研究機関IDの最大値+1から検索を始める
             int id = GetMaxId(country);
@@ -1070,7 +1070,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="id">開始ID</param>
         /// <returns>研究機関ID</returns>
-        public static int GetNewId(int id)
+        internal static int GetNewId(int id)
         {
             while (IdSet.Contains(id))
             {
@@ -1106,7 +1106,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return _dirtyFlag || _dirtyListFlag;
         }
@@ -1125,7 +1125,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(Country country)
+        internal static bool IsDirty(Country country)
         {
             return DirtyFlags[(int) country];
         }
@@ -1134,7 +1134,7 @@ namespace HoI2Editor.Models
         ///     編集済みフラグを設定する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void SetDirty(Country country)
+        internal static void SetDirty(Country country)
         {
             DirtyFlags[(int) country] = true;
             _dirtyFlag = true;
@@ -1143,7 +1143,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     研究機関リストファイルの編集済みフラグを設定する
         /// </summary>
-        public static void SetDirtyList()
+        internal static void SetDirtyList()
         {
             _dirtyListFlag = true;
         }
@@ -1171,54 +1171,54 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     研究機関一括編集のパラメータ
     /// </summary>
-    public class TeamBatchEditArgs
+    internal class TeamBatchEditArgs
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     一括編集対象国モード
         /// </summary>
-        public BatchCountryMode CountryMode { get; set; }
+        internal BatchCountryMode CountryMode { get; set; }
 
         /// <summary>
         ///     対象国リスト
         /// </summary>
-        public List<Country> TargetCountries { get; } = new List<Country>();
+        internal List<Country> TargetCountries { get; } = new List<Country>();
 
         /// <summary>
         ///     一括編集動作モード
         /// </summary>
-        public BatchActionMode ActionMode { get; set; }
+        internal BatchActionMode ActionMode { get; set; }
 
         /// <summary>
         ///     コピー/移動先指定国
         /// </summary>
-        public Country Destination { get; set; }
+        internal Country Destination { get; set; }
 
         /// <summary>
         ///     開始ID
         /// </summary>
-        public int Id { get; set; }
+        internal int Id { get; set; }
 
         /// <summary>
         ///     一括編集項目
         /// </summary>
-        public bool[] Items { get; } = new bool[Enum.GetValues(typeof (TeamBatchItemId)).Length];
+        internal bool[] Items { get; } = new bool[Enum.GetValues(typeof (TeamBatchItemId)).Length];
 
         /// <summary>
         ///     スキル
         /// </summary>
-        public int Skill { get; set; }
+        internal int Skill { get; set; }
 
         /// <summary>
         ///     開始年
         /// </summary>
-        public int StartYear { get; set; }
+        internal int StartYear { get; set; }
 
         /// <summary>
         ///     終了年
         /// </summary>
-        public int EndYear { get; set; }
+        internal int EndYear { get; set; }
 
         #endregion
     }
@@ -1226,7 +1226,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     一括編集項目ID
     /// </summary>
-    public enum TeamBatchItemId
+    internal enum TeamBatchItemId
     {
         Skill, // スキル
         StartYear, // 開始年

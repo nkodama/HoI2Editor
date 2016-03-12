@@ -7,19 +7,19 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     トリガー
     /// </summary>
-    public class Trigger
+    internal class Trigger
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     トリガーの種類
         /// </summary>
-        public TriggerType Type { get; set; }
+        internal TriggerType Type { get; set; }
 
         /// <summary>
         ///     トリガーの値
         /// </summary>
-        public object Value { get; set; }
+        internal object Value { get; set; }
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     トリガー文字列テーブル
         /// </summary>
-        public static readonly string[] TypeStringTable =
+        internal static readonly string[] TypeStringTable =
         {
             "",
             "and",
@@ -168,7 +168,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     トリガーパラメータ種類テーブル
         /// </summary>
-        public static readonly TriggerParamType[] ParamTypeTable =
+        internal static readonly TriggerParamType[] ParamTypeTable =
         {
             TriggerParamType.None,
             TriggerParamType.Container, // and
@@ -312,7 +312,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public Trigger()
+        internal Trigger()
         {
         }
 
@@ -320,7 +320,7 @@ namespace HoI2Editor.Models
         ///     コピーコンストラクタ
         /// </summary>
         /// <param name="original">コピー元のトリガー</param>
-        public Trigger(Trigger original)
+        internal Trigger(Trigger original)
         {
             Type = original.Type;
             if (ParamTypeTable[(int) Type] == TriggerParamType.Container)
@@ -374,7 +374,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     トリガーの種類
     /// </summary>
-    public enum TriggerType
+    internal enum TriggerType
     {
         None,
         And,
@@ -516,7 +516,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     トリガーパラメータの種類
     /// </summary>
-    public enum TriggerParamType
+    internal enum TriggerParamType
     {
         None,
         Container,

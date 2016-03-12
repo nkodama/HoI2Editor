@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Controls;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
@@ -12,11 +13,16 @@ using HoI2Editor.Utilities;
 namespace HoI2Editor.Forms
 {
     /// <summary>
-    ///     プロヴィンスエディタのフォーム
+    ///     プロヴィンスエディタフォーム
     /// </summary>
-    public partial class ProvinceEditorForm : Form
+    internal partial class ProvinceEditorForm : Form
     {
         #region 内部フィールド
+
+        /// <summary>
+        ///     プロヴィンスエディタコントローラ
+        /// </summary>
+        private readonly ProvinceEditorController _controller;
 
         /// <summary>
         ///     絞り込み後のプロヴィンスリスト
@@ -74,7 +80,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     プロヴィンスリストビューの列の数
         /// </summary>
-        public const int ProvinceListColumnCount = 12;
+        internal const int ProvinceListColumnCount = 12;
 
         #endregion
 
@@ -83,9 +89,12 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        public ProvinceEditorForm()
+        /// <param name="controller">プロヴィンスエディタコントローラ</param>
+        internal ProvinceEditorForm(ProvinceEditorController controller)
         {
             InitializeComponent();
+
+            _controller = controller;
 
             // フォームの初期化
             InitForm();
@@ -98,7 +107,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ読み込み後の処理
         /// </summary>
-        public void OnFileLoaded()
+        internal void OnFileLoaded()
         {
             // 海域の編集項目を更新する
             UpdateSeaZoneItems();
@@ -110,7 +119,7 @@ namespace HoI2Editor.Forms
         /// <summary>
         ///     データ保存後の処理
         /// </summary>
-        public void OnFileSaved()
+        internal void OnFileSaved()
         {
             // 編集済みフラグがクリアされるため表示を更新する
             UpdateEditableItems();
@@ -120,7 +129,7 @@ namespace HoI2Editor.Forms
         ///     編集項目変更後の処理
         /// </summary>
         /// <param name="id">編集項目ID</param>
-        public void OnItemChanged(EditorItemId id)
+        internal void OnItemChanged(EditorItemId id)
         {
             // 何もしない
         }
@@ -216,7 +225,7 @@ namespace HoI2Editor.Forms
         /// <param name="e"></param>
         private void OnFormClosed(object sender, FormClosedEventArgs e)
         {
-            HoI2EditorController.OnProvinceEditorFormClosed();
+            _controller.OnFormClosed();
         }
 
         /// <summary>

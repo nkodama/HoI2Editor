@@ -7,19 +7,19 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     国家データ
     /// </summary>
-    public static class Countries
+    internal static class Countries
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     国タグ一覧
         /// </summary>
-        public static Country[] Tags { get; private set; }
+        internal static Country[] Tags { get; private set; }
 
         /// <summary>
         ///     国タグ文字列とIDの対応付け
         /// </summary>
-        public static Dictionary<string, Country> StringMap { get; }
+        internal static Dictionary<string, Country> StringMap { get; }
 
         #endregion
 
@@ -28,7 +28,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ文字列
         /// </summary>
-        public static readonly string[] Strings =
+        internal static readonly string[] Strings =
         {
             "",
             "AFG",
@@ -1036,7 +1036,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国タグ一覧を初期化する
         /// </summary>
-        public static void Init()
+        internal static void Init()
         {
             switch (Game.Type)
             {
@@ -1060,7 +1060,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国家</param>
         /// <returns>国名</returns>
-        public static string GetName(Country country)
+        internal static string GetName(Country country)
         {
             if (country == Country.None)
             {
@@ -1075,7 +1075,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="country">国家</param>
         /// <returns>国タグ名と国名</returns>
-        public static string GetTagName(Country country)
+        internal static string GetTagName(Country country)
         {
             if (country == Country.None)
             {
@@ -1092,7 +1092,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="countries">国家リスト</param>
         /// <returns>国タグ名リストの文字列</returns>
-        public static string GetTagList(IEnumerable<Country> countries)
+        internal static string GetTagList(IEnumerable<Country> countries)
         {
             StringBuilder sb = new StringBuilder();
             foreach (Country country in countries)
@@ -1108,7 +1108,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="countries">国家リスト</param>
         /// <returns>国名リストの文字列</returns>
-        public static string GetNameList(IEnumerable<Country> countries)
+        internal static string GetNameList(IEnumerable<Country> countries)
         {
             StringBuilder sb = new StringBuilder();
             foreach (Country country in countries)
@@ -1125,7 +1125,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     国タグ
     /// </summary>
-    public enum Country
+    internal enum Country
     {
         None, // 定義なし
 

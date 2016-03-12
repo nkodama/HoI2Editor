@@ -6,7 +6,7 @@ namespace HoI2Editor.Parsers
     /// <summary>
     ///     コマンドの構文解析クラス
     /// </summary>
-    public static class CommandParser
+    internal static class CommandParser
     {
         #region 内部定数
 
@@ -24,7 +24,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         /// <param name="lexer">字句解析器</param>
         /// <returns>コマンド</returns>
-        public static Command Parse(TextLexer lexer)
+        internal static Command Parse(TextLexer lexer)
         {
             // =
             Token token = lexer.GetToken();

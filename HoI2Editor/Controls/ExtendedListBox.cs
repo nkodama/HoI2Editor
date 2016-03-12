@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace HoI2Editor.Controls
 {
-    public partial class ExtendedListBox : ListBox
+    internal partial class ExtendedListBox : ListBox
     {
         #region 公開プロパティ
 
@@ -17,7 +17,7 @@ namespace HoI2Editor.Controls
         [Category("動作")]
         [DefaultValue(typeof (bool), "false")]
         [Description("ユーザーが項目の順番を再変更できるかどうかを示します。")]
-        public bool AllowItemReorder
+        internal bool AllowItemReorder
         {
             get { return _allowItemReorder; }
             set
@@ -55,7 +55,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         [Category("動作")]
         [Description("項目の順番を再変更したときに発生します。")]
-        public event EventHandler<ItemReorderedEventArgs> ItemReordered;
+        internal event EventHandler<ItemReorderedEventArgs> ItemReordered;
 
         #endregion
 
@@ -64,7 +64,7 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     拡張リストボックス
         /// </summary>
-        public ExtendedListBox()
+        internal ExtendedListBox()
         {
             InitializeComponent();
         }

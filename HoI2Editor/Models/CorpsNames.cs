@@ -13,7 +13,7 @@ namespace HoI2Editor.Models
     /// <summary>
     ///     新規軍団名を保持するクラス
     /// </summary>
-    public static class CorpsNames
+    internal static class CorpsNames
     {
         #region 内部フィールド
 
@@ -51,7 +51,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     軍団名定義ファイルの再読み込みを要求する
         /// </summary>
-        public static void RequestReload()
+        internal static void RequestReload()
         {
             _loaded = false;
         }
@@ -59,7 +59,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     軍団名定義ファイル群を再読み込みする
         /// </summary>
-        public static void Reload()
+        internal static void Reload()
         {
             // 読み込み前なら何もしない
             if (!_loaded)
@@ -75,7 +75,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     軍団名定義ファイルを読み込む
         /// </summary>
-        public static void Load()
+        internal static void Load()
         {
             // 読み込み済みならば戻る
             if (_loaded)
@@ -256,7 +256,7 @@ namespace HoI2Editor.Models
         ///     軍団名定義ファイルを保存する
         /// </summary>
         /// <returns>保存に失敗すればfalseを返す</returns>
-        public static bool Save()
+        internal static bool Save()
         {
             bool error = false;
 
@@ -374,7 +374,7 @@ namespace HoI2Editor.Models
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         /// <returns>軍団名リスト</returns>
-        public static IEnumerable<string> GetNames(Branch branch, Country country)
+        internal static IEnumerable<string> GetNames(Branch branch, Country country)
         {
             return Items[(int) branch, (int) country] ?? new List<string>();
         }
@@ -403,7 +403,7 @@ namespace HoI2Editor.Models
         /// <param name="names">軍団名リスト</param>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
-        public static void SetNames(List<string> names, Branch branch, Country country)
+        internal static void SetNames(List<string> names, Branch branch, Country country)
         {
             // 軍団名リストに変更がなければ戻る
             if (Items[(int) branch, (int) country] != null && names.SequenceEqual(Items[(int) branch, (int) country]))
@@ -428,7 +428,7 @@ namespace HoI2Editor.Models
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void Replace(string s, string t, Branch branch, Country country, bool regex)
+        internal static void Replace(string s, string t, Branch branch, Country country, bool regex)
         {
             // 未登録ならば何もしない
             if (Items[(int) branch, (int) country] == null)
@@ -447,7 +447,7 @@ namespace HoI2Editor.Models
         /// <param name="s">置換元文字列</param>
         /// <param name="t">置換先文字列</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void ReplaceAll(string s, string t, bool regex)
+        internal static void ReplaceAll(string s, string t, bool regex)
         {
             foreach (Branch branch in Enum.GetValues(typeof (Branch)))
             {
@@ -465,7 +465,7 @@ namespace HoI2Editor.Models
         /// <param name="t">置換先文字列</param>
         /// <param name="country">国タグ</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void ReplaceAllBranches(string s, string t, Country country, bool regex)
+        internal static void ReplaceAllBranches(string s, string t, Country country, bool regex)
         {
             foreach (Branch branch in Enum.GetValues(typeof (Branch)))
             {
@@ -480,7 +480,7 @@ namespace HoI2Editor.Models
         /// <param name="t">置換先文字列</param>
         /// <param name="branch">兵科</param>
         /// <param name="regex">正規表現を使用するか</param>
-        public static void ReplaceAllCountries(string s, string t, Branch branch, bool regex)
+        internal static void ReplaceAllCountries(string s, string t, Branch branch, bool regex)
         {
             foreach (Country country in Countries.Tags)
             {
@@ -497,7 +497,7 @@ namespace HoI2Editor.Models
         /// <param name="end">終了番号</param>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
-        public static void AddSequential(string prefix, string suffix, int start, int end, Branch branch,
+        internal static void AddSequential(string prefix, string suffix, int start, int end, Branch branch,
             Country country)
         {
             // 未登録の場合はリストを作成する
@@ -522,7 +522,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
-        public static void Interpolate(Branch branch, Country country)
+        internal static void Interpolate(Branch branch, Country country)
         {
             // 未登録ならば何もしない
             if (Items[(int) branch, (int) country] == null)
@@ -575,7 +575,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     全ての軍団名を連番補間する
         /// </summary>
-        public static void InterpolateAll()
+        internal static void InterpolateAll()
         {
             foreach (Branch branch in Enum.GetValues(typeof (Branch)))
             {
@@ -590,7 +590,7 @@ namespace HoI2Editor.Models
         ///     全ての兵科の軍団名を連番補間する
         /// </summary>
         /// <param name="country">国タグ</param>
-        public static void InterpolateAllBranches(Country country)
+        internal static void InterpolateAllBranches(Country country)
         {
             foreach (Branch branch in Enum.GetValues(typeof (Branch)))
             {
@@ -602,7 +602,7 @@ namespace HoI2Editor.Models
         ///     全ての国の軍団名を連番補間する
         /// </summary>
         /// <param name="branch">兵科</param>
-        public static void InterpolateAllCountries(Branch branch)
+        internal static void InterpolateAllCountries(Branch branch)
         {
             foreach (Country country in Countries.Tags)
             {
@@ -618,7 +618,7 @@ namespace HoI2Editor.Models
         ///     編集済みかどうかを取得する
         /// </summary>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty()
+        internal static bool IsDirty()
         {
             return _dirtyFlag;
         }
@@ -628,7 +628,7 @@ namespace HoI2Editor.Models
         /// </summary>
         /// <param name="branch">兵科</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(Branch branch)
+        internal static bool IsDirty(Branch branch)
         {
             return BranchDirtyFlags[(int) branch];
         }
@@ -639,7 +639,7 @@ namespace HoI2Editor.Models
         /// <param name="branch">兵科</param>
         /// <param name="country">国タグ</param>
         /// <returns>編集済みならばtrueを返す</returns>
-        public static bool IsDirty(Branch branch, Country country)
+        internal static bool IsDirty(Branch branch, Country country)
         {
             return CountryDirtyFlags[(int) branch, (int) country];
         }

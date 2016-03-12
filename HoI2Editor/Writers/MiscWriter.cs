@@ -9,13 +9,13 @@ namespace HoI2Editor.Writers
     /// <summary>
     ///     miscファイル書き込みを担当するクラス
     /// </summary>
-    public static class MiscWriter
+    internal static class MiscWriter
     {
         /// <summary>
         ///     miscファイルへ書き込む
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        public static void Write(string fileName)
+        internal static void Write(string fileName)
         {
             // miscファイルの種類を設定する
             MiscGameType type = Misc.GetGameType();

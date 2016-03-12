@@ -3,19 +3,19 @@
     /// <summary>
     ///     字句解析トークン
     /// </summary>
-    public class Token
+    internal class Token
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     トークンの種類
         /// </summary>
-        public TokenType Type { get; set; }
+        internal TokenType Type { get; set; }
 
         /// <summary>
         ///     トークンの値
         /// </summary>
-        public object Value { get; set; }
+        internal object Value { get; set; }
 
         #endregion
     }
@@ -23,7 +23,7 @@
     /// <summary>
     ///     トークンの種類
     /// </summary>
-    public enum TokenType
+    internal enum TokenType
     {
         Invalid, // 不正な値
         Identifier, // 識別子
