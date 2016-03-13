@@ -301,7 +301,7 @@ namespace HoI2Editor.Forms
                 select Countries.StringMap[name]);
 
             // 一括編集ダイアログを表示する
-            TeamBatchDialog dialog = new TeamBatchDialog(args);
+            TeamBatchDialog dialog = new TeamBatchDialog(_controller, args);
             if (dialog.ShowDialog() == DialogResult.Cancel)
             {
                 return;

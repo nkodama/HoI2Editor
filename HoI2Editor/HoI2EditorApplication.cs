@@ -14,6 +14,7 @@ namespace HoI2Editor
         /// <summary>
         ///     エディタインスタンス
         /// </summary>
+        /// <remarks>リファクタリング後に削除すること</remarks>
         internal static HoI2EditorInstance Instance { get; private set; }
 
         /// <summary>

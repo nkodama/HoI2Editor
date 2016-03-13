@@ -251,7 +251,7 @@ namespace HoI2Editor.Forms
                 select Countries.StringMap[name]);
 
             // 一括編集ダイアログを表示する
-            MinisterBatchDialog dialog = new MinisterBatchDialog(args);
+            MinisterBatchDialog dialog = new MinisterBatchDialog(_controller, args);
             if (dialog.ShowDialog() == DialogResult.Cancel)
             {
                 return;

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using HoI2Editor.Controllers;
 using HoI2Editor.Models;
 using HoI2Editor.Utilities;
 
@@ -13,6 +14,11 @@ namespace HoI2Editor.Dialogs
     internal partial class LeaderBatchDialog : Form
     {
         #region 内部フィールド
+
+        /// <summary>
+        ///     指揮官エディタコントローラ
+        /// </summary>
+        private readonly LeaderEditorController _controller;
 
         /// <summary>
         ///     一括編集のパラメータ
@@ -31,11 +37,13 @@ namespace HoI2Editor.Dialogs
         /// <summary>
         ///     コンストラクタ
         /// </summary>
+        /// <param name="controller">指揮官エディタコントローラ</param>
         /// <param name="args">一括編集のパラメータ</param>
-        internal LeaderBatchDialog(LeaderBatchEditArgs args)
+        internal LeaderBatchDialog(LeaderEditorController controller, LeaderBatchEditArgs args)
         {
             InitializeComponent();
 
+            _controller = controller;
             _args = args;
         }
 
