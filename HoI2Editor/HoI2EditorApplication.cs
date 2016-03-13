@@ -14,7 +14,7 @@ namespace HoI2Editor
         /// <summary>
         ///     エディタインスタンス
         /// </summary>
-        internal static HoI2EditorInstance Instance { get; set; }
+        internal static HoI2EditorInstance Instance { get; private set; }
 
         /// <summary>
         ///     アプリケーションのエントリーポイント
@@ -27,7 +27,6 @@ namespace HoI2Editor
                 Application.ThreadException += OnThreadException;
                 Thread.GetDomain().UnhandledException += OnUnhandledException;
 
-                HoI2EditorController.InitVersion();
                 HoI2EditorController.LoadSettings();
 
                 Log.Error("");
@@ -53,7 +52,7 @@ namespace HoI2Editor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal static void OnThreadException(object sender, ThreadExceptionEventArgs e)
+        private static void OnThreadException(object sender, ThreadExceptionEventArgs e)
         {
             UnhandledExceptionHandler(e.Exception);
         }
@@ -63,7 +62,7 @@ namespace HoI2Editor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        internal static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             Exception exception = e.ExceptionObject as Exception;
             if (exception != null)

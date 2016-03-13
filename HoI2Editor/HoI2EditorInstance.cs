@@ -613,4 +613,33 @@ namespace HoI2Editor
 
         #endregion
     }
+
+    /// <summary>
+    ///     エディタの編集項目ID
+    /// </summary>
+    internal enum EditorItemId
+    {
+        LeaderRetirementYear, // 指揮官の引退年設定
+        MinisterEndYear, // 閣僚の終了年設定
+        MinisterRetirementYear, // 閣僚の引退年設定
+        TeamList, // 研究機関リスト
+        TeamCountry, // 研究機関の所属国
+        TeamName, // 研究機関名
+        TeamId, // 研究機関ID
+        TeamSkill, // 研究機関のスキル
+        TeamSpeciality, // 研究機関の特性
+        TechItemList, // 技術項目リスト
+        TechItemName, // 技術項目名
+        TechItemId, // 技術項目ID
+        TechItemYear, // 技術項目の史実年度
+        TechComponentList, // 小研究リスト
+        TechComponentSpeciality, // 小研究の特性
+        TechComponentDifficulty, // 小研究の難易度
+        TechComponentDoubleTime, // 小研究の2倍時間設定
+        UnitName, // ユニットクラス名
+        MaxAllowedBrigades, // 最大付属可能旅団数
+        ModelList, // ユニットモデルリスト
+        CommonModelName, // 共通のユニットモデル名
+        CountryModelName // 国別のユニットモデル名
+    }
 }

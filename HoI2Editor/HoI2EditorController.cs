@@ -20,29 +20,50 @@ namespace HoI2Editor
         /// <summary>
         ///     アプリケーション名
         /// </summary>
-        internal const string Name = "Alternative HoI2 Editor";
+        internal static string Name
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_name))
+                {
+                    Assembly assembly = Assembly.GetExecutingAssembly();
+                    AssemblyTitleAttribute attr =
+                        (AssemblyTitleAttribute) Attribute.GetCustomAttribute(assembly, typeof (AssemblyTitleAttribute));
+                    _name = attr.Title;
+                }
+                return _name;
+            }
+        }
+
+        /// <summary>
+        ///     アプリケーション名
+        /// </summary>
+        private static string _name;
 
         /// <summary>
         ///     エディタのバージョン
         /// </summary>
-        internal static string Version { get; private set; }
-
-        /// <summary>
-        ///     エディタのバージョンを初期化する
-        /// </summary>
-        internal static void InitVersion()
+        internal static string Version
         {
-            FileVersionInfo info = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
-            if (info.FilePrivatePart > 0 && info.FilePrivatePart <= 26)
+            get
             {
-                Version =
-                    $"{Name} Ver {info.FileMajorPart}.{info.FileMinorPart}{info.FileBuildPart}{'`' + info.FilePrivatePart}";
-            }
-            else
-            {
-                Version = $"{Name} Ver {info.FileMajorPart}.{info.FileMinorPart}{info.FileBuildPart}";
+                if (string.IsNullOrEmpty(_version))
+                {
+                    FileVersionInfo info = FileVersionInfo.GetVersionInfo(Assembly.GetEntryAssembly().Location);
+                    _version = $"{Name} Ver {info.FileMajorPart}.{info.FileMinorPart}{info.FileBuildPart}";
+                    if (info.FilePrivatePart > 0 && info.FilePrivatePart <= 26)
+                    {
+                        _version += $"{'`' + info.FilePrivatePart}";
+                    }
+                }
+                return _version;
             }
         }
+
+        /// <summary>
+        ///     エディタのバージョン
+        /// </summary>
+        private static string _version;
 
         #endregion
 
@@ -184,34 +205,5 @@ namespace HoI2Editor
         }
 
         #endregion
-    }
-
-    /// <summary>
-    ///     エディタの編集項目ID
-    /// </summary>
-    internal enum EditorItemId
-    {
-        LeaderRetirementYear, // 指揮官の引退年設定
-        MinisterEndYear, // 閣僚の終了年設定
-        MinisterRetirementYear, // 閣僚の引退年設定
-        TeamList, // 研究機関リスト
-        TeamCountry, // 研究機関の所属国
-        TeamName, // 研究機関名
-        TeamId, // 研究機関ID
-        TeamSkill, // 研究機関のスキル
-        TeamSpeciality, // 研究機関の特性
-        TechItemList, // 技術項目リスト
-        TechItemName, // 技術項目名
-        TechItemId, // 技術項目ID
-        TechItemYear, // 技術項目の史実年度
-        TechComponentList, // 小研究リスト
-        TechComponentSpeciality, // 小研究の特性
-        TechComponentDifficulty, // 小研究の難易度
-        TechComponentDoubleTime, // 小研究の2倍時間設定
-        UnitName, // ユニットクラス名
-        MaxAllowedBrigades, // 最大付属可能旅団数
-        ModelList, // ユニットモデルリスト
-        CommonModelName, // 共通のユニットモデル名
-        CountryModelName // 国別のユニットモデル名
     }
 }
