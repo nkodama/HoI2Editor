@@ -7,6 +7,16 @@ namespace HoI2Editor.Controllers
     /// </summary>
     internal class ResearchViewerController
     {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     エディタインスタンス
+        /// </summary>
+        /// <remarks>リファクタリング後に削除すること</remarks>
+        internal HoI2EditorInstance Instance => _instance;
+
+        #endregion
+
         #region 内部フィールド
 
         /// <summary>

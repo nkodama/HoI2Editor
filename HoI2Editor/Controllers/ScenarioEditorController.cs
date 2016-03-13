@@ -15,6 +15,16 @@ namespace HoI2Editor.Controllers
     /// </summary>
     internal class ScenarioEditorController
     {
+        #region 公開プロパティ
+
+        /// <summary>
+        ///     エディタインスタンス
+        /// </summary>
+        /// <remarks>リファクタリング後に削除すること</remarks>
+        internal HoI2EditorInstance Instance => _instance;
+
+        #endregion
+
         #region 内部フィールド
 
         #region 共通
