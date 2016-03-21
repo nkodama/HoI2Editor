@@ -217,6 +217,60 @@
     <Compile Include="Models\GameDate.cs" />
     <Compile Include="Models\Leader.cs" />
     <Compile Include="Models\Leaders.cs" />
+    <Compile Include="Pages\ScenarioEditorAlliancePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorAlliancePage.Designer.cs">
+      <DependentUpon>ScenarioEditorAlliancePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorCountryPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorCountryPage.Designer.cs">
+      <DependentUpon>ScenarioEditorCountryPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorGovernmentPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorGovernmentPage.Designer.cs">
+      <DependentUpon>ScenarioEditorGovernmentPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorMainPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorMainPage.Designer.cs">
+      <DependentUpon>ScenarioEditorMainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorOobPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorOobPage.Designer.cs">
+      <DependentUpon>ScenarioEditorOobPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorProvincePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorProvincePage.Designer.cs">
+      <DependentUpon>ScenarioEditorProvincePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorRelationPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorRelationPage.Designer.cs">
+      <DependentUpon>ScenarioEditorRelationPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorTechnologyPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorTechnologyPage.Designer.cs">
+      <DependentUpon>ScenarioEditorTechnologyPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorTradePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\ScenarioEditorTradePage.Designer.cs">
+      <DependentUpon>ScenarioEditorTradePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\Log.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Maps.cs" />
@@ -380,6 +434,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UnitNameEditorForm.resx">
       <DependentUpon>UnitNameEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorAlliancePage.resx">
+      <DependentUpon>ScenarioEditorAlliancePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorCountryPage.resx">
+      <DependentUpon>ScenarioEditorCountryPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorGovernmentPage.resx">
+      <DependentUpon>ScenarioEditorGovernmentPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorMainPage.resx">
+      <DependentUpon>ScenarioEditorMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorOobPage.resx">
+      <DependentUpon>ScenarioEditorOobPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorProvincePage.resx">
+      <DependentUpon>ScenarioEditorProvincePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorRelationPage.resx">
+      <DependentUpon>ScenarioEditorRelationPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorTechnologyPage.resx">
+      <DependentUpon>ScenarioEditorTechnologyPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorTradePage.resx">
+      <DependentUpon>ScenarioEditorTradePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
