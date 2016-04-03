@@ -1945,8 +1945,17 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Alliance])
+            {
+                return;
+            }
+
             // 編集項目を初期化する
             _alliancePage.Init();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Alliance] = true;
         }
 
         /// <summary>
@@ -1967,8 +1976,17 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Alliance])
+            {
+                return;
+            }
+
             // 編集項目を初期化する
             _alliancePage.Init();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Alliance] = true;
         }
 
         /// <summary>
@@ -4317,8 +4335,17 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Country])
+            {
+                return;
+            }
+
             // 編集項目を初期化する
             _countryPage.Init();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Country] = true;
         }
 
         /// <summary>
@@ -4339,8 +4366,17 @@ namespace HoI2Editor.Forms
                 return;
             }
 
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Country])
+            {
+                return;
+            }
+
             // 編集項目を初期化する
             _countryPage.Init();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Country] = true;
         }
 
         #endregion

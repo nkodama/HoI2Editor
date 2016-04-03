@@ -26,11 +26,6 @@ namespace HoI2Editor.Pages
         /// </summary>
         private readonly ScenarioEditorForm _form;
 
-        /// <summary>
-        ///     初期化済みフラグ
-        /// </summary>
-        private bool _initialized;
-
         #endregion
 
         #region 初期化
@@ -46,29 +41,19 @@ namespace HoI2Editor.Pages
 
             _controller = controller;
             _form = form;
-        }
-
-        #endregion
-
-        #region 共通
-
-        /// <summary>
-        ///     国家タブを初期化する
-        /// </summary>
-        internal void Init()
-        {
-            // 初期化済みであれば何もしない
-            if (_initialized)
-            {
-                return;
-            }
 
             // 編集項目を初期化する
             InitCountryInfoItems();
             InitCountryModifierItems();
             InitCountryResourceItems();
             InitCountryAiItems();
+        }
 
+        /// <summary>
+        ///     編集項目を初期化する
+        /// </summary>
+        internal void Init()
+        {
             // 兄弟国コンボボックスを更新する
             UpdateRegularIdComboBox();
 
@@ -89,9 +74,6 @@ namespace HoI2Editor.Pages
             ClearCountryModifierItems();
             ClearCountryResourceItems();
             ClearCountryAiItems();
-
-            // 初期化済みフラグをセットする
-            _initialized = true;
         }
 
         #endregion

@@ -29,11 +29,6 @@ namespace HoI2Editor.Pages
         private readonly ScenarioEditorForm _form;
 
         /// <summary>
-        ///     初期化済みフラグ
-        /// </summary>
-        private bool _initialized;
-
-        /// <summary>
         ///     同盟国以外の国家リスト
         /// </summary>
         private List<Country> _allianceFreeCountries;
@@ -58,6 +53,10 @@ namespace HoI2Editor.Pages
 
             _controller = controller;
             _form = form;
+
+            // 編集項目を初期化する
+            InitAllianceItems();
+            InitWarItems();
         }
 
         /// <summary>
@@ -65,16 +64,6 @@ namespace HoI2Editor.Pages
         /// </summary>
         internal void Init()
         {
-            // 初期化済みであれば何もしない
-            if (_initialized)
-            {
-                return;
-            }
-
-            // 編集項目を初期化する
-            InitAllianceItems();
-            InitWarItems();
-
             // 同盟リストを更新する
             UpdateAllianceList();
 
@@ -86,9 +75,6 @@ namespace HoI2Editor.Pages
 
             // 戦争リストを有効化する
             EnableWarList();
-
-            // 初期化済みフラグをセットする
-            _initialized = true;
         }
 
         #endregion
