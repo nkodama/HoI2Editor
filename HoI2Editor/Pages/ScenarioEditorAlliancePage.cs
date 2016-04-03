@@ -58,19 +58,10 @@ namespace HoI2Editor.Pages
 
             _controller = controller;
             _form = form;
-
-            InitAllianceItems();
-            InitWarItems();
         }
 
-        #endregion
-
-        #region 同盟タブ
-
-        #region 同盟タブ - 共通
-
         /// <summary>
-        ///     編集項目を初期化する
+        ///     同盟タブを初期化する
         /// </summary>
         internal void Init()
         {
@@ -79,6 +70,10 @@ namespace HoI2Editor.Pages
             {
                 return;
             }
+
+            // 編集項目を初期化する
+            InitAllianceItems();
+            InitWarItems();
 
             // 同盟リストを更新する
             UpdateAllianceList();
@@ -98,7 +93,7 @@ namespace HoI2Editor.Pages
 
         #endregion
 
-        #region 同盟タブ - 同盟
+        #region 同盟
 
         /// <summary>
         ///     同盟の編集項目を初期化する
@@ -183,7 +178,7 @@ namespace HoI2Editor.Pages
 
         #endregion
 
-        #region 同盟タブ - 同盟リスト
+        #region 同盟リスト
 
         /// <summary>
         ///     同盟リストを更新する
@@ -473,7 +468,7 @@ namespace HoI2Editor.Pages
 
         #endregion
 
-        #region 同盟タブ - 同盟参加国
+        #region 同盟参加国
 
         /// <summary>
         ///     同盟参加国リストを更新する
@@ -801,7 +796,7 @@ namespace HoI2Editor.Pages
 
         #endregion
 
-        #region 同盟タブ - 戦争
+        #region 戦争
 
         /// <summary>
         ///     戦争の編集項目を初期化する
@@ -952,7 +947,7 @@ namespace HoI2Editor.Pages
 
         #endregion
 
-        #region 同盟タブ - 戦争リスト
+        #region 戦争リスト
 
         /// <summary>
         ///     戦争リストビューを更新する
@@ -1221,7 +1216,7 @@ namespace HoI2Editor.Pages
 
         #endregion
 
-        #region 同盟タブ - 戦争参加国
+        #region 戦争参加国
 
         /// <summary>
         ///     戦争参加国リストを更新する
@@ -1770,7 +1765,7 @@ namespace HoI2Editor.Pages
 
         #endregion
 
-        #region 同盟タブ - 編集項目
+        #region 編集項目
 
         /// <summary>
         ///     テキストボックスのフォーカス移動後の処理
@@ -1951,8 +1946,6 @@ namespace HoI2Editor.Pages
             // 項目値変更後の処理
             _controller.PostItemChanged(itemId, val, alliance);
         }
-
-        #endregion
 
         #endregion
     }
