@@ -143,6 +143,7 @@
             this.warDefenderLeaderButton.TabIndex = 29;
             this.warDefenderLeaderButton.Text = "Set Leader";
             this.warDefenderLeaderButton.UseVisualStyleBackColor = true;
+            this.warDefenderLeaderButton.Click += new System.EventHandler(this.OnWarDefenderLeaderButtonClick);
             // 
             // warAttackerLeaderButton
             // 
@@ -155,6 +156,7 @@
             this.warAttackerLeaderButton.TabIndex = 18;
             this.warAttackerLeaderButton.Text = "Set Leader";
             this.warAttackerLeaderButton.UseVisualStyleBackColor = true;
+            this.warAttackerLeaderButton.Click += new System.EventHandler(this.OnWarAttackerLeaderButtonClick);
             // 
             // warDefenderIdLabel
             // 
@@ -189,6 +191,7 @@
             this.warDefenderIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.warDefenderIdTextBox.TabIndex = 32;
             this.warDefenderIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warDefenderIdTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warDefenderTypeTextBox
             // 
@@ -199,6 +202,7 @@
             this.warDefenderTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.warDefenderTypeTextBox.TabIndex = 31;
             this.warDefenderTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warDefenderTypeTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warAttackerIdTextBox
             // 
@@ -209,6 +213,7 @@
             this.warAttackerIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.warAttackerIdTextBox.TabIndex = 21;
             this.warAttackerIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warAttackerIdTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warAttackerTypeTextBox
             // 
@@ -219,6 +224,7 @@
             this.warAttackerTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.warAttackerTypeTextBox.TabIndex = 20;
             this.warAttackerTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warAttackerTypeTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warIdTextBox
             // 
@@ -228,6 +234,7 @@
             this.warIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.warIdTextBox.TabIndex = 15;
             this.warIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warIdTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warTypeTextBox
             // 
@@ -237,6 +244,7 @@
             this.warTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.warTypeTextBox.TabIndex = 14;
             this.warTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warTypeTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warEndMonthTextBox
             // 
@@ -246,6 +254,7 @@
             this.warEndMonthTextBox.Size = new System.Drawing.Size(50, 19);
             this.warEndMonthTextBox.TabIndex = 11;
             this.warEndMonthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warEndMonthTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warIdLabel
             // 
@@ -266,6 +275,7 @@
             this.warEndYearTextBox.Size = new System.Drawing.Size(50, 19);
             this.warEndYearTextBox.TabIndex = 10;
             this.warEndYearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warEndYearTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warEndDayTextBox
             // 
@@ -275,6 +285,7 @@
             this.warEndDayTextBox.Size = new System.Drawing.Size(50, 19);
             this.warEndDayTextBox.TabIndex = 12;
             this.warEndDayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warEndDayTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warEndDateLabel
             // 
@@ -295,6 +306,7 @@
             this.warStartMonthTextBox.Size = new System.Drawing.Size(50, 19);
             this.warStartMonthTextBox.TabIndex = 7;
             this.warStartMonthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warStartMonthTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warStartYearTextBox
             // 
@@ -304,6 +316,7 @@
             this.warStartYearTextBox.Size = new System.Drawing.Size(50, 19);
             this.warStartYearTextBox.TabIndex = 6;
             this.warStartYearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warStartYearTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warStartDayTextBox
             // 
@@ -313,6 +326,7 @@
             this.warStartDayTextBox.Size = new System.Drawing.Size(50, 19);
             this.warStartDayTextBox.TabIndex = 8;
             this.warStartDayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.warStartDayTextBox.Validated += new System.EventHandler(this.OnWarIntItemTextBoxValidated);
             // 
             // warStartDateLabel
             // 
@@ -350,6 +364,7 @@
             this.warListView.TabIndex = 0;
             this.warListView.UseCompatibleStateImageBehavior = false;
             this.warListView.View = System.Windows.Forms.View.Details;
+            this.warListView.SelectedIndexChanged += new System.EventHandler(this.OnWarListViewSelectedIndexChanged);
             // 
             // warAttackerColumnHeader
             // 
@@ -370,6 +385,7 @@
             this.warNewButton.TabIndex = 3;
             this.warNewButton.Text = "New";
             this.warNewButton.UseVisualStyleBackColor = true;
+            this.warNewButton.Click += new System.EventHandler(this.OnWarNewButtonClick);
             // 
             // warAttackerRemoveButton
             // 
@@ -382,6 +398,7 @@
             this.warAttackerRemoveButton.TabIndex = 23;
             this.warAttackerRemoveButton.Text = "->";
             this.warAttackerRemoveButton.UseVisualStyleBackColor = true;
+            this.warAttackerRemoveButton.Click += new System.EventHandler(this.OnWarAttackerRemoveButtonClick);
             // 
             // warUpButton
             // 
@@ -393,6 +410,7 @@
             this.warUpButton.TabIndex = 1;
             this.warUpButton.Text = "Up";
             this.warUpButton.UseVisualStyleBackColor = true;
+            this.warUpButton.Click += new System.EventHandler(this.OnWarUpButtonClick);
             // 
             // warAttackerListBox
             // 
@@ -407,6 +425,8 @@
             this.warAttackerListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.warAttackerListBox.Size = new System.Drawing.Size(120, 186);
             this.warAttackerListBox.TabIndex = 17;
+            this.warAttackerListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnWarAttackerListBoxDrawItem);
+            this.warAttackerListBox.SelectedIndexChanged += new System.EventHandler(this.OnWarAttackerListBoxSelectedIndexChanged);
             // 
             // warDefenderRemoveButton
             // 
@@ -419,6 +439,7 @@
             this.warDefenderRemoveButton.TabIndex = 26;
             this.warDefenderRemoveButton.Text = "<-";
             this.warDefenderRemoveButton.UseVisualStyleBackColor = true;
+            this.warDefenderRemoveButton.Click += new System.EventHandler(this.OnWarDefenderRemoveButtonClick);
             // 
             // warAttackerLabel
             // 
@@ -444,6 +465,8 @@
             this.warDefenderListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.warDefenderListBox.Size = new System.Drawing.Size(120, 186);
             this.warDefenderListBox.TabIndex = 28;
+            this.warDefenderListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnWarDefenderListBoxDrawItem);
+            this.warDefenderListBox.SelectedIndexChanged += new System.EventHandler(this.OnWarDefenderListBoxSelectedIndexChanged);
             // 
             // warDownButton
             // 
@@ -455,6 +478,7 @@
             this.warDownButton.TabIndex = 2;
             this.warDownButton.Text = "Down";
             this.warDownButton.UseVisualStyleBackColor = true;
+            this.warDownButton.Click += new System.EventHandler(this.OnWarDownButtonClick);
             // 
             // warFreeCountryListBox
             // 
@@ -469,6 +493,8 @@
             this.warFreeCountryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.warFreeCountryListBox.Size = new System.Drawing.Size(120, 186);
             this.warFreeCountryListBox.TabIndex = 24;
+            this.warFreeCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnWarCountryListBoxDrawItem);
+            this.warFreeCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnWarCountryListBoxSelectedIndexChanged);
             // 
             // warAttackerAddButton
             // 
@@ -481,6 +507,7 @@
             this.warAttackerAddButton.TabIndex = 22;
             this.warAttackerAddButton.Text = "<-";
             this.warAttackerAddButton.UseVisualStyleBackColor = true;
+            this.warAttackerAddButton.Click += new System.EventHandler(this.OnWarAttackerAddButtonClick);
             // 
             // warDefenderAddButton
             // 
@@ -493,6 +520,7 @@
             this.warDefenderAddButton.TabIndex = 25;
             this.warDefenderAddButton.Text = "->";
             this.warDefenderAddButton.UseVisualStyleBackColor = true;
+            this.warDefenderAddButton.Click += new System.EventHandler(this.OnWarDefenderAddButtonClick);
             // 
             // warRemoveButton
             // 
@@ -504,6 +532,7 @@
             this.warRemoveButton.TabIndex = 4;
             this.warRemoveButton.Text = "Remove";
             this.warRemoveButton.UseVisualStyleBackColor = true;
+            this.warRemoveButton.Click += new System.EventHandler(this.OnWarRemoveButtonClick);
             // 
             // allianceGroupBox
             // 
@@ -541,6 +570,7 @@
             this.allianceIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.allianceIdTextBox.TabIndex = 9;
             this.allianceIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.allianceIdTextBox.Validated += new System.EventHandler(this.OnAllianceIntItemTextBoxValidated);
             // 
             // allianceTypeTextBox
             // 
@@ -550,6 +580,7 @@
             this.allianceTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.allianceTypeTextBox.TabIndex = 8;
             this.allianceTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.allianceTypeTextBox.Validated += new System.EventHandler(this.OnAllianceIntItemTextBoxValidated);
             // 
             // allianceIdLabel
             // 
@@ -569,6 +600,7 @@
             this.allianceNameTextBox.Name = "allianceNameTextBox";
             this.allianceNameTextBox.Size = new System.Drawing.Size(120, 19);
             this.allianceNameTextBox.TabIndex = 6;
+            this.allianceNameTextBox.TextChanged += new System.EventHandler(this.OnAllianceStringItemTextBoxTextChanged);
             // 
             // allianceNameLabel
             // 
@@ -595,6 +627,7 @@
             this.allianceListView.TabIndex = 0;
             this.allianceListView.UseCompatibleStateImageBehavior = false;
             this.allianceListView.View = System.Windows.Forms.View.Details;
+            this.allianceListView.SelectedIndexChanged += new System.EventHandler(this.OnAllianceListViewSelectedIndexChanged);
             // 
             // allianceNameColumnHeader
             // 
@@ -628,6 +661,7 @@
             this.allianceLeaderButton.TabIndex = 12;
             this.allianceLeaderButton.Text = "Set Leader";
             this.allianceLeaderButton.UseVisualStyleBackColor = true;
+            this.allianceLeaderButton.Click += new System.EventHandler(this.OnAllianceLeaderButtonClick);
             // 
             // allianceParticipantListBox
             // 
@@ -642,6 +676,8 @@
             this.allianceParticipantListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.allianceParticipantListBox.Size = new System.Drawing.Size(120, 186);
             this.allianceParticipantListBox.TabIndex = 11;
+            this.allianceParticipantListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAllianceParticipantListBoxDrawItem);
+            this.allianceParticipantListBox.SelectedIndexChanged += new System.EventHandler(this.OnAllianceParticipantListBoxSelectedIndexChanged);
             // 
             // allianceUpButton
             // 
@@ -653,6 +689,7 @@
             this.allianceUpButton.TabIndex = 1;
             this.allianceUpButton.Text = "Up";
             this.allianceUpButton.UseVisualStyleBackColor = true;
+            this.allianceUpButton.Click += new System.EventHandler(this.OnAllianceUpButtonClick);
             // 
             // allianceParticipantAddButton
             // 
@@ -665,6 +702,7 @@
             this.allianceParticipantAddButton.TabIndex = 13;
             this.allianceParticipantAddButton.Text = "<-";
             this.allianceParticipantAddButton.UseVisualStyleBackColor = true;
+            this.allianceParticipantAddButton.Click += new System.EventHandler(this.OnAllianceParticipantAddButtonClick);
             // 
             // allianceFreeCountryListBox
             // 
@@ -679,6 +717,8 @@
             this.allianceFreeCountryListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.allianceFreeCountryListBox.Size = new System.Drawing.Size(120, 186);
             this.allianceFreeCountryListBox.TabIndex = 15;
+            this.allianceFreeCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnAllianceCountryListBoxDrawItem);
+            this.allianceFreeCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnAllianceCountryListBoxSelectedIndexChanged);
             // 
             // allianceRemoveButton
             // 
@@ -690,6 +730,7 @@
             this.allianceRemoveButton.TabIndex = 4;
             this.allianceRemoveButton.Text = "Remove";
             this.allianceRemoveButton.UseVisualStyleBackColor = true;
+            this.allianceRemoveButton.Click += new System.EventHandler(this.OnAllianceRemoveButtonClick);
             // 
             // allianceNewButton
             // 
@@ -700,6 +741,7 @@
             this.allianceNewButton.TabIndex = 3;
             this.allianceNewButton.Text = "New";
             this.allianceNewButton.UseVisualStyleBackColor = true;
+            this.allianceNewButton.Click += new System.EventHandler(this.OnAllianceNewButtonClick);
             // 
             // allianceParticipantRemoveButton
             // 
@@ -712,6 +754,7 @@
             this.allianceParticipantRemoveButton.TabIndex = 14;
             this.allianceParticipantRemoveButton.Text = "->";
             this.allianceParticipantRemoveButton.UseVisualStyleBackColor = true;
+            this.allianceParticipantRemoveButton.Click += new System.EventHandler(this.OnAllianceParticipantRemoveButtonClick);
             // 
             // allianceDownButton
             // 
@@ -723,8 +766,9 @@
             this.allianceDownButton.TabIndex = 2;
             this.allianceDownButton.Text = "Down";
             this.allianceDownButton.UseVisualStyleBackColor = true;
+            this.allianceDownButton.Click += new System.EventHandler(this.OnAllianceDownButtonClick);
             // 
-            // ScenarioAlliancePage
+            // ScenarioEditorAlliancePage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
