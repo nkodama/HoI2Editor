@@ -435,29 +435,56 @@
     <EmbeddedResource Include="Forms\UnitNameEditorForm.resx">
       <DependentUpon>UnitNameEditorForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorAlliancePage.ja.resx">
+      <DependentUpon>ScenarioEditorAlliancePage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\ScenarioEditorAlliancePage.resx">
       <DependentUpon>ScenarioEditorAlliancePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorCountryPage.ja.resx">
+      <DependentUpon>ScenarioEditorCountryPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ScenarioEditorCountryPage.resx">
       <DependentUpon>ScenarioEditorCountryPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorGovernmentPage.ja.resx">
+      <DependentUpon>ScenarioEditorGovernmentPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\ScenarioEditorGovernmentPage.resx">
       <DependentUpon>ScenarioEditorGovernmentPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorMainPage.ja.resx">
+      <DependentUpon>ScenarioEditorMainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ScenarioEditorMainPage.resx">
       <DependentUpon>ScenarioEditorMainPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorOobPage.ja.resx">
+      <DependentUpon>ScenarioEditorOobPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\ScenarioEditorOobPage.resx">
       <DependentUpon>ScenarioEditorOobPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorProvincePage.ja.resx">
+      <DependentUpon>ScenarioEditorProvincePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ScenarioEditorProvincePage.resx">
       <DependentUpon>ScenarioEditorProvincePage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorRelationPage.ja.resx">
+      <DependentUpon>ScenarioEditorRelationPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\ScenarioEditorRelationPage.resx">
       <DependentUpon>ScenarioEditorRelationPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorTechnologyPage.ja.resx">
+      <DependentUpon>ScenarioEditorTechnologyPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\ScenarioEditorTechnologyPage.resx">
       <DependentUpon>ScenarioEditorTechnologyPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ScenarioEditorTradePage.ja.resx">
+      <DependentUpon>ScenarioEditorTradePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ScenarioEditorTradePage.resx">
       <DependentUpon>ScenarioEditorTradePage.cs</DependentUpon>

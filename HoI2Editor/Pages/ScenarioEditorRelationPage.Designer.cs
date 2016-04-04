@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.Label relationValueLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScenarioEditorRelationPage));
             System.Windows.Forms.Label spyNumLabel;
             this.peaceGroupBox = new System.Windows.Forms.GroupBox();
             this.peaceIdTextBox = new System.Windows.Forms.TextBox();
@@ -90,9 +91,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.spyNumNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
+            // relationValueLabel
+            // 
+            resources.ApplyResources(relationValueLabel, "relationValueLabel");
+            relationValueLabel.Name = "relationValueLabel";
+            // 
+            // spyNumLabel
+            // 
+            resources.ApplyResources(spyNumLabel, "spyNumLabel");
+            spyNumLabel.Name = "spyNumLabel";
+            // 
             // peaceGroupBox
             // 
-            this.peaceGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.peaceGroupBox, "peaceGroupBox");
             this.peaceGroupBox.Controls.Add(this.peaceIdTextBox);
             this.peaceGroupBox.Controls.Add(this.peaceTypeTextBox);
             this.peaceGroupBox.Controls.Add(this.peaceEndDayTextBox);
@@ -105,181 +116,110 @@
             this.peaceGroupBox.Controls.Add(this.peaceStartDayTextBox);
             this.peaceGroupBox.Controls.Add(this.peaceCheckBox);
             this.peaceGroupBox.Controls.Add(this.peaceStartMonthTextBox);
-            this.peaceGroupBox.Enabled = false;
-            this.peaceGroupBox.Location = new System.Drawing.Point(304, 379);
             this.peaceGroupBox.Name = "peaceGroupBox";
-            this.peaceGroupBox.Size = new System.Drawing.Size(280, 121);
-            this.peaceGroupBox.TabIndex = 12;
             this.peaceGroupBox.TabStop = false;
             // 
             // peaceIdTextBox
             // 
-            this.peaceIdTextBox.Location = new System.Drawing.Point(159, 90);
+            resources.ApplyResources(this.peaceIdTextBox, "peaceIdTextBox");
             this.peaceIdTextBox.Name = "peaceIdTextBox";
-            this.peaceIdTextBox.Size = new System.Drawing.Size(50, 19);
-            this.peaceIdTextBox.TabIndex = 11;
-            this.peaceIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // peaceTypeTextBox
             // 
-            this.peaceTypeTextBox.Location = new System.Drawing.Point(103, 90);
+            resources.ApplyResources(this.peaceTypeTextBox, "peaceTypeTextBox");
             this.peaceTypeTextBox.Name = "peaceTypeTextBox";
-            this.peaceTypeTextBox.Size = new System.Drawing.Size(50, 19);
-            this.peaceTypeTextBox.TabIndex = 10;
-            this.peaceTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // peaceEndDayTextBox
             // 
-            this.peaceEndDayTextBox.Location = new System.Drawing.Point(215, 65);
+            resources.ApplyResources(this.peaceEndDayTextBox, "peaceEndDayTextBox");
             this.peaceEndDayTextBox.Name = "peaceEndDayTextBox";
-            this.peaceEndDayTextBox.Size = new System.Drawing.Size(50, 19);
-            this.peaceEndDayTextBox.TabIndex = 8;
-            this.peaceEndDayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // peaceEndLabel
             // 
-            this.peaceEndLabel.AutoSize = true;
-            this.peaceEndLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.peaceEndLabel.Location = new System.Drawing.Point(39, 68);
+            resources.ApplyResources(this.peaceEndLabel, "peaceEndLabel");
             this.peaceEndLabel.Name = "peaceEndLabel";
-            this.peaceEndLabel.Size = new System.Drawing.Size(52, 12);
-            this.peaceEndLabel.TabIndex = 5;
-            this.peaceEndLabel.Text = "End Date";
             // 
             // peaceEndMonthTextBox
             // 
-            this.peaceEndMonthTextBox.Location = new System.Drawing.Point(159, 65);
+            resources.ApplyResources(this.peaceEndMonthTextBox, "peaceEndMonthTextBox");
             this.peaceEndMonthTextBox.Name = "peaceEndMonthTextBox";
-            this.peaceEndMonthTextBox.Size = new System.Drawing.Size(50, 19);
-            this.peaceEndMonthTextBox.TabIndex = 7;
-            this.peaceEndMonthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // peaceIdLabel
             // 
-            this.peaceIdLabel.AutoSize = true;
-            this.peaceIdLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.peaceIdLabel.Location = new System.Drawing.Point(39, 93);
+            resources.ApplyResources(this.peaceIdLabel, "peaceIdLabel");
             this.peaceIdLabel.Name = "peaceIdLabel";
-            this.peaceIdLabel.Size = new System.Drawing.Size(16, 12);
-            this.peaceIdLabel.TabIndex = 9;
-            this.peaceIdLabel.Text = "ID";
             // 
             // peaceEndYearTextBox
             // 
-            this.peaceEndYearTextBox.Location = new System.Drawing.Point(103, 65);
+            resources.ApplyResources(this.peaceEndYearTextBox, "peaceEndYearTextBox");
             this.peaceEndYearTextBox.Name = "peaceEndYearTextBox";
-            this.peaceEndYearTextBox.Size = new System.Drawing.Size(50, 19);
-            this.peaceEndYearTextBox.TabIndex = 6;
-            this.peaceEndYearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // peaceStartLabel
             // 
-            this.peaceStartLabel.AutoSize = true;
-            this.peaceStartLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.peaceStartLabel.Location = new System.Drawing.Point(39, 43);
+            resources.ApplyResources(this.peaceStartLabel, "peaceStartLabel");
             this.peaceStartLabel.Name = "peaceStartLabel";
-            this.peaceStartLabel.Size = new System.Drawing.Size(58, 12);
-            this.peaceStartLabel.TabIndex = 1;
-            this.peaceStartLabel.Text = "Start Date";
             // 
             // peaceStartYearTextBox
             // 
-            this.peaceStartYearTextBox.Location = new System.Drawing.Point(103, 40);
+            resources.ApplyResources(this.peaceStartYearTextBox, "peaceStartYearTextBox");
             this.peaceStartYearTextBox.Name = "peaceStartYearTextBox";
-            this.peaceStartYearTextBox.Size = new System.Drawing.Size(50, 19);
-            this.peaceStartYearTextBox.TabIndex = 2;
-            this.peaceStartYearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // peaceStartDayTextBox
             // 
-            this.peaceStartDayTextBox.Location = new System.Drawing.Point(215, 40);
+            resources.ApplyResources(this.peaceStartDayTextBox, "peaceStartDayTextBox");
             this.peaceStartDayTextBox.Name = "peaceStartDayTextBox";
-            this.peaceStartDayTextBox.Size = new System.Drawing.Size(50, 19);
-            this.peaceStartDayTextBox.TabIndex = 4;
-            this.peaceStartDayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // peaceCheckBox
             // 
-            this.peaceCheckBox.AutoSize = true;
-            this.peaceCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.peaceCheckBox.Location = new System.Drawing.Point(10, 18);
+            resources.ApplyResources(this.peaceCheckBox, "peaceCheckBox");
             this.peaceCheckBox.Name = "peaceCheckBox";
-            this.peaceCheckBox.Size = new System.Drawing.Size(55, 16);
-            this.peaceCheckBox.TabIndex = 0;
-            this.peaceCheckBox.Text = "Peace";
             this.peaceCheckBox.UseVisualStyleBackColor = true;
             // 
             // peaceStartMonthTextBox
             // 
-            this.peaceStartMonthTextBox.Location = new System.Drawing.Point(159, 40);
+            resources.ApplyResources(this.peaceStartMonthTextBox, "peaceStartMonthTextBox");
             this.peaceStartMonthTextBox.Name = "peaceStartMonthTextBox";
-            this.peaceStartMonthTextBox.Size = new System.Drawing.Size(50, 19);
-            this.peaceStartMonthTextBox.TabIndex = 3;
-            this.peaceStartMonthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // guaranteedGroupBox
             // 
-            this.guaranteedGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.guaranteedGroupBox, "guaranteedGroupBox");
             this.guaranteedGroupBox.Controls.Add(this.guaranteedCheckBox);
             this.guaranteedGroupBox.Controls.Add(this.guaranteedYearTextBox);
             this.guaranteedGroupBox.Controls.Add(this.guaranteedMonthTextBox);
             this.guaranteedGroupBox.Controls.Add(this.guaranteedEndLabel);
             this.guaranteedGroupBox.Controls.Add(this.guaranteedDayTextBox);
-            this.guaranteedGroupBox.Enabled = false;
-            this.guaranteedGroupBox.Location = new System.Drawing.Point(14, 379);
             this.guaranteedGroupBox.Name = "guaranteedGroupBox";
-            this.guaranteedGroupBox.Size = new System.Drawing.Size(280, 70);
-            this.guaranteedGroupBox.TabIndex = 10;
             this.guaranteedGroupBox.TabStop = false;
             // 
             // guaranteedCheckBox
             // 
-            this.guaranteedCheckBox.AutoSize = true;
-            this.guaranteedCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.guaranteedCheckBox.Location = new System.Drawing.Point(10, 18);
+            resources.ApplyResources(this.guaranteedCheckBox, "guaranteedCheckBox");
             this.guaranteedCheckBox.Name = "guaranteedCheckBox";
-            this.guaranteedCheckBox.Size = new System.Drawing.Size(82, 16);
-            this.guaranteedCheckBox.TabIndex = 0;
-            this.guaranteedCheckBox.Text = "Guaranteed";
             this.guaranteedCheckBox.UseVisualStyleBackColor = true;
             // 
             // guaranteedYearTextBox
             // 
-            this.guaranteedYearTextBox.Location = new System.Drawing.Point(103, 40);
+            resources.ApplyResources(this.guaranteedYearTextBox, "guaranteedYearTextBox");
             this.guaranteedYearTextBox.Name = "guaranteedYearTextBox";
-            this.guaranteedYearTextBox.Size = new System.Drawing.Size(50, 19);
-            this.guaranteedYearTextBox.TabIndex = 2;
-            this.guaranteedYearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // guaranteedMonthTextBox
             // 
-            this.guaranteedMonthTextBox.Location = new System.Drawing.Point(159, 40);
+            resources.ApplyResources(this.guaranteedMonthTextBox, "guaranteedMonthTextBox");
             this.guaranteedMonthTextBox.Name = "guaranteedMonthTextBox";
-            this.guaranteedMonthTextBox.Size = new System.Drawing.Size(50, 19);
-            this.guaranteedMonthTextBox.TabIndex = 3;
-            this.guaranteedMonthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // guaranteedEndLabel
             // 
-            this.guaranteedEndLabel.AutoSize = true;
-            this.guaranteedEndLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.guaranteedEndLabel.Location = new System.Drawing.Point(39, 43);
+            resources.ApplyResources(this.guaranteedEndLabel, "guaranteedEndLabel");
             this.guaranteedEndLabel.Name = "guaranteedEndLabel";
-            this.guaranteedEndLabel.Size = new System.Drawing.Size(52, 12);
-            this.guaranteedEndLabel.TabIndex = 1;
-            this.guaranteedEndLabel.Text = "End Date";
             // 
             // guaranteedDayTextBox
             // 
-            this.guaranteedDayTextBox.Location = new System.Drawing.Point(215, 40);
+            resources.ApplyResources(this.guaranteedDayTextBox, "guaranteedDayTextBox");
             this.guaranteedDayTextBox.Name = "guaranteedDayTextBox";
-            this.guaranteedDayTextBox.Size = new System.Drawing.Size(50, 19);
-            this.guaranteedDayTextBox.TabIndex = 4;
-            this.guaranteedDayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nonAggressionGroupBox
             // 
-            this.nonAggressionGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.nonAggressionGroupBox, "nonAggressionGroupBox");
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionIdTextBox);
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionTypeTextBox);
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionIdLabel);
@@ -292,218 +232,120 @@
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionEndMonthTextBox);
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionEndDayTextBox);
             this.nonAggressionGroupBox.Controls.Add(this.nonAggressionEndLabel);
-            this.nonAggressionGroupBox.Enabled = false;
-            this.nonAggressionGroupBox.Location = new System.Drawing.Point(304, 252);
             this.nonAggressionGroupBox.Name = "nonAggressionGroupBox";
-            this.nonAggressionGroupBox.Size = new System.Drawing.Size(280, 121);
-            this.nonAggressionGroupBox.TabIndex = 11;
             this.nonAggressionGroupBox.TabStop = false;
             // 
             // nonAggressionIdTextBox
             // 
-            this.nonAggressionIdTextBox.Location = new System.Drawing.Point(159, 90);
+            resources.ApplyResources(this.nonAggressionIdTextBox, "nonAggressionIdTextBox");
             this.nonAggressionIdTextBox.Name = "nonAggressionIdTextBox";
-            this.nonAggressionIdTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nonAggressionIdTextBox.TabIndex = 11;
-            this.nonAggressionIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nonAggressionTypeTextBox
             // 
-            this.nonAggressionTypeTextBox.Location = new System.Drawing.Point(103, 90);
+            resources.ApplyResources(this.nonAggressionTypeTextBox, "nonAggressionTypeTextBox");
             this.nonAggressionTypeTextBox.Name = "nonAggressionTypeTextBox";
-            this.nonAggressionTypeTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nonAggressionTypeTextBox.TabIndex = 10;
-            this.nonAggressionTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nonAggressionIdLabel
             // 
-            this.nonAggressionIdLabel.AutoSize = true;
-            this.nonAggressionIdLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nonAggressionIdLabel.Location = new System.Drawing.Point(39, 93);
+            resources.ApplyResources(this.nonAggressionIdLabel, "nonAggressionIdLabel");
             this.nonAggressionIdLabel.Name = "nonAggressionIdLabel";
-            this.nonAggressionIdLabel.Size = new System.Drawing.Size(16, 12);
-            this.nonAggressionIdLabel.TabIndex = 9;
-            this.nonAggressionIdLabel.Text = "ID";
             // 
             // nonAggressionCheckBox
             // 
-            this.nonAggressionCheckBox.AutoSize = true;
-            this.nonAggressionCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nonAggressionCheckBox.Location = new System.Drawing.Point(10, 18);
+            resources.ApplyResources(this.nonAggressionCheckBox, "nonAggressionCheckBox");
             this.nonAggressionCheckBox.Name = "nonAggressionCheckBox";
-            this.nonAggressionCheckBox.Size = new System.Drawing.Size(105, 16);
-            this.nonAggressionCheckBox.TabIndex = 0;
-            this.nonAggressionCheckBox.Text = "Non Aggression";
             this.nonAggressionCheckBox.UseVisualStyleBackColor = true;
             // 
             // nonAggressionStartMonthTextBox
             // 
-            this.nonAggressionStartMonthTextBox.Location = new System.Drawing.Point(159, 40);
+            resources.ApplyResources(this.nonAggressionStartMonthTextBox, "nonAggressionStartMonthTextBox");
             this.nonAggressionStartMonthTextBox.Name = "nonAggressionStartMonthTextBox";
-            this.nonAggressionStartMonthTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nonAggressionStartMonthTextBox.TabIndex = 3;
-            this.nonAggressionStartMonthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nonAggressionStartYearTextBox
             // 
-            this.nonAggressionStartYearTextBox.Location = new System.Drawing.Point(103, 40);
+            resources.ApplyResources(this.nonAggressionStartYearTextBox, "nonAggressionStartYearTextBox");
             this.nonAggressionStartYearTextBox.Name = "nonAggressionStartYearTextBox";
-            this.nonAggressionStartYearTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nonAggressionStartYearTextBox.TabIndex = 2;
-            this.nonAggressionStartYearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nonAggressionStartDayTextBox
             // 
-            this.nonAggressionStartDayTextBox.Location = new System.Drawing.Point(215, 40);
+            resources.ApplyResources(this.nonAggressionStartDayTextBox, "nonAggressionStartDayTextBox");
             this.nonAggressionStartDayTextBox.Name = "nonAggressionStartDayTextBox";
-            this.nonAggressionStartDayTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nonAggressionStartDayTextBox.TabIndex = 4;
-            this.nonAggressionStartDayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nonAggressionStartLabel
             // 
-            this.nonAggressionStartLabel.AutoSize = true;
-            this.nonAggressionStartLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nonAggressionStartLabel.Location = new System.Drawing.Point(39, 43);
+            resources.ApplyResources(this.nonAggressionStartLabel, "nonAggressionStartLabel");
             this.nonAggressionStartLabel.Name = "nonAggressionStartLabel";
-            this.nonAggressionStartLabel.Size = new System.Drawing.Size(58, 12);
-            this.nonAggressionStartLabel.TabIndex = 1;
-            this.nonAggressionStartLabel.Text = "Start Date";
             // 
             // nonAggressionEndYearTextBox
             // 
-            this.nonAggressionEndYearTextBox.Location = new System.Drawing.Point(103, 65);
+            resources.ApplyResources(this.nonAggressionEndYearTextBox, "nonAggressionEndYearTextBox");
             this.nonAggressionEndYearTextBox.Name = "nonAggressionEndYearTextBox";
-            this.nonAggressionEndYearTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nonAggressionEndYearTextBox.TabIndex = 6;
-            this.nonAggressionEndYearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nonAggressionEndMonthTextBox
             // 
-            this.nonAggressionEndMonthTextBox.Location = new System.Drawing.Point(159, 65);
+            resources.ApplyResources(this.nonAggressionEndMonthTextBox, "nonAggressionEndMonthTextBox");
             this.nonAggressionEndMonthTextBox.Name = "nonAggressionEndMonthTextBox";
-            this.nonAggressionEndMonthTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nonAggressionEndMonthTextBox.TabIndex = 7;
-            this.nonAggressionEndMonthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nonAggressionEndDayTextBox
             // 
-            this.nonAggressionEndDayTextBox.Location = new System.Drawing.Point(215, 65);
+            resources.ApplyResources(this.nonAggressionEndDayTextBox, "nonAggressionEndDayTextBox");
             this.nonAggressionEndDayTextBox.Name = "nonAggressionEndDayTextBox";
-            this.nonAggressionEndDayTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nonAggressionEndDayTextBox.TabIndex = 8;
-            this.nonAggressionEndDayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // nonAggressionEndLabel
             // 
-            this.nonAggressionEndLabel.AutoSize = true;
-            this.nonAggressionEndLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.nonAggressionEndLabel.Location = new System.Drawing.Point(39, 68);
+            resources.ApplyResources(this.nonAggressionEndLabel, "nonAggressionEndLabel");
             this.nonAggressionEndLabel.Name = "nonAggressionEndLabel";
-            this.nonAggressionEndLabel.Size = new System.Drawing.Size(52, 12);
-            this.nonAggressionEndLabel.TabIndex = 5;
-            this.nonAggressionEndLabel.Text = "End Date";
             // 
             // relationGroupBox
             // 
-            this.relationGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.relationGroupBox, "relationGroupBox");
             this.relationGroupBox.Controls.Add(this.relationValueTextBox);
             this.relationGroupBox.Controls.Add(relationValueLabel);
             this.relationGroupBox.Controls.Add(this.controlCheckBox);
             this.relationGroupBox.Controls.Add(this.masterCheckBox);
             this.relationGroupBox.Controls.Add(this.accessCheckBox);
-            this.relationGroupBox.Enabled = false;
-            this.relationGroupBox.Location = new System.Drawing.Point(14, 252);
             this.relationGroupBox.Name = "relationGroupBox";
-            this.relationGroupBox.Size = new System.Drawing.Size(169, 117);
-            this.relationGroupBox.TabIndex = 9;
             this.relationGroupBox.TabStop = false;
             // 
             // relationValueTextBox
             // 
-            this.relationValueTextBox.Location = new System.Drawing.Point(103, 17);
+            resources.ApplyResources(this.relationValueTextBox, "relationValueTextBox");
             this.relationValueTextBox.Name = "relationValueTextBox";
-            this.relationValueTextBox.Size = new System.Drawing.Size(50, 19);
-            this.relationValueTextBox.TabIndex = 1;
-            this.relationValueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // relationValueLabel
-            // 
-            relationValueLabel.AutoSize = true;
-            relationValueLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            relationValueLabel.Location = new System.Drawing.Point(14, 20);
-            relationValueLabel.Name = "relationValueLabel";
-            relationValueLabel.Size = new System.Drawing.Size(80, 12);
-            relationValueLabel.TabIndex = 0;
-            relationValueLabel.Text = "Relation Value";
             // 
             // controlCheckBox
             // 
-            this.controlCheckBox.AutoSize = true;
-            this.controlCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.controlCheckBox.Location = new System.Drawing.Point(16, 68);
+            resources.ApplyResources(this.controlCheckBox, "controlCheckBox");
             this.controlCheckBox.Name = "controlCheckBox";
-            this.controlCheckBox.Size = new System.Drawing.Size(103, 16);
-            this.controlCheckBox.TabIndex = 3;
-            this.controlCheckBox.Text = "Military Control";
             this.controlCheckBox.UseVisualStyleBackColor = true;
             // 
             // masterCheckBox
             // 
-            this.masterCheckBox.AutoSize = true;
-            this.masterCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.masterCheckBox.Location = new System.Drawing.Point(16, 46);
+            resources.ApplyResources(this.masterCheckBox, "masterCheckBox");
             this.masterCheckBox.Name = "masterCheckBox";
-            this.masterCheckBox.Size = new System.Drawing.Size(59, 16);
-            this.masterCheckBox.TabIndex = 2;
-            this.masterCheckBox.Text = "Master";
             this.masterCheckBox.UseVisualStyleBackColor = true;
             // 
             // accessCheckBox
             // 
-            this.accessCheckBox.AutoSize = true;
-            this.accessCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.accessCheckBox.Location = new System.Drawing.Point(16, 90);
+            resources.ApplyResources(this.accessCheckBox, "accessCheckBox");
             this.accessCheckBox.Name = "accessCheckBox";
-            this.accessCheckBox.Size = new System.Drawing.Size(104, 16);
-            this.accessCheckBox.TabIndex = 4;
-            this.accessCheckBox.Text = "Military Access";
             this.accessCheckBox.UseVisualStyleBackColor = true;
             // 
             // intelligenceGroupBox
             // 
-            this.intelligenceGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.intelligenceGroupBox, "intelligenceGroupBox");
             this.intelligenceGroupBox.Controls.Add(this.spyNumNumericUpDown);
             this.intelligenceGroupBox.Controls.Add(spyNumLabel);
-            this.intelligenceGroupBox.Enabled = false;
-            this.intelligenceGroupBox.Location = new System.Drawing.Point(594, 252);
             this.intelligenceGroupBox.Name = "intelligenceGroupBox";
-            this.intelligenceGroupBox.Size = new System.Drawing.Size(207, 52);
-            this.intelligenceGroupBox.TabIndex = 13;
             this.intelligenceGroupBox.TabStop = false;
             // 
             // spyNumNumericUpDown
             // 
-            this.spyNumNumericUpDown.Location = new System.Drawing.Point(114, 21);
+            resources.ApplyResources(this.spyNumNumericUpDown, "spyNumNumericUpDown");
             this.spyNumNumericUpDown.Name = "spyNumNumericUpDown";
-            this.spyNumNumericUpDown.Size = new System.Drawing.Size(70, 19);
-            this.spyNumNumericUpDown.TabIndex = 1;
-            this.spyNumNumericUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // spyNumLabel
-            // 
-            spyNumLabel.AutoSize = true;
-            spyNumLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            spyNumLabel.Location = new System.Drawing.Point(14, 23);
-            spyNumLabel.Name = "spyNumLabel";
-            spyNumLabel.Size = new System.Drawing.Size(90, 12);
-            spyNumLabel.TabIndex = 0;
-            spyNumLabel.Text = "Number of Spies";
             // 
             // relationListView
             // 
-            this.relationListView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.relationListView, "relationListView");
             this.relationListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.relationCountryColumnHeader,
             this.relationValueColumnHeader,
@@ -514,87 +356,60 @@
             this.relationNonAggressionColumnHeader,
             this.relationPeaceColumnHeader,
             this.relationSpyColumnHeader});
-            this.relationListView.Enabled = false;
             this.relationListView.FullRowSelect = true;
             this.relationListView.GridLines = true;
             this.relationListView.HideSelection = false;
-            this.relationListView.Location = new System.Drawing.Point(150, 14);
             this.relationListView.MultiSelect = false;
             this.relationListView.Name = "relationListView";
-            this.relationListView.Size = new System.Drawing.Size(688, 220);
-            this.relationListView.TabIndex = 8;
             this.relationListView.UseCompatibleStateImageBehavior = false;
             this.relationListView.View = System.Windows.Forms.View.Details;
             // 
             // relationCountryColumnHeader
             // 
-            this.relationCountryColumnHeader.Text = "Country";
-            this.relationCountryColumnHeader.Width = 100;
+            resources.ApplyResources(this.relationCountryColumnHeader, "relationCountryColumnHeader");
             // 
             // relationValueColumnHeader
             // 
-            this.relationValueColumnHeader.Text = "Value";
-            this.relationValueColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.relationValueColumnHeader.Width = 70;
+            resources.ApplyResources(this.relationValueColumnHeader, "relationValueColumnHeader");
             // 
             // relationMasterColumnHeader
             // 
-            this.relationMasterColumnHeader.Text = "Master";
-            this.relationMasterColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.relationMasterColumnHeader.Width = 70;
+            resources.ApplyResources(this.relationMasterColumnHeader, "relationMasterColumnHeader");
             // 
             // relationControlColumnHeader
             // 
-            this.relationControlColumnHeader.Text = "Control";
-            this.relationControlColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.relationControlColumnHeader.Width = 70;
+            resources.ApplyResources(this.relationControlColumnHeader, "relationControlColumnHeader");
             // 
             // relationAccessColumnHeader
             // 
-            this.relationAccessColumnHeader.Text = "Access";
-            this.relationAccessColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.relationAccessColumnHeader.Width = 70;
+            resources.ApplyResources(this.relationAccessColumnHeader, "relationAccessColumnHeader");
             // 
             // relationGuaranteeColumnHeader
             // 
-            this.relationGuaranteeColumnHeader.Text = "Guarantee";
-            this.relationGuaranteeColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.relationGuaranteeColumnHeader.Width = 70;
+            resources.ApplyResources(this.relationGuaranteeColumnHeader, "relationGuaranteeColumnHeader");
             // 
             // relationNonAggressionColumnHeader
             // 
-            this.relationNonAggressionColumnHeader.Text = "Non Aggr.";
-            this.relationNonAggressionColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.relationNonAggressionColumnHeader.Width = 70;
+            resources.ApplyResources(this.relationNonAggressionColumnHeader, "relationNonAggressionColumnHeader");
             // 
             // relationPeaceColumnHeader
             // 
-            this.relationPeaceColumnHeader.Text = "Peace";
-            this.relationPeaceColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.relationPeaceColumnHeader.Width = 70;
+            resources.ApplyResources(this.relationPeaceColumnHeader, "relationPeaceColumnHeader");
             // 
             // relationSpyColumnHeader
             // 
-            this.relationSpyColumnHeader.Text = "Spy";
-            this.relationSpyColumnHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.relationSpyColumnHeader.Width = 70;
+            resources.ApplyResources(this.relationSpyColumnHeader, "relationSpyColumnHeader");
             // 
             // relationCountryListBox
             // 
-            this.relationCountryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.relationCountryListBox, "relationCountryListBox");
             this.relationCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.relationCountryListBox.Enabled = false;
-            this.relationCountryListBox.Font = new System.Drawing.Font("Lucida Console", 9F);
             this.relationCountryListBox.FormattingEnabled = true;
-            this.relationCountryListBox.Location = new System.Drawing.Point(14, 14);
             this.relationCountryListBox.Name = "relationCountryListBox";
-            this.relationCountryListBox.Size = new System.Drawing.Size(120, 212);
-            this.relationCountryListBox.TabIndex = 7;
             // 
-            // ScenarioRelationPage
+            // ScenarioEditorRelationPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.peaceGroupBox);
             this.Controls.Add(this.guaranteedGroupBox);
@@ -604,7 +419,6 @@
             this.Controls.Add(this.relationListView);
             this.Controls.Add(this.relationCountryListBox);
             this.Name = "ScenarioEditorRelationPage";
-            this.Size = new System.Drawing.Size(976, 559);
             this.peaceGroupBox.ResumeLayout(false);
             this.peaceGroupBox.PerformLayout();
             this.guaranteedGroupBox.ResumeLayout(false);

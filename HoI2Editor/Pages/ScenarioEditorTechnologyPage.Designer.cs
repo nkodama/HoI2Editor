@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScenarioEditorTechnologyPage));
             this.techTreePanel = new System.Windows.Forms.Panel();
             this.techTreePictureBox = new System.Windows.Forms.PictureBox();
             this.inventionsListView = new System.Windows.Forms.ListView();
@@ -44,127 +45,74 @@
             // 
             // techTreePanel
             // 
-            this.techTreePanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.techTreePanel.AutoScroll = true;
+            resources.ApplyResources(this.techTreePanel, "techTreePanel");
             this.techTreePanel.Controls.Add(this.techTreePictureBox);
-            this.techTreePanel.Location = new System.Drawing.Point(404, 12);
             this.techTreePanel.Name = "techTreePanel";
-            this.techTreePanel.Size = new System.Drawing.Size(560, 535);
-            this.techTreePanel.TabIndex = 17;
             // 
             // techTreePictureBox
             // 
-            this.techTreePictureBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.techTreePictureBox.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.techTreePictureBox, "techTreePictureBox");
             this.techTreePictureBox.Name = "techTreePictureBox";
-            this.techTreePictureBox.Size = new System.Drawing.Size(0, 0);
-            this.techTreePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.techTreePictureBox.TabIndex = 0;
             this.techTreePictureBox.TabStop = false;
             // 
             // inventionsListView
             // 
-            this.inventionsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.inventionsListView, "inventionsListView");
             this.inventionsListView.CheckBoxes = true;
-            this.inventionsListView.Enabled = false;
-            this.inventionsListView.Location = new System.Drawing.Point(144, 451);
             this.inventionsListView.MultiSelect = false;
             this.inventionsListView.Name = "inventionsListView";
-            this.inventionsListView.Size = new System.Drawing.Size(250, 91);
-            this.inventionsListView.TabIndex = 16;
             this.inventionsListView.UseCompatibleStateImageBehavior = false;
             this.inventionsListView.View = System.Windows.Forms.View.List;
             // 
             // blueprintsListView
             // 
-            this.blueprintsListView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.blueprintsListView, "blueprintsListView");
             this.blueprintsListView.CheckBoxes = true;
-            this.blueprintsListView.Enabled = false;
-            this.blueprintsListView.Location = new System.Drawing.Point(144, 268);
             this.blueprintsListView.MultiSelect = false;
             this.blueprintsListView.Name = "blueprintsListView";
-            this.blueprintsListView.Size = new System.Drawing.Size(250, 161);
-            this.blueprintsListView.TabIndex = 14;
             this.blueprintsListView.UseCompatibleStateImageBehavior = false;
             this.blueprintsListView.View = System.Windows.Forms.View.List;
             // 
             // ownedTechsListView
             // 
-            this.ownedTechsListView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.ownedTechsListView, "ownedTechsListView");
             this.ownedTechsListView.CheckBoxes = true;
-            this.ownedTechsListView.Enabled = false;
-            this.ownedTechsListView.Location = new System.Drawing.Point(144, 29);
             this.ownedTechsListView.MultiSelect = false;
             this.ownedTechsListView.Name = "ownedTechsListView";
-            this.ownedTechsListView.Size = new System.Drawing.Size(250, 217);
-            this.ownedTechsListView.TabIndex = 12;
             this.ownedTechsListView.UseCompatibleStateImageBehavior = false;
             this.ownedTechsListView.View = System.Windows.Forms.View.List;
             // 
             // ownedTechsLabel
             // 
-            this.ownedTechsLabel.AutoSize = true;
-            this.ownedTechsLabel.Enabled = false;
-            this.ownedTechsLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.ownedTechsLabel.Location = new System.Drawing.Point(142, 14);
+            resources.ApplyResources(this.ownedTechsLabel, "ownedTechsLabel");
             this.ownedTechsLabel.Name = "ownedTechsLabel";
-            this.ownedTechsLabel.Size = new System.Drawing.Size(74, 12);
-            this.ownedTechsLabel.TabIndex = 11;
-            this.ownedTechsLabel.Text = "Owned Techs";
             // 
             // techCategoryListBox
             // 
-            this.techCategoryListBox.Enabled = false;
+            resources.ApplyResources(this.techCategoryListBox, "techCategoryListBox");
             this.techCategoryListBox.FormattingEnabled = true;
-            this.techCategoryListBox.ItemHeight = 12;
-            this.techCategoryListBox.Location = new System.Drawing.Point(12, 14);
             this.techCategoryListBox.Name = "techCategoryListBox";
-            this.techCategoryListBox.Size = new System.Drawing.Size(120, 112);
-            this.techCategoryListBox.TabIndex = 9;
             // 
             // blueprintsLabel
             // 
-            this.blueprintsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.blueprintsLabel.AutoSize = true;
-            this.blueprintsLabel.Enabled = false;
-            this.blueprintsLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.blueprintsLabel.Location = new System.Drawing.Point(142, 253);
+            resources.ApplyResources(this.blueprintsLabel, "blueprintsLabel");
             this.blueprintsLabel.Name = "blueprintsLabel";
-            this.blueprintsLabel.Size = new System.Drawing.Size(57, 12);
-            this.blueprintsLabel.TabIndex = 13;
-            this.blueprintsLabel.Text = "Blueprints";
             // 
             // inventionsLabel
             // 
-            this.inventionsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.inventionsLabel.AutoSize = true;
-            this.inventionsLabel.Enabled = false;
-            this.inventionsLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.inventionsLabel.Location = new System.Drawing.Point(142, 436);
+            resources.ApplyResources(this.inventionsLabel, "inventionsLabel");
             this.inventionsLabel.Name = "inventionsLabel";
-            this.inventionsLabel.Size = new System.Drawing.Size(57, 12);
-            this.inventionsLabel.TabIndex = 15;
-            this.inventionsLabel.Text = "Inventions";
             // 
             // techCountryListBox
             // 
-            this.techCountryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.techCountryListBox, "techCountryListBox");
             this.techCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.techCountryListBox.Enabled = false;
-            this.techCountryListBox.Font = new System.Drawing.Font("Lucida Console", 9F);
             this.techCountryListBox.FormattingEnabled = true;
-            this.techCountryListBox.Location = new System.Drawing.Point(12, 143);
             this.techCountryListBox.Name = "techCountryListBox";
-            this.techCountryListBox.Size = new System.Drawing.Size(120, 394);
-            this.techCountryListBox.TabIndex = 10;
             // 
-            // ScenarioTechnologyPage
+            // ScenarioEditorTechnologyPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.techTreePanel);
             this.Controls.Add(this.inventionsListView);
@@ -176,7 +124,6 @@
             this.Controls.Add(this.inventionsLabel);
             this.Controls.Add(this.techCountryListBox);
             this.Name = "ScenarioEditorTechnologyPage";
-            this.Size = new System.Drawing.Size(976, 559);
             this.techTreePanel.ResumeLayout(false);
             this.techTreePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).EndInit();

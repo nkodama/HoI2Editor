@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.Label peacetimeIcModifierLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScenarioEditorCountryPage));
             System.Windows.Forms.Label wartimeIcModifierLabel;
             System.Windows.Forms.Label groundDefEffLabel;
             System.Windows.Forms.Label relativeManpowerLabel;
@@ -120,166 +121,87 @@
             // 
             // peacetimeIcModifierLabel
             // 
-            peacetimeIcModifierLabel.AutoSize = true;
-            peacetimeIcModifierLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            peacetimeIcModifierLabel.Location = new System.Drawing.Point(14, 46);
+            resources.ApplyResources(peacetimeIcModifierLabel, "peacetimeIcModifierLabel");
             peacetimeIcModifierLabel.Name = "peacetimeIcModifierLabel";
-            peacetimeIcModifierLabel.Size = new System.Drawing.Size(115, 12);
-            peacetimeIcModifierLabel.TabIndex = 2;
-            peacetimeIcModifierLabel.Text = "Peacetime IC Modifer";
             // 
             // wartimeIcModifierLabel
             // 
-            wartimeIcModifierLabel.AutoSize = true;
-            wartimeIcModifierLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            wartimeIcModifierLabel.Location = new System.Drawing.Point(14, 71);
+            resources.ApplyResources(wartimeIcModifierLabel, "wartimeIcModifierLabel");
             wartimeIcModifierLabel.Name = "wartimeIcModifierLabel";
-            wartimeIcModifierLabel.Size = new System.Drawing.Size(103, 12);
-            wartimeIcModifierLabel.TabIndex = 4;
-            wartimeIcModifierLabel.Text = "Wartime IC Modifer";
             // 
             // groundDefEffLabel
             // 
-            groundDefEffLabel.AutoSize = true;
-            groundDefEffLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            groundDefEffLabel.Location = new System.Drawing.Point(14, 21);
+            resources.ApplyResources(groundDefEffLabel, "groundDefEffLabel");
             groundDefEffLabel.Name = "groundDefEffLabel";
-            groundDefEffLabel.Size = new System.Drawing.Size(82, 12);
-            groundDefEffLabel.TabIndex = 0;
-            groundDefEffLabel.Text = "Ground Def Eff";
             // 
             // relativeManpowerLabel
             // 
-            relativeManpowerLabel.AutoSize = true;
-            relativeManpowerLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            relativeManpowerLabel.Location = new System.Drawing.Point(14, 121);
+            resources.ApplyResources(relativeManpowerLabel, "relativeManpowerLabel");
             relativeManpowerLabel.Name = "relativeManpowerLabel";
-            relativeManpowerLabel.Size = new System.Drawing.Size(102, 12);
-            relativeManpowerLabel.TabIndex = 8;
-            relativeManpowerLabel.Text = "Relative Manpower";
             // 
             // industrialModifierLabel
             // 
-            industrialModifierLabel.AutoSize = true;
-            industrialModifierLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            industrialModifierLabel.Location = new System.Drawing.Point(14, 96);
+            resources.ApplyResources(industrialModifierLabel, "industrialModifierLabel");
             industrialModifierLabel.Name = "industrialModifierLabel";
-            industrialModifierLabel.Size = new System.Drawing.Size(94, 12);
-            industrialModifierLabel.TabIndex = 6;
-            industrialModifierLabel.Text = "Industrial Modifer";
             // 
             // aiFileLabel
             // 
-            aiFileLabel.AutoSize = true;
-            aiFileLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            aiFileLabel.Location = new System.Drawing.Point(18, 21);
+            resources.ApplyResources(aiFileLabel, "aiFileLabel");
             aiFileLabel.Name = "aiFileLabel";
-            aiFileLabel.Size = new System.Drawing.Size(39, 12);
-            aiFileLabel.TabIndex = 0;
-            aiFileLabel.Text = "AI File";
             // 
             // countryOffmapLabel
             // 
-            countryOffmapLabel.AutoSize = true;
-            countryOffmapLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            countryOffmapLabel.Location = new System.Drawing.Point(184, 18);
+            resources.ApplyResources(countryOffmapLabel, "countryOffmapLabel");
             countryOffmapLabel.Name = "countryOffmapLabel";
-            countryOffmapLabel.Size = new System.Drawing.Size(42, 12);
-            countryOffmapLabel.TabIndex = 1;
-            countryOffmapLabel.Text = "Offmap";
             // 
             // countryStockpileLabel
             // 
-            countryStockpileLabel.AutoSize = true;
-            countryStockpileLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            countryStockpileLabel.Location = new System.Drawing.Point(124, 18);
+            resources.ApplyResources(countryStockpileLabel, "countryStockpileLabel");
             countryStockpileLabel.Name = "countryStockpileLabel";
-            countryStockpileLabel.Size = new System.Drawing.Size(52, 12);
-            countryStockpileLabel.TabIndex = 0;
-            countryStockpileLabel.Text = "Stockpile";
             // 
             // nukeDateLabel
             // 
-            nukeDateLabel.AutoSize = true;
-            nukeDateLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            nukeDateLabel.Location = new System.Drawing.Point(14, 223);
+            resources.ApplyResources(nukeDateLabel, "nukeDateLabel");
             nukeDateLabel.Name = "nukeDateLabel";
-            nukeDateLabel.Size = new System.Drawing.Size(59, 12);
-            nukeDateLabel.TabIndex = 15;
-            nukeDateLabel.Text = "Nuke Date";
             // 
             // dissentLabel
             // 
-            dissentLabel.AutoSize = true;
-            dissentLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            dissentLabel.Location = new System.Drawing.Point(14, 148);
+            resources.ApplyResources(dissentLabel, "dissentLabel");
             dissentLabel.Name = "dissentLabel";
-            dissentLabel.Size = new System.Drawing.Size(44, 12);
-            dissentLabel.TabIndex = 9;
-            dissentLabel.Text = "Dissent";
             // 
             // flagExtLabel
             // 
-            flagExtLabel.AutoSize = true;
-            flagExtLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            flagExtLabel.Location = new System.Drawing.Point(14, 70);
+            resources.ApplyResources(flagExtLabel, "flagExtLabel");
             flagExtLabel.Name = "flagExtLabel";
-            flagExtLabel.Size = new System.Drawing.Size(81, 12);
-            flagExtLabel.TabIndex = 3;
-            flagExtLabel.Text = "Flag Extension";
             // 
             // nukeLabel
             // 
-            nukeLabel.AutoSize = true;
-            nukeLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            nukeLabel.Location = new System.Drawing.Point(14, 198);
+            resources.ApplyResources(nukeLabel, "nukeLabel");
             nukeLabel.Name = "nukeLabel";
-            nukeLabel.Size = new System.Drawing.Size(31, 12);
-            nukeLabel.TabIndex = 13;
-            nukeLabel.Text = "Nuke";
             // 
             // extraTcLabel
             // 
-            extraTcLabel.AutoSize = true;
-            extraTcLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            extraTcLabel.Location = new System.Drawing.Point(14, 173);
+            resources.ApplyResources(extraTcLabel, "extraTcLabel");
             extraTcLabel.Name = "extraTcLabel";
-            extraTcLabel.Size = new System.Drawing.Size(51, 12);
-            extraTcLabel.TabIndex = 11;
-            extraTcLabel.Text = "Extra TC";
             // 
             // belligerenceLabel
             // 
-            belligerenceLabel.AutoSize = true;
-            belligerenceLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            belligerenceLabel.Location = new System.Drawing.Point(14, 123);
+            resources.ApplyResources(belligerenceLabel, "belligerenceLabel");
             belligerenceLabel.Name = "belligerenceLabel";
-            belligerenceLabel.Size = new System.Drawing.Size(68, 12);
-            belligerenceLabel.TabIndex = 7;
-            belligerenceLabel.Text = "Belligerence";
             // 
             // regularIdLabel
             // 
-            regularIdLabel.AutoSize = true;
-            regularIdLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            regularIdLabel.Location = new System.Drawing.Point(14, 96);
+            resources.ApplyResources(regularIdLabel, "regularIdLabel");
             regularIdLabel.Name = "regularIdLabel";
-            regularIdLabel.Size = new System.Drawing.Size(59, 12);
-            regularIdLabel.TabIndex = 5;
-            regularIdLabel.Text = "Regular ID";
             // 
             // countryNameLabel
             // 
-            countryNameLabel.AutoSize = true;
-            countryNameLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            countryNameLabel.Location = new System.Drawing.Point(14, 21);
+            resources.ApplyResources(countryNameLabel, "countryNameLabel");
             countryNameLabel.Name = "countryNameLabel";
-            countryNameLabel.Size = new System.Drawing.Size(34, 12);
-            countryNameLabel.TabIndex = 0;
-            countryNameLabel.Text = "Name";
             // 
             // countryModifierGroupBox
             // 
+            resources.ApplyResources(this.countryModifierGroupBox, "countryModifierGroupBox");
             this.countryModifierGroupBox.Controls.Add(this.groundDefEffTextBox);
             this.countryModifierGroupBox.Controls.Add(peacetimeIcModifierLabel);
             this.countryModifierGroupBox.Controls.Add(this.peacetimeIcModifierTextBox);
@@ -290,108 +212,73 @@
             this.countryModifierGroupBox.Controls.Add(this.wartimeIcModifierTextBox);
             this.countryModifierGroupBox.Controls.Add(industrialModifierLabel);
             this.countryModifierGroupBox.Controls.Add(this.industrialModifierTextBox);
-            this.countryModifierGroupBox.Enabled = false;
-            this.countryModifierGroupBox.Location = new System.Drawing.Point(142, 292);
             this.countryModifierGroupBox.Name = "countryModifierGroupBox";
-            this.countryModifierGroupBox.Size = new System.Drawing.Size(239, 150);
-            this.countryModifierGroupBox.TabIndex = 7;
             this.countryModifierGroupBox.TabStop = false;
-            this.countryModifierGroupBox.Text = "Modifier";
             // 
             // groundDefEffTextBox
             // 
-            this.groundDefEffTextBox.Location = new System.Drawing.Point(172, 18);
+            resources.ApplyResources(this.groundDefEffTextBox, "groundDefEffTextBox");
             this.groundDefEffTextBox.Name = "groundDefEffTextBox";
-            this.groundDefEffTextBox.Size = new System.Drawing.Size(50, 19);
-            this.groundDefEffTextBox.TabIndex = 1;
-            this.groundDefEffTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.groundDefEffTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // peacetimeIcModifierTextBox
             // 
-            this.peacetimeIcModifierTextBox.Location = new System.Drawing.Point(172, 43);
+            resources.ApplyResources(this.peacetimeIcModifierTextBox, "peacetimeIcModifierTextBox");
             this.peacetimeIcModifierTextBox.Name = "peacetimeIcModifierTextBox";
-            this.peacetimeIcModifierTextBox.Size = new System.Drawing.Size(50, 19);
-            this.peacetimeIcModifierTextBox.TabIndex = 3;
-            this.peacetimeIcModifierTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.peacetimeIcModifierTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // relativeManpowerTextBox
             // 
-            this.relativeManpowerTextBox.Location = new System.Drawing.Point(172, 118);
+            resources.ApplyResources(this.relativeManpowerTextBox, "relativeManpowerTextBox");
             this.relativeManpowerTextBox.Name = "relativeManpowerTextBox";
-            this.relativeManpowerTextBox.Size = new System.Drawing.Size(50, 19);
-            this.relativeManpowerTextBox.TabIndex = 9;
-            this.relativeManpowerTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.relativeManpowerTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // wartimeIcModifierTextBox
             // 
-            this.wartimeIcModifierTextBox.Location = new System.Drawing.Point(172, 68);
+            resources.ApplyResources(this.wartimeIcModifierTextBox, "wartimeIcModifierTextBox");
             this.wartimeIcModifierTextBox.Name = "wartimeIcModifierTextBox";
-            this.wartimeIcModifierTextBox.Size = new System.Drawing.Size(50, 19);
-            this.wartimeIcModifierTextBox.TabIndex = 5;
-            this.wartimeIcModifierTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.wartimeIcModifierTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // industrialModifierTextBox
             // 
-            this.industrialModifierTextBox.Location = new System.Drawing.Point(172, 93);
+            resources.ApplyResources(this.industrialModifierTextBox, "industrialModifierTextBox");
             this.industrialModifierTextBox.Name = "industrialModifierTextBox";
-            this.industrialModifierTextBox.Size = new System.Drawing.Size(50, 19);
-            this.industrialModifierTextBox.TabIndex = 7;
-            this.industrialModifierTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.industrialModifierTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // aiGroupBox
             // 
+            resources.ApplyResources(this.aiGroupBox, "aiGroupBox");
             this.aiGroupBox.Controls.Add(aiFileLabel);
             this.aiGroupBox.Controls.Add(this.aiFileBrowseButton);
             this.aiGroupBox.Controls.Add(this.aiFileNameTextBox);
-            this.aiGroupBox.Enabled = false;
-            this.aiGroupBox.Location = new System.Drawing.Point(391, 315);
             this.aiGroupBox.Name = "aiGroupBox";
-            this.aiGroupBox.Size = new System.Drawing.Size(254, 79);
-            this.aiGroupBox.TabIndex = 9;
             this.aiGroupBox.TabStop = false;
-            this.aiGroupBox.Text = "AI";
             // 
             // aiFileBrowseButton
             // 
-            this.aiFileBrowseButton.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.aiFileBrowseButton.Location = new System.Drawing.Point(161, 43);
+            resources.ApplyResources(this.aiFileBrowseButton, "aiFileBrowseButton");
             this.aiFileBrowseButton.Name = "aiFileBrowseButton";
-            this.aiFileBrowseButton.Size = new System.Drawing.Size(75, 23);
-            this.aiFileBrowseButton.TabIndex = 2;
-            this.aiFileBrowseButton.Text = "Browse";
             this.aiFileBrowseButton.UseVisualStyleBackColor = true;
             this.aiFileBrowseButton.Click += new System.EventHandler(this.OnAiFileNameBrowseButtonClick);
             // 
             // aiFileNameTextBox
             // 
-            this.aiFileNameTextBox.Location = new System.Drawing.Point(116, 18);
+            resources.ApplyResources(this.aiFileNameTextBox, "aiFileNameTextBox");
             this.aiFileNameTextBox.Name = "aiFileNameTextBox";
-            this.aiFileNameTextBox.Size = new System.Drawing.Size(120, 19);
-            this.aiFileNameTextBox.TabIndex = 1;
             this.aiFileNameTextBox.TextChanged += new System.EventHandler(this.OnCountryStringItemTextBoxTextChanged);
             // 
             // countryListBox
             // 
-            this.countryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            resources.ApplyResources(this.countryListBox, "countryListBox");
             this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.countryListBox.Enabled = false;
-            this.countryListBox.Font = new System.Drawing.Font("Lucida Console", 9F);
             this.countryListBox.FormattingEnabled = true;
-            this.countryListBox.Location = new System.Drawing.Point(12, 14);
             this.countryListBox.Name = "countryListBox";
-            this.countryListBox.Size = new System.Drawing.Size(120, 511);
-            this.countryListBox.TabIndex = 5;
             this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
             // 
             // countryResourceGroupBox
             // 
+            resources.ApplyResources(this.countryResourceGroupBox, "countryResourceGroupBox");
             this.countryResourceGroupBox.Controls.Add(this.offmapIcTextBox);
             this.countryResourceGroupBox.Controls.Add(this.countryIcLabel);
             this.countryResourceGroupBox.Controls.Add(this.offmapManpowerTextBox);
@@ -423,287 +310,176 @@
             this.countryResourceGroupBox.Controls.Add(this.countryMetalLabel);
             this.countryResourceGroupBox.Controls.Add(this.countryEnergyTextBox);
             this.countryResourceGroupBox.Controls.Add(this.countryEnergyLabel);
-            this.countryResourceGroupBox.Enabled = false;
-            this.countryResourceGroupBox.Location = new System.Drawing.Point(391, 14);
             this.countryResourceGroupBox.Name = "countryResourceGroupBox";
-            this.countryResourceGroupBox.Size = new System.Drawing.Size(254, 291);
-            this.countryResourceGroupBox.TabIndex = 8;
             this.countryResourceGroupBox.TabStop = false;
-            this.countryResourceGroupBox.Text = "Resource";
             // 
             // offmapIcTextBox
             // 
-            this.offmapIcTextBox.Location = new System.Drawing.Point(186, 258);
+            resources.ApplyResources(this.offmapIcTextBox, "offmapIcTextBox");
             this.offmapIcTextBox.Name = "offmapIcTextBox";
-            this.offmapIcTextBox.Size = new System.Drawing.Size(50, 19);
-            this.offmapIcTextBox.TabIndex = 30;
-            this.offmapIcTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.offmapIcTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryIcLabel
             // 
-            this.countryIcLabel.AutoSize = true;
-            this.countryIcLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countryIcLabel.Location = new System.Drawing.Point(18, 261);
+            resources.ApplyResources(this.countryIcLabel, "countryIcLabel");
             this.countryIcLabel.Name = "countryIcLabel";
-            this.countryIcLabel.Size = new System.Drawing.Size(16, 12);
-            this.countryIcLabel.TabIndex = 29;
-            this.countryIcLabel.Text = "IC";
             // 
             // offmapManpowerTextBox
             // 
-            this.offmapManpowerTextBox.Location = new System.Drawing.Point(186, 233);
+            resources.ApplyResources(this.offmapManpowerTextBox, "offmapManpowerTextBox");
             this.offmapManpowerTextBox.Name = "offmapManpowerTextBox";
-            this.offmapManpowerTextBox.Size = new System.Drawing.Size(50, 19);
-            this.offmapManpowerTextBox.TabIndex = 28;
-            this.offmapManpowerTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.offmapManpowerTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapEscortsTextBox
             // 
-            this.offmapEscortsTextBox.Location = new System.Drawing.Point(186, 208);
+            resources.ApplyResources(this.offmapEscortsTextBox, "offmapEscortsTextBox");
             this.offmapEscortsTextBox.Name = "offmapEscortsTextBox";
-            this.offmapEscortsTextBox.Size = new System.Drawing.Size(50, 19);
-            this.offmapEscortsTextBox.TabIndex = 25;
-            this.offmapEscortsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.offmapEscortsTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // offmapTransportsTextBox
             // 
-            this.offmapTransportsTextBox.Location = new System.Drawing.Point(186, 183);
+            resources.ApplyResources(this.offmapTransportsTextBox, "offmapTransportsTextBox");
             this.offmapTransportsTextBox.Name = "offmapTransportsTextBox";
-            this.offmapTransportsTextBox.Size = new System.Drawing.Size(50, 19);
-            this.offmapTransportsTextBox.TabIndex = 22;
-            this.offmapTransportsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.offmapTransportsTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // offmapMoneyTextBox
             // 
-            this.offmapMoneyTextBox.Location = new System.Drawing.Point(186, 158);
+            resources.ApplyResources(this.offmapMoneyTextBox, "offmapMoneyTextBox");
             this.offmapMoneyTextBox.Name = "offmapMoneyTextBox";
-            this.offmapMoneyTextBox.Size = new System.Drawing.Size(50, 19);
-            this.offmapMoneyTextBox.TabIndex = 19;
-            this.offmapMoneyTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.offmapMoneyTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapSuppliesTextBox
             // 
-            this.offmapSuppliesTextBox.Location = new System.Drawing.Point(186, 133);
+            resources.ApplyResources(this.offmapSuppliesTextBox, "offmapSuppliesTextBox");
             this.offmapSuppliesTextBox.Name = "offmapSuppliesTextBox";
-            this.offmapSuppliesTextBox.Size = new System.Drawing.Size(50, 19);
-            this.offmapSuppliesTextBox.TabIndex = 16;
-            this.offmapSuppliesTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.offmapSuppliesTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapOilTextBox
             // 
-            this.offmapOilTextBox.Location = new System.Drawing.Point(186, 108);
+            resources.ApplyResources(this.offmapOilTextBox, "offmapOilTextBox");
             this.offmapOilTextBox.Name = "offmapOilTextBox";
-            this.offmapOilTextBox.Size = new System.Drawing.Size(50, 19);
-            this.offmapOilTextBox.TabIndex = 13;
-            this.offmapOilTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.offmapOilTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapRareMaterialsTextBox
             // 
-            this.offmapRareMaterialsTextBox.Location = new System.Drawing.Point(186, 83);
+            resources.ApplyResources(this.offmapRareMaterialsTextBox, "offmapRareMaterialsTextBox");
             this.offmapRareMaterialsTextBox.Name = "offmapRareMaterialsTextBox";
-            this.offmapRareMaterialsTextBox.Size = new System.Drawing.Size(50, 19);
-            this.offmapRareMaterialsTextBox.TabIndex = 10;
-            this.offmapRareMaterialsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.offmapRareMaterialsTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapMetalTextBox
             // 
-            this.offmapMetalTextBox.Location = new System.Drawing.Point(186, 58);
+            resources.ApplyResources(this.offmapMetalTextBox, "offmapMetalTextBox");
             this.offmapMetalTextBox.Name = "offmapMetalTextBox";
-            this.offmapMetalTextBox.Size = new System.Drawing.Size(50, 19);
-            this.offmapMetalTextBox.TabIndex = 7;
-            this.offmapMetalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.offmapMetalTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // offmapEnergyTextBox
             // 
-            this.offmapEnergyTextBox.Location = new System.Drawing.Point(186, 33);
+            resources.ApplyResources(this.offmapEnergyTextBox, "offmapEnergyTextBox");
             this.offmapEnergyTextBox.Name = "offmapEnergyTextBox";
-            this.offmapEnergyTextBox.Size = new System.Drawing.Size(50, 19);
-            this.offmapEnergyTextBox.TabIndex = 4;
-            this.offmapEnergyTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.offmapEnergyTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryManpowerTextBox
             // 
-            this.countryManpowerTextBox.Location = new System.Drawing.Point(126, 233);
+            resources.ApplyResources(this.countryManpowerTextBox, "countryManpowerTextBox");
             this.countryManpowerTextBox.Name = "countryManpowerTextBox";
-            this.countryManpowerTextBox.Size = new System.Drawing.Size(50, 19);
-            this.countryManpowerTextBox.TabIndex = 27;
-            this.countryManpowerTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.countryManpowerTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryManpowerLabel
             // 
-            this.countryManpowerLabel.AutoSize = true;
-            this.countryManpowerLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countryManpowerLabel.Location = new System.Drawing.Point(18, 236);
+            resources.ApplyResources(this.countryManpowerLabel, "countryManpowerLabel");
             this.countryManpowerLabel.Name = "countryManpowerLabel";
-            this.countryManpowerLabel.Size = new System.Drawing.Size(56, 12);
-            this.countryManpowerLabel.TabIndex = 26;
-            this.countryManpowerLabel.Text = "Manpower";
             // 
             // countryEscortsTextBox
             // 
-            this.countryEscortsTextBox.Location = new System.Drawing.Point(126, 208);
+            resources.ApplyResources(this.countryEscortsTextBox, "countryEscortsTextBox");
             this.countryEscortsTextBox.Name = "countryEscortsTextBox";
-            this.countryEscortsTextBox.Size = new System.Drawing.Size(50, 19);
-            this.countryEscortsTextBox.TabIndex = 24;
-            this.countryEscortsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.countryEscortsTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // countryEscortsLabel
             // 
-            this.countryEscortsLabel.AutoSize = true;
-            this.countryEscortsLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countryEscortsLabel.Location = new System.Drawing.Point(18, 211);
+            resources.ApplyResources(this.countryEscortsLabel, "countryEscortsLabel");
             this.countryEscortsLabel.Name = "countryEscortsLabel";
-            this.countryEscortsLabel.Size = new System.Drawing.Size(86, 12);
-            this.countryEscortsLabel.TabIndex = 23;
-            this.countryEscortsLabel.Text = "Convoy Escorts";
             // 
             // countryTransportsTextBox
             // 
-            this.countryTransportsTextBox.Location = new System.Drawing.Point(126, 183);
+            resources.ApplyResources(this.countryTransportsTextBox, "countryTransportsTextBox");
             this.countryTransportsTextBox.Name = "countryTransportsTextBox";
-            this.countryTransportsTextBox.Size = new System.Drawing.Size(50, 19);
-            this.countryTransportsTextBox.TabIndex = 21;
-            this.countryTransportsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.countryTransportsTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // countryTransportsLabel
             // 
-            this.countryTransportsLabel.AutoSize = true;
-            this.countryTransportsLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countryTransportsLabel.Location = new System.Drawing.Point(18, 186);
+            resources.ApplyResources(this.countryTransportsLabel, "countryTransportsLabel");
             this.countryTransportsLabel.Name = "countryTransportsLabel";
-            this.countryTransportsLabel.Size = new System.Drawing.Size(102, 12);
-            this.countryTransportsLabel.TabIndex = 20;
-            this.countryTransportsLabel.Text = "Convoy Transports";
             // 
             // countryMoneyTextBox
             // 
-            this.countryMoneyTextBox.Location = new System.Drawing.Point(126, 158);
+            resources.ApplyResources(this.countryMoneyTextBox, "countryMoneyTextBox");
             this.countryMoneyTextBox.Name = "countryMoneyTextBox";
-            this.countryMoneyTextBox.Size = new System.Drawing.Size(50, 19);
-            this.countryMoneyTextBox.TabIndex = 18;
-            this.countryMoneyTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.countryMoneyTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryMoneyLabel
             // 
-            this.countryMoneyLabel.AutoSize = true;
-            this.countryMoneyLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countryMoneyLabel.Location = new System.Drawing.Point(18, 161);
+            resources.ApplyResources(this.countryMoneyLabel, "countryMoneyLabel");
             this.countryMoneyLabel.Name = "countryMoneyLabel";
-            this.countryMoneyLabel.Size = new System.Drawing.Size(38, 12);
-            this.countryMoneyLabel.TabIndex = 17;
-            this.countryMoneyLabel.Text = "Money";
             // 
             // countrySuppliesTextBox
             // 
-            this.countrySuppliesTextBox.Location = new System.Drawing.Point(126, 133);
+            resources.ApplyResources(this.countrySuppliesTextBox, "countrySuppliesTextBox");
             this.countrySuppliesTextBox.Name = "countrySuppliesTextBox";
-            this.countrySuppliesTextBox.Size = new System.Drawing.Size(50, 19);
-            this.countrySuppliesTextBox.TabIndex = 15;
-            this.countrySuppliesTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.countrySuppliesTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countrySuppliesLabel
             // 
-            this.countrySuppliesLabel.AutoSize = true;
-            this.countrySuppliesLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countrySuppliesLabel.Location = new System.Drawing.Point(18, 136);
+            resources.ApplyResources(this.countrySuppliesLabel, "countrySuppliesLabel");
             this.countrySuppliesLabel.Name = "countrySuppliesLabel";
-            this.countrySuppliesLabel.Size = new System.Drawing.Size(48, 12);
-            this.countrySuppliesLabel.TabIndex = 14;
-            this.countrySuppliesLabel.Text = "Supplies";
             // 
             // countryOilTextBox
             // 
-            this.countryOilTextBox.Location = new System.Drawing.Point(126, 108);
+            resources.ApplyResources(this.countryOilTextBox, "countryOilTextBox");
             this.countryOilTextBox.Name = "countryOilTextBox";
-            this.countryOilTextBox.Size = new System.Drawing.Size(50, 19);
-            this.countryOilTextBox.TabIndex = 12;
-            this.countryOilTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.countryOilTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryOilLabel
             // 
-            this.countryOilLabel.AutoSize = true;
-            this.countryOilLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countryOilLabel.Location = new System.Drawing.Point(18, 111);
+            resources.ApplyResources(this.countryOilLabel, "countryOilLabel");
             this.countryOilLabel.Name = "countryOilLabel";
-            this.countryOilLabel.Size = new System.Drawing.Size(19, 12);
-            this.countryOilLabel.TabIndex = 11;
-            this.countryOilLabel.Text = "Oil";
             // 
             // countryRareMaterialsTextBox
             // 
-            this.countryRareMaterialsTextBox.Location = new System.Drawing.Point(126, 83);
+            resources.ApplyResources(this.countryRareMaterialsTextBox, "countryRareMaterialsTextBox");
             this.countryRareMaterialsTextBox.Name = "countryRareMaterialsTextBox";
-            this.countryRareMaterialsTextBox.Size = new System.Drawing.Size(50, 19);
-            this.countryRareMaterialsTextBox.TabIndex = 9;
-            this.countryRareMaterialsTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.countryRareMaterialsTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryRareMaterialsLabel
             // 
-            this.countryRareMaterialsLabel.AutoSize = true;
-            this.countryRareMaterialsLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countryRareMaterialsLabel.Location = new System.Drawing.Point(18, 86);
+            resources.ApplyResources(this.countryRareMaterialsLabel, "countryRareMaterialsLabel");
             this.countryRareMaterialsLabel.Name = "countryRareMaterialsLabel";
-            this.countryRareMaterialsLabel.Size = new System.Drawing.Size(80, 12);
-            this.countryRareMaterialsLabel.TabIndex = 8;
-            this.countryRareMaterialsLabel.Text = "Rare Materials";
             // 
             // countryMetalTextBox
             // 
-            this.countryMetalTextBox.Location = new System.Drawing.Point(126, 58);
+            resources.ApplyResources(this.countryMetalTextBox, "countryMetalTextBox");
             this.countryMetalTextBox.Name = "countryMetalTextBox";
-            this.countryMetalTextBox.Size = new System.Drawing.Size(50, 19);
-            this.countryMetalTextBox.TabIndex = 6;
-            this.countryMetalTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.countryMetalTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryMetalLabel
             // 
-            this.countryMetalLabel.AutoSize = true;
-            this.countryMetalLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countryMetalLabel.Location = new System.Drawing.Point(18, 61);
+            resources.ApplyResources(this.countryMetalLabel, "countryMetalLabel");
             this.countryMetalLabel.Name = "countryMetalLabel";
-            this.countryMetalLabel.Size = new System.Drawing.Size(33, 12);
-            this.countryMetalLabel.TabIndex = 5;
-            this.countryMetalLabel.Text = "Metal";
             // 
             // countryEnergyTextBox
             // 
-            this.countryEnergyTextBox.Location = new System.Drawing.Point(126, 33);
+            resources.ApplyResources(this.countryEnergyTextBox, "countryEnergyTextBox");
             this.countryEnergyTextBox.Name = "countryEnergyTextBox";
-            this.countryEnergyTextBox.Size = new System.Drawing.Size(50, 19);
-            this.countryEnergyTextBox.TabIndex = 3;
-            this.countryEnergyTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.countryEnergyTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // countryEnergyLabel
             // 
-            this.countryEnergyLabel.AutoSize = true;
-            this.countryEnergyLabel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.countryEnergyLabel.Location = new System.Drawing.Point(18, 36);
+            resources.ApplyResources(this.countryEnergyLabel, "countryEnergyLabel");
             this.countryEnergyLabel.Name = "countryEnergyLabel";
-            this.countryEnergyLabel.Size = new System.Drawing.Size(40, 12);
-            this.countryEnergyLabel.TabIndex = 2;
-            this.countryEnergyLabel.Text = "Energy";
             // 
             // countryInfoGroupBox
             // 
+            resources.ApplyResources(this.countryInfoGroupBox, "countryInfoGroupBox");
             this.countryInfoGroupBox.Controls.Add(this.countryNameStringTextBox);
             this.countryInfoGroupBox.Controls.Add(this.nukeDayTextBox);
             this.countryInfoGroupBox.Controls.Add(this.nukeMonthTextBox);
@@ -723,117 +499,82 @@
             this.countryInfoGroupBox.Controls.Add(regularIdLabel);
             this.countryInfoGroupBox.Controls.Add(this.countryNameKeyTextBox);
             this.countryInfoGroupBox.Controls.Add(countryNameLabel);
-            this.countryInfoGroupBox.Enabled = false;
-            this.countryInfoGroupBox.Location = new System.Drawing.Point(142, 14);
             this.countryInfoGroupBox.Name = "countryInfoGroupBox";
-            this.countryInfoGroupBox.Size = new System.Drawing.Size(239, 270);
-            this.countryInfoGroupBox.TabIndex = 6;
             this.countryInfoGroupBox.TabStop = false;
-            this.countryInfoGroupBox.Text = "Country Information";
             // 
             // countryNameStringTextBox
             // 
-            this.countryNameStringTextBox.Location = new System.Drawing.Point(102, 42);
+            resources.ApplyResources(this.countryNameStringTextBox, "countryNameStringTextBox");
             this.countryNameStringTextBox.Name = "countryNameStringTextBox";
-            this.countryNameStringTextBox.Size = new System.Drawing.Size(120, 19);
-            this.countryNameStringTextBox.TabIndex = 2;
             this.countryNameStringTextBox.TextChanged += new System.EventHandler(this.OnCountryNameItemTextBoxTextChanged);
             // 
             // nukeDayTextBox
             // 
-            this.nukeDayTextBox.Location = new System.Drawing.Point(172, 238);
+            resources.ApplyResources(this.nukeDayTextBox, "nukeDayTextBox");
             this.nukeDayTextBox.Name = "nukeDayTextBox";
-            this.nukeDayTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nukeDayTextBox.TabIndex = 18;
-            this.nukeDayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nukeDayTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // nukeMonthTextBox
             // 
-            this.nukeMonthTextBox.Location = new System.Drawing.Point(116, 238);
+            resources.ApplyResources(this.nukeMonthTextBox, "nukeMonthTextBox");
             this.nukeMonthTextBox.Name = "nukeMonthTextBox";
-            this.nukeMonthTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nukeMonthTextBox.TabIndex = 17;
-            this.nukeMonthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nukeMonthTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // nukeYearTextBox
             // 
-            this.nukeYearTextBox.Location = new System.Drawing.Point(60, 238);
+            resources.ApplyResources(this.nukeYearTextBox, "nukeYearTextBox");
             this.nukeYearTextBox.Name = "nukeYearTextBox";
-            this.nukeYearTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nukeYearTextBox.TabIndex = 16;
-            this.nukeYearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nukeYearTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // dissentTextBox
             // 
-            this.dissentTextBox.Location = new System.Drawing.Point(172, 145);
+            resources.ApplyResources(this.dissentTextBox, "dissentTextBox");
             this.dissentTextBox.Name = "dissentTextBox";
-            this.dissentTextBox.Size = new System.Drawing.Size(50, 19);
-            this.dissentTextBox.TabIndex = 10;
-            this.dissentTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.dissentTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // flagExtTextBox
             // 
-            this.flagExtTextBox.Location = new System.Drawing.Point(102, 67);
+            resources.ApplyResources(this.flagExtTextBox, "flagExtTextBox");
             this.flagExtTextBox.Name = "flagExtTextBox";
-            this.flagExtTextBox.Size = new System.Drawing.Size(120, 19);
-            this.flagExtTextBox.TabIndex = 4;
             this.flagExtTextBox.TextChanged += new System.EventHandler(this.OnCountryStringItemTextBoxTextChanged);
             // 
             // nukeTextBox
             // 
-            this.nukeTextBox.Location = new System.Drawing.Point(172, 195);
+            resources.ApplyResources(this.nukeTextBox, "nukeTextBox");
             this.nukeTextBox.Name = "nukeTextBox";
-            this.nukeTextBox.Size = new System.Drawing.Size(50, 19);
-            this.nukeTextBox.TabIndex = 14;
-            this.nukeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nukeTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // extraTcTextBox
             // 
-            this.extraTcTextBox.Location = new System.Drawing.Point(172, 170);
+            resources.ApplyResources(this.extraTcTextBox, "extraTcTextBox");
             this.extraTcTextBox.Name = "extraTcTextBox";
-            this.extraTcTextBox.Size = new System.Drawing.Size(50, 19);
-            this.extraTcTextBox.TabIndex = 12;
-            this.extraTcTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.extraTcTextBox.Validated += new System.EventHandler(this.OnCountryDoubleItemTextBoxValidated);
             // 
             // belligerenceTextBox
             // 
-            this.belligerenceTextBox.Location = new System.Drawing.Point(172, 120);
+            resources.ApplyResources(this.belligerenceTextBox, "belligerenceTextBox");
             this.belligerenceTextBox.Name = "belligerenceTextBox";
-            this.belligerenceTextBox.Size = new System.Drawing.Size(50, 19);
-            this.belligerenceTextBox.TabIndex = 8;
-            this.belligerenceTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.belligerenceTextBox.Validated += new System.EventHandler(this.OnCountryIntItemTextBoxValidated);
             // 
             // regularIdComboBox
             // 
+            resources.ApplyResources(this.regularIdComboBox, "regularIdComboBox");
             this.regularIdComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.regularIdComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.regularIdComboBox.Font = new System.Drawing.Font("Lucida Console", 9F);
             this.regularIdComboBox.FormattingEnabled = true;
-            this.regularIdComboBox.Location = new System.Drawing.Point(102, 94);
             this.regularIdComboBox.Name = "regularIdComboBox";
-            this.regularIdComboBox.Size = new System.Drawing.Size(120, 20);
-            this.regularIdComboBox.TabIndex = 6;
             this.regularIdComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryItemComboBoxDrawItem);
             this.regularIdComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryItemComboBoxSelectedIndexChanged);
             // 
             // countryNameKeyTextBox
             // 
-            this.countryNameKeyTextBox.Location = new System.Drawing.Point(102, 17);
+            resources.ApplyResources(this.countryNameKeyTextBox, "countryNameKeyTextBox");
             this.countryNameKeyTextBox.Name = "countryNameKeyTextBox";
-            this.countryNameKeyTextBox.Size = new System.Drawing.Size(120, 19);
-            this.countryNameKeyTextBox.TabIndex = 1;
             this.countryNameKeyTextBox.TextChanged += new System.EventHandler(this.OnCountryStringItemTextBoxTextChanged);
             // 
             // ScenarioEditorCountryPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.countryModifierGroupBox);
             this.Controls.Add(this.aiGroupBox);
@@ -841,7 +582,6 @@
             this.Controls.Add(this.countryResourceGroupBox);
             this.Controls.Add(this.countryInfoGroupBox);
             this.Name = "ScenarioEditorCountryPage";
-            this.Size = new System.Drawing.Size(976, 559);
             this.countryModifierGroupBox.ResumeLayout(false);
             this.countryModifierGroupBox.PerformLayout();
             this.aiGroupBox.ResumeLayout(false);
