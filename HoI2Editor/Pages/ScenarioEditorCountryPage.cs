@@ -50,9 +50,9 @@ namespace HoI2Editor.Pages
         }
 
         /// <summary>
-        ///     編集項目を初期化する
+        ///     編集項目を更新する
         /// </summary>
-        internal void Init()
+        internal void UpdateItems()
         {
             // 兄弟国コンボボックスを更新する
             UpdateRegularIdComboBox();

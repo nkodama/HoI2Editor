@@ -60,9 +60,9 @@ namespace HoI2Editor.Pages
         }
 
         /// <summary>
-        ///     同盟タブを初期化する
+        ///     編集項目を更新する
         /// </summary>
-        internal void Init()
+        internal void UpdateItems()
         {
             // 同盟リストを更新する
             UpdateAllianceList();

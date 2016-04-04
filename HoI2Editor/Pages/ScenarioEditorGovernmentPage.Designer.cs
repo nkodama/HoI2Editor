@@ -69,7 +69,7 @@
             this.headOfStateTypeTextBox = new System.Windows.Forms.TextBox();
             this.headOfStateComboBox = new System.Windows.Forms.ComboBox();
             this.headOfStateLabel = new System.Windows.Forms.Label();
-            this.governmentCountryListBox = new System.Windows.Forms.ListBox();
+            this.countryListBox = new System.Windows.Forms.ListBox();
             this.politicalSliderGroupBox = new System.Windows.Forms.GroupBox();
             this.sliderDateLabel = new System.Windows.Forms.Label();
             this.interventionismTrackBar = new System.Windows.Forms.TrackBar();
@@ -164,6 +164,7 @@
             this.chiefOfAirIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.chiefOfAirIdTextBox.TabIndex = 39;
             this.chiefOfAirIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.chiefOfAirIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfAirTypeTextBox
             // 
@@ -172,6 +173,7 @@
             this.chiefOfAirTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.chiefOfAirTypeTextBox.TabIndex = 38;
             this.chiefOfAirTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.chiefOfAirTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfAirComboBox
             // 
@@ -182,6 +184,8 @@
             this.chiefOfAirComboBox.Name = "chiefOfAirComboBox";
             this.chiefOfAirComboBox.Size = new System.Drawing.Size(200, 20);
             this.chiefOfAirComboBox.TabIndex = 37;
+            this.chiefOfAirComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
+            this.chiefOfAirComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // chiefOfAirLabel
             // 
@@ -200,6 +204,7 @@
             this.chiefOfNavyIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.chiefOfNavyIdTextBox.TabIndex = 35;
             this.chiefOfNavyIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.chiefOfNavyIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfNavyTypeTextBox
             // 
@@ -208,6 +213,7 @@
             this.chiefOfNavyTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.chiefOfNavyTypeTextBox.TabIndex = 34;
             this.chiefOfNavyTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.chiefOfNavyTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfNavyComboBox
             // 
@@ -218,6 +224,8 @@
             this.chiefOfNavyComboBox.Name = "chiefOfNavyComboBox";
             this.chiefOfNavyComboBox.Size = new System.Drawing.Size(200, 20);
             this.chiefOfNavyComboBox.TabIndex = 33;
+            this.chiefOfNavyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
+            this.chiefOfNavyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // chiefOfNavyLabel
             // 
@@ -236,6 +244,7 @@
             this.chiefOfArmyIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.chiefOfArmyIdTextBox.TabIndex = 31;
             this.chiefOfArmyIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.chiefOfArmyIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfArmyTypeTextBox
             // 
@@ -244,6 +253,7 @@
             this.chiefOfArmyTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.chiefOfArmyTypeTextBox.TabIndex = 30;
             this.chiefOfArmyTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.chiefOfArmyTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfArmyComboBox
             // 
@@ -254,6 +264,8 @@
             this.chiefOfArmyComboBox.Name = "chiefOfArmyComboBox";
             this.chiefOfArmyComboBox.Size = new System.Drawing.Size(200, 20);
             this.chiefOfArmyComboBox.TabIndex = 29;
+            this.chiefOfArmyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
+            this.chiefOfArmyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // chiefOfArmyLabel
             // 
@@ -272,6 +284,7 @@
             this.chiefOfStaffIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.chiefOfStaffIdTextBox.TabIndex = 27;
             this.chiefOfStaffIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.chiefOfStaffIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfStaffTypeTextBox
             // 
@@ -280,6 +293,7 @@
             this.chiefOfStaffTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.chiefOfStaffTypeTextBox.TabIndex = 26;
             this.chiefOfStaffTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.chiefOfStaffTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // chiefOfStaffComboBox
             // 
@@ -290,6 +304,8 @@
             this.chiefOfStaffComboBox.Name = "chiefOfStaffComboBox";
             this.chiefOfStaffComboBox.Size = new System.Drawing.Size(200, 20);
             this.chiefOfStaffComboBox.TabIndex = 25;
+            this.chiefOfStaffComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
+            this.chiefOfStaffComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // chiefOfStaffLabel
             // 
@@ -308,6 +324,7 @@
             this.ministerOfIntelligenceIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.ministerOfIntelligenceIdTextBox.TabIndex = 23;
             this.ministerOfIntelligenceIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ministerOfIntelligenceIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // ministerOfIntelligenceTypeTextBox
             // 
@@ -316,6 +333,7 @@
             this.ministerOfIntelligenceTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.ministerOfIntelligenceTypeTextBox.TabIndex = 22;
             this.ministerOfIntelligenceTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ministerOfIntelligenceTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // ministerOfIntelligenceComboBox
             // 
@@ -326,6 +344,8 @@
             this.ministerOfIntelligenceComboBox.Name = "ministerOfIntelligenceComboBox";
             this.ministerOfIntelligenceComboBox.Size = new System.Drawing.Size(200, 20);
             this.ministerOfIntelligenceComboBox.TabIndex = 21;
+            this.ministerOfIntelligenceComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
+            this.ministerOfIntelligenceComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // ministerOfIntelligenceLabel
             // 
@@ -344,6 +364,7 @@
             this.ministerOfSecurityIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.ministerOfSecurityIdTextBox.TabIndex = 19;
             this.ministerOfSecurityIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ministerOfSecurityIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // ministerOfSecurityTypeTextBox
             // 
@@ -352,6 +373,7 @@
             this.ministerOfSecurityTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.ministerOfSecurityTypeTextBox.TabIndex = 18;
             this.ministerOfSecurityTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.ministerOfSecurityTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // ministerOfSecurityComboBox
             // 
@@ -362,6 +384,8 @@
             this.ministerOfSecurityComboBox.Name = "ministerOfSecurityComboBox";
             this.ministerOfSecurityComboBox.Size = new System.Drawing.Size(200, 20);
             this.ministerOfSecurityComboBox.TabIndex = 17;
+            this.ministerOfSecurityComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
+            this.ministerOfSecurityComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // ministerOfSecurityLabel
             // 
@@ -380,6 +404,7 @@
             this.armamentMinisterIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.armamentMinisterIdTextBox.TabIndex = 15;
             this.armamentMinisterIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.armamentMinisterIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // armamentMinisterTypeTextBox
             // 
@@ -388,6 +413,7 @@
             this.armamentMinisterTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.armamentMinisterTypeTextBox.TabIndex = 14;
             this.armamentMinisterTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.armamentMinisterTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // armamentMinisterComboBox
             // 
@@ -398,6 +424,8 @@
             this.armamentMinisterComboBox.Name = "armamentMinisterComboBox";
             this.armamentMinisterComboBox.Size = new System.Drawing.Size(200, 20);
             this.armamentMinisterComboBox.TabIndex = 13;
+            this.armamentMinisterComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
+            this.armamentMinisterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // armamentMinisterLabel
             // 
@@ -416,6 +444,7 @@
             this.foreignMinisterIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.foreignMinisterIdTextBox.TabIndex = 11;
             this.foreignMinisterIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.foreignMinisterIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // foreignMinisterTypeTextBox
             // 
@@ -424,6 +453,7 @@
             this.foreignMinisterTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.foreignMinisterTypeTextBox.TabIndex = 10;
             this.foreignMinisterTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.foreignMinisterTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // foreignMinisterComboBox
             // 
@@ -434,6 +464,8 @@
             this.foreignMinisterComboBox.Name = "foreignMinisterComboBox";
             this.foreignMinisterComboBox.Size = new System.Drawing.Size(200, 20);
             this.foreignMinisterComboBox.TabIndex = 9;
+            this.foreignMinisterComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
+            this.foreignMinisterComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // foreignMinisterlabel
             // 
@@ -452,6 +484,7 @@
             this.headOfGovernmentIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.headOfGovernmentIdTextBox.TabIndex = 7;
             this.headOfGovernmentIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.headOfGovernmentIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // headOfGovernmentTypeTextBox
             // 
@@ -460,6 +493,7 @@
             this.headOfGovernmentTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.headOfGovernmentTypeTextBox.TabIndex = 6;
             this.headOfGovernmentTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.headOfGovernmentTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // headOfGovernmentComboBox
             // 
@@ -470,6 +504,8 @@
             this.headOfGovernmentComboBox.Name = "headOfGovernmentComboBox";
             this.headOfGovernmentComboBox.Size = new System.Drawing.Size(200, 20);
             this.headOfGovernmentComboBox.TabIndex = 5;
+            this.headOfGovernmentComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
+            this.headOfGovernmentComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // headOfGovernmentLabel
             // 
@@ -488,6 +524,7 @@
             this.headOfStateIdTextBox.Size = new System.Drawing.Size(50, 19);
             this.headOfStateIdTextBox.TabIndex = 3;
             this.headOfStateIdTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.headOfStateIdTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // headOfStateTypeTextBox
             // 
@@ -496,6 +533,7 @@
             this.headOfStateTypeTextBox.Size = new System.Drawing.Size(50, 19);
             this.headOfStateTypeTextBox.TabIndex = 2;
             this.headOfStateTypeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.headOfStateTypeTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // headOfStateComboBox
             // 
@@ -507,6 +545,8 @@
             this.headOfStateComboBox.Size = new System.Drawing.Size(200, 20);
             this.headOfStateComboBox.TabIndex = 1;
             this.headOfStateComboBox.Tag = "";
+            this.headOfStateComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCabinetComboBoxDrawItem);
+            this.headOfStateComboBox.SelectedIndexChanged += new System.EventHandler(this.OnCabinetComboBoxSelectedIndexChanged);
             // 
             // headOfStateLabel
             // 
@@ -518,18 +558,20 @@
             this.headOfStateLabel.TabIndex = 0;
             this.headOfStateLabel.Text = "Head of State";
             // 
-            // governmentCountryListBox
+            // countryListBox
             // 
-            this.governmentCountryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.countryListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.governmentCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.governmentCountryListBox.Enabled = false;
-            this.governmentCountryListBox.Font = new System.Drawing.Font("Lucida Console", 9F);
-            this.governmentCountryListBox.FormattingEnabled = true;
-            this.governmentCountryListBox.Location = new System.Drawing.Point(12, 14);
-            this.governmentCountryListBox.Name = "governmentCountryListBox";
-            this.governmentCountryListBox.Size = new System.Drawing.Size(120, 511);
-            this.governmentCountryListBox.TabIndex = 3;
+            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.countryListBox.Enabled = false;
+            this.countryListBox.Font = new System.Drawing.Font("Lucida Console", 9F);
+            this.countryListBox.FormattingEnabled = true;
+            this.countryListBox.Location = new System.Drawing.Point(12, 14);
+            this.countryListBox.Name = "countryListBox";
+            this.countryListBox.Size = new System.Drawing.Size(120, 511);
+            this.countryListBox.TabIndex = 3;
+            this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
+            this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
             // 
             // politicalSliderGroupBox
             // 
@@ -586,6 +628,7 @@
             this.interventionismTrackBar.Size = new System.Drawing.Size(200, 45);
             this.interventionismTrackBar.TabIndex = 24;
             this.interventionismTrackBar.Value = 6;
+            this.interventionismTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // isolationismLabel
             // 
@@ -617,6 +660,7 @@
             this.defenseLobbyTrackBar.Size = new System.Drawing.Size(200, 45);
             this.defenseLobbyTrackBar.TabIndex = 21;
             this.defenseLobbyTrackBar.Value = 6;
+            this.defenseLobbyTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // doveLobbyLabel
             // 
@@ -648,6 +692,7 @@
             this.professionalArmyTrackBar.Size = new System.Drawing.Size(200, 45);
             this.professionalArmyTrackBar.TabIndex = 18;
             this.professionalArmyTrackBar.Value = 6;
+            this.professionalArmyTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // draftedArmyLabel
             // 
@@ -679,6 +724,7 @@
             this.freeMarketTrackBar.Size = new System.Drawing.Size(200, 45);
             this.freeMarketTrackBar.TabIndex = 15;
             this.freeMarketTrackBar.Value = 6;
+            this.freeMarketTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // centralPlanningLabel
             // 
@@ -710,6 +756,7 @@
             this.freedomTrackBar.Size = new System.Drawing.Size(200, 45);
             this.freedomTrackBar.TabIndex = 12;
             this.freedomTrackBar.Value = 6;
+            this.freedomTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // closedSocietyLabel
             // 
@@ -741,6 +788,7 @@
             this.politicalLeftTrackBar.Size = new System.Drawing.Size(200, 45);
             this.politicalLeftTrackBar.TabIndex = 9;
             this.politicalLeftTrackBar.Value = 6;
+            this.politicalLeftTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // politicalRightLabel
             // 
@@ -772,6 +820,7 @@
             this.democraticTrackBar.Size = new System.Drawing.Size(200, 45);
             this.democraticTrackBar.TabIndex = 6;
             this.democraticTrackBar.Value = 6;
+            this.democraticTrackBar.Scroll += new System.EventHandler(this.OnPoliticalSliderTrackBarScroll);
             // 
             // authoritarianLabel
             // 
@@ -800,6 +849,7 @@
             this.sliderDayTextBox.Size = new System.Drawing.Size(50, 19);
             this.sliderDayTextBox.TabIndex = 3;
             this.sliderDayTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.sliderDayTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // sliderMonthTextBox
             // 
@@ -808,6 +858,7 @@
             this.sliderMonthTextBox.Size = new System.Drawing.Size(50, 19);
             this.sliderMonthTextBox.TabIndex = 2;
             this.sliderMonthTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.sliderMonthTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
             // sliderYearTextBox
             // 
@@ -816,13 +867,14 @@
             this.sliderYearTextBox.Size = new System.Drawing.Size(50, 19);
             this.sliderYearTextBox.TabIndex = 1;
             this.sliderYearTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.sliderYearTextBox.Validated += new System.EventHandler(this.OnGovernmentIntItemTextBoxValidated);
             // 
-            // ScenarioGovernmentPage
+            // ScenarioEditorGovernmentPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cabinetGroupBox);
-            this.Controls.Add(this.governmentCountryListBox);
+            this.Controls.Add(this.countryListBox);
             this.Controls.Add(this.politicalSliderGroupBox);
             this.Name = "ScenarioEditorGovernmentPage";
             this.Size = new System.Drawing.Size(976, 559);
@@ -884,7 +936,7 @@
         private System.Windows.Forms.TextBox headOfStateTypeTextBox;
         private System.Windows.Forms.ComboBox headOfStateComboBox;
         private System.Windows.Forms.Label headOfStateLabel;
-        private System.Windows.Forms.ListBox governmentCountryListBox;
+        private System.Windows.Forms.ListBox countryListBox;
         private System.Windows.Forms.GroupBox politicalSliderGroupBox;
         private System.Windows.Forms.Label sliderDateLabel;
         private System.Windows.Forms.TrackBar interventionismTrackBar;
