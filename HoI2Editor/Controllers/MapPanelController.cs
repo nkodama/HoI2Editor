@@ -278,10 +278,17 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="id">更新対象のプロヴィンスID</param>
         /// <param name="highlighted">強調表示の有無</param>
-        internal void UpdateProvince(ushort id, bool highlighted)
+        /// <param name="mode">フィルターモード</param>
+        internal void UpdateProvince(ushort id, bool highlighted, MapFilterMode mode)
         {
             // 未読み込みならば何もしない
             if (!Maps.IsLoaded[(int) Level])
+            {
+                return;
+            }
+
+            // 表示中のモードでなければ何もしない
+            if (FilterMode != mode)
             {
                 return;
             }

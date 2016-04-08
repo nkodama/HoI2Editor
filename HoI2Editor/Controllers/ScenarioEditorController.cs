@@ -8013,10 +8013,7 @@ namespace HoI2Editor.Controllers
             }
 
             // プロヴィンスの強調表示を更新する
-            if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Core)
-            {
-                _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-            }
+            _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val, MapPanelController.MapFilterMode.Core);
         }
 
         /// <summary>
@@ -8048,10 +8045,7 @@ namespace HoI2Editor.Controllers
             }
 
             // プロヴィンスの強調表示を更新する
-            if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Owned)
-            {
-                _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-            }
+            _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val, MapPanelController.MapFilterMode.Owned);
         }
 
         /// <summary>
@@ -8083,10 +8077,8 @@ namespace HoI2Editor.Controllers
             }
 
             // プロヴィンスの強調表示を更新する
-            if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Controlled)
-            {
-                _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-            }
+            _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val,
+                MapPanelController.MapFilterMode.Controlled);
         }
 
         /// <summary>
@@ -8104,10 +8096,8 @@ namespace HoI2Editor.Controllers
             }
 
             // プロヴィンスの強調表示を更新する
-            if (_mapPanelController.FilterMode == MapPanelController.MapFilterMode.Claimed)
-            {
-                _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val);
-            }
+            _mapPanelController.UpdateProvince((ushort) province.Id, (bool) val,
+                MapPanelController.MapFilterMode.Claimed);
         }
 
         /// <summary>
