@@ -38,7 +38,7 @@
             this.techCategoryListBox = new System.Windows.Forms.ListBox();
             this.blueprintsLabel = new System.Windows.Forms.Label();
             this.inventionsLabel = new System.Windows.Forms.Label();
-            this.techCountryListBox = new System.Windows.Forms.ListBox();
+            this.countryListBox = new System.Windows.Forms.ListBox();
             this.techTreePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).BeginInit();
             this.SuspendLayout();
@@ -92,6 +92,7 @@
             resources.ApplyResources(this.techCategoryListBox, "techCategoryListBox");
             this.techCategoryListBox.FormattingEnabled = true;
             this.techCategoryListBox.Name = "techCategoryListBox";
+            this.techCategoryListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechCategoryListBoxSelectedIndexChanged);
             // 
             // blueprintsLabel
             // 
@@ -103,12 +104,14 @@
             resources.ApplyResources(this.inventionsLabel, "inventionsLabel");
             this.inventionsLabel.Name = "inventionsLabel";
             // 
-            // techCountryListBox
+            // countryListBox
             // 
-            resources.ApplyResources(this.techCountryListBox, "techCountryListBox");
-            this.techCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.techCountryListBox.FormattingEnabled = true;
-            this.techCountryListBox.Name = "techCountryListBox";
+            resources.ApplyResources(this.countryListBox, "countryListBox");
+            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.countryListBox.FormattingEnabled = true;
+            this.countryListBox.Name = "countryListBox";
+            this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
+            this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
             // 
             // ScenarioEditorTechnologyPage
             // 
@@ -122,7 +125,7 @@
             this.Controls.Add(this.techCategoryListBox);
             this.Controls.Add(this.blueprintsLabel);
             this.Controls.Add(this.inventionsLabel);
-            this.Controls.Add(this.techCountryListBox);
+            this.Controls.Add(this.countryListBox);
             this.Name = "ScenarioEditorTechnologyPage";
             this.techTreePanel.ResumeLayout(false);
             this.techTreePanel.PerformLayout();
@@ -143,6 +146,6 @@
         private System.Windows.Forms.ListBox techCategoryListBox;
         private System.Windows.Forms.Label blueprintsLabel;
         private System.Windows.Forms.Label inventionsLabel;
-        private System.Windows.Forms.ListBox techCountryListBox;
+        private System.Windows.Forms.ListBox countryListBox;
     }
 }

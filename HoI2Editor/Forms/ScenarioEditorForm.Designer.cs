@@ -33,16 +33,6 @@
             System.Windows.Forms.Label tradeStartDateLabel;
             System.Windows.Forms.Label tradeEndDateLabel;
             System.Windows.Forms.Label tradeIdLabel;
-            this.techTreePanel = new System.Windows.Forms.Panel();
-            this.techTreePictureBox = new System.Windows.Forms.PictureBox();
-            this.inventionsListView = new System.Windows.Forms.ListView();
-            this.blueprintsListView = new System.Windows.Forms.ListView();
-            this.ownedTechsListView = new System.Windows.Forms.ListView();
-            this.ownedTechsLabel = new System.Windows.Forms.Label();
-            this.techCategoryListBox = new System.Windows.Forms.ListBox();
-            this.blueprintsLabel = new System.Windows.Forms.Label();
-            this.inventionsLabel = new System.Windows.Forms.Label();
-            this.techCountryListBox = new System.Windows.Forms.ListBox();
             this.closeButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.reloadButton = new System.Windows.Forms.Button();
@@ -100,9 +90,6 @@
             tradeStartDateLabel = new System.Windows.Forms.Label();
             tradeEndDateLabel = new System.Windows.Forms.Label();
             tradeIdLabel = new System.Windows.Forms.Label();
-            technologyTabPage.SuspendLayout();
-            this.techTreePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).BeginInit();
             this.tradeTabPage.SuspendLayout();
             this.tradeDealsGroupBox.SuspendLayout();
             this.tradeInfoGroupBox.SuspendLayout();
@@ -112,87 +99,8 @@
             // technologyTabPage
             // 
             technologyTabPage.BackColor = System.Drawing.SystemColors.Control;
-            technologyTabPage.Controls.Add(this.techTreePanel);
-            technologyTabPage.Controls.Add(this.inventionsListView);
-            technologyTabPage.Controls.Add(this.blueprintsListView);
-            technologyTabPage.Controls.Add(this.ownedTechsListView);
-            technologyTabPage.Controls.Add(this.ownedTechsLabel);
-            technologyTabPage.Controls.Add(this.techCategoryListBox);
-            technologyTabPage.Controls.Add(this.blueprintsLabel);
-            technologyTabPage.Controls.Add(this.inventionsLabel);
-            technologyTabPage.Controls.Add(this.techCountryListBox);
             resources.ApplyResources(technologyTabPage, "technologyTabPage");
             technologyTabPage.Name = "technologyTabPage";
-            // 
-            // techTreePanel
-            // 
-            resources.ApplyResources(this.techTreePanel, "techTreePanel");
-            this.techTreePanel.Controls.Add(this.techTreePictureBox);
-            this.techTreePanel.Name = "techTreePanel";
-            // 
-            // techTreePictureBox
-            // 
-            resources.ApplyResources(this.techTreePictureBox, "techTreePictureBox");
-            this.techTreePictureBox.Name = "techTreePictureBox";
-            this.techTreePictureBox.TabStop = false;
-            // 
-            // inventionsListView
-            // 
-            resources.ApplyResources(this.inventionsListView, "inventionsListView");
-            this.inventionsListView.CheckBoxes = true;
-            this.inventionsListView.MultiSelect = false;
-            this.inventionsListView.Name = "inventionsListView";
-            this.inventionsListView.UseCompatibleStateImageBehavior = false;
-            this.inventionsListView.View = System.Windows.Forms.View.List;
-            // 
-            // blueprintsListView
-            // 
-            resources.ApplyResources(this.blueprintsListView, "blueprintsListView");
-            this.blueprintsListView.CheckBoxes = true;
-            this.blueprintsListView.MultiSelect = false;
-            this.blueprintsListView.Name = "blueprintsListView";
-            this.blueprintsListView.UseCompatibleStateImageBehavior = false;
-            this.blueprintsListView.View = System.Windows.Forms.View.List;
-            // 
-            // ownedTechsListView
-            // 
-            resources.ApplyResources(this.ownedTechsListView, "ownedTechsListView");
-            this.ownedTechsListView.CheckBoxes = true;
-            this.ownedTechsListView.MultiSelect = false;
-            this.ownedTechsListView.Name = "ownedTechsListView";
-            this.ownedTechsListView.UseCompatibleStateImageBehavior = false;
-            this.ownedTechsListView.View = System.Windows.Forms.View.List;
-            // 
-            // ownedTechsLabel
-            // 
-            resources.ApplyResources(this.ownedTechsLabel, "ownedTechsLabel");
-            this.ownedTechsLabel.Name = "ownedTechsLabel";
-            // 
-            // techCategoryListBox
-            // 
-            resources.ApplyResources(this.techCategoryListBox, "techCategoryListBox");
-            this.techCategoryListBox.FormattingEnabled = true;
-            this.techCategoryListBox.Name = "techCategoryListBox";
-            this.techCategoryListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechCategoryListBoxSelectedIndexChanged);
-            // 
-            // blueprintsLabel
-            // 
-            resources.ApplyResources(this.blueprintsLabel, "blueprintsLabel");
-            this.blueprintsLabel.Name = "blueprintsLabel";
-            // 
-            // inventionsLabel
-            // 
-            resources.ApplyResources(this.inventionsLabel, "inventionsLabel");
-            this.inventionsLabel.Name = "inventionsLabel";
-            // 
-            // techCountryListBox
-            // 
-            resources.ApplyResources(this.techCountryListBox, "techCountryListBox");
-            this.techCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.techCountryListBox.FormattingEnabled = true;
-            this.techCountryListBox.Name = "techCountryListBox";
-            this.techCountryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
-            this.techCountryListBox.SelectedIndexChanged += new System.EventHandler(this.OnTechCountryListBoxSelectedIndexChanged);
             // 
             // tradeStartDateLabel
             // 
@@ -608,11 +516,6 @@
             this.Load += new System.EventHandler(this.OnFormLoad);
             this.Move += new System.EventHandler(this.OnFormMove);
             this.Resize += new System.EventHandler(this.OnFormResize);
-            technologyTabPage.ResumeLayout(false);
-            technologyTabPage.PerformLayout();
-            this.techTreePanel.ResumeLayout(false);
-            this.techTreePanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.techTreePictureBox)).EndInit();
             this.tradeTabPage.ResumeLayout(false);
             this.tradeDealsGroupBox.ResumeLayout(false);
             this.tradeDealsGroupBox.PerformLayout();
@@ -675,16 +578,6 @@
         private System.Windows.Forms.TabPage allianceTabPage;
         private System.Windows.Forms.TabPage mainTabPage;
         private System.Windows.Forms.TabControl scenarioTabControl;
-        private System.Windows.Forms.ListBox techCategoryListBox;
-        private System.Windows.Forms.ListBox techCountryListBox;
-        private System.Windows.Forms.ListView ownedTechsListView;
-        private System.Windows.Forms.ListView inventionsListView;
-        private System.Windows.Forms.ListView blueprintsListView;
-        private System.Windows.Forms.Panel techTreePanel;
-        private System.Windows.Forms.PictureBox techTreePictureBox;
-        private System.Windows.Forms.Label ownedTechsLabel;
-        private System.Windows.Forms.Label blueprintsLabel;
-        private System.Windows.Forms.Label inventionsLabel;
         private System.Windows.Forms.ComboBox tradeCountryComboBox2;
         private System.Windows.Forms.Button checkButton;
         private System.Windows.Forms.TabPage oobTabPage;
