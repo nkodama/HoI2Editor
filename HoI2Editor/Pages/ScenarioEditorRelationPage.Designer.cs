@@ -80,7 +80,7 @@
             this.relationNonAggressionColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.relationPeaceColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.relationSpyColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.relationCountryListBox = new System.Windows.Forms.ListBox();
+            this.countryListBox = new System.Windows.Forms.ListBox();
             relationValueLabel = new System.Windows.Forms.Label();
             spyNumLabel = new System.Windows.Forms.Label();
             this.peaceGroupBox.SuspendLayout();
@@ -123,16 +123,19 @@
             // 
             resources.ApplyResources(this.peaceIdTextBox, "peaceIdTextBox");
             this.peaceIdTextBox.Name = "peaceIdTextBox";
+            this.peaceIdTextBox.Validated += new System.EventHandler(this.OnRelationPeaceItemTextBoxValidated);
             // 
             // peaceTypeTextBox
             // 
             resources.ApplyResources(this.peaceTypeTextBox, "peaceTypeTextBox");
             this.peaceTypeTextBox.Name = "peaceTypeTextBox";
+            this.peaceTypeTextBox.Validated += new System.EventHandler(this.OnRelationPeaceItemTextBoxValidated);
             // 
             // peaceEndDayTextBox
             // 
             resources.ApplyResources(this.peaceEndDayTextBox, "peaceEndDayTextBox");
             this.peaceEndDayTextBox.Name = "peaceEndDayTextBox";
+            this.peaceEndDayTextBox.Validated += new System.EventHandler(this.OnRelationPeaceItemTextBoxValidated);
             // 
             // peaceEndLabel
             // 
@@ -143,6 +146,7 @@
             // 
             resources.ApplyResources(this.peaceEndMonthTextBox, "peaceEndMonthTextBox");
             this.peaceEndMonthTextBox.Name = "peaceEndMonthTextBox";
+            this.peaceEndMonthTextBox.Validated += new System.EventHandler(this.OnRelationPeaceItemTextBoxValidated);
             // 
             // peaceIdLabel
             // 
@@ -153,6 +157,7 @@
             // 
             resources.ApplyResources(this.peaceEndYearTextBox, "peaceEndYearTextBox");
             this.peaceEndYearTextBox.Name = "peaceEndYearTextBox";
+            this.peaceEndYearTextBox.Validated += new System.EventHandler(this.OnRelationPeaceItemTextBoxValidated);
             // 
             // peaceStartLabel
             // 
@@ -163,22 +168,26 @@
             // 
             resources.ApplyResources(this.peaceStartYearTextBox, "peaceStartYearTextBox");
             this.peaceStartYearTextBox.Name = "peaceStartYearTextBox";
+            this.peaceStartYearTextBox.Validated += new System.EventHandler(this.OnRelationPeaceItemTextBoxValidated);
             // 
             // peaceStartDayTextBox
             // 
             resources.ApplyResources(this.peaceStartDayTextBox, "peaceStartDayTextBox");
             this.peaceStartDayTextBox.Name = "peaceStartDayTextBox";
+            this.peaceStartDayTextBox.Validated += new System.EventHandler(this.OnRelationPeaceItemTextBoxValidated);
             // 
             // peaceCheckBox
             // 
             resources.ApplyResources(this.peaceCheckBox, "peaceCheckBox");
             this.peaceCheckBox.Name = "peaceCheckBox";
             this.peaceCheckBox.UseVisualStyleBackColor = true;
+            this.peaceCheckBox.CheckedChanged += new System.EventHandler(this.OnRelationPeaceItemCheckBoxCheckedChanged);
             // 
             // peaceStartMonthTextBox
             // 
             resources.ApplyResources(this.peaceStartMonthTextBox, "peaceStartMonthTextBox");
             this.peaceStartMonthTextBox.Name = "peaceStartMonthTextBox";
+            this.peaceStartMonthTextBox.Validated += new System.EventHandler(this.OnRelationPeaceItemTextBoxValidated);
             // 
             // guaranteedGroupBox
             // 
@@ -196,16 +205,19 @@
             resources.ApplyResources(this.guaranteedCheckBox, "guaranteedCheckBox");
             this.guaranteedCheckBox.Name = "guaranteedCheckBox";
             this.guaranteedCheckBox.UseVisualStyleBackColor = true;
+            this.guaranteedCheckBox.CheckedChanged += new System.EventHandler(this.OnRelationItemCheckBoxCheckedChanged);
             // 
             // guaranteedYearTextBox
             // 
             resources.ApplyResources(this.guaranteedYearTextBox, "guaranteedYearTextBox");
             this.guaranteedYearTextBox.Name = "guaranteedYearTextBox";
+            this.guaranteedYearTextBox.Validated += new System.EventHandler(this.OnRelationIntItemTextBoxValidated);
             // 
             // guaranteedMonthTextBox
             // 
             resources.ApplyResources(this.guaranteedMonthTextBox, "guaranteedMonthTextBox");
             this.guaranteedMonthTextBox.Name = "guaranteedMonthTextBox";
+            this.guaranteedMonthTextBox.Validated += new System.EventHandler(this.OnRelationIntItemTextBoxValidated);
             // 
             // guaranteedEndLabel
             // 
@@ -216,6 +228,7 @@
             // 
             resources.ApplyResources(this.guaranteedDayTextBox, "guaranteedDayTextBox");
             this.guaranteedDayTextBox.Name = "guaranteedDayTextBox";
+            this.guaranteedDayTextBox.Validated += new System.EventHandler(this.OnRelationIntItemTextBoxValidated);
             // 
             // nonAggressionGroupBox
             // 
@@ -239,11 +252,13 @@
             // 
             resources.ApplyResources(this.nonAggressionIdTextBox, "nonAggressionIdTextBox");
             this.nonAggressionIdTextBox.Name = "nonAggressionIdTextBox";
+            this.nonAggressionIdTextBox.Validated += new System.EventHandler(this.OnRelationNonAggressionItemTextBoxValidated);
             // 
             // nonAggressionTypeTextBox
             // 
             resources.ApplyResources(this.nonAggressionTypeTextBox, "nonAggressionTypeTextBox");
             this.nonAggressionTypeTextBox.Name = "nonAggressionTypeTextBox";
+            this.nonAggressionTypeTextBox.Validated += new System.EventHandler(this.OnRelationNonAggressionItemTextBoxValidated);
             // 
             // nonAggressionIdLabel
             // 
@@ -255,21 +270,25 @@
             resources.ApplyResources(this.nonAggressionCheckBox, "nonAggressionCheckBox");
             this.nonAggressionCheckBox.Name = "nonAggressionCheckBox";
             this.nonAggressionCheckBox.UseVisualStyleBackColor = true;
+            this.nonAggressionCheckBox.CheckedChanged += new System.EventHandler(this.OnRelationNonAggressionItemCheckBoxCheckedChanged);
             // 
             // nonAggressionStartMonthTextBox
             // 
             resources.ApplyResources(this.nonAggressionStartMonthTextBox, "nonAggressionStartMonthTextBox");
             this.nonAggressionStartMonthTextBox.Name = "nonAggressionStartMonthTextBox";
+            this.nonAggressionStartMonthTextBox.Validated += new System.EventHandler(this.OnRelationNonAggressionItemTextBoxValidated);
             // 
             // nonAggressionStartYearTextBox
             // 
             resources.ApplyResources(this.nonAggressionStartYearTextBox, "nonAggressionStartYearTextBox");
             this.nonAggressionStartYearTextBox.Name = "nonAggressionStartYearTextBox";
+            this.nonAggressionStartYearTextBox.Validated += new System.EventHandler(this.OnRelationNonAggressionItemTextBoxValidated);
             // 
             // nonAggressionStartDayTextBox
             // 
             resources.ApplyResources(this.nonAggressionStartDayTextBox, "nonAggressionStartDayTextBox");
             this.nonAggressionStartDayTextBox.Name = "nonAggressionStartDayTextBox";
+            this.nonAggressionStartDayTextBox.Validated += new System.EventHandler(this.OnRelationNonAggressionItemTextBoxValidated);
             // 
             // nonAggressionStartLabel
             // 
@@ -280,16 +299,19 @@
             // 
             resources.ApplyResources(this.nonAggressionEndYearTextBox, "nonAggressionEndYearTextBox");
             this.nonAggressionEndYearTextBox.Name = "nonAggressionEndYearTextBox";
+            this.nonAggressionEndYearTextBox.Validated += new System.EventHandler(this.OnRelationNonAggressionItemTextBoxValidated);
             // 
             // nonAggressionEndMonthTextBox
             // 
             resources.ApplyResources(this.nonAggressionEndMonthTextBox, "nonAggressionEndMonthTextBox");
             this.nonAggressionEndMonthTextBox.Name = "nonAggressionEndMonthTextBox";
+            this.nonAggressionEndMonthTextBox.Validated += new System.EventHandler(this.OnRelationNonAggressionItemTextBoxValidated);
             // 
             // nonAggressionEndDayTextBox
             // 
             resources.ApplyResources(this.nonAggressionEndDayTextBox, "nonAggressionEndDayTextBox");
             this.nonAggressionEndDayTextBox.Name = "nonAggressionEndDayTextBox";
+            this.nonAggressionEndDayTextBox.Validated += new System.EventHandler(this.OnRelationNonAggressionItemTextBoxValidated);
             // 
             // nonAggressionEndLabel
             // 
@@ -311,24 +333,28 @@
             // 
             resources.ApplyResources(this.relationValueTextBox, "relationValueTextBox");
             this.relationValueTextBox.Name = "relationValueTextBox";
+            this.relationValueTextBox.Validated += new System.EventHandler(this.OnRelationDoubleItemTextBoxValidated);
             // 
             // controlCheckBox
             // 
             resources.ApplyResources(this.controlCheckBox, "controlCheckBox");
             this.controlCheckBox.Name = "controlCheckBox";
             this.controlCheckBox.UseVisualStyleBackColor = true;
+            this.controlCheckBox.CheckedChanged += new System.EventHandler(this.OnRelationCountryItemCheckBoxCheckedChanged);
             // 
             // masterCheckBox
             // 
             resources.ApplyResources(this.masterCheckBox, "masterCheckBox");
             this.masterCheckBox.Name = "masterCheckBox";
             this.masterCheckBox.UseVisualStyleBackColor = true;
+            this.masterCheckBox.CheckedChanged += new System.EventHandler(this.OnRelationCountryItemCheckBoxCheckedChanged);
             // 
             // accessCheckBox
             // 
             resources.ApplyResources(this.accessCheckBox, "accessCheckBox");
             this.accessCheckBox.Name = "accessCheckBox";
             this.accessCheckBox.UseVisualStyleBackColor = true;
+            this.accessCheckBox.CheckedChanged += new System.EventHandler(this.OnRelationItemCheckBoxCheckedChanged);
             // 
             // intelligenceGroupBox
             // 
@@ -342,6 +368,7 @@
             // 
             resources.ApplyResources(this.spyNumNumericUpDown, "spyNumNumericUpDown");
             this.spyNumNumericUpDown.Name = "spyNumNumericUpDown";
+            this.spyNumNumericUpDown.ValueChanged += new System.EventHandler(this.OnRelationIntelligenceItemNumericUpDownValueChanged);
             // 
             // relationListView
             // 
@@ -363,6 +390,7 @@
             this.relationListView.Name = "relationListView";
             this.relationListView.UseCompatibleStateImageBehavior = false;
             this.relationListView.View = System.Windows.Forms.View.Details;
+            this.relationListView.SelectedIndexChanged += new System.EventHandler(this.OnRelationListViewSelectedIndexChanged);
             // 
             // relationCountryColumnHeader
             // 
@@ -400,12 +428,14 @@
             // 
             resources.ApplyResources(this.relationSpyColumnHeader, "relationSpyColumnHeader");
             // 
-            // relationCountryListBox
+            // countryListBox
             // 
-            resources.ApplyResources(this.relationCountryListBox, "relationCountryListBox");
-            this.relationCountryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.relationCountryListBox.FormattingEnabled = true;
-            this.relationCountryListBox.Name = "relationCountryListBox";
+            resources.ApplyResources(this.countryListBox, "countryListBox");
+            this.countryListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.countryListBox.FormattingEnabled = true;
+            this.countryListBox.Name = "countryListBox";
+            this.countryListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
+            this.countryListBox.SelectedIndexChanged += new System.EventHandler(this.OnCountryListBoxSelectedIndexChanged);
             // 
             // ScenarioEditorRelationPage
             // 
@@ -417,7 +447,7 @@
             this.Controls.Add(this.relationGroupBox);
             this.Controls.Add(this.intelligenceGroupBox);
             this.Controls.Add(this.relationListView);
-            this.Controls.Add(this.relationCountryListBox);
+            this.Controls.Add(this.countryListBox);
             this.Name = "ScenarioEditorRelationPage";
             this.peaceGroupBox.ResumeLayout(false);
             this.peaceGroupBox.PerformLayout();
@@ -485,6 +515,6 @@
         private System.Windows.Forms.ColumnHeader relationNonAggressionColumnHeader;
         private System.Windows.Forms.ColumnHeader relationPeaceColumnHeader;
         private System.Windows.Forms.ColumnHeader relationSpyColumnHeader;
-        private System.Windows.Forms.ListBox relationCountryListBox;
+        private System.Windows.Forms.ListBox countryListBox;
     }
 }
