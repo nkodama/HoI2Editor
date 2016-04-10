@@ -6664,7 +6664,7 @@ namespace HoI2Editor.Controllers
                     _form.SetRelationListItemText(index, no, "");
                 }
             }
-            _form.SetRelationListItemText(no, ObjectHelper.ToString(val != Country.None));
+            _form.SetRelationListItemText(no, (val != Country.None) ? Resources.Yes : "");
         }
 
         /// <summary>
