@@ -10,14 +10,14 @@ namespace HoI2Editor.Controls
     /// <summary>
     ///     拡張リストビュー
     /// </summary>
-    internal partial class ExtendedListView : ListView
+    public partial class ExtendedListView : ListView
     {
         #region 公開プロパティ
 
         /// <summary>
         ///     選択中の項目のインデックス
         /// </summary>
-        internal int SelectedIndex
+        public int SelectedIndex
         {
             get { return SelectedIndices.Count > 0 ? SelectedIndices[0] : -1; }
             set
@@ -39,7 +39,7 @@ namespace HoI2Editor.Controls
         /// <summary>
         ///     選択中の項目
         /// </summary>
-        internal ListViewItem SelectedItem => SelectedItems.Count > 0 ? SelectedItems[0] : null;
+        public ListViewItem SelectedItem => SelectedItems.Count > 0 ? SelectedItems[0] : null;
 
         /// <summary>
         ///     項目の入れ替えをサポートするかどうか
@@ -47,7 +47,7 @@ namespace HoI2Editor.Controls
         [Category("動作")]
         [DefaultValue(typeof (bool), "false")]
         [Description("ユーザーが項目の順番を再変更できるかどうかを示します。")]
-        internal bool AllowItemReorder
+        public bool AllowItemReorder
         {
             get { return _allowItemReorder; }
             set
@@ -60,7 +60,7 @@ namespace HoI2Editor.Controls
         [Category("動作")]
         [DefaultValue(typeof (bool), "false")]
         [Description("ユーザーによる項目の編集が可能になります。")]
-        internal bool ItemEdit { get; set; }
+        public bool ItemEdit { get; set; }
 
         #endregion
 
@@ -95,20 +95,20 @@ namespace HoI2Editor.Controls
         /// </summary>
         [Category("動作")]
         [Description("項目の順番を再変更したときに発生します。")]
-        internal event EventHandler<ItemReorderedEventArgs> ItemReordered;
+        public event EventHandler<ItemReorderedEventArgs> ItemReordered;
 
         [Category("動作")]
         [Description("ユーザーが項目の編集を始めたときに発生します。")]
-        internal event EventHandler<QueryListViewItemEditEventArgs> QueryItemEdit;
+        public event EventHandler<QueryListViewItemEditEventArgs> QueryItemEdit;
 
         [Category("動作")]
         [Description("ユーザーが項目を編集しようとしているときに発生します。")]
-        internal event EventHandler<ListViewItemEditEventArgs> BeforeItemEdit;
+        public event EventHandler<ListViewItemEditEventArgs> BeforeItemEdit;
 
 
         [Category("動作")]
         [Description("ユーザーが項目を編集したときに発生します。")]
-        internal event EventHandler<ListViewItemEditEventArgs> AfterItemEdit;
+        public event EventHandler<ListViewItemEditEventArgs> AfterItemEdit;
 
         #endregion
 

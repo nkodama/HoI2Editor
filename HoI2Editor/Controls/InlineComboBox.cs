@@ -10,7 +10,7 @@ namespace HoI2Editor.Controls
     ///     項目編集用コンボボックス
     /// </summary>
     [ToolboxItem(false)]
-    internal partial class InlineComboBox : ComboBox
+    public partial class InlineComboBox : ComboBox
     {
         #region 公開イベント
 
@@ -19,7 +19,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         [Category("動作")]
         [Description("項目の編集を完了したときに発生します。")]
-        internal event EventHandler<CancelEventArgs> FinishEdit;
+        public event EventHandler<CancelEventArgs> FinishEdit;
 
         #endregion
 

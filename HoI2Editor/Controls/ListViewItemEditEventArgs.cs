@@ -5,7 +5,7 @@ namespace HoI2Editor.Controls
     /// <summary>
     ///     リストビューの項目編集時イベントのパラメータ
     /// </summary>
-    internal class ListViewItemEditEventArgs : EventArgs
+    public class ListViewItemEditEventArgs : EventArgs
     {
         #region 公開プロパティ
 

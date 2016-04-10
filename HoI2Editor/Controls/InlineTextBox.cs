@@ -9,7 +9,7 @@ namespace HoI2Editor.Controls
     ///     項目編集用テキストボックス
     /// </summary>
     [ToolboxItem(false)]
-    internal partial class InlineTextBox : TextBox
+    public partial class InlineTextBox : TextBox
     {
         #region 公開イベント
 
@@ -18,7 +18,7 @@ namespace HoI2Editor.Controls
         /// </summary>
         [Category("動作")]
         [Description("項目の編集を完了したときに発生します。")]
-        internal event EventHandler<CancelEventArgs> FinishEdit;
+        public event EventHandler<CancelEventArgs> FinishEdit;
 
         #endregion
 

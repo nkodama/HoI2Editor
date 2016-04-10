@@ -6,7 +6,7 @@ namespace HoI2Editor.Controls
     /// <summary>
     ///     リストビューの項目編集前イベントのパラメータ
     /// </summary>
-    internal class QueryListViewItemEditEventArgs : EventArgs
+    public class QueryListViewItemEditEventArgs : EventArgs
     {
         #region 公開プロパティ
 
