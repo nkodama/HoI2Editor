@@ -156,17 +156,23 @@
   <data name="&gt;&gt;countryOilLabel.Name" xml:space="preserve">
     <value>countryOilLabel</value>
   </data>
-  <data name="&gt;&gt;offmapEscortsTextBox.Name" xml:space="preserve">
-    <value>offmapEscortsTextBox</value>
+  <data name="offmapSuppliesTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;countryListBox.Name" xml:space="preserve">
     <value>countryListBox</value>
   </data>
+  <data name="countryEnergyTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
   <data name="&gt;&gt;countryNameKeyTextBox.Name" xml:space="preserve">
     <value>countryNameKeyTextBox</value>
   </data>
-  <data name="countryInfoGroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;offmapTransportsTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="countrySuppliesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 12</value>
   </data>
   <data name="countryResourceGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>391, 14</value>
@@ -186,8 +192,8 @@
   <data name="countryStockpileLabel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="countryNameKeyTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="countryTransportsLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;relativeManpowerLabel.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -195,17 +201,14 @@
   <data name="countryListBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 14</value>
   </data>
-  <data name="countryEscortsLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;offmapOilTextBox.Name" xml:space="preserve">
-    <value>offmapOilTextBox</value>
+  <data name="countryIcLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="countryEscortsLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>86, 12</value>
   </data>
-  <data name="countryInfoGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>239, 270</value>
+  <data name="groundDefEffTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;offmapEscortsTextBox.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -222,8 +225,14 @@
   <data name="&gt;&gt;countryNameKeyTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;nukeDateLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="countryRareMaterialsLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="countryOilLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="extraTcLabel.Text" xml:space="preserve">
+    <value>Extra TC</value>
   </data>
   <data name="nukeDateLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -231,8 +240,8 @@
   <data name="&gt;&gt;wartimeIcModifierTextBox.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="offmapMoneyTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 158</value>
+  <data name="aiFileBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>161, 43</value>
   </data>
   <data name="&gt;&gt;aiFileLabel.Parent" xml:space="preserve">
     <value>aiGroupBox</value>
@@ -251,9 +260,6 @@
   </data>
   <data name="&gt;&gt;peacetimeIcModifierTextBox.Parent" xml:space="preserve">
     <value>countryModifierGroupBox</value>
-  </data>
-  <data name="peacetimeIcModifierLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="regularIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -276,11 +282,14 @@
   <data name="&gt;&gt;flagExtLabel.Name" xml:space="preserve">
     <value>flagExtLabel</value>
   </data>
-  <data name="&gt;&gt;countryMoneyLabel.Name" xml:space="preserve">
-    <value>countryMoneyLabel</value>
+  <data name="countryMetalLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
-  <data name="dissentLabel.Text" xml:space="preserve">
-    <value>Dissent</value>
+  <data name="countryEscortsLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="aiFileBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
   <data name="&gt;&gt;offmapRareMaterialsTextBox.Name" xml:space="preserve">
     <value>offmapRareMaterialsTextBox</value>
@@ -291,17 +300,20 @@
   <data name="&gt;&gt;peacetimeIcModifierLabel.Name" xml:space="preserve">
     <value>peacetimeIcModifierLabel</value>
   </data>
-  <data name="&gt;&gt;aiFileBrowseButton.Name" xml:space="preserve">
-    <value>aiFileBrowseButton</value>
+  <data name="dissentLabel.Text" xml:space="preserve">
+    <value>Dissent</value>
   </data>
   <data name="&gt;&gt;countryMetalLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;countryOilTextBox.ZOrder" xml:space="preserve">
-    <value>23</value>
+  <data name="&gt;&gt;countryListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="extraTcLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>51, 12</value>
+  </data>
+  <data name="&gt;&gt;nukeYearTextBox.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
   </data>
   <data name="countryNameLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -312,11 +324,11 @@
   <data name="aiFileLabel.Text" xml:space="preserve">
     <value>AI File</value>
   </data>
-  <data name="&gt;&gt;countryEnergyTextBox.ZOrder" xml:space="preserve">
-    <value>29</value>
+  <data name="&gt;&gt;countryMoneyTextBox.ZOrder" xml:space="preserve">
+    <value>19</value>
   </data>
-  <data name="groundDefEffTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+  <data name="countryInfoGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 270</value>
   </data>
   <data name="regularIdLabel.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -330,6 +342,9 @@
   <data name="&gt;&gt;nukeMonthTextBox.Parent" xml:space="preserve">
     <value>countryInfoGroupBox</value>
   </data>
+  <data name="&gt;&gt;countryRareMaterialsTextBox.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
   <data name="countryManpowerTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
   </data>
@@ -339,10 +354,19 @@
   <data name="aiGroupBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>391, 315</value>
   </data>
-  <data name="countrySuppliesLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+  <data name="countryMoneyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 12</value>
+  </data>
+  <data name="&gt;&gt;countryMetalTextBox.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="offmapMoneyTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>186, 158</value>
   </data>
   <data name="&gt;&gt;countryOffmapLabel.Parent" xml:space="preserve">
+    <value>countryResourceGroupBox</value>
+  </data>
+  <data name="&gt;&gt;countryMoneyTextBox.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
   </data>
   <data name="&gt;&gt;offmapMetalTextBox.Parent" xml:space="preserve">
@@ -357,8 +381,8 @@
   <data name="&gt;&gt;extraTcTextBox.Parent" xml:space="preserve">
     <value>countryInfoGroupBox</value>
   </data>
-  <data name="aiFileLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="countrySuppliesLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
   </data>
   <data name="&gt;&gt;offmapSuppliesTextBox.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -366,14 +390,8 @@
   <data name="offmapRareMaterialsTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="countryResourceGroupBox.Text" xml:space="preserve">
-    <value>Resource</value>
-  </data>
-  <data name="&gt;&gt;nukeLabel.Name" xml:space="preserve">
-    <value>nukeLabel</value>
-  </data>
-  <data name="&gt;&gt;countryEscortsTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="countryStockpileLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="belligerenceTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 120</value>
@@ -384,20 +402,20 @@
   <data name="nukeMonthTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
+  <data name="countryEnergyTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>126, 33</value>
+  </data>
   <data name="countrySuppliesTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="countryEnergyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 36</value>
+  <data name="&gt;&gt;countryMetalTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;wartimeIcModifierTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;offmapIcTextBox.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;belligerenceTextBox.Name" xml:space="preserve">
-    <value>belligerenceTextBox</value>
   </data>
   <data name="&gt;&gt;offmapEnergyTextBox.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -420,9 +438,6 @@
   <data name="&gt;&gt;wartimeIcModifierTextBox.Parent" xml:space="preserve">
     <value>countryModifierGroupBox</value>
   </data>
-  <data name="&gt;&gt;countryEscortsTextBox.Name" xml:space="preserve">
-    <value>countryEscortsTextBox</value>
-  </data>
   <data name="&gt;&gt;nukeMonthTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -441,8 +456,11 @@
   <data name="&gt;&gt;extraTcLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;countrySuppliesLabel.Parent" xml:space="preserve">
-    <value>countryResourceGroupBox</value>
+  <data name="&gt;&gt;offmapOilTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="countryTransportsLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 186</value>
   </data>
   <data name="aiFileNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 19</value>
@@ -459,6 +477,9 @@
   <data name="&gt;&gt;countryStockpileLabel.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
+  <data name="&gt;&gt;countryManpowerTextBox.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
   <data name="&gt;&gt;countryManpowerLabel.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
@@ -471,14 +492,11 @@
   <data name="countryMetalLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;relativeManpowerLabel.Name" xml:space="preserve">
-    <value>relativeManpowerLabel</value>
+  <data name="&gt;&gt;wartimeIcModifierLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="peacetimeIcModifierTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
-  </data>
-  <data name="&gt;&gt;countryTransportsTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;offmapEscortsTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -492,14 +510,11 @@
   <data name="countryIcLabel.Text" xml:space="preserve">
     <value>IC</value>
   </data>
-  <data name="countryEscortsTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
+  <data name="peacetimeIcModifierLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="countryTransportsLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 12</value>
-  </data>
-  <data name="offmapEnergyTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>186, 33</value>
   </data>
   <data name="offmapMoneyTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
@@ -507,26 +522,29 @@
   <data name="&gt;&gt;countrySuppliesTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;countryNameKeyTextBox.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
-  </data>
   <data name="peacetimeIcModifierTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
+  </data>
+  <data name="countryIcLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
   </data>
   <data name="flagExtLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 12</value>
   </data>
-  <data name="&gt;&gt;countryMetalTextBox.ZOrder" xml:space="preserve">
-    <value>27</value>
+  <data name="offmapEscortsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;countryRareMaterialsLabel.Parent" xml:space="preserve">
-    <value>countryResourceGroupBox</value>
+  <data name="relativeManpowerLabel.Text" xml:space="preserve">
+    <value>Relative Manpower</value>
   </data>
   <data name="offmapIcTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="&gt;&gt;countryNameLabel.Name" xml:space="preserve">
     <value>countryNameLabel</value>
+  </data>
+  <data name="extraTcTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 170</value>
   </data>
   <data name="relativeManpowerTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -549,14 +567,14 @@
   <data name="&gt;&gt;belligerenceLabel.Parent" xml:space="preserve">
     <value>countryInfoGroupBox</value>
   </data>
-  <data name="countryMetalLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="countryRareMaterialsTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
   </data>
   <data name="&gt;&gt;nukeLabel.Parent" xml:space="preserve">
     <value>countryInfoGroupBox</value>
   </data>
-  <data name="offmapTransportsTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
+  <data name="&gt;&gt;dissentTextBox.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
   </data>
   <data name="&gt;&gt;nukeDayTextBox.Name" xml:space="preserve">
     <value>nukeDayTextBox</value>
@@ -567,11 +585,11 @@
   <data name="countryManpowerTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;countryTransportsTextBox.Name" xml:space="preserve">
-    <value>countryTransportsTextBox</value>
+  <data name="&gt;&gt;countryResourceGroupBox.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;nukeTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;countryRareMaterialsLabel.Parent" xml:space="preserve">
+    <value>countryResourceGroupBox</value>
   </data>
   <data name="&gt;&gt;belligerenceTextBox.ZOrder" xml:space="preserve">
     <value>13</value>
@@ -582,11 +600,8 @@
   <data name="countryNameStringTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;countryOilTextBox.Name" xml:space="preserve">
-    <value>countryOilTextBox</value>
-  </data>
-  <data name="&gt;&gt;countryInfoGroupBox.Name" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
+  <data name="countryInfoGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 14</value>
   </data>
   <data name="&gt;&gt;regularIdLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -615,14 +630,14 @@
   <data name="offmapIcTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
   </data>
-  <data name="nukeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
   <data name="countryStockpileLabel.Text" xml:space="preserve">
     <value>Stockpile</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="countryStockpileLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 12</value>
+  </data>
+  <data name="countryResourceGroupBox.Text" xml:space="preserve">
+    <value>Resource</value>
   </data>
   <data name="industrialModifierTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -630,14 +645,14 @@
   <data name="&gt;&gt;nukeTextBox.Name" xml:space="preserve">
     <value>nukeTextBox</value>
   </data>
-  <data name="relativeManpowerLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 121</value>
+  <data name="&gt;&gt;dissentLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;aiFileBrowseButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;nukeDateLabel.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
   </data>
-  <data name="&gt;&gt;countryManpowerTextBox.ZOrder" xml:space="preserve">
-    <value>12</value>
+  <data name="&gt;&gt;groundDefEffTextBox.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="offmapRareMaterialsTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
@@ -648,8 +663,8 @@
   <data name="dissentLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 148</value>
   </data>
-  <data name="belligerenceLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 12</value>
+  <data name="&gt;&gt;countryEnergyTextBox.Name" xml:space="preserve">
+    <value>countryEnergyTextBox</value>
   </data>
   <data name="countryResourceGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>254, 291</value>
@@ -660,8 +675,8 @@
   <data name="&gt;&gt;countrySuppliesTextBox.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
   </data>
-  <data name="&gt;&gt;countryIcLabel.Name" xml:space="preserve">
-    <value>countryIcLabel</value>
+  <data name="&gt;&gt;countrySuppliesTextBox.Name" xml:space="preserve">
+    <value>countrySuppliesTextBox</value>
   </data>
   <data name="countryEscortsLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -675,17 +690,20 @@
   <data name="nukeDateLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="countryEnergyTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 33</value>
+  <data name="&gt;&gt;countryMoneyTextBox.Name" xml:space="preserve">
+    <value>countryMoneyTextBox</value>
   </data>
-  <data name="aiFileNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 18</value>
+  <data name="countryEscortsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="countrySuppliesTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
   <data name="&gt;&gt;offmapOilTextBox.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="aiFileBrowseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>161, 43</value>
+  <data name="offmapMetalTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="countryNameStringTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 19</value>
@@ -705,11 +723,20 @@
   <data name="flagExtLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="countryManpowerLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="countryNameKeyTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 19</value>
+  </data>
   <data name="countryNameLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 21</value>
   </data>
   <data name="extraTcLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="countryInfoGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;aiGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -717,17 +744,14 @@
   <data name="&gt;&gt;countryStockpileLabel.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
   </data>
-  <data name="countryModifierGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 292</value>
-  </data>
   <data name="&gt;&gt;countryModifierGroupBox.Name" xml:space="preserve">
     <value>countryModifierGroupBox</value>
   </data>
   <data name="groundDefEffLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 21</value>
   </data>
-  <data name="relativeManpowerLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="countryMetalLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="countryResourceGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -741,32 +765,44 @@
   <data name="&gt;&gt;countryOilTextBox.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
   </data>
-  <data name="nukeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 195</value>
+  <data name="&gt;&gt;countryManpowerTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="nukeDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
   </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;offmapEscortsTextBox.Name" xml:space="preserve">
+    <value>offmapEscortsTextBox</value>
+  </data>
   <data name="offmapMetalTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>186, 58</value>
   </data>
-  <data name="countryIcLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
+  <data name="regularIdLabel.Text" xml:space="preserve">
+    <value>Regular ID</value>
   </data>
   <data name="&gt;&gt;relativeManpowerTextBox.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;wartimeIcModifierLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;extraTcTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="belligerenceTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+  <data name="&gt;&gt;regularIdComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groundDefEffLabel.Parent" xml:space="preserve">
+    <value>countryModifierGroupBox</value>
+  </data>
+  <data name="offmapMetalTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="&gt;&gt;groundDefEffLabel.Name" xml:space="preserve">
     <value>groundDefEffLabel</value>
   </data>
-  <data name="&gt;&gt;countryManpowerLabel.Name" xml:space="preserve">
-    <value>countryManpowerLabel</value>
+  <data name="countryEnergyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 36</value>
   </data>
   <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left</value>
@@ -801,8 +837,8 @@
   <data name="wartimeIcModifierTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;countryMoneyTextBox.Parent" xml:space="preserve">
-    <value>countryResourceGroupBox</value>
+  <data name="aiGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="countryEscortsTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 208</value>
@@ -825,17 +861,11 @@
   <data name="flagExtLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;countryNameLabel.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="offmapTransportsTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
   <data name="&gt;&gt;dissentTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="regularIdComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="offmapTransportsTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
   </data>
   <data name="&gt;&gt;countryEnergyLabel.ZOrder" xml:space="preserve">
     <value>30</value>
@@ -843,17 +873,14 @@
   <data name="&gt;&gt;relativeManpowerLabel.Parent" xml:space="preserve">
     <value>countryModifierGroupBox</value>
   </data>
+  <data name="nukeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
   <data name="&gt;&gt;aiGroupBox.Name" xml:space="preserve">
     <value>aiGroupBox</value>
   </data>
-  <data name="countryRareMaterialsLabel.Text" xml:space="preserve">
-    <value>Rare Materials</value>
-  </data>
-  <data name="countrySuppliesLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="countryEscortsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="&gt;&gt;nukeDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="countryRareMaterialsLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>80, 12</value>
@@ -861,14 +888,14 @@
   <data name="&gt;&gt;industrialModifierLabel.Name" xml:space="preserve">
     <value>industrialModifierLabel</value>
   </data>
+  <data name="nukeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 195</value>
+  </data>
   <data name="&gt;&gt;extraTcLabel.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
   <data name="relativeManpowerTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
-  </data>
-  <data name="&gt;&gt;offmapMoneyTextBox.Name" xml:space="preserve">
-    <value>offmapMoneyTextBox</value>
   </data>
   <data name="industrialModifierLabel.Text" xml:space="preserve">
     <value>Industrial Modifer</value>
@@ -876,8 +903,8 @@
   <data name="&gt;&gt;countryEscortsTextBox.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="&gt;&gt;groundDefEffTextBox.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="belligerenceTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;peacetimeIcModifierTextBox.Name" xml:space="preserve">
     <value>peacetimeIcModifierTextBox</value>
@@ -885,8 +912,11 @@
   <data name="countryNameLabel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;nukeDayTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="peacetimeIcModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>115, 12</value>
+  </data>
+  <data name="&gt;&gt;countryEscortsTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="countryManpowerTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 233</value>
@@ -897,11 +927,11 @@
   <data name="&gt;&gt;offmapManpowerTextBox.Name" xml:space="preserve">
     <value>offmapManpowerTextBox</value>
   </data>
-  <data name="peacetimeIcModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 12</value>
+  <data name="&gt;&gt;countryNameLabel.ZOrder" xml:space="preserve">
+    <value>18</value>
   </data>
-  <data name="&gt;&gt;countryResourceGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="offmapEnergyTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>186, 33</value>
   </data>
   <data name="countrySuppliesLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 136</value>
@@ -912,8 +942,8 @@
   <data name="&gt;&gt;wartimeIcModifierTextBox.Name" xml:space="preserve">
     <value>wartimeIcModifierTextBox</value>
   </data>
-  <data name="offmapMetalTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Lucida Console, 9pt</value>
   </data>
   <data name="countryModifierGroupBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 150</value>
@@ -921,8 +951,8 @@
   <data name="&gt;&gt;offmapManpowerTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;countryMetalTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="relativeManpowerLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;countryEscortsTextBox.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
@@ -936,20 +966,26 @@
   <data name="countryOffmapLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="countryInfoGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>142, 14</value>
+  <data name="&gt;&gt;relativeManpowerLabel.Name" xml:space="preserve">
+    <value>relativeManpowerLabel</value>
   </data>
-  <data name="countryStockpileLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;countryResourceGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="groundDefEffLabel.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="countryEnergyTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
+  <data name="countryRareMaterialsLabel.Text" xml:space="preserve">
+    <value>Rare Materials</value>
   </data>
   <data name="&gt;&gt;nukeMonthTextBox.Name" xml:space="preserve">
     <value>nukeMonthTextBox</value>
+  </data>
+  <data name="regularIdComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>102, 94</value>
+  </data>
+  <data name="countryNameKeyTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="offmapSuppliesTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>186, 133</value>
@@ -966,14 +1002,17 @@
   <data name="countryRareMaterialsTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="offmapEscortsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="aiFileNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 18</value>
   </data>
   <data name="&gt;&gt;industrialModifierTextBox.Parent" xml:space="preserve">
     <value>countryModifierGroupBox</value>
   </data>
   <data name="wartimeIcModifierTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
+  </data>
+  <data name="&gt;&gt;nukeTextBox.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="wartimeIcModifierLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>103, 12</value>
@@ -999,8 +1038,8 @@
   <data name="countryTransportsLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;countryMoneyTextBox.Name" xml:space="preserve">
-    <value>countryMoneyTextBox</value>
+  <data name="&gt;&gt;countryOffmapLabel.Name" xml:space="preserve">
+    <value>countryOffmapLabel</value>
   </data>
   <data name="&gt;&gt;nukeYearTextBox.Name" xml:space="preserve">
     <value>nukeYearTextBox</value>
@@ -1026,14 +1065,14 @@
   <data name="&gt;&gt;aiFileLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="countryInfoGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="countryEnergyLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;peacetimeIcModifierTextBox.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="countryEnergyLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="countrySuppliesLabel.Text" xml:space="preserve">
+    <value>Supplies</value>
   </data>
   <data name="offmapTransportsTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1044,14 +1083,11 @@
   <data name="offmapOilTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="&gt;&gt;nukeDateLabel.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
-  </data>
   <data name="nukeLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 198</value>
   </data>
-  <data name="&gt;&gt;flagExtTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="countrySuppliesLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="countryMoneyTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1059,14 +1095,17 @@
   <data name="&gt;&gt;offmapEnergyTextBox.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
   </data>
-  <data name="offmapSuppliesTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="regularIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;countryOffmapLabel.Name" xml:space="preserve">
-    <value>countryOffmapLabel</value>
+  <data name="&gt;&gt;offmapOilTextBox.Name" xml:space="preserve">
+    <value>offmapOilTextBox</value>
   </data>
-  <data name="countryMetalLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="countryMetalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 12</value>
   </data>
   <data name="&gt;&gt;peacetimeIcModifierLabel.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1080,20 +1119,20 @@
   <data name="&gt;&gt;nukeDayTextBox.Parent" xml:space="preserve">
     <value>countryInfoGroupBox</value>
   </data>
-  <data name="countryRareMaterialsLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;countrySuppliesLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="countryManpowerLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="industrialModifierTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 93</value>
   </data>
   <data name="belligerenceTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
   </data>
-  <data name="&gt;&gt;groundDefEffLabel.Parent" xml:space="preserve">
-    <value>countryModifierGroupBox</value>
+  <data name="&gt;&gt;countryEnergyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="countrySuppliesLabel.Text" xml:space="preserve">
-    <value>Supplies</value>
+  <data name="&gt;&gt;dissentTextBox.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="countryMoneyTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1109,6 +1148,9 @@
   </data>
   <data name="offmapEscortsTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
+  </data>
+  <data name="&gt;&gt;countryOffmapLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
   <data name="flagExtLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 70</value>
@@ -1128,11 +1170,8 @@
   <data name="&gt;&gt;offmapTransportsTextBox.Name" xml:space="preserve">
     <value>offmapTransportsTextBox</value>
   </data>
-  <data name="&gt;&gt;countryEnergyTextBox.Name" xml:space="preserve">
-    <value>countryEnergyTextBox</value>
-  </data>
-  <data name="countryRareMaterialsTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
+  <data name="&gt;&gt;relativeManpowerTextBox.Parent" xml:space="preserve">
+    <value>countryModifierGroupBox</value>
   </data>
   <data name="&gt;&gt;wartimeIcModifierLabel.Parent" xml:space="preserve">
     <value>countryModifierGroupBox</value>
@@ -1140,11 +1179,8 @@
   <data name="&gt;&gt;countryInfoGroupBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="offmapMetalTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;countryMoneyTextBox.ZOrder" xml:space="preserve">
-    <value>19</value>
+  <data name="&gt;&gt;nukeLabel.Name" xml:space="preserve">
+    <value>nukeLabel</value>
   </data>
   <data name="offmapIcTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>186, 258</value>
@@ -1152,20 +1188,23 @@
   <data name="countryEscortsTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
+  <data name="&gt;&gt;groundDefEffLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="countryListBox.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
   <data name="countryNameStringTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>102, 42</value>
   </data>
-  <data name="&gt;&gt;dissentTextBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;nukeYearTextBox.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
+  <data name="countryModifierGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>142, 292</value>
   </data>
   <data name="&gt;&gt;countryResourceGroupBox.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="nukeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
   <data name="wartimeIcModifierLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 71</value>
@@ -1176,17 +1215,23 @@
   <data name="countryIcLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 261</value>
   </data>
+  <data name="countryNameKeyTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>102, 17</value>
+  </data>
   <data name="countryTransportsTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
   </data>
   <data name="countryNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="&gt;&gt;aiFileNameTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="&gt;&gt;countryIcLabel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="regularIdLabel.Text" xml:space="preserve">
-    <value>Regular ID</value>
+  <data name="&gt;&gt;countryNameKeyTextBox.Parent" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
   </data>
   <data name="groundDefEffLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1194,11 +1239,11 @@
   <data name="dissentTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
   </data>
-  <data name="countrySuppliesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 12</value>
+  <data name="offmapOilTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="countryStockpileLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 12</value>
+  <data name="aiGroupBox.Text" xml:space="preserve">
+    <value>AI</value>
   </data>
   <data name="&gt;&gt;nukeMonthTextBox.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -1221,8 +1266,8 @@
   <data name="&gt;&gt;offmapTransportsTextBox.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
   </data>
-  <data name="countryNameKeyTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 19</value>
+  <data name="&gt;&gt;countryRareMaterialsTextBox.Name" xml:space="preserve">
+    <value>countryRareMaterialsTextBox</value>
   </data>
   <data name="&gt;&gt;relativeManpowerTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1239,23 +1284,23 @@
   <data name="&gt;&gt;groundDefEffTextBox.Parent" xml:space="preserve">
     <value>countryModifierGroupBox</value>
   </data>
+  <data name="nukeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
   <data name="countryEnergyTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="countryMetalTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;dissentLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="extraTcTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
   </data>
-  <data name="nukeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="&gt;&gt;nukeDayTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;regularIdComboBox.ZOrder" xml:space="preserve">
-    <value>15</value>
+  <data name="nukeMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 238</value>
   </data>
   <data name="&gt;&gt;offmapSuppliesTextBox.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
@@ -1269,8 +1314,8 @@
   <data name="relativeManpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>102, 12</value>
   </data>
-  <data name="extraTcLabel.Text" xml:space="preserve">
-    <value>Extra TC</value>
+  <data name="countryInfoGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="countryMetalLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 61</value>
@@ -1284,17 +1329,14 @@
   <data name="groundDefEffLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>82, 12</value>
   </data>
-  <data name="industrialModifierTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="regularIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
   </data>
   <data name="&gt;&gt;countrySuppliesLabel.ZOrder" xml:space="preserve">
     <value>22</value>
   </data>
-  <data name="countryMoneyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 12</value>
-  </data>
-  <data name="countryTransportsLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 186</value>
+  <data name="&gt;&gt;dissentLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;regularIdLabel.Name" xml:space="preserve">
     <value>regularIdLabel</value>
@@ -1308,17 +1350,20 @@
   <data name="wartimeIcModifierLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;countrySuppliesLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="relativeManpowerLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 121</value>
   </data>
   <data name="countryMetalTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
   </data>
+  <data name="&gt;&gt;flagExtTextBox.Name" xml:space="preserve">
+    <value>flagExtTextBox</value>
+  </data>
   <data name="dissentLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 12</value>
   </data>
-  <data name="nukeMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>116, 238</value>
+  <data name="&gt;&gt;aiFileBrowseButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="countryOilTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1332,14 +1377,14 @@
   <data name="countryResourceGroupBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="&gt;&gt;countryEscortsLabel.Name" xml:space="preserve">
+    <value>countryEscortsLabel</value>
+  </data>
   <data name="countrySuppliesLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="&gt;&gt;groundDefEffTextBox.Name" xml:space="preserve">
     <value>groundDefEffTextBox</value>
-  </data>
-  <data name="&gt;&gt;offmapTransportsTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="offmapEnergyTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -1353,20 +1398,17 @@
   <data name="countryEnergyLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 12</value>
   </data>
-  <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Lucida Console, 9pt</value>
-  </data>
   <data name="nukeLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="dissentTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="belligerenceTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="&gt;&gt;countryEscortsTextBox.Name" xml:space="preserve">
+    <value>countryEscortsTextBox</value>
   </data>
-  <data name="&gt;&gt;aiFileNameTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;belligerenceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="dissentTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>172, 145</value>
@@ -1377,11 +1419,11 @@
   <data name="&gt;&gt;aiFileLabel.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="nukeDateLabel.Text" xml:space="preserve">
-    <value>Nuke Date</value>
+  <data name="&gt;&gt;countryInfoGroupBox.Name" xml:space="preserve">
+    <value>countryInfoGroupBox</value>
   </data>
-  <data name="&gt;&gt;flagExtTextBox.Name" xml:space="preserve">
-    <value>flagExtTextBox</value>
+  <data name="nukeDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 238</value>
   </data>
   <data name="&gt;&gt;countryStockpileLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1389,20 +1431,17 @@
   <data name="countryMoneyLabel.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
   </data>
-  <data name="countryOilLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="&gt;&gt;regularIdComboBox.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;countrySuppliesLabel.Name" xml:space="preserve">
+    <value>countrySuppliesLabel</value>
   </data>
   <data name="&gt;&gt;countryOffmapLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;nukeYearTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;countryEscortsLabel.Name" xml:space="preserve">
-    <value>countryEscortsLabel</value>
-  </data>
-  <data name="&gt;&gt;countryMoneyLabel.Parent" xml:space="preserve">
-    <value>countryResourceGroupBox</value>
+  <data name="offmapManpowerTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
   <data name="&gt;&gt;offmapMoneyTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1419,14 +1458,17 @@
   <data name="countryOilLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 111</value>
   </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 559</value>
+  <data name="&gt;&gt;nukeYearTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;countryEscortsLabel.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
   <data name="&gt;&gt;countryMetalLabel.Name" xml:space="preserve">
     <value>countryMetalLabel</value>
+  </data>
+  <data name="countryEscortsTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
   </data>
   <data name="countryManpowerLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>56, 12</value>
@@ -1443,35 +1485,38 @@
   <data name="&gt;&gt;relativeManpowerTextBox.Name" xml:space="preserve">
     <value>relativeManpowerTextBox</value>
   </data>
-  <data name="&gt;&gt;offmapIcTextBox.Parent" xml:space="preserve">
-    <value>countryResourceGroupBox</value>
+  <data name="&gt;&gt;offmapMoneyTextBox.Name" xml:space="preserve">
+    <value>offmapMoneyTextBox</value>
   </data>
   <data name="countryManpowerTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
   </data>
-  <data name="&gt;&gt;countryListBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="countryIcLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;peacetimeIcModifierLabel.Parent" xml:space="preserve">
-    <value>countryModifierGroupBox</value>
+  <data name="wartimeIcModifierLabel.Text" xml:space="preserve">
+    <value>Wartime IC Modifer</value>
+  </data>
+  <data name="aiFileLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ScenarioEditorCountryPage</value>
   </data>
-  <data name="&gt;&gt;regularIdComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;countryEnergyTextBox.ZOrder" xml:space="preserve">
+    <value>29</value>
   </data>
-  <data name="countryIcLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="offmapTransportsTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
   </data>
-  <data name="&gt;&gt;belligerenceLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="regularIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 96</value>
   </data>
   <data name="&gt;&gt;offmapMoneyTextBox.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
   </data>
-  <data name="countryNameKeyTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>102, 17</value>
+  <data name="regularIdComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;countryInfoGroupBox.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1479,8 +1524,8 @@
   <data name="regularIdComboBox.Font" type="System.Drawing.Font, System.Drawing">
     <value>Lucida Console, 9pt</value>
   </data>
-  <data name="regularIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 96</value>
+  <data name="&gt;&gt;relativeManpowerLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="nukeYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 238</value>
@@ -1500,8 +1545,8 @@
   <data name="&gt;&gt;offmapMoneyTextBox.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;countryOffmapLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="&gt;&gt;offmapOilTextBox.Parent" xml:space="preserve">
+    <value>countryResourceGroupBox</value>
   </data>
   <data name="&gt;&gt;countryMetalLabel.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
@@ -1542,8 +1587,8 @@
   <data name="countryModifierGroupBox.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="nukeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
+  <data name="&gt;&gt;countryIcLabel.Name" xml:space="preserve">
+    <value>countryIcLabel</value>
   </data>
   <data name="belligerenceLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1551,8 +1596,8 @@
   <data name="&gt;&gt;countryEscortsLabel.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
   </data>
-  <data name="regularIdComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>102, 94</value>
+  <data name="belligerenceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 12</value>
   </data>
   <data name="&gt;&gt;countryInfoGroupBox.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -1563,14 +1608,11 @@
   <data name="&gt;&gt;countryNameLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="countrySuppliesTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+  <data name="&gt;&gt;countryTransportsTextBox.Name" xml:space="preserve">
+    <value>countryTransportsTextBox</value>
   </data>
-  <data name="&gt;&gt;relativeManpowerLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dissentLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="&gt;&gt;belligerenceTextBox.Name" xml:space="preserve">
+    <value>belligerenceTextBox</value>
   </data>
   <data name="countryOffmapLabel.Text" xml:space="preserve">
     <value>Offmap</value>
@@ -1580,9 +1622,6 @@
   </data>
   <data name="flagExtLabel.Text" xml:space="preserve">
     <value>Flag Extension</value>
-  </data>
-  <data name="aiGroupBox.Text" xml:space="preserve">
-    <value>AI</value>
   </data>
   <data name="&gt;&gt;extraTcTextBox.Name" xml:space="preserve">
     <value>extraTcTextBox</value>
@@ -1596,11 +1635,11 @@
   <data name="flagExtTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="offmapManpowerTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="&gt;&gt;aiFileBrowseButton.Name" xml:space="preserve">
+    <value>aiFileBrowseButton</value>
   </data>
-  <data name="&gt;&gt;countryManpowerTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;countryManpowerTextBox.Parent" xml:space="preserve">
+    <value>countryResourceGroupBox</value>
   </data>
   <data name="nukeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -1608,35 +1647,26 @@
   <data name="extraTcLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="aiFileBrowseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="&gt;&gt;countryMoneyLabel.Name" xml:space="preserve">
+    <value>countryMoneyLabel</value>
   </data>
   <data name="&gt;&gt;offmapEnergyTextBox.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;countryResourceGroupBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="relativeManpowerLabel.Text" xml:space="preserve">
-    <value>Relative Manpower</value>
-  </data>
-  <data name="offmapOilTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+  <data name="industrialModifierTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
   <data name="wartimeIcModifierTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
   </data>
-  <data name="&gt;&gt;countryManpowerTextBox.Parent" xml:space="preserve">
-    <value>countryResourceGroupBox</value>
+  <data name="nukeDayTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
   </data>
   <data name="&gt;&gt;countryTransportsTextBox.ZOrder" xml:space="preserve">
     <value>17</value>
   </data>
   <data name="countryTransportsLabel.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
-  </data>
-  <data name="&gt;&gt;relativeManpowerTextBox.Parent" xml:space="preserve">
-    <value>countryModifierGroupBox</value>
   </data>
   <data name="countryEnergyLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1665,11 +1695,14 @@
   <data name="&gt;&gt;countryTransportsTextBox.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
   </data>
-  <data name="&gt;&gt;countryEnergyLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;countrySuppliesLabel.Parent" xml:space="preserve">
+    <value>countryResourceGroupBox</value>
   </data>
-  <data name="industrialModifierTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 93</value>
+  <data name="&gt;&gt;countryOilTextBox.Name" xml:space="preserve">
+    <value>countryOilTextBox</value>
+  </data>
+  <data name="&gt;&gt;flagExtTextBox.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="nukeDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1683,8 +1716,8 @@
   <data name="&gt;&gt;countryMetalTextBox.Name" xml:space="preserve">
     <value>countryMetalTextBox</value>
   </data>
-  <data name="&gt;&gt;groundDefEffLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;peacetimeIcModifierLabel.Parent" xml:space="preserve">
+    <value>countryModifierGroupBox</value>
   </data>
   <data name="countryModifierGroupBox.Text" xml:space="preserve">
     <value>Modifier</value>
@@ -1692,11 +1725,11 @@
   <data name="&gt;&gt;aiGroupBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;countrySuppliesLabel.Name" xml:space="preserve">
-    <value>countrySuppliesLabel</value>
+  <data name="&gt;&gt;countryManpowerLabel.Name" xml:space="preserve">
+    <value>countryManpowerLabel</value>
   </data>
-  <data name="&gt;&gt;extraTcTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;offmapIcTextBox.Parent" xml:space="preserve">
+    <value>countryResourceGroupBox</value>
   </data>
   <data name="nukeYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
@@ -1716,8 +1749,8 @@
   <data name="countryOffmapLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;countrySuppliesTextBox.Name" xml:space="preserve">
-    <value>countrySuppliesTextBox</value>
+  <data name="&gt;&gt;countryMoneyLabel.Parent" xml:space="preserve">
+    <value>countryResourceGroupBox</value>
   </data>
   <data name="aiFileNameTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1761,20 +1794,17 @@
   <data name="&gt;&gt;aiFileLabel.Name" xml:space="preserve">
     <value>aiFileLabel</value>
   </data>
-  <data name="&gt;&gt;countryRareMaterialsTextBox.Name" xml:space="preserve">
-    <value>countryRareMaterialsTextBox</value>
-  </data>
   <data name="offmapMoneyTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
   </data>
-  <data name="regularIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;aiFileNameTextBox.Parent" xml:space="preserve">
+    <value>aiGroupBox</value>
   </data>
   <data name="countryModifierGroupBox.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;aiFileNameTextBox.Parent" xml:space="preserve">
-    <value>aiGroupBox</value>
+  <data name="belligerenceTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;countryEnergyLabel.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
@@ -1785,9 +1815,6 @@
   <data name="countryManpowerLabel.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
   </data>
-  <data name="&gt;&gt;offmapOilTextBox.Parent" xml:space="preserve">
-    <value>countryResourceGroupBox</value>
-  </data>
   <data name="&gt;&gt;industrialModifierLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1797,20 +1824,14 @@
   <data name="countrySuppliesTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>126, 133</value>
   </data>
-  <data name="countryTransportsLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="countryMetalLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 12</value>
+  <data name="nukeDateLabel.Text" xml:space="preserve">
+    <value>Nuke Date</value>
   </data>
   <data name="countryRareMaterialsLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 86</value>
   </data>
-  <data name="&gt;&gt;countryRareMaterialsTextBox.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="nukeDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 238</value>
+  <data name="countryManpowerLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;aiFileBrowseButton.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -1824,17 +1845,8 @@
   <data name="&gt;&gt;offmapEnergyTextBox.Name" xml:space="preserve">
     <value>offmapEnergyTextBox</value>
   </data>
-  <data name="wartimeIcModifierLabel.Text" xml:space="preserve">
-    <value>Wartime IC Modifer</value>
-  </data>
-  <data name="regularIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 12</value>
-  </data>
-  <data name="extraTcTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 170</value>
-  </data>
-  <data name="nukeDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+  <data name="&gt;&gt;countryTransportsTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="countryStockpileLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1854,14 +1866,11 @@
   <data name="peacetimeIcModifierLabel.Text" xml:space="preserve">
     <value>Peacetime IC Modifer</value>
   </data>
-  <data name="aiGroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;countryOilTextBox.ZOrder" xml:space="preserve">
+    <value>23</value>
   </data>
   <data name="&gt;&gt;countryOilLabel.Parent" xml:space="preserve">
     <value>countryResourceGroupBox</value>
-  </data>
-  <data name="&gt;&gt;offmapOilTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;countryNameStringTextBox.Name" xml:space="preserve">
     <value>countryNameStringTextBox</value>
@@ -1874,9 +1883,6 @@
   </data>
   <data name="nukeDateLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>14, 223</value>
-  </data>
-  <data name="countryManpowerLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="extraTcTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1896,14 +1902,8 @@
   <data name="&gt;&gt;countryOilLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="countryIcLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="countryOilTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
-  </data>
-  <data name="&gt;&gt;dissentTextBox.Parent" xml:space="preserve">
-    <value>countryInfoGroupBox</value>
   </data>
   <data name="&gt;&gt;offmapRareMaterialsTextBox.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -1932,11 +1932,14 @@
   <metadata name="relativeManpowerLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <metadata name="industrialModifierLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
   <metadata name="flagExtLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <metadata name="industrialModifierLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
   <metadata name="belligerenceLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -1965,13 +1968,10 @@
   <metadata name="countryStockpileLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="regularIdLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="countryNameLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <metadata name="countryNameLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="regularIdLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
   <metadata name="groundDefEffLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

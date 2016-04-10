@@ -217,8 +217,14 @@
   <data name="aiFileBrowseButton.Text" xml:space="preserve">
     <value>参照</value>
   </data>
+  <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="countryResourceGroupBox.Text" xml:space="preserve">
     <value>資源</value>
+  </data>
+  <data name="regularIdComboBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="countryInfoGroupBox.Text" xml:space="preserve">
     <value>国家情報</value>

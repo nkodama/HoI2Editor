@@ -181,6 +181,12 @@
   <data name="majorCountryNameLabel.Text" xml:space="preserve">
     <value>国名</value>
   </data>
+  <data name="unselectableListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
+  <data name="selectableListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="propagandaBrowseButton.Text" xml:space="preserve">
     <value>参照</value>
   </data>
@@ -195,6 +201,9 @@
   </data>
   <data name="countryDescLabel.Text" xml:space="preserve">
     <value>説明</value>
+  </data>
+  <data name="majorListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="majorLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 12</value>

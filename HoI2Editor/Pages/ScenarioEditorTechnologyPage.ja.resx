@@ -136,4 +136,7 @@
   <data name="inventionsLabel.Text" xml:space="preserve">
     <value>発明イベント</value>
   </data>
+  <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
 </root>

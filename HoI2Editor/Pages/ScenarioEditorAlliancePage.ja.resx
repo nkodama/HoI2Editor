@@ -142,17 +142,14 @@
   <data name="warDefenderLabel.Text" xml:space="preserve">
     <value>防御側</value>
   </data>
-  <data name="warAttackerColumnHeader.Text" xml:space="preserve">
-    <value>攻撃側</value>
-  </data>
-  <data name="warDefenderColumnHeader.Text" xml:space="preserve">
-    <value>防御側</value>
-  </data>
   <data name="warNewButton.Text" xml:space="preserve">
     <value>新規</value>
   </data>
   <data name="warUpButton.Text" xml:space="preserve">
     <value>上へ</value>
+  </data>
+  <data name="warAttackerListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="warAttackerLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 12</value>
@@ -160,14 +157,29 @@
   <data name="warAttackerLabel.Text" xml:space="preserve">
     <value>攻撃側</value>
   </data>
+  <data name="warDefenderListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="warDownButton.Text" xml:space="preserve">
     <value>下へ</value>
+  </data>
+  <data name="warFreeCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="warRemoveButton.Text" xml:space="preserve">
     <value>削除</value>
   </data>
   <data name="warGroupBox.Text" xml:space="preserve">
     <value>戦争</value>
+  </data>
+  <data name="warAttackerColumnHeader.Text" xml:space="preserve">
+    <value>攻撃側</value>
+  </data>
+  <data name="warDefenderColumnHeader.Text" xml:space="preserve">
+    <value>防御側</value>
+  </data>
+  <data name="allianceGroupBox.Text" xml:space="preserve">
+    <value>同盟</value>
   </data>
   <data name="allianceNameLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -190,8 +202,14 @@
   <data name="allianceLeaderButton.Text" xml:space="preserve">
     <value>リーダーに設定</value>
   </data>
+  <data name="allianceParticipantListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="allianceUpButton.Text" xml:space="preserve">
     <value>上へ</value>
+  </data>
+  <data name="allianceFreeCountryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
   </data>
   <data name="allianceRemoveButton.Text" xml:space="preserve">
     <value>削除</value>
@@ -201,8 +219,5 @@
   </data>
   <data name="allianceDownButton.Text" xml:space="preserve">
     <value>下へ</value>
-  </data>
-  <data name="allianceGroupBox.Text" xml:space="preserve">
-    <value>同盟</value>
   </data>
 </root>

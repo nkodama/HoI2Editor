@@ -223,4 +223,7 @@
   <data name="relationSpyColumnHeader.Text" xml:space="preserve">
     <value>スパイ</value>
   </data>
+  <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
 </root>

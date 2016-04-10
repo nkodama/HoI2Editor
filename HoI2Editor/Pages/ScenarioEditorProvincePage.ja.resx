@@ -235,6 +235,9 @@
   <data name="provinceCountryFilterLabel.Text" xml:space="preserve">
     <value>国家</value>
   </data>
+  <data name="provinceCountryFilterComboBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="claimedProvinceCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>60, 16</value>
   </data>

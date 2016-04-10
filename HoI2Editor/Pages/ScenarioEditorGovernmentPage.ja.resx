@@ -120,14 +120,17 @@
   <data name="cabinetGroupBox.Text" xml:space="preserve">
     <value>閣僚</value>
   </data>
-  <data name="politicalSliderGroupBox.Text" xml:space="preserve">
-    <value>政策スライダー</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="sliderDateLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>98, 12</value>
   </data>
   <data name="sliderDateLabel.Text" xml:space="preserve">
     <value>スライダー移動日時</value>
+  </data>
+  <data name="politicalSliderGroupBox.Text" xml:space="preserve">
+    <value>政策スライダー</value>
   </data>
 </root>

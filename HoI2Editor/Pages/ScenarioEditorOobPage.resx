@@ -117,1624 +117,1624 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="brigadesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 12</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="oobBottomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+  <data name="divisionIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;unitIdTextBox.Name" xml:space="preserve">
+    <value>unitIdTextBox</value>
+  </data>
+  <data name="locationLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 72</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="oobBottomButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="oobBottomButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="oobBottomButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>270, 492</value>
-  </data>
-  <data name="oobBottomButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="oobBottomButton.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="oobBottomButton.Text" xml:space="preserve">
-    <value>Bottom</value>
-  </data>
-  <data name="&gt;&gt;oobBottomButton.Name" xml:space="preserve">
-    <value>oobBottomButton</value>
-  </data>
-  <data name="&gt;&gt;oobBottomButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;oobBottomButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;oobBottomButton.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="oobDownButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="oobDownButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="oobDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="oobDownButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 492</value>
-  </data>
-  <data name="oobDownButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="oobDownButton.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="oobDownButton.Text" xml:space="preserve">
-    <value>Down</value>
-  </data>
-  <data name="&gt;&gt;oobDownButton.Name" xml:space="preserve">
-    <value>oobDownButton</value>
-  </data>
-  <data name="&gt;&gt;oobDownButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;oobDownButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;oobDownButton.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="oobUpButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="oobUpButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="oobUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="oobUpButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 492</value>
-  </data>
-  <data name="oobUpButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="oobUpButton.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="oobUpButton.Text" xml:space="preserve">
-    <value>Up</value>
-  </data>
-  <data name="&gt;&gt;oobUpButton.Name" xml:space="preserve">
-    <value>oobUpButton</value>
-  </data>
-  <data name="&gt;&gt;oobUpButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;oobUpButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;oobUpButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="oobTopButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="oobTopButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="oobTopButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="oobTopButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 492</value>
-  </data>
-  <data name="oobTopButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="oobTopButton.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="oobTopButton.Text" xml:space="preserve">
-    <value>Top</value>
-  </data>
-  <data name="&gt;&gt;oobTopButton.Name" xml:space="preserve">
-    <value>oobTopButton</value>
-  </data>
-  <data name="&gt;&gt;oobTopButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;oobTopButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;oobTopButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="oobRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="oobRemoveButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="oobRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="oobRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>270, 521</value>
-  </data>
-  <data name="oobRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="oobRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="oobRemoveButton.Text" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="&gt;&gt;oobRemoveButton.Name" xml:space="preserve">
-    <value>oobRemoveButton</value>
-  </data>
-  <data name="&gt;&gt;oobRemoveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;oobRemoveButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;oobRemoveButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="oobCloneButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="oobCloneButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="oobCloneButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="oobCloneButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 521</value>
-  </data>
-  <data name="oobCloneButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="oobCloneButton.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="oobCloneButton.Text" xml:space="preserve">
-    <value>Clone</value>
-  </data>
-  <data name="&gt;&gt;oobCloneButton.Name" xml:space="preserve">
-    <value>oobCloneButton</value>
-  </data>
-  <data name="&gt;&gt;oobCloneButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;oobCloneButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;oobCloneButton.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="oobAddDivisionButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="oobAddDivisionButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="oobAddDivisionButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="oobAddDivisionButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 521</value>
-  </data>
-  <data name="oobAddDivisionButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="oobAddDivisionButton.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="oobAddDivisionButton.Text" xml:space="preserve">
-    <value>Add Division</value>
-  </data>
-  <data name="&gt;&gt;oobAddDivisionButton.Name" xml:space="preserve">
-    <value>oobAddDivisionButton</value>
-  </data>
-  <data name="&gt;&gt;oobAddDivisionButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;oobAddDivisionButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;oobAddDivisionButton.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="oobAddUnitButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="oobAddUnitButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="oobAddUnitButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="oobAddUnitButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 521</value>
-  </data>
-  <data name="oobAddUnitButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 23</value>
-  </data>
-  <data name="oobAddUnitButton.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="oobAddUnitButton.Text" xml:space="preserve">
-    <value>Add Unit</value>
-  </data>
-  <data name="&gt;&gt;oobAddUnitButton.Name" xml:space="preserve">
-    <value>oobAddUnitButton</value>
-  </data>
-  <data name="&gt;&gt;oobAddUnitButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;oobAddUnitButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;oobAddUnitButton.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="dormantCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="dormantCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="dormantCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 252</value>
-  </data>
-  <data name="dormantCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 16</value>
-  </data>
-  <data name="dormantCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="dormantCheckBox.Text" xml:space="preserve">
-    <value>Dormant</value>
-  </data>
-  <data name="&gt;&gt;dormantCheckBox.Name" xml:space="preserve">
-    <value>dormantCheckBox</value>
-  </data>
-  <data name="&gt;&gt;dormantCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dormantCheckBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;dormantCheckBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lockedCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lockedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lockedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 227</value>
-  </data>
-  <data name="lockedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 16</value>
-  </data>
-  <data name="lockedCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>29</value>
-  </data>
-  <data name="lockedCheckBox.Text" xml:space="preserve">
-    <value>Locked</value>
-  </data>
-  <data name="&gt;&gt;lockedCheckBox.Name" xml:space="preserve">
-    <value>lockedCheckBox</value>
-  </data>
-  <data name="&gt;&gt;lockedCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lockedCheckBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;lockedCheckBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="experienceTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 300</value>
-  </data>
-  <data name="experienceTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="experienceTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>28</value>
-  </data>
-  <data name="experienceTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;experienceTextBox.Name" xml:space="preserve">
-    <value>experienceTextBox</value>
-  </data>
-  <data name="&gt;&gt;experienceTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;experienceTextBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;experienceTextBox.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="unitGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
   </data>
   <data name="experienceLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="experienceLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="experienceLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 303</value>
-  </data>
-  <data name="experienceLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 12</value>
-  </data>
-  <data name="experienceLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
-  </data>
-  <data name="experienceLabel.Text" xml:space="preserve">
-    <value>Experience</value>
-  </data>
-  <data name="&gt;&gt;experienceLabel.Name" xml:space="preserve">
-    <value>experienceLabel</value>
-  </data>
-  <data name="&gt;&gt;experienceLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;experienceLabel.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;experienceLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="divisionMoraleTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 275</value>
-  </data>
-  <data name="divisionMoraleTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="divisionMoraleTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
-  </data>
-  <data name="divisionMoraleTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;divisionMoraleTextBox.Name" xml:space="preserve">
-    <value>divisionMoraleTextBox</value>
-  </data>
-  <data name="&gt;&gt;divisionMoraleTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;divisionMoraleTextBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;divisionMoraleTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="divisionMoraleLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="unitIdLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="divisionMoraleLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="divisionMoraleLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 278</value>
-  </data>
-  <data name="divisionMoraleLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 12</value>
-  </data>
-  <data name="divisionMoraleLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
-  </data>
-  <data name="divisionMoraleLabel.Text" xml:space="preserve">
-    <value>Morale</value>
-  </data>
-  <data name="&gt;&gt;divisionMoraleLabel.Name" xml:space="preserve">
-    <value>divisionMoraleLabel</value>
-  </data>
-  <data name="&gt;&gt;divisionMoraleLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;divisionMoraleLabel.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;divisionMoraleLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="maxOrganisationTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 250</value>
-  </data>
-  <data name="maxOrganisationTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="maxOrganisationTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
-  </data>
-  <data name="maxOrganisationTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;maxOrganisationTextBox.Name" xml:space="preserve">
-    <value>maxOrganisationTextBox</value>
-  </data>
-  <data name="&gt;&gt;maxOrganisationTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxOrganisationTextBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;maxOrganisationTextBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="organisationTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 250</value>
-  </data>
-  <data name="organisationTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="organisationTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="organisationTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;organisationTextBox.Name" xml:space="preserve">
-    <value>organisationTextBox</value>
-  </data>
-  <data name="&gt;&gt;organisationTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;organisationTextBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;organisationTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="organisationLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="organisationLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="organisationLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 253</value>
-  </data>
-  <data name="organisationLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 12</value>
-  </data>
-  <data name="organisationLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="organisationLabel.Text" xml:space="preserve">
-    <value>Organisation</value>
-  </data>
-  <data name="&gt;&gt;organisationLabel.Name" xml:space="preserve">
-    <value>organisationLabel</value>
-  </data>
-  <data name="&gt;&gt;organisationLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;organisationLabel.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;organisationLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="maxStrengthTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 225</value>
-  </data>
-  <data name="maxStrengthTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="maxStrengthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
-  </data>
-  <data name="maxStrengthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;maxStrengthTextBox.Name" xml:space="preserve">
-    <value>maxStrengthTextBox</value>
-  </data>
-  <data name="&gt;&gt;maxStrengthTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;maxStrengthTextBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;maxStrengthTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="strengthTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 225</value>
-  </data>
-  <data name="strengthTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="strengthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="strengthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;strengthTextBox.Name" xml:space="preserve">
-    <value>strengthTextBox</value>
-  </data>
-  <data name="&gt;&gt;strengthTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;strengthTextBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;strengthTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="strengthLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="strengthLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="strengthLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 228</value>
-  </data>
-  <data name="strengthLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 12</value>
-  </data>
-  <data name="strengthLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="strengthLabel.Text" xml:space="preserve">
-    <value>Strength</value>
-  </data>
-  <data name="&gt;&gt;strengthLabel.Name" xml:space="preserve">
-    <value>strengthLabel</value>
-  </data>
-  <data name="&gt;&gt;strengthLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;strengthLabel.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;strengthLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
   </data>
   <data name="brigadeModelComboBox5.Location" type="System.Drawing.Point, System.Drawing">
     <value>216, 199</value>
   </data>
-  <data name="brigadeModelComboBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
+  <data name="unitTypeComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
-  <data name="brigadeModelComboBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+  <data name="experienceTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
   </data>
-  <data name="&gt;&gt;brigadeModelComboBox5.Name" xml:space="preserve">
-    <value>brigadeModelComboBox5</value>
+  <data name="&gt;&gt;divisionTypeTextBox.ZOrder" xml:space="preserve">
+    <value>29</value>
   </data>
-  <data name="&gt;&gt;brigadeModelComboBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;countryListBox.Name" xml:space="preserve">
+    <value>countryListBox</value>
   </data>
-  <data name="&gt;&gt;brigadeModelComboBox5.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
+  <data name="&gt;&gt;oobTopButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;brigadeModelComboBox5.ZOrder" xml:space="preserve">
-    <value>12</value>
+  <data name="&gt;&gt;unitMoraleLabel.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
   </data>
-  <data name="brigadeTypeComboBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 199</value>
-  </data>
-  <data name="brigadeTypeComboBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="brigadeTypeComboBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox5.Name" xml:space="preserve">
-    <value>brigadeTypeComboBox5</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox5.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox5.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="brigadeModelComboBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 173</value>
-  </data>
-  <data name="brigadeModelComboBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="brigadeModelComboBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox4.Name" xml:space="preserve">
-    <value>brigadeModelComboBox4</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox4.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox4.ZOrder" xml:space="preserve">
-    <value>14</value>
+  <data name="divisionIdLabel.Text" xml:space="preserve">
+    <value>ID</value>
   </data>
   <data name="brigadeTypeComboBox4.Location" type="System.Drawing.Point, System.Drawing">
     <value>90, 173</value>
   </data>
-  <data name="brigadeTypeComboBox4.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="baseLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 98</value>
+  </data>
+  <data name="strengthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="oobDownButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="locationLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="brigadeTypeComboBox5.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 20</value>
   </data>
-  <data name="brigadeTypeComboBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+  <data name="&gt;&gt;maxStrengthTextBox.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
-  <data name="&gt;&gt;brigadeTypeComboBox4.Name" xml:space="preserve">
-    <value>brigadeTypeComboBox4</value>
+  <data name="&gt;&gt;divisionMoraleTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="divisionNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 44</value>
+  </data>
+  <data name="countryListBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 14</value>
+  </data>
+  <data name="&gt;&gt;unitIdTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;brigadesLabel.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="divisionNameLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;strengthTextBox.Name" xml:space="preserve">
+    <value>strengthTextBox</value>
+  </data>
+  <data name="brigadeModelComboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 95</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox5.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;oobBottomButton.Name" xml:space="preserve">
+    <value>oobBottomButton</value>
+  </data>
+  <data name="&gt;&gt;oobTopButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;unitModelComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;unitTypeLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;locationTextBox.Name" xml:space="preserve">
+    <value>locationTextBox</value>
+  </data>
+  <data name="&gt;&gt;leaderTextBox.Name" xml:space="preserve">
+    <value>leaderTextBox</value>
+  </data>
+  <data name="baseTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;divisionTypeTextBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
   </data>
   <data name="&gt;&gt;brigadeTypeComboBox4.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;brigadeTypeComboBox4.Parent" xml:space="preserve">
+  <data name="&gt;&gt;divisionNameLabel.Parent" xml:space="preserve">
     <value>divisionGroupBox</value>
   </data>
-  <data name="&gt;&gt;brigadeTypeComboBox4.ZOrder" xml:space="preserve">
-    <value>15</value>
+  <data name="oobAddUnitButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 521</value>
   </data>
-  <data name="brigadeModelComboBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 147</value>
+  <data name="strengthLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 12</value>
   </data>
-  <data name="brigadeModelComboBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
+  <data name="divisionMoraleTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
   </data>
-  <data name="brigadeModelComboBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox3.Name" xml:space="preserve">
-    <value>brigadeModelComboBox3</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox3.Parent" xml:space="preserve">
+  <data name="&gt;&gt;experienceTextBox.Parent" xml:space="preserve">
     <value>divisionGroupBox</value>
   </data>
-  <data name="&gt;&gt;brigadeModelComboBox3.ZOrder" xml:space="preserve">
-    <value>16</value>
+  <data name="oobUpButton.Text" xml:space="preserve">
+    <value>Up</value>
   </data>
-  <data name="brigadeTypeComboBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 147</value>
-  </data>
-  <data name="brigadeTypeComboBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="brigadeTypeComboBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox3.Name" xml:space="preserve">
-    <value>brigadeTypeComboBox3</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox3.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox3.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="brigadeModelComboBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 121</value>
-  </data>
-  <data name="brigadeModelComboBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="brigadeModelComboBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox2.Name" xml:space="preserve">
-    <value>brigadeModelComboBox2</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;divisionIdTextBox.Parent" xml:space="preserve">
     <value>divisionGroupBox</value>
   </data>
   <data name="&gt;&gt;brigadeModelComboBox2.ZOrder" xml:space="preserve">
     <value>18</value>
   </data>
-  <data name="brigadeTypeComboBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 121</value>
-  </data>
-  <data name="brigadeTypeComboBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="brigadeTypeComboBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox2.Name" xml:space="preserve">
-    <value>brigadeTypeComboBox2</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox2.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox2.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="brigadeModelComboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 95</value>
-  </data>
-  <data name="brigadeModelComboBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="brigadeModelComboBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox1.Name" xml:space="preserve">
-    <value>brigadeModelComboBox1</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox1.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;brigadeModelComboBox1.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="brigadesLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="brigadesLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="brigadesLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 98</value>
-  </data>
-  <data name="brigadesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 12</value>
-  </data>
-  <data name="brigadesLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="brigadesLabel.Text" xml:space="preserve">
-    <value>Brigades</value>
-  </data>
-  <data name="&gt;&gt;brigadesLabel.Name" xml:space="preserve">
-    <value>brigadesLabel</value>
-  </data>
-  <data name="&gt;&gt;brigadesLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;brigadesLabel.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;brigadesLabel.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="brigadeTypeComboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 95</value>
-  </data>
-  <data name="brigadeTypeComboBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="brigadeTypeComboBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox1.Name" xml:space="preserve">
-    <value>brigadeTypeComboBox1</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox1.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;brigadeTypeComboBox1.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="unitModelComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 69</value>
-  </data>
-  <data name="unitModelComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="unitModelComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;unitModelComboBox.Name" xml:space="preserve">
-    <value>unitModelComboBox</value>
-  </data>
-  <data name="&gt;&gt;unitModelComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;unitModelComboBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;unitModelComboBox.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="unitTypeLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="unitTypeLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="unitTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 72</value>
-  </data>
-  <data name="unitTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 12</value>
-  </data>
-  <data name="unitTypeLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="unitTypeLabel.Text" xml:space="preserve">
-    <value>Type</value>
-  </data>
-  <data name="&gt;&gt;unitTypeLabel.Name" xml:space="preserve">
-    <value>unitTypeLabel</value>
-  </data>
-  <data name="&gt;&gt;unitTypeLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;unitTypeLabel.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;unitTypeLabel.ZOrder" xml:space="preserve">
-    <value>24</value>
-  </data>
-  <data name="unitTypeComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 69</value>
-  </data>
-  <data name="unitTypeComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="unitTypeComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;unitTypeComboBox.Name" xml:space="preserve">
-    <value>unitTypeComboBox</value>
-  </data>
-  <data name="&gt;&gt;unitTypeComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;unitTypeComboBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;unitTypeComboBox.ZOrder" xml:space="preserve">
-    <value>25</value>
-  </data>
-  <data name="divisionNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 44</value>
-  </data>
-  <data name="divisionNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 19</value>
-  </data>
-  <data name="divisionNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;divisionNameTextBox.Name" xml:space="preserve">
-    <value>divisionNameTextBox</value>
-  </data>
-  <data name="&gt;&gt;divisionNameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;divisionNameTextBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;divisionNameTextBox.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
-  <data name="divisionNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="divisionNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="divisionNameLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 47</value>
-  </data>
-  <data name="divisionNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
-  </data>
-  <data name="divisionNameLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="divisionNameLabel.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="&gt;&gt;divisionNameLabel.Name" xml:space="preserve">
-    <value>divisionNameLabel</value>
-  </data>
-  <data name="&gt;&gt;divisionNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;divisionNameLabel.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;divisionNameLabel.ZOrder" xml:space="preserve">
-    <value>27</value>
-  </data>
-  <data name="divisionIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 19</value>
-  </data>
-  <data name="divisionIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="divisionIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="divisionIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;divisionIdTextBox.Name" xml:space="preserve">
-    <value>divisionIdTextBox</value>
-  </data>
-  <data name="&gt;&gt;divisionIdTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;divisionIdTextBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;divisionIdTextBox.ZOrder" xml:space="preserve">
-    <value>28</value>
-  </data>
-  <data name="divisionTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 19</value>
-  </data>
-  <data name="divisionTypeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="divisionTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="divisionTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;divisionTypeTextBox.Name" xml:space="preserve">
-    <value>divisionTypeTextBox</value>
-  </data>
-  <data name="&gt;&gt;divisionTypeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;divisionTypeTextBox.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;divisionTypeTextBox.ZOrder" xml:space="preserve">
-    <value>29</value>
-  </data>
-  <data name="divisionIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="divisionIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="lockedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 16</value>
+  </data>
+  <data name="oobUpButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="divisionIdLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 22</value>
   </data>
-  <data name="divisionIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
+  <data name="&gt;&gt;leaderComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="divisionIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;maxStrengthTextBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
   </data>
-  <data name="divisionIdLabel.Text" xml:space="preserve">
-    <value>ID</value>
+  <data name="baseTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
   </data>
-  <data name="&gt;&gt;divisionIdLabel.Name" xml:space="preserve">
-    <value>divisionIdLabel</value>
+  <data name="&gt;&gt;organisationLabel.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
   </data>
-  <data name="&gt;&gt;divisionIdLabel.Type" xml:space="preserve">
+  <data name="unitMoraleTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="oobDownButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>184, 492</value>
+  </data>
+  <data name="strengthLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;unitModelComboBox.Name" xml:space="preserve">
+    <value>unitModelComboBox</value>
+  </data>
+  <data name="&gt;&gt;experienceLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;dormantCheckBox.Name" xml:space="preserve">
+    <value>dormantCheckBox</value>
+  </data>
+  <data name="&gt;&gt;digInLabel.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="&gt;&gt;divisionNameTextBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;unitNameLabel.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="unitGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 14</value>
+  </data>
+  <data name="&gt;&gt;divisionMoraleLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;divisionIdLabel.Parent" xml:space="preserve">
-    <value>divisionGroupBox</value>
+  <data name="divisionNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;divisionIdLabel.ZOrder" xml:space="preserve">
-    <value>30</value>
+  <data name="brigadeTypeComboBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
   </data>
-  <data name="divisionGroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;brigadeModelComboBox1.Name" xml:space="preserve">
+    <value>brigadeModelComboBox1</value>
   </data>
-  <data name="divisionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>360, 170</value>
+  <data name="&gt;&gt;divisionTypeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="divisionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>352, 329</value>
-  </data>
-  <data name="divisionGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
-  </data>
-  <data name="divisionGroupBox.Text" xml:space="preserve">
-    <value>Division</value>
-  </data>
-  <data name="&gt;&gt;divisionGroupBox.Name" xml:space="preserve">
-    <value>divisionGroupBox</value>
-  </data>
-  <data name="&gt;&gt;divisionGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="unitTypeComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
   </data>
   <data name="&gt;&gt;divisionGroupBox.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;divisionGroupBox.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;divisionIdTextBox.Name" xml:space="preserve">
+    <value>divisionIdTextBox</value>
   </data>
-  <data name="leaderComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 121</value>
+  <data name="divisionIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 19</value>
   </data>
-  <data name="leaderComboBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="experienceTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;experienceTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="brigadeModelComboBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 20</value>
-  </data>
-  <data name="leaderComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;leaderComboBox.Name" xml:space="preserve">
-    <value>leaderComboBox</value>
-  </data>
-  <data name="&gt;&gt;leaderComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leaderComboBox.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;leaderComboBox.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="baseComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 95</value>
-  </data>
-  <data name="baseComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="baseComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
   </data>
   <data name="&gt;&gt;baseComboBox.Name" xml:space="preserve">
     <value>baseComboBox</value>
   </data>
-  <data name="&gt;&gt;baseComboBox.Type" xml:space="preserve">
+  <data name="unitTypeLabel.Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;baseComboBox.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
+  <data name="&gt;&gt;oobAddUnitButton.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;baseComboBox.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="oobUpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
-  <data name="locationComboBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 69</value>
+  <data name="&gt;&gt;locationLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="locationComboBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="locationComboBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;locationComboBox.Name" xml:space="preserve">
-    <value>locationComboBox</value>
-  </data>
-  <data name="&gt;&gt;locationComboBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;locationComboBox.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;locationComboBox.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="digInTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>347, 44</value>
+  <data name="leaderLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
   </data>
   <data name="digInTextBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
   </data>
-  <data name="digInTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+  <data name="&gt;&gt;divisionNameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="digInTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+  <data name="&gt;&gt;brigadesLabel.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;divisionNameLabel.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="&gt;&gt;experienceLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;unitTypeLabel.Name" xml:space="preserve">
+    <value>unitTypeLabel</value>
+  </data>
+  <data name="countryListBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="maxStrengthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Right</value>
   </data>
-  <data name="&gt;&gt;digInTextBox.Name" xml:space="preserve">
-    <value>digInTextBox</value>
+  <data name="&gt;&gt;strengthLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
-  <data name="&gt;&gt;digInTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="brigadeModelComboBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="lockedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 227</value>
+  </data>
+  <data name="&gt;&gt;unitIdTextBox.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="&gt;&gt;locationComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox4.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="oobTopButton.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;oobRemoveButton.Name" xml:space="preserve">
+    <value>oobRemoveButton</value>
+  </data>
+  <data name="unitTypeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="divisionMoraleTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="oobAddDivisionButton.Text" xml:space="preserve">
+    <value>Add Division</value>
+  </data>
+  <data name="brigadeTypeComboBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="oobRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox5.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;divisionNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="unitIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="organisationLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="organisationTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Lucida Console, 9pt</value>
+  </data>
+  <data name="&gt;&gt;baseComboBox.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="&gt;&gt;oobAddDivisionButton.Name" xml:space="preserve">
+    <value>oobAddDivisionButton</value>
+  </data>
+  <data name="&gt;&gt;baseComboBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;leaderLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="unitTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="brigadesLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;experienceLabel.Name" xml:space="preserve">
+    <value>experienceLabel</value>
   </data>
   <data name="&gt;&gt;digInTextBox.Parent" xml:space="preserve">
     <value>unitGroupBox</value>
   </data>
-  <data name="&gt;&gt;digInTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="digInLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="digInLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="oobTopButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="digInLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>300, 47</value>
   </data>
-  <data name="digInLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 12</value>
-  </data>
-  <data name="digInLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="digInLabel.Text" xml:space="preserve">
-    <value>Dig In</value>
-  </data>
-  <data name="&gt;&gt;digInLabel.Name" xml:space="preserve">
-    <value>digInLabel</value>
-  </data>
-  <data name="&gt;&gt;digInLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;digInLabel.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;digInLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="leaderTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 121</value>
-  </data>
-  <data name="leaderTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="leaderTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="leaderTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;leaderTextBox.Name" xml:space="preserve">
-    <value>leaderTextBox</value>
-  </data>
-  <data name="&gt;&gt;leaderTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leaderTextBox.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;leaderTextBox.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="leaderLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="leaderLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="leaderLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 124</value>
-  </data>
-  <data name="leaderLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 12</value>
-  </data>
-  <data name="leaderLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="leaderLabel.Text" xml:space="preserve">
-    <value>Leader</value>
-  </data>
-  <data name="&gt;&gt;leaderLabel.Name" xml:space="preserve">
-    <value>leaderLabel</value>
-  </data>
-  <data name="&gt;&gt;leaderLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;leaderLabel.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;leaderLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="unitMoraleTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>347, 19</value>
-  </data>
-  <data name="unitMoraleTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="unitMoraleTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="unitMoraleTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;unitMoraleTextBox.Name" xml:space="preserve">
-    <value>unitMoraleTextBox</value>
-  </data>
-  <data name="&gt;&gt;unitMoraleTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;unitMoraleTextBox.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;unitMoraleTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="unitMoraleLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="unitMoraleLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="unitMoraleLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, 22</value>
-  </data>
-  <data name="unitMoraleLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 12</value>
-  </data>
-  <data name="unitMoraleLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="unitMoraleLabel.Text" xml:space="preserve">
-    <value>Morale</value>
-  </data>
-  <data name="&gt;&gt;unitMoraleLabel.Name" xml:space="preserve">
-    <value>unitMoraleLabel</value>
-  </data>
-  <data name="&gt;&gt;unitMoraleLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;unitMoraleLabel.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;unitMoraleLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="baseTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 95</value>
-  </data>
-  <data name="baseTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="baseTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="baseTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;baseTextBox.Name" xml:space="preserve">
-    <value>baseTextBox</value>
-  </data>
-  <data name="&gt;&gt;baseTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;baseTextBox.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;baseTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="baseLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="baseLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="baseLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 98</value>
-  </data>
-  <data name="baseLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>31, 12</value>
-  </data>
-  <data name="baseLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="baseLabel.Text" xml:space="preserve">
-    <value>Base</value>
-  </data>
-  <data name="&gt;&gt;baseLabel.Name" xml:space="preserve">
-    <value>baseLabel</value>
-  </data>
-  <data name="&gt;&gt;baseLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;baseLabel.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;baseLabel.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="locationTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 69</value>
-  </data>
-  <data name="locationTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="locationTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="locationTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;locationTextBox.Name" xml:space="preserve">
-    <value>locationTextBox</value>
-  </data>
-  <data name="&gt;&gt;locationTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;locationTextBox.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;locationTextBox.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="locationLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="locationLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="locationLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 72</value>
-  </data>
-  <data name="locationLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 12</value>
-  </data>
-  <data name="locationLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="locationLabel.Text" xml:space="preserve">
-    <value>Location</value>
-  </data>
-  <data name="&gt;&gt;locationLabel.Name" xml:space="preserve">
-    <value>locationLabel</value>
-  </data>
-  <data name="&gt;&gt;locationLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;locationLabel.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;locationLabel.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="unitNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 44</value>
-  </data>
-  <data name="unitNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 19</value>
-  </data>
-  <data name="unitNameTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;unitNameTextBox.Name" xml:space="preserve">
-    <value>unitNameTextBox</value>
-  </data>
-  <data name="&gt;&gt;unitNameTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;unitNameTextBox.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;unitNameTextBox.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="unitNameLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="unitNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="unitNameLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 47</value>
-  </data>
-  <data name="unitNameLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>34, 12</value>
   </data>
   <data name="unitNameLabel.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="unitNameLabel.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="&gt;&gt;unitNameLabel.Name" xml:space="preserve">
-    <value>unitNameLabel</value>
-  </data>
-  <data name="&gt;&gt;unitNameLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;unitNameLabel.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;unitNameLabel.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="unitIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 19</value>
-  </data>
-  <data name="unitIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="unitIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="unitIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;unitIdTextBox.Name" xml:space="preserve">
-    <value>unitIdTextBox</value>
-  </data>
-  <data name="&gt;&gt;unitIdTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;unitIdTextBox.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;unitIdTextBox.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="unitTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 19</value>
-  </data>
-  <data name="unitTypeTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="unitTypeTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="unitTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;unitTypeTextBox.Name" xml:space="preserve">
-    <value>unitTypeTextBox</value>
-  </data>
-  <data name="&gt;&gt;unitTypeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;unitTypeTextBox.Parent" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;unitTypeTextBox.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="unitIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="unitIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="unitIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 22</value>
-  </data>
-  <data name="unitIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="unitIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="unitIdLabel.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;unitIdLabel.Name" xml:space="preserve">
-    <value>unitIdLabel</value>
+  <data name="&gt;&gt;baseTextBox.Name" xml:space="preserve">
+    <value>baseTextBox</value>
   </data>
   <data name="&gt;&gt;unitIdLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;unitIdLabel.Parent" xml:space="preserve">
+  <data name="lockedCheckBox.Text" xml:space="preserve">
+    <value>Locked</value>
+  </data>
+  <data name="&gt;&gt;maxOrganisationTextBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oobAddDivisionButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;unitMoraleTextBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;unitMoraleTextBox.Parent" xml:space="preserve">
     <value>unitGroupBox</value>
   </data>
-  <data name="&gt;&gt;unitIdLabel.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="unitGroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="unitGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>360, 14</value>
-  </data>
-  <data name="unitGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>415, 150</value>
-  </data>
-  <data name="unitGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>22</value>
-  </data>
-  <data name="unitGroupBox.Text" xml:space="preserve">
-    <value>Unit</value>
-  </data>
-  <data name="&gt;&gt;unitGroupBox.Name" xml:space="preserve">
-    <value>unitGroupBox</value>
-  </data>
-  <data name="&gt;&gt;unitGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;unitGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;unitGroupBox.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="unitTreeView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="unitTreeView.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="unitTreeView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>140, 14</value>
-  </data>
-  <data name="unitTreeView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 472</value>
-  </data>
-  <data name="unitTreeView.TabIndex" type="System.Int32, mscorlib">
+  <data name="brigadeTypeComboBox3.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
-  <data name="&gt;&gt;unitTreeView.Name" xml:space="preserve">
-    <value>unitTreeView</value>
+  <data name="&gt;&gt;oobAddDivisionButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;unitTreeView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="oobCloneButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>184, 521</value>
   </data>
-  <data name="&gt;&gt;unitTreeView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;unitTreeView.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="countryListBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="countryListBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Lucida Console, 9pt</value>
-  </data>
-  <data name="countryListBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 14</value>
-  </data>
-  <data name="countryListBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 472</value>
-  </data>
-  <data name="countryListBox.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;countryListBox.Name" xml:space="preserve">
-    <value>countryListBox</value>
-  </data>
-  <data name="&gt;&gt;countryListBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;countryListBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;countryListBox.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="dormantCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
   </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 559</value>
+  <data name="&gt;&gt;unitTypeComboBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ScenarioEditorOobPage</value>
+  <data name="leaderLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 12</value>
+  </data>
+  <data name="divisionTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;experienceLabel.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="oobBottomButton.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="unitNameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox3.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;unitTypeLabel.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="experienceLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 12</value>
+  </data>
+  <data name="dormantCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 252</value>
+  </data>
+  <data name="oobTopButton.Text" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="unitMoraleLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 22</value>
+  </data>
+  <data name="&gt;&gt;oobUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;divisionNameTextBox.Name" xml:space="preserve">
+    <value>divisionNameTextBox</value>
+  </data>
+  <data name="&gt;&gt;digInTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;lockedCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="divisionIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;divisionMoraleTextBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="brigadeModelComboBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="brigadeTypeComboBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="&gt;&gt;divisionIdLabel.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="unitModelComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 69</value>
+  </data>
+  <data name="leaderComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="locationTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;leaderLabel.Name" xml:space="preserve">
+    <value>leaderLabel</value>
+  </data>
+  <data name="oobDownButton.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="unitTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 19</value>
+  </data>
+  <data name="unitMoraleLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobBottomButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;countryListBox.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="dormantCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="unitMoraleLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;organisationTextBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox3.Name" xml:space="preserve">
+    <value>brigadeModelComboBox3</value>
+  </data>
+  <data name="divisionGroupBox.Text" xml:space="preserve">
+    <value>Division</value>
+  </data>
+  <data name="&gt;&gt;oobCloneButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;divisionMoraleLabel.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;oobDownButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;oobBottomButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="oobRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox1.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="unitTypeComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 69</value>
+  </data>
+  <data name="unitIdLabel.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="&gt;&gt;strengthLabel.Name" xml:space="preserve">
+    <value>strengthLabel</value>
+  </data>
+  <data name="divisionNameTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;leaderComboBox.Name" xml:space="preserve">
+    <value>leaderComboBox</value>
+  </data>
+  <data name="&gt;&gt;organisationTextBox.Name" xml:space="preserve">
+    <value>organisationTextBox</value>
+  </data>
+  <data name="experienceTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 300</value>
+  </data>
+  <data name="experienceLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;oobAddUnitButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;divisionGroupBox.Name" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;divisionMoraleLabel.Name" xml:space="preserve">
+    <value>divisionMoraleLabel</value>
+  </data>
+  <data name="&gt;&gt;lockedCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;oobUpButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="countryListBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;unitNameTextBox.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="unitGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;dormantCheckBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox3.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;oobRemoveButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="lockedCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="organisationLabel.Text" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="divisionIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="brigadeModelComboBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 173</value>
+  </data>
+  <data name="locationLabel.Text" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="brigadeTypeComboBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 199</value>
+  </data>
+  <data name="&gt;&gt;unitModelComboBox.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="unitIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 19</value>
+  </data>
+  <data name="oobAddDivisionButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="digInTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="oobTopButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;oobDownButton.Name" xml:space="preserve">
+    <value>oobDownButton</value>
+  </data>
+  <data name="maxStrengthTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 225</value>
+  </data>
+  <data name="oobTopButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="maxOrganisationTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 250</value>
+  </data>
+  <data name="unitIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 22</value>
+  </data>
+  <data name="leaderLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="leaderTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="oobAddUnitButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="brigadeTypeComboBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 147</value>
+  </data>
+  <data name="&gt;&gt;unitNameTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox4.Name" xml:space="preserve">
+    <value>brigadeTypeComboBox4</value>
+  </data>
+  <data name="&gt;&gt;divisionIdTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;digInLabel.Name" xml:space="preserve">
+    <value>digInLabel</value>
+  </data>
+  <data name="divisionNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 19</value>
+  </data>
+  <data name="baseTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="oobDownButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="divisionMoraleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 12</value>
+  </data>
+  <data name="&gt;&gt;divisionNameLabel.Name" xml:space="preserve">
+    <value>divisionNameLabel</value>
+  </data>
+  <data name="&gt;&gt;baseTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;organisationLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="oobCloneButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 492</value>
+  </data>
+  <data name="locationComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 69</value>
+  </data>
+  <data name="&gt;&gt;unitIdLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;lockedCheckBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="divisionGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>352, 329</value>
+  </data>
+  <data name="oobAddUnitButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="divisionGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="divisionTypeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="leaderLabel.Text" xml:space="preserve">
+    <value>Leader</value>
+  </data>
+  <data name="divisionTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 19</value>
+  </data>
+  <data name="&gt;&gt;unitNameLabel.Name" xml:space="preserve">
+    <value>unitNameLabel</value>
+  </data>
+  <data name="leaderTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 121</value>
+  </data>
+  <data name="divisionNameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="&gt;&gt;divisionIdLabel.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;oobBottomButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="oobCloneButton.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="brigadeTypeComboBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="lockedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;locationTextBox.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox4.Name" xml:space="preserve">
+    <value>brigadeModelComboBox4</value>
+  </data>
+  <data name="maxStrengthTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="baseTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 95</value>
+  </data>
+  <data name="strengthTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;leaderLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="oobBottomButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="brigadeModelComboBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="oobAddDivisionButton.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="unitTypeLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="dormantCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="brigadesLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;unitGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="brigadeModelComboBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;oobAddUnitButton.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;oobUpButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;locationComboBox.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="leaderComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;oobRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;organisationLabel.Name" xml:space="preserve">
+    <value>organisationLabel</value>
+  </data>
+  <data name="&gt;&gt;unitTypeComboBox.Name" xml:space="preserve">
+    <value>unitTypeComboBox</value>
+  </data>
+  <data name="oobRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="maxOrganisationTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;locationComboBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="locationComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;maxOrganisationTextBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;oobCloneButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;divisionIdTextBox.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;maxOrganisationTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="unitIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;dormantCheckBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;locationLabel.Name" xml:space="preserve">
+    <value>locationLabel</value>
+  </data>
+  <data name="&gt;&gt;unitTypeTextBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;leaderTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;divisionIdLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="brigadeModelComboBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 121</value>
+  </data>
+  <data name="&gt;&gt;unitNameLabel.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="&gt;&gt;oobUpButton.Name" xml:space="preserve">
+    <value>oobUpButton</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox2.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;oobCloneButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="oobAddUnitButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;unitGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;brigadesLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="oobBottomButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;organisationTextBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="oobCloneButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="countryListBox.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="unitMoraleLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;experienceTextBox.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;unitIdTextBox.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;brigadesLabel.Name" xml:space="preserve">
+    <value>brigadesLabel</value>
+  </data>
+  <data name="brigadeModelComboBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="oobAddUnitButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;strengthTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="divisionIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="locationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 12</value>
+  </data>
+  <data name="dormantCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 16</value>
+  </data>
+  <data name="brigadeModelComboBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="divisionNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="divisionMoraleLabel.Text" xml:space="preserve">
+    <value>Morale</value>
+  </data>
+  <data name="&gt;&gt;baseLabel.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;unitTreeView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="digInTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="locationComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="&gt;&gt;leaderTextBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="divisionNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="organisationLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 253</value>
+  </data>
+  <data name="experienceLabel.Text" xml:space="preserve">
+    <value>Experience</value>
+  </data>
+  <data name="&gt;&gt;unitTypeComboBox.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="oobDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;unitTypeLabel.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="strengthTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 225</value>
+  </data>
+  <data name="&gt;&gt;strengthTextBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="unitIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="experienceLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 303</value>
+  </data>
+  <data name="&gt;&gt;leaderLabel.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="oobAddUnitButton.Text" xml:space="preserve">
+    <value>Add Unit</value>
+  </data>
+  <data name="&gt;&gt;unitModelComboBox.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="divisionMoraleLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="unitTreeView.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="oobAddDivisionButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;oobAddDivisionButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;baseLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;locationLabel.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;unitTypeComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;organisationLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="brigadeTypeComboBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="unitMoraleTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>347, 19</value>
+  </data>
+  <data name="oobAddUnitButton.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="locationTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox4.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="divisionGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 170</value>
+  </data>
+  <data name="&gt;&gt;unitTypeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;maxStrengthTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox5.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;unitTreeView.Name" xml:space="preserve">
+    <value>unitTreeView</value>
+  </data>
+  <data name="&gt;&gt;baseComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="unitTypeTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox2.Name" xml:space="preserve">
+    <value>brigadeModelComboBox2</value>
+  </data>
+  <data name="unitModelComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;lockedCheckBox.Name" xml:space="preserve">
+    <value>lockedCheckBox</value>
+  </data>
+  <data name="&gt;&gt;oobBottomButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox3.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;digInTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox5.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="oobBottomButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="oobTopButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;baseLabel.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="unitMoraleLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 12</value>
+  </data>
+  <data name="&gt;&gt;unitTreeView.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;unitNameTextBox.Name" xml:space="preserve">
+    <value>unitNameTextBox</value>
+  </data>
+  <data name="unitMoraleTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="baseLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;divisionMoraleLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox3.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;oobRemoveButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="unitNameLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;divisionMoraleTextBox.Name" xml:space="preserve">
+    <value>divisionMoraleTextBox</value>
+  </data>
+  <data name="unitIdTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;oobTopButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;digInLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;unitMoraleLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;leaderComboBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="brigadeTypeComboBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 121</value>
+  </data>
+  <data name="locationTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 69</value>
+  </data>
+  <data name="baseLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="unitMoraleTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;strengthTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;divisionGroupBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="divisionTypeTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="unitNameLabel.Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="leaderTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="unitTypeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 12</value>
+  </data>
+  <data name="leaderComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 121</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="dormantCheckBox.Text" xml:space="preserve">
+    <value>Dormant</value>
+  </data>
+  <data name="&gt;&gt;countryListBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;unitMoraleTextBox.Name" xml:space="preserve">
+    <value>unitMoraleTextBox</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ScenarioEditorOobPage</value>
+  </data>
+  <data name="divisionIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="brigadeTypeComboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 95</value>
+  </data>
+  <data name="brigadeModelComboBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="unitNameLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 12</value>
+  </data>
+  <data name="brigadeTypeComboBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;oobDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;divisionGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="unitNameTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 19</value>
+  </data>
+  <data name="maxOrganisationTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="unitIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;divisionIdLabel.Name" xml:space="preserve">
+    <value>divisionIdLabel</value>
+  </data>
+  <data name="countryListBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 472</value>
+  </data>
+  <data name="oobUpButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;leaderTextBox.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="&gt;&gt;strengthLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="unitTreeView.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;unitGroupBox.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="baseComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 95</value>
+  </data>
+  <data name="organisationLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 12</value>
+  </data>
+  <data name="leaderLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 124</value>
+  </data>
+  <data name="digInTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>347, 44</value>
+  </data>
+  <data name="&gt;&gt;maxStrengthTextBox.Name" xml:space="preserve">
+    <value>maxStrengthTextBox</value>
+  </data>
+  <data name="leaderTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="experienceLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="brigadeModelComboBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="divisionNameLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 47</value>
+  </data>
+  <data name="divisionIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="locationTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox5.Name" xml:space="preserve">
+    <value>brigadeTypeComboBox5</value>
+  </data>
+  <data name="leaderLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;oobAddUnitButton.Name" xml:space="preserve">
+    <value>oobAddUnitButton</value>
+  </data>
+  <data name="strengthLabel.Text" xml:space="preserve">
+    <value>Strength</value>
+  </data>
+  <data name="digInLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobDownButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="unitTypeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="unitGroupBox.Text" xml:space="preserve">
+    <value>Unit</value>
+  </data>
+  <data name="organisationTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 250</value>
+  </data>
+  <data name="digInLabel.Text" xml:space="preserve">
+    <value>Dig In</value>
+  </data>
+  <data name="maxOrganisationTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;oobDownButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="strengthLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="brigadeModelComboBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="&gt;&gt;leaderComboBox.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="divisionMoraleLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;oobTopButton.Name" xml:space="preserve">
+    <value>oobTopButton</value>
+  </data>
+  <data name="&gt;&gt;unitNameTextBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;strengthLabel.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="divisionMoraleTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 275</value>
+  </data>
+  <data name="oobBottomButton.Text" xml:space="preserve">
+    <value>Bottom</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="oobTopButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 492</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox1.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="brigadesLabel.Text" xml:space="preserve">
+    <value>Brigades</value>
+  </data>
+  <data name="&gt;&gt;unitTypeTextBox.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox2.Name" xml:space="preserve">
+    <value>brigadeTypeComboBox2</value>
+  </data>
+  <data name="&gt;&gt;baseTextBox.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="divisionMoraleLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobCloneButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="oobDownButton.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;baseLabel.Name" xml:space="preserve">
+    <value>baseLabel</value>
+  </data>
+  <data name="unitIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;experienceTextBox.Name" xml:space="preserve">
+    <value>experienceTextBox</value>
+  </data>
+  <data name="unitMoraleLabel.Text" xml:space="preserve">
+    <value>Morale</value>
+  </data>
+  <data name="organisationLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="unitModelComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="oobUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="oobRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="unitTreeView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="oobAddDivisionButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 521</value>
+  </data>
+  <data name="&gt;&gt;unitMoraleLabel.Name" xml:space="preserve">
+    <value>unitMoraleLabel</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox1.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="oobCloneButton.Text" xml:space="preserve">
+    <value>Clone</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox2.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="unitTypeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="oobRemoveButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="strengthTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;locationTextBox.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="baseComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="divisionGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="lockedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;divisionTypeTextBox.Name" xml:space="preserve">
+    <value>divisionTypeTextBox</value>
+  </data>
+  <data name="divisionMoraleTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="unitNameTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 44</value>
+  </data>
+  <data name="organisationTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;locationLabel.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="unitNameLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;countryListBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;unitIdLabel.Name" xml:space="preserve">
+    <value>unitIdLabel</value>
+  </data>
+  <data name="&gt;&gt;baseTextBox.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox5.Name" xml:space="preserve">
+    <value>brigadeModelComboBox5</value>
+  </data>
+  <data name="oobRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="organisationTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;unitMoraleTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="digInLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 12</value>
+  </data>
+  <data name="&gt;&gt;dormantCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="divisionMoraleLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 278</value>
+  </data>
+  <data name="strengthLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="brigadeTypeComboBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;unitGroupBox.Name" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="brigadeTypeComboBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="unitTreeView.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 472</value>
+  </data>
+  <data name="oobRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>270, 521</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox4.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="oobCloneButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox3.Name" xml:space="preserve">
+    <value>brigadeTypeComboBox3</value>
+  </data>
+  <data name="unitGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>415, 150</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox2.Parent" xml:space="preserve">
+    <value>divisionGroupBox</value>
+  </data>
+  <data name="&gt;&gt;maxOrganisationTextBox.Name" xml:space="preserve">
+    <value>maxOrganisationTextBox</value>
+  </data>
+  <data name="&gt;&gt;unitTreeView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TreeView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="divisionIdTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;digInLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="locationLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="brigadeModelComboBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 147</value>
+  </data>
+  <data name="baseComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="baseLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;locationComboBox.Name" xml:space="preserve">
+    <value>locationComboBox</value>
+  </data>
+  <data name="digInLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="oobAddDivisionButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="oobUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;digInTextBox.Name" xml:space="preserve">
+    <value>digInTextBox</value>
+  </data>
+  <data name="strengthLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 228</value>
+  </data>
+  <data name="&gt;&gt;unitTypeTextBox.Name" xml:space="preserve">
+    <value>unitTypeTextBox</value>
+  </data>
+  <data name="digInLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="organisationLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="oobAddDivisionButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 23</value>
+  </data>
+  <data name="&gt;&gt;divisionNameTextBox.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;unitNameLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox1.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="oobBottomButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>270, 492</value>
+  </data>
+  <data name="unitTypeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 72</value>
+  </data>
+  <data name="&gt;&gt;unitMoraleLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="locationLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;divisionMoraleTextBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="maxStrengthTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="unitTreeView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>140, 14</value>
+  </data>
+  <data name="brigadesLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 98</value>
+  </data>
+  <data name="experienceTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>28</value>
+  </data>
+  <data name="brigadesLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;organisationTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;brigadeModelComboBox4.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;oobCloneButton.Name" xml:space="preserve">
+    <value>oobCloneButton</value>
+  </data>
+  <data name="&gt;&gt;brigadeTypeComboBox1.Name" xml:space="preserve">
+    <value>brigadeTypeComboBox1</value>
+  </data>
+  <data name="&gt;&gt;unitIdLabel.Parent" xml:space="preserve">
+    <value>unitGroupBox</value>
+  </data>
+  <data name="baseLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 12</value>
+  </data>
+  <data name="&gt;&gt;locationTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="baseLabel.Text" xml:space="preserve">
+    <value>Base</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

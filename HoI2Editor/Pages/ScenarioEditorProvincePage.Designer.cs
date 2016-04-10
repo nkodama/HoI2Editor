@@ -333,12 +333,12 @@
             // 
             // mapFilterGroupBox
             // 
+            resources.ApplyResources(this.mapFilterGroupBox, "mapFilterGroupBox");
             this.mapFilterGroupBox.Controls.Add(this.mapFilterClaimedRadioButton);
             this.mapFilterGroupBox.Controls.Add(this.mapFilterControlledRadioButton);
             this.mapFilterGroupBox.Controls.Add(this.mapFilterOwnedRadioButton);
             this.mapFilterGroupBox.Controls.Add(this.mapFilterCoreRadioButton);
             this.mapFilterGroupBox.Controls.Add(this.mapFilterNoneRadioButton);
-            resources.ApplyResources(this.mapFilterGroupBox, "mapFilterGroupBox");
             this.mapFilterGroupBox.Name = "mapFilterGroupBox";
             this.mapFilterGroupBox.TabStop = false;
             // 
@@ -883,8 +883,8 @@
             // 
             // provinceMapPanel
             // 
-            this.provinceMapPanel.AllowDrop = true;
             resources.ApplyResources(this.provinceMapPanel, "provinceMapPanel");
+            this.provinceMapPanel.AllowDrop = true;
             this.provinceMapPanel.Controls.Add(this.provinceMapPictureBox);
             this.provinceMapPanel.Name = "provinceMapPanel";
             // 

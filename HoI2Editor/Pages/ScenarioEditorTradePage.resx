@@ -117,1243 +117,1135 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="tradeStartDateLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tradeStartDateLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tradeStartDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tradeStartDateLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 19</value>
-  </data>
-  <data name="tradeStartDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 12</value>
-  </data>
-  <data name="tradeStartDateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tradeStartDateLabel.Text" xml:space="preserve">
-    <value>Start Date</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDateLabel.Name" xml:space="preserve">
-    <value>tradeStartDateLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDateLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tradeOilTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 128</value>
   </data>
   <data name="&gt;&gt;tradeStartDateLabel.Parent" xml:space="preserve">
     <value>tradeInfoGroupBox</value>
   </data>
-  <data name="&gt;&gt;tradeStartDateLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="tradeEndDateLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="tradeEndDateLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeEndDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeEndDateLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 44</value>
-  </data>
-  <data name="tradeEndDateLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 12</value>
-  </data>
-  <data name="tradeEndDateLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="tradeEndDateLabel.Text" xml:space="preserve">
-    <value>End Date</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDateLabel.Name" xml:space="preserve">
-    <value>tradeEndDateLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDateLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tradeMoneyTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
   </data>
   <data name="&gt;&gt;tradeEndDateLabel.Parent" xml:space="preserve">
     <value>tradeInfoGroupBox</value>
   </data>
-  <data name="&gt;&gt;tradeEndDateLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <metadata name="tradeIdLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>False</value>
-  </metadata>
-  <data name="tradeIdLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeIdLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 69</value>
-  </data>
-  <data name="tradeIdLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>16, 12</value>
-  </data>
-  <data name="tradeIdLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="tradeIdLabel.Text" xml:space="preserve">
-    <value>ID</value>
-  </data>
-  <data name="&gt;&gt;tradeIdLabel.Name" xml:space="preserve">
-    <value>tradeIdLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeIdLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeIdLabel.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeIdLabel.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="tradeDealsGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="tradeCountryComboBox1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Lucida Console, 9pt</value>
-  </data>
-  <data name="tradeCountryComboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 16</value>
-  </data>
-  <data name="tradeCountryComboBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="tradeCountryComboBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tradeCountryComboBox1.Name" xml:space="preserve">
-    <value>tradeCountryComboBox1</value>
-  </data>
-  <data name="&gt;&gt;tradeCountryComboBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeCountryComboBox1.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeCountryComboBox1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tradeRareMaterialsTextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 103</value>
-  </data>
-  <data name="tradeRareMaterialsTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeRareMaterialsTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="tradeRareMaterialsTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsTextBox1.Name" xml:space="preserve">
-    <value>tradeRareMaterialsTextBox1</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsTextBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsTextBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tradeRareMaterialsTextBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 103</value>
-  </data>
-  <data name="tradeRareMaterialsTextBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeRareMaterialsTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="tradeRareMaterialsTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsTextBox2.Name" xml:space="preserve">
-    <value>tradeRareMaterialsTextBox2</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsTextBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsTextBox2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tradeRareMaterialsLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeRareMaterialsLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeRareMaterialsLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 106</value>
-  </data>
-  <data name="tradeRareMaterialsLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 12</value>
-  </data>
-  <data name="tradeRareMaterialsLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="tradeRareMaterialsLabel.Text" xml:space="preserve">
-    <value>Rare Materials</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsLabel.Name" xml:space="preserve">
-    <value>tradeRareMaterialsLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsLabel.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeRareMaterialsLabel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tradeOilLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeOilLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeOilLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 131</value>
-  </data>
-  <data name="tradeOilLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>19, 12</value>
-  </data>
-  <data name="tradeOilLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="tradeOilLabel.Text" xml:space="preserve">
-    <value>Oil</value>
-  </data>
-  <data name="&gt;&gt;tradeOilLabel.Name" xml:space="preserve">
-    <value>tradeOilLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeOilLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeOilLabel.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeOilLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tradeMetalTextBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 78</value>
-  </data>
-  <data name="tradeMetalTextBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeMetalTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="tradeMetalTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalTextBox2.Name" xml:space="preserve">
-    <value>tradeMetalTextBox2</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalTextBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalTextBox2.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="tradeOilTextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 128</value>
-  </data>
-  <data name="tradeOilTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeOilTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="tradeOilTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeOilTextBox1.Name" xml:space="preserve">
-    <value>tradeOilTextBox1</value>
-  </data>
-  <data name="&gt;&gt;tradeOilTextBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeOilTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeOilTextBox1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="tradeMetalTextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 78</value>
-  </data>
-  <data name="tradeMetalTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeMetalTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="tradeMetalTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalTextBox1.Name" xml:space="preserve">
-    <value>tradeMetalTextBox1</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalTextBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalTextBox1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="tradeSwapButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeSwapButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 14</value>
-  </data>
   <data name="tradeSwapButton.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 23</value>
   </data>
-  <data name="tradeSwapButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tradeSwapButton.Text" xml:space="preserve">
-    <value>&lt;-&gt;</value>
-  </data>
-  <data name="&gt;&gt;tradeSwapButton.Name" xml:space="preserve">
-    <value>tradeSwapButton</value>
-  </data>
-  <data name="&gt;&gt;tradeSwapButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeSwapButton.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeSwapButton.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="tradeOilTextBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 128</value>
-  </data>
-  <data name="tradeOilTextBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeOilTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="tradeOilTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeOilTextBox2.Name" xml:space="preserve">
-    <value>tradeOilTextBox2</value>
-  </data>
-  <data name="&gt;&gt;tradeOilTextBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeOilTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeOilTextBox2.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="tradeMoneyTextBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 178</value>
-  </data>
-  <data name="tradeMoneyTextBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeMoneyTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="tradeMoneyTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyTextBox2.Name" xml:space="preserve">
-    <value>tradeMoneyTextBox2</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyTextBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyTextBox2.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="tradeMetalLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeMetalLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tradeIdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
-  </data>
-  <data name="tradeMetalLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 81</value>
-  </data>
-  <data name="tradeMetalLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>33, 12</value>
-  </data>
-  <data name="tradeMetalLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="tradeMetalLabel.Text" xml:space="preserve">
-    <value>Metal</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalLabel.Name" xml:space="preserve">
-    <value>tradeMetalLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalLabel.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeMetalLabel.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="tradeSuppliesLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeSuppliesLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeSuppliesLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 156</value>
-  </data>
-  <data name="tradeSuppliesLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 12</value>
-  </data>
-  <data name="tradeSuppliesLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="tradeSuppliesLabel.Text" xml:space="preserve">
-    <value>Supplies</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesLabel.Name" xml:space="preserve">
-    <value>tradeSuppliesLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesLabel.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesLabel.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="tradeMoneyTextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 178</value>
-  </data>
-  <data name="tradeMoneyTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeMoneyTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="tradeMoneyTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyTextBox1.Name" xml:space="preserve">
-    <value>tradeMoneyTextBox1</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyTextBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyTextBox1.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="tradeEnergyTextBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 53</value>
-  </data>
-  <data name="tradeEnergyTextBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeEnergyTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="tradeEnergyTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyTextBox2.Name" xml:space="preserve">
-    <value>tradeEnergyTextBox2</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyTextBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyTextBox2.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="tradeCountryComboBox2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Lucida Console, 9pt</value>
-  </data>
-  <data name="tradeCountryComboBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 16</value>
-  </data>
-  <data name="tradeCountryComboBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 20</value>
-  </data>
-  <data name="tradeCountryComboBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;tradeCountryComboBox2.Name" xml:space="preserve">
-    <value>tradeCountryComboBox2</value>
-  </data>
-  <data name="&gt;&gt;tradeCountryComboBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeCountryComboBox2.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeCountryComboBox2.ZOrder" xml:space="preserve">
-    <value>15</value>
   </data>
   <data name="tradeSuppliesTextBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>52, 153</value>
   </data>
-  <data name="tradeSuppliesTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeSuppliesTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="tradeSuppliesTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesTextBox1.Name" xml:space="preserve">
-    <value>tradeSuppliesTextBox1</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesTextBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesTextBox1.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="tradeMoneyLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeMoneyLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeMoneyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 181</value>
-  </data>
-  <data name="tradeMoneyLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>38, 12</value>
-  </data>
-  <data name="tradeMoneyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="tradeMoneyLabel.Text" xml:space="preserve">
-    <value>Money</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyLabel.Name" xml:space="preserve">
-    <value>tradeMoneyLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyLabel.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeMoneyLabel.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="tradeEnergyTextBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>52, 53</value>
-  </data>
-  <data name="tradeEnergyTextBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeEnergyTextBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tradeEnergyTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyTextBox1.Name" xml:space="preserve">
-    <value>tradeEnergyTextBox1</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyTextBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyTextBox1.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyTextBox1.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="tradeEnergyLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeEnergyLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeEnergyLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>146, 56</value>
+  <data name="tradeCancelCheckBox.Text" xml:space="preserve">
+    <value>Allow Cancel</value>
   </data>
   <data name="tradeEnergyLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>40, 12</value>
   </data>
-  <data name="tradeEnergyLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="tradeEnergyLabel.Text" xml:space="preserve">
-    <value>Energy</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyLabel.Name" xml:space="preserve">
-    <value>tradeEnergyLabel</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyLabel.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEnergyLabel.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="tradeSuppliesTextBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>239, 153</value>
-  </data>
-  <data name="tradeSuppliesTextBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeSuppliesTextBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="tradeSuppliesTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesTextBox2.Name" xml:space="preserve">
-    <value>tradeSuppliesTextBox2</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesTextBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesTextBox2.Parent" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeSuppliesTextBox2.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="tradeDealsGroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="tradeDealsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>292, 201</value>
-  </data>
-  <data name="tradeDealsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>346, 213</value>
-  </data>
-  <data name="tradeDealsGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;tradeDealsGroupBox.Name" xml:space="preserve">
-    <value>tradeDealsGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeDealsGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeDealsGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tradeDealsGroupBox.ZOrder" xml:space="preserve">
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="tradeCountryComboBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="tradeInfoGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+  <data name="tradeMetalLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
-  <data name="&gt;&gt;tradeIdTextBox.Name" xml:space="preserve">
-    <value>tradeIdTextBox</value>
+  <data name="tradeEndDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;tradeIdTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeIdTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeIdTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;tradeTypeTextBox.Name" xml:space="preserve">
-    <value>tradeTypeTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeTypeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeTypeTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeTypeTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearTextBox.Name" xml:space="preserve">
-    <value>tradeStartYearTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
+  <data name="&gt;&gt;tradeSuppliesLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tradeStartYearTextBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;tradeStartMonthTextBox.Name" xml:space="preserve">
-    <value>tradeStartMonthTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthTextBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;tradeCancelCheckBox.Name" xml:space="preserve">
-    <value>tradeCancelCheckBox</value>
-  </data>
-  <data name="&gt;&gt;tradeCancelCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeCancelCheckBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeCancelCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayTextBox.Name" xml:space="preserve">
-    <value>tradeEndDayTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayTextBox.Name" xml:space="preserve">
-    <value>tradeStartDayTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthTextBox.Name" xml:space="preserve">
-    <value>tradeEndMonthTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;tradeEndYearTextBox.Name" xml:space="preserve">
-    <value>tradeEndYearTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndYearTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEndYearTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndYearTextBox.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="tradeInfoGroupBox.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="tradeInfoGroupBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 201</value>
-  </data>
-  <data name="tradeInfoGroupBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 120</value>
-  </data>
-  <data name="tradeInfoGroupBox.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;tradeInfoGroupBox.Name" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeInfoGroupBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeInfoGroupBox.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tradeInfoGroupBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tradeIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>138, 66</value>
-  </data>
-  <data name="tradeIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeIdTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="tradeIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeIdTextBox.Name" xml:space="preserve">
-    <value>tradeIdTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeIdTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeIdTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeIdTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tradeTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 66</value>
-  </data>
-  <data name="tradeTypeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tradeRareMaterialsTextBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>50, 19</value>
   </data>
   <data name="tradeTypeTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="tradeTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeTypeTextBox.Name" xml:space="preserve">
-    <value>tradeTypeTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeTypeTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeTypeTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeTypeTextBox.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tradeStartYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 16</value>
-  </data>
-  <data name="tradeStartYearTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeStartYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tradeStartYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearTextBox.Name" xml:space="preserve">
-    <value>tradeStartYearTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartYearTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tradeStartMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>138, 16</value>
-  </data>
-  <data name="tradeStartMonthTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeStartMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tradeStartMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthTextBox.Name" xml:space="preserve">
-    <value>tradeStartMonthTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartMonthTextBox.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="tradeCancelCheckBox.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="tradeCancelCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeCancelCheckBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 93</value>
-  </data>
-  <data name="tradeCancelCheckBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>91, 16</value>
-  </data>
-  <data name="tradeCancelCheckBox.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="tradeCancelCheckBox.Text" xml:space="preserve">
-    <value>Allow Cancel</value>
-  </data>
-  <data name="&gt;&gt;tradeCancelCheckBox.Name" xml:space="preserve">
-    <value>tradeCancelCheckBox</value>
-  </data>
-  <data name="&gt;&gt;tradeCancelCheckBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeCancelCheckBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeCancelCheckBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="tradeEndDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>194, 41</value>
-  </data>
-  <data name="tradeEndDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeEndDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="tradeEndDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayTextBox.Name" xml:space="preserve">
-    <value>tradeEndDayTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndDayTextBox.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="tradeStartDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>194, 16</value>
-  </data>
-  <data name="tradeStartDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeStartDayTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tradeStartDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayTextBox.Name" xml:space="preserve">
-    <value>tradeStartDayTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeStartDayTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="tradeEndMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>138, 41</value>
-  </data>
-  <data name="tradeEndMonthTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="tradeEndMonthTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="tradeEndMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthTextBox.Name" xml:space="preserve">
-    <value>tradeEndMonthTextBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndMonthTextBox.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;tradeMoneyTextBox2.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="tradeEndYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>82, 41</value>
+  <data name="tradeRareMaterialsLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 12</value>
   </data>
-  <data name="tradeEndYearTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
+  <data name="&gt;&gt;tradeOilTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tradeEndYearTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="tradeMetalTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 78</value>
   </data>
-  <data name="tradeEndYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
+  <data name="&gt;&gt;tradeOilTextBox1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeIdTextBox.Name" xml:space="preserve">
+    <value>tradeIdTextBox</value>
+  </data>
+  <data name="tradeEnergyLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyLabel.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="&gt;&gt;tradeEndYearTextBox.Name" xml:space="preserve">
     <value>tradeEndYearTextBox</value>
   </data>
-  <data name="&gt;&gt;tradeEndYearTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeEndYearTextBox.Parent" xml:space="preserve">
-    <value>tradeInfoGroupBox</value>
-  </data>
-  <data name="&gt;&gt;tradeEndYearTextBox.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="tradeListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left</value>
-  </data>
-  <data name="tradeListView.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="tradeListView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 16</value>
-  </data>
   <data name="tradeListView.Size" type="System.Drawing.Size, System.Drawing">
     <value>621, 142</value>
   </data>
-  <data name="tradeListView.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="&gt;&gt;tradeEnergyTextBox1.Name" xml:space="preserve">
+    <value>tradeEnergyTextBox1</value>
   </data>
-  <data name="&gt;&gt;tradeListView.Name" xml:space="preserve">
-    <value>tradeListView</value>
+  <data name="tradeEndYearTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
   </data>
-  <data name="&gt;&gt;tradeListView.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeListView.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tradeListView.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tradeCountryColumnHeader1.Text" xml:space="preserve">
-    <value>Country1</value>
-  </data>
-  <data name="tradeCountryColumnHeader1.Width" type="System.Int32, mscorlib">
-    <value>120</value>
-  </data>
-  <data name="tradeCountryColumnHeader2.Text" xml:space="preserve">
-    <value>Country2</value>
-  </data>
-  <data name="tradeCountryColumnHeader2.Width" type="System.Int32, mscorlib">
-    <value>120</value>
-  </data>
-  <data name="tradeDealsColumnHeader.Text" xml:space="preserve">
-    <value>Deals</value>
-  </data>
-  <data name="tradeDealsColumnHeader.Width" type="System.Int32, mscorlib">
-    <value>350</value>
-  </data>
-  <data name="tradeDownButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="tradeDownButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="tradeDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="tradeStartDateLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="tradeDownButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 164</value>
+  <data name="tradeSuppliesLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="tradeDownButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="&gt;&gt;tradeCountryComboBox2.ZOrder" xml:space="preserve">
+    <value>15</value>
   </data>
-  <data name="tradeDownButton.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+  <data name="&gt;&gt;tradeSwapButton.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
-  <data name="tradeDownButton.Text" xml:space="preserve">
-    <value>Down</value>
-  </data>
-  <data name="&gt;&gt;tradeDownButton.Name" xml:space="preserve">
-    <value>tradeDownButton</value>
-  </data>
-  <data name="&gt;&gt;tradeDownButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeDownButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tradeDownButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tradeNewButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="tradeNewButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="tradeNewButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeNewButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>179, 164</value>
-  </data>
-  <data name="tradeNewButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="tradeNewButton.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="tradeNewButton.Text" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="&gt;&gt;tradeNewButton.Name" xml:space="preserve">
-    <value>tradeNewButton</value>
-  </data>
-  <data name="&gt;&gt;tradeNewButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeNewButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tradeNewButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tradeRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
-  </data>
-  <data name="tradeRemoveButton.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="tradeRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="tradeRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 164</value>
-  </data>
-  <data name="tradeRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="tradeRemoveButton.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="tradeRemoveButton.Text" xml:space="preserve">
-    <value>Remove</value>
-  </data>
-  <data name="&gt;&gt;tradeRemoveButton.Name" xml:space="preserve">
-    <value>tradeRemoveButton</value>
-  </data>
-  <data name="&gt;&gt;tradeRemoveButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tradeRemoveButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tradeRemoveButton.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="tradeUpButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left</value>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox1.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
   </data>
   <data name="tradeUpButton.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="tradeUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;tradeCancelCheckBox.Name" xml:space="preserve">
+    <value>tradeCancelCheckBox</value>
   </data>
-  <data name="tradeUpButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 164</value>
+  <data name="&gt;&gt;tradeSwapButton.Name" xml:space="preserve">
+    <value>tradeSwapButton</value>
   </data>
-  <data name="tradeUpButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="tradeEndDateLabel.Text" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyTextBox2.Name" xml:space="preserve">
+    <value>tradeEnergyTextBox2</value>
+  </data>
+  <data name="tradeMetalTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyTextBox1.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="tradeEndDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 12</value>
+  </data>
+  <data name="tradeCountryColumnHeader1.Width" type="System.Int32, mscorlib">
+    <value>120</value>
+  </data>
+  <data name="&gt;&gt;tradeNewButton.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox2.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="tradeCountryComboBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Lucida Console, 9pt</value>
+  </data>
+  <data name="tradeCountryComboBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="tradeNewButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tradeUpButton.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="tradeUpButton.Text" xml:space="preserve">
-    <value>Up</value>
+  <data name="tradeSwapButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;tradeUpButton.Name" xml:space="preserve">
-    <value>tradeUpButton</value>
+  <data name="&gt;&gt;tradeIdLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;tradeUpButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="tradeNewButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;tradeUpButton.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;tradeEndMonthTextBox.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
-  <data name="&gt;&gt;tradeUpButton.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="tradeMoneyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 181</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="&gt;&gt;tradeMoneyTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeIdTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeOilTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 128</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox2.Name" xml:space="preserve">
+    <value>tradeSuppliesTextBox2</value>
+  </data>
+  <data name="&gt;&gt;tradeListView.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tradeCancelCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeNewButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeListView.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ListView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeCancelCheckBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="tradeMetalTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tradeOilTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeInfoGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 201</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDayTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeStartDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="tradeStartDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tradeEnergyLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
+  </data>
+  <data name="tradeSuppliesLabel.Text" xml:space="preserve">
+    <value>Supplies</value>
+  </data>
+  <data name="tradeRemoveButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="tradeCountryComboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 16</value>
+  </data>
+  <data name="tradeMetalTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="tradeMetalLabel.Text" xml:space="preserve">
+    <value>Metal</value>
+  </data>
+  <data name="tradeEnergyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 56</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsLabel.Name" xml:space="preserve">
+    <value>tradeRareMaterialsLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeIdLabel.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDateLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tradeMoneyTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox1.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="tradeOilLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>19, 12</value>
+  </data>
+  <data name="tradeCancelCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 16</value>
+  </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 12</value>
   </data>
-  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>976, 559</value>
+  <data name="tradeEndDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>194, 41</value>
   </data>
-  <data name="&gt;&gt;tradeCountryColumnHeader1.Name" xml:space="preserve">
-    <value>tradeCountryColumnHeader1</value>
+  <data name="tradeCountryComboBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="&gt;&gt;tradeCountryColumnHeader1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tradeMoneyTextBox1.Name" xml:space="preserve">
+    <value>tradeMoneyTextBox1</value>
   </data>
-  <data name="&gt;&gt;tradeCountryColumnHeader2.Name" xml:space="preserve">
-    <value>tradeCountryColumnHeader2</value>
+  <data name="&gt;&gt;tradeEnergyTextBox1.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
   </data>
-  <data name="&gt;&gt;tradeCountryColumnHeader2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tradeNewButton.Name" xml:space="preserve">
+    <value>tradeNewButton</value>
   </data>
-  <data name="&gt;&gt;tradeDealsColumnHeader.Name" xml:space="preserve">
-    <value>tradeDealsColumnHeader</value>
+  <data name="tradeUpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;tradeDealsColumnHeader.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;tradeIdLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>ScenarioEditorTradePage</value>
+  <data name="tradeDownButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox1.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyTextBox2.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox1.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;tradeMetalTextBox1.Name" xml:space="preserve">
+    <value>tradeMetalTextBox1</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryColumnHeader1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeOilTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;tradeInfoGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 103</value>
+  </data>
+  <data name="tradeCancelCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyLabel.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="tradeInfoGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="tradeInfoGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="tradeEndDateLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tradeRareMaterialsLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 106</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryComboBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tradeStartYearTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeStartMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="tradeMoneyTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="tradeOilTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesLabel.Name" xml:space="preserve">
+    <value>tradeSuppliesLabel</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox1.Name" xml:space="preserve">
+    <value>tradeRareMaterialsTextBox1</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryComboBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeDownButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>98, 164</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox2.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="tradeCountryComboBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>207, 16</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDayTextBox.Name" xml:space="preserve">
+    <value>tradeStartDayTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryComboBox1.Name" xml:space="preserve">
+    <value>tradeCountryComboBox1</value>
+  </data>
+  <data name="tradeOilLabel.Text" xml:space="preserve">
+    <value>Oil</value>
+  </data>
+  <data name="&gt;&gt;tradeTypeTextBox.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDateLabel.Name" xml:space="preserve">
+    <value>tradeEndDateLabel</value>
+  </data>
+  <data name="tradeSuppliesTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeEndMonthTextBox.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsLabel.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeStartYearTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeEndDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeCountryComboBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 20</value>
+  </data>
+  <data name="tradeUpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 164</value>
+  </data>
+  <data name="&gt;&gt;tradeInfoGroupBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tradeMetalTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="tradeSuppliesTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="tradeStartMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>138, 16</value>
+  </data>
+  <data name="tradeEndMonthTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyTextBox2.Name" xml:space="preserve">
+    <value>tradeMoneyTextBox2</value>
+  </data>
+  <data name="tradeStartDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 19</value>
+  </data>
+  <data name="&gt;&gt;tradeDownButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeDownButton.Text" xml:space="preserve">
+    <value>Down</value>
+  </data>
+  <data name="tradeIdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 69</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeRemoveButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="tradeNewButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>179, 164</value>
+  </data>
+  <data name="tradeListView.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left</value>
+  </data>
+  <data name="tradeDownButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox1.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyTextBox1.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="tradeMetalLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tradeEndDayTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="tradeOilTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="tradeEnergyLabel.Text" xml:space="preserve">
+    <value>Energy</value>
+  </data>
+  <data name="tradeDownButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tradeEndDateLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 44</value>
+  </data>
+  <data name="tradeMoneyTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeCancelCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox1.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="tradeStartYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 16</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDayTextBox.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;tradeOilLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox2.Name" xml:space="preserve">
+    <value>tradeRareMaterialsTextBox2</value>
+  </data>
+  <data name="tradeDealsGroupBox.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryComboBox2.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeSwapButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeCountryColumnHeader1.Text" xml:space="preserve">
+    <value>Country1</value>
+  </data>
+  <data name="tradeStartDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeSuppliesLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 156</value>
+  </data>
+  <data name="tradeIdTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryColumnHeader2.Name" xml:space="preserve">
+    <value>tradeCountryColumnHeader2</value>
+  </data>
+  <data name="tradeNewButton.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="tradeMoneyTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="tradeDownButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="tradeUpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeRemoveButton.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;tradeIdTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tradeRemoveButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>260, 164</value>
+  </data>
+  <data name="&gt;&gt;tradeTypeTextBox.Name" xml:space="preserve">
+    <value>tradeTypeTextBox</value>
+  </data>
+  <data name="tradeDealsGroupBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDateLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDayTextBox.Name" xml:space="preserve">
+    <value>tradeEndDayTextBox</value>
+  </data>
+  <data name="tradeStartMonthTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeInfoGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 120</value>
+  </data>
+  <data name="&gt;&gt;tradeDealsColumnHeader.Name" xml:space="preserve">
+    <value>tradeDealsColumnHeader</value>
+  </data>
+  <data name="tradeDealsColumnHeader.Text" xml:space="preserve">
+    <value>Deals</value>
+  </data>
+  <data name="tradeRemoveButton.Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="&gt;&gt;tradeNewButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeStartDayTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>194, 16</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeMoneyLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeUpButton.Text" xml:space="preserve">
+    <value>Up</value>
+  </data>
+  <data name="&gt;&gt;tradeRemoveButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryColumnHeader1.Name" xml:space="preserve">
+    <value>tradeCountryColumnHeader1</value>
+  </data>
+  <data name="tradeSuppliesLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="tradeOilLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox1.Name" xml:space="preserve">
+    <value>tradeOilTextBox1</value>
+  </data>
+  <data name="&gt;&gt;tradeCancelCheckBox.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="tradeIdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>16, 12</value>
+  </data>
+  <data name="tradeSuppliesTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;tradeIdLabel.Name" xml:space="preserve">
+    <value>tradeIdLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDayTextBox.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="tradeEnergyTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 53</value>
+  </data>
+  <data name="tradeRemoveButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="tradeSwapButton.Text" xml:space="preserve">
+    <value>&lt;-&gt;</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox2.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox2.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="tradeDealsColumnHeader.Width" type="System.Int32, mscorlib">
+    <value>350</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryComboBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeMoneyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>38, 12</value>
+  </data>
+  <data name="&gt;&gt;tradeDownButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox2.Name" xml:space="preserve">
+    <value>tradeOilTextBox2</value>
+  </data>
+  <data name="tradeOilLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeCancelCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="tradeRemoveButton.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;tradeIdTextBox.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox1.Name" xml:space="preserve">
+    <value>tradeSuppliesTextBox1</value>
+  </data>
+  <data name="tradeSuppliesLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;tradeEndMonthTextBox.Name" xml:space="preserve">
+    <value>tradeEndMonthTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeListView.Name" xml:space="preserve">
+    <value>tradeListView</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDateLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeMetalTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 78</value>
+  </data>
+  <data name="tradeSuppliesLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 12</value>
+  </data>
+  <data name="&gt;&gt;tradeUpButton.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeOilLabel.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="tradeCountryColumnHeader2.Text" xml:space="preserve">
+    <value>Country2</value>
+  </data>
+  <data name="&gt;&gt;tradeDealsGroupBox.Name" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeStartMonthTextBox.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="tradeIdTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeListView.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tradeEnergyTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tradeNewButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="tradeEndYearTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="tradeIdTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="tradeIdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryComboBox2.Name" xml:space="preserve">
+    <value>tradeCountryComboBox2</value>
+  </data>
+  <data name="&gt;&gt;tradeUpButton.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="tradeSwapButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tradeStartDayTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tradeStartYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeDealsColumnHeader.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeEnergyTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeIdTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>138, 66</value>
+  </data>
+  <data name="tradeMetalTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="tradeInfoGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tradeStartDateLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 12</value>
+  </data>
+  <data name="tradeMetalLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 81</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesLabel.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;tradeUpButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryColumnHeader2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColumnHeader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeDealsGroupBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>292, 201</value>
+  </data>
+  <data name="tradeOilLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesLabel.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEndYearTextBox.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="tradeEndMonthTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;tradeStartMonthTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeOilTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox2.Name" xml:space="preserve">
+    <value>tradeMetalTextBox2</value>
+  </data>
+  <data name="tradeMoneyLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tradeStartMonthTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tradeSuppliesTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="tradeEndYearTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="tradeTypeTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeStartDateLabel.Text" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="tradeDownButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="tradeOilTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeEndMonthTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeMoneyTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 178</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDayTextBox.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;tradeTypeTextBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tradeDealsGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeMoneyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="tradeSuppliesTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeMoneyLabel.Text" xml:space="preserve">
+    <value>Money</value>
+  </data>
+  <data name="tradeEnergyTextBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="tradeListView.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 16</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>ScenarioEditorTradePage</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeStartYearTextBox.Name" xml:space="preserve">
+    <value>tradeStartYearTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalLabel.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="tradeMetalTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeEndDayTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="tradeMoneyTextBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>52, 178</value>
+  </data>
+  <data name="tradeStartDayTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>976, 559</value>
+  </data>
+  <data name="&gt;&gt;tradeStartMonthTextBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="tradeEnergyTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeOilLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>146, 131</value>
+  </data>
+  <data name="tradeSuppliesTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 153</value>
+  </data>
+  <data name="&gt;&gt;tradeStartYearTextBox.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="tradeDealsGroupBox.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="tradeEndYearTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 41</value>
+  </data>
+  <data name="&gt;&gt;tradeUpButton.Name" xml:space="preserve">
+    <value>tradeUpButton</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyLabel.Name" xml:space="preserve">
+    <value>tradeMoneyLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeDealsGroupBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;tradeRemoveButton.Name" xml:space="preserve">
+    <value>tradeRemoveButton</value>
+  </data>
+  <data name="tradeEndMonthTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>138, 41</value>
+  </data>
+  <data name="&gt;&gt;tradeCountryComboBox1.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeInfoGroupBox.Name" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="tradeEndMonthTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyTextBox2.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox2.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="tradeRemoveButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;tradeInfoGroupBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeEnergyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tradeNewButton.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="tradeEndDateLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tradeDownButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tradeMoneyTextBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;tradeOilLabel.Name" xml:space="preserve">
+    <value>tradeOilLabel</value>
+  </data>
+  <data name="tradeCountryColumnHeader2.Width" type="System.Int32, mscorlib">
+    <value>120</value>
+  </data>
+  <data name="&gt;&gt;tradeSwapButton.Parent" xml:space="preserve">
+    <value>tradeDealsGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeTypeTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeListView.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="tradeMetalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 12</value>
+  </data>
+  <data name="&gt;&gt;tradeEndDayTextBox.Parent" xml:space="preserve">
+    <value>tradeInfoGroupBox</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalLabel.Name" xml:space="preserve">
+    <value>tradeMetalLabel</value>
+  </data>
+  <data name="tradeRareMaterialsLabel.Text" xml:space="preserve">
+    <value>Rare Materials</value>
+  </data>
+  <data name="tradeRareMaterialsLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="tradeRareMaterialsLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;tradeSuppliesTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeCountryComboBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Lucida Console, 9pt</value>
+  </data>
+  <data name="&gt;&gt;tradeOilTextBox2.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeSuppliesTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="tradeEnergyTextBox2.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeRareMaterialsLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="tradeListView.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="tradeIdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeMetalLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyTextBox1.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;tradeDownButton.Name" xml:space="preserve">
+    <value>tradeDownButton</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyLabel.Name" xml:space="preserve">
+    <value>tradeEnergyLabel</value>
+  </data>
+  <data name="&gt;&gt;tradeStartDateLabel.Name" xml:space="preserve">
+    <value>tradeStartDateLabel</value>
+  </data>
+  <data name="tradeTypeTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>82, 66</value>
+  </data>
+  <data name="tradeDealsGroupBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>346, 213</value>
+  </data>
+  <data name="tradeSwapButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>148, 14</value>
+  </data>
+  <data name="tradeTypeTextBox.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyTextBox2.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="tradeIdLabel.Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="tradeRemoveButton.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;tradeRareMaterialsTextBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeEnergyTextBox1.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;tradeEnergyLabel.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;tradeEndYearTextBox.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="&gt;&gt;tradeMetalLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tradeEndYearTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="tradeUpButton.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="tradeStartYearTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tradeEnergyTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 53</value>
+  </data>
+  <data name="&gt;&gt;tradeMoneyLabel.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="tradeRareMaterialsTextBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 103</value>
+  </data>
+  <data name="&gt;&gt;tradeStartMonthTextBox.Name" xml:space="preserve">
+    <value>tradeStartMonthTextBox</value>
+  </data>
+  <data name="&gt;&gt;tradeNewButton.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="tradeCancelCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>16, 93</value>
+  </data>
+  <data name="&gt;&gt;tradeDealsGroupBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tradeOilLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="tradeStartDateLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tradeEndDateLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="tradeIdLabel.GenerateMember" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
 </root>

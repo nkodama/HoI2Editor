@@ -130,6 +130,12 @@
   <data name="tradeEndDateLabel.Text" xml:space="preserve">
     <value>終了日時</value>
   </data>
+  <data name="tradeCountryComboBox1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
+  <data name="tradeCountryComboBox2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>ＭＳ ゴシック, 9pt</value>
+  </data>
   <data name="tradeCancelCheckBox.Size" type="System.Drawing.Size, System.Drawing">
     <value>104, 16</value>
   </data>
