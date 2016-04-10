@@ -123,21 +123,25 @@
             // 
             // tradeCountryComboBox1
             // 
-            resources.ApplyResources(this.tradeCountryComboBox1, "tradeCountryComboBox1");
             this.tradeCountryComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.tradeCountryComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.tradeCountryComboBox1, "tradeCountryComboBox1");
             this.tradeCountryComboBox1.FormattingEnabled = true;
             this.tradeCountryComboBox1.Name = "tradeCountryComboBox1";
+            this.tradeCountryComboBox1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTradeCountryItemComboBoxDrawItem);
+            this.tradeCountryComboBox1.SelectedIndexChanged += new System.EventHandler(this.OnTradeCountryItemComboBoxSelectedIndexChanged);
             // 
             // tradeRareMaterialsTextBox1
             // 
             resources.ApplyResources(this.tradeRareMaterialsTextBox1, "tradeRareMaterialsTextBox1");
             this.tradeRareMaterialsTextBox1.Name = "tradeRareMaterialsTextBox1";
+            this.tradeRareMaterialsTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeRareMaterialsTextBox2
             // 
             resources.ApplyResources(this.tradeRareMaterialsTextBox2, "tradeRareMaterialsTextBox2");
             this.tradeRareMaterialsTextBox2.Name = "tradeRareMaterialsTextBox2";
+            this.tradeRareMaterialsTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeRareMaterialsLabel
             // 
@@ -153,32 +157,38 @@
             // 
             resources.ApplyResources(this.tradeMetalTextBox2, "tradeMetalTextBox2");
             this.tradeMetalTextBox2.Name = "tradeMetalTextBox2";
+            this.tradeMetalTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeOilTextBox1
             // 
             resources.ApplyResources(this.tradeOilTextBox1, "tradeOilTextBox1");
             this.tradeOilTextBox1.Name = "tradeOilTextBox1";
+            this.tradeOilTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeMetalTextBox1
             // 
             resources.ApplyResources(this.tradeMetalTextBox1, "tradeMetalTextBox1");
             this.tradeMetalTextBox1.Name = "tradeMetalTextBox1";
+            this.tradeMetalTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeSwapButton
             // 
             resources.ApplyResources(this.tradeSwapButton, "tradeSwapButton");
             this.tradeSwapButton.Name = "tradeSwapButton";
             this.tradeSwapButton.UseVisualStyleBackColor = true;
+            this.tradeSwapButton.Click += new System.EventHandler(this.OnTradeSwapButtonClick);
             // 
             // tradeOilTextBox2
             // 
             resources.ApplyResources(this.tradeOilTextBox2, "tradeOilTextBox2");
             this.tradeOilTextBox2.Name = "tradeOilTextBox2";
+            this.tradeOilTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeMoneyTextBox2
             // 
             resources.ApplyResources(this.tradeMoneyTextBox2, "tradeMoneyTextBox2");
             this.tradeMoneyTextBox2.Name = "tradeMoneyTextBox2";
+            this.tradeMoneyTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeMetalLabel
             // 
@@ -194,24 +204,29 @@
             // 
             resources.ApplyResources(this.tradeMoneyTextBox1, "tradeMoneyTextBox1");
             this.tradeMoneyTextBox1.Name = "tradeMoneyTextBox1";
+            this.tradeMoneyTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeEnergyTextBox2
             // 
             resources.ApplyResources(this.tradeEnergyTextBox2, "tradeEnergyTextBox2");
             this.tradeEnergyTextBox2.Name = "tradeEnergyTextBox2";
+            this.tradeEnergyTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeCountryComboBox2
             // 
-            resources.ApplyResources(this.tradeCountryComboBox2, "tradeCountryComboBox2");
             this.tradeCountryComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.tradeCountryComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            resources.ApplyResources(this.tradeCountryComboBox2, "tradeCountryComboBox2");
             this.tradeCountryComboBox2.FormattingEnabled = true;
             this.tradeCountryComboBox2.Name = "tradeCountryComboBox2";
+            this.tradeCountryComboBox2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnTradeCountryItemComboBoxDrawItem);
+            this.tradeCountryComboBox2.SelectedIndexChanged += new System.EventHandler(this.OnTradeCountryItemComboBoxSelectedIndexChanged);
             // 
             // tradeSuppliesTextBox1
             // 
             resources.ApplyResources(this.tradeSuppliesTextBox1, "tradeSuppliesTextBox1");
             this.tradeSuppliesTextBox1.Name = "tradeSuppliesTextBox1";
+            this.tradeSuppliesTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeMoneyLabel
             // 
@@ -222,6 +237,7 @@
             // 
             resources.ApplyResources(this.tradeEnergyTextBox1, "tradeEnergyTextBox1");
             this.tradeEnergyTextBox1.Name = "tradeEnergyTextBox1";
+            this.tradeEnergyTextBox1.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeEnergyLabel
             // 
@@ -232,6 +248,7 @@
             // 
             resources.ApplyResources(this.tradeSuppliesTextBox2, "tradeSuppliesTextBox2");
             this.tradeSuppliesTextBox2.Name = "tradeSuppliesTextBox2";
+            this.tradeSuppliesTextBox2.Validated += new System.EventHandler(this.OnTradeDoubleItemTextBoxValidated);
             // 
             // tradeInfoGroupBox
             // 
@@ -255,47 +272,56 @@
             // 
             resources.ApplyResources(this.tradeIdTextBox, "tradeIdTextBox");
             this.tradeIdTextBox.Name = "tradeIdTextBox";
+            this.tradeIdTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeTypeTextBox
             // 
             resources.ApplyResources(this.tradeTypeTextBox, "tradeTypeTextBox");
             this.tradeTypeTextBox.Name = "tradeTypeTextBox";
+            this.tradeTypeTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeStartYearTextBox
             // 
             resources.ApplyResources(this.tradeStartYearTextBox, "tradeStartYearTextBox");
             this.tradeStartYearTextBox.Name = "tradeStartYearTextBox";
+            this.tradeStartYearTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeStartMonthTextBox
             // 
             resources.ApplyResources(this.tradeStartMonthTextBox, "tradeStartMonthTextBox");
             this.tradeStartMonthTextBox.Name = "tradeStartMonthTextBox";
+            this.tradeStartMonthTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeCancelCheckBox
             // 
             resources.ApplyResources(this.tradeCancelCheckBox, "tradeCancelCheckBox");
             this.tradeCancelCheckBox.Name = "tradeCancelCheckBox";
             this.tradeCancelCheckBox.UseVisualStyleBackColor = true;
+            this.tradeCancelCheckBox.CheckedChanged += new System.EventHandler(this.OnTradeItemCheckBoxCheckedChanged);
             // 
             // tradeEndDayTextBox
             // 
             resources.ApplyResources(this.tradeEndDayTextBox, "tradeEndDayTextBox");
             this.tradeEndDayTextBox.Name = "tradeEndDayTextBox";
+            this.tradeEndDayTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeStartDayTextBox
             // 
             resources.ApplyResources(this.tradeStartDayTextBox, "tradeStartDayTextBox");
             this.tradeStartDayTextBox.Name = "tradeStartDayTextBox";
+            this.tradeStartDayTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeEndMonthTextBox
             // 
             resources.ApplyResources(this.tradeEndMonthTextBox, "tradeEndMonthTextBox");
             this.tradeEndMonthTextBox.Name = "tradeEndMonthTextBox";
+            this.tradeEndMonthTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeEndYearTextBox
             // 
             resources.ApplyResources(this.tradeEndYearTextBox, "tradeEndYearTextBox");
             this.tradeEndYearTextBox.Name = "tradeEndYearTextBox";
+            this.tradeEndYearTextBox.Validated += new System.EventHandler(this.OnTradeIntItemTextBoxValidated);
             // 
             // tradeListView
             // 
@@ -311,6 +337,7 @@
             this.tradeListView.Name = "tradeListView";
             this.tradeListView.UseCompatibleStateImageBehavior = false;
             this.tradeListView.View = System.Windows.Forms.View.Details;
+            this.tradeListView.SelectedIndexChanged += new System.EventHandler(this.OnTradeListViewSelectedIndexChanged);
             // 
             // tradeCountryColumnHeader1
             // 
@@ -329,24 +356,28 @@
             resources.ApplyResources(this.tradeDownButton, "tradeDownButton");
             this.tradeDownButton.Name = "tradeDownButton";
             this.tradeDownButton.UseVisualStyleBackColor = true;
+            this.tradeDownButton.Click += new System.EventHandler(this.OnTradeDownButtonClick);
             // 
             // tradeNewButton
             // 
             resources.ApplyResources(this.tradeNewButton, "tradeNewButton");
             this.tradeNewButton.Name = "tradeNewButton";
             this.tradeNewButton.UseVisualStyleBackColor = true;
+            this.tradeNewButton.Click += new System.EventHandler(this.OnTradeNewButtonClick);
             // 
             // tradeRemoveButton
             // 
             resources.ApplyResources(this.tradeRemoveButton, "tradeRemoveButton");
             this.tradeRemoveButton.Name = "tradeRemoveButton";
             this.tradeRemoveButton.UseVisualStyleBackColor = true;
+            this.tradeRemoveButton.Click += new System.EventHandler(this.OnTradeRemoveButtonClick);
             // 
             // tradeUpButton
             // 
             resources.ApplyResources(this.tradeUpButton, "tradeUpButton");
             this.tradeUpButton.Name = "tradeUpButton";
             this.tradeUpButton.UseVisualStyleBackColor = true;
+            this.tradeUpButton.Click += new System.EventHandler(this.OnTradeUpButtonClick);
             // 
             // ScenarioEditorTradePage
             // 
