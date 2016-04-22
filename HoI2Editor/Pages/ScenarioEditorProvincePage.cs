@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -13,6 +14,7 @@ namespace HoI2Editor.Pages
     /// <summary>
     ///     シナリオエディタのプロヴィンスタブ
     /// </summary>
+    [ToolboxItem(false)]
     internal partial class ScenarioEditorProvincePage : UserControl
     {
         #region 内部フィールド

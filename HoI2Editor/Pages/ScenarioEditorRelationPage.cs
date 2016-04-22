@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using HoI2Editor.Controllers;
@@ -12,6 +13,7 @@ namespace HoI2Editor.Pages
     /// <summary>
     ///     シナリオエディタの関係タブ
     /// </summary>
+    [ToolboxItem(false)]
     internal partial class ScenarioEditorRelationPage : UserControl
     {
         #region 内部フィールド

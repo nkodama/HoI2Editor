@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using HoI2Editor.Controllers;
@@ -12,6 +13,7 @@ namespace HoI2Editor.Pages
     /// <summary>
     ///     シナリオエディタの貿易タブ
     /// </summary>
+    [ToolboxItem(false)]
     internal partial class ScenarioEditorTradePage : UserControl
     {
         #region 内部フィールド

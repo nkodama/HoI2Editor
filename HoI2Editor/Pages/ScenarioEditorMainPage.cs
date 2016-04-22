@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace HoI2Editor.Pages
     /// <summary>
     ///     シナリオエディタのメインタブ
     /// </summary>
+    [ToolboxItem(false)]
     internal partial class ScenarioEditorMainPage : UserControl
     {
         #region 内部フィールド

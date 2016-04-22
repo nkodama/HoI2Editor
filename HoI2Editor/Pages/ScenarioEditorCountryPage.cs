@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using HoI2Editor.Controllers;
@@ -12,6 +13,7 @@ namespace HoI2Editor.Pages
     /// <summary>
     ///     シナリオエディタの国家タブ
     /// </summary>
+    [ToolboxItem(false)]
     internal partial class ScenarioEditorCountryPage : UserControl
     {
         #region 内部フィールド
