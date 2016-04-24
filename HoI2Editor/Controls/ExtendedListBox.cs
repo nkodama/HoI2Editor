@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace HoI2Editor.Controls
 {
     /// <summary>
-    /// 拡張リストボックス
+    ///     拡張リストボックス
     /// </summary>
     public partial class ExtendedListBox : ListBox
     {

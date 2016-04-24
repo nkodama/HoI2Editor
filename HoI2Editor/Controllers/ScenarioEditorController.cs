@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Forms;
 using HoI2Editor.Models;
+using HoI2Editor.Pages;
 using HoI2Editor.Properties;
 using HoI2Editor.Utilities;
 
@@ -48,6 +50,65 @@ namespace HoI2Editor.Controllers
         ///     ユニットツリーのコントローラ
         /// </summary>
         private UnitTreeController _unitTreeController;
+
+        #endregion
+
+        #region タブページ
+
+        /// <summary>
+        ///     タブページ番号
+        /// </summary>
+        private TabPageNo _tabPageNo;
+
+        /// <summary>
+        ///     タブページの初期化フラグ
+        /// </summary>
+        private readonly bool[] _tabPageInitialized = new bool[Enum.GetValues(typeof (TabPageNo)).Length];
+
+        /// <summary>
+        ///     メインタブ
+        /// </summary>
+        private ScenarioEditorMainPage _mainPage;
+
+        /// <summary>
+        ///     同盟タブ
+        /// </summary>
+        private ScenarioEditorAlliancePage _alliancePage;
+
+        /// <summary>
+        ///     関係ページ
+        /// </summary>
+        private ScenarioEditorRelationPage _relationPage;
+
+        /// <summary>
+        ///     貿易ページ
+        /// </summary>
+        private ScenarioEditorTradePage _tradePage;
+
+        /// <summary>
+        ///     国家タブ
+        /// </summary>
+        private ScenarioEditorCountryPage _countryPage;
+
+        /// <summary>
+        ///     政府タブ
+        /// </summary>
+        private ScenarioEditorGovernmentPage _governmentPage;
+
+        /// <summary>
+        ///     技術タブ
+        /// </summary>
+        private ScenarioEditorTechnologyPage _technologyPage;
+
+        /// <summary>
+        ///     プロヴィンスタブ
+        /// </summary>
+        private ScenarioEditorProvincePage _provincePage;
+
+        /// <summary>
+        ///     初期部隊タブ
+        /// </summary>
+        private ScenarioEditorOobPage _oobPage;
 
         #endregion
 
@@ -195,6 +256,22 @@ namespace HoI2Editor.Controllers
         #endregion
 
         #region 内部定数
+
+        /// <summary>
+        ///     タブページ番号
+        /// </summary>
+        private enum TabPageNo
+        {
+            Main, // メイン
+            Alliance, // 同盟
+            Relation, // 関係
+            Trade, // 貿易
+            Country, // 国家
+            Government, // 政府
+            Technology, // 技術
+            Province, // プロヴィンス
+            Oob // 初期部隊
+        }
 
         /// <summary>
         ///     編集項目の編集済みフラグ
@@ -749,6 +826,369 @@ namespace HoI2Editor.Controllers
 
         #endregion
 
+        #region データ処理
+
+        /// <summary>
+        ///     編集済みかどうかを取得する
+        /// </summary>
+        /// <returns>編集済みならばtrueを返す</returns>
+        internal bool IsDirty()
+        {
+            return _instance.IsDirty();
+        }
+
+        /// <summary>
+        ///     データをチェックする
+        /// </summary>
+        internal void Check()
+        {
+            // プロヴィンスデータ読み込み完了まで待つ
+            Provinces.WaitLoading();
+
+            DataChecker.CheckScenario();
+        }
+
+        /// <summary>
+        ///     問い合わせてからデータを再読み込みする
+        /// </summary>
+        internal void QueryReload()
+        {
+            _instance.QueryReload();
+        }
+
+        /// <summary>
+        ///     データを保存する
+        /// </summary>
+        internal void Save()
+        {
+            _instance.Save();
+        }
+
+        /// <summary>
+        ///     データ読み込み後の処理
+        /// </summary>
+        internal void OnFileLoaded()
+        {
+            // 読み込み前ならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // シナリオ関連情報を初期化する
+            Scenarios.Init();
+
+            // 各タブページの初期化済み状態をクリアする
+            foreach (TabPageNo page in Enum.GetValues(typeof (TabPageNo)))
+            {
+                _tabPageInitialized[(int) page] = false;
+            }
+
+            // 編集項目を更新する
+            OnMainTabPageFileLoad();
+            OnAllianceTabPageFileLoad();
+            OnRelationTabPageFileLoad();
+            OnTradeTabPageFileLoad();
+            OnCountryTabPageFileLoad();
+            OnGovernmentTabPageFileLoad();
+            OnTechTabPageFileLoad();
+            OnProvinceTabPageFileLoad();
+            OnOobTabPageFileLoad();
+        }
+
+        /// <summary>
+        ///     メインタブのファイル読み込み時の処理
+        /// </summary>
+        private void OnMainTabPageFileLoad()
+        {
+            // メインタブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Main)
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Main])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _mainPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Main] = true;
+        }
+
+        /// <summary>
+        ///     同盟タブのファイル読み込み時の処理
+        /// </summary>
+        private void OnAllianceTabPageFileLoad()
+        {
+            // 同盟タブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Alliance)
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Alliance])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _alliancePage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Alliance] = true;
+        }
+
+        /// <summary>
+        ///     関係タブのファイル読み込み時の処理
+        /// </summary>
+        private void OnRelationTabPageFileLoad()
+        {
+            // 同盟タブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Relation)
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Relation])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _relationPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Relation] = true;
+        }
+
+        /// <summary>
+        ///     貿易タブのファイル読み込み時の処理
+        /// </summary>
+        private void OnTradeTabPageFileLoad()
+        {
+            // 貿易タブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Trade)
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Trade])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _tradePage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Trade] = true;
+        }
+
+        /// <summary>
+        ///     国家タブのファイル読み込み時の処理
+        /// </summary>
+        private void OnCountryTabPageFileLoad()
+        {
+            // 国家タブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Country)
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Country])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _countryPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Country] = true;
+        }
+
+        /// <summary>
+        ///     政府タブのファイル読み込み時の処理
+        /// </summary>
+        private void OnGovernmentTabPageFileLoad()
+        {
+            // 政府タブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Government)
+            {
+                return;
+            }
+
+            // 閣僚データの読み込み完了まで待機する
+            Ministers.WaitLoading();
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Government])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _governmentPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Government] = true;
+        }
+
+        /// <summary>
+        ///     技術タブのファイル読み込み時の処理
+        /// </summary>
+        private void OnTechTabPageFileLoad()
+        {
+            // 政府タブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Technology)
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Technology])
+            {
+                return;
+            }
+
+            // 技術データの読み込み完了まで待機する
+            Techs.WaitLoading();
+
+            // 編集項目を初期化する
+            _technologyPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Technology] = true;
+        }
+
+        /// <summary>
+        ///     プロヴィンスタブのファイル読み込み時の処理
+        /// </summary>
+        private void OnProvinceTabPageFileLoad()
+        {
+            // プロヴィンスタブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Province)
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Province])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _provincePage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Province] = true;
+        }
+
+        /// <summary>
+        ///     初期部隊タブのファイル読み込み時の処理
+        /// </summary>
+        private void OnOobTabPageFileLoad()
+        {
+            // 初期部隊タブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Oob)
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Oob])
+            {
+                return;
+            }
+
+            // 指揮官データの読み込み完了まで待機する
+            Leaders.WaitLoading();
+
+            // プロヴィンスデータの読み込み完了まで待機する
+            Provinces.WaitLoading();
+
+            // ユニットデータの読み込み完了まで待機する
+            Units.WaitLoading();
+
+            // 編集項目を初期化する
+            _oobPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Oob] = true;
+        }
+
+        /// <summary>
+        ///     マップ読み込み完了時の処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnMapFileLoad(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                return;
+            }
+
+            if (e.Cancelled)
+            {
+                return;
+            }
+
+            // プロヴィンスタブ選択中でなければ何もしない
+            if (_tabPageNo != TabPageNo.Province)
+            {
+                return;
+            }
+
+            // マップパネルを更新する
+            _provincePage.UpdateMapPanel();
+        }
+
+        /// <summary>
+        ///     データ保存後の処理
+        /// </summary>
+        internal void OnFileSaved()
+        {
+            // 各タブページの初期化済み状態をクリアする
+            foreach (TabPageNo page in Enum.GetValues(typeof (TabPageNo)))
+            {
+                _tabPageInitialized[(int) page] = false;
+            }
+
+            // 強制的に選択タブの表示を更新する
+            OnSelectedTabPageChanged((int) _tabPageNo);
+        }
+
+        /// <summary>
+        ///     他のフォームに更新を通知する
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        internal void NotifyItemChange(EditorItemId id)
+        {
+            _instance.NotifyItemChange(id);
+        }
+
+        /// <summary>
+        ///     編集項目更新時の処理
+        /// </summary>
+        /// <param name="id">編集項目ID</param>
+        internal void OnItemChanged(EditorItemId id)
+        {
+            // 何もしない
+        }
+
+        #endregion
+
         #region フォーム管理
 
         /// <summary>
@@ -795,6 +1235,57 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
+        ///     フォーム読み込み時の処理
+        /// </summary>
+        internal void OnFormLoad()
+        {
+            // 国家データを初期化する
+            Countries.Init();
+
+            // 閣僚特性を初期化する
+            Ministers.InitPersonality();
+
+            // ユニットデータを初期化する
+            Units.Init();
+
+            // プロヴィンスデータを初期化する
+            Provinces.Init();
+
+            // ゲーム設定ファイルを読み込む
+            Misc.Load();
+
+            // 文字列定義ファイルを読み込む
+            Config.Load();
+
+            // マップを遅延読み込みする
+            Maps.LoadAsync(MapLevel.Level2, OnMapFileLoad);
+
+            // 指揮官データを遅延読み込みする
+            Leaders.LoadAsync(null);
+
+            // 閣僚データを遅延読み込みする
+            Ministers.LoadAsync(null);
+
+            // 技術データを遅延読み込みする
+            Techs.LoadAsync(null);
+
+            // プロヴィンスデータを遅延読み込みする
+            Provinces.LoadAsync(null);
+
+            // ユニットデータを遅延読み込みする
+            Units.LoadAsync(null);
+
+            // メインタブを初期化する
+            OnSelectedTabPageChanged((int) TabPageNo.Main);
+
+            // シナリオファイル読み込み済みなら編集項目を更新する
+            if (Scenarios.IsLoaded())
+            {
+                OnFileLoaded();
+            }
+        }
+
+        /// <summary>
         ///     フォームクローズ前の処理
         /// </summary>
         /// <returns>キャンセルするならばtrueを返す</returns>
@@ -814,65 +1305,351 @@ namespace HoI2Editor.Controllers
 
         #endregion
 
-        #region データ処理
+        #region タブページ管理
 
         /// <summary>
-        ///     編集済みかどうかを取得する
+        ///     選択タブ変更時の処理
         /// </summary>
-        /// <returns>編集済みならばtrueを返す</returns>
-        internal bool IsDirty()
+        /// <param name="index">タブページ番号</param>
+        internal void OnSelectedTabPageChanged(int index)
         {
-            return _instance.IsDirty();
+            _tabPageNo = (TabPageNo) index;
+
+            switch (_tabPageNo)
+            {
+                case TabPageNo.Main:
+                    OnMainTabPageSelected();
+                    break;
+
+                case TabPageNo.Alliance:
+                    OnAllianceTabPageSelected();
+                    break;
+
+                case TabPageNo.Relation:
+                    OnRelationTabPageSelected();
+                    break;
+
+                case TabPageNo.Trade:
+                    OnTradeTabPageSelected();
+                    break;
+
+                case TabPageNo.Country:
+                    OnCountryTabPageSelected();
+                    break;
+
+                case TabPageNo.Government:
+                    OnGovernmentTabPageSelected();
+                    break;
+
+                case TabPageNo.Technology:
+                    OnTechTabPageSelected();
+                    break;
+
+                case TabPageNo.Province:
+                    OnProvinceTabPageSelected();
+                    break;
+
+                case TabPageNo.Oob:
+                    OnOobTabPageSelected();
+                    break;
+            }
         }
 
         /// <summary>
-        ///     問い合わせてからデータを再読み込みする
+        ///     メインタブ選択時の処理
         /// </summary>
-        internal void QueryReload()
+        private void OnMainTabPageSelected()
         {
-            _instance.QueryReload();
+            // タブページを作成する
+            if (_mainPage == null)
+            {
+                _mainPage = new ScenarioEditorMainPage(this, _form);
+                _form.AttachTabPage(_mainPage, (int) TabPageNo.Main);
+            }
+
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Main])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _mainPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Main] = true;
         }
 
         /// <summary>
-        ///     データを保存する
+        ///     同盟タブ選択時の処理
         /// </summary>
-        internal void Save()
+        private void OnAllianceTabPageSelected()
         {
-            _instance.Save();
+            // タブページを作成する
+            if (_alliancePage == null)
+            {
+                _alliancePage = new ScenarioEditorAlliancePage(this, _form);
+                _form.AttachTabPage(_alliancePage, (int) TabPageNo.Alliance);
+            }
+
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Alliance])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _alliancePage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Alliance] = true;
         }
 
         /// <summary>
-        ///     データ読み込み後の処理
+        ///     関係タブ選択時の処理
         /// </summary>
-        internal void OnFileLoaded()
+        private void OnRelationTabPageSelected()
         {
-            _form?.OnFileLoaded();
+            // タブページを作成する
+            if (_relationPage == null)
+            {
+                _relationPage = new ScenarioEditorRelationPage(this, _form);
+                _form.AttachTabPage(_relationPage, (int) TabPageNo.Relation);
+            }
+
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Relation])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _relationPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Relation] = true;
         }
 
         /// <summary>
-        ///     データ保存後の処理
+        ///     貿易タブ選択時の処理
         /// </summary>
-        internal void OnFileSaved()
+        private void OnTradeTabPageSelected()
         {
-            _form?.OnFileSaved();
+            // タブページを作成する
+            if (_tradePage == null)
+            {
+                _tradePage = new ScenarioEditorTradePage(this, _form);
+                _form.AttachTabPage(_tradePage, (int) TabPageNo.Trade);
+            }
+
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Trade])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _tradePage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Trade] = true;
         }
 
         /// <summary>
-        ///     他のフォームに更新を通知する
+        ///     国家タブ選択時の処理
         /// </summary>
-        /// <param name="id">編集項目ID</param>
-        internal void NotifyItemChange(EditorItemId id)
+        private void OnCountryTabPageSelected()
         {
-            _instance.NotifyItemChange(id);
+            // タブページを作成する
+            if (_countryPage == null)
+            {
+                _countryPage = new ScenarioEditorCountryPage(this, _form);
+                _form.AttachTabPage(_countryPage, (int) TabPageNo.Country);
+            }
+
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Country])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _countryPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Country] = true;
         }
 
         /// <summary>
-        ///     編集項目更新時の処理
+        ///     政府タブ選択時の処理
         /// </summary>
-        /// <param name="id">編集項目ID</param>
-        internal void OnItemChanged(EditorItemId id)
+        private void OnGovernmentTabPageSelected()
         {
-            _form?.OnItemChanged(id);
+            // タブページを作成する
+            if (_governmentPage == null)
+            {
+                _governmentPage = new ScenarioEditorGovernmentPage(this, _form);
+                _form.AttachTabPage(_governmentPage, (int) TabPageNo.Government);
+            }
+
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // 閣僚データの読み込み完了まで待機する
+            Ministers.WaitLoading();
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Government])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _governmentPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Government] = true;
+        }
+
+        /// <summary>
+        ///     技術タブ選択時の処理
+        /// </summary>
+        private void OnTechTabPageSelected()
+        {
+            // タブページを作成する
+            if (_technologyPage == null)
+            {
+                _technologyPage = new ScenarioEditorTechnologyPage(this, _form);
+                _form.AttachTabPage(_technologyPage, (int) TabPageNo.Technology);
+            }
+
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // 技術データの読み込み完了まで待機する
+            Techs.WaitLoading();
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Technology])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _technologyPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Technology] = true;
+        }
+
+        /// <summary>
+        ///     プロヴィンスタブ選択時の処理
+        /// </summary>
+        private void OnProvinceTabPageSelected()
+        {
+            // タブページを作成する
+            if (_provincePage == null)
+            {
+                _provincePage = new ScenarioEditorProvincePage(this, _form);
+                _form.AttachTabPage(_provincePage, (int) TabPageNo.Province);
+            }
+
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // プロヴィンスデータの読み込み完了まで待機する
+            Provinces.WaitLoading();
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Province])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _provincePage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Province] = true;
+        }
+
+        /// <summary>
+        ///     初期部隊タブ選択時の処理
+        /// </summary>
+        private void OnOobTabPageSelected()
+        {
+            // タブページを作成する
+            if (_oobPage == null)
+            {
+                _oobPage = new ScenarioEditorOobPage(this, _form);
+                _form.AttachTabPage(_oobPage, (int) TabPageNo.Oob);
+            }
+
+            // シナリオ未読み込みならば何もしない
+            if (!Scenarios.IsLoaded())
+            {
+                return;
+            }
+
+            // 指揮官データの読み込み完了まで待機する
+            Leaders.WaitLoading();
+
+            // プロヴィンスデータの読み込み完了まで待機する
+            Provinces.WaitLoading();
+
+            // ユニットデータの読み込み完了まで待機する
+            Units.WaitLoading();
+
+            // 初期化済みであれば何もしない
+            if (_tabPageInitialized[(int) TabPageNo.Oob])
+            {
+                return;
+            }
+
+            // 編集項目を初期化する
+            _oobPage.UpdateItems();
+
+            // 初期化済みフラグをセットする
+            _tabPageInitialized[(int) TabPageNo.Oob] = true;
         }
 
         #endregion
@@ -6661,10 +7438,10 @@ namespace HoI2Editor.Controllers
                 int index = Array.IndexOf(Countries.Tags, prev);
                 if (index >= 0)
                 {
-                    _form.SetRelationListItemText(index, no, "");
+                    _relationPage?.SetRelationListItemText(index, no, "");
                 }
             }
-            _form.SetRelationListItemText(no, (val != Country.None) ? Resources.Yes : "");
+            _relationPage?.SetRelationListItemText(no, (val != Country.None) ? Resources.Yes : "");
         }
 
         /// <summary>
@@ -6889,12 +7666,12 @@ namespace HoI2Editor.Controllers
             int index = GetLandProvinceIndex(settings.Capital);
             if (index >= 0)
             {
-                _form.SetProvinceListItemText(index, 2, "");
+                _provincePage?.SetProvinceListItemText(index, 2, "");
             }
             index = _landProvinces.IndexOf(province);
             if (index >= 0)
             {
-                _form.SetProvinceListItemText(index, 2, Resources.Yes);
+                _provincePage?.SetProvinceListItemText(index, 2, Resources.Yes);
             }
         }
 
@@ -7062,7 +7839,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.ScenarioPanelName:
-                    _form.UpdatePanelImage((string) val);
+                    _mainPage?.UpdatePanelImage((string) val);
                     break;
             }
         }
@@ -7091,7 +7868,7 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.MajorPropaganada:
-                    _form.UpdatePropagandaImage(major.Country, (string) val);
+                    _mainPage?.UpdatePropagandaImage(major.Country, (string) val);
                     break;
             }
         }
@@ -7107,7 +7884,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.AllianceName:
-                    _form.SetAllianceListItemText(0, (string) val);
+                    _alliancePage?.SetAllianceListItemText(0, (string) val);
                     break;
             }
         }
@@ -7134,11 +7911,11 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.DiplomacyRelationValue:
-                    _form.SetRelationListItemText(1, ObjectHelper.ToString(val));
+                    _relationPage?.SetRelationListItemText(1, ObjectHelper.ToString(val));
                     break;
 
                 case ScenarioEditorItemId.DiplomacyMilitaryAccess:
-                    _form.SetRelationListItemText(4, (bool) val ? Resources.Yes : "");
+                    _relationPage?.SetRelationListItemText(4, (bool) val ? Resources.Yes : "");
                     break;
             }
         }
@@ -7199,11 +7976,11 @@ namespace HoI2Editor.Controllers
                     break;
 
                 case ScenarioEditorItemId.TradeCountry1:
-                    _form.SetTradeListItemText(0, Countries.GetName((Country) val));
+                    _tradePage?.SetTradeListItemText(0, Countries.GetName((Country) val));
                     break;
 
                 case ScenarioEditorItemId.TradeCountry2:
-                    _form.SetTradeListItemText(1, Countries.GetName((Country) val));
+                    _tradePage?.SetTradeListItemText(1, Countries.GetName((Country) val));
                     break;
 
                 case ScenarioEditorItemId.TradeEnergy1:
@@ -7279,7 +8056,7 @@ namespace HoI2Editor.Controllers
             switch (itemId)
             {
                 case ScenarioEditorItemId.IntelligenceSpies:
-                    _form.SetRelationListItemText(8, ObjectHelper.ToString(val));
+                    _relationPage?.SetRelationListItemText(8, ObjectHelper.ToString(val));
                     break;
             }
         }
@@ -7899,7 +8676,7 @@ namespace HoI2Editor.Controllers
             control3.Enabled = (bool) val;
 
             // 関係リストビューの項目を更新する
-            _form.SetRelationListItemText(5, (bool) val ? Resources.Yes : "");
+            _relationPage?.SetRelationListItemText(5, (bool) val ? Resources.Yes : "");
         }
 
         /// <summary>
@@ -7950,7 +8727,7 @@ namespace HoI2Editor.Controllers
             control8.Enabled = (bool) val;
 
             // 関係リストビューの項目を更新する
-            _form.SetRelationListItemText(no, (bool) val ? Resources.Yes : "");
+            _relationPage?.SetRelationListItemText(no, (bool) val ? Resources.Yes : "");
         }
 
         /// <summary>
@@ -7969,7 +8746,7 @@ namespace HoI2Editor.Controllers
             UpdateItemColor(control2, treaty);
 
             // 貿易リストビューの項目を更新する
-            _form.SetTradeListItemText(2, treaty.GetTradeString());
+            _tradePage?.SetTradeListItemText(2, treaty.GetTradeString());
         }
 
         /// <summary>
@@ -8009,7 +8786,7 @@ namespace HoI2Editor.Controllers
             int index = GetLandProvinceIndex(province.Id);
             if (index >= 0)
             {
-                _form.SetProvinceListItemText(index, 3, (bool) val ? Resources.Yes : "");
+                _provincePage?.SetProvinceListItemText(index, 3, (bool) val ? Resources.Yes : "");
             }
 
             // プロヴィンスの強調表示を更新する
@@ -8041,7 +8818,7 @@ namespace HoI2Editor.Controllers
             int index = GetLandProvinceIndex(province.Id);
             if (index >= 0)
             {
-                _form.SetProvinceListItemText(index, 4, (bool) val ? Resources.Yes : "");
+                _provincePage?.SetProvinceListItemText(index, 4, (bool) val ? Resources.Yes : "");
             }
 
             // プロヴィンスの強調表示を更新する
@@ -8073,7 +8850,7 @@ namespace HoI2Editor.Controllers
             int index = GetLandProvinceIndex(province.Id);
             if (index >= 0)
             {
-                _form.SetProvinceListItemText(index, 5, (bool) val ? Resources.Yes : "");
+                _provincePage?.SetProvinceListItemText(index, 5, (bool) val ? Resources.Yes : "");
             }
 
             // プロヴィンスの強調表示を更新する
@@ -8092,7 +8869,7 @@ namespace HoI2Editor.Controllers
             int index = GetLandProvinceIndex(province.Id);
             if (index >= 0)
             {
-                _form.SetProvinceListItemText(index, 6, (bool) val ? Resources.Yes : "");
+                _provincePage?.SetProvinceListItemText(index, 6, (bool) val ? Resources.Yes : "");
             }
 
             // プロヴィンスの強調表示を更新する

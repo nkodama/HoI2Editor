@@ -261,7 +261,7 @@ namespace HoI2Editor.Pages
             }
 
             // データ読み込み後の処理
-            _form.OnFileLoaded();
+            _controller.OnFileLoaded();
         }
 
         /// <summary>
