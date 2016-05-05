@@ -35,7 +35,7 @@ namespace HoI2Editor.Parsers
         /// </summary>
         static TriggerParser()
         {
-            foreach (TriggerType type in Enum.GetValues(typeof (TriggerType)))
+            foreach (TriggerType type in Enum.GetValues(typeof(TriggerType)))
             {
                 TypeMap.Add(Trigger.TypeStringTable[(int) type], type);
             }

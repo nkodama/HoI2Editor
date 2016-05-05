@@ -22,7 +22,7 @@ namespace HoI2Editor.Models
         ///     軍団名リスト
         /// </summary>
         private static readonly List<string>[,] Items =
-            new List<string>[Enum.GetValues(typeof (Branch)).Length, Enum.GetValues(typeof (Country)).Length];
+            new List<string>[Enum.GetValues(typeof(Branch)).Length, Enum.GetValues(typeof(Country)).Length];
 
         /// <summary>
         ///     読み込み済みフラグ
@@ -37,13 +37,13 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     兵科ごとの編集済みフラグ
         /// </summary>
-        private static readonly bool[] BranchDirtyFlags = new bool[Enum.GetValues(typeof (Branch)).Length];
+        private static readonly bool[] BranchDirtyFlags = new bool[Enum.GetValues(typeof(Branch)).Length];
 
         /// <summary>
         ///     国家ごとの編集済みフラグ
         /// </summary>
         private static readonly bool[,] CountryDirtyFlags =
-            new bool[Enum.GetValues(typeof (Branch)).Length, Enum.GetValues(typeof (Country)).Length];
+            new bool[Enum.GetValues(typeof(Branch)).Length, Enum.GetValues(typeof(Country)).Length];
 
         #endregion
 
@@ -86,7 +86,7 @@ namespace HoI2Editor.Models
 
             // 軍団名リストをクリアする
             foreach (
-                Branch branch in Enum.GetValues(typeof (Branch)).Cast<Branch>().Where(branch => branch != Branch.None))
+                Branch branch in Enum.GetValues(typeof(Branch)).Cast<Branch>().Where(branch => branch != Branch.None))
             {
                 foreach (Country country in Countries.Tags)
                 {
@@ -450,7 +450,7 @@ namespace HoI2Editor.Models
         /// <param name="regex">正規表現を使用するか</param>
         internal static void ReplaceAll(string s, string t, bool regex)
         {
-            foreach (Branch branch in Enum.GetValues(typeof (Branch)))
+            foreach (Branch branch in Enum.GetValues(typeof(Branch)))
             {
                 foreach (Country country in Countries.Tags)
                 {
@@ -468,7 +468,7 @@ namespace HoI2Editor.Models
         /// <param name="regex">正規表現を使用するか</param>
         internal static void ReplaceAllBranches(string s, string t, Country country, bool regex)
         {
-            foreach (Branch branch in Enum.GetValues(typeof (Branch)))
+            foreach (Branch branch in Enum.GetValues(typeof(Branch)))
             {
                 Replace(s, t, branch, country, regex);
             }
@@ -578,7 +578,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal static void InterpolateAll()
         {
-            foreach (Branch branch in Enum.GetValues(typeof (Branch)))
+            foreach (Branch branch in Enum.GetValues(typeof(Branch)))
             {
                 foreach (Country country in Countries.Tags)
                 {
@@ -593,7 +593,7 @@ namespace HoI2Editor.Models
         /// <param name="country">国タグ</param>
         internal static void InterpolateAllBranches(Country country)
         {
-            foreach (Branch branch in Enum.GetValues(typeof (Branch)))
+            foreach (Branch branch in Enum.GetValues(typeof(Branch)))
             {
                 Interpolate(branch, country);
             }
@@ -662,9 +662,9 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void ResetDirtyAll()
         {
-            foreach (Branch branch in Enum.GetValues(typeof (Branch)))
+            foreach (Branch branch in Enum.GetValues(typeof(Branch)))
             {
-                foreach (Country country in Enum.GetValues(typeof (Country)))
+                foreach (Country country in Enum.GetValues(typeof(Country)))
                 {
                     CountryDirtyFlags[(int) branch, (int) country] = false;
                 }

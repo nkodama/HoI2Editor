@@ -107,7 +107,7 @@ namespace HoI2Editor.Forms
                 realUnitTypeComboBox.BeginUpdate();
                 realUnitTypeComboBox.Items.Clear();
                 width = realUnitTypeComboBox.Width;
-                foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
+                foreach (RealUnitType type in Enum.GetValues(typeof(RealUnitType)))
                 {
                     string s = Units.Items[(int) Units.RealTypeTable[(int) type]].ToString();
                     realUnitTypeComboBox.Items.Add(s);
@@ -122,7 +122,7 @@ namespace HoI2Editor.Forms
                 spriteTypeComboBox.BeginUpdate();
                 spriteTypeComboBox.Items.Clear();
                 width = spriteTypeComboBox.Width;
-                foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
+                foreach (SpriteType type in Enum.GetValues(typeof(SpriteType)))
                 {
                     string s = Units.Items[(int) Units.SpriteTypeTable[(int) type]].ToString();
                     spriteTypeComboBox.Items.Add(s);
@@ -152,7 +152,7 @@ namespace HoI2Editor.Forms
                 resourceComboBox.BeginUpdate();
                 resourceComboBox.Items.Clear();
                 width = resourceComboBox.Width;
-                foreach (EquipmentType type in Enum.GetValues(typeof (EquipmentType)))
+                foreach (EquipmentType type in Enum.GetValues(typeof(EquipmentType)))
                 {
                     string s = Config.GetText(Units.EquipmentNames[(int) type]);
                     resourceComboBox.Items.Add(s);

@@ -3397,31 +3397,31 @@ namespace HoI2Editor.Models
             SeaZoneMap = new Dictionary<int, Province>();
 
             // 地域文字列とIDの対応付け
-            foreach (AreaId area in Enum.GetValues(typeof (AreaId)))
+            foreach (AreaId area in Enum.GetValues(typeof(AreaId)))
             {
                 AreaStringMap.Add(AreaStrings[(int) area].ToLower(), area);
             }
 
             // 地方文字列とIDの対応付け
-            foreach (RegionId region in Enum.GetValues(typeof (RegionId)))
+            foreach (RegionId region in Enum.GetValues(typeof(RegionId)))
             {
                 RegionStringMap.Add(RegionStrings[(int) region].ToLower(), region);
             }
 
             // 大陸文字列とIDの対応付け
-            foreach (ContinentId continent in Enum.GetValues(typeof (ContinentId)))
+            foreach (ContinentId continent in Enum.GetValues(typeof(ContinentId)))
             {
                 ContinentStringMap.Add(ContinentStrings[(int) continent].ToLower(), continent);
             }
 
             // 気候文字列とIDの対応付け
-            foreach (ClimateId climate in Enum.GetValues(typeof (ClimateId)))
+            foreach (ClimateId climate in Enum.GetValues(typeof(ClimateId)))
             {
                 ClimateStringMap.Add(ClimateStrings[(int) climate].ToLower(), climate);
             }
 
             // 地形文字列とIDの対応付け
-            foreach (TerrainId terrain in Enum.GetValues(typeof (TerrainId)))
+            foreach (TerrainId terrain in Enum.GetValues(typeof(TerrainId)))
             {
                 TerrainStringMap.Add(TerrainStrings[(int) terrain].ToLower(), terrain);
             }

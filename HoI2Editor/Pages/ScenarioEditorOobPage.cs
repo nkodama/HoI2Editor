@@ -730,7 +730,7 @@ namespace HoI2Editor.Pages
             _controller.OutputItemValueChangedLog(itemId, val, unit);
 
             // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, unit);
+            _controller.PreItemChanged(itemId, val, unit, settings);
 
             // 値を更新する
             _controller.SetItemValue(itemId, val, unit);
@@ -792,7 +792,7 @@ namespace HoI2Editor.Pages
             _controller.OutputItemValueChangedLog(itemId, val, unit);
 
             // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, unit);
+            _controller.PreItemChanged(itemId, val, unit, settings);
 
             // 値を更新する
             _controller.SetItemValue(itemId, val, unit);
@@ -847,7 +847,7 @@ namespace HoI2Editor.Pages
             _controller.OutputItemValueChangedLog(itemId, val, unit);
 
             // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, unit);
+            _controller.PreItemChanged(itemId, val, unit, settings);
 
             // 値を更新する
             _controller.SetItemValue(itemId, val, unit);
@@ -1008,7 +1008,7 @@ namespace HoI2Editor.Pages
             _controller.OutputItemValueChangedLog(itemId, val, division);
 
             // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, division);
+            _controller.PreItemChanged(itemId, val, division, settings);
 
             // 値を更新する
             _controller.SetItemValue(itemId, val, division);
@@ -1070,7 +1070,7 @@ namespace HoI2Editor.Pages
             _controller.OutputItemValueChangedLog(itemId, val, division);
 
             // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, division);
+            _controller.PreItemChanged(itemId, val, division, settings);
 
             // 値を更新する
             _controller.SetItemValue(itemId, val, division);
@@ -1125,7 +1125,7 @@ namespace HoI2Editor.Pages
             _controller.OutputItemValueChangedLog(itemId, val, division);
 
             // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, division);
+            _controller.PreItemChanged(itemId, val, division, settings);
 
             // 値を更新する
             _controller.SetItemValue(itemId, val, division);
@@ -1286,7 +1286,7 @@ namespace HoI2Editor.Pages
             _controller.OutputItemValueChangedLog(itemId, val, division);
 
             // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, division);
+            _controller.PreItemChanged(itemId, val, division, settings);
 
             // 値を更新する
             _controller.SetItemValue(itemId, val, division);

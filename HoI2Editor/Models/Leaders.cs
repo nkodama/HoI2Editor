@@ -60,7 +60,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国家ごとの編集済みフラグ
         /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof(Country)).Length];
 
         /// <summary>
         ///     指揮官リストファイルの編集済みフラグ
@@ -1603,7 +1603,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     一括編集項目
         /// </summary>
-        internal bool[] Items { get; } = new bool[Enum.GetValues(typeof (LeaderBatchItemId)).Length];
+        internal bool[] Items { get; } = new bool[Enum.GetValues(typeof(LeaderBatchItemId)).Length];
 
         /// <summary>
         ///     理想階級

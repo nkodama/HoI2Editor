@@ -6,10 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Controllers;
-using HoI2Editor.Forms;
 using HoI2Editor.Models;
 using HoI2Editor.Properties;
-using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Pages
 {
@@ -22,67 +20,15 @@ namespace HoI2Editor.Pages
         #region 内部フィールド
 
         /// <summary>
-        ///     シナリオエディタコントローラ
+        ///     シナリオエディタのメインタブのコントローラ
         /// </summary>
-        private readonly ScenarioEditorController _controller;
+        private readonly ScenarioEditorMainController _controller;
 
         /// <summary>
-        ///     シナリオエディタのフォーム
+        ///     編集項目IDとコントロールの関連付け
         /// </summary>
-        private readonly ScenarioEditorForm _form;
-
-        /// <summary>
-        ///     主要国以外の選択可能国リスト
-        /// </summary>
-        private List<Country> _majorFreeCountries;
-
-        /// <summary>
-        ///     選択可能国以外の国家リスト
-        /// </summary>
-        private List<Country> _selectableFreeCountries;
-
-        #endregion
-
-        #region 内部定数
-
-        /// <summary>
-        ///     AIの攻撃性の文字列名
-        /// </summary>
-        private readonly TextId[] _aiAggressiveNames =
-        {
-            TextId.OptionAiAggressiveness1,
-            TextId.OptionAiAggressiveness2,
-            TextId.OptionAiAggressiveness3,
-            TextId.OptionAiAggressiveness4,
-            TextId.OptionAiAggressiveness5
-        };
-
-        /// <summary>
-        ///     難易度の文字列名
-        /// </summary>
-        private readonly TextId[] _difficultyNames =
-        {
-            TextId.OptionDifficulty1,
-            TextId.OptionDifficulty2,
-            TextId.OptionDifficulty3,
-            TextId.OptionDifficulty4,
-            TextId.OptionDifficulty5
-        };
-
-        /// <summary>
-        ///     ゲームスピードの文字列名
-        /// </summary>
-        private readonly TextId[] _gameSpeedNames =
-        {
-            TextId.OptionGameSpeed0,
-            TextId.OptionGameSpeed1,
-            TextId.OptionGameSpeed2,
-            TextId.OptionGameSpeed3,
-            TextId.OptionGameSpeed4,
-            TextId.OptionGameSpeed5,
-            TextId.OptionGameSpeed6,
-            TextId.OptionGameSpeed7
-        };
+        private readonly Dictionary<ScenarioEditorMainController.ItemId, Control> _itemControls =
+            new Dictionary<ScenarioEditorMainController.ItemId, Control>();
 
         #endregion
 
@@ -91,14 +37,12 @@ namespace HoI2Editor.Pages
         /// <summary>
         ///     コンストラクタ
         /// </summary>
-        /// <param name="controller">シナリオエディタコントローラ</param>
-        /// <param name="form">シナリオエディタのフォーム</param>
-        internal ScenarioEditorMainPage(ScenarioEditorController controller, ScenarioEditorForm form)
+        /// <param name="controller">シナリオエディタのメインタブのコントローラ</param>
+        internal ScenarioEditorMainPage(ScenarioEditorMainController controller)
         {
             InitializeComponent();
 
             _controller = controller;
-            _form = form;
 
             // 編集項目を初期化する
             InitScenarioListBox();
@@ -107,30 +51,14 @@ namespace HoI2Editor.Pages
             InitSelectableItems();
         }
 
-        /// <summary>
-        ///     編集項目を更新する
-        /// </summary>
-        internal void UpdateItems()
-        {
-            // 編集項目を更新する
-            UpdateScenarioInfoItems();
-            UpdateScenarioOptionItems();
-
-            // 選択可能国リストを更新する
-            UpdateSelectableList();
-
-            // メインタブの編集項目を有効化する
-            EnableMainItems();
-        }
-
         #endregion
 
         #region 共通
 
         /// <summary>
-        ///     メインタブの編集項目を有効化する
+        ///     編集項目を有効化する
         /// </summary>
-        private void EnableMainItems()
+        internal void EnableItems()
         {
             scenarioInfoGroupBox.Enabled = true;
             scenarioOptionGroupBox.Enabled = true;
@@ -164,12 +92,15 @@ namespace HoI2Editor.Pages
             {
                 exportRadioButton.Enabled = false;
             }
+
+            // シナリオリストボックスの表示を更新する
+            UpdateScenarioListBox();
         }
 
         /// <summary>
         ///     シナリオリストボックスの表示を更新する
         /// </summary>
-        private void UpdateScenarioListBox()
+        internal void UpdateScenarioListBox()
         {
             scenarioListBox.Items.Clear();
 
@@ -211,57 +142,36 @@ namespace HoI2Editor.Pages
         }
 
         /// <summary>
+        ///     選択中のシナリオファイル名を取得する
+        /// </summary>
+        /// <returns></returns>
+        private string GetSelectedScenarioFileName()
+        {
+            if (scenarioListBox.SelectedIndex < 0)
+            {
+                return string.Empty;
+            }
+
+            return scenarioListBox.Items[scenarioListBox.SelectedIndex].ToString();
+        }
+
+        /// <summary>
         ///     読み込みボタン押下時の処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void OnLoadButtonClick(object sender, EventArgs e)
         {
-            // シナリオリストボックスの選択項目がなければ何もしない
-            if (scenarioListBox.SelectedIndex < 0)
-            {
-                return;
-            }
-
-            // 編集済みならば保存するかを問い合わせる
-            if (Scenarios.IsLoaded() && _controller.IsDirty())
-            {
-                DialogResult result = MessageBox.Show(Resources.ConfirmSaveMessage, Text, MessageBoxButtons.YesNoCancel,
-                    MessageBoxIcon.Question);
-                switch (result)
-                {
-                    case DialogResult.Cancel:
-                        return;
-
-                    case DialogResult.Yes:
-                        _controller.Save();
-                        break;
-                }
-            }
-
-            string fileName = scenarioListBox.Items[scenarioListBox.SelectedIndex].ToString();
-            string pathName;
-            if (exportRadioButton.Checked)
-            {
-                pathName = Game.GetExportFileName(Game.ScenarioPathName, fileName);
-            }
-            else if (modRadioButton.Checked)
-            {
-                pathName = Game.GetModFileName(Game.ScenarioPathName, fileName);
-            }
-            else
-            {
-                pathName = Game.GetVanillaFileName(Game.ScenarioPathName, fileName);
-            }
-
-            // シナリオファイルを読み込む
-            if (File.Exists(pathName))
-            {
-                Scenarios.Load(pathName);
-            }
-
-            // データ読み込み後の処理
-            _controller.OnFileLoaded();
+            string fileName = GetSelectedScenarioFileName();
+            ScenarioEditorMainController.FileType fileType = saveGamesRadioButton.Checked
+                ? ScenarioEditorMainController.FileType.SaveGames
+                : ScenarioEditorMainController.FileType.Scenario;
+            ScenarioEditorMainController.FolderType folderType = exportRadioButton.Checked
+                ? ScenarioEditorMainController.FolderType.Export
+                : modRadioButton.Checked
+                    ? ScenarioEditorMainController.FolderType.Mod
+                    : ScenarioEditorMainController.FolderType.Vanilla;
+            _controller.OnLoadButtonClick(fileName, fileType, folderType);
         }
 
         /// <summary>
@@ -287,53 +197,15 @@ namespace HoI2Editor.Pages
         /// </summary>
         private void InitScenarioInfoItems()
         {
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioName, scenarioNameTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioPanelName, panelImageTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioStartYear, startYearTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioStartMonth, startMonthTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioStartDay, startDayTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioEndYear, endYearTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioEndMonth, endMonthTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioEndDay, endDayTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioIncludeFolder, includeFolderTextBox);
-
-            scenarioNameTextBox.Tag = ScenarioEditorItemId.ScenarioName;
-            panelImageTextBox.Tag = ScenarioEditorItemId.ScenarioPanelName;
-            startYearTextBox.Tag = ScenarioEditorItemId.ScenarioStartYear;
-            startMonthTextBox.Tag = ScenarioEditorItemId.ScenarioStartMonth;
-            startDayTextBox.Tag = ScenarioEditorItemId.ScenarioStartDay;
-            endYearTextBox.Tag = ScenarioEditorItemId.ScenarioEndYear;
-            endMonthTextBox.Tag = ScenarioEditorItemId.ScenarioEndMonth;
-            endDayTextBox.Tag = ScenarioEditorItemId.ScenarioEndDay;
-            includeFolderTextBox.Tag = ScenarioEditorItemId.ScenarioIncludeFolder;
-        }
-
-        /// <summary>
-        ///     シナリオ情報の編集項目を更新する
-        /// </summary>
-        private void UpdateScenarioInfoItems()
-        {
-            _controller.UpdateItemValue(scenarioNameTextBox);
-            _controller.UpdateItemValue(panelImageTextBox);
-            _controller.UpdateItemValue(startYearTextBox);
-            _controller.UpdateItemValue(startMonthTextBox);
-            _controller.UpdateItemValue(startDayTextBox);
-            _controller.UpdateItemValue(endYearTextBox);
-            _controller.UpdateItemValue(endMonthTextBox);
-            _controller.UpdateItemValue(endDayTextBox);
-            _controller.UpdateItemValue(includeFolderTextBox);
-
-            _controller.UpdateItemColor(scenarioNameTextBox);
-            _controller.UpdateItemColor(panelImageTextBox);
-            _controller.UpdateItemColor(startYearTextBox);
-            _controller.UpdateItemColor(startMonthTextBox);
-            _controller.UpdateItemColor(startDayTextBox);
-            _controller.UpdateItemColor(endYearTextBox);
-            _controller.UpdateItemColor(endMonthTextBox);
-            _controller.UpdateItemColor(endDayTextBox);
-            _controller.UpdateItemColor(includeFolderTextBox);
-
-            UpdatePanelImage(Scenarios.Data.PanelName);
+            SetItemControl(scenarioNameTextBox, ScenarioEditorMainController.ItemId.ScenarioName);
+            SetItemControl(panelImageTextBox, ScenarioEditorMainController.ItemId.ScenarioPanelName);
+            SetItemControl(startYearTextBox, ScenarioEditorMainController.ItemId.ScenarioStartYear);
+            SetItemControl(startMonthTextBox, ScenarioEditorMainController.ItemId.ScenarioStartMonth);
+            SetItemControl(startDayTextBox, ScenarioEditorMainController.ItemId.ScenarioStartDay);
+            SetItemControl(endYearTextBox, ScenarioEditorMainController.ItemId.ScenarioEndYear);
+            SetItemControl(endMonthTextBox, ScenarioEditorMainController.ItemId.ScenarioEndMonth);
+            SetItemControl(endDayTextBox, ScenarioEditorMainController.ItemId.ScenarioEndDay);
+            SetItemControl(includeFolderTextBox, ScenarioEditorMainController.ItemId.ScenarioIncludeFolder);
         }
 
         /// <summary>
@@ -413,78 +285,17 @@ namespace HoI2Editor.Pages
         /// </summary>
         private void InitScenarioOptionItems()
         {
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioBattleScenario, battleScenarioCheckBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioFreeSelection, freeCountryCheckBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioAllowDiplomacy, allowDiplomacyCheckBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioAllowProduction, allowProductionCheckBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioAllowTechnology, allowTechnologyCheckBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioAiAggressive, aiAggressiveComboBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioDifficulty, difficultyComboBox);
-            _form._itemControls.Add(ScenarioEditorItemId.ScenarioGameSpeed, gameSpeedComboBox);
-
-            battleScenarioCheckBox.Tag = ScenarioEditorItemId.ScenarioBattleScenario;
-            freeCountryCheckBox.Tag = ScenarioEditorItemId.ScenarioFreeSelection;
-            allowDiplomacyCheckBox.Tag = ScenarioEditorItemId.ScenarioAllowDiplomacy;
-            allowProductionCheckBox.Tag = ScenarioEditorItemId.ScenarioAllowProduction;
-            allowTechnologyCheckBox.Tag = ScenarioEditorItemId.ScenarioAllowTechnology;
-            aiAggressiveComboBox.Tag = ScenarioEditorItemId.ScenarioAiAggressive;
-            difficultyComboBox.Tag = ScenarioEditorItemId.ScenarioDifficulty;
-            gameSpeedComboBox.Tag = ScenarioEditorItemId.ScenarioGameSpeed;
-
-            // AIの攻撃性コンボボックス
-            aiAggressiveComboBox.BeginUpdate();
-            aiAggressiveComboBox.Items.Clear();
-            for (int i = 0; i < ScenarioHeader.AiAggressiveCount; i++)
-            {
-                aiAggressiveComboBox.Items.Add(Config.GetText(_aiAggressiveNames[i]));
-            }
-            aiAggressiveComboBox.EndUpdate();
-
-            // 難易度コンボボックス
-            difficultyComboBox.BeginUpdate();
-            difficultyComboBox.Items.Clear();
-            for (int i = 0; i < ScenarioHeader.DifficultyCount; i++)
-            {
-                difficultyComboBox.Items.Add(Config.GetText(_difficultyNames[i]));
-            }
-            difficultyComboBox.EndUpdate();
-
-            // ゲームスピードコンボボックス
-            gameSpeedComboBox.BeginUpdate();
-            gameSpeedComboBox.Items.Clear();
-            for (int i = 0; i < ScenarioHeader.GameSpeedCount; i++)
-            {
-                gameSpeedComboBox.Items.Add(Config.GetText(_gameSpeedNames[i]));
-            }
-            gameSpeedComboBox.EndUpdate();
-        }
-
-        /// <summary>
-        ///     シナリオオプションの編集項目を更新する
-        /// </summary>
-        private void UpdateScenarioOptionItems()
-        {
-            _controller.UpdateItemValue(battleScenarioCheckBox);
-            _controller.UpdateItemValue(freeCountryCheckBox);
-            _controller.UpdateItemValue(allowDiplomacyCheckBox);
-            _controller.UpdateItemValue(allowProductionCheckBox);
-            _controller.UpdateItemValue(allowTechnologyCheckBox);
-            _controller.UpdateItemValue(aiAggressiveComboBox);
-            _controller.UpdateItemValue(difficultyComboBox);
-            _controller.UpdateItemValue(gameSpeedComboBox);
-
-            _controller.UpdateItemColor(battleScenarioCheckBox);
-            _controller.UpdateItemColor(freeCountryCheckBox);
-            _controller.UpdateItemColor(allowDiplomacyCheckBox);
-            _controller.UpdateItemColor(allowProductionCheckBox);
-            _controller.UpdateItemColor(allowTechnologyCheckBox);
-            _controller.UpdateItemColor(aiAggressiveComboBox);
-            _controller.UpdateItemColor(difficultyComboBox);
-            _controller.UpdateItemColor(gameSpeedComboBox);
-
-            aiAggressiveComboBox.Refresh();
-            difficultyComboBox.Refresh();
-            gameSpeedComboBox.Refresh();
+            SetItemControl(battleScenarioCheckBox, ScenarioEditorMainController.ItemId.ScenarioBattleScenario);
+            SetItemControl(freeCountryCheckBox, ScenarioEditorMainController.ItemId.ScenarioFreeSelection);
+            SetItemControl(allowDiplomacyCheckBox, ScenarioEditorMainController.ItemId.ScenarioAllowDiplomacy);
+            SetItemControl(allowProductionCheckBox, ScenarioEditorMainController.ItemId.ScenarioAllowProduction);
+            SetItemControl(allowTechnologyCheckBox, ScenarioEditorMainController.ItemId.ScenarioAllowTechnology);
+            SetItemControl(aiAggressiveComboBox, ScenarioEditorMainController.ItemId.ScenarioAiAggressive);
+            SetItemControl(difficultyComboBox, ScenarioEditorMainController.ItemId.ScenarioDifficulty);
+            SetItemControl(gameSpeedComboBox, ScenarioEditorMainController.ItemId.ScenarioGameSpeed);
+            SetItemControl(aiAggressiveComboBox, ScenarioEditorMainController.ItemId.ScenarioAiAggressive);
+            SetItemControl(difficultyComboBox, ScenarioEditorMainController.ItemId.ScenarioDifficulty);
+            SetItemControl(gameSpeedComboBox, ScenarioEditorMainController.ItemId.ScenarioGameSpeed);
         }
 
         #endregion
@@ -492,96 +303,25 @@ namespace HoI2Editor.Pages
         #region 国家選択
 
         /// <summary>
-        ///     選択可能国リストを更新する
-        /// </summary>
-        private void UpdateSelectableList()
-        {
-            List<Country> majors = Scenarios.Data.Header.MajorCountries.Select(major => major.Country).ToList();
-            majorListBox.BeginUpdate();
-            majorListBox.Items.Clear();
-            foreach (Country country in majors)
-            {
-                majorListBox.Items.Add(Countries.GetTagName(country));
-            }
-            majorListBox.EndUpdate();
-
-            _majorFreeCountries =
-                Scenarios.Data.Header.SelectableCountries.Where(country => !majors.Contains(country)).ToList();
-            selectableListBox.BeginUpdate();
-            selectableListBox.Items.Clear();
-            foreach (Country country in _majorFreeCountries)
-            {
-                selectableListBox.Items.Add(Countries.GetTagName(country));
-            }
-            selectableListBox.EndUpdate();
-
-            _selectableFreeCountries =
-                Countries.Tags.Where(country => !Scenarios.Data.Header.SelectableCountries.Contains(country)).ToList();
-            unselectableListBox.BeginUpdate();
-            unselectableListBox.Items.Clear();
-            foreach (Country country in _selectableFreeCountries)
-            {
-                unselectableListBox.Items.Add(Countries.GetTagName(country));
-            }
-            unselectableListBox.EndUpdate();
-
-            // 主要国の操作ボタンを無効化する
-            DisableMajorButtons();
-
-            // 編集項目を無効化する
-            DisableSelectableItems();
-
-            // 編集項目をクリアする
-            ClearSelectableItems();
-        }
-
-        /// <summary>
         ///     選択可能国の編集項目を初期化する
         /// </summary>
         private void InitSelectableItems()
         {
-            _form._itemControls.Add(ScenarioEditorItemId.MajorCountryNameKey, majorCountryNameKeyTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.MajorCountryNameString, majorCountryNameStringTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.MajorFlagExt, majorFlagExtTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.MajorCountryDescKey, countryDescKeyTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.MajorCountryDescString, countryDescStringTextBox);
-            _form._itemControls.Add(ScenarioEditorItemId.MajorPropaganada, propagandaTextBox);
-
-            majorCountryNameKeyTextBox.Tag = ScenarioEditorItemId.MajorCountryNameKey;
-            majorCountryNameStringTextBox.Tag = ScenarioEditorItemId.MajorCountryNameString;
-            majorFlagExtTextBox.Tag = ScenarioEditorItemId.MajorFlagExt;
-            countryDescKeyTextBox.Tag = ScenarioEditorItemId.MajorCountryDescKey;
-            countryDescStringTextBox.Tag = ScenarioEditorItemId.MajorCountryDescString;
-            propagandaTextBox.Tag = ScenarioEditorItemId.MajorPropaganada;
-        }
-
-        /// <summary>
-        ///     選択可能国の編集項目を更新する
-        /// </summary>
-        /// <param name="major">主要国設定</param>
-        private void UpdateSelectableItems(MajorCountrySettings major)
-        {
-            _controller.UpdateItemValue(majorCountryNameKeyTextBox, major);
-            _controller.UpdateItemValue(majorCountryNameStringTextBox, major);
-            _controller.UpdateItemValue(majorFlagExtTextBox, major);
-            _controller.UpdateItemValue(countryDescKeyTextBox, major);
-            _controller.UpdateItemValue(countryDescStringTextBox, major);
-            _controller.UpdateItemValue(propagandaTextBox, major);
-
-            _controller.UpdateItemColor(majorCountryNameKeyTextBox, major);
-            _controller.UpdateItemColor(majorCountryNameStringTextBox, major);
-            _controller.UpdateItemColor(majorFlagExtTextBox, major);
-            _controller.UpdateItemColor(countryDescKeyTextBox, major);
-            _controller.UpdateItemColor(countryDescStringTextBox, major);
-            _controller.UpdateItemColor(propagandaTextBox, major);
-
-            UpdatePropagandaImage(major.Country, major.PictureName);
+            SetItemControl(majorListBox, ScenarioEditorMainController.ItemId.MajorCountries);
+            SetItemControl(selectableListBox, ScenarioEditorMainController.ItemId.SelectableCountries);
+            SetItemControl(unselectableListBox, ScenarioEditorMainController.ItemId.UnselectableCountries);
+            SetItemControl(majorCountryNameKeyTextBox, ScenarioEditorMainController.ItemId.MajorCountryNameKey);
+            SetItemControl(majorCountryNameStringTextBox, ScenarioEditorMainController.ItemId.MajorCountryNameString);
+            SetItemControl(majorFlagExtTextBox, ScenarioEditorMainController.ItemId.MajorFlagExt);
+            SetItemControl(countryDescKeyTextBox, ScenarioEditorMainController.ItemId.MajorCountryDescKey);
+            SetItemControl(countryDescStringTextBox, ScenarioEditorMainController.ItemId.MajorCountryDescString);
+            SetItemControl(propagandaTextBox, ScenarioEditorMainController.ItemId.MajorPropaganada);
         }
 
         /// <summary>
         ///     選択可能国の編集項目をクリアする
         /// </summary>
-        private void ClearSelectableItems()
+        internal void ClearSelectableItems()
         {
             majorCountryNameKeyTextBox.Text = "";
             majorCountryNameStringTextBox.Text = "";
@@ -597,7 +337,7 @@ namespace HoI2Editor.Pages
         /// <summary>
         ///     選択可能国の編集項目を有効化する
         /// </summary>
-        private void EnableSelectableItems()
+        internal void EnableSelectableItems()
         {
             majorCountryNameLabel.Enabled = true;
             majorCountryNameKeyTextBox.Enabled = (Game.Type == GameType.DarkestHour) && (Game.Version >= 104);
@@ -615,7 +355,7 @@ namespace HoI2Editor.Pages
         /// <summary>
         ///     選択可能国の編集項目を無効化する
         /// </summary>
-        private void DisableSelectableItems()
+        internal void DisableSelectableItems()
         {
             majorCountryNameLabel.Enabled = false;
             majorCountryNameKeyTextBox.Enabled = false;
@@ -633,7 +373,7 @@ namespace HoI2Editor.Pages
         /// <summary>
         ///     主要国の操作ボタンを有効化する
         /// </summary>
-        private void EnableMajorButtons()
+        internal void EnableMajorButtons()
         {
             int index = majorListBox.SelectedIndex;
             int count = majorListBox.Items.Count;
@@ -646,7 +386,7 @@ namespace HoI2Editor.Pages
         /// <summary>
         ///     主要国の操作ボタンを無効化する
         /// </summary>
-        private void DisableMajorButtons()
+        internal void DisableMajorButtons()
         {
             majorRemoveButton.Enabled = false;
             majorUpButton.Enabled = false;
@@ -688,100 +428,93 @@ namespace HoI2Editor.Pages
         }
 
         /// <summary>
-        ///     主要国リストボックスの項目描画処理
+        ///     主要国リストの項目を追加する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnMajorListBoxDrawItem(object sender, DrawItemEventArgs e)
+        /// <param name="country">対象国</param>
+        internal void AddMajorListItem(Country country)
         {
-            // 項目がなければ何もしない
-            if (e.Index < 0)
-            {
-                return;
-            }
-
-            ListBox control = sender as ListBox;
-            if (control == null)
-            {
-                return;
-            }
-
-            Scenario scenario = Scenarios.Data;
-            List<MajorCountrySettings> majors = scenario.Header.MajorCountries;
-
-            // 背景を描画する
-            e.DrawBackground();
-
-            // 項目を描画する
-            Brush brush;
-            if ((e.State & DrawItemState.Selected) == 0)
-            {
-                // 変更ありの項目は文字色を変更する
-                bool dirty = scenario.IsDirtySelectableCountry(majors[e.Index].Country);
-                brush = new SolidBrush(dirty ? Color.Red : control.ForeColor);
-            }
-            else
-            {
-                brush = new SolidBrush(SystemColors.HighlightText);
-            }
-            string s = control.Items[e.Index].ToString();
-            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-            brush.Dispose();
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
+            majorListBox.Items.Add(Countries.GetTagName(country));
         }
 
         /// <summary>
-        ///     選択可能国リストボックスの項目描画処理
+        ///     主要国リストの項目を削除する
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSelectableListBoxDrawItem(object sender, DrawItemEventArgs e)
+        /// <param name="index">削除対象のインデックス</param>
+        internal void RemoveMajorListItem(int index)
         {
-            // 項目がなければ何もしない
-            if (e.Index < 0)
-            {
-                return;
-            }
-
-            ListBox control = sender as ListBox;
-            if (control == null)
-            {
-                return;
-            }
-
-            Scenario scenario = Scenarios.Data;
-
-            // 背景を描画する
-            e.DrawBackground();
-
-            // 項目を描画する
-            Brush brush;
-            if ((e.State & DrawItemState.Selected) == 0)
-            {
-                // 変更ありの項目は文字色を変更する
-                bool dirty = scenario.IsDirtySelectableCountry(_majorFreeCountries[e.Index]);
-                brush = new SolidBrush(dirty ? Color.Red : control.ForeColor);
-            }
-            else
-            {
-                brush = new SolidBrush(SystemColors.HighlightText);
-            }
-            string s = control.Items[e.Index].ToString();
-            e.Graphics.DrawString(s, e.Font, brush, e.Bounds);
-            brush.Dispose();
-
-            // フォーカスを描画する
-            e.DrawFocusRectangle();
+            majorListBox.Items.RemoveAt(index);
         }
 
         /// <summary>
-        ///     非選択国リストボックスの項目描画処理
+        ///     主要国リストの項目を移動する
+        /// </summary>
+        /// <param name="src">移動元のインデックス</param>
+        /// <param name="dest">移動先のインデックス</param>
+        internal void MoveMajorListItem(int src, int dest)
+        {
+            string s = (string) majorListBox.Items[src];
+            majorListBox.SelectedIndexChanged -= OnMajorListBoxSelectedIndexChanged;
+            majorListBox.Items.RemoveAt(src);
+            majorListBox.Items.Insert(dest, s);
+            majorListBox.SelectedIndex = dest;
+            majorListBox.SelectedIndexChanged += OnMajorListBoxSelectedIndexChanged;
+        }
+
+        /// <summary>
+        ///     主要国リストの項目を選択する
+        /// </summary>
+        /// <param name="index">対象のインデックス</param>
+        internal void SelectMajorListItem(int index)
+        {
+            majorListBox.SelectedIndex = index;
+        }
+
+        /// <summary>
+        ///     選択可能国リストの項目を挿入する
+        /// </summary>
+        /// <param name="index">挿入位置のインデックス</param>
+        /// <param name="country">対象国</param>
+        internal void InsertSelectableListItem(int index, Country country)
+        {
+            selectableListBox.Items.Insert(index, Countries.GetTagName(country));
+        }
+
+        /// <summary>
+        ///     選択可能国リストの項目を削除する
+        /// </summary>
+        /// <param name="index">削除対象のインデックス</param>
+        internal void RemoveSelectableListItem(int index)
+        {
+            majorListBox.SelectedIndexChanged -= OnMajorListBoxSelectedIndexChanged;
+            selectableListBox.Items.RemoveAt(index);
+            majorListBox.SelectedIndexChanged += OnMajorListBoxSelectedIndexChanged;
+        }
+
+        /// <summary>
+        ///     非選択可能国リストの項目を挿入する
+        /// </summary>
+        /// <param name="index">挿入位置のインデックス</param>
+        /// <param name="country">対象国</param>
+        internal void InsertUnselectableListItem(int index, Country country)
+        {
+            unselectableListBox.Items.Insert(index, Countries.GetTagName(country));
+        }
+
+        /// <summary>
+        ///     非選択可能国リストの項目を削除する
+        /// </summary>
+        /// <param name="index">削除対象のインデックス</param>
+        internal void RemoveUnselectableListItem(int index)
+        {
+            unselectableListBox.Items.RemoveAt(index);
+        }
+
+        /// <summary>
+        ///     選択国リストボックスの項目描画処理
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnUnselectableListBoxDrawItem(object sender, DrawItemEventArgs e)
+        private void OnCountryListBoxDrawItem(object sender, DrawItemEventArgs e)
         {
             // 項目がなければ何もしない
             if (e.Index < 0)
@@ -794,8 +527,7 @@ namespace HoI2Editor.Pages
             {
                 return;
             }
-
-            Scenario scenario = Scenarios.Data;
+            ScenarioEditorMainController.ItemId itemId = (ScenarioEditorMainController.ItemId) control.Tag;
 
             // 背景を描画する
             e.DrawBackground();
@@ -805,7 +537,7 @@ namespace HoI2Editor.Pages
             if ((e.State & DrawItemState.Selected) == 0)
             {
                 // 変更ありの項目は文字色を変更する
-                bool dirty = scenario.IsDirtySelectableCountry(_selectableFreeCountries[e.Index]);
+                bool dirty = _controller.IsDirtyCountry(itemId, e.Index);
                 brush = new SolidBrush(dirty ? Color.Red : control.ForeColor);
             }
             else
@@ -827,30 +559,7 @@ namespace HoI2Editor.Pages
         /// <param name="e"></param>
         private void OnMajorListBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            // 選択項目がなければ編集項目を無効化する
-            if (majorListBox.SelectedIndex < 0)
-            {
-                // 主要国の操作ボタンを無効化する
-                DisableMajorButtons();
-
-                // 編集項目を無効化する
-                DisableSelectableItems();
-
-                // 編集項目をクリアする
-                ClearSelectableItems();
-                return;
-            }
-
-            MajorCountrySettings major = GetSelectedMajorCountry();
-
-            // 編集項目を更新する
-            UpdateSelectableItems(major);
-
-            // 編集項目を有効化する
-            EnableSelectableItems();
-
-            // 主要国の操作ボタンを有効化する
-            EnableMajorButtons();
+            _controller.OnSelectedMajorCountryChanged(majorListBox.SelectedIndex);
         }
 
         /// <summary>
@@ -896,25 +605,7 @@ namespace HoI2Editor.Pages
         /// <param name="e"></param>
         private void OnMajorUpButtonClick(object sender, EventArgs e)
         {
-            Scenario scenario = Scenarios.Data;
-            List<MajorCountrySettings> majors = scenario.Header.MajorCountries;
-
-            // 主要国リストの項目を移動する
-            int index = majorListBox.SelectedIndex;
-            MajorCountrySettings major = majors[index];
-            majors.RemoveAt(index);
-            majors.Insert(index - 1, major);
-
-            // 主要国リストボックスの項目を移動する
-            majorListBox.SelectedIndexChanged -= OnMajorListBoxSelectedIndexChanged;
-            majorListBox.Items.RemoveAt(index);
-            majorListBox.Items.Insert(index - 1, Countries.GetTagName(major.Country));
-            majorListBox.SelectedIndexChanged += OnMajorListBoxSelectedIndexChanged;
-            majorListBox.SelectedIndex = index - 1;
-
-            // 編集済みフラグを設定する
-            scenario.SetDirtySelectableCountry(major.Country);
-            Scenarios.SetDirty();
+            _controller.MoveUpMajorCountry(majorListBox.SelectedIndex);
         }
 
         /// <summary>
@@ -924,25 +615,7 @@ namespace HoI2Editor.Pages
         /// <param name="e"></param>
         private void OnMajorDownButtonClick(object sender, EventArgs e)
         {
-            Scenario scenario = Scenarios.Data;
-            List<MajorCountrySettings> majors = scenario.Header.MajorCountries;
-
-            // 主要国リストの項目を移動する
-            int index = majorListBox.SelectedIndex;
-            MajorCountrySettings major = majors[index];
-            majors.RemoveAt(index);
-            majors.Insert(index + 1, major);
-
-            // 主要国リストボックスの項目を移動する
-            majorListBox.SelectedIndexChanged -= OnMajorListBoxSelectedIndexChanged;
-            majorListBox.Items.RemoveAt(index);
-            majorListBox.Items.Insert(index + 1, Countries.GetTagName(major.Country));
-            majorListBox.SelectedIndexChanged += OnMajorListBoxSelectedIndexChanged;
-            majorListBox.SelectedIndex = index + 1;
-
-            // 編集済みフラグを設定する
-            scenario.SetDirtySelectableCountry(major.Country);
-            Scenarios.SetDirty();
+            _controller.MoveDownMajorCountry(majorListBox.SelectedIndex);
         }
 
         /// <summary>
@@ -952,38 +625,7 @@ namespace HoI2Editor.Pages
         /// <param name="e"></param>
         private void OnMajorAddButtonClick(object sender, EventArgs e)
         {
-            Scenario scenario = Scenarios.Data;
-            ScenarioHeader header = scenario.Header;
-
-            List<Country> countries =
-                (from int index in selectableListBox.SelectedIndices select _majorFreeCountries[index]).ToList();
-            majorListBox.BeginUpdate();
-            selectableListBox.BeginUpdate();
-            foreach (Country country in countries)
-            {
-                // 主要国リストボックスに追加する
-                majorListBox.Items.Add(Countries.GetTagName(country));
-
-                // 主要国リストに追加する
-                MajorCountrySettings major = new MajorCountrySettings { Country = country };
-                header.MajorCountries.Add(major);
-
-                // 選択可能国リストボックスから削除する
-                int index = _majorFreeCountries.IndexOf(country);
-                selectableListBox.Items.RemoveAt(index);
-                _majorFreeCountries.RemoveAt(index);
-
-                // 編集済みフラグを設定する
-                scenario.SetDirtySelectableCountry(country);
-                Scenarios.SetDirty();
-
-                Log.Info("[Scenario] major country: +{0}", Countries.Strings[(int) country]);
-            }
-            majorListBox.EndUpdate();
-            selectableListBox.EndUpdate();
-
-            // 主要国リストボックスに追加した項目を選択する
-            majorListBox.SelectedIndex = majorListBox.Items.Count - 1;
+            _controller.AddMajorCountries(selectableListBox.SelectedIndices.Cast<int>().ToList());
         }
 
         /// <summary>
@@ -993,49 +635,7 @@ namespace HoI2Editor.Pages
         /// <param name="e"></param>
         private void OnMajorRemoveButtonClick(object sender, EventArgs e)
         {
-            Scenario scenario = Scenarios.Data;
-            ScenarioHeader header = scenario.Header;
-            int index = majorListBox.SelectedIndex;
-            Country country = header.MajorCountries[index].Country;
-
-            // 編集済みフラグを設定する
-            scenario.SetDirtySelectableCountry(country);
-            Scenarios.SetDirty();
-
-            // 主要国リストボックスから削除する
-            majorListBox.SelectedIndexChanged -= OnMajorListBoxSelectedIndexChanged;
-            majorListBox.Items.RemoveAt(index);
-
-            // 主要国リストボックスの次の項目を選択する
-            if (majorListBox.Items.Count > 0)
-            {
-                majorListBox.SelectedIndex = index < majorListBox.Items.Count ? index : index - 1;
-            }
-
-            majorListBox.SelectedIndexChanged += OnMajorListBoxSelectedIndexChanged;
-
-            // 主要国リストから削除する
-            header.MajorCountries.RemoveAt(index);
-
-            // 選択項目を更新するためにイベントハンドラを呼び出す
-            OnMajorListBoxSelectedIndexChanged(sender, e);
-
-            // 選択可能国リストボックスに追加する
-            index = _majorFreeCountries.FindIndex(c => c > country);
-            if (index < 0)
-            {
-                index = _majorFreeCountries.Count;
-            }
-            selectableListBox.Items.Insert(index, Countries.GetTagName(country));
-            _majorFreeCountries.Insert(index, country);
-
-            Log.Info("[Scenario] major country: -{0}", Countries.Strings[(int) country]);
-
-            // ボタン状態を更新する
-            if (majorListBox.Items.Count == 0)
-            {
-                majorRemoveButton.Enabled = false;
-            }
+            _controller.RemoveMajorCountry(majorListBox.SelectedIndex);
         }
 
         /// <summary>
@@ -1045,45 +645,7 @@ namespace HoI2Editor.Pages
         /// <param name="e"></param>
         private void OnSelectableAddButtonClick(object sender, EventArgs e)
         {
-            Scenario scenario = Scenarios.Data;
-            ScenarioHeader header = scenario.Header;
-
-            List<Country> countries =
-                (from int index in unselectableListBox.SelectedIndices select _selectableFreeCountries[index]).ToList();
-            selectableListBox.BeginUpdate();
-            unselectableListBox.BeginUpdate();
-            foreach (Country country in countries)
-            {
-                // 選択可能国リストボックスに追加する
-                int index = _majorFreeCountries.FindIndex(c => c > country);
-                if (index < 0)
-                {
-                    index = _majorFreeCountries.Count;
-                }
-                selectableListBox.Items.Insert(index, Countries.GetTagName(country));
-                _majorFreeCountries.Insert(index, country);
-
-                // 選択可能国リストに追加する
-                index = header.SelectableCountries.FindIndex(c => c > country);
-                if (index < 0)
-                {
-                    index = header.SelectableCountries.Count;
-                }
-                header.SelectableCountries.Insert(index, country);
-
-                // 非選択国リストボックスから削除する
-                index = _selectableFreeCountries.IndexOf(country);
-                unselectableListBox.Items.RemoveAt(index);
-                _selectableFreeCountries.RemoveAt(index);
-
-                // 編集済みフラグを設定する
-                scenario.SetDirtySelectableCountry(country);
-                Scenarios.SetDirty();
-
-                Log.Info("[Scenario] selectable country: +{0}", Countries.Strings[(int) country]);
-            }
-            selectableListBox.EndUpdate();
-            unselectableListBox.EndUpdate();
+            _controller.AddSelectableCountries(unselectableListBox.SelectedIndices.Cast<int>().ToList());
         }
 
         /// <summary>
@@ -1093,40 +655,7 @@ namespace HoI2Editor.Pages
         /// <param name="e"></param>
         private void OnSelectableRemoveButtonClick(object sender, EventArgs e)
         {
-            Scenario scenario = Scenarios.Data;
-            ScenarioHeader header = scenario.Header;
-
-            List<Country> countries =
-                (from int index in selectableListBox.SelectedIndices select _majorFreeCountries[index]).ToList();
-            selectableListBox.BeginUpdate();
-            unselectableListBox.BeginUpdate();
-            foreach (Country country in countries)
-            {
-                // 非選択国リストボックスに追加する
-                int index = _selectableFreeCountries.FindIndex(c => c > country);
-                if (index < 0)
-                {
-                    index = _selectableFreeCountries.Count;
-                }
-                unselectableListBox.Items.Insert(index, Countries.GetTagName(country));
-                _selectableFreeCountries.Insert(index, country);
-
-                // 選択可能国リストボックスから削除する
-                index = _majorFreeCountries.IndexOf(country);
-                selectableListBox.Items.RemoveAt(index);
-                _majorFreeCountries.RemoveAt(index);
-
-                // 選択可能国リストから削除する
-                header.SelectableCountries.Remove(country);
-
-                // 編集済みフラグを設定する
-                scenario.SetDirtySelectableCountry(country);
-                Scenarios.SetDirty();
-
-                Log.Info("[Scenario] selectable country: -{0}", Countries.Strings[(int) country]);
-            }
-            selectableListBox.EndUpdate();
-            unselectableListBox.EndUpdate();
+            _controller.RemoveSelectableCountries(selectableListBox.SelectedIndices.Cast<int>().ToList());
         }
 
         /// <summary>
@@ -1153,16 +682,12 @@ namespace HoI2Editor.Pages
         }
 
         /// <summary>
-        ///     選択中の主要国設定を取得する
+        ///     選択中の主要国設定のインデックスを取得する
         /// </summary>
-        /// <returns>選択中の主要国設定</returns>
-        private MajorCountrySettings GetSelectedMajorCountry()
+        /// <returns></returns>
+        internal int GetSelectedMajorCountryIndex()
         {
-            if (majorListBox.SelectedIndex < 0)
-            {
-                return null;
-            }
-            return Scenarios.Data.Header.MajorCountries[majorListBox.SelectedIndex];
+            return majorListBox.SelectedIndex;
         }
 
         /// <summary>
@@ -1220,59 +745,9 @@ namespace HoI2Editor.Pages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnScenarioIntItemTextBoxValidated(object sender, EventArgs e)
+        private void OnItemTextBoxValidated(object sender, EventArgs e)
         {
-            TextBox control = sender as TextBox;
-            if (control == null)
-            {
-                return;
-            }
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-
-            // 文字列を数値に変換できなければ値を戻す
-            int val;
-            if (!IntHelper.TryParse(control.Text, out val))
-            {
-                _controller.UpdateItemValue(control);
-                return;
-            }
-
-            // 初期値から変更されていなければ何もしない
-            object prev = _controller.GetItemValue(itemId);
-            if ((prev == null) && (val == 0))
-            {
-                return;
-            }
-
-            // 値に変化がなければ何もしない
-            if ((prev != null) && (val == (int) prev))
-            {
-                return;
-            }
-
-            // 無効な値ならば値を戻す
-            if (!_controller.IsItemValueValid(itemId, val))
-            {
-                _controller.UpdateItemValue(control);
-                return;
-            }
-
-            _controller.OutputItemValueChangedLog(itemId, val);
-
-            // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, val);
-
-            // 値を更新する
-            _controller.SetItemValue(itemId, val);
-
-            // 編集済みフラグを設定する
-            _controller.SetItemDirty(itemId);
-
-            // 文字色を変更する
-            control.ForeColor = Color.Red;
-
-            // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, val);
+            _controller.OnItemValueChanged(sender as TextBox);
         }
 
         /// <summary>
@@ -1280,38 +755,9 @@ namespace HoI2Editor.Pages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnScenarioStringItemTextBoxTextChanged(object sender, EventArgs e)
+        private void OnItemTextBoxTextChanged(object sender, EventArgs e)
         {
-            TextBox control = sender as TextBox;
-            if (control == null)
-            {
-                return;
-            }
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-
-            // 値に変化がなければ何もしない
-            string val = control.Text;
-            if (val.Equals((string) _controller.GetItemValue(itemId)))
-            {
-                return;
-            }
-
-            _controller.OutputItemValueChangedLog(itemId, val);
-
-            // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, val);
-
-            // 値を更新する
-            _controller.SetItemValue(itemId, val);
-
-            // 編集済みフラグを設定する
-            _controller.SetItemDirty(itemId);
-
-            // 文字色を変更する
-            control.ForeColor = Color.Red;
-
-            // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, val);
+            _controller.OnItemValueChanged(sender as TextBox);
         }
 
         /// <summary>
@@ -1319,7 +765,7 @@ namespace HoI2Editor.Pages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnScenarioItemComboBoxDrawItem(object sender, DrawItemEventArgs e)
+        private void OnItemComboBoxDrawItem(object sender, DrawItemEventArgs e)
         {
             // 項目がなければ何もしない
             if (e.Index == -1)
@@ -1337,7 +783,7 @@ namespace HoI2Editor.Pages
             e.DrawBackground();
 
             // 項目の文字列を描画する
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
+            ScenarioEditorMainController.ItemId itemId = (ScenarioEditorMainController.ItemId) control.Tag;
             int val = (int) _controller.GetItemValue(itemId);
             bool dirty = (e.Index == val) && _controller.IsItemDirty(itemId);
             Brush brush = new SolidBrush(dirty ? Color.Red : control.ForeColor);
@@ -1354,44 +800,9 @@ namespace HoI2Editor.Pages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnScenarioItemComboBoxSelectedIndexChanged(object sender, EventArgs e)
+        private void OnItemComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBox control = sender as ComboBox;
-            if (control == null)
-            {
-                return;
-            }
-
-            // 選択項目がなければ何もしない
-            if (control.SelectedIndex < 0)
-            {
-                return;
-            }
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-
-            // 値に変化がなければ何もしない
-            int val = control.SelectedIndex;
-            if (val == (int) _controller.GetItemValue(itemId))
-            {
-                return;
-            }
-
-            _controller.OutputItemValueChangedLog(itemId, val);
-
-            // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, val);
-
-            // 値を更新する
-            _controller.SetItemValue(itemId, val);
-
-            // 編集済みフラグを設定する
-            _controller.SetItemDirty(itemId);
-
-            // 項目色を変更するため描画更新する
-            control.Refresh();
-
-            // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, val);
+            _controller.OnItemValueChanged(sender as ComboBox);
         }
 
         /// <summary>
@@ -1399,85 +810,30 @@ namespace HoI2Editor.Pages
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void OnScenarioItemCheckBoxCheckedChanged(object sender, EventArgs e)
+        private void OnItemCheckBoxCheckedChanged(object sender, EventArgs e)
         {
-            CheckBox control = sender as CheckBox;
-            if (control == null)
-            {
-                return;
-            }
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-
-            // 値に変化がなければ何もしない
-            bool val = control.Checked;
-            object prev = _controller.GetItemValue(itemId);
-            if ((prev != null) && (val == (bool) prev))
-            {
-                return;
-            }
-
-            _controller.OutputItemValueChangedLog(itemId, val);
-
-            // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, val);
-
-            // 値を更新する
-            _controller.SetItemValue(itemId, val);
-
-            // 編集済みフラグを設定する
-            _controller.SetItemDirty(itemId);
-
-            // 文字色を変更する
-            control.ForeColor = Color.Red;
-
-            // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, val);
+            _controller.OnItemValueChanged(sender as CheckBox);
         }
 
         /// <summary>
-        ///     テキストボックスの値変更時の処理
+        ///     コントロールと編集項目IDを関連付ける
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OnSelectableStringItemTextBoxTextChanged(object sender, EventArgs e)
+        /// <param name="control"></param>
+        /// <param name="itemId"></param>
+        private void SetItemControl(Control control, ScenarioEditorMainController.ItemId itemId)
         {
-            // 選択項目がなければ何もしない
-            MajorCountrySettings major = GetSelectedMajorCountry();
-            if (major == null)
-            {
-                return;
-            }
+            control.Tag = itemId;
+            _itemControls[itemId] = control;
+        }
 
-            TextBox control = sender as TextBox;
-            if (control == null)
-            {
-                return;
-            }
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-
-            // 値に変化がなければ何もしない
-            string val = control.Text;
-            if (val.Equals((string) _controller.GetItemValue(itemId, major)))
-            {
-                return;
-            }
-
-            _controller.OutputItemValueChangedLog(itemId, val, major);
-
-            // 項目値変更前の処理
-            _controller.PreItemChanged(itemId, val, major);
-
-            // 値を更新する
-            _controller.SetItemValue(itemId, val, major);
-
-            // 編集済みフラグを設定する
-            _controller.SetItemDirty(itemId, major);
-
-            // 文字色を変更する
-            control.ForeColor = Color.Red;
-
-            // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, val, major);
+        /// <summary>
+        ///     編集項目IDに関連付けられたコントロールを取得する
+        /// </summary>
+        /// <param name="itemId">編集項目ID</param>
+        /// <returns>関連付けられたコントロール</returns>
+        internal Control GetItemControl(ScenarioEditorMainController.ItemId itemId)
+        {
+            return _itemControls[itemId];
         }
 
         #endregion

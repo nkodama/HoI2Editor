@@ -360,7 +360,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ProvinceItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ProvinceItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -427,7 +427,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (TeamItemId id in Enum.GetValues(typeof (ProvinceItemId)))
+            foreach (TeamItemId id in Enum.GetValues(typeof(ProvinceItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }

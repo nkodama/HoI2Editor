@@ -28,7 +28,7 @@ namespace HoI2Editor
                 {
                     Assembly assembly = Assembly.GetExecutingAssembly();
                     AssemblyTitleAttribute attr =
-                        (AssemblyTitleAttribute) Attribute.GetCustomAttribute(assembly, typeof (AssemblyTitleAttribute));
+                        (AssemblyTitleAttribute) Attribute.GetCustomAttribute(assembly, typeof(AssemblyTitleAttribute));
                     _name = attr.Title;
                 }
                 return _name;
@@ -73,7 +73,7 @@ namespace HoI2Editor
         ///     リソースマネージャ
         /// </summary>
         private static readonly ResourceManager ResourceManager
-            = new ResourceManager("HoI2Editor.Properties.Resources", typeof (Resources).Assembly);
+            = new ResourceManager("HoI2Editor.Properties.Resources", typeof(Resources).Assembly);
 
         /// <summary>
         ///     リソース文字列を取得する
@@ -162,7 +162,7 @@ namespace HoI2Editor
             {
                 try
                 {
-                    XmlSerializer serializer = new XmlSerializer(typeof (HoI2EditorSettings));
+                    XmlSerializer serializer = new XmlSerializer(typeof(HoI2EditorSettings));
                     using (FileStream fs = new FileStream(SettingsFileName, FileMode.Open, FileAccess.Read))
                     {
                         Settings = serializer.Deserialize(fs) as HoI2EditorSettings;
@@ -192,7 +192,7 @@ namespace HoI2Editor
             }
             try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof (HoI2EditorSettings));
+                XmlSerializer serializer = new XmlSerializer(typeof(HoI2EditorSettings));
                 using (FileStream fs = new FileStream(SettingsFileName, FileMode.Create, FileAccess.Write))
                 {
                     serializer.Serialize(fs, Settings);

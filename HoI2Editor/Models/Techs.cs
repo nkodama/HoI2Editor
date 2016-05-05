@@ -631,7 +631,7 @@ namespace HoI2Editor.Models
 
             // 研究特性文字列とIDの対応付け
             SpecialityStringMap = new Dictionary<string, TechSpeciality>();
-            foreach (TechSpeciality speciality in Enum.GetValues(typeof (TechSpeciality)))
+            foreach (TechSpeciality speciality in Enum.GetValues(typeof(TechSpeciality)))
             {
                 SpecialityStringMap.Add(SpecialityStrings[(int) speciality], speciality);
             }
@@ -803,7 +803,7 @@ namespace HoI2Editor.Models
             Groups.Clear();
 
             bool error = false;
-            foreach (TechCategory category in Enum.GetValues(typeof (TechCategory)))
+            foreach (TechCategory category in Enum.GetValues(typeof(TechCategory)))
             {
                 string fileName = FileNames[(int) category];
                 string pathName = Game.GetReadFileName(Game.TechPathName, fileName);

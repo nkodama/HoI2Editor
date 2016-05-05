@@ -90,13 +90,13 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国家ごとのモデル名編集済みフラグ
         /// </summary>
-        private static readonly bool[] CountryNameDirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+        private static readonly bool[] CountryNameDirtyFlags = new bool[Enum.GetValues(typeof(Country)).Length];
 
         /// <summary>
         ///     ユニット名種類ごとのモデル名編集済みフラグ
         /// </summary>
         private static readonly bool[,] TypeNameDirtyFlags =
-            new bool[Enum.GetValues(typeof (Country)).Length, Enum.GetValues(typeof (UnitType)).Length];
+            new bool[Enum.GetValues(typeof(Country)).Length, Enum.GetValues(typeof(UnitType)).Length];
 
         #endregion
 
@@ -2016,28 +2016,28 @@ namespace HoI2Editor.Models
 
             // ユニット種類文字列とIDの対応付けを初期化
             StringMap = new Dictionary<string, UnitType>();
-            foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
+            foreach (UnitType type in Enum.GetValues(typeof(UnitType)))
             {
                 StringMap.Add(Strings[(int) type], type);
             }
 
             // 実ユニット種類文字列とIDの対応付けを初期化
             RealStringMap = new Dictionary<string, RealUnitType>();
-            foreach (RealUnitType type in Enum.GetValues(typeof (RealUnitType)))
+            foreach (RealUnitType type in Enum.GetValues(typeof(RealUnitType)))
             {
                 RealStringMap.Add(RealStrings[(int) type], type);
             }
 
             // スプライト種類文字列とIDの対応付けを初期化
             SpriteStringMap = new Dictionary<string, SpriteType>();
-            foreach (SpriteType type in Enum.GetValues(typeof (SpriteType)))
+            foreach (SpriteType type in Enum.GetValues(typeof(SpriteType)))
             {
                 SpriteStringMap.Add(SpriteStrings[(int) type], type);
             }
 
             // 装備文字列とIDの対応付けを初期化
             EquipmentStringMap = new Dictionary<string, EquipmentType>();
-            foreach (EquipmentType type in Enum.GetValues(typeof (EquipmentType)))
+            foreach (EquipmentType type in Enum.GetValues(typeof(EquipmentType)))
             {
                 EquipmentStringMap.Add(EquipmentStrings[(int) type], type);
             }
@@ -2221,7 +2221,7 @@ namespace HoI2Editor.Models
             Items.Clear();
 
             // ユニットクラスデータの初期値を設定する
-            foreach (UnitType type in Enum.GetValues(typeof (UnitType)))
+            foreach (UnitType type in Enum.GetValues(typeof(UnitType)))
             {
                 Items.Add(new UnitClass(type));
             }
@@ -2637,7 +2637,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void ResetDirtyAllModelName()
         {
-            foreach (Country country in Enum.GetValues(typeof (Country)))
+            foreach (Country country in Enum.GetValues(typeof(Country)))
             {
                 foreach (UnitType type in UnitTypes)
                 {

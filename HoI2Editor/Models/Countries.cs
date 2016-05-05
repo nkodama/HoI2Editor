@@ -1027,7 +1027,7 @@ namespace HoI2Editor.Models
         static Countries()
         {
             StringMap = new Dictionary<string, Country>();
-            foreach (Country country in Enum.GetValues(typeof (Country)))
+            foreach (Country country in Enum.GetValues(typeof(Country)))
             {
                 StringMap.Add(Strings[(int) country], country);
             }

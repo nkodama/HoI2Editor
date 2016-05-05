@@ -492,7 +492,7 @@ namespace HoI2Editor.Controllers
         /// <param name="e"></param>
         private static void OnPanelDragEnter(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(typeof (PictureBox)))
+            if (e.Data.GetDataPresent(typeof(PictureBox)))
             {
                 e.Effect = DragDropEffects.Scroll;
             }

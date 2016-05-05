@@ -51,13 +51,13 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国家ごとの編集済みフラグ
         /// </summary>
-        private static readonly bool[] CountryDirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+        private static readonly bool[] CountryDirtyFlags = new bool[Enum.GetValues(typeof(Country)).Length];
 
         /// <summary>
         ///     ユニット名種類ごとの編集済みフラグ
         /// </summary>
         private static readonly bool[,] TypeDirtyFlags =
-            new bool[Enum.GetValues(typeof (Country)).Length, Enum.GetValues(typeof (UnitNameType)).Length];
+            new bool[Enum.GetValues(typeof(Country)).Length, Enum.GetValues(typeof(UnitNameType)).Length];
 
         #endregion
 
@@ -239,7 +239,7 @@ namespace HoI2Editor.Models
         static UnitNames()
         {
             // ユニット名種類
-            foreach (UnitNameType type in Enum.GetValues(typeof (UnitNameType)))
+            foreach (UnitNameType type in Enum.GetValues(typeof(UnitNameType)))
             {
                 TypeStringMap.Add(TypeStrings[(int) type].ToUpper(), type);
             }
@@ -835,9 +835,9 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void ResetDirtyAll()
         {
-            foreach (Country country in Enum.GetValues(typeof (Country)))
+            foreach (Country country in Enum.GetValues(typeof(Country)))
             {
-                foreach (UnitNameType type in Enum.GetValues(typeof (UnitNameType)))
+                foreach (UnitNameType type in Enum.GetValues(typeof(UnitNameType)))
                 {
                     TypeDirtyFlags[(int) country, (int) type] = false;
                 }

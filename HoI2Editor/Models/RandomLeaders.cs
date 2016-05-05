@@ -21,7 +21,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     ランダム指揮官名リスト
         /// </summary>
-        private static readonly List<string>[] Items = new List<string>[Enum.GetValues(typeof (Country)).Length];
+        private static readonly List<string>[] Items = new List<string>[Enum.GetValues(typeof(Country)).Length];
 
         /// <summary>
         ///     読み込み済みフラグ
@@ -36,7 +36,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     国家ごとの編集済みフラグ
         /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof(Country)).Length];
 
         #endregion
 
@@ -363,7 +363,7 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void ResetDirtyAll()
         {
-            foreach (Country country in Enum.GetValues(typeof (Country)))
+            foreach (Country country in Enum.GetValues(typeof(Country)))
             {
                 DirtyFlags[(int) country] = false;
             }

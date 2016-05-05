@@ -94,7 +94,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     編集済みフラグ
         /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof(Country)).Length];
 
         /// <summary>
         ///     閣僚リストファイルの編集済みフラグ
@@ -745,10 +745,10 @@ namespace HoI2Editor.Models
             IdSet = new HashSet<int>();
 
             // 閣僚地位と特性の対応付け
-            PositionPersonalityTable = new List<int>[Enum.GetValues(typeof (MinisterPosition)).Length];
+            PositionPersonalityTable = new List<int>[Enum.GetValues(typeof(MinisterPosition)).Length];
 
             // 閣僚地位
-            foreach (MinisterPosition position in Enum.GetValues(typeof (MinisterPosition)))
+            foreach (MinisterPosition position in Enum.GetValues(typeof(MinisterPosition)))
             {
                 PositionStringMap.Add(PositionStrings[(int) position].ToLower(), position);
             }
@@ -765,13 +765,13 @@ namespace HoI2Editor.Models
                 Resources.LoyaltyUndying,
                 Resources.LoyaltyNA
             };
-            foreach (MinisterLoyalty loyalty in Enum.GetValues(typeof (MinisterLoyalty)))
+            foreach (MinisterLoyalty loyalty in Enum.GetValues(typeof(MinisterLoyalty)))
             {
                 LoyaltyStringMap.Add(LoyaltyStrings[(int) loyalty].ToLower(), loyalty);
             }
 
             // イデオロギー
-            foreach (MinisterIdeology ideology in Enum.GetValues(typeof (MinisterIdeology)))
+            foreach (MinisterIdeology ideology in Enum.GetValues(typeof(MinisterIdeology)))
             {
                 IdeologyStringMap.Add(IdeologyStrings[(int) ideology].ToLower(), ideology);
             }
@@ -817,8 +817,8 @@ namespace HoI2Editor.Models
         /// </summary>
         private static void InitPeronalityHoI2()
         {
-            int positionCount = Enum.GetValues(typeof (MinisterPosition)).Length;
-            int personalityCount = Enum.GetValues(typeof (MinisterPersonalityHoI2)).Length;
+            int positionCount = Enum.GetValues(typeof(MinisterPosition)).Length;
+            int personalityCount = Enum.GetValues(typeof(MinisterPersonalityHoI2)).Length;
 
             // 閣僚特性情報を初期化する
             Personalities = new MinisterPersonalityInfo[personalityCount];
@@ -857,7 +857,7 @@ namespace HoI2Editor.Models
         private static void LoadPersonalityAoD()
         {
             PersonalityStringMap.Clear();
-            for (int i = 0; i < Enum.GetValues(typeof (MinisterPosition)).Length; i++)
+            for (int i = 0; i < Enum.GetValues(typeof(MinisterPosition)).Length; i++)
             {
                 PositionPersonalityTable[i] = new List<int>();
             }
@@ -877,7 +877,7 @@ namespace HoI2Editor.Models
                 }
                 PersonalityStringMap[s] = i;
                 Personalities[i].String = GetCasePersonalityString(Personalities[i].String.ToLower());
-                for (int j = 0; j < Enum.GetValues(typeof (MinisterPosition)).Length; j++)
+                for (int j = 0; j < Enum.GetValues(typeof(MinisterPosition)).Length; j++)
                 {
                     if (Personalities[i].Position[j])
                     {
@@ -893,7 +893,7 @@ namespace HoI2Editor.Models
         private static void LoadPersonalityDh()
         {
             PersonalityStringMap.Clear();
-            for (int i = 0; i < Enum.GetValues(typeof (MinisterPosition)).Length; i++)
+            for (int i = 0; i < Enum.GetValues(typeof(MinisterPosition)).Length; i++)
             {
                 PositionPersonalityTable[i] = new List<int>();
             }
@@ -913,7 +913,7 @@ namespace HoI2Editor.Models
                 }
                 PersonalityStringMap[s] = i;
                 Personalities[i].String = GetCasePersonalityString(Personalities[i].String.ToLower());
-                for (int j = 0; j < Enum.GetValues(typeof (MinisterPosition)).Length; j++)
+                for (int j = 0; j < Enum.GetValues(typeof(MinisterPosition)).Length; j++)
                 {
                     if (Personalities[i].Position[j])
                     {
@@ -2209,7 +2209,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     閣僚地位と閣僚特性の対応付け
         /// </summary>
-        internal bool[] Position { get; } = new bool[Enum.GetValues(typeof (MinisterPosition)).Length];
+        internal bool[] Position { get; } = new bool[Enum.GetValues(typeof(MinisterPosition)).Length];
 
         /// <summary>
         ///     閣僚特性名
@@ -2249,7 +2249,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     一括編集対象地位モード
         /// </summary>
-        internal bool[] PositionMode { get; } = new bool[Enum.GetValues(typeof (MinisterPosition)).Length];
+        internal bool[] PositionMode { get; } = new bool[Enum.GetValues(typeof(MinisterPosition)).Length];
 
         /// <summary>
         ///     一括編集動作モード
@@ -2269,7 +2269,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     一括編集項目
         /// </summary>
-        internal bool[] Items { get; } = new bool[Enum.GetValues(typeof (MinisterBatchItemId)).Length];
+        internal bool[] Items { get; } = new bool[Enum.GetValues(typeof(MinisterBatchItemId)).Length];
 
         /// <summary>
         ///     開始年

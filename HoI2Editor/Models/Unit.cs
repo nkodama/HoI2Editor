@@ -154,7 +154,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (UnitClassItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(UnitClassItemId)).Length];
 
         /// <summary>
         ///     ユニット定義ファイルの編集済みフラグ
@@ -2269,7 +2269,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (UnitClassItemId id in Enum.GetValues(typeof (UnitClassItemId)))
+            foreach (UnitClassItemId id in Enum.GetValues(typeof(UnitClassItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -2578,12 +2578,12 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (UnitModelItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(UnitModelItemId)).Length];
 
         /// <summary>
         ///     国別モデル名の編集済みフラグ
         /// </summary>
-        private readonly bool[] _nameDirtyFlags = new bool[Enum.GetValues(typeof (Country)).Length];
+        private readonly bool[] _nameDirtyFlags = new bool[Enum.GetValues(typeof(Country)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -2761,7 +2761,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void SetDirtyAll()
         {
-            foreach (UnitModelItemId id in Enum.GetValues(typeof (UnitModelItemId)))
+            foreach (UnitModelItemId id in Enum.GetValues(typeof(UnitModelItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -2773,7 +2773,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (UnitModelItemId id in Enum.GetValues(typeof (UnitModelItemId)))
+            foreach (UnitModelItemId id in Enum.GetValues(typeof(UnitModelItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -2811,7 +2811,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (UnitEquipmentItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(UnitEquipmentItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -2885,7 +2885,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void SetDirtyAll()
         {
-            foreach (UnitEquipmentItemId id in Enum.GetValues(typeof (UnitEquipmentItemId)))
+            foreach (UnitEquipmentItemId id in Enum.GetValues(typeof(UnitEquipmentItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -2897,7 +2897,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (UnitEquipmentItemId id in Enum.GetValues(typeof (UnitEquipmentItemId)))
+            foreach (UnitEquipmentItemId id in Enum.GetValues(typeof(UnitEquipmentItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -2936,7 +2936,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (UnitUpgradeItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(UnitUpgradeItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -2989,7 +2989,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void SetDirtyAll()
         {
-            foreach (UnitUpgradeItemId id in Enum.GetValues(typeof (UnitUpgradeItemId)))
+            foreach (UnitUpgradeItemId id in Enum.GetValues(typeof(UnitUpgradeItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -3001,7 +3001,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (UnitUpgradeItemId id in Enum.GetValues(typeof (UnitUpgradeItemId)))
+            foreach (UnitUpgradeItemId id in Enum.GetValues(typeof(UnitUpgradeItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }

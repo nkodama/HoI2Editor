@@ -336,7 +336,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の値
         /// </summary>
-        private static object[] _items = new object[Enum.GetValues(typeof (MiscItemId)).Length];
+        private static object[] _items = new object[Enum.GetValues(typeof(MiscItemId)).Length];
 
         /// <summary>
         ///     読み込み済みフラグ
@@ -351,7 +351,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof (MiscItemId)).Length];
+        private static readonly bool[] DirtyFlags = new bool[Enum.GetValues(typeof(MiscItemId)).Length];
 
         /// <summary>
         ///     項目のコメント
@@ -4392,13 +4392,13 @@ namespace HoI2Editor.Models
             }
 
             // 設定値を初期化する
-            _items = new object[Enum.GetValues(typeof (MiscItemId)).Length];
+            _items = new object[Enum.GetValues(typeof(MiscItemId)).Length];
 
             // コメントを初期化する
-            _comments = new string[Enum.GetValues(typeof (MiscItemId)).Length];
+            _comments = new string[Enum.GetValues(typeof(MiscItemId)).Length];
 
             // セクション末尾の文字列を初期化する
-            _suffixes = new string[Enum.GetValues(typeof (MiscSectionId)).Length];
+            _suffixes = new string[Enum.GetValues(typeof(MiscSectionId)).Length];
 
             // miscファイルを解釈する
             string fileName = Game.GetReadFileName(Game.MiscPathName);
@@ -4650,7 +4650,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal static void ResetDirtyAll()
         {
-            foreach (MiscItemId id in Enum.GetValues(typeof (MiscItemId)))
+            foreach (MiscItemId id in Enum.GetValues(typeof(MiscItemId)))
             {
                 DirtyFlags[(int) id] = false;
             }

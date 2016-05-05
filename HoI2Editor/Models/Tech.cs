@@ -45,7 +45,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechGroupItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(TechGroupItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -207,7 +207,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (TechGroupItemId id in Enum.GetValues(typeof (TechGroupItemId)))
+            foreach (TechGroupItemId id in Enum.GetValues(typeof(TechGroupItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -368,7 +368,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(TechItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -947,7 +947,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public void SetDirtyAll()
         {
-            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            foreach (TechItemId id in Enum.GetValues(typeof(TechItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -979,7 +979,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public void ResetDirtyAll()
         {
-            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            foreach (TechItemId id in Enum.GetValues(typeof(TechItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -1043,7 +1043,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(TechItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -1285,7 +1285,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public void SetDirtyAll()
         {
-            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            foreach (TechItemId id in Enum.GetValues(typeof(TechItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -1301,7 +1301,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public void ResetDirtyAll()
         {
-            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            foreach (TechItemId id in Enum.GetValues(typeof(TechItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -1344,7 +1344,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(TechItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -1448,7 +1448,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public void SetDirtyAll()
         {
-            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            foreach (TechItemId id in Enum.GetValues(typeof(TechItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -1464,7 +1464,7 @@ namespace HoI2Editor.Models
         /// </summary>
         public void ResetDirtyAll()
         {
-            foreach (TechItemId id in Enum.GetValues(typeof (TechItemId)))
+            foreach (TechItemId id in Enum.GetValues(typeof(TechItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -1502,7 +1502,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechPositionItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(TechPositionItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -1562,7 +1562,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void SetDirtyAll()
         {
-            foreach (TechPositionItemId id in Enum.GetValues(typeof (TechPositionItemId)))
+            foreach (TechPositionItemId id in Enum.GetValues(typeof(TechPositionItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -1574,7 +1574,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (TechPositionItemId id in Enum.GetValues(typeof (TechPositionItemId)))
+            foreach (TechPositionItemId id in Enum.GetValues(typeof(TechPositionItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -1691,7 +1691,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (TechComponentItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(TechComponentItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -1798,7 +1798,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void SetDirtyAll()
         {
-            foreach (TechComponentItemId id in Enum.GetValues(typeof (TechComponentItemId)))
+            foreach (TechComponentItemId id in Enum.GetValues(typeof(TechComponentItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -1810,7 +1810,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (TechComponentItemId id in Enum.GetValues(typeof (TechComponentItemId)))
+            foreach (TechComponentItemId id in Enum.GetValues(typeof(TechComponentItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }

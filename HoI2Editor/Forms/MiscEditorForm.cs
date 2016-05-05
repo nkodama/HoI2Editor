@@ -393,7 +393,7 @@ namespace HoI2Editor.Forms
                                  itemHeight;
             const int columnsPerPage = 3;
 
-            foreach (MiscSectionId section in Enum.GetValues(typeof (MiscSectionId))
+            foreach (MiscSectionId section in Enum.GetValues(typeof(MiscSectionId))
                 .Cast<MiscSectionId>()
                 .Where(section => Misc.SectionTable[(int) section, (int) type]))
             {

@@ -58,17 +58,18 @@ namespace HoI2Editor.Controllers
         /// <summary>
         ///     タブページ番号
         /// </summary>
-        private TabPageNo _tabPageNo;
+        private ScenarioEditorForm.TabPageNo _tabPageNo;
 
         /// <summary>
         ///     タブページの初期化フラグ
         /// </summary>
-        private readonly bool[] _tabPageInitialized = new bool[Enum.GetValues(typeof (TabPageNo)).Length];
+        private readonly bool[] _tabPageInitialized =
+            new bool[Enum.GetValues(typeof(ScenarioEditorForm.TabPageNo)).Length];
 
         /// <summary>
-        ///     メインタブ
+        ///     メインタブコントローラ
         /// </summary>
-        private ScenarioEditorMainPage _mainPage;
+        private ScenarioEditorMainController _main;
 
         /// <summary>
         ///     同盟タブ
@@ -258,49 +259,10 @@ namespace HoI2Editor.Controllers
         #region 内部定数
 
         /// <summary>
-        ///     タブページ番号
-        /// </summary>
-        private enum TabPageNo
-        {
-            Main, // メイン
-            Alliance, // 同盟
-            Relation, // 関係
-            Trade, // 貿易
-            Country, // 国家
-            Government, // 政府
-            Technology, // 技術
-            Province, // プロヴィンス
-            Oob // 初期部隊
-        }
-
-        /// <summary>
         ///     編集項目の編集済みフラグ
         /// </summary>
         private static readonly object[] ItemDirtyFlags =
         {
-            Scenario.ItemId.Name,
-            Scenario.ItemId.PanelName,
-            Scenario.ItemId.StartYear,
-            Scenario.ItemId.StartMonth,
-            Scenario.ItemId.StartDay,
-            Scenario.ItemId.EndYear,
-            Scenario.ItemId.EndMonth,
-            Scenario.ItemId.EndDay,
-            Scenario.ItemId.IncludeFolder,
-            Scenario.ItemId.BattleScenario,
-            Scenario.ItemId.FreeSelection,
-            Scenario.ItemId.AllowDiplomacy,
-            Scenario.ItemId.AllowProduction,
-            Scenario.ItemId.AllowTechnology,
-            Scenario.ItemId.AiAggressive,
-            Scenario.ItemId.Difficulty,
-            Scenario.ItemId.GameSpeed,
-            MajorCountrySettings.ItemId.NameKey,
-            MajorCountrySettings.ItemId.NameString,
-            MajorCountrySettings.ItemId.FlagExt,
-            MajorCountrySettings.ItemId.DescKey,
-            MajorCountrySettings.ItemId.DescString,
-            MajorCountrySettings.ItemId.PictureName,
             Alliance.ItemId.Name,
             Alliance.ItemId.Type,
             Alliance.ItemId.Id,
@@ -547,29 +509,6 @@ namespace HoI2Editor.Controllers
         /// </summary>
         private static readonly string[] ItemStrings =
         {
-            "scenario name",
-            "panel name",
-            "scenario start year",
-            "scenario start month",
-            "scenario start day",
-            "scenario end year",
-            "scenario end month",
-            "scenario end day",
-            "include folder",
-            "battle scenario",
-            "free selection",
-            "allow diplomacy",
-            "allow production",
-            "allow technology",
-            "ai aggressive",
-            "difficulty",
-            "game speed",
-            "major country name key",
-            "major country name string",
-            "major flag ext",
-            "country desc key",
-            "country desc string",
-            "propaganda image",
             "alliance name",
             "alliance type",
             "alliance id",
@@ -879,13 +818,16 @@ namespace HoI2Editor.Controllers
             Scenarios.Init();
 
             // 各タブページの初期化済み状態をクリアする
-            foreach (TabPageNo page in Enum.GetValues(typeof (TabPageNo)))
+            foreach (ScenarioEditorForm.TabPageNo page in Enum.GetValues(typeof(ScenarioEditorForm.TabPageNo)))
             {
                 _tabPageInitialized[(int) page] = false;
             }
 
-            // 編集項目を更新する
-            OnMainTabPageFileLoad();
+            // 各タブページの更新を要求する
+            _main?.RequireUpdate();
+
+            // タブページを更新する
+            _main?.UpdateTabPage();
             OnAllianceTabPageFileLoad();
             OnRelationTabPageFileLoad();
             OnTradeTabPageFileLoad();
@@ -897,42 +839,18 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     メインタブのファイル読み込み時の処理
-        /// </summary>
-        private void OnMainTabPageFileLoad()
-        {
-            // メインタブ選択中でなければ何もしない
-            if (_tabPageNo != TabPageNo.Main)
-            {
-                return;
-            }
-
-            // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Main])
-            {
-                return;
-            }
-
-            // 編集項目を初期化する
-            _mainPage.UpdateItems();
-
-            // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Main] = true;
-        }
-
-        /// <summary>
         ///     同盟タブのファイル読み込み時の処理
         /// </summary>
         private void OnAllianceTabPageFileLoad()
         {
             // 同盟タブ選択中でなければ何もしない
-            if (_tabPageNo != TabPageNo.Alliance)
+            if (_tabPageNo != ScenarioEditorForm.TabPageNo.Alliance)
             {
                 return;
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Alliance])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Alliance])
             {
                 return;
             }
@@ -941,7 +859,7 @@ namespace HoI2Editor.Controllers
             _alliancePage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Alliance] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Alliance] = true;
         }
 
         /// <summary>
@@ -950,13 +868,13 @@ namespace HoI2Editor.Controllers
         private void OnRelationTabPageFileLoad()
         {
             // 同盟タブ選択中でなければ何もしない
-            if (_tabPageNo != TabPageNo.Relation)
+            if (_tabPageNo != ScenarioEditorForm.TabPageNo.Relation)
             {
                 return;
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Relation])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Relation])
             {
                 return;
             }
@@ -965,7 +883,7 @@ namespace HoI2Editor.Controllers
             _relationPage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Relation] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Relation] = true;
         }
 
         /// <summary>
@@ -974,13 +892,13 @@ namespace HoI2Editor.Controllers
         private void OnTradeTabPageFileLoad()
         {
             // 貿易タブ選択中でなければ何もしない
-            if (_tabPageNo != TabPageNo.Trade)
+            if (_tabPageNo != ScenarioEditorForm.TabPageNo.Trade)
             {
                 return;
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Trade])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Trade])
             {
                 return;
             }
@@ -989,7 +907,7 @@ namespace HoI2Editor.Controllers
             _tradePage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Trade] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Trade] = true;
         }
 
         /// <summary>
@@ -998,13 +916,13 @@ namespace HoI2Editor.Controllers
         private void OnCountryTabPageFileLoad()
         {
             // 国家タブ選択中でなければ何もしない
-            if (_tabPageNo != TabPageNo.Country)
+            if (_tabPageNo != ScenarioEditorForm.TabPageNo.Country)
             {
                 return;
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Country])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Country])
             {
                 return;
             }
@@ -1013,7 +931,7 @@ namespace HoI2Editor.Controllers
             _countryPage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Country] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Country] = true;
         }
 
         /// <summary>
@@ -1022,7 +940,7 @@ namespace HoI2Editor.Controllers
         private void OnGovernmentTabPageFileLoad()
         {
             // 政府タブ選択中でなければ何もしない
-            if (_tabPageNo != TabPageNo.Government)
+            if (_tabPageNo != ScenarioEditorForm.TabPageNo.Government)
             {
                 return;
             }
@@ -1031,7 +949,7 @@ namespace HoI2Editor.Controllers
             Ministers.WaitLoading();
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Government])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Government])
             {
                 return;
             }
@@ -1040,7 +958,7 @@ namespace HoI2Editor.Controllers
             _governmentPage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Government] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Government] = true;
         }
 
         /// <summary>
@@ -1049,13 +967,13 @@ namespace HoI2Editor.Controllers
         private void OnTechTabPageFileLoad()
         {
             // 政府タブ選択中でなければ何もしない
-            if (_tabPageNo != TabPageNo.Technology)
+            if (_tabPageNo != ScenarioEditorForm.TabPageNo.Technology)
             {
                 return;
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Technology])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Technology])
             {
                 return;
             }
@@ -1067,7 +985,7 @@ namespace HoI2Editor.Controllers
             _technologyPage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Technology] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Technology] = true;
         }
 
         /// <summary>
@@ -1076,13 +994,13 @@ namespace HoI2Editor.Controllers
         private void OnProvinceTabPageFileLoad()
         {
             // プロヴィンスタブ選択中でなければ何もしない
-            if (_tabPageNo != TabPageNo.Province)
+            if (_tabPageNo != ScenarioEditorForm.TabPageNo.Province)
             {
                 return;
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Province])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Province])
             {
                 return;
             }
@@ -1091,7 +1009,7 @@ namespace HoI2Editor.Controllers
             _provincePage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Province] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Province] = true;
         }
 
         /// <summary>
@@ -1100,13 +1018,13 @@ namespace HoI2Editor.Controllers
         private void OnOobTabPageFileLoad()
         {
             // 初期部隊タブ選択中でなければ何もしない
-            if (_tabPageNo != TabPageNo.Oob)
+            if (_tabPageNo != ScenarioEditorForm.TabPageNo.Oob)
             {
                 return;
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Oob])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Oob])
             {
                 return;
             }
@@ -1124,7 +1042,7 @@ namespace HoI2Editor.Controllers
             _oobPage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Oob] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Oob] = true;
         }
 
         /// <summary>
@@ -1145,7 +1063,7 @@ namespace HoI2Editor.Controllers
             }
 
             // プロヴィンスタブ選択中でなければ何もしない
-            if (_tabPageNo != TabPageNo.Province)
+            if (_tabPageNo != ScenarioEditorForm.TabPageNo.Province)
             {
                 return;
             }
@@ -1160,10 +1078,13 @@ namespace HoI2Editor.Controllers
         internal void OnFileSaved()
         {
             // 各タブページの初期化済み状態をクリアする
-            foreach (TabPageNo page in Enum.GetValues(typeof (TabPageNo)))
+            foreach (ScenarioEditorForm.TabPageNo page in Enum.GetValues(typeof(ScenarioEditorForm.TabPageNo)))
             {
                 _tabPageInitialized[(int) page] = false;
             }
+
+            // 各タブページの更新を要求する
+            _main?.RequireUpdate();
 
             // 強制的に選択タブの表示を更新する
             OnSelectedTabPageChanged((int) _tabPageNo);
@@ -1276,7 +1197,7 @@ namespace HoI2Editor.Controllers
             Units.LoadAsync(null);
 
             // メインタブを初期化する
-            OnSelectedTabPageChanged((int) TabPageNo.Main);
+            OnSelectedTabPageChanged((int) ScenarioEditorForm.TabPageNo.Main);
 
             // シナリオファイル読み込み済みなら編集項目を更新する
             if (Scenarios.IsLoaded())
@@ -1313,43 +1234,43 @@ namespace HoI2Editor.Controllers
         /// <param name="index">タブページ番号</param>
         internal void OnSelectedTabPageChanged(int index)
         {
-            _tabPageNo = (TabPageNo) index;
+            _tabPageNo = (ScenarioEditorForm.TabPageNo) index;
 
             switch (_tabPageNo)
             {
-                case TabPageNo.Main:
+                case ScenarioEditorForm.TabPageNo.Main:
                     OnMainTabPageSelected();
                     break;
 
-                case TabPageNo.Alliance:
+                case ScenarioEditorForm.TabPageNo.Alliance:
                     OnAllianceTabPageSelected();
                     break;
 
-                case TabPageNo.Relation:
+                case ScenarioEditorForm.TabPageNo.Relation:
                     OnRelationTabPageSelected();
                     break;
 
-                case TabPageNo.Trade:
+                case ScenarioEditorForm.TabPageNo.Trade:
                     OnTradeTabPageSelected();
                     break;
 
-                case TabPageNo.Country:
+                case ScenarioEditorForm.TabPageNo.Country:
                     OnCountryTabPageSelected();
                     break;
 
-                case TabPageNo.Government:
+                case ScenarioEditorForm.TabPageNo.Government:
                     OnGovernmentTabPageSelected();
                     break;
 
-                case TabPageNo.Technology:
+                case ScenarioEditorForm.TabPageNo.Technology:
                     OnTechTabPageSelected();
                     break;
 
-                case TabPageNo.Province:
+                case ScenarioEditorForm.TabPageNo.Province:
                     OnProvinceTabPageSelected();
                     break;
 
-                case TabPageNo.Oob:
+                case ScenarioEditorForm.TabPageNo.Oob:
                     OnOobTabPageSelected();
                     break;
             }
@@ -1360,30 +1281,14 @@ namespace HoI2Editor.Controllers
         /// </summary>
         private void OnMainTabPageSelected()
         {
-            // タブページを作成する
-            if (_mainPage == null)
+            // タブページコントローラを作成する
+            if (_main == null)
             {
-                _mainPage = new ScenarioEditorMainPage(this, _form);
-                _form.AttachTabPage(_mainPage, (int) TabPageNo.Main);
+                _main = new ScenarioEditorMainController(this, _form);
             }
 
-            // シナリオ未読み込みならば何もしない
-            if (!Scenarios.IsLoaded())
-            {
-                return;
-            }
-
-            // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Main])
-            {
-                return;
-            }
-
-            // 編集項目を初期化する
-            _mainPage.UpdateItems();
-
-            // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Main] = true;
+            // タブページを更新する
+            _main.UpdateTabPage();
         }
 
         /// <summary>
@@ -1395,7 +1300,7 @@ namespace HoI2Editor.Controllers
             if (_alliancePage == null)
             {
                 _alliancePage = new ScenarioEditorAlliancePage(this, _form);
-                _form.AttachTabPage(_alliancePage, (int) TabPageNo.Alliance);
+                _form.SetTabPage(_alliancePage, (int) ScenarioEditorForm.TabPageNo.Alliance);
             }
 
             // シナリオ未読み込みならば何もしない
@@ -1405,7 +1310,7 @@ namespace HoI2Editor.Controllers
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Alliance])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Alliance])
             {
                 return;
             }
@@ -1414,7 +1319,7 @@ namespace HoI2Editor.Controllers
             _alliancePage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Alliance] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Alliance] = true;
         }
 
         /// <summary>
@@ -1426,7 +1331,7 @@ namespace HoI2Editor.Controllers
             if (_relationPage == null)
             {
                 _relationPage = new ScenarioEditorRelationPage(this, _form);
-                _form.AttachTabPage(_relationPage, (int) TabPageNo.Relation);
+                _form.SetTabPage(_relationPage, (int) ScenarioEditorForm.TabPageNo.Relation);
             }
 
             // シナリオ未読み込みならば何もしない
@@ -1436,7 +1341,7 @@ namespace HoI2Editor.Controllers
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Relation])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Relation])
             {
                 return;
             }
@@ -1445,7 +1350,7 @@ namespace HoI2Editor.Controllers
             _relationPage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Relation] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Relation] = true;
         }
 
         /// <summary>
@@ -1457,7 +1362,7 @@ namespace HoI2Editor.Controllers
             if (_tradePage == null)
             {
                 _tradePage = new ScenarioEditorTradePage(this, _form);
-                _form.AttachTabPage(_tradePage, (int) TabPageNo.Trade);
+                _form.SetTabPage(_tradePage, (int) ScenarioEditorForm.TabPageNo.Trade);
             }
 
             // シナリオ未読み込みならば何もしない
@@ -1467,7 +1372,7 @@ namespace HoI2Editor.Controllers
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Trade])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Trade])
             {
                 return;
             }
@@ -1476,7 +1381,7 @@ namespace HoI2Editor.Controllers
             _tradePage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Trade] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Trade] = true;
         }
 
         /// <summary>
@@ -1488,7 +1393,7 @@ namespace HoI2Editor.Controllers
             if (_countryPage == null)
             {
                 _countryPage = new ScenarioEditorCountryPage(this, _form);
-                _form.AttachTabPage(_countryPage, (int) TabPageNo.Country);
+                _form.SetTabPage(_countryPage, (int) ScenarioEditorForm.TabPageNo.Country);
             }
 
             // シナリオ未読み込みならば何もしない
@@ -1498,7 +1403,7 @@ namespace HoI2Editor.Controllers
             }
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Country])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Country])
             {
                 return;
             }
@@ -1507,7 +1412,7 @@ namespace HoI2Editor.Controllers
             _countryPage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Country] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Country] = true;
         }
 
         /// <summary>
@@ -1519,7 +1424,7 @@ namespace HoI2Editor.Controllers
             if (_governmentPage == null)
             {
                 _governmentPage = new ScenarioEditorGovernmentPage(this, _form);
-                _form.AttachTabPage(_governmentPage, (int) TabPageNo.Government);
+                _form.SetTabPage(_governmentPage, (int) ScenarioEditorForm.TabPageNo.Government);
             }
 
             // シナリオ未読み込みならば何もしない
@@ -1532,7 +1437,7 @@ namespace HoI2Editor.Controllers
             Ministers.WaitLoading();
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Government])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Government])
             {
                 return;
             }
@@ -1541,7 +1446,7 @@ namespace HoI2Editor.Controllers
             _governmentPage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Government] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Government] = true;
         }
 
         /// <summary>
@@ -1553,7 +1458,7 @@ namespace HoI2Editor.Controllers
             if (_technologyPage == null)
             {
                 _technologyPage = new ScenarioEditorTechnologyPage(this, _form);
-                _form.AttachTabPage(_technologyPage, (int) TabPageNo.Technology);
+                _form.SetTabPage(_technologyPage, (int) ScenarioEditorForm.TabPageNo.Technology);
             }
 
             // シナリオ未読み込みならば何もしない
@@ -1566,7 +1471,7 @@ namespace HoI2Editor.Controllers
             Techs.WaitLoading();
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Technology])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Technology])
             {
                 return;
             }
@@ -1575,7 +1480,7 @@ namespace HoI2Editor.Controllers
             _technologyPage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Technology] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Technology] = true;
         }
 
         /// <summary>
@@ -1587,7 +1492,7 @@ namespace HoI2Editor.Controllers
             if (_provincePage == null)
             {
                 _provincePage = new ScenarioEditorProvincePage(this, _form);
-                _form.AttachTabPage(_provincePage, (int) TabPageNo.Province);
+                _form.SetTabPage(_provincePage, (int) ScenarioEditorForm.TabPageNo.Province);
             }
 
             // シナリオ未読み込みならば何もしない
@@ -1600,7 +1505,7 @@ namespace HoI2Editor.Controllers
             Provinces.WaitLoading();
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Province])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Province])
             {
                 return;
             }
@@ -1609,7 +1514,7 @@ namespace HoI2Editor.Controllers
             _provincePage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Province] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Province] = true;
         }
 
         /// <summary>
@@ -1621,7 +1526,7 @@ namespace HoI2Editor.Controllers
             if (_oobPage == null)
             {
                 _oobPage = new ScenarioEditorOobPage(this, _form);
-                _form.AttachTabPage(_oobPage, (int) TabPageNo.Oob);
+                _form.SetTabPage(_oobPage, (int) ScenarioEditorForm.TabPageNo.Oob);
             }
 
             // シナリオ未読み込みならば何もしない
@@ -1640,7 +1545,7 @@ namespace HoI2Editor.Controllers
             Units.WaitLoading();
 
             // 初期化済みであれば何もしない
-            if (_tabPageInitialized[(int) TabPageNo.Oob])
+            if (_tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Oob])
             {
                 return;
             }
@@ -1649,7 +1554,7 @@ namespace HoI2Editor.Controllers
             _oobPage.UpdateItems();
 
             // 初期化済みフラグをセットする
-            _tabPageInitialized[(int) TabPageNo.Oob] = true;
+            _tabPageInitialized[(int) ScenarioEditorForm.TabPageNo.Oob] = true;
         }
 
         #endregion
@@ -1821,59 +1726,6 @@ namespace HoI2Editor.Controllers
         #region 編集項目
 
         #region 編集項目 - 項目値更新
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        internal void UpdateItemValue(TextBox control)
-        {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.Text = ObjectHelper.ToString(GetItemValue(itemId));
-        }
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        internal void UpdateItemValue(ComboBox control)
-        {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.SelectedIndex = (int) GetItemValue(itemId);
-        }
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        internal void UpdateItemValue(CheckBox control)
-        {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.Checked = (bool) GetItemValue(itemId);
-        }
-
-        /// <summary>
-        ///     編集項目の値を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="major">主要国設定</param>
-        internal void UpdateItemValue(TextBox control, MajorCountrySettings major)
-        {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.Text = ObjectHelper.ToString(GetItemValue(itemId, major));
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.MajorCountryNameString:
-                    // 主要国設定の国名定義がなければ編集不可
-                    control.ReadOnly = string.IsNullOrEmpty(major.Name);
-                    break;
-
-                case ScenarioEditorItemId.MajorCountryDescString:
-                    // 主要国設定の説明文定義がなければ編集不可
-                    control.ReadOnly = string.IsNullOrEmpty(major.Desc);
-                    break;
-            }
-        }
 
         /// <summary>
         ///     編集項目の値を更新する
@@ -2644,27 +2496,6 @@ namespace HoI2Editor.Controllers
         ///     編集項目の色を更新する
         /// </summary>
         /// <param name="control">コントロール</param>
-        internal void UpdateItemColor(Control control)
-        {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.ForeColor = IsItemDirty(itemId) ? Color.Red : SystemColors.WindowText;
-        }
-
-        /// <summary>
-        ///     編集項目の色を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
-        /// <param name="major">主要国設定</param>
-        internal void UpdateItemColor(Control control, MajorCountrySettings major)
-        {
-            ScenarioEditorItemId itemId = (ScenarioEditorItemId) control.Tag;
-            control.ForeColor = IsItemDirty(itemId, major) ? Color.Red : SystemColors.WindowText;
-        }
-
-        /// <summary>
-        ///     編集項目の色を更新する
-        /// </summary>
-        /// <param name="control">コントロール</param>
         /// <param name="alliance">同盟</param>
         internal void UpdateItemColor(Control control, Alliance alliance)
         {
@@ -2787,122 +2618,6 @@ namespace HoI2Editor.Controllers
         #endregion
 
         #region 編集項目 - 項目値取得
-
-        /// <summary>
-        ///     編集項目の値を取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <returns>編集項目の値</returns>
-        internal object GetItemValue(ScenarioEditorItemId itemId)
-        {
-            Scenario scenario = Scenarios.Data;
-
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.ScenarioName:
-                    return Config.ExistsKey(scenario.Name) ? Config.GetText(scenario.Name) : scenario.Name;
-
-                case ScenarioEditorItemId.ScenarioPanelName:
-                    return scenario.PanelName;
-
-                case ScenarioEditorItemId.ScenarioStartYear:
-                    return scenario.GlobalData.StartDate?.Year;
-
-                case ScenarioEditorItemId.ScenarioStartMonth:
-                    return scenario.GlobalData.StartDate?.Month;
-
-                case ScenarioEditorItemId.ScenarioStartDay:
-                    return scenario.GlobalData.StartDate?.Day;
-
-                case ScenarioEditorItemId.ScenarioEndYear:
-                    return scenario.GlobalData.EndDate?.Year;
-
-                case ScenarioEditorItemId.ScenarioEndMonth:
-                    return scenario.GlobalData.EndDate?.Month;
-
-                case ScenarioEditorItemId.ScenarioEndDay:
-                    return scenario.GlobalData.EndDate?.Day;
-
-                case ScenarioEditorItemId.ScenarioIncludeFolder:
-                    return scenario.IncludeFolder;
-
-                case ScenarioEditorItemId.ScenarioBattleScenario:
-                    return scenario.Header.IsBattleScenario;
-
-                case ScenarioEditorItemId.ScenarioFreeSelection:
-                    return scenario.Header.IsFreeSelection;
-
-                case ScenarioEditorItemId.ScenarioAllowDiplomacy:
-                    return (scenario.GlobalData.Rules == null) || scenario.GlobalData.Rules.AllowDiplomacy;
-
-                case ScenarioEditorItemId.ScenarioAllowProduction:
-                    return (scenario.GlobalData.Rules == null) || scenario.GlobalData.Rules.AllowProduction;
-
-                case ScenarioEditorItemId.ScenarioAllowTechnology:
-                    return (scenario.GlobalData.Rules == null) || scenario.GlobalData.Rules.AllowTechnology;
-
-                case ScenarioEditorItemId.ScenarioAiAggressive:
-                    return scenario.Header.AiAggressive;
-
-                case ScenarioEditorItemId.ScenarioDifficulty:
-                    return scenario.Header.Difficulty;
-
-                case ScenarioEditorItemId.ScenarioGameSpeed:
-                    return scenario.Header.GameSpeed;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        ///     編集項目の値を取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="major">主要国設定</param>
-        /// <returns>編集項目の値</returns>
-        internal object GetItemValue(ScenarioEditorItemId itemId, MajorCountrySettings major)
-        {
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.MajorCountryNameKey:
-                    return major.Name;
-
-                case ScenarioEditorItemId.MajorCountryNameString:
-                    return Scenarios.GetCountryName(major.Country);
-
-                case ScenarioEditorItemId.MajorFlagExt:
-                    return major.FlagExt;
-
-                case ScenarioEditorItemId.MajorCountryDescKey:
-                    return major.Desc;
-
-                case ScenarioEditorItemId.MajorCountryDescString:
-                    if (!string.IsNullOrEmpty(major.Desc))
-                    {
-                        return Config.GetText(major.Desc);
-                    }
-                    int year = Scenarios.Data.GlobalData.StartDate != null
-                        ? Scenarios.Data.GlobalData.StartDate.Year
-                        : Scenarios.Data.Header.StartDate != null
-                            ? Scenarios.Data.Header.StartDate.Year
-                            : Scenarios.Data.Header.StartYear;
-                    // 年数の下2桁のみ使用する
-                    year = year % 100;
-                    // 年数別の説明があれば使用する
-                    string key = $"{major.Country}_{year}_DESC";
-                    if (Config.ExistsKey(key))
-                    {
-                        return Config.GetText(key);
-                    }
-                    key = $"{major.Country}_DESC";
-                    return Config.GetText(key);
-
-                case ScenarioEditorItemId.MajorPropaganada:
-                    return major.PictureName;
-            }
-
-            return null;
-        }
 
         /// <summary>
         ///     編集項目の値を取得する
@@ -3800,7 +3515,7 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <returns>項目値のリスト</returns>
-        internal object GetListItems(ScenarioEditorItemId itemId)
+        private object GetListItems(ScenarioEditorItemId itemId)
         {
             switch (itemId)
             {
@@ -3844,7 +3559,7 @@ namespace HoI2Editor.Controllers
         /// <param name="itemId">項目ID</param>
         /// <param name="unit">ユニット</param>
         /// <returns>項目値のリスト</returns>
-        internal object GetListItems(ScenarioEditorItemId itemId, Unit unit)
+        private object GetListItems(ScenarioEditorItemId itemId, Unit unit)
         {
             switch (itemId)
             {
@@ -3897,7 +3612,7 @@ namespace HoI2Editor.Controllers
         /// <param name="itemId">項目ID</param>
         /// <param name="division">師団</param>
         /// <returns>項目値のリスト</returns>
-        internal object GetListItems(ScenarioEditorItemId itemId, Division division)
+        private object GetListItems(ScenarioEditorItemId itemId, Division division)
         {
             switch (itemId)
             {
@@ -4030,166 +3745,6 @@ namespace HoI2Editor.Controllers
         #endregion
 
         #region 編集項目 - 項目値設定
-
-        /// <summary>
-        ///     編集項目の値を設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        internal void SetItemValue(ScenarioEditorItemId itemId, object val)
-        {
-            Scenario scenario = Scenarios.Data;
-
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.ScenarioName:
-                    if (Config.ExistsKey(scenario.Name))
-                    {
-                        Config.SetText(scenario.Name, (string) val, Game.ScenarioTextFileName);
-                    }
-                    else
-                    {
-                        scenario.Name = (string) val;
-                    }
-                    break;
-
-                case ScenarioEditorItemId.ScenarioPanelName:
-                    scenario.PanelName = (string) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioStartYear:
-                    scenario.GlobalData.StartDate.Year = (int) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioStartMonth:
-                    scenario.GlobalData.StartDate.Month = (int) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioStartDay:
-                    scenario.GlobalData.StartDate.Day = (int) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioEndYear:
-                    scenario.GlobalData.EndDate.Year = (int) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioEndMonth:
-                    scenario.GlobalData.EndDate.Month = (int) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioEndDay:
-                    scenario.GlobalData.EndDate.Day = (int) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioIncludeFolder:
-                    scenario.IncludeFolder = (string) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioBattleScenario:
-                    scenario.Header.IsBattleScenario = (bool) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioFreeSelection:
-                    scenario.Header.IsFreeSelection = (bool) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioAllowDiplomacy:
-                    scenario.GlobalData.Rules.AllowDiplomacy = (bool) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioAllowProduction:
-                    scenario.GlobalData.Rules.AllowProduction = (bool) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioAllowTechnology:
-                    scenario.GlobalData.Rules.AllowTechnology = (bool) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioAiAggressive:
-                    scenario.Header.AiAggressive = (int) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioDifficulty:
-                    scenario.Header.Difficulty = (int) val;
-                    break;
-
-                case ScenarioEditorItemId.ScenarioGameSpeed:
-                    scenario.Header.GameSpeed = (int) val;
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     編集項目の値を設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="major">主要国設定</param>
-        /// <param name="val">編集項目の値</param>
-        internal void SetItemValue(ScenarioEditorItemId itemId, object val, MajorCountrySettings major)
-        {
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.MajorCountryNameKey:
-                    major.Name = (string) val;
-                    break;
-
-                case ScenarioEditorItemId.MajorCountryNameString:
-                    // 主要国設定の国名
-                    if (!string.IsNullOrEmpty(major.Name))
-                    {
-                        Config.SetText(major.Name, (string) val, Game.WorldTextFileName);
-                        break;
-                    }
-                    // 国家設定の国名
-                    CountrySettings settings = Scenarios.GetCountrySettings(major.Country);
-                    if (!string.IsNullOrEmpty(settings?.Name))
-                    {
-                        Config.SetText(settings.Name, (string) val, Game.WorldTextFileName);
-                        break;
-                    }
-                    // 標準の国名
-                    Config.SetText(Countries.Strings[(int) major.Country], (string) val, Game.WorldTextFileName);
-                    break;
-
-                case ScenarioEditorItemId.MajorFlagExt:
-                    major.FlagExt = (string) val;
-                    break;
-
-                case ScenarioEditorItemId.MajorCountryDescKey:
-                    major.Desc = (string) val;
-                    break;
-
-                case ScenarioEditorItemId.MajorCountryDescString:
-                    // 主要国設定の説明文
-                    if (!string.IsNullOrEmpty(major.Desc))
-                    {
-                        Config.SetText(major.Desc, (string) val, Game.ScenarioTextFileName);
-                        break;
-                    }
-                    int year = Scenarios.Data.GlobalData.StartDate != null
-                        ? Scenarios.Data.GlobalData.StartDate.Year
-                        : Scenarios.Data.Header.StartDate != null
-                            ? Scenarios.Data.Header.StartDate.Year
-                            : Scenarios.Data.Header.StartYear;
-                    // 年数の下2桁のみ使用する
-                    year = year % 100;
-                    // 年数別の説明文
-                    string key = $"{major.Country}_{year}_DESC";
-                    if (Config.ExistsKey(key))
-                    {
-                        Config.SetText(key, (string) val, Game.ScenarioTextFileName);
-                        break;
-                    }
-                    // 標準の説明文
-                    key = $"{major.Country}_DESC";
-                    Config.SetText(key, (string) val, Game.ScenarioTextFileName);
-                    break;
-
-                case ScenarioEditorItemId.MajorPropaganada:
-                    major.PictureName = (string) val;
-                    break;
-            }
-        }
 
         /// <summary>
         ///     編集項目の値を設定する
@@ -5286,8 +4841,6 @@ namespace HoI2Editor.Controllers
                     }
                     break;
 
-                case ScenarioEditorItemId.ScenarioStartYear:
-                case ScenarioEditorItemId.ScenarioEndYear:
                 case ScenarioEditorItemId.DiplomacyGuaranteedEndYear:
                 case ScenarioEditorItemId.CountryNukeYear:
                     if (((int) val < GameDate.MinYear) || ((int) val > GameDate.MaxYear))
@@ -5296,8 +4849,6 @@ namespace HoI2Editor.Controllers
                     }
                     break;
 
-                case ScenarioEditorItemId.ScenarioStartMonth:
-                case ScenarioEditorItemId.ScenarioEndMonth:
                 case ScenarioEditorItemId.DiplomacyGuaranteedEndMonth:
                 case ScenarioEditorItemId.CountryNukeMonth:
                     if (((int) val < GameDate.MinMonth) || ((int) val > GameDate.MaxMonth))
@@ -5306,8 +4857,6 @@ namespace HoI2Editor.Controllers
                     }
                     break;
 
-                case ScenarioEditorItemId.ScenarioStartDay:
-                case ScenarioEditorItemId.ScenarioEndDay:
                 case ScenarioEditorItemId.DiplomacyGuaranteedEndDay:
                 case ScenarioEditorItemId.CountryNukeDay:
                     if (((int) val < GameDate.MinDay) || ((int) val > GameDate.MaxDay))
@@ -5551,13 +5100,6 @@ namespace HoI2Editor.Controllers
                     }
                     break;
 
-                case ScenarioEditorItemId.ScenarioEndDay:
-                    if (((int) val < GameDate.MinDay) || ((int) val > GameDate.MaxDay))
-                    {
-                        return false;
-                    }
-                    break;
-
                 case ScenarioEditorItemId.SliderDemocratic:
                 case ScenarioEditorItemId.SliderPoliticalLeft:
                 case ScenarioEditorItemId.SliderFreedom:
@@ -5791,27 +5333,6 @@ namespace HoI2Editor.Controllers
         ///     編集項目の編集済みフラグを取得する
         /// </summary>
         /// <param name="itemId">項目ID</param>
-        /// <returns>編集済みフラグ</returns>
-        internal bool IsItemDirty(ScenarioEditorItemId itemId)
-        {
-            return Scenarios.Data.IsDirty((Scenario.ItemId) ItemDirtyFlags[(int) itemId]);
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="major">主要国設定</param>
-        /// <returns>編集済みフラグ</returns>
-        internal bool IsItemDirty(ScenarioEditorItemId itemId, MajorCountrySettings major)
-        {
-            return major.IsDirty((MajorCountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを取得する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
         /// <param name="alliance">同盟</param>
         /// <returns>編集済みフラグ</returns>
         internal bool IsItemDirty(ScenarioEditorItemId itemId, Alliance alliance)
@@ -5953,28 +5474,6 @@ namespace HoI2Editor.Controllers
         #endregion
 
         #region 編集項目 - 編集済みフラグ設定
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        internal void SetItemDirty(ScenarioEditorItemId itemId)
-        {
-            Scenarios.Data.SetDirty((Scenario.ItemId) ItemDirtyFlags[(int) itemId]);
-            Scenarios.SetDirty();
-        }
-
-        /// <summary>
-        ///     編集項目の編集済みフラグを設定する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="major">主要国設定</param>
-        internal void SetItemDirty(ScenarioEditorItemId itemId, MajorCountrySettings major)
-        {
-            major.SetDirty((MajorCountrySettings.ItemId) ItemDirtyFlags[(int) itemId]);
-            Scenarios.Data.SetDirty();
-            Scenarios.SetDirty();
-        }
 
         /// <summary>
         ///     編集項目の編集済みフラグを設定する
@@ -6258,75 +5757,8 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
-        internal void PreItemChanged(ScenarioEditorItemId itemId, object val)
-        {
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.ScenarioStartYear:
-                    PreItemChangedScenarioStartDate(
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartMonth),
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartDay));
-                    break;
-
-                case ScenarioEditorItemId.ScenarioStartMonth:
-                    PreItemChangedScenarioStartDate(
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartYear),
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartDay));
-                    break;
-
-                case ScenarioEditorItemId.ScenarioStartDay:
-                    PreItemChangedScenarioStartDate(
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartYear),
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioStartMonth));
-                    break;
-
-                case ScenarioEditorItemId.ScenarioEndYear:
-                    PreItemChangedScenarioEndDate(
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndMonth),
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndDay));
-                    break;
-
-                case ScenarioEditorItemId.ScenarioEndMonth:
-                    PreItemChangedScenarioEndDate(
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndYear),
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndDay));
-                    break;
-
-                case ScenarioEditorItemId.ScenarioEndDay:
-                    PreItemChangedScenarioEndDate(
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndYear),
-                        (TextBox) _form.GetItemControl(ScenarioEditorItemId.ScenarioEndMonth));
-                    break;
-
-                case ScenarioEditorItemId.ScenarioAllowDiplomacy:
-                case ScenarioEditorItemId.ScenarioAllowProduction:
-                case ScenarioEditorItemId.ScenarioAllowTechnology:
-                    if (Scenarios.Data.GlobalData.Rules == null)
-                    {
-                        Scenarios.Data.GlobalData.Rules = new ScenarioRules();
-                    }
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     項目値変更前の処理
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="major">主要国設定</param>
-        internal void PreItemChanged(ScenarioEditorItemId itemId, object val, MajorCountrySettings major)
-        {
-            // 何もしない
-        }
-
-        /// <summary>
-        ///     項目値変更前の処理
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
         /// <param name="alliance">同盟</param>
-        internal void PreItemChanged(ScenarioEditorItemId itemId, object val, Alliance alliance)
+        public void PreItemChanged(ScenarioEditorItemId itemId, object val, Alliance alliance)
         {
             switch (itemId)
             {
@@ -7143,60 +6575,6 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     項目変更前の処理 - シナリオ開始日時
-        /// </summary>
-        /// <param name="control1">連動するコントロール1</param>
-        /// <param name="control2">連動するコントロール2</param>
-        private void PreItemChangedScenarioStartDate(TextBox control1, TextBox control2)
-        {
-            if (Scenarios.Data.GlobalData.StartDate == null)
-            {
-                Scenarios.Data.GlobalData.StartDate = new GameDate();
-
-                // 編集済みフラグを設定する
-                ScenarioEditorItemId itemId1 = (ScenarioEditorItemId) control1.Tag;
-                SetItemDirty(itemId1);
-                ScenarioEditorItemId itemId2 = (ScenarioEditorItemId) control2.Tag;
-                SetItemDirty(itemId2);
-
-                // 編集項目の値を更新する
-                UpdateItemValue(control1);
-                UpdateItemValue(control2);
-
-                // 編集項目の色を更新する
-                UpdateItemColor(control1);
-                UpdateItemColor(control2);
-            }
-        }
-
-        /// <summary>
-        ///     項目変更前の処理 - シナリオ終了日時
-        /// </summary>
-        /// <param name="control1">連動するコントロール1</param>
-        /// <param name="control2">連動するコントロール2</param>
-        private void PreItemChangedScenarioEndDate(TextBox control1, TextBox control2)
-        {
-            if (Scenarios.Data.GlobalData.EndDate == null)
-            {
-                Scenarios.Data.GlobalData.EndDate = new GameDate();
-
-                // 編集済みフラグを設定する
-                ScenarioEditorItemId itemId1 = (ScenarioEditorItemId) control1.Tag;
-                SetItemDirty(itemId1);
-                ScenarioEditorItemId itemId2 = (ScenarioEditorItemId) control2.Tag;
-                SetItemDirty(itemId2);
-
-                // 編集項目の値を更新する
-                UpdateItemValue(control1);
-                UpdateItemValue(control2);
-
-                // 編集項目の色を更新する
-                UpdateItemColor(control1);
-                UpdateItemColor(control2);
-            }
-        }
-
-        /// <summary>
         ///     項目変更前の処理 - 同盟type
         /// </summary>
         /// <param name="control">idのコントロール</param>
@@ -7828,50 +7206,6 @@ namespace HoI2Editor.Controllers
         #endregion
 
         #region 編集項目 - 変更後処理
-
-        /// <summary>
-        ///     項目値変更後の処理
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        internal void PostItemChanged(ScenarioEditorItemId itemId, object val)
-        {
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.ScenarioPanelName:
-                    _mainPage?.UpdatePanelImage((string) val);
-                    break;
-            }
-        }
-
-        /// <summary>
-        ///     項目値変更後の処理
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="major">主要国設定</param>
-        internal void PostItemChanged(ScenarioEditorItemId itemId, object val, MajorCountrySettings major)
-        {
-            TextBox control;
-            switch (itemId)
-            {
-                case ScenarioEditorItemId.MajorCountryNameKey:
-                    control = (TextBox) _form.GetItemControl(ScenarioEditorItemId.MajorCountryNameString);
-                    UpdateItemValue(control, major);
-                    UpdateItemColor(control, major);
-                    break;
-
-                case ScenarioEditorItemId.MajorCountryDescKey:
-                    control = (TextBox) _form.GetItemControl(ScenarioEditorItemId.MajorCountryDescString);
-                    UpdateItemValue(control, major);
-                    UpdateItemColor(control, major);
-                    break;
-
-                case ScenarioEditorItemId.MajorPropaganada:
-                    _mainPage?.UpdatePropagandaImage(major.Country, (string) val);
-                    break;
-            }
-        }
 
         /// <summary>
         ///     項目値変更後の処理
@@ -9307,30 +8641,6 @@ namespace HoI2Editor.Controllers
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
-        internal void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val)
-        {
-            Log.Info("[Scenario] {0}: {1} -> {2}", ItemStrings[(int) itemId],
-                ObjectHelper.ToString(GetItemValue(itemId)), ObjectHelper.ToString(val));
-        }
-
-        /// <summary>
-        ///     編集項目の値変更時のログを出力する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
-        /// <param name="major">主要国設定</param>
-        internal void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, MajorCountrySettings major)
-        {
-            Log.Info("[Scenario] {0}: {1} -> {2} ({3})", ItemStrings[(int) itemId],
-                ObjectHelper.ToString(GetItemValue(itemId, major)), ObjectHelper.ToString(val),
-                Countries.Strings[(int) major.Country]);
-        }
-
-        /// <summary>
-        ///     編集項目の値変更時のログを出力する
-        /// </summary>
-        /// <param name="itemId">項目ID</param>
-        /// <param name="val">編集項目の値</param>
         /// <param name="alliance">同盟</param>
         /// <param name="index">同盟リストのインデックス</param>
         internal void OutputItemValueChangedLog(ScenarioEditorItemId itemId, object val, Alliance alliance, int index)
@@ -9515,29 +8825,6 @@ namespace HoI2Editor.Controllers
     /// </summary>
     internal enum ScenarioEditorItemId
     {
-        ScenarioName,
-        ScenarioPanelName,
-        ScenarioStartYear,
-        ScenarioStartMonth,
-        ScenarioStartDay,
-        ScenarioEndYear,
-        ScenarioEndMonth,
-        ScenarioEndDay,
-        ScenarioIncludeFolder,
-        ScenarioBattleScenario,
-        ScenarioFreeSelection,
-        ScenarioAllowDiplomacy,
-        ScenarioAllowProduction,
-        ScenarioAllowTechnology,
-        ScenarioAiAggressive,
-        ScenarioDifficulty,
-        ScenarioGameSpeed,
-        MajorCountryNameKey,
-        MajorCountryNameString,
-        MajorFlagExt,
-        MajorCountryDescKey,
-        MajorCountryDescString,
-        MajorPropaganada,
         AllianceName,
         AllianceType,
         AllianceId,

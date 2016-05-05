@@ -117,7 +117,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -267,7 +267,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -485,7 +485,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         #endregion
 
@@ -535,7 +535,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -1044,7 +1044,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -1166,7 +1166,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -1364,7 +1364,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         #endregion
 
@@ -1427,7 +1427,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -1482,7 +1482,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         #endregion
 
@@ -1554,7 +1554,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -1649,7 +1649,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -1769,7 +1769,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -1813,7 +1813,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         #endregion
 
@@ -1860,7 +1860,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -2312,7 +2312,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         /// <summary>
         ///     保有技術の編集済みフラグ
@@ -2639,7 +2639,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -2803,7 +2803,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         #endregion
 
@@ -2845,7 +2845,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -3075,7 +3075,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         #endregion
 
@@ -3248,7 +3248,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void SetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -3272,7 +3272,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -3647,7 +3647,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         #endregion
 
@@ -3881,7 +3881,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void SetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -3893,7 +3893,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -4072,7 +4072,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         #endregion
 
@@ -4168,7 +4168,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void SetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -4180,7 +4180,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }
@@ -4273,7 +4273,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (ItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(ItemId)).Length];
 
         #endregion
 
@@ -4371,7 +4371,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void SetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -4382,7 +4382,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (ItemId id in Enum.GetValues(typeof (ItemId)))
+            foreach (ItemId id in Enum.GetValues(typeof(ItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }

@@ -281,7 +281,7 @@ namespace HoI2Editor.Forms
 
             // 大陸ノードを順に追加する
             _worldNode.Nodes.Clear();
-            foreach (ContinentId continent in Enum.GetValues(typeof (ContinentId)))
+            foreach (ContinentId continent in Enum.GetValues(typeof(ContinentId)))
             {
                 AddContinentTreeItem(continent, _worldNode);
             }

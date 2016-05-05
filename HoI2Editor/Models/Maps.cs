@@ -59,7 +59,7 @@ namespace HoI2Editor.Models
         ///     遅延読み込み用
         /// </summary>
         private static readonly BackgroundWorker[] Workers =
-            new BackgroundWorker[Enum.GetValues(typeof (MapLevel)).Length];
+            new BackgroundWorker[Enum.GetValues(typeof(MapLevel)).Length];
 
         #endregion
 
@@ -93,7 +93,7 @@ namespace HoI2Editor.Models
         /// </summary>
         static Maps()
         {
-            int maxLevel = Enum.GetValues(typeof (MapLevel)).Length;
+            int maxLevel = Enum.GetValues(typeof(MapLevel)).Length;
 
             Data = new Map[maxLevel];
             ColorMasks = new byte[MaxProvinces];
@@ -116,7 +116,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal static void RequestReload()
         {
-            foreach (MapLevel level in Enum.GetValues(typeof (MapLevel)))
+            foreach (MapLevel level in Enum.GetValues(typeof(MapLevel)))
             {
                 IsLoaded[(int) level] = false;
             }

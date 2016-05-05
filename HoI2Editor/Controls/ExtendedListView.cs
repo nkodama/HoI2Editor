@@ -45,7 +45,7 @@ namespace HoI2Editor.Controls
         ///     項目の入れ替えをサポートするかどうか
         /// </summary>
         [Category("動作")]
-        [DefaultValue(typeof (bool), "false")]
+        [DefaultValue(typeof(bool), "false")]
         [Description("ユーザーが項目の順番を再変更できるかどうかを示します。")]
         public bool AllowItemReorder
         {
@@ -58,7 +58,7 @@ namespace HoI2Editor.Controls
         }
 
         [Category("動作")]
-        [DefaultValue(typeof (bool), "false")]
+        [DefaultValue(typeof(bool), "false")]
         [Description("ユーザーによる項目の編集が可能になります。")]
         public bool ItemEdit { get; set; }
 
@@ -191,7 +191,7 @@ namespace HoI2Editor.Controls
             }
 
             // ExtendedListViewの項目でなければドロップを許可しない
-            if (!e.Data.GetDataPresent(typeof (ExtendedListView)))
+            if (!e.Data.GetDataPresent(typeof(ExtendedListView)))
             {
                 e.Effect = DragDropEffects.None;
                 return;
@@ -215,7 +215,7 @@ namespace HoI2Editor.Controls
             }
 
             // ExtendedListViewの項目でなければドロップを許可しない
-            if (!e.Data.GetDataPresent(typeof (ExtendedListView)))
+            if (!e.Data.GetDataPresent(typeof(ExtendedListView)))
             {
                 e.Effect = DragDropEffects.None;
                 return;
@@ -271,7 +271,7 @@ namespace HoI2Editor.Controls
             }
 
             // 自分自身の項目でなければドロップを許可しない
-            ExtendedListView listView = e.Data.GetData(typeof (ExtendedListView)) as ExtendedListView;
+            ExtendedListView listView = e.Data.GetData(typeof(ExtendedListView)) as ExtendedListView;
             if (listView != this)
             {
                 return;

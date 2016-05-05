@@ -80,7 +80,7 @@ namespace HoI2Editor.Models
         /// <summary>
         ///     項目の編集済みフラグ
         /// </summary>
-        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof (MinisterItemId)).Length];
+        private readonly bool[] _dirtyFlags = new bool[Enum.GetValues(typeof(MinisterItemId)).Length];
 
         /// <summary>
         ///     編集済みフラグ
@@ -160,7 +160,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void SetDirtyAll()
         {
-            foreach (MinisterItemId id in Enum.GetValues(typeof (MinisterItemId)))
+            foreach (MinisterItemId id in Enum.GetValues(typeof(MinisterItemId)))
             {
                 _dirtyFlags[(int) id] = true;
             }
@@ -172,7 +172,7 @@ namespace HoI2Editor.Models
         /// </summary>
         internal void ResetDirtyAll()
         {
-            foreach (MinisterItemId id in Enum.GetValues(typeof (MinisterItemId)))
+            foreach (MinisterItemId id in Enum.GetValues(typeof(MinisterItemId)))
             {
                 _dirtyFlags[(int) id] = false;
             }

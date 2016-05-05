@@ -25,6 +25,26 @@ namespace HoI2Editor.Forms
 
         #endregion
 
+        #region 公開定数
+
+        /// <summary>
+        ///     タブページ番号
+        /// </summary>
+        internal enum TabPageNo
+        {
+            Main, // メイン
+            Alliance, // 同盟
+            Relation, // 関係
+            Trade, // 貿易
+            Country, // 国家
+            Government, // 政府
+            Technology, // 技術
+            Province, // プロヴィンス
+            Oob // 初期部隊
+        }
+
+        #endregion
+
         #region 初期化
 
         /// <summary>
@@ -156,7 +176,7 @@ namespace HoI2Editor.Forms
         /// </summary>
         /// <param name="page">タブページ</param>
         /// <param name="index">タブページ番号</param>
-        internal void AttachTabPage(UserControl page, int index)
+        internal void SetTabPage(UserControl page, int index)
         {
             scenarioTabControl.TabPages[index].Controls.Add(page);
         }

@@ -886,13 +886,13 @@ namespace HoI2Editor.Controllers
             }
 
             // ラベルでなければ何もしない
-            if (!e.Data.GetDataPresent(typeof (Label)))
+            if (!e.Data.GetDataPresent(typeof(Label)))
             {
                 e.Effect = DragDropEffects.None;
                 return;
             }
 
-            Label label = e.Data.GetData(typeof (Label)) as Label;
+            Label label = e.Data.GetData(typeof(Label)) as Label;
             if (label == null)
             {
                 return;
@@ -920,12 +920,12 @@ namespace HoI2Editor.Controllers
             }
 
             // ラベルでなければ何もしない
-            if (!e.Data.GetDataPresent(typeof (Label)))
+            if (!e.Data.GetDataPresent(typeof(Label)))
             {
                 return;
             }
 
-            Label label = e.Data.GetData(typeof (Label)) as Label;
+            Label label = e.Data.GetData(typeof(Label)) as Label;
             if (label == null)
             {
                 return;

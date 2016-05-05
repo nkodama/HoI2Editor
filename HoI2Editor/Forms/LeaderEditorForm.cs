@@ -1233,7 +1233,7 @@ namespace HoI2Editor.Forms
         /// <returns>指揮官特性文字列</returns>
         private static string GetLeaderTraitsText(uint traits)
         {
-            string s = Enum.GetValues(typeof (LeaderTraitsId))
+            string s = Enum.GetValues(typeof(LeaderTraitsId))
                 .Cast<LeaderTraitsId>()
                 .Where(id => (traits & Leaders.TraitsValues[(int) id]) != 0)
                 .Aggregate("",

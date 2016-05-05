@@ -135,68 +135,68 @@
             // 
             // gameSpeedComboBox
             // 
-            resources.ApplyResources(this.gameSpeedComboBox, "gameSpeedComboBox");
             this.gameSpeedComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.gameSpeedComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gameSpeedComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.gameSpeedComboBox, "gameSpeedComboBox");
             this.gameSpeedComboBox.Name = "gameSpeedComboBox";
-            this.gameSpeedComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnScenarioItemComboBoxDrawItem);
-            this.gameSpeedComboBox.SelectedIndexChanged += new System.EventHandler(this.OnScenarioItemComboBoxSelectedIndexChanged);
+            this.gameSpeedComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnItemComboBoxDrawItem);
+            this.gameSpeedComboBox.SelectedIndexChanged += new System.EventHandler(this.OnItemComboBoxSelectedIndexChanged);
             // 
             // difficultyComboBox
             // 
-            resources.ApplyResources(this.difficultyComboBox, "difficultyComboBox");
             this.difficultyComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.difficultyComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.difficultyComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.difficultyComboBox, "difficultyComboBox");
             this.difficultyComboBox.Name = "difficultyComboBox";
-            this.difficultyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnScenarioItemComboBoxDrawItem);
-            this.difficultyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnScenarioItemComboBoxSelectedIndexChanged);
+            this.difficultyComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnItemComboBoxDrawItem);
+            this.difficultyComboBox.SelectedIndexChanged += new System.EventHandler(this.OnItemComboBoxSelectedIndexChanged);
             // 
             // aiAggressiveComboBox
             // 
-            resources.ApplyResources(this.aiAggressiveComboBox, "aiAggressiveComboBox");
             this.aiAggressiveComboBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.aiAggressiveComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.aiAggressiveComboBox.FormattingEnabled = true;
+            resources.ApplyResources(this.aiAggressiveComboBox, "aiAggressiveComboBox");
             this.aiAggressiveComboBox.Name = "aiAggressiveComboBox";
-            this.aiAggressiveComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnScenarioItemComboBoxDrawItem);
-            this.aiAggressiveComboBox.SelectedIndexChanged += new System.EventHandler(this.OnScenarioItemComboBoxSelectedIndexChanged);
+            this.aiAggressiveComboBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnItemComboBoxDrawItem);
+            this.aiAggressiveComboBox.SelectedIndexChanged += new System.EventHandler(this.OnItemComboBoxSelectedIndexChanged);
             // 
             // allowTechnologyCheckBox
             // 
             resources.ApplyResources(this.allowTechnologyCheckBox, "allowTechnologyCheckBox");
             this.allowTechnologyCheckBox.Name = "allowTechnologyCheckBox";
             this.allowTechnologyCheckBox.UseVisualStyleBackColor = true;
-            this.allowTechnologyCheckBox.CheckedChanged += new System.EventHandler(this.OnScenarioItemCheckBoxCheckedChanged);
+            this.allowTechnologyCheckBox.CheckedChanged += new System.EventHandler(this.OnItemCheckBoxCheckedChanged);
             // 
             // allowProductionCheckBox
             // 
             resources.ApplyResources(this.allowProductionCheckBox, "allowProductionCheckBox");
             this.allowProductionCheckBox.Name = "allowProductionCheckBox";
             this.allowProductionCheckBox.UseVisualStyleBackColor = true;
-            this.allowProductionCheckBox.CheckedChanged += new System.EventHandler(this.OnScenarioItemCheckBoxCheckedChanged);
+            this.allowProductionCheckBox.CheckedChanged += new System.EventHandler(this.OnItemCheckBoxCheckedChanged);
             // 
             // allowDiplomacyCheckBox
             // 
             resources.ApplyResources(this.allowDiplomacyCheckBox, "allowDiplomacyCheckBox");
             this.allowDiplomacyCheckBox.Name = "allowDiplomacyCheckBox";
             this.allowDiplomacyCheckBox.UseVisualStyleBackColor = true;
-            this.allowDiplomacyCheckBox.CheckedChanged += new System.EventHandler(this.OnScenarioItemCheckBoxCheckedChanged);
+            this.allowDiplomacyCheckBox.CheckedChanged += new System.EventHandler(this.OnItemCheckBoxCheckedChanged);
             // 
             // freeCountryCheckBox
             // 
             resources.ApplyResources(this.freeCountryCheckBox, "freeCountryCheckBox");
             this.freeCountryCheckBox.Name = "freeCountryCheckBox";
             this.freeCountryCheckBox.UseVisualStyleBackColor = true;
-            this.freeCountryCheckBox.CheckedChanged += new System.EventHandler(this.OnScenarioItemCheckBoxCheckedChanged);
+            this.freeCountryCheckBox.CheckedChanged += new System.EventHandler(this.OnItemCheckBoxCheckedChanged);
             // 
             // battleScenarioCheckBox
             // 
             resources.ApplyResources(this.battleScenarioCheckBox, "battleScenarioCheckBox");
             this.battleScenarioCheckBox.Name = "battleScenarioCheckBox";
             this.battleScenarioCheckBox.UseVisualStyleBackColor = true;
-            this.battleScenarioCheckBox.CheckedChanged += new System.EventHandler(this.OnScenarioItemCheckBoxCheckedChanged);
+            this.battleScenarioCheckBox.CheckedChanged += new System.EventHandler(this.OnItemCheckBoxCheckedChanged);
             // 
             // countrySelectionGroupBox
             // 
@@ -231,19 +231,19 @@
             // 
             resources.ApplyResources(this.countryDescKeyTextBox, "countryDescKeyTextBox");
             this.countryDescKeyTextBox.Name = "countryDescKeyTextBox";
-            this.countryDescKeyTextBox.TextChanged += new System.EventHandler(this.OnSelectableStringItemTextBoxTextChanged);
+            this.countryDescKeyTextBox.TextChanged += new System.EventHandler(this.OnItemTextBoxTextChanged);
             // 
             // majorCountryNameStringTextBox
             // 
             resources.ApplyResources(this.majorCountryNameStringTextBox, "majorCountryNameStringTextBox");
             this.majorCountryNameStringTextBox.Name = "majorCountryNameStringTextBox";
-            this.majorCountryNameStringTextBox.TextChanged += new System.EventHandler(this.OnSelectableStringItemTextBoxTextChanged);
+            this.majorCountryNameStringTextBox.TextChanged += new System.EventHandler(this.OnItemTextBoxTextChanged);
             // 
             // majorFlagExtTextBox
             // 
             resources.ApplyResources(this.majorFlagExtTextBox, "majorFlagExtTextBox");
             this.majorFlagExtTextBox.Name = "majorFlagExtTextBox";
-            this.majorFlagExtTextBox.TextChanged += new System.EventHandler(this.OnSelectableStringItemTextBoxTextChanged);
+            this.majorFlagExtTextBox.TextChanged += new System.EventHandler(this.OnItemTextBoxTextChanged);
             // 
             // majorFlagExtLabel
             // 
@@ -254,7 +254,7 @@
             // 
             resources.ApplyResources(this.majorCountryNameKeyTextBox, "majorCountryNameKeyTextBox");
             this.majorCountryNameKeyTextBox.Name = "majorCountryNameKeyTextBox";
-            this.majorCountryNameKeyTextBox.TextChanged += new System.EventHandler(this.OnSelectableStringItemTextBoxTextChanged);
+            this.majorCountryNameKeyTextBox.TextChanged += new System.EventHandler(this.OnItemTextBoxTextChanged);
             // 
             // majorCountryNameLabel
             // 
@@ -277,22 +277,22 @@
             // 
             // unselectableListBox
             // 
-            resources.ApplyResources(this.unselectableListBox, "unselectableListBox");
             this.unselectableListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            resources.ApplyResources(this.unselectableListBox, "unselectableListBox");
             this.unselectableListBox.FormattingEnabled = true;
             this.unselectableListBox.Name = "unselectableListBox";
             this.unselectableListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.unselectableListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnUnselectableListBoxDrawItem);
+            this.unselectableListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.unselectableListBox.SelectedIndexChanged += new System.EventHandler(this.OnUnselectableListBoxSelectedIndexChanged);
             // 
             // selectableListBox
             // 
-            resources.ApplyResources(this.selectableListBox, "selectableListBox");
             this.selectableListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            resources.ApplyResources(this.selectableListBox, "selectableListBox");
             this.selectableListBox.FormattingEnabled = true;
             this.selectableListBox.Name = "selectableListBox";
             this.selectableListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.selectableListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnSelectableListBoxDrawItem);
+            this.selectableListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.selectableListBox.SelectedIndexChanged += new System.EventHandler(this.OnSelectableListBoxSelectedIndexChanged);
             // 
             // propagandaPictureBox
@@ -312,7 +312,7 @@
             // 
             resources.ApplyResources(this.propagandaTextBox, "propagandaTextBox");
             this.propagandaTextBox.Name = "propagandaTextBox";
-            this.propagandaTextBox.TextChanged += new System.EventHandler(this.OnSelectableStringItemTextBoxTextChanged);
+            this.propagandaTextBox.TextChanged += new System.EventHandler(this.OnItemTextBoxTextChanged);
             // 
             // propagandaLabel
             // 
@@ -323,7 +323,7 @@
             // 
             resources.ApplyResources(this.countryDescStringTextBox, "countryDescStringTextBox");
             this.countryDescStringTextBox.Name = "countryDescStringTextBox";
-            this.countryDescStringTextBox.TextChanged += new System.EventHandler(this.OnSelectableStringItemTextBoxTextChanged);
+            this.countryDescStringTextBox.TextChanged += new System.EventHandler(this.OnItemTextBoxTextChanged);
             // 
             // majorAddButton
             // 
@@ -346,11 +346,11 @@
             // 
             // majorListBox
             // 
-            resources.ApplyResources(this.majorListBox, "majorListBox");
             this.majorListBox.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            resources.ApplyResources(this.majorListBox, "majorListBox");
             this.majorListBox.FormattingEnabled = true;
             this.majorListBox.Name = "majorListBox";
-            this.majorListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnMajorListBoxDrawItem);
+            this.majorListBox.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.OnCountryListBoxDrawItem);
             this.majorListBox.SelectedIndexChanged += new System.EventHandler(this.OnMajorListBoxSelectedIndexChanged);
             // 
             // majorLabel
@@ -379,7 +379,6 @@
             // 
             // scenarioInfoGroupBox
             // 
-            resources.ApplyResources(this.scenarioInfoGroupBox, "scenarioInfoGroupBox");
             this.scenarioInfoGroupBox.Controls.Add(this.includeFolderBrowseButton);
             this.scenarioInfoGroupBox.Controls.Add(this.includeFolderTextBox);
             this.scenarioInfoGroupBox.Controls.Add(this.includeFolderLabel);
@@ -397,6 +396,7 @@
             this.scenarioInfoGroupBox.Controls.Add(this.endYearTextBox);
             this.scenarioInfoGroupBox.Controls.Add(this.endMonthTextBox);
             this.scenarioInfoGroupBox.Controls.Add(this.endDayTextBox);
+            resources.ApplyResources(this.scenarioInfoGroupBox, "scenarioInfoGroupBox");
             this.scenarioInfoGroupBox.Name = "scenarioInfoGroupBox";
             this.scenarioInfoGroupBox.TabStop = false;
             // 
@@ -411,7 +411,7 @@
             // 
             resources.ApplyResources(this.includeFolderTextBox, "includeFolderTextBox");
             this.includeFolderTextBox.Name = "includeFolderTextBox";
-            this.includeFolderTextBox.TextChanged += new System.EventHandler(this.OnScenarioStringItemTextBoxTextChanged);
+            this.includeFolderTextBox.TextChanged += new System.EventHandler(this.OnItemTextBoxTextChanged);
             // 
             // includeFolderLabel
             // 
@@ -427,7 +427,7 @@
             // 
             resources.ApplyResources(this.scenarioNameTextBox, "scenarioNameTextBox");
             this.scenarioNameTextBox.Name = "scenarioNameTextBox";
-            this.scenarioNameTextBox.TextChanged += new System.EventHandler(this.OnScenarioStringItemTextBoxTextChanged);
+            this.scenarioNameTextBox.TextChanged += new System.EventHandler(this.OnItemTextBoxTextChanged);
             // 
             // panelPictureBox
             // 
@@ -444,7 +444,7 @@
             // 
             resources.ApplyResources(this.panelImageTextBox, "panelImageTextBox");
             this.panelImageTextBox.Name = "panelImageTextBox";
-            this.panelImageTextBox.TextChanged += new System.EventHandler(this.OnScenarioStringItemTextBoxTextChanged);
+            this.panelImageTextBox.TextChanged += new System.EventHandler(this.OnItemTextBoxTextChanged);
             // 
             // panelImageBrowseButton
             // 
@@ -462,19 +462,19 @@
             // 
             resources.ApplyResources(this.startYearTextBox, "startYearTextBox");
             this.startYearTextBox.Name = "startYearTextBox";
-            this.startYearTextBox.Validated += new System.EventHandler(this.OnScenarioIntItemTextBoxValidated);
+            this.startYearTextBox.Validated += new System.EventHandler(this.OnItemTextBoxValidated);
             // 
             // startMonthTextBox
             // 
             resources.ApplyResources(this.startMonthTextBox, "startMonthTextBox");
             this.startMonthTextBox.Name = "startMonthTextBox";
-            this.startMonthTextBox.Validated += new System.EventHandler(this.OnScenarioIntItemTextBoxValidated);
+            this.startMonthTextBox.Validated += new System.EventHandler(this.OnItemTextBoxValidated);
             // 
             // startDayTextBox
             // 
             resources.ApplyResources(this.startDayTextBox, "startDayTextBox");
             this.startDayTextBox.Name = "startDayTextBox";
-            this.startDayTextBox.Validated += new System.EventHandler(this.OnScenarioIntItemTextBoxValidated);
+            this.startDayTextBox.Validated += new System.EventHandler(this.OnItemTextBoxValidated);
             // 
             // endDateLabel
             // 
@@ -485,19 +485,19 @@
             // 
             resources.ApplyResources(this.endYearTextBox, "endYearTextBox");
             this.endYearTextBox.Name = "endYearTextBox";
-            this.endYearTextBox.Validated += new System.EventHandler(this.OnScenarioIntItemTextBoxValidated);
+            this.endYearTextBox.Validated += new System.EventHandler(this.OnItemTextBoxValidated);
             // 
             // endMonthTextBox
             // 
             resources.ApplyResources(this.endMonthTextBox, "endMonthTextBox");
             this.endMonthTextBox.Name = "endMonthTextBox";
-            this.endMonthTextBox.Validated += new System.EventHandler(this.OnScenarioIntItemTextBoxValidated);
+            this.endMonthTextBox.Validated += new System.EventHandler(this.OnItemTextBoxValidated);
             // 
             // endDayTextBox
             // 
             resources.ApplyResources(this.endDayTextBox, "endDayTextBox");
             this.endDayTextBox.Name = "endDayTextBox";
-            this.endDayTextBox.Validated += new System.EventHandler(this.OnScenarioIntItemTextBoxValidated);
+            this.endDayTextBox.Validated += new System.EventHandler(this.OnItemTextBoxValidated);
             // 
             // loadButton
             // 
@@ -553,6 +553,7 @@
             this.saveGamesRadioButton.Name = "saveGamesRadioButton";
             this.saveGamesRadioButton.TabStop = true;
             this.saveGamesRadioButton.UseVisualStyleBackColor = true;
+            this.saveGamesRadioButton.CheckedChanged += new System.EventHandler(this.OnFolderRadioButtonCheckedChanged);
             // 
             // scenarioRadioButton
             // 
@@ -561,6 +562,7 @@
             this.scenarioRadioButton.Name = "scenarioRadioButton";
             this.scenarioRadioButton.TabStop = true;
             this.scenarioRadioButton.UseVisualStyleBackColor = true;
+            this.scenarioRadioButton.CheckedChanged += new System.EventHandler(this.OnFolderRadioButtonCheckedChanged);
             // 
             // scenarioListBox
             // 

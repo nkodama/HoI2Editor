@@ -25,7 +25,7 @@ namespace HoI2Editor.Writers
             {
                 writer.WriteLine("# NOTE: Obviously, the order of these variables cannot be changed.");
 
-                foreach (MiscSectionId section in Enum.GetValues(typeof (MiscSectionId))
+                foreach (MiscSectionId section in Enum.GetValues(typeof(MiscSectionId))
                     .Cast<MiscSectionId>()
                     .Where(section => Misc.SectionTable[(int) section, (int) type]))
                 {
