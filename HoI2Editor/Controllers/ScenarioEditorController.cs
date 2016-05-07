@@ -823,8 +823,8 @@ namespace HoI2Editor.Controllers
                 _tabPageInitialized[(int) page] = false;
             }
 
-            // 各タブページの更新を要求する
-            _main?.RequireUpdate();
+            // 各タブページの更新を予約する
+            _main?.ReserveUpdate();
 
             // タブページを更新する
             _main?.UpdateTabPage();
@@ -1083,8 +1083,8 @@ namespace HoI2Editor.Controllers
                 _tabPageInitialized[(int) page] = false;
             }
 
-            // 各タブページの更新を要求する
-            _main?.RequireUpdate();
+            // 各タブページの更新を予約する
+            _main?.ReserveUpdate();
 
             // 強制的に選択タブの表示を更新する
             OnSelectedTabPageChanged((int) _tabPageNo);
@@ -1229,6 +1229,16 @@ namespace HoI2Editor.Controllers
         #region タブページ管理
 
         /// <summary>
+        ///     タブページを関連付ける
+        /// </summary>
+        /// <param name="page">タブページ</param>
+        /// <param name="index">タブページ番号</param>
+        internal void SetTabPage(UserControl page, int index)
+        {
+            _form.SetTabPage(page, index);
+        }
+
+        /// <summary>
         ///     選択タブ変更時の処理
         /// </summary>
         /// <param name="index">タブページ番号</param>
@@ -1284,7 +1294,7 @@ namespace HoI2Editor.Controllers
             // タブページコントローラを作成する
             if (_main == null)
             {
-                _main = new ScenarioEditorMainController(this, _form);
+                _main = new ScenarioEditorMainController(this);
             }
 
             // タブページを更新する

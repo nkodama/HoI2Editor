@@ -24,11 +24,6 @@ namespace HoI2Editor.Controllers
         private readonly ScenarioEditorController _parent;
 
         /// <summary>
-        ///     シナリオエディタフォーム
-        /// </summary>
-        private readonly ScenarioEditorForm _form;
-
-        /// <summary>
         ///     メインタブページ
         /// </summary>
         private ScenarioEditorMainPage _page;
@@ -226,11 +221,9 @@ namespace HoI2Editor.Controllers
         ///     コンストラクタ
         /// </summary>
         /// <param name="parent">シナリオエディタコントローラ</param>
-        /// <param name="form">シナリオエディタフォーム</param>
-        internal ScenarioEditorMainController(ScenarioEditorController parent, ScenarioEditorForm form)
+        internal ScenarioEditorMainController(ScenarioEditorController parent)
         {
             _parent = parent;
-            _form = form;
 
             InitTabPage();
         }
@@ -297,9 +290,17 @@ namespace HoI2Editor.Controllers
         private void InitTabPage()
         {
             _page = new ScenarioEditorMainPage(this);
-            _form.SetTabPage(_page, (int) ScenarioEditorForm.TabPageNo.Main);
+            _parent.SetTabPage(_page, (int) ScenarioEditorForm.TabPageNo.Main);
 
             _page.UpdateScenarioListBox();
+        }
+
+        /// <summary>
+        ///     タブページの更新を予約する
+        /// </summary>
+        internal void ReserveUpdate()
+        {
+            _updated = false;
         }
 
         /// <summary>
@@ -324,14 +325,6 @@ namespace HoI2Editor.Controllers
 
             // 編集項目更新済みフラグをセットする
             _updated = true;
-        }
-
-        /// <summary>
-        ///     タブページ更新を要求する
-        /// </summary>
-        internal void RequireUpdate()
-        {
-            _updated = false;
         }
 
         #endregion
@@ -858,6 +851,12 @@ namespace HoI2Editor.Controllers
         /// <param name="index">主要国リストのインデックス</param>
         internal void RemoveMajorCountry(int index)
         {
+            // 選択項目がなければ何もしない
+            if (index < 0)
+            {
+                return;
+            }
+
             Scenario scenario = Scenarios.Data;
             ScenarioHeader header = scenario.Header;
             Country country = header.MajorCountries[index].Country;
@@ -893,6 +892,12 @@ namespace HoI2Editor.Controllers
         /// <param name="indices">非選択国リストのインデックス</param>
         internal void AddSelectableCountries(List<int> indices)
         {
+            // 選択項目がなければ何もしない
+            if (indices == null || indices.Any())
+            {
+                return;
+            }
+
             Scenario scenario = Scenarios.Data;
             ScenarioHeader header = scenario.Header;
 
@@ -935,6 +940,12 @@ namespace HoI2Editor.Controllers
         /// <param name="indices">選択国リストのインデックス</param>
         internal void RemoveSelectableCountries(List<int> indices)
         {
+            // 選択項目がなければ何もしない
+            if (indices == null || indices.Any())
+            {
+                return;
+            }
+
             Scenario scenario = Scenarios.Data;
             ScenarioHeader header = scenario.Header;
 
@@ -967,10 +978,10 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     選択国リストの項目が編集済みかどうかを取得する
+        ///     主要国/選択国/非選択国リストの項目が編集済みかどうかを取得する
         /// </summary>
         /// <param name="itemId">項目ID</param>
-        /// <param name="index">選択国リストのインデックス</param>
+        /// <param name="index">リストのインデックス</param>
         /// <returns>編集済みならばtrueを返す</returns>
         internal bool IsDirtyCountry(ItemId itemId, int index)
         {
@@ -993,7 +1004,7 @@ namespace HoI2Editor.Controllers
         #region 項目値更新
 
         /// <summary>
-        ///     編集項目の値を更新する
+        ///     編集項目の値を更新する - シナリオ情報
         /// </summary>
         /// <param name="itemId">項目ID</param>
         private void UpdateItemValue(ItemId itemId)
@@ -1020,7 +1031,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     編集項目の値を更新する
+        ///     編集項目の値を更新する - 主要国設定
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="major">主要国設定</param>
@@ -1053,7 +1064,7 @@ namespace HoI2Editor.Controllers
         #region 項目色更新
 
         /// <summary>
-        ///     編集項目の色を更新する
+        ///     編集項目の色を更新する - シナリオ情報
         /// </summary>
         /// <param name="itemId">項目ID</param>
         private void UpdateItemColor(ItemId itemId)
@@ -1073,7 +1084,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     編集項目の色を更新する
+        ///     編集項目の色を更新する - 主要国設定
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="major">主要国設定</param>
@@ -1088,7 +1099,7 @@ namespace HoI2Editor.Controllers
         #region 項目値取得
 
         /// <summary>
-        ///     編集項目の値を取得する
+        ///     編集項目の値を取得する - シナリオ情報
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <returns>編集項目の値</returns>
@@ -1154,7 +1165,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     編集項目の値を取得する
+        ///     編集項目の値を取得する - 主要国設定
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="major">主要国設定</param>
@@ -1208,7 +1219,7 @@ namespace HoI2Editor.Controllers
         #region 項目値設定
 
         /// <summary>
-        ///     編集項目の値を設定する
+        ///     編集項目の値を設定する - シナリオ情報
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
@@ -1296,7 +1307,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     編集項目の値を設定する
+        ///     編集項目の値を設定する - 主要国設定
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="major">主要国設定</param>
@@ -1438,7 +1449,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     リスト項目の値を更新する
+        ///     リスト項目の値を更新する - コンボボックス
         /// </summary>
         /// <param name="control">対象コントロール</param>
         /// <param name="itemId">項目ID</param>
@@ -1454,7 +1465,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     リスト項目の値を更新する
+        ///     リスト項目の値を更新する - リストボックス
         /// </summary>
         /// <param name="control">対象コントロール</param>
         /// <param name="itemId">項目ID</param>
@@ -1511,7 +1522,7 @@ namespace HoI2Editor.Controllers
         #region 編集済みフラグ取得
 
         /// <summary>
-        ///     編集項目の編集済みフラグを取得する
+        ///     編集項目の編集済みフラグを取得する - シナリオ情報
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <returns>編集済みフラグ</returns>
@@ -1521,7 +1532,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     編集項目の編集済みフラグを取得する
+        ///     編集項目の編集済みフラグを取得する - 主要国設定
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="major">主要国設定</param>
@@ -1536,7 +1547,7 @@ namespace HoI2Editor.Controllers
         #region 編集済みフラグ設定
 
         /// <summary>
-        ///     編集項目の編集済みフラグを設定する
+        ///     編集項目の編集済みフラグを設定する - シナリオ情報
         /// </summary>
         /// <param name="itemId">項目ID</param>
         private void SetItemDirty(ItemId itemId)
@@ -1546,7 +1557,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     編集項目の編集済みフラグを設定する
+        ///     編集項目の編集済みフラグを設定する - 主要国設定
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="major">主要国設定</param>
@@ -1562,7 +1573,7 @@ namespace HoI2Editor.Controllers
         #region 変更前処理
 
         /// <summary>
-        ///     項目値変更前の処理
+        ///     項目値変更前の処理 - シナリオ情報
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
@@ -1606,7 +1617,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     項目値変更前の処理
+        ///     項目値変更前の処理 - 主要国設定
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
@@ -1675,7 +1686,7 @@ namespace HoI2Editor.Controllers
         #region 変更後処理
 
         /// <summary>
-        ///     項目値変更後の処理
+        ///     項目値変更後の処理 - シナリオ情報
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
@@ -1690,7 +1701,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     項目値変更後の処理
+        ///     項目値変更後の処理 - 主要国設定
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
@@ -1720,7 +1731,7 @@ namespace HoI2Editor.Controllers
         #region ログ出力
 
         /// <summary>
-        ///     編集項目の値変更時のログを出力する
+        ///     編集項目の値変更時のログを出力する - シナリオ情報
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>
@@ -1731,7 +1742,7 @@ namespace HoI2Editor.Controllers
         }
 
         /// <summary>
-        ///     編集項目の値変更時のログを出力する
+        ///     編集項目の値変更時のログを出力する - 主要国設定
         /// </summary>
         /// <param name="itemId">項目ID</param>
         /// <param name="val">編集項目の値</param>

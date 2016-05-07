@@ -171,6 +171,10 @@ namespace HoI2Editor.Forms
             Close();
         }
 
+        #endregion
+
+        #region タブページ
+
         /// <summary>
         ///     タブページを関連付ける
         /// </summary>
