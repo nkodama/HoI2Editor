@@ -143,7 +143,7 @@ namespace HoI2Editor.Models
             Name = original.Name;
             PictureName = original.PictureName;
             Skill = original.Skill;
-            MaxSkill = original.Skill;
+            MaxSkill = original.MaxSkill;
             for (int i = 0; i < RankLength; i++)
             {
                 RankYear[i] = original.RankYear[i];
