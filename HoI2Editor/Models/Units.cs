@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using HoI2Editor.Parsers;
 using HoI2Editor.Properties;
+using HoI2Editor.Utilities;
 using HoI2Editor.Writers;
 
 namespace HoI2Editor.Models

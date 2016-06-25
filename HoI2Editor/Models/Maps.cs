@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using HoI2Editor.Utilities;
 
 namespace HoI2Editor.Models
 {
