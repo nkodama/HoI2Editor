@@ -4866,7 +4866,7 @@ namespace HoI2Editor.Forms
             control.ForeColor = Color.Red;
 
             // 項目値変更後の処理
-            _controller.PostItemChanged(itemId, val, relation, settings);
+            _controller.PostItemChanged(itemId, val, relation);
         }
 
         /// <summary>
